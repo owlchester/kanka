@@ -20,3 +20,54 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+
+// add custom js
+$('.sidebar-toggle').on('click', function() {
+    var cls = $('body').hasClass('sidebar-collapse');
+    if (cls == true) {
+        $('body').removeClass('sidebar-collapse');
+    } else {
+        $('body').addClass('sidebar-collapse');
+    }
+});
+
+if ($('.select2').length > 0) {
+    $.each($('.select2'), function(index) {
+       $(this).select2({
+            placeholder: $(this).attr('data-palceholder'),
+            minimumInputLength: 3,
+                ajax: {
+                url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    data: function (params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+    });
+}
+
+if ($('.html-editor').length > 0) {
+    $.each($('.html-editor'), function(index) {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace($(this));
+    });
+}
+// Live search on forms
+/*$.each($('.datagrid-search'), function(index) {
+    $(this).submit(function(event) {
+        event.preventDefault();
+
+        window.location.href =
+    });
+});*/

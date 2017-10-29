@@ -7,3 +7,13 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+// Import admin-lte css
+@import "~admin-lte/dist/css/adminLTE.css";
+@import "~admin-lte/dist/css/skins/_all-skins.css";
+
+// Select 2
+@import "~select2/dist/css/select2.css";
+
+@import "campaigns";
