@@ -6,11 +6,17 @@ use App\Campaign;
 use App\Character;
 use App\CharacterRelation;
 use App\Family;
+use App\FamilyRelation;
+use App\Item;
+use App\Journal;
 use App\Location;
 use App\Observers\CampaignObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
 use App\Observers\FamilyObserver;
+use App\Observers\FamilyRelationObserver;
+use App\Observers\ItemObserver;
+use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +39,9 @@ class AppServiceProvider extends ServiceProvider
         CharacterRelation::observe(CharacterRelationObserver::class);
         Location::observe(LocationObserver::class);
         Family::observe(FamilyObserver::class);
+        FamilyRelation::observe(FamilyRelationObserver::class);
+        Item::observe(ItemObserver::class);
+        Journal::observe(JournalObserver::class);
     }
 
     /**

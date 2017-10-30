@@ -9,13 +9,13 @@ class Family extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['name', 'history', 'banner'];
+    protected $fillable = ['name', 'history', 'banner', 'location_id'];
 
     /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name'];
+    protected $searchableColumns = ['name'];
 
     /**
      * The "booting" method of the model.
@@ -27,5 +27,29 @@ class Family extends MiscModel
         parent::boot();
 
         static::addGlobalScope(new CampaignScope());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
+    {
+        return $this->belongsTo('App\Location', 'location_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members()
+    {
+        return $this->hasMany('App\Character', 'family_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function relationships()
+    {
+        return $this->hasMany('App\FamilyRelation', 'first_id', 'id');
     }
 }

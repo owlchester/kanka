@@ -32,7 +32,9 @@ Route::resources([
     'locations' => 'LocationController',
     'location_attribute' => 'LocationAttributeController',
     'families' => 'FamilyController',
-    'family_member' => 'FamilyMemberController',
+    'family_relation' => 'FamilyRelationController',
+    'items' => 'ItemController',
+    'journals' => 'JournalController',
 ]);
 
 Route::get('/search/locations', 'SearchController@locations')->name('locations.find');

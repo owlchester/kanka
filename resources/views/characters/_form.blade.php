@@ -8,8 +8,14 @@
             <label>Title:</label>
             {!! Form::text('title', null, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
 
+            <label>Family:</label>
+            {!! Form::select('family_id', (isset($character) && $character->family ? [$character->family_id => $character->family->name] : []),
+            null, ['id' => 'family_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => 'Choose a family...']) !!}
+
+
             <label>Location:</label>
-            {!! Form::select('location_id', [], null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => 'Choose a location...']) !!}
+            {!! Form::select('location_id', (isset($character) && $character->location ? [$character->location_id => $character->location->name] : []),
+            null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => 'Choose a location...']) !!}
 
             <label>Race:</label>
             {!! Form::text('race', null, ['placeholder' => 'Race', 'class' => 'form-control']) !!}

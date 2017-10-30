@@ -24,5 +24,6 @@ return [
         'name' => 'Name',
         'type' => 'Type',
         'location' => 'Location',
+        'characters' => 'Characters',
     ]
 ];

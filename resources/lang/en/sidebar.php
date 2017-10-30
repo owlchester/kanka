@@ -5,5 +5,7 @@ return [
     'characters' => 'Characters',
     'locations' => 'Locations',
     'families' =>  'Families',
+    'journals' =>  'Journals',
+    'items' =>  'Items',
     'admin' => 'Admin'
 ];

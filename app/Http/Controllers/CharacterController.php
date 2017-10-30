@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Session;
 class CharacterController extends Controller
 {
     /**
+     * @var string
+     */
+    protected $view = 'characters';
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -27,7 +32,10 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $models = Character::with('location')->search(request()->get('search'))->paginate();
+        $models = Character::with('location')
+            ->search(request()->get('search'))
+            ->order(request()->get('order'))
+            ->paginate();
         return view('characters.index', compact('models'));
     }
 
@@ -96,6 +104,7 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        // Delete
+        $character->delete();
+        return redirect()->route($this->view . '.index')->with('success', 'Character removed');
     }
 }

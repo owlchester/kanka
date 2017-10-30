@@ -25,7 +25,7 @@ class StoreLocation extends FormRequest
     {
         return [
             'name' => 'required',
-            'parent_location_id', 'integer|exists:locations',
+            'parent_location_id', 'integer|exists:locations,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192'
         ];
     }

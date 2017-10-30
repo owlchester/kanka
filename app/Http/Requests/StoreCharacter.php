@@ -25,8 +25,10 @@ class StoreCharacter extends FormRequest
     {
         return [
             'name' => 'required',
-            'age' => 'integer',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192'
+            'age' => 'nullable|integer',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'family_id' => 'integer|exists:families,id',
+            'location_id' => 'integer|exists:locations,id'
         ];
     }
 }

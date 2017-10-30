@@ -11,7 +11,10 @@
             <!-- Optionally, you can add icons to the links -->
             <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a></li>
             <li><a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ trans('sidebar.characters') }}</span></a></li>
+            <li><a href="{{ route('families.index') }}"><i class="fa fa-sitemap"></i> <span>{{ trans('sidebar.families') }}</span></a></li>
             <li><a href="{{ route('locations.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.locations') }}</span></a></li>
+            <li><a href="{{ route('items.index') }}"><i class="fa fa-wrench"></i> <span>{{ trans('sidebar.items') }}</span></a></li>
+            <li><a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a></li>
 
             <li><a href="{{ url('/admin') }}"><i class="fa fa-lock"></i> <span>Admin</span></a></li>
         </ul><!-- /.sidebar-menu -->

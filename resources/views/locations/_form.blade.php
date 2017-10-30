@@ -23,12 +23,12 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>Description:</label>
-            {!! Form::textarea('description', null, ['placeholder' => 'Description', 'class' => 'form-control']) !!}
+            {!! Form::textarea('description', null, ['placeholder' => 'Description', 'class' => 'form-control html-editor', 'id' => 'description']) !!}
         </div>
         <hr />
         <div class="form-group">
             <label>History:</label>
-            {!! Form::textarea('history', null, ['placeholder' => 'History', 'class' => 'form-control']) !!}
+            {!! Form::textarea('history', null, ['placeholder' => 'History', 'class' => 'form-control html-editor', 'id' => 'history']) !!}
         </div>
         <hr />
     </div>

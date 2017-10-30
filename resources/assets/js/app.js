@@ -56,13 +56,30 @@ if ($('.select2').length > 0) {
     });
 }
 
-if ($('.html-editor').length > 0) {
-    $.each($('.html-editor'), function(index) {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace($(this));
-    });
-}
+// Need to wait for ckeditor cdn
+$(document).ready(function() {
+    if ($('.html-editor').length > 0) {
+        $.each($('.html-editor'), function(index) {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace($(this).attr('id'), {
+                removePlugins: 'sourcearea',
+                removeButtons: 'Source'
+            });
+        });
+    }
+
+    if ($('.date-picker').length > 0) {
+        $.each($('.date-picker'), function(index) {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            $(this).datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+        });
+    }
+});
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {
     $(this).submit(function(event) {

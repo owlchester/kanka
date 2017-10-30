@@ -40,7 +40,8 @@ class CharacterRelationController extends Controller
      */
     public function create()
     {
-        return view('characters.relations.create');
+        $character = Character::findOrFail(request()->get('character'));
+        return view('characters.relations.create', compact('character'));
     }
 
     /**

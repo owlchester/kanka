@@ -41,4 +41,20 @@ abstract class MiscModel extends Model
             }
         });
     }
+
+    public function scopeOrder($query, $field)
+    {
+        if (!empty($field)) {
+            $segments = explode('.', $field);
+            if (count($segments) > 1) {
+                $relation = $this->{$segments[0]}();
+                //dd($relation->getForeignKey());
+                $foreignName = $relation->getQuery()->getQuery()->from;
+                return $query->join($foreignName . ' as f', 'f.id', $relation->getForeignKey())
+                    ->orderBy('f.' . $field);
+            } else {
+                return $query->orderBy($field);
+            }
+        }
+    }
 }

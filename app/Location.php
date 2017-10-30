@@ -55,4 +55,12 @@ class Location extends MiscModel
     {
         return $this->hasMany('App\LocationAttribute', 'location_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany('App\Item', 'location_id', 'id');
+    }
 }

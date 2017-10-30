@@ -15,7 +15,8 @@ try {
 
 require('admin-lte');
 require('select2');
-require('ckeditor');
+require('bootstrap-datepicker');
+//require('ckeditor');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

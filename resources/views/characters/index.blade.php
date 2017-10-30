@@ -43,18 +43,22 @@
 
                     <table id="characters" class="table table-hover">
                         <tbody><tr>
-                            <th>{{ trans('characters.fields.id') }}</th>
-                            <th>{{ trans('characters.fields.name') }}</th>
+                            <th><a href="{{ route('characters.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.name') }}</a></th>
+                            <th>{{ trans('characters.fields.family') }}</th>
                             <th>{{ trans('characters.fields.location') }}</th>
-                            <th>{{ trans('characters.fields.age') }}</th>
-                            <th>{{ trans('characters.fields.race') }}</th>
-                            <th>{{ trans('characters.fields.sex') }}</th>
+                            <th><a href="{{ route('characters.index', ['order' => 'age', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.age') }}</a></th>
+                            <th><a href="{{ route('characters.index', ['order' => 'race', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.race') }}</a></th>
+                            <th><a href="{{ route('characters.index', ['order' => 'sex', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.sex') }}</a></th>
                             <th>&nbsp;</th>
                         </tr>
                         @foreach ($models as $character)
                         <tr>
-                            <td>{{ $character->id }}</td>
                             <td>{{ $character->name }}</td>
+                            <td>
+                                @if ($character->family)
+                                    <a href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
+                                @endif
+                            </td>
                             <td>
                                 @if ($character->location)
                                     <a href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
@@ -72,7 +76,7 @@
                         @endforeach
                         </tbody></table>
 
-                    {{ $models->links() }}
+                    {{ $models->appends(['order' => request()->get('order')])->links() }}
                 </div>
             </div>
         </div>

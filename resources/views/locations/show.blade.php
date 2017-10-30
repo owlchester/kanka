@@ -23,8 +23,14 @@
                     </ul>
 
                     <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-primary btn-block">
-                        {{ trans('crud.update') }}
+                        <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
+
+                    {!! Form::open(['method' => 'DELETE','route' => ['locations.destroy', $location->id],'style'=>'display:inline']) !!}
+                    <button class="btn btn-block btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                    </button>
+                    {!! Form::close() !!}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -62,36 +68,16 @@
                     <div class="tab-pane active" id="information">
                         <div class="post">
                             <h3>Description</h3>
-                            <p>{!! nl2br(e($location->description)) !!}</p>
+                            <p>{!! $location->description !!}</p>
                         </div>
 
                         <div class="post">
                             <h3>History</h3>
-                            <p>{!! nl2br(e($location->history)) !!}</p>
+                            <p>{!! $location->history !!}</p>
                         </div>
                     </div>
                     <div class="tab-pane" id="character">
-                        <table id="characters" class="table table-hover">
-                            <tbody><tr>
-                                <th>{{ trans('characters.fields.name') }}</th>
-                                <th>{{ trans('characters.fields.age') }}</th>
-                                <th>{{ trans('characters.fields.race') }}</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                            @foreach ($location->characters()->paginate() as $character)
-                                <tr>
-                                    <td>{{ $character->name }}</td>
-                                    <td>{{ $character->age }}</td>
-                                    <td>{{ $character->race }}</td>
-                                    <td class="text-right">
-                                        <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
-                                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @include('locations._characters')
                     </div>
                 </div>
             </div>

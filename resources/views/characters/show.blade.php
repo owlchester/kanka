@@ -14,10 +14,15 @@
                     <p class="text-muted text-center">{{ $character->title }}</p>
 
                     <ul class="list-group list-group-unbordered">
+                        @if (!empty($character->family_id))
+                            <li class="list-group-item">
+                                <b>Family</b> <a class="pull-right" href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
+                            </li>
+                        @endif
                         @if (!empty($character->location_id))
-                        <li class="list-group-item">
-                            <b>Location</b> <a class="pull-right" href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
-                        </li>
+                            <li class="list-group-item">
+                                <b>Location</b> <a class="pull-right" href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
+                            </li>
                         @endif
                         <li class="list-group-item">
                             <b>Race</b> <span class="pull-right">{{ $character->race }}</span>
@@ -25,8 +30,14 @@
                     </ul>
 
                     <a href="{{ route('characters.edit', ['id' => $character->id]) }}" class="btn btn-primary btn-block">
-                        {{ trans('crud.update') }}
+                        <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
+
+                    {!! Form::open(['method' => 'DELETE','route' => ['characters.destroy', $character->id],'style'=>'display:inline']) !!}
+                    <button class="btn btn-block btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                    </button>
+                    {!! Form::close() !!}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -100,7 +111,7 @@
                 <div class="tab-content">
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="history">
                         <div class="post">
-                            <p>{!! nl2br(e($character->history)) !!}</p>
+                            <p>{!! $character->history !!}</p>
                         </div>
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'personality' ? ' active' : '') }}" id="personality">

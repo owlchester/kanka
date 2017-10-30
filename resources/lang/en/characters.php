@@ -28,6 +28,7 @@ return [
         'location' => 'Location',
         'sex' => 'Sex',
         'relation' => 'Relation',
+        'family' => 'Family',
     ],
     'relations' => [
         'create' => [

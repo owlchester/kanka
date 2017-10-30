@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use App\Http\Requests\StoreCharacter;
+use App\Http\Requests\StoreFamily;
 use App\Http\Requests\StoreLocation;
 use App\Family;
 use Illuminate\Http\Request;
@@ -34,7 +35,9 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        $models = Family::search(request()->get('search'))->paginate();
+        $models = Family::search(request()->get('search'))
+            ->order(request()->get('order'))
+            ->paginate();
         return view($this->view . '.index', compact('models'));
     }
 
@@ -54,7 +57,7 @@ class FamilyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLocation $request)
+    public function store(StoreFamily $request)
     {
         Family::create($request->all());
         return redirect()->route($this->view . '.index')->with('success', 'Character created');
@@ -66,33 +69,33 @@ class FamilyController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function show(Family $model)
+    public function show(Family $family)
     {
-        return view($this->view . '.show', compact('model'));
+        return view($this->view . '.show', compact('family'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Family $family
      * @return \Illuminate\Http\Response
      */
-    public function edit(Family $model)
+    public function edit(Family $family)
     {
-        return view($this->view . '.edit', compact('model'));
+        return view($this->view . '.edit', compact('family'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Family $family
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreLocation $request, Family $model)
+    public function update(StoreFamily $request, Family $family)
     {
-        $model->update($request->all());
-        return redirect()->route($this->view . '.show', $model->id);
+        $family->update($request->all());
+        return redirect()->route($this->view . '.show', $family->id);
     }
 
     /**
@@ -101,8 +104,9 @@ class FamilyController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $model)
+    public function destroy(Family $family)
     {
-        // Delete
+        $family->delete();
+        return redirect()->route($this->view . '.index')->with('success', 'Family removed');
     }
 }

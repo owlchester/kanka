@@ -35,7 +35,10 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $models = Location::with('parentLocation')->search(request()->get('search'))->paginate();
+        $models = Location::with('parentLocation')
+            ->search(request()->get('search'))
+            ->order(request()->get('order'))
+            ->paginate();
         return view($this->view . '.index', compact('models'));
     }
 
@@ -104,6 +107,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        // Delete
+        $location->delete();
+        return redirect()->route($this->view . '.index')->with('success', 'Location removed');
     }
 }

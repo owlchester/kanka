@@ -11,6 +11,7 @@ class Character extends MiscModel
         'name',
         'slug',
         'campaign_id',
+        'family_id',
         'location_id',
         'title',
         'history',
@@ -58,10 +59,26 @@ class Character extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function family()
+    {
+        return $this->belongsTo('App\Family', 'family_id', 'id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function relationships()
     {
         return $this->hasMany('App\CharacterRelation', 'first_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany('App\Item', 'character_id', 'id');
     }
 }
