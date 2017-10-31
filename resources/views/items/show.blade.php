@@ -7,14 +7,20 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $item->image }}" alt="{{ $item->name }} picture">
+                    @if ($item->image)
+                    <a href="/storage/{{ $item->image }}">
+                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $item->image }}" alt="{{ $item->name }} picture">
+                    </a>
+                    @endif
 
                     <h3 class="profile-username text-center">{{ $item->name }}</h3>
 
                     <ul class="list-group list-group-unbordered">
+                        @if ($item->type)
                         <li class="list-group-item">
                             <b>{{ trans('items.fields.type') }}</b> <a class="pull-right">{{ $item->type }}</a>
                         </li>
+                        @endif
                         @if (!empty($item->location))
                             <li class="list-group-item">
                                 <b>{{ trans('items.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $item->location_id) }}">{{ $item->location->name }}</a>

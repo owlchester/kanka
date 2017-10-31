@@ -15,7 +15,11 @@
     @foreach ($r = $character->relationships()->paginate(3) as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
-            <td><a href="{{ route('characters.show', $relation->second_id) }}">{{ $relation->second->name }}</a></td>
+            <td>
+                @if ($relation->second->image)
+                    <img class="direct-chat-img" src="/storage/{{ $relation->second->image }}" alt="{{ $relation->second->name }} picture">
+                @endif
+                <a href="{{ route('characters.show', $relation->second_id) }}">{{ $relation->second->name }}</a></td>
             <td>
                 @if ($relation->second->location)
                     <a href="{{ route('locations.show', $relation->second->location_id) }}">{{ $relation->second->location->name }}</a>

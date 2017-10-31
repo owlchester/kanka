@@ -58,4 +58,12 @@ class JournalObserver
             Storage::disk('public')->delete($journal->image);
         }
     }
+
+    /**
+     * @param Journal $journal
+     */
+    public function deleting(Journal $journal)
+    {
+
+    }
 }

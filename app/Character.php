@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Scopes\CampaignScope;
+use Stevebauman\Purify\Facades\Purify;
 
 class Character extends MiscModel
 {
@@ -80,5 +81,21 @@ class Character extends MiscModel
     public function items()
     {
         return $this->hasMany('App\Item', 'character_id', 'id');
+    }
+
+    /**
+     * Get a short history/description for the dashboard
+     * @param int $limit
+     * @return string
+     */
+    public function shortHistory($limit = 150)
+    {
+        $pureHistory = strip_tags($this->history);
+        if (!empty($pureHistory)) {
+            if (strlen($pureHistory) > $limit) {
+                return substr($pureHistory, 0, $limit) . '...';
+            }
+        }
+        return $pureHistory;
     }
 }

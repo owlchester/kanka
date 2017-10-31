@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Scopes\RecentScope;
 use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
+use DateTime;
 
 abstract class MiscModel extends Model
 {
@@ -42,6 +44,20 @@ abstract class MiscModel extends Model
         });
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeRecent($query)
+    {
+        return $query->orderBy('updated_at', 'desc');
+    }
+
+    /**
+     * @param $query
+     * @param $field
+     * @return mixed
+     */
     public function scopeOrder($query, $field)
     {
         if (!empty($field)) {
@@ -56,5 +72,40 @@ abstract class MiscModel extends Model
                 return $query->orderBy($field);
             }
         }
+    }
+
+    /**
+     * @param string $field
+     * @param bool $full
+     * @return string
+     */
+    public function elapsed($field = 'updated_at', $full = false)
+    {
+        $now = new DateTime;
+        $ago = new DateTime($this->$field);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
 }

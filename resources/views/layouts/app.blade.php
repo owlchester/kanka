@@ -23,7 +23,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="skin-black @if (Session::has('campaign_id')) sidebar-collapse sidebar-mini @else layout-top-nav @endif">
+<body class="skin-black @if (Session::has('campaign_id')) @else layout-top-nav @endif">
 <div id="app" class="wrapper">
     <!-- Header -->
     @include('layouts.header')
@@ -41,8 +41,7 @@
             </h1>
             <!-- You can dynamically generate breadcrumbs here -->
             <ol class="breadcrumb">
-                <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
+                <li><a href="{{route('home')}}">Dashboard</a></li>
             </ol>
         </section>
 

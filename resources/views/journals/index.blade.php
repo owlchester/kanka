@@ -51,7 +51,9 @@
                         </tr>
                         @foreach ($models as $model)
                         <tr>
-                            <td>{{ $model->name }}</td>
+                            <td>
+                                <a href="{{ route('journals.show', $model->id) }}">{{ $model->name }}</a>
+                            </td>
                             <td>{{ $model->type }}</td>
                             <td>{{ $model->date }}</td>
                             <td class="text-right">

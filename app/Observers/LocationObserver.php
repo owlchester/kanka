@@ -72,9 +72,19 @@ class LocationObserver
             $character->save();
         }
 
+        foreach ($location->families as $family) {
+            $family->location_id = null;
+            $family->save();
+        }
+
         foreach ($location->items as $item) {
             $item->location_id = null;
             $item->save();
+        }
+
+        foreach($location->locations as $sub) {
+            $sub->location_id = null;
+            $sub->save();
         }
     }
 }

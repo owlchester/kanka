@@ -19,16 +19,16 @@ class FamilyObserver
         $family->slug = str_slug($family->name, '');
         $family->campaign_id = Session::get('campaign_id');
 
-        if (request()->has('banner')) {
-            $path = request()->file('banner')->store('families', 'public');
+        if (request()->has('image')) {
+            $path = request()->file('image')->store('families', 'public');
             if (!empty($path)) {
                 // Remove old
-                $original = $family->getOriginal('banner');
+                $original = $family->getOriginal('image');
                 if (!empty($original)) {
                     // Delete
                     Storage::disk('public')->delete($original);
                 }
-                $family->banner = $path;
+                $family->image = $path;
             }
         }
     }
@@ -52,9 +52,9 @@ class FamilyObserver
      */
     public function deleted(Family $family)
     {
-        if (!empty($family->banner)) {
+        if (!empty($family->image)) {
             // Delete
-            Storage::disk('public')->delete($family->banner);
+            Storage::disk('public')->delete($family->image);
         }
     }
 

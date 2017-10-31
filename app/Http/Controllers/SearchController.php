@@ -4,11 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use App\Family;
+use App\Item;
 use App\Location;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('campaign');
+    }
+
+    public function search(Request $request)
+    {
+        $term = trim($request->q);
+        $locations = Location::where('name', 'like', "%$term%")->limit(5)->get();
+        $characters = Character::where('name', 'like', "%$term%")->limit(5)->get();
+        $items = Item::where('name', 'like', "%$term%")->limit(5)->get();
+
+        return view('search.index', compact(
+            'term', 'locations', 'characters', 'items'
+        ));
+    }
+
     /**
      * @param Request $request
      * @return mixed

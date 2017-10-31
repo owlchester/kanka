@@ -25,7 +25,11 @@ class UserEventSubscriber
      */
     public function onUserLogin($event) {
         // We want to register in the session a campaign_id
-        $campaign = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->first();
+        $campaign = Campaign::whereHas('users', function ($q) {
+            $q->where('users.id', Auth::user()->id);
+        })
+            ->where('id', Auth::user()->last_campaign_id)
+            ->first();
         if (!empty($campaign)) {
             Session::put('campaign_id', $campaign->id);
         }

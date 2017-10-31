@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Campaign;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CampaignService
@@ -32,5 +33,16 @@ class CampaignService
     public function name()
     {
         return $this->campaign->name;
+    }
+
+    /**
+     * @param $id
+     */
+    public static function switchCampaign($id)
+    {
+        Session::put('campaign_id', $id);
+        $user = Auth::user();
+        $user->last_campaign_id = $id;
+        $user->save();
     }
 }

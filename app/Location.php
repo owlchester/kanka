@@ -63,4 +63,36 @@ class Location extends MiscModel
     {
         return $this->hasMany('App\Item', 'location_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function locations()
+    {
+        return $this->hasMany('App\Location', 'parent_location_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function families()
+    {
+        return $this->hasMany('App\Family', 'location_id', 'id');
+    }
+
+    /**
+     * Get a short history/description for the dashboard
+     * @param int $limit
+     * @return string
+     */
+    public function shortHistory($limit = 150)
+    {
+        $pureHistory = strip_tags($this->description);
+        if (!empty($pureHistory)) {
+            if (strlen($pureHistory) > $limit) {
+                return substr($pureHistory, 0, $limit) . '...';
+            }
+        }
+        return $pureHistory;
+    }
 }

@@ -7,11 +7,17 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $character->image }}" alt="{{ $character->name }} picture">
+                    @if ($character->image)
+                    <a href="/storage/{{ $character->image }}">
+                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $character->image }}" alt="{{ $character->name }} picture">
+                    </a>
+                    @endif
 
                     <h3 class="profile-username text-center">{{ $character->name }}</h3>
 
-                    <p class="text-muted text-center">{{ $character->title }}</p>
+                    @if ($character->title)
+                        <p class="text-muted text-center">{{ $character->title }}</p>
+                    @endif
 
                     <ul class="list-group list-group-unbordered">
                         @if (!empty($character->family_id))

@@ -7,7 +7,11 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $family->banner }}" alt="{{ $family->name }} picture">
+                    @if ($family->image)
+                    <a href="/storage/{{ $family->image }}">
+                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $family->image }}" alt="{{ $family->name }} picture">
+                    </a>
+                    @endif
 
                     <h3 class="profile-username text-center">{{ $family->name }}</h3>
 

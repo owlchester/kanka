@@ -7,7 +7,12 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $journal->image }}" alt="{{ $journal->name }} picture">
+
+                    @if ($journal->image)
+                    <a href="/storage/{{ $journal->image }}">
+                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $journal->image }}" alt="{{ $journal->name }} picture">
+                    </a>
+                    @endif
 
                     <h3 class="profile-username text-center">{{ $journal->name }}</h3>
 

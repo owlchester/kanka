@@ -18,4 +18,14 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        @include('dashboard._recent', ['title' => 'Characters', 'route' => 'characters', 'models' => $characters])
+        @include('dashboard._recent', ['title' => 'Families', 'route' => 'families', 'models' => $families])
+        @include('dashboard._recent', ['title' => 'Locations', 'route' => 'locations', 'models' => $locations])
+    </div>
+    <div class="row">
+        @include('dashboard._recent', ['title' => 'Items', 'route' => 'items', 'models' => $items])
+        @include('dashboard._recent', ['title' => 'Journals', 'route' => 'journals', 'models' => $journals])
+    </div>
 @endsection

@@ -8,7 +8,12 @@
     </tr>
     @foreach ($location->characters()->with(['location', 'family'])->paginate() as $character)
         <tr>
-            <td><a href="{{ route('characters.show', $character->id) }}">{{ $character->name }}</a></td>
+            <td>
+                @if ($character->image)
+                    <img class="direct-chat-img" src="/storage/{{ $character->image }}" alt="{{ $character->name }} picture">
+                @endif
+                <a href="{{ route('characters.show', $character->id) }}">{{ $character->name }}</a>
+            </td>
             <td>
                 @if ($character->family)
                     <a href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>

@@ -16,7 +16,14 @@ return [
         'description' => 'A detailed view of a campaign',
     ],
     'edit' => [
-        'title' => 'Edit Campaign :name',
+        'title' => 'Edit Campaign :campaign',
         'description' => ''
+    ],
+    'members' => [
+        'fields' => [
+            'name' => 'User',
+            'role' => 'Role',
+            'joined' => 'Joined',
+        ],
     ]
 ];

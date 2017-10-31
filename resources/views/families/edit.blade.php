@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => trans('families.edit.title', ['character' => $family->name]), 'description' => trans('families.edit.description')])
+@extends('layouts.app', ['title' => trans('families.edit.title', ['family' => $family->name]), 'description' => trans('families.edit.description')])
 
 @section('content')
     <div class="row">

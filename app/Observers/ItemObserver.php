@@ -58,4 +58,15 @@ class ItemObserver
             Storage::disk('public')->delete($item->image);
         }
     }
+
+    /**
+     * @param Item $item
+     */
+    public function deleting(Item $item)
+    {
+        /*foreach ($item->members as $character) {
+            $character->family_id = null;
+            $character->save();
+        }*/
+    }
 }

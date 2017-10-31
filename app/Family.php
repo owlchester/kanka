@@ -9,7 +9,7 @@ class Family extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['name', 'history', 'banner', 'location_id'];
+    protected $fillable = ['name', 'history', 'image', 'location_id'];
 
     /**
      * Searchable fields
@@ -51,5 +51,21 @@ class Family extends MiscModel
     public function relationships()
     {
         return $this->hasMany('App\FamilyRelation', 'first_id', 'id');
+    }
+
+    /**
+     * Get a short history/description for the dashboard
+     * @param int $limit
+     * @return string
+     */
+    public function shortHistory($limit = 150)
+    {
+        $pureHistory = strip_tags($this->history);
+        if (!empty($pureHistory)) {
+            if (strlen($pureHistory) > $limit) {
+                return substr($pureHistory, 0, $limit) . '...';
+            }
+        }
+        return $pureHistory;
     }
 }

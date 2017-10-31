@@ -1,4 +1,7 @@
-@extends('layouts.app', ['title' => trans('families.index.title'), 'description' => trans('families.index.description')])
+@extends('layouts.app', [
+    'title' => trans('families.index.title'),
+    'description' => trans('families.index.description'),
+])
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
@@ -43,6 +46,7 @@
 
                     <table id="families" class="table table-hover">
                         <tbody><tr>
+                            <th><br></th>
                             <th><a href="{{ route('families.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('families.fields.name') }}</a></th>
                             <th>{{ trans('families.fields.location') }}</th>
                             <th>{{ trans('families.fields.members') }}</th>
@@ -50,7 +54,14 @@
                         </tr>
                         @foreach ($models as $family)
                         <tr>
-                            <td><a href="{{ route('families.show', $family->name) }}">{{ $family->name }}</a></td>
+                            <td>
+                                @if ($family->image)
+                                    <img class="direct-chat-img" src="/storage/{{ $family->image }}" alt="{{ $family->name }} picture">
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('families.show', $family->id) }}">{{ $family->name }}</a>
+                            </td>
                             <td>
                                 @if ($family->location)
                                     <a href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>

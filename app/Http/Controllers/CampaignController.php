@@ -5,12 +5,24 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\CampaignUser;
 use App\Http\Requests\StoreCampaign;
+use App\Services\CampaignService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CampaignController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('campaign.owner', ['only' => ['edit', 'destroy', 'update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,12 +32,25 @@ class CampaignController extends Controller
     {
         if ($request->has('campaign_id')) {
             $campaign = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', $request->get('campaign_id'))->firstOrFail();
-            Session::put('campaign_id', $campaign->id);
+            CampaignService::switchCampaign($campaign->id);
             return redirect()->to('/home');
         }
-        $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->get();
+
         $active = Session::get('campaign_id');
-        return view('campaigns.index', compact('campaigns', 'active'));
+        $campaigns = null;
+        $campaign = null;
+        if (!empty($active)) {
+            $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', '!=', $active)->get();
+            $campaign = Campaign::where('id', $active)->first();
+        } else {
+            $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->get();
+        }
+
+        if (empty($campaign->join_token)) {
+            $campaign->newToken();
+        }
+
+        return view('campaigns.index', compact('campaigns', 'campaign', 'active'));
     }
 
     /**
@@ -82,7 +107,7 @@ class CampaignController extends Controller
     public function update(StoreCampaign $request, Campaign $campaign)
     {
         $campaign->update($request->all());
-        return redirect()->route('campaigns.show', $campaign->id);
+        return redirect()->route('campaigns.index');
     }
 
     /**

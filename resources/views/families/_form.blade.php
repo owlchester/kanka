@@ -4,17 +4,17 @@
         <div class="form-group">
             <label>Name:</label>
             {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
-
+        </div>
+        <div class="form-group">
             <label>Location:</label>
             {!! Form::select('location_id', (isset($family) && !empty($family->location) ? [$family->location_id => $family->location->name] : []), null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => 'Choose a location...']) !!}
         </div>
-        <hr />
 
-        <hr>
+        <hr />
 
         <div class="form-group">
             <label>Image:</label>
-            {!! Form::file('banner', array('class' => 'image')) !!}
+            {!! Form::file('image', array('class' => 'image')) !!}
         </div>
     </div>
     <div class="col-md-6">

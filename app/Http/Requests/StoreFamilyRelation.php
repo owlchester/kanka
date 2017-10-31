@@ -24,8 +24,8 @@ class StoreFamilyRelation extends FormRequest
     public function rules()
     {
         return [
-            'first_id' => 'required|exists:characters,id',
-            'second_id' => 'required|exists:characters,id|different:first_id',
+            'first_id' => 'required|exists:families,id',
+            'second_id' => 'required|exists:families,id|different:first_id',
             'relation' => 'required',
         ];
     }

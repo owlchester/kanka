@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
     'campaigns' => 'CampaignController',
+    'campaign_user' => 'CampaignUserController',
     'characters' => 'CharacterController',
     'character_relation' => 'CharacterRelationController',
     'locations' => 'LocationController',
@@ -41,3 +42,6 @@ Route::get('/search/locations', 'SearchController@locations')->name('locations.f
 Route::get('/search/characters', 'SearchController@characters')->name('characters.find');
 Route::get('/search/campaigns', 'SearchController@campaigns')->name('campaigns.find');
 Route::get('/search/families', 'SearchController@families')->name('families.find');
+Route::get('/search', 'SearchController@search')->name('search');
+
+Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
