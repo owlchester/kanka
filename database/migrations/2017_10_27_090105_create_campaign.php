@@ -35,8 +35,8 @@ class CreateCampaign extends Migration
             $table->enum('role', ['member', 'owner']);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('');
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('campaign_id')->references('id')->on('campaigns');
         });
     }
 
