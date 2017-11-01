@@ -19,7 +19,11 @@ use App\Observers\FamilyRelationObserver;
 use App\Observers\ItemObserver;
 use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
+use App\Observers\OrganisationMemberObserver;
+use App\Observers\OrganisationObserver;
 use App\Observers\UserObserver;
+use App\Organisation;
+use App\OrganisationMember;
 use App\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
@@ -47,6 +51,8 @@ class AppServiceProvider extends ServiceProvider
         Item::observe(ItemObserver::class);
         Journal::observe(JournalObserver::class);
         User::observe(UserObserver::class);
+        Organisation::observe(OrganisationObserver::class);
+        OrganisationMember::observe(OrganisationMemberObserver::class);
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

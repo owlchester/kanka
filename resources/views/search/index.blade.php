@@ -34,13 +34,16 @@
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a href="#characters" data-toggle="tab" aria-expanded="false">Characters
-                            <span class="badge bg-blue">{{ count($characters) }}</span></a>
+                        <span class="badge bg-blue">{{ count($characters) }}</span></a>
                     </li>
                     <li class=""><a href="#locations" data-toggle="tab" aria-expanded="false">Locations
-                            <span class="badge bg-blue">{{ count($locations) }}</span></a>
+                        <span class="badge bg-blue">{{ count($locations) }}</span></a>
                     </li>
                     <li class=""><a href="#items" data-toggle="tab" aria-expanded="false">Items
-                            <span class="badge bg-blue">{{ count($items) }}</span></a>
+                        <span class="badge bg-blue">{{ count($items) }}</span></a>
+                    </li>
+                    <li class=""><a href="#organisations" data-toggle="tab" aria-expanded="false">Organisations
+                        <span class="badge bg-blue">{{ count($organisations) }}</span></a>
                     </li>
 
                 </ul>
@@ -54,6 +57,9 @@
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'items' ? ' active' : '') }}" id="items">
                         @include('items.datagrid', ['models' => $items])
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'organisations' ? ' active' : '') }}" id="organisations">
+                        @include('organisations.datagrid', ['models' => $organisations])
                     </div>
                 </div>
             </div>

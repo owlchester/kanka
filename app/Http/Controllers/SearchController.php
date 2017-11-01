@@ -6,6 +6,7 @@ use App\Character;
 use App\Family;
 use App\Item;
 use App\Location;
+use App\Organisation;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -27,9 +28,10 @@ class SearchController extends Controller
         $locations = Location::where('name', 'like', "%$term%")->limit(5)->get();
         $characters = Character::where('name', 'like', "%$term%")->limit(5)->get();
         $items = Item::where('name', 'like', "%$term%")->limit(5)->get();
+        $organisations = Organisation::where('name', 'like', "%$term%")->limit(5)->get();
 
         return view('search.index', compact(
-            'term', 'locations', 'characters', 'items'
+            'term', 'locations', 'characters', 'items', 'organisations'
         ));
     }
 

@@ -70,7 +70,8 @@
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">Miscellany</h1>
-                        <p class="mb-5">Finally an easy tool to organize and prepare your Dungeon Master notes. Create Characters and their Families, define Locations, create amazing Items and keep a track of all your session in the Journal.</p>
+                        <p class="mb-5">Finally an easy tool to organize and prepare your Dungeon Master notes.
+                            Create Characters, define Organisations, detail Locations, invent Items and keep track of it all in Journals.</p>
                         <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>
                     </div>
                 </div>

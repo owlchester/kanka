@@ -22,10 +22,11 @@
             <li><a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ trans('sidebar.characters') }}</span></a></li>
             <li><a href="{{ route('families.index') }}"><i class="fa fa-sitemap"></i> <span>{{ trans('sidebar.families') }}</span></a></li>
             <li><a href="{{ route('locations.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.locations') }}</span></a></li>
+            <li><a href="{{ route('organisations.index') }}"><i class="fa fa-user-secret"></i> <span>{{ trans('sidebar.organisations') }}</span></a></li>
             <li><a href="{{ route('items.index') }}"><i class="fa fa-wrench"></i> <span>{{ trans('sidebar.items') }}</span></a></li>
             <li><a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a></li>
 
-            <li><a href="{{ url('/admin') }}"><i class="fa fa-lock"></i> <span>Admin</span></a></li>
+            <!--<li><a href="{{ url('/admin') }}"><i class="fa fa-lock"></i> <span>Admin</span></a></li>-->
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

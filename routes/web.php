@@ -42,6 +42,8 @@ Route::resources([
     'family_relation' => 'FamilyRelationController',
     'items' => 'ItemController',
     'journals' => 'JournalController',
+    'organisations' => 'OrganisationController',
+    'organisation_member' => 'OrganisationMemberController',
 ]);
 
 Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
