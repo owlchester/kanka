@@ -44,8 +44,8 @@
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
         </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn pull-right btn-primary">
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-primary">
                 Register
             </button>
         </div>
