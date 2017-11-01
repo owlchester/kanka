@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
     el: '#app'
@@ -23,14 +23,14 @@ const app = new Vue({
 
 
 // add custom js
-$('.sidebar-toggle').on('click', function() {
+/*$('.sidebar-toggle').on('click', function() {
     var cls = $('body').hasClass('sidebar-collapse');
     if (cls == true) {
         $('body').removeClass('sidebar-collapse');
     } else {
         $('body').addClass('sidebar-collapse');
     }
-});
+});*/
 
 if ($('.select2').length > 0) {
     $.each($('.select2'), function(index) {
