@@ -18,14 +18,13 @@ class UserObserver
      */
     public function saving(User $user)
     {
+        // Setting a new password
         $new = request()->post('password_new');
         if (!empty($new)) {
             $user->password = Hash::make(request()->post('password_new'));
-        } else {
-            $user->password = $user->getOriginal('password');
         }
 
-
+        // Uploading an avatar
         if (request()->has('avatar')) {
             $path = request()->file('avatar')->store('profiles', 'public');
             if (!empty($path)) {
