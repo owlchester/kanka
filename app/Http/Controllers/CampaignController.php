@@ -33,7 +33,7 @@ class CampaignController extends Controller
         if ($request->has('campaign_id')) {
             $campaign = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', $request->get('campaign_id'))->firstOrFail();
             CampaignService::switchCampaign($campaign->id);
-            return redirect()->to('/home');
+            return redirect()->to('/');
         }
 
         $active = Session::get('campaign_id');
@@ -72,7 +72,7 @@ class CampaignController extends Controller
     public function store(StoreCampaign $request)
     {
         Campaign::create($request->all());
-        return redirect()->to('/home')->with('success', 'Campaign created successfully');
+        return redirect()->to('/')->with('success', 'Campaign created successfully');
     }
 
     /**

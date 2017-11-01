@@ -32,9 +32,9 @@ class InvitationController extends Controller
 
             CampaignService::switchCampaign($campaign->id);
 
-            return redirect()->to('/home');
+            return redirect()->to('/');
         } else {
-            return redirect()->to('/home');
+            return redirect()->to('/');
         }
     }
 }
