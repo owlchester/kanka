@@ -2,14 +2,18 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/') }}" class="logo">{{ config('app.name') }}</a>
+    <a href="{{ url('/') }}" class="logo">
+        <img src="/images/miscellany.png" width="40" title="{{ config('app.name') }}" /> {{ config('app.name') }}
+    </a>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
+        @if (Session::has('campaign_id'))
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">{{ trans('layout.toggle_navigation') }}</span>
         </a>
+        @endif
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">

@@ -17,7 +17,6 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ config('app.name') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a></li>
             <li><a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ trans('sidebar.characters') }}</span></a></li>

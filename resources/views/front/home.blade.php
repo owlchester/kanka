@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.ico">
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
