@@ -1,5 +1,11 @@
-@extends('layouts.app', ['title' => trans('campaign.create.title'), 'description' => trans('campaign.create.description')])
-
+@extends('layouts.app', [
+    'title' => trans('campaigns.create.title'),
+    'description' => trans('campaigns.create.description'),
+    'breadcrumbs' => [
+        ['url' => route('campaigns.index'), 'label' => trans('campaigns.title')],
+        trans('crud.create')
+    ]
+])
 @section('content')
     <div class="container">
         <div class="row">

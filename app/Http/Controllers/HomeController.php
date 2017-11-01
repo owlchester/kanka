@@ -22,7 +22,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['back']]);
-        $this->middleware('campaign', ['only' => ['back']]);
     }
 
     /**
@@ -52,6 +51,11 @@ class HomeController extends Controller
      */
     protected function back()
     {
+        $campaign = Session::get('campaign_id');
+        if (empty($campaign)) {
+            return redirect()->route('campaigns.index');
+        }
+
         $campaign = Campaign::findOrFail(Session::get('campaign_id'));
         $characters = Character::recent()->take(5)->get();
         $families = Family::recent()->take(5)->get();

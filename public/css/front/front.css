@@ -1,8 +1,8 @@
 header.masthead {
-    background: url(../img/bg-pattern.png), linear-gradient(to left, #7b4397,#0E2231) !important;
+    background: url(../img/bg-pattern.png), linear-gradient(to left, #2e8893,#0E2231) !important;
 }
 .bg-primary {
-    background: linear-gradient(#73a6c0, #73a6c0) !important;
+    background: linear-gradient(#2e8893, #2e8893) !important;
 }
 #mainNav .navbar-brand {
     color: #73a6c0 !important;

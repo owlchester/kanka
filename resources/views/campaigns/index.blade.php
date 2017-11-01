@@ -1,4 +1,10 @@
-@extends('layouts.app', ['title' => trans('campaigns.title'), 'description' => trans('campaigns.description')])
+@extends('layouts.app', [
+    'title' => trans('campaigns.title'),
+    'description' => trans('campaigns.description'),
+    'breadcrumbs' => [
+        ['url' => route('campaigns.index'), 'label' => trans('campaigns.title')]
+    ]
+])
 
 @section('content')
     @if ($campaign)
