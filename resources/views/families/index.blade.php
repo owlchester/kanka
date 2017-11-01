@@ -1,6 +1,9 @@
 @extends('layouts.app', [
     'title' => trans('families.index.title'),
     'description' => trans('families.index.description'),
+    'breadcrumbs' => [
+        ['url' => route('families.index'), 'label' => trans('families.index.title')]
+    ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

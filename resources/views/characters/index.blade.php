@@ -1,4 +1,10 @@
-@extends('layouts.app', ['title' => trans('characters.index.title'), 'description' => trans('characters.index.description')])
+@extends('layouts.app', [
+    'title' => trans('characters.index.title'),
+    'description' => trans('characters.index.description'),
+    'breadcrumbs' => [
+        ['url' => route('characters.index'), 'label' => trans('characters.index.title')]
+    ]
+])
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')

@@ -7,6 +7,7 @@ use App\Character;
 use App\CharacterRelation;
 use App\Family;
 use App\FamilyRelation;
+use App\Http\Validators\HashValidator;
 use App\Item;
 use App\Journal;
 use App\Location;
@@ -18,7 +19,10 @@ use App\Observers\FamilyRelationObserver;
 use App\Observers\ItemObserver;
 use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
+use App\Observers\UserObserver;
+use App\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,6 +46,11 @@ class AppServiceProvider extends ServiceProvider
         FamilyRelation::observe(FamilyRelationObserver::class);
         Item::observe(ItemObserver::class);
         Journal::observe(JournalObserver::class);
+        User::observe(UserObserver::class);
+
+        Validator::resolver(function ($translator, $data, $rules, $messages) {
+            return new HashValidator($translator, $data, $rules, $messages);
+        });
     }
 
     /**

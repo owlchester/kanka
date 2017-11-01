@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -23,6 +21,14 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/profile', 'ProfileController@edit')->name('profile');
+Route::patch('/profile', 'ProfileController@update')->name('profile.update');
+
+
+// OAuth Routes
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([

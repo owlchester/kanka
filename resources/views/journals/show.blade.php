@@ -1,4 +1,11 @@
-@extends('layouts.app', ['title' => trans('journals.show.title', ['journal' => $journal->name]), 'description' => trans('journals.show.description')])
+@extends('layouts.app', [
+    'title' => trans('journals.show.title', ['journal' => $journal->name]),
+    'description' => trans('journals.show.description'),
+    'breadcrumbs' => [
+        ['url' => route('journals.index'), 'label' => trans('journals.index.title')],
+        $journal->name,
+    ]
+])
 
 @section('content')
     <div class="row">
@@ -32,10 +39,11 @@
                     <a href="{{ route('journals.edit', $journal->id) }}" class="btn btn-primary btn-block">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['journals.destroy', $journal->id],'style'=>'display:inline']) !!}
-                    <button class="btn btn-block btn-danger">
+
+                    <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $journal->name }}" data-toggle="modal" data-target="#delete-confirm">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
+                    {!! Form::open(['method' => 'DELETE','route' => ['journals.destroy', $journal->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                     {!! Form::close() !!}
                 </div>
                 <!-- /.box-body -->
@@ -47,7 +55,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">History</a></li>
-                    <!--<li><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
+                    <!--<li><a href="#journal" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
                 </ul>
 
                 <div class="tab-content">
@@ -59,7 +67,7 @@
                         </div>
                         @endif
                     </div>
-                    <div class="tab-pane" id="character">
+                    <div class="tab-pane" id="journal">
                     </div>
                 </div>
             </div>

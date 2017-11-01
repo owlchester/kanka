@@ -19,9 +19,9 @@
                         </div>
                         @endif
 
-                        <form method="POST" action="{{ route('campaigns.store') }}">
+                        {!! Form::open(array('route' => 'campaigns.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
                             @include('campaigns._form')
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

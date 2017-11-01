@@ -42,6 +42,17 @@
             <!-- You can dynamically generate breadcrumbs here -->
             <ol class="breadcrumb">
                 <li><a href="{{route('home')}}">Dashboard</a></li>
+                @if (isset($breadcrumbs))
+                @foreach ($breadcrumbs as $breadcrumb)
+                    <li>
+                        @if (!empty($breadcrumb['url']))
+                        <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</a>
+                        @else
+                            {{ $breadcrumb }}
+                        @endif
+                    </li>
+                @endforeach
+                @endif
             </ol>
         </section>
 
@@ -56,6 +67,27 @@
     @include('layouts.footer')
 
 </div><!-- ./wrapper -->
+
+<!-- Modal -->
+<div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete <b><span id="delete-confirm-name"></span></b>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="delete-confirm-submit">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>

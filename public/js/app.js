@@ -11320,6 +11320,22 @@ $(document).ready(function () {
     });
 });*/
 
+// Delete confirm dialog
+$.each($('.delete-confirm'), function (index) {
+    $(this).click(function (e) {
+        var name = $(this).attr('data-name');
+        console.log(name);
+        $('#delete-confirm-name').text(name);
+    });
+});
+
+// Submit modal form
+$.each($('#delete-confirm-submit'), function (index) {
+    $(this).click(function (e) {
+        $('#delete-confirm-form').submit();
+    });
+});
+
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {

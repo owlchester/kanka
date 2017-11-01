@@ -1,4 +1,11 @@
-@extends('layouts.app', ['title' => trans('locations.show.title', ['location' => $location->name]), 'description' => trans('locations.show.description')])
+@extends('layouts.app', [
+    'title' => trans('locations.show.title', ['location' => $location->name]),
+    'description' => trans('locations.show.description'),
+    'breadcrumbs' => [
+        ['url' => route('locations.index'), 'label' => trans('locations.index.title')],
+        $location->name,
+    ]
+])
 
 @section('content')
     <div class="row">
@@ -30,11 +37,12 @@
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
 
-                    {!! Form::open(['method' => 'DELETE','route' => ['locations.destroy', $location->id],'style'=>'display:inline']) !!}
-                    <button class="btn btn-block btn-danger">
-                        <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                    </button>
-                    {!! Form::close() !!}
+                        <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $location->name }}" data-toggle="modal" data-target="#delete-confirm">
+                            <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                        </button>
+                        {!! Form::open(['method' => 'DELETE','route' => ['locations.destroy', $location->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                        {!! Form::close() !!}
+
                 </div>
                 <!-- /.box-body -->
             </div>

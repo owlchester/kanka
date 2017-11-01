@@ -1,5 +1,12 @@
-@extends('layouts.app', ['title' => trans('items.edit.title', ['item' => $item->name]), 'description' => trans('items.edit.description')])
-
+@extends('layouts.app', [
+    'title' => trans('items.show.title', ['item' => $item->name]),
+    'description' => trans('items.show.description'),
+    'breadcrumbs' => [
+        ['url' => route('items.index'), 'label' => trans('items.index.title')],
+        ['url' => route('items.show', $item->id), 'label' => $item->name],
+        trans('crud.update'),
+    ]
+])
 @section('content')
     <div class="row">
         <div class="col-md-12 col-md-offset">

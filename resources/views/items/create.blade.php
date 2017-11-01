@@ -1,4 +1,11 @@
-@extends('layouts.app', ['title' => trans('items.create.title'), 'description' => trans('items.create.description')])
+@extends('layouts.app', [
+    'title' => trans('items.create.title'),
+    'description' => trans('items.create.description'),
+    'breadcrumbs' => [
+        ['url' => route('items.index'), 'label' => trans('items.index.title')],
+        trans('crud.create'),
+    ]
+])
 
 @section('content')
     <div class="row">

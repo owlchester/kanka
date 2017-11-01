@@ -1,4 +1,12 @@
-@extends('layouts.app', ['title' => trans('characters.edit.title', ['character' => $character->name]), 'description' => trans('characters.edit.description')])
+@extends('layouts.app', [
+    'title' => trans('characters.show.title', ['character' => $character->name]),
+    'description' => trans('characters.show.description'),
+    'breadcrumbs' => [
+        ['url' => route('characters.index'), 'label' => trans('characters.index.title')],
+        ['url' => route('characters.show', $character->id), 'label' => $character->name],
+        trans('crud.update'),
+    ]
+])
 
 @section('content')
     <div class="row">

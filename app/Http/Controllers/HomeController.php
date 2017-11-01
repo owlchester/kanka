@@ -21,8 +21,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('campaign');
+        $this->middleware('auth', ['only' => ['back']]);
+        $this->middleware('campaign', ['only' => ['back']]);
     }
 
     /**
@@ -31,6 +31,26 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        if (Auth::guest()) {
+            return $this->front();
+        } else {
+            return $this->back();
+        }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function front()
+    {
+        return view('front.home');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function back()
     {
         $campaign = Campaign::findOrFail(Session::get('campaign_id'));
         $characters = Character::recent()->take(5)->get();

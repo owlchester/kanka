@@ -46,7 +46,7 @@ class CampaignController extends Controller
             $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->get();
         }
 
-        if (empty($campaign->join_token)) {
+        if (!empty($campaign) && empty($campaign->join_token)) {
             $campaign->newToken();
         }
 

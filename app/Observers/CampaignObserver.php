@@ -51,7 +51,7 @@ class CampaignObserver
      */
     public function creating(Campaign $campaign)
     {
-        $campaign->join_token = $this->getToken();
+        $campaign->join_token = $campaign->getToken();
     }
 
     /**

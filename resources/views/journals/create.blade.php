@@ -1,5 +1,11 @@
-@extends('layouts.app', ['title' => trans('journals.create.title'), 'description' => trans('journals.create.description')])
-
+@extends('layouts.app', [
+    'title' => trans('journals.create.title'),
+    'description' => trans('journals.create.description'),
+    'breadcrumbs' => [
+        ['url' => route('journals.index'), 'label' => trans('journals.index.title')],
+        trans('crud.create'),
+    ]
+])
 @section('content')
     <div class="row">
         <div class="col-md-12">

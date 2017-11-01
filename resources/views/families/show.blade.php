@@ -1,4 +1,11 @@
-@extends('layouts.app', ['title' => trans('families.show.title', ['family' => $family->name]), 'description' => trans('families.show.description')])
+@extends('layouts.app', [
+    'title' => trans('families.show.title', ['family' => $family->name]),
+    'description' => trans('families.show.description'),
+    'breadcrumbs' => [
+        ['url' => route('families.index'), 'label' => trans('families.index.title')],
+        $family->name,
+    ]
+])
 
 @section('content')
     <div class="row">
@@ -27,11 +34,12 @@
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
 
-                    {!! Form::open(['method' => 'DELETE','route' => ['families.destroy', $family->id],'style'=>'display:inline']) !!}
-                    <button class="btn btn-block btn-danger">
+                    <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $family->name }}" data-toggle="modal" data-target="#delete-confirm">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
+                    {!! Form::open(['method' => 'DELETE','route' => ['families.destroy', $family->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                     {!! Form::close() !!}
+
                 </div>
                 <!-- /.box-body -->
             </div>

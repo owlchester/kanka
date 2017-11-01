@@ -170,6 +170,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Sofa\Eloquence\BaseServiceProvider::class,
         Stevebauman\Purify\PurifyServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
         /*
@@ -234,6 +235,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Purify' => Stevebauman\Purify\Facades\Purify::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
 
         // Custom
 

@@ -1,5 +1,12 @@
-@extends('layouts.app', ['title' => trans('journals.edit.title', ['journal' => $journal->name]), 'description' => trans('journals.edit.description')])
-
+@extends('layouts.app', [
+    'title' => trans('journals.show.title', ['journal' => $journal->name]),
+    'description' => trans('journals.show.description'),
+    'breadcrumbs' => [
+        ['url' => route('journals.index'), 'label' => trans('journals.index.title')],
+        ['url' => route('journals.show', $journal->id), 'label' => $journal->name],
+        trans('crud.update'),
+    ]
+])
 @section('content')
     <div class="row">
         <div class="col-md-12 col-md-offset">
