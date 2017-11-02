@@ -63,4 +63,16 @@ class User extends \TCG\Voyager\Models\User
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
+
+    /**
+     * @return string
+     */
+    public function getAvatarUrl()
+    {
+        if (!empty($this->image)) {
+            return '/storage/' . $this->avatar;
+        } else {
+            return '/images/defaults/user.svg';
+        }
+    }
 }
