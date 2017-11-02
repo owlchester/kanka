@@ -119,6 +119,7 @@
                     <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}"><a href="#personality" data-toggle="tab" aria-expanded="false">Personality</a></li>
                     <li class="{{ (request()->get('tab') == 'free' ? ' active' : '') }}"><a href="#free" data-toggle="tab" aria-expanded="false">Free text</a></li>
                     <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">Relations</a></li>
+                    <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation" data-toggle="tab" aria-expanded="false">Organisations</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -140,6 +141,9 @@
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
                         @include('characters._relations')
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'organisation' ? ' active' : '') }}" id="organisation">
+                        @include('characters._organisations')
                     </div>
                 </div>
             </div>

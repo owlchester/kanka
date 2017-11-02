@@ -12,7 +12,7 @@
         <th>{{ trans('characters.fields.sex') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $character->relationships()->paginate(3) as $relation)
+    @foreach ($r = $character->relationships()->with('second')->paginate() as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>

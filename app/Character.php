@@ -78,6 +78,14 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function organisations()
+    {
+        return $this->hasMany('App\OrganisationMember', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
         return $this->hasMany('App\Item', 'character_id', 'id');

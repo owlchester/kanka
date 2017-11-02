@@ -101,6 +101,10 @@ class OrganisationMemberController extends Controller
     public function destroy(OrganisationMember $organisationMember)
     {
         $organisationMember->delete();
+        $previous = url()->previous();
+        if (str_contains($previous, 'characters')) {
+            return redirect()->route('characters.show', [$organisationMember->character_id, 'tab' => 'organisation']);
+        }
         return redirect()->route('organisations.show', [$organisationMember->organisation_id, 'tab' => 'member']);
     }
 }
