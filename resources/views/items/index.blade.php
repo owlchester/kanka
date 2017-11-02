@@ -49,7 +49,7 @@
                     @include('layouts.datagrid.search', ['route' => route('items.index')])
                     @include('items.datagrid')
 
-                    {{ $models->appends(['order' => request()->get('order')])->links() }}
+                    {{ $models->appends('order', request()->get('order'))->links() }}
                 </div>
             </div>
         </div>

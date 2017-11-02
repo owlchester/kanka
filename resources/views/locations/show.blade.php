@@ -72,12 +72,13 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">Information</a></li>
-                    <li><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#information" data-toggle="tab" aria-expanded="false">Information</a></li>
+                    <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}"><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>
+                    <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}"><a href="#location" data-toggle="tab" aria-expanded="false">Locations</a></li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="information">
+                    <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         <div class="post">
                             <h3>Description</h3>
                             <p>{!! $location->description !!}</p>
@@ -88,8 +89,11 @@
                             <p>{!! $location->history !!}</p>
                         </div>
                     </div>
-                    <div class="tab-pane" id="character">
+                    <div class="tab-pane {{ (request()->get('tab') == 'character' ? ' active' : '') }}" id="character">
                         @include('locations._characters')
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'location' ? ' active' : '') }}" id="location">
+                        @include('locations._locations')
                     </div>
                 </div>
             </div>

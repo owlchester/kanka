@@ -82,7 +82,7 @@
                         @endforeach
                         </tbody></table>
 
-                    {{ $models->appends(['order' => request()->get('order')])->links() }}
+                    {{ $models->appends('order', request()->get('order'))->links() }}
                 </div>
             </div>
         </div>

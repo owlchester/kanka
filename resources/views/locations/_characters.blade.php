@@ -1,17 +1,20 @@
 <table id="characters" class="table table-hover">
     <tbody><tr>
+        <th><br /></th>
         <th>{{ trans('characters.fields.name') }}</th>
         <th>{{ trans('characters.fields.family') }}</th>
         <th>{{ trans('characters.fields.age') }}</th>
         <th>{{ trans('characters.fields.race') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($location->characters()->with(['location', 'family'])->paginate() as $character)
+    @foreach ($r = $location->characters()->with(['location', 'family'])->paginate() as $character)
         <tr>
             <td>
                 @if ($character->image)
                     <img class="direct-chat-img" src="/storage/{{ $character->image }}" alt="{{ $character->name }} picture">
                 @endif
+            </td>
+            <td>
                 <a href="{{ route('characters.show', $character->id) }}">{{ $character->name }}</a>
             </td>
             <td>
@@ -30,3 +33,5 @@
     @endforeach
     </tbody>
 </table>
+
+{{ $r->appends('tab', 'character')->links() }}

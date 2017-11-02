@@ -25,6 +25,7 @@
         @include('dashboard._recent', ['title' => 'Locations', 'route' => 'locations', 'models' => $locations])
     </div>
     <div class="row">
+        @include('dashboard._recent', ['title' => 'Organisations', 'route' => 'organisations', 'models' => $organisations])
         @include('dashboard._recent', ['title' => 'Items', 'route' => 'items', 'models' => $items])
         @include('dashboard._recent', ['title' => 'Journals', 'route' => 'journals', 'models' => $journals])
     </div>
