@@ -34,7 +34,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Miscellany</a>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fa fa-bars"></i>
@@ -69,7 +69,7 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">Miscellany</h1>
+                        <h1 class="mb-5">{{ config('app.name', 'Laravel') }}</h1>
                         <p class="mb-5">Finally an easy tool to organize and prepare your Dungeon Master notes.
                             Create Characters, define Organisations, detail Locations, invent Items and keep track of it all in Journals.</p>
                         <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>
@@ -199,7 +199,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2017 Miscellany. All Rights Reserved.</p>
+            <p>&copy; 2017 {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
             <!--<ul class="list-inline">
                 <li class="list-inline-item">
                     <a href="#">Privacy</a>

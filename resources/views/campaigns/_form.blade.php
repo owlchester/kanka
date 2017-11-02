@@ -5,18 +5,23 @@
             <label>Name:</label>
             {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
         </div>
+        @if (session()->has('campaign_id'))
         <div class="form-group">
             <label>Image:</label>
             {!! Form::file('image', array('class' => 'image')) !!}
         </div>
+        @endif
     </div>
+    @if (session()->has('campaign_id'))
     <div class="col-md-6">
         <div class="form-group">
             <label>Locale:</label>
             {!! Form::text('locale', null, ['placeholder' => 'Language', 'class' => 'form-control']) !!}
         </div>
     </div>
+    @endif
 </div>
+@if (session()->has('campaign_id'))
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
@@ -25,6 +30,7 @@
         </div>
     </div>
 </div>
+@endif
 
 
 <div class="form-group">

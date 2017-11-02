@@ -34,6 +34,8 @@ class CampaignController extends Controller
             $campaign = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', $request->get('campaign_id'))->firstOrFail();
             CampaignService::switchCampaign($campaign->id);
             return redirect()->to('/');
+        } elseif (!Session::has('campaign_id')) {
+            return redirect()->route('campaigns.create');
         }
 
         $active = Session::get('campaign_id');

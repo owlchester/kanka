@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Campaign;
+use App\Services\CampaignService;
+use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +17,10 @@ class CampaignObserver
     public function saving(Campaign $campaign)
     {
         $campaign->slug = str_slug($campaign->name, '');
+
+        if (empty($campaign->locale)) {
+            $campaign->locale = 'en';
+        }
 
         if (request()->has('image')) {
             $path = request()->file('image')->store('campaigns', 'public');
@@ -43,7 +49,14 @@ class CampaignObserver
     public function created(Campaign $campaign)
     {
         $campaign->users()->attach(Auth::user()->id, ['role' => 'owner']);
+
+        // If it's the user's first campaign, let's help out a bit.
+        $first = !Session::has('campaign_id');
         Session::put('campaign_id', $campaign->id);
+
+        if ($first) {
+            StarterService::generateBoilerplate($campaign);
+        }
     }
 
     /**

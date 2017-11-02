@@ -15,6 +15,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
+        "sentry/sentry-laravel": "^0.8.0",
         "sofa/eloquence": "^5.5",
         "stevebauman/purify": "2.0.*",
         "tcg/voyager": "^1.0"

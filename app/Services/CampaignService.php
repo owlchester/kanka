@@ -45,4 +45,12 @@ class CampaignService
         $user->last_campaign_id = $id;
         $user->save();
     }
+
+    /**
+     * @param Campaign $campaign
+     */
+    public static function generateBoilerplate(Campaign $campaign)
+    {
+
+    }
 }
