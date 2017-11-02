@@ -50,6 +50,10 @@ Route::get('/search/locations', 'SearchController@locations')->name('locations.f
 Route::get('/search/characters', 'SearchController@characters')->name('characters.find');
 Route::get('/search/campaigns', 'SearchController@campaigns')->name('campaigns.find');
 Route::get('/search/families', 'SearchController@families')->name('families.find');
+Route::get('/search/item', 'SearchController@items')->name('items.find');
+Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
 Route::get('/search', 'SearchController@search')->name('search');
 
 Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
+
+Route::get('/redirect', 'RedirectController@index')->name('redirect');
