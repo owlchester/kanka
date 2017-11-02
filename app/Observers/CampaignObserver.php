@@ -49,6 +49,11 @@ class CampaignObserver
         $first = !Session::has('campaign_id');
         Session::put('campaign_id', $campaign->id);
 
+        // Make sure we save the last campaign id to avoid infinite loops
+        $user = Auth::user();
+        $user->last_campaign_id = $campaign->id;
+        $user->save();
+
         if ($first) {
             StarterService::generateBoilerplate($campaign);
         }
