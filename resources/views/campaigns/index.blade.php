@@ -7,46 +7,42 @@
 ])
 
 @section('content')
-    @if ($campaign)
-        @include('campaigns.show')
-    @endif
     <div class="row">
-        @foreach ($campaigns as $campaign)
-            <div class="col-lg-4 col-xs-6">
+        @foreach ($campaigns as $c)
+            <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>{!! $campaign->shortName() !!}</h3>
+                        <h2>{!! $c->shortName() !!}</h2>
 
-                        <p>Short description?</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-map"></i>
                     </div>
-                    <a href="{{ route('campaigns.index', ['campaign_id' => $campaign->id]) }}" class="small-box-footer">
+                    <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
                         Select <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>
             </div>
         @endforeach
 
-            <div class="col-lg-4 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-blue">
-                    <div class="inner">
-                        <h3>New Campaign</h3>
-                        <p><br /></p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-plus"></i>
-                    </div>
-                    <a href="{{ route('campaigns.create') }}" class="small-box-footer">
-                        Create a new campaign <i class="fa fa-plus-circle"></i>
-                    </a>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue">
+                <div class="inner">
+                    <h2>New Campaign</h2>
                 </div>
+                <div class="icon">
+                    <i class="ion ion-plus"></i>
+                </div>
+                <a href="{{ route('campaigns.create') }}" class="small-box-footer">
+                    Create a new campaign <i class="fa fa-plus-circle"></i>
+                </a>
             </div>
-
-
         </div>
     </div>
+
+    @if ($campaign)
+        @include('campaigns.show')
+    @endif
 @endsection

@@ -3,7 +3,7 @@
 
     <!-- Logo -->
     <a href="{{ url('/') }}" class="logo">
-        <img src="/images/miscellany.png" width="40" title="{{ config('app.name') }}" /> {{ config('app.name') }}
+        {{ config('app.name') }}
     </a>
 
     <!-- Header Navbar -->
