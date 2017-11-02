@@ -1,8 +1,6 @@
 <tr>
     <td>
-        @if ($character->image)
-            <img class="direct-chat-img" src="/storage/{{ $character->image }}" alt="{{ $character->name }} picture">
-        @endif
+        <img class="direct-chat-img" src="{{ $character->getImageUrl(true) }}" alt="{{ $character->name }} picture">
     </td>
     <td>
         <a href="{{route('characters.show', $character->id)}}">{{ $character->name }}</a>

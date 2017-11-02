@@ -11,9 +11,7 @@
     @foreach ($models as $model)
         <tr>
             <td>
-                @if ($model->image)
-                    <img class="direct-chat-img" src="/storage/{{ $model->image }}" alt="{{ $model->name }} picture">
-                @endif
+                <img class="direct-chat-img" src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }} picture">
             </td>
             <td>
                 <a href="{{ route('items.show', $model->id) }}">{{ $model->name }}</a>

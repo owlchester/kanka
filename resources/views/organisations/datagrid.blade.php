@@ -10,9 +10,7 @@
     @foreach ($models as $organisation)
         <tr>
             <td>
-                @if ($organisation->image)
-                    <img class="direct-chat-img" src="/storage/{{ $organisation->image }}" alt="{{ $organisation->name }} picture">
-                @endif
+                <img class="direct-chat-img" src="{{ $organisation->getImageUrl(true) }}" alt="{{ $organisation->name }} picture">
             </td>
             <td><a href="{{ route('organisations.show', $organisation->id) }}">{{ $organisation->type }}</a></td>
             <td>

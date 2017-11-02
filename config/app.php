@@ -172,6 +172,7 @@ return [
         Stevebauman\Purify\PurifyServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
 
         /*
@@ -238,7 +239,7 @@ return [
         'Purify' => Stevebauman\Purify\Facades\Purify::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class
 
         // Custom
 

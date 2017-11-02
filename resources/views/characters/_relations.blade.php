@@ -5,6 +5,7 @@
 <table id="characters" class="table table-hover">
     <tbody><tr>
         <th>{{ trans('characters.fields.relation') }}</th>
+        <th><br /></th>
         <th>{{ trans('characters.fields.name') }}</th>
         <th>{{ trans('characters.fields.location') }}</th>
         <th>{{ trans('characters.fields.age') }}</th>
@@ -16,9 +17,9 @@
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
-                @if ($relation->second->image)
-                    <img class="direct-chat-img" src="/storage/{{ $relation->second->image }}" alt="{{ $relation->second->name }} picture">
-                @endif
+                <img class="direct-chat-img" src="{{ $relation->second->getImageUrl(true) }}" alt="{{ $relation->second->name }} picture">
+            </td>
+            <td>
                 <a href="{{ route('characters.show', $relation->second_id) }}">{{ $relation->second->name }}</a></td>
             <td>
                 @if ($relation->second->location)

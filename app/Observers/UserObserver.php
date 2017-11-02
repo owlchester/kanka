@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
+use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

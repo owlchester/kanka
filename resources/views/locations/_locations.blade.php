@@ -8,9 +8,7 @@
     @foreach ($r = $location->locations()->paginate() as $location)
         <tr>
             <td>
-                @if ($location->image)
-                    <img class="direct-chat-img" src="/storage/{{ $location->image }}" alt="{{ $location->name }} picture">
-                @endif
+                <img class="direct-chat-img" src="{{ $location->getImageUrl(true) }}" alt="{{ $location->name }} picture">
             </td>
             <td>
                 <a href="{{ route('locations.show', $location->id) }}">{{ $location->name }}</a>

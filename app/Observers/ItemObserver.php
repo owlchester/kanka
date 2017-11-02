@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Item;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -18,20 +19,13 @@ class ItemObserver
     {
         $item->slug = str_slug($item->name, '');
         $item->campaign_id = Session::get('campaign_id');
-        $item->history = Purify::clean($item->history);
 
-        if (request()->has('image')) {
-            $path = request()->file('image')->store('items', 'public');
-            if (!empty($path)) {
-                // Remove old
-                $original = $item->getOriginal('image');
-                if (!empty($original)) {
-                    // Delete
-                    Storage::disk('public')->delete($original);
-                }
-                $item->image = $path;
-            }
-        }
+        // Purity text
+        $item->history = Purify::clean($item->history);
+        $item->description = Purify::clean($item->description);
+
+        // Handle image. Let's use a service for this.
+        ImageService::handle($item, 'items');
     }
 
     /**
@@ -53,10 +47,7 @@ class ItemObserver
      */
     public function deleted(Item $item)
     {
-        if (!empty($item->image)) {
-            // Delete
-            Storage::disk('public')->delete($item->image);
-        }
+        ImageService::cleanup($item);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Family;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -19,18 +20,11 @@ class FamilyObserver
         $family->slug = str_slug($family->name, '');
         $family->campaign_id = Session::get('campaign_id');
 
-        if (request()->has('image')) {
-            $path = request()->file('image')->store('families', 'public');
-            if (!empty($path)) {
-                // Remove old
-                $original = $family->getOriginal('image');
-                if (!empty($original)) {
-                    // Delete
-                    Storage::disk('public')->delete($original);
-                }
-                $family->image = $path;
-            }
-        }
+        // Purity text
+        $family->history = Purify::clean($family->history);
+
+        // Handle image. Let's use a service for this.
+        ImageService::handle($family, 'families');
     }
 
     /**
@@ -52,10 +46,7 @@ class FamilyObserver
      */
     public function deleted(Family $family)
     {
-        if (!empty($family->image)) {
-            // Delete
-            Storage::disk('public')->delete($family->image);
-        }
+        ImageService::cleanup($family);
     }
 
     /**

@@ -4,10 +4,12 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Character;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Stevebauman\Purify\Facades\Purify;
 
 class CharacterObserver
@@ -23,18 +25,8 @@ class CharacterObserver
         // Purity text
         $character->history = Purify::clean($character->history);
 
-        if (request()->has('image')) {
-            $path = request()->file('image')->store('characters', 'public');
-            if (!empty($path)) {
-                // Remove old
-                $original = $character->getOriginal('image');
-                if (!empty($original)) {
-                    // Delete
-                    Storage::disk('public')->delete($original);
-                }
-                $character->image = $path;
-            }
-        }
+        // Handle image. Let's use a service for this.
+        ImageService::handle($character, 'characters');
     }
 
     /**
@@ -56,10 +48,7 @@ class CharacterObserver
      */
     public function deleted(Character $character)
     {
-        if (!empty($character->image)) {
-            // Delete
-            Storage::disk('public')->delete($character->image);
-        }
+        ImageService::cleanup($character);
     }
 
     /**

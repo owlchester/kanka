@@ -4,10 +4,12 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Services\CampaignService;
+use App\Services\ImageService;
 use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Stevebauman\Purify\Facades\Purify;
 
 class CampaignObserver
 {
@@ -22,18 +24,11 @@ class CampaignObserver
             $campaign->locale = 'en';
         }
 
-        if (request()->has('image')) {
-            $path = request()->file('image')->store('campaigns', 'public');
-            if (!empty($path)) {
-                // Remove old
-                $original = $campaign->getOriginal('image');
-                if (!empty($original)) {
-                    // Delete
-                    Storage::disk('public')->delete($original);
-                }
-                $campaign->image = $path;
-            }
-        }
+        // Purity text
+        $campaign->description = Purify::clean($campaign->description);
+
+        // Handle image. Let's use a service for this.
+        ImageService::handle($campaign, 'campaigns');
     }
 
     /**
@@ -72,9 +67,6 @@ class CampaignObserver
      */
     public function deleted(Campaign $campaign)
     {
-        if (!empty($campaign->image)) {
-            // Delete
-            Storage::disk('public')->delete($campaign->image);
-        }
+        ImageService::cleanup($campaign);
     }
 }

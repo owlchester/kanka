@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Location;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -23,18 +24,8 @@ class LocationObserver
         $location->history = Purify::clean($location->history);
         $location->description = Purify::clean($location->description);
 
-        if (request()->has('image')) {
-            $path = request()->file('image')->store('locations', 'public');
-            if (!empty($path)) {
-                // Remove old
-                $original = $location->getOriginal('image');
-                if (!empty($original)) {
-                    // Delete
-                    Storage::disk('public')->delete($original);
-                }
-                $location->image = $path;
-            }
-        }
+        // Handle image. Let's use a service for this.
+        ImageService::handle($location, 'locations');
     }
 
     /**
@@ -56,10 +47,7 @@ class LocationObserver
      */
     public function deleted(Location $location)
     {
-        if (!empty($location->image)) {
-            // Delete
-            Storage::disk('public')->delete($location->image);
-        }
+        ImageService::cleanup($location);
     }
 
     /**

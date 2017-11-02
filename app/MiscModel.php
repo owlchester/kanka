@@ -108,4 +108,19 @@ abstract class MiscModel extends Model
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
+
+
+    /**
+     * Get the image (or default image) of an entity
+     * @param bool $thumb
+     * @return string
+     */
+    public function getImageUrl($thumb = false)
+    {
+        if (empty($this->image)) {
+            return '/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg';
+        } else {
+            return '/storage/' . ($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image);
+        }
+    }
 }

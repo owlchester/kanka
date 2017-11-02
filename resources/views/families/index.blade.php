@@ -58,9 +58,7 @@
                         @foreach ($models as $family)
                         <tr>
                             <td>
-                                @if ($family->image)
-                                    <img class="direct-chat-img" src="/storage/{{ $family->image }}" alt="{{ $family->name }} picture">
-                                @endif
+                                <img class="direct-chat-img" src="{{ $family->getImageUrl(true) }}" alt="{{ $family->name }} picture">
                             </td>
                             <td>
                                 <a href="{{ route('families.show', $family->id) }}">{{ $family->name }}</a>

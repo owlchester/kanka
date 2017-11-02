@@ -3,6 +3,7 @@
 </p>
 <table id="characters" class="table table-hover">
     <tbody><tr>
+        <th><br></th>
         <th>{{ trans('characters.fields.name') }}</th>
         <th>{{ trans('characters.fields.location') }}</th>
         <th>{{ trans('organisations.members.fields.role') }}</th>
@@ -14,9 +15,9 @@
     @foreach ($r = $organisation->members()->with(['character', 'character.location'])->paginate() as $relation)
         <tr>
             <td>
-                @if ($relation->character->image)
-                    <img class="direct-chat-img" src="/storage/{{ $relation->character->image }}" alt="{{ $relation->character->name }} picture">
-                @endif
+                <img class="direct-chat-img" src="{{ $relation->character->getImageUrl(true) }}" alt="{{ $relation->character->name }} picture">
+            </td>
+            <td>
                 <a href="{{ route('characters.show', $relation->character->id) }}">{{ $relation->character->name }}</a>
             </td>
             <td>

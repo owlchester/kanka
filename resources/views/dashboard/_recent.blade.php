@@ -15,9 +15,7 @@
                 @foreach ($models as $model)
                     <li class="item">
                         <div class="product-img">
-                            @if ($model->image)
-                                <img src="/storage/{{ $model->image }}" title="{{ $model->name }} Image" alt="{{ $model->name }} Image">
-                            @endif
+                            <img src="{{ $model->getImageUrl(true) }}" title="{{ $model->name }} Image" alt="{{ $model->name }} Image">
                         </div>
                         <div class="product-info">
                             <a href="{{ route($route . '.show', $model->id) }}" class="product-title">{{ $model->name }}</a>

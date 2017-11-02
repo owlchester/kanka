@@ -12,9 +12,7 @@
     @foreach ($r = $character->organisations()->with('organisation')->paginate() as $relation)
         <tr>
             <td>
-                @if ($relation->organisation->image)
-                    <img class="direct-chat-img" src="/storage/{{ $relation->organisation->image }}" alt="{{ $relation->organisation->name }} picture">
-                @endif
+                <img class="direct-chat-img" src="{{ $relation->organisation->getImageUrl(true) }}" alt="{{ $relation->organisation->name }} picture">
             </td>
             <td>
                 <a href="{{ route('organisations.show', $relation->organisation_id) }}">{{ $relation->organisation->name }}</a>
