@@ -69,7 +69,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function getAvatarUrl()
     {
-        if (!empty($this->image)) {
+        if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
             return '/storage/' . $this->avatar;
         } else {
             return '/images/defaults/user.svg';
