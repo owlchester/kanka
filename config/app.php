@@ -125,6 +125,8 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    'version' => env('APP_VERSION', '0.0.1 ALPHA'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
