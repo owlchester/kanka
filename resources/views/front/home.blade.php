@@ -194,12 +194,12 @@
                 new friends!</h2>
             <ul class="list-inline list-social">
                 <li class="list-inline-item social-twitter">
-                    <a href="#">
+                    <a href="https://twitter.com/kankaio">
                         <i class="fa fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-facebook">
-                    <a href="#">
+                    <a href="https://www.facebook.com/kanka.io.ch/">
                         <i class="fa fa-facebook"></i>
                     </a>
                 </li>

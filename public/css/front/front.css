@@ -7,3 +7,19 @@ header.masthead {
 #mainNav .navbar-brand {
     color: #73a6c0 !important;
 }
+
+@font-face {
+    font-family: 'Dubai';
+    src: url('/fonts/dubai/DubaiW23-Light.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/dubai/DubaiW23-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/fonts/dubai/DubaiW23-Light.woff2') format('woff2'), /* Super Modern Browsers */
+    url('/fonts/dubai/DubaiW23-Light.woff') format('woff'), /* Pretty Modern Browsers */
+    url('/fonts/dubai/DubaiW23-Light.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+}
+#mainNav .navbar-brand {
+    font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+}
