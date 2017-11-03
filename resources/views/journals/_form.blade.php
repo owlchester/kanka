@@ -33,7 +33,7 @@
             {!! Form::textarea('history', null, ['placeholder' => 'History', 'class' => 'form-control html-editor', 'id' => 'history']) !!}
         </div>
             <h4>Head's up!</h4>
-            <p>You can easily write links to characters by writing <code>{character:Michael Snow}</code> in the textarea. On submitting, it will be replaced with a link to the named entity. The same thing is available for <code>{location:X}</code>, <code>{item:Y}</code>, <code>{family:Z}</code> and <code>{organisation:ABC}</code>.</p>
+        <p>You can easily write links to characters by writing <code>{character:Michael Snow}</code> in the textarea. On submitting, it will be replaced with a link to the named entity. The same thing is available for <i>family:</i>, <i>item:</i>, <i>location:</i>, <i>journal:</i>, <i>note:</i> and <i>organisation:</i>.</p>
         <hr />
     </div>
 </div>

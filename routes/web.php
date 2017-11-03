@@ -44,6 +44,7 @@ Route::resources([
     'journals' => 'JournalController',
     'organisations' => 'OrganisationController',
     'organisation_member' => 'OrganisationMemberController',
+    'notes' => 'NoteController',
 ]);
 
 Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
@@ -52,6 +53,7 @@ Route::get('/search/campaigns', 'SearchController@campaigns')->name('campaigns.f
 Route::get('/search/families', 'SearchController@families')->name('families.find');
 Route::get('/search/item', 'SearchController@items')->name('items.find');
 Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
+Route::get('/search/notes', 'SearchController@notes')->name('notes.find');
 Route::get('/search', 'SearchController@search')->name('search');
 
 Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');

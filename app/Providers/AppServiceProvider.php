@@ -11,6 +11,7 @@ use App\Http\Validators\HashValidator;
 use App\Item;
 use App\Journal;
 use App\Location;
+use App\Note;
 use App\Observers\CampaignObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
@@ -19,6 +20,7 @@ use App\Observers\FamilyRelationObserver;
 use App\Observers\ItemObserver;
 use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
+use App\Observers\NoteObserver;
 use App\Observers\OrganisationMemberObserver;
 use App\Observers\OrganisationObserver;
 use App\Observers\UserObserver;
@@ -53,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Organisation::observe(OrganisationObserver::class);
         OrganisationMember::observe(OrganisationMemberObserver::class);
+        Note::observe(NoteObserver::class);
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

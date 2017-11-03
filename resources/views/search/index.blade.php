@@ -45,6 +45,9 @@
                     <li class=""><a href="#organisations" data-toggle="tab" aria-expanded="false">Organisations
                         <span class="badge bg-blue">{{ count($organisations) }}</span></a>
                     </li>
+                    <li class=""><a href="#notes" data-toggle="tab" aria-expanded="false">Notes
+                        <span class="badge bg-blue">{{ count($notes) }}</span></a>
+                    </li>
 
                 </ul>
 
@@ -60,6 +63,9 @@
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'organisations' ? ' active' : '') }}" id="organisations">
                         @include('organisations.datagrid', ['models' => $organisations])
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'notes' ? ' active' : '') }}" id="notes">
+                        @include('notes.datagrid', ['models' => $notes])
                     </div>
                 </div>
             </div>

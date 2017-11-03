@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Character;
 use App\Family;
 use App\Item;
+use App\Journal;
 use App\Location;
+use App\Note;
 use App\Organisation;
 use Illuminate\Http\Request;
 
@@ -30,10 +32,12 @@ class RedirectController extends Controller
     {
         $allowed = [
             'characters' => Character::class,
-            'locations' => Location::class,
-            'items' => Item::class,
             'families' => Family::class,
-            'organisations' => Organisation::class
+            'items' => Item::class,
+            'journals' => Journal::class,
+            'locations' => Location::class,
+            'notes' => Note::class,
+            'organisations' => Organisation::class,
         ];
 
         $what = $request->get('what');
