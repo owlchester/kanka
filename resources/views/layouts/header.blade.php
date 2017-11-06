@@ -44,11 +44,13 @@
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
+                            @if (session()->has('campaign_id'))
                             <div class="pull-left">
                                 <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
                             </div>
+                            @endif
                             <div class="pull-right">
-                                <a href="{{ route('logout') }}"
+                                <a href="{{ route('logout') }}" class="btn btn-default"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     Logout

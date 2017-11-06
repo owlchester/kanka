@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Session;
 class OrganisationMemberController extends Controller
 {
     /**
+     * @var string
+     */
+    protected $view = 'organisations.members';
+    
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -31,7 +36,7 @@ class OrganisationMemberController extends Controller
     public function index()
     {
         $models = OrganisationMember::paginate();
-        return view('organisations.members.index', compact('models'));
+        return view($this->view . '.index', compact('models'));
     }
 
     /**
@@ -42,7 +47,7 @@ class OrganisationMemberController extends Controller
     public function create()
     {
         $organisation = Organisation::findOrFail(request()->get('organisation'));
-        return view('organisations.members.create', compact('organisation'));
+        return view($this->view . '.create', compact('organisation'));
     }
 
     /**
@@ -54,7 +59,8 @@ class OrganisationMemberController extends Controller
     public function store(StoreOrganisationMember $request)
     {
         $relation = OrganisationMember::create($request->all());
-        return redirect()->route('organisations.show', [$relation->organisation_id, 'tab' => 'member'])->with('success', 'Character relationship created');
+        return redirect()->route('organisations.show', [$relation->organisation_id, 'tab' => 'member'])
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -65,7 +71,7 @@ class OrganisationMemberController extends Controller
      */
     public function show(OrganisationMember $organisationMember)
     {
-        return view('organisations.members.show', compact('organisationMember'));
+        return view($this->view . '.show', compact('organisationMember'));
     }
 
     /**
@@ -76,7 +82,7 @@ class OrganisationMemberController extends Controller
      */
     public function edit(OrganisationMember $organisationMember)
     {
-        return view('organisations.members.edit', compact('organisationMember'));
+        return view($this->view . '.edit', compact('organisationMember'));
     }
 
     /**
@@ -89,7 +95,8 @@ class OrganisationMemberController extends Controller
     public function update(StoreOrganisationMember $request, OrganisationMember $organisationMember)
     {
         $organisationMember->update($request->all());
-        return redirect()->route('organisations.show', $organisationMember->organisation_id);
+        return redirect()->route('organisations.show', $organisationMember->organisation_id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -103,8 +110,10 @@ class OrganisationMemberController extends Controller
         $organisationMember->delete();
         $previous = url()->previous();
         if (str_contains($previous, 'characters')) {
-            return redirect()->route('characters.show', [$organisationMember->character_id, 'tab' => 'organisation']);
+            return redirect()->route('characters.show', [$organisationMember->character_id, 'tab' => 'organisation'])
+                ->with('success', trans($this->view . '.destroy.success'));
         }
-        return redirect()->route('organisations.show', [$organisationMember->organisation_id, 'tab' => 'member']);
+        return redirect()->route('organisations.show', [$organisationMember->organisation_id, 'tab' => 'member'])
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

@@ -60,7 +60,7 @@ class FamilyController extends Controller
     public function store(StoreFamily $request)
     {
         Family::create($request->all());
-        return redirect()->route($this->view . '.index')->with('success', 'Character created');
+        return redirect()->route($this->view . '.index')->with('success', trans('families.create.success'));
     }
 
     /**
@@ -95,7 +95,7 @@ class FamilyController extends Controller
     public function update(StoreFamily $request, Family $family)
     {
         $family->update($request->all());
-        return redirect()->route($this->view . '.show', $family->id);
+        return redirect()->route($this->view . '.show', $family->id)->with('success', trans('families.edit.success'));
     }
 
     /**
@@ -107,6 +107,6 @@ class FamilyController extends Controller
     public function destroy(Family $family)
     {
         $family->delete();
-        return redirect()->route($this->view . '.index')->with('success', 'Family removed');
+        return redirect()->route($this->view . '.index')->with('success', trans('families.destroy.success'));
     }
 }

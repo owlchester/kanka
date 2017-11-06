@@ -56,7 +56,8 @@ class NoteController extends Controller
     public function store(StoreNote $request)
     {
         Note::create($request->all());
-        return redirect()->route($this->view . '.index')->with('success', 'Note created');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -91,7 +92,8 @@ class NoteController extends Controller
     public function update(StoreNote $request, Note $note)
     {
         $note->update($request->all());
-        return redirect()->route($this->view . '.show', $note->id);
+        return redirect()->route($this->view . '.show', $note->id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -103,6 +105,7 @@ class NoteController extends Controller
     public function destroy(Note $note)
     {
         $note->delete();
-        return redirect()->route($this->view . '.index')->with('success', 'Note removed');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

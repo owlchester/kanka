@@ -32,6 +32,8 @@
     <![endif]-->
 
     <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="skin-black sidebar-mini @if (Session::has('campaign_id')) @else layout-top-nav @endif">
@@ -70,6 +72,7 @@
         <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
+            @include('partials.success')
             @yield('content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->

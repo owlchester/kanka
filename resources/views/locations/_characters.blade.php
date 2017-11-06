@@ -1,6 +1,6 @@
 <table id="characters" class="table table-hover">
     <tbody><tr>
-        <th><br /></th>
+        <th class="avatar"><br /></th>
         <th>{{ trans('characters.fields.name') }}</th>
         <th>{{ trans('characters.fields.family') }}</th>
         <th>{{ trans('characters.fields.age') }}</th>

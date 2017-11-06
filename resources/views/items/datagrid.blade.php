@@ -1,7 +1,7 @@
 
 <table id="items" class="table table-hover">
     <tbody><tr>
-        <th><br /></th>
+        <th class="avatar"><br /></th>
         <th><a href="{{ route('items.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('items.fields.name') }}</a></th>
         <th><a href="{{ route('items.index', ['order' => 'type', 'page' => request()->get('page')]) }}">{{ trans('items.fields.type') }}</a></th>
         <th>{{ trans('items.fields.location') }}</th>

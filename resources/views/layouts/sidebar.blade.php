@@ -19,8 +19,7 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">Navigation</li>
-            <!-- Optionally, you can add icons to the links -->
+            <li class="header">{{ trans('sidebar.navigation') }}</li>
             <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a></li>
             <li><a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ trans('sidebar.characters') }}</span></a></li>
             <li><a href="{{ route('families.index') }}"><i class="fa fa-sitemap"></i> <span>{{ trans('sidebar.families') }}</span></a></li>
@@ -30,7 +29,9 @@
             <li><a href="{{ route('notes.index') }}"><i class="fa fa-file"></i> <span>{{ trans('sidebar.notes') }}</span></a></li>
             <li><a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a></li>
 
-            <!--<li><a href="{{ url('/admin') }}"><i class="fa fa-lock"></i> <span>Admin</span></a></li>-->
+            @if (Auth::user()->hasRole('admin'))
+            <li><a href="{{ url('/admin') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
+            @endif
         </ul><!-- /.sidebar-menu -->
 
     </section>

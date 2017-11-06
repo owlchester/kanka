@@ -12,7 +12,7 @@
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-body box-profile">
                     @if ($organisation->image)
                     <a href="/storage/{{ $organisation->image }}">

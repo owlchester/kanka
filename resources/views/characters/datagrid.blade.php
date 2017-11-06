@@ -1,6 +1,6 @@
-<table id="characters" class="table table-hover">
+<table id="characters" class="table table-striped">
     <tbody><tr>
-        <th><br></th>
+        <th class="avatar"><br></th>
         <th><a href="{{ route('characters.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.name') }}</a></th>
         <th>{{ trans('characters.fields.family') }}</th>
         <th>{{ trans('characters.fields.location') }}</th>

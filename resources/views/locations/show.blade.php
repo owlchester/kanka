@@ -12,7 +12,7 @@
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-body box-profile">
                     @if ($location->image)
                     <a href="/storage/{{ $location->image }}">
@@ -49,11 +49,10 @@
             <!-- /.box -->
 
             <!-- About Me Box -->
-            <div class="box box-primary">
+            <!--<div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Attributes</h3>
+                    <h3 class="box-title"></h3>
                 </div>
-                <!-- /.box-header -->
                 <div class="box-body">
 
                     <ul class="list-group list-group-unbordered">
@@ -64,28 +63,27 @@
                         @endforeach
                     </ul>
                 </div>
-                <!-- /.box-body -->
-            </div>
+            </div>-->
             <!-- /.box -->
         </div>
 
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#information" data-toggle="tab" aria-expanded="false">Information</a></li>
-                    <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}"><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>
-                    <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}"><a href="#location" data-toggle="tab" aria-expanded="false">Locations</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.information') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}"><a href="#character" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.characters') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}"><a href="#location" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.locations') }}</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         <div class="post">
-                            <h3>Description</h3>
+                            <h3>{{ trans('locations.fields.description') }}</h3>
                             <p>{!! $location->description !!}</p>
                         </div>
 
                         <div class="post">
-                            <h3>History</h3>
+                            <h3>{{ trans('locations.fields.history') }}</h3>
                             <p>{!! $location->history !!}</p>
                         </div>
                     </div>

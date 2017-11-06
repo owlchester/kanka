@@ -10,14 +10,22 @@ return [
     'create' => [
         'title' => 'Create a new organisation',
         'description' => '',
+        'success' => 'Organisation created.',
     ],
     'show' => [
         'title' => 'Organisation :organisation',
         'description' => 'A detailed view of an organisation',
+        'actions' => [
+            'add_member' => 'Add a member',
+        ]
     ],
     'edit' => [
         'title' => 'Edit Organisation :organisation',
-        'description' => ''
+        'description' => '',
+        'success' => 'Organisation updated.',
+    ],
+    'destroy' => [
+        'success' => 'Organisation removed.',
     ],
 
     'fields' => [
@@ -25,6 +33,13 @@ return [
         'type' => 'Type',
         'location' => 'Location',
         'members' => 'Members',
+        'image' => 'Image',
+        'history' => 'History'
+    ],
+    'placeholders' => [
+        'name' => 'Name of the organisation',
+        'location' => 'Choose a location',
+        'type' => 'Cult, Gang, Rebelion, Fandom'
     ],
 
     'members' => [
@@ -34,6 +49,11 @@ return [
         ],
         'fields' => [
             'role' => 'Role',
-        ]
+            'character' => 'Character',
+        ],
+        'placeholders' => [
+            'role' => 'Leader, Member, High Septon, Spymaster',
+            'character' => 'Choose a character'
+        ],
     ]
 ];

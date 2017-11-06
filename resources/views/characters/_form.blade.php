@@ -1,92 +1,96 @@
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
+        <div class="form-group required">
+            <label>{{ trans('characters.fields.name') }}</label>
+            {!! Form::text('name', null, ['placeholder' => trans('characters.fields.name'), 'class' => 'form-control']) !!}
+        </div>
         <div class="form-group">
-            <label>Name:</label>
-            {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
-
-            <label>Title:</label>
-            {!! Form::text('title', null, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
-
-            <label>Family:</label>
+            <label>{{ trans('characters.fields.title') }}</label>
+            {!! Form::text('title', null, ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            <label>{{ trans('characters.fields.family') }}</label>
             {!! Form::select('family_id', (isset($character) && $character->family ? [$character->family_id => $character->family->name] : []),
-            null, ['id' => 'family_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => 'Choose a family...']) !!}
+            null, ['id' => 'family_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
 
-
-            <label>Location:</label>
+        </div>
+        <div class="form-group">
+            <label>{{ trans('characters.fields.location') }}</label>
             {!! Form::select('location_id', (isset($character) && $character->location ? [$character->location_id => $character->location->name] : []),
-            null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => 'Choose a location...']) !!}
-
-            <label>Race:</label>
-            {!! Form::text('race', null, ['placeholder' => 'Race', 'class' => 'form-control']) !!}
+            null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
+        </div>
+        <div class="form-group">
+            <label>{{ trans('characters.fields.race') }}</label>
+            {!! Form::text('race', null, ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control']) !!}
         </div>
         <hr />
 
         <div class="form-group">
-            <label>Age:</label>
-            {!! Form::text('age', null, ['placeholder' => 'Age', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.age') }}</label>
+            {!! Form::text('age', null, ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Sex:</label>
-            {!! Form::text('sex', null, ['placeholder' => 'Sex', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.sex') }}</label>
+            {!! Form::text('sex', null, ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Height:</label>
-            {!! Form::text('height', null, ['placeholder' => 'Height', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.height') }}</label>
+            {!! Form::text('height', null, ['placeholder' => trans('characters.placeholders.height'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Weight:</label>
-            {!! Form::text('weight', null, ['placeholder' => 'Weight', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.weight') }}</label>
+            {!! Form::text('weight', null, ['placeholder' => trans('characters.placeholders.weight'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Eye:</label>
-            {!! Form::text('eye_colour', null, ['placeholder' => 'Eye', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.eye') }}</label>
+            {!! Form::text('eye_colour', null, ['placeholder' => trans('characters.placeholders.eye'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Hair:</label>
-            {!! Form::text('hair', null, ['placeholder' => 'Hair', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.hair') }}</label>
+            {!! Form::text('hair', null, ['placeholder' => trans('characters.placeholders.hair'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Skin:</label>
-            {!! Form::text('skin', null, ['placeholder' => 'Skin', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.skin') }}</label>
+            {!! Form::text('skin', null, ['placeholder' => trans('characters.placeholders.skin'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Languages:</label>
-            {!! Form::text('languages', null, ['placeholder' => 'Languages', 'class' => 'form-control']) !!}
+            <label>{{ trans('characters.fields.languages') }}</label>
+            {!! Form::text('languages', null, ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control']) !!}
         </div>
 
         <hr>
 
         <div class="form-group">
-            <label>File:</label>
+            <label>{{ trans('characters.fields.image') }}</label>
             {!! Form::file('image', array('class' => 'image')) !!}
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label>History:</label>
-            {!! Form::textarea('history', null, ['placeholder' => 'History', 'class' => 'form-control html-editor', 'id' => 'history']) !!}
+            <label>{{ trans('characters.fields.history') }}</label>
+            {!! Form::textarea('history', null, ['placeholder' => trans('characters.placeholders.history'), 'class' => 'form-control html-editor', 'id' => 'history']) !!}
         </div>
         <hr />
         <div class="form-group">
-            <label>Traits:</label>
-            {!! Form::textarea('traits', null, ['placeholder' => 'Traits', 'class' => 'form-control', 'rows' => 4]) !!}
+            <label>{{ trans('characters.fields.traits') }}</label>
+            {!! Form::textarea('traits', null, ['placeholder' => trans('characters.placeholders.traits'), 'class' => 'form-control', 'rows' => 4]) !!}
         </div>
         <div class="form-group">
-            <label>Goals:</label>
-            {!! Form::textarea('goals', null, ['placeholder' => 'Goals', 'class' => 'form-control', 'rows' => 4]) !!}
+            <label>{{ trans('characters.fields.goals') }}</label>
+            {!! Form::textarea('goals', null, ['placeholder' => trans('characters.placeholders.goals'), 'class' => 'form-control', 'rows' => 4]) !!}
         </div>
         <div class="form-group">
-            <label>Fears:</label>
-            {!! Form::textarea('fears', null, ['placeholder' => 'Fears', 'class' => 'form-control', 'rows' => 4]) !!}
+            <label>{{ trans('characters.fields.fears') }}</label>
+            {!! Form::textarea('fears', null, ['placeholder' => trans('characters.placeholders.fears'), 'class' => 'form-control', 'rows' => 4]) !!}
         </div>
         <div class="form-group">
-            <label>Mannerisms:</label>
-            {!! Form::textarea('mannerisms', null, ['placeholder' => 'Mannerisms', 'class' => 'form-control', 'rows' => 4]) !!}
+            <label>{{ trans('characters.fields.mannerisms') }}</label>
+            {!! Form::textarea('mannerisms', null, ['placeholder' => trans('characters.placeholders.mannerisms'), 'class' => 'form-control', 'rows' => 4]) !!}
         </div>
         <div class="form-group">
-            <label>Free text:</label>
-            {!! Form::textarea('free', null, ['placeholder' => 'Free text', 'class' => 'form-control', 'rows' => 4]) !!}
+            <label>{{ trans('characters.fields.free') }}</label>
+            {!! Form::textarea('free', null, ['placeholder' => trans('characters.placeholders.free'), 'class' => 'form-control', 'rows' => 4]) !!}
         </div>
     </div>
 </div>
@@ -94,5 +98,4 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    or <a href="{{ url()->previous() }}">cancel</a>
-</div>
+    {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}</div>

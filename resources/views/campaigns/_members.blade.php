@@ -27,8 +27,8 @@
 {{ $r->appends('tab', 'member')->links() }}
 
 <hr />
-<h3>Invite</h3>
+<h3>{{ trans('campaigns.members.invite.title') }}</h3>
 <p>
-    Use the following link to invite one person to your campaign. Once they have used the link, it will no longer be available and a new one will be generated.
+    {{ trans('campaigns.members.invite.description') }}
 </p>
 <p>{{ route('campaigns.join', ['token' => $campaign->join_token]) }}</p>

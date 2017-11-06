@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Session;
 
 class CampaignController extends Controller
 {
+    protected $view = 'campaigns';
+    
     /**
      * Create a new controller instance.
      *
@@ -52,7 +54,7 @@ class CampaignController extends Controller
             $campaign->newToken();
         }
 
-        return view('campaigns.index', compact('campaigns', 'campaign', 'active'));
+        return view($this->view . '.index', compact('campaigns', 'campaign', 'active'));
     }
 
     /**
@@ -62,7 +64,7 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        return view('campaigns.create');
+        return view($this->view . '.create');
     }
 
     /**
@@ -73,8 +75,10 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaign $request)
     {
+        $first = !Session::has('campaign_id');
         Campaign::create($request->all());
-        return redirect()->to('/')->with('success', 'Campaign created successfully');
+        return redirect()->to('/')
+            ->with('success', trans($this->view . '.create.' . ($first ? 'success_first_time' : 'success')));
     }
 
     /**
@@ -85,7 +89,7 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        return view('campaigns.show', compact('campaign'));
+        return view($this->view . '.show', compact('campaign'));
     }
 
     /**
@@ -96,7 +100,7 @@ class CampaignController extends Controller
      */
     public function edit(Campaign $campaign)
     {
-        return view('campaigns.edit', compact('campaign'));
+        return view($this->view . '.edit', compact('campaign'));
     }
 
     /**
@@ -109,7 +113,8 @@ class CampaignController extends Controller
     public function update(StoreCampaign $request, Campaign $campaign)
     {
         $campaign->update($request->all());
-        return redirect()->route('campaigns.index');
+        return redirect()->route('campaigns.index')
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**

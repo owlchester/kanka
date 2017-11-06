@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session;
 class CharacterRelationController extends Controller
 {
     /**
+     * @var string
+     */
+    protected $view = 'characters.relations';
+    
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -30,7 +35,7 @@ class CharacterRelationController extends Controller
     public function index()
     {
         $models = CharacterRelation::paginate();
-        return view('characters.relations.index', compact('models'));
+        return view($this->view . '.index', compact('models'));
     }
 
     /**
@@ -41,7 +46,7 @@ class CharacterRelationController extends Controller
     public function create()
     {
         $character = Character::findOrFail(request()->get('character'));
-        return view('characters.relations.create', compact('character'));
+        return view($this->view . '.create', compact('character'));
     }
 
     /**
@@ -53,7 +58,8 @@ class CharacterRelationController extends Controller
     public function store(StoreCharacterRelation $request)
     {
         $relation = CharacterRelation::create($request->all());
-        return redirect()->route('characters.show', [$relation->first_id, 'tab' => 'relation'])->with('success', 'Character relationship created');
+        return redirect()->route('characters.show', [$relation->first_id, 'tab' => 'relation'])
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -64,7 +70,7 @@ class CharacterRelationController extends Controller
      */
     public function show(CharacterRelation $characterRelation)
     {
-        return view('characters.relations.show', compact('characterRelation'));
+        return view($this->view . '.show', compact('characterRelation'));
     }
 
     /**
@@ -75,7 +81,7 @@ class CharacterRelationController extends Controller
      */
     public function edit(CharacterRelation $characterRelation)
     {
-        return view('characters.relations.edit', compact('characterRelation'));
+        return view($this->view . '.edit', compact('characterRelation'));
     }
 
     /**
@@ -88,7 +94,8 @@ class CharacterRelationController extends Controller
     public function update(StoreCharacterRelation $request, CharacterRelation $characterRelation)
     {
         $characterRelation->update($request->all());
-        return redirect()->route('characters.show', $characterRelation->first_id);
+        return redirect()->route('characters.show', $characterRelation->first_id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -100,6 +107,7 @@ class CharacterRelationController extends Controller
     public function destroy(CharacterRelation $characterRelation)
     {
         $characterRelation->delete();
-        return redirect()->route('characters.show', [$characterRelation->first_id, 'tab' => 'relation']);
+        return redirect()->route('characters.show', [$characterRelation->first_id, 'tab' => 'relation'])
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

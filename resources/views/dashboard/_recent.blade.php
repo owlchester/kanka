@@ -1,13 +1,11 @@
 <div class="col-md-4">
-    <div class="box box-primary">
+    <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Recently Modified {{ $title }}</h3>
+            <h3 class="box-title">{{ trans('dashboard.recent.title', ['name' => $title]) }}</h3>
 
-            <!--<div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>-->
+            <div class="box-tools pull-right">
+                <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-xs" title="{{ trans('dashboard.recent.add', ['name' => $title]) }}"><i class="fa fa-plus"></i></a>
+            </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -27,10 +25,13 @@
                     </li>
                 @endforeach
             </ul>
+            @if (count($models) == 0)
+                <p><i>{{ trans('dashboard.recent.no_entries') }}</i></p>
+            @endif
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-center">
-            <a href="{{ route($route . '.index') }}" class="uppercase">View All {{ $title }}</a>
+            <a href="{{ route($route . '.index') }}" class="uppercase">{{ trans('dashboard.recent.view', ['name' => $title]) }}</a>
         </div>
         <!-- /.box-footer -->
     </div>

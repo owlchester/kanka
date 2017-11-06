@@ -5,16 +5,54 @@
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+// App
+ul.campaigns {
+  li {
+    float: left;
+    width: 20%;
+  }
 
+  li.active {
 
-// Import admin-lte css
-@import "~admin-lte/dist/css/adminLTE.css";
-@import "~admin-lte/dist/css/skins/_all-skins.css";
+  }
 
-// Select 2
-@import "~select2/dist/css/select2.css";
-@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.css";
+  li.add {
+    background-color: red;
+  }
+}
 
-@import "campaigns";
+//.table {
+//  img.direct-chat-img {
+//    margin-right: 10px;
+//  }
+//}
+
+img.profile-user-img {
+  width: 200px;
+}
+
+/*.main-sidebar {
+  padding-top: 0 !important;
+}*/
+
+@font-face {
+  font-family: 'Dubai';
+  src: url('/fonts/dubai/DubaiW23-Light.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/dubai/DubaiW23-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/fonts/dubai/DubaiW23-Light.woff2') format('woff2'), /* Super Modern Browsers */
+  url('/fonts/dubai/DubaiW23-Light.woff') format('woff'), /* Pretty Modern Browsers */
+  url('/fonts/dubai/DubaiW23-Light.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+/** required form fields **/
+div.required label:after {
+  content: " *";
+  color: red;
+}
+
+table th.avatar {
+  width: 60px;
+}
+table tbody td {
+  vertical-align: middle !important;
+}

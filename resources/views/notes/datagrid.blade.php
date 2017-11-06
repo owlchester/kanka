@@ -1,6 +1,6 @@
 <table id="notes" class="table table-hover">
     <tbody><tr>
-        <th><br></th>
+        <th class="avatar"><br></th>
         <th><a href="{{ route('notes.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('notes.fields.name') }}</a></th>
         <th><a href="{{ route('notes.index', ['order' => 'type', 'page' => request()->get('page')]) }}">{{ trans('notes.fields.type') }}</a></th>
         <th>&nbsp;</th>

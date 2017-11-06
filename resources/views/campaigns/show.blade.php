@@ -2,7 +2,7 @@
     <div class="col-md-3">
 
         <!-- Profile Image -->
-        <div class="box box-primary">
+        <div class="box">
             <div class="box-body box-profile">
                 @if ($campaign->image)
                 <a href="/storage/{{ $campaign->image }}">
@@ -28,6 +28,36 @@
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
+
+
+        @foreach ($campaigns as $c)
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h4>{!! $c->shortName(50) !!}</h4>
+
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-map"></i>
+                    </div>
+                    <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
+                        {{ trans('crud.select') }} <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+        @endforeach
+
+    <!-- small box -->
+        <div class="small-box bg-blue">
+            <div class="inner">
+                <h4>{{ trans('campaigns.index.actions.new.title') }}</h4>
+            </div>
+            <div class="icon">
+                <i class="ion ion-plus"></i>
+            </div>
+            <a href="{{ route('campaigns.create') }}" class="small-box-footer">
+                {{ trans('campaigns.index.actions.new.description') }}<i class="fa fa-plus-circle"></i>
+            </a>
+        </div>
 
     </div>
 

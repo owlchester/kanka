@@ -10,5 +10,5 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    or <a href="{{ url()->previous() }}">cancel</a>
+    {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
 </div>

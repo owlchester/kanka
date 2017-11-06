@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 
 class FamilyRelationController extends Controller
 {
+    protected $view = 'families.relations';
+
     /**
      * Create a new controller instance.
      *
@@ -30,7 +32,7 @@ class FamilyRelationController extends Controller
     public function index()
     {
         $models = FamilyRelation::paginate();
-        return view('families.relations.index', compact('models'));
+        return view($this->view . '.index', compact('models'));
     }
 
     /**
@@ -41,7 +43,7 @@ class FamilyRelationController extends Controller
     public function create()
     {
         $family = Family::findOrFail(request()->get('family'));
-        return view('families.relations.create', compact('family'));
+        return view($this->view . '.create', compact('family'));
     }
 
     /**
@@ -53,7 +55,8 @@ class FamilyRelationController extends Controller
     public function store(StoreFamilyRelation $request)
     {
         $relation = FamilyRelation::create($request->all());
-        return redirect()->route('families.show', [$relation->first_id, 'tab' => 'relation'])->with('success', 'Family relationship created');
+        return redirect()->route('families.show', [$relation->first_id, 'tab' => 'relation'])
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -64,7 +67,7 @@ class FamilyRelationController extends Controller
      */
     public function show(FamilyRelation $familyRelation)
     {
-        return view('families.relations.show', compact('characterRelation'));
+        return view($this->view . '.show', compact('characterRelation'));
     }
 
     /**
@@ -75,7 +78,7 @@ class FamilyRelationController extends Controller
      */
     public function edit(FamilyRelation $familyRelation)
     {
-        return view('families.relations.edit', compact('characterRelation'));
+        return view($this->view . '.edit', compact('characterRelation'));
     }
 
     /**
@@ -88,7 +91,8 @@ class FamilyRelationController extends Controller
     public function update(StoreFamilyRelation $request, FamilyRelation $familyRelation)
     {
         $familyRelation->update($request->all());
-        return redirect()->route('families.show', $familyRelation->first_id);
+        return redirect()->route('families.show', $familyRelation->first_id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -100,6 +104,7 @@ class FamilyRelationController extends Controller
     public function destroy(FamilyRelation $familyRelation)
     {
         $familyRelation->delete();
-        return redirect()->route('families.show', [$familyRelation->first_id, 'tab' => 'relation']);
+        return redirect()->route('families.show', [$familyRelation->first_id, 'tab' => 'relation'])
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

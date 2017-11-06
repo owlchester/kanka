@@ -7,13 +7,13 @@
                 <div class="inner">
                     <h3>{!! $campaign->shortName() !!}</h3>
 
-                    <p>The current campaign</p>
+                    <p>{{ trans('dashboard.campaigns.current') }}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-map"></i>
                 </div>
                 <a class="small-box-footer" href="{{ route('campaigns.index') }}">
-                    <i class="fa fa-arrow-circle-right"></i> Manage campaigns
+                    <i class="fa fa-arrow-circle-right"></i> {{ trans('dashboard.campaigns.manage') }}
                 </a>
             </div>
         </div>

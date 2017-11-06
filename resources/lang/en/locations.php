@@ -10,20 +10,37 @@ return [
     'create' => [
         'title' => 'Create a new location',
         'description' => '',
+        'success' => 'Location created.',
     ],
     'show' => [
         'title' => 'Location :location',
         'description' => 'A detailed view of a location',
+        'tabs' => [
+            'information' => 'Information',
+            'characters' => 'Characters',
+            'locations' => 'Locations',
+        ],
     ],
     'edit' => [
         'title' => 'Edit Location :location',
-        'description' => ''
+        'description' => '',
+        'success' => 'Location updated.',
+    ],
+    'destroy' => [
+        'success' => 'Location removed.',
     ],
     'fields' => [
-        'id' => 'ID',
         'name' => 'Name',
         'type' => 'Type',
         'location' => 'Location',
         'characters' => 'Characters',
+        'description' => 'Description',
+        'history' => 'History',
+        'image' => 'Image',
+    ],
+    'placeholders' => [
+        'name' => 'Name of the location',
+        'type' => 'City, Kingdom, Ruin',
+        'location' => 'Choose a parent location',
     ]
 ];

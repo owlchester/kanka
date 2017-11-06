@@ -12,7 +12,7 @@
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-body box-profile">
                     @if ($family->image)
                     <a href="/storage/{{ $family->image }}">
@@ -25,7 +25,7 @@
                     <ul class="list-group list-group-unbordered">
                         @if (!empty($family->location_id))
                         <li class="list-group-item">
-                            <b>Location</b> <a class="pull-right" href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
+                            <b>{{ trans('families.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
                         </li>
                         @endif
                     </ul>
@@ -50,9 +50,9 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">History</a></li>
-                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">Members</a></li>
-                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">Relations</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.history') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.member') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.relation') }}</a></li>
                 </ul>
 
                 <div class="tab-content">

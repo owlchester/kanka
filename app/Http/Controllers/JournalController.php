@@ -57,7 +57,8 @@ class JournalController extends Controller
     public function store(StoreJournal $request)
     {
         Journal::create($request->all());
-        return redirect()->route($this->view . '.index')->with('success', 'Journal created');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -92,7 +93,8 @@ class JournalController extends Controller
     public function update(StoreJournal $request, Journal $journal)
     {
         $journal->update($request->all());
-        return redirect()->route($this->view . '.show', $journal->id);
+        return redirect()->route($this->view . '.show', $journal->id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -104,6 +106,7 @@ class JournalController extends Controller
     public function destroy(Journal $journal)
     {
         $journal->delete();
-        return redirect()->route($this->view . '.index')->with('success', 'Journal removed');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

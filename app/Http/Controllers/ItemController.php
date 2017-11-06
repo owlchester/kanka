@@ -60,7 +60,8 @@ class ItemController extends Controller
     public function store(StoreItem $request)
     {
         Item::create($request->all());
-        return redirect()->route($this->view . '.index')->with('success', 'Character created');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -95,7 +96,8 @@ class ItemController extends Controller
     public function update(StoreItem $request, Item $item)
     {
         $item->update($request->all());
-        return redirect()->route($this->view . '.show', $item->id);
+        return redirect()->route($this->view . '.show', $item->id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -107,6 +109,7 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return redirect()->route($this->view . '.index')->with('success', 'Item removed');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

@@ -10,6 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new journal',
         'description' => '',
+        'success' => 'Journal created.',
     ],
     'show' => [
         'title' => 'Journal :journal',
@@ -17,7 +18,11 @@ return [
     ],
     'edit' => [
         'title' => 'Edit Journal :journal',
-        'description' => ''
+        'description' => '',
+        'success' => 'Journal updated.',
+    ],
+    'destroy' => [
+        'success' => 'Journal removed.',
     ],
 
     'fields' => [
@@ -27,5 +32,14 @@ return [
         'history' => 'History',
         'date' => 'Date',
         'image' => 'Image',
+    ],
+    'placeholders' => [
+        'name' => 'Name of the journal',
+        'type' => 'Session, One Shot, Draft',
+        'date' => 'Date of the journal',
+    ],
+    'helpers' => [
+        'title' => 'Head\'s up!',
+        'description' => 'You can easily write links to characters by writing <code>{character:Michael Snow}</code> in the textarea. On submitting, it will be replaced with a link to the named entity. The same thing is available for <i>family:</i>, <i>item:</i>, <i>location:</i>, <i>journal:</i>, <i>note:</i> and <i>organisation:</i>.',
     ],
 ];

@@ -61,7 +61,8 @@ class LocationController extends Controller
     public function store(StoreLocation $request)
     {
         $location = Location::create($request->all());
-        return redirect()->route($this->view . '.show', $location->id)->with('success', 'Character created');
+        return redirect()->route($this->view . '.show', $location->id)
+            ->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -96,7 +97,8 @@ class LocationController extends Controller
     public function update(StoreLocation $request, Location $location)
     {
         $location->update($request->all());
-        return redirect()->route($this->view . '.show', $location->id);
+        return redirect()->route($this->view . '.show', $location->id)
+            ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -108,6 +110,7 @@ class LocationController extends Controller
     public function destroy(Location $location)
     {
         $location->delete();
-        return redirect()->route($this->view . '.index')->with('success', 'Location removed');
+        return redirect()->route($this->view . '.index')
+            ->with('success', trans($this->view . '.destroy.success'));
     }
 }

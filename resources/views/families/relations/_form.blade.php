@@ -1,12 +1,13 @@
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
-        <div class="form-group">
-            <label>Target:</label>
-            {!! Form::select('second_id', [], null, ['id' => 'second_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => 'Choose a family...']) !!}
-
-            <label>Relation:</label>
-            {!! Form::text('relation', null, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
+        <div class="form-group required">
+            <label>{{ trans('families.relations.fields.second') }}</label>
+            {!! Form::select('second_id', [], null, ['id' => 'second_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => trans('families.relations.placeholders.second')]) !!}
+        </div>
+        <div class="form-group required">
+            <label>{{ trans('families.relations.fields.relation') }}</label>
+            {!! Form::text('relation', null, ['placeholder' => trans('families.relations.placeholders.relation'), 'class' => 'form-control']) !!}
         </div>
     </div>
 </div>
@@ -15,5 +16,5 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    or <a href="{{ url()->previous() }}">cancel</a>
+    {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
 </div>

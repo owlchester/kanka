@@ -1,26 +1,26 @@
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <label>Name:</label>
-            {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+        <div class="form-group required">
+            <label>{{ trans('families.fields.name') }}</label>
+            {!! Form::text('name', null, ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            <label>Location:</label>
-            {!! Form::select('location_id', (isset($family) && !empty($family->location) ? [$family->location_id => $family->location->name] : []), null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => 'Choose a location...']) !!}
+            <label>{{ trans('families.fields.location') }}</label>
+            {!! Form::select('location_id', (isset($family) && !empty($family->location) ? [$family->location_id => $family->location->name] : []), null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('families.placeholders.location')]) !!}
         </div>
 
         <hr />
 
         <div class="form-group">
-            <label>Image:</label>
+            <label>{{ trans('families.fields.image') }}</label>
             {!! Form::file('image', array('class' => 'image')) !!}
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label>History:</label>
-            {!! Form::textarea('history', null, ['placeholder' => 'History', 'class' => 'form-control html-editor', 'id' => 'history']) !!}
+            <label>{{ trans('families.fields.history') }}</label>
+            {!! Form::textarea('history', null, ['class' => 'form-control html-editor', 'id' => 'history']) !!}
         </div>
     </div>
 </div>
@@ -28,5 +28,5 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    or <a href="{{ url()->previous() }}">cancel</a>
+    {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
 </div>

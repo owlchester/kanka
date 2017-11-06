@@ -12,7 +12,7 @@
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-body box-profile">
                     @if ($note->image)
                     <a href="/storage/{{ $note->image }}">
@@ -25,7 +25,7 @@
                     <ul class="list-group list-group-unbordered">
                         @if (!empty($note->type))
                             <li class="list-group-item">
-                                <b>Type</b> <a class="pull-right" href="#">{{ $note->type }}</a>
+                                <b>{{ trans('notes.fields.type') }}</b> <a class="pull-right" href="#">{{ $note->type }}</a>
                             </li>
                         @endif
                     </ul>
@@ -50,7 +50,7 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">Description</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('notes.show.tabs.description') }}</a></li>
                 </ul>
 
                 <div class="tab-content">

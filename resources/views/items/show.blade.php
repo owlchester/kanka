@@ -11,7 +11,7 @@
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-body box-profile">
                     @if ($item->image)
                     <a href="/storage/{{ $item->image }}">
@@ -57,7 +57,7 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">Information</a></li>
+                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('items.show.tabs.information') }}</a></li>
                     <!--<li><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
                 </ul>
 
@@ -65,14 +65,14 @@
                     <div class="tab-pane active" id="information">
                         @if (!empty($item->description))
                         <div class="post">
-                            <h3>Description</h3>
+                            <h3>{{ trans('items.fields.description') }}</h3>
                             <p>{!! $item->description !!}</p>
                         </div>
                         @endif
 
                         @if (!empty($item->history))
                         <div class="post">
-                            <h3>History</h3>
+                            <h3>{{ trans('items.fields.history') }}</h3>
                             <p>{!! $item->history !!}</p>
                         </div>
                         @endif

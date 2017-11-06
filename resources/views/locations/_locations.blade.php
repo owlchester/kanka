@@ -1,6 +1,6 @@
 <table id="locations" class="table table-hover">
     <tbody><tr>
-        <th><br /></th>
+        <th class="avatar"><br /></th>
         <th>{{ trans('locations.fields.name') }}</th>
         <th>{{ trans('locations.fields.type') }}</th>
         <th>&nbsp;</th>

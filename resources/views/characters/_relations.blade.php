@@ -1,11 +1,13 @@
 <p class="text-right">
-    <a href="{{ route('character_relation.create', ['character' => $character->id]) }}" class="btn btn-primary">Add new relation</a>
+    <a href="{{ route('character_relation.create', ['character' => $character->id]) }}" class="btn btn-primary">
+        {{ trans('characters.relations.actions.add') }}
+    </a>
 </p>
 
 <table id="characters" class="table table-hover">
     <tbody><tr>
         <th>{{ trans('characters.fields.relation') }}</th>
-        <th><br /></th>
+        <th class="avatar"><br /></th>
         <th>{{ trans('characters.fields.name') }}</th>
         <th>{{ trans('characters.fields.location') }}</th>
         <th>{{ trans('characters.fields.age') }}</th>

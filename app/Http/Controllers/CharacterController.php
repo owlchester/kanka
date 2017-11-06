@@ -58,7 +58,7 @@ class CharacterController extends Controller
     public function store(StoreCharacter $request)
     {
         Character::create($request->all());
-        return redirect()->route('characters.index')->with('success', 'Character created');
+        return redirect()->route('characters.index')->with('success', trans($this->view . '.create.success'));
     }
 
     /**
@@ -93,7 +93,7 @@ class CharacterController extends Controller
     public function update(StoreCharacter $request, Character $character)
     {
         $character->update($request->all());
-        return redirect()->route('characters.show', $character->id);
+        return redirect()->route('characters.show', $character->id)->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
@@ -105,6 +105,6 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         $character->delete();
-        return redirect()->route($this->view . '.index')->with('success', 'Character removed');
+        return redirect()->route($this->view . '.index')->with('success', trans($this->view . '.destroy.success'));
     }
 }
