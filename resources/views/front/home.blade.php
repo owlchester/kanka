@@ -26,16 +26,9 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/favicon.ico">
 
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/css/front/new-age.min.css" rel="stylesheet">
-    <link href="/css/front/front.css" rel="stylesheet">
+    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 
 </head>
 

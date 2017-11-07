@@ -20,6 +20,8 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
-        "grunt": "^1.0.1"
+        "grunt": "^1.0.1",
+        "simple-line-icons": "^2.4.1",
+        "startbootstrap-new-age": "^3.3.7"
     }
 }
