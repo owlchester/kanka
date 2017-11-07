@@ -22,17 +22,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/favicon.ico">
 
-    <!-- Custom styles for this template -->
-    <link href="/css/front/new-age.min.css" rel="stylesheet">
-    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
+<!-- Custom styles for this template -->
+<link href="/css/front/new-age.min.css" rel="stylesheet">
+<link href="{{ asset('css/front.css') }}" rel="stylesheet">
+<noscript id="deferred-styles">
+</noscript>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -253,7 +255,17 @@
                 families: ['Lato', 'Catamaran:100,200,300,400,500,600,700,800,900', 'Muli']
             }
         });
+        var loadDeferredStyles = function() {
+            var addStylesNode = document.getElementById("deferred-styles");
+            var replacement = document.createElement("div");
+            replacement.innerHTML = addStylesNode.textContent;
+            document.body.appendChild(replacement);
+            addStylesNode.parentElement.removeChild(addStylesNode);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+        else window.addEventListener('load', loadDeferredStyles);
     </script>
-
 </body>
 </html>
