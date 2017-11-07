@@ -13,5 +13,12 @@ return [
     'select' => 'Select',
     'cancel' => 'Cancel',
     'search' => 'Search',
-    'or_cancel' => 'or <a href=":url">cancel</a>'
+    'or_cancel' => 'or <a href=":url">cancel</a>',
+
+    'delete_modal' => [
+        'title' => 'Delete confirmation',
+        'description' => 'Are you sure you want to remove :tag?',
+        'close' => 'Close',
+        'delete' => 'Delete'
+    ],
 ];
