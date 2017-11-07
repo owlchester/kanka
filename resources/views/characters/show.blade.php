@@ -59,7 +59,7 @@
             <!-- /.box -->
 
             <!-- About Me Box -->
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('characters.fields.physical') }}</h3>
                 </div>
