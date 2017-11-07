@@ -24,7 +24,7 @@ class StoreCampaign extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:6|unique:campaigns,id,' . ($this->campaign ? $this->campaign->id : 0),
+            'name' => 'required|string|min:6|unique:campaigns,name' . ($this->campaign ? ',' . $this->campaign->id : null),
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'locale' => 'string',
         ];

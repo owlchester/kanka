@@ -10,7 +10,7 @@ class CampaignUser extends Pivot
 {
     public $table = 'campaign_user';
 
-    protected $fillable = ['user_id', 'campaign_id'];
+    protected $fillable = ['user_id', 'campaign_id', 'role'];
 
     public function campaign()
     {
