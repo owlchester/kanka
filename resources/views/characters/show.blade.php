@@ -37,9 +37,11 @@
                                 <b>{{ trans('characters.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
                             </li>
                         @endif
+                        @if (!empty($character->race))
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.race') }}</b> <span class="pull-right">{{ $character->race }}</span>
                         </li>
+                        @endif
                     </ul>
 
                     <a href="{{ route('characters.edit', ['id' => $character->id]) }}" class="btn btn-primary btn-block">
