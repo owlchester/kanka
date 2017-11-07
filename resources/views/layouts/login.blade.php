@@ -39,7 +39,7 @@
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="/"><b>{{ config('app.name') }}</b></a>
+            <a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a>
         </div>
 
         <!-- Content Header (Page header) -->

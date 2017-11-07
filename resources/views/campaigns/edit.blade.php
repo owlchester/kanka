@@ -1,4 +1,12 @@
-@extends('layouts.app', ['title' => trans('campaigns.edit.title', ['campaign' => $campaign->name]), 'description' => trans('campaigns.edit.description')])
+@extends('layouts.app', [
+    'title' => trans('campaigns.edit.title', ['campaign' => $campaign->name]),
+    'description' => trans('campaigns.edit.description'),
+    'breadcrumbs' => [
+        ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
+        ['url' => route('campaigns.show', $campaign->id), 'label' => $campaign->name],
+        trans('crud.create')
+    ]
+])
 
 @section('content')
     <div class="row">

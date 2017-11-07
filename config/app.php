@@ -175,6 +175,8 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        //Ilestis\LaravelElasticEmail\LaravelElasticEmailServiceProvider::class,
 
 
         /*
@@ -241,7 +243,8 @@ return [
         'Purify' => Stevebauman\Purify\Facades\Purify::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
 
         // Custom
 

@@ -13,10 +13,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ config('app.name') }} is the home for game masters who need an easy to use tool for keeping track of notes">
+    <meta name="description" content="{{ trans('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - Easy notes manager for dungeon masters</title>
+    <title>{{ trans('front.meta.title') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -46,29 +46,47 @@
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
+                {{ trans('front.menu.title') }}
                 <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+                        <a class="nav-link js-scroll-trigger" href="#features">{{ trans('front.menu.features') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                        <a class="nav-link js-scroll-trigger" href="#contact">{{ trans('front.menu.contact') }}</a>
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}">{{ trans('front.menu.dashboard') }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ trans('front.menu.login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
                         </li>
                     @endauth
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-globe"></i>
+                            {{ trans('front.menu.languages.' . App::getLocale()) }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu navbar-nar" aria-labelledby="drop3">
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                @if ($localeCode != App::getLocale())
+                                <li class="nav-item">
+                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="nav-link">
+                                        {{ ucfirst($properties['native']) }}
+                                    </a>
+                                </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -79,10 +97,11 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ config('app.name', 'Laravel') }}</h1>
-                        <p class="mb-5">Finally an easy tool to organize and prepare your Dungeon Master notes.
-                            Create Characters, define Organisations, detail Locations, invent Items and keep track of it all in Journals.</p>
-                        <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>
+                        <h1 class="mb-5">{{ trans('front.master.title') }}</h1>
+                        <p class="mb-5">{{ trans('front.master.description') }}</p>
+                        <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
+                            {{ trans('front.master.call_to_action') }}
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-5 my-auto">
@@ -107,8 +126,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <h2 class="section-heading">A new way to keep track of your campaigns.</h2>
-                    <p>Our app is available on any mobile device and browswe! No need to install anything, it's all in your browser. Best of all, it's completly free!</p>
+                    <h2 class="section-heading">{{ trans('front.first_block.title') }}</h2>
+                    <p>{{ trans('front.first_block.description') }}</p>
                 </div>
             </div>
         </div>
@@ -117,8 +136,8 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-heading text-center">
-                <h2>Unlimited Features, Unlimited Fun</h2>
-                <p class="text-muted">Here are but a few things that we think you will love with our app!</p>
+                <h2>{{ trans('front.features.title') }}</h2>
+                <p class="text-muted">{{ trans('front.features.description') }}</p>
                 <hr>
             </div>
             <div class="row">
@@ -143,15 +162,15 @@
                             <div class="col-lg-6">
                                 <div class="feature-item">
                                     <i class="icon-layers text-primary"></i>
-                                    <h3>Characters, Families, Location</h3>
-                                    <p class="text-muted">Keep track of characters, their families, their whereabouts and lots more at all times.</p>
+                                    <h3>{{ trans('front.features.layers.title') }}</h3>
+                                    <p class="text-muted">{{ trans('front.features.layers.description') }}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-item">
                                     <i class="icon-notebook text-primary"></i>
-                                    <h3>Journals</h3>
-                                    <p class="text-muted">Prepare your next session or log what happened with our rich-text journal feature!</p>
+                                    <h3>{{ trans('front.features.notebook.title') }}</h3>
+                                    <p class="text-muted">{{ trans('front.features.notebook.description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -159,15 +178,15 @@
                             <div class="col-lg-6">
                                 <div class="feature-item">
                                     <i class="icon-present text-primary"></i>
-                                    <h3>Free to Use</h3>
-                                    <p class="text-muted">The best things in life are those which are free.</p>
+                                    <h3>{{ trans('front.features.free.title') }}</h3>
+                                    <p class="text-muted">{{ trans('front.features.free.description') }}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-item">
                                     <i class="icon-people text-primary"></i>
-                                    <h3>Collaborative</h3>
-                                    <p class="text-muted">Not alone? We've got you covered! You can invite your friends and co-dungeon master to help you build your campaign together!</p>
+                                    <h3>{{ trans('front.features.collaborative.title') }}</h3>
+                                    <p class="text-muted">{{ trans('front.features.collaborative.description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -180,18 +199,18 @@
     <section class="cta">
         <div class="cta-content">
             <div class="container">
-                <h2>Stop waiting.<br>Start building.</h2>
-                <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
-            </div>
+                <h2>{!! trans('front.second_block.title') !!}</h2>
+                <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
+                    {{ trans('front.second_block.call_to_action') }}
+                </a>
+        </div>
         </div>
         <div class="overlay"></div>
     </section>
 
     <section class="contact bg-primary" id="contact">
         <div class="container">
-            <h2>We
-                <i class="fa fa-heart"></i>
-                new friends!</h2>
+            <h2>{!! trans('front.contact.title', ['icon' => '<i class="fa fa-heart"></i>']) !!}</h2>
             <ul class="list-inline list-social">
                 <li class="list-inline-item social-twitter">
                     <a href="https://twitter.com/kankaio">
@@ -209,7 +228,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2017 {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
+            <p>{{ trans('front.footer.copyright') }}</p>
             <!--<ul class="list-inline">
                 <li class="list-inline-item">
                     <a href="#">Privacy</a>

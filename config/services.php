@@ -34,9 +34,10 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+
     'facebook' => [
-        'client_id' => '126711854711743',
-        'client_secret' => '5b53ba6bb139969bae46aeb928285056',
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => env('APP_URL', 'http://miscellany.loc') . '/auth/facebook/callback',
-    ],
+    ]
 ];

@@ -3,9 +3,11 @@
 namespace App\Listeners;
 
 use App\Campaign;
+use App\Mail\UserRegistered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class UserEventSubscriber
@@ -23,7 +25,8 @@ class UserEventSubscriber
     /**
      * Handle user login events.
      */
-    public function onUserLogin($event) {
+    public function onUserLogin($event)
+    {
         // We want to register in the session a campaign_id
         $campaign = Campaign::whereHas('users', function ($q) {
             $q->where('users.id', Auth::user()->id);

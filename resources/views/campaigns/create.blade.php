@@ -2,7 +2,7 @@
     'title' => trans('campaigns.create.title'),
     'description' => trans('campaigns.create.description'),
     'breadcrumbs' => [
-        ['url' => route('campaigns.index'), 'label' => trans('campaigns.title')],
+        ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         trans('crud.create')
     ]
 ])

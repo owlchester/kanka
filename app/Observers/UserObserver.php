@@ -3,10 +3,12 @@
 namespace App\Observers;
 
 use App\Campaign;
+use App\Mail\UserRegistered;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -52,6 +54,8 @@ class UserObserver
      */
     public function created(User $user)
     {
+        // New user, send notification
+        Mail::to('hello@kanka.io')->send(new UserRegistered($user));
     }
 
     /**

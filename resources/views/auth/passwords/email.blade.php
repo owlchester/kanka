@@ -1,7 +1,7 @@
-@extends('layouts.login', ['title' => 'Email'])
+@extends('layouts.login', ['title' => trans('auth.reset.title')])
 
 @section('content')
-    <p>Reset Password</p>
+    <h3>{{ trans('auth.reset.title') }}</h3>
 
     <div class="panel-body">
         @if (session('status'))
@@ -14,7 +14,7 @@
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Email address">
+                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="{{ trans('auth.reset.fields.email') }}">
 
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -25,7 +25,7 @@
 
             <div class="form-group">
                     <button type="submit" class="btn btn-block btn-primary">
-                        Send Password Reset Link
+                        {{ trans('auth.reset.send') }}
                     </button>
             </div>
         </form>

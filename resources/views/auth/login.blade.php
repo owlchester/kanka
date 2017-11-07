@@ -1,16 +1,14 @@
-@extends('layouts.login', ['title' => 'Login'])
-
-
+@extends('layouts.login', ['title' => trans('auth.login.title')])
 
 @section('content')
-<p>Login</p>
+<h3>{{ trans('auth.login.title') }}</h3>
 
 <div class="panel-body">
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 
         <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ trans('auth.login.fields.email') }}" required autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
             @if ($errors->has('email'))
@@ -21,7 +19,7 @@
         </div>
 
         <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-            <input id="password" type="password" class="form-control" name="password" required placeholder="Password">
+            <input id="password" type="password" class="form-control" name="password" required placeholder="{{ trans('auth.login.fields.password') }}">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
             @if ($errors->has('password'))
@@ -36,13 +34,13 @@
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                        Remember Me
+                        {{ trans('auth.login.remember_me') }}
                     </label>
                 </div>
             </div>
             <div class="col-xs-4">
                 <button type="submit" class="btn pull-right btn-primary">
-                    Login
+                    {{ trans('auth.login.submit') }}
                 </button>
             </div>
         </div>
@@ -57,15 +55,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="{{ url('/auth/facebook') }}" class="btn btn-block btn-facebook"><i class="fa fa-facebook"></i> Login with Facebook</a>
+                <p>- {{ trans('auth.login.or') }} -</p>
+                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="btn btn-block btn-facebook"><i class="fa fa-facebook"></i> {{ trans('auth.login.login_with_facebook') }}</a>
             </div>
 
             <a class="btn btn-link" href="{{ route('password.request') }}">
-                Forgot Your Password?
+                {{ trans('auth.login.password_forgotten') }}
             </a>
-            <a class="btn btn-link" href="{{ url('/register') }}">
-                Register a new account
+            <a class="btn btn-link" href="{{ route('register') }}">
+                {{ trans('auth.login.new_account') }}
             </a>
 
         </div>

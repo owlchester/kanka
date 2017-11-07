@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/') }}" class="logo">
+    <a href="{{ route('home') }}" class="logo">
         {{ config('app.name') }}
     </a>
 

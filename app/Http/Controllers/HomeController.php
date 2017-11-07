@@ -10,6 +10,7 @@ use App\Journal;
 use App\Location;
 use App\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
