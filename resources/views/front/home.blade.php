@@ -246,5 +246,14 @@
     <!-- Custom scripts for this template -->
     <script src="/js/front/new-age.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Lato', 'Catamaran:100,200,300,400,500,600,700,800,900', 'Muli']
+            }
+        });
+    </script>
+
 </body>
 </html>
