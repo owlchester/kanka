@@ -24,7 +24,7 @@ return [
     ],
     'first_block' => [
         'title' => 'A new way to keep track of your campaigns.',
-        'description' => 'Our app is available on any mobile device and browse! No need to install anything, it\'s all in your browser. Best of all, it\'s completely free!'
+        'description' => 'Our app is available on any mobile device and browser! No need to install anything, it\'s all in your browser. Best of all, it\'s completely free!'
     ],
     'features' => [
         'title' => 'Unlimited Features, Unlimited Fun',
