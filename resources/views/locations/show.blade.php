@@ -24,11 +24,13 @@
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>{{ trans('locations.fields.type') }}</b> <a class="pull-right">{{ $location->type }}</a>
+                            <b>{{ trans('locations.fields.type') }}</b> <a class="pull-right clear">{{ $location->type }}</a>
+                            <br class="clear" />
                         </li>
                         @if (!empty($location->parent_location_id))
                             <li class="list-group-item">
                                 <b>{{ trans('locations.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $location->parent_location_id) }}">{{ $location->parentLocation->name }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                     </ul>

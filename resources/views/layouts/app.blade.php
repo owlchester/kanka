@@ -48,25 +48,40 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                {{ $title or "Page Title" }}
-                <small>{{ $description or null }}</small>
-            </h1>
-            <!-- You can dynamically generate breadcrumbs here -->
-            <ol class="breadcrumb">
-                <li><a href="{{route('home')}}">Dashboard</a></li>
-                @if (isset($breadcrumbs))
-                @foreach ($breadcrumbs as $breadcrumb)
-                    <li>
-                        @if (!empty($breadcrumb['url']))
-                        <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</a>
-                        @else
-                            {{ $breadcrumb }}
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        {{ $title or "Page Title" }}
+                        <small>{{ $description or null }}</small>
+                    </h1>
+                </div>
+            </div>
+
+                    <!-- You can dynamically generate breadcrumbs here -->
+                    <ol class="breadcrumb">
+                        <li><a href="{{route('home')}}">Dashboard</a></li>
+                        @if (isset($breadcrumbs))
+                        @foreach ($breadcrumbs as $breadcrumb)
+                            <li>
+                                @if (!empty($breadcrumb['url']))
+                                <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
+                                    @if (strlen($breadcrumb['label']) > 22)
+                                        {{ substr($breadcrumb['label'], 0, 20) . '...' }}
+                                    @else
+                                        {{ $breadcrumb['label'] }}
+                                    @endif
+                                    </a>
+                                @else
+                                    @if (strlen($breadcrumb) > 22)
+                                        <span title="{{ $breadcrumb }}">{{ substr($breadcrumb, 0, 20) . '...' }}</span>
+                                    @else
+                                        {{ $breadcrumb }}
+                                    @endif
+                                @endif
+                            </li>
+                        @endforeach
                         @endif
-                    </li>
-                @endforeach
-                @endif
-            </ol>
+                    </ol>
         </section>
 
         <!-- Main content -->

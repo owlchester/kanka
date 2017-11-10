@@ -60,6 +60,10 @@ class ItemController extends Controller
     public function store(StoreItem $request)
     {
         Item::create($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.create.success'));
+        }
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.create.success'));
     }
@@ -96,6 +100,10 @@ class ItemController extends Controller
     public function update(StoreItem $request, Item $item)
     {
         $item->update($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.edit.success'));
+        }
         return redirect()->route($this->view . '.show', $item->id)
             ->with('success', trans($this->view . '.edit.success'));
     }

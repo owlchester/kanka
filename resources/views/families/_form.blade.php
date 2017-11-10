@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <div class="form-group required">
             <label>{{ trans('families.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control']) !!}
+            {!! Form::text('name', null, ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('families.fields.location') }}</label>
@@ -28,5 +28,6 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
+    <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
     {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
 </div>

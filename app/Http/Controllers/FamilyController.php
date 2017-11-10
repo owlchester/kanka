@@ -60,6 +60,10 @@ class FamilyController extends Controller
     public function store(StoreFamily $request)
     {
         Family::create($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.create.success'));
+        }
         return redirect()->route($this->view . '.index')->with('success', trans('families.create.success'));
     }
 
@@ -95,6 +99,10 @@ class FamilyController extends Controller
     public function update(StoreFamily $request, Family $family)
     {
         $family->update($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.edit.success'));
+        }
         return redirect()->route($this->view . '.show', $family->id)->with('success', trans('families.edit.success'));
     }
 

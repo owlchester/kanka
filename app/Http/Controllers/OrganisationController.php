@@ -60,6 +60,10 @@ class OrganisationController extends Controller
     public function store(StoreOrganisation $request)
     {
         Organisation::create($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.create.success'));
+        }
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.create.success'));
     }
@@ -96,6 +100,10 @@ class OrganisationController extends Controller
     public function update(StoreOrganisation $request, Organisation $organisation)
     {
         $organisation->update($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.edit.success'));
+        }
         return redirect()->route($this->view . '.show', $organisation->id)
             ->with('success', trans($this->view . '.edit.success'));
     }

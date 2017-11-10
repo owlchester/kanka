@@ -58,6 +58,10 @@ class CharacterController extends Controller
     public function store(StoreCharacter $request)
     {
         Character::create($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.create.success'));
+        }
         return redirect()->route('characters.index')->with('success', trans($this->view . '.create.success'));
     }
 
@@ -93,6 +97,10 @@ class CharacterController extends Controller
     public function update(StoreCharacter $request, Character $character)
     {
         $character->update($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.edit.success'));
+        }
         return redirect()->route('characters.show', $character->id)->with('success', trans($this->view . '.edit.success'));
     }
 

@@ -27,11 +27,13 @@
                         @if ($journal->type)
                         <li class="list-group-item">
                             <b>{{ trans('journals.fields.type') }}</b> <a class="pull-right">{{ $journal->type }}</a>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($journal->date)
                         <li class="list-group-item">
                             <b>{{ trans('journals.fields.date') }}</b> <a class="pull-right">{{ $journal->date }}</a>
+                            <br class="clear" />
                         </li>
                         @endif
                     </ul>

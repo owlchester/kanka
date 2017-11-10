@@ -57,6 +57,10 @@ class JournalController extends Controller
     public function store(StoreJournal $request)
     {
         Journal::create($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.create.success'));
+        }
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.create.success'));
     }
@@ -93,6 +97,10 @@ class JournalController extends Controller
     public function update(StoreJournal $request, Journal $journal)
     {
         $journal->update($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.edit.success'));
+        }
         return redirect()->route($this->view . '.show', $journal->id)
             ->with('success', trans($this->view . '.edit.success'));
     }

@@ -26,6 +26,7 @@
                         @if (!empty($family->location_id))
                         <li class="list-group-item">
                             <b>{{ trans('families.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
+                            <br class="clear" />
                         </li>
                         @endif
                     </ul>

@@ -7,7 +7,7 @@
         </div>
         <div class="form-group required">
             <label>{{ trans('organisations.members.fields.role') }}</label>
-            {!! Form::text('role', null, ['placeholder' => trans('organisations.members.placeholders.role'), 'class' => 'form-control']) !!}
+            {!! Form::text('role', null, ['placeholder' => trans('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
     </div>
 </div>

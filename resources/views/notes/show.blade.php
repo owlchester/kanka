@@ -26,6 +26,7 @@
                         @if (!empty($note->type))
                             <li class="list-group-item">
                                 <b>{{ trans('notes.fields.type') }}</b> <a class="pull-right" href="#">{{ $note->type }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                     </ul>

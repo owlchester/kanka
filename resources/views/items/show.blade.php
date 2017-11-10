@@ -25,16 +25,19 @@
                         @if ($item->type)
                         <li class="list-group-item">
                             <b>{{ trans('items.fields.type') }}</b> <a class="pull-right">{{ $item->type }}</a>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if (!empty($item->location))
                             <li class="list-group-item">
                                 <b>{{ trans('items.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $item->location_id) }}">{{ $item->location->name }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                         @if (!empty($item->character))
                             <li class="list-group-item">
                                 <b>{{ trans('items.fields.character') }}</b> <a class="pull-right" href="{{ route('characters.show', $item->character_id) }}">{{ $item->character->name }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                     </ul>

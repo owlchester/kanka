@@ -25,13 +25,15 @@
                     <ul class="list-group list-group-unbordered">
                         @if (!empty($organisation->location_id))
                         <li class="list-group-item">
-                            <b>Location</b> <a class="pull-right" href="{{ route('locations.show', $organisation->location_id) }}">{{ $organisation->location->name }}</a>
+                            <b>{{ trans('organisations.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $organisation->location_id) }}">{{ $organisation->location->name }}</a>
+                            <br class="clear" />
                         </li>
                         @endif
 
                         @if (!empty($organisation->type))
                             <li class="list-group-item">
-                                <b>Type</b> <a class="pull-right" href="#">{{ $organisation->type }}</a>
+                                <b>{{ trans('organisations.fields.type') }}</b> <a class="pull-right" href="#">{{ $organisation->type }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                     </ul>

@@ -55,7 +55,7 @@ class UserObserver
     public function created(User $user)
     {
         // New user, send notification
-        Mail::to('hello@kanka.io')->send(new UserRegistered($user));
+        //Mail::to('hello@kanka.io')->send(new UserRegistered($user));
     }
 
     /**

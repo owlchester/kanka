@@ -30,16 +30,19 @@
                         @if (!empty($character->family_id))
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.family') }}</b> <a class="pull-right" href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                         @if (!empty($character->location_id))
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
+                                <br class="clear" />
                             </li>
                         @endif
                         @if (!empty($character->race))
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.race') }}</b> <span class="pull-right">{{ $character->race }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                     </ul>
@@ -70,41 +73,49 @@
                         @if ($character->age)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.age') }}</b> <span class="pull-right">{{ $character->age }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->sex)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.sex') }}</b> <span class="pull-right">{{ $character->sex }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->height)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.height') }}</b> <span class="pull-right">{{ $character->height }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->weight)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.weight') }}</b> <span class="pull-right">{{ $character->weight }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->eye_colour)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.eye') }}</b> <span class="pull-right">{{ $character->eye_colour }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->hair)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.hair') }}</b> <span class="pull-right">{{ $character->hair }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->skin)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.skin') }}</b> <span class="pull-right">{{ $character->skin }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                         @if ($character->languages)
                         <li class="list-group-item">
                             <b>{{ trans('characters.fields.languages') }}</b> <span class="pull-right">{{ $character->languages }}</span>
+                            <br class="clear" />
                         </li>
                         @endif
                     </ul>

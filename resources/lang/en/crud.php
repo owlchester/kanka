@@ -14,6 +14,7 @@ return [
     'cancel' => 'Cancel',
     'search' => 'Search',
     'or_cancel' => 'or <a href=":url">cancel</a>',
+    'save_and_new' => 'Save and New',
 
     'delete_modal' => [
         'title' => 'Delete confirmation',

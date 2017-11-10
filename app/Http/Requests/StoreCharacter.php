@@ -24,7 +24,7 @@ class StoreCharacter extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'age' => 'nullable|integer',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'family_id' => 'integer|exists:families,id',

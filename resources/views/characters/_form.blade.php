@@ -3,11 +3,11 @@
     <div class="col-md-6">
         <div class="form-group required">
             <label>{{ trans('characters.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('characters.fields.name'), 'class' => 'form-control']) !!}
+            {!! Form::text('name', null, ['placeholder' => trans('characters.fields.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.title') }}</label>
-            {!! Form::text('title', null, ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control']) !!}
+            {!! Form::text('title', null, ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.family') }}</label>
@@ -22,41 +22,41 @@
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.race') }}</label>
-            {!! Form::text('race', null, ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control']) !!}
+            {!! Form::text('race', null, ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
         <hr />
 
         <div class="form-group">
             <label>{{ trans('characters.fields.age') }}</label>
-            {!! Form::text('age', null, ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control']) !!}
+            {!! Form::text('age', null, ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 9]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.sex') }}</label>
-            {!! Form::text('sex', null, ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control']) !!}
+            {!! Form::text('sex', null, ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 10]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.height') }}</label>
-            {!! Form::text('height', null, ['placeholder' => trans('characters.placeholders.height'), 'class' => 'form-control']) !!}
+            {!! Form::text('height', null, ['placeholder' => trans('characters.placeholders.height'), 'class' => 'form-control', 'maxlength' => 10]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.weight') }}</label>
-            {!! Form::text('weight', null, ['placeholder' => trans('characters.placeholders.weight'), 'class' => 'form-control']) !!}
+            {!! Form::text('weight', null, ['placeholder' => trans('characters.placeholders.weight'), 'class' => 'form-control', 'maxlength' => 10]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.eye') }}</label>
-            {!! Form::text('eye_colour', null, ['placeholder' => trans('characters.placeholders.eye'), 'class' => 'form-control']) !!}
+            {!! Form::text('eye_colour', null, ['placeholder' => trans('characters.placeholders.eye'), 'class' => 'form-control', 'maxlength' => 12]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.hair') }}</label>
-            {!! Form::text('hair', null, ['placeholder' => trans('characters.placeholders.hair'), 'class' => 'form-control']) !!}
+            {!! Form::text('hair', null, ['placeholder' => trans('characters.placeholders.hair'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.skin') }}</label>
-            {!! Form::text('skin', null, ['placeholder' => trans('characters.placeholders.skin'), 'class' => 'form-control']) !!}
+            {!! Form::text('skin', null, ['placeholder' => trans('characters.placeholders.skin'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.languages') }}</label>
-            {!! Form::text('languages', null, ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control']) !!}
+            {!! Form::text('languages', null, ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
         <hr>
@@ -98,4 +98,5 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
+    <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
     {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}</div>

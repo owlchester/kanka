@@ -3,11 +3,11 @@
     <div class="col-md-6">
         <div class="form-group required">
             <label>{{ trans('notes.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('notes.placeholders.name'), 'class' => 'form-control']) !!}
+            {!! Form::text('name', null, ['placeholder' => trans('notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('notes.fields.type') }}</label>
-            {!! Form::text('type', null, ['placeholder' => trans('notes.placeholders.type'), 'class' => 'form-control']) !!}
+            {!! Form::text('type', null, ['placeholder' => trans('notes.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
         <hr />
@@ -28,5 +28,6 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
+    <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
     {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
 </div>

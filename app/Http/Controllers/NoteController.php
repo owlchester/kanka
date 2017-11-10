@@ -56,6 +56,10 @@ class NoteController extends Controller
     public function store(StoreNote $request)
     {
         Note::create($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.create.success'));
+        }
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.create.success'));
     }
@@ -92,6 +96,10 @@ class NoteController extends Controller
     public function update(StoreNote $request, Note $note)
     {
         $note->update($request->all());
+        if ($request->has('submit-new')) {
+            return redirect()->route($this->view . '.create')
+                ->with('success', trans($this->view . '.edit.success'));
+        }
         return redirect()->route($this->view . '.show', $note->id)
             ->with('success', trans($this->view . '.edit.success'));
     }

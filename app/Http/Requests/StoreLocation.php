@@ -24,7 +24,8 @@ class StoreLocation extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:191',
+            'type' => 'max:45',
             'parent_location_id', 'integer|exists:locations,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192'
         ];
