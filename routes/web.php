@@ -44,6 +44,7 @@ Route::group([
         'organisations' => 'OrganisationController',
         'organisation_member' => 'OrganisationMemberController',
         'notes' => 'NoteController',
+        'releases' => 'ReleaseController',
     ]);
 
     Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
