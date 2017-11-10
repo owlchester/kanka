@@ -22,6 +22,7 @@ return [
         'or' => 'OR',
         'submit' => 'Login',
         'login_with_facebook' => 'Login with Facebook',
+        'login_with_google' => 'Login with Google',
         'password_forgotten' => 'Forgot your password?',
         'new_account' => 'Register a new account',
         'fields' => [
@@ -39,6 +40,7 @@ return [
         ],
         'submit' => 'Register',
         'register_with_facebook' => 'Register with Facebook',
+        'register_with_google' => 'Register with Google',
         'already_account' => 'Already have an account?',
     ],
     'reset' => [
