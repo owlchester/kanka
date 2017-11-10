@@ -26,6 +26,11 @@ class LocationObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($location, 'locations');
+
+        $nullable = ['parent_location_id'];
+        foreach ($nullable as $attr) {
+            $location->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
+        }
     }
 
     /**

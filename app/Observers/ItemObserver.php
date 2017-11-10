@@ -26,6 +26,11 @@ class ItemObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($item, 'items');
+
+        $nullable = ['location_id', 'character_id'];
+        foreach ($nullable as $attr) {
+            $item->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
+        }
     }
 
     /**

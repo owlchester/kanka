@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label>{{ trans('locations.fields.location') }}</label>
-            {!! Form::select('parent_location_id', [], null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
+            {!! Form::select('parent_location_id', (!empty($location->parentLocation) ? [$location->parent_location_id => $location->parentLocation->name] : []), null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
 
         </div>
         <hr />

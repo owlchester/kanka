@@ -25,6 +25,11 @@ class OrganisationObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($organisation, 'organisations');
+
+        $nullable = ['location_id'];
+        foreach ($nullable as $attr) {
+            $organisation->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
+        }
     }
 
     /**

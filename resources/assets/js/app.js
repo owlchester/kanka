@@ -36,6 +36,7 @@ if ($('.select2').length > 0) {
     $.each($('.select2'), function(index) {
        $(this).select2({
             placeholder: $(this).attr('data-palceholder'),
+            allowClear: true,
             minimumInputLength: 3,
                 ajax: {
                 url: $(this).attr('data-url'),

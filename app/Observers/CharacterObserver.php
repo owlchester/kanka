@@ -27,6 +27,11 @@ class CharacterObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($character, 'characters');
+
+        $nullable = ['location_id', 'family_id'];
+        foreach ($nullable as $attr) {
+            $character->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
+        }
     }
 
     /**
