@@ -42,6 +42,8 @@ class FamilyRelationController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', FamilyRelation::class);
+
         $family = Family::findOrFail(request()->get('family'));
         return view($this->view . '.create', compact('family'));
     }
@@ -54,6 +56,8 @@ class FamilyRelationController extends Controller
      */
     public function store(StoreFamilyRelation $request)
     {
+        $this->authorize('create', FamilyRelation::class);
+
         $relation = FamilyRelation::create($request->all());
         return redirect()->route('families.show', [$relation->first_id, 'tab' => 'relation'])
             ->with('success', trans($this->view . '.create.success'));
@@ -67,6 +71,8 @@ class FamilyRelationController extends Controller
      */
     public function show(FamilyRelation $familyRelation)
     {
+        $this->authorize('view', $familyRelation);
+
         return view($this->view . '.show', compact('characterRelation'));
     }
 
@@ -78,6 +84,8 @@ class FamilyRelationController extends Controller
      */
     public function edit(FamilyRelation $familyRelation)
     {
+        $this->authorize('update', $familyRelation);
+
         return view($this->view . '.edit', compact('characterRelation'));
     }
 
@@ -90,6 +98,8 @@ class FamilyRelationController extends Controller
      */
     public function update(StoreFamilyRelation $request, FamilyRelation $familyRelation)
     {
+        $this->authorize('update', $familyRelation);
+
         $familyRelation->update($request->all());
         return redirect()->route('families.show', $familyRelation->first_id)
             ->with('success', trans($this->view . '.edit.success'));
@@ -103,6 +113,8 @@ class FamilyRelationController extends Controller
      */
     public function destroy(FamilyRelation $familyRelation)
     {
+        $this->authorize('delete', $familyRelation);
+
         $familyRelation->delete();
         return redirect()->route('families.show', [$familyRelation->first_id, 'tab' => 'relation'])
             ->with('success', trans($this->view . '.destroy.success'));

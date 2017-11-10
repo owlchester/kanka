@@ -30,7 +30,7 @@ class Campaign
         }
 
         // Make sure we are in the campaign users
-        if (!$campaign->member()) {
+        if (!$campaign->user()) {
             return redirect()->route('campaigns.index');
         }
 

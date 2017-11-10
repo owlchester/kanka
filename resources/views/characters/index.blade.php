@@ -12,9 +12,14 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
+
+                    @if (Auth::user()->can('create', \App\Character::class))
                     <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> {{ trans('characters.index.add') }}
                     </a>
+                    @else
+                        <br>
+                    @endif
 
                     <div class="box-tools">
                         @include('layouts.datagrid.search', ['route' => route('characters.index')])

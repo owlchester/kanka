@@ -1,8 +1,11 @@
+
+@if (Auth::user()->can('create', \App\CharacterRelation::class))
 <p class="text-right">
     <a href="{{ route('character_relation.create', ['character' => $character->id]) }}" class="btn btn-primary">
         {{ trans('characters.relations.actions.add') }}
     </a>
 </p>
+@endif
 
 <table id="characters" class="table table-hover">
     <tbody><tr>
@@ -32,11 +35,13 @@
             <td>{{ $relation->second->race }}</td>
             <td>{{ $relation->second->sex }}</td>
             <td class="text-right">
+                @if (Auth::user()->can('delete', $relation))
                 {!! Form::open(['method' => 'DELETE','route' => ['character_relation.destroy', $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::close() !!}
+                @endif
             </td>
         </tr>
     @endforeach

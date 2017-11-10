@@ -35,15 +35,19 @@
                         @endif
                     </ul>
 
+                    @if (Auth::user()->can('update', $location))
                     <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-primary btn-block">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
+                    @endif
 
+                    @if (Auth::user()->can('delete', $location))
                         <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $location->name }}" data-toggle="modal" data-target="#delete-confirm">
                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                         </button>
                         {!! Form::open(['method' => 'DELETE','route' => ['locations.destroy', $location->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                         {!! Form::close() !!}
+                    @endif
 
                 </div>
                 <!-- /.box-body -->

@@ -12,9 +12,13 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
+                    @if (Auth::user()->can('create', \App\Family::class))
                     <a href="{{ route('families.create') }}" class="btn btn-sm btn-primary">
                         <i class="fa fa-plus"></i> {{ trans('families.index.add') }}
                     </a>
+                    @else
+                        <br />
+                    @endif
 
                     <div class="box-tools">
                         @include('layouts.datagrid.search', ['route' => route('families.index')])

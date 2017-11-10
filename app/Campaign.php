@@ -54,6 +54,19 @@ class Campaign extends MiscModel
     public function member()
     {
         foreach ($this->members as $member) {
+            if ($member->user_id == Auth::user()->id && $member->role == 'member') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function user()
+    {
+        foreach ($this->members as $member) {
             if ($member->user_id == Auth::user()->id) {
                 return true;
             }

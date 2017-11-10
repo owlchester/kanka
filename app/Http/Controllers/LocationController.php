@@ -49,6 +49,7 @@ class LocationController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Location::class);
         return view($this->view . '.create');
     }
 
@@ -60,6 +61,8 @@ class LocationController extends Controller
      */
     public function store(StoreLocation $request)
     {
+        $this->authorize('create', Location::class);
+
         $location = Location::create($request->all());
 
         if ($request->has('submit-new')) {
@@ -89,6 +92,8 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
+        $this->authorize('update', $location);
+
         return view($this->view . '.edit', compact('location'));
     }
 
@@ -101,6 +106,8 @@ class LocationController extends Controller
      */
     public function update(StoreLocation $request, Location $location)
     {
+        $this->authorize('update', $location);
+
         $location->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -118,6 +125,8 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
+        $this->authorize('delete', $location);
+
         $location->delete();
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.destroy.success'));

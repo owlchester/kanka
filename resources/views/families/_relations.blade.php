@@ -1,7 +1,9 @@
+@if (Auth::user()->can('create', 'App\FamilyRelation'))
 <p class="text-right">
     <a href="{{ route('family_relation.create', ['family' => $family->id]) }}" class="btn btn-primary">
         {{ trans('families.relations.actions.add') }}    </a>
 </p>
+@endif
 
 <table id="families" class="table table-hover">
     <tbody><tr>
@@ -25,11 +27,14 @@
                 @endif
             </td>
             <td class="text-right">
+                @if (Auth::user()->can('delete', $relation))
+
                 {!! Form::open(['method' => 'DELETE','route' => ['family_relation.destroy', $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::close() !!}
+                @endif
             </td>
         </tr>
     @endforeach

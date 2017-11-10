@@ -67,8 +67,9 @@ class HomeController extends Controller
         $journals = Journal::recent()->take(3)->get();
 
         //$characters = Character::
+        $createAcl = Auth::user()->campaign->owner() || Auth::user()->campaign->member();
 
         return view('home', compact('campaign', 'characters', 'families',
-            'locations', 'items', 'journals', 'organisations'));
+            'locations', 'items', 'journals', 'organisations', 'createAcl'));
     }
 }

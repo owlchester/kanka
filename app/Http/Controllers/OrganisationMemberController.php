@@ -46,6 +46,8 @@ class OrganisationMemberController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', OrganisationMember::class);
+
         $organisation = Organisation::findOrFail(request()->get('organisation'));
         return view($this->view . '.create', compact('organisation'));
     }
@@ -58,6 +60,9 @@ class OrganisationMemberController extends Controller
      */
     public function store(StoreOrganisationMember $request)
     {
+        $this->authorize('create', OrganisationMember::class);
+
+        $this->authorize('create', OrganisationMember::class);
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('organisations.show', [$relation->organisation_id, 'tab' => 'member'])
             ->with('success', trans($this->view . '.create.success'));
@@ -71,6 +76,8 @@ class OrganisationMemberController extends Controller
      */
     public function show(OrganisationMember $organisationMember)
     {
+        $this->authorize('view', $organisationMember);
+
         return view($this->view . '.show', compact('organisationMember'));
     }
 
@@ -82,6 +89,8 @@ class OrganisationMemberController extends Controller
      */
     public function edit(OrganisationMember $organisationMember)
     {
+        $this->authorize('update', $organisationMember);
+
         return view($this->view . '.edit', compact('organisationMember'));
     }
 
@@ -94,6 +103,8 @@ class OrganisationMemberController extends Controller
      */
     public function update(StoreOrganisationMember $request, OrganisationMember $organisationMember)
     {
+        $this->authorize('update', $organisationMember);
+
         $organisationMember->update($request->all());
         return redirect()->route('organisations.show', $organisationMember->organisation_id)
             ->with('success', trans($this->view . '.edit.success'));
@@ -107,6 +118,8 @@ class OrganisationMemberController extends Controller
      */
     public function destroy(OrganisationMember $organisationMember)
     {
+        $this->authorize('delete', $organisationMember);
+
         $organisationMember->delete();
         $previous = url()->previous();
         if (str_contains($previous, 'characters')) {

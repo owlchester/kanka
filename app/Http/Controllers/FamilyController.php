@@ -48,6 +48,8 @@ class FamilyController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Family::class);
+
         return view($this->view . '.create');
     }
 
@@ -59,6 +61,8 @@ class FamilyController extends Controller
      */
     public function store(StoreFamily $request)
     {
+        $this->authorize('create', Family::class);
+
         Family::create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -75,6 +79,8 @@ class FamilyController extends Controller
      */
     public function show(Family $family)
     {
+        $this->authorize('view', $family);
+
         return view($this->view . '.show', compact('family'));
     }
 
@@ -86,6 +92,8 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
+        $this->authorize('update', $family);
+
         return view($this->view . '.edit', compact('family'));
     }
 
@@ -98,6 +106,8 @@ class FamilyController extends Controller
      */
     public function update(StoreFamily $request, Family $family)
     {
+        $this->authorize('update', $family);
+
         $family->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -114,6 +124,8 @@ class FamilyController extends Controller
      */
     public function destroy(Family $family)
     {
+        $this->authorize('delete', $family);
+
         $family->delete();
         return redirect()->route($this->view . '.index')->with('success', trans('families.destroy.success'));
     }

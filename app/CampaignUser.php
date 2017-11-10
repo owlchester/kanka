@@ -4,9 +4,8 @@ namespace App;
 
 use App\Scopes\CampaignScope;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CampaignUser extends Pivot
+class CampaignUser extends Model
 {
     public $table = 'campaign_user';
 

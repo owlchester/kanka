@@ -48,6 +48,8 @@ class ItemController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Item::class);
+
         return view($this->view . '.create');
     }
 
@@ -59,6 +61,8 @@ class ItemController extends Controller
      */
     public function store(StoreItem $request)
     {
+        $this->authorize('create', Item::class);
+
         Item::create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -76,6 +80,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
+        $this->authorize('view', $item);
+
         return view($this->view . '.show', compact('item'));
     }
 
@@ -87,6 +93,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        $this->authorize('update', $item);
+
         return view($this->view . '.edit', compact('item'));
     }
 
@@ -99,6 +107,8 @@ class ItemController extends Controller
      */
     public function update(StoreItem $request, Item $item)
     {
+        $this->authorize('update', $item);
+
         $item->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -116,6 +126,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        $this->authorize('delete', $item);
+
         $item->delete();
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.destroy.success'));

@@ -34,8 +34,8 @@ class CampaignUserController extends Controller
      */
     public function create()
     {
-        $campaign = Campaign::findOrFail(Session::get('campaign_id'));
-        return view('campaigns.users.create', compact('campaign'));
+        /*$campaign = Campaign::findOrFail(Session::get('campaign_id'));
+        return view('campaigns.members.create', compact('campaign'));*/
     }
 
     /**
@@ -46,8 +46,8 @@ class CampaignUserController extends Controller
      */
     public function store(StoreCampaignUser $request)
     {
-        $relation = CampaignUser::create($request->all());
-        return redirect()->route('campaigns.show', [$relation->campaign_id, 'tab' => 'relation'])->with('success', 'Campaign user added');
+        /*$relation = CampaignUser::create($request->all());
+        return redirect()->route('campaigns.show', [$relation->campaign_id, 'tab' => 'relation'])->with('success', 'Campaign user added');*/
     }
 
     /**
@@ -58,7 +58,7 @@ class CampaignUserController extends Controller
      */
     public function edit(CampaignUser $campaignUser)
     {
-        return view('campaigns.users.edit', compact('campaignUser'));
+        return view('campaigns.members.edit', compact('campaignUser'));
     }
 
     /**
@@ -71,7 +71,7 @@ class CampaignUserController extends Controller
     public function update(StoreCampaignUser $request, CampaignUser $campaignUser)
     {
         $campaignUser->update($request->all());
-        return redirect()->route('campaigns.show', $campaignUser->campaign_id);
+        return redirect()->route('campaigns.index', ['tab' => 'relation']);
     }
 
     /**
@@ -83,6 +83,6 @@ class CampaignUserController extends Controller
     public function destroy(CampaignUser $campaignUser)
     {
         $campaignUser->delete();
-        return redirect()->route('campaigns.show', [$campaignUser->campaign_id, 'tab' => 'relation']);
+        return redirect()->route('campaigns.index', ['tab' => 'relation']);
     }
 }

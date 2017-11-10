@@ -44,6 +44,7 @@ class NoteController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Note::class);
         return view($this->view . '.create');
     }
 
@@ -55,6 +56,8 @@ class NoteController extends Controller
      */
     public function store(StoreNote $request)
     {
+        $this->authorize('create', Note::class);
+
         Note::create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -83,6 +86,8 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
+        $this->authorize('update', $note);
+
         return view($this->view . '.edit', compact('note'));
     }
 
@@ -95,6 +100,8 @@ class NoteController extends Controller
      */
     public function update(StoreNote $request, Note $note)
     {
+        $this->authorize('update', $note);
+
         $note->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -112,6 +119,8 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
+        $this->authorize('delete', $note);
+
         $note->delete();
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.destroy.success'));

@@ -29,6 +29,24 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     /**
+     * Get the user's campaign
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class, 'last_campaign_id', 'id');
+    }
+
+    /**
+     * Get the user's campaign
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+//    public function campaignRole()
+//    {
+//        return $this->belongsTo(CampaignUser::class, 'id', 'last_campaign_id');
+//    }
+
+    /**
      * @param string $field
      * @param bool $full
      * @return string

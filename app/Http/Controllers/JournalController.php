@@ -32,6 +32,8 @@ class JournalController extends Controller
      */
     public function index()
     {
+        $this->authorize('create', Journal::class);
+
         $models = Journal::search(request()->get('search'))
             ->order(request()->get('order'))
             ->paginate();
@@ -45,6 +47,8 @@ class JournalController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Journal::class);
+
         return view($this->view . '.create');
     }
 
@@ -56,6 +60,8 @@ class JournalController extends Controller
      */
     public function store(StoreJournal $request)
     {
+        $this->authorize('create', Journal::class);
+
         Journal::create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -73,6 +79,8 @@ class JournalController extends Controller
      */
     public function show(Journal $journal)
     {
+        $this->authorize('view', $journal);
+
         return view($this->view . '.show', compact('journal'));
     }
 
@@ -84,6 +92,8 @@ class JournalController extends Controller
      */
     public function edit(Journal $journal)
     {
+        $this->authorize('update', $journal);
+
         return view($this->view . '.edit', compact('journal'));
     }
 
@@ -96,6 +106,8 @@ class JournalController extends Controller
      */
     public function update(StoreJournal $request, Journal $journal)
     {
+        $this->authorize('update', $journal);
+
         $journal->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -113,6 +125,8 @@ class JournalController extends Controller
      */
     public function destroy(Journal $journal)
     {
+        $this->authorize('delete', $journal);
+
         $journal->delete();
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.destroy.success'));

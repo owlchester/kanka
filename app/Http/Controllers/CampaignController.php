@@ -22,7 +22,6 @@ class CampaignController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign.owner', ['only' => ['edit', 'destroy', 'update']]);
     }
 
     /**
@@ -75,6 +74,8 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaign $request)
     {
+        $this->authorize('create', 'App\Campaign');
+
         $first = !Session::has('campaign_id');
         Campaign::create($request->all());
         return redirect()->to('/')
@@ -100,6 +101,8 @@ class CampaignController extends Controller
      */
     public function edit(Campaign $campaign)
     {
+        $this->authorize('update', $campaign);
+
         return view($this->view . '.edit', compact('campaign'));
     }
 
@@ -112,6 +115,8 @@ class CampaignController extends Controller
      */
     public function update(StoreCampaign $request, Campaign $campaign)
     {
+        $this->authorize('update', $campaign);
+
         $campaign->update($request->all());
         return redirect()->route('campaigns.index')
             ->with('success', trans($this->view . '.edit.success'));
@@ -125,6 +130,9 @@ class CampaignController extends Controller
      */
     public function destroy(Campaign $campaign)
     {
-        //
+        $this->authorize('delete', $campaign);
+
+        //$campaign->delete();
+
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
+use App\CampaignUser;
 use App\Services\CampaignService;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -27,7 +29,13 @@ class InvitationController extends Controller
     {
         $campaign = Campaign::where('join_token', $token)->first();
         if (!empty($campaign) && !$campaign->member()) {
-            $campaign->users()->attach(Auth::user()->id, ['role' => 'member']);
+
+            $role = new CampaignUser([
+                'user_id' => Auth::user()->id,
+                'campaign_id' => $campaign->id,
+                'role' => 'viewer'
+            ]);
+            $role->save();
             $campaign->newToken();
 
             CampaignService::switchCampaign($campaign->id);

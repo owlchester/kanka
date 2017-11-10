@@ -20,11 +20,14 @@
             </td>
             <td>{{ $relation->role }}</td>
             <td class="text-right">
+
+                @if (Auth::user()->can('delete', $relation))
                 {!! Form::open(['method' => 'DELETE','route' => ['organisation_member.destroy', $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::close() !!}
+                @endif
             </td>
         </tr>
     @endforeach

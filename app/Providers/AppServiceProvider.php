@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Campaign;
+use App\CampaignUser;
 use App\Character;
 use App\CharacterRelation;
 use App\Family;
@@ -13,6 +14,7 @@ use App\Journal;
 use App\Location;
 use App\Note;
 use App\Observers\CampaignObserver;
+use App\Observers\CampaignUserUserObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
 use App\Observers\FamilyObserver;
@@ -26,7 +28,9 @@ use App\Observers\OrganisationObserver;
 use App\Observers\UserObserver;
 use App\Organisation;
 use App\OrganisationMember;
+use App\Policies\CampaignUserPolicy;
 use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -40,11 +44,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         // Older mysql versions workaround
         Schema::defaultStringLength(191);
 
         // Observers
         Campaign::observe(CampaignObserver::class);
+        CampaignUser::observe(CampaignUserUserObserver::class);
         Character::observe(CharacterObserver::class);
         CharacterRelation::observe(CharacterRelationObserver::class);
         Location::observe(LocationObserver::class);

@@ -12,11 +12,13 @@
 
                 <h3 class="profile-username text-center">{{ $campaign->name }}</h3>
 
-                @if ($campaign->owner())
+                @if (Auth::user()->can('update', $campaign))
                 <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-primary btn-block">
                     <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                 </a>
+                @endif
 
+                @if (false && Auth::user()->can('delete', $campaign))
                 <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
@@ -30,21 +32,23 @@
         <!-- /.box -->
 
 
-        @foreach ($campaigns as $c)
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h4>{!! $c->shortName(50) !!}</h4>
+        @if (!empty($campaigns))
+            @foreach ($campaigns as $c)
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h4>{!! $c->shortName(50) !!}</h4>
 
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-map"></i>
+                        </div>
+                        <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
+                            {{ trans('crud.select') }} <i class="fa fa-arrow-circle-right"></i>
+                        </a>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-map"></i>
-                    </div>
-                    <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
-                        {{ trans('crud.select') }} <i class="fa fa-arrow-circle-right"></i>
-                    </a>
-                </div>
-        @endforeach
+            @endforeach
+        @endif
 
     <!-- small box -->
         <div class="small-box bg-blue">

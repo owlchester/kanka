@@ -12,9 +12,13 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
+                    @if (Auth::user()->can('create', \App\Organisation::class))
                     <a href="{{ route('organisations.create') }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> {{ trans('organisations.index.add') }}
                     </a>
+                    @else
+                        <br>
+                    @endif
 
                     <div class="box-tools">
 

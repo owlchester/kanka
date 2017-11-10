@@ -48,6 +48,7 @@ class OrganisationController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Organisation::class);
         return view($this->view . '.create');
     }
 
@@ -59,6 +60,8 @@ class OrganisationController extends Controller
      */
     public function store(StoreOrganisation $request)
     {
+        $this->authorize('create', Organisation::class);
+
         Organisation::create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -87,6 +90,8 @@ class OrganisationController extends Controller
      */
     public function edit(Organisation $organisation)
     {
+        $this->authorize('update', $organisation);
+
         return view($this->view . '.edit', compact('organisation'));
     }
 
@@ -99,6 +104,8 @@ class OrganisationController extends Controller
      */
     public function update(StoreOrganisation $request, Organisation $organisation)
     {
+        $this->authorize('update', $organisation);
+
         $organisation->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->view . '.create')
@@ -116,6 +123,8 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
+        $this->authorize('delete', $organisation);
+
         $organisation->delete();
         return redirect()->route($this->view . '.index')
             ->with('success', trans($this->view . '.destroy.success'));

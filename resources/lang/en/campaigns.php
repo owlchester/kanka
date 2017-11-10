@@ -59,6 +59,7 @@ return [
         ],
         'edit' => [
             'title' => 'Edit member :name',
+            'description' => '',
         ],
         'fields' => [
             'name' => 'User',

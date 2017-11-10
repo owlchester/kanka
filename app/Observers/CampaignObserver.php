@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
+use App\CampaignUser;
 use App\Services\CampaignService;
 use App\Services\ImageService;
 use App\Services\StarterService;
@@ -43,7 +44,12 @@ class CampaignObserver
      */
     public function created(Campaign $campaign)
     {
-        $campaign->users()->attach(Auth::user()->id, ['role' => 'owner']);
+        $role = new CampaignUser([
+            'user_id' => Auth::user()->id,
+            'campaign_id' => $campaign->id,
+            'role' => 'owner'
+        ]);
+        $role->save();
 
         // If it's the user's first campaign, let's help out a bit.
         $first = !Session::has('campaign_id');

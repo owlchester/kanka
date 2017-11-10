@@ -24,8 +24,6 @@ class StoreCampaignUser extends FormRequest
     public function rules()
     {
         return [
-            'campaign_id' => 'required|exists:campaigns,id',
-            'user_id' => 'required|exists:users,id',
             'role' => 'required',
         ];
     }
