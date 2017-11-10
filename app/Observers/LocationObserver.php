@@ -70,8 +70,8 @@ class LocationObserver
             $item->save();
         }
 
-        foreach($location->locations as $sub) {
-            $sub->location_id = null;
+        foreach ($location->locations as $sub) {
+            $sub->parent_location_id = null;
             $sub->save();
         }
     }
