@@ -64,3 +64,26 @@ table tbody td {
 .profile-username {
   word-wrap: break-word;
 }
+
+.preview {
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #bbb;
+  background-color: #eee;
+  border-radius: 5px;
+
+  .image {
+    width: 20%;
+    float: left;
+    margin: 0 10px 0 0;
+  }
+  img {
+    width: 100%;
+  }
+  a.img-delete {
+    text-align: center;
+    display: block;
+    background-color: #eee;
+    padding: 5px;
+  }
+}

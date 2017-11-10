@@ -80,6 +80,13 @@ $(document).ready(function() {
             });
         });
     }
+
+    $.each($('.img-delete'), function(index) {
+        $(this).click(function(e) {
+            $('input[name=' + $(this).attr('data-target') + ']')[0].value = 1;
+            $('.preview').hide();
+        });
+    });
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {

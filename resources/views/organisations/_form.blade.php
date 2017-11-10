@@ -18,8 +18,20 @@
 
         <div class="form-group">
             <label>{{ trans('organisations.fields.image') }}</label>
+
+            {!! Form::hidden('remove-image') !!}
             {!! Form::file('image', array('class' => 'image')) !!}
-        </div>
+            @if (!empty($organisation->image))
+                <div class="preview">
+                    <div class="image">
+                        <img src="/storage/{{ $organisation->image }}"/>
+                        <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
+                            <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+                        </a>
+                    </div>
+                    <br class="clear">
+                </div>
+            @endif        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">

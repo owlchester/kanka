@@ -37,6 +37,9 @@ class ImageService
 
                 $model->image = $path;
             }
+        } elseif (request()->post('remove-image') == '1') {
+            // Remove old
+            self::cleanup($model);
         }
     }
 
@@ -52,6 +55,7 @@ class ImageService
             if (Storage::disk('public')->has($thumb)) {
                 Storage::disk('public')->delete($thumb);
             }
+            $model->image = null;
         }
     }
 }
