@@ -48,10 +48,17 @@ class AuthController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
-
-        $authUser = $this->findOrCreateUser($user, $provider);
-        Auth::login($authUser, true);
-        return redirect($this->redirectTo);
+        try {
+            $authUser = $this->findOrCreateUser($user, $provider);
+            Auth::login($authUser, true);
+            return redirect($this->redirectTo);
+        } catch (\Exception $ex) {
+            if ($ex->getCode() == '1') {
+                return redirect()->route('register')->withErrors(trans('auth.register.errors.email_already_taken'));
+            } else {
+                return redirect()->route('register')->withErrors(trans('auth.register.errors.general_error'));
+            }
+        }
     }
 
     /**
@@ -67,6 +74,13 @@ class AuthController extends Controller
         if ($authUser) {
             return $authUser;
         }
+
+        // Make sure the email doesn't already exist
+        $emailExists = User::where('email', $user->email)->first();
+        if ($emailExists) {
+            throw new \Exception(null, 1);
+        }
+
         return User::create([
             'name'     => $user->name,
             'email'    => $user->email,

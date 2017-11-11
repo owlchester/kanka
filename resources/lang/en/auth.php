@@ -45,6 +45,10 @@ return [
         'register_with_google' => 'Register with Google',
         'register_with_twitter' => 'Register with Twitter',
         'already_account' => 'Already have an account?',
+        'errors' => [
+            'email_already_taken' => 'An account with this email is already registered.',
+            'general_error' => 'An error occurred while registering your account. Please try again.'
+        ]
     ],
     'reset' => [
         'title' => 'Reset password',

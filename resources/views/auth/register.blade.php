@@ -3,6 +3,8 @@
 @section('content')
     <h3>{{ trans('auth.register.title') }}</h3>
 
+    @include('partials.errors')
+
     <form method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
 
