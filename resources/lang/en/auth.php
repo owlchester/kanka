@@ -23,6 +23,8 @@ return [
         'submit' => 'Login',
         'login_with_facebook' => 'Login with Facebook',
         'login_with_google' => 'Login with Google',
+        'login_with_twitter' => 'Login with Twitter',
+
         'password_forgotten' => 'Forgot your password?',
         'new_account' => 'Register a new account',
         'fields' => [
@@ -41,6 +43,7 @@ return [
         'submit' => 'Register',
         'register_with_facebook' => 'Register with Facebook',
         'register_with_google' => 'Register with Google',
+        'register_with_twitter' => 'Register with Twitter',
         'already_account' => 'Already have an account?',
     ],
     'reset' => [

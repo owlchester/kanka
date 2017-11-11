@@ -21,8 +21,11 @@ return [
         'remember_me' => 'Se souvenir de moi',
         'or' => 'OU',
         'submit' => 'Se connecter',
+
         'login_with_facebook' => 'Connexion avec Facebook',
         'login_with_google' => 'Connexion avec Google',
+        'login_with_twitter' => 'Connexion avec Twitter',
+
         'password_forgotten' => 'Mot de passe oublié?',
         'new_account' => 'S\'enregistrer avec un nouveau compte',
         'fields' => [
@@ -39,8 +42,11 @@ return [
             'password_confirmation' => 'Confirmez votre mot de passe',
         ],
         'submit' => 'S\'enregistrer',
+
         'register_with_facebook' => 'S\'enregister avec Facebook',
         'register_with_google' => 'S\'enregister avec Google',
+        'register_with_twitter' => 'S\'enregister avec Twitter',
+
         'already_account' => 'Vous avez déjà un compte',
     ],
     'reset' => [

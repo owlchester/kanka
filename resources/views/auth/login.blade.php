@@ -56,8 +56,15 @@
         <div class="col-md-12">
             <div class="social-auth-links text-center">
                 <p>- {{ trans('auth.login.or') }} -</p>
-                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="btn btn-block btn-facebook"><i class="fa fa-facebook"></i> {{ trans('auth.login.login_with_facebook') }}</a>
-                <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="btn btn-block btn-google"><i class="fa fa-google"></i> {{ trans('auth.login.login_with_google') }}</a>
+                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="btn btn-block btn-facebook">
+                    <i class="fa fa-facebook"></i> {{ trans('auth.login.login_with_facebook') }}
+                </a>
+                <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="btn btn-block btn-google">
+                    <i class="fa fa-google"></i> {{ trans('auth.login.login_with_google') }}
+                </a>
+                <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-block btn-twitter">
+                    <i class="fa fa-twitter"></i> {{ trans('auth.login.login_with_twitter') }}
+                </a>
             </div>
 
             <a class="btn btn-link" href="{{ route('password.request') }}">
