@@ -17,7 +17,6 @@
         {!! Form::close() !!}
 
         @inject('sidebar', 'App\Services\SidebarService')
-        {{ $sidebar->active('characters') }}
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu tree" data-widget="tree">
