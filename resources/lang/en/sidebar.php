@@ -10,5 +10,9 @@ return [
     'organisations' =>  'Organisations',
     'items' =>  'Items',
     'notes' =>  'Notes',
-    'admin' => 'Admin'
+    'admin' => 'Admin',
+    'other' => 'Other',
+    'releases' => 'Release notes',
+    'support' => 'Support / Community',
+    'patreon' => 'Patreon',
 ];

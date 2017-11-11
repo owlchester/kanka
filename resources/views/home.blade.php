@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-0 col-sm-4 col-xs-12">
+        <div class="col-md-4">
             <div class="small-box bg-green">
                 <div class="inner">
                     <h3>{!! $campaign->shortName() !!}</h3>
