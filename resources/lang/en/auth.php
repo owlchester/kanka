@@ -48,6 +48,12 @@ return [
         'errors' => [
             'email_already_taken' => 'An account with this email is already registered.',
             'general_error' => 'An error occurred while registering your account. Please try again.'
+        ],
+        'email' => [
+            'title' => 'Welcome to kanka.io!',
+            'body' => '<p>Welcome to kanka.io!</p>' .
+                '<p>Your account has been created using your email address.</p>',
+            'login' => 'Log in',
         ]
     ],
     'reset' => [

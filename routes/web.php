@@ -36,7 +36,7 @@ Route::group([
         'characters' => 'CharacterController',
         'character_relation' => 'CharacterRelationController',
         'locations' => 'LocationController',
-        'location_attribute' => 'LocationAttributeController',
+        //'location_attribute' => 'LocationAttributeController',
         'families' => 'FamilyController',
         'family_relation' => 'FamilyRelationController',
         'items' => 'ItemController',
@@ -45,6 +45,7 @@ Route::group([
         'organisation_member' => 'OrganisationMemberController',
         'notes' => 'NoteController',
         'releases' => 'ReleaseController',
+        'campaigns.campaign_invites' => 'CampaignInviteController',
     ]);
 
     Route::get('/search/locations', 'SearchController@locations')->name('locations.find');

@@ -36,6 +36,19 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return mixed
+     */
+    public function invites()
+    {
+        return $this->hasMany('App\Models\CampaignInvite');
+    }
+
+    public function unusedInvites()
+    {
+        return $this->invites()->where('is_active', true);
+    }
+
+    /**
      * @return bool
      */
     public function owner()

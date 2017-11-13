@@ -46,8 +46,6 @@ class CampaignUserController extends Controller
      */
     public function store(StoreCampaignUser $request)
     {
-        /*$relation = CampaignUser::create($request->all());
-        return redirect()->route('campaigns.show', [$relation->campaign_id, 'tab' => 'relation'])->with('success', 'Campaign user added');*/
     }
 
     /**

@@ -1,6 +1,8 @@
 @extends('layouts.app', ['title' => trans('dashboard.title'), 'description' => trans('dashboard.description')])
 
 @section('content')
+    @include('partials.errors')
+
     <div class="row">
         <div class="col-md-4">
             <div class="small-box bg-green">

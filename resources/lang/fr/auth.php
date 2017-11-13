@@ -51,6 +51,12 @@ return [
         'errors' => [
             'email_already_taken' => 'Un compte avec cette adresse email est déjà enregistré.',
             'general_error' => 'Une erreure est survenue lors de la création de votre compte. Veuillez ressayer.'
+        ],
+        'email' => [
+            'title' => 'Bienvenue sur kanka.io!',
+            'body' => '<p>Bienvenue sur kanka.io!</p>' .
+                '<p>Ton compte a bien été créé avec cette adresse email.</p>',
+            'login' => 'Se connecter',
         ]
     ],
     'reset' => [

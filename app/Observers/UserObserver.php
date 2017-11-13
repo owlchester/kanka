@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Mail\UserRegistered;
+use App\Mail\WelcomeEmail;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,10 @@ class UserObserver
     public function created(User $user)
     {
         // New user, send notification
-        //Mail::to('hello@kanka.io')->send(new UserRegistered($user));
+        Mail::to('hello@kanka.io')->send(new UserRegistered($user));
+
+        // Send email to the new user too
+        Mail::to($user->email)->send(new WelcomeEmail($user));
     }
 
     /**

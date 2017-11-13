@@ -12,8 +12,10 @@ use App\Http\Validators\HashValidator;
 use App\Item;
 use App\Journal;
 use App\Location;
+use App\Models\CampaignInvite;
 use App\Note;
 use App\Observers\CampaignObserver;
+use App\Observers\CampaignUserObserver;
 use App\Observers\CampaignUserUserObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
@@ -50,7 +52,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Observers
         Campaign::observe(CampaignObserver::class);
-        CampaignUser::observe(CampaignUserUserObserver::class);
+        CampaignUser::observe(CampaignUserObserver::class);
+        CampaignInvite::observe('App\Observers\CampaignInviteObserver');
         Character::observe(CharacterObserver::class);
         CharacterRelation::observe(CharacterRelationObserver::class);
         Location::observe(LocationObserver::class);

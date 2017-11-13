@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Exceptions\RequireLoginException;
+use App\Models\CampaignInvite;
 use App\Services\CampaignService;
+use App\Services\InviteService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +21,7 @@ class InvitationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // No auth!
     }
 
     /**
@@ -27,22 +30,18 @@ class InvitationController extends Controller
      */
     public function join($token)
     {
-        $campaign = Campaign::where('join_token', $token)->first();
-        if (!empty($campaign) && !$campaign->member()) {
-
-            $role = new CampaignUser([
-                'user_id' => Auth::user()->id,
-                'campaign_id' => $campaign->id,
-                'role' => 'viewer'
-            ]);
-            $role->save();
-            $campaign->newToken();
-
+        try {
+            $campaign = InviteService::useToken($token);
             CampaignService::switchCampaign($campaign->id);
-
             return redirect()->to('/');
-        } else {
-            return redirect()->to('/');
+        } catch (RequireLoginException $e) {
+            return redirect()->route('login')->with('info', $e->getMessage());
+        } catch (\Exception $e) {
+            if (Auth::guest()) {
+                return redirect()->route('login')->withErrors($e->getMessage());
+            } else {
+                return redirect()->route('home')->withErrors($e->getMessage());
+            }
         }
     }
 }

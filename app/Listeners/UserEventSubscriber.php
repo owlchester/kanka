@@ -4,11 +4,14 @@ namespace App\Listeners;
 
 use App\Campaign;
 use App\Mail\UserRegistered;
+use App\Services\CampaignService;
+use App\Services\InviteService;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Exception;
 
 class UserEventSubscriber
 {
@@ -27,6 +30,16 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
+        // Does the user have a join campaign?
+        if (Session::has('invite_token')) {
+            try {
+                $campaign = InviteService::useToken(Session::get('invite_token'));
+                CampaignService::switchCampaign($campaign->id);
+                return true;
+            } catch (Exception $e) {
+                // Silence errors here
+            }
+        }
         // We want to register in the session a campaign_id
         $campaign = Campaign::whereHas('users', function ($q) {
             $q->where('users.id', Auth::user()->id);
@@ -34,7 +47,7 @@ class UserEventSubscriber
             ->where('id', Auth::user()->last_campaign_id)
             ->first();
         if (!empty($campaign)) {
-            Session::put('campaign_id', $campaign->id);
+            CampaignService::switchCampaign($campaign->id);
         }
     }
 

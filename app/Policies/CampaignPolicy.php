@@ -58,4 +58,14 @@ class CampaignPolicy
         return
             $user->campaign->id == $campaign->id && $user->campaign->owner();
     }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function invite(User $user, Campaign $campaign)
+    {
+        return $user->campaign->id == $campaign->id && $user->campaign->owner();
+    }
 }

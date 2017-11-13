@@ -4,6 +4,13 @@
 <h3>{{ trans('auth.login.title') }}</h3>
 
 <div class="panel-body">
+    @if (session()->has('info'))
+        <div class="alert alert-info alert-dismissable">
+            {{ session()->get('info') }}
+        </div>
+    @endif
+    @include('partials.errors')
+
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 

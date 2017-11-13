@@ -66,5 +66,37 @@ return [
             'role' => 'Role',
             'joined' => 'Joined',
         ],
+    ],
+    'invites' => [
+        'fields' => [
+            'email' => 'Email',
+            'created' => 'Sent',
+        ],
+        'placeholders' => [
+            'email' => 'Email address of the person you wish to invite',
+        ],
+        'actions' => [
+            'add' => 'Invite',
+        ],
+        'create' => [
+            'success' => 'Invitation sent.',
+            'title' => 'Invite someone to your campaign',
+            'description' => '',
+            'button' => 'Invite',
+        ],
+        'destroy' => [
+            'success' => 'Invitation removed.',
+        ],
+        'email' => [
+            'title' => 'Invite from :name',
+            'subject' => ':name has invited you to join his campaign on kanka.io! Use the following link to accept his invitation.',
+            'link' => '<a href=":link">Join :name\'s campaign</a>'
+        ],
+        'error' => [
+            'invalid_token' => 'This token is no longer valid.',
+            'inactive_token' => 'This token has already been used, or the campaign no longer exists.',
+            'login' => 'Please log in or register to join the campaign.',
+            'already_member' => 'You are already a member of that campaign.'
+        ]
     ]
 ];
