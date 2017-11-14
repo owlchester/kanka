@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreCampaignInvite extends FormRequest
 {
@@ -24,7 +25,7 @@ class StoreCampaignInvite extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:campaign_invites,email,NULL,id,campaign_id,' . Auth::user()->campaign->id.',is_active,1',
         ];
     }
 }

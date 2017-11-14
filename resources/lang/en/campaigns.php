@@ -100,7 +100,7 @@ return [
         ],
         'email' => [
             'title' => 'Invitation from :name',
-            'subject' => ':name has invited you to join his campaign on kanka.io! ' .
+            'subject' => ':name has invited you to join his campaign \':campaign\' on kanka.io! ' .
                 'Use the following link to accept his invitation.',
             'link' => '<a href=":link">Join :name\'s campaign</a>'
         ],
