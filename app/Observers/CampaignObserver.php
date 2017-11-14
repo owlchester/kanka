@@ -35,13 +35,6 @@ class CampaignObserver
     /**
      * @param Campaign $campaign
      */
-    public function saved(Campaign $campaign)
-    {
-    }
-
-    /**
-     * @param Campaign $campaign
-     */
     public function created(Campaign $campaign)
     {
         $role = new CampaignUser([
@@ -58,19 +51,12 @@ class CampaignObserver
         // Make sure we save the last campaign id to avoid infinite loops
         $user = Auth::user();
         $user->last_campaign_id = $campaign->id;
+        $user->campaign_role = 'owner';
         $user->save();
 
         if ($first) {
             StarterService::generateBoilerplate($campaign);
         }
-    }
-
-    /**
-     * @param Campaign $campaign
-     */
-    public function creating(Campaign $campaign)
-    {
-        $campaign->join_token = $campaign->getToken();
     }
 
     /**

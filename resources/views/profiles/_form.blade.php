@@ -10,17 +10,6 @@
             {!! Form::text('email', null, ['placeholder' => trans('profiles.placeholders.email'), 'class' => 'form-control']) !!}
         </div>
         <hr />
-        @if (empty($user->provider))
-        <div class="form-group">
-            <label>{{ trans('profiles.fields.new_password') }}</label>
-            {!! Form::password('password_new', ['placeholder' => trans('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
-        </div>
-        <div class="form-group">
-            <label>{{ trans('profiles.fields.new_password_confirmation') }}</label>
-            {!! Form::password('password_new_confirmation', ['placeholder' => trans('profiles.placeholders.new_password_confirmation'), 'class' => 'form-control']) !!}
-        </div>
-        <hr />
-        @endif
 
         <div class="form-group">
             <label>{{ trans('profiles.fields.avatar') }}:</label>
@@ -47,5 +36,4 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
 </div>

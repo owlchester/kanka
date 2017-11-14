@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreProfile extends FormRequest
+class DeleteProfile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,8 @@ class StoreProfile extends FormRequest
     {
         $user = Auth::user();
         $rules = [
-            'name' => 'required|min:4',
-            'email' => 'required|unique:users,email,' . $user->id,
-            'newsletter' => 'boolean',
+            'password' => 'required|hash:' . $user->getAuthPassword()
         ];
-
-        // Social media account, no password
-        if (empty($user->provider)) {
-            $rules['password'] = 'required|hash:' . $user->getAuthPassword();
-        }
-
         return $rules;
     }
 }

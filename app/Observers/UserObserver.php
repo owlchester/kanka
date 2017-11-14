@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Campaign;
+use App\CampaignUser;
+use App\Mail\UserDeleted;
 use App\Mail\UserRegistered;
 use App\Mail\WelcomeEmail;
 use App\Services\ImageService;
@@ -71,6 +73,9 @@ class UserObserver
             // Delete
             Storage::disk('public')->delete($user->image);
         }
+
+        // New user, send notification
+        Mail::to('hello@kanka.io')->send(new UserDeleted($user));
     }
 
     /**
@@ -78,5 +83,14 @@ class UserObserver
      */
     public function deleting(User $user)
     {
+        // Campaign user
+        $members = CampaignUser::where('user_id', $user->id)->with('campaign')->get();
+        foreach ($members as $member) {
+            $member->delete();
+
+            if ($member->campaign->members()->count() == 0) {
+                $member->campaign->delete();
+            }
+        }
     }
 }

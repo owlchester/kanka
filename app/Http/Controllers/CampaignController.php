@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
-use App\CampaignUser;
 use App\Http\Requests\StoreCampaign;
 use App\Services\CampaignService;
 use Illuminate\Http\Request;
@@ -47,10 +46,6 @@ class CampaignController extends Controller
             $campaign = Campaign::where('id', $active)->first();
         } else {
             $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->get();
-        }
-
-        if (!empty($campaign) && empty($campaign->join_token)) {
-            $campaign->newToken();
         }
 
         return view($this->view . '.index', compact('campaigns', 'campaign', 'active'));

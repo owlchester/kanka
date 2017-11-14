@@ -106,7 +106,7 @@
                 <h4 class="modal-title" id="myModalLabel">{{ trans('crud.delete_modal.title') }}</h4>
             </div>
             <div class="modal-body">
-                <p>{!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}</p>
+                <p id="delete-confirm-text">{!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.delete_modal.close') }}</button>

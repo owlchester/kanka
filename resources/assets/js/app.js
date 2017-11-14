@@ -87,6 +87,17 @@ $(document).ready(function() {
             $('.preview').hide();
         });
     });
+
+
+    if ($('#delete-confirm-form').length > 0) {
+        $('#delete-confirm-form').on('keyup keypress', function (e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    }
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {
@@ -101,7 +112,14 @@ $(document).ready(function() {
 $.each($('.delete-confirm'), function(index) {
     $(this).click(function(e) {
         var name = $(this).attr('data-name');
-        $('#delete-confirm-name').text(name);
+        var text = $(this).attr('data-text');
+        console.log('text', text);
+        if (text) {
+            $('#delete-confirm-text').text(text);
+        } else {
+            console.log('no text');
+            $('#delete-confirm-name').text(name);
+        }
     });
 });
 

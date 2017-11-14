@@ -29,6 +29,10 @@ Route::group([
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
     Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 
+    // Password
+    Route::patch('/profile/password', 'ProfileController@password')->name('profile.password');
+    Route::patch('/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
+
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
         'campaigns' => 'CampaignController',
@@ -51,6 +55,8 @@ Route::group([
     ]);
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
 
+
+    // Search
     Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
     Route::get('/search/characters', 'SearchController@characters')->name('characters.find');
     Route::get('/search/campaigns', 'SearchController@campaigns')->name('campaigns.find');
