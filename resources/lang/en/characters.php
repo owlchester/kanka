@@ -54,6 +54,7 @@ return [
         'mannerisms' => 'Mannerisms',
         'history' => 'History',
         'image' => 'Image',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name',
@@ -78,10 +79,14 @@ return [
         'image' => 'Image',
         'free' => 'Free text',
     ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
+    ],
     'relations' => [
         'create' => [
             'title' => 'Character Relationships',
             'description' => 'Define the relationship between two characters',
+            'success' => 'Relation created.',
         ],
         'actions' => [
             'add' => 'Add a relation',

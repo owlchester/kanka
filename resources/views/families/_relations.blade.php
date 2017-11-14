@@ -13,7 +13,7 @@
         <th>{{ trans('families.fields.location') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $family->relationships()->paginate() as $relation)
+    @foreach ($r = $family->relationships()->has('second')->with('second')->paginate() as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>

@@ -37,10 +37,14 @@ return [
         'description' => 'Description',
         'history' => 'History',
         'image' => 'Image',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the location',
         'type' => 'City, Kingdom, Ruin',
         'location' => 'Choose a parent location',
-    ]
+    ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
+    ],
 ];

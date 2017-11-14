@@ -19,7 +19,8 @@ class NotePolicy
      */
     public function view(User $user, Note $note)
     {
-        return $user->campaign->id == $note->campaign_id;
+        return $user->campaign->id == $note->campaign_id &&
+            ($note->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class NotePolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +44,7 @@ class NotePolicy
     public function update(User $user, Note $note)
     {
         return $user->campaign->id == $note->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class NotePolicy
     public function delete(User $user, Note $note)
     {
         return $user->campaign->id == $note->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

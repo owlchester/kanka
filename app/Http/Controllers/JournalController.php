@@ -32,8 +32,6 @@ class JournalController extends Controller
      */
     public function index()
     {
-        $this->authorize('create', Journal::class);
-
         $models = Journal::search(request()->get('search'))
             ->order(request()->get('order'))
             ->paginate();

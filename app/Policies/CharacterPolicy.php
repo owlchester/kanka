@@ -19,7 +19,8 @@ class CharacterPolicy
      */
     public function view(User $user, Character $character)
     {
-        return $user->campaign->id == $character->campaign_id;
+        return $user->campaign->id == $character->campaign_id &&
+            ($character->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class CharacterPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +44,7 @@ class CharacterPolicy
     public function update(User $user, Character $character)
     {
         return $user->campaign->id == $character->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class CharacterPolicy
     public function delete(User $user, Character $character)
     {
         return $user->campaign->id == $character->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

@@ -20,7 +20,11 @@
                     </a>
                     @endif
 
-                    <h3 class="profile-username text-center">{{ $note->name }}</h3>
+                    <h3 class="profile-username text-center">{{ $note->name }}
+                        @if ($note->is_private)
+                            <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                        @endif
+                    </h3>
 
                     <ul class="list-group list-group-unbordered">
                         @if (!empty($note->type))

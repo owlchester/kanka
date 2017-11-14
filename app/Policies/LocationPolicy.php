@@ -19,7 +19,8 @@ class LocationPolicy
      */
     public function view(User $user, Location $location)
     {
-        return $user->campaign->id == $location->campaign_id;
+        return $user->campaign->id == $location->campaign_id &&
+            ($location->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class LocationPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +44,7 @@ class LocationPolicy
     public function update(User $user, Location $location)
     {
         return $user->campaign->id == $location->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class LocationPolicy
     public function delete(User $user, Location $location)
     {
         return $user->campaign->id == $location->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

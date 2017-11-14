@@ -21,7 +21,11 @@
                     </a>
                     @endif
 
-                    <h3 class="profile-username text-center">{{ $journal->name }}</h3>
+                    <h3 class="profile-username text-center">{{ $journal->name }}
+                        @if ($journal->is_private)
+                             <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                        @endif
+                    </h3>
 
                     <ul class="list-group list-group-unbordered">
                         @if ($journal->type)
@@ -38,15 +42,19 @@
                         @endif
                     </ul>
 
+                    @if (Auth::user()->can('update', $journal))
                     <a href="{{ route('journals.edit', $journal->id) }}" class="btn btn-primary btn-block">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
+                        @endif
 
+                    @if (Auth::user()->can('delete', $journal))
                     <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $journal->name }}" data-toggle="modal" data-target="#delete-confirm">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
                     {!! Form::open(['method' => 'DELETE','route' => ['journals.destroy', $journal->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                     {!! Form::close() !!}
+                    @endif
                 </div>
                 <!-- /.box-body -->
             </div>

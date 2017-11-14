@@ -10,7 +10,7 @@
         <th>{{ trans('organisations.members.fields.role') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $character->organisations()->with('organisation')->paginate() as $relation)
+    @foreach ($r = $character->organisations()->has('organisation')->with('organisation')->paginate() as $relation)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $relation->organisation->getImageUrl(true) }}" alt="{{ $relation->organisation->name }} picture">

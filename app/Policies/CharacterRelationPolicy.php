@@ -30,7 +30,7 @@ class CharacterRelationPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +43,7 @@ class CharacterRelationPolicy
     public function update(User $user, CharacterRelation $characterRelation)
     {
         return $user->campaign->id == $characterRelation->first->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +56,6 @@ class CharacterRelationPolicy
     public function delete(User $user, CharacterRelation $characterRelation)
     {
         return $user->campaign->id == $characterRelation->first->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

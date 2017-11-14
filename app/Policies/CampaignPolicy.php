@@ -43,7 +43,7 @@ class CampaignPolicy
     public function update(User $user, Campaign $campaign)
     {
         return
-            $user->campaign->id == $campaign->id && ($user->campaign->owner() || $user->campaign->member());
+            $user->campaign->id == $campaign->id && ($user->member());
     }
 
     /**
@@ -56,7 +56,7 @@ class CampaignPolicy
     public function delete(User $user, Campaign $campaign)
     {
         return
-            $user->campaign->id == $campaign->id && $user->campaign->owner();
+            $user->campaign->id == $campaign->id && $user->owner() && $campaign->members()->count() == 1;
     }
 
     /**
@@ -66,6 +66,20 @@ class CampaignPolicy
      */
     public function invite(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $user->campaign->owner();
+        return $user->campaign->id == $campaign->id && $user->owner();
+    }
+
+    /**
+     * Determine whether the user can leave the campaign
+     *
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function leave(User $user, Campaign $campaign)
+    {
+        return $user->campaign->id == $campaign->id &&
+            // If we are not the owner, or that we are an owner but there are other owners
+            (!$user->owner() || $campaign->owners()->count() > 1);
     }
 }

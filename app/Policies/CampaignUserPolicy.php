@@ -42,7 +42,7 @@ class CampaignUserPolicy
      */
     public function update(User $user, CampaignUser $campaignUser)
     {
-        return $user->campaign->id == $campaignUser->campaign->id && $user->campaign->owner();
+        return $user->campaign->id == $campaignUser->campaign->id && $user->owner();
     }
 
     /**
@@ -54,6 +54,6 @@ class CampaignUserPolicy
      */
     public function delete(User $user, CampaignUser $campaignUser)
     {
-        return $user->campaign->id == $campaignUser->campaign->id && $user->campaign->owner();
+        return $user->campaign->id == $campaignUser->campaign->id && $user->owner();
     }
 }

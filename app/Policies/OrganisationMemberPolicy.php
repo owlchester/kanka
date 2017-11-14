@@ -30,7 +30,7 @@ class OrganisationMemberPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +43,7 @@ class OrganisationMemberPolicy
     public function update(User $user, OrganisationMember $organisationMember)
     {
         return $user->campaign->id == $organisationMember->character->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +56,6 @@ class OrganisationMemberPolicy
     public function delete(User $user, OrganisationMember $organisationMember)
     {
         return $user->campaign->id == $organisationMember->character->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

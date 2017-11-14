@@ -43,6 +43,9 @@ class Campaign extends MiscModel
         return $this->hasMany('App\Models\CampaignInvite');
     }
 
+    /**
+     * @return mixed
+     */
     public function unusedInvites()
     {
         return $this->invites()->where('is_active', true);
@@ -53,12 +56,16 @@ class Campaign extends MiscModel
      */
     public function owner()
     {
-        foreach ($this->members as $member) {
-            if ($member->user_id == Auth::user()->id && $member->role == 'owner') {
-                return true;
-            }
-        }
-        return false;
+        return $this->owners()->where('user_id', Auth::user()->id)->count() == 1;
+    }
+
+    /**
+     * List of owners
+     * @return mixed
+     */
+    public function owners()
+    {
+        return $this->members()->where('role', 'owner');
     }
 
     /**
@@ -66,12 +73,10 @@ class Campaign extends MiscModel
      */
     public function member()
     {
-        foreach ($this->members as $member) {
-            if ($member->user_id == Auth::user()->id && $member->role == 'member') {
-                return true;
-            }
-        }
-        return false;
+        return $this->members()
+                ->where('role', 'member')
+                ->where('user_id', Auth::user()->id)
+                ->count() == 1;
     }
 
     /**
@@ -79,29 +84,22 @@ class Campaign extends MiscModel
      */
     public function user()
     {
-        foreach ($this->members as $member) {
-            if ($member->user_id == Auth::user()->id) {
-                return true;
-            }
+        return $this->members()
+            ->where('user_id', Auth::user()->id)
+            ->count() == 1;
+    }
+
+    /**
+     * @return int
+     */
+    public function role()
+    {
+        $member = $this->members()
+            ->where('user_id', Auth::user()->id)
+            ->first();
+        if ($member) {
+            return $member->role;
         }
-        return false;
-    }
-
-    /**
-     * Generate a new token
-     */
-    public function newToken()
-    {
-        $this->join_token = $this->getToken();
-        $this->save();
-    }
-
-    /**
-     * Generate a new token
-     * @return string
-     */
-    public function getToken()
-    {
-        return str_random(80); //sha1(uniqid() . $this->name . time());
+        return 0;
     }
 }

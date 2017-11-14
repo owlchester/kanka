@@ -12,9 +12,13 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
+                    @if (Auth::user()->can('create', \App\Journal::class))
                     <a href="{{ route('journals.create') }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> {{ trans('journals.index.add') }}
                     </a>
+                    @else
+                        <br>
+                    @endif
 
                     <div class="box-tools">
 
@@ -23,30 +27,7 @@
                 </div>
 
                 <div class="box-body no-padding">
-                    <table id="journals" class="table table-hover">
-                        <tbody><tr>
-                            <th><a href="{{ route('journals.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('journals.fields.name') }}</a></th>
-                            <th><a href="{{ route('journals.index', ['order' => 'type', 'page' => request()->get('page')]) }}">{{ trans('journals.fields.type') }}</a></th>
-                            <th><a href="{{ route('journals.index', ['order' => 'date', 'page' => request()->get('page')]) }}">{{ trans('journals.fields.date') }}</a></th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        @foreach ($models as $model)
-                        <tr>
-                            <td>
-                                <a href="{{ route('journals.show', $model->id) }}">{{ $model->name }}</a>
-                            </td>
-                            <td>{{ $model->type }}</td>
-                            <td>{{ $model->date }}</td>
-                            <td class="text-right">
-                                <a href="{{ route('journals.show', ['id' => $model->id]) }}" class="btn btn-xs btn-primary">
-                                    <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
-                                </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                        </tbody></table>
-
-                    {{ $models->appends('order', request()->get('order'))->links() }}
+                    @include('journals.datagrid')
                 </div>
             </div>
         </div>

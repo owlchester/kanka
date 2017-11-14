@@ -2,14 +2,22 @@
 
 namespace App;
 
-use App\Scopes\CampaignScope;
+use App\Traits\CampaignTrait;
+use App\Traits\VisibleTrait;
 
 class Note extends MiscModel
 {
     /**
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'description', 'image', 'type'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'image',
+        'type',
+        'is_private',
+    ];
 
     /**
      * Searchable fields
@@ -18,16 +26,10 @@ class Note extends MiscModel
     protected $searchableColumns = ['name', 'type'];
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
+     * Traits
      */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new CampaignScope());
-    }
+    use CampaignTrait;
+    use VisibleTrait;
 
 
     /**

@@ -2,14 +2,23 @@
 
 namespace App;
 
-use App\Scopes\CampaignScope;
+use App\Traits\CampaignTrait;
+use App\Traits\VisibleTrait;
 
 class Organisation extends MiscModel
 {
     /**
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'history', 'image', 'location_id', 'type'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'history',
+        'image',
+        'location_id',
+        'type',
+        'is_private',
+    ];
 
     /**
      * Searchable fields
@@ -18,16 +27,10 @@ class Organisation extends MiscModel
     protected $searchableColumns = ['name'];
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
+     * Traits
      */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new CampaignScope());
-    }
+    use CampaignTrait;
+    use VisibleTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -33,7 +33,7 @@ class CampaignController extends Controller
     {
         if ($request->has('campaign_id')) {
             $campaign = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', $request->get('campaign_id'))->firstOrFail();
-            CampaignService::switchCampaign($campaign->id);
+            CampaignService::switchCampaign($campaign);
             return redirect()->to('/');
         } elseif (!Session::has('campaign_id')) {
             return redirect()->route('campaigns.create');
@@ -132,7 +132,21 @@ class CampaignController extends Controller
     {
         $this->authorize('delete', $campaign);
 
-        //$campaign->delete();
+        $campaign->delete();
+        CampaignService::switchToNext();
 
+        return redirect()->route('home');
+    }
+
+    public function leave(Campaign $campaign)
+    {
+        $this->authorize('leave', $campaign);
+
+        try {
+            CampaignService::leave($campaign);
+            return redirect()->route('home');
+        } catch(\Exception $e) {
+            return redirect()->route('campaigns.index')->withErrors($e->getMessage());
+        }
     }
 }

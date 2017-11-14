@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Scopes\CampaignScope;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\CampaignTrait;
+use App\Traits\VisibleTrait;
 
 class Location extends MiscModel
 {
@@ -16,21 +16,23 @@ class Location extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'type', 'image',
-        'description', 'history', 'parent_location_id',
-        'campaign_id'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'type',
+        'image',
+        'description',
+        'history',
+        'parent_location_id',
+        'campaign_id',
+        'is_private',
+    ];
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
+     * Traits
      */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new CampaignScope());
-    }
+    use CampaignTrait;
+    use VisibleTrait;
 
     /**
      *

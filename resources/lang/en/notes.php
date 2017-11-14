@@ -33,9 +33,13 @@ return [
         'type' => 'Type',
         'image' => 'Image',
         'description' => 'Description',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the note',
         'type' => 'Religion, Race, Political system',
-    ]
+    ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
+    ],
 ];

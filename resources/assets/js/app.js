@@ -101,7 +101,6 @@ $(document).ready(function() {
 $.each($('.delete-confirm'), function(index) {
     $(this).click(function(e) {
         var name = $(this).attr('data-name');
-        console.log(name);
         $('#delete-confirm-name').text(name);
     });
 });
@@ -111,4 +110,13 @@ $.each($('#delete-confirm-submit'), function(index) {
    $(this).click(function(e) {
        $('#delete-confirm-form').submit();
    })
+});
+
+// Delete confirm dialog
+$.each($('.click-confirm'), function(index) {
+    $(this).click(function(e) {
+        var name = $(this).attr('data-message');
+        $('#click-confirm-text').text(name);
+        $('#click-confirm-url').attr('href', $(this).attr('data-url'));
+    });
 });

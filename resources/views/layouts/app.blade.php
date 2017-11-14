@@ -102,7 +102,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{ trans('crud.delete_modal.title') }}</h4>
             </div>
             <div class="modal-body">
@@ -111,6 +111,23 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.delete_modal.close') }}</button>
                 <button type="button" class="btn btn-danger" id="delete-confirm-submit">{{ trans('crud.delete_modal.delete') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="click-confirm" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="clickModalLabel">{{ trans('crud.click_modal.title') }}</h4>
+            </div>
+            <div class="modal-body">
+                <p id="click-confirm-text"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.delete_modal.close') }}</button>
+                <a href="" type="button" class="btn btn-danger" id="click-confirm-url">{{ trans('crud.click_modal.confirm') }}</a>
             </div>
         </div>
     </div>

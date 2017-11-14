@@ -17,8 +17,13 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                 </a>
                 @endif
+                @if (Auth::user()->can('leave', $campaign))
+                <button data-url="{{ route('campaigns.leave', $campaign->id) }}" class="btn btn-warning btn-block click-confirm" data-toggle="modal" data-target="#click-confirm" data-message="{{ trans('campaigns.leave.confirm', ['name' => $campaign->name]) }}">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> {{ trans('campaigns.show.actions.leave') }}
+                </button>
+                @endif
 
-                @if (false && Auth::user()->can('delete', $campaign))
+                @if (Auth::user()->can('delete', $campaign))
                 <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
@@ -44,7 +49,7 @@
                             <i class="ion ion-map"></i>
                         </div>
                         <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
-                            {{ trans('crud.select') }} <i class="fa fa-arrow-circle-right"></i>
+                            <i class="fa fa-arrow-circle-right"></i> {{ trans('crud.select') }}
                         </a>
                     </div>
             @endforeach
@@ -54,12 +59,13 @@
         <div class="small-box bg-blue">
             <div class="inner">
                 <h4>{{ trans('campaigns.index.actions.new.title') }}</h4>
+                <p>{!! trans('campaigns.members.your_role', ['role' => trans('campaigns.members.roles.' . $campaign->role())]) !!}</p>
             </div>
             <div class="icon">
                 <i class="ion ion-plus"></i>
             </div>
             <a href="{{ route('campaigns.create') }}" class="small-box-footer">
-                {{ trans('campaigns.index.actions.new.description') }}<i class="fa fa-plus-circle"></i>
+                <i class="fa fa-plus-circle"></i> {{ trans('campaigns.index.actions.new.description') }}
             </a>
         </div>
 

@@ -31,7 +31,7 @@ class CampaignInvitePolicy
      */
     public function create(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $user->campaign->owner();
+        return $user->campaign->id == $campaign->id && $user->owner();
     }
 
     /**
@@ -43,7 +43,7 @@ class CampaignInvitePolicy
      */
     public function update(User $user, CampaignInvite $campaignInvite)
     {
-        return $user->campaign->id == $campaignInvite->campaign->id && $user->campaign->owner();
+        return $user->campaign->id == $campaignInvite->campaign->id && $user->owner();
     }
 
     /**
@@ -55,6 +55,6 @@ class CampaignInvitePolicy
      */
     public function delete(User $user, CampaignInvite $campaignInvite)
     {
-        return $user->campaign->id == $campaignInvite->campaign->id && $user->campaign->owner();
+        return $user->campaign->id == $campaignInvite->campaign->id && $user->owner();
     }
 }

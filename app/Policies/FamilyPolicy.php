@@ -19,7 +19,8 @@ class FamilyPolicy
      */
     public function view(User $user, Family $family)
     {
-        return $user->campaign->id == $family->campaign_id;
+        return $user->campaign->id == $family->campaign_id &&
+            ($family->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class FamilyPolicy
      */
     public function create(User $user)
     {
-        return ($user->campaign->owner() || $user->campaign->member());
+        return ($user->member());
     }
 
     /**
@@ -43,7 +44,7 @@ class FamilyPolicy
     public function update(User $user, Family $family)
     {
         return $user->campaign->id == $family->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class FamilyPolicy
     public function delete(User $user, Family $family)
     {
         return $user->campaign->id == $family->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

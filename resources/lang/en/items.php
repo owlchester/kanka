@@ -37,11 +37,15 @@ return [
         'history' => 'History',
         'image' => 'Image',
         'description' => 'Description',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the item',
         'type' => 'Weapon, Potion, Artefact',
         'location' => 'Choose a location',
         'character' => 'Choose a character',
-    ]
+    ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
+    ],
 ];

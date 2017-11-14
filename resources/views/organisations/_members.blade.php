@@ -16,7 +16,7 @@
         <th>{{ trans('characters.fields.sex') }}</th>
         <th><br /></th>
     </tr>
-    @foreach ($r = $organisation->members()->with(['character', 'character.location'])->paginate() as $relation)
+    @foreach ($r = $organisation->members()->has('character')->with(['character', 'character.location'])->paginate() as $relation)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $relation->character->getImageUrl(true) }}" alt="{{ $relation->character->name }} picture">

@@ -20,10 +20,14 @@
                     </a>
                     @endif
 
-                    <h3 class="profile-username text-center">{{ $family->name }}</h3>
+                    <h3 class="profile-username text-center">{{ $family->name }}
+                        @if ($family->is_private)
+                             <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                        @endif
+                    </h3>
 
                     <ul class="list-group list-group-unbordered">
-                        @if (!empty($family->location_id))
+                        @if (!empty($family->location))
                         <li class="list-group-item">
                             <b>{{ trans('families.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
                             <br class="clear" />

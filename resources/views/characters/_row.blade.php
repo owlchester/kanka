@@ -18,6 +18,13 @@
     <td>{{ $character->age }}</td>
     <td>{{ $character->race }}</td>
     <td>{{ $character->sex }}</td>
+    @if (!Auth::user()->viewer())
+        <td>
+            @if ($character->is_private == true)
+                <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+            @endif
+        </td>
+    @endif
     <td class="text-right">
         <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}

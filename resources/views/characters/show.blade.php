@@ -20,20 +20,24 @@
                     </a>
                     @endif
 
-                    <h3 class="profile-username text-center">{{ $character->name }}</h3>
+                    <h3 class="profile-username text-center">{{ $character->name }}
+                    @if ($character->is_private)
+                         <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                    @endif
+                    </h3>
 
                     @if ($character->title)
                         <p class="text-muted text-center">{{ $character->title }}</p>
                     @endif
 
                     <ul class="list-group list-group-unbordered">
-                        @if (!empty($character->family_id))
+                        @if ($character->family)
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.family') }}</b> <a class="pull-right" href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
                                 <br class="clear" />
                             </li>
                         @endif
-                        @if (!empty($character->location_id))
+                        @if ($character->location)
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
                                 <br class="clear" />

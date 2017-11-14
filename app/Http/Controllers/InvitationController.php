@@ -32,7 +32,7 @@ class InvitationController extends Controller
     {
         try {
             $campaign = InviteService::useToken($token);
-            CampaignService::switchCampaign($campaign->id);
+            CampaignService::switchCampaign($campaign);
             return redirect()->to('/');
         } catch (RequireLoginException $e) {
             return redirect()->route('login')->with('info', $e->getMessage());

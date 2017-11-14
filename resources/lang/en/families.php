@@ -37,16 +37,21 @@ return [
         'members' => 'Members',
         'image' => 'Image',
         'history' => 'History',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the family',
         'location' => 'Choose a location',
+    ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
     ],
 
     'relations' => [
         'create' => [
             'title' => 'New Family Relation for :name',
             'description' => 'Create a new relation between two families',
+            'success' => 'Relation created.',
         ],
         'actions' => [
             'add' => 'Add a relation',

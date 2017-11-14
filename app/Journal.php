@@ -2,14 +2,15 @@
 
 namespace App;
 
-use App\Scopes\CampaignScope;
+use App\Traits\CampaignTrait;
+use App\Traits\VisibleTrait;
 
 class Journal extends MiscModel
 {
     /**
      * @var array
      */
-    protected $fillable = ['name', 'campaign_id', 'slug', 'type', 'image', 'history', 'date'];
+    protected $fillable = ['name', 'campaign_id', 'slug', 'type', 'image', 'history', 'date', 'is_private'];
 
     /**
      * Searchable fields
@@ -18,16 +19,10 @@ class Journal extends MiscModel
     protected $searchableColumns  = ['name', 'type'];
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
+     * Traits
      */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new CampaignScope());
-    }
+    use CampaignTrait;
+    use VisibleTrait;
 
 
     /**

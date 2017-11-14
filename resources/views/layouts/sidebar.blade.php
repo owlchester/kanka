@@ -42,11 +42,9 @@
             <li class="{{ $sidebar->active('notes') }}">
                 <a href="{{ route('notes.index') }}"><i class="fa fa-file"></i> <span>{{ trans('sidebar.notes') }}</span></a>
             </li>
-            @if (Auth::user()->can('create', \App\Journal::class))
             <li class="{{ $sidebar->active('journals') }}">
                 <a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
-            @endif
 
             <li class="treeview {{ $sidebar->active('other', 'menu-open') }}">
                 <a href="#">

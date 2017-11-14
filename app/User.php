@@ -17,6 +17,7 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $fillable = [
         'name', 'email', 'password', 'last_campaign_id', 'provider', 'provider_id', 'newsletter', 'locale', 'timezone',
+        'campaign_role',
     ];
 
     /**
@@ -77,7 +78,9 @@ class User extends \TCG\Voyager\Models\User
             }
         }
 
-        if (!$full) $string = array_slice($string, 0, 1);
+        if (!$full) {
+            $string = array_slice($string, 0, 1);
+        }
         return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
 
@@ -91,5 +94,36 @@ class User extends \TCG\Voyager\Models\User
         } else {
             return '/images/defaults/user.svg';
         }
+    }
+
+    /**
+     * Determine if the user is currently viewing a campaign as a viewer
+     * @return bool
+     */
+    public function viewer()
+    {
+        return $this->campaign_role == 'viewer';
+    }
+
+    /**
+     * Determine if the user is currently viewing a campaign as an owner
+     * @return bool
+     */
+    public function owner()
+    {
+        return $this->campaign_role == 'owner';
+    }
+
+    /**
+     * Determine if the user is currently viewer a campaign as a member or owner
+     * @param bool $strict
+     * @return bool
+     */
+    public function member($strict = false)
+    {
+        if ($strict) {
+            return $this->campaign_role == 'member';
+        }
+        return in_array($this->campaign_role, ['member', 'owner']);
     }
 }

@@ -60,7 +60,6 @@
         </div>
 
         <hr>
-
         <div class="form-group">
             <label>{{ trans('characters.fields.image') }}</label>
             {!! Form::hidden('remove-image') !!}
@@ -76,6 +75,15 @@
                     <br class="clear">
                 </div>
             @endif
+        </div>
+
+        <hr>
+        <div class="form-group">
+            {!! Form::hidden('is_private', 0) !!}
+            <label>{!! Form::checkbox('is_private') !!}
+                {{ trans('characters.fields.is_private') }}
+            </label>
+            <p class="help-block">{{ trans('characters.hints.is_private') }}</p>
         </div>
     </div>
     <div class="col-md-6">

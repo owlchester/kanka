@@ -34,12 +34,16 @@ return [
         'location' => 'Location',
         'members' => 'Members',
         'image' => 'Image',
-        'history' => 'History'
+        'history' => 'History',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the organisation',
         'location' => 'Choose a location',
-        'type' => 'Cult, Gang, Rebelion, Fandom'
+        'type' => 'Cult, Gang, Rebelion, Fandom',
+    ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
     ],
 
     'members' => [

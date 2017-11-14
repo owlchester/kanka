@@ -29,6 +29,9 @@ return [
     'show' => [
         'title' => 'Campaign :name',
         'description' => 'A detailed view of a campaign',
+        'actions' => [
+            'leave' => 'Leave campaign',
+        ],
     ],
     'edit' => [
         'title' => 'Edit Campaign :campaign',
@@ -55,7 +58,9 @@ return [
         ],
         'invite' => [
             'title' => 'Invite',
-            'description' => 'Use the following link to invite one person to your campaign. Once they have used the link, it will no longer be available and a new one will be generated.',
+            'description' => 'You can invite friends to join your campaign by providing their email address. Once ' .
+            'they accept the invitation, they will be added as a \'Viewer\'. You can also cancel the invitation at ' .
+            'any time.',
         ],
         'edit' => [
             'title' => 'Edit member :name',
@@ -66,6 +71,12 @@ return [
             'role' => 'Role',
             'joined' => 'Joined',
         ],
+        'your_role' => 'You are a <i>:role</i>',
+        'roles' => [
+            'owner' => 'Owner',
+            'member' => 'Member',
+            'viewer' => 'Viewer',
+        ]
     ],
     'invites' => [
         'fields' => [
@@ -88,8 +99,9 @@ return [
             'success' => 'Invitation removed.',
         ],
         'email' => [
-            'title' => 'Invite from :name',
-            'subject' => ':name has invited you to join his campaign on kanka.io! Use the following link to accept his invitation.',
+            'title' => 'Invitation from :name',
+            'subject' => ':name has invited you to join his campaign on kanka.io! ' .
+                'Use the following link to accept his invitation.',
             'link' => '<a href=":link">Join :name\'s campaign</a>'
         ],
         'error' => [
@@ -98,5 +110,11 @@ return [
             'login' => 'Please log in or register to join the campaign.',
             'already_member' => 'You are already a member of that campaign.'
         ]
+    ],
+    'leave' => [
+        'confirm' => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, ' .
+            'unless an owner of the campaign invites you again.',
+        'success' => 'You have left the campaign.',
+        'error' => 'Can\'t leave the campaign.'
     ]
 ];

@@ -19,7 +19,8 @@ class OrganisationPolicy
      */
     public function view(User $user, Organisation $organisation)
     {
-        return $user->campaign->id == $organisation->campaign_id;
+        return $user->campaign->id == $organisation->campaign_id &&
+        ($organisation->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class OrganisationPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +44,7 @@ class OrganisationPolicy
     public function update(User $user, Organisation $organisation)
     {
         return $user->campaign->id == $organisation->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class OrganisationPolicy
     public function delete(User $user, Organisation $organisation)
     {
         return $user->campaign->id == $organisation->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

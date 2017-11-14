@@ -33,6 +33,9 @@
                             <th><a href="{{ route('families.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('families.fields.name') }}</a></th>
                             <th>{{ trans('families.fields.location') }}</th>
                             <th>{{ trans('families.fields.members') }}</th>
+                            @if (!Auth::user()->viewer())
+                                <th><a href="{{ route('families.index', ['order' => 'is_private', 'page' => request()->get('page')]) }}">{{ trans('crud.fields.is_private') }}</a></th>
+                            @endif
                             <th>&nbsp;</th>
                         </tr>
                         @foreach ($models as $family)
@@ -51,6 +54,13 @@
                             <td>
                                 {{ $family->members()->count() }}
                             </td>
+                            @if (!Auth::user()->viewer())
+                                <td>
+                                @if ($family->is_private == true)
+                                    <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                                @endif
+                            </td>
+                            @endif
                             <td class="text-right">
                                 <a href="{{ route('families.show', ['id' => $family->id]) }}" class="btn btn-xs btn-primary">
                                     <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}

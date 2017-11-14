@@ -80,4 +80,16 @@ class CampaignObserver
     {
         ImageService::cleanup($campaign);
     }
+
+    /**
+     * Deleting the campaign
+     *
+     * @param Campaign $campaign
+     */
+    public function deleting(Campaign $campaign)
+    {
+        foreach ($campaign->members as $member) {
+            $member->delete();
+        }
+    }
 }

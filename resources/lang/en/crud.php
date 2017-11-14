@@ -15,6 +15,7 @@ return [
     'search' => 'Search',
     'or_cancel' => 'or <a href=":url">cancel</a>',
     'save_and_new' => 'Save and New',
+    'is_private' => 'This entity is private and not visible by the viewer users.',
 
     'delete_modal' => [
         'title' => 'Delete confirmation',
@@ -22,4 +23,12 @@ return [
         'close' => 'Close',
         'delete' => 'Delete'
     ],
+    'click_modal' => [
+        'title' => 'Confirm your action',
+        'close' => 'Close',
+        'confirm' => 'Confirm',
+    ],
+    'fields' => [
+        'is_private' => 'Private',
+    ]
 ];

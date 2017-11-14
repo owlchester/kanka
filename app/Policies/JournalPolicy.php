@@ -19,7 +19,8 @@ class JournalPolicy
      */
     public function view(User $user, Journal $journal)
     {
-        return $user->campaign->id == $journal->campaign_id;
+        return $user->campaign->id == $journal->campaign_id &&
+            ($journal->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class JournalPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +44,7 @@ class JournalPolicy
     public function update(User $user, Journal $journal)
     {
         return $user->campaign->id == $journal->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class JournalPolicy
     public function delete(User $user, Journal $journal)
     {
         return $user->campaign->id == $journal->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

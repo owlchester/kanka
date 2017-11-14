@@ -30,7 +30,7 @@ class FamilyRelationPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +43,7 @@ class FamilyRelationPolicy
     public function update(User $user, FamilyRelation $familyRelation)
     {
         return $user->campaign->id == $familyRelation->first->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +56,6 @@ class FamilyRelationPolicy
     public function delete(User $user, FamilyRelation $familyRelation)
     {
         return $user->campaign->id == $familyRelation->first->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

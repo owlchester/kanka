@@ -19,7 +19,8 @@ class ItemPolicy
      */
     public function view(User $user, Item $item)
     {
-        return $user->campaign->id == $item->campaign_id;
+        return $user->campaign->id == $item->campaign_id &&
+            ($item->is_private ? !$user->viewer() : true);
     }
 
     /**
@@ -30,7 +31,7 @@ class ItemPolicy
      */
     public function create(User $user)
     {
-        return $user->campaign->owner() || $user->campaign->member();
+        return $user->member();
     }
 
     /**
@@ -43,7 +44,7 @@ class ItemPolicy
     public function update(User $user, Item $item)
     {
         return $user->campaign->id == $item->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 
     /**
@@ -56,6 +57,6 @@ class ItemPolicy
     public function delete(User $user, Item $item)
     {
         return $user->campaign->id == $item->campaign_id &&
-            ($user->campaign->owner() || $user->campaign->member());
+            ($user->member());
     }
 }

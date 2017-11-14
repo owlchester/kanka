@@ -2,7 +2,8 @@
 
 namespace App;
 
-use App\Scopes\CampaignScope;
+use App\Traits\CampaignTrait;
+use App\Traits\VisibleTrait;
 use Stevebauman\Purify\Facades\Purify;
 
 class Character extends MiscModel
@@ -31,25 +32,20 @@ class Character extends MiscModel
         'mannerisms',
         'languages',
         'free',
+        'is_private',
     ];
+
+    /**
+     * Traits
+     */
+    use CampaignTrait;
+    use VisibleTrait;
 
     /**
      * Searchable fields
      * @var array
      */
     protected $searchableColumns  = ['name', 'title', 'race', 'sex'];
-
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new CampaignScope());
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

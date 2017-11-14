@@ -34,21 +34,14 @@ class UserEventSubscriber
         if (Session::has('invite_token')) {
             try {
                 $campaign = InviteService::useToken(Session::get('invite_token'));
-                CampaignService::switchCampaign($campaign->id);
+                CampaignService::switchCampaign($campaign);
                 return true;
             } catch (Exception $e) {
                 // Silence errors here
             }
         }
         // We want to register in the session a campaign_id
-        $campaign = Campaign::whereHas('users', function ($q) {
-            $q->where('users.id', Auth::user()->id);
-        })
-            ->where('id', Auth::user()->last_campaign_id)
-            ->first();
-        if (!empty($campaign)) {
-            CampaignService::switchCampaign($campaign->id);
-        }
+        CampaignService::switchToNext();
     }
 
     /**

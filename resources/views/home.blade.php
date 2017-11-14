@@ -9,7 +9,7 @@
                 <div class="inner">
                     <h3>{!! $campaign->shortName() !!}</h3>
 
-                    <p>{{ trans('dashboard.campaigns.current') }}</p>
+                    <p>{!! trans('campaigns.members.your_role', ['role' => trans('campaigns.members.roles.' . $campaign->role())]) !!}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-map"></i>

@@ -5,6 +5,9 @@
         <th>{{ trans('organisations.fields.location') }}</th>
         <th><a href="{{ route('organisations.index', ['order' => 'type', 'page' => request()->get('page')]) }}">{{ trans('organisations.fields.type') }}</a></th>
         <th>{{ trans('organisations.fields.members') }}</th>
+        @if (!Auth::user()->viewer())
+            <th><a href="{{ route('organisations.index', ['order' => 'is_private', 'page' => request()->get('page')]) }}">{{ trans('crud.fields.is_private') }}</a></th>
+        @endif
         <th>&nbsp;</th>
     </tr>
     @foreach ($models as $organisation)
@@ -22,8 +25,15 @@
             </td>
             <td>{{ $organisation->type }}</td>
             <td>
-                {{ $organisation->members()->count() }}
+                {{ $organisation->members()->has('character')->count() }}
             </td>
+            @if (!Auth::user()->viewer())
+                <td>
+                @if ($organisation->is_private == true)
+                    <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                @endif
+            </td>
+            @endif
             <td class="text-right">
                 <a href="{{ route('organisations.show', ['id' => $organisation->id]) }}" class="btn btn-xs btn-primary">
                     <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}

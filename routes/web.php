@@ -47,6 +47,7 @@ Route::group([
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
     ]);
+    Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
 
     Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
     Route::get('/search/characters', 'SearchController@characters')->name('characters.find');

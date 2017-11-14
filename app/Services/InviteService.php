@@ -68,6 +68,7 @@ class InviteService
                 'campaign_id' => $invite->campaign_id,
                 'role' => 'viewer'
             ]);
+            $role->save();
         }
 
         $invite->is_active = false;

@@ -15,7 +15,7 @@ class CampaignUserObserver
     /**
      * @param CampaignUser $campaignUser
      */
-    public function saving(CampaignUserUser $campaignUser)
+    public function saving(CampaignUser $campaignUser)
     {
         
     }

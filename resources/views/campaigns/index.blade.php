@@ -7,5 +7,6 @@
 ])
 
 @section('content')
+    @include('partials.errors')
     @include('campaigns.show')
 @endsection

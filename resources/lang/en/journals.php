@@ -32,11 +32,15 @@ return [
         'history' => 'History',
         'date' => 'Date',
         'image' => 'Image',
+        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the journal',
         'type' => 'Session, One Shot, Draft',
         'date' => 'Date of the journal',
+    ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
     ],
     'helpers' => [
         'title' => 'Head\'s up!',
