@@ -43,6 +43,7 @@ Route::group([
         'journals' => 'JournalController',
         'organisations' => 'OrganisationController',
         'organisation_member' => 'OrganisationMemberController',
+        'organisation_relation' => 'OrganisationRelationController',
         'notes' => 'NoteController',
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',

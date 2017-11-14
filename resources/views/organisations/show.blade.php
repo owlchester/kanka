@@ -72,8 +72,9 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">History</a></li>
-                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">Members</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.history') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.members') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.relations') }}</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -84,6 +85,9 @@
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
                         @include('organisations._members')
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
+                        @include('organisations._relations')
                     </div>
                 </div>
             </div>

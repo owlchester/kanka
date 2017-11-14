@@ -48,6 +48,13 @@ class Organisation extends MiscModel
         return $this->hasMany('App\OrganisationMember', 'organisation_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function relationships()
+    {
+        return $this->hasMany('App\Models\OrganisationRelation', 'first_id', 'id');
+    }
 
     /**
      * Get a short history/description for the dashboard

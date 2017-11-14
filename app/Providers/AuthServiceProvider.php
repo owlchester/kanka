@@ -33,6 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Note' => 'App\Policies\NotePolicy',
         'App\Organisation' => 'App\Policies\OrganisationPolicy',
         'App\OrganisationMember' => 'App\Policies\OrganisationMemberPolicy',
+        'App\Models\OrganisationRelation' => 'App\Policies\OrganisationRelationPolicy',
     ];
 
     /**

@@ -99,5 +99,8 @@ return [
             'second' => 'Choose a character',
             'relation' => 'Nature of the relation',
         ],
+        'destroy' => [
+            'success' => 'Relation removed.',
+        ],
     ]
 ];
