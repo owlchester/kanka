@@ -25,9 +25,14 @@
                 </td>
             @endif
             <td class="text-right">
-                <a href="{{ route('notes.show', ['id' => $note->id]) }}" class="btn btn-xs btn-primary">
+                <a href="{{ route('notes.show', ['id' => $note->id]) }}" class="btn btn-xs btn-default">
                     <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                 </a>
+                @if (Auth::user()->can('update', $note))
+                    <a href="{{ route('notes.edit', ['id' => $note->id]) }}" class="btn btn-xs btn-primary">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.edit') }}
+                    </a>
+                @endif
             </td>
         </tr>
     @endforeach

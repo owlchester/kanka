@@ -62,9 +62,14 @@
                             </td>
                             @endif
                             <td class="text-right">
-                                <a href="{{ route('families.show', ['id' => $family->id]) }}" class="btn btn-xs btn-primary">
+                                <a href="{{ route('families.show', ['id' => $family->id]) }}" class="btn btn-xs btn-default">
                                     <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                                 </a>
+                                @if (Auth::user()->can('update', $family))
+                                    <a href="{{ route('families.edit', ['id' => $family->id]) }}" class="btn btn-xs btn-primary">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.edit') }}
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

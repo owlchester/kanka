@@ -26,8 +26,13 @@
         </td>
     @endif
     <td class="text-right">
-        <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
+        <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-default">
             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
         </a>
+        @if (Auth::user()->can('update', $character))
+        <a href="{{ route('characters.edit', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
+            <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.edit') }}
+        </a>
+        @endif
     </td>
 </tr>
