@@ -19,6 +19,7 @@ return [
             'information' => 'Information',
             'characters' => 'Characters',
             'locations' => 'Locations',
+            'relations' => 'Relations',
         ],
     ],
     'edit' => [
@@ -38,6 +39,7 @@ return [
         'history' => 'History',
         'image' => 'Image',
         'is_private' => 'Private',
+        'relation' => 'Relation',
     ],
     'placeholders' => [
         'name' => 'Name of the location',
@@ -47,4 +49,25 @@ return [
     'hints' => [
         'is_private' => 'Hide from "Viewers"',
     ],
+    'relations' => [
+        'create' => [
+            'title' => 'New Location Relation for :name',
+            'description' => 'Create a new relation between two locations',
+            'success' => 'Relation created.',
+        ],
+        'actions' => [
+            'add' => 'Add a relation',
+        ],
+        'fields' => [
+            'second' => 'Location',
+            'relation' => 'Relation'
+        ],
+        'placeholders' => [
+            'second' => 'Choose a location',
+            'relation' => 'Ally, Enemy, Vassal'
+        ],
+        'destroy' => [
+            'success' => 'Relation removed.',
+        ],
+    ]
 ];

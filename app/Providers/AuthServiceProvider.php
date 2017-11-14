@@ -30,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Item' => 'App\Policies\ItemPolicy',
         'App\Journal' => 'App\Policies\JournalPolicy',
         'App\Location' => 'App\Policies\LocationPolicy',
+        'App\Models\LocationRelation' => 'App\Policies\LocationRelationPolicy',
         'App\Note' => 'App\Policies\NotePolicy',
         'App\Organisation' => 'App\Policies\OrganisationPolicy',
         'App\OrganisationMember' => 'App\Policies\OrganisationMemberPolicy',

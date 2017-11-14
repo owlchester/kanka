@@ -13,6 +13,8 @@ use App\Item;
 use App\Journal;
 use App\Location;
 use App\Models\CampaignInvite;
+use App\Models\LocationRelation;
+use App\Models\OrganisationRelation;
 use App\Note;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
@@ -24,9 +26,11 @@ use App\Observers\FamilyRelationObserver;
 use App\Observers\ItemObserver;
 use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
+use App\Observers\LocationRelationObserver;
 use App\Observers\NoteObserver;
 use App\Observers\OrganisationMemberObserver;
 use App\Observers\OrganisationObserver;
+use App\Observers\OrganisationRelationObserver;
 use App\Observers\UserObserver;
 use App\Organisation;
 use App\OrganisationMember;
@@ -57,6 +61,7 @@ class AppServiceProvider extends ServiceProvider
         Character::observe(CharacterObserver::class);
         CharacterRelation::observe(CharacterRelationObserver::class);
         Location::observe(LocationObserver::class);
+        LocationRelation::observe(LocationRelationObserver::class);
         Family::observe(FamilyObserver::class);
         FamilyRelation::observe(FamilyRelationObserver::class);
         Item::observe(ItemObserver::class);
@@ -64,6 +69,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Organisation::observe(OrganisationObserver::class);
         OrganisationMember::observe(OrganisationMemberObserver::class);
+        OrganisationRelation::observe(OrganisationRelationObserver::class);
         Note::observe(NoteObserver::class);
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {

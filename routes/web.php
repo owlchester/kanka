@@ -36,6 +36,7 @@ Route::group([
         'characters' => 'CharacterController',
         'character_relation' => 'CharacterRelationController',
         'locations' => 'LocationController',
+        'location_relation' => 'LocationRelationController',
         //'location_attribute' => 'LocationAttributeController',
         'families' => 'FamilyController',
         'family_relation' => 'FamilyRelationController',

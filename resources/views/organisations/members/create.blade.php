@@ -1,4 +1,11 @@
-@extends('layouts.app', ['title' => trans('organisations.members.create.title', ['name' => $organisation->name]), 'description' => trans('organisations.members.create.description')])
+@extends('layouts.app', [
+    'title' => trans('organisations.members.create.title', ['name' => $organisation->name]),
+    'description' => trans('organisations.members.create.description'),
+    'breadcrumbs' => [
+        ['url' => route('organisations.index'), 'label' => trans('organisations.index.title')],
+        ['url' => route('organisations.show', $organisation->id), 'label' => $organisation->name]
+    ]
+])
 
 @section('content')
     <div class="row">

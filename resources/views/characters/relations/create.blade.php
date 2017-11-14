@@ -1,4 +1,11 @@
-@extends('layouts.app', ['title' => trans('characters.relations.create.title'), 'description' => trans('characters.relations.create.description')])
+@extends('layouts.app', [
+    'title' => trans('characters.relations.create.title'),
+    'description' => trans('characters.relations.create.description'),
+    'breadcrumbs' => [
+        ['url' => route('characters.index'), 'label' => trans('characters.index.title')],
+        ['url' => route('characters.show', $character->id), 'label' => $character->name]
+    ]
+])
 
 @section('content')
     <div class="row">

@@ -63,6 +63,9 @@ return [
         'placeholders' => [
             'second' => 'Choose a family',
             'relation' => 'Ally, Enemy, Vassal'
-        ]
+        ],
+        'destroy' => [
+            'success' => 'Relation removed.',
+        ],
     ]
 ];

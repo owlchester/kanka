@@ -91,6 +91,7 @@
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.information') }}</a></li>
                     <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}"><a href="#character" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.characters') }}</a></li>
                     <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}"><a href="#location" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.locations') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.relations') }}</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -110,6 +111,9 @@
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'location' ? ' active' : '') }}" id="location">
                         @include('locations._locations')
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
+                        @include('locations._relations')
                     </div>
                 </div>
             </div>
