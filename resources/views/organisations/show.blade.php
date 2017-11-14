@@ -29,7 +29,13 @@
                     <ul class="list-group list-group-unbordered">
                         @if (!empty($organisation->location))
                         <li class="list-group-item">
-                            <b>{{ trans('organisations.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $organisation->location_id) }}">{{ $organisation->location->name }}</a>
+                            <b>{{ trans('organisations.fields.location') }}</b>
+                            <span  class="pull-right">
+                                <a href="{{ route('locations.show', $organisation->location_id) }}">{{ $organisation->location->name }}</a>
+                                @if ($organisation->location->parentLocation)
+                                    , <a href="{{ route('locations.show', $organisation->location->parentLocation->id) }}">{{ $organisation->location->parentLocation->name }}</a>
+                                @endif
+                            </span>
                             <br class="clear" />
                         </li>
                         @endif

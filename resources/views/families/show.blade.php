@@ -27,11 +27,17 @@
                     </h3>
 
                     <ul class="list-group list-group-unbordered">
-                        @if (!empty($family->location))
-                        <li class="list-group-item">
-                            <b>{{ trans('families.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
-                            <br class="clear" />
-                        </li>
+                        @if ($family->location)
+                            <li class="list-group-item">
+                                <b>{{ trans('families.fields.location') }}</b>
+                                <span  class="pull-right">
+                                <a href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
+                                    @if ($family->location->parentLocation)
+                                        , <a href="{{ route('locations.show', $family->location->parentLocation->id) }}">{{ $family->location->parentLocation->name }}</a>
+                                    @endif
+                                </span>
+                                <br class="clear" />
+                            </li>
                         @endif
                     </ul>
 

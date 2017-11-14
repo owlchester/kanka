@@ -33,10 +33,18 @@
                         </li>
                         @if (!empty($location->parentLocation))
                             <li class="list-group-item">
-                                <b>{{ trans('locations.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $location->parent_location_id) }}">{{ $location->parentLocation->name }}</a>
+                                <b>{{ trans('locations.fields.location') }}</b>
+
+                                <span class="pull-right">
+                                <a href="{{ route('locations.show', $location->parentLocation->id) }}">{{ $location->parentLocation->name }}</a>
+                                    @if ($location->parentLocation->parentLocation)
+                                        , <a href="{{ route('locations.show', $location->parentLocation->parentLocation->id) }}">{{ $location->parentLocation->parentLocation->name }}</a>
+                                    @endif
+                                </span>
                                 <br class="clear" />
                             </li>
                         @endif
+
                     </ul>
 
                     @if (Auth::user()->can('update', $location))

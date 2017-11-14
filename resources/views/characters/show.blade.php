@@ -39,7 +39,13 @@
                         @endif
                         @if ($character->location)
                             <li class="list-group-item">
-                                <b>{{ trans('characters.fields.location') }}</b> <a class="pull-right" href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
+                                <b>{{ trans('characters.fields.location') }}</b>
+                                <span  class="pull-right">
+                                    <a href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
+                                    @if ($character->location->parentLocation)
+                                        , <a href="{{ route('locations.show', $character->location->parentLocation->id) }}">{{ $character->location->parentLocation->name }}</a>
+                                    @endif
+                                </span>
                                 <br class="clear" />
                             </li>
                         @endif
