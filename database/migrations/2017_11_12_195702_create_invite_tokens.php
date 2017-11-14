@@ -16,7 +16,7 @@ class CreateInviteTokens extends Migration
         Schema::create('campaign_invites', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campaign_id')->unsigned()->notNull();
-            $table->integer('created_by')->unsigned()->null();
+            $table->integer('created_by')->unsigned()->nullable();
             $table->string('token', 128);
             $table->string('email', 255);
             $table->boolean('is_active')->default(true);

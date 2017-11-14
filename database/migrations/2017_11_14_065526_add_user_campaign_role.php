@@ -14,7 +14,7 @@ class AddUserCampaignRole extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->string('campaign_role', 20)->null();
+           $table->string('campaign_role', 20)->nullable();
         });
 
         $users = \App\User::with('campaign')->get();
