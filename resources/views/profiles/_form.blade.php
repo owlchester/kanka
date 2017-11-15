@@ -20,6 +20,7 @@
 
         <div class="form-group">
             <label>
+                {!! Form::hidden('newsletter', 0) !!}
                 {!! Form::checkbox('newsletter') !!}
                 {{ trans('profiles.fields.newsletter') }}</label>
         </div>

@@ -7,6 +7,7 @@ use App\CampaignUser;
 use App\Mail\UserDeleted;
 use App\Mail\UserRegistered;
 use App\Mail\WelcomeEmail;
+use App\Models\UserLog;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,16 @@ class UserObserver
      */
     public function saved(User $user)
     {
+    }
+
+    public function updated(User $user)
+    {
+        $log = UserLog::create([
+            'user_id' => $user->id,
+            'action' => 'update',
+            'ip' => request()->ip()
+        ]);
+        $log->save();
     }
 
     /**

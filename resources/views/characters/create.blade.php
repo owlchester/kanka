@@ -10,15 +10,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @include('partials.errors')
+            @include('partials.errors')
 
-                    {!! Form::open(array('route' => 'characters.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
-                        @include('characters._form')
-                    {!! Form::close() !!}
-                </div>
-            </div>
+            {!! Form::open(array('route' => 'characters.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
+                @include('characters._form')
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

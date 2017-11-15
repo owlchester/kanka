@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Campaign;
 use App\Mail\UserRegistered;
+use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\InviteService;
 use Illuminate\Queue\InteractsWithQueue;
@@ -40,6 +41,17 @@ class UserEventSubscriber
                 // Silence errors here
             }
         }
+
+        // Log the login
+        if ($event->user) {
+            $log = UserLog::create([
+                'user_id' => $event->user->id,
+                'action' => 'login',
+                'ip' => request()->ip()
+            ]);
+            $log->save();
+        }
+
         // We want to register in the session a campaign_id
         CampaignService::switchToNext();
     }
@@ -48,7 +60,15 @@ class UserEventSubscriber
      * Handle user logout events.
      */
     public function onUserLogout($event) {
-        // Do nothing
+        // Log the activity
+        if ($event->user) {
+            $log = UserLog::create([
+                'user_id' => $event->user->id,
+                'action' => 'logout',
+                'ip' => request()->ip()
+            ]);
+            $log->save();
+        }
     }
 
     /**

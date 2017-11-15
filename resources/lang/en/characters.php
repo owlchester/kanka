@@ -82,6 +82,12 @@ return [
     'hints' => [
         'is_private' => 'Hide from "Viewers"',
     ],
+    'sections' => [
+        'general' => 'General information',
+        'appearance' => 'Appearance',
+        'personality' => 'Personality',
+        'history' => 'History',
+    ],
     'relations' => [
         'create' => [
             'title' => 'Character Relationships',
