@@ -13,7 +13,7 @@
             <td>{{ $relation->created_at }}</td>
 
             <td class="text-right">
-                @if (Auth::user()->can('destroy', $relation))
+                @if (Auth::user()->can('update', $relation))
                     <a href="{{ route('campaign_user.edit', $relation->id) }}" class="btn btn-xs btn-primary">{{ trans('crud.edit') }}</a>
                 {!! Form::open(['method' => 'DELETE','route' => ['campaign_user.destroy', $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
