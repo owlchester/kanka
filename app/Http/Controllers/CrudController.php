@@ -83,7 +83,8 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
-        $this->model->create($request->all());
+        $model = new $this->model;
+        $model->create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->route . '.create')
                 ->with('success', trans($this->view . '.create.success'));
