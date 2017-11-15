@@ -103,5 +103,10 @@ class UserObserver
                 $member->campaign->delete();
             }
         }
+
+        // Remove logs
+        foreach ($user->logs as $log) {
+            $log->delete();
+        }
     }
 }

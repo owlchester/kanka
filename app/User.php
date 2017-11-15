@@ -126,4 +126,9 @@ class User extends \TCG\Voyager\Models\User
         }
         return in_array($this->campaign_role, ['member', 'owner']);
     }
+
+    public function logs()
+    {
+        return $this->hasMany('App\Models\UserLog', 'user_id', 'id');
+    }
 }
