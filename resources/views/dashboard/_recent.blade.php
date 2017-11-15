@@ -19,6 +19,9 @@
                         </div>
                         <div class="product-info">
                             <a href="{{ route($route . '.show', $model->id) }}" class="product-title">{{ $model->name }}</a>
+                            @if ($model->family)
+                                <a href="{{ route('families.show', $model->family_id) }}">{{ $model->family->name }}</a>
+                            @endif
                             <span class="pull-right product-description">{{ $model->elapsed() }}</span>
                             <p class="text-justify">
                                 {{ $model->shortHistory() }}
