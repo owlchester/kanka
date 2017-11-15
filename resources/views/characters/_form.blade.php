@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
-                    {!! Form::select('location_id', $location->dropdown($model),
+                    {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : []),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
                 <div class="form-group">
