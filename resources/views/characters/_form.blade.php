@@ -16,13 +16,13 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.family') }}</label>
-                    {!! Form::select('family_id', (isset($character) && $character->family ? [$character->family_id => $character->family->name] : []),
+                    {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : []),
                     null, ['id' => 'family_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
 
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
-                    {!! Form::select('location_id', (isset($character) && $character->location ? [$character->location_id => $character->location->name] : []),
+                    {!! Form::select('location_id', (isset($model) && $model->location ? [$model->location_id => $model->location->name] : []),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
                 <div class="form-group">
@@ -82,10 +82,10 @@
                     <label>{{ trans('characters.fields.image') }}</label>
                     {!! Form::hidden('remove-image') !!}
                     {!! Form::file('image', array('class' => 'image')) !!}
-                    @if (!empty($character->image))
+                    @if (!empty($model->image))
                         <div class="preview">
                             <div class="image">
-                                <img src="/storage/{{ $character->image }}"/>
+                                <img src="/storage/{{ $model->image }}"/>
                                 <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                                 </a>

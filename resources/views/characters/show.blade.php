@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('characters.show.title', ['character' => $character->name]),
+    'title' => trans('characters.show.title', ['character' => $model->name]),
     'description' => trans('characters.show.description'),
     'breadcrumbs' => [
         ['url' => route('characters.index'), 'label' => trans('characters.index.title')],
-        $character->name,
+        $model->name,
     ]
 ])
 
@@ -14,60 +14,60 @@
             <!-- Profile Image -->
             <div class="box">
                 <div class="box-body box-profile">
-                    @if ($character->image)
-                    <a href="/storage/{{ $character->image }}">
-                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $character->image }}" alt="{{ $character->name }} picture">
+                    @if ($model->image)
+                    <a href="/storage/{{ $model->image }}">
+                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $model->image }}" alt="{{ $model->name }} picture">
                     </a>
                     @endif
 
-                    <h3 class="profile-username text-center">{{ $character->name }}
-                    @if ($character->is_private)
+                    <h3 class="profile-username text-center">{{ $model->name }}
+                    @if ($model->is_private)
                          <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
                     @endif
                     </h3>
 
-                    @if ($character->title)
-                        <p class="text-muted text-center">{{ $character->title }}</p>
+                    @if ($model->title)
+                        <p class="text-muted text-center">{{ $model->title }}</p>
                     @endif
 
                     <ul class="list-group list-group-unbordered">
-                        @if ($character->family)
+                        @if ($model->family)
                             <li class="list-group-item">
-                                <b>{{ trans('characters.fields.family') }}</b> <a class="pull-right" href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
+                                <b>{{ trans('characters.fields.family') }}</b> <a class="pull-right" href="{{ route('families.show', $model->family_id) }}">{{ $model->family->name }}</a>
                                 <br class="clear" />
                             </li>
                         @endif
-                        @if ($character->location)
+                        @if ($model->location)
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.location') }}</b>
                                 <span  class="pull-right">
-                                    <a href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
-                                    @if ($character->location->parentLocation)
-                                        , <a href="{{ route('locations.show', $character->location->parentLocation->id) }}">{{ $character->location->parentLocation->name }}</a>
+                                    <a href="{{ route('locations.show', $model->location_id) }}">{{ $model->location->name }}</a>
+                                    @if ($model->location->parentLocation)
+                                        , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}">{{ $model->location->parentLocation->name }}</a>
                                     @endif
                                 </span>
                                 <br class="clear" />
                             </li>
                         @endif
-                        @if (!empty($character->race))
+                        @if (!empty($model->race))
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.race') }}</b> <span class="pull-right">{{ $character->race }}</span>
+                            <b>{{ trans('characters.fields.race') }}</b> <span class="pull-right">{{ $model->race }}</span>
                             <br class="clear" />
                         </li>
                         @endif
                     </ul>
 
-                    @if (Auth::user()->can('update', $character))
-                    <a href="{{ route('characters.edit', ['id' => $character->id]) }}" class="btn btn-primary btn-block">
+                    @if (Auth::user()->can('update', $model))
+                    <a href="{{ route('characters.edit', ['id' => $model->id]) }}" class="btn btn-primary btn-block">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
                     @endif
 
-                    @if (Auth::user()->can('delete', $character))
-                    <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $character->name }}" data-toggle="modal" data-target="#delete-confirm">
+                    @if (Auth::user()->can('delete', $model))
+                    <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
-                    {!! Form::open(['method' => 'DELETE','route' => ['characters.destroy', $character->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                    {!! Form::open(['method' => 'DELETE','route' => ['characters.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                     {!! Form::close() !!}
                     @endif
                 </div>
@@ -84,51 +84,51 @@
                 <div class="box-body">
 
                     <ul class="list-group list-group-unbordered">
-                        @if ($character->age)
+                        @if ($model->age)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.age') }}</b> <span class="pull-right">{{ $character->age }}</span>
+                            <b>{{ trans('characters.fields.age') }}</b> <span class="pull-right">{{ $model->age }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->sex)
+                        @if ($model->sex)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.sex') }}</b> <span class="pull-right">{{ $character->sex }}</span>
+                            <b>{{ trans('characters.fields.sex') }}</b> <span class="pull-right">{{ $model->sex }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->height)
+                        @if ($model->height)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.height') }}</b> <span class="pull-right">{{ $character->height }}</span>
+                            <b>{{ trans('characters.fields.height') }}</b> <span class="pull-right">{{ $model->height }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->weight)
+                        @if ($model->weight)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.weight') }}</b> <span class="pull-right">{{ $character->weight }}</span>
+                            <b>{{ trans('characters.fields.weight') }}</b> <span class="pull-right">{{ $model->weight }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->eye_colour)
+                        @if ($model->eye_colour)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.eye') }}</b> <span class="pull-right">{{ $character->eye_colour }}</span>
+                            <b>{{ trans('characters.fields.eye') }}</b> <span class="pull-right">{{ $model->eye_colour }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->hair)
+                        @if ($model->hair)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.hair') }}</b> <span class="pull-right">{{ $character->hair }}</span>
+                            <b>{{ trans('characters.fields.hair') }}</b> <span class="pull-right">{{ $model->hair }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->skin)
+                        @if ($model->skin)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.skin') }}</b> <span class="pull-right">{{ $character->skin }}</span>
+                            <b>{{ trans('characters.fields.skin') }}</b> <span class="pull-right">{{ $model->skin }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($character->languages)
+                        @if ($model->languages)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.languages') }}</b> <span class="pull-right">{{ $character->languages }}</span>
+                            <b>{{ trans('characters.fields.languages') }}</b> <span class="pull-right">{{ $model->languages }}</span>
                             <br class="clear" />
                         </li>
                         @endif
@@ -162,18 +162,18 @@
                 <div class="tab-content">
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="history">
                         <div class="post">
-                            <p>{!! $character->history !!}</p>
+                            <p>{!! $model->history !!}</p>
                         </div>
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'personality' ? ' active' : '') }}" id="personality">
-                        <p><b>{{ trans('characters.fields.traits') }}</b><br />{!! nl2br(e($character->traits)) !!}</p>
-                        <p><b>{{ trans('characters.fields.goals') }}</b><br />{!! nl2br(e($character->goals)) !!}</p>
-                        <p><b>{{ trans('characters.fields.fears') }}</b><br />{!! nl2br(e($character->fears)) !!}</p>
-                        <p><b>{{ trans('characters.fields.mannerisms') }}</b><br />{!! nl2br(e($character->mannerisms)) !!}</p>
+                        <p><b>{{ trans('characters.fields.traits') }}</b><br />{!! nl2br(e($model->traits)) !!}</p>
+                        <p><b>{{ trans('characters.fields.goals') }}</b><br />{!! nl2br(e($model->goals)) !!}</p>
+                        <p><b>{{ trans('characters.fields.fears') }}</b><br />{!! nl2br(e($model->fears)) !!}</p>
+                        <p><b>{{ trans('characters.fields.mannerisms') }}</b><br />{!! nl2br(e($model->mannerisms)) !!}</p>
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'free' ? ' active' : '') }}" id="free">
                         <div class="post">
-                            <p>{!! nl2br(e($character->free)) !!}</p>
+                            <p>{!! nl2br(e($model->free)) !!}</p>
                         </div>
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">

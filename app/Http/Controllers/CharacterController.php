@@ -7,49 +7,19 @@ use App\Http\Requests\StoreCharacter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class CharacterController extends Controller
+class CharacterController extends CrudController
 {
     /**
      * @var string
      */
     protected $view = 'characters';
+    protected $route = 'characters';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign');
-    }
+    protected $model = \App\Character::class;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = Character::with('location')
-            ->search(request()->get('search'))
-            ->order(request()->get('order'))
-            ->paginate();
-        return view('characters.index', compact('models'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Character::class);
-
-        return view('characters.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -59,14 +29,7 @@ class CharacterController extends Controller
      */
     public function store(StoreCharacter $request)
     {
-        $this->authorize('create', Character::class);
-
-        Character::create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.create.success'));
-        }
-        return redirect()->route('characters.index')->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request);
     }
 
     /**
@@ -77,8 +40,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
-        $this->authorize('view', $character);
-        return view('characters.show', compact('character'));
+        return $this->crudShow($character);
     }
 
     /**
@@ -89,9 +51,7 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        $this->authorize('update', $character);
-
-        return view('characters.edit', compact('character'));
+        return $this->crudEdit($character);
     }
 
     /**
@@ -103,14 +63,7 @@ class CharacterController extends Controller
      */
     public function update(StoreCharacter $request, Character $character)
     {
-        $this->authorize('update', $character);
-
-        $character->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
-        }
-        return redirect()->route('characters.show', $character->id)->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $character);
     }
 
     /**
@@ -121,9 +74,6 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        $this->authorize('delete', $character);
-
-        $character->delete();
-        return redirect()->route($this->view . '.index')->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($character);
     }
 }

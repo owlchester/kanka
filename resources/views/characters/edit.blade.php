@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('characters.edit.title', ['character' => $character->name]),
+    'title' => trans('characters.edit.title', ['character' => $model->name]),
     'description' => trans('characters.edit.description'),
     'breadcrumbs' => [
         ['url' => route('characters.index'), 'label' => trans('characters.index.title')],
-        ['url' => route('characters.show', $character->id), 'label' => $character->name],
+        ['url' => route('characters.show', $model->id), 'label' => $model->name],
         trans('crud.update'),
     ]
 ])
@@ -13,7 +13,7 @@
         <div class="col-md-12">
             @include('partials.errors')
 
-            {!! Form::model($character, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['characters.update', $character->id]]) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['characters.update', $model->id]]) !!}
                 @include('characters._form')
             {!! Form::close() !!}
         </div>

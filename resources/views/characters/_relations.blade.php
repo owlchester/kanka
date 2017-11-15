@@ -1,7 +1,7 @@
 
 @if (Auth::user()->can('create', \App\CharacterRelation::class))
 <p class="text-right">
-    <a href="{{ route('character_relation.create', ['character' => $character->id]) }}" class="btn btn-primary">
+    <a href="{{ route('character_relation.create', ['character' => $model->id]) }}" class="btn btn-primary">
         {{ trans('characters.relations.actions.add') }}
     </a>
 </p>
@@ -18,7 +18,7 @@
         <th>{{ trans('characters.fields.sex') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $character->relationships()->has('second')->with('second')->paginate() as $relation)
+    @foreach ($r = $model->relationships()->has('second')->with('second')->paginate() as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>

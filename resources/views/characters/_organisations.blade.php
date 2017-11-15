@@ -1,5 +1,5 @@
 <!--<p class="text-right">
-    <a href="{{ route('character_relation.create', ['character' => $character->id]) }}" class="btn btn-primary">
+    <a href="{{ route('character_relation.create', ['character' => $model->id]) }}" class="btn btn-primary">
     {{ trans('characters.organisations.actions.add') }}    </a>
 </p>-->
 
@@ -10,7 +10,7 @@
         <th>{{ trans('organisations.members.fields.role') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $character->organisations()->has('organisation')->with('organisation')->paginate() as $relation)
+    @foreach ($r = $model->organisations()->has('organisation')->with('organisation')->paginate() as $relation)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $relation->organisation->getImageUrl(true) }}" alt="{{ $relation->organisation->name }} picture">
