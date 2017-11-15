@@ -14,7 +14,7 @@
                     @include('partials.errors')
 
                     {!! Form::open(array('route' => 'journals.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
-                        @include('journals._form')
+                        @include('journals._form', ['cancel' => route('journals.index')])
                     {!! Form::close() !!}
                 </div>
             </div>

@@ -1,3 +1,6 @@
+
+@inject('location', 'App\Services\LocationService')
+
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
@@ -22,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
-                    {!! Form::select('location_id', (isset($model) && $model->location ? [$model->location_id => $model->location->name] : []),
+                    {!! Form::select('location_id', $location->dropdown($model),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
                 <div class="form-group">
@@ -146,5 +149,6 @@
     <div class="form-group">
         <button class="btn btn-success">{{ trans('crud.save') }}</button>
         <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
-        {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}</div>
+        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+    </div>
 </div>

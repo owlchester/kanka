@@ -15,7 +15,7 @@
 
 
                     {!! Form::open(array('route' => 'notes.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
-                        @include('notes._form')
+                        @include('notes._form', ['cancel' => route('notes.index')])
                     {!! Form::close() !!}
                 </div>
             </div>

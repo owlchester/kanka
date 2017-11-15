@@ -8,7 +8,7 @@
         @if (!Auth::user()->viewer())
             <th><a href="{{ route('locations.index', ['order' => 'is_private', 'page' => request()->get('page')]) }}">{{ trans('crud.fields.is_private') }}</a></th>
         @endif
-        <th>&nbsp;</th>
+        <th style="width: 15%">&nbsp;</th>
     </tr>
     @foreach ($models as $model)
         <tr>

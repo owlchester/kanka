@@ -103,7 +103,7 @@ return [
         ],
         'placeholders' => [
             'second' => 'Choose a character',
-            'relation' => 'Nature of the relation',
+            'relation' => 'Friends, Rivals, Lovers, Childhood friends',
         ],
         'destroy' => [
             'success' => 'Relation removed.',

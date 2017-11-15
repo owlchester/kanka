@@ -50,6 +50,6 @@
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>
     @if (session()->has('campaign_id'))
-        {!! trans('crud.or_cancel', ['url' => url()->previous()]) !!}
+        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
     @endif
 </div>

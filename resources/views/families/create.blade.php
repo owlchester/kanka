@@ -15,7 +15,7 @@
 
 
                     {!! Form::open(array('route' => 'families.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
-                        @include('families._form')
+                        @include('families._form', ['cancel' => route('families.index')])
                     {!! Form::close() !!}
                 </div>
             </div>

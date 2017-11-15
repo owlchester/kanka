@@ -13,7 +13,7 @@
             @include('partials.errors')
 
             {!! Form::open(array('route' => 'characters.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
-                @include('characters._form')
+                @include('characters._form', ['cancel' => route('characters.index')])
             {!! Form::close() !!}
         </div>
     </div>

@@ -34,11 +34,20 @@ const app = new Vue({
 
 if ($('.select2').length > 0) {
     $.each($('.select2'), function(index) {
+
+//        var newOptions = [];
+//        $(this).find('option').each(function() {
+//            var newOption = new Option(this.text, this.id, true, true);
+//            newOptions.push(newOption);
+//        });
+
        $(this).select2({
+//            data: newOptions,
             placeholder: $(this).attr('data-palceholder'),
             allowClear: true,
             minimumInputLength: 3,
-                ajax: {
+            ajax: {
+                quietMillis: 200,
                 url: $(this).attr('data-url'),
                     dataType: 'json',
                     data: function (params) {
