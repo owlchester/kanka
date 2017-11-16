@@ -53,7 +53,7 @@ class UserEventSubscriber
         }
 
         // We want to register in the session a campaign_id
-        CampaignService::switchToNext();
+        CampaignService::switchToLast();
         return true;
     }
 
