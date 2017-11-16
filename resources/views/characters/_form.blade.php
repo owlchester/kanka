@@ -49,7 +49,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('characters.fields.age') }}</label>
-                    {!! Form::text('age', null, ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 9]) !!}
+                    {!! Form::text('age', null, ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.sex') }}</label>
