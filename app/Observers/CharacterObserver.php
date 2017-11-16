@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Campaign;
 use App\Character;
 use App\Services\ImageService;
+use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
@@ -15,6 +16,20 @@ use Stevebauman\Purify\Facades\Purify;
 class CharacterObserver
 {
     /**
+     * @var LinkerService
+     */
+    protected $linkerService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param LinkerService $linkerService
+     */
+    public function __construct(LinkerService $linkerService)
+    {
+        $this->linkerService = $linkerService;
+    }
+
+    /**
      * @param Character $character
      */
     public function saving(Character $character)
@@ -24,6 +39,9 @@ class CharacterObserver
 
         // Purity text
         $character->history = Purify::clean($character->history);
+
+        // Parse links
+        $character->history = $this->linkerService->parse($character->history);
 
         // Handle image. Let's use a service for this.
         ImageService::handle($character, 'characters');

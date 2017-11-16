@@ -13,14 +13,14 @@ return [
         'success' => 'Note created.',
     ],
     'show' => [
-        'title' => 'Note :note',
+        'title' => 'Note :name',
         'description' => 'A detailed view of a note',
         'tabs' => [
             'description' => 'Description'
         ]
     ],
     'edit' => [
-        'title' => 'Edit Note :note',
+        'title' => 'Edit Note :name',
         'description' => '',
         'success' => 'Note updated.',
     ],

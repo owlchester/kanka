@@ -14,6 +14,20 @@ use Stevebauman\Purify\Facades\Purify;
 class JournalObserver
 {
     /**
+     * @var LinkerService
+     */
+    protected $linkerService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param LinkerService $linkerService
+     */
+    public function __construct(LinkerService $linkerService)
+    {
+        $this->linkerService = $linkerService;
+    }
+
+    /**
      * @param Journal $journal
      */
     public function saving(Journal $journal)
@@ -22,7 +36,7 @@ class JournalObserver
         $journal->campaign_id = Session::get('campaign_id');
 
         $journal->history = Purify::clean($journal->history);
-        $journal->history = LinkerService::parse($journal->history);
+        $journal->history = $this->linkerService->parse($journal->history);
 
         // Handle image. Let's use a service for this.
         ImageService::handle($journal, 'journals');

@@ -5,16 +5,16 @@
         <th>{{ trans('locations.fields.type') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $location->locations()->paginate() as $location)
+    @foreach ($r = $model->locations()->paginate() as $model)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $location->getImageUrl(true) }}" alt="{{ $location->name }} picture">
+                <img class="direct-chat-img" src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }} picture">
             </td>
             <td>
-                <a href="{{ route('locations.show', $location->id) }}">{{ $location->name }}</a>
+                <a href="{{ route('locations.show', $model->id) }}">{{ $model->name }}</a>
             </td>
             <td>
-                {{ $location->type }}
+                {{ $model->type }}
             </td>
         </tr>
     @endforeach

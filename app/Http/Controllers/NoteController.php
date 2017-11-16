@@ -6,47 +6,18 @@ use App\Http\Requests\StoreNote;
 use App\Note;
 use Illuminate\Support\Facades\Session;
 
-class NoteController extends Controller
+class NoteController extends CrudController
 {
     /**
      * @var string
      */
     protected $view = 'notes';
+    protected $route = 'notes';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = Note::search(request()->get('search'))
-            ->order(request()->get('order'))
-            ->paginate();
-        return view($this->view . '.index', compact('models'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Note::class);
-        return view($this->view . '.create');
-    }
+    protected $model = \App\Note::class;
 
     /**
      * Store a newly created resource in storage.
@@ -56,15 +27,7 @@ class NoteController extends Controller
      */
     public function store(StoreNote $request)
     {
-        $this->authorize('create', Note::class);
-
-        Note::create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.create.success'));
-        }
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request);
     }
 
     /**
@@ -75,7 +38,7 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        return view($this->view . '.show', compact('note'));
+        return $this->crudShow($note);
     }
 
     /**
@@ -86,9 +49,7 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        $this->authorize('update', $note);
-
-        return view($this->view . '.edit', compact('note'));
+        return $this->crudEdit($note);
     }
 
     /**
@@ -100,15 +61,7 @@ class NoteController extends Controller
      */
     public function update(StoreNote $request, Note $note)
     {
-        $this->authorize('update', $note);
-
-        $note->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
-        }
-        return redirect()->route($this->view . '.show', $note->id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $note);
     }
 
     /**
@@ -119,10 +72,6 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        $this->authorize('delete', $note);
-
-        $note->delete();
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($note);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Campaign;
 use App\Family;
 use App\Services\ImageService;
+use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,20 @@ use Stevebauman\Purify\Facades\Purify;
 
 class FamilyObserver
 {
+    /**
+     * @var LinkerService
+     */
+    protected $linkerService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param LinkerService $linkerService
+     */
+    public function __construct(LinkerService $linkerService)
+    {
+        $this->linkerService = $linkerService;
+    }
+
     /**
      * @param Family $family
      */
@@ -22,6 +37,9 @@ class FamilyObserver
 
         // Purity text
         $family->history = Purify::clean($family->history);
+
+        // Parse links
+        $family->history = $this->linkerService->parse($family->history);
 
         // Handle image. Let's use a service for this.
         ImageService::handle($family, 'families');

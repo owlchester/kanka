@@ -5,41 +5,49 @@ namespace App\Services;
 class LinkerService
 {
     /**
+     * @var array
+     */
+    protected $elements = [
+        'character',
+        //'event',
+        'family',
+        'item',
+        'journal',
+        'location',
+        'note',
+        'organisation',
+    ];
+
+    /**
+     * Get the elements
+     * @return array
+     */
+    public function elements()
+    {
+        return $this->elements;
+    }
+
+    /**
      * @param string $text
      * @return mixed|string
      */
-    public static function parse($text = '')
+    public function parse($text = '')
     {
+        foreach ($this->elements() as $element) {
+            $text = preg_replace(
+                '`\{' . $element . ':(.*?)\}`sui',
+                '<a href="/redirect?what=' . $element . '&name=$1">$1</a>',
+                $text
+            );
+        }
+
+        // Bonus for our american friends.
         $text = preg_replace(
-            '`\{character:(.*?)\}`sui',
-            '<a href="/redirect?what=character&name=$1">$1</a>',
-            $text
-        );
-        $text = preg_replace(
-            '`\{item:(.*?)\}`sui',
-            '<a href="/redirect?what=items&name=$1">$1</a>',
-            $text
-        );
-        $text = preg_replace(
-            '`\{location:(.*?)\}`sui',
-            '<a href="/redirect?what=locations&name=$1">$1</a>',
-            $text
-        );
-        $text = preg_replace(
-            '`\{(organisation|organization):(.*?)\}`sui',
+            '`\{organization:(.*?)\}`sui',
             '<a href="/redirect?what=organisation&name=$2">$2</a>',
             $text
         );
-        $text = preg_replace(
-            '`\{family:(.*?)\}`sui',
-            '<a href="/redirect?what=families&name=$1">$1</a>',
-            $text
-        );
-        $text = preg_replace(
-            '`\{note:(.*?)\}`sui',
-            '<a href="/redirect?what=notes&name=$1">$1</a>',
-            $text
-        );
+
         return $text;
     }
 }

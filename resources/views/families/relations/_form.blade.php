@@ -3,7 +3,8 @@
     <div class="col-md-12">
         <div class="form-group required">
             <label>{{ trans('families.relations.fields.second') }}</label>
-            {!! Form::select('second_id', [], null, ['id' => 'second_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => trans('families.relations.placeholders.second')]) !!}
+            {!! Form::select('second_id', [], null, ['id' => 'second_id', 'class' => 'form-control select2', 'style' => 'width: 100%',
+            'data-url' => route('families.find'), 'data-placeholder' => trans('families.relations.placeholders.second')]) !!}
         </div>
         <div class="form-group required">
             <label>{{ trans('families.relations.fields.relation') }}</label>

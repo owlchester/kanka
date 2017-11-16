@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('journals.index.title'),
-    'description' => trans('journals.index.description'),
+    'title' => trans($name . '.index.title'),
+    'description' => trans($name . '.index.description'),
     'breadcrumbs' => [
-        ['url' => route('journals.index'), 'label' => trans('journals.index.title')]
+        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
@@ -12,9 +12,9 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    @if (Auth::user()->can('create', \App\Journal::class))
-                    <a href="{{ route('journals.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fa fa-plus"></i> {{ trans('journals.index.add') }}
+                    @if (Auth::user()->can('create', $model))
+                    <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-plus"></i> {{ trans($name . '.index.add') }}
                     </a>
                     @else
                         <br>
@@ -22,12 +22,12 @@
 
                     <div class="box-tools">
 
-                        @include('layouts.datagrid.search', ['route' => route('journals.index')])
+                        @include('layouts.datagrid.search', ['route' => route($name . '.index')])
                     </div>
                 </div>
 
                 <div class="box-body no-padding">
-                    @include('journals.datagrid')
+                    @include($name . '.datagrid')
                 </div>
             </div>
         </div>

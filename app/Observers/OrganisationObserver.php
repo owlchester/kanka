@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Campaign;
 use App\Organisation;
 use App\Services\ImageService;
+use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,20 @@ use Stevebauman\Purify\Facades\Purify;
 
 class OrganisationObserver
 {
+    /**
+     * @var LinkerService
+     */
+    protected $linkerService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param LinkerService $linkerService
+     */
+    public function __construct(LinkerService $linkerService)
+    {
+        $this->linkerService = $linkerService;
+    }
+
     /**
      * @param Organisation $organisation
      */
@@ -22,6 +37,9 @@ class OrganisationObserver
 
         // Purity text
         $organisation->history = Purify::clean($organisation->history);
+
+        // Parse links
+        $organisation->history = $this->linkerService->parse($organisation->history);
 
         // Handle image. Let's use a service for this.
         ImageService::handle($organisation, 'organisations');

@@ -17,6 +17,13 @@ return [
     'save_and_new' => 'Save and New',
     'is_private' => 'This entity is private and not visible by the viewer users.',
 
+    'panels' => [
+        'general_information' => 'General Information',
+        'history' => 'History',
+        'description' => 'Description',
+        'appearance' => 'Appearance',
+    ],
+
     'delete_modal' => [
         'title' => 'Delete confirmation',
         'description' => 'Are you sure you want to remove :tag?',
@@ -30,5 +37,6 @@ return [
     ],
     'fields' => [
         'is_private' => 'Private',
-    ]
+    ],
+    'linking_help' => 'How can I link to other entries?',
 ];

@@ -13,7 +13,7 @@ return [
         'success' => 'Location created.',
     ],
     'show' => [
-        'title' => 'Location :location',
+        'title' => 'Location :name',
         'description' => 'A detailed view of a location',
         'tabs' => [
             'information' => 'Information',
@@ -23,7 +23,7 @@ return [
         ],
     ],
     'edit' => [
-        'title' => 'Edit Location :location',
+        'title' => 'Edit Location :name',
         'description' => '',
         'success' => 'Location updated.',
     ],

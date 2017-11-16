@@ -1,58 +1,92 @@
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('locations.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('locations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
-        <div class="form-group">
-            <label>{{ trans('locations.fields.type') }}</label>
-            {!! Form::text('type', null, ['placeholder' => trans('locations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-        </div>
-        <div class="form-group">
-            <label>{{ trans('locations.fields.location') }}</label>
-            {!! Form::select('parent_location_id', (!empty($location->parentLocation) ? [$location->parent_location_id => $location->parentLocation->name] : []), null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
-
-        </div>
-        <hr />
-
-        <div class="form-group">
-            <label>{{ trans('locations.fields.image') }}</label>
-
-            {!! Form::hidden('remove-image') !!}
-            {!! Form::file('image', array('class' => 'image')) !!}
-            @if (!empty($location->image))
-                <div class="preview">
-                    <div class="image">
-                        <img src="/storage/{{ $location->image }}"/>
-                        <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
-                            <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
-                        </a>
-                    </div>
-                    <br class="clear">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{ trans('crud.panels.general_information') }}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group required">
+                    <label>{{ trans('locations.fields.name') }}</label>
+                    {!! Form::text('name', null, ['placeholder' => trans('locations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-            @endif        </div>
+                <div class="form-group">
+                    <label>{{ trans('locations.fields.type') }}</label>
+                    {!! Form::text('type', null, ['placeholder' => trans('locations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                </div>
+                <div class="form-group">
+                    <label>{{ trans('locations.fields.location') }}</label>
+                    {!! Form::select('parent_location_id', (!empty($model->parentLocation) ? [$model->parent_location_id => $model->parentLocation->name] : []),
+                    null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
 
-        <hr>
-        <div class="form-group">
-            {!! Form::hidden('is_private', 0) !!}
-            <label>{!! Form::checkbox('is_private') !!}
-                {{ trans('characters.fields.is_private') }}
-            </label>
-            <p class="help-block">{{ trans('characters.hints.is_private') }}</p>
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    {!! Form::hidden('is_private', 0) !!}
+                    <label>{!! Form::checkbox('is_private') !!}
+                        {{ trans('characters.fields.is_private') }}
+                    </label>
+                    <p class="help-block">{{ trans('characters.hints.is_private') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{ trans('crud.panels.appearance') }}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>{{ trans('locations.fields.image') }}</label>
+
+                    {!! Form::hidden('remove-image') !!}
+                    {!! Form::file('image', array('class' => 'image')) !!}
+                    @if (!empty($model->image))
+                        <div class="preview">
+                            <div class="image">
+                                <img src="/storage/{{ $model->image }}"/>
+                                <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+                                </a>
+                            </div>
+                            <br class="clear">
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ trans('locations.fields.description') }}</label>
-            {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{ trans('crud.panels.description') }}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>{{ trans('locations.fields.description') }}</label>
+                    {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+                </div>
+                <div class="form-group">
+                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
+                </div>
+            </div>
         </div>
-        <hr />
-        <div class="form-group">
-            <label>{{ trans('locations.fields.history') }}:</label>
-            {!! Form::textarea('history', null, ['class' => 'form-control html-editor', 'id' => 'history']) !!}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{ trans('crud.panels.history') }}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>{{ trans('locations.fields.history') }}:</label>
+                    {!! Form::textarea('history', null, ['class' => 'form-control html-editor', 'id' => 'history']) !!}
+                </div>
+                <div class="form-group">
+                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
+                </div>
+            </div>
         </div>
-        <hr />
     </div>
 </div>
 

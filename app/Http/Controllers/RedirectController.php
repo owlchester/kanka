@@ -30,6 +30,17 @@ class RedirectController extends Controller
      */
     public function index(Request $request)
     {
+        $mapper = [
+            'character' => 'characters',
+            'family' => 'families',
+            'item' => 'items',
+            'journal' => 'journals',
+            'location' => 'locations',
+            'note' => 'notes',
+            'organisation' => 'organisations',
+            'event' => 'events'
+        ];
+
         $allowed = [
             'characters' => Character::class,
             'families' => Family::class,
@@ -38,13 +49,19 @@ class RedirectController extends Controller
             'locations' => Location::class,
             'notes' => Note::class,
             'organisations' => Organisation::class,
+            'event' => 'App\Models\Events',
         ];
 
         $what = $request->get('what');
+        // Fix some common mistakes
+        if (in_array($what, array_keys($mapper))) {
+            $what = $mapper[$what];
+        }
         $name = $request->get('name');
 
+
         if (!in_array($what, array_keys($allowed))) {
-            abort(404);
+            return redirect()->route('home')->withErrors(trans('redirects.unknown_entity', ['entity' => e($what)]));
         }
 
         $modelClass = new $allowed[$what];
@@ -53,6 +70,6 @@ class RedirectController extends Controller
             return redirect()->route($what.'.show', $model->id);
         }
 
-        abort(404);
+        return redirect()->route($what.'.create', ['name' => $name]);
     }
 }

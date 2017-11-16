@@ -9,49 +9,18 @@ use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class ItemController extends Controller
+class ItemController extends CrudController
 {
     /**
      * @var string
      */
     protected $view = 'items';
+    protected $route = 'items';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = Item::with(['location', 'character'])
-            ->search(request()->get('search'))
-            ->order(request()->get('order'))
-            ->paginate();
-        return view($this->view . '.index', compact('models'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Item::class);
-
-        return view($this->view . '.create');
-    }
+    protected $model = \App\Item::class;
 
     /**
      * Store a newly created resource in storage.
@@ -61,15 +30,7 @@ class ItemController extends Controller
      */
     public function store(StoreItem $request)
     {
-        $this->authorize('create', Item::class);
-
-        Item::create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.create.success'));
-        }
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request);
     }
 
     /**
@@ -80,9 +41,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $this->authorize('view', $item);
-
-        return view($this->view . '.show', compact('item'));
+        return $this->crudShow($item);
     }
 
     /**
@@ -93,9 +52,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        $this->authorize('update', $item);
-
-        return view($this->view . '.edit', compact('item'));
+        return $this->crudEdit($item);
     }
 
     /**
@@ -107,15 +64,7 @@ class ItemController extends Controller
      */
     public function update(StoreItem $request, Item $item)
     {
-        $this->authorize('update', $item);
-
-        $item->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
-        }
-        return redirect()->route($this->view . '.show', $item->id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $item);
     }
 
     /**
@@ -126,10 +75,6 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        $this->authorize('delete', $item);
-
-        $item->delete();
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($item);
     }
 }

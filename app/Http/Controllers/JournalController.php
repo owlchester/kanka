@@ -7,48 +7,18 @@ use App\Http\Requests\StoreJournal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class JournalController extends Controller
+class JournalController extends CrudController
 {
     /**
      * @var string
      */
     protected $view = 'journals';
+    protected $route = 'journals';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = Journal::search(request()->get('search'))
-            ->order(request()->get('order'))
-            ->paginate();
-        return view($this->view . '.index', compact('models'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Journal::class);
-
-        return view($this->view . '.create');
-    }
+    protected $model = \App\Journal::class;
 
     /**
      * Store a newly created resource in storage.
@@ -58,15 +28,7 @@ class JournalController extends Controller
      */
     public function store(StoreJournal $request)
     {
-        $this->authorize('create', Journal::class);
-
-        Journal::create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.create.success'));
-        }
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request);
     }
 
     /**
@@ -77,9 +39,7 @@ class JournalController extends Controller
      */
     public function show(Journal $journal)
     {
-        $this->authorize('view', $journal);
-
-        return view($this->view . '.show', compact('journal'));
+        return $this->crudShow($journal);
     }
 
     /**
@@ -90,9 +50,7 @@ class JournalController extends Controller
      */
     public function edit(Journal $journal)
     {
-        $this->authorize('update', $journal);
-
-        return view($this->view . '.edit', compact('journal'));
+        return $this->crudEdit($journal);
     }
 
     /**
@@ -104,15 +62,7 @@ class JournalController extends Controller
      */
     public function update(StoreJournal $request, Journal $journal)
     {
-        $this->authorize('update', $journal);
-
-        $journal->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
-        }
-        return redirect()->route($this->view . '.show', $journal->id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $journal);
     }
 
     /**
@@ -123,10 +73,6 @@ class JournalController extends Controller
      */
     public function destroy(Journal $journal)
     {
-        $this->authorize('delete', $journal);
-
-        $journal->delete();
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($journal);
     }
 }

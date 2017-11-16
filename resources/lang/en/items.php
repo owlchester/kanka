@@ -13,14 +13,14 @@ return [
         'success' => 'Item created.',
     ],
     'show' => [
-        'title' => 'Item :item',
+        'title' => 'Item :name',
         'description' => 'A detailed view of an item',
         'tabs' => [
             'information' => 'Information',
         ],
     ],
     'edit' => [
-        'title' => 'Edit Item :item',
+        'title' => 'Edit Item :name',
         'description' => '',
         'success' => 'Item updated.',
     ],

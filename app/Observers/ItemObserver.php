@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Campaign;
 use App\Item;
 use App\Services\ImageService;
+use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,20 @@ use Stevebauman\Purify\Facades\Purify;
 
 class ItemObserver
 {
+    /**
+     * @var LinkerService
+     */
+    protected $linkerService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param LinkerService $linkerService
+     */
+    public function __construct(LinkerService $linkerService)
+    {
+        $this->linkerService = $linkerService;
+    }
+
     /**
      * @param Item $item
      */
@@ -23,6 +38,10 @@ class ItemObserver
         // Purity text
         $item->history = Purify::clean($item->history);
         $item->description = Purify::clean($item->description);
+
+        // Parse links
+        $item->history = $this->linkerService->parse($item->history);
+        $item->description = $this->linkerService->parse($item->description);
 
         // Handle image. Let's use a service for this.
         ImageService::handle($item, 'items');

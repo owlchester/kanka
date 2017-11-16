@@ -7,7 +7,7 @@
         <th>{{ trans('characters.fields.race') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $location->characters()->with(['location', 'family'])->paginate() as $character)
+    @foreach ($r = $model->characters()->with(['location', 'family'])->paginate() as $character)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $character->getImageUrl(true) }}" alt="{{ $character->name }} picture">

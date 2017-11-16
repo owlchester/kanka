@@ -24,6 +24,7 @@ Route::group([
     Route::get('/profile', 'ProfileController@edit')->name('profile');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
 
+    Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');

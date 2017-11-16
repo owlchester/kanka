@@ -13,7 +13,7 @@ return [
         'success' => 'Family created.',
     ],
     'show' => [
-        'title' => 'Family :family',
+        'title' => 'Family :name',
         'description' => 'A detailed view of a family',
         'tabs' => [
             'history' => 'History',
@@ -22,7 +22,7 @@ return [
         ],
     ],
     'edit' => [
-        'title' => 'Edit Family :family',
+        'title' => 'Edit Family :name',
         'description' => '',
         'success' => 'Family updated.',
     ],

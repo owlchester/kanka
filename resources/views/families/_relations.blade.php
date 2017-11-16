@@ -1,6 +1,6 @@
 @if (Auth::user()->can('create', 'App\FamilyRelation'))
 <p class="text-right">
-    <a href="{{ route('family_relation.create', ['family' => $family->id]) }}" class="btn btn-primary">
+    <a href="{{ route('family_relation.create', ['family' => $model->id]) }}" class="btn btn-primary">
         {{ trans('families.relations.actions.add') }}    </a>
 </p>
 @endif
@@ -13,7 +13,7 @@
         <th>{{ trans('families.fields.location') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $family->relationships()->has('second')->with('second')->paginate() as $relation)
+    @foreach ($r = $model->relationships()->has('second')->with('second')->paginate() as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>

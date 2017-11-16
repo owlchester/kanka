@@ -7,7 +7,7 @@
         <th>{{ trans('characters.fields.race') }}</th>
         <th>{{ trans('characters.fields.sex') }}</th>
     </tr>
-    @foreach ($r = $family->members()->with('location')->paginate() as $relation)
+    @foreach ($r = $model->members()->with('location')->paginate() as $relation)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $relation->getImageUrl(true) }}" alt="{{ $relation->name }} picture">

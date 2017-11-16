@@ -6,7 +6,7 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>{{ trans('characters.sections.general') }}</h4>
+                <h4>{{ trans('crud.panels.general_information') }}</h4>
             </div>
             <div class="panel-body">
                 <div class="form-group required">
@@ -20,13 +20,12 @@
                 <div class="form-group">
                     <label>{{ trans('characters.fields.family') }}</label>
                     {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : []),
-                    null, ['id' => 'family_id', 'class' => 'form-control select2', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
-
+                    null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
                     {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : []),
-                    null, ['id' => 'location_id', 'class' => 'form-control select2', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
+                    null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.race') }}</label>
@@ -45,7 +44,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>{{ trans('characters.sections.appearance') }}</h4>
+                <h4>{{ trans('crud.panels.appearance') }}</h4>
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -104,12 +103,15 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>{{ trans('characters.sections.history') }}</h4>
+                <h4>{{ trans('crud.panels.history') }}</h4>
             </div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('characters.fields.history') }}</label>
                     {!! Form::textarea('history', null, ['placeholder' => trans('characters.placeholders.history'), 'class' => 'form-control html-editor', 'id' => 'history']) !!}
+                </div>
+                <div class="form-group">
+                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
                 </div>
             </div>
         </div>

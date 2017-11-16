@@ -10,48 +10,18 @@ use App\Family;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class FamilyController extends Controller
+class FamilyController extends CrudController
 {
     /**
      * @var string
      */
     protected $view = 'families';
+    protected $route = 'families';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = Family::search(request()->get('search'))
-            ->order(request()->get('order'))
-            ->paginate();
-        return view($this->view . '.index', compact('models'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Family::class);
-
-        return view($this->view . '.create');
-    }
+    protected $model = \App\Family::class;
 
     /**
      * Store a newly created resource in storage.
@@ -61,27 +31,18 @@ class FamilyController extends Controller
      */
     public function store(StoreFamily $request)
     {
-        $this->authorize('create', Family::class);
-
-        Family::create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.create.success'));
-        }
-        return redirect()->route($this->view . '.index')->with('success', trans('families.create.success'));
+        return $this->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Character  $family
      * @return \Illuminate\Http\Response
      */
     public function show(Family $family)
     {
-        $this->authorize('view', $family);
-
-        return view($this->view . '.show', compact('family'));
+        return $this->crudShow($family);
     }
 
     /**
@@ -92,9 +53,7 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        $this->authorize('update', $family);
-
-        return view($this->view . '.edit', compact('family'));
+        return $this->crudEdit($family);
     }
 
     /**
@@ -106,27 +65,17 @@ class FamilyController extends Controller
      */
     public function update(StoreFamily $request, Family $family)
     {
-        $this->authorize('update', $family);
-
-        $family->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
-        }
-        return redirect()->route($this->view . '.show', $family->id)->with('success', trans('families.edit.success'));
+        return $this->crudUpdate($request, $family);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Character  $family
      * @return \Illuminate\Http\Response
      */
     public function destroy(Family $family)
     {
-        $this->authorize('delete', $family);
-
-        $family->delete();
-        return redirect()->route($this->view . '.index')->with('success', trans('families.destroy.success'));
+        return $this->crudDestroy($family);
     }
 }

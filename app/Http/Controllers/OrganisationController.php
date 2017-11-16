@@ -10,47 +10,19 @@ use App\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class OrganisationController extends Controller
+class OrganisationController extends CrudController
 {
     /**
      * @var string
      */
     protected $view = 'organisations';
+    protected $route = 'organisations';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign');
-    }
+    protected $model = \App\Organisation::class;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = Organisation::search(request()->get('search'))
-            ->order(request()->get('order'))
-            ->paginate();
-        return view($this->view . '.index', compact('models'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Organisation::class);
-        return view($this->view . '.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -60,15 +32,7 @@ class OrganisationController extends Controller
      */
     public function store(StoreOrganisation $request)
     {
-        $this->authorize('create', Organisation::class);
-
-        Organisation::create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.create.success'));
-        }
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request);
     }
 
     /**
@@ -79,7 +43,7 @@ class OrganisationController extends Controller
      */
     public function show(Organisation $organisation)
     {
-        return view($this->view . '.show', compact('organisation'));
+        return $this->crudShow($organisation);
     }
 
     /**
@@ -90,9 +54,7 @@ class OrganisationController extends Controller
      */
     public function edit(Organisation $organisation)
     {
-        $this->authorize('update', $organisation);
-
-        return view($this->view . '.edit', compact('organisation'));
+        return $this->crudEdit($organisation);
     }
 
     /**
@@ -104,15 +66,7 @@ class OrganisationController extends Controller
      */
     public function update(StoreOrganisation $request, Organisation $organisation)
     {
-        $this->authorize('update', $organisation);
-
-        $organisation->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->view . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
-        }
-        return redirect()->route($this->view . '.show', $organisation->id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $organisation);
     }
 
     /**
@@ -123,10 +77,6 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
-        $this->authorize('delete', $organisation);
-
-        $organisation->delete();
-        return redirect()->route($this->view . '.index')
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($organisation);
     }
 }

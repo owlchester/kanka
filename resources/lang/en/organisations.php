@@ -13,7 +13,7 @@ return [
         'success' => 'Organisation created.',
     ],
     'show' => [
-        'title' => 'Organisation :organisation',
+        'title' => 'Organisation :name',
         'description' => 'A detailed view of an organisation',
         'actions' => [
             'add_member' => 'Add a member',
@@ -25,7 +25,7 @@ return [
         ]
     ],
     'edit' => [
-        'title' => 'Edit Organisation :organisation',
+        'title' => 'Edit Organisation :name',
         'description' => '',
         'success' => 'Organisation updated.',
     ],

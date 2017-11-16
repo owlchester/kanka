@@ -1,12 +1,3 @@
-@extends('layouts.app', [
-    'title' => trans('characters.show.title', ['character' => $model->name]),
-    'description' => trans('characters.show.description'),
-    'breadcrumbs' => [
-        ['url' => route('characters.index'), 'label' => trans('characters.index.title')],
-        $model->name,
-    ]
-])
-
 @section('content')
     <div class="row">
         <div class="col-md-3">

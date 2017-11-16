@@ -48,13 +48,14 @@ class CrudController extends Controller
     }
     public function crudIndex()
     {
-        $modelObject = new $this->model;
-        $models = $modelObject
+        $model = new $this->model;
+        $name = $this->view;
+        $models = $model
             ->search(request()
                 ->get('search'))
             ->order(request()->get('order'))
             ->paginate();
-        return view($this->view . '.index', compact('models'));
+        return view('cruds.index', compact('models', 'name', 'model'));
     }
 
     /**
@@ -70,7 +71,7 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
-        return view($this->view . '.create');
+        return view('cruds.create', ['name' => $this->view]);
     }
 
     /**
@@ -101,7 +102,9 @@ class CrudController extends Controller
     public function crudShow(Model $model)
     {
         $this->authorize('view', $model);
-        return view($this->view . '.show', compact('model'));
+        $name = $this->view;
+
+        return view('cruds.show', compact('model', 'name'));
     }
 
     /**
@@ -113,7 +116,9 @@ class CrudController extends Controller
     public function crudEdit(Model $model)
     {
         $this->authorize('update', $model);
-        return view($this->view . '.edit', compact('model'));
+        $name = $this->view;
+
+        return view('cruds.edit', compact('model', 'name'));
     }
 
     /**

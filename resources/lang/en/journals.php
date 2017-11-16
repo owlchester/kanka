@@ -13,11 +13,11 @@ return [
         'success' => 'Journal created.',
     ],
     'show' => [
-        'title' => 'Journal :journal',
+        'title' => 'Journal :name',
         'description' => 'A detailed view of a journal',
     ],
     'edit' => [
-        'title' => 'Edit Journal :journal',
+        'title' => 'Edit Journal :name',
         'description' => '',
         'success' => 'Journal updated.',
     ],

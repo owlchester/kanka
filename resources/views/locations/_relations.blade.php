@@ -1,7 +1,7 @@
 
 @if (Auth::user()->can('create', \App\Models\LocationRelation::class))
 <p class="text-right">
-    <a href="{{ route('location_relation.create', ['location' => $location->id]) }}" class="btn btn-primary">
+    <a href="{{ route('location_relation.create', ['location' => $model->id]) }}" class="btn btn-primary">
         {{ trans('locations.relations.actions.add') }}
     </a>
 </p>
@@ -12,22 +12,20 @@
         <th>{{ trans('locations.fields.relation') }}</th>
         <th class="avatar"><br /></th>
         <th>{{ trans('locations.fields.name') }}</th>
-        <th>{{ trans('locations.fields.type') }}</th>
         <th>{{ trans('locations.fields.location') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $location->relationships()->has('second')->with('second')->paginate() as $relation)
+    @foreach ($r = $model->relationships()->has('second')->with('second')->paginate() as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
                 <img class="direct-chat-img" src="{{ $relation->second->getImageUrl(true) }}" alt="{{ $relation->second->name }} picture">
             </td>
-            <td>{{ $relation->type }}</td>
             <td>
                 <a href="{{ route('locations.show', $relation->second_id) }}">{{ $relation->second->name }}</a></td>
             <td>
-                @if ($relation->second->location)
-                    <a href="{{ route('locations.show', $relation->second->location_id) }}">{{ $relation->second->location->name }}</a>
+                @if ($relation->second->parentLocation)
+                    <a href="{{ route('locations.show', $relation->second->parentLocation->id) }}">{{ $relation->second->parentLocation->name }}</a>
                 @endif
             </td>
             <td class="text-right">

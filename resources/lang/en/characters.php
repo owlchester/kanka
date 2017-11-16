@@ -13,7 +13,7 @@ return [
         'success' => 'Character created.',
     ],
     'show' => [
-        'title' => 'Character :character',
+        'title' => 'Character :name',
         'description' => 'A detailed view of a character',
         'tabs' => [
             'history' => 'History',
@@ -24,7 +24,7 @@ return [
         ]
     ],
     'edit' => [
-        'title' => 'Edit Character :character',
+        'title' => 'Edit Character :name',
         'description' => '',
         'success' => 'Character updated.',
     ],

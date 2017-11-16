@@ -1,12 +1,3 @@
-@extends('layouts.app', [
-    'title' => trans('locations.show.title', ['location' => $location->name]),
-    'description' => trans('locations.show.description'),
-    'breadcrumbs' => [
-        ['url' => route('locations.index'), 'label' => trans('locations.index.title')],
-        $location->name,
-    ]
-])
-
 @section('content')
     <div class="row">
         <div class="col-md-3">
@@ -14,31 +5,31 @@
             <!-- Profile Image -->
             <div class="box">
                 <div class="box-body box-profile">
-                    @if ($location->image)
-                    <a href="/storage/{{ $location->image }}">
-                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $location->image }}" alt="{{ $location->name }} picture">
+                    @if ($model->image)
+                    <a href="/storage/{{ $model->image }}">
+                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $model->image }}" alt="{{ $model->name }} picture">
                     </a>
                     @endif
 
-                    <h3 class="profile-username text-center">{{ $location->name }}
-                        @if ($location->is_private)
+                    <h3 class="profile-username text-center">{{ $model->name }}
+                        @if ($model->is_private)
                             <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
                         @endif
                     </h3>
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>{{ trans('locations.fields.type') }}</b> <a class="pull-right clear">{{ $location->type }}</a>
+                            <b>{{ trans('locations.fields.type') }}</b> <span class="pull-right clear">{{ $model->type }}</span>
                             <br class="clear" />
                         </li>
-                        @if (!empty($location->parentLocation))
+                        @if (!empty($model->parentLocation))
                             <li class="list-group-item">
                                 <b>{{ trans('locations.fields.location') }}</b>
 
                                 <span class="pull-right">
-                                <a href="{{ route('locations.show', $location->parentLocation->id) }}">{{ $location->parentLocation->name }}</a>
-                                    @if ($location->parentLocation->parentLocation)
-                                        , <a href="{{ route('locations.show', $location->parentLocation->parentLocation->id) }}">{{ $location->parentLocation->parentLocation->name }}</a>
+                                <a href="{{ route('locations.show', $model->parentLocation->id) }}">{{ $model->parentLocation->name }}</a>
+                                    @if ($model->parentLocation->parentLocation)
+                                        , <a href="{{ route('locations.show', $model->parentLocation->parentLocation->id) }}">{{ $model->parentLocation->parentLocation->name }}</a>
                                     @endif
                                 </span>
                                 <br class="clear" />
@@ -47,17 +38,17 @@
 
                     </ul>
 
-                    @if (Auth::user()->can('update', $location))
-                    <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-primary btn-block">
+                    @if (Auth::user()->can('update', $model))
+                    <a href="{{ route('locations.edit', $model->id) }}" class="btn btn-primary btn-block">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
                     @endif
 
-                    @if (Auth::user()->can('delete', $location))
-                        <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $location->name }}" data-toggle="modal" data-target="#delete-confirm">
+                    @if (Auth::user()->can('delete', $model))
+                        <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                         </button>
-                        {!! Form::open(['method' => 'DELETE','route' => ['locations.destroy', $location->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                        {!! Form::open(['method' => 'DELETE','route' => ['locations.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                         {!! Form::close() !!}
                     @endif
 
@@ -74,7 +65,7 @@
                 <div class="box-body">
 
                     <ul class="list-group list-group-unbordered">
-                        @foreach ($location->locationAttributes as $attribute)
+                        @foreach ($model->locationAttributes as $attribute)
                         <li class="list-group-item">
                             <b>{{ $attribute->name }}</b> <span class="pull-right">{{ $attribute->value }}</span>
                         </li>
@@ -98,12 +89,12 @@
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         <div class="post">
                             <h3>{{ trans('locations.fields.description') }}</h3>
-                            <p>{!! $location->description !!}</p>
+                            <p>{!! $model->description !!}</p>
                         </div>
 
                         <div class="post">
                             <h3>{{ trans('locations.fields.history') }}</h3>
-                            <p>{!! $location->history !!}</p>
+                            <p>{!! $model->history !!}</p>
                         </div>
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'character' ? ' active' : '') }}" id="character">

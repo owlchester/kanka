@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="form-group required">
             <label>{{ trans('characters.relations.fields.second') }}</label>
-            {!! Form::select('second_id', [], null, ['id' => 'second_id', 'class' => 'form-control select2', 'data-url' => route('characters.find'), 'data-placeholder' => trans('characters.relations.placeholders.second')]) !!}
+            {!! Form::select('second_id', [], null, ['id' => 'second_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('characters.find'), 'data-placeholder' => trans('characters.relations.placeholders.second')]) !!}
         </div>
 
         <div class="form-group required">

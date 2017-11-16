@@ -1,7 +1,7 @@
 
 @if (Auth::user()->can('create', \App\Models\OrganisationRelation::class))
 <p class="text-right">
-    <a href="{{ route('organisation_relation.create', ['organisation' => $organisation->id]) }}" class="btn btn-primary">
+    <a href="{{ route('organisation_relation.create', ['organisation' => $model->id]) }}" class="btn btn-primary">
         {{ trans('organisations.relations.actions.add') }}
     </a>
 </p>
@@ -16,7 +16,7 @@
         <th>{{ trans('organisations.fields.location') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $organisation->relationships()->has('second')->with('second')->paginate() as $relation)
+    @foreach ($r = $model->relationships()->has('second')->with('second')->paginate() as $relation)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>

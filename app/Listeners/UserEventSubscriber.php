@@ -54,12 +54,14 @@ class UserEventSubscriber
 
         // We want to register in the session a campaign_id
         CampaignService::switchToNext();
+        return true;
     }
 
     /**
      * Handle user logout events.
      */
-    public function onUserLogout($event) {
+    public function onUserLogout($event)
+    {
         // Log the activity
         if ($event->user) {
             $log = UserLog::create([
