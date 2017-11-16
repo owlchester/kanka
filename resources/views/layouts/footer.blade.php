@@ -9,13 +9,13 @@
         </div>
         <div class="col-md-4 text-right footer-social hidden-xs">
             <a href="//twitter.com/kankaio" title="Twitter">
-                <i class="fa fa-twitter-square"></i>
+                <i class="fa fa-twitter"></i>
             </a>
             <a href="//www.facebook.com/kanka.io.ch/" title="Facebook">
-                <i class="fa fa-facebook-official"></i>
+                <i class="fa fa-facebook"></i>
             </a>
             <a href="//www.reddit.com/r/kanka/" title="Reddit">
-                <i class="fa fa-reddit-square"></i>
+                <i class="fa fa-reddit"></i>
             </a>
             <a href="//www.patreon.com/kankaio" title="Patreon">
                 <i class="fa fa-gratipay"></i>

@@ -89,5 +89,7 @@ table tbody td {
 }
 
 .footer-social {
-  font-size: 28px !important;
+  a {
+    margin: 0 3px;
+  }
 }
