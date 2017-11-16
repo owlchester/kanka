@@ -29,6 +29,9 @@
                 <div class="box-body no-padding">
                     @include($name . '.datagrid')
                 </div>
+                <div class="box-footer">
+                    {{ $models->appends('order', request()->get('order'))->links() }}
+                </div>
             </div>
         </div>
     </div>
