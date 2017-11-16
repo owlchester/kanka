@@ -45,5 +45,3 @@
         </tr>
     @endforeach
     </tbody></table>
-
-{{ $models->appends('order', request()->get('order'))->links() }}

@@ -33,11 +33,13 @@ class SearchController extends Controller
         $organisations = Organisation::where('name', 'like', "%$term%")->limit(5)->get();
         $notes = Note::where('name', 'like', "%$term%")->limit(5)->get();
         $events = Event::where('name', 'like', "%$term%")->limit(5)->get();
+        $families = Family::where('name', 'like', "%$term%")->limit(5)->get();
 
         return view('search.index', compact(
             'term',
             'locations',
             'characters',
+            'families',
             'items',
             'organisations',
             'notes',
