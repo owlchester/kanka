@@ -6,6 +6,7 @@ use App\Character;
 use App\Family;
 use App\Item;
 use App\Location;
+use App\Models\Event;
 use App\Note;
 use App\Organisation;
 use Illuminate\Http\Request;
@@ -31,9 +32,16 @@ class SearchController extends Controller
         $items = Item::where('name', 'like', "%$term%")->limit(5)->get();
         $organisations = Organisation::where('name', 'like', "%$term%")->limit(5)->get();
         $notes = Note::where('name', 'like', "%$term%")->limit(5)->get();
+        $events = Event::where('name', 'like', "%$term%")->limit(5)->get();
 
         return view('search.index', compact(
-            'term', 'locations', 'characters', 'items', 'organisations', 'notes'
+            'term',
+            'locations',
+            'characters',
+            'items',
+            'organisations',
+            'notes',
+            'events'
         ));
     }
 
@@ -139,6 +147,28 @@ class SearchController extends Controller
         }
 
         $models = Organisation::where('name', 'like', "%$term%")->limit(10)->get();
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'text' => $model->name];
+        }
+
+        return \Response::json($formatted);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function events(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $models = Event::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {

@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\CampaignInvite' => 'App\Policies\CampaignInvitePolicy',
         'App\Character' => 'App\Policies\CharacterPolicy',
         'App\CharacterRelation' => 'App\Policies\CharacterRelationPolicy',
+        'App\Models\Event' => 'App\Policies\EventPolicy',
         'App\Family' => 'App\Policies\FamilyPolicy',
         'App\FamilyRelation' => 'App\Policies\FamilyRelationPolicy',
         'App\Item' => 'App\Policies\ItemPolicy',

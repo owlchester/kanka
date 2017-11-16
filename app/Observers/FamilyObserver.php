@@ -65,7 +65,7 @@ class FamilyObserver
     }
 
     /**
-     * @param Character $character
+     * @param Family $family
      */
     public function deleted(Family $family)
     {

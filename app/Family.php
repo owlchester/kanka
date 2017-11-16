@@ -12,6 +12,7 @@ class Family extends MiscModel
      */
     protected $fillable = [
         'name',
+        'slug',
         'history',
         'image',
         'location_id',

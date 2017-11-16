@@ -13,6 +13,7 @@ use App\Item;
 use App\Journal;
 use App\Location;
 use App\Models\CampaignInvite;
+use App\Models\Event;
 use App\Models\LocationRelation;
 use App\Models\OrganisationRelation;
 use App\Note;
@@ -21,6 +22,7 @@ use App\Observers\CampaignUserObserver;
 use App\Observers\CampaignUserUserObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
+use App\Observers\EventObserver;
 use App\Observers\FamilyObserver;
 use App\Observers\FamilyRelationObserver;
 use App\Observers\ItemObserver;
@@ -60,17 +62,18 @@ class AppServiceProvider extends ServiceProvider
         CampaignInvite::observe('App\Observers\CampaignInviteObserver');
         Character::observe(CharacterObserver::class);
         CharacterRelation::observe(CharacterRelationObserver::class);
+        Event::observe(EventObserver::class);
         Location::observe(LocationObserver::class);
         LocationRelation::observe(LocationRelationObserver::class);
         Family::observe(FamilyObserver::class);
         FamilyRelation::observe(FamilyRelationObserver::class);
         Item::observe(ItemObserver::class);
         Journal::observe(JournalObserver::class);
-        User::observe(UserObserver::class);
         Organisation::observe(OrganisationObserver::class);
         OrganisationMember::observe(OrganisationMemberObserver::class);
         OrganisationRelation::observe(OrganisationRelationObserver::class);
         Note::observe(NoteObserver::class);
+        User::observe(UserObserver::class);
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

@@ -9,10 +9,11 @@ return [
         'description' => 'You can easily link to other entries when creating or editing characters, locations etc. Simply write the following codes with the name of the entity you want to link to.',
         'elements' => [
             'character' => 'Characters',
-            'location' => 'Locations',
+            'event' => 'Events',
             'family' => 'Families',
             'item' => 'Items',
             'journal' => 'Journals',
+            'location' => 'Locations',
             'note' => 'Notes',
             'organisation' => 'Organisations'
         ]

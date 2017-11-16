@@ -9,7 +9,7 @@ class LinkerService
      */
     protected $elements = [
         'character',
-        //'event',
+        'event',
         'family',
         'item',
         'journal',

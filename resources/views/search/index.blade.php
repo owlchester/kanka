@@ -34,24 +34,32 @@
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a href="#characters" data-toggle="tab" aria-expanded="false">
-                            {{ trans('search.tabs.characters') }}
+                        {{ trans('search.tabs.characters') }}
                         <span class="badge bg-blue">{{ count($characters) }}</span></a>
                     </li>
-                    <li class=""><a href="#locations" data-toggle="tab" aria-expanded="false">
-                            {{ trans('search.tabs.locations') }}
-                        <span class="badge bg-blue">{{ count($locations) }}</span></a>
+                    <li class=""><a href="#events" data-toggle="tab" aria-expanded="false">
+                        {{ trans('search.tabs.events') }}
+                        <span class="badge bg-blue">{{ count($events) }}</span></a>
                     </li>
                     <li class=""><a href="#items" data-toggle="tab" aria-expanded="false">
                             {{ trans('search.tabs.items') }}
-                        <span class="badge bg-blue">{{ count($items) }}</span></a>
+                            <span class="badge bg-blue">{{ count($items) }}</span></a>
                     </li>
-                    <li class=""><a href="#organisations" data-toggle="tab" aria-expanded="false">
-                            {{ trans('search.tabs.organisations') }}
-                        <span class="badge bg-blue">{{ count($organisations) }}</span></a>
+                    <li class=""><a href="#families" data-toggle="tab" aria-expanded="false">
+                            {{ trans('search.tabs.families') }}
+                            <span class="badge bg-blue">{{ count($families) }}</span></a>
+                    </li>
+                    <li class=""><a href="#locations" data-toggle="tab" aria-expanded="false">
+                        {{ trans('search.tabs.locations') }}
+                        <span class="badge bg-blue">{{ count($locations) }}</span></a>
                     </li>
                     <li class=""><a href="#notes" data-toggle="tab" aria-expanded="false">
-                            {{ trans('search.tabs.notes') }}
+                        {{ trans('search.tabs.notes') }}
                         <span class="badge bg-blue">{{ count($notes) }}</span></a>
+                    </li>
+                    <li class=""><a href="#organisations" data-toggle="tab" aria-expanded="false">
+                        {{ trans('search.tabs.organisations') }}
+                        <span class="badge bg-blue">{{ count($organisations) }}</span></a>
                     </li>
 
                 </ul>
@@ -60,17 +68,23 @@
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="characters">
                         @include('characters.datagrid', ['models' => $characters])
                     </div>
-                    <div class="tab-pane {{ (request()->get('tab') == 'locations' ? ' active' : '') }}" id="locations">
-                        @include('locations.datagrid', ['models' => $locations])
+                    <div class="tab-pane {{ (request()->get('tab') == 'events' ? ' active' : '') }}" id="events">
+                        @include('events.datagrid', ['models' => $events])
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'families' ? ' active' : '') }}" id="families">
+                        @include('families.datagrid', ['models' => $families])
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'items' ? ' active' : '') }}" id="items">
                         @include('items.datagrid', ['models' => $items])
                     </div>
-                    <div class="tab-pane {{ (request()->get('tab') == 'organisations' ? ' active' : '') }}" id="organisations">
-                        @include('organisations.datagrid', ['models' => $organisations])
+                    <div class="tab-pane {{ (request()->get('tab') == 'locations' ? ' active' : '') }}" id="locations">
+                        @include('locations.datagrid', ['models' => $locations])
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'notes' ? ' active' : '') }}" id="notes">
                         @include('notes.datagrid', ['models' => $notes])
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'organisations' ? ' active' : '') }}" id="organisations">
+                        @include('organisations.datagrid', ['models' => $organisations])
                     </div>
                 </div>
             </div>

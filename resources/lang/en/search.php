@@ -6,9 +6,12 @@ return [
 
     'tabs' => [
         'characters' => 'Characters',
-        'locations' => 'Locations',
+        'events' => 'Events',
+        'families' => 'Families',
         'items' => 'Items',
-        'organisations' => 'Organisations',
+        'journals' => 'Journals',
+        'locations' => 'Locations',
         'notes' => 'Notes',
+        'organisations' => 'Organisations',
     ]
 ];

@@ -24,12 +24,6 @@
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($model->date)
-                        <li class="list-group-item">
-                            <b>{{ trans('events.fields.date') }}</b> <span class="pull-right">{{ $model->date }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
                         @if (!empty($model->location))
                             <li class="list-group-item">
                                 <b>{{ trans('events.fields.location') }}</b>
@@ -39,6 +33,12 @@
                                         , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}">{{ $model->location->parentLocation->name }}</a>
                                     @endif
                                 </span>
+                                <br class="clear" />
+                            </li>
+                        @endif
+                        @if (!empty($model->character))
+                            <li class="list-group-item">
+                                <b>{{ trans('events.fields.character') }}</b> <a class="pull-right" href="{{ route('characters.show', $model->character_id) }}">{{ $model->character->name }}</a>
                                 <br class="clear" />
                             </li>
                         @endif
@@ -72,6 +72,13 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="information">
+                        @if (!empty($model->description))
+                        <div class="post">
+                            <h3>{{ trans('events.fields.description') }}</h3>
+                            <p>{!! $model->description !!}</p>
+                        </div>
+                        @endif
+
                         @if (!empty($model->history))
                         <div class="post">
                             <h3>{{ trans('events.fields.history') }}</h3>
