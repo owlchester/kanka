@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Events',
-        'description' => 'Manage the events of your campaign.',
+        'description' => 'Manage the events of :name.',
         'add' => 'New Event',
         'header' => 'Events of :name',
     ],

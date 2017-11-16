@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Locations',
-        'description' => 'Manage the location of your campaign.',
+        'description' => 'Manage the location of :name.',
         'add' => 'New Location',
         'header' => 'Locations in :name'
     ],

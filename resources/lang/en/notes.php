@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Notes',
-        'description' => 'Manage the notes of your campaign.',
+        'description' => 'Manage the notes of :name.',
         'add' => 'New Note',
         'header' => 'Notes of :name',
     ],

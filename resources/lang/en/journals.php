@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Journals',
-        'description' => 'Manage the journals of your campaign.',
+        'description' => 'Manage the journals of :name.',
         'add' => 'New Journal',
         'header' => 'Journals of :name',
     ],

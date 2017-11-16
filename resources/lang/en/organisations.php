@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Organisations',
-        'description' => 'Manage the organisations of your campaign.',
+        'description' => 'Manage the organisations of :name.',
         'add' => 'New Organisation',
         'header' => 'Organisations of :name',
     ],

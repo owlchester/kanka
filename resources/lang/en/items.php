@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Items',
-        'description' => 'Manage the items of your campaign.',
+        'description' => 'Manage the items of :name.',
         'add' => 'New Item',
         'header' => 'Items of :name',
     ],

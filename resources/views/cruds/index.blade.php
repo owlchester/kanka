@@ -1,11 +1,12 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.index.title'),
-    'description' => trans($name . '.index.description'),
+    'title' => trans($name . '.index.title', ['name' => Auth::user()->campaign->name]),
+    'description' => trans($name . '.index.description',  ['name' => Auth::user()->campaign->name]),
     'breadcrumbs' => [
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
+
 
 @section('content')
     <div class="row">

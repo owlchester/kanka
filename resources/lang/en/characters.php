@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Characters',
-        'description' => 'Manage the characters in :name.',
+        'description' => 'Manage the characters of :name.',
         'add' => 'New Character',
         'header' => 'Characters in :name',
     ],

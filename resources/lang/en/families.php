@@ -3,7 +3,7 @@
 return [
     'index' => [
         'title' => 'Families',
-        'description' => 'Manage the families of your campaign.',
+        'description' => 'Manage the families of :name.',
         'add' => 'New Family',
         'header' => 'Families of :name',
     ],
