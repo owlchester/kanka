@@ -2,7 +2,7 @@
     'title' => trans($name . '.create.title'),
     'description' => trans($name . '.create.description'),
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => trans($name . 'rganisations.index.title')],
+        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')],
         trans('crud.create'),
     ]
 ])
