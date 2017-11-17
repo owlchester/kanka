@@ -9,33 +9,30 @@ use App\Http\Requests\StoreCharacterRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class CharacterRelationController extends Controller
+class CharacterRelationController extends CrudRelationController
 {
     /**
      * @var string
      */
     protected $view = 'characters.relations';
-    
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
-    }
 
     /**
-     * Display a listing of the resource.
-     *
+     * @var string
+     */
+    protected $route = 'characters.character_relations';
+
+    /**
+     * @var string
+     */
+    protected $model = \App\Models\CharacterRelation::class;
+
+    /**
+     * @param Character $character
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Character $character)
     {
-        $models = CharacterRelation::paginate();
-        return view($this->view . '.index', compact('models'));
+        return $this->crudIndex($character);
     }
 
     /**
@@ -43,10 +40,9 @@ class CharacterRelationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Character $character)
     {
-        $character = Character::findOrFail(request()->get('character'));
-        return view($this->view . '.create', compact('character'));
+        return $this->crudCreate($character);
     }
 
     /**
@@ -55,23 +51,11 @@ class CharacterRelationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCharacterRelation $request)
+    public function store(StoreCharacterRelation $request, Character $character)
     {
-        $relation = CharacterRelation::create($request->all());
-        return redirect()->route('characters.show', [$relation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request, $character);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CharacterRelation $characterRelation)
-    {
-        return view($this->view . '.show', compact('characterRelation'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -79,9 +63,9 @@ class CharacterRelationController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(CharacterRelation $characterRelation)
+    public function edit(Character $character, CharacterRelation $characterRelation)
     {
-        return view($this->view . '.edit', compact('characterRelation'));
+        return $this->crudEdit($character, $characterRelation);
     }
 
     /**
@@ -91,23 +75,19 @@ class CharacterRelationController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCharacterRelation $request, CharacterRelation $characterRelation)
+    public function update(StoreCharacterRelation $request, Character $character, CharacterRelation $characterRelation)
     {
-        $characterRelation->update($request->all());
-        return redirect()->route('characters.show', $characterRelation->first_id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $character, $characterRelation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CharacterRelation  $characterRelation
+     * @param  \App\Models\CharacterRelation  $characterRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CharacterRelation $characterRelation)
+    public function destroy(Character $character, CharacterRelation $characterRelation)
     {
-        $characterRelation->delete();
-        return redirect()->route('characters.show', [$characterRelation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($character, $characterRelation);
     }
 }

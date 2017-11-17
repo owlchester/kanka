@@ -20,7 +20,8 @@
                 <img class="direct-chat-img" src="{{ $relation->second->getImageUrl(true) }}" alt="{{ $relation->second->name }} picture">
             </td>
             <td>
-                <a href="{{ route('families.show', $relation->second_id) }}">{{ $relation->second->name }}</a></td>
+                <a href="{{ route('families.show', $relation->second_id) }}">{{ $relation->second->name }}</a>
+            </td>
             @if ($campaign->enabled('locations'))
             <td>
                 @if ($relation->second->location)

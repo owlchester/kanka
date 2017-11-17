@@ -14,7 +14,7 @@ class CharacterRelationPolicy
      * Determine whether the user can view the characterRelation.
      *
      * @param  \App\User  $user
-     * @param  \App\CharacterRelation  $characterRelation
+     * @param  \App\Models\CharacterRelation  $characterRelation
      * @return mixed
      */
     public function view(User $user, CharacterRelation $characterRelation)
@@ -37,7 +37,7 @@ class CharacterRelationPolicy
      * Determine whether the user can update the characterRelation.
      *
      * @param  \App\User  $user
-     * @param  \App\CharacterRelation  $characterRelation
+     * @param  \App\Models\CharacterRelation  $characterRelation
      * @return mixed
      */
     public function update(User $user, CharacterRelation $characterRelation)
@@ -50,7 +50,7 @@ class CharacterRelationPolicy
      * Determine whether the user can delete the characterRelation.
      *
      * @param  \App\User  $user
-     * @param  \App\CharacterRelation  $characterRelation
+     * @param  \App\Models\CharacterRelation  $characterRelation
      * @return mixed
      */
     public function delete(User $user, CharacterRelation $characterRelation)

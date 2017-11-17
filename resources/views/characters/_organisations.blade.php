@@ -1,5 +1,5 @@
 <!--<p class="text-right">
-    <a href="{{ route('character_relation.create', ['character' => $model->id]) }}" class="btn btn-primary">
+    <a href="{{ route('organisation_member.create', ['character' => $model->id]) }}" class="btn btn-primary">
     {{ trans('characters.organisations.actions.add') }}    </a>
 </p>-->
 

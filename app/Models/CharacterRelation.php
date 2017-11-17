@@ -12,12 +12,12 @@ class CharacterRelation extends Model
 
     public function first()
     {
-        return $this->belongsTo(Character::class, 'first_id');
+        return $this->belongsTo('App\Character', 'first_id');
     }
 
     public function second()
     {
-        return $this->belongsTo(Character::class, 'second_id');
+        return $this->belongsTo('App\Character', 'second_id');
     }
     //
 }
