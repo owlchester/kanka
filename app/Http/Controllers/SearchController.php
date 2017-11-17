@@ -9,41 +9,57 @@ use App\Location;
 use App\Models\Event;
 use App\Note;
 use App\Organisation;
+use App\Services\CampaignService;
+use App\Services\EntityService;
+use App\Services\LinkerService;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
     /**
+     * @var CampaignService
+     */
+    protected $campaign;
+
+    /**
+     * @var EntityService
+     */
+    protected $entity;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CampaignService $campaignService, EntityService $entityService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign');
+        $this->middleware('campaign.member');
+
+        $this->entity = $entityService;
     }
 
     public function search(Request $request)
     {
+        $this->campaign = new CampaignService();
+
         $term = trim($request->q);
-        $locations = Location::where('name', 'like', "%$term%")->limit(5)->get();
-        $characters = Character::where('name', 'like', "%$term%")->limit(5)->get();
-        $items = Item::where('name', 'like', "%$term%")->limit(5)->get();
-        $organisations = Organisation::where('name', 'like', "%$term%")->limit(5)->get();
-        $notes = Note::where('name', 'like', "%$term%")->limit(5)->get();
-        $events = Event::where('name', 'like', "%$term%")->limit(5)->get();
-        $families = Family::where('name', 'like', "%$term%")->limit(5)->get();
+        $elements = [];
+        $results = [];
+        $active = '';
+
+        foreach ($this->entity->entities() as $element => $class) {
+            if ($this->campaign->enabled($element)) {
+                $model = new $class;
+                $results[$element] = $model->where('name', 'like', "%$term%")->limit(5)->get();
+                $active = empty($active) ? $element : $active;
+            }
+        }
 
         return view('search.index', compact(
             'term',
-            'locations',
-            'characters',
-            'families',
-            'items',
-            'organisations',
-            'notes',
-            'events'
+            'results',
+            'active'
         ));
     }
 

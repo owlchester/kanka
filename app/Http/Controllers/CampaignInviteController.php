@@ -28,6 +28,7 @@ class CampaignInviteController extends Controller
      */
     public function create(Campaign $campaign)
     {
+        dd($campaign->title);
         $this->authorize('invite', $campaign);
 
         return view('campaigns.invites.create', compact('campaign'));

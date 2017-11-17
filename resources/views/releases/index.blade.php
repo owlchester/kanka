@@ -5,25 +5,32 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            @foreach ($models as $model)
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                       {{ $model->title }}
-                    </h3>
-                </div>
-
+        @foreach ($models as $model)
+        <div class="col-md-3">
+            <div class="box news">
                 <div class="box-body">
-                    {!! $model->body !!}
-                </div>
+                    @if ($model->image)
+                    <img src="/storage/{{ $model->image }}" />
+                    @endif
 
-                <div class="box-footer text-right">
-                    {{ trans('releases.post.footer', ['date' => $model->updated_at]) }}
+                    <h2><a href="{{ route('releases.show', $model->id) }}">
+                    {{ $model->title }}
+                    </a></h2>
+
+                    @if ($model->excerpt)
+                    {!! $model->excerpt !!}
+                    @else
+                    {!! $model->body !!}
+                    @endif
+
+                    <p class="text-muted">
+                        {{ trans('releases.post.footer', ['date' => $model->updated_at, 'name' => $model->authorId->name]) }}
+                    </p>
                 </div>
             </div>
-            @endforeach
-            {{ $models->appends('order', request()->get('order'))->links() }}
         </div>
+        @endforeach
     </div>
+
+    {{ $models->appends('order', request()->get('order'))->links() }}
 @endsection

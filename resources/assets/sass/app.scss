@@ -93,3 +93,14 @@ table tbody td {
     margin: 0 3px;
   }
 }
+
+/** news */
+.news .box-body img {
+  width: 100%;
+  display:block;
+}
+.news .box-body a {
+  display: block;
+  text-transform: uppercase;
+  line-height: 23px;
+}

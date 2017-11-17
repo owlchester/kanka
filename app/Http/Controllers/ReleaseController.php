@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \TCG\Voyager\Models\Post;
+use App\Models\Release;
 use Illuminate\Http\Request;
 
 class ReleaseController extends Controller
@@ -24,7 +24,7 @@ class ReleaseController extends Controller
      */
     public function index()
     {
-        $models = Post::with(['category'])
+        $models = Release::with(['category'])
             ->where('status', 'PUBLISHED')
             ->orderBy('created_at', 'DESC')
             ->paginate();
@@ -55,21 +55,21 @@ class ReleaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \TCG\Voyager\Models\Post  $post
+     * @param  \App\Models\Release  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Release $post)
     {
-        //
+        return view('releases.show', ['model' => $post]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \TCG\Voyager\Models\Post  $post
+     * @param  \App\Models\Release  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Release $post)
     {
         //
     }
@@ -78,10 +78,10 @@ class ReleaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \TCG\Voyager\Models\Post  $post
+     * @param  \App\Models\Release  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Release $post)
     {
         //
     }
@@ -89,10 +89,10 @@ class ReleaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \TCG\Voyager\Models\Post  $post
+     * @param  \App\Models\Release  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Release $post)
     {
         //
     }

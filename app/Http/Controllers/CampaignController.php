@@ -140,7 +140,7 @@ class CampaignController extends Controller
         try {
             CampaignService::leave($campaign);
             return redirect()->route('home');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('campaigns.index')->withErrors($e->getMessage());
         }
     }

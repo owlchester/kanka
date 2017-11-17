@@ -6,6 +6,9 @@ return [
         'description' => 'The latest updates to kanka.io',
     ],
     'post' => [
-        'footer' => 'Last updated at :date',
+        'footer' => 'By :name on :date',
+    ],
+    'show' => [
+        'title' => ':name'
     ]
 ];

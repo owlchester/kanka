@@ -18,11 +18,13 @@
                     <label>{{ trans('events.fields.date') }}</label>
                     {!! Form::text('date', null, ['placeholder' => trans('events.placeholders.date'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('events.fields.location') }}</label>
                     {!! Form::select('location_id', (isset($model) && $model->location ? [$model->location_id => $model->location->name] : []),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('events.placeholders.location')]) !!}
                 </div>
+                @endif
                 <hr />
 
                 <div class="form-group">

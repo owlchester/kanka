@@ -56,6 +56,7 @@ Route::group([
         'campaigns.campaign_invites' => 'CampaignInviteController',
     ]);
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
+    Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
 
     // Search

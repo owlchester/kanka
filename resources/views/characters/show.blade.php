@@ -22,13 +22,13 @@
                     @endif
 
                     <ul class="list-group list-group-unbordered">
-                        @if ($model->family)
+                        @if ($campaign->enabled('families') && $model->family)
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.family') }}</b> <a class="pull-right" href="{{ route('families.show', $model->family_id) }}">{{ $model->family->name }}</a>
                                 <br class="clear" />
                             </li>
                         @endif
-                        @if ($model->location)
+                        @if ($campaign->enabled('locations') && $model->location)
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.location') }}</b>
                                 <span  class="pull-right">
@@ -145,9 +145,11 @@
                     <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.relations') }}
                         </a></li>
+                    @if ($campaign->enabled('organisations'))
                     <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.organisations') }}
                         </a></li>
+                    @endif
                 </ul>
 
                 <div class="tab-content">
@@ -170,9 +172,11 @@
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
                         @include('characters._relations')
                     </div>
+                    @if ($campaign->enabled('organisations'))
                     <div class="tab-pane {{ (request()->get('tab') == 'organisation' ? ' active' : '') }}" id="organisation">
                         @include('characters._organisations')
                     </div>
+                    @endif
                 </div>
             </div>
 

@@ -32,6 +32,11 @@ return [
         'actions' => [
             'leave' => 'Leave campaign',
         ],
+        'tabs' => [
+            'information' => 'Information',
+            'members' => 'Members',
+            'settings' => 'Settings',
+        ],
     ],
     'edit' => [
         'title' => 'Edit Campaign :campaign',
@@ -110,6 +115,18 @@ return [
             'login' => 'Please log in or register to join the campaign.',
             'already_member' => 'You are already a member of that campaign.'
         ]
+    ],
+    'settings' => [
+        'fields' => [
+            'characters' => 'Characters',
+            'events' => 'Events',
+            'families' => 'Families',
+            'items' => 'Items',
+            'journals' => 'Journals',
+            'locations' => 'Locations',
+            'notes' => 'Notes',
+            'organisations' => 'Organisations',
+        ],
     ],
     'leave' => [
         'confirm' => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, ' .

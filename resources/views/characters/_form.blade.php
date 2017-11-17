@@ -17,16 +17,20 @@
                     <label>{{ trans('characters.fields.title') }}</label>
                     {!! Form::text('title', null, ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('families'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.family') }}</label>
                     {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : []),
                     null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
                 </div>
+                @endif
+                @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
                     {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : []),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
+                @endif
                 <div class="form-group">
                     <label>{{ trans('characters.fields.race') }}</label>
                     {!! Form::text('race', null, ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Campaign;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;

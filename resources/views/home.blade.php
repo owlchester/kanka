@@ -22,13 +22,23 @@
     </div>
 
     <div class="row">
-        @include('dashboard._recent', ['title' => 'Characters', 'route' => 'characters', 'models' => $characters])
-        @include('dashboard._recent', ['title' => 'Families', 'route' => 'families', 'models' => $families])
-        @include('dashboard._recent', ['title' => 'Locations', 'route' => 'locations', 'models' => $locations])
-    </div>
-    <div class="row">
-        @include('dashboard._recent', ['title' => 'Organisations', 'route' => 'organisations', 'models' => $organisations])
-        @include('dashboard._recent', ['title' => 'Items', 'route' => 'items', 'models' => $items])
-        @include('dashboard._recent', ['title' => 'Journals', 'route' => 'journals', 'models' => $journals])
+        @if ($campaign->enabled('characters'))
+            @include('dashboard._recent', ['title' => 'Characters', 'route' => 'characters', 'models' => $characters])
+        @endif
+        @if ($campaign->enabled('families'))
+            @include('dashboard._recent', ['title' => 'Families', 'route' => 'families', 'models' => $families])
+        @endif
+        @if ($campaign->enabled('locations'))
+            @include('dashboard._recent', ['title' => 'Locations', 'route' => 'locations', 'models' => $locations])
+        @endif
+        @if ($campaign->enabled('organisations'))
+            @include('dashboard._recent', ['title' => 'Organisations', 'route' => 'organisations', 'models' => $organisations])
+        @endif
+        @if ($campaign->enabled('items'))
+            @include('dashboard._recent', ['title' => 'Items', 'route' => 'items', 'models' => $items])
+        @endif
+        @if ($campaign->enabled('journals'))
+            @include('dashboard._recent', ['title' => 'Journals', 'route' => 'journals', 'models' => $journals])
+        @endif
     </div>
 @endsection

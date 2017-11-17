@@ -11,6 +11,7 @@
                     <label>{{ trans('families.fields.name') }}</label>
                     {!! Form::text('name', null, ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('families.fields.location') }}</label>
                     {!! Form::select('location_id', (isset($family) && !empty($family->location) ? [$family->location_id => $family->location->name] : []),
@@ -19,6 +20,7 @@
                 </div>
 
                 <hr />
+                @endif
 
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}

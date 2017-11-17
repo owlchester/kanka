@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Models\CampaignSetting;
 use App\Services\CampaignService;
 use App\Services\ImageService;
 use App\Services\StarterService;
@@ -54,6 +55,12 @@ class CampaignObserver
         $user->campaign_role = 'owner';
         $user->save();
 
+        // Settings
+        $setting = new CampaignSetting([
+            'campaign_id' => $campaign->id
+        ]);
+        $setting->save();
+
         if ($first) {
             StarterService::generateBoilerplate($campaign);
         }
@@ -77,5 +84,8 @@ class CampaignObserver
         foreach ($campaign->members as $member) {
             $member->delete();
         }
+
+        // Delete the campaign setting
+        $campaign->setting->delete();
     }
 }

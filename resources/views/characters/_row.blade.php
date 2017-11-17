@@ -5,16 +5,20 @@
     <td>
         <a href="{{route('characters.show', $character->id)}}">{{ $character->name }}</a>
     </td>
+    @if ($campaign->enabled('families'))
     <td>
         @if ($character->family)
             <a href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
         @endif
     </td>
+    @endif
+    @if ($campaign->enabled('locations'))
     <td>
         @if ($character->location)
             <a href="{{ route('locations.show', $character->location_id) }}">{{ $character->location->name }}</a>
         @endif
     </td>
+    @endif
     <td>{{ $character->age }}</td>
     <td>{{ $character->race }}</td>
     <td>{{ $character->sex }}</td>

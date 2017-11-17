@@ -2,7 +2,7 @@
     <tbody><tr>
         <th class="avatar"><br></th>
         <th><a href="{{ route('families.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('families.fields.name') }}</a></th>
-        <th>{{ trans('families.fields.location') }}</th>
+        @if ($campaign->enabled('locations'))<th>{{ trans('families.fields.location') }}</th>@endif
         <th>{{ trans('families.fields.members') }}</th>
         @if (!Auth::user()->viewer())
             <th><a href="{{ route('families.index', ['order' => 'is_private', 'page' => request()->get('page')]) }}">{{ trans('crud.fields.is_private') }}</a></th>
@@ -17,11 +17,12 @@
             <td>
                 <a href="{{ route('families.show', $family->id) }}">{{ $family->name }}</a>
             </td>
-            <td>
+            @if ($campaign->enabled('locations'))<td>
                 @if ($family->location)
                     <a href="{{ route('locations.show', $family->location_id) }}">{{ $family->location->name }}</a>
                 @endif
             </td>
+            @endif
             <td>
                 {{ $family->members()->count() }}
             </td>

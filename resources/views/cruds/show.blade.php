@@ -6,6 +6,7 @@
         $model->name,
     ]
 ])
+@inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
     @include($name . '.show')

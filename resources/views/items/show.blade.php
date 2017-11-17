@@ -20,19 +20,13 @@
                     <ul class="list-group list-group-unbordered">
                         @if ($model->type)
                         <li class="list-group-item">
-                            <b>{{ trans('events.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
+                            <b>{{ trans('items.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($model->date)
-                        <li class="list-group-item">
-                            <b>{{ trans('events.fields.date') }}</b> <span class="pull-right">{{ $model->date }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
-                        @if (!empty($model->location))
+                        @if ($campaign->enabled('locations') && !empty($model->location))
                             <li class="list-group-item">
-                                <b>{{ trans('events.fields.location') }}</b>
+                                <b>{{ trans('items.fields.location') }}</b>
                                 <span  class="pull-right">
                                 <a href="{{ route('locations.show', $model->location_id) }}">{{ $model->location->name }}</a>
                                     @if ($model->location->parentLocation)
@@ -42,10 +36,19 @@
                                 <br class="clear" />
                             </li>
                         @endif
+                            @if ($campaign->enabled('characters') && !empty($model->character))
+                            <li class="list-group-item">
+                                <b>{{ trans('items.fields.character') }}</b>
+                                <span  class="pull-right">
+                                <a href="{{ route('characters.show', $model->character->id) }}">{{ $model->character->name }}</a>
+                                </span>
+                                <br class="clear" />
+                            </li>
+                        @endif
                     </ul>
 
                     @if (Auth::user()->can('update', $model))
-                    <a href="{{ route('events.edit', $model->id) }}" class="btn btn-primary btn-block">
+                    <a href="{{ route('items.edit', $model->id) }}" class="btn btn-primary btn-block">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
                     @endif
@@ -54,7 +57,7 @@
                     <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
-                    {!! Form::open(['method' => 'DELETE','route' => ['events.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                    {!! Form::open(['method' => 'DELETE','route' => ['items.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                     {!! Form::close() !!}
                     @endif
                 </div>
@@ -66,7 +69,7 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('events.show.tabs.information') }}</a></li>
+                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('items.show.tabs.information') }}</a></li>
                     <!--<li><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
                 </ul>
 
@@ -74,8 +77,14 @@
                     <div class="tab-pane active" id="information">
                         @if (!empty($model->history))
                         <div class="post">
-                            <h3>{{ trans('events.fields.history') }}</h3>
+                            <h3>{{ trans('items.fields.history') }}</h3>
                             <p>{!! $model->history !!}</p>
+                        </div>
+                        @endif
+                        @if (!empty($model->description))
+                        <div class="post">
+                            <h3>{{ trans('items.fields.description') }}</h3>
+                            <p>{!! $model->description !!}</p>
                         </div>
                         @endif
                     </div>

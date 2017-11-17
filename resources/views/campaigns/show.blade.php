@@ -74,8 +74,23 @@
     <div class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#info" data-toggle="tab" aria-expanded="false">Information</a></li>
-                <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">Members</a></li>
+                <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                    <a href="#info" data-toggle="tab" aria-expanded="false">
+                        {{ trans('campaigns.show.tabs.information') }}
+                    </a>
+                </li>
+                <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
+                    <a href="#member" data-toggle="tab" aria-expanded="false">
+                        {{ trans('campaigns.show.tabs.members') }}
+                    </a>
+                </li>
+                @if (Auth::user()->can('setting', $campaign))
+                <li class="{{ (request()->get('tab') == 'setting' ? ' active' : '') }}">
+                    <a href="#setting" data-toggle="tab" aria-expanded="false">
+                        {{ trans('campaigns.show.tabs.settings') }}
+                    </a>
+                </li>
+                @endif
             </ul>
 
             <div class="tab-content">
@@ -87,6 +102,11 @@
                 <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
                     @include('campaigns._members')
                 </div>
+                @if (Auth::user()->can('setting', $campaign))
+                <div class="tab-pane {{ (request()->get('tab') == 'setting' ? ' active' : '') }}" id="setting">
+                    @include('campaigns._settings')
+                </div>
+                @endif
             </div>
         </div>
 

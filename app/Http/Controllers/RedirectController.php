@@ -21,7 +21,7 @@ class RedirectController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign');
+        $this->middleware('campaign.member');
     }
 
     /**

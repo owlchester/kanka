@@ -2,9 +2,9 @@
     <tbody><tr>
         <th class="avatar"><br></th>
         <th><a href="{{ route('organisations.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('organisations.fields.name') }}</a></th>
-        <th>{{ trans('organisations.fields.location') }}</th>
+        @if ($campaign->enabled('locations'))<th>{{ trans('organisations.fields.location') }}</th>@endif
         <th><a href="{{ route('organisations.index', ['order' => 'type', 'page' => request()->get('page')]) }}">{{ trans('organisations.fields.type') }}</a></th>
-        <th>{{ trans('organisations.fields.members') }}</th>
+        @if ($campaign->enabled('characters'))<th>{{ trans('organisations.fields.members') }}</th>@endif
         @if (!Auth::user()->viewer())
             <th><a href="{{ route('organisations.index', ['order' => 'is_private', 'page' => request()->get('page')]) }}">{{ trans('crud.fields.is_private') }}</a></th>
         @endif
@@ -18,15 +18,19 @@
             <td>
             <a href="{{ route('organisations.show', $organisation->id) }}">{{ $organisation->name }}</a>
             </td>
+            @if ($campaign->enabled('locations'))
             <td>
                 @if ($organisation->location)
                     <a href="{{ route('locations.show', $organisation->location_id) }}">{{ $organisation->location->name }}</a>
                 @endif
             </td>
+            @endif
             <td>{{ $organisation->type }}</td>
+            @if ($campaign->enabled('characters'))
             <td>
                 {{ $organisation->members()->has('character')->count() }}
             </td>
+            @endif
             @if (!Auth::user()->viewer())
                 <td>
                 @if ($organisation->is_private == true)

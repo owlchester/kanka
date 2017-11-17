@@ -2,8 +2,8 @@
     <tbody><tr>
         <th class="avatar"><br></th>
         <th><a href="{{ route('characters.index', ['order' => 'name', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.name') }}</a></th>
-        <th>{{ trans('characters.fields.family') }}</th>
-        <th>{{ trans('characters.fields.location') }}</th>
+        @if ($campaign->enabled('families'))<th>{{ trans('characters.fields.family') }}</th>@endif
+        @if ($campaign->enabled('locations'))<th>{{ trans('characters.fields.location') }}</th>@endif
         <th><a href="{{ route('characters.index', ['order' => 'age', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.age') }}</a></th>
         <th><a href="{{ route('characters.index', ['order' => 'race', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.race') }}</a></th>
         <th><a href="{{ route('characters.index', ['order' => 'sex', 'page' => request()->get('page')]) }}">{{ trans('characters.fields.sex') }}</a></th>

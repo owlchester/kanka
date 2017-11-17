@@ -57,7 +57,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.history') }}</a></li>
-                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.member') }}</a></li>
+                    @if ($campaign->enabled('characters'))<li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.member') }}</a></li>@endif
                     <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.relation') }}</a></li>
                 </ul>
 
@@ -67,9 +67,11 @@
                             <p>{!! $model->history !!}</p>
                         </div>
                     </div>
+                    @if ($campaign->enabled('characters'))
                     <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
                         @include('families._members')
                     </div>
+                    @endif
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
                         @include('families._relations')
                     </div>

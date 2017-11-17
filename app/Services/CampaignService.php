@@ -112,4 +112,15 @@ class CampaignService
             Session::forget('campaign_id');
         }
     }
+
+    /**
+     * Shorthand to determine if a campaign has an entity enabled or not
+     *
+     * @param string $entity
+     * @return bool
+     */
+    public function enabled($entity = '')
+    {
+        return $this->campaign->enabled($entity);
+    }
 }

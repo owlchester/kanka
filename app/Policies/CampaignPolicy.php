@@ -70,6 +70,16 @@ class CampaignPolicy
     }
 
     /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function setting(User $user, Campaign $campaign)
+    {
+        return $user->campaign->id == $campaign->id && $user->owner();
+    }
+
+    /**
      * Determine whether the user can leave the campaign
      *
      * @param User $user

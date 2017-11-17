@@ -24,7 +24,13 @@
                             <br class="clear" />
                         </li>
                         @endif
-                        @if (!empty($model->location))
+                        @if ($model->date)
+                        <li class="list-group-item">
+                            <b>{{ trans('events.fields.date') }}</b> <span class="pull-right">{{ $model->date }}</span>
+                            <br class="clear" />
+                        </li>
+                        @endif
+                        @if ($campaign->enabled('locations') && !empty($model->location))
                             <li class="list-group-item">
                                 <b>{{ trans('events.fields.location') }}</b>
                                 <span  class="pull-right">

@@ -10,11 +10,13 @@
                     <label>{{ trans('organisations.fields.name') }}</label>
                     {!! Form::text('name', null, ['placeholder' => trans('organisations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('organisations.fields.location') }}</label>
                     {!! Form::select('location_id', (isset($model) && !empty($model->location) ? [$model->location_id => $model->location->name] : []),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('organisations.placeholders.location')]) !!}
                 </div>
+                @endif
                 <div class="form-group">
                     <label>{{ trans('organisations.fields.type') }}</label>
                     {!! Form::text('type', null, ['placeholder' => trans('organisations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}

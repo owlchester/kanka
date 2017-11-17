@@ -30,6 +30,14 @@ class Campaign extends MiscModel
     /**
      * @return mixed
      */
+    public function setting()
+    {
+        return $this->belongsTo('App\Models\CampaignSetting', 'id', 'campaign_id');
+    }
+
+    /**
+     * @return mixed
+     */
     public function members()
     {
         return $this->hasMany('App\CampaignUser');
@@ -101,5 +109,19 @@ class Campaign extends MiscModel
             return $member->role;
         }
         return 0;
+    }
+
+    /**
+     * Determine if a campaign has an entity enabled or not
+     *
+     * @param $entity
+     * @return bool
+     */
+    public function enabled($entity)
+    {
+        if ($this->setting->$entity) {
+            return $this->setting->$entity;
+        }
+        return false;
     }
 }

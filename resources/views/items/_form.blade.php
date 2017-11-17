@@ -14,16 +14,20 @@
                     <label>{{ trans('items.fields.type') }}</label>
                     {!! Form::text('type', null, ['placeholder' => trans('items.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('items.fields.location') }}</label>
                     {!! Form::select('location_id', (isset($model) && $model->location ? [$model->location_id => $model->location->name] : []),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('items.placeholders.location')]) !!}
                 </div>
+                @endif
+                @if ($campaign->enabled('characters'))
                 <div class="form-group">
                     <label>{{ trans('items.fields.character') }}</label>
                     {!! Form::select('character_id', (isset($model) && $model->character ? [$model->character_id => $model->character->name] : []),
                     null, ['id' => 'character_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('characters.find'), 'data-placeholder' => trans('items.placeholders.character')]) !!}
                 </div>
+                @endif
                 <hr />
 
                 <div class="form-group">

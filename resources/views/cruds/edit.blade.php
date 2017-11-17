@@ -7,6 +7,8 @@
         trans('crud.update'),
     ]
 ])
+@inject('campaign', 'App\Services\CampaignService')
+
 @section('content')
     <div class="row">
         <div class="col-md-12 col-md-offset">

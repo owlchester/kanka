@@ -6,6 +6,8 @@
         trans('crud.create'),
     ]
 ])
+@inject('campaign', 'App\Services\CampaignService')
+
 @section('content')
     <div class="row">
         <div class="col-md-12">

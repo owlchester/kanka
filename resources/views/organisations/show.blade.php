@@ -18,7 +18,7 @@
                     </h3>
 
                     <ul class="list-group list-group-unbordered">
-                        @if (!empty($model->location))
+                        @if ($campaign->enabled('locations') && !empty($model->location))
                         <li class="list-group-item">
                             <b>{{ trans('organisations.fields.location') }}</b>
                             <span  class="pull-right">
@@ -64,7 +64,9 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.history') }}</a></li>
-                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.members') }}</a></li>
+                    @if ($campaign->enabled('characters'))
+                        <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.members') }}</a></li>
+                    @endif
                     <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('organisations.show.tabs.relations') }}</a></li>
                 </ul>
 
@@ -74,9 +76,11 @@
                             <p>{!! $model->history !!}</p>
                         </div>
                     </div>
+                    @if ($campaign->enabled('characters'))
                     <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
                         @include('organisations._members')
                     </div>
+                    @endif
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
                         @include('organisations._relations')
                     </div>
