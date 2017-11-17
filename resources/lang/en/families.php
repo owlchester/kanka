@@ -58,6 +58,8 @@ return [
         ],
         'edit' => [
             'success' => 'Relation updated.',
+            'title' => 'Update Relation for :name',
+            'description' => '',
         ],
         'fields' => [
             'second' => 'Family',

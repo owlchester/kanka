@@ -55,6 +55,11 @@ return [
             'description' => 'Create a new relation between two locations',
             'success' => 'Relation created.',
         ],
+        'edit' => [
+            'title' => 'Update Relation for :name',
+            'description' => '',
+            'success' => 'Relation updated.',
+        ],
         'actions' => [
             'add' => 'Add a relation',
         ],

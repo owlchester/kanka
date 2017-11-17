@@ -68,9 +68,14 @@ return [
     ],
     'relations' => [
         'create' => [
-            'title' => 'Organisation Relationships',
-            'description' => 'Define the relationship between two organisations',
+            'title' => 'New Organisation Relation for :name',
+            'description' => 'Create a new relation between two organisations',
             'success' => 'Relation created.',
+        ],
+        'edit' => [
+            'title' => 'Update Relation for :name',
+            'description' => '',
+            'success' => 'Relation updated.',
         ],
         'actions' => [
             'add' => 'Add a relation',

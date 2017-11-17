@@ -92,9 +92,14 @@ return [
     ],
     'relations' => [
         'create' => [
-            'title' => 'Character Relationships',
-            'description' => 'Define the relationship between two characters',
+            'title' => 'New Character Relation for :name',
+            'description' => 'Create a new relation between two characters',
             'success' => 'Relation created.',
+        ],
+        'edit' => [
+            'title' => 'Update Relation for :name',
+            'description' => '',
+            'success' => 'Relation updated.',
         ],
         'actions' => [
             'add' => 'Add a relation',
