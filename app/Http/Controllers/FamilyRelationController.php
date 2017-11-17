@@ -9,30 +9,30 @@ use App\Http\Requests\StoreFamilyRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class FamilyRelationController extends Controller
+class FamilyRelationController extends CrudRelationController
 {
+    /**
+     * @var string
+     */
     protected $view = 'families.relations';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
-    }
+    protected $route = 'families.family_relations';
 
     /**
-     * Display a listing of the resource.
-     *
+     * @var string
+     */
+    protected $model = \App\FamilyRelation::class;
+
+    /**
+     * @param Family $family
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Family $family)
     {
-        $models = FamilyRelation::paginate();
-        return view($this->view . '.index', compact('models'));
+        return $this->crudIndex($family);
     }
 
     /**
@@ -40,12 +40,9 @@ class FamilyRelationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family)
     {
-        $this->authorize('create', FamilyRelation::class);
-
-        $family = Family::findOrFail(request()->get('family'));
-        return view($this->view . '.create', compact('family'));
+        return $this->crudCreate($family);
     }
 
     /**
@@ -54,27 +51,11 @@ class FamilyRelationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFamilyRelation $request)
+    public function store(StoreFamilyRelation $request, Family $family)
     {
-        $this->authorize('create', FamilyRelation::class);
-
-        $relation = FamilyRelation::create($request->all());
-        return redirect()->route('families.show', [$relation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request, $family);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Family  $character
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FamilyRelation $familyRelation)
-    {
-        $this->authorize('view', $familyRelation);
-
-        return view($this->view . '.show', compact('characterRelation'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,11 +63,9 @@ class FamilyRelationController extends Controller
      * @param  \App\Family  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(FamilyRelation $familyRelation)
+    public function edit(Family $family, FamilyRelation $familyRelation)
     {
-        $this->authorize('update', $familyRelation);
-
-        return view($this->view . '.edit', compact('characterRelation'));
+        return $this->crudEdit($family, $familyRelation);
     }
 
     /**
@@ -96,13 +75,9 @@ class FamilyRelationController extends Controller
      * @param  \App\Family  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreFamilyRelation $request, FamilyRelation $familyRelation)
+    public function update(StoreFamilyRelation $request, Family $family, FamilyRelation $familyRelation)
     {
-        $this->authorize('update', $familyRelation);
-
-        $familyRelation->update($request->all());
-        return redirect()->route('families.show', $familyRelation->first_id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $family, $familyRelation);
     }
 
     /**
@@ -111,12 +86,8 @@ class FamilyRelationController extends Controller
      * @param  \App\FamilyRelation  $familyRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FamilyRelation $familyRelation)
+    public function destroy(Family $family, FamilyRelation $familyRelation)
     {
-        $this->authorize('delete', $familyRelation);
-
-        $familyRelation->delete();
-        return redirect()->route('families.show', [$familyRelation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($family, $familyRelation);
     }
 }

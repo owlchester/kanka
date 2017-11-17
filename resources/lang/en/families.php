@@ -56,9 +56,16 @@ return [
         'actions' => [
             'add' => 'Add a relation',
         ],
+        'edit' => [
+            'success' => 'Relation updated.',
+        ],
         'fields' => [
             'second' => 'Family',
-            'relation' => 'Relation'
+            'relation' => 'Relation',
+            'two_way' => 'Create mirror relation',
+        ],
+        'hints' => [
+            'two_way' => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
         ],
         'placeholders' => [
             'second' => 'Choose a family',

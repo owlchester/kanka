@@ -1,6 +1,6 @@
 @if (Auth::user()->can('create', 'App\FamilyRelation'))
 <p class="text-right">
-    <a href="{{ route('family_relation.create', ['family' => $model->id]) }}" class="btn btn-primary">
+    <a href="{{ route('families.family_relations.create', ['family' => $model->id]) }}" class="btn btn-primary">
         {{ trans('families.relations.actions.add') }}    </a>
 </p>
 @endif
@@ -10,7 +10,7 @@
         <th>{{ trans('families.fields.relation') }}</th>
         <th class="avatar"><br></th>
         <th>{{ trans('families.fields.name') }}</th>
-        <th>{{ trans('families.fields.location') }}</th>
+        @if ($campaign->enabled('locations'))<th>{{ trans('families.fields.location') }}</th>@endif
         <th>&nbsp;</th>
     </tr>
     @foreach ($r = $model->relationships()->has('second')->with('second')->paginate() as $relation)
@@ -21,15 +21,19 @@
             </td>
             <td>
                 <a href="{{ route('families.show', $relation->second_id) }}">{{ $relation->second->name }}</a></td>
+            @if ($campaign->enabled('locations'))
             <td>
                 @if ($relation->second->location)
                     <a href="{{ route('locations.show', $relation->second->location_id) }}">{{ $relation->second->location->name }}</a>
                 @endif
             </td>
+            @endif
             <td class="text-right">
+                @if (Auth::user()->can('update', $relation))
+                    <a href="{{ route('families.family_relations.edit', ['family' => $model, 'familyRelation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
+                @endif
                 @if (Auth::user()->can('delete', $relation))
-
-                {!! Form::open(['method' => 'DELETE','route' => ['family_relation.destroy', $relation->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['families.family_relations.destroy', 'family' => $model, 'familyRelation' => $relation], 'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>

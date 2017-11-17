@@ -45,7 +45,7 @@ Route::group([
         'location_relation' => 'LocationRelationController',
         //'location_attribute' => 'LocationAttributeController',
         'families' => 'FamilyController',
-        'family_relation' => 'FamilyRelationController',
+        'families.family_relations' => 'FamilyRelationController',
         'items' => 'ItemController',
         'journals' => 'JournalController',
         'organisations' => 'OrganisationController',
