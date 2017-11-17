@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,12 +12,12 @@ class FamilyRelation extends Model
 
     public function first()
     {
-        return $this->belongsTo(Family::class, 'first_id');
+        return $this->belongsTo('App\Family', 'first_id');
     }
 
     public function second()
     {
-        return $this->belongsTo(Family::class, 'second_id');
+        return $this->belongsTo('App\Family', 'second_id');
     }
     //
 }

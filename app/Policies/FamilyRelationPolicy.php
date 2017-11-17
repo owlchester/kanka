@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\FamilyRelation;
+use App\Models\FamilyRelation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FamilyRelationPolicy
@@ -14,7 +14,7 @@ class FamilyRelationPolicy
      * Determine whether the user can view the familyRelation.
      *
      * @param  \App\User  $user
-     * @param  \App\FamilyRelation  $familyRelation
+     * @param  \App\Models\FamilyRelation  $familyRelation
      * @return mixed
      */
     public function view(User $user, FamilyRelation $familyRelation)
@@ -37,7 +37,7 @@ class FamilyRelationPolicy
      * Determine whether the user can update the familyRelation.
      *
      * @param  \App\User  $user
-     * @param  \App\FamilyRelation  $familyRelation
+     * @param  \App\Models\FamilyRelation  $familyRelation
      * @return mixed
      */
     public function update(User $user, FamilyRelation $familyRelation)
@@ -50,7 +50,7 @@ class FamilyRelationPolicy
      * Determine whether the user can delete the familyRelation.
      *
      * @param  \App\User  $user
-     * @param  \App\FamilyRelation  $familyRelation
+     * @param  \App\Models\FamilyRelation  $familyRelation
      * @return mixed
      */
     public function delete(User $user, FamilyRelation $familyRelation)

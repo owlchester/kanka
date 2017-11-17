@@ -9,33 +9,30 @@ use App\Http\Requests\StoreOrganisationRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class OrganisationRelationController extends Controller
+class OrganisationRelationController extends CrudRelationController
 {
     /**
      * @var string
      */
     protected $view = 'organisations.relations';
-    
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
-    }
 
     /**
-     * Display a listing of the resource.
-     *
+     * @var string
+     */
+    protected $route = 'organisations.organisation_relations';
+
+    /**
+     * @var string
+     */
+    protected $model = \App\Models\OrganisationRelation::class;
+
+    /**
+     * @param Organisation $organisation
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Organisation $organisation)
     {
-        $models = OrganisationRelation::paginate();
-        return view($this->view . '.index', compact('models'));
+        return $this->crudIndex($organisation);
     }
 
     /**
@@ -43,10 +40,9 @@ class OrganisationRelationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Organisation $organisation)
     {
-        $organisation = Organisation::findOrFail(request()->get('organisation'));
-        return view($this->view . '.create', compact('organisation'));
+        return $this->crudCreate($organisation);
     }
 
     /**
@@ -55,47 +51,33 @@ class OrganisationRelationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrganisationRelation $request)
+    public function store(StoreOrganisationRelation $request, Organisation $organisation)
     {
-        $relation = OrganisationRelation::create($request->all());
-        return redirect()->route('organisations.show', [$relation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request, $organisation);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Organisation  $organisation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OrganisationRelation $organisationRelation)
-    {
-        return view($this->view . '.show', compact('organisationRelation'));
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Organisation  $organisation
+     * @param  \App\Organisation  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrganisationRelation $organisationRelation)
+    public function edit(Organisation $organisation, OrganisationRelation $organisationRelation)
     {
-        return view($this->view . '.edit', compact('organisationRelation'));
+        return $this->crudEdit($organisation, $organisationRelation);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Organisation  $organisation
+     * @param  \App\Organisation  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOrganisationRelation $request, OrganisationRelation $organisationRelation)
+    public function update(StoreOrganisationRelation $request, Organisation $organisation, OrganisationRelation $organisationRelation)
     {
-        $organisationRelation->update($request->all());
-        return redirect()->route('organisations.show', $organisationRelation->first_id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $organisation, $organisationRelation);
     }
 
     /**
@@ -104,10 +86,8 @@ class OrganisationRelationController extends Controller
      * @param  \App\Models\OrganisationRelation  $organisationRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrganisationRelation $organisationRelation)
+    public function destroy(Organisation $organisation, OrganisationRelation $organisationRelation)
     {
-        $organisationRelation->delete();
-        return redirect()->route('organisations.show', [$organisationRelation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($organisation, $organisationRelation);
     }
 }

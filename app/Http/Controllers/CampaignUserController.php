@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\CampaignUser;
 use App\Family;
-use App\FamilyRelation;
+use App\Models\FamilyRelation;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\StoreCampaignUser;
 use App\Http\Requests\StoreFamily;

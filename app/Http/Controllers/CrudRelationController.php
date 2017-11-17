@@ -77,6 +77,9 @@ class CrudRelationController extends Controller
 
         $parent = explode('.', $this->view)[0];
 
+
+        dd('fuck');
+
         return redirect()
             ->route($parent . '.show', [$model->id, 'tab' => 'relation'])
             ->with('success', trans($this->view . '.create.success'));
@@ -118,7 +121,7 @@ class CrudRelationController extends Controller
         $relation->update($request->all());
         $parent = explode('.', $this->view)[0];
 
-        return redirect()->route($parent . '.show', $model->id)
+        return redirect()->route($parent . '.show', [$model->id, 'tab' => 'relation'])
             ->with('success', trans($this->view . '.edit.success'));
     }
 

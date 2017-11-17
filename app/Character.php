@@ -68,7 +68,7 @@ class Character extends MiscModel
      */
     public function relationships()
     {
-        return $this->hasMany('App\CharacterRelation', 'first_id', 'id');
+        return $this->hasMany('App\Models\CharacterRelation', 'first_id', 'id');
     }
 
     /**

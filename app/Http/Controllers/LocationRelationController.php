@@ -9,7 +9,7 @@ use App\Http\Requests\StoreLocationRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class LocationRelationController extends Controller
+class LocationRelationController extends CrudRelationController
 {
     /**
      * @var string
@@ -17,25 +17,23 @@ class LocationRelationController extends Controller
     protected $view = 'locations.relations';
     
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
-    }
+    protected $route = 'locations.location_relations';
+
 
     /**
-     * Display a listing of the resource.
-     *
+     * @var string
+     */
+    protected $model = \App\Models\LocationRelation::class;
+
+    /**
+     * @param Location $location
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Location $location)
     {
-        $models = LocationRelation::paginate();
-        return view($this->view . '.index', compact('models'));
+        return $this->crudIndex($location);
     }
 
     /**
@@ -43,10 +41,9 @@ class LocationRelationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Location $location)
     {
-        $location = Location::findOrFail(request()->get('location'));
-        return view($this->view . '.create', compact('location'));
+        return $this->crudCreate($location);
     }
 
     /**
@@ -55,47 +52,33 @@ class LocationRelationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLocationRelation $request)
+    public function store(StoreLocationRelation $request, Location $location)
     {
-        $relation = LocationRelation::create($request->all());
-        return redirect()->route('locations.show', [$relation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.create.success'));
+        return $this->crudStore($request, $location);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function show(LocationRelation $locationRelation)
-    {
-        return view($this->view . '.show', compact('locationRelation'));
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Location  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(LocationRelation $locationRelation)
+    public function edit(Location $location, LocationRelation $locationRelation)
     {
-        return view($this->view . '.edit', compact('locationRelation'));
+        return $this->crudEdit($location, $locationRelation);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Location  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreLocationRelation $request, LocationRelation $locationRelation)
+    public function update(StoreLocationRelation $request, Location $location, LocationRelation $locationRelation)
     {
-        $locationRelation->update($request->all());
-        return redirect()->route('locations.show', $locationRelation->first_id)
-            ->with('success', trans($this->view . '.edit.success'));
+        return $this->crudUpdate($request, $location, $locationRelation);
     }
 
     /**
@@ -104,10 +87,8 @@ class LocationRelationController extends Controller
      * @param  \App\Models\LocationRelation  $locationRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LocationRelation $locationRelation)
+    public function destroy(Location $location, LocationRelation $locationRelation)
     {
-        $locationRelation->delete();
-        return redirect()->route('locations.show', [$locationRelation->first_id, 'tab' => 'relation'])
-            ->with('success', trans($this->view . '.destroy.success'));
+        return $this->crudDestroy($location, $locationRelation);
     }
 }

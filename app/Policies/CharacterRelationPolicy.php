@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\CharacterRelation;
+use App\Models\CharacterRelation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CharacterRelationPolicy

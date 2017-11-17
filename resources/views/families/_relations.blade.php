@@ -1,4 +1,4 @@
-@if (Auth::user()->can('create', 'App\FamilyRelation'))
+@if (Auth::user()->can('create', 'App\Models\FamilyRelation'))
 <p class="text-right">
     <a href="{{ route('families.family_relations.create', ['family' => $model->id]) }}" class="btn btn-primary">
         {{ trans('families.relations.actions.add') }}    </a>
@@ -33,7 +33,7 @@
                     <a href="{{ route('families.family_relations.edit', ['family' => $model, 'familyRelation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
                 @endif
                 @if (Auth::user()->can('delete', $relation))
-                {!! Form::open(['method' => 'DELETE','route' => ['families.family_relations.destroy', 'family' => $model, 'familyRelation' => $relation], 'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ['families.family_relations.destroy', 'family' => $model, 'familyRelation' => $relation], 'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>

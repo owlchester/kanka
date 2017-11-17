@@ -52,7 +52,7 @@ class Family extends MiscModel
      */
     public function relationships()
     {
-        return $this->hasMany('App\FamilyRelation', 'first_id', 'id');
+        return $this->hasMany('App\Models\FamilyRelation', 'first_id', 'id');
     }
 
     /**

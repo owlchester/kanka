@@ -78,10 +78,14 @@ return [
         'fields' => [
             'second' => 'Organisation',
             'relation' => 'Relation',
+            'two_way' => 'Create mirror relation',
         ],
         'placeholders' => [
             'second' => 'Choose an organisation',
             'relation' => 'Nature of the relation',
+        ],
+        'hints' => [
+            'two_way' => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
         ],
         'destroy' => [
             'success' => 'Relation removed.',

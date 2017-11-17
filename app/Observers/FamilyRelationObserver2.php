@@ -3,21 +3,21 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Character;
-use App\Models\CharacterRelation;
+use App\Family;
+use App\FamilyRelation;
 use App\Traits\RelationTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
-class CharacterRelationObserver
+class FamilyRelationObserver
 {
     use RelationTrait;
 
     /**
-     * @param CharacterRelation $character
+     * @param FamilyRelation $character
      */
-    public function created(CharacterRelation $relation)
+    public function created(FamilyRelation $relation)
     {
         $this->createRelation($relation);
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Character;
-use App\CharacterRelation;
+use App\Models\CharacterRelation;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreCharacterRelation;
 use Illuminate\Http\Request;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Family;
-use App\FamilyRelation;
+use App\Models\FamilyRelation;
 use App\Http\Requests\StoreFamily;
 use App\Http\Requests\StoreFamilyRelation;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class FamilyRelationController extends CrudRelationController
     /**
      * @var string
      */
-    protected $model = \App\FamilyRelation::class;
+    protected $model = \App\Models\FamilyRelation::class;
 
     /**
      * @param Family $family
@@ -83,7 +83,7 @@ class FamilyRelationController extends CrudRelationController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\FamilyRelation  $familyRelation
+     * @param  \App\Models\FamilyRelation  $familyRelation
      * @return \Illuminate\Http\Response
      */
     public function destroy(Family $family, FamilyRelation $familyRelation)

@@ -16,6 +16,14 @@
 
                     {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST')) !!}
                     @include($name . '._form')
+
+                    {!! Form::hidden('first_id', $model->id) !!}
+
+                    <div class="form-group">
+                        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=relation' : null))]) !!}
+                    </div>
+
                     {!! Form::close() !!}
                 </div>
             </div>
