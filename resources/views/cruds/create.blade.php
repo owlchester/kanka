@@ -13,7 +13,7 @@
         <div class="col-md-12">
             @include('partials.errors')
 
-            {!! Form::open(array('route' => $name . '.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
+            {!! Form::open(array('route' => [$route . '.store', 'family' => $model, 'familyRelation' => $relation], 'method'=>'POST')) !!}
                 @include($name . '._form', ['cancel' => route($name . '.index')])
             {!! Form::close() !!}
         </div>
