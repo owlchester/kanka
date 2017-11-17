@@ -55,6 +55,7 @@ return [
         'history' => 'History',
         'image' => 'Image',
         'is_private' => 'Private',
+        'is_personality_visible' => 'Is personality visible',
     ],
     'placeholders' => [
         'name' => 'Name',
@@ -81,6 +82,7 @@ return [
     ],
     'hints' => [
         'is_private' => 'Hide from "Viewers"',
+        'is_personality_visible' => 'You can hide the whole personality section from your Viewers.',
     ],
     'sections' => [
         'general' => 'General information',

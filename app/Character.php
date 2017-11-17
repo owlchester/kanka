@@ -33,6 +33,7 @@ class Character extends MiscModel
         'languages',
         'free',
         'is_private',
+        'is_personality_visible',
     ];
 
     /**

@@ -71,6 +71,8 @@ abstract class MiscModel extends Model
             } else {
                 return $query->orderBy($field);
             }
+        } else {
+            return $query->orderBy('name');
         }
     }
 

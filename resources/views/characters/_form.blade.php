@@ -146,6 +146,14 @@
                     <label>{{ trans('characters.fields.free') }}</label>
                     {!! Form::textarea('free', null, ['placeholder' => trans('characters.placeholders.free'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
+                <hr>
+                <div class="form-group">
+                    {!! Form::hidden('is_personality_visible', 0) !!}
+                    <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : 1)) !!}
+                        {{ trans('characters.fields.is_personality_visible') }}
+                    </label>
+                    <p class="help-block">{{ trans('characters.hints.is_personality_visible') }}</p>
+                </div>
             </div>
         </div>
     </div>

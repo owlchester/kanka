@@ -59,4 +59,9 @@ class CharacterPolicy
         return $user->campaign->id == $character->campaign_id &&
             ($user->member());
     }
+
+    public function personality(User $user, Character $character)
+    {
+        return ($user->member() || $character->is_personality_visible);
+    }
 }

@@ -136,12 +136,15 @@
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.history') }}
                         </a></li>
+
+                    @if (Auth::user()->can('personality', $model))
                     <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}"><a href="#personality" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.personality') }}
                         </a></li>
                     <li class="{{ (request()->get('tab') == 'free' ? ' active' : '') }}"><a href="#free" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.free') }}
                         </a></li>
+                    @endif
                     <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.relations') }}
                         </a></li>
@@ -158,6 +161,7 @@
                             <p>{!! $model->history !!}</p>
                         </div>
                     </div>
+                    @if (Auth::user()->can('personality', $model))
                     <div class="tab-pane {{ (request()->get('tab') == 'personality' ? ' active' : '') }}" id="personality">
                         <p><b>{{ trans('characters.fields.traits') }}</b><br />{!! nl2br(e($model->traits)) !!}</p>
                         <p><b>{{ trans('characters.fields.goals') }}</b><br />{!! nl2br(e($model->goals)) !!}</p>
@@ -169,6 +173,7 @@
                             <p>{!! nl2br(e($model->free)) !!}</p>
                         </div>
                     </div>
+                    @endif
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
                         @include('characters._relations')
                     </div>
