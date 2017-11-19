@@ -17,6 +17,9 @@
 
 
                 </div>
+                <div class="box-footer">
+                    <a href="{{ route('releases.index') }}">{{ trans('releases.show.return') }}</a>
+                </div>
             </div>
         </div>
     </div>

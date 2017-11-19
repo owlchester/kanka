@@ -9,4 +9,9 @@ class Release extends Post
     // Do nothing, this class is just for the route resource binding to work with release instead of post.
 
     public $table = 'posts';
+
+    public function getSlug()
+    {
+        return $this->id . '-' . str_slug($this->title);
+    }
 }

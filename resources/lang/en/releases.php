@@ -9,6 +9,7 @@ return [
         'footer' => 'By :name on :date',
     ],
     'show' => [
-        'title' => ':name'
+        'title' => 'Release :name',
+        'return' => 'Back to releases',
     ]
 ];

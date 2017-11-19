@@ -58,8 +58,9 @@ class ReleaseController extends Controller
      * @param  \App\Models\Release  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Release $post)
+    public function show($id, $slug)
     {
+        $post = Release::where('id', $id)->firstOrFail();
         return view('releases.show', ['model' => $post]);
     }
 

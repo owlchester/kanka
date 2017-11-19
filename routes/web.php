@@ -37,6 +37,9 @@ Route::group([
     // Random character
     Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
 
+    // Slug
+    Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
+
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
         'campaigns' => 'CampaignController',

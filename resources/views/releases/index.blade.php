@@ -6,21 +6,18 @@
 @section('content')
     <div class="row">
         @foreach ($models as $model)
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="box news">
                 <div class="box-body">
                     @if ($model->image)
-                    <img src="/storage/{{ $model->image }}" />
+                    <img src="/storage/{{ $model->image }}" style="width:100%" />
                     @endif
 
                     <h2>
-                        @if ($model->excerpt)
-                            <a href="{{ route('releases.show', $model->id) }}">
-                                {{ $model->title }}
-                            </a>
-                        @else
+                        <a href="{{ route('releases.show', $model->getSlug()) }}">
                             {{ $model->title }}
-                        @endif</h2>
+                        </a>
+                    </h2>
 
                     @if ($model->excerpt)
                     {!! $model->excerpt !!}
