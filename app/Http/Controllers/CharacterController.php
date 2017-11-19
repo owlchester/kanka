@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use App\Http\Requests\StoreCharacter;
+use App\Services\RandomCharacterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,6 +21,36 @@ class CharacterController extends CrudController
      */
     protected $model = \App\Character::class;
 
+    /**
+     * @var RandomCharacterService
+     */
+    protected $random;
+
+    /**
+     * CharacterController constructor.
+     * @param RandomCharacterService $random
+     */
+    public function __construct(RandomCharacterService $random)
+    {
+        $this->random = $random;
+
+        $this->indexActions[] = [
+            'label' => '<i class="fa fa-question"></i> ' . trans('characters.index.actions.random'),
+            'route' => route('characters.random'),
+            'class' => 'btn-default',
+            'policy' => 'random'
+        ];
+
+        parent::__construct();
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function random()
+    {
+        return $this->crudCreate();
+    }
 
     /**
      * Store a newly created resource in storage.

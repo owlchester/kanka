@@ -27,6 +27,13 @@ class CrudController extends Controller
     protected $model = null;
 
     /**
+     * Extra actions in the index view
+     *
+     * @var array
+     */
+    protected $indexActions = [];
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -50,12 +57,14 @@ class CrudController extends Controller
     {
         $model = new $this->model;
         $name = $this->view;
+        $actions = $this->indexActions;
+
         $models = $model
             ->search(request()
                 ->get('search'))
             ->order(request()->get('order'))
             ->paginate();
-        return view('cruds.index', compact('models', 'name', 'model'));
+        return view('cruds.index', compact('models', 'name', 'model', 'actions'));
     }
 
     /**
@@ -67,11 +76,11 @@ class CrudController extends Controller
     {
         return $this->crudCreate();
     }
-    public function crudCreate()
+    public function crudCreate($params = [])
     {
         $this->authorize('create', $this->model);
 
-        return view('cruds.create', ['name' => $this->view]);
+        return view('cruds.create', array_merge(['name' => $this->view], $params));
     }
 
     /**
@@ -85,12 +94,13 @@ class CrudController extends Controller
         $this->authorize('create', $this->model);
 
         $model = new $this->model;
-        $model->create($request->all());
+        $new = $model->create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->route . '.create')
-                ->with('success', trans($this->view . '.create.success'));
+                ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
         }
-        return redirect()->route($this->route . '.index')->with('success', trans($this->view . '.create.success'));
+        return redirect()->route($this->route . '.index')
+            ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
     }
 
     /**
@@ -135,10 +145,10 @@ class CrudController extends Controller
         $model->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->route . '.create')
-                ->with('success', trans($this->view . '.edit.success'));
+                ->with('success', trans($this->view . '.edit.success', ['name' => $model->name]));
         }
         return redirect()->route($this->route . '.show', $model->id)
-            ->with('success', trans($this->view . '.edit.success'));
+            ->with('success', trans($this->view . '.edit.success', ['name' => $model->name]));
     }
 
     /**
@@ -152,6 +162,7 @@ class CrudController extends Controller
         $this->authorize('delete', $model);
 
         $model->delete();
-        return redirect()->route($this->route . '.index')->with('success', trans($this->view . '.destroy.success'));
+        return redirect()->route($this->route . '.index')
+            ->with('success', trans($this->view . '.destroy.success', ['name' => $model->name]));
     }
 }

@@ -10,7 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new organisation',
         'description' => '',
-        'success' => 'Organisation created.',
+        'success' => 'Organisation \':name\' created.',
     ],
     'show' => [
         'title' => 'Organisation :name',
@@ -27,10 +27,10 @@ return [
     'edit' => [
         'title' => 'Edit Organisation :name',
         'description' => '',
-        'success' => 'Organisation updated.',
+        'success' => 'Organisation \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Organisation removed.',
+        'success' => 'Organisation \':name\' removed.',
     ],
 
     'fields' => [

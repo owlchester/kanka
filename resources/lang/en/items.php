@@ -10,7 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new item',
         'description' => '',
-        'success' => 'Item created.',
+        'success' => 'Item \':name\' created.',
     ],
     'show' => [
         'title' => 'Item :name',
@@ -22,10 +22,10 @@ return [
     'edit' => [
         'title' => 'Edit Item :name',
         'description' => '',
-        'success' => 'Item updated.',
+        'success' => 'Item \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Item removed.',
+        'success' => 'Item \':name\' removed.',
     ],
 
     'fields' => [

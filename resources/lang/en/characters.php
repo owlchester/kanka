@@ -6,11 +6,14 @@ return [
         'description' => 'Manage the characters of :name.',
         'add' => 'New Character',
         'header' => 'Characters in :name',
+        'actions' => [
+            'random' => 'New Random Character',
+        ]
     ],
     'create' => [
         'title' => 'Create a new character',
         'description' => '',
-        'success' => 'Character created.',
+        'success' => 'Character \':name\' created.',
     ],
     'show' => [
         'title' => 'Character :name',
@@ -26,10 +29,10 @@ return [
     'edit' => [
         'title' => 'Edit Character :name',
         'description' => '',
-        'success' => 'Character updated.',
+        'success' => 'Character \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Character removed.',
+        'success' => 'Character \':name\' removed.',
     ],
     'fields' =>  [
         'name' => 'Name',

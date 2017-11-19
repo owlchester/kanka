@@ -10,7 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new note',
         'description' => '',
-        'success' => 'Note created.',
+        'success' => 'Note \':name\' created.',
     ],
     'show' => [
         'title' => 'Note :name',
@@ -22,10 +22,10 @@ return [
     'edit' => [
         'title' => 'Edit Note :name',
         'description' => '',
-        'success' => 'Note updated.',
+        'success' => 'Note \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Note removed.',
+        'success' => 'Note \':name\' removed.',
     ],
 
     'fields' => [

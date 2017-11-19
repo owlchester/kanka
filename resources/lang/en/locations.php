@@ -10,7 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new location',
         'description' => '',
-        'success' => 'Location created.',
+        'success' => 'Location \':name\' created.',
     ],
     'show' => [
         'title' => 'Location :name',
@@ -25,10 +25,10 @@ return [
     'edit' => [
         'title' => 'Edit Location :name',
         'description' => '',
-        'success' => 'Location updated.',
+        'success' => 'Location \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Location removed.',
+        'success' => 'Location \':name\' removed.',
     ],
     'fields' => [
         'name' => 'Name',

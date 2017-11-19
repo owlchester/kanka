@@ -60,8 +60,22 @@ class CharacterPolicy
             ($user->member());
     }
 
+    /**
+     * @param User $user
+     * @param Character $character
+     * @return bool
+     */
     public function personality(User $user, Character $character)
     {
         return ($user->member() || $character->is_personality_visible);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function random(User $user)
+    {
+        return $this->create($user);
     }
 }

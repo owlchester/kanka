@@ -10,7 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new event',
         'description' => '',
-        'success' => 'Event created.',
+        'success' => 'Event \':name\' created.',
     ],
     'show' => [
         'title' => 'Event :name',
@@ -22,10 +22,10 @@ return [
     'edit' => [
         'title' => 'Edit Event :name',
         'description' => '',
-        'success' => 'Event updated.',
+        'success' => 'Event \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Event removed.',
+        'success' => 'Event \':name\' removed.',
     ],
 
     'fields' => [

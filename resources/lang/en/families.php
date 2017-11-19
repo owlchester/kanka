@@ -10,7 +10,7 @@ return [
     'create' => [
         'title' => 'Create a new family',
         'description' => '',
-        'success' => 'Family created.',
+        'success' => 'Family \':name\' created.',
     ],
     'show' => [
         'title' => 'Family :name',
@@ -24,10 +24,10 @@ return [
     'edit' => [
         'title' => 'Edit Family :name',
         'description' => '',
-        'success' => 'Family updated.',
+        'success' => 'Family \':name\' updated.',
     ],
     'destroy' => [
-        'success' => 'Family removed.',
+        'success' => 'Family \':name\' removed.',
     ],
 
     'fields' => [

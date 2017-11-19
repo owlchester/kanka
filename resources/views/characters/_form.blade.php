@@ -1,5 +1,6 @@
 
 @inject('location', 'App\Services\LocationService')
+@inject('random', 'App\Services\RandomCharacterService')
 
 {{ csrf_field() }}
 <div class="row">
@@ -11,29 +12,29 @@
             <div class="panel-body">
                 <div class="form-group required">
                     <label>{{ trans('characters.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => trans('characters.fields.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', $random->generate('name'), ['placeholder' => trans('characters.fields.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.title') }}</label>
-                    {!! Form::text('title', null, ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('title', $random->generate('title'), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 @if ($campaign->enabled('families'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.family') }}</label>
-                    {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : []),
+                    {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : $random->generateForeign(App\Family::class)),
                     null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
                 </div>
                 @endif
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
-                    {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : []),
+                    {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : $random->generateForeign(App\Location::class)),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
                 @endif
                 <div class="form-group">
                     <label>{{ trans('characters.fields.race') }}</label>
-                    {!! Form::text('race', null, ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                    {!! Form::text('race', $random->generate('race'), ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
 
                 <div class="form-group">
@@ -53,35 +54,35 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('characters.fields.age') }}</label>
-                    {!! Form::text('age', null, ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
+                    {!! Form::text('age', $random->generateNumber(1, 300), ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.sex') }}</label>
-                    {!! Form::text('sex', null, ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 10]) !!}
+                    {!! Form::text('sex', $random->generate('sex'), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 10]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.height') }}</label>
-                    {!! Form::text('height', null, ['placeholder' => trans('characters.placeholders.height'), 'class' => 'form-control', 'maxlength' => 10]) !!}
+                    {!! Form::text('height', $random->generateNumber('height'), ['placeholder' => trans('characters.placeholders.height'), 'class' => 'form-control', 'maxlength' => 10]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.weight') }}</label>
-                    {!! Form::text('weight', null, ['placeholder' => trans('characters.placeholders.weight'), 'class' => 'form-control', 'maxlength' => 10]) !!}
+                    {!! Form::text('weight', $random->generateNumber('weight'), ['placeholder' => trans('characters.placeholders.weight'), 'class' => 'form-control', 'maxlength' => 10]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.eye') }}</label>
-                    {!! Form::text('eye_colour', null, ['placeholder' => trans('characters.placeholders.eye'), 'class' => 'form-control', 'maxlength' => 12]) !!}
+                    {!! Form::text('eye_colour', $random->generate('eye'), ['placeholder' => trans('characters.placeholders.eye'), 'class' => 'form-control', 'maxlength' => 12]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.hair') }}</label>
-                    {!! Form::text('hair', null, ['placeholder' => trans('characters.placeholders.hair'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                    {!! Form::text('hair', $random->generate('hair'), ['placeholder' => trans('characters.placeholders.hair'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.skin') }}</label>
-                    {!! Form::text('skin', null, ['placeholder' => trans('characters.placeholders.skin'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                    {!! Form::text('skin', $random->generate('skin'), ['placeholder' => trans('characters.placeholders.skin'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.languages') }}</label>
-                    {!! Form::text('languages', null, ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('languages', $random->generate('language', 3), ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
 
                 <div class="form-group">
@@ -128,19 +129,19 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('characters.fields.traits') }}</label>
-                    {!! Form::textarea('traits', null, ['placeholder' => trans('characters.placeholders.traits'), 'class' => 'form-control', 'rows' => 4]) !!}
+                    {!! Form::textarea('traits', $random->generate('trait'), ['placeholder' => trans('characters.placeholders.traits'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.goals') }}</label>
-                    {!! Form::textarea('goals', null, ['placeholder' => trans('characters.placeholders.goals'), 'class' => 'form-control', 'rows' => 4]) !!}
+                    {!! Form::textarea('goals', $random->generate('goal'), ['placeholder' => trans('characters.placeholders.goals'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.fears') }}</label>
-                    {!! Form::textarea('fears', null, ['placeholder' => trans('characters.placeholders.fears'), 'class' => 'form-control', 'rows' => 4]) !!}
+                    {!! Form::textarea('fears', $random->generate('fear'), ['placeholder' => trans('characters.placeholders.fears'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.mannerisms') }}</label>
-                    {!! Form::textarea('mannerisms', null, ['placeholder' => trans('characters.placeholders.mannerisms'), 'class' => 'form-control', 'rows' => 4]) !!}
+                    {!! Form::textarea('mannerisms', $random->generate('mannerism'), ['placeholder' => trans('characters.placeholders.mannerisms'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.free') }}</label>

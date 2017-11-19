@@ -17,9 +17,15 @@
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> {{ trans($name . '.index.add') }}
                     </a>
-                    @else
-                        <br>
                     @endif
+                    @foreach ($actions as $action)
+                        @if (empty($action['policy']) || Auth::user()->can($action['policy'], $model))
+                            <a href="{{ $action['route'] }}" class="btn btn-sm {{ $action['class'] }}">
+                                {!! $action['label'] !!}
+                            </a>
+                        @endif
+                    @endforeach
+                    <br>
 
                     <div class="box-tools">
 

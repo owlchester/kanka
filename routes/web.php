@@ -34,6 +34,9 @@ Route::group([
     Route::patch('/profile/password', 'ProfileController@password')->name('profile.password');
     Route::patch('/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
 
+    // Random character
+    Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
+
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
         'campaigns' => 'CampaignController',
