@@ -16,6 +16,7 @@ class CampaignSetting extends Model
      * @var array
      */
     protected $fillable = [
+        'campaign_id',
         'characters',
         'events',
         'families',

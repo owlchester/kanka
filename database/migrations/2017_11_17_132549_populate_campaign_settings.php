@@ -18,7 +18,6 @@ class PopulateCampaignSettings extends Migration
             $setting = \App\Models\CampaignSetting::create([
                 'campaign_id' => $campaign->id,
             ]);
-            $setting->save();
             unset($setting);
         }
     }
