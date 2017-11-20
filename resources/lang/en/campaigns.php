@@ -127,6 +127,9 @@ return [
             'notes' => 'Notes',
             'organisations' => 'Organisations',
         ],
+        'edit' => [
+            'success' => 'Campaign settings updated.',
+        ],
     ],
     'leave' => [
         'confirm' => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, ' .
