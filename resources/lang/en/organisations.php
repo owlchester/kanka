@@ -56,6 +56,7 @@ return [
         'create' => [
             'title' => 'New Organisation Member for :name',
             'description' => 'Add a member to the organisation',
+            'success' => 'Member added to the organisation.',
         ],
         'fields' => [
             'role' => 'Role',
@@ -65,6 +66,9 @@ return [
             'role' => 'Leader, Member, High Septon, Spymaster',
             'character' => 'Choose a character'
         ],
+        'destroy' => [
+            'success' => 'Member removed from the organisation.',
+        ]
     ],
     'relations' => [
         'create' => [

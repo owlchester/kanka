@@ -46,6 +46,20 @@
                             <br class="clear" />
                         </li>
                         @endif
+
+                        @if ($campaign->enabled('organisations'))
+                            @if ($model->organisations->count() > 0)
+
+                                    <li class="list-group-item">
+                                        <b>{{ trans('characters.show.tabs.organisations') }}</b> <span class="pull-right">
+                                        @foreach ($model->organisations()->has('organisation')->with('organisation')->limit(3)->get() as $org)
+                                            <a href="{{ route('organisations.show', $org->organisation) }}">{{ $org->organisation->name }}</a>.
+                                        @endforeach
+                                        </span>
+                                        <br class="clear" />
+                                    </li>
+                            @endif
+                        @endif
                     </ul>
 
                     @if (Auth::user()->can('update', $model))
