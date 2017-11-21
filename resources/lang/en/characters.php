@@ -122,5 +122,30 @@ return [
         'destroy' => [
             'success' => 'Relation removed.',
         ],
+    ],
+    'organisations' => [
+        'create' => [
+            'title' => 'New Organisation for :name',
+            'description' => 'Associate an organisation to a character',
+            'success' => 'Character added to organisation.',
+        ],
+        'actions' => [
+            'add' => 'Add organisation',
+        ],
+        'edit' => [
+            'title' => 'Update Organisation for :name',
+            'description' => '',
+            'success' => 'Character organisation updated.',
+        ],
+        'fields' => [
+            'organisation' => 'Organisation',
+            'role' =>  'Role',
+        ],
+        'placeholders' => [
+            'organisation' => 'Choose an organisation...',
+        ],
+        'destroy' => [
+            'success' => 'Character organisation removed.',
+        ]
     ]
 ];

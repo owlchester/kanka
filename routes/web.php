@@ -46,6 +46,7 @@ Route::group([
         'campaign_user' => 'CampaignUserController',
         'characters' => 'CharacterController',
         'characters.character_relations' => 'CharacterRelationController',
+        'characters.character_organisations' => 'CharacterOrganisationController',
         'events' => 'EventController',
         'locations' => 'LocationController',
         'locations.location_relations' => 'LocationRelationController',

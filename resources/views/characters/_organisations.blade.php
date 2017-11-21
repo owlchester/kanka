@@ -1,7 +1,10 @@
-<!--<p class="text-right">
-    <a href="{{ route('organisation_member.create', ['character' => $model->id]) }}" class="btn btn-primary">
-    {{ trans('characters.organisations.actions.add') }}    </a>
-</p>-->
+@if (Auth::user()->can('create', 'App\OrganisationMember'))
+    <p class="text-right">
+        <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary">
+            {{ trans('characters.organisations.actions.add') }}
+        </a>
+    </p>
+@endif
 
 <table id="organisations" class="table table-hover">
     <tbody><tr>
@@ -20,9 +23,13 @@
             </td>
             <td>{{ $relation->role }}</td>
             <td class="text-right">
-
+                @if (Auth::user()->can('update', $relation))
+                    <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary">
+                        <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
+                    </a>
+                @endif
                 @if (Auth::user()->can('delete', $relation))
-                {!! Form::open(['method' => 'DELETE','route' => ['organisation_member.destroy', $relation->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['characters.character_organisations.destroy', $model->id, $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
