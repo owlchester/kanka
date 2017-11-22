@@ -79,10 +79,23 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.information') }}</a></li>
-                    <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}"><a href="#character" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.characters') }}</a></li>
-                    <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}"><a href="#location" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.locations') }}</a></li>
-                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.relations') }}</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.information') }}</a>
+                    </li>
+                    @if ($campaign->enabled('characters'))
+                    <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}">
+                        <a href="#character" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.characters') }}</a>
+                    </li>
+                    @endif
+                    <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}">
+                        <a href="#location" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.locations') }}</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}">
+                        <a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.relations') }}</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
+                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.attributes') }}</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -97,14 +110,19 @@
                             <p>{!! $model->history !!}</p>
                         </div>
                     </div>
+                    @if ($campaign->enabled('characters'))
                     <div class="tab-pane {{ (request()->get('tab') == 'character' ? ' active' : '') }}" id="character">
                         @include('locations._characters')
                     </div>
+                    @endif
                     <div class="tab-pane {{ (request()->get('tab') == 'location' ? ' active' : '') }}" id="location">
                         @include('locations._locations')
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
                         @include('locations._relations')
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
+                        @include('locations._attributes')
                     </div>
                 </div>
             </div>

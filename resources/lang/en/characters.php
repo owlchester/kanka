@@ -23,7 +23,8 @@ return [
             'personality' => 'Personality',
             'free' => 'Free Text',
             'relations' => 'Relations',
-            'organisations' => 'Organisations'
+            'organisations' => 'Organisations',
+            'attributes' => 'Attributes',
         ]
     ],
     'edit' => [
@@ -147,5 +148,35 @@ return [
         'destroy' => [
             'success' => 'Character organisation removed.',
         ]
-    ]
+    ],
+    'attributes' => [
+        'create' => [
+            'title' => 'New Attribute for :name',
+            'description' => 'Set an attribute to a character',
+            'success' => 'Attribute added to :name.',
+        ],
+        'actions' => [
+            'add' => 'Add an attribute',
+        ],
+        'edit' => [
+            'title' => 'Update attribute for :name',
+            'description' => '',
+            'success' => 'Character attribute for :name updated.',
+        ],
+        'fields' => [
+            'attribute' => 'Attribute',
+            'value' =>  'Value',
+            'is_private' => 'Private',
+        ],
+        'hints' => [
+            'is_private' => 'Hide from "Viewers"',
+        ],
+        'placeholders' => [
+            'attribute' => 'Number of won battles, date of wedding, Initiative',
+            'value' => 'Value of the attribute'
+        ],
+        'destroy' => [
+            'success' => 'Character attribute for :name removed.',
+        ]
+    ],
 ];

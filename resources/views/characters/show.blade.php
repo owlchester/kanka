@@ -167,6 +167,9 @@
                             {{ trans('characters.show.tabs.organisations') }}
                         </a></li>
                     @endif
+                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}"><a href="#attribute" data-toggle="tab" aria-expanded="false">
+                            {{ trans('characters.show.tabs.attributes') }}
+                        </a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -180,6 +183,7 @@
                         <p><b>{{ trans('characters.fields.traits') }}</b><br />{!! nl2br(e($model->traits)) !!}</p>
                         <p><b>{{ trans('characters.fields.goals') }}</b><br />{!! nl2br(e($model->goals)) !!}</p>
                         <p><b>{{ trans('characters.fields.fears') }}</b><br />{!! nl2br(e($model->fears)) !!}</p>
+                        <p><b>{{ trans('characters.fields.mannerisms') }}</b><br />{!! nl2br(e($model->mannerisms)) !!}</p>
                         <p><b>{{ trans('characters.fields.mannerisms') }}</b><br />{!! nl2br(e($model->mannerisms)) !!}</p>
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'free' ? ' active' : '') }}" id="free">
@@ -196,6 +200,9 @@
                         @include('characters._organisations')
                     </div>
                     @endif
+                    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
+                        @include('characters._attributes')
+                    </div>
                 </div>
             </div>
 

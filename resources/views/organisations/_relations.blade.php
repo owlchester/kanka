@@ -12,7 +12,6 @@
         <th>{{ trans('organisations.fields.relation') }}</th>
         <th class="avatar"><br /></th>
         <th>{{ trans('organisations.fields.name') }}</th>
-        <th>{{ trans('organisations.fields.type') }}</th>
         @if ($campaign->enabled('locations'))<th>{{ trans('families.fields.location') }}</th>@endif
         <th>&nbsp;</th>
     </tr>
@@ -22,7 +21,6 @@
             <td>
                 <img class="direct-chat-img" src="{{ $relation->second->getImageUrl(true) }}" alt="{{ $relation->second->name }} picture">
             </td>
-            <td>{{ $relation->type }}</td>
             <td>
                 <a href="{{ route('organisations.show', $relation->second_id) }}">{{ $relation->second->name }}</a>
             </td>

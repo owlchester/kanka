@@ -89,6 +89,14 @@ class Character extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attributes()
+    {
+        return $this->hasMany('App\Models\CharacterAttribute', 'character_id', 'id');
+    }
+
+    /**
      * Get a short history/description for the dashboard
      * @param int $limit
      * @return string

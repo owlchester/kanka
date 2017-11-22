@@ -78,4 +78,13 @@ class CharacterPolicy
     {
         return $this->create($user);
     }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function attribute(User $user, Character $character)
+    {
+        return  $user->campaign->id == $character->campaign_id;
+    }
 }

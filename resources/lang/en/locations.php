@@ -20,6 +20,7 @@ return [
             'characters' => 'Characters',
             'locations' => 'Locations',
             'relations' => 'Relations',
+            'attributes' => 'Attributes',
         ],
     ],
     'edit' => [
@@ -78,5 +79,35 @@ return [
         'destroy' => [
             'success' => 'Relation removed.',
         ],
-    ]
+    ],
+    'attributes' => [
+        'create' => [
+            'title' => 'New Attribute for :name',
+            'description' => 'Set an attribute to a location',
+            'success' => 'Attribute added to :name.',
+        ],
+        'actions' => [
+            'add' => 'Add an attribute',
+        ],
+        'edit' => [
+            'title' => 'Update attribute for :name',
+            'description' => '',
+            'success' => 'Location attribute for :name updated.',
+        ],
+        'fields' => [
+            'attribute' => 'Attribute',
+            'value' =>  'Value',
+            'is_private' => 'Private',
+        ],
+        'hints' => [
+            'is_private' => 'Hide from "Viewers"',
+        ],
+        'placeholders' => [
+            'attribute' => 'Population, Number of floods, Garrison size',
+            'value' => 'Value of the attribute'
+        ],
+        'destroy' => [
+            'success' => 'Location attribute for :name removed.',
+        ]
+    ],
 ];
