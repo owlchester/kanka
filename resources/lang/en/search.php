@@ -13,5 +13,6 @@ return [
         'locations' => 'Locations',
         'notes' => 'Notes',
         'organisations' => 'Organisations',
+        'quests' => 'Quests',
     ]
 ];

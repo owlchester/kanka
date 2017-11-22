@@ -9,19 +9,24 @@ use App\Journal;
 use App\Location;
 use App\Note;
 use App\Organisation;
+use App\Services\EntityService;
 use Illuminate\Http\Request;
 
 class RedirectController extends Controller
 {
+    private $entity;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(EntityService $entityService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
+
+        $this->entity = $entityService;
     }
 
     /**
@@ -38,19 +43,11 @@ class RedirectController extends Controller
             'location' => 'locations',
             'note' => 'notes',
             'organisation' => 'organisations',
-            'event' => 'events'
+            'event' => 'events',
+            'quest' => 'quests',
         ];
 
-        $allowed = [
-            'characters' => Character::class,
-            'families' => Family::class,
-            'items' => Item::class,
-            'journals' => Journal::class,
-            'locations' => Location::class,
-            'notes' => Note::class,
-            'organisations' => Organisation::class,
-            'event' => 'App\Models\Events',
-        ];
+        $allowed = $this->entity->entities();
 
         $what = $request->get('what');
         // Fix some common mistakes

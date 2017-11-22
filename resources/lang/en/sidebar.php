@@ -11,6 +11,7 @@ return [
     'locations' => 'Locations',
     'notes' =>  'Notes',
     'organisations' =>  'Organisations',
+    'quests' => 'Quests',
     'admin' => 'Admin',
     'other' => 'Other',
     'releases' => 'Release notes',

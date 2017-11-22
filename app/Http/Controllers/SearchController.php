@@ -7,6 +7,7 @@ use App\Family;
 use App\Item;
 use App\Location;
 use App\Models\Event;
+use App\Models\Quest;
 use App\Note;
 use App\Organisation;
 use App\Services\CampaignService;
@@ -187,6 +188,28 @@ class SearchController extends Controller
         }
 
         $models = Event::where('name', 'like', "%$term%")->limit(10)->get();
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'text' => $model->name];
+        }
+
+        return \Response::json($formatted);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function quests(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $models = Quest::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {

@@ -16,6 +16,7 @@ class LinkerService
         'location',
         'note',
         'organisation',
+        'quest',
     ];
 
     /**

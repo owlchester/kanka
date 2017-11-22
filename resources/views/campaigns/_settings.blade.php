@@ -51,6 +51,12 @@
         {{ trans('campaigns.settings.fields.organisations') }}
     </label>
 </div>
+<div class="form-group">
+    {!! Form::hidden('quests', 0) !!}
+    <label>{!! Form::checkbox('quests') !!}
+        {{ trans('campaigns.settings.fields.quests') }}
+    </label>
+</div>
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>

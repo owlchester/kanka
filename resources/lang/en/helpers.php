@@ -15,7 +15,8 @@ return [
             'journal' => 'Journals',
             'location' => 'Locations',
             'note' => 'Notes',
-            'organisation' => 'Organisations'
+            'organisation' => 'Organisations',
+            'quest' => 'Quests',
         ]
     ]
 ];

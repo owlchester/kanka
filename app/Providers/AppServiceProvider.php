@@ -17,10 +17,12 @@ use App\Models\CampaignInvite;
 use App\Models\Event;
 use App\Models\LocationRelation;
 use App\Models\OrganisationRelation;
+use App\Models\Quest;
+use App\Models\QuestCharacter;
+use App\Models\QuestLocation;
 use App\Note;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
-use App\Observers\CampaignUserUserObserver;
 use App\Observers\CharacterAttributeObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
@@ -38,7 +40,6 @@ use App\Observers\OrganisationRelationObserver;
 use App\Observers\UserObserver;
 use App\Organisation;
 use App\OrganisationMember;
-use App\Policies\CampaignUserPolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
@@ -77,6 +78,9 @@ class AppServiceProvider extends ServiceProvider
         OrganisationRelation::observe(OrganisationRelationObserver::class);
         Note::observe(NoteObserver::class);
         User::observe(UserObserver::class);
+        Quest::observe('App\Observers\QuestObserver');
+        QuestCharacter::observe('App\Observers\QuestCharacterObserver');
+        QuestLocation::observe('App\Observers\QuestLocationObserver');
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

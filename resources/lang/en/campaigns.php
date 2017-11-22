@@ -126,6 +126,7 @@ return [
             'locations' => 'Locations',
             'notes' => 'Notes',
             'organisations' => 'Organisations',
+            'quests' => 'Quests',
         ],
         'edit' => [
             'success' => 'Campaign settings updated.',

@@ -24,6 +24,9 @@ Route::group([
     Route::get('/profile', 'ProfileController@edit')->name('profile');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
 
+    Route::get('/dashboard', 'DashboardController@edit')->name('dashboard');
+    Route::patch('/dashboard', 'DashboardController@update')->name('dashboard.update');
+
     Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
 
     // OAuth Routes
@@ -61,6 +64,10 @@ Route::group([
         'organisation_member' => 'OrganisationMemberController',
         'organisations.organisation_relations' => 'OrganisationRelationController',
         'notes' => 'NoteController',
+        'quests' => 'QuestController',
+        'quests.quest_locations' => 'QuestLocationController',
+        'quests.quest_characters' => 'QuestCharacterController',
+
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
     ]);

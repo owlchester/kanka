@@ -20,6 +20,7 @@ class EntityService
             'locations' => 'App\Location',
             'notes' => 'App\Note',
             'organisations' => 'App\Organisation',
+            'quests' => 'App\Models\Quest',
         ];
     }
 
