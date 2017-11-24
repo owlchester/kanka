@@ -55,7 +55,7 @@ class Location extends MiscModel
      */
     public function locationAttributes()
     {
-        return $this->hasMany('App\LocationAttribute', 'location_id', 'id');
+        return $this->hasMany('App\Models\LocationAttribute', 'location_id', 'id');
     }
 
     /**
