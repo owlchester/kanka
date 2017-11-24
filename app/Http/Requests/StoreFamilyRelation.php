@@ -26,7 +26,7 @@ class StoreFamilyRelation extends FormRequest
         return [
             'first_id' => 'required|exists:families,id',
             'second_id' => 'required|exists:families,id|different:first_id',
-            'relation' => 'required',
+            'relation' => 'required|max:45',
         ];
     }
 }

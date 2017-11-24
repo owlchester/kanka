@@ -26,7 +26,7 @@ class StoreOrganisationRelation extends FormRequest
         return [
             'first_id' => 'required|exists:organisations,id',
             'second_id' => 'required|exists:organisations,id|different:first_id',
-            'relation' => 'required',
+            'relation' => 'required|max:45',
         ];
     }
 }

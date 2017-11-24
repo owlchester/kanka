@@ -9,7 +9,7 @@
 
         <div class="form-group required">
             <label>{{ trans('characters.relations.fields.relation') }}</label>
-            {!! Form::text('relation', null, ['placeholder' => trans('characters.relations.placeholders.relation'), 'class' => 'form-control']) !!}
+            {!! Form::text('relation', null, ['placeholder' => trans('characters.relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
 
         @if (empty($relation))

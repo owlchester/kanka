@@ -26,7 +26,7 @@ class StoreLocationRelation extends FormRequest
         return [
             'first_id' => 'required|exists:locations,id',
             'second_id' => 'required|exists:locations,id|different:first_id',
-            'relation' => 'required',
+            'relation' => 'required|max:45',
         ];
     }
 }

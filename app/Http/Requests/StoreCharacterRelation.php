@@ -26,7 +26,7 @@ class StoreCharacterRelation extends FormRequest
         return [
             'first_id' => 'required|exists:characters,id',
             'second_id' => 'required|exists:characters,id|different:first_id',
-            'relation' => 'required',
+            'relation' => 'required|max:45',
         ];
     }
 }
