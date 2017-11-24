@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +15,7 @@ class OrganisationMember extends Model
      */
     public function character()
     {
-        return $this->belongsTo(Character::class, 'character_id');
+        return $this->belongsTo('App\Character', 'character_id');
     }
 
     /**
@@ -23,6 +23,6 @@ class OrganisationMember extends Model
      */
     public function organisation()
     {
-        return $this->belongsTo(Organisation::class, 'organisation_id');
+        return $this->belongsTo('App\Organisation', 'organisation_id');
     }
 }

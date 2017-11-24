@@ -14,8 +14,6 @@
     </div>
 </div>
 
-{!! Form::hidden('character_id', $model->id) !!}
-
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>

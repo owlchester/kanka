@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\LocationAttribute' => 'App\Policies\LocationAttributePolicy',
         'App\Note' => 'App\Policies\NotePolicy',
         'App\Organisation' => 'App\Policies\OrganisationPolicy',
-        'App\OrganisationMember' => 'App\Policies\OrganisationMemberPolicy',
+        'App\Models\OrganisationMember' => 'App\Policies\OrganisationMemberPolicy',
         'App\Models\OrganisationRelation' => 'App\Policies\OrganisationRelationPolicy',
         'App\Models\Quest' => 'App\Policies\QuestPolicy',
         'App\Models\QuestCharacter' => 'App\Policies\QuestCharacterPolicy',

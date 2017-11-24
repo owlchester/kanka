@@ -15,9 +15,6 @@ return [
     'show' => [
         'title' => 'Organisation :name',
         'description' => 'A detailed view of an organisation',
-        'actions' => [
-            'add_member' => 'Add a member',
-        ],
         'tabs' => [
             'history' => 'History',
             'members' => 'Members',
@@ -57,6 +54,14 @@ return [
             'title' => 'New Organisation Member for :name',
             'description' => 'Add a member to the organisation',
             'success' => 'Member added to the organisation.',
+        ],
+        'actions' => [
+            'add' => 'Add a member',
+        ],
+        'edit' => [
+            'title' => 'Update Member for :name',
+            'description' => '',
+            'success' => 'Organisation member updated.',
         ],
         'fields' => [
             'role' => 'Role',

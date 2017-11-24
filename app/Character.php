@@ -77,7 +77,7 @@ class Character extends MiscModel
      */
     public function organisations()
     {
-        return $this->hasMany('App\OrganisationMember', 'character_id', 'id');
+        return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
     }
 
     /**

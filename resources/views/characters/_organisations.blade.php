@@ -1,4 +1,4 @@
-@if (Auth::user()->can('create', 'App\OrganisationMember'))
+@if (Auth::user()->can('create', 'App\Models\OrganisationMember'))
     <p class="text-right">
         <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary">
             {{ trans('characters.organisations.actions.add') }}

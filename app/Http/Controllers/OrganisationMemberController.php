@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use App\Organisation;
-use App\OrganisationMember;
+use App\Models\OrganisationMember;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreOrganisationMember;
 use Illuminate\Http\Request;
@@ -29,27 +29,16 @@ class OrganisationMemberController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $models = OrganisationMember::paginate();
-        return view($this->view . '.index', compact('models'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Organisation $organisation)
     {
         $this->authorize('create', OrganisationMember::class);
-
-        $organisation = Organisation::findOrFail(request()->get('organisation'));
-        return view($this->view . '.create', compact('organisation'));
+        return view($this->view . '.create', [
+            'model' => $organisation
+        ]);
     }
 
     /**
@@ -58,13 +47,12 @@ class OrganisationMemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrganisationMember $request)
+    public function store(StoreOrganisationMember $request, Organisation $organisation)
     {
         $this->authorize('create', OrganisationMember::class);
 
-        $this->authorize('create', OrganisationMember::class);
         $relation = OrganisationMember::create($request->all());
-        return redirect()->route('organisations.show', [$relation->organisation_id, 'tab' => 'member'])
+        return redirect()->route('organisations.show', [$organisation->id, 'tab' => 'member'])
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -74,11 +62,14 @@ class OrganisationMemberController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function show(OrganisationMember $organisationMember)
+    public function show(Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('view', $organisationMember);
 
-        return view($this->view . '.show', compact('organisationMember'));
+        return view($this->view . '.show', [
+            'model' => $organisation,
+            'member' => $organisationMember
+        ]);
     }
 
     /**
@@ -87,11 +78,14 @@ class OrganisationMemberController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrganisationMember $organisationMember)
+    public function edit(Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('update', $organisationMember);
 
-        return view($this->view . '.edit', compact('organisationMember'));
+        return view($this->view . '.edit', [
+            'model' => $organisation,
+            'member' => $organisationMember
+        ]);
     }
 
     /**
@@ -101,31 +95,26 @@ class OrganisationMemberController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOrganisationMember $request, OrganisationMember $organisationMember)
+    public function update(StoreOrganisationMember $request, Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('update', $organisationMember);
 
         $organisationMember->update($request->all());
-        return redirect()->route('organisations.show', $organisationMember->organisation_id)
+        return redirect()->route('organisations.show', [$organisation->id, 'tab' => 'member'])
             ->with('success', trans($this->view . '.edit.success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrganisationMember  $organisationMember
+     * @param  \App\Models\OrganisationMember  $organisationMember
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrganisationMember $organisationMember)
+    public function destroy(Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('delete', $organisationMember);
 
         $organisationMember->delete();
-        $previous = url()->previous();
-        if (str_contains($previous, 'characters')) {
-            return redirect()->route('characters.show', [$organisationMember->character_id, 'tab' => 'organisation'])
-                ->with('success', trans($this->view . '.destroy.success'));
-        }
         return redirect()->route('organisations.show', [$organisationMember->organisation_id, 'tab' => 'member'])
             ->with('success', trans($this->view . '.destroy.success'));
     }

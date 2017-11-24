@@ -45,7 +45,7 @@ class Organisation extends MiscModel
      */
     public function members()
     {
-        return $this->hasMany('App\OrganisationMember', 'organisation_id', 'id');
+        return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
     }
 
     /**

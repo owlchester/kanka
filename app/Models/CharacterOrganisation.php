@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\OrganisationMember;
+use App\Models\OrganisationMember;
 
 class CharacterOrganisation extends OrganisationMember
 {

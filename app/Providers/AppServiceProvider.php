@@ -39,7 +39,7 @@ use App\Observers\OrganisationObserver;
 use App\Observers\OrganisationRelationObserver;
 use App\Observers\UserObserver;
 use App\Organisation;
-use App\OrganisationMember;
+use App\Models\OrganisationMember;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
