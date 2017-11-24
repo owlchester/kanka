@@ -14,6 +14,9 @@ class SidebarService
             'characters',
             'character_relation',
         ],
+        'events' => [
+            'events',
+        ],
         'families' => [
             'families',
             'family_relation',
@@ -37,9 +40,12 @@ class SidebarService
         'other' => [
             'releases',
         ],
+        'quests' => [
+            'quests',
+        ],
         'releases' => [
             'releases'
-        ]
+        ],
     ];
 
     /**

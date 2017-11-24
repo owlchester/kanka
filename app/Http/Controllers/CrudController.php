@@ -62,7 +62,7 @@ class CrudController extends Controller
         $models = $model
             ->search(request()
                 ->get('search'))
-            ->order(request()->get('order'))
+            ->order(request()->get('order'), request()->has('desc'))
             ->paginate();
         return view('cruds.index', compact('models', 'name', 'model', 'actions'));
     }

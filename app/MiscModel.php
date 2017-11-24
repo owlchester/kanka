@@ -58,8 +58,10 @@ abstract class MiscModel extends Model
      * @param $field
      * @return mixed
      */
-    public function scopeOrder($query, $field)
+    public function scopeOrder($query, $field, $desc = false)
     {
+        $order = $desc ? 'desc' : 'asc';
+
         if (!empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
@@ -67,12 +69,12 @@ abstract class MiscModel extends Model
                 //dd($relation->getForeignKey());
                 $foreignName = $relation->getQuery()->getQuery()->from;
                 return $query->join($foreignName . ' as f', 'f.id', $relation->getForeignKey())
-                    ->orderBy('f.' . $field);
+                    ->orderBy('f.' . $field, $order);
             } else {
-                return $query->orderBy($field);
+                return $query->orderBy($field, $order);
             }
         } else {
-            return $query->orderBy('name');
+            return $query->orderBy('name', $order);
         }
     }
 

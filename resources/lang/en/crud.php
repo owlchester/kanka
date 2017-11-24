@@ -37,6 +37,8 @@ return [
     ],
     'fields' => [
         'is_private' => 'Private',
+        'location' => 'Location',
+        'character' => 'Character',
     ],
     'linking_help' => 'How can I link to other entries?',
 ];

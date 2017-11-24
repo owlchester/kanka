@@ -18,7 +18,7 @@
                     </h3>
 
                     <ul class="list-group list-group-unbordered">
-                        @if ($model->location)
+                        @if ($campaign->enabled('locations') && $model->location)
                             <li class="list-group-item">
                                 <b>{{ trans('families.fields.location') }}</b>
                                 <span  class="pull-right">
