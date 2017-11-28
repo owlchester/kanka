@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Session;
 class SidebarService
 {
     protected $rules = [
+        'dashboard' => [
+            null,
+            'dashboard',
+        ],
+        'campaigns' => [
+            'campaigns',
+            'campaign_user',
+        ],
         'characters' => [
             'characters',
             'character_relation',

@@ -25,6 +25,9 @@
             <li class="{{ $sidebar->active('dashboard') }}">
                 <a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
             </li>
+            <li class="{{ $sidebar->active('campaigns') }}">
+                <a href="{{ route('campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>
+            </li>
             @if ($campaign->enabled('characters'))
             <li class="{{ $sidebar->active('characters') }}">
                 <a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ trans('sidebar.characters') }}</span></a>

@@ -58,18 +58,19 @@ class HomeController extends Controller
             return redirect()->route('campaigns.index');
         }
 
+        $settings = Auth::user()->dashboardSetting;
         $campaign = Campaign::findOrFail(Session::get('campaign_id'));
-        $characters = Character::recent()->take(5)->get();
-        $families = Family::recent()->take(5)->get();
-        $locations = Location::recent()->take(5)->get();
-        $items = Item::recent()->take(5)->get();
-        $organisations = Organisation::recent()->take(5)->get();
-        $journals = Journal::recent()->take(3)->get();
+        $characters = Character::recent()->take($settings->recent_count)->get();
+        $families = Family::recent()->take($settings->recent_count)->get();
+        $locations = Location::recent()->take($settings->recent_count)->get();
+        $items = Item::recent()->take($settings->recent_count)->get();
+        $organisations = Organisation::recent()->take($settings->recent_count)->get();
+        $journals = Journal::recent()->take($settings->recent_count)->get();
 
         //$characters = Character::
         $createAcl = Auth::user()->campaign->owner() || Auth::user()->campaign->member();
 
         return view('home', compact('campaign', 'characters', 'families',
-            'locations', 'items', 'journals', 'organisations', 'createAcl'));
+            'locations', 'items', 'journals', 'organisations', 'createAcl', 'settings'));
     }
 }

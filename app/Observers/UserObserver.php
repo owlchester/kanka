@@ -7,6 +7,7 @@ use App\CampaignUser;
 use App\Mail\UserDeleted;
 use App\Mail\UserRegistered;
 use App\Mail\WelcomeEmail;
+use App\Models\UserDashboardSetting;
 use App\Models\UserLog;
 use App\Services\ImageService;
 use App\User;
@@ -68,6 +69,11 @@ class UserObserver
      */
     public function created(User $user)
     {
+        // Create dashboard settings
+        $dashboard = new UserDashboardSetting();
+        $dashboard->user_id = $user;
+        $dashboard->save();
+
         // New user, send notification
         Mail::to('hello@kanka.io')->send(new UserRegistered($user));
 
@@ -108,5 +114,8 @@ class UserObserver
         foreach ($user->logs as $log) {
             $log->delete();
         }
+
+        // Remove dashboard
+        $user->dashboardSetting->delete();
     }
 }

@@ -9,6 +9,9 @@ class EntityService
      */
     protected $entities = [];
 
+    /**
+     * EntityService constructor.
+     */
     public function __construct()
     {
         $this->entities = [
@@ -24,6 +27,11 @@ class EntityService
         ];
     }
 
+    /**
+     * Get the entities
+     *
+     * @return array
+     */
     public function entities()
     {
         return $this->entities;

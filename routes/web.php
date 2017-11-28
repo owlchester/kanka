@@ -24,8 +24,8 @@ Route::group([
     Route::get('/profile', 'ProfileController@edit')->name('profile');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
 
-    Route::get('/dashboard', 'DashboardController@edit')->name('dashboard');
-    Route::patch('/dashboard', 'DashboardController@update')->name('dashboard.update');
+    Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
+    Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
     Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
 

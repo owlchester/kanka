@@ -43,6 +43,15 @@ class User extends \TCG\Voyager\Models\User
      * Get the user's campaign
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function dashboardSetting()
+    {
+        return $this->hasOne('App\Models\UserDashboardSetting', 'user_id', 'id');
+    }
+
+    /**
+     * Get the user's campaign
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
 //    public function campaignRole()
 //    {
 //        return $this->belongsTo(CampaignUser::class, 'id', 'last_campaign_id');

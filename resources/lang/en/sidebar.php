@@ -3,6 +3,7 @@
 return [
     'navigation' => 'Navigation',
     'dashboard' => 'Dashboard',
+    'campaigns' => 'Campaigns',
     'characters' => 'Characters',
     'events' => 'Events',
     'families' =>  'Families',
