@@ -4,15 +4,15 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Models\QuestCharacter;
-use App\Services\ImageService;
 use App\Services\LinkerService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class QuestCharacterObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -32,7 +32,7 @@ class QuestCharacterObserver
      */
     public function saving(QuestCharacter $questCharacter)
     {
-        $questCharacter->description = Purify::clean($questCharacter->description);
+        $questCharacter->description = $this->purify($questCharacter->description);
         $questCharacter->description = $this->linkerService->parse($questCharacter->description);
     }
 }

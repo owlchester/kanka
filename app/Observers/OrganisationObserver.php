@@ -8,11 +8,14 @@ use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class OrganisationObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -36,7 +39,7 @@ class OrganisationObserver
         $organisation->campaign_id = Session::get('campaign_id');
 
         // Purity text
-        $organisation->history = Purify::clean($organisation->history);
+        $organisation->history = $this->purify($organisation->history);
 
         // Parse links
         $organisation->history = $this->linkerService->parse($organisation->history);

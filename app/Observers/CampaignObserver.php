@@ -11,10 +11,14 @@ use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class CampaignObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @param Campaign $campaign
      */
@@ -27,7 +31,7 @@ class CampaignObserver
         }
 
         // Purity text
-        $campaign->description = Purify::clean($campaign->description);
+        $campaign->description = $this->purify($campaign->description);
 
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');

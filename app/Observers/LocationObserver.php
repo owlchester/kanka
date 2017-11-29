@@ -6,13 +6,15 @@ use App\Campaign;
 use App\Location;
 use App\Services\ImageService;
 use App\Services\LinkerService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class LocationObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -36,8 +38,8 @@ class LocationObserver
         $location->campaign_id = Session::get('campaign_id');
 
         // Purity text
-        $location->history = Purify::clean($location->history);
-        $location->description = Purify::clean($location->description);
+        $location->history = $this->purify($location->history);
+        $location->description = $this->purify($location->description);
 
         $location->history = $this->linkerService->parse($location->history);
         $location->description = $this->linkerService->parse($location->description);

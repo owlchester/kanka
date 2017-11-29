@@ -6,13 +6,15 @@ use App\Campaign;
 use App\Family;
 use App\Services\ImageService;
 use App\Services\LinkerService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class FamilyObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -36,7 +38,7 @@ class FamilyObserver
         $family->campaign_id = Session::get('campaign_id');
 
         // Purity text
-        $family->history = Purify::clean($family->history);
+        $family->history = $this->purify($family->history);
 
         // Parse links
         $family->history = $this->linkerService->parse($family->history);

@@ -4,15 +4,15 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Models\QuestLocation;
-use App\Services\ImageService;
 use App\Services\LinkerService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class QuestLocationObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -32,7 +32,7 @@ class QuestLocationObserver
      */
     public function saving(QuestLocation $questLocation)
     {
-        $questLocation->description = Purify::clean($questLocation->description);
+        $questLocation->description = $this->purify($questLocation->description);
         $questLocation->description = $this->linkerService->parse($questLocation->description);
     }
 }

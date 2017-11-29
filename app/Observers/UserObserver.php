@@ -9,15 +9,10 @@ use App\Mail\UserRegistered;
 use App\Mail\WelcomeEmail;
 use App\Models\UserDashboardSetting;
 use App\Models\UserLog;
-use App\Services\ImageService;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class UserObserver
 {

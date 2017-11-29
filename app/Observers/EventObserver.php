@@ -6,10 +6,14 @@ use App\Models\Event;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Session;
-use Stevebauman\Purify\Facades\Purify;
 
 class EventObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -33,7 +37,7 @@ class EventObserver
         $event->campaign_id = Session::get('campaign_id');
 
         // Purity text
-        $event->history = Purify::clean($event->history);
+        $event->history = $this->purify($event->history);
 
         // Parse links
         $event->history = $this->linkerService->parse($event->history);

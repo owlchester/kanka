@@ -7,9 +7,6 @@ use App\Models\CampaignInvite;
 use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class CampaignInviteObserver
 {

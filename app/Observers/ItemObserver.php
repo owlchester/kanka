@@ -6,13 +6,15 @@ use App\Campaign;
 use App\Item;
 use App\Services\ImageService;
 use App\Services\LinkerService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class ItemObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -36,8 +38,8 @@ class ItemObserver
         $item->campaign_id = Session::get('campaign_id');
 
         // Purity text
-        $item->history = Purify::clean($item->history);
-        $item->description = Purify::clean($item->description);
+        $item->history = $this->purify($item->history);
+        $item->description = $this->purify($item->description);
 
         // Parse links
         $item->history = $this->linkerService->parse($item->history);

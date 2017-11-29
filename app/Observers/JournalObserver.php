@@ -6,13 +6,15 @@ use App\Campaign;
 use App\Journal;
 use App\Services\ImageService;
 use App\Services\LinkerService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Stevebauman\Purify\Facades\Purify;
 
 class JournalObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var LinkerService
      */
@@ -35,7 +37,7 @@ class JournalObserver
         $journal->slug = str_slug($journal->name, '');
         $journal->campaign_id = Session::get('campaign_id');
 
-        $journal->history = Purify::clean($journal->history);
+        $journal->history = $this->purify($journal->history);
         $journal->history = $this->linkerService->parse($journal->history);
 
         // Handle image. Let's use a service for this.
