@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Location;
+use App\Models\Location;
 use App\Models\LocationAttribute;
 use App\Http\Requests\StoreLocation;
 use App\Http\Requests\StoreLocationAttribute;
@@ -72,7 +72,7 @@ class LocationAttributeController extends CrudAttributeController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
     public function edit(Location $location, LocationAttribute $locationAttribute)
@@ -84,7 +84,7 @@ class LocationAttributeController extends CrudAttributeController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
     public function update(StoreLocationAttribute $request, Location $location, LocationAttribute $locationAttribute)

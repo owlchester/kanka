@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Organisation;
+use App\Models\Organisation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrganisationPolicy
@@ -14,7 +14,7 @@ class OrganisationPolicy
      * Determine whether the user can view the organisation.
      *
      * @param  \App\User  $user
-     * @param  \App\Organisation  $organisation
+     * @param  \App\Models\Organisation  $organisation
      * @return mixed
      */
     public function view(User $user, Organisation $organisation)
@@ -38,7 +38,7 @@ class OrganisationPolicy
      * Determine whether the user can update the organisation.
      *
      * @param  \App\User  $user
-     * @param  \App\Organisation  $organisation
+     * @param  \App\Models\Organisation  $organisation
      * @return mixed
      */
     public function update(User $user, Organisation $organisation)
@@ -51,7 +51,7 @@ class OrganisationPolicy
      * Determine whether the user can delete the organisation.
      *
      * @param  \App\User  $user
-     * @param  \App\Organisation  $organisation
+     * @param  \App\Models\Organisation  $organisation
      * @return mixed
      */
     public function delete(User $user, Organisation $organisation)

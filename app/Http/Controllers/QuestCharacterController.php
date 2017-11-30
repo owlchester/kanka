@@ -71,7 +71,7 @@ class QuestCharacterController extends CrudAttributeController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Quest $quest, QuestCharacter $questCharacter)
@@ -83,7 +83,7 @@ class QuestCharacterController extends CrudAttributeController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreQuestCharacter $request, Quest $quest, QuestCharacter $questCharacter)

@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Location;
+use App\Models\Location;
 use App\Models\LocationRelation;
 use App\Traits\RelationTrait;
 use Illuminate\Support\Facades\Auth;

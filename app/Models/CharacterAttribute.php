@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\MiscModel;
+use App\Models\MiscModel;
 use App\Traits\VisibleTrait;
 
 class CharacterAttribute extends MiscModel
@@ -27,6 +27,6 @@ class CharacterAttribute extends MiscModel
      */
     public function character()
     {
-        return $this->belongsTo('App\Character', 'character_id');
+        return $this->belongsTo('App\Models\Character', 'character_id');
     }
 }

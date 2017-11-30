@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Family;
+use App\Models\Family;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Session;

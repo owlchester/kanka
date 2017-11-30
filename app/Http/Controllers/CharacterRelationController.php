@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Models\CharacterRelation;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreCharacterRelation;
@@ -60,7 +60,7 @@ class CharacterRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Character $character, CharacterRelation $characterRelation)
@@ -72,7 +72,7 @@ class CharacterRelationController extends CrudRelationController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCharacterRelation $request, Character $character, CharacterRelation $characterRelation)

@@ -4,15 +4,15 @@ namespace App\Providers;
 
 use App\Campaign;
 use App\CampaignUser;
-use App\Character;
+use App\Models\Character;
 use App\Models\CharacterAttribute;
 use App\Models\CharacterRelation;
-use App\Family;
+use App\Models\Family;
 use App\Models\FamilyRelation;
 use App\Http\Validators\HashValidator;
-use App\Item;
-use App\Journal;
-use App\Location;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Location;
 use App\Models\CampaignInvite;
 use App\Models\Event;
 use App\Models\LocationRelation;
@@ -20,7 +20,7 @@ use App\Models\OrganisationRelation;
 use App\Models\Quest;
 use App\Models\QuestCharacter;
 use App\Models\QuestLocation;
-use App\Note;
+use App\Models\Note;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\CharacterAttributeObserver;
@@ -38,7 +38,7 @@ use App\Observers\OrganisationMemberObserver;
 use App\Observers\OrganisationObserver;
 use App\Observers\OrganisationRelationObserver;
 use App\Observers\UserObserver;
-use App\Organisation;
+use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\User;
 use Illuminate\Support\Facades\Gate;
@@ -59,28 +59,30 @@ class AppServiceProvider extends ServiceProvider
         // Older mysql versions workaround
         Schema::defaultStringLength(191);
 
-        // Observers
-        Campaign::observe(CampaignObserver::class);
-        CampaignUser::observe(CampaignUserObserver::class);
-        CampaignInvite::observe('App\Observers\CampaignInviteObserver');
-        Character::observe(CharacterObserver::class);
-        CharacterRelation::observe(CharacterRelationObserver::class);
-        CharacterAttribute::observe(CharacterAttributeObserver::class);
-        Event::observe(EventObserver::class);
-        Location::observe(LocationObserver::class);
-        LocationRelation::observe(LocationRelationObserver::class);
-        Family::observe(FamilyObserver::class);
-        FamilyRelation::observe(FamilyRelationObserver::class);
-        Item::observe(ItemObserver::class);
-        Journal::observe(JournalObserver::class);
-        Organisation::observe(OrganisationObserver::class);
-        OrganisationMember::observe(OrganisationMemberObserver::class);
-        OrganisationRelation::observe(OrganisationRelationObserver::class);
-        Note::observe(NoteObserver::class);
-        User::observe(UserObserver::class);
-        Quest::observe('App\Observers\QuestObserver');
-        QuestCharacter::observe('App\Observers\QuestCharacterObserver');
-        QuestLocation::observe('App\Observers\QuestLocationObserver');
+        if (!app()->runningInConsole()) {
+            // Observers
+            Campaign::observe(CampaignObserver::class);
+            CampaignUser::observe(CampaignUserObserver::class);
+            CampaignInvite::observe('App\Observers\CampaignInviteObserver');
+            Character::observe(CharacterObserver::class);
+            CharacterRelation::observe(CharacterRelationObserver::class);
+            CharacterAttribute::observe(CharacterAttributeObserver::class);
+            Event::observe(EventObserver::class);
+            Location::observe(LocationObserver::class);
+            LocationRelation::observe(LocationRelationObserver::class);
+            Family::observe(FamilyObserver::class);
+            FamilyRelation::observe(FamilyRelationObserver::class);
+            Item::observe(ItemObserver::class);
+            Journal::observe(JournalObserver::class);
+            Organisation::observe(OrganisationObserver::class);
+            OrganisationMember::observe(OrganisationMemberObserver::class);
+            OrganisationRelation::observe(OrganisationRelationObserver::class);
+            Note::observe(NoteObserver::class);
+            User::observe(UserObserver::class);
+            Quest::observe('App\Observers\QuestObserver');
+            QuestCharacter::observe('App\Observers\QuestCharacterObserver');
+            QuestLocation::observe('App\Observers\QuestLocationObserver');
+        }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

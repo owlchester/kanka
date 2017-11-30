@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Journal;
+use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +18,7 @@ class JournalController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Journal::class;
+    protected $model = \App\Models\Journal::class;
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +34,7 @@ class JournalController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Journal  $character
+     * @param  \App\Models\Journal  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Journal $journal)
@@ -45,7 +45,7 @@ class JournalController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Journal  $character
+     * @param  \App\Models\Journal  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Journal $journal)
@@ -57,7 +57,7 @@ class JournalController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Journal  $character
+     * @param  \App\Models\Journal  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreJournal $request, Journal $journal)
@@ -68,7 +68,7 @@ class JournalController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Journal  $character
+     * @param  \App\Models\Journal  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Journal $journal)

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNote;
-use App\Note;
+use App\Models\Note;
 use Illuminate\Support\Facades\Session;
 
 class NoteController extends CrudController
@@ -17,7 +17,7 @@ class NoteController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Note::class;
+    protected $model = \App\Models\Note::class;
 
     /**
      * Store a newly created resource in storage.
@@ -33,7 +33,7 @@ class NoteController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Note $note)
@@ -44,7 +44,7 @@ class NoteController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Note $note
+     * @param  \App\Models\Note $note
      * @return \Illuminate\Http\Response
      */
     public function edit(Note $note)
@@ -56,7 +56,7 @@ class NoteController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Note $note
+     * @param  \App\Models\Note $note
      * @return \Illuminate\Http\Response
      */
     public function update(StoreNote $request, Note $note)
@@ -67,7 +67,7 @@ class NoteController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Note $note)

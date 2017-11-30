@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Organisation;
+use App\Models\Organisation;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;

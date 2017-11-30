@@ -15,14 +15,14 @@ class EntityService
     public function __construct()
     {
         $this->entities = [
-            'characters' => 'App\Character',
+            'characters' => 'App\Models\Character',
             'events' => 'App\Models\Event',
-            'families' => 'App\Family',
-            'items' => 'App\Item',
-            'journals' => 'App\Journal',
-            'locations' => 'App\Location',
-            'notes' => 'App\Note',
-            'organisations' => 'App\Organisation',
+            'families' => 'App\Models\Family',
+            'items' => 'App\Models\Item',
+            'journals' => 'App\Models\Journal',
+            'locations' => 'App\Models\Location',
+            'notes' => 'App\Models\Note',
+            'organisations' => 'App\Models\Organisation',
             'quests' => 'App\Models\Quest',
         ];
     }

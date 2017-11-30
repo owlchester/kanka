@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Character;
+use App\Models\Character;
 use Illuminate\Database\Eloquent\Model;
 
 class RandomCharacterService

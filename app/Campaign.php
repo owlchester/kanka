@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\MiscModel;
 use Illuminate\Support\Facades\Auth;
 
 class Campaign extends MiscModel

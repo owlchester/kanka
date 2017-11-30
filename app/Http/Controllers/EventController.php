@@ -34,7 +34,7 @@ class EventController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
@@ -45,7 +45,7 @@ class EventController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -57,7 +57,7 @@ class EventController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreEvent $request, Event $event)
@@ -68,7 +68,7 @@ class EventController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event)

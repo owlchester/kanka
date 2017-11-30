@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\MiscModel;
+use App\Models\MiscModel;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Models\CharacterAttribute;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreCharacterAttribute;
@@ -72,7 +72,7 @@ class CharacterAttributeController extends CrudAttributeController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Character $character, CharacterAttribute $characterAttribute)
@@ -84,7 +84,7 @@ class CharacterAttributeController extends CrudAttributeController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCharacterAttribute $request, Character $character, CharacterAttribute $characterAttribute)

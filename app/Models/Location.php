@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
@@ -39,7 +39,7 @@ class Location extends MiscModel
      */
     public function parentLocation()
     {
-        return $this->belongsTo('App\Location', 'parent_location_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'parent_location_id', 'id');
     }
 
     /**
@@ -47,7 +47,7 @@ class Location extends MiscModel
      */
     public function characters()
     {
-        return $this->hasMany('App\Character', 'location_id', 'id');
+        return $this->hasMany('App\Models\Character', 'location_id', 'id');
     }
 
     /**
@@ -63,7 +63,7 @@ class Location extends MiscModel
      */
     public function items()
     {
-        return $this->hasMany('App\Item', 'location_id', 'id');
+        return $this->hasMany('App\Models\Item', 'location_id', 'id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Location extends MiscModel
      */
     public function locations()
     {
-        return $this->hasMany('App\Location', 'parent_location_id', 'id');
+        return $this->hasMany('App\Models\Location', 'parent_location_id', 'id');
     }
 
     /**
@@ -79,7 +79,7 @@ class Location extends MiscModel
      */
     public function families()
     {
-        return $this->hasMany('App\Family', 'location_id', 'id');
+        return $this->hasMany('App\Models\Family', 'location_id', 'id');
     }
 
     /**

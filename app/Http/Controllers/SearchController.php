@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
-use App\Family;
-use App\Item;
-use App\Location;
+use App\Models\Character;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Location;
 use App\Models\Event;
 use App\Models\Quest;
-use App\Note;
-use App\Organisation;
+use App\Models\Note;
+use App\Models\Organisation;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\LinkerService;

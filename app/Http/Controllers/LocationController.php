@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreLocation;
-use App\Location;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +21,7 @@ class LocationController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Location::class;
+    protected $model = \App\Models\Location::class;
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +37,7 @@ class LocationController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
     public function show(Location $location)
@@ -48,7 +48,7 @@ class LocationController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $location
+     * @param  \App\Models\Character  $location
      * @return \Illuminate\Http\Response
      */
     public function edit(Location $location)
@@ -60,7 +60,7 @@ class LocationController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $location
+     * @param  \App\Models\Character  $location
      * @return \Illuminate\Http\Response
      */
     public function update(StoreLocation $request, Location $location)
@@ -71,7 +71,7 @@ class LocationController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $location
+     * @param  \App\Models\Character  $location
      * @return \Illuminate\Http\Response
      */
     public function destroy(Location $location)

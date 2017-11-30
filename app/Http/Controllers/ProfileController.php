@@ -35,7 +35,7 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Family $family
+     * @param  \App\Models\Family $family
      * @return \Illuminate\Http\Response
      */
     public function update(StoreProfile $request)
@@ -48,7 +48,7 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Family $family
+     * @param  \App\Models\Family $family
      * @return \Illuminate\Http\Response
      */
     public function password(StoreProfilePassword $request)
@@ -61,7 +61,7 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(DeleteProfile $request)

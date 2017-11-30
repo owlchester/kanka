@@ -21,14 +21,14 @@
                 @if ($campaign->enabled('families'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.family') }}</label>
-                    {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : $random->generateForeign(App\Family::class)),
+                    {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : $random->generateForeign(App\Models\Family::class)),
                     null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
                 </div>
                 @endif
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
-                    {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : $random->generateForeign(App\Location::class)),
+                    {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : $random->generateForeign(App\Models\Location::class)),
                     null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
                 </div>
                 @endif

@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 
-class Organisation extends MiscModel
+class Family extends MiscModel
 {
     /**
      * @var array
@@ -16,8 +16,7 @@ class Organisation extends MiscModel
         'history',
         'image',
         'location_id',
-        'type',
-        'is_private',
+        'is_private'
     ];
 
     /**
@@ -37,7 +36,7 @@ class Organisation extends MiscModel
      */
     public function location()
     {
-        return $this->belongsTo('App\Location', 'location_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     /**
@@ -45,7 +44,7 @@ class Organisation extends MiscModel
      */
     public function members()
     {
-        return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
+        return $this->hasMany('App\Models\Character', 'family_id', 'id');
     }
 
     /**
@@ -53,7 +52,7 @@ class Organisation extends MiscModel
      */
     public function relationships()
     {
-        return $this->hasMany('App\Models\OrganisationRelation', 'first_id', 'id');
+        return $this->hasMany('App\Models\FamilyRelation', 'first_id', 'id');
     }
 
     /**

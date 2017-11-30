@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Journal;
+use App\Models\Journal;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class JournalPolicy
@@ -14,7 +14,7 @@ class JournalPolicy
      * Determine whether the user can view the journal.
      *
      * @param  \App\User  $user
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\Journal  $journal
      * @return mixed
      */
     public function view(User $user, Journal $journal)
@@ -38,7 +38,7 @@ class JournalPolicy
      * Determine whether the user can update the journal.
      *
      * @param  \App\User  $user
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\Journal  $journal
      * @return mixed
      */
     public function update(User $user, Journal $journal)
@@ -51,7 +51,7 @@ class JournalPolicy
      * Determine whether the user can delete the journal.
      *
      * @param  \App\User  $user
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\Journal  $journal
      * @return mixed
      */
     public function delete(User $user, Journal $journal)

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
-use App\Family;
-use App\Item;
-use App\Journal;
-use App\Location;
-use App\Note;
-use App\Organisation;
+use App\Models\Character;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Location;
+use App\Models\Note;
+use App\Models\Organisation;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 

@@ -30,7 +30,7 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Family $family
+     * @param  \App\Models\Family $family
      * @return \Illuminate\Http\Response
      */
     public function update(StoreUserDashboardSetting $request)

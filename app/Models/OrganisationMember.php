@@ -15,7 +15,7 @@ class OrganisationMember extends Model
      */
     public function character()
     {
-        return $this->belongsTo('App\Character', 'character_id');
+        return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
     /**
@@ -23,6 +23,6 @@ class OrganisationMember extends Model
      */
     public function organisation()
     {
-        return $this->belongsTo('App\Organisation', 'organisation_id');
+        return $this->belongsTo('App\Models\Organisation', 'organisation_id');
     }
 }

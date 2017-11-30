@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Organisation;
+use App\Models\Organisation;
 use App\Models\OrganisationRelation;
 use App\Traits\RelationTrait;
 use Illuminate\Support\Facades\Auth;

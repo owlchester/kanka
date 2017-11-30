@@ -1,29 +1,32 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 
-class Family extends MiscModel
+class Item extends MiscModel
 {
     /**
      * @var array
      */
     protected $fillable = [
         'name',
-        'slug',
-        'history',
+        'campaign_id',
+        'slug', 'type',
         'image',
+        'description',
+        'history',
+        'character_id',
         'location_id',
-        'is_private'
+        'is_private',
     ];
 
     /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name'];
+    protected $searchableColumns  = ['name', 'type'];
 
     /**
      * Traits
@@ -34,25 +37,17 @@ class Family extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function character()
+    {
+        return $this->belongsTo('App\Models\Character', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function location()
     {
-        return $this->belongsTo('App\Location', 'location_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function members()
-    {
-        return $this->hasMany('App\Character', 'family_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function relationships()
-    {
-        return $this->hasMany('App\Models\FamilyRelation', 'first_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     /**
@@ -62,7 +57,7 @@ class Family extends MiscModel
      */
     public function shortHistory($limit = 150)
     {
-        $pureHistory = strip_tags($this->history);
+        $pureHistory = strip_tags($this->description);
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return substr($pureHistory, 0, $limit) . '...';

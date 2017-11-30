@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Campaign;
-use App\Character;
-use App\Item;
-use App\Location;
+use App\Models\Character;
+use App\Models\Item;
+use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 

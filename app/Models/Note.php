@@ -1,22 +1,29 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 
-class Journal extends MiscModel
+class Note extends MiscModel
 {
     /**
      * @var array
      */
-    protected $fillable = ['name', 'campaign_id', 'slug', 'type', 'image', 'history', 'date', 'is_private'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'image',
+        'type',
+        'is_private',
+    ];
 
     /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type'];
+    protected $searchableColumns = ['name', 'type'];
 
     /**
      * Traits
@@ -30,9 +37,9 @@ class Journal extends MiscModel
      * @param int $limit
      * @return string
      */
-    public function shortHistory($limit = 250)
+    public function shortHistory($limit = 150)
     {
-        $pureHistory = strip_tags($this->history);
+        $pureHistory = strip_tags($this->description);
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return substr($pureHistory, 0, $limit) . '...';

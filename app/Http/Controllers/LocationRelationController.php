@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Location;
+use App\Models\Location;
 use App\Models\LocationRelation;
 use App\Http\Requests\StoreLocation;
 use App\Http\Requests\StoreLocationRelation;
@@ -61,7 +61,7 @@ class LocationRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $character
+     * @param  \App\Models\Location  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Location $location, LocationRelation $locationRelation)
@@ -73,7 +73,7 @@ class LocationRelationController extends CrudRelationController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $character
+     * @param  \App\Models\Location  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreLocationRelation $request, Location $location, LocationRelation $locationRelation)

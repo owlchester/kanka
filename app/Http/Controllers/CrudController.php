@@ -106,7 +106,7 @@ class CrudController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function crudShow(Model $model)
@@ -120,7 +120,7 @@ class CrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function crudEdit(Model $model)
@@ -135,7 +135,7 @@ class CrudController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function crudUpdate(Request $request, Model $model)
@@ -154,7 +154,7 @@ class CrudController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function crudDestroy(Model $model)

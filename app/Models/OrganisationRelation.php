@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Organisation;
+use App\Models\Organisation;
 use Illuminate\Database\Eloquent\Model;
 
 class OrganisationRelation extends Model

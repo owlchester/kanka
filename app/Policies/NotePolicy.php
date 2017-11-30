@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Note;
+use App\Models\Note;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class NotePolicy
@@ -14,7 +14,7 @@ class NotePolicy
      * Determine whether the user can view the note.
      *
      * @param  \App\User  $user
-     * @param  \App\Note  $note
+     * @param  \App\Models\Note  $note
      * @return mixed
      */
     public function view(User $user, Note $note)
@@ -38,7 +38,7 @@ class NotePolicy
      * Determine whether the user can update the note.
      *
      * @param  \App\User  $user
-     * @param  \App\Note  $note
+     * @param  \App\Models\Note  $note
      * @return mixed
      */
     public function update(User $user, Note $note)
@@ -51,7 +51,7 @@ class NotePolicy
      * Determine whether the user can delete the note.
      *
      * @param  \App\User  $user
-     * @param  \App\Note  $note
+     * @param  \App\Models\Note  $note
      * @return mixed
      */
     public function delete(User $user, Note $note)

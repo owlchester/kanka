@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreItem;
-use App\Item;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,7 +20,7 @@ class ItemController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Item::class;
+    protected $model = \App\Models\Item::class;
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +36,7 @@ class ItemController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
@@ -47,7 +47,7 @@ class ItemController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Item $item)
@@ -59,7 +59,7 @@ class ItemController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreItem $request, Item $item)
@@ -70,7 +70,7 @@ class ItemController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)

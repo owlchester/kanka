@@ -103,7 +103,7 @@ class CrudAttributeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Family  $character
+     * @param  \App\Models\Family  $character
      * @return \Illuminate\Http\Response
      */
     public function crudEdit(Model $parent, Model $model)

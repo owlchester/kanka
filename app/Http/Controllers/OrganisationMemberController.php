@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
-use App\Organisation;
+use App\Models\Character;
+use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreOrganisationMember;
@@ -59,7 +59,7 @@ class OrganisationMemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Organisation $organisation, OrganisationMember $organisationMember)
@@ -75,7 +75,7 @@ class OrganisationMemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Organisation $organisation, OrganisationMember $organisationMember)
@@ -92,7 +92,7 @@ class OrganisationMemberController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreOrganisationMember $request, Organisation $organisation, OrganisationMember $organisationMember)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Services\RandomCharacterService;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class CharacterController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Character::class;
+    protected $model = \App\Models\Character::class;
 
     /**
      * @var RandomCharacterService
@@ -66,7 +66,7 @@ class CharacterController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Character $character)
@@ -77,7 +77,7 @@ class CharacterController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Character $character)
@@ -89,7 +89,7 @@ class CharacterController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCharacter $request, Character $character)
@@ -100,7 +100,7 @@ class CharacterController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Character $character)

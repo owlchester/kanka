@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\MiscModel;
+use App\Models\MiscModel;
 use App\Traits\VisibleTrait;
 
 class LocationAttribute extends MiscModel
@@ -27,6 +27,6 @@ class LocationAttribute extends MiscModel
      */
     public function location()
     {
-        return $this->belongsTo('App\Location', 'location_id');
+        return $this->belongsTo('App\Models\Location', 'location_id');
     }
 }

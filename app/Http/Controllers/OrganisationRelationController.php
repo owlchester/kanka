@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Organisation;
+use App\Models\Organisation;
 use App\Models\OrganisationRelation;
 use App\Http\Requests\StoreOrganisation;
 use App\Http\Requests\StoreOrganisationRelation;
@@ -60,7 +60,7 @@ class OrganisationRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Organisation  $character
+     * @param  \App\Models\Organisation  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Organisation $organisation, OrganisationRelation $organisationRelation)
@@ -72,7 +72,7 @@ class OrganisationRelationController extends CrudRelationController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Organisation  $character
+     * @param  \App\Models\Organisation  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreOrganisationRelation $request, Organisation $organisation, OrganisationRelation $organisationRelation)

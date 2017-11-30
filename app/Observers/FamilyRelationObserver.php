@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Family;
+use App\Models\Family;
 use App\Models\FamilyRelation;
 use App\Traits\RelationTrait;
 use Illuminate\Support\Facades\Auth;

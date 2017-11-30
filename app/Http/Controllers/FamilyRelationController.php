@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Family;
+use App\Models\Family;
 use App\Models\FamilyRelation;
 use App\Http\Requests\StoreFamily;
 use App\Http\Requests\StoreFamilyRelation;
@@ -60,7 +60,7 @@ class FamilyRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Family  $character
+     * @param  \App\Models\Family  $character
      * @return \Illuminate\Http\Response
      */
     public function edit(Family $family, FamilyRelation $familyRelation)
@@ -72,7 +72,7 @@ class FamilyRelationController extends CrudRelationController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Family  $character
+     * @param  \App\Models\Family  $character
      * @return \Illuminate\Http\Response
      */
     public function update(StoreFamilyRelation $request, Family $family, FamilyRelation $familyRelation)

@@ -71,7 +71,7 @@ class QuestLocationController extends CrudAttributeController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
     public function edit(Quest $quest, QuestLocation $questLocation)
@@ -83,7 +83,7 @@ class QuestLocationController extends CrudAttributeController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
     public function update(StoreQuestLocation $request, Quest $quest, QuestLocation $questLocation)

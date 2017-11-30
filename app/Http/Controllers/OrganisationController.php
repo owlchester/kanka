@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreOrganisation;
 use App\Http\Requests\StoreLocation;
-use App\Organisation;
+use App\Models\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -21,7 +21,7 @@ class OrganisationController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Organisation::class;
+    protected $model = \App\Models\Organisation::class;
 
 
     /**
@@ -38,7 +38,7 @@ class OrganisationController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Organisation $organisation)
@@ -49,7 +49,7 @@ class OrganisationController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Organisation $organisation
+     * @param  \App\Models\Organisation $organisation
      * @return \Illuminate\Http\Response
      */
     public function edit(Organisation $organisation)
@@ -61,7 +61,7 @@ class OrganisationController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Organisation $organisation
+     * @param  \App\Models\Organisation $organisation
      * @return \Illuminate\Http\Response
      */
     public function update(StoreOrganisation $request, Organisation $organisation)
@@ -72,7 +72,7 @@ class OrganisationController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function destroy(Organisation $organisation)

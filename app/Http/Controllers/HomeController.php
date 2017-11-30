@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
-use App\Character;
-use App\Family;
-use App\Item;
-use App\Journal;
-use App\Location;
-use App\Organisation;
+use App\Models\Character;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Location;
+use App\Models\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;

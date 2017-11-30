@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
+use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreFamily;
 use App\Http\Requests\StoreLocation;
-use App\Family;
+use App\Models\Family;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -21,7 +21,7 @@ class FamilyController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Family::class;
+    protected $model = \App\Models\Family::class;
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +37,7 @@ class FamilyController extends CrudController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $family
+     * @param  \App\Models\Character  $family
      * @return \Illuminate\Http\Response
      */
     public function show(Family $family)
@@ -48,7 +48,7 @@ class FamilyController extends CrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Family $family
+     * @param  \App\Models\Family $family
      * @return \Illuminate\Http\Response
      */
     public function edit(Family $family)
@@ -60,7 +60,7 @@ class FamilyController extends CrudController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Family $family
+     * @param  \App\Models\Family $family
      * @return \Illuminate\Http\Response
      */
     public function update(StoreFamily $request, Family $family)
@@ -71,7 +71,7 @@ class FamilyController extends CrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $family
+     * @param  \App\Models\Character  $family
      * @return \Illuminate\Http\Response
      */
     public function destroy(Family $family)

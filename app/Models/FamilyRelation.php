@@ -12,12 +12,12 @@ class FamilyRelation extends Model
 
     public function first()
     {
-        return $this->belongsTo('App\Family', 'first_id');
+        return $this->belongsTo('App\Models\Family', 'first_id');
     }
 
     public function second()
     {
-        return $this->belongsTo('App\Family', 'second_id');
+        return $this->belongsTo('App\Models\Family', 'second_id');
     }
     //
 }

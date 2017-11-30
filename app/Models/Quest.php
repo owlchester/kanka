@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\MiscModel;
+use App\Models\MiscModel;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 

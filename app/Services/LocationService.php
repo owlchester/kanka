@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Location;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Model;
 
 class LocationService

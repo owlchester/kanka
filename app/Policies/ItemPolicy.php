@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Item;
+use App\Models\Item;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ItemPolicy
@@ -14,7 +14,7 @@ class ItemPolicy
      * Determine whether the user can view the item.
      *
      * @param  \App\User  $user
-     * @param  \App\Item  $item
+     * @param  \App\Models\Item  $item
      * @return mixed
      */
     public function view(User $user, Item $item)
@@ -38,7 +38,7 @@ class ItemPolicy
      * Determine whether the user can update the item.
      *
      * @param  \App\User  $user
-     * @param  \App\Item  $item
+     * @param  \App\Models\Item  $item
      * @return mixed
      */
     public function update(User $user, Item $item)
@@ -51,7 +51,7 @@ class ItemPolicy
      * Determine whether the user can delete the item.
      *
      * @param  \App\User  $user
-     * @param  \App\Item  $item
+     * @param  \App\Models\Item  $item
      * @return mixed
      */
     public function delete(User $user, Item $item)

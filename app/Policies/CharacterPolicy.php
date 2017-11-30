@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Character;
+use App\Models\Character;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CharacterPolicy
@@ -14,7 +14,7 @@ class CharacterPolicy
      * Determine whether the user can view the character.
      *
      * @param  \App\User  $user
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return mixed
      */
     public function view(User $user, Character $character)
@@ -38,7 +38,7 @@ class CharacterPolicy
      * Determine whether the user can update the character.
      *
      * @param  \App\User  $user
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return mixed
      */
     public function update(User $user, Character $character)
@@ -51,7 +51,7 @@ class CharacterPolicy
      * Determine whether the user can delete the character.
      *
      * @param  \App\User  $user
-     * @param  \App\Character  $character
+     * @param  \App\Models\Character  $character
      * @return mixed
      */
     public function delete(User $user, Character $character)

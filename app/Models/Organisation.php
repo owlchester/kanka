@@ -1,24 +1,22 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 
-class Item extends MiscModel
+class Organisation extends MiscModel
 {
     /**
      * @var array
      */
     protected $fillable = [
         'name',
-        'campaign_id',
-        'slug', 'type',
-        'image',
-        'description',
+        'slug',
         'history',
-        'character_id',
+        'image',
         'location_id',
+        'type',
         'is_private',
     ];
 
@@ -26,7 +24,7 @@ class Item extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type'];
+    protected $searchableColumns = ['name'];
 
     /**
      * Traits
@@ -37,17 +35,25 @@ class Item extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function character()
+    public function location()
     {
-        return $this->belongsTo('App\Character', 'character_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function location()
+    public function members()
     {
-        return $this->belongsTo('App\Location', 'location_id', 'id');
+        return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function relationships()
+    {
+        return $this->hasMany('App\Models\OrganisationRelation', 'first_id', 'id');
     }
 
     /**
@@ -57,7 +63,7 @@ class Item extends MiscModel
      */
     public function shortHistory($limit = 150)
     {
-        $pureHistory = strip_tags($this->description);
+        $pureHistory = strip_tags($this->history);
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return substr($pureHistory, 0, $limit) . '...';
