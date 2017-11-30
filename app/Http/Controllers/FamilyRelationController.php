@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
-use App\Models\FamilyRelation;
-use App\Http\Requests\StoreFamily;
-use App\Http\Requests\StoreFamilyRelation;
+use App\Models\Relation;
+use App\Http\Requests\StoreRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,21 +18,12 @@ class FamilyRelationController extends CrudRelationController
     /**
      * @var string
      */
-    protected $route = 'families.family_relations';
+    protected $route = 'families.relations';
 
     /**
      * @var string
      */
-    protected $model = \App\Models\FamilyRelation::class;
-
-    /**
-     * @param Family $family
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Family $family)
-    {
-        return $this->crudIndex($family);
-    }
+    protected $model = \App\Models\Relation::class;
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +41,7 @@ class FamilyRelationController extends CrudRelationController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFamilyRelation $request, Family $family)
+    public function store(StoreRelation $request, Family $family)
     {
         return $this->crudStore($request, $family);
     }
@@ -60,34 +50,34 @@ class FamilyRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Family  $character
+     * @param  \App\Models\Family  $family
      * @return \Illuminate\Http\Response
      */
-    public function edit(Family $family, FamilyRelation $familyRelation)
+    public function edit(Family $family, Relation $relation)
     {
-        return $this->crudEdit($family, $familyRelation);
+        return $this->crudEdit($family, $relation);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Family  $character
+     * @param  \App\Models\Family  $family
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreFamilyRelation $request, Family $family, FamilyRelation $familyRelation)
+    public function update(StoreRelation $request, Family $family, Relation $relation)
     {
-        return $this->crudUpdate($request, $family, $familyRelation);
+        return $this->crudUpdate($request, $family, $relation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FamilyRelation  $familyRelation
+     * @param  \App\Models\Relation  $familyRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $family, FamilyRelation $familyRelation)
+    public function destroy(Family $family, Relation $relation)
     {
-        return $this->crudDestroy($family, $familyRelation);
+        return $this->crudDestroy($family, $relation);
     }
 }

@@ -41,6 +41,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Quest' => 'App\Policies\QuestPolicy',
         'App\Models\QuestCharacter' => 'App\Policies\QuestCharacterPolicy',
         'App\Models\QuestLocation' => 'App\Policies\QuestLocationPolicy',
+        'App\Models\Relation' => 'App\Policies\RelationPolicy',
     ];
 
     /**

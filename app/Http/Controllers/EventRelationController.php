@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
+use App\Models\Event;
 use App\Models\Relation;
 use App\Http\Requests\StoreRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class LocationRelationController extends CrudRelationController
+class EventRelationController extends CrudRelationController
 {
     /**
      * @var string
      */
-    protected $view = 'locations.relations';
+    protected $view = 'events.relations';
 
     /**
      * @var string
      */
-    protected $route = 'locations.relations';
+    protected $route = 'events.relations';
 
     /**
      * @var string
@@ -30,9 +30,9 @@ class LocationRelationController extends CrudRelationController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Location $location)
+    public function create(Event $event)
     {
-        return $this->crudCreate($location);
+        return $this->crudCreate($event);
     }
 
     /**
@@ -41,43 +41,43 @@ class LocationRelationController extends CrudRelationController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRelation $request, Location $location)
+    public function store(StoreRelation $request, Event $event)
     {
-        return $this->crudStore($request, $location);
+        return $this->crudStore($request, $event);
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location, Relation $relation)
+    public function edit(Event $event, Relation $relation)
     {
-        return $this->crudEdit($location, $relation);
+        return $this->crudEdit($event, $relation);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRelation $request, Location $location, Relation $relation)
+    public function update(StoreRelation $request, Event $event, Relation $relation)
     {
-        return $this->crudUpdate($request, $location, $relation);
+        return $this->crudUpdate($request, $event, $relation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Relation  $locationRelation
+     * @param  \App\Models\Relation  $eventRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location, Relation $relation)
+    public function destroy(Event $event, Relation $relation)
     {
-        return $this->crudDestroy($location, $relation);
+        return $this->crudDestroy($event, $relation);
     }
 }

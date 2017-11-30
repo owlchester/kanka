@@ -39,7 +39,7 @@ class Entity extends Model
      */
     public function child()
     {
-        return $this->{$this->type};
+        return $this->{$this->type}();
     }
 
     /**
@@ -47,7 +47,7 @@ class Entity extends Model
      */
     public function character()
     {
-        return $this->hasOne('App\Models\Character', 'entity_id');
+        return $this->hasOne('App\Models\Character', 'id', 'entity_id');
     }
 
     /**
@@ -55,7 +55,7 @@ class Entity extends Model
      */
     public function event()
     {
-        return $this->hasOne('App\Models\Event', 'entity_id');
+        return $this->hasOne('App\Models\Event', 'id', 'entity_id');
     }
 
     /**
@@ -63,7 +63,7 @@ class Entity extends Model
      */
     public function family()
     {
-        return $this->hasOne('App\Models\Family', 'entity_id');
+        return $this->hasOne('App\Models\Family', 'id', 'entity_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Entity extends Model
      */
     public function item()
     {
-        return $this->hasOne('App\Models\Item', 'entity_id');
+        return $this->hasOne('App\Models\Item', 'id', 'entity_id');
     }
 
     /**
@@ -79,7 +79,7 @@ class Entity extends Model
      */
     public function journal()
     {
-        return $this->hasOne('App\Models\Journal', 'entity_id');
+        return $this->hasOne('App\Models\Journal', 'id', 'entity_id');
     }
 
     /**
@@ -87,7 +87,7 @@ class Entity extends Model
      */
     public function location()
     {
-        return $this->hasOne('App\Models\Location', 'entity_id');
+        return $this->hasOne('App\Models\Location', 'id', 'entity_id');
     }
 
     /**
@@ -95,7 +95,7 @@ class Entity extends Model
      */
     public function note()
     {
-        return $this->hasOne('App\Models\Note', 'entity_id');
+        return $this->hasOne('App\Models\Note', 'id', 'entity_id');
     }
 
     /**
@@ -103,7 +103,7 @@ class Entity extends Model
      */
     public function organisation()
     {
-        return $this->hasOne('App\Models\Organisation', 'entity_id');
+        return $this->hasOne('App\Models\Organisation', 'id', 'entity_id');
     }
 
     /**
@@ -111,7 +111,7 @@ class Entity extends Model
      */
     public function quest()
     {
-        return $this->hasOne('App\Models\Quest', 'entity_id');
+        return $this->hasOne('App\Models\Quest', 'id', 'entity_id');
     }
 
     /**
@@ -145,5 +145,10 @@ class Entity extends Model
             return 'families';
         }
         return $this->type . 's';
+    }
+
+    public function relationships()
+    {
+        return $this->hasMany('App\Models\Relation', 'owner_id', 'id');
     }
 }

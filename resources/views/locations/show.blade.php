@@ -90,8 +90,8 @@
                     <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}">
                         <a href="#location" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.locations') }}</a>
                     </li>
-                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}">
-                        <a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.relations') }}</a>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
                         <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.attributes') }}</a>
@@ -118,8 +118,8 @@
                     <div class="tab-pane {{ (request()->get('tab') == 'location' ? ' active' : '') }}" id="location">
                         @include('locations._locations')
                     </div>
-                    <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
-                        @include('locations._relations')
+                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                        @include('cruds._relations')
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
                         @include('locations._attributes')

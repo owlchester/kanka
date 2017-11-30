@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
-use App\Models\CharacterRelation;
-use App\Http\Requests\StoreCharacter;
-use App\Http\Requests\StoreCharacterRelation;
+use App\Models\Relation;
+use App\Http\Requests\StoreRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,21 +18,12 @@ class CharacterRelationController extends CrudRelationController
     /**
      * @var string
      */
-    protected $route = 'characters.character_relations';
+    protected $route = 'characters.relations';
 
     /**
      * @var string
      */
-    protected $model = \App\Models\CharacterRelation::class;
-
-    /**
-     * @param Character $character
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Character $character)
-    {
-        return $this->crudIndex($character);
-    }
+    protected $model = \App\Models\Relation::class;
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +41,7 @@ class CharacterRelationController extends CrudRelationController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCharacterRelation $request, Character $character)
+    public function store(StoreRelation $request, Character $character)
     {
         return $this->crudStore($request, $character);
     }
@@ -63,9 +53,9 @@ class CharacterRelationController extends CrudRelationController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(Character $character, CharacterRelation $characterRelation)
+    public function edit(Character $character, Relation $relation)
     {
-        return $this->crudEdit($character, $characterRelation);
+        return $this->crudEdit($character, $relation);
     }
 
     /**
@@ -75,19 +65,19 @@ class CharacterRelationController extends CrudRelationController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCharacterRelation $request, Character $character, CharacterRelation $characterRelation)
+    public function update(StoreRelation $request, Character $character, Relation $relation)
     {
-        return $this->crudUpdate($request, $character, $characterRelation);
+        return $this->crudUpdate($request, $character, $relation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CharacterRelation  $characterRelation
+     * @param  \App\Models\Relation  $characterRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Character $character, CharacterRelation $characterRelation)
+    public function destroy(Character $character, Relation $relation)
     {
-        return $this->crudDestroy($character, $characterRelation);
+        return $this->crudDestroy($character, $relation);
     }
 }

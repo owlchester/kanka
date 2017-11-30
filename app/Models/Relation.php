@@ -11,6 +11,7 @@ class Relation extends Model
      * @var array
      */
     protected $fillable = [
+        'campaign_id',
         'owner_id',
         'target_id',
         'relation',
@@ -22,7 +23,7 @@ class Relation extends Model
      */
     public function owner()
     {
-        return $this->belongsTo('App\Models\Entity', 'owner_id');
+        return $this->belongsTo('App\Models\Entity', 'owner_id', 'id');
     }
 
     /**
@@ -30,6 +31,6 @@ class Relation extends Model
      */
     public function target()
     {
-        return $this->belongsTo('App\Models\Entity', 'target_id');
+        return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
 }

@@ -50,7 +50,12 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('notes.show.tabs.description') }}</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('notes.show.tabs.description') }}</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -58,6 +63,9 @@
                         <div class="post">
                             <p>{!! $model->description !!}</p>
                         </div>
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                        @include('cruds._relations')
                     </div>
                 </div>
             </div>

@@ -21,6 +21,7 @@ use App\Models\Quest;
 use App\Models\QuestCharacter;
 use App\Models\QuestLocation;
 use App\Models\Note;
+use App\Models\Relation;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\CharacterAttributeObserver;
@@ -82,6 +83,8 @@ class AppServiceProvider extends ServiceProvider
             Quest::observe('App\Observers\QuestObserver');
             QuestCharacter::observe('App\Observers\QuestCharacterObserver');
             QuestLocation::observe('App\Observers\QuestLocationObserver');
+
+            Relation::observe('App\Observers\RelationObserver');
         }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {

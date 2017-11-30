@@ -46,4 +46,14 @@ return [
     'hints' => [
         'is_private' => 'Hide from "Viewers"',
     ],
+    'relations' => [
+        'create' => [
+            'title' => 'Create a relation for :name',
+            'description' => '',
+        ],
+        'edit' => [
+            'title' => 'Update relation for :name',
+            'description' => '',
+        ],
+    ],
 ];

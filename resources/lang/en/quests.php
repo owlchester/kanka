@@ -112,4 +112,14 @@ return [
             'success' => 'Location location for :name removed.',
         ]
     ],
+    'relations' => [
+        'create' => [
+            'title' => 'Create a relation for :name',
+            'description' => '',
+        ],
+        'edit' => [
+            'title' => 'Update relation for :name',
+            'description' => '',
+        ],
+    ],
 ];

@@ -55,6 +55,9 @@
                     @if ($campaign->enabled('locations'))
                         <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}"><a href="#location" data-toggle="tab" aria-expanded="false">{{ trans('quests.show.tabs.locations') }}</a></li>
                     @endif
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                    </li>
                     <!--<li><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
                 </ul>
 
@@ -75,6 +78,9 @@
                             @include('quests._locations')
                         </div>
                     @endif
+                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                        @include('cruds._relations')
+                    </div>
                 </div>
             </div>
             </div>

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organisation;
-use App\Models\OrganisationRelation;
-use App\Http\Requests\StoreOrganisation;
-use App\Http\Requests\StoreOrganisationRelation;
+use App\Models\Relation;
+use App\Http\Requests\StoreRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,21 +18,12 @@ class OrganisationRelationController extends CrudRelationController
     /**
      * @var string
      */
-    protected $route = 'organisations.organisation_relations';
+    protected $route = 'organisations.relations';
 
     /**
      * @var string
      */
-    protected $model = \App\Models\OrganisationRelation::class;
-
-    /**
-     * @param Organisation $organisation
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Organisation $organisation)
-    {
-        return $this->crudIndex($organisation);
-    }
+    protected $model = \App\Models\Relation::class;
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +41,7 @@ class OrganisationRelationController extends CrudRelationController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrganisationRelation $request, Organisation $organisation)
+    public function store(StoreRelation $request, Organisation $organisation)
     {
         return $this->crudStore($request, $organisation);
     }
@@ -60,34 +50,34 @@ class OrganisationRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organisation  $character
+     * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organisation $organisation, OrganisationRelation $organisationRelation)
+    public function edit(Organisation $organisation, Relation $relation)
     {
-        return $this->crudEdit($organisation, $organisationRelation);
+        return $this->crudEdit($organisation, $relation);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Organisation  $character
+     * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOrganisationRelation $request, Organisation $organisation, OrganisationRelation $organisationRelation)
+    public function update(StoreRelation $request, Organisation $organisation, Relation $relation)
     {
-        return $this->crudUpdate($request, $organisation, $organisationRelation);
+        return $this->crudUpdate($request, $organisation, $relation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrganisationRelation  $organisationRelation
+     * @param  \App\Models\Relation  $organisationRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organisation $organisation, OrganisationRelation $organisationRelation)
+    public function destroy(Organisation $organisation, Relation $relation)
     {
-        return $this->crudDestroy($organisation, $organisationRelation);
+        return $this->crudDestroy($organisation, $relation);
     }
 }

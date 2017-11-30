@@ -72,12 +72,17 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('events.show.tabs.information') }}</a></li>
-                    <!--<li><a href="#character" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('events.show.tabs.information') }}</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                    </li>
+
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="information">
+                    <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         @if (!empty($model->description))
                         <div class="post">
                             <h3>{{ trans('events.fields.description') }}</h3>
@@ -92,7 +97,8 @@
                         </div>
                         @endif
                     </div>
-                    <div class="tab-pane" id="character">
+                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                        @include('cruds._relations')
                     </div>
                 </div>
             </div>

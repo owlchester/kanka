@@ -28,6 +28,17 @@ return [
         'success' => 'Item \':name\' removed.',
     ],
 
+    'relations' => [
+        'create' => [
+            'title' => 'Create a relation for :name',
+            'description' => '',
+        ],
+        'edit' => [
+            'title' => 'Update relation for :name',
+            'description' => '',
+        ],
+    ],
+
     'fields' => [
         'relation' => 'Relation',
         'name' => 'Name',

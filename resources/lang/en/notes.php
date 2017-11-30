@@ -27,6 +27,16 @@ return [
     'destroy' => [
         'success' => 'Note \':name\' removed.',
     ],
+    'relations' => [
+        'create' => [
+            'title' => 'Create a relation for :name',
+            'description' => '',
+        ],
+        'edit' => [
+            'title' => 'Update relation for :name',
+            'description' => '',
+        ],
+    ],
 
     'fields' => [
         'name' => 'Name',

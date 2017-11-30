@@ -3,7 +3,8 @@
     'description' => trans($name . '.create.description'),
     'breadcrumbs' => [
         ['url' => route($parent . '.index'), 'label' => trans($parent . '.index.title')],
-        ['url' => route($parent . '.show', $model->id), 'label' => $model->name]
+        ['url' => route($parent . '.show', $model->id), 'label' => $model->name],
+        trans('crud.tabs.relations'),
     ]
 ])
 
@@ -15,9 +16,9 @@
                     @include('partials.errors')
 
                     {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST')) !!}
-                    @include($name . '._form')
+                    @include('cruds.relations._form')
 
-                    {!! Form::hidden('first_id', $model->id) !!}
+                    {!! Form::hidden('owner_id', $model->entity->id) !!}
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>

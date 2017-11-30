@@ -56,9 +56,15 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.history') }}</a></li>
-                    @if ($campaign->enabled('characters'))<li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.member') }}</a></li>@endif
-                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.relation') }}</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.history') }}</a>
+                    </li>
+                    @if ($campaign->enabled('characters'))<li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
+                        <a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.member') }}</a>
+                    </li>@endif
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -72,8 +78,8 @@
                         @include('families._members')
                     </div>
                     @endif
-                    <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
-                        @include('families._relations')
+                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                        @include('cruds._relations')
                     </div>
                 </div>
             </div>

@@ -17,6 +17,21 @@ return [
     'save_and_new' => 'Save and New',
     'is_private' => 'This entity is private and not visible by the viewer users.',
 
+    'tabs' => [
+        'relations' => 'Relations',
+    ],
+
+    'relations' => [
+        'fields' => [
+            'relation' => 'Relation',
+            'name' => 'Name',
+            'location' => 'Location'
+        ],
+        'actions' => [
+            'add' => 'Add a relation',
+        ],
+    ],
+
     'panels' => [
         'general_information' => 'General Information',
         'history' => 'History',

@@ -159,9 +159,7 @@
                             {{ trans('characters.show.tabs.free') }}
                         </a></li>
                     @endif
-                    <li class="{{ (request()->get('tab') == 'relation' ? ' active' : '') }}"><a href="#relation" data-toggle="tab" aria-expanded="false">
-                            {{ trans('characters.show.tabs.relations') }}
-                        </a></li>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}"><a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a></li>
                     @if ($campaign->enabled('organisations'))
                     <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.organisations') }}
@@ -192,8 +190,8 @@
                         </div>
                     </div>
                     @endif
-                    <div class="tab-pane {{ (request()->get('tab') == 'relation' ? ' active' : '') }}" id="relation">
-                        @include('characters._relations')
+                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                        @include('cruds._relations')
                     </div>
                     @if ($campaign->enabled('organisations'))
                     <div class="tab-pane {{ (request()->get('tab') == 'organisation' ? ' active' : '') }}" id="organisation">

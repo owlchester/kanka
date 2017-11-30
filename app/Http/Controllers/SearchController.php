@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Item;
 use App\Models\Location;
@@ -62,6 +63,24 @@ class SearchController extends Controller
             'results',
             'active'
         ));
+    }
+
+    public function entities(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $models = Entity::where('name', 'like', "%$term%")->limit(10)->get();
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+        }
+
+        return \Response::json($formatted);
     }
 
     /**

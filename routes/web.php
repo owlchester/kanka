@@ -48,26 +48,30 @@ Route::group([
         'campaigns' => 'CampaignController',
         'campaign_user' => 'CampaignUserController',
         'characters' => 'CharacterController',
-        'characters.character_relations' => 'CharacterRelationController',
         'characters.character_organisations' => 'CharacterOrganisationController',
         'characters.character_attributes' => 'CharacterAttributeController',
+        'characters.relations' => 'CharacterRelationController',
         'events' => 'EventController',
+        'events.relations' => 'EventRelationController',
         'locations' => 'LocationController',
-        'locations.location_relations' => 'LocationRelationController',
         'locations.location_attributes' => 'LocationAttributeController',
+        'locations.relations' => 'LocationRelationController',
         //'location_attribute' => 'LocationAttributeController',
         'families' => 'FamilyController',
-        'families.family_relations' => 'FamilyRelationController',
+        'families.relations' => 'FamilyRelationController',
         'items' => 'ItemController',
+        'items.relations' => 'ItemRelationController',
         'journals' => 'JournalController',
         'organisations' => 'OrganisationController',
+        'organisations.relations' => 'OrganisationRelationController',
         //'organisation_member' => 'OrganisationMemberController',
         'organisations.organisation_members' => 'OrganisationMemberController',
-        'organisations.organisation_relations' => 'OrganisationRelationController',
         'notes' => 'NoteController',
+        'notes.relations' => 'NoteRelationController',
         'quests' => 'QuestController',
         'quests.quest_locations' => 'QuestLocationController',
         'quests.quest_characters' => 'QuestCharacterController',
+        'quests.relations' => 'QuestRelationController',
 
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
@@ -86,6 +90,7 @@ Route::group([
     Route::get('/search/notes', 'SearchController@notes')->name('notes.find');
     Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
     Route::get('/search', 'SearchController@search')->name('search');
+    Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
 
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 

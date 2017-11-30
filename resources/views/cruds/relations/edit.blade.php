@@ -4,6 +4,7 @@
     'breadcrumbs' => [
         ['url' => route($parent . '.index'), 'label' => trans($parent . '.index.title')],
         ['url' => route($parent . '.show', $model->id), 'label' => $model->name],
+        trans('crud.tabs.relations'),
         trans('crud.update'),
     ]
 ])
@@ -15,9 +16,9 @@
                     @include('partials.errors')
 
                     {!! Form::model($relation, ['method' => 'PATCH', 'route' => [$route . '.update', $model->id, $relation->id]]) !!}
-                    @include($name . '._form')
+                    @include('cruds.relations._form')
 
-                    {!! Form::hidden('first_id', $model->id) !!}
+                    {!! Form::hidden('owner_id', $model->entity->id) !!}
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
