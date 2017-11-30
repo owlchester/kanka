@@ -4,76 +4,13 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Models\Family;
+use App\Models\MiscModel;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Session;
 
-class FamilyObserver
+class FamilyObserver extends MiscObserver
 {
-    /**
-     * Purify trait
-     */
-    use PurifiableTrait;
-
-    /**
-     * @var LinkerService
-     */
-    protected $linkerService;
-
-    /**
-     * CharacterObserver constructor.
-     * @param LinkerService $linkerService
-     */
-    public function __construct(LinkerService $linkerService)
-    {
-        $this->linkerService = $linkerService;
-    }
-
-    /**
-     * @param Family $family
-     */
-    public function saving(Family $family)
-    {
-        $family->slug = str_slug($family->name, '');
-        $family->campaign_id = Session::get('campaign_id');
-
-        // Purity text
-        $family->history = $this->purify($family->history);
-
-        // Parse links
-        $family->history = $this->linkerService->parse($family->history);
-
-        // Handle image. Let's use a service for this.
-        ImageService::handle($family, 'families');
-
-        $nullable = ['location_id'];
-        foreach ($nullable as $attr) {
-            $family->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
-        }
-    }
-
-    /**
-     * @param Family $family
-     */
-    public function saved(Family $family)
-    {
-    }
-
-    /**
-     * @param Family $family
-     */
-    public function created(Family $family)
-    {
-    }
-
-    /**
-     * @param Family $family
-     */
-    public function deleted(Family $family)
-    {
-        ImageService::cleanup($family);
-    }
-
     /**
      * @param Family $family
      */

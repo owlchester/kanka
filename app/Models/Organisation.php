@@ -27,6 +27,12 @@ class Organisation extends MiscModel
     protected $searchableColumns = ['name'];
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'organisation';
+
+    /**
      * Traits
      */
     use CampaignTrait;

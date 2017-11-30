@@ -18,6 +18,8 @@ class CampaignScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('campaign_id', '=', Session::get('campaign_id'));
+        if (!app()->runningInConsole()) {
+            $builder->where('campaign_id', '=', Session::get('campaign_id'));
+        }
     }
 }

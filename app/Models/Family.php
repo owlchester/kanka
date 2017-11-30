@@ -32,6 +32,12 @@ class Family extends MiscModel
     use VisibleTrait;
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'family';
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function location()

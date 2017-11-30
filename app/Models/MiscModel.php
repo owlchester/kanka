@@ -15,6 +15,18 @@ abstract class MiscModel extends Model
     //use Eloquence;
 
     /**
+     * Entity type
+     * @var
+     */
+    protected $entityType;
+
+    /**
+     * Entity image path
+     * @var
+     */
+    public $entityImagePath;
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */
@@ -126,5 +138,18 @@ abstract class MiscModel extends Model
         } else {
             return '/storage/' . ($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image);
         }
+    }
+
+    /**
+     * @return $this
+     */
+    public function entity()
+    {
+        return $this->hasOne('App\Models\Entity', 'entity_id', 'id')->where('type', $this->entityType);
+    }
+
+    public function getEntityType()
+    {
+        return $this->entityType;
     }
 }

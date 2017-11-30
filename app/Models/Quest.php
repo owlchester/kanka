@@ -21,6 +21,12 @@ class Quest extends MiscModel
     ];
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'quest';
+
+    /**
      * Traits
      */
     use CampaignTrait;

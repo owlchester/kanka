@@ -29,6 +29,12 @@ class Event extends MiscModel
     use VisibleTrait;
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'event';
+
+    /**
      * Searchable fields
      * @var array
      */

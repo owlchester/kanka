@@ -19,6 +19,12 @@ class Journal extends MiscModel
     protected $searchableColumns  = ['name', 'type'];
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'journal';
+
+    /**
      * Traits
      */
     use CampaignTrait;

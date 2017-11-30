@@ -19,8 +19,10 @@ class VisibleScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        if (Auth::user()->viewer()) {
-            $builder->where('is_private', false);
+        if (!app()->runningInConsole()) {
+            if (Auth::user()->viewer()) {
+                $builder->where('is_private', false);
+            }
         }
     }
 }

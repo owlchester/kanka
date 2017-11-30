@@ -29,6 +29,12 @@ class Item extends MiscModel
     protected $searchableColumns  = ['name', 'type'];
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'item';
+
+    /**
      * Traits
      */
     use CampaignTrait;

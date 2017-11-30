@@ -29,6 +29,12 @@ class Location extends MiscModel
     ];
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'location';
+
+    /**
      * Traits
      */
     use CampaignTrait;

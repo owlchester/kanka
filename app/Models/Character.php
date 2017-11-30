@@ -43,6 +43,12 @@ class Character extends MiscModel
     use VisibleTrait;
 
     /**
+     * Entity type
+     * @var string
+     */
+    protected $entityType = 'character';
+
+    /**
      * Searchable fields
      * @var array
      */
