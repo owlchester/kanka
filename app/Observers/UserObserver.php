@@ -66,7 +66,7 @@ class UserObserver
     {
         // Create dashboard settings
         $dashboard = new UserDashboardSetting();
-        $dashboard->user_id = $user;
+        $dashboard->user_id = $user->id;
         $dashboard->save();
 
         // New user, send notification
