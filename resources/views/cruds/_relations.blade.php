@@ -15,7 +15,7 @@
     </tr>
     @foreach ($r = $model->entity->relationships()->has('target')->with('target')->paginate() as $relation)
         @if (empty($relation->target->child))
-            <?php $relation->delete() ?>
+            <?php $relation->target->delete(); /* temp hack because some data was not deleted properly */ ?>
         @else
         <tr>
             <td>{{ $relation->relation }}</td>
