@@ -147,8 +147,19 @@ class Entity extends Model
         return $this->type . 's';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function relationships()
     {
         return $this->hasMany('App\Models\Relation', 'owner_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function targetRelationships()
+    {
+        return $this->hasMany('App\Models\Relation', 'target_id', 'id');
     }
 }

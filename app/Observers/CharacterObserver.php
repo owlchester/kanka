@@ -14,8 +14,10 @@ class CharacterObserver extends MiscObserver
     /**
      * @param Character $character
      */
-    public function deleting(Character $character)
+    public function deleting(MiscModel $character)
     {
+        parent::deleting($character);
+
         foreach ($character->items as $item) {
             $item->character_id = null;
             $item->save();

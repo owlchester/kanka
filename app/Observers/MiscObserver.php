@@ -84,4 +84,13 @@ abstract class MiscObserver
     {
         ImageService::cleanup($model);
     }
+
+    /**
+     * @param MiscModel $model
+     */
+    public function deleting(MiscModel $model)
+    {
+        // Delete the entity
+        $model->entity->delete();
+    }
 }

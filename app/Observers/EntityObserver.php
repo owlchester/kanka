@@ -50,4 +50,19 @@ class EntityObserver
             $entity->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
         }
     }
+
+    /**
+     * Delete all relations when deleted
+     * @param Entity $entity
+     */
+    public function deleted(Entity $entity)
+    {
+       foreach ($entity->relationships as $rel) {
+           $rel->delete();
+       }
+
+       foreach ($entity->targetRelationships as $rel) {
+           $rel->delete();
+       }
+    }
 }

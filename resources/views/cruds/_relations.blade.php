@@ -14,6 +14,9 @@
         <th>&nbsp;</th>
     </tr>
     @foreach ($r = $model->entity->relationships()->has('target')->with('target')->paginate() as $relation)
+        @if (empty($relation->target->child))
+            <?php $relation->delete() ?>
+        @else
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
@@ -40,6 +43,7 @@
                 @endif
             </td>
         </tr>
+        @endif
     @endforeach
     </tbody></table>
 

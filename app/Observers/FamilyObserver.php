@@ -14,8 +14,10 @@ class FamilyObserver extends MiscObserver
     /**
      * @param Family $family
      */
-    public function deleting(Family $family)
+    public function deleting(MiscModel $family)
     {
+        parent::deleting($family);
+
         foreach ($family->members as $character) {
             $character->family_id = null;
             $character->save();

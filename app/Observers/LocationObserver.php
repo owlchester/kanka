@@ -4,48 +4,19 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\Models\Location;
+use App\Models\MiscModel;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Session;
 
-class LocationObserver
+class LocationObserver extends MiscObserver
 {
-    /**
-     * Purify trait
-     */
-    use PurifiableTrait;
-
-    /**
-     * @var LinkerService
-     */
-    protected $linkerService;
-
-    /**
-     * CharacterObserver constructor.
-     * @param LinkerService $linkerService
-     */
-    public function __construct(LinkerService $linkerService)
-    {
-        $this->linkerService = $linkerService;
-    }
-
     /**
      * @param Location $location
      */
-    public function saving(Location $location)
+    public function saving(MiscModel $location)
     {
-        $location->slug = str_slug($location->name, '');
-        $location->campaign_id = Session::get('campaign_id');
-
-        // Purity text
-        $location->history = $this->purify($location->history);
-        $location->description = $this->purify($location->description);
-
-        $location->history = $this->linkerService->parse($location->history);
-        $location->description = $this->linkerService->parse($location->description);
-
-        // Handle image. Let's use a service for this.
-        ImageService::handle($location, 'locations');
+        parent::saving($location);
 
         $nullable = ['parent_location_id'];
         foreach ($nullable as $attr) {
@@ -56,30 +27,10 @@ class LocationObserver
     /**
      * @param Location $location
      */
-    public function saved(Location $location)
+    public function deleting(MiscModel $location)
     {
-    }
+        parent::deleting($location);
 
-    /**
-     * @param Location $location
-     */
-    public function created(Location $location)
-    {
-    }
-
-    /**
-     * @param Location $location
-     */
-    public function deleted(Location $location)
-    {
-        ImageService::cleanup($location);
-    }
-
-    /**
-     * @param Location $location
-     */
-    public function deleting(Location $location)
-    {
         foreach ($location->characters as $character) {
             $character->location_id = null;
             $character->save();
