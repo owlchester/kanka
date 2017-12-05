@@ -59,4 +59,16 @@ class ItemPolicy
         return $user->campaign->id == $item->campaign_id &&
             ($user->member());
     }
+
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Item $item
+     * @return mixed
+     */
+    public function move(User $user, Item $item)
+    {
+        return $this->update($user, $item);
+    }
 }

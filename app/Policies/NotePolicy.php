@@ -59,4 +59,15 @@ class NotePolicy
         return $user->campaign->id == $note->campaign_id &&
             ($user->member());
     }
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Note $note
+     * @return mixed
+     */
+    public function move(User $user, Note $note)
+    {
+        return $this->update($user, $note);
+    }
 }

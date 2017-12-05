@@ -63,6 +63,10 @@ abstract class MiscObserver
      */
     public function saved(MiscModel $model)
     {
+        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
+            return;
+        }
+
         // Handle entity
         $entity = $model->entity;
         if (empty($entity)) {
@@ -91,6 +95,8 @@ abstract class MiscObserver
     public function deleting(MiscModel $model)
     {
         // Delete the entity
-        $model->entity->delete();
+        if ($model->entity) {
+            $model->entity->delete();
+        }
     }
 }

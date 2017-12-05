@@ -59,4 +59,15 @@ class EventPolicy
         return $user->campaign->id == $event->campaign_id &&
             ($user->member());
     }
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Event $event
+     * @return mixed
+     */
+    public function move(User $user, Event $event)
+    {
+        return $this->update($user, $event);
+    }
 }

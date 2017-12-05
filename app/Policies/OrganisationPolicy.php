@@ -59,4 +59,15 @@ class OrganisationPolicy
         return $user->campaign->id == $organisation->campaign_id &&
             ($user->member());
     }
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Organisation $organisation
+     * @return mixed
+     */
+    public function move(User $user, Organisation $organisation)
+    {
+        return $this->update($user, $organisation);
+    }
 }

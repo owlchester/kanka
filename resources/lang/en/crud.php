@@ -21,6 +21,10 @@ return [
         'relations' => 'Relations',
     ],
 
+    'actions' => [
+        'move' => 'Move',
+    ],
+
     'relations' => [
         'fields' => [
             'relation' => 'Relation',
@@ -37,6 +41,7 @@ return [
         'history' => 'History',
         'description' => 'Description',
         'appearance' => 'Appearance',
+        'move' => 'Move',
     ],
 
     'delete_modal' => [
@@ -56,4 +61,16 @@ return [
         'character' => 'Character',
     ],
     'linking_help' => 'How can I link to other entries?',
+
+    'move' => [
+        'title' => 'Move :name to another place',
+        'description' => '',
+        'success' => 'Entity :name moved.',
+        'fields' => [
+            'target' => 'New type',
+        ],
+        'hints' => [
+            'target' => 'Please be aware that some data might be lost when moving an element from one type to another.',
+        ]
+    ],
 ];

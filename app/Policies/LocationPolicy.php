@@ -59,4 +59,16 @@ class LocationPolicy
         return $user->campaign->id == $location->campaign_id &&
             ($user->member());
     }
+
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Location $location
+     * @return mixed
+     */
+    public function move(User $user, Location $location)
+    {
+        return $this->update($user, $location);
+    }
 }

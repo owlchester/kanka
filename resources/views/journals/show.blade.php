@@ -34,13 +34,19 @@
                     </ul>
 
                     @if (Auth::user()->can('update', $model))
-                    <a href="{{ route('journals.edit', $model->id) }}" class="btn btn-primary btn-block">
+                    <a href="{{ route('journals.edit', $model->id) }}" class="btn btn-primary">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                     </a>
-                        @endif
+                    @endif
+
+                    @if (Auth::user()->can('move', $model))
+                        <a href="{{ route('entities.move', $model->entity->id) }}" class="btn btn-default">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i> {{ trans('crud.actions.move') }}
+                        </a>
+                    @endif
 
                     @if (Auth::user()->can('delete', $model))
-                    <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
+                    <button class="btn btn-danger pull-right delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
                     {!! Form::open(['method' => 'DELETE','route' => ['journals.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}

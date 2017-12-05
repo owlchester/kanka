@@ -87,4 +87,13 @@ class CharacterPolicy
     {
         return  $user->campaign->id == $character->campaign_id;
     }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function move(User $user, Character $character)
+    {
+        return $this->update($user, $character);
+    }
 }

@@ -59,4 +59,15 @@ class QuestPolicy
         return $user->campaign->id == $quest->campaign_id &&
             ($user->member());
     }
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Quest $quest
+     * @return mixed
+     */
+    public function move(User $user, Quest $quest)
+    {
+        return $this->update($user, $quest);
+    }
 }

@@ -59,4 +59,16 @@ class JournalPolicy
         return $user->campaign->id == $journal->campaign_id &&
             ($user->member());
     }
+
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Journal $journal
+     * @return mixed
+     */
+    public function move(User $user, Journal $journal)
+    {
+        return $this->update($user, $journal);
+    }
 }

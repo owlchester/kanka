@@ -95,6 +95,10 @@ Route::group([
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 
     Route::get('/redirect', 'RedirectController@index')->name('redirect');
+
+    // Move
+    Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
+    Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 });
 
 Route::group(['prefix' => 'admin'], function () {

@@ -59,4 +59,15 @@ class FamilyPolicy
         return $user->campaign->id == $family->campaign_id &&
             ($user->member());
     }
+    /**
+     * Determine if a model can be moved to another type.
+     *
+     * @param User $user
+     * @param Family $family
+     * @return mixed
+     */
+    public function move(User $user, Family $family)
+    {
+        return $this->update($user, $family);
+    }
 }
