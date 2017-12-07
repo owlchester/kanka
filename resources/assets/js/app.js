@@ -107,6 +107,41 @@ $(document).ready(function() {
             }
         });
     }
+
+    $.each($('.new-entity-selector'), function(index) {
+        $(this).on('click', function (e) {
+            $('#new-entity-type').val($(this).attr('data-entity'));
+            $('#new-entity-form').attr('data-parent', $(this).attr('data-parent'));
+        });
+    });
+
+    if ($('#new-entity-form').length > 0) {
+        $('#new-entity-form').on('submit', function(e) {
+            $('#new-entity-errors').hide();
+            var target = $(this).attr('data-parent');
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: $(this).serialize()
+            }).done(function (result, textStatus, xhr) {
+                if (textStatus === 'success' && result.id) {
+                    $('#' + target).append(new Option(result.name, result.id));
+
+                    // Close modal
+                    $('#new-entity-modal').modal('toggle');
+                    $('#new-entity-errors').hide();
+                    $('#new-entity-name').val('');
+                } else {
+                    $('#new-entity-errors').show();
+                }
+            }).fail(function (result, textStatus, xhr) {
+                $('#new-entity-errors').show();
+            });
+
+            e.preventDefault();
+            return false;
+        });
+    }
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {

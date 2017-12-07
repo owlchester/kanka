@@ -140,4 +140,27 @@ class EntityService
 
         return $entity;
     }
+
+    /**
+     * @param $name
+     * @param $target
+     * @return MiscModel
+     * @throws \Exception
+     */
+    public function create($name, $target)
+    {
+        // Create new model
+        if (!isset($this->entities[$target])) {
+            throw new \Exception("Unknown target '$target' for moving entity");
+        }
+
+        /**
+         * @var $new MiscModel
+         */
+        $new = new $this->entities[$target]();
+        $new->name = $name;
+        $new->is_private = false;
+        $new->save();
+        return $new;
+    }
 }

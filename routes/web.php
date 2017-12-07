@@ -99,6 +99,8 @@ Route::group([
     // Move
     Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
     Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+
+    Route::post('/entities/create', 'EntityController@create')->name('entities.create');
 });
 
 Route::group(['prefix' => 'admin'], function () {

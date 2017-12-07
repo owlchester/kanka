@@ -21,15 +21,31 @@
                 @if ($campaign->enabled('families'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.family') }}</label>
-                    {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : $random->generateForeign(App\Models\Family::class)),
-                    null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
+                    <div class="input-group input-group-sm">
+                        {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : $random->generateForeign(App\Models\Family::class)),
+                        null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
+
+                        <div class="input-group-btn">
+                            <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="family_id" data-entity="families">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 @endif
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.location') }}</label>
-                    {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : $random->generateForeign(App\Models\Location::class)),
-                    null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
+                    <div class="input-group input-group-sm">
+                        {!! Form::select('location_id', (isset($model) ? $location->dropdown($model) : $random->generateForeign(App\Models\Location::class)),
+                        null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
+
+                        <div class="input-group-btn">
+                            <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="location_id" data-entity="locations">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 @endif
                 <div class="form-group">

@@ -16,9 +16,15 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('locations.fields.location') }}</label>
-                    {!! Form::select('parent_location_id', (!empty($model->parentLocation) ? [$model->parent_location_id => $model->parentLocation->name] : []),
-                    null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
-
+                    <div class="input-group input-group-sm">
+                        {!! Form::select('parent_location_id', (!empty($model->parentLocation) ? [$model->parent_location_id => $model->parentLocation->name] : []),
+                        null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
+                        <div class="input-group-btn">
+                            <a class="btn btn-tab-form new-entity-selector" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="parent_location_id" data-entity="locations">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <hr>

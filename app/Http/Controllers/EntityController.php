@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateEntityRequest;
 use App\Http\Requests\MoveEntityRequest;
 use App\Models\Entity;
 use App\Services\EntityService;
@@ -32,6 +33,11 @@ class EntityController extends Controller
         return view('cruds.move', ['entity' => $entity, 'entities' => $entities]);
     }
 
+    /**
+     * @param MoveEntityRequest $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function post(MoveEntityRequest $request, Entity $entity)
     {
         $this->authorize('move', $entity->child);
@@ -40,5 +46,14 @@ class EntityController extends Controller
 
         return redirect()->route($entity->pluralType() . '.show', $entity->entity_id) // can't use child->id, not new
             ->with('success', trans('crud.move.success', ['name' => $entity->name]));
+    }
+
+    public function create(CreateEntityRequest $request)
+    {
+        $entity = $this->entityService->create($request->post('name'), $request->post('target'));
+        return response()->json([
+            'id' => $entity->id,
+            'name' => $entity->name
+        ]);
     }
 }

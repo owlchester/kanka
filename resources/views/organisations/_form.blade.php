@@ -13,8 +13,15 @@
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('organisations.fields.location') }}</label>
-                    {!! Form::select('location_id', (isset($model) && !empty($model->location) ? [$model->location_id => $model->location->name] : []),
-                    null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('organisations.placeholders.location')]) !!}
+                    <div class="input-group input-group-sm">
+                        {!! Form::select('location_id', (isset($model) && !empty($model->location) ? [$model->location_id => $model->location->name] : []),
+                        null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('organisations.placeholders.location')]) !!}
+                        <div class="input-group-btn">
+                            <a class="btn btn-tab-form new-entity-selector" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="location_id" data-entity="locations">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 @endif
                 <div class="form-group">

@@ -73,4 +73,12 @@ return [
             'target' => 'Please be aware that some data might be lost when moving an element from one type to another.',
         ]
     ],
+
+    'new_entity' => [
+        'error' => 'Please review your values.',
+        'title' => 'New entity',
+        'fields' => [
+            'name' => 'Name',
+        ]
+    ]
 ];
