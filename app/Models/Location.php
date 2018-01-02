@@ -26,6 +26,7 @@ class Location extends MiscModel
         'parent_location_id',
         'campaign_id',
         'is_private',
+        'type',
     ];
 
     /**

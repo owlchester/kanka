@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Models\OrganisationMember;
 use Illuminate\Support\Facades\Storage;
 
 class EntityService
@@ -108,6 +110,13 @@ class EntityService
         if (in_array('history', $fillable) && empty($new->history) && !empty($old->description)) {
             $new->history = $old->description;
         }
+        // Special import for location parent_location_id
+        if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
+            $new->location_id = $old->parent_location_id;
+        }
+        if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
+            $new->parent_location_id = $old->location_id;
+        }
 
         // Copy file
         if (!empty($new->image)) {
@@ -128,6 +137,36 @@ class EntityService
         // Finally, we can save. Should be all good. But tell the app not to create the entity
         define('MISCELLANY_SKIP_ENTITY_CREATION', true);
         $new->save();
+
+        // If switching from an organisation to a family, we need to move the members?
+        if ($old->getEntityType() == 'organisation' && $new->getEntityType() == 'family') {
+            foreach ($old->members as $member) {
+                if (empty($member->character->family_id)) {
+                    $member->character->family_id = $new->id;
+                    $member->character->save();
+                }
+                $member->delete();
+            }
+        } elseif ($old->getEntityType() == 'family' && $new->getEntityType() == 'organisation') {
+            $characters = Character::where('family_id', $old->id)->get();
+            foreach ($characters as $character) {
+                $orgMember = new OrganisationMember();
+                $orgMember->character_id = $character->id;
+                $orgMember->organisation_id = $new->id;
+                $orgMember->role = '';
+                $orgMember->save();
+
+                $character->family_id = null;
+                $character->save();
+            }
+        } else {
+            // But remove old members none the less
+            if (isset($old->members)) {
+                foreach ($old->members as $member) {
+                    $member->delete();
+                }
+            }
+        }
 
         // Update entity
         $entity->type = $new->getEntityType();

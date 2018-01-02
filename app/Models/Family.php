@@ -16,7 +16,8 @@ class Family extends MiscModel
         'history',
         'image',
         'location_id',
-        'is_private'
+        'is_private',
+        //'type',
     ];
 
     /**

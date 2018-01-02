@@ -14,19 +14,6 @@ class LocationObserver extends MiscObserver
     /**
      * @param Location $location
      */
-    public function saving(MiscModel $location)
-    {
-        parent::saving($location);
-
-        $nullable = ['parent_location_id'];
-        foreach ($nullable as $attr) {
-            $location->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
-        }
-    }
-
-    /**
-     * @param Location $location
-     */
     public function deleting(MiscModel $location)
     {
         parent::deleting($location);

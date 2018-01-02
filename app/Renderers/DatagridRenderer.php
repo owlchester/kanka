@@ -87,7 +87,11 @@ class DatagridRenderer
 
         // Easy mode: A string. We want to return it directly since it's so easy.
         if (is_string($column)) {
-            return "<th>" . $this->route($column) . "</th>\n";
+            if ($column == 'name') {
+                return "<th>" . $this->route($column) . "</th>\n";
+            } else {
+                return "<th class='visible-md visible-lg'>" . $this->route($column) . "</th>\n";
+            }
         }
 
         // Check visibility
@@ -102,8 +106,10 @@ class DatagridRenderer
             if ($type == 'avatar') {
                 $html = null;
             } elseif ($type == 'location') {
+                $class .= '  visible-md visible-lg';
                 $html = trans('crud.fields.location');
             } elseif ($type == 'character') {
+                $class .= '  visible-md visible-lg';
                 $html = trans('crud.fields.character');
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
@@ -209,8 +215,9 @@ class DatagridRenderer
                 $content = '<a href="' . $route . '">' . $model->{$column} . '</a>';
             } else {
                 $content = $model->{$column};
+                $class = 'visible-md visible-lg';
             }
-            return '<td>' . $content . '</td>';
+            return '<td' . (!empty($class) ? ' class="' . $class . '"' : null) . '>' . $content . '</td>';
         }
 
         // Check visibility
@@ -225,6 +232,7 @@ class DatagridRenderer
                 $content = '<img class="direct-chat-img" src="' . $model->getImageUrl(true) .
                     '" alt="' . $model->name . '">';
             } elseif ($type == 'location') {
+                $class = 'visible-md visible-lg';
                 if ($model->location) {
                     $content = '<a href="' . route('locations.show', $model->location->id) . '}">' .
                         $model->location->name . '</a>';
@@ -233,6 +241,7 @@ class DatagridRenderer
                         $model->parentLocation->name . '</a>';
                 }
             } elseif ($type == 'character') {
+                $class = 'visible-md visible-lg';
                 if ($model->character) {
                     $content = '<a href="' . route('characters.show', $model->character->id) . '}">' .
                         $model->character->name . '</a>';
@@ -255,6 +264,7 @@ class DatagridRenderer
         } elseif (!empty($column['field'])) {
             // A field was given? This could be when a field needs another label than anticipated.
             $content = $model->{$column['field']};
+            $class = 'visible-md visible-lg';
         } else {
             // I have no idea.
             $content = 'ERR_UNKNOWN';
@@ -294,12 +304,12 @@ class DatagridRenderer
         $content = '
         <a href="' . route($this->getOption('baseRoute') . '.show', ['id' => $model->id]) .
             '" class="btn btn-xs btn-default">
-            <i class="fa fa-eye" aria-hidden="true"></i> ' . trans('crud.view') . '
+            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-md visible-lg">' . trans('crud.view') . '</span>
         </a>';
 
         if ($this->user->can('update', $model)) {
             $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" class="btn btn-xs btn-primary">
-                <i class="fa fa-pencil" aria-hidden="true"></i> ' . trans('crud.edit') . '
+                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="visible-md visible-lg">' . trans('crud.edit') . '</span>
             </a>';
         }
 

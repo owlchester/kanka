@@ -37,6 +37,12 @@ abstract class MiscObserver
         $model->slug = str_slug($model->name, '');
         $model->campaign_id = Session::get('campaign_id');
 
+
+        // If we're from the "move" service, we can skip this part.
+        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
+            return;
+        }
+
         $attributes = $model->getAttributes();
         if (array_key_exists('history', $attributes)) {
             $model->history = $this->purify($model->history);
@@ -50,7 +56,7 @@ abstract class MiscObserver
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable());
 
-        $nullable = ['location_id', 'character_id', 'family_id'];
+        $nullable = ['parent_location_id', 'location_id', 'character_id', 'family_id'];
         foreach ($nullable as $attr) {
             if (array_key_exists($attr, $attributes)) {
                 $model->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
