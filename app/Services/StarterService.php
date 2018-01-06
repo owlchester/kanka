@@ -23,6 +23,7 @@ class StarterService
             'description' => '<p>The Kingdomof Genory is situated on the Bolan planes of the Thaelian continent.</p>',
             'history' => '<p>The Kingdom of Genory was founded by Genorian tribesmen in the late 5th century after they invaded the lands from the Hottens.</p>',
             'campaign_id' => $campaign->id,
+            'is_private' => false,
         ]);
         $kingdom->save();
 
@@ -33,6 +34,7 @@ class StarterService
             'description' => '<p>Unria is the capital city of the kingdom of Genory, and third biggest city of Agagir Alliance.</p>',
             'history' => '<p>Unria is the capital city of the kingdom of Genory. It was founded by Frasan Irwen and is located on the Unri river.</p>',
             'campaign_id' => $campaign->id,
+            'is_private' => false,
         ]);
         $city->save();
 
@@ -47,6 +49,7 @@ class StarterService
             'campaign_id' => $campaign->id,
             'fears' => 'James is scared of loud noises and explosions.',
             'traits' => 'Will always bend the truth to his advantage.',
+            'is_private' => false,
 
         ]);
         $james->save();
@@ -62,6 +65,7 @@ class StarterService
             'campaign_id' => $campaign->id,
             'goals' => 'Create the biggest explosion possible',
             'free' => 'Want to track something else? We\'ve got you covered with this free text section!',
+            'is_private' => false,
         ]);
         $irwie->save();
 
@@ -73,6 +77,7 @@ class StarterService
             'history' => '<p>History of the item.</p>',
             'character_id' => $irwie->id,
             'location_id' => $kingdom->id,
+            'is_private' => false,
         ]);
         $item->save();
     }
