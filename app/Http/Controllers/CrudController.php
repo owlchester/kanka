@@ -114,6 +114,12 @@ class CrudController extends Controller
         $this->authorize('view', $model);
         $name = $this->view;
 
+        // Fix for models without an entity
+        if (empty($model->entity)) {
+            $model->save();
+            $model->load('entity');
+        }
+
         return view('cruds.show', compact('model', 'name'));
     }
 
