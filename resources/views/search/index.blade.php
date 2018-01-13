@@ -34,20 +34,24 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     @foreach ($results as $element => $values)
+                        @if (count($values) > 0)
                         <li class="{{ ($element == $active ? 'active' : null) }}">
                             <a href="#{{ $element }}" data-toggle="tab" aria-expanded="false">
                                 {{ trans('search.tabs.' . $element) }}
                                 <span class="badge bg-blue">{{ count($values) }}</span>
                             </a>
                         </li>
+                        @endif
                     @endforeach
                 </ul>
 
                 <div class="tab-content">
                     @foreach ($results as $element => $values)
-                    <div class="tab-pane {{ (request()->get('tab') == $element || $active == $element ? ' active' : '') }}" id="{{ $element }}">
-                        @include($element . '.datagrid', ['models' => $values])
-                    </div>
+                        @if (!empty($values))
+                        <div class="tab-pane {{ (request()->get('tab') == $element || $active == $element ? ' active' : '') }}" id="{{ $element }}">
+                            @include($element . '.datagrid', ['models' => $values])
+                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

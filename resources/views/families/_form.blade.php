@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label>{{ trans('families.fields.location') }}</label>
                     <div class="input-group input-group-sm">
-                        {!! Form::select('location_id', (isset($family) && !empty($family->location) ? [$family->location_id => $family->location->name] : []),
+                        {!! Form::select('location_id', (isset($model) && !empty($model->location) ? [$model->location_id => $model->location->name] : []),
                          null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'),
                          'data-placeholder' => trans('families.placeholders.location')]) !!}
                         <div class="input-group-btn">
@@ -49,10 +49,10 @@
 
                     {!! Form::hidden('remove-image') !!}
                     {!! Form::file('image', array('class' => 'image')) !!}
-                    @if (!empty($family->image))
+                    @if (!empty($model->image))
                         <div class="preview">
                             <div class="image">
-                                <img src="/storage/{{ $family->image }}"/>
+                                <img src="/storage/{{ $model->image }}"/>
                                 <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                                 </a>
