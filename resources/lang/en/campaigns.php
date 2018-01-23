@@ -117,17 +117,8 @@ return [
         ]
     ],
     'settings' => [
-        'fields' => [
-            'characters' => 'Characters',
-            'events' => 'Events',
-            'families' => 'Families',
-            'items' => 'Items',
-            'journals' => 'Journals',
-            'locations' => 'Locations',
-            'notes' => 'Notes',
-            'organisations' => 'Organisations',
-            'quests' => 'Quests',
-        ],
+        'helper' => 'You can easily disable elements from your campaign that will be hidden. If you have already ' .
+            'created elements in the categories you disable, they won\'t be deleted, just hidden.,',
         'edit' => [
             'success' => 'Campaign settings updated.',
         ],

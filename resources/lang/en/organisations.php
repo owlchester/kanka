@@ -37,7 +37,6 @@ return [
         'members' => 'Members',
         'image' => 'Image',
         'history' => 'History',
-        'is_private' => 'Private',
         'relation' => 'Relation',
     ],
     'placeholders' => [
@@ -45,10 +44,6 @@ return [
         'location' => 'Choose a location',
         'type' => 'Cult, Gang, Rebelion, Fandom',
     ],
-    'hints' => [
-        'is_private' => 'Hide from "Viewers"',
-    ],
-
     'members' => [
         'create' => [
             'title' => 'New Organisation Member for :name',
@@ -75,34 +70,4 @@ return [
             'success' => 'Member removed from the organisation.',
         ]
     ],
-    'relations' => [
-        'create' => [
-            'title' => 'New Organisation Relation for :name',
-            'description' => 'Create a new relation between two organisations',
-            'success' => 'Relation created.',
-        ],
-        'edit' => [
-            'title' => 'Update Relation for :name',
-            'description' => '',
-            'success' => 'Relation updated.',
-        ],
-        'actions' => [
-            'add' => 'Add a relation',
-        ],
-        'fields' => [
-            'second' => 'Organisation',
-            'relation' => 'Relation',
-            'two_way' => 'Create mirror relation',
-        ],
-        'placeholders' => [
-            'second' => 'Choose an organisation',
-            'relation' => 'Nature of the relation',
-        ],
-        'hints' => [
-            'two_way' => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
-        ],
-        'destroy' => [
-            'success' => 'Relation removed.',
-        ],
-    ]
 ];

@@ -23,7 +23,7 @@
                     <ul>
                         @foreach ($linker->elements() as $element)
                         <li>
-                            {{ trans('helpers.link.elements.'.$element) }}:
+                            {{ trans('entities.'.$element) }}:
                             <code>{{ '{' . $element }}:name}</code>
                         </li>
                         @endforeach

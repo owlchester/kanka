@@ -58,7 +58,6 @@ return [
         'mannerisms' => 'Mannerisms',
         'history' => 'History',
         'image' => 'Image',
-        'is_private' => 'Private',
         'is_personality_visible' => 'Is personality visible',
     ],
     'placeholders' => [
@@ -85,7 +84,6 @@ return [
         'free' => 'Free text',
     ],
     'hints' => [
-        'is_private' => 'Hide from "Viewers"',
         'is_personality_visible' => 'You can hide the whole personality section from your Viewers.',
     ],
     'sections' => [
@@ -93,36 +91,6 @@ return [
         'appearance' => 'Appearance',
         'personality' => 'Personality',
         'history' => 'History',
-    ],
-    'relations' => [
-        'create' => [
-            'title' => 'New Character Relation for :name',
-            'description' => 'Create a new relation between two characters',
-            'success' => 'Relation created.',
-        ],
-        'edit' => [
-            'title' => 'Update Relation for :name',
-            'description' => '',
-            'success' => 'Relation updated.',
-        ],
-        'actions' => [
-            'add' => 'Add a relation',
-        ],
-        'fields' => [
-            'second' => 'Character',
-            'relation' => 'Relation',
-            'two_way' => 'Create mirror relation',
-        ],
-        'placeholders' => [
-            'second' => 'Choose a character',
-            'relation' => 'Friends, Rivals, Lovers, Childhood friends',
-        ],
-        'hints' => [
-            'two_way' => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
-        ],
-        'destroy' => [
-            'success' => 'Relation removed.',
-        ],
     ],
     'organisations' => [
         'create' => [
@@ -166,10 +134,6 @@ return [
         'fields' => [
             'attribute' => 'Attribute',
             'value' =>  'Value',
-            'is_private' => 'Private',
-        ],
-        'hints' => [
-            'is_private' => 'Hide from "Viewers"',
         ],
         'placeholders' => [
             'attribute' => 'Number of won battles, date of wedding, Initiative',

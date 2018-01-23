@@ -50,7 +50,7 @@ return [
         'already_account' => 'Vous avez déjà un compte',
         'errors' => [
             'email_already_taken' => 'Un compte avec cette adresse email est déjà enregistré.',
-            'general_error' => 'Une erreure est survenue lors de la création de votre compte. Veuillez ressayer.'
+            'general_error' => 'Une erreure est survenue lors de la création du compte. Merci de ressayer.'
         ],
         'email' => [
             'title' => 'Bienvenue sur kanka.io!',

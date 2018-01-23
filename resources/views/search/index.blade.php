@@ -37,7 +37,7 @@
                         @if (count($values) > 0)
                         <li class="{{ ($element == $active ? 'active' : null) }}">
                             <a href="#{{ $element }}" data-toggle="tab" aria-expanded="false">
-                                {{ trans('search.tabs.' . $element) }}
+                                {{ trans('entities.' . $element) }}
                                 <span class="badge bg-blue">{{ count($values) }}</span>
                             </a>
                         </li>

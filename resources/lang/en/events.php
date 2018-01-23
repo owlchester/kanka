@@ -35,25 +35,11 @@ return [
         'date' => 'Date',
         'history' => 'History',
         'image' => 'Image',
-        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the event',
         'type' => 'Ceremony, Festival, Disaster, Battle, Birth',
         'date' => 'A date for your event',
         'location' => 'Choose a location',
-    ],
-    'hints' => [
-        'is_private' => 'Hide from "Viewers"',
-    ],
-    'relations' => [
-        'create' => [
-            'title' => 'Create a relation for :name',
-            'description' => '',
-        ],
-        'edit' => [
-            'title' => 'Update relation for :name',
-            'description' => '',
-        ],
     ],
 ];

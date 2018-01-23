@@ -11,7 +11,7 @@
         <th>{{ trans('characters.attributes.fields.attribute') }}</th>
         <th>{{ trans('characters.attributes.fields.value') }}</th>
         @if (!Auth::user()->viewer())
-            <th>{{ trans('characters.attributes.fields.is_private') }}</th>
+            <th>{{ trans('crud.fields.is_private') }}</th>
         @endif
         <th>&nbsp;</th>
     </tr>

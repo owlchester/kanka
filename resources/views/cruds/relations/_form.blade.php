@@ -18,7 +18,8 @@
             <label>
                 {!! Form::hidden('is_private', 0) !!}
                 {!! Form::checkbox('is_private') !!}
-                {{ trans('relations.fields.is_private') }}
+                {{ trans('crud.fields.is_private') }}
+                <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
             </label>
         </div>
 

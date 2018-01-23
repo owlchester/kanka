@@ -32,18 +32,10 @@ return [
         'history' => 'History',
         'date' => 'Date',
         'image' => 'Image',
-        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the journal',
         'type' => 'Session, One Shot, Draft',
         'date' => 'Date of the journal',
-    ],
-    'hints' => [
-        'is_private' => 'Hide from "Viewers"',
-    ],
-    'helpers' => [
-        'title' => 'Head\'s up!',
-        'description' => 'You can easily write links to characters by writing <code>{character:Michael Snow}</code> in the textarea. On submitting, it will be replaced with a link to the named entity. The same thing is available for <i>family:</i>, <i>item:</i>, <i>location:</i>, <i>journal:</i>, <i>note:</i> and <i>organisation:</i>.',
     ],
 ];

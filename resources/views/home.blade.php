@@ -29,22 +29,22 @@
 
     <div class="row">
         @if ($campaign->enabled('characters') && $settings->has('characters'))
-            @include('dashboard._recent', ['title' => 'Characters', 'route' => 'characters', 'models' => $characters])
+            @include('dashboard._recent', ['title' => trans('entities.characters'), 'route' => 'characters', 'models' => $characters])
         @endif
         @if ($campaign->enabled('families') && $settings->has('families'))
-            @include('dashboard._recent', ['title' => 'Families', 'route' => 'families', 'models' => $families])
+            @include('dashboard._recent', ['title' => trans('entities.families'), 'route' => 'families', 'models' => $families])
         @endif
         @if ($campaign->enabled('locations') && $settings->has('locations'))
-            @include('dashboard._recent', ['title' => 'Locations', 'route' => 'locations', 'models' => $locations])
+            @include('dashboard._recent', ['title' => trans('entities.locations'), 'route' => 'locations', 'models' => $locations])
         @endif
         @if ($campaign->enabled('organisations') && $settings->has('organisations'))
-            @include('dashboard._recent', ['title' => 'Organisations', 'route' => 'organisations', 'models' => $organisations])
+            @include('dashboard._recent', ['title' => trans('entities.organisations'), 'route' => 'organisations', 'models' => $organisations])
         @endif
         @if ($campaign->enabled('items') && $settings->has('items'))
-            @include('dashboard._recent', ['title' => 'Items', 'route' => 'items', 'models' => $items])
+            @include('dashboard._recent', ['title' => trans('entities.items'), 'route' => 'items', 'models' => $items])
         @endif
         @if ($campaign->enabled('journals') && $settings->has('journals'))
-            @include('dashboard._recent', ['title' => 'Journals', 'route' => 'journals', 'models' => $journals])
+            @include('dashboard._recent', ['title' => trans('entities.journals'), 'route' => 'journals', 'models' => $journals])
         @endif
     </div>
 @endsection

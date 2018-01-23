@@ -5,7 +5,7 @@
             <label>{{ trans('quests.characters.fields.character') }}</label>
             {!! Form::select('character_id', (!empty($model) && $model->character? [$model->character->id => $model->character->name] : []), null,
              ['id' => 'character_id', 'class' => 'form-control select2', 'style' => 'width: 100%',
-             'data-url' => route('characters.find'), 'data-placeholder' => trans('organisations.members.placeholders.character')]) !!}
+             'data-url' => route('characters.find'), 'data-placeholder' => trans('crud.placeholders.character')]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('quests.characters.fields.description') }}</label>
@@ -15,9 +15,9 @@
         <div class="form-group">
             {!! Form::hidden('is_private', 0) !!}
             <label>{!! Form::checkbox('is_private') !!}
-                {{ trans('quests.characters.fields.is_private') }}
+                {{ trans('crud.fields.is_private') }}
             </label>
-            <p class="help-block">{{ trans('quests.characters.hints.is_private') }}</p>
+            <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
         </div>
     </div>
 </div>

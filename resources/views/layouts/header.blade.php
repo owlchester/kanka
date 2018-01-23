@@ -18,10 +18,30 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
-
-                <!-- Notifications Menu -->
-
-                <!-- Tasks Menu -->
+                <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-flag-o"></i> {{ trans('languages.available.' . LaravelLocalization::getCurrentLocale()) }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">{{ trans('languages.header') }}</li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
+                                    <li>
+                                    @if (App::getLocale() == $localeCode)
+                                        <a href="#"><strong>{{ $langData['native'] }}</strong></a>
+                                    @else
+                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                            {{ $langData['native'] }}
+                                        </a>
+                                    @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">

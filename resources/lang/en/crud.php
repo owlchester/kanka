@@ -60,6 +60,13 @@ return [
         'location' => 'Location',
         'character' => 'Character',
     ],
+    'hints' => [
+        'is_private' => 'Hide from "Viewers"',
+    ],
+    'placeholders' => [
+        'character' => 'Choix du personnage',
+        'location' => 'Choix du lieu',
+    ],
     'linking_help' => 'How can I link to other entries?',
 
     'move' => [

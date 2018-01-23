@@ -39,7 +39,6 @@ return [
         'type' => 'Type',
         'description' => 'Description',
         'image' => 'Image',
-        'is_private' => 'Private',
         'characters' => 'Characters',
         'locations' => 'Locations',
     ],
@@ -47,79 +46,42 @@ return [
         'name' => 'Name of the quest',
         'type' => 'Character Arc, Sidequest, Main',
     ],
-    'hints' => [
-        'is_private' => 'Hide from "Viewers"',
-    ],
     'characters' => [
         'create' => [
             'title' => 'New Character for :name',
-            'description' => 'Set an character to a location',
+            'description' => 'Set an character to a Quest',
             'success' => 'Character added to :name.',
-        ],
-        'actions' => [
-            'add' => 'Add an character',
         ],
         'edit' => [
             'title' => 'Update character for :name',
             'description' => '',
-            'success' => 'Location character for :name updated.',
+            'success' => 'Quest character for :name updated.',
         ],
         'fields' => [
             'character' => 'Character',
-            'value' =>  'Value',
             'description' => 'Description',
-            'is_private' => 'Private',
-        ],
-        'hints' => [
-            'is_private' => 'Hide from "Viewers"',
-        ],
-        'placeholders' => [
-            'character' => 'Population, Number of floods, Garrison size',
-            'value' => 'Value of the character'
         ],
         'destroy' => [
-            'success' => 'Location character for :name removed.',
+            'success' => 'Quest character for :name removed.',
         ]
     ],
     'locations' => [
         'create' => [
             'title' => 'New Location for :name',
-            'description' => 'Set an location to a location',
+            'description' => 'Set an location to a Quest',
             'success' => 'Location added to :name.',
-        ],
-        'actions' => [
-            'add' => 'Add an location',
         ],
         'edit' => [
             'title' => 'Update location for :name',
             'description' => '',
-            'success' => 'Location location for :name updated.',
+            'success' => 'Quest location for :name updated.',
         ],
         'fields' => [
             'location' => 'Location',
-            'value' =>  'Value',
-            'is_private' => 'Private',
             'description' => 'Description',
         ],
-        'hints' => [
-            'is_private' => 'Hide from "Viewers"',
-        ],
-        'placeholders' => [
-            'location' => 'Population, Number of floods, Garrison size',
-            'value' => 'Value of the location'
-        ],
         'destroy' => [
-            'success' => 'Location location for :name removed.',
+            'success' => 'Quest location for :name removed.',
         ]
-    ],
-    'relations' => [
-        'create' => [
-            'title' => 'Create a relation for :name',
-            'description' => '',
-        ],
-        'edit' => [
-            'title' => 'Update relation for :name',
-            'description' => '',
-        ],
     ],
 ];

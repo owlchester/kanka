@@ -27,18 +27,6 @@ return [
     'destroy' => [
         'success' => 'Item \':name\' removed.',
     ],
-
-    'relations' => [
-        'create' => [
-            'title' => 'Create a relation for :name',
-            'description' => '',
-        ],
-        'edit' => [
-            'title' => 'Update relation for :name',
-            'description' => '',
-        ],
-    ],
-
     'fields' => [
         'relation' => 'Relation',
         'name' => 'Name',
@@ -48,15 +36,11 @@ return [
         'history' => 'History',
         'image' => 'Image',
         'description' => 'Description',
-        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the item',
         'type' => 'Weapon, Potion, Artefact',
         'location' => 'Choose a location',
         'character' => 'Choose a character',
-    ],
-    'hints' => [
-        'is_private' => 'Hide from "Viewers"',
     ],
 ];

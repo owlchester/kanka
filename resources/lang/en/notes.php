@@ -27,29 +27,15 @@ return [
     'destroy' => [
         'success' => 'Note \':name\' removed.',
     ],
-    'relations' => [
-        'create' => [
-            'title' => 'Create a relation for :name',
-            'description' => '',
-        ],
-        'edit' => [
-            'title' => 'Update relation for :name',
-            'description' => '',
-        ],
-    ],
 
     'fields' => [
         'name' => 'Name',
         'type' => 'Type',
         'image' => 'Image',
         'description' => 'Description',
-        'is_private' => 'Private',
     ],
     'placeholders' => [
         'name' => 'Name of the note',
         'type' => 'Religion, Race, Political system',
-    ],
-    'hints' => [
-        'is_private' => 'Hide from "Viewers"',
     ],
 ];
