@@ -37,5 +37,10 @@ class LocationObserver extends MiscObserver
             $sub->parent_location_id = null;
             $sub->save();
         }
+
+        foreach ($location->organisations as $sub) {
+            $sub->location_id = null;
+            $sub->save();
+        }
     }
 }
