@@ -18,6 +18,7 @@ class LocationObserver extends MiscObserver
     {
         parent::deleting($location);
 
+        // Todo: remove this and update schema instead
         foreach ($location->characters as $character) {
             $character->location_id = null;
             $character->save();
