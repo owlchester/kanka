@@ -11,7 +11,7 @@
         @if (Session::has('campaign_id'))
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">{{ trans('layout.toggle_navigation') }}</span>
+            <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
         </a>
         @endif
         <!-- Navbar Right Menu -->
@@ -20,7 +20,7 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-flag-o"></i> {{ trans('languages.available.' . LaravelLocalization::getCurrentLocale()) }}
+                        <i class="fa fa-caret-down"></i> {{ trans('languages.available.' . LaravelLocalization::getCurrentLocale()) }}
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">{{ trans('languages.header') }}</li>
@@ -48,7 +48,7 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="User Image"/>
+                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
 
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -56,24 +56,24 @@
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="User Image" />
+                            <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
                             <p>
                                 {{ Auth::user()->name }}
-                                <small>Member since {{ Auth::user()->elapsed('created_at') }}</small>
+                                <small>{{ trans('header.member_since', ['date' => Auth::user()->elapsed('created_at')]) }}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             @if (session()->has('campaign_id'))
                             <div class="pull-left">
-                                <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('profile') }}" class="btn btn-default btn-flat"> {{ trans('header.profile') }}</a>
                             </div>
                             @endif
                             <div class="pull-right">
                                 <a href="{{ route('logout') }}" class="btn btn-default"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Logout
+                                    {{ trans('header.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

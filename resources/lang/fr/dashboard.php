@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Tableau de bord',
-    'description' => 'Là pour votre créativité',
+    'description' => 'Place à la créativité',
     'campaigns' => [
         'manage' => 'Gérer mes campagnes',
         'current' => 'Campagne actuelle',
