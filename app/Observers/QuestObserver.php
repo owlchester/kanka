@@ -17,7 +17,6 @@ class QuestObserver extends MiscObserver
     public function deleting(MiscModel $quest)
     {
         parent::deleting($quest);
-
         $quest->locations()->delete();
         $quest->characters()->delete();
     }

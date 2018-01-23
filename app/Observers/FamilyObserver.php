@@ -18,6 +18,7 @@ class FamilyObserver extends MiscObserver
     {
         parent::deleting($family);
 
+        // Todo: handle this in schema, not in code!
         foreach ($family->members as $character) {
             $character->family_id = null;
             $character->save();
