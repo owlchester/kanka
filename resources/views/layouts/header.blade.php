@@ -44,6 +44,8 @@
                 </li>
 
                 <!-- User Account Menu -->
+                <? /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
+                @if (Auth::check())
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -83,6 +85,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
             </ul>
         </div>
     </nav>
