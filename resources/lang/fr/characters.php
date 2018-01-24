@@ -24,7 +24,7 @@ return [
             'free' => 'Texte libre',
             'relations' => 'Relations',
             'organisations' => 'Organisations',
-            'attributs' => 'Attributs',
+            'attributes' => 'Attributs',
         ]
     ],
     'edit' => [
@@ -117,7 +117,7 @@ return [
             'success' => 'Organisation de personne supprimée.',
         ]
     ],
-    'attributs' => [
+    'attributes' => [
         'create' => [
             'title' => 'Nouveau Attribut pour :name',
             'description' => 'Défini un attribut pour une personne',
@@ -132,11 +132,11 @@ return [
             'success' => 'Attribut pour :name modifié.',
         ],
         'fields' => [
-            'attribut' => 'Attribut',
+            'attribute' => 'Attribut',
             'value' =>  'Valeur',
         ],
         'placeholders' => [
-            'attribut' => 'Nombre de bataille gagnée, date de marriage, initiative',
+            'attribute' => 'Nombre de bataille gagnée, date de marriage, initiative',
             'value' => 'Valeur'
         ],
         'destroy' => [

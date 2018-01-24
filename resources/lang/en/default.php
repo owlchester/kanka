@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'page_title' => 'Page Title',
+    'page_title'    => 'Page Title',
 ];

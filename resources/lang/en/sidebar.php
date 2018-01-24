@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sidebar' => 'Search...',
+    'search' => 'Search...',
     'navigation' => 'Navigation',
     'dashboard' => 'Dashboard',
     'campaigns' => 'Campaigns',

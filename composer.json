@@ -20,7 +20,8 @@
         "sentry/sentry-laravel": "^0.8.0",
         "sofa/eloquence": "^5.5",
         "stevebauman/purify": "2.0.*",
-        "tcg/voyager": "^1.0"
+        "tcg/voyager": "^1.0",
+        "vsch/laravel-translation-manager": "^2.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

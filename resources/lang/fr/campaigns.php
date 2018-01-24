@@ -119,17 +119,6 @@ return [
     'settings' => [
         'helper' => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés ' .
             'seront simplement cachés',
-        'fields' => [
-            'characters' => 'Personnages',
-            'events' => 'Evénements',
-            'families' => 'Familles',
-            'items' => 'Objets',
-            'journals' => 'Journaux',
-            'locations' => 'Lieux',
-            'notes' => 'Notes',
-            'organisations' => 'Organisations',
-            'quests' => 'Quêtes',
-        ],
         'edit' => [
             'success' => 'Campagne modifiée.',
         ],

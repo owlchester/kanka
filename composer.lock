@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "21469f1fd1fdd91a5c42fa3d5f7f52ac",
+    "content-hash": "8da017bc8a52efaad14fb996e66728e6",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -4477,6 +4477,66 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "vsch/laravel-translation-manager",
+            "version": "2.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vsch/laravel-translation-manager.git",
+                "reference": "5e1e87f5192621df374ad1dbc254b13842c1bd82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vsch/laravel-translation-manager/zipball/5e1e87f5192621df374ad1dbc254b13842c1bd82",
+                "reference": "5e1e87f5192621df374ad1dbc254b13842c1bd82",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "~2.3",
+                "illuminate/support": "^5.5",
+                "illuminate/translation": "^5.5",
+                "laravelcollective/html": "^5.5",
+                "php": ">=5.6.4",
+                "symfony/finder": "~3.0"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "~1.4",
+                "mockery/mockery": "0.9.*",
+                "phpspec/phpspec": "~3.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/Classes"
+                ],
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "Vsch\\TranslationManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Schneider",
+                    "email": "vladimir.schneider@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Enhanced Laravel Translation Manager",
+            "homepage": "https://github.com/vsch/laravel-translation-manager",
+            "keywords": [
+                "laravel",
+                "translations",
+                "translator"
+            ],
+            "time": "2017-09-08T17:55:46+00:00"
         }
     ],
     "packages-dev": [

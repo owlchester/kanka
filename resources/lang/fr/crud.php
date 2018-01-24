@@ -62,6 +62,10 @@ return [
     'hints' => [
         'is_private' => 'Cacher des membres de type "Observateur"',
     ],
+    'placeholders' => [
+        'character' => 'Choix du personnage',
+        'location' => 'Choix du lieu',
+    ],
     'linking_help' => 'Comment lier vers d\'autres éléments?',
 
     'move' => [

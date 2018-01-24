@@ -59,3 +59,20 @@ Development should be done in the `develop` branch, with substaintial new featur
 ## Production
 
 Once a feature is ready and tested, the admin will merge it into the master branch. There is no auto-deploy to the servers.
+
+# Translations
+
+To work on translations, execute the following command to clean you translations and re-import them.
+
+```php
+    php artisan translations:reset
+    php artisan translations:import
+```
+
+In the database, change your user's `is_translator` to `true`._Navigate to `/translations` to start working on your translations. Add your new language to `app/config/laravel-translation-manager.php` if needed.
+
+When you are finished, export your changes.
+
+```php
+php artisan translations:export
+```

@@ -18,7 +18,7 @@ return [
         'tabs' => [
             'information' => 'Information',
             'characters' => 'Personnages',
-            'lieux' => 'Lieux',
+            'locations' => 'Lieux',
             'relations' => 'Relations',
             'attributes' => 'Attributs',
         ],
@@ -34,7 +34,7 @@ return [
     'fields' => [
         'name' => 'Nom',
         'type' => 'Type',
-        'lieu' => 'Lieu',
+        'location' => 'Lieu',
         'characters' => 'Personnages',
         'description' => 'Description',
         'history' => 'Histoire',
@@ -44,7 +44,7 @@ return [
     'placeholders' => [
         'name' => 'Nom du lieu',
         'type' => 'Village, Royaume, Ruine',
-        'lieu' => 'Choix d\'un lieu parent',
+        'location' => 'Choix d\'un lieu parent',
     ],
     'attributes' => [
         'create' => [

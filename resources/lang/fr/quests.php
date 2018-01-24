@@ -16,7 +16,7 @@ return [
         'title' => 'Quête :name',
         'description' => 'Détail de la quête',
         'tabs' => [
-            'inpourmation' => 'Inpourmation',
+            'information' => 'Infourmation',
             'characters' => 'Personnages',
             'locations' => 'Lieux',
         ],

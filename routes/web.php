@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Vsch\TranslationManager\Translator;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -101,8 +102,14 @@ Route::group([
     Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 
     Route::post('/entities/create', 'EntityController@create')->name('entities.create');
+
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+// 3rd party
+Route::group(['middleware' => ['web', 'auth', 'translator'], 'prefix' => 'translations'], function () {
+    Translator::routes();
 });

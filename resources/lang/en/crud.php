@@ -64,8 +64,8 @@ return [
         'is_private' => 'Hide from "Viewers"',
     ],
     'placeholders' => [
-        'character' => 'Choix du personnage',
-        'location' => 'Choix du lieu',
+        'character' => 'Choose a character',
+        'location' => 'Choose a location',
     ],
     'linking_help' => 'How can I link to other entries?',
 
