@@ -15,9 +15,9 @@
         @endif
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->attributes()->orderBy('attribute', 'ASC')->paginate() as $attribute)
+    @foreach ($r = $model->attributes()->orderBy('name', 'ASC')->paginate() as $attribute)
         <tr>
-            <td>{{ $attribute->attribute }}</td>
+            <td>{{ $attribute->name }}</td>
             <td>{{ $attribute->value }}</td>
             @if (!Auth::user()->viewer())
                 <td>

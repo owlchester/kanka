@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.create.title', ['name' => $parent->name]),
+    'title' => trans($name . '.create.title', ['name' => $entity->name]),
     'description' => trans($name . '.create.description'),
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
-        ['url' => route($parentRoute . '.show', $parent->id), 'label' => $parent->name]
+        ['url' => route($parentRoute . '.show', $entity->id), 'label' => $entity->name]
     ]
 ])
 
@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => [$route . '.store', $parent->id], 'method'=>'POST')) !!}
+                    {!! Form::open(array('route' => [$route . '.store', $entity->id], 'method'=>'POST')) !!}
                     @include($name . '._form')
 
                     <div class="form-group">

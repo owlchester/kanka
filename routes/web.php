@@ -50,7 +50,7 @@ Route::group([
         'campaign_user' => 'CampaignUserController',
         'characters' => 'CharacterController',
         'characters.character_organisations' => 'CharacterOrganisationController',
-        'characters.character_attributes' => 'CharacterAttributeController',
+        'characters.character_attributes' => 'AttributeController',
         'characters.relations' => 'CharacterRelationController',
         'events' => 'EventController',
         'events.relations' => 'EventRelationController',

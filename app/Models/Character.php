@@ -99,7 +99,14 @@ class Character extends MiscModel
      */
     public function attributes()
     {
-        return $this->hasMany('App\Models\CharacterAttribute', 'character_id', 'id');
+        return $this->hasManyThrough(
+            'App\Models\Attribute',
+            'App\Models\Entity',
+            'entity_id',
+            'entity_id',
+            'id',
+            'id'
+        );
     }
 
     /**

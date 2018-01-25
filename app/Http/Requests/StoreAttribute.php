@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCharacterAttribute extends FormRequest
+class StoreAttribute extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreCharacterAttribute extends FormRequest
     public function rules()
     {
         return [
-            'character_id' => 'required|exists:characters,id',
+            'entity_id' => 'required|exists:characters,id',
             'attribute' => 'required|max:191',
             'value' => 'required|max:191',
         ];
