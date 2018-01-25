@@ -13,6 +13,7 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('attributes');
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->notNull();
@@ -25,7 +26,7 @@ class CreateAttributesTable extends Migration
             // Foreign
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
 
-            $table->index(['type', 'name', 'is_private']);
+            $table->index(['name', 'is_private']);
         });
     }
 

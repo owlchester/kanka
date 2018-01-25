@@ -1,6 +1,6 @@
 @if (Auth::user()->can('create', 'App\Models\CharacterAttribute'))
     <p class="text-right">
-        <a href="{{ route('characters.character_attributes.create', ['character' => $model->id]) }}" class="btn btn-primary">
+        <a href="{{ route('entities.attributes.create', ['entity' => $model->entity]) }}" class="btn btn-primary">
             {{ trans('characters.attributes.actions.add') }}
         </a>
     </p>
@@ -15,7 +15,7 @@
         @endif
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->attributes()->orderBy('name', 'ASC')->paginate() as $attribute)
+    @foreach ($r = $model->entity->attributes()->orderBy('name', 'ASC')->paginate() as $attribute)
         <tr>
             <td>{{ $attribute->name }}</td>
             <td>{{ $attribute->value }}</td>
@@ -28,10 +28,10 @@
             @endif
             <td class="text-right">
                 @if (Auth::user()->can('update', $attribute))
-                    <a href="{{ route('characters.character_attributes.edit', ['character' => $model, 'characterAttribute' => $attribute]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
+                    <a href="{{ route('entities.attributes.edit', ['entity' => $model->entity, 'attribute' => $attribute]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
                 @endif
                 @if (Auth::user()->can('delete', $attribute))
-                {!! Form::open(['method' => 'DELETE','route' => ['characters.character_attributes.destroy', 'character' => $model, 'characterAttribute' => $attribute],'style'=>'display:inline']) !!}                <button class="btn btn-xs btn-danger">
+                {!! Form::open(['method' => 'DELETE','route' => ['entities.attributes.destroy', 'entit' => $model->entity, 'attribute' => $attribute],'style'=>'display:inline']) !!}                <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::close() !!}

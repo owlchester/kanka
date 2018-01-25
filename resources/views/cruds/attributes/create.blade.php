@@ -3,7 +3,7 @@
     'description' => trans($name . '.create.description'),
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
-        ['url' => route($parentRoute . '.show', $entity->id), 'label' => $entity->name]
+        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name]
     ]
 ])
 
@@ -14,12 +14,12 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => [$route . '.store', $entity->id], 'method'=>'POST')) !!}
+                    {!! Form::open(array('route' => ['entities.attributes.store', $entity->id], 'method'=>'POST')) !!}
                     @include($name . '._form')
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=' . $tab : null))]) !!}
+                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
                     </div>
 
                     {!! Form::close() !!}

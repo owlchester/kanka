@@ -63,7 +63,7 @@ class AttributeController extends CrudAttributeController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAttribute $request, Model $entity)
+    public function store(StoreAttribute $request, Entity $entity)
     {
         return $this->crudStore($request, $entity);
     }
@@ -75,9 +75,9 @@ class AttributeController extends CrudAttributeController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(Character $character, CharacterAttribute $characterAttribute)
+    public function edit(Entity $entity, Attribute $attribute)
     {
-        return $this->crudEdit($character, $characterAttribute);
+        return $this->crudEdit($entity, $attribute);
     }
 
     /**
@@ -87,9 +87,9 @@ class AttributeController extends CrudAttributeController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCharacterAttribute $request, Character $character, CharacterAttribute $characterAttribute)
+    public function update(StoreAttribute $request, Entity $entity, Attribute $attribute)
     {
-        return $this->crudUpdate($request, $character, $characterAttribute);
+        return $this->crudUpdate($request, $entity, $attribute);
     }
 
     /**
@@ -98,8 +98,8 @@ class AttributeController extends CrudAttributeController
      * @param  \App\Models\CharacterAttribute  $characterAttribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Character $character, CharacterAttribute $characterAttribute)
+    public function destroy(Entity $entity, Attribute $attribute)
     {
-        return $this->crudDestroy($character, $characterAttribute);
+        return $this->crudDestroy($entity, $attribute);
     }
 }

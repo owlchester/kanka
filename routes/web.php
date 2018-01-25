@@ -50,7 +50,7 @@ Route::group([
         'campaign_user' => 'CampaignUserController',
         'characters' => 'CharacterController',
         'characters.character_organisations' => 'CharacterOrganisationController',
-        'characters.character_attributes' => 'AttributeController',
+        'characters.attributes' => 'CharacterAttributeController',
         'characters.relations' => 'CharacterRelationController',
         'events' => 'EventController',
         'events.relations' => 'EventRelationController',
@@ -76,6 +76,7 @@ Route::group([
 
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
+        'entities.attributes' => 'AttributeController',
     ]);
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
     Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');

@@ -21,9 +21,9 @@ class CrudAttributeController extends Controller
 
     protected $type = '';
     /**
-     * @var Model
+     * @var Entity
      */
-    protected $model = \App\Models\Attribute::class;
+    protected $model = \App\Entitys\Attribute::class;
 
     /**
      * Create a new controller instance.
@@ -41,9 +41,9 @@ class CrudAttributeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crudIndex(Entity $base)
+    public function crudIndex(Entity $entity)
     {
-        $attributes = $base->attributes->paginate();
+        $attributes = $entity->attributes->paginate();
         $name = $this->view;
         $route = $entity->type . $this->route;
 
@@ -51,96 +51,95 @@ class CrudAttributeController extends Controller
     }
 
     /**
-     * @param Model $model
+     * @param Entity $entity
+     * @param Attribute $attribute
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function crudCreate(Entity $entity, Attribute $attribute)
     {
         $this->authorize('create', $attribute);
-        $name = $this->view;
-        $route = $entity->type . $this->route;
-        dd($entity);
+        $name = $entity->pluralType() . '.attributes' . $this->view;
+        $route = 'entities.attributes';
+        $parentRoute = $entity->pluralType();
         return view('cruds.attributes.create', compact(
             'attribute',
             'name',
             'route',
-            'entity'
+            'entity',
+            'parentRoute'
         ));
     }
 
     /**
+     * @param Entity $entity
      * @param Request $request
-     * @param Model $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function crudStore(Request $request, Model $model)
+    public function crudStore(Request $request, Entity $entity)
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('create', $entity->child);
 
-        $relation = new $this->model;
-        $relation->create($request->all());
-
-        $parent = explode('.', $this->view)[0];
+        $attribute = new Attribute();
+        $attribute->entity_id = $entity->id;
+        $attribute->create($request->all());
 
         return redirect()
-            ->route($parent . '.show', [$model->id, 'tab' => 'relations'])
-            ->with('success', trans('relations.create.success', ['name' => $model->name]));
+            ->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
+            ->with('success', trans('attributes.create.success', ['name' => $entity->child->name]));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Family  $character
+     * @param  \App\Entitys\Family  $character
      * @return \Illuminate\Http\Response
      */
-    public function crudEdit(Model $model, Model $relation)
+    public function crudEdit(Entity $entity, Attribute $model)
     {
-        $this->authorize('update', $relation);
+        $this->authorize('update', $model);
 
-        $name = $this->view;
-        $route = $this->route;
-        $parent = explode('.', $this->view)[0];
+        $name = $entity->pluralType() . '.attributes' . $this->view;
+        $route = 'entities.attributes';
+        $parentRoute = $entity->pluralType();
 
-        return view('cruds.relations.edit', compact(
+        return view('cruds.attributes.edit', compact(
+            'entity',
             'model',
-            'relation',
             'name',
             'route',
-            'parent'
+            'parentRoute'
         ));
     }
 
     /**
      * @param Request $request
-     * @param Model $model
-     * @param Model $relation
+     * @param Entity $model
+     * @param Entity $attribute
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function crudUpdate(Request $request, Model $model, Model $relation)
+    public function crudUpdate(Request $request, Entity $entity, Attribute $attribute)
     {
-        $this->authorize('update', $relation);
+        $this->authorize('update', $entity->child);
 
-        $relation->update($request->all());
-        $parent = explode('.', $this->view)[0];
+        $attribute->update($request->all());
 
-        return redirect()->route($parent . '.show', [$model->id, 'tab' => 'relations'])
-            ->with('success', trans('relations.edit.success', ['name' => $model->name]));
+        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
+            ->with('success', trans('attributes.edit.success', ['name' => $entity->name]));
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
+     * @param Entity $model
+     * @param Entity $attribute
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function crudDestroy(Model $model, Model $relation)
+    public function crudDestroy(Entity $entity, Attribute $attribute)
     {
-        $this->authorize('delete', $relation);
+        $this->authorize('delete', $attribute);
 
-        $relation->delete();
-        $parent = explode('.', $this->view)[0];
+        $attribute->delete();
 
         return redirect()
-            ->route($parent . '.show', [$model->id, 'tab' => 'relations'])
-            ->with('success', trans('relations.destroy.success', ['name' => $model->name]));
+            ->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
+            ->with('success', trans('attributes.destroy.success', ['name' => $entity->name]));
     }
 }

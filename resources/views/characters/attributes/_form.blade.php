@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="form-group required">
             <label>{{ trans('characters.attributes.fields.attribute') }}</label>
-            {!! Form::text('attribute', null, ['placeholder' => trans('characters.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('name', null, ['placeholder' => trans('characters.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group required">
             <label>{{ trans('characters.attributes.fields.value') }}</label>
@@ -20,4 +20,4 @@
     </div>
 </div>
 
-{!! Form::hidden('character_id', $parent->id) !!}
+{!! Form::hidden('entity_id', $entity->id) !!}
