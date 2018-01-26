@@ -2,8 +2,10 @@
 
 namespace App\Renderers;
 
+use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Collective\Html\FormFacade as Form;
 
 class DatagridRenderer
 {
@@ -68,6 +70,9 @@ class DatagridRenderer
     private function renderColumns()
     {
         $html = '';
+        // Checkbox for delete
+        $html .= '<th>' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+
         foreach ($this->columns as $column) {
             $html .= $this->renderHeadColumn($column);
         }
@@ -189,6 +194,10 @@ class DatagridRenderer
     private function renderRow(Model $model)
     {
         $html =  '<tr>';
+
+        // Delete
+        $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+
         foreach ($this->columns as $column) {
             $html .= $this->renderColumn($column, $model);
         }

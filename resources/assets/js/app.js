@@ -142,6 +142,32 @@ $(document).ready(function() {
             return false;
         });
     }
+
+
+    // Crud multi-delete
+    var crudDelete = $('#datagrid-select-all');
+    console.log(crudDelete);
+    if (crudDelete.length > 0) {
+        crudDelete.click(function(e) {
+            console.log('click', $(this));
+            if ($(this).prop('checked')) {
+                $.each($("input[name='model[]']"), function(index) {
+                    $(this).prop('checked', true);
+                });
+            } else {
+                $.each($("input[name='model[]']"), function(index) {
+                    $(this).prop('checked', false);
+                });
+            }
+            toggleCrudMultiDelete();
+        });
+    }
+
+    $.each($("input[name='model[]']"), function(index) {
+       $(this).change(function(e) {
+           toggleCrudMultiDelete();
+       });
+    });
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {
@@ -182,3 +208,23 @@ $.each($('.click-confirm'), function(index) {
         $('#click-confirm-url').attr('href', $(this).attr('data-url'));
     });
 });
+
+function toggleCrudMultiDelete() {
+    console.log('checking');
+    var hide = true;
+
+    $.each($("input[name='model[]']"), function(index) {
+        if ($(this).prop('checked')) {
+            hide = false;
+        }
+    });
+
+    console.log('hide', hide);
+
+    var btn = $('#crud-multi-delete');
+    if (hide) {
+        btn.hide();
+    } else {
+        btn.show();
+    }
+}

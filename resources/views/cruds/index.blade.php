@@ -33,12 +33,21 @@
                     </div>
                 </div>
 
+                {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">
                     @include($name . '.datagrid')
+
                 </div>
                 <div class="box-footer">
-                    {{ $models->appends('order', request()->get('order'))->links() }}
+
+                    {!! Form::submit(trans('crud.remove'), ['class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
+
+
+                    <div class="pull-right">
+                        {{ $models->appends('order', request()->get('order'))->links() }}
+                    </div>
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

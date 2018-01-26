@@ -25,6 +25,10 @@ return [
         'move' => 'Move',
     ],
 
+    'destroy_many' => [
+        'success' => 'Deleted :count entity|Delete :count entities.',
+    ],
+
     'relations' => [
         'fields' => [
             'relation' => 'Relation',

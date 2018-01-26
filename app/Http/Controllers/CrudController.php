@@ -49,15 +49,16 @@ class CrudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->crudIndex();
+        return $this->crudIndex($request);
     }
-    public function crudIndex()
+    public function crudIndex(Request $request)
     {
         $model = new $this->model;
         $name = $this->view;
         $actions = $this->indexActions;
+
 
         $models = $model
             ->search(request()
@@ -170,5 +171,27 @@ class CrudController extends Controller
         $model->delete();
         return redirect()->route($this->route . '.index')
             ->with('success', trans($this->view . '.destroy.success', ['name' => $model->name]));
+    }
+
+    /**
+     * Multiple delete of a model
+     *
+     * @param Request $request
+     */
+    public function deleteMany(Request $request)
+    {
+        $model = new $this->model;
+
+        $ids = $request->get('model');
+
+        $count = 0;
+        foreach ($ids as $id) {
+            $entity = $model->findOrFail($id);
+            $entity->delete();
+            $count++;
+        }
+
+        return redirect()->route($this->route . '.index')
+            ->with('success', trans_choice('crud.destroy_many.success', $count,['count' => $count]));
     }
 }

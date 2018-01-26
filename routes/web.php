@@ -44,6 +44,17 @@ Route::group([
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
+    // Multi-delete for cruds
+    Route::post('/characters/deleteMany', 'CharacterController@deleteMany')->name('characters.deleteMany');
+    Route::post('/events/deleteMany', 'EventController@deleteMany')->name('events.deleteMany');
+    Route::post('/locations/deleteMany', 'LocationController@deleteMany')->name('locations.deleteMany');
+    Route::post('/families/deleteMany', 'FamilyController@deleteMany')->name('families.deleteMany');
+    Route::post('/items/deleteMany', 'ItemController@deleteMany')->name('items.deleteMany');
+    Route::post('/journals/deleteMany', 'JournalController@deleteMany')->name('journals.deleteMany');
+    Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
+    Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
+    Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
+
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
         'campaigns' => 'CampaignController',
