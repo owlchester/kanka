@@ -54,6 +54,6 @@ return [
         'title' => 'Nous :icon de nouveaux amis!',
     ],
     'footer' => [
-        'copyright' => '&copy; 2017 kanka.io. Tous droits réservés.'
+        'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.'
     ]
 ];

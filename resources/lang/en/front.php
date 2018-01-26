@@ -54,6 +54,6 @@ return [
         'title' => 'We :icon new friends!',
     ],
     'footer' => [
-        'copyright' => '&copy; 2017 kanka.io. All Rights Reserved.'
+        'copyright' => '&copy; 2017 - :current kanka.io. All Rights Reserved.'
     ]
 ];

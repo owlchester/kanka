@@ -223,7 +223,7 @@
 
     <footer>
         <div class="container">
-            <p>{{ trans('front.footer.copyright') }}</p>
+            <p>{{ trans('front.footer.copyright', ['current' => date('Y')]) }}</p>
             <!--<ul class="list-inline">
                 <li class="list-inline-item">
                     <a href="#">Privacy</a>
