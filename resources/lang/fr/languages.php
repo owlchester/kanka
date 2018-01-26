@@ -2,7 +2,4 @@
 
 return [
     'header' => 'Langues',
-    'available' => [
-        'fr' => 'Français',
-    ]
 ];

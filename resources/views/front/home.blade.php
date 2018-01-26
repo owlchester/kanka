@@ -68,7 +68,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-globe"></i>
-                            {{ trans('front.menu.languages.' . App::getLocale()) }} <span class="caret"></span>
+                            {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu navbar-nar" aria-labelledby="drop3">
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)

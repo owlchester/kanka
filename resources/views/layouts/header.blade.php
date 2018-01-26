@@ -20,7 +20,7 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-caret-down"></i> {{ trans('languages.available.' . LaravelLocalization::getCurrentLocale()) }}
+                        <i class="fa fa-caret-down"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">{{ trans('languages.header') }}</li>
