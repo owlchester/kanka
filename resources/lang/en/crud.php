@@ -26,7 +26,7 @@ return [
     ],
 
     'destroy_many' => [
-        'success' => 'Deleted :count entity|Delete :count entities.',
+        'success' => 'Deleted :count entity|Deleted :count entities.',
     ],
 
     'relations' => [
