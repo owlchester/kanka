@@ -19,4 +19,5 @@ return [
     'releases' => 'Release notes',
     'support' => 'Support / Community',
     'patreon' => 'Patreon',
+    'translations' => 'Translations',
 ];

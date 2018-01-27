@@ -90,6 +90,10 @@
                 </ul>
             </li>
 
+            @if (Auth::user()->is_translator)
+                <li><a href="/translations"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.translations') }}</span></a></li>
+            @endif
+
 
             @if (Auth::user()->hasRole('admin'))
             <li><a href="{{ route('voyager.dashboard') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
