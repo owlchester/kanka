@@ -101,22 +101,7 @@
                     {!! Form::text('languages', $random->generate('language', 3), ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
 
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.image') }}</label>
-                    {!! Form::hidden('remove-image') !!}
-                    {!! Form::file('image', array('class' => 'image')) !!}
-                    @if (!empty($model->image))
-                        <div class="preview">
-                            <div class="image">
-                                <img src="/storage/{{ $model->image }}"/>
-                                <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
-                                    <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
-                                </a>
-                            </div>
-                            <br class="clear">
-                        </div>
-                    @endif
-                </div>
+                @include('cruds.fields.image')
             </div>
         </div>
     </div>

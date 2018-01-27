@@ -63,6 +63,7 @@ return [
         'is_private' => 'Private',
         'location' => 'Location',
         'character' => 'Character',
+        'image' => 'Image',
     ],
     'hints' => [
         'is_private' => 'Hide from "Viewers"',
@@ -70,6 +71,7 @@ return [
     'placeholders' => [
         'character' => 'Choose a character',
         'location' => 'Choose a location',
+        'image_url' => 'You can upload an image from a URL instead',
     ],
     'linking_help' => 'How can I link to other entries?',
 

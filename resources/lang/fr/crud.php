@@ -58,6 +58,7 @@ return [
         'is_private' => 'Privé',
         'location' => 'Lieu',
         'character' => 'Personnage',
+        'image' => 'Image',
     ],
     'hints' => [
         'is_private' => 'Cacher des membres de type "Observateur"',
@@ -65,6 +66,7 @@ return [
     'placeholders' => [
         'character' => 'Choix du personnage',
         'location' => 'Choix du lieu',
+        'image_url' => 'Ou depuis une URL',
     ],
     'linking_help' => 'Comment lier vers d\'autres éléments?',
 

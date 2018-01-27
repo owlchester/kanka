@@ -28,7 +28,8 @@ class StoreEvent extends FormRequest
             'location_id', 'integer|exists:locations,id',
             'type' => 'max:191',
             'date' => 'max:191',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'image_url' => 'nullable|url',
         ];
     }
 }

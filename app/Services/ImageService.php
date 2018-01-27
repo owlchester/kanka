@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\MiscModel;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -14,9 +15,24 @@ class ImageService
      */
     public static function handle(MiscModel $model, $folder = '', $thumbSize = 60)
     {
-        if (request()->has('image')) {
-            $file = request()->file('image');
-            $path = $file->hashName($folder);
+        if (request()->has('image') or request()->filled('image_url')) {
+            $file = $path = null;
+            $url = request()->filled('image_url');
+
+            // Download the file locally to check it out
+            if ($url) {
+                $externalUrl = request()->post('image_url');
+                $externalFile = basename($externalUrl);
+
+                $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
+                copy($externalUrl, $tempImage);
+
+                $file = $tempImage;
+                $path = "$folder/" . $model->id . "_" . $externalFile;
+            } else {
+                $file = request()->file('image');
+                $path = $file->hashName($folder);
+            }
 
             $thumb = '/public/' . str_replace('.', '_thumb.', $path);
 
@@ -33,7 +49,12 @@ class ImageService
                 }
 
                 // Save new image
-                $path = request()->file('image')->store($folder, 'public');
+                if ($url) {
+                    $image = Image::make($file);
+                    Storage::put('/public/' . $path, $image->encode());
+                } else {
+                    $path = request()->file('image')->store($folder, 'public');
+                }
 
                 $model->image = $path;
             }

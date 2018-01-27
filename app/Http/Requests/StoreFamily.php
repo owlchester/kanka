@@ -26,7 +26,8 @@ class StoreFamily extends FormRequest
         return [
             'name' => 'required',
             'location_id' => 'integer|exists:locations,id',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'image_url' => 'nullable|url',
         ];
     }
 }

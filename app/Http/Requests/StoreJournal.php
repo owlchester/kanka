@@ -26,7 +26,8 @@ class StoreJournal extends FormRequest
         return [
             'name' => 'required',
             'date' => 'nullable|date',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'image_url' => 'nullable|url',
         ];
     }
 }
