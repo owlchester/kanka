@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'elapsed_ago' => 'vor :duration',
+    'elapsed_ago'   => 'vor :duration',
 ];
