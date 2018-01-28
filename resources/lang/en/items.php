@@ -1,46 +1,46 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Items',
-        'description' => 'Manage the items of :name.',
-        'add' => 'New Item',
-        'header' => 'Items of :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Item \':name\' created.',
+        'title'         => 'Create a new item',
     ],
-    'create' => [
-        'title' => 'Create a new item',
-        'description' => '',
-        'success' => 'Item \':name\' created.',
+    'destroy'       => [
+        'success'   => 'Item \':name\' removed.',
     ],
-    'show' => [
-        'title' => 'Item :name',
-        'description' => 'A detailed view of an item',
-        'tabs' => [
-            'information' => 'Information',
-        ],
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Item \':name\' updated.',
+        'title'         => 'Edit Item :name',
     ],
-    'edit' => [
-        'title' => 'Edit Item :name',
-        'description' => '',
-        'success' => 'Item \':name\' updated.',
+    'fields'        => [
+        'character'     => 'Character',
+        'description'   => 'Description',
+        'history'       => 'History',
+        'image'         => 'Image',
+        'location'      => 'Location',
+        'name'          => 'Name',
+        'relation'      => 'Relation',
+        'type'          => 'Type',
     ],
-    'destroy' => [
-        'success' => 'Item \':name\' removed.',
+    'index'         => [
+        'add'           => 'New Item',
+        'description'   => 'Manage the items of :name.',
+        'header'        => 'Items of :name',
+        'title'         => 'Items',
     ],
-    'fields' => [
-        'relation' => 'Relation',
-        'name' => 'Name',
-        'location' => 'Location',
-        'type' => 'Type',
-        'character' => 'Character',
-        'history' => 'History',
-        'image' => 'Image',
-        'description' => 'Description',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the item',
-        'type' => 'Weapon, Potion, Artefact',
-        'location' => 'Choose a location',
+    'placeholders'  => [
         'character' => 'Choose a character',
+        'location'  => 'Choose a location',
+        'name'      => 'Name of the item',
+        'type'      => 'Weapon, Potion, Artefact',
+    ],
+    'show'          => [
+        'description'   => 'A detailed view of an item',
+        'tabs'          => [
+            'information'   => 'Information',
+        ],
+        'title'         => 'Item :name',
     ],
 ];

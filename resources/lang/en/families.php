@@ -1,45 +1,44 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Families',
-        'description' => 'Manage the families of :name.',
-        'add' => 'New Family',
-        'header' => 'Families of :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Family \':name\' created.',
+        'title'         => 'Create a new family',
     ],
-    'create' => [
-        'title' => 'Create a new family',
-        'description' => '',
-        'success' => 'Family \':name\' created.',
+    'destroy'       => [
+        'success'   => 'Family \':name\' removed.',
     ],
-    'show' => [
-        'title' => 'Family :name',
-        'description' => 'A detailed view of a family',
-        'tabs' => [
-            'history' => 'History',
-            'member' => 'Members',
-            'relation' => 'Relations',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Family \':name\' updated.',
+        'title'         => 'Edit Family :name',
+    ],
+    'fields'        => [
+        'history'   => 'History',
+        'image'     => 'Image',
+        'location'  => 'Location',
+        'members'   => 'Members',
+        'name'      => 'Name',
+        'relation'  => 'Relation',
+    ],
+    'index'         => [
+        'add'           => 'New Family',
+        'description'   => 'Manage the families of :name.',
+        'header'        => 'Families of :name',
+        'title'         => 'Families',
+    ],
+    'placeholders'  => [
+        'location'  => 'Choose a location',
+        'name'      => 'Name of the family',
+    ],
+    'show'          => [
+        'description'   => 'A detailed view of a family',
+        'tabs'          => [
+            'history'   => 'History',
+            'member'    => 'Members',
+            'relation'  => 'Relations',
         ],
-    ],
-    'edit' => [
-        'title' => 'Edit Family :name',
-        'description' => '',
-        'success' => 'Family \':name\' updated.',
-    ],
-    'destroy' => [
-        'success' => 'Family \':name\' removed.',
-    ],
-
-    'fields' => [
-        'relation' => 'Relation',
-        'name' => 'Name',
-        'location' => 'Location',
-        'members' => 'Members',
-        'image' => 'Image',
-        'history' => 'History',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the family',
-        'location' => 'Choose a location',
+        'title'         => 'Family :name',
     ],
 ];

@@ -1,29 +1,29 @@
 <?php
 
 return [
-    'fields' => [
-        'target' => 'Target',
-        'relation' => 'Relation',
-        'two_way' => 'Create mirror relation',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Relation added for :name.',
+        'title'         => 'Create relations',
     ],
-    'placeholders' => [
-        'target' => 'Choose an entity',
-        'relation' => 'Nature of the relation',
+    'destroy'       => [
+        'success'   => 'Relation removed for :name.',
     ],
-    'hints' => [
-        'two_way' => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Relation updated for :name.',
+        'title'         => 'Update relations',
     ],
-    'create' => [
-        'success' => 'Relation added for :name.',
-        'title' => 'Create relations',
-        'description' => '',
+    'fields'        => [
+        'relation'  => 'Relation',
+        'target'    => 'Target',
+        'two_way'   => 'Create mirror relation',
     ],
-    'edit' => [
-        'success' => 'Relation updated for :name.',
-        'title' => 'Update relations',
-        'description' => '',
+    'hints'         => [
+        'two_way'   => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
     ],
-    'destroy' => [
-        'success' => 'Relation removed for :name.',
-    ]
+    'placeholders'  => [
+        'relation'  => 'Nature of the relation',
+        'target'    => 'Choose an entity',
+    ],
 ];

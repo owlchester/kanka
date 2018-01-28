@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'header' => 'Languages',
+    'header'    => 'Languages',
 ];

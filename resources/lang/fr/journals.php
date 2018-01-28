@@ -1,41 +1,40 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Journaux',
-        'description' => 'Gérer les journaux de :name.',
-        'add' => 'Nouveau Journal',
-        'header' => 'Journaux de :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Journal créé.',
+        'title'         => 'Ajouter un journal',
     ],
-    'create' => [
-        'title' => 'Ajouter un journal',
-        'description' => '',
-        'success' => 'Journal créé.',
+    'destroy'       => [
+        'success'   => 'Journal supprimé.',
     ],
-    'show' => [
-        'title' => 'Journal :name',
-        'description' => 'Détail d\'un journal',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Journal modifié.',
+        'title'         => 'Modifier Journal :name',
     ],
-    'edit' => [
-        'title' => 'Modifier Journal :name',
-        'description' => '',
-        'success' => 'Journal modifié.',
+    'fields'        => [
+        'date'      => 'Date',
+        'history'   => 'Histoire',
+        'image'     => 'Image',
+        'name'      => 'Nom',
+        'relation'  => 'Relation',
+        'type'      => 'Type',
     ],
-    'destroy' => [
-        'success' => 'Journal supprimé.',
+    'index'         => [
+        'add'           => 'Nouveau Journal',
+        'description'   => 'Gérer les journaux de :name.',
+        'header'        => 'Journaux de :name',
+        'title'         => 'Journaux',
     ],
-
-    'fields' => [
-        'relation' => 'Relation',
-        'name' => 'Nom',
-        'type' => 'Type',
-        'history' => 'Histoire',
-        'date' => 'Date',
-        'image' => 'Image',
+    'placeholders'  => [
+        'date'  => 'Date du journal',
+        'name'  => 'Nom du journal',
+        'type'  => 'Session, One Shot, Brouillon',
     ],
-    'placeholders' => [
-        'name' => 'Nom du journal',
-        'type' => 'Session, One Shot, Brouillon',
-        'date' => 'Date du journal',
+    'show'          => [
+        'description'   => 'Détail d\'un journal',
+        'title'         => 'Journal :name',
     ],
 ];

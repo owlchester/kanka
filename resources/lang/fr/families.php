@@ -1,45 +1,44 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Familles',
-        'description' => 'Gérer les familles de :name.',
-        'add' => 'Nouvelle Famille',
-        'header' => 'Familles de :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Famille \':name\' ajoutée.',
+        'title'         => 'Ajouter une Famille',
     ],
-    'create' => [
-        'title' => 'Ajouter une Famille',
-        'description' => '',
-        'success' => 'Famille \':name\' ajoutée.',
+    'destroy'       => [
+        'success'   => 'Famille \':name\' supprimée.',
     ],
-    'show' => [
-        'title' => 'Famille :name',
-        'description' => 'Détail d\'une famille',
-        'tabs' => [
-            'history' => 'Histoire',
-            'member' => 'Membres',
-            'relation' => 'Relations',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Famille \':name\' modifiée.',
+        'title'         => 'Modifier la famille :name',
+    ],
+    'fields'        => [
+        'history'   => 'Histoire',
+        'image'     => 'Image',
+        'location'  => 'Lieu',
+        'members'   => 'Members',
+        'name'      => 'Nom',
+        'relation'  => 'Relation',
+    ],
+    'index'         => [
+        'add'           => 'Nouvelle Famille',
+        'description'   => 'Gérer les familles de :name.',
+        'header'        => 'Familles de :name',
+        'title'         => 'Familles',
+    ],
+    'placeholders'  => [
+        'location'  => 'Choix d\'un lieu',
+        'name'      => 'Nom de la famille',
+    ],
+    'show'          => [
+        'description'   => 'Détail d\'une famille',
+        'tabs'          => [
+            'history'   => 'Histoire',
+            'member'    => 'Membres',
+            'relation'  => 'Relations',
         ],
-    ],
-    'edit' => [
-        'title' => 'Modifier la famille :name',
-        'description' => '',
-        'success' => 'Famille \':name\' modifiée.',
-    ],
-    'destroy' => [
-        'success' => 'Famille \':name\' supprimée.',
-    ],
-
-    'fields' => [
-        'relation' => 'Relation',
-        'name' => 'Nom',
-        'location' => 'Lieu',
-        'members' => 'Members',
-        'image' => 'Image',
-        'history' => 'Histoire',
-    ],
-    'placeholders' => [
-        'name' => 'Nom de la famille',
-        'location' => 'Choix d\'un lieu',
+        'title'         => 'Famille :name',
     ],
 ];

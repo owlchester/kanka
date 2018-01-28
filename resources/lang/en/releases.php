@@ -2,14 +2,14 @@
 
 return [
     'index' => [
-        'title' => 'Releases',
-        'description' => 'The latest updates to kanka.io',
+        'description'   => 'The latest updates to kanka.io',
+        'title'         => 'Releases',
     ],
-    'post' => [
-        'footer' => 'By :name on :date',
+    'post'  => [
+        'footer'    => 'By :name on :date',
     ],
-    'show' => [
-        'title' => 'Release :name',
-        'return' => 'Back to releases',
-    ]
+    'show'  => [
+        'return'    => 'Back to releases',
+        'title'     => 'Release :name',
+    ],
 ];

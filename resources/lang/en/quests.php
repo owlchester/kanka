@@ -1,87 +1,86 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Quests',
-        'description' => 'Manage the quests of :name.',
-        'add' => 'New Quest',
-        'header' => 'Quests of :name',
-    ],
-    'create' => [
-        'title' => 'Create a new quest',
-        'description' => '',
-        'success' => 'Quest \':name\' created.',
-    ],
-    'show' => [
-        'title' => 'Quest :name',
-        'description' => 'A detailed view of an quest',
-        'tabs' => [
-            'information' => 'Information',
-            'characters' => 'Characters',
-            'locations' => 'Locations',
+    'characters'    => [
+        'create'    => [
+            'description'   => 'Set a character to a Quest',
+            'success'       => 'Character added to :name.',
+            'title'         => 'New Character for :name',
         ],
-        'actions' => [
-            'add_location' => 'Add a location',
+        'destroy'   => [
+            'success'   => 'Quest character for :name removed.',
+        ],
+        'edit'      => [
+            'description'   => '',
+            'success'       => 'Quest character for :name updated.',
+            'title'         => 'Update character for :name',
+        ],
+        'fields'    => [
+            'character'     => 'Character',
+            'description'   => 'Description',
+        ],
+    ],
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Quest \':name\' created.',
+        'title'         => 'Create a new quest',
+    ],
+    'destroy'       => [
+        'success'   => 'Quest \':name\' removed.',
+    ],
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Quest \':name\' updated.',
+        'title'         => 'Edit Quest :name',
+    ],
+    'fields'        => [
+        'characters'    => 'Characters',
+        'description'   => 'Description',
+        'image'         => 'Image',
+        'locations'     => 'Locations',
+        'name'          => 'Name',
+        'type'          => 'Type',
+    ],
+    'index'         => [
+        'add'           => 'New Quest',
+        'description'   => 'Manage the quests of :name.',
+        'header'        => 'Quests of :name',
+        'title'         => 'Quests',
+    ],
+    'locations'     => [
+        'create'    => [
+            'description'   => 'Set an location to a Quest',
+            'success'       => 'Location added to :name.',
+            'title'         => 'New Location for :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest location for :name removed.',
+        ],
+        'edit'      => [
+            'description'   => '',
+            'success'       => 'Quest location for :name updated.',
+            'title'         => 'Update location for :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'location'      => 'Location',
+        ],
+    ],
+    'placeholders'  => [
+        'name'  => 'Name of the quest',
+        'type'  => 'Character Arc, Sidequest, Main',
+    ],
+    'show'          => [
+        'actions'       => [
             'add_character' => 'Add a character',
+            'add_location'  => 'Add a location',
         ],
-    ],
-    'edit' => [
-        'title' => 'Edit Quest :name',
-        'description' => '',
-        'success' => 'Quest \':name\' updated.',
-    ],
-    'destroy' => [
-        'success' => 'Quest \':name\' removed.',
-    ],
-
-    'fields' => [
-        'name' => 'Name',
-        'type' => 'Type',
-        'description' => 'Description',
-        'image' => 'Image',
-        'characters' => 'Characters',
-        'locations' => 'Locations',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the quest',
-        'type' => 'Character Arc, Sidequest, Main',
-    ],
-    'characters' => [
-        'create' => [
-            'title' => 'New Character for :name',
-            'description' => 'Set a character to a Quest',
-            'success' => 'Character added to :name.',
+        'description'   => 'A detailed view of an quest',
+        'tabs'          => [
+            'characters'    => 'Characters',
+            'information'   => 'Information',
+            'locations'     => 'Locations',
         ],
-        'edit' => [
-            'title' => 'Update character for :name',
-            'description' => '',
-            'success' => 'Quest character for :name updated.',
-        ],
-        'fields' => [
-            'character' => 'Character',
-            'description' => 'Description',
-        ],
-        'destroy' => [
-            'success' => 'Quest character for :name removed.',
-        ]
-    ],
-    'locations' => [
-        'create' => [
-            'title' => 'New Location for :name',
-            'description' => 'Set an location to a Quest',
-            'success' => 'Location added to :name.',
-        ],
-        'edit' => [
-            'title' => 'Update location for :name',
-            'description' => '',
-            'success' => 'Quest location for :name updated.',
-        ],
-        'fields' => [
-            'location' => 'Location',
-            'description' => 'Description',
-        ],
-        'destroy' => [
-            'success' => 'Quest location for :name removed.',
-        ]
+        'title'         => 'Quest :name',
     ],
 ];

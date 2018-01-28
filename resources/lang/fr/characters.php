@@ -1,146 +1,146 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Personnes',
-        'description' => 'Gérer les personnes de :name.',
-        'add' => 'Nouvelle Personne',
-        'header' => 'Personnes de :name',
-        'actions' => [
-            'random' => 'Nouvelle Personne Aléatoire',
-        ]
+    'attributes'    => [
+        'actions'       => [
+            'add'   => 'Ajouter un attribut',
+        ],
+        'create'        => [
+            'description'   => 'Défini un attribut pour une personne',
+            'success'       => 'Attribut ajouté pour :name.',
+            'title'         => 'Nouveau Attribut pour :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Attribut pour :name supprimé.',
+        ],
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Attribut pour :name modifié.',
+            'title'         => 'Modifier attribut pour :name',
+        ],
+        'fields'        => [
+            'attribute' => 'Attribut',
+            'value'     => 'Valeur',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Nombre de bataille gagnée, date de marriage, initiative',
+            'value'     => 'Valeur',
+        ],
     ],
-    'create' => [
-        'title' => 'Créer une nouvelle personne',
-        'description' => '',
-        'success' => 'Personne \':name\' créée.',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Personne \':name\' créée.',
+        'title'         => 'Créer une nouvelle personne',
     ],
-    'show' => [
-        'title' => 'Personne :name',
-        'description' => 'Détail d\'une personne',
-        'tabs' => [
-            'history' => 'Histoire',
-            'personality' => 'Personnalité',
-            'free' => 'Texte libre',
-            'relations' => 'Relations',
-            'organisations' => 'Organisations',
-            'attributes' => 'Attributs',
-        ]
+    'destroy'       => [
+        'success'   => 'Personne \':name\' supprimée.',
     ],
-    'edit' => [
-        'title' => 'Modifier Personne :name',
-        'description' => '',
-        'success' => 'Personne \':name\' modifiée.',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Personne \':name\' modifiée.',
+        'title'         => 'Modifier Personne :name',
     ],
-    'destroy' => [
-        'success' => 'Personne \':name\' supprimée.',
+    'fields'        => [
+        'age'                       => 'Age',
+        'eye'                       => 'Couleur des yeux',
+        'family'                    => 'Famille',
+        'fears'                     => 'Craine',
+        'free'                      => 'Texte libre',
+        'goals'                     => 'Objectifs',
+        'hair'                      => 'Cheveux',
+        'height'                    => 'Taille',
+        'history'                   => 'Histoire',
+        'image'                     => 'Image',
+        'is_personality_visible'    => 'Personnalité visible',
+        'languages'                 => 'Langues',
+        'location'                  => 'Lieu',
+        'mannerisms'                => 'Maniérismes',
+        'name'                      => 'Nom',
+        'physical'                  => 'Physique',
+        'race'                      => 'Race',
+        'relation'                  => 'Relation',
+        'sex'                       => 'Sexe',
+        'skin'                      => 'Peau',
+        'title'                     => 'Titre',
+        'traits'                    => 'Traits',
+        'weight'                    => 'Poid',
     ],
-    'fields' =>  [
-        'name' => 'Nom',
-        'title' => 'Titre',
-        'age' => 'Age',
-        'sex' => 'Sexe',
-        'height' => 'Taille',
-        'weight' => 'Poid',
-        'eye' => 'Couleur des yeux',
-        'hair' => 'Cheveux',
-        'skin' => 'Peau',
-        'languages' => 'Langues',
-        'race' => 'Race',
-        'location' => 'Lieu',
-        'relation' => 'Relation',
-        'family' => 'Famille',
-        'physical' => 'Physique',
-        'goals' => 'Objectifs',
-        'traits' => 'Traits',
-        'fears' => 'Craine',
-        'free' => 'Texte libre',
-        'mannerisms' => 'Maniérismes',
-        'history' => 'Histoire',
-        'image' => 'Image',
-        'is_personality_visible' => 'Personnalité visible',
+    'hints'         => [
+        'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type \'Observateur\'.',
     ],
-    'placeholders' => [
-        'name' => 'Nom',
-        'title' => 'Titre',
-        'age' => 'Age',
-        'sex' => 'Sexe',
-        'height' => 'Taille',
-        'weight' => 'Poid',
-        'eye' => 'Couleur des yeux',
-        'hair' => 'Cheveux',
-        'skin' => 'Peau',
-        'languages' => 'Langues',
-        'race' => 'Race',
-        'location' => 'Choix du lieu',
-        'family' => 'Choix d\'une famille',
-        'physical' => 'Physique',
-        'goals' => 'Objectifs',
-        'traits' => 'Traits',
-        'fears' => 'Craintes',
-        'mannerisms' => 'Maniérismes',
-        'history' => 'Histoire',
-        'image' => 'Image',
-        'free' => 'Texte libre',
-    ],
-    'hints' => [
-        'is_personality_visible' => 'Tu peux cacher toute la personnalité des membres de type \'Observateur\'.',
-    ],
-    'sections' => [
-        'general' => 'Inpourmation générale',
-        'appearance' => 'Physique',
-        'personality' => 'Personnalité',
-        'history' => 'Histoire',
+    'index'         => [
+        'actions'       => [
+            'random'    => 'Nouvelle Personne Aléatoire',
+        ],
+        'add'           => 'Nouvelle Personne',
+        'description'   => 'Gérer les personnes de :name.',
+        'header'        => 'Personnes de :name',
+        'title'         => 'Personnes',
     ],
     'organisations' => [
-        'create' => [
-            'title' => 'Nouvelle Organisation pour :name',
-            'description' => 'Associater une organisation à une personne',
-            'success' => 'Personne ajoutée à l\'organisation.',
+        'actions'       => [
+            'add'   => 'Nouvelle organisation',
         ],
-        'actions' => [
-            'add' => 'Nouvelle organisation',
+        'create'        => [
+            'description'   => 'Associater une organisation à une personne',
+            'success'       => 'Personne ajoutée à l\'organisation.',
+            'title'         => 'Nouvelle Organisation pour :name',
         ],
-        'edit' => [
-            'title' => 'Modifier l\'Organisation pour :name',
-            'description' => '',
-            'success' => 'Organisation de personne modifiée.',
+        'destroy'       => [
+            'success'   => 'Organisation de personne supprimée.',
         ],
-        'fields' => [
-            'organisation' => 'Organisation',
-            'role' =>  'Rôle',
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Organisation de personne modifiée.',
+            'title'         => 'Modifier l\'Organisation pour :name',
         ],
-        'placeholders' => [
-            'organisation' => 'Choix d\'une organisation...',
+        'fields'        => [
+            'organisation'  => 'Organisation',
+            'role'          => 'Rôle',
         ],
-        'destroy' => [
-            'success' => 'Organisation de personne supprimée.',
-        ]
+        'placeholders'  => [
+            'organisation'  => 'Choix d\'une organisation...',
+        ],
     ],
-    'attributes' => [
-        'create' => [
-            'title' => 'Nouveau Attribut pour :name',
-            'description' => 'Défini un attribut pour une personne',
-            'success' => 'Attribut ajouté pour :name.',
+    'placeholders'  => [
+        'age'       => 'Age',
+        'eye'       => 'Couleur des yeux',
+        'family'    => 'Choix d\'une famille',
+        'fears'     => 'Craintes',
+        'free'      => 'Texte libre',
+        'goals'     => 'Objectifs',
+        'hair'      => 'Cheveux',
+        'height'    => 'Taille',
+        'history'   => 'Histoire',
+        'image'     => 'Image',
+        'languages' => 'Langues',
+        'location'  => 'Choix du lieu',
+        'mannerisms'=> 'Maniérismes',
+        'name'      => 'Nom',
+        'physical'  => 'Physique',
+        'race'      => 'Race',
+        'sex'       => 'Sexe',
+        'skin'      => 'Peau',
+        'title'     => 'Titre',
+        'traits'    => 'Traits',
+        'weight'    => 'Poid',
+    ],
+    'sections'      => [
+        'appearance'    => 'Physique',
+        'general'       => 'Inpourmation générale',
+        'history'       => 'Histoire',
+        'personality'   => 'Personnalité',
+    ],
+    'show'          => [
+        'description'   => 'Détail d\'une personne',
+        'tabs'          => [
+            'attributes'    => 'Attributs',
+            'free'          => 'Texte libre',
+            'history'       => 'Histoire',
+            'organisations' => 'Organisations',
+            'personality'   => 'Personnalité',
+            'relations'     => 'Relations',
         ],
-        'actions' => [
-            'add' => 'Ajouter un attribut',
-        ],
-        'edit' => [
-            'title' => 'Modifier attribut pour :name',
-            'description' => '',
-            'success' => 'Attribut pour :name modifié.',
-        ],
-        'fields' => [
-            'attribute' => 'Attribut',
-            'value' =>  'Valeur',
-        ],
-        'placeholders' => [
-            'attribute' => 'Nombre de bataille gagnée, date de marriage, initiative',
-            'value' => 'Valeur'
-        ],
-        'destroy' => [
-            'success' => 'Attribut pour :name supprimé.',
-        ]
+        'title'         => 'Personne :name',
     ],
 ];

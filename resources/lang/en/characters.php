@@ -1,146 +1,146 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Characters',
-        'description' => 'Manage the characters of :name.',
-        'add' => 'New Character',
-        'header' => 'Characters in :name',
-        'actions' => [
-            'random' => 'New Random Character',
-        ]
+    'attributes'    => [
+        'actions'       => [
+            'add'   => 'Add an attribute',
+        ],
+        'create'        => [
+            'description'   => 'Set an attribute to a character',
+            'success'       => 'Attribute added to :name.',
+            'title'         => 'New Attribute for :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Character attribute for :name removed.',
+        ],
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Character attribute for :name updated.',
+            'title'         => 'Update attribute for :name',
+        ],
+        'fields'        => [
+            'attribute' => 'Attribute',
+            'value'     => 'Value',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Number of won battles, date of wedding, Initiative',
+            'value'     => 'Value of the attribute',
+        ],
     ],
-    'create' => [
-        'title' => 'Create a new character',
-        'description' => '',
-        'success' => 'Character \':name\' created.',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Character \':name\' created.',
+        'title'         => 'Create a new character',
     ],
-    'show' => [
-        'title' => 'Character :name',
-        'description' => 'A detailed view of a character',
-        'tabs' => [
-            'history' => 'History',
-            'personality' => 'Personality',
-            'free' => 'Free Text',
-            'relations' => 'Relations',
-            'organisations' => 'Organisations',
-            'attributes' => 'Attributes',
-        ]
+    'destroy'       => [
+        'success'   => 'Character \':name\' removed.',
     ],
-    'edit' => [
-        'title' => 'Edit Character :name',
-        'description' => '',
-        'success' => 'Character \':name\' updated.',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Character \':name\' updated.',
+        'title'         => 'Edit Character :name',
     ],
-    'destroy' => [
-        'success' => 'Character \':name\' removed.',
+    'fields'        => [
+        'age'                       => 'Age',
+        'eye'                       => 'Eye colour',
+        'family'                    => 'Family',
+        'fears'                     => 'Fears',
+        'free'                      => 'Free text',
+        'goals'                     => 'Goals',
+        'hair'                      => 'Hair',
+        'height'                    => 'Height',
+        'history'                   => 'History',
+        'image'                     => 'Image',
+        'is_personality_visible'    => 'Is personality visible',
+        'languages'                 => 'Languages',
+        'location'                  => 'Location',
+        'mannerisms'                => 'Mannerisms',
+        'name'                      => 'Name',
+        'physical'                  => 'Physical',
+        'race'                      => 'Race',
+        'relation'                  => 'Relation',
+        'sex'                       => 'Sex',
+        'skin'                      => 'Skin',
+        'title'                     => 'Title',
+        'traits'                    => 'Traits',
+        'weight'                    => 'Weight',
     ],
-    'fields' =>  [
-        'name' => 'Name',
-        'title' => 'Title',
-        'age' => 'Age',
-        'sex' => 'Sex',
-        'height' => 'Height',
-        'weight' => 'Weight',
-        'eye' => 'Eye colour',
-        'hair' => 'Hair',
-        'skin' => 'Skin',
-        'languages' => 'Languages',
-        'race' => 'Race',
-        'location' => 'Location',
-        'relation' => 'Relation',
-        'family' => 'Family',
-        'physical' => 'Physical',
-        'goals' => 'Goals',
-        'traits' => 'Traits',
-        'fears' => 'Fears',
-        'free' => 'Free text',
-        'mannerisms' => 'Mannerisms',
-        'history' => 'History',
-        'image' => 'Image',
-        'is_personality_visible' => 'Is personality visible',
+    'hints'         => [
+        'is_personality_visible'    => 'You can hide the whole personality section from your Viewers.',
     ],
-    'placeholders' => [
-        'name' => 'Name',
-        'title' => 'Title',
-        'age' => 'Age',
-        'sex' => 'Sex',
-        'height' => 'Height',
-        'weight' => 'Weight',
-        'eye' => 'Eye colour',
-        'hair' => 'Hair',
-        'skin' => 'Skin',
-        'languages' => 'Languages',
-        'race' => 'Race',
-        'location' => 'Please select a location',
-        'family' => 'Please select a character',
-        'physical' => 'Physical',
-        'goals' => 'Goals',
-        'traits' => 'Traits',
-        'fears' => 'Fears',
-        'mannerisms' => 'Mannerisms',
-        'history' => 'History',
-        'image' => 'Image',
-        'free' => 'Free text',
-    ],
-    'hints' => [
-        'is_personality_visible' => 'You can hide the whole personality section from your Viewers.',
-    ],
-    'sections' => [
-        'general' => 'General information',
-        'appearance' => 'Appearance',
-        'personality' => 'Personality',
-        'history' => 'History',
+    'index'         => [
+        'actions'       => [
+            'random'    => 'New Random Character',
+        ],
+        'add'           => 'New Character',
+        'description'   => 'Manage the characters of :name.',
+        'header'        => 'Characters in :name',
+        'title'         => 'Characters',
     ],
     'organisations' => [
-        'create' => [
-            'title' => 'New Organisation for :name',
-            'description' => 'Associate an organisation to a character',
-            'success' => 'Character added to organisation.',
+        'actions'       => [
+            'add'   => 'Add organisation',
         ],
-        'actions' => [
-            'add' => 'Add organisation',
+        'create'        => [
+            'description'   => 'Associate an organisation to a character',
+            'success'       => 'Character added to organisation.',
+            'title'         => 'New Organisation for :name',
         ],
-        'edit' => [
-            'title' => 'Update Organisation for :name',
-            'description' => '',
-            'success' => 'Character organisation updated.',
+        'destroy'       => [
+            'success'   => 'Character organisation removed.',
         ],
-        'fields' => [
-            'organisation' => 'Organisation',
-            'role' =>  'Role',
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Character organisation updated.',
+            'title'         => 'Update Organisation for :name',
         ],
-        'placeholders' => [
-            'organisation' => 'Choose an organisation...',
+        'fields'        => [
+            'organisation'  => 'Organisation',
+            'role'          => 'Role',
         ],
-        'destroy' => [
-            'success' => 'Character organisation removed.',
-        ]
+        'placeholders'  => [
+            'organisation'  => 'Choose an organisation...',
+        ],
     ],
-    'attributes' => [
-        'create' => [
-            'title' => 'New Attribute for :name',
-            'description' => 'Set an attribute to a character',
-            'success' => 'Attribute added to :name.',
+    'placeholders'  => [
+        'age'       => 'Age',
+        'eye'       => 'Eye colour',
+        'family'    => 'Please select a character',
+        'fears'     => 'Fears',
+        'free'      => 'Free text',
+        'goals'     => 'Goals',
+        'hair'      => 'Hair',
+        'height'    => 'Height',
+        'history'   => 'History',
+        'image'     => 'Image',
+        'languages' => 'Languages',
+        'location'  => 'Please select a location',
+        'mannerisms'=> 'Mannerisms',
+        'name'      => 'Name',
+        'physical'  => 'Physical',
+        'race'      => 'Race',
+        'sex'       => 'Sex',
+        'skin'      => 'Skin',
+        'title'     => 'Title',
+        'traits'    => 'Traits',
+        'weight'    => 'Weight',
+    ],
+    'sections'      => [
+        'appearance'    => 'Appearance',
+        'general'       => 'General information',
+        'history'       => 'History',
+        'personality'   => 'Personality',
+    ],
+    'show'          => [
+        'description'   => 'A detailed view of a character',
+        'tabs'          => [
+            'attributes'    => 'Attributes',
+            'free'          => 'Free Text',
+            'history'       => 'History',
+            'organisations' => 'Organisations',
+            'personality'   => 'Personality',
+            'relations'     => 'Relations',
         ],
-        'actions' => [
-            'add' => 'Add an attribute',
-        ],
-        'edit' => [
-            'title' => 'Update attribute for :name',
-            'description' => '',
-            'success' => 'Character attribute for :name updated.',
-        ],
-        'fields' => [
-            'attribute' => 'Attribute',
-            'value' =>  'Value',
-        ],
-        'placeholders' => [
-            'attribute' => 'Number of won battles, date of wedding, Initiative',
-            'value' => 'Value of the attribute'
-        ],
-        'destroy' => [
-            'success' => 'Character attribute for :name removed.',
-        ]
+        'title'         => 'Character :name',
     ],
 ];

@@ -1,75 +1,75 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Lieux',
-        'description' => 'Gérer les lieux of :name.',
-        'add' => 'New Lieu',
-        'header' => 'Lieux de :name'
-    ],
-    'create' => [
-        'title' => 'Ajouter un lieu',
-        'description' => '',
-        'success' => 'Lieu \':name\' créé.',
-    ],
-    'show' => [
-        'title' => 'Lieu :name',
-        'description' => 'Détail d\'un lieu',
-        'tabs' => [
-            'information' => 'Information',
-            'characters' => 'Personnages',
-            'locations' => 'Lieux',
-            'relations' => 'Relations',
-            'attributes' => 'Attributs',
+    'attributes'    => [
+        'actions'       => [
+            'add'   => 'Ajouter un attribut',
         ],
-    ],
-    'edit' => [
-        'title' => 'Modifier Lieu :name',
-        'description' => '',
-        'success' => 'Lieu \':name\' modifié.',
-    ],
-    'destroy' => [
-        'success' => 'Lieu \':name\' supprimé.',
-    ],
-    'fields' => [
-        'name' => 'Nom',
-        'type' => 'Type',
-        'location' => 'Lieu',
-        'characters' => 'Personnages',
-        'description' => 'Description',
-        'history' => 'Histoire',
-        'image' => 'Image',
-        'relation' => 'Relation',
-    ],
-    'placeholders' => [
-        'name' => 'Nom du lieu',
-        'type' => 'Village, Royaume, Ruine',
-        'location' => 'Choix d\'un lieu parent',
-    ],
-    'attributes' => [
-        'create' => [
-            'title' => 'Nouvel attribut pour :name',
-            'description' => 'Définir un attribut pour un lieu',
-            'success' => 'Attribut ajouté à :name.',
+        'create'        => [
+            'description'   => 'Définir un attribut pour un lieu',
+            'success'       => 'Attribut ajouté à :name.',
+            'title'         => 'Nouvel attribut pour :name',
         ],
-        'actions' => [
-            'add' => 'Ajouter un attribut',
+        'destroy'       => [
+            'success'   => 'Attribut pour :name supprimé.',
         ],
-        'edit' => [
-            'title' => 'Modifier un attribut pour :name',
-            'description' => '',
-            'success' => 'Attribut pour :name modifié.',
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Attribut pour :name modifié.',
+            'title'         => 'Modifier un attribut pour :name',
         ],
-        'fields' => [
+        'fields'        => [
             'attribute' => 'Attribut',
-            'value' =>  'Valeur',
+            'value'     => 'Valeur',
         ],
-        'placeholders' => [
+        'placeholders'  => [
             'attribute' => 'Population, Nombre d\'inondations, Taille',
-            'value' => 'Valeur de l\'attribut'
+            'value'     => 'Valeur de l\'attribut',
         ],
-        'destroy' => [
-            'success' => 'Attribut pour :name supprimé.',
-        ]
+    ],
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Lieu \':name\' créé.',
+        'title'         => 'Ajouter un lieu',
+    ],
+    'destroy'       => [
+        'success'   => 'Lieu \':name\' supprimé.',
+    ],
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Lieu \':name\' modifié.',
+        'title'         => 'Modifier Lieu :name',
+    ],
+    'fields'        => [
+        'characters'    => 'Personnages',
+        'description'   => 'Description',
+        'history'       => 'Histoire',
+        'image'         => 'Image',
+        'location'      => 'Lieu',
+        'name'          => 'Nom',
+        'relation'      => 'Relation',
+        'type'          => 'Type',
+    ],
+    'index'         => [
+        'add'           => 'New Lieu',
+        'description'   => 'Gérer les lieux of :name.',
+        'header'        => 'Lieux de :name',
+        'title'         => 'Lieux',
+    ],
+    'placeholders'  => [
+        'location'  => 'Choix d\'un lieu parent',
+        'name'      => 'Nom du lieu',
+        'type'      => 'Village, Royaume, Ruine',
+    ],
+    'show'          => [
+        'description'   => 'Détail d\'un lieu',
+        'tabs'          => [
+            'attributes'    => 'Attributs',
+            'characters'    => 'Personnages',
+            'information'   => 'Information',
+            'locations'     => 'Lieux',
+            'relations'     => 'Relations',
+        ],
+        'title'         => 'Lieu :name',
     ],
 ];

@@ -1,73 +1,72 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Organisations',
-        'description' => 'Gérer les organisation de :name.',
-        'add' => 'Nouvelle Organisation',
-        'header' => 'Organisations de :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Organisation \':name\' créée.',
+        'title'         => 'Ajouter une organisation',
     ],
-    'create' => [
-        'title' => 'Ajouter une organisation',
-        'description' => '',
-        'success' => 'Organisation \':name\' créée.',
+    'destroy'       => [
+        'success'   => 'Organisation \':name\' supprimée.',
     ],
-    'show' => [
-        'title' => 'Organisation :name',
-        'description' => 'Détail de l\'organisation',
-        'tabs' => [
-            'history' => 'Histoire',
-            'members' => 'Membres',
-            'relations' => 'Relations',
-        ]
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Organisation \':name\' modifiée.',
+        'title'         => 'Modifier Organisation :name',
     ],
-    'edit' => [
-        'title' => 'Modifier Organisation :name',
-        'description' => '',
-        'success' => 'Organisation \':name\' modifiée.',
+    'fields'        => [
+        'history'   => 'Histoire',
+        'image'     => 'Image',
+        'location'  => 'Lieu',
+        'members'   => 'Membres',
+        'name'      => 'Nom',
+        'relation'  => 'Relation',
+        'type'      => 'Type',
     ],
-    'destroy' => [
-        'success' => 'Organisation \':name\' supprimée.',
+    'index'         => [
+        'add'           => 'Nouvelle Organisation',
+        'description'   => 'Gérer les organisation de :name.',
+        'header'        => 'Organisations de :name',
+        'title'         => 'Organisations',
     ],
-
-    'fields' => [
-        'name' => 'Nom',
-        'type' => 'Type',
-        'location' => 'Lieu',
-        'members' => 'Membres',
-        'image' => 'Image',
-        'history' => 'Histoire',
-        'relation' => 'Relation',
-    ],
-    'placeholders' => [
-        'name' => 'Nom de l\'organisation',
-        'location' => 'Choix du lieu',
-        'type' => 'Culte, Bande, Rebellion',
-    ],
-    'members' => [
-        'create' => [
-            'title' => 'Nouveau membre pour :name',
-            'description' => 'Ajouter un membre à l\'organisation',
-            'success' => 'Membre ajouté à l\'organisation :name.',
+    'members'       => [
+        'actions'       => [
+            'add'   => 'Ajouter un membre',
         ],
-        'actions' => [
-            'add' => 'Ajouter un membre',
+        'create'        => [
+            'description'   => 'Ajouter un membre à l\'organisation',
+            'success'       => 'Membre ajouté à l\'organisation :name.',
+            'title'         => 'Nouveau membre pour :name',
         ],
-        'edit' => [
-            'title' => 'Modifier Member pour :name',
-            'description' => '',
-            'success' => 'Membre modifié.',
+        'destroy'       => [
+            'success'   => 'Membre retiré de l\'organisation',
         ],
-        'fields' => [
-            'role' => 'Rôle',
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Membre modifié.',
+            'title'         => 'Modifier Member pour :name',
+        ],
+        'fields'        => [
             'character' => 'Personnage',
+            'role'      => 'Rôle',
         ],
-        'placeholders' => [
-            'role' => 'Chef, Membre, Prêtre, Maître d\'arme',
-            'character' => 'Choix du personnage'
+        'placeholders'  => [
+            'character' => 'Choix du personnage',
+            'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
         ],
-        'destroy' => [
-            'success' => 'Membre retiré de l\'organisation',
-        ]
+    ],
+    'placeholders'  => [
+        'location'  => 'Choix du lieu',
+        'name'      => 'Nom de l\'organisation',
+        'type'      => 'Culte, Bande, Rebellion',
+    ],
+    'show'          => [
+        'description'   => 'Détail de l\'organisation',
+        'tabs'          => [
+            'history'   => 'Histoire',
+            'members'   => 'Membres',
+            'relations' => 'Relations',
+        ],
+        'title'         => 'Organisation :name',
     ],
 ];

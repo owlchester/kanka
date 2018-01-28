@@ -1,41 +1,40 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Notes',
-        'description' => 'Manage the notes of :name.',
-        'add' => 'New Note',
-        'header' => 'Notes of :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Note \':name\' created.',
+        'title'         => 'Create a new note',
     ],
-    'create' => [
-        'title' => 'Create a new note',
-        'description' => '',
-        'success' => 'Note \':name\' created.',
+    'destroy'       => [
+        'success'   => 'Note \':name\' removed.',
     ],
-    'show' => [
-        'title' => 'Note :name',
-        'description' => 'A detailed view of a note',
-        'tabs' => [
-            'description' => 'Description'
-        ]
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Note \':name\' updated.',
+        'title'         => 'Edit Note :name',
     ],
-    'edit' => [
-        'title' => 'Edit Note :name',
-        'description' => '',
-        'success' => 'Note \':name\' updated.',
+    'fields'        => [
+        'description'   => 'Description',
+        'image'         => 'Image',
+        'name'          => 'Name',
+        'type'          => 'Type',
     ],
-    'destroy' => [
-        'success' => 'Note \':name\' removed.',
+    'index'         => [
+        'add'           => 'New Note',
+        'description'   => 'Manage the notes of :name.',
+        'header'        => 'Notes of :name',
+        'title'         => 'Notes',
     ],
-
-    'fields' => [
-        'name' => 'Name',
-        'type' => 'Type',
-        'image' => 'Image',
-        'description' => 'Description',
+    'placeholders'  => [
+        'name'  => 'Name of the note',
+        'type'  => 'Religion, Race, Political system',
     ],
-    'placeholders' => [
-        'name' => 'Name of the note',
-        'type' => 'Religion, Race, Political system',
+    'show'          => [
+        'description'   => 'A detailed view of a note',
+        'tabs'          => [
+            'description'   => 'Description',
+        ],
+        'title'         => 'Note :name',
     ],
 ];

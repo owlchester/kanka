@@ -1,87 +1,86 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Quêtes',
-        'description' => 'Gérer les quêtes de :name.',
-        'add' => 'Nouvelle Quête',
-        'header' => 'Quêtes de :name',
-    ],
-    'create' => [
-        'title' => 'Ajouter une quête',
-        'description' => '',
-        'success' => 'Quête \':name\' créée.',
-    ],
-    'show' => [
-        'title' => 'Quête :name',
-        'description' => 'Détail de la quête',
-        'tabs' => [
-            'information' => 'Infourmation',
-            'characters' => 'Personnages',
-            'locations' => 'Lieux',
+    'characters'    => [
+        'create'    => [
+            'description'   => 'Lier un personnage à la quête',
+            'success'       => 'Personnage ajouté à :name.',
+            'title'         => 'Nouveau personnage pour :name',
         ],
-        'actions' => [
-            'add_location' => 'Ajouter un lieu',
+        'destroy'   => [
+            'success'   => 'Personnage pour :name supprimé.',
+        ],
+        'edit'      => [
+            'description'   => '',
+            'success'       => 'Personnage pour :name modifié.',
+            'title'         => 'Modifier un personnage pour :name',
+        ],
+        'fields'    => [
+            'character'     => 'Personnage',
+            'description'   => 'Description',
+        ],
+    ],
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Quête \':name\' créée.',
+        'title'         => 'Ajouter une quête',
+    ],
+    'destroy'       => [
+        'success'   => 'Quête \':name\' supprimée.',
+    ],
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Quête \':name\' modifiée.',
+        'title'         => 'Modifier Quête :name',
+    ],
+    'fields'        => [
+        'characters'    => 'Personnages',
+        'description'   => 'Description',
+        'image'         => 'Image',
+        'locations'     => 'Lieux',
+        'name'          => 'Nom',
+        'type'          => 'Type',
+    ],
+    'index'         => [
+        'add'           => 'Nouvelle Quête',
+        'description'   => 'Gérer les quêtes de :name.',
+        'header'        => 'Quêtes de :name',
+        'title'         => 'Quêtes',
+    ],
+    'locations'     => [
+        'create'    => [
+            'description'   => 'Lier un lieu à la quête',
+            'success'       => 'Lieu ajouté à :name.',
+            'title'         => 'Nouveau lieu pour :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Lieu pour :name supprimé.',
+        ],
+        'edit'      => [
+            'description'   => '',
+            'success'       => 'Lieu pour :name modifié.',
+            'title'         => 'Modifier lieu pour :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'location'      => 'Lieu',
+        ],
+    ],
+    'placeholders'  => [
+        'name'  => 'Nom de la quête',
+        'type'  => 'Principale, side quest, personnage',
+    ],
+    'show'          => [
+        'actions'       => [
             'add_character' => 'Ajouter un personnage',
+            'add_location'  => 'Ajouter un lieu',
         ],
-    ],
-    'edit' => [
-        'title' => 'Modifier Quête :name',
-        'description' => '',
-        'success' => 'Quête \':name\' modifiée.',
-    ],
-    'destroy' => [
-        'success' => 'Quête \':name\' supprimée.',
-    ],
-
-    'fields' => [
-        'name' => 'Nom',
-        'type' => 'Type',
-        'description' => 'Description',
-        'image' => 'Image',
-        'characters' => 'Personnages',
-        'locations' => 'Lieux',
-    ],
-    'placeholders' => [
-        'name' => 'Nom de la quête',
-        'type' => 'Principale, side quest, personnage',
-    ],
-    'characters' => [
-        'create' => [
-            'title' => 'Nouveau personnage pour :name',
-            'description' => 'Lier un personnage à la quête',
-            'success' => 'Personnage ajouté à :name.',
+        'description'   => 'Détail de la quête',
+        'tabs'          => [
+            'characters'    => 'Personnages',
+            'information'   => 'Infourmation',
+            'locations'     => 'Lieux',
         ],
-        'edit' => [
-            'title' => 'Modifier un personnage pour :name',
-            'description' => '',
-            'success' => 'Personnage pour :name modifié.',
-        ],
-        'fields' => [
-            'character' => 'Personnage',
-            'description' => 'Description',
-        ],
-        'destroy' => [
-            'success' => 'Personnage pour :name supprimé.',
-        ]
-    ],
-    'locations' => [
-        'create' => [
-            'title' => 'Nouveau lieu pour :name',
-            'description' => 'Lier un lieu à la quête',
-            'success' => 'Lieu ajouté à :name.',
-        ],
-        'edit' => [
-            'title' => 'Modifier lieu pour :name',
-            'description' => '',
-            'success' => 'Lieu pour :name modifié.',
-        ],
-        'fields' => [
-            'location' => 'Lieu',
-            'description' => 'Description',
-        ],
-        'destroy' => [
-            'success' => 'Lieu pour :name supprimé.',
-        ]
+        'title'         => 'Quête :name',
     ],
 ];

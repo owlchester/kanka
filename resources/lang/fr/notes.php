@@ -1,41 +1,40 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Notes',
-        'description' => 'Gérer les notes de :name.',
-        'add' => 'Nouvelle Note',
-        'header' => 'Notes de :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Note \':name\' créée.',
+        'title'         => 'Ajouter une note',
     ],
-    'create' => [
-        'title' => 'Ajouter une note',
-        'description' => '',
-        'success' => 'Note \':name\' créée.',
+    'destroy'       => [
+        'success'   => 'Note \':name\' supprimée.',
     ],
-    'show' => [
-        'title' => 'Note :name',
-        'description' => 'Détail de la note',
-        'tabs' => [
-            'description' => 'Description'
-        ]
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Note \':name\' modifiée.',
+        'title'         => 'Modifier Note :name',
     ],
-    'edit' => [
-        'title' => 'Modifier Note :name',
-        'description' => '',
-        'success' => 'Note \':name\' modifiée.',
+    'fields'        => [
+        'description'   => 'Description',
+        'image'         => 'Image',
+        'name'          => 'Nom',
+        'type'          => 'Type',
     ],
-    'destroy' => [
-        'success' => 'Note \':name\' supprimée.',
+    'index'         => [
+        'add'           => 'Nouvelle Note',
+        'description'   => 'Gérer les notes de :name.',
+        'header'        => 'Notes de :name',
+        'title'         => 'Notes',
     ],
-
-    'fields' => [
-        'name' => 'Nom',
-        'type' => 'Type',
-        'image' => 'Image',
-        'description' => 'Description',
+    'placeholders'  => [
+        'name'  => 'Nom de la note',
+        'type'  => 'Religion, Race, Moyen de transport',
     ],
-    'placeholders' => [
-        'name' => 'Nom de la note',
-        'type' => 'Religion, Race, Moyen de transport',
+    'show'          => [
+        'description'   => 'Détail de la note',
+        'tabs'          => [
+            'description'   => 'Description',
+        ],
+        'title'         => 'Note :name',
     ],
 ];

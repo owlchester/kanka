@@ -1,45 +1,44 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Événements',
-        'description' => 'Gestion des événements de :name.',
-        'add' => 'Nouvel Événement',
-        'header' => 'Événements de :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Événement \':name\' créé.',
+        'title'         => 'Créer un nouvel Événement',
     ],
-    'create' => [
-        'title' => 'Créer un nouvel Événement',
-        'description' => '',
-        'success' => 'Événement \':name\' créé.',
+    'destroy'       => [
+        'success'   => 'Événement \':name\' supprimé.',
     ],
-    'show' => [
-        'title' => 'Événement :name',
-        'description' => 'Détail d\'un événement',
-        'tabs' => [
-            'information' => 'Information',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Événement \':name\' modifier.',
+        'title'         => 'Modifier l\'événement :name',
+    ],
+    'fields'        => [
+        'date'      => 'Date',
+        'history'   => 'Histoire',
+        'image'     => 'Image',
+        'location'  => 'Lieu',
+        'name'      => 'Nom',
+        'type'      => 'Type',
+    ],
+    'index'         => [
+        'add'           => 'Nouvel Événement',
+        'description'   => 'Gestion des événements de :name.',
+        'header'        => 'Événements de :name',
+        'title'         => 'Événements',
+    ],
+    'placeholders'  => [
+        'date'      => 'La date de l\'événement',
+        'location'  => 'Choix d\'un lieu',
+        'name'      => 'Nom de l\'événement',
+        'type'      => 'Cérémonie, Festival, Désastre, Bataille, Naissance',
+    ],
+    'show'          => [
+        'description'   => 'Détail d\'un événement',
+        'tabs'          => [
+            'information'   => 'Information',
         ],
-    ],
-    'edit' => [
-        'title' => 'Modifier l\'événement :name',
-        'description' => '',
-        'success' => 'Événement \':name\' modifier.',
-    ],
-    'destroy' => [
-        'success' => 'Événement \':name\' supprimé.',
-    ],
-
-    'fields' => [
-        'name' => 'Nom',
-        'location' => 'Lieu',
-        'type' => 'Type',
-        'date' => 'Date',
-        'history' => 'Histoire',
-        'image' => 'Image',
-    ],
-    'placeholders' => [
-        'name' => 'Nom de l\'événement',
-        'type' => 'Cérémonie, Festival, Désastre, Bataille, Naissance',
-        'date' => 'La date de l\'événement',
-        'location' => 'Choix d\'un lieu',
+        'title'         => 'Événement :name',
     ],
 ];

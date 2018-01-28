@@ -2,14 +2,14 @@
 
 return [
     'index' => [
-        'title' => 'Annonces',
-        'description' => 'Les dernières annonces de Kanka',
+        'description'   => 'Les dernières annonces de Kanka',
+        'title'         => 'Annonces',
     ],
-    'post' => [
-        'footer' => 'De :name le :date',
+    'post'  => [
+        'footer'    => 'De :name le :date',
     ],
-    'show' => [
-        'title' => 'Version :name',
-        'return' => 'Retour aux annonces',
-    ]
+    'show'  => [
+        'return'    => 'Retour aux annonces',
+        'title'     => 'Version :name',
+    ],
 ];

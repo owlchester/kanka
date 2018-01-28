@@ -1,41 +1,40 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Journals',
-        'description' => 'Manage the journals of :name.',
-        'add' => 'New Journal',
-        'header' => 'Journals of :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Journal created.',
+        'title'         => 'Create a new journal',
     ],
-    'create' => [
-        'title' => 'Create a new journal',
-        'description' => '',
-        'success' => 'Journal created.',
+    'destroy'       => [
+        'success'   => 'Journal removed.',
     ],
-    'show' => [
-        'title' => 'Journal :name',
-        'description' => 'A detailed view of a journal',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Journal updated.',
+        'title'         => 'Edit Journal :name',
     ],
-    'edit' => [
-        'title' => 'Edit Journal :name',
-        'description' => '',
-        'success' => 'Journal updated.',
+    'fields'        => [
+        'date'      => 'Date',
+        'history'   => 'History',
+        'image'     => 'Image',
+        'name'      => 'Name',
+        'relation'  => 'Relation',
+        'type'      => 'Type',
     ],
-    'destroy' => [
-        'success' => 'Journal removed.',
+    'index'         => [
+        'add'           => 'New Journal',
+        'description'   => 'Manage the journals of :name.',
+        'header'        => 'Journals of :name',
+        'title'         => 'Journals',
     ],
-
-    'fields' => [
-        'relation' => 'Relation',
-        'name' => 'Name',
-        'type' => 'Type',
-        'history' => 'History',
-        'date' => 'Date',
-        'image' => 'Image',
+    'placeholders'  => [
+        'date'  => 'Date of the journal',
+        'name'  => 'Name of the journal',
+        'type'  => 'Session, One Shot, Draft',
     ],
-    'placeholders' => [
-        'name' => 'Name of the journal',
-        'type' => 'Session, One Shot, Draft',
-        'date' => 'Date of the journal',
+    'show'          => [
+        'description'   => 'A detailed view of a journal',
+        'title'         => 'Journal :name',
     ],
 ];

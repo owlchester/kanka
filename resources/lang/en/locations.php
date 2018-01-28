@@ -1,75 +1,75 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Locations',
-        'description' => 'Manage the location of :name.',
-        'add' => 'New Location',
-        'header' => 'Locations in :name'
-    ],
-    'create' => [
-        'title' => 'Create a new location',
-        'description' => '',
-        'success' => 'Location \':name\' created.',
-    ],
-    'show' => [
-        'title' => 'Location :name',
-        'description' => 'A detailed view of a location',
-        'tabs' => [
-            'information' => 'Information',
-            'characters' => 'Characters',
-            'locations' => 'Locations',
-            'relations' => 'Relations',
-            'attributes' => 'Attributes',
+    'attributes'    => [
+        'actions'       => [
+            'add'   => 'Add an attribute',
         ],
-    ],
-    'edit' => [
-        'title' => 'Edit Location :name',
-        'description' => '',
-        'success' => 'Location \':name\' updated.',
-    ],
-    'destroy' => [
-        'success' => 'Location \':name\' removed.',
-    ],
-    'fields' => [
-        'name' => 'Name',
-        'type' => 'Type',
-        'location' => 'Location',
-        'characters' => 'Characters',
-        'description' => 'Description',
-        'history' => 'History',
-        'image' => 'Image',
-        'relation' => 'Relation',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the location',
-        'type' => 'City, Kingdom, Ruin',
-        'location' => 'Choose a parent location',
-    ],
-    'attributes' => [
-        'create' => [
-            'title' => 'New Attribute for :name',
-            'description' => 'Set an attribute to a location',
-            'success' => 'Attribute added to :name.',
+        'create'        => [
+            'description'   => 'Set an attribute to a location',
+            'success'       => 'Attribute added to :name.',
+            'title'         => 'New attribute for :name',
         ],
-        'actions' => [
-            'add' => 'Add an attribute',
+        'destroy'       => [
+            'success'   => 'Location attribute for :name removed.',
         ],
-        'edit' => [
-            'title' => 'Update attribute for :name',
-            'description' => '',
-            'success' => 'Location attribute for :name updated.',
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Location attribute for :name updated.',
+            'title'         => 'Update attribute for :name',
         ],
-        'fields' => [
+        'fields'        => [
             'attribute' => 'Attribute',
-            'value' =>  'Value',
+            'value'     => 'Value',
         ],
-        'placeholders' => [
+        'placeholders'  => [
             'attribute' => 'Population, Number of floods, Garrison size',
-            'value' => 'Value of the attribute'
+            'value'     => 'Value of the attribute',
         ],
-        'destroy' => [
-            'success' => 'Location attribute for :name removed.',
-        ]
+    ],
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Location \':name\' created.',
+        'title'         => 'Create a new location',
+    ],
+    'destroy'       => [
+        'success'   => 'Location \':name\' removed.',
+    ],
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Location \':name\' updated.',
+        'title'         => 'Edit Location :name',
+    ],
+    'fields'        => [
+        'characters'    => 'Characters',
+        'description'   => 'Description',
+        'history'       => 'History',
+        'image'         => 'Image',
+        'location'      => 'Location',
+        'name'          => 'Name',
+        'relation'      => 'Relation',
+        'type'          => 'Type',
+    ],
+    'index'         => [
+        'add'           => 'New Location',
+        'description'   => 'Manage the location of :name.',
+        'header'        => 'Locations in :name',
+        'title'         => 'Locations',
+    ],
+    'placeholders'  => [
+        'location'  => 'Choose a parent location',
+        'name'      => 'Name of the location',
+        'type'      => 'City, Kingdom, Ruin',
+    ],
+    'show'          => [
+        'description'   => 'A detailed view of a location',
+        'tabs'          => [
+            'attributes'    => 'Attributes',
+            'characters'    => 'Characters',
+            'information'   => 'Information',
+            'locations'     => 'Locations',
+            'relations'     => 'Relations',
+        ],
+        'title'         => 'Location :name',
     ],
 ];

@@ -1,45 +1,44 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Events',
-        'description' => 'Manage the events of :name.',
-        'add' => 'New Event',
-        'header' => 'Events of :name',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Event \':name\' created.',
+        'title'         => 'Create a new event',
     ],
-    'create' => [
-        'title' => 'Create a new event',
-        'description' => '',
-        'success' => 'Event \':name\' created.',
+    'destroy'       => [
+        'success'   => 'Event \':name\' removed.',
     ],
-    'show' => [
-        'title' => 'Event :name',
-        'description' => 'A detailed view of an event',
-        'tabs' => [
-            'information' => 'Information',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Event \':name\' updated.',
+        'title'         => 'Edit Event :name',
+    ],
+    'fields'        => [
+        'date'      => 'Date',
+        'history'   => 'History',
+        'image'     => 'Image',
+        'location'  => 'Location',
+        'name'      => 'Name',
+        'type'      => 'Type',
+    ],
+    'index'         => [
+        'add'           => 'New Event',
+        'description'   => 'Manage the events of :name.',
+        'header'        => 'Events of :name',
+        'title'         => 'Events',
+    ],
+    'placeholders'  => [
+        'date'      => 'A date for your event',
+        'location'  => 'Choose a location',
+        'name'      => 'Name of the event',
+        'type'      => 'Ceremony, Festival, Disaster, Battle, Birth',
+    ],
+    'show'          => [
+        'description'   => 'A detailed view of an event',
+        'tabs'          => [
+            'information'   => 'Information',
         ],
-    ],
-    'edit' => [
-        'title' => 'Edit Event :name',
-        'description' => '',
-        'success' => 'Event \':name\' updated.',
-    ],
-    'destroy' => [
-        'success' => 'Event \':name\' removed.',
-    ],
-
-    'fields' => [
-        'name' => 'Name',
-        'location' => 'Location',
-        'type' => 'Type',
-        'date' => 'Date',
-        'history' => 'History',
-        'image' => 'Image',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the event',
-        'type' => 'Ceremony, Festival, Disaster, Battle, Birth',
-        'date' => 'A date for your event',
-        'location' => 'Choose a location',
+        'title'         => 'Event :name',
     ],
 ];

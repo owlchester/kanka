@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'title' => 'Recherche',
-    'description' => 'Recherche dans la campagne',
+    'description'   => 'Recherche dans la campagne',
+    'title'         => 'Recherche',
 ];

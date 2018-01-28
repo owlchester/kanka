@@ -1,29 +1,29 @@
 <?php
 
 return [
-    'fields' => [
-        'target' => 'Cible',
-        'relation' => 'Relation',
-        'two_way' => 'Créer une relation miroir',
+    'create'        => [
+        'description'   => '',
+        'success'       => 'Relation ajoutée pour :name.',
+        'title'         => 'Nouvelle relation pour :name',
     ],
-    'placeholders' => [
-        'target' => 'Choix d\'un élément',
-        'relation' => 'Nature de la relation',
+    'destroy'       => [
+        'success'   => 'Relation supprimée pour :name.',
     ],
-    'hints' => [
-        'two_way' => 'Sélectionne pour créer une copie de la relation sur la cible.',
+    'edit'          => [
+        'description'   => '',
+        'success'       => 'Relation modifiée pour :name.',
+        'title'         => 'Modifier la relation de :name',
     ],
-    'create' => [
-        'success' => 'Relation ajoutée pour :name.',
-        'title' => 'Nouvelle relation pour :name',
-        'description' => '',
+    'fields'        => [
+        'relation'  => 'Relation',
+        'target'    => 'Cible',
+        'two_way'   => 'Créer une relation miroir',
     ],
-    'edit' => [
-        'success' => 'Relation modifiée pour :name.',
-        'title' => 'Modifier la relation de :name',
-        'description' => '',
+    'hints'         => [
+        'two_way'   => 'Sélectionne pour créer une copie de la relation sur la cible.',
     ],
-    'destroy' => [
-        'success' => 'Relation supprimée pour :name.',
-    ]
+    'placeholders'  => [
+        'relation'  => 'Nature de la relation',
+        'target'    => 'Choix d\'un élément',
+    ],
 ];
