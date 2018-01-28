@@ -1,31 +1,45 @@
 <?php
 
 return [
-    'show' => [
-        'tabs' => [
-            'organisations' => 'Organizations',
-        ]
+    'attributes'    => [
+        'create'        => [
+            'description'   => 'Add an attribute to a character',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Number of battles won, date of wedding, Initiative',
+        ],
+    ],
+    'fields'        => [
+        'eye'   => 'Eye color',
     ],
     'organisations' => [
-        'create' => [
-            'description' => 'Associate an organization to a character',
-            'success' => 'Character added to organization.',
+        'actions'       => [
+            'add'   => 'Add organization',
         ],
-        'actions' => [
-            'add' => 'Add organization',
+        'create'        => [
+            'description'   => 'Associate an organization to a character',
+            'success'       => 'Character added to organization.',
         ],
-        'edit' => [
-            'title' => 'Update Organization for :name',
-            'success' => 'Character organization updated.',
+        'destroy'       => [
+            'success'   => 'Character organization removed.',
         ],
-        'fields' => [
-            'organisation' => 'Organization',
+        'edit'          => [
+            'success'   => 'Character organization updated.',
+            'title'     => 'Update Organization for :name',
         ],
-        'placeholders' => [
-            'organisation' => 'Choose an organization...',
+        'fields'        => [
+            'organisation'  => 'Organization',
         ],
-        'destroy' => [
-            'success' => 'Character organization removed.',
-        ]
+        'placeholders'  => [
+            'organisation'  => 'Choose an organization...',
+        ],
+    ],
+    'placeholders'  => [
+        'eye'   => 'Eye color',
+    ],
+    'show'          => [
+        'tabs'  => [
+            'organisations' => 'Organizations',
+        ],
     ],
 ];

@@ -34,6 +34,8 @@ Route::group([
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
     Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 
+    Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
+
     // Password
     Route::patch('/profile/password', 'ProfileController@password')->name('profile.password');
     Route::patch('/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');

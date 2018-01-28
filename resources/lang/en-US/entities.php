@@ -1,6 +1,6 @@
 <?php
 
 return [
+    'organisation'  => 'Organization',
     'organisations' => 'Organizations',
-    'organisation' => 'Organization',
 ];

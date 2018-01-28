@@ -1,41 +1,41 @@
 <?php
 
 return [
-    'index' => [
-        'title' => 'Organizations',
-        'description' => 'Manage the organizations of :name.',
-        'add' => 'New Organization',
-        'header' => 'Organizations of :name',
+    'create'        => [
+        'success'   => 'Organization \':name\' created.',
+        'title'     => 'Create a new organization',
     ],
-    'create' => [
-        'title' => 'Create a new organization',
-        'success' => 'Organization \':name\' created.',
+    'destroy'       => [
+        'success'   => 'Organization \':name\' removed.',
     ],
-    'show' => [
-        'title' => 'Organization :name',
-        'description' => 'A detailed view of an organization',
+    'edit'          => [
+        'success'   => 'Organization \':name\' updated.',
+        'title'     => 'Edit Organization :name',
     ],
-    'edit' => [
-        'title' => 'Edit Organization :name',
-        'success' => 'Organization \':name\' updated.',
+    'index'         => [
+        'add'           => 'New Organization',
+        'description'   => 'Manage the organizations of :name.',
+        'header'        => 'Organizations of :name',
+        'title'         => 'Organizations',
     ],
-    'destroy' => [
-        'success' => 'Organization \':name\' removed.',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the organization',
-    ],
-    'members' => [
-        'create' => [
-            'title' => 'New Organization Member for :name',
-            'description' => 'Add a member to the organization',
-            'success' => 'Member added to the organization.',
+    'members'       => [
+        'create'    => [
+            'description'   => 'Add a member to the organization',
+            'success'       => 'Member added to the organization.',
+            'title'         => 'New Organization Member for :name',
         ],
-        'edit' => [
-            'success' => 'Organization member updated.',
+        'destroy'   => [
+            'success'   => 'Member removed from the organization.',
         ],
-        'destroy' => [
-            'success' => 'Member removed from the organization.',
-        ]
+        'edit'      => [
+            'success'   => 'Organization member updated.',
+        ],
+    ],
+    'placeholders'  => [
+        'name'  => 'Name of the organization',
+    ],
+    'show'          => [
+        'description'   => 'A detailed view of an organization',
+        'title'         => 'Organization :name',
     ],
 ];

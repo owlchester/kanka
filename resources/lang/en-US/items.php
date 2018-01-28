@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'placeholders' => [
-        'type' => 'Weapon, Potion, Artifact',
+    'placeholders'  => [
+        'type'  => 'Weapon, Potion, Artifact',
     ],
 ];

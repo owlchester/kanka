@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'settings' => [
-        'description' => 'Customize what you see on your dashboard',
-    ]
+    'settings'  => [
+        'description'   => 'Customize what you see on your dashboard',
+    ],
 ];
