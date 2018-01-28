@@ -49,7 +49,7 @@ return [
     'characters' => [
         'create' => [
             'title' => 'New Character for :name',
-            'description' => 'Set an character to a Quest',
+            'description' => 'Set a character to a Quest',
             'success' => 'Character added to :name.',
         ],
         'edit' => [
