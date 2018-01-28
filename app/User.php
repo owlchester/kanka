@@ -82,7 +82,7 @@ class User extends \TCG\Voyager\Models\User
         );
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                $v = $diff->$k . ' ' . trans('datetime.' . ($v . ($diff->$k > 1 ? 's' : '')));
             } else {
                 unset($string[$k]);
             }
@@ -91,7 +91,11 @@ class User extends \TCG\Voyager\Models\User
         if (!$full) {
             $string = array_slice($string, 0, 1);
         }
-        return $string ? implode(', ', $string) . ' ago' : 'just now';
+        // Formatting
+        if ($string) {
+            return  trans('datetime.elapsed_ago', ['duration' => implode(', ', $string)]);
+        }
+        return trans('datetime.just_now');
     }
 
     /**
