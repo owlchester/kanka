@@ -133,9 +133,9 @@ return array(
      * @type array
      */
     'exclude_groups' => array(
-        //'pagination',
         'reminders',
-        'validation',
+        'pagination',
+        'passwords',
         'voyager',
     ),
     /**
@@ -147,7 +147,8 @@ return array(
     'exclude_page_edit_groups' => array(
         //'page-titles',
         'reminders',
-        'validation',
+        'pagination',
+        'passwords',
         'voyager',
     ),
     /**

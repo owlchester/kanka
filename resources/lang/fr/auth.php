@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed'    => 'Ces informations ne correspondent pas avec nos entrées.',
+    'failed' => 'Ces identifiants ne correspondent pas à nos enregistrements',
     'login'     => [
         'fields'                => [
             'email'     => 'Adresse Email',
@@ -62,5 +62,5 @@ return [
         'submit'    => 'Enregistrer',
         'title'     => 'Réinitialisation du mot de passe',
     ],
-    'throttle'  => 'Trop d\'essais. Veuillez réessayer dans :seconds secondes.',
+    'throttle' => 'Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes.',
 ];
