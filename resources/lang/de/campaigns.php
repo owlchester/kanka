@@ -5,7 +5,7 @@ return [
         'helper'                => [
             'first' => 'Danke, dass du unsere App ausprobierst! Bevor es weitergehen kann, brauchen wir nur eine KLeinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder mehr Kampagnen erstellen.',
             'second'=> 'Aber genug Geplauder! Was soll es sein?',
-            'title' => 'Willkommen zu :name!',
+            'title' => 'Willkommen bei :name!',
         ],
         'success'               => 'Kampagne erstellt.',
         'success_first_time'    => 'Deine Kampagne wurde erstellt! Da es deine erste Kampagne ist, haben wir ein paar Dinge für dich erstellt, die dir helfen sollen, loszulegen und hoffentlich ein bisschen Inspiration liefern, was du alles machen kannst.',

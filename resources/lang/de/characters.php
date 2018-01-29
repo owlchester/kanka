@@ -137,6 +137,6 @@ return [
             'personality'   => 'Persönlichkeit',
             'relations'     => 'Beziehungen',
         ],
-        'title'         => 'Character :name',
+        'title'         => 'Charakter :name',
     ],
 ];
