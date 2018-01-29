@@ -9,8 +9,8 @@ return [
     'recent'        => [
         'add'           => 'Crear nuevo :name',
         'no_entries'    => 'Actualmente no hay entradas de este tipo.',
-        'title'         => ':name recientemente modificado',
-        'view'          => 'Ver Todos :name',
+        'title'         => ':name recientemente modificados',
+        'view'          => 'Ver todos los :name',
     ],
     'settings'      => [
         'description'   => 'Personaliza lo que ves en tu tablero',
@@ -18,7 +18,7 @@ return [
             'success'   => 'Se han guardado tus modificaciones.',
         ],
         'fields'        => [
-            'helper'        => 'Puedes cambiar fácilmente lo que ves en tu tablero. Por favor, ten en cuenta que esto es para todas tus campañas, independientemente de los ajustes de estas.',
+            'helper'        => 'Puedes cambiar fácilmente lo que ves en tu tablero. Por favor, ten en cuenta que todas tus campañas se verán afectadas, independientemente de los ajustes de estas.',
             'recent_count'  => 'Numero de elementos recientes',
         ],
         'title'         => 'Ajustes del Tablero',

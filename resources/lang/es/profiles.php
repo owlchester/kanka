@@ -9,9 +9,9 @@ return [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo Electronico',
         'name'                      => 'Nombre',
-        'new_password'              => 'Contraseña Nueva (opcional)',
-        'new_password_confirmation' => 'Confirmar Nueva Contraseña',
-        'newsletter'                => 'Me gustaría recibir nuevas noticias de la web por correo electrónico.',
+        'new_password'              => 'Contraseña nueva',
+        'new_password_confirmation' => 'Confirmar nueva contraseña',
+        'newsletter'                => 'Me gustaría recibir noticias de la web por correo electrónico.',
         'password'                  => 'Contraseña actual',
     ],
     'password'      => [
@@ -28,7 +28,7 @@ return [
         'delete'    => [
             'delete'    => 'Eliminar cuenta',
             'title'     => 'Elimina tu cuenta',
-            'warning'   => 'Al eliminar tu cuenta, todos tus datos serán borrados. ¿Estás seguro?',
+            'warning'   => 'Al eliminar tu cuenta todos tus datos serán borrados. ¿Estás seguro?',
         ],
         'password'  => [
             'title' => 'Cambia tu contraseña',

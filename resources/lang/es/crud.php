@@ -16,11 +16,15 @@ return [
         'close'         => 'Cerrar',
         'delete'        => 'Eliminar',
         'description'   => '¿Seguro que quieres eliminar :tag?',
-        'title'         => 'Cancelar',
+        'title'         => 'Eliminar',
+    ],
+    'destroy_many'  => [
+        'success'   => ':count entidad eliminada|:count entidades eliminadas.',
     ],
     'edit'          => 'Editar',
     'fields'        => [
         'character' => 'Personaje',
+        'image'     => 'Imagen',
         'is_private'=> 'Privado',
         'location'  => 'Localización',
     ],
@@ -48,16 +52,17 @@ return [
         ],
         'title' => 'Nueva entidad',
     ],
-    'or_cancel'     => 'o <a href=":url">cancela</a>',
+    'or_cancel'     => 'o <a href=":url">Cancelar</a>',
     'panels'        => [
         'appearance'            => 'Apariencia',
         'description'           => 'Descripción',
         'general_information'   => 'Información General',
-        'history'               => 'Historial',
+        'history'               => 'Historia',
         'move'                  => 'Mover',
     ],
     'placeholders'  => [
         'character' => 'Escoge un personaje',
+        'image_url' => 'Puedes subir una imagen desde una URL',
         'location'  => 'Escoge una localización',
     ],
     'relations'     => [

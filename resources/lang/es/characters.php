@@ -46,7 +46,7 @@ return [
         'goals'                     => 'Objetivos',
         'hair'                      => 'Pelo',
         'height'                    => 'Altura',
-        'history'                   => 'Biografia',
+        'history'                   => 'Biografía',
         'image'                     => 'Imagen',
         'is_personality_visible'    => 'Personalidad visible',
         'languages'                 => 'Idiomas',
@@ -69,7 +69,7 @@ return [
         'actions'       => [
             'random'    => 'Nuevo personaje aleatorio',
         ],
-        'add'           => 'Nuevo personaje',
+        'add'           => 'Nuevo Personaje',
         'description'   => 'Modificar los personajes en :name.',
         'header'        => 'Personajes en :name',
         'title'         => 'Personajes',

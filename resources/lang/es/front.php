@@ -15,7 +15,7 @@ return [
             'title'         => 'Uso Gratuito',
         ],
         'layers'        => [
-            'description'   => 'Monitoriza tus personajes, sus familias su situación y mucho mas en cualquier momento.',
+            'description'   => 'Monitoriza tus personajes, sus familias su situación y mucho más en cualquier momento.',
             'title'         => 'Personajes, Familias, Localizaciones',
         ],
         'notebook'      => [
@@ -33,7 +33,7 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Registrate ahora, ¡es gratis!',
-        'description'       => 'Kanka es una herramienta fácil y flexible para crear mundos y monitorizar tu campaña RPG online. Crea y organiza a tus personajes, lugares, organizaciones, eventos y mucho mas.',
+        'description'       => 'Kanka es una herramienta fácil y flexible para crear mundos y monitorizar tu campaña RPG en nuestra web. Crea y organiza a tus personajes, lugares, organizaciones, eventos y mucho más.',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -49,7 +49,7 @@ return [
         'title'     => 'Menú',
     ],
     'meta'          => [
-        'description'   => 'Kanka es un flexible administrador de campañas de rol online.',
+        'description'   => 'Kanka es un administrador flexible de campañas de rol online.',
         'title'         => 'Kanka - Gestiona tus sesiones y construye tus mundos.',
     ],
     'second_block'  => [

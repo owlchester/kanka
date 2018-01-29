@@ -19,4 +19,5 @@ return [
     'releases'      => 'Notas de la versión',
     'search'        => 'Buscar...',
     'support'       => 'Soporte / Comunidad',
+    'translations'  => 'Traducciones',
 ];

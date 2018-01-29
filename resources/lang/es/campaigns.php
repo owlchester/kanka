@@ -44,7 +44,7 @@ return [
         'create'        => [
             'button'    => 'Invitar',
             'success'   => 'Invitación enviada.',
-            'title'     => 'Invitar a alguno a tu campaña',
+            'title'     => 'Invita a alguien a tu campaña',
         ],
         'destroy'       => [
             'success'   => 'Invitación eliminada.',
@@ -91,8 +91,8 @@ return [
         ],
         'roles'     => [
             'member'    => 'Miembro',
-            'owner'     => 'Dueño',
-            'viewer'    => 'Visitante',
+            'owner'     => 'Administrador',
+            'viewer'    => 'Invitado',
         ],
         'your_role' => 'Tu eres un <i>:role</i>',
     ],
@@ -105,7 +105,7 @@ return [
         'edit'      => [
             'success'   => 'Ajustes de tu campaña actualizados.',
         ],
-        'helper'    => 'Puedes fácilmente desactivar elementos de tu campaña que permanecerán ocultos. Los elementos creados en las categorías ocultas no serán eliminados, solo estarán ocultos.',
+        'helper'    => 'Puedes desactivar fácilmente elementos de tu campaña que permanecerán ocultos. Los elementos creados en las categorías ocultas no serán eliminados, solo estarán ocultos.',
     ],
     'show'          => [
         'actions'       => [
