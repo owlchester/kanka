@@ -41,6 +41,7 @@ return [
     'exists'                => 'Der gewählte Wert für :attribute ist ungültig.',
     'file'                  => ':attribute muss eine Datei sein.',
     'filled'                => ':attribute muss ausgefüllt sein.',
+    'hash'                  => 'Das :attribute stimmt nicht mit dem aktuellen Passwort überein.',
     'image'                 => ':attribute muss ein Bild sein.',
     'in'                    => 'Der gewählte Wert für :attribute ist ungültig.',
     'in_array'              => 'Der gewählte Wert für :attribute kommt nicht in :other vor.',
