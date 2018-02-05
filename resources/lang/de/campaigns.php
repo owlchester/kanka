@@ -3,7 +3,7 @@
 return [
     'create'        => [
         'helper'                => [
-            'first' => 'Danke, dass du unsere App ausprobierst! Bevor es weitergehen kann, brauchen wir nur eine KLeinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder mehr Kampagnen erstellen.',
+            'first' => 'Danke, dass du unsere App ausprobierst! Bevor es losgehen kann, brauchen wir nur eine Kleinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder weitere Kampagnen erstellen.',
             'second'=> 'Aber genug Geplauder! Was soll es sein?',
             'title' => 'Willkommen bei :name!',
         ],
@@ -39,7 +39,7 @@ return [
     ],
     'invites'       => [
         'actions'       => [
-            'add'   => 'Einladen',
+            'add'   => 'Einladung',
         ],
         'create'        => [
             'button'    => 'Einladen',

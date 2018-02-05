@@ -81,7 +81,7 @@ return [
             'title' => 'Editar membro :name',
         ],
         'fields'    => [
-            'joined'    => 'Juntou-se',
+            'joined'    => 'Juntou-se em',
             'name'      => 'Usuário',
             'role'      => 'Cargo',
         ],

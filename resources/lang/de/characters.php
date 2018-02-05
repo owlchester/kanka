@@ -6,7 +6,7 @@ return [
             'add'   => 'Füge ein Attribute hinzu',
         ],
         'create'        => [
-            'description'   => 'Setze ein Attribute für einen Charakter',
+            'description'   => 'Setze ein Attribut für einen Charakter',
             'success'       => 'Attribut hinzugefügt für :name.',
             'title'         => 'Neues Attribute für :name',
         ],
@@ -119,7 +119,7 @@ return [
         'skin'      => 'Haut',
         'title'     => 'Titel',
         'traits'    => 'Eigenschaften',
-        'weight'    => 'Größe',
+        'weight'    => 'Gewicht',
     ],
     'sections'      => [
         'appearance'    => 'Aussehen',

@@ -6,7 +6,8 @@ return [
     ],
     'features'      => [
         'collaborative' => [
-            'title' => 'Colaborativo',
+            'description'   => 'Não está sozinho? Nós te ajudamos! Você pode convidar amigos e co-criadores para te ajudar a criar sua campanha juntos!',
+            'title'         => 'Colaborativo',
         ],
         'description'   => 'Aqui estão algumas coisas que nós acreditamos que você amará em nosso app!',
         'free'          => [
@@ -31,7 +32,8 @@ return [
         'copyright' => '© 2017 - :current kanka.io. Todos direitos reservados.',
     ],
     'master'        => [
-        'call_to_action'    => 'Registre agora, é gratuito!',
+        'call_to_action'    => 'Registre-se agora, é gratuito!',
+        'description'       => 'Kanka é uma ferramenta fácil e flexível para criar o seu mundo e gerenciar online sua campanha de RPG. Crie e organize povos, lugares, organizações, eventos e muito mais.',
         'title'             => 'Kanka',
     ],
     'menu'          => [

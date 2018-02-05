@@ -122,7 +122,7 @@ return [
         'date'                  => 'data',
         'day'                   => 'dia',
         'description'           => 'descrição',
-        'email'                 => 'Endereço de email',
+        'email'                 => 'endereço de email',
         'excerpt'               => 'resumo',
         'first_name'            => 'primeiro nome',
         'gender'                => 'gênero',
