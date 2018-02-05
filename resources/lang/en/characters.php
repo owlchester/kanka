@@ -22,9 +22,7 @@ return [
             'history' => 'History',
             'personality' => 'Personality',
             'free' => 'Free Text',
-            'relations' => 'Relations',
             'organisations' => 'Organisations',
-            'attributes' => 'Attributes',
         ]
     ],
     'edit' => [

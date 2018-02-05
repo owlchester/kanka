@@ -19,8 +19,6 @@ return [
             'information' => 'Information',
             'characters' => 'Characters',
             'locations' => 'Locations',
-            'relations' => 'Relations',
-            'attributes' => 'Attributes',
         ],
     ],
     'edit' => [
