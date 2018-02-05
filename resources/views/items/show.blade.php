@@ -74,8 +74,15 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('items.show.tabs.information') }}</a></li>
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}"><a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('items.show.tabs.information') }}</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
+                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -95,6 +102,9 @@
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
                         @include('cruds._relations')
+                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
+                        @include('cruds._attributes')
                     </div>
                 </div>
             </div>

@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
-use App\Models\CharacterAttribute;
-use App\Http\Requests\StoreCharacter;
-use App\Http\Requests\StoreCharacterAttribute;
+use App\Models\Attribute;
+use App\Http\Requests\StoreAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\Entity;
 
-class CharacterAttributeController extends CrudAttributeController
+class AttributeController extends CrudAttributeController
 {
     /**
      * @var string
      */
-    protected $view = 'characters.attributes';
+    protected $view = '';
 
     /**
      * @var string
      */
-    protected $route = 'characters.character_attributes';
+    protected $route = '_attributes';
 
     /**
      * Redirect tab after manipulating
@@ -36,15 +36,15 @@ class CharacterAttributeController extends CrudAttributeController
     /**
      * @var string
      */
-    protected $model = \App\Models\CharacterAttribute::class;
+    protected $model = \App\Models\Attribute::class;
 
     /**
-     * @param Character $character
+     * @param Entity $entity
      * @return \Illuminate\Http\Response
      */
-    public function index(Character $character)
+    public function index(Entity $entity)
     {
-        return $this->crudIndex($character);
+        return $this->crudIndex($entity);
     }
 
     /**
@@ -52,9 +52,9 @@ class CharacterAttributeController extends CrudAttributeController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Character $character)
+    public function create(Entity $entity, Attribute $attribute)
     {
-        return $this->crudCreate($character);
+        return $this->crudCreate($entity, $attribute);
     }
 
     /**
@@ -63,9 +63,9 @@ class CharacterAttributeController extends CrudAttributeController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCharacterAttribute $request, Character $character)
+    public function store(StoreAttribute $request, Entity $entity)
     {
-        return $this->crudStore($request, $character);
+        return $this->crudStore($request, $entity);
     }
 
 
@@ -75,9 +75,9 @@ class CharacterAttributeController extends CrudAttributeController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(Character $character, CharacterAttribute $characterAttribute)
+    public function edit(Entity $entity, Attribute $attribute)
     {
-        return $this->crudEdit($character, $characterAttribute);
+        return $this->crudEdit($entity, $attribute);
     }
 
     /**
@@ -87,9 +87,9 @@ class CharacterAttributeController extends CrudAttributeController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCharacterAttribute $request, Character $character, CharacterAttribute $characterAttribute)
+    public function update(StoreAttribute $request, Entity $entity, Attribute $attribute)
     {
-        return $this->crudUpdate($request, $character, $characterAttribute);
+        return $this->crudUpdate($request, $entity, $attribute);
     }
 
     /**
@@ -98,8 +98,8 @@ class CharacterAttributeController extends CrudAttributeController
      * @param  \App\Models\CharacterAttribute  $characterAttribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Character $character, CharacterAttribute $characterAttribute)
+    public function destroy(Entity $entity, Attribute $attribute)
     {
-        return $this->crudDestroy($character, $characterAttribute);
+        return $this->crudDestroy($entity, $attribute);
     }
 }

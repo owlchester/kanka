@@ -23,7 +23,7 @@
             </label>
         </div>
 
-        @if(empty($relation))
+        @if(empty($relation) && (!isset($mirror) || $mirror == true))
             <div class="form-group">
                 <label>
                     {!! Form::checkbox('two_way') !!}

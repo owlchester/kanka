@@ -70,13 +70,6 @@
                 </div>
                 <div class="box-body">
 
-                    <ul class="list-group list-group-unbordered">
-                        @foreach ($model->locationAttributes as $attribute)
-                        <li class="list-group-item">
-                            <b>{{ $attribute->name }}</b> <span class="pull-right">{{ $attribute->value }}</span>
-                        </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>-->
             <!-- /.box -->
@@ -100,7 +93,7 @@
                         <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('locations.show.tabs.attributes') }}</a>
+                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
                 </ul>
 
@@ -128,7 +121,7 @@
                         @include('cruds._relations')
                     </div>
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
-                        @include('locations._attributes')
+                        @include('cruds._attributes')
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLocationAttribute extends FormRequest
+class StoreAttribute extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class StoreLocationAttribute extends FormRequest
     public function rules()
     {
         return [
-            'location_id' => 'required|exists:locations,id',
-            'attribute' => 'required|max:191',
+            'entity_id' => 'required|exists:entities,id',
+            'name' => 'required|max:191',
             'value' => 'required|max:191',
         ];
     }

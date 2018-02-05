@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.create.title', ['name' => $parent->name]),
-    'description' => trans($name . '.create.description'),
+    'title' => trans('crud.attributes.create.title', ['name' => $entity->name]),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
-        ['url' => route($parentRoute . '.show', $parent->id), 'label' => $parent->name]
+        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name]
     ]
 ])
 
@@ -14,12 +14,12 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => [$route . '.store', $parent->id], 'method'=>'POST')) !!}
-                    @include($name . '._form')
+                    {!! Form::open(array('route' => ['entities.attributes.store', $entity->id], 'method'=>'POST')) !!}
+                    @include('cruds.attributes._form')
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=' . $tab : null))]) !!}
+                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
                     </div>
 
                     {!! Form::close() !!}

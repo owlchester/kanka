@@ -170,9 +170,9 @@
                             {{ trans('characters.show.tabs.organisations') }}
                         </a></li>
                     @endif
-                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}"><a href="#attribute" data-toggle="tab" aria-expanded="false">
-                            {{ trans('characters.show.tabs.attributes') }}
-                        </a></li>
+                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
+                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -203,7 +203,7 @@
                     </div>
                     @endif
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
-                        @include('characters._attributes')
+                        @include('cruds._attributes')
                     </div>
                 </div>
             </div>

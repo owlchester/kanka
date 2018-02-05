@@ -178,7 +178,7 @@ return array(
      * 1000 ....
      *
      */
-    'missing_keys_lottery' => 100, // 1 in 100 of users will have the missing translation keys logged.
+    'missing_keys_lottery' => 0, // 1 in 100 of users will have the missing translation keys logged.
 
     /**
      * @type int        0 - as usual, write out files and set status for translations to SAVED,

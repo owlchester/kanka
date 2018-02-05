@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.edit.title', ['name' => $parent->name]),
-    'description' => trans($name . '.edit.description'),
+    'title' => trans('crud.attributes.edit.title', ['name' => $entity->name]),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
-        ['url' => route($parentRoute . '.show', $parent->id), 'label' => $parent->name],
+        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
         trans('crud.update'),
     ]
 ])
@@ -14,12 +14,12 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($model, ['method' => 'PATCH', 'route' => [$route . '.update', $parent->id, $model->id]]) !!}
-                    @include($name . '._form')
+                    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.attributes.update', $entity->id, $model->id]]) !!}
+                    @include('cruds.attributes._form')
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=' . $tab : null))]) !!}
+                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
                     </div>
 
                     {!! Form::close() !!}

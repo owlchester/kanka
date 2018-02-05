@@ -98,22 +98,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function relationships()
-    {
-        return $this->hasMany('App\Models\LocationRelation', 'first_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributes()
-    {
-        return $this->hasMany('App\Models\LocationAttribute', 'location_id', 'id');
-    }
-
-    /**
      * Get a short history/description for the dashboard
      * @param int $limit
      * @return string
