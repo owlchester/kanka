@@ -70,13 +70,6 @@
                 </div>
                 <div class="box-body">
 
-                    <ul class="list-group list-group-unbordered">
-                        @foreach ($model->locationAttributes as $attribute)
-                        <li class="list-group-item">
-                            <b>{{ $attribute->name }}</b> <span class="pull-right">{{ $attribute->value }}</span>
-                        </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>-->
             <!-- /.box -->

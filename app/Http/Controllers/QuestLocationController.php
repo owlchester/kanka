@@ -8,7 +8,7 @@ use App\Http\Requests\StoreQuestLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class QuestLocationController extends CrudAttributeController
+class QuestLocationController extends QuestForeignController
 {
     /**
      * @var string
