@@ -24,7 +24,7 @@ class StoreAttribute extends FormRequest
     public function rules()
     {
         return [
-            'entity_id' => 'required|exists:characters,id',
+            'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
             'value' => 'required|max:191',
         ];

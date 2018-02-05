@@ -46,30 +46,4 @@ return [
         'type' => 'City, Kingdom, Ruin',
         'location' => 'Choose a parent location',
     ],
-    'attributes' => [
-        'create' => [
-            'title' => 'New Attribute for :name',
-            'description' => 'Set an attribute to a location',
-            'success' => 'Attribute added to :name.',
-        ],
-        'actions' => [
-            'add' => 'Add an attribute',
-        ],
-        'edit' => [
-            'title' => 'Update attribute for :name',
-            'description' => '',
-            'success' => 'Location attribute for :name updated.',
-        ],
-        'fields' => [
-            'attribute' => 'Attribute',
-            'value' =>  'Value',
-        ],
-        'placeholders' => [
-            'attribute' => 'Population, Number of floods, Garrison size',
-            'value' => 'Value of the attribute'
-        ],
-        'destroy' => [
-            'success' => 'Location attribute for :name removed.',
-        ]
-    ],
 ];

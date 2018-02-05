@@ -61,12 +61,17 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#information" data-toggle="tab" aria-expanded="false">History</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#information" data-toggle="tab" aria-expanded="false">History</a>
+                    </li>
+                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
+                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                    </li>
                     <!--<li><a href="#journal" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="information">
+                    <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         @if (!empty($model->history))
                         <div class="post">
                             <h3>History</h3>
@@ -74,10 +79,10 @@
                         </div>
                         @endif
                     </div>
-                    <div class="tab-pane" id="journal">
-                    </div>
+                    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
+                        @include('cruds._attributes')
+                    </div></div>
                 </div>
-            </div>
             </div>
 
             <!-- actions -->

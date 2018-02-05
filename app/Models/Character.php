@@ -73,14 +73,6 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function relationships()
-    {
-        return $this->hasMany('App\Models\CharacterRelation', 'first_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function organisations()
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
@@ -92,21 +84,6 @@ class Character extends MiscModel
     public function items()
     {
         return $this->hasMany('App\Models\Item', 'character_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributes()
-    {
-        return $this->hasManyThrough(
-            'App\Models\Attribute',
-            'App\Models\Entity',
-            'entity_id',
-            'entity_id',
-            'id',
-            'id'
-        );
     }
 
     /**

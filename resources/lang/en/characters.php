@@ -117,30 +117,4 @@ return [
             'success' => 'Character organisation removed.',
         ]
     ],
-    'attributes' => [
-        'create' => [
-            'title' => 'New Attribute for :name',
-            'description' => 'Set an attribute to a character',
-            'success' => 'Attribute added to :name.',
-        ],
-        'actions' => [
-            'add' => 'Add an attribute',
-        ],
-        'edit' => [
-            'title' => 'Update attribute for :name',
-            'description' => '',
-            'success' => 'Character attribute for :name updated.',
-        ],
-        'fields' => [
-            'attribute' => 'Attribute',
-            'value' =>  'Value',
-        ],
-        'placeholders' => [
-            'attribute' => 'Number of won battles, date of wedding, Initiative',
-            'value' => 'Value of the attribute'
-        ],
-        'destroy' => [
-            'success' => 'Character attribute for :name removed.',
-        ]
-    ],
 ];

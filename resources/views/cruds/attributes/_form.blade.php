@@ -2,12 +2,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('characters.attributes.fields.attribute') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('characters.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <label>{{ trans('crud.attributes.fields.attribute') }}</label>
+            {!! Form::text('name', null, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group required">
-            <label>{{ trans('characters.attributes.fields.value') }}</label>
-            {!! Form::text('value', null, ['placeholder' => trans('characters.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <label>{{ trans('crud.attributes.fields.value') }}</label>
+            {!! Form::text('value', null, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
         <div class="form-group">

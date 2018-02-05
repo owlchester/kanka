@@ -1,6 +1,6 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.create.title', ['name' => $entity->name]),
-    'description' => trans($name . '.create.description'),
+    'title' => trans('crud.attributes.create.title', ['name' => $entity->name]),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name]
@@ -15,7 +15,7 @@
                     @include('partials.errors')
 
                     {!! Form::open(array('route' => ['entities.attributes.store', $entity->id], 'method'=>'POST')) !!}
-                    @include($name . '._form')
+                    @include('cruds.attributes._form')
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>

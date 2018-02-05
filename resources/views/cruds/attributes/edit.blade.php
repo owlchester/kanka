@@ -1,6 +1,6 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.edit.title', ['name' => $entity->name]),
-    'description' => trans($name . '.edit.description'),
+    'title' => trans('crud.attributes.edit.title', ['name' => $entity->name]),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
@@ -15,7 +15,7 @@
                     @include('partials.errors')
 
                     {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.attributes.update', $entity->id, $model->id]]) !!}
-                    @include($name . '._form')
+                    @include('cruds.attributes._form')
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>

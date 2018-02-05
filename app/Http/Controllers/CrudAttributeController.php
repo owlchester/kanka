@@ -81,11 +81,11 @@ class CrudAttributeController extends Controller
 
         $attribute = new Attribute();
         $attribute->entity_id = $entity->id;
-        $attribute->create($request->all());
+        $attribute = $attribute->create($request->all());
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
-            ->with('success', trans('attributes.create.success', ['name' => $entity->child->name]));
+            ->with('success', trans('crud.attributes.create.success', ['name' => $attribute->name, 'entity' => $entity->child->name]));
     }
 
     /**
@@ -124,7 +124,7 @@ class CrudAttributeController extends Controller
         $attribute->update($request->all());
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
-            ->with('success', trans('attributes.edit.success', ['name' => $entity->name]));
+            ->with('success', trans('crud.attributes.edit.success', ['name' => $attribute->name, 'entity' => $entity->name]));
     }
 
     /**
@@ -140,6 +140,6 @@ class CrudAttributeController extends Controller
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
-            ->with('success', trans('attributes.destroy.success', ['name' => $entity->name]));
+            ->with('success', trans('crud.attributes.destroy.success', ['name' => $attribute->name, 'entity' => $entity->name]));
     }
 }
