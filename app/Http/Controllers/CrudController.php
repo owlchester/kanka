@@ -187,8 +187,10 @@ class CrudController extends Controller
         $count = 0;
         foreach ($ids as $id) {
             $entity = $model->findOrFail($id);
-            $entity->delete();
-            $count++;
+            if ($this->authorize('delete', $entity)) {
+                $entity->delete();
+                $count++;
+            }
         }
 
         return redirect()->route($this->route . '.index')
