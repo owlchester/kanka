@@ -1,32 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'actions'       => [
-            'add'   => 'Add an attribute',
-        ],
-        'create'        => [
-            'description'   => 'Set an attribute to a character',
-            'success'       => 'Attribute added to :name.',
-            'title'         => 'New Attribute for :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Character attribute for :name removed.',
-        ],
-        'edit'          => [
-            'description'   => '',
-            'success'       => 'Character attribute for :name updated.',
-            'title'         => 'Update attribute for :name',
-        ],
-        'fields'        => [
-            'attribute' => 'Attribute',
-            'value'     => 'Value',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Number of won battles, date of wedding, Initiative',
-            'value'     => 'Value of the attribute',
-        ],
-    ],
     'create'        => [
         'description'   => '',
         'success'       => 'Character \':name\' created.',
@@ -134,12 +108,10 @@ return [
     'show'          => [
         'description'   => 'A detailed view of a character',
         'tabs'          => [
-            'attributes'    => 'Attributes',
             'free'          => 'Free Text',
             'history'       => 'History',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
-            'relations'     => 'Relations',
         ],
         'title'         => 'Character :name',
     ],

@@ -83,7 +83,35 @@ return [
     'select'        => 'Select',
     'tabs'          => [
         'relations' => 'Relations',
+        'attributes' => 'Attributes',
     ],
     'update'        => 'Update',
     'view'          => 'View',
+
+    'attributes' => [
+        'create' => [
+            'title' => 'New Attribute for :name',
+            'description' => '',
+            'success' => 'Attribute :name added to :entity.',
+        ],
+        'actions' => [
+            'add' => 'Add an attribute',
+        ],
+        'edit' => [
+            'title' => 'Update attribute for :name',
+            'description' => '',
+            'success' => 'Attribute :name for :entity updated.',
+        ],
+        'fields' => [
+            'attribute' => 'Attribute',
+            'value' =>  'Value',
+        ],
+        'placeholders' => [
+            'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
+            'value' => 'Value of the attribute'
+        ],
+        'destroy' => [
+            'success' => 'Aattribute :name for :entity removed.',
+        ]
+    ],
 ];
