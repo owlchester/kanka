@@ -40,8 +40,9 @@
                 </div>
                 <div class="box-footer">
 
+                    @if (Auth::user()->can('create', $model))
                     {!! Form::submit(trans('crud.remove'), ['class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
-
+                    @endif
 
                     <div class="pull-right">
                         {{ $models->appends('order', request()->get('order'))->links() }}
