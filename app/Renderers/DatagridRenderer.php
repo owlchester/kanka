@@ -193,7 +193,13 @@ class DatagridRenderer
      */
     private function renderRow(Model $model)
     {
-        $html =  '<tr>';
+        // Should never happen...
+        if (empty($model->entity)) {
+            $model->save();
+            $model->refresh();
+        }
+
+        $html = '<tr data-id="' . $model->id . '" data-entity-id="' . $model->entity->id . '">';
 
         // Delete
         $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';

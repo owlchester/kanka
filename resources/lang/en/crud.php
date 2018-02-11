@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'move'  => 'Move',
+        'back' => 'Back',
     ],
     'add'           => 'Add',
     'cancel'        => 'Cancel',

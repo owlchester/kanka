@@ -23,12 +23,16 @@ return [
         'name'          => 'Name',
         'relation'      => 'Relation',
         'type'          => 'Type',
+        'locations' => 'Locations',
     ],
     'index'         => [
         'add'           => 'New Location',
         'description'   => 'Manage the location of :name.',
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
+        'actions' => [
+            'tree_view' => 'Tree View',
+        ],
     ],
     'placeholders'  => [
         'location'  => 'Choose a parent location',

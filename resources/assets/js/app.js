@@ -168,6 +168,12 @@ $(document).ready(function() {
            toggleCrudMultiDelete();
        });
     });
+
+    // Treeview for locations
+    var treeViewLoader = $('#location-treeview');
+    if (treeViewLoader.length > 0) {
+        treeViewInit();
+    }
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {
@@ -210,7 +216,6 @@ $.each($('.click-confirm'), function(index) {
 });
 
 function toggleCrudMultiDelete() {
-    console.log('checking');
     var hide = true;
 
     $.each($("input[name='model[]']"), function(index) {
@@ -219,12 +224,25 @@ function toggleCrudMultiDelete() {
         }
     });
 
-    console.log('hide', hide);
-
     var btn = $('#crud-multi-delete');
     if (hide) {
         btn.hide();
     } else {
         btn.show();
     }
+}
+
+/**
+ * Go through table trs to add on click support
+ */
+function treeViewInit()
+{
+    var treeViewLoader = $('#location-treeview');
+    var link = treeViewLoader.attr('data-url');
+    $.each($('#locations > tbody > tr'), function(index) {
+        $(this).addClass('tr-hover');
+        $(this).on('click', function(e) {
+            window.location = link + '?parent_location_id=' + $(this).attr('data-id');
+        });
+    });
 }

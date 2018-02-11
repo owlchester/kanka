@@ -35,7 +35,7 @@
 
                 {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">
-                    @include($name . '.datagrid')
+                    @include($name . '._tree')
 
                 </div>
                 <div class="box-footer">
@@ -52,4 +52,6 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="location-treeview" value="1" data-url="{{ route('locations.tree') }}">
 @endsection
