@@ -47,12 +47,16 @@ class SidebarService
         ],
         'other' => [
             'releases',
+            'team',
         ],
         'quests' => [
             'quests',
         ],
         'releases' => [
             'releases'
+        ],
+        'team' => [
+            'team',
         ],
     ];
 

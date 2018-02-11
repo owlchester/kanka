@@ -85,6 +85,9 @@
                     <li class="{{ $sidebar->active('releases') }}">
                         <a href="{{ route('releases.index') }}"><i class="fa fa-ticket"></i> {{ trans('sidebar.releases') }}</a>
                     </li>
+                    <li class="{{ $sidebar->active('team') }}">
+                        <a href="{{ route('team.index') }}"><i class="fa fa-ticket"></i> {{ trans('sidebar.team') }}</a>
+                    </li>
                     <li><a href="https://www.reddit.com/r/kanka" target="_blank"><i class="fa fa-reddit"></i> {{ trans('sidebar.support') }}</a></li>
                     <li><a href="https://www.patreon.com/kankaio" target="_blank"><i class="fa fa-gratipay"></i> {{ trans('sidebar.patreon') }}</a></li>
                 </ul>

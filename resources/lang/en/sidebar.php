@@ -19,5 +19,6 @@ return [
     'releases'      => 'Release notes',
     'search'        => 'Search...',
     'support'       => 'Support / Community',
+    'team'          => 'Team',
     'translations'  => 'Translations',
 ];
