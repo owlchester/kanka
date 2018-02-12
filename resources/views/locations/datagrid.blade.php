@@ -14,7 +14,7 @@
             'label' => trans('locations.fields.location'),
             'render' => function($model) {
                 if ($model->parentLocation) {
-                    return '<a href="' . route('locations.show', $model->parentLocation->id) . '}">' . $model->parentLocation->name . '</a>';
+                    return '<a href="' . route('locations.show', $model->parentLocation->id) . '">' . $model->parentLocation->name . '</a>';
                 }
             }
         ],
