@@ -31,7 +31,7 @@ return [
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
         'actions' => [
-            'tree_view' => 'Tree View',
+            'explore_view' => 'Exploration View',
         ],
     ],
     'placeholders'  => [

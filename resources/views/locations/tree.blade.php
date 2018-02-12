@@ -28,7 +28,6 @@
                     <br>
 
                     <div class="box-tools">
-
                         @include('layouts.datagrid.search', ['route' => route($name . '.index')])
                     </div>
                 </div>
@@ -36,7 +35,6 @@
                 {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">
                     @include($name . '._tree')
-
                 </div>
                 <div class="box-footer">
 

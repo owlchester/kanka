@@ -199,7 +199,13 @@ class DatagridRenderer
             $model->refresh();
         }
 
-        $html = '<tr data-id="' . $model->id . '" data-entity-id="' . $model->entity->id . '">';
+        $html = '<tr data-id="' . $model->id . '" data-entity-id="' . $model->entity->id . '"';
+        if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
+            foreach ($this->options['row']['data'] as $name => $data) {
+                $html .= ' ' . $name . '="' . $data($model) . '"';
+            }
+        }
+        $html .= '>';
 
         // Delete
         $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';

@@ -34,7 +34,7 @@ class LocationController extends CrudController
         $this->indexActions[] = [
             'route' => route('locations.tree'),
             'class' => 'default',
-            'label' => '<i class="fa fa-tree"></i> ' . trans('locations.index.actions.tree_view')
+            'label' => '<i class="fa fa-tree"></i> ' . trans('locations.index.actions.explore_view')
         ];
     }
 

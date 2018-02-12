@@ -34,5 +34,12 @@
         'route' => 'locations.tree',
         'baseRoute' => 'locations',
         'trans' => 'locations.fields.',
+        'row' => [
+            'data' => [
+                'data-children' => function($model) {
+                    return $model->locations()->count();
+                }
+            ]
+        ]
     ]
 ) !!}

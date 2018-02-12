@@ -240,9 +240,12 @@ function treeViewInit()
     var treeViewLoader = $('#location-treeview');
     var link = treeViewLoader.attr('data-url');
     $.each($('#locations > tbody > tr'), function(index) {
-        $(this).addClass('tr-hover');
-        $(this).on('click', function(e) {
-            window.location = link + '?parent_location_id=' + $(this).attr('data-id');
-        });
+        children = $(this).attr('data-children');
+        if (parseInt(children) > 0) {
+            $(this).addClass('tr-hover');
+            $(this).on('click', function (e) {
+                window.location = link + '?parent_location_id=' + $(this).attr('data-id');
+            });
+        }
     });
 }
