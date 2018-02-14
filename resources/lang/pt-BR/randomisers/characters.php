@@ -93,16 +93,10 @@ return [
         'length'    => [
             '0' => 'Curto',
             '1' => 'Longo',
-            '2' => '2',
-            '3' => '3',
-            '4' => '4',
         ],
         'type'      => [
             '0' => 'Enrolado',
             '1' => 'Liso',
-            '2' => '2',
-            '3' => '3',
-            '4' => '4',
         ],
     ],
     'language'  => [
@@ -338,7 +332,7 @@ return [
             '6' => 'Minúsculo',
             '7' => 'Outro',
             '8' => 'Velho',
-            '9' => 'Direito',
+            '9' => 'Legítimo(a)',
         ],
         'titles'    => [
             '0' => 'Barão',

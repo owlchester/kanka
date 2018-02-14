@@ -101,7 +101,7 @@ return [
     'placeholders'  => [
         'age'       => 'Idade',
         'eye'       => 'Cor dos olhos',
-        'family'    => 'Por favor selecione um personagem',
+        'family'    => 'Por favor selecione uma família',
         'fears'     => 'Medos',
         'free'      => 'Texto Livre',
         'goals'     => 'Objetivos',

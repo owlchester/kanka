@@ -18,9 +18,13 @@ return [
         'description'   => 'Bist du sicher das du :tag entfernen möchtest?',
         'title'         => 'Löschen bestätigen',
     ],
+    'destroy_many'  => [
+        'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
+    ],
     'edit'          => 'Bearbeiten',
     'fields'        => [
         'character' => 'Charakter',
+        'image'     => 'Bild',
         'is_private'=> 'Privat',
         'location'  => 'Ort',
     ],
@@ -58,6 +62,7 @@ return [
     ],
     'placeholders'  => [
         'character' => 'Wähle einen Character',
+        'image_url' => 'Du kannst ein Bild auch von einer URL hochladen',
         'location'  => 'Wähle einen Ort',
     ],
     'relations'     => [
