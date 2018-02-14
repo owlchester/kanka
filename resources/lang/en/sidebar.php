@@ -21,4 +21,5 @@ return [
     'support'       => 'Support / Community',
     'team'          => 'Team',
     'translations'  => 'Translations',
+    'attribute_templates' => 'Attribute Templates',
 ];

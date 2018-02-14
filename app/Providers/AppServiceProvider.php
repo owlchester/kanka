@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Models\AttributeTemplate;
 use App\Models\Character;
-use App\Models\CharacterAttribute;
 use App\Models\CharacterRelation;
 use App\Models\Family;
 use App\Models\FamilyRelation;
@@ -24,7 +24,6 @@ use App\Models\Note;
 use App\Models\Relation;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
-use App\Observers\CharacterAttributeObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\CharacterRelationObserver;
 use App\Observers\EventObserver;
@@ -62,12 +61,12 @@ class AppServiceProvider extends ServiceProvider
 
         if (!app()->runningInConsole()) {
             // Observers
+            AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
             Campaign::observe(CampaignObserver::class);
             CampaignUser::observe(CampaignUserObserver::class);
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
             Character::observe(CharacterObserver::class);
             CharacterRelation::observe(CharacterRelationObserver::class);
-            CharacterAttribute::observe(CharacterAttributeObserver::class);
             Event::observe(EventObserver::class);
             Location::observe(LocationObserver::class);
             LocationRelation::observe(LocationRelationObserver::class);

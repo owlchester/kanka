@@ -1,7 +1,7 @@
 @if (Auth::user()->can('create', 'App\Models\Relation'))
     <p class="text-right">
         <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary">
-            {{ trans('crud.relations.actions.add') }}    </a>
+            <i class="fa fa-plus"></i> {{ trans('crud.relations.actions.add') }}    </a>
     </p>
 @endif
 

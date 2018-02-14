@@ -1,7 +1,11 @@
 @if (Auth::user()->can('create', 'App\Models\Attribute'))
     <p class="text-right">
         <a href="{{ route('entities.attributes.create', ['entity' => $model->entity]) }}" class="btn btn-primary">
-            {{ trans('crud.attributes.actions.add') }}
+            <i class="fa fa-plus"></i> {{ trans('crud.attributes.actions.add') }}
+        </a>
+
+        <a href="{{ route('entities.attributes.template', ['entity' => $model->entity]) }}" class="btn btn-primary">
+            <i class="fa fa-copy"></i> {{ trans('crud.attributes.actions.apply_template') }}
         </a>
     </p>
 @endif

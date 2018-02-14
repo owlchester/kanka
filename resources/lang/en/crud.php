@@ -97,6 +97,7 @@ return [
         ],
         'actions' => [
             'add' => 'Add an attribute',
+            'apply_template' => 'Apply an Attribute Template',
         ],
         'edit' => [
             'title' => 'Update attribute for :name',
@@ -106,13 +107,19 @@ return [
         'fields' => [
             'attribute' => 'Attribute',
             'value' =>  'Value',
+            'template' => 'Template',
         ],
         'placeholders' => [
             'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
-            'value' => 'Value of the attribute'
+            'value' => 'Value of the attribute',
+            'template' => 'Select a template',
         ],
         'destroy' => [
             'success' => 'Aattribute :name for :entity removed.',
+        ],
+        'template' => [
+            'title' => 'Apply an Attribute Template for :name',
+            'success' => 'Attribute Template :name applies on :entity',
         ]
     ],
 ];

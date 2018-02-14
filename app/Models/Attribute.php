@@ -6,6 +6,15 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 
+/**
+ * Class Attribute
+ * @package App\Models
+ *
+ * @property integer $entity_id
+ * @property string $name
+ * @property string $value
+ * @property boolean $is_private
+ */
 class Attribute extends Model
 {
     /**

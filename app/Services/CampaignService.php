@@ -123,4 +123,13 @@ class CampaignService
     {
         return $this->campaign->enabled($entity);
     }
+
+    /**
+     * Is the user a member?
+     * @return bool
+     */
+    public function member()
+    {
+        return $this->campaign->member();
+    }
 }

@@ -87,10 +87,11 @@ class CrudController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param bool $redirectToCreated
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function crudStore(Request $request)
+    public function crudStore(Request $request, $redirectToCreated = false)
     {
         $this->authorize('create', $this->model);
 
@@ -98,6 +99,11 @@ class CrudController extends Controller
         $new = $model->create($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->route . '.create')
+                ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+        }
+
+        if ($redirectToCreated) {
+            return redirect()->route($this->route . '.show', $new)
                 ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
         }
         return redirect()->route($this->route . '.index')

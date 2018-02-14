@@ -59,6 +59,8 @@ Route::group([
     Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
     Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
     Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
+    Route::post('/attribute_templatdes/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
+
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
@@ -66,14 +68,11 @@ Route::group([
         'campaign_user' => 'CampaignUserController',
         'characters' => 'CharacterController',
         'characters.character_organisations' => 'CharacterOrganisationController',
-        'characters.attributes' => 'CharacterAttributeController',
         'characters.relations' => 'CharacterRelationController',
         'events' => 'EventController',
         'events.relations' => 'EventRelationController',
         'locations' => 'LocationController',
-        'locations.location_attributes' => 'LocationAttributeController',
         'locations.relations' => 'LocationRelationController',
-        //'location_attribute' => 'LocationAttributeController',
         'families' => 'FamilyController',
         'families.relations' => 'FamilyRelationController',
         'items' => 'ItemController',
@@ -93,6 +92,8 @@ Route::group([
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
         'entities.attributes' => 'AttributeController',
+
+        'attribute_templates' => 'AttributeTemplateController',
     ]);
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
     Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
@@ -117,6 +118,10 @@ Route::group([
     // Move
     Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
     Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+
+    // Attribute template
+    Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
+    Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');
 
     Route::post('/entities/create', 'EntityController@create')->name('entities.create');
 

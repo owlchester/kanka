@@ -58,6 +58,9 @@ class SidebarService
         'team' => [
             'team',
         ],
+        'attribute_templates' => [
+            'attribute_templates',
+        ]
     ];
 
     /**

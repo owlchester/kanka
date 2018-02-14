@@ -6,6 +6,16 @@ use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 
+/**
+ * Class Entity
+ * @package App\Models
+ *
+ * @property integer $entity_id
+ * @property integer $campaign_id
+ * @property string $name
+ * @property string $enum
+ * @property boolean $is_private
+ */
 class Entity extends Model
 {
     /**
@@ -17,7 +27,6 @@ class Entity extends Model
         'name',
         'type',
         'is_private',
-        'campaign_id',
     ];
 
     /**
@@ -48,6 +57,14 @@ class Entity extends Model
     public function attributes()
     {
         return $this->hasMany('App\Models\Attribute', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attribute_template()
+    {
+        return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
     }
 
     /**
