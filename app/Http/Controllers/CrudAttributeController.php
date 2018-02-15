@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AttributeService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Entity;
@@ -26,14 +27,21 @@ class CrudAttributeController extends Controller
     protected $model = \App\Entitys\Attribute::class;
 
     /**
+     * @var AttributeService
+     */
+    protected $attributeService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AttributeService $service)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
+
+        $this->attributeService = $service;
     }
 
     /**
@@ -43,11 +51,20 @@ class CrudAttributeController extends Controller
      */
     public function crudIndex(Entity $entity)
     {
-        $attributes = $entity->attributes->paginate();
+        $this->authorize('create', 'App\Models\Attribute');
+
+        $attributes = $entity->attributes()->paginate();
         $name = $this->view;
         $route = $entity->type . $this->route;
+        $parentRoute = $entity->pluralType();
 
-        return view($this->view . '.index', compact('attributes', 'name', 'route'));
+        return view('cruds.attributes.index', compact(
+            'attributes',
+            'name',
+            'route',
+            'entity',
+            'parentRoute'
+        ));
     }
 
     /**
@@ -141,5 +158,20 @@ class CrudAttributeController extends Controller
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
             ->with('success', trans('crud.attributes.destroy.success', ['name' => $attribute->name, 'entity' => $entity->name]));
+    }
+
+    /**
+     * Save many attributes at the same time
+     *
+     * @param Entity $entity
+     */
+    public function saveMany(Entity $entity)
+    {
+        $this->authorize('update', $entity->child);
+
+        $this->attributeService->saveMany($entity, request()->all());
+
+        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'attribute'])
+            ->with('success', trans('crud.attributes.index.success', ['entity' => $entity->name]));
     }
 }

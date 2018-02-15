@@ -61,6 +61,9 @@ Route::group([
     Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
     Route::post('/attribute_templatdes/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
 
+    // Attribute multi-save
+    Route::post('/entities/{entity}/attributes/saveMany', 'AttributeController@saveMany')->name('entities.attributes.saveMany');
+
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([

@@ -6,6 +6,10 @@
             </a>
         @endif
 
+        <a href="{{ route('entities.attributes.index', ['entity' => $model->entity]) }}" class="btn btn-primary">
+            <i class="fa fa-list"></i> {{ trans('crud.attributes.actions.manage') }}
+        </a>
+
         <a href="{{ route('entities.attributes.create', ['entity' => $model->entity]) }}" class="btn btn-primary">
             <i class="fa fa-plus"></i> {{ trans('crud.attributes.actions.add') }}
         </a>

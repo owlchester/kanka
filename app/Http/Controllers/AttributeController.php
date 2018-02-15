@@ -7,6 +7,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Character;
 use App\Models\Attribute;
 use App\Http\Requests\StoreAttribute;
+use App\Services\AttributeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Entity;

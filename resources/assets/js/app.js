@@ -174,6 +174,10 @@ $(document).ready(function() {
     if (treeViewLoader.length > 0) {
         treeViewInit();
     }
+
+    if($('#add_attribute_target').length > 0) {
+        initAttributeUI();
+    }
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {
@@ -247,5 +251,33 @@ function treeViewInit()
                 window.location = link + '?parent_location_id=' + $(this).attr('data-id');
             });
         }
+    });
+}
+
+function initAttributeUI()
+{
+    console.log('kanka', 'init Attribute UI');
+    var target = $('#add_attribute_target');
+    var addBtn = $('#attribute_add');
+    var template = $('#attribute_template');
+
+    initAttributeDelete();
+    addBtn.on('click', function(e) {
+        template.clone().insertBefore(target);
+        //target.append(template);
+
+        initAttributeDelete();
+
+        return false;
+    });
+
+}
+
+function initAttributeDelete() {
+    $.each($('.attribute_delete'), function() {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function() {
+            $(this).parent().parent().parent().remove();
+        });
     });
 }

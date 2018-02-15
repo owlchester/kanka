@@ -90,6 +90,10 @@ return [
     'view'          => 'View',
 
     'attributes' => [
+        'index' => [
+            'title' => 'Attributes for :name',
+            'success' => 'Attributes for :entity updated.',
+        ],
         'create' => [
             'title' => 'New Attribute for :name',
             'description' => '',
@@ -98,6 +102,7 @@ return [
         'actions' => [
             'add' => 'Add an attribute',
             'apply_template' => 'Apply an Attribute Template',
+            'manage' => 'Manage',
         ],
         'edit' => [
             'title' => 'Update attribute for :name',
