@@ -94,6 +94,7 @@
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">{{ trans('front.master.title') }}</h1>
                         <p class="mb-5">{{ trans('front.master.description') }}</p>
+
                         <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
                             {{ trans('front.master.call_to_action') }}
                         </a>

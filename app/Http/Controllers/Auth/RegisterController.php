@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class RegisterController extends Controller
 {
@@ -37,6 +38,10 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
+        if (env('APP_REGISTRATION_ENABLED') === false) {
+            throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
+        }
     }
 
     /**
