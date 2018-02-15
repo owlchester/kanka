@@ -43,13 +43,17 @@ return [
         'history'       => 'História',
         'image'         => 'Imagem',
         'location'      => 'Local',
+        'locations'     => 'Locais',
         'name'          => 'Nome',
         'relation'      => 'Relação',
         'type'          => 'Tipo',
     ],
     'index'         => [
+        'actions'       => [
+            'explore_view'  => 'Visualização de Exploração',
+        ],
         'add'           => 'Novo Local',
-        'description'   => 'Gerencie o local :name.',
+        'description'   => 'Gerencie os locais de :name.',
         'header'        => 'Locais em :name',
         'title'         => 'Locais',
     ],

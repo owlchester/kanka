@@ -2,9 +2,41 @@
 
 return [
     'actions'       => [
+        'back'  => 'Voltar',
         'move'  => 'Mover',
     ],
     'add'           => 'Adicionar',
+    'attributes'    => [
+        'actions'       => [
+            'add'               => 'Adicionar um atributo',
+            'apply_template'    => 'Aplicar um Modelo de Atributo',
+        ],
+        'create'        => [
+            'success'   => 'Atributo :name adicionado a :entity',
+            'title'     => 'Novo Atributo para :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Atributo :name para :entity removido',
+        ],
+        'edit'          => [
+            'success'   => 'Atributo :name para :entity atualizado',
+            'title'     => 'Atualizar atributo para :name',
+        ],
+        'fields'        => [
+            'attribute' => 'Atributo',
+            'template'  => 'Modelo',
+            'value'     => 'Valor',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Número de conquistas, Nível de Desafio, Iniciativa, População',
+            'template'  => 'Selecione um modelo',
+            'value'     => 'Valor do atributo',
+        ],
+        'template'      => [
+            'success'   => 'Modelo de Atributo :name aplicado em :entity',
+            'title'     => 'Aplicar um Modelo de Atributo a :name',
+        ],
+    ],
     'cancel'        => 'Cancelar',
     'click_modal'   => [
         'close'     => 'Fechar',
