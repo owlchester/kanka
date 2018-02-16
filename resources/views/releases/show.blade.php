@@ -1,6 +1,10 @@
 @extends('layouts.app', [
     'title' => trans('releases.show.title', ['name' => $model->title]),
     'description' => '',
+    'breadcrumbs' => [
+        ['url' => route('releases.index'), 'label' => trans('releases.index.title')],
+        $model->title,
+    ]
 ])
 
 @section('content')

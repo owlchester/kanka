@@ -26,6 +26,7 @@ class UserDashboardSetting extends Model
         'notes',
         'organisations',
         'quests',
+        'release',
     ];
 
     /**

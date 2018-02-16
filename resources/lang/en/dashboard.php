@@ -24,4 +24,5 @@ return [
         'title'         => 'Dashboard Settings',
     ],
     'title'         => 'Dashboard',
+    'latest_release' => 'Latest Release',
 ];

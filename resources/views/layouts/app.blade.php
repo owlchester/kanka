@@ -49,17 +49,20 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 content-header">
                     <h1>
                         {{ $title or "Page Title" }}
                         <small>{{ $description or null }}</small>
+                        @if (!empty($headerExtra))
+                            {!! $headerExtra !!}
+                        @endif
                     </h1>
                 </div>
             </div>
 
                     <!-- You can dynamically generate breadcrumbs here -->
                     <ol class="breadcrumb">
-                        <li><a href="{{route('home')}}">Dashboard</a></li>
+                        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                         @if (isset($breadcrumbs))
                         @foreach ($breadcrumbs as $breadcrumb)
                             <li>

@@ -1,11 +1,11 @@
 @extends('layouts.app', [
     'title' => trans('dashboard.title'),
-    'description' => trans('dashboard.description')
+    'description' => trans('dashboard.description'),
+    'headerExtra' => '<a href="' . route('dashboard.settings') .'" class="btn btn-default btn-xl" title="'. trans('dashboard.settings.title') .'"><i class="fa fa-cog"></i></a>'
 ])
 
 @section('content')
 
-    <a href="{{ route('dashboard.settings') }}" class="btn btn-default btn-xl pull-right" title="{{ trans('dashboard.settings.title') }}"><i class="fa fa-cog"></i></a>
 
     @include('partials.errors')
 
@@ -25,6 +25,21 @@
                 </a>
             </div>
         </div>
+        @if ($settings->has('release'))
+        <div class="col-md-4 col-md-offset-4">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-lightbulb-o"></i></span>
+                <div class="info-box-content">
+                    <div class="info-box-text">{{ trans('dashboard.latest_release' )}}</div>
+                    <div class="info-box-number">
+                        <a href="{{ route('releases.show', $release->getSlug()) }}">
+                            {{ $release->title }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     <div class="row">

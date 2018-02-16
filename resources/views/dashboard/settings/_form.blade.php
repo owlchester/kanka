@@ -28,6 +28,16 @@
             <?php $i++; ?>
         @endforeach
     </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>
+                {!! Form::hidden('release', 0) !!}
+                {!! Form::checkbox('release') !!}
+                {{ trans('dashboard.latest_release') }}
+            </label>
+        </div>
+    </div>
 </div>
 
 

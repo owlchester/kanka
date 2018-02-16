@@ -1,11 +1,16 @@
 @extends('layouts.app', [
     'title' => trans('releases.index.title'),
     'description' => trans('releases.index.description'),
+    'breadcrumbs' => [
+        trans('releases.index.title')
+    ]
 ])
 
 @section('content')
     <div class="row">
+        <?php $i = 0; ?>
         @foreach ($models as $model)
+            <?php if ($i % 4 == 0) echo "</div><div class=\"row\">" ?>
         <div class="col-md-3">
             <div class="box news">
                 <div class="box-body">
@@ -19,11 +24,7 @@
                         </a>
                     </h2>
 
-                    @if ($model->excerpt)
                     {!! $model->excerpt !!}
-                    @else
-                    {!! $model->body !!}
-                    @endif
 
                     <p class="text-muted">
                         {{ trans('releases.post.footer', ['date' => $model->updated_at, 'name' => $model->authorId->name]) }}
@@ -31,6 +32,7 @@
                 </div>
             </div>
         </div>
+        <?php $i++; ?>
         @endforeach
     </div>
 

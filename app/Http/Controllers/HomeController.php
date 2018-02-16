@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Organisation;
+use App\Models\Release;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,22 @@ class HomeController extends Controller
         //$characters = Character::
         $createAcl = Auth::user()->campaign->owner() || Auth::user()->campaign->member();
 
-        return view('home', compact('campaign', 'characters', 'families',
-            'locations', 'items', 'journals', 'organisations', 'createAcl', 'settings'));
+        $release = Release::with(['category'])
+            ->where('status', 'PUBLISHED')
+            ->orderBy('created_at', 'DESC')
+            ->first();
+
+        return view('home', compact(
+            'campaign',
+            'characters',
+            'families',
+            'locations',
+            'items',
+            'journals',
+            'organisations',
+            'createAcl',
+            'settings',
+            'release'
+        ));
     }
 }
