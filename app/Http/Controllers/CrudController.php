@@ -107,7 +107,8 @@ class CrudController extends Controller
                 ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
         }
         return redirect()->route($this->route . '.index')
-            ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+            ->with('success_raw', trans($this->view . '.create.success', ['name' =>
+                link_to_route($this->route . '.show', e($new->name), $new)]));
     }
 
     /**
@@ -158,10 +159,12 @@ class CrudController extends Controller
         $model->update($request->all());
         if ($request->has('submit-new')) {
             return redirect()->route($this->route . '.create')
-                ->with('success', trans($this->view . '.edit.success', ['name' => $model->name]));
+            ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
+                link_to_route($this->route . '.show', e($model->name), $model)]));
         }
         return redirect()->route($this->route . '.show', $model->id)
-            ->with('success', trans($this->view . '.edit.success', ['name' => $model->name]));
+            ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
+                link_to_route($this->route . '.show', e($model->name), $model)]));
     }
 
     /**
