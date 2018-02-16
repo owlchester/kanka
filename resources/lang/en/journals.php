@@ -3,15 +3,15 @@
 return [
     'create'        => [
         'description'   => '',
-        'success'       => 'Journal created.',
+        'success'       => 'Journal \':name\' created.',
         'title'         => 'Create a new journal',
     ],
     'destroy'       => [
-        'success'   => 'Journal removed.',
+        'success'   => 'Journal \':name\' removed.',
     ],
     'edit'          => [
         'description'   => '',
-        'success'       => 'Journal updated.',
+        'success'       => 'Journal \':name\' updated.',
         'title'         => 'Edit Journal :name',
     ],
     'fields'        => [
