@@ -2,7 +2,7 @@
 <footer class="main-footer">
     <div class="row">
         <div class="col-md-4 hidden-xs">
-            <strong>Copyright © 2017 - <?=date('Y')?> <a href="#">{{ config('app.name') }}</a> - <a href="{{ route('releases.index') }}">{{ setting('kanka.version') }}</a>.</strong> All rights reserved.
+            <strong>Copyright © <?=date('Y')?> <a href="#">{{ config('app.name') }}</a> - <a href="{{ route('releases.index') }}">{{ setting('kanka.version') }}</a>.</strong> All rights reserved.
         </div>
         <div class="col-md-4 text-center">
             <a href="mailto:#">hello@kanka.io</a>

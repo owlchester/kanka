@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST')) !!}
+                    {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
                     @include('cruds.relations._form')
 
                     {!! Form::hidden('owner_id', $model->entity->id) !!}

@@ -13,7 +13,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title or "Page Titel" }} - {{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title or "Page Titel" }} - {{ config('app.name', 'Kanka') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -34,7 +34,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
 </head>
 <body class="skin-black sidebar-mini @if (Session::has('campaign_id')) @else layout-top-nav @endif">
 <div id="app" class="wrapper">
@@ -160,7 +160,7 @@
 
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?v={{ setting('kanka.version') }}"></script>
 <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
 </body>

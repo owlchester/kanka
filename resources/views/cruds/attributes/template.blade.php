@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => ['entities.attributes.template', $entity->id], 'method'=>'POST')) !!}
+                    {!! Form::open(array('route' => ['entities.attributes.template', $entity->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-12">

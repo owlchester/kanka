@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($member, ['method' => 'PATCH', 'route' => ['characters.character_organisations.update', $model->id, $member->id]]) !!}
+                    {!! Form::model($member, ['method' => 'PATCH', 'route' => ['characters.character_organisations.update', $model->id, $member->id], 'data-shortcut' => "1"]) !!}
                     @include('characters.organisations._form')
 
                     {!! Form::hidden('character_id', $model->id) !!}

@@ -14,7 +14,7 @@
         <div class="col-md-12 col-md-offset">
             @include('partials.errors')
 
-            {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id]]) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id], 'data-shortcut' => "1"]) !!}
                 @include($name . '._form')
             {!! Form::close() !!}
         </div>

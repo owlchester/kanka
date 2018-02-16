@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => ['characters.character_organisations.store', $model->id], 'method'=>'POST')) !!}
+                    {!! Form::open(array('route' => ['characters.character_organisations.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
                     @include('characters.organisations._form')
 
                     {!! Form::hidden('character_id', $model->id) !!}

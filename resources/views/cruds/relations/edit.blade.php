@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($relation, ['method' => 'PATCH', 'route' => [$route . '.update', $model->id, $relation->id]]) !!}
+                    {!! Form::model($relation, ['method' => 'PATCH', 'route' => [$route . '.update', $model->id, $relation->id], 'data-shortcut' => "1"]) !!}
                     @include('cruds.relations._form')
 
                     {!! Form::hidden('owner_id', $model->entity->id) !!}

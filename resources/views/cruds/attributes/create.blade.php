@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => ['entities.attributes.store', $entity->id], 'method'=>'POST')) !!}
+                    {!! Form::open(array('route' => ['entities.attributes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
                     @include('cruds.attributes._form')
 
                     <div class="form-group">
