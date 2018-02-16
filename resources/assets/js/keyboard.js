@@ -13,7 +13,7 @@ $(document).ready(function() {
  */
 function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function(e) {
-        if (e.ctrlKey && e.which === 83) {
+        if ((event.ctrlKey || event.metaKey) && e.which === 83) {
             $(form).submit();
             return false;
         }
