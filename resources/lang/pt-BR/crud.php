@@ -10,6 +10,7 @@ return [
         'actions'       => [
             'add'               => 'Adicionar um atributo',
             'apply_template'    => 'Aplicar um Modelo de Atributo',
+            'manage'            => 'Gerenciar',
         ],
         'create'        => [
             'success'   => 'Atributo :name adicionado a :entity',
@@ -26,6 +27,10 @@ return [
             'attribute' => 'Atributo',
             'template'  => 'Modelo',
             'value'     => 'Valor',
+        ],
+        'index'         => [
+            'success'   => 'Atributos de :entity atualizados.',
+            'title'     => 'Atributos de :name',
         ],
         'placeholders'  => [
             'attribute' => 'Número de conquistas, Nível de Desafio, Iniciativa, População',
@@ -113,7 +118,8 @@ return [
     'search'        => 'Buscar',
     'select'        => 'Selecionar',
     'tabs'          => [
-        'relations' => 'Relações',
+        'attributes'    => 'Atributos',
+        'relations'     => 'Relações',
     ],
     'update'        => 'Atualizar',
     'view'          => 'Ver',
