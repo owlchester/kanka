@@ -22,5 +22,8 @@ class CharacterObserver extends MiscObserver
             $item->character_id = null;
             $item->save();
         }
+
+        // Delete members
+        $character->organisations()->delete();
     }
 }
