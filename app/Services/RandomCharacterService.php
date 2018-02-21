@@ -21,7 +21,12 @@ class RandomCharacterService
     public function __construct(Character $character)
     {
         $this->character = $character;
-        $this->translations = trans('randomisers/characters');
+
+        // Let's build english + local language to make sure all the numbers match properly. This is because in en-US,
+        // we only translate a few words and lose the original translations.
+        $this->translations = trans('randomisers/characters', [], 'en');
+        $this->translations = array_replace_recursive($this->translations, trans('randomisers/characters'));
+
     }
 
     /**
