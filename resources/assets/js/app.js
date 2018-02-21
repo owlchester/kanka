@@ -43,9 +43,9 @@ if ($('.select2').length > 0) {
 
        $(this).select2({
 //            data: newOptions,
-            placeholder: $(this).attr('data-palceholder'),
+            placeholder: $(this).attr('data-placeholder'),
             allowClear: true,
-            minimumInputLength: 3,
+            minimumInputLength: 0,
             ajax: {
                 quietMillis: 200,
                 url: $(this).attr('data-url'),
@@ -146,10 +146,8 @@ $(document).ready(function() {
 
     // Crud multi-delete
     var crudDelete = $('#datagrid-select-all');
-    console.log(crudDelete);
     if (crudDelete.length > 0) {
         crudDelete.click(function(e) {
-            console.log('click', $(this));
             if ($(this).prop('checked')) {
                 $.each($("input[name='model[]']"), function(index) {
                     $(this).prop('checked', true);
@@ -189,11 +187,9 @@ $.each($('.delete-confirm'), function(index) {
     $(this).click(function(e) {
         var name = $(this).attr('data-name');
         var text = $(this).attr('data-text');
-        console.log('text', text);
         if (text) {
             $('#delete-confirm-text').text(text);
         } else {
-            console.log('no text');
             $('#delete-confirm-name').text(name);
         }
     });

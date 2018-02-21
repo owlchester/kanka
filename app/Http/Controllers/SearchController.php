@@ -70,10 +70,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Entity::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Entity::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Entity::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -92,10 +92,11 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Location::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Location::where('name', 'like', "%$term%")->limit(10)->get();
         }
 
-        $models = Location::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -115,10 +116,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Character::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Character::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Character::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -137,10 +138,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Family::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Family::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Family::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -159,10 +160,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Note::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Note::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Note::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -181,10 +182,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Organisation::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Organisation::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Organisation::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -203,10 +204,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Event::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Event::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Event::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
@@ -225,10 +226,10 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return \Response::json([]);
+            $models = Quest::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Quest::where('name', 'like', "%$term%")->limit(10)->get();
         }
-
-        $models = Quest::where('name', 'like', "%$term%")->limit(10)->get();
         $formatted = [];
 
         foreach ($models as $model) {
