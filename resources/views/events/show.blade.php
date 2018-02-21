@@ -50,25 +50,7 @@
                         @endif
                     </ul>
 
-                    @if (Auth::user()->can('update', $model))
-                    <a href="{{ route('events.edit', $model->id) }}" class="btn btn-primary">
-                        <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
-                    </a>
-                    @endif
-
-                    @if (Auth::user()->can('move', $model))
-                        <a href="{{ route('entities.move', $model->entity->id) }}" class="btn btn-default">
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i> {{ trans('crud.actions.move') }}
-                        </a>
-                    @endif
-
-                    @if (Auth::user()->can('delete', $model))
-                    <button class="btn pull-right btn-danger delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
-                        <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                    </button>
-                    {!! Form::open(['method' => 'DELETE','route' => ['events.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
-                    {!! Form::close() !!}
-                    @endif
+                    @include('.cruds._actions')
                 </div>
                 <!-- /.box-body -->
             </div>

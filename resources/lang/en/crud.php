@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'move'  => 'Move',
         'back' => 'Back',
+        'new' => 'New',
     ],
     'add'           => 'Add',
     'cancel'        => 'Cancel',
