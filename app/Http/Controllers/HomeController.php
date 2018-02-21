@@ -55,7 +55,7 @@ class HomeController extends Controller
     protected function back()
     {
         $campaign = Session::get('campaign_id');
-        if (empty($campaign)) {
+        if (empty($campaign) || !isset($campaign) || Auth::user()->campaign()->count() == 0) {
             return redirect()->route('campaigns.index');
         }
 
