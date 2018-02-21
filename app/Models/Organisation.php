@@ -24,7 +24,7 @@ class Organisation extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name'];
+    protected $searchableColumns = ['name', 'history', 'type'];
 
     /**
      * Entity type

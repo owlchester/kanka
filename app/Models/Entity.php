@@ -161,6 +161,15 @@ class Entity extends Model
         return $query->where('type', $type);
     }
 
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(function ($q) use ($term) {
+            foreach ($this->searchableColumns as $col) {
+                $q->orWhere($col, 'like', '%$term%');
+            }
+        });
+    }
+
     /**
      * @return string
      */

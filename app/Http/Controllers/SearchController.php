@@ -53,8 +53,8 @@ class SearchController extends Controller
         foreach ($this->entity->entities() as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
-                $results[$element] = $model->where('name', 'like', "%$term%")->limit(5)->get();
-                $active = empty($active) ? $element : $active;
+                $results[$element] = $model->search($term)->limit(5)->get();
+                $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
             }
         }
 

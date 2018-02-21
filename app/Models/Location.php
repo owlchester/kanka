@@ -11,7 +11,7 @@ class Location extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type'];
+    protected $searchableColumns  = ['name', 'description', 'history', 'type'];
 
     /**
      * @var array

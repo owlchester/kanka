@@ -26,7 +26,7 @@ class Item extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type'];
+    protected $searchableColumns  = ['name', 'type', 'description', 'history'];
 
     /**
      * Entity type

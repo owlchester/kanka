@@ -23,7 +23,7 @@ class Note extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name', 'type'];
+    protected $searchableColumns = ['name', 'type', 'description'];
 
     /**
      * Entity type

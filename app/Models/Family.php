@@ -24,7 +24,7 @@ class Family extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name'];
+    protected $searchableColumns = ['name', 'history'];
 
     /**
      * Traits

@@ -16,7 +16,7 @@ class Journal extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type'];
+    protected $searchableColumns  = ['name', 'history', 'type'];
 
     /**
      * Entity type

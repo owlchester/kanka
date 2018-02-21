@@ -38,7 +38,7 @@ class Event extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'date', 'type'];
+    protected $searchableColumns  = ['name', 'history', 'type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

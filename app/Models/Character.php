@@ -52,7 +52,7 @@ class Character extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'title', 'race', 'sex'];
+    protected $searchableColumns  = ['name', 'title', 'history'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -36,7 +36,7 @@ class Quest extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type'];
+    protected $searchableColumns  = ['name', 'type', 'description'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
