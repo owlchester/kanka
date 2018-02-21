@@ -94,6 +94,10 @@ class AuthController extends Controller
     {
         auth()->logout();
 
+        // We also need to flush the session (campaign_id and other things) since this could cause
+        // weird behaviour if the user registers a new account.
+        session()->flush();
+
         return redirect()->route('home');
     }
 }
