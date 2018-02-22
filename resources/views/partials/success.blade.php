@@ -8,3 +8,9 @@
         @endif
     </div>
 @endif
+@if (session('warning'))
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        {{ session('warning') }}
+    </div>
+@endif

@@ -98,7 +98,7 @@ return [
             'owner'     => 'Owner',
             'viewer'    => 'Viewer',
         ],
-        'your_role' => 'You are a <i>:role</i>',
+        'your_role' => 'Your role: <i>:role</i>',
     ],
     'placeholders'  => [
         'description'   => 'A short summary of your campaign',

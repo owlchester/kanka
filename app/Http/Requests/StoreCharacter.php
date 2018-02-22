@@ -38,7 +38,7 @@ class StoreCharacter extends FormRequest
             'skin' => 'nullable|max:45',
             'title' => 'nullable|max:191',
             'languages' => 'nullable|max:191',
-            'image_url' => 'nullable|url',
+            'image_url' => 'nullable|url|active_url',
         ];
     }
 }

@@ -27,7 +27,7 @@ class StoreFamily extends FormRequest
             'name' => 'required',
             'location_id' => 'integer|exists:locations,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
-            'image_url' => 'nullable|url',
+            'image_url' => 'nullable|url|active_url',
         ];
     }
 }

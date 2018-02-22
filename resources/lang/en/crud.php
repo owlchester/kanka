@@ -128,4 +128,7 @@ return [
             'success' => 'Attribute Template :name applies on :entity',
         ]
     ],
+    'image' => [
+        'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
+    ]
 ];

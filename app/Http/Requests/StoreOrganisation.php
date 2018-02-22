@@ -28,7 +28,7 @@ class StoreOrganisation extends FormRequest
             'type' => 'max:191',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'location_id' => 'integer|exists:locations,id',
-            'image_url' => 'nullable|url',
+            'image_url' => 'nullable|url|active_url',
         ];
     }
 }

@@ -28,7 +28,7 @@ class StoreItem extends FormRequest
             'location_id', 'integer|exists:locations,id',
             'character_id', 'integer|exists:character,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
-            'image_url' => 'nullable|url',
+            'image_url' => 'nullable|url|active_url',
         ];
     }
 }
