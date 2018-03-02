@@ -47,6 +47,14 @@ class Campaign extends MiscModel
     /**
      * @return mixed
      */
+    public function roles()
+    {
+        return $this->hasMany('App\Models\CampaignRole');
+    }
+
+    /**
+     * @return mixed
+     */
     public function invites()
     {
         return $this->hasMany('App\Models\CampaignInvite');

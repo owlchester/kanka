@@ -97,6 +97,12 @@ Route::group([
         'entities.attributes' => 'AttributeController',
 
         'attribute_templates' => 'AttributeTemplateController',
+
+        // Permission manager
+        'campaigns.campaign_roles' => 'CampaignRoleController',
+        'campaigns.campaign_roles.campaign_roles_users' => 'CampaignRoleUserController',
+        'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
+
     ]);
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
     Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');

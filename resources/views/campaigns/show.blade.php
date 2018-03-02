@@ -84,6 +84,11 @@
                         {{ trans('campaigns.show.tabs.members') }}
                     </a>
                 </li>
+                <li class="{{ (request()->get('tab') == 'roles' ? ' active' : '') }}">
+                    <a href="#roles" data-toggle="tab" aria-expanded="false">
+                        {{ trans('campaigns.show.tabs.roles') }}
+                    </a>
+                </li>
                 @if (Auth::user()->can('setting', $campaign))
                 <li class="{{ (request()->get('tab') == 'setting' ? ' active' : '') }}">
                     <a href="#setting" data-toggle="tab" aria-expanded="false">
@@ -101,6 +106,9 @@
                 </div>
                 <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
                     @include('campaigns._members')
+                </div>
+                <div class="tab-pane {{ (request()->get('tab') == 'roles' ? ' active' : '') }}" id="roles">
+                    @include('campaigns._roles')
                 </div>
                 @if (Auth::user()->can('setting', $campaign))
                 <div class="tab-pane {{ (request()->get('tab') == 'setting' ? ' active' : '') }}" id="setting">
