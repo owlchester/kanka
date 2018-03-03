@@ -15,12 +15,12 @@
             <td class="text-right">
                 @if (Auth::user()->can('update', $relation))
                     <a href="{{ route('campaign_user.edit', $relation->id) }}" class="btn btn-xs btn-primary">{{ trans('crud.edit') }}</a>
-                {!! Form::open(['method' => 'DELETE','route' => ['campaign_user.destroy', $relation->id],'style'=>'display:inline']) !!}
                 @endif
                 @if (Auth::user()->can('delete', $relation))
-                <button class="btn btn-xs btn-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                </button>
+                {!! Form::open(['method' => 'DELETE','route' => ['campaign_user.destroy', $relation->id],'style'=>'display:inline']) !!}
+                    <button class="btn btn-xs btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                    </button>
                 {!! Form::close() !!}
                 @endif
             </td>

@@ -8,5 +8,5 @@
 
 @section('content')
     @include('partials.errors')
-    @include('campaigns.show')
+    @include('campaigns._show')
 @endsection

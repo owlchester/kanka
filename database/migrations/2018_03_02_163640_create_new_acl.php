@@ -49,10 +49,10 @@ class CreateNewAcl extends Migration
             $table->increments('id');
 
             // A permission can either be related to a role
-            $table->integer('campaign_role_id')->unsigned()->null();
+            $table->integer('campaign_role_id')->unsigned()->nullable();
 
             // Or be related to a user
-            $table->integer('user_id')->unsigned()->null();
+            $table->integer('user_id')->unsigned()->nullable();
 
             // A key is a simple concept that allows us to easily get everything
             // browse_characters => Allow browsing characters

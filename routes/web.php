@@ -64,6 +64,9 @@ Route::group([
     // Attribute multi-save
     Route::post('/entities/{entity}/attributes/saveMany', 'AttributeController@saveMany')->name('entities.attributes.saveMany');
 
+    // Permission save
+    Route::post('/campaigns/{campaign}/campaign_role{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaigns.campaign_roles.savePermissions');
+
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
@@ -100,8 +103,8 @@ Route::group([
 
         // Permission manager
         'campaigns.campaign_roles' => 'CampaignRoleController',
-        'campaigns.campaign_roles.campaign_roles_users' => 'CampaignRoleUserController',
-        'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
+        'campaigns.campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
+        //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
     ]);
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');

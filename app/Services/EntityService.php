@@ -55,11 +55,7 @@ class EntityService
         $labels = [];
         foreach ($this->entities() as $entity => $class) {
             if ($singular) {
-                $singular = rtrim($entity, 's');
-                if ($entity == 'families') {
-                    $singular = 'family';
-                }
-                $labels[$entity] = trans('entities.' . $singular);
+                $labels[$entity] = trans('entities.' . $this->singular($entity));
             } else {
                 $labels[$entity] = trans('entities.' . $entity);
             }
@@ -70,6 +66,19 @@ class EntityService
         }
 
         return $labels;
+    }
+
+    /**
+     * @param $entity
+     * @return string
+     */
+    public function singular($entity)
+    {
+        $singular = rtrim($entity, 's');
+        if ($entity == 'families') {
+            $singular = 'family';
+        }
+        return $singular;
     }
 
     /**

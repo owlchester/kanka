@@ -53,6 +53,20 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return array
+     */
+    public function membersList()
+    {
+        $members = [];
+
+        foreach ($this->members()->with('user')->get() as $m) {
+            $members[$m->user->id] = $m->user->name;
+        }
+
+        return $members;
+    }
+
+    /**
      * @return mixed
      */
     public function invites()
