@@ -118,7 +118,7 @@ class DatagridRenderer
                 $html = trans('crud.fields.character');
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
-                if ($this->user->viewer()) {
+                if (!$this->user->isAdmin()) {
                     return null;
                 }
                 $html = $this->route('is_private', trans('crud.fields.is_private'));
@@ -269,7 +269,7 @@ class DatagridRenderer
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
-                if ($this->user->viewer()) {
+                if (!$this->user->isAdmin()) {
                     return null;
                 }
                 $content = $model->is_private ?

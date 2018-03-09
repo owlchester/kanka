@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Campaign extends MiscModel
@@ -25,7 +26,7 @@ class Campaign extends MiscModel
      */
     public function users()
     {
-        return $this->belongsToMany('App\User')->using('App\CampaignUser');
+        return $this->belongsToMany('App\User', 'campaign_user');
     }
 
     /**
@@ -50,6 +51,15 @@ class Campaign extends MiscModel
     public function roles()
     {
         return $this->hasMany('App\Models\CampaignRole');
+    }
+
+    /**
+     * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
+     * @return bool
+     */
+    public function hasPermissions()
+    {
+        return $this->roles()->count() > 1;
     }
 
     /**
@@ -146,5 +156,20 @@ class Campaign extends MiscModel
             return $this->setting->$entity;
         }
         return false;
+    }
+
+    /**
+     * Check if a user has access to a resource
+     * @param string $permission
+     * @param Model $entity
+     * @return bool
+     */
+    public function can($action = '', Model $entity)
+    {
+        // This is split in two parts. We look if the user is part of a is_admin role, or of a role that has the permission
+        /*
+         * Select * from campaign_roles as r
+         * where r.campaign_id = $1
+         */
     }
 }

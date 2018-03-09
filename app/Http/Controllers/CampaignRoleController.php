@@ -121,6 +121,6 @@ class CampaignRoleController extends Controller
         $campaignRole->savePermissions($request->post('permissions'));
 
         return redirect()->route('campaigns.campaign_roles.show', ['campaign' => $campaign, 'campaign_role' => $campaignRole])
-            ->with('success', trans($this->view . '.permissions.success'));
+            ->with('success', trans('crud.permissions.success'));
     }
 }

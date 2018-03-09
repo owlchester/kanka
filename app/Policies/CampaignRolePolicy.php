@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Campaign;
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignRole;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -10,6 +11,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class CampaignRolePolicy
 {
     use HandlesAuthorization;
+    use AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaignRole.
@@ -20,7 +22,7 @@ class CampaignRolePolicy
      */
     public function view(User $user, CampaignRole $campaignRole)
     {
-        return $user->owner();
+        return $this->isAdmin($user);
     }
 
     /**
@@ -31,7 +33,7 @@ class CampaignRolePolicy
      */
     public function create(User $user)
     {
-        return $user->owner();
+        return $this->isAdmin($user);
     }
 
     /**
@@ -43,7 +45,7 @@ class CampaignRolePolicy
      */
     public function update(User $user, CampaignRole $campaignRole)
     {
-        return $user->campaign->id == $campaignRole->campaign->id && $user->owner();
+        return $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -55,7 +57,7 @@ class CampaignRolePolicy
      */
     public function delete(User $user, CampaignRole $campaignRole)
     {
-        return $user->campaign->id == $campaignRole->campaign->id && $user->owner();
+        return !$campaignRole->is_admin && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -65,7 +67,7 @@ class CampaignRolePolicy
      */
     public function user(User $user, CampaignRole $campaignRole)
     {
-        return $user->campaign->id == $campaignRole->campaign->id && $user->owner();
+        return $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
 
 
@@ -76,8 +78,6 @@ class CampaignRolePolicy
      */
     public function permission(User $user, CampaignRole $campaignRole)
     {
-        return $user->campaign->id == $campaignRole->campaign->id && $user->owner();
+        return !$campaignRole->is_admin && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
-
-
 }

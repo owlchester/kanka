@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('campaigns.roles.users.fields.name') }}</label>
-            {!! Form::select('user_id', $campaign->membersList(), null, ['placeholder' => trans('campaigns.roles.placeholders.name'), 'class' => 'form-control']) !!}
+            <label>{{ trans('campaigns.roles.fields.name') }}</label>
+            {!! Form::select('user_id', $campaign->membersList(), null, ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>

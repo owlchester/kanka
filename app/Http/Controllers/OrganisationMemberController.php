@@ -35,7 +35,7 @@ class OrganisationMemberController extends Controller
      */
     public function create(Organisation $organisation)
     {
-        $this->authorize('create', OrganisationMember::class);
+        $this->authorize('member', $organisation);
         return view($this->view . '.create', [
             'model' => $organisation
         ]);
@@ -49,7 +49,7 @@ class OrganisationMemberController extends Controller
      */
     public function store(StoreOrganisationMember $request, Organisation $organisation)
     {
-        $this->authorize('create', OrganisationMember::class);
+        $this->authorize('member', $organisation);
 
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('organisations.show', [$organisation->id, 'tab' => 'member'])
@@ -64,7 +64,7 @@ class OrganisationMemberController extends Controller
      */
     public function show(Organisation $organisation, OrganisationMember $organisationMember)
     {
-        $this->authorize('view', $organisationMember);
+        $this->authorize('member', $organisation);
 
         return view($this->view . '.show', [
             'model' => $organisation,
@@ -80,7 +80,7 @@ class OrganisationMemberController extends Controller
      */
     public function edit(Organisation $organisation, OrganisationMember $organisationMember)
     {
-        $this->authorize('update', $organisationMember);
+        $this->authorize('member', $organisation);
 
         return view($this->view . '.edit', [
             'model' => $organisation,
@@ -97,7 +97,7 @@ class OrganisationMemberController extends Controller
      */
     public function update(StoreOrganisationMember $request, Organisation $organisation, OrganisationMember $organisationMember)
     {
-        $this->authorize('update', $organisationMember);
+        $this->authorize('member', $organisation);
 
         $organisationMember->update($request->all());
         return redirect()->route('organisations.show', [$organisation->id, 'tab' => 'member'])
@@ -112,7 +112,7 @@ class OrganisationMemberController extends Controller
      */
     public function destroy(Organisation $organisation, OrganisationMember $organisationMember)
     {
-        $this->authorize('delete', $organisationMember);
+        $this->authorize('member', $organisation);
 
         $organisationMember->delete();
         return redirect()->route('organisations.show', [$organisationMember->organisation_id, 'tab' => 'member'])

@@ -10,10 +10,8 @@ use DateTime;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $entity_id
- * @property string $name
- * @property string $value
- * @property boolean $is_private
+ * @property integer $campaign_role_id
+ * @property integer $user_id
  */
 class CampaignRoleUser extends Model
 {

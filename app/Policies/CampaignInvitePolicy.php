@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Campaign;
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignInvite;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -10,6 +11,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class CampaignInvitePolicy
 {
     use HandlesAuthorization;
+    use AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaignInvite.
@@ -31,7 +33,7 @@ class CampaignInvitePolicy
      */
     public function create(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $user->owner();
+        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -43,7 +45,7 @@ class CampaignInvitePolicy
      */
     public function update(User $user, CampaignInvite $campaignInvite)
     {
-        return $user->campaign->id == $campaignInvite->campaign->id && $user->owner();
+        return $user->campaign->id == $campaignInvite->campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -55,6 +57,6 @@ class CampaignInvitePolicy
      */
     public function delete(User $user, CampaignInvite $campaignInvite)
     {
-        return $user->campaign->id == $campaignInvite->campaign->id && $user->owner();
+        return $user->campaign->id == $campaignInvite->campaign->id && $this->isAdmin($user);
     }
 }

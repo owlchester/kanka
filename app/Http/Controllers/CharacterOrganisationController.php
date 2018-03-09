@@ -35,7 +35,8 @@ class CharacterOrganisationController extends Controller
      */
     public function create(Character $character)
     {
-        $this->authorize('create', OrganisationMember::class);
+        $this->authorize('organisation', [$character, 'add']);
+
         return view($this->view . '.create', ['model' => $character]);
     }
 
@@ -47,7 +48,8 @@ class CharacterOrganisationController extends Controller
      */
     public function store(StoreOrganisationMember $request, Character $character)
     {
-        $this->authorize('create', OrganisationMember::class);
+        $this->authorize('organisation', [$character, 'add']);
+
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('characters.show', [$character->id, 'tab' => 'organisation'])
             ->with('success', trans($this->view . '.create.success'));
@@ -61,7 +63,7 @@ class CharacterOrganisationController extends Controller
      */
     public function show(Character $character, OrganisationMember $organisationMember)
     {
-        $this->authorize('view', $organisationMember);
+        $this->authorize('organisation', [$character, 'read']);
 
         return view($this->view . '.show', [
             'model' => $character,
@@ -77,7 +79,7 @@ class CharacterOrganisationController extends Controller
      */
     public function edit(Character $character, CharacterOrganisation $characterOrganisation)
     {
-        $this->authorize('update', $characterOrganisation);
+        $this->authorize('organisation', [$character, 'edit']);
 
         return view($this->view . '.edit', [
             'model' => $character,
@@ -94,7 +96,7 @@ class CharacterOrganisationController extends Controller
      */
     public function update(StoreOrganisationMember $request, Character $character, CharacterOrganisation $characterOrganisation)
     {
-        $this->authorize('update', $characterOrganisation);
+        $this->authorize('organisation', [$character, 'edit']);
 
         $characterOrganisation->update($request->all());
         return redirect()->route('characters.show', [$character->id, 'tab' => ' organisation'])
@@ -109,7 +111,7 @@ class CharacterOrganisationController extends Controller
      */
     public function destroy(Character $character, CharacterOrganisation $characterOrganisation)
     {
-        $this->authorize('delete', $characterOrganisation);
+        $this->authorize('organisation', [$character, 'delete']);
 
         $characterOrganisation->delete();
         return redirect()->route('characters.show', [$characterOrganisation->character_id, 'tab' => 'organisation'])

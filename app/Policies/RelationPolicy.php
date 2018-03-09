@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\Relation;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,6 +10,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class RelationPolicy
 {
     use HandlesAuthorization;
+    use AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the item.
@@ -20,7 +22,7 @@ class RelationPolicy
     public function view(User $user, Relation $relation)
     {
         return $user->campaign->id == $relation->owner->child->campaign_id &&
-            ($relation->is_private ? !$user->viewer() : true);
+            ($relation->is_private ? !$this->isAdmin($user) : true);
     }
 
     /**

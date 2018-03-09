@@ -59,7 +59,7 @@ Route::group([
     Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
     Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
     Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
-    Route::post('/attribute_templatdes/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
+    Route::post('/attribute_templates/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
 
     // Attribute multi-save
     Route::post('/entities/{entity}/attributes/saveMany', 'AttributeController@saveMany')->name('entities.attributes.saveMany');
@@ -134,6 +134,7 @@ Route::group([
     // Attribute template
     Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
     Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');
+    Route::post('/entities/{entity}/permissions', 'PermissionController@permissions')->name('entities.permissions');
 
     Route::post('/entities/create', 'EntityController@create')->name('entities.create');
 

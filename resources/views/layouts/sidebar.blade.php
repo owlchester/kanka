@@ -73,7 +73,7 @@
                 <a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
-            @if (Auth::user()->can('create', 'App\Models\AttributeTemplate'))
+            @can('create', 'App\Models\AttributeTemplate')
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>
             </li>

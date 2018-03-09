@@ -1,11 +1,11 @@
-@if (Auth::user()->can('create', 'App\Models\Relation'))
+@can('relation', [$model, 'add'])
     <p class="text-right">
         <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary">
             <i class="fa fa-plus"></i> {{ trans('crud.relations.actions.add') }}    </a>
     </p>
-@endif
+@endcan
 
-<table id="families" class="table table-hover">
+<table id="crud_families" class="table table-hover">
     <tbody><tr>
         <th>{{ trans('crud.relations.fields.relation') }}</th>
         <th class="avatar"><br></th>
@@ -31,16 +31,16 @@
                 @endif
             </td>@endif
             <td class="text-right">
-                @if (Auth::user()->can('update', $relation))
+                @can('relation', [$model, 'edit'])
                     <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
-                @endif
-                @if (Auth::user()->can('delete', $relation))
+                @endcan
+                @can('relation', [$model, 'delete'])
                 {!! Form::open(['method' => 'DELETE', 'route' => [$name . '.relations.destroy', $name => $model, 'relation' => $relation], 'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::close() !!}
-                @endif
+                @endcan
             </td>
         </tr>
         @endif

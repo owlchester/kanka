@@ -147,15 +147,26 @@
                             {{ trans('characters.show.tabs.free') }}
                         </a></li>
                     @endif
+                    @can('relation', $model)
                     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}"><a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a></li>
+                    @endcan
                     @if ($campaign->enabled('organisations'))
+                        @can('organisation', $model)
                     <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation" data-toggle="tab" aria-expanded="false">
                             {{ trans('characters.show.tabs.organisations') }}
                         </a></li>
+                        @endcan
                     @endif
+                    @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
                         <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
+                    @endcan
+                    @can('permission', $model)
+                    <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
+                        <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                    </li>
+                    @endcan
                 </ul>
 
                 <div class="tab-content">
@@ -177,17 +188,28 @@
                         </div>
                     </div>
                     @endif
+                    @can('relation', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
                         @include('cruds._relations')
                     </div>
+                    @endcan
                     @if ($campaign->enabled('organisations'))
+                        @can('organisation', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'organisation' ? ' active' : '') }}" id="organisation">
                         @include('characters._organisations')
                     </div>
+                        @endcan
                     @endif
+                    @can('attribute', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
                         @include('cruds._attributes')
                     </div>
+                    @endcan
+                    @can('permission', $model)
+                    <div class="tab-pane {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="permissions">
+                        @include('cruds._permissions')
+                    </div>
+                    @endcan
                 </div>
             </div>
 

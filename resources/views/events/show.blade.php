@@ -63,12 +63,21 @@
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('events.show.tabs.information') }}</a>
                     </li>
+                    @can('relation', $model)
                     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
                         <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
                     </li>
+                    @endcan
+                    @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
                         <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
+                    @endcan
+                    @can('permission', $model)
+                        <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
+                            <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                        </li>
+                    @endcan
                 </ul>
 
                 <div class="tab-content">
@@ -87,16 +96,23 @@
                         </div>
                         @endif
                     </div>
+                    @can('relation', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
                         @include('cruds._relations')
                     </div>
+                    @endcan
+                    @can('attribute', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
                         @include('cruds._attributes')
                     </div>
+                    @endcan
+                    @can('permission', $model)
+                        <div class="tab-pane {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="permissions">
+                            @include('cruds._permissions')
+                        </div>
+                    @endcan
                 </div>
             </div>
-            </div>
-
             <!-- actions -->
         </div>
     </div>

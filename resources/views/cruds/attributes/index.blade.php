@@ -33,9 +33,11 @@
                                     {!! Form::hidden('is_private[' . $attribute->id . ']', 0) !!}
                                     {!! Form::checkbox('is_private[' . $attribute->id . ']', 1, $attribute->is_private) !!}
                                 </div>
+                                @can('attribute', [$entity->child, 'delete'])
                                 <div class="col-md-1">
                                     <a class="btn btn-danger attribute_delete"><i class="fa fa-trash"></i></a>
                                 </div>
+                                @endcan
                             </div>
                         </div>
                     @endforeach

@@ -44,4 +44,20 @@ class CampaignPermission extends Model
     {
         return $this->belongsTi('App\User', 'user_id');
     }
+
+    /**
+     * Get the entity id
+     * @return mixed
+     */
+    public function entityId()
+    {
+        $segments = explode('_', $this->key);
+        return $segments[count($segments)-1];
+    }
+
+    public function action()
+    {
+        $segments = explode('_', $this->key);
+        return $segments[count($segments)-2];
+    }
 }

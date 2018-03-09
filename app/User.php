@@ -9,6 +9,12 @@ use DateTime;
 
 class User extends \TCG\Voyager\Models\User
 {
+    /**
+     * Cached calculation if the user is an admin of the current campaign he is viewing
+     * @var null
+     */
+    protected $isAdminCached = null;
+
     use Notifiable;
 
     /**
@@ -111,30 +117,13 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * Determine if the user is currently viewing a campaign as a viewer
-     * @return bool
-     */
-    public function viewer()
-    {
-        return $this->campaign_role == 'viewer';
-    }
-
-    /**
-     * Determine if the user is currently viewing a campaign as an owner
-     * @return bool
-     */
-    public function owner()
-    {
-        return $this->campaign_role == 'owner';
-    }
-
-    /**
      * Determine if the user is currently viewer a campaign as a member or owner
      * @param bool $strict
      * @return bool
      */
     public function member($strict = false)
     {
+        die("don't use member anymore");
         if ($strict) {
             return $this->campaign_role == 'member';
         }
@@ -144,5 +133,40 @@ class User extends \TCG\Voyager\Models\User
     public function logs()
     {
         return $this->hasMany('App\Models\UserLog', 'user_id', 'id');
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany('App\Models\CampaignPermission', 'user_id');
+    }
+
+    /**
+     * Get the user's roles
+     * @return $this
+     */
+    public function roles()
+    {
+        return $this->hasManyThrough('App\Models\CampaignRole', 'App\Models\CampaignRoleUser', 'user_id', 'id', 'id', 'campaign_role_id')
+            ->where('campaign_id', $this->campaign->id);
+    }
+
+    /**
+     * @return $this
+     */
+    public function campaignRoleUser()
+    {
+        return $this->hasMany('App\Models\CampaignRoleUser')
+            ->where('campaign_id', $this->campaign->id);
+    }
+
+    /**
+     * Figure out if the user is an admin of the current campaign
+     */
+    public function isAdmin()
+    {
+        if ($this->isAdminCached === null) {
+            $this->isAdminCached = $this->roles()->where(['is_admin' => true])->count() > 0;
+        }
+        return $this->isAdminCached;
     }
 }

@@ -51,7 +51,7 @@ class CrudAttributeController extends Controller
      */
     public function crudIndex(Entity $entity)
     {
-        $this->authorize('create', 'App\Models\Attribute');
+        $this->authorize('show', [$entity->child]);
 
         $attributes = $entity->attributes()->paginate();
         $name = $this->view;
@@ -74,7 +74,8 @@ class CrudAttributeController extends Controller
      */
     public function crudCreate(Entity $entity, Attribute $attribute)
     {
-        $this->authorize('create', $attribute);
+        $this->authorize('attribute', [$entity->child, 'add']);
+
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
@@ -94,7 +95,7 @@ class CrudAttributeController extends Controller
      */
     public function crudStore(Request $request, Entity $entity)
     {
-        $this->authorize('create', $entity->child);
+        $this->authorize('attribute', [$entity->child, 'add']);
 
         $attribute = new Attribute();
         $attribute->entity_id = $entity->id;
@@ -113,7 +114,7 @@ class CrudAttributeController extends Controller
      */
     public function crudEdit(Entity $entity, Attribute $model)
     {
-        $this->authorize('update', $model);
+        $this->authorize('attribute', [$entity->child, 'edit']);
 
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';
@@ -136,7 +137,7 @@ class CrudAttributeController extends Controller
      */
     public function crudUpdate(Request $request, Entity $entity, Attribute $attribute)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('attribute', [$entity->child, 'edit']);
 
         $attribute->update($request->all());
 
@@ -151,7 +152,7 @@ class CrudAttributeController extends Controller
      */
     public function crudDestroy(Entity $entity, Attribute $attribute)
     {
-        $this->authorize('delete', $attribute);
+        $this->authorize('attribute', [$entity->child, 'delete']);
 
         $attribute->delete();
 
@@ -167,7 +168,7 @@ class CrudAttributeController extends Controller
      */
     public function saveMany(Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('attribute', [$entity->child, 'edit']);
 
         $this->attributeService->saveMany($entity, request()->all());
 

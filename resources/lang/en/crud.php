@@ -29,13 +29,14 @@ return [
         'image'     => 'Image',
         'is_private'=> 'Private',
         'location'  => 'Location',
+        'entity' => 'Entity',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
     'hints'         => [
-        'is_private'    => 'Hide from "Viewers"',
+        'is_private'    => 'Hide from non "Admin" users.',
     ],
-    'is_private'    => 'This entity is private and not visible by the viewer users.',
+    'is_private'    => 'This entity is private and not visible by non-admin users.',
     'linking_help'  => 'How can I link to other entries?',
     'move'          => [
         'description'   => '',
@@ -86,6 +87,7 @@ return [
     'tabs'          => [
         'relations' => 'Relations',
         'attributes' => 'Attributes',
+        'permissions' => 'Permissions',
     ],
     'update'        => 'Update',
     'view'          => 'View',
@@ -130,5 +132,21 @@ return [
     ],
     'image' => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
+    ],
+    'permissions' => [
+        'title' => 'Permissions',
+        'helper' => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
+        'fields' => [
+            'role' => 'Role',
+            'member' => 'Member'
+        ],
+        'action' => 'Action',
+        'actions' => [
+            'read' => 'Read',
+            'edit' => 'Edit',
+            'delete' => 'Delete',
+        ],
+        'allowed' => 'Allowed',
+        'success' => 'Permissions saved.',
     ]
 ];

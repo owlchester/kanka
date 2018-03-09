@@ -6,68 +6,18 @@ use App\User;
 use App\Models\Character;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CharacterPolicy
+class CharacterPolicy extends EntityPolicy
 {
-    use HandlesAuthorization;
-
-    /**
-     * Determine whether the user can view the character.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Character  $character
-     * @return mixed
-     */
-    public function view(User $user, Character $character)
-    {
-        return $user->campaign->id == $character->campaign_id &&
-            ($character->is_private ? !$user->viewer() : true);
-    }
-
-    /**
-     * Determine whether the user can create characters.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return $user->member();
-    }
-
-    /**
-     * Determine whether the user can update the character.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Character  $character
-     * @return mixed
-     */
-    public function update(User $user, Character $character)
-    {
-        return $user->campaign->id == $character->campaign_id &&
-            ($user->member());
-    }
-
-    /**
-     * Determine whether the user can delete the character.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Character  $character
-     * @return mixed
-     */
-    public function delete(User $user, Character $character)
-    {
-        return $user->campaign->id == $character->campaign_id &&
-            ($user->member());
-    }
+    protected $model = 'character';
 
     /**
      * @param User $user
-     * @param Character $character
+     * @param Entity $entity
      * @return bool
      */
-    public function personality(User $user, Character $character)
+    public function personality(User $user, $entity)
     {
-        return ($user->member() || $character->is_personality_visible);
+        return ($this->update($user, $entity) || !$entity->is_personality_visible);
     }
 
     /**
@@ -83,17 +33,9 @@ class CharacterPolicy
      * @param User $user
      * @return mixed
      */
-    public function attribute(User $user, Character $character)
+    public function organisation(User $user, $entity, $subAction = 'browse')
     {
-        return  $user->campaign->id == $character->campaign_id;
-    }
-
-    /**
-     * @param User $user
-     * @return mixed
-     */
-    public function move(User $user, Character $character)
-    {
-        return $this->update($user, $character);
+        return  $user->campaign->id == $entity->campaign_id &&
+            $this->checkPermission('organisation_' . $subAction, $user, $entity);
     }
 }

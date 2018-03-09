@@ -81,7 +81,18 @@ class CampaignService
 
             throw new Exception(trans('campaigns.leave.error'));
         }
+        // Delete user from roles
+        foreach ($campaign->roles as $role) {
+            foreach ($role->users as $user) {
+                if ($user->user_id == Auth::user()->id) {
+                    $user->delete();
+                }
+            }
+        }
+
+        // Delete the member
         $member->delete();
+
 
         self::switchToNext();
     }
@@ -131,5 +142,21 @@ class CampaignService
     public function member()
     {
         return $this->campaign->member();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function roles()
+    {
+        return $this->campaign->roles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function users()
+    {
+        return $this->campaign->users;
     }
 }

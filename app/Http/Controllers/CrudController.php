@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PermissionService;
+use Arrilot\Widgets\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CrudController extends Controller
 {
@@ -55,14 +58,15 @@ class CrudController extends Controller
     }
     public function crudIndex(Request $request)
     {
+        $this->authorize('browse', $this->model);
+
         $model = new $this->model;
         $name = $this->view;
         $actions = $this->indexActions;
 
-
         $models = $model
-            ->search(request()
-                ->get('search'))
+            ->search(request()->get('search'))
+            ->acl(Auth::user())
             ->order(request()->get('order'), request()->has('desc'))
             ->paginate();
         return view('cruds.index', compact('models', 'name', 'model', 'actions'));
@@ -128,7 +132,7 @@ class CrudController extends Controller
             $model->load('entity');
         }
 
-        return view('cruds.show', compact('model', 'name'));
+        return view('cruds.show', compact('model', 'name', 'permissions'));
     }
 
     /**

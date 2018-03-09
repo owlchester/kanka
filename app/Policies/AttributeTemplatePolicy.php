@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\AttributeTemplate;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,6 +10,19 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class AttributeTemplatePolicy
 {
     use HandlesAuthorization;
+    use AdminPolicyTrait;
+
+    /**
+     * Determine whether the user can view the attributeTemplate.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Models\AttributeTemplate  $attributeTemplate
+     * @return mixed
+     */
+    public function browse(User $user)
+    {
+        return $this->create($user);
+    }
 
     /**
      * Determine whether the user can view the attributeTemplate.
@@ -19,7 +33,7 @@ class AttributeTemplatePolicy
      */
     public function view(User $user, AttributeTemplate $attributeTemplate)
     {
-        return $user->campaign->id == $attributeTemplate->campaign_id && $user->member();
+        return $user->campaign->id == $attributeTemplate->campaign_id && $this->isAdmin($user);
     }
 
     /**
@@ -30,7 +44,7 @@ class AttributeTemplatePolicy
      */
     public function create(User $user)
     {
-        return $user->member();
+        return $this->isAdmin($user);
     }
 
     /**
@@ -43,7 +57,7 @@ class AttributeTemplatePolicy
     public function update(User $user, AttributeTemplate $attributeTemplate)
     {
         return $user->campaign->id == $attributeTemplate->campaign_id &&
-            $user->member();
+            $this->isAdmin($user);
     }
 
     /**
@@ -56,6 +70,6 @@ class AttributeTemplatePolicy
     public function delete(User $user, AttributeTemplate $attributeTemplate)
     {
         return $user->campaign->id == $attributeTemplate->campaign_id &&
-            $user->member();
+            $this->isAdmin($user);
     }
 }

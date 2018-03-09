@@ -1,10 +1,10 @@
-@if (Auth::user()->can('create', 'App\Models\OrganisationMember'))
+@can('organisation', [$model, 'add'])
     <p class="text-right">
         <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary">
             {{ trans('characters.organisations.actions.add') }}
         </a>
     </p>
-@endif
+@endcan
 
 <table id="organisations" class="table table-hover">
     <tbody><tr>
@@ -23,18 +23,18 @@
             </td>
             <td>{{ $relation->role }}</td>
             <td class="text-right">
-                @if (Auth::user()->can('update', $relation))
+                @can('organisation', [$model, 'edit'])
                     <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary">
                         <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                     </a>
-                @endif
-                @if (Auth::user()->can('delete', $relation))
+                @endcan
+                @can('organisation', [$model, 'delete'])
                 {!! Form::open(['method' => 'DELETE','route' => ['characters.character_organisations.destroy', $model->id, $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::close() !!}
-                @endif
+                @endcan
             </td>
         </tr>
     @endforeach

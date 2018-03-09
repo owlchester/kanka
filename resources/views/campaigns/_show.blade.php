@@ -59,7 +59,6 @@
         <div class="small-box bg-blue">
             <div class="inner">
                 <h4>{{ trans('campaigns.index.actions.new.title') }}</h4>
-                <p>{!! trans('campaigns.members.your_role', ['role' => trans('campaigns.members.roles.' . $campaign->role())]) !!}</p>
             </div>
             <div class="icon">
                 <i class="ion ion-plus"></i>
@@ -84,11 +83,13 @@
                         {{ trans('campaigns.show.tabs.members') }}
                     </a>
                 </li>
+                @can('update', $campaign)
                 <li class="{{ (request()->get('tab') == 'roles' ? ' active' : '') }}">
                     <a href="#roles" data-toggle="tab" aria-expanded="false">
                         {{ trans('campaigns.show.tabs.roles') }}
                     </a>
                 </li>
+                @endcan
                 @if (Auth::user()->can('setting', $campaign))
                 <li class="{{ (request()->get('tab') == 'setting' ? ' active' : '') }}">
                     <a href="#setting" data-toggle="tab" aria-expanded="false">
@@ -107,9 +108,11 @@
                 <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
                     @include('campaigns._members')
                 </div>
+                @can('update', $campaign)
                 <div class="tab-pane {{ (request()->get('tab') == 'roles' ? ' active' : '') }}" id="roles">
                     @include('campaigns._roles')
                 </div>
+                @endcan
                 @if (Auth::user()->can('setting', $campaign))
                 <div class="tab-pane {{ (request()->get('tab') == 'setting' ? ' active' : '') }}" id="setting">
                     @include('campaigns._settings')

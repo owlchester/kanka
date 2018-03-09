@@ -1,10 +1,10 @@
-@if (Auth::user()->can('create', 'App\Models\QuestLocation'))
+@can('location', $model)
 <p class="text-right">
     <a href="{{ route('quests.quest_locations.create', ['quest' => $model->id]) }}" class="btn btn-primary">
         {{ trans('quests.show.actions.add_location') }}
     </a>
 </p>
-@endif
+@endcan
 
 <div class="row">
     @foreach ($model->locations()->with('location')->get() as $location)
@@ -30,17 +30,15 @@
                     <p>{!! $location->description !!}</p>
                 </div>
                 <div class="box-footer text-right">
-                    @if (Auth::user()->can('update', $location))
+                    @can('location', $model)
                         <a href="{{ route('quests.quest_locations.edit', ['quest' => $model, 'questLocation' => $location]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                         </a>
-                    @endif
-                    @if (Auth::user()->can('delete', $location))
                         {!! Form::open(['method' => 'DELETE','route' => ['quests.quest_locations.destroy', 'quest' => $model, 'questLocation' => $location],'style'=>'display:inline']) !!}                <button class="btn btn-xs btn-danger">
                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                         </button>
                         {!! Form::close() !!}
-                    @endif
+                    @endcan
                 </div>
             </div>
         </div>

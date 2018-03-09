@@ -6,69 +6,7 @@ use App\User;
 use App\Models\Item;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ItemPolicy
+class ItemPolicy extends EntityPolicy
 {
-    use HandlesAuthorization;
-
-    /**
-     * Determine whether the user can view the item.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Item  $item
-     * @return mixed
-     */
-    public function view(User $user, Item $item)
-    {
-        return $user->campaign->id == $item->campaign_id &&
-            ($item->is_private ? !$user->viewer() : true);
-    }
-
-    /**
-     * Determine whether the user can create items.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return $user->member();
-    }
-
-    /**
-     * Determine whether the user can update the item.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Item  $item
-     * @return mixed
-     */
-    public function update(User $user, Item $item)
-    {
-        return $user->campaign->id == $item->campaign_id &&
-            ($user->member());
-    }
-
-    /**
-     * Determine whether the user can delete the item.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Item  $item
-     * @return mixed
-     */
-    public function delete(User $user, Item $item)
-    {
-        return $user->campaign->id == $item->campaign_id &&
-            ($user->member());
-    }
-
-    /**
-     * Determine if a model can be moved to another type.
-     *
-     * @param User $user
-     * @param Item $item
-     * @return mixed
-     */
-    public function move(User $user, Item $item)
-    {
-        return $this->update($user, $item);
-    }
+    protected $model = 'item';
 }

@@ -1,10 +1,10 @@
-@if (Auth::user()->can('create', 'App\Models\QuestCharacter'))
+@can('character', $model)
 <p class="text-right">
     <a href="{{ route('quests.quest_characters.create', ['quest' => $model->id]) }}" class="btn btn-primary">
         {{ trans('quests.show.actions.add_character') }}
     </a>
 </p>
-@endif
+@endcan
 
 <div class="row">
     @foreach ($model->characters()->with('character')->get() as $character)
@@ -30,17 +30,15 @@
                     <p>{!! $character->description !!}</p>
                 </div>
                 <div class="box-footer text-right">
-                    @if (Auth::user()->can('update', $character))
+                    @can('character', $model)
                         <a href="{{ route('quests.quest_characters.edit', ['quest' => $model, 'questCharacter' => $character]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                         </a>
-                    @endif
-                    @if (Auth::user()->can('delete', $character))
                         {!! Form::open(['method' => 'DELETE','route' => ['quests.quest_characters.destroy', 'quest' => $model, 'questCharacter' => $character],'style'=>'display:inline']) !!}                <button class="btn btn-xs btn-danger">
                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                         </button>
                         {!! Form::close() !!}
-                    @endif
+                    @endcan
                 </div>
             </div>
         </div>

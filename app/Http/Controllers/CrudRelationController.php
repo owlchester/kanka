@@ -37,6 +37,8 @@ class CrudRelationController extends Controller
      */
     public function crudIndex(Model $base)
     {
+        $this->authorize('show', $base->child);
+
         $models = $base->relationships->paginate();
         $name = $this->view;
         $route = $this->route;
@@ -50,7 +52,8 @@ class CrudRelationController extends Controller
      */
     public function crudCreate(Model $model)
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('relation', [$model, 'add']);
+
         $name = $this->view;
         $route = $this->route;
         $parent = explode('.', $this->view)[0];
@@ -70,7 +73,7 @@ class CrudRelationController extends Controller
      */
     public function crudStore(Request $request, Model $model)
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('relation', [$model, 'add']);
 
         $relation = new $this->model;
         $relation->create($request->all());
@@ -90,7 +93,7 @@ class CrudRelationController extends Controller
      */
     public function crudEdit(Model $model, Model $relation)
     {
-        $this->authorize('update', $relation);
+        $this->authorize('relation', [$model, 'edit']);
 
         $name = $this->view;
         $route = $this->route;
@@ -113,7 +116,7 @@ class CrudRelationController extends Controller
      */
     public function crudUpdate(Request $request, Model $model, Model $relation)
     {
-        $this->authorize('update', $relation);
+        $this->authorize('relation', [$model, 'edit']);
 
         $relation->update($request->all());
         $parent = explode('.', $this->view)[0];
@@ -129,7 +132,7 @@ class CrudRelationController extends Controller
      */
     public function crudDestroy(Model $model, Model $relation)
     {
-        $this->authorize('delete', $relation);
+        $this->authorize('relation', [$model, 'delete']);
 
         $relation->delete();
         $parent = explode('.', $this->view)[0];

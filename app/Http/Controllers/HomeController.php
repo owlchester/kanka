@@ -61,12 +61,12 @@ class HomeController extends Controller
 
         $settings = Auth::user()->dashboardSetting;
         $campaign = Campaign::findOrFail(Session::get('campaign_id'));
-        $characters = Character::recent()->take($settings->recent_count)->get();
-        $families = Family::recent()->take($settings->recent_count)->get();
-        $locations = Location::recent()->take($settings->recent_count)->get();
-        $items = Item::recent()->take($settings->recent_count)->get();
-        $organisations = Organisation::recent()->take($settings->recent_count)->get();
-        $journals = Journal::recent()->take($settings->recent_count)->get();
+        $characters = Character::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        $families = Family::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        $locations = Location::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        $items = Item::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        $organisations = Organisation::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        $journals = Journal::acl(Auth::user())->recent()->take($settings->recent_count)->get();
 
         //$characters = Character::
         $createAcl = Auth::user()->campaign->owner() || Auth::user()->campaign->member();

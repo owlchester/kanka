@@ -1,6 +1,6 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.roles.edit.title', ['name' => $model->name]),
-    'description' => trans('campaigns.roles.edit.description'),
+    'title' => trans('campaigns.roles.edit.title', ['name' => $role->name]),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         ['url' => route('campaigns.show', $model->id), 'label' => $model->name]

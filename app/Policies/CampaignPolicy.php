@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Campaign;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,6 +10,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class CampaignPolicy
 {
     use HandlesAuthorization;
+    use AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaign.
@@ -43,7 +45,7 @@ class CampaignPolicy
     public function update(User $user, Campaign $campaign)
     {
         return
-            $user->campaign->id == $campaign->id && ($user->member());
+            $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -56,7 +58,7 @@ class CampaignPolicy
     public function delete(User $user, Campaign $campaign)
     {
         return
-            $user->campaign->id == $campaign->id && $user->owner() && $campaign->members()->count() == 1;
+            $user->campaign->id == $campaign->id && $this->isAdmin($user) && $campaign->members()->count() == 1;
     }
 
     /**
@@ -66,7 +68,7 @@ class CampaignPolicy
      */
     public function invite(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $user->owner();
+        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -76,7 +78,7 @@ class CampaignPolicy
      */
     public function setting(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $user->owner();
+        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -90,6 +92,6 @@ class CampaignPolicy
     {
         return $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
-            (!$user->owner() || $campaign->owners()->count() > 1);
+            (!$this->isAdmin($user) || $campaign->owners()->count() > 1);
     }
 }

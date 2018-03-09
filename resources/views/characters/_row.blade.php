@@ -22,7 +22,7 @@
     <td>{{ $character->age }}</td>
     <td>{{ $character->race }}</td>
     <td>{{ $character->sex }}</td>
-    @if (!Auth::user()->viewer())
+    @if (Auth::user()->isAdmin())
         <td>
             @if ($character->is_private == true)
                 <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
@@ -33,10 +33,10 @@
         <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-default">
             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
         </a>
-        @if (Auth::user()->can('update', $character))
+        @can('update', $character)
         <a href="{{ route('characters.edit', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
             <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.edit') }}
         </a>
-        @endif
+        @endcan
     </td>
 </tr>

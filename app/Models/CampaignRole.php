@@ -10,10 +10,9 @@ use DateTime;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $entity_id
+ * @property integer $campaign_id
  * @property string $name
- * @property string $value
- * @property boolean $is_private
+ * @property boolean $is_admin
  */
 class CampaignRole extends Model
 {
@@ -22,6 +21,7 @@ class CampaignRole extends Model
      */
     protected $fillable = [
         'campaign_id',
+        'is_admin',
         'name',
     ];
 

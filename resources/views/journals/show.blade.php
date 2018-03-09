@@ -45,9 +45,16 @@
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information" data-toggle="tab" aria-expanded="false">History</a>
                     </li>
+                    @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
                         <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
+                    @endcan
+                    @can('permission', $model)
+                        <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
+                            <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                        </li>
+                @endcan
                     <!--<li><a href="#journal" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
                 </ul>
 
@@ -60,9 +67,16 @@
                         </div>
                         @endif
                     </div>
+                    @can('attribute', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
                         @include('cruds._attributes')
-                    </div></div>
+                    </div>
+                    @endcan
+                    @can('permission', $model)
+                        <div class="tab-pane {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="permissions">
+                            @include('cruds._permissions')
+                        </div>
+                    @endcan
                 </div>
             </div>
 

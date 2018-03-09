@@ -120,7 +120,55 @@ return [
             'information'   => 'Information',
             'members'       => 'Members',
             'settings'      => 'Settings',
+            'roles' => 'Roles',
         ],
         'title'         => 'Campaign :name',
     ],
+    'roles' => [
+        'actions' => [
+            'add' => 'Add a role'
+        ],
+        'create' => [
+            'title' => 'Create a new role for :name',
+            'success' => 'Role created.',
+        ],
+        'edit' => [
+            'title' => 'Edit Role :name',
+            'success' => 'Role updated.',
+        ],
+        'destroy' => [
+            'success' => 'Role removed.',
+        ],
+        'show' => [
+            'title' => 'Campaign Roles',
+            'description' => '',
+        ],
+        'members' => 'Members',
+        'users' => [
+            'actions' => [
+                'add' => 'Add',
+            ],
+            'create' => [
+                'title' => 'Add a member to the :name role',
+                'success' => 'User added to the role.',
+            ],
+            'destroy' => [
+                'success' => 'User removed from the role.',
+            ],
+            'fields' => [
+                'name' => 'Name',
+            ]
+        ],
+        'fields' => [
+            'name' => 'Name',
+            'users' => 'Users',
+            'permissions' => 'Permissions',
+        ],
+        'placeholders' => [
+            'name' => 'Name of the role',
+        ],
+        'permissions' => [
+            'hint' => 'This role automatically has access to everything.',
+        ]
+    ]
 ];

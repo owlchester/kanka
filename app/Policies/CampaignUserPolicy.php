@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\CampaignUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,7 +10,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class CampaignUserPolicy
 {
     use HandlesAuthorization;
-
+    use AdminPolicyTrait;
+    
     /**
      * Determine whether the user can view the campaignUser.
      *
@@ -42,7 +44,7 @@ class CampaignUserPolicy
      */
     public function update(User $user, CampaignUser $campaignUser)
     {
-        return $user->campaign->id == $campaignUser->campaign->id && $user->owner() && $campaignUser->role != 'owner';
+        return $user->campaign->id == $campaignUser->campaign->id && $this->isAdmin($user) && $campaignUser->role != 'owner';
     }
 
     /**
@@ -54,6 +56,6 @@ class CampaignUserPolicy
      */
     public function delete(User $user, CampaignUser $campaignUser)
     {
-        return $user->campaign->id == $campaignUser->campaign->id && $user->owner() && $campaignUser->role != 'owner';
+        return $user->campaign->id == $campaignUser->campaign->id && $this->isAdmin($user) && $campaignUser->role != 'owner';
     }
 }

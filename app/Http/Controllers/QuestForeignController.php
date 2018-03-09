@@ -66,7 +66,8 @@ class QuestForeignController extends Controller
      */
     public function crudCreate(Model $parent)
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('update', $parent);
+
         $name = $this->view;
         $route = $this->route;
         $tab = $this->tab;
@@ -89,7 +90,7 @@ class QuestForeignController extends Controller
      */
     public function crudStore(Request $request, Model $parent)
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('update', $parent);
 
         $newModel = new $this->model;
         $newModel->create($request->all());
@@ -109,7 +110,7 @@ class QuestForeignController extends Controller
      */
     public function crudEdit(Model $parent, Model $model)
     {
-        $this->authorize('update', $model);
+        $this->authorize('update', $parent);
 
         $name = $this->view;
         $route = $this->route;
@@ -134,7 +135,7 @@ class QuestForeignController extends Controller
      */
     public function crudUpdate(Request $request, Model $parent, Model $model)
     {
-        $this->authorize('update', $model);
+        $this->authorize('update', $parent);
 
         $model->update($request->all());
         $parentRoute = explode('.', $this->view)[0];
@@ -150,7 +151,7 @@ class QuestForeignController extends Controller
      */
     public function crudDestroy(Model $parent, Model $model)
     {
-        $this->authorize('delete', $model);
+        $this->authorize('update', $parent);
 
         $model->delete();
         $parentRoute = explode('.', $this->view)[0];

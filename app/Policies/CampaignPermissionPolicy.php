@@ -4,6 +4,7 @@ namespace App\Policies;
 
 
 use App\Campaign;
+use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignPermission;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -11,6 +12,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class CampaignPermissionPolicy
 {
     use HandlesAuthorization;
+    use AdminPolicyTrait;
 
     /**
      * Determine whether the user can view the campaignPermission.
@@ -32,7 +34,7 @@ class CampaignPermissionPolicy
      */
     public function create(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $user->owner();
+        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -44,7 +46,7 @@ class CampaignPermissionPolicy
      */
     public function update(User $user, CampaignPermission $campaignPermission)
     {
-        return $user->campaign->id == $campaignPermission->campaign->id && $user->owner();
+        return $user->campaign->id == $campaignPermission->campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -56,6 +58,6 @@ class CampaignPermissionPolicy
      */
     public function delete(User $user, CampaignPermission $campaignPermission)
     {
-        return $user->campaign->id == $campaignPermission->campaign->id && $user->owner();
+        return $user->campaign->id == $campaignPermission->campaign->id && $this->isAdmin($user);
     }
 }
