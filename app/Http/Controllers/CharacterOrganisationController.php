@@ -51,7 +51,7 @@ class CharacterOrganisationController extends Controller
         $this->authorize('organisation', [$character, 'add']);
 
         $relation = OrganisationMember::create($request->all());
-        return redirect()->route('characters.show', [$character->id, 'tab' => 'organisation'])
+        return redirect()->route('characters.show', [$character->id, '#organisation'])
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -99,7 +99,7 @@ class CharacterOrganisationController extends Controller
         $this->authorize('organisation', [$character, 'edit']);
 
         $characterOrganisation->update($request->all());
-        return redirect()->route('characters.show', [$character->id, 'tab' => ' organisation'])
+        return redirect()->route('characters.show', [$character->id, '#organisation'])
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -114,7 +114,7 @@ class CharacterOrganisationController extends Controller
         $this->authorize('organisation', [$character, 'delete']);
 
         $characterOrganisation->delete();
-        return redirect()->route('characters.show', [$characterOrganisation->character_id, 'tab' => 'organisation'])
+        return redirect()->route('characters.show', [$characterOrganisation->character_id, '#organisation'])
             ->with('success', trans($this->view . '.destroy.success'));
     }
 }

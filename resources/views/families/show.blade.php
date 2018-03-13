@@ -44,25 +44,25 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#history" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.history') }}</a>
+                        <a href="#history">{{ trans('families.show.tabs.history') }}</a>
                     </li>
                     @if ($campaign->enabled('characters'))<li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
-                        <a href="#member" data-toggle="tab" aria-expanded="false">{{ trans('families.show.tabs.member') }}</a>
+                        <a href="#member">{{ trans('families.show.tabs.member') }}</a>
                     </li>
                     @endif
                     @can('relation', $model)
                     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
                     </li>
                     @endcan
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
                     @endcan
                     @can('permission', $model)
                         <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
-                            <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                            <a href="#permissions">{{ trans('crud.tabs.permissions') }}</a>
                         </li>
                     @endcan
                 </ul>

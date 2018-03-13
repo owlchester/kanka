@@ -47,7 +47,7 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('create', CampaignRole::class);
         $relation = CampaignRole::create($request->all());
-        return redirect()->route('campaigns.show', [$campaign->id, 'tab' => 'roles'])
+        return redirect()->route('campaigns.show', [$campaign->id, '#roles'])
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -95,7 +95,7 @@ class CampaignRoleController extends Controller
         $this->authorize('update', $campaignRole);
 
         $campaignRole->update($request->all());
-        return redirect()->route('campaigns.show', [$campaign->id, 'tab' => 'roles'])
+        return redirect()->route('campaigns.show', [$campaign->id, '#roles'])
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -110,7 +110,7 @@ class CampaignRoleController extends Controller
         $this->authorize('delete', $campaignRole);
 
         $campaignRole->delete();
-        return redirect()->route('campaigns.show', [$campaignRole->campaign_id, 'tab' => 'roles'])
+        return redirect()->route('campaigns.show', [$campaignRole->campaign_id, '#roles'])
             ->with('success', trans($this->view . '.destroy.success'));
     }
 

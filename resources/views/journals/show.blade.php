@@ -43,19 +43,19 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#information" data-toggle="tab" aria-expanded="false">History</a>
+                        <a href="#information">History</a>
                     </li>
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
                     @endcan
                     @can('permission', $model)
                         <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
-                            <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                            <a href="#permissions">{{ trans('crud.tabs.permissions') }}</a>
                         </li>
                 @endcan
-                    <!--<li><a href="#journal" data-toggle="tab" aria-expanded="false">Characters</a></li>-->
+                    <!--<li><a href="#journal">Characters</a></li>-->
                 </ul>
 
                 <div class="tab-content">

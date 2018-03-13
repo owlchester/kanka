@@ -45,7 +45,7 @@ class CampaignInviteController extends Controller
 
         $invitation = CampaignInvite::create($request->all());
 
-        return redirect()->route('campaigns.index', ['tab' => 'member'])
+        return redirect()->route('campaigns.index', ['#member'])
             ->with('success', trans('campaigns.invites.create.success'));
     }
 
@@ -60,7 +60,7 @@ class CampaignInviteController extends Controller
         $this->authorize('delete', $campaignInvite);
 
         $campaignInvite->delete();
-        return redirect()->route('campaigns.index', ['tab' => 'member'])
+        return redirect()->route('campaigns.index', ['#member'])
             ->with('success', trans('campaigns.invites.destroy.success'));
     }
 }

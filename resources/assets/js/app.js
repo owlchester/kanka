@@ -253,7 +253,7 @@ function treeViewInit()
  */
 function manageTabs()
 {
-    $('ul.nav-tabs > a').click(function(e) {
+    $('ul.nav-tabs > li > a').click(function(e) {
         e.preventDefault();
         $(this).tab('show');
     });

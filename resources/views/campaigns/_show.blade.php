@@ -74,25 +74,25 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#info" data-toggle="tab" aria-expanded="false">
+                    <a href="#info">
                         {{ trans('campaigns.show.tabs.information') }}
                     </a>
                 </li>
                 <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
-                    <a href="#member" data-toggle="tab" aria-expanded="false">
+                    <a href="#member">
                         {{ trans('campaigns.show.tabs.members') }}
                     </a>
                 </li>
                 @can('update', $campaign)
                 <li class="{{ (request()->get('tab') == 'roles' ? ' active' : '') }}">
-                    <a href="#roles" data-toggle="tab" aria-expanded="false">
+                    <a href="#roles">
                         {{ trans('campaigns.show.tabs.roles') }}
                     </a>
                 </li>
                 @endcan
                 @if (Auth::user()->can('setting', $campaign))
                 <li class="{{ (request()->get('tab') == 'setting' ? ' active' : '') }}">
-                    <a href="#setting" data-toggle="tab" aria-expanded="false">
+                    <a href="#setting">
                         {{ trans('campaigns.show.tabs.settings') }}
                     </a>
                 </li>

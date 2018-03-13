@@ -81,7 +81,7 @@ class CrudRelationController extends Controller
         $parent = explode('.', $this->view)[0];
 
         return redirect()
-            ->route($parent . '.show', [$model->id, 'tab' => 'relations'])
+            ->route($parent . '.show', [$model->id, '#relations'])
             ->with('success', trans('relations.create.success', ['name' => $model->name]));
     }
 
@@ -121,7 +121,7 @@ class CrudRelationController extends Controller
         $relation->update($request->all());
         $parent = explode('.', $this->view)[0];
 
-        return redirect()->route($parent . '.show', [$model->id, 'tab' => 'relations'])
+        return redirect()->route($parent . '.show', [$model->id, '#relations'])
             ->with('success', trans('relations.edit.success', ['name' => $model->name]));
     }
 
@@ -138,7 +138,7 @@ class CrudRelationController extends Controller
         $parent = explode('.', $this->view)[0];
 
         return redirect()
-            ->route($parent . '.show', [$model->id, 'tab' => 'relations'])
+            ->route($parent . '.show', [$model->id, '#relations'])
             ->with('success', trans('relations.destroy.success', ['name' => $model->name]));
     }
 }

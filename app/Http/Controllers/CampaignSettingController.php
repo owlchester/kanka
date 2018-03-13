@@ -34,7 +34,7 @@ class CampaignSettingController extends Controller
 
         $campaign->setting->update($request->all());
 
-        return redirect()->route('campaigns.index', ['tab' => 'setting'])
+        return redirect()->route('campaigns.index', ['#setting'])
             ->with('success', trans('campaigns.settings.edit.success'));
     }
 }

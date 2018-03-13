@@ -31,7 +31,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('attribute_templates.show.tabs.attributes') }}</a>
+                        <a href="#attribute">{{ trans('attribute_templates.show.tabs.attributes') }}</a>
                     </li>
                 </ul>
 

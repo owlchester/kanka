@@ -135,36 +135,36 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history" data-toggle="tab" aria-expanded="false">
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history">
                             {{ trans('characters.show.tabs.history') }}
                         </a></li>
 
                     @if (Auth::user()->can('personality', $model))
-                    <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}"><a href="#personality" data-toggle="tab" aria-expanded="false">
+                    <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}"><a href="#personality">
                             {{ trans('characters.show.tabs.personality') }}
                         </a></li>
-                    <li class="{{ (request()->get('tab') == 'free' ? ' active' : '') }}"><a href="#free" data-toggle="tab" aria-expanded="false">
+                    <li class="{{ (request()->get('tab') == 'free' ? ' active' : '') }}"><a href="#free">
                             {{ trans('characters.show.tabs.free') }}
                         </a></li>
                     @endif
                     @can('relation', $model)
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}"><a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}"><a href="#relations">{{ trans('crud.tabs.relations') }}</a></li>
                     @endcan
                     @if ($campaign->enabled('organisations'))
                         @can('organisation', $model)
-                    <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation" data-toggle="tab" aria-expanded="false">
+                    <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation">
                             {{ trans('characters.show.tabs.organisations') }}
                         </a></li>
                         @endcan
                     @endif
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
                     @endcan
                     @can('permission', $model)
                     <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
-                        <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                        <a href="#permissions">{{ trans('crud.tabs.permissions') }}</a>
                     </li>
                     @endcan
                 </ul>

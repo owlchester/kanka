@@ -69,7 +69,7 @@ class CampaignUserController extends Controller
     public function update(StoreCampaignUser $request, CampaignUser $campaignUser)
     {
         $campaignUser->update($request->all());
-        return redirect()->route('campaigns.index', ['tab' => 'relation']);
+        return redirect()->route('campaigns.index', ['#relation']);
     }
 
     /**
@@ -81,6 +81,6 @@ class CampaignUserController extends Controller
     public function destroy(CampaignUser $campaignUser)
     {
         $campaignUser->delete();
-        return redirect()->route('campaigns.index', ['tab' => 'relation']);
+        return redirect()->route('campaigns.index', ['#relation']);
     }
 }

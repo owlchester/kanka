@@ -52,7 +52,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
 
         $relation = OrganisationMember::create($request->all());
-        return redirect()->route('organisations.show', [$organisation->id, 'tab' => 'member'])
+        return redirect()->route('organisations.show', [$organisation->id, '#member'])
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -100,7 +100,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
 
         $organisationMember->update($request->all());
-        return redirect()->route('organisations.show', [$organisation->id, 'tab' => 'member'])
+        return redirect()->route('organisations.show', [$organisation->id, '#member'])
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -115,7 +115,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
 
         $organisationMember->delete();
-        return redirect()->route('organisations.show', [$organisationMember->organisation_id, 'tab' => 'member'])
+        return redirect()->route('organisations.show', [$organisationMember->organisation_id, '#member'])
             ->with('success', trans($this->view . '.destroy.success'));
     }
 }

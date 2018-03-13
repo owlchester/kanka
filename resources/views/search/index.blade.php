@@ -36,7 +36,7 @@
                     @foreach ($results as $element => $values)
                         @if (count($values) > 0)
                         <li class="{{ ($element == $active ? 'active' : null) }}">
-                            <a href="#{{ $element }}" data-toggle="tab" aria-expanded="false">
+                            <a href="#{{ $element }}">
                                 {{ trans('entities.' . $element) }}
                                 <span class="badge bg-blue">{{ count($values) }}</span>
                             </a>

@@ -98,7 +98,7 @@ class QuestForeignController extends Controller
         $parentRoute = explode('.', $this->view)[0];
 
         return redirect()
-            ->route('quests.show', [$parent->id, 'tab' => $this->tab])
+            ->route('quests.show', [$parent->id, '#' . $this->tab])
             ->with('success', trans($this->view . '.create.success', ['name' => $parent->name]));
     }
 
@@ -140,7 +140,7 @@ class QuestForeignController extends Controller
         $model->update($request->all());
         $parentRoute = explode('.', $this->view)[0];
 
-        return redirect()->route($parentRoute . '.show', [$parent->id, 'tab' => $this->tab])
+        return redirect()->route($parentRoute . '.show', [$parent->id, '#' . $this->tab])
             ->with('success', trans($this->view . '.edit.success', ['name' => $parent->name]));
     }
 
@@ -157,7 +157,7 @@ class QuestForeignController extends Controller
         $parentRoute = explode('.', $this->view)[0];
 
         return redirect()
-            ->route($parentRoute . '.show', [$parent->id, 'tab' => $this->tab])
+            ->route($parentRoute . '.show', [$parent->id, '#' . $this->tab])
             ->with('success', trans($this->view . '.destroy.success', ['name' => $parent->name]));
     }
 }

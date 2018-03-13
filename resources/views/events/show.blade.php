@@ -61,21 +61,21 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#information" data-toggle="tab" aria-expanded="false">{{ trans('events.show.tabs.information') }}</a>
+                        <a href="#information">{{ trans('events.show.tabs.information') }}</a>
                     </li>
                     @can('relation', $model)
                     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.relations') }}</a>
+                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
                     </li>
                     @endcan
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.attributes') }}</a>
+                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
                     @endcan
                     @can('permission', $model)
                         <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
-                            <a href="#permissions" data-toggle="tab" aria-expanded="false">{{ trans('crud.tabs.permissions') }}</a>
+                            <a href="#permissions">{{ trans('crud.tabs.permissions') }}</a>
                         </li>
                     @endcan
                 </ul>
