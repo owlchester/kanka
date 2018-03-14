@@ -25,4 +25,10 @@ return [
     ],
     'title'         => 'Dashboard',
     'latest_release' => 'Latest Release',
+    'notifications' => [
+        'modal' => [
+            'title' => 'Important Notification',
+            'confirm' => 'Got it'
+        ]
+    ]
 ];

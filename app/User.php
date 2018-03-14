@@ -47,7 +47,7 @@ class User extends \TCG\Voyager\Models\User
 
     /**
      * Get the user's campaign
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function dashboardSetting()
     {
@@ -130,11 +130,17 @@ class User extends \TCG\Voyager\Models\User
         return in_array($this->campaign_role, ['member', 'owner']);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function logs()
     {
         return $this->hasMany('App\Models\UserLog', 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function permissions()
     {
         return $this->hasMany('App\Models\CampaignPermission', 'user_id');
@@ -142,7 +148,7 @@ class User extends \TCG\Voyager\Models\User
 
     /**
      * Get the user's roles
-     * @return $this
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function roles()
     {
@@ -151,7 +157,7 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * @return $this
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function campaignRoleUser()
     {

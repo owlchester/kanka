@@ -174,6 +174,7 @@ $(document).ready(function() {
     }
 
     manageTabs();
+    manageDashboardNotifications();
 });
 // Live search on forms
 /*$.each($('.datagrid-search'), function(index) {
@@ -268,6 +269,30 @@ function manageTabs()
     var hash = window.location.hash;
     console.log('preload', 'ul.nav-tabs > a[href="' + hash + '"]');
     $('ul.nav-tabs > li > a[href="' + hash + '"]').tab('show');
+}
+
+/**
+ *
+ */
+function manageDashboardNotifications()
+{
+    $.each($('.click-notification'), function(index) {
+        $(this).modal();
+    });
+
+    $.each($('.notification-delete'), function(index) {
+        $(this).on('click', function() {
+            $.ajax({
+                url: $(this).attr('data-url'),
+                dataType: 'json'
+            });
+
+            // Had this in the done, but it never fired?
+            var parent = $(this).attr('data-parent');
+            $('#' + parent).modal('toggle');
+        });
+
+    });
 }
 
 require('./attributes.js');

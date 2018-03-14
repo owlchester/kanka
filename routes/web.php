@@ -138,6 +138,9 @@ Route::group([
 
     Route::post('/entities/create', 'EntityController@create')->name('entities.create');
 
+    // Notification
+    Route::get('/notifications/delete/{id}', 'NotificationController@delete')->name('notifications.delete');
+
 });
 
 Route::group(['prefix' => 'admin'], function () {

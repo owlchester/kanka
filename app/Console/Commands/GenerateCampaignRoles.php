@@ -3,9 +3,13 @@
 namespace App\Console\Commands;
 
 use App\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
+use App\Notifications\Release;
+use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class GenerateCampaignRoles extends Command
 {
@@ -40,13 +44,17 @@ class GenerateCampaignRoles extends Command
      */
     public function handle()
     {
-        $existingRoles = CampaignRole::get();
-        foreach ($existingRoles as $role) {
-            $role->delete();
-        }
+        DB::statement("SET foreign_key_checks=0");
+        CampaignPermission::truncate();
+        CampaignRoleUser::truncate();
+        CampaignRole::truncate();
+        DB::statement("SET foreign_key_checks=1");
 
+        $roleCount = $campaignCount = 0;
         $campaigns = Campaign::all();
         foreach ($campaigns as $campaign) {
+            $campaignCount++;
+            $roleCount++;
             $role = CampaignRole::create([
                 'campaign_id' => $campaign->id,
                 'is_admin' => true,
@@ -63,12 +71,14 @@ class GenerateCampaignRoles extends Command
 
             // Need to do the other roles?
             $members = $campaign->members()->where('role', 'member')->get();
+
             if (!empty($members)) {
                 $role = CampaignRole::create([
                     'campaign_id' => $campaign->id,
                     'is_admin' => false,
                     'name' => 'Member',
                 ]);
+                $roleCount++;
 
                 // Assign roles
 
@@ -87,6 +97,7 @@ class GenerateCampaignRoles extends Command
                     'is_admin' => false,
                     'name' => 'Viewer',
                 ]);
+                $roleCount++;
 
                 foreach ($viewers as $member) {
                     $userRole = CampaignRoleUser::create([
@@ -96,5 +107,12 @@ class GenerateCampaignRoles extends Command
                 }
             }
         }
+
+        // Notify everyone
+        foreach (User::all() as $user) {
+            $user->notify(new Release('permissions'));
+        }
+
+        $this->info("Generated $roleCount roles for $campaignCount campaigns");
     }
 }
