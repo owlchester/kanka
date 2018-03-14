@@ -240,8 +240,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.min.js" async></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js" async></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="/vendor/jquery-easing/jquery.easing.min.js" async></script>
@@ -249,7 +249,7 @@
     <!-- Custom scripts for this template -->
     <script src="/js/front/new-age.min.js" async></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
     <script>
         WebFont.load({
             google: {

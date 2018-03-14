@@ -8,6 +8,9 @@
     <a href="{{ route($name . '.create') }}" class="btn btn-default btn-block">
         <i class="fa fa-plus" aria-hidden="true"></i> {{ trans('crud.actions.new') }}
     </a>
+    {{--<a href="{{ route($name . '.create', ['copy' => $model->id]) }}" class="btn btn-default btn-block">--}}
+        {{--<i class="fa fa-copy" aria-hidden="true"></i> {{ trans('crud.actions.copy') }}--}}
+    {{--</a>--}}
 @endcan
 
 @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
