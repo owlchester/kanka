@@ -85,6 +85,8 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
+        //if ()
+
         return view('cruds.create', array_merge(['name' => $this->view], $params));
     }
 

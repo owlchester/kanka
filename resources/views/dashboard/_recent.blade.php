@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 dashboard-box">
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">{{ trans('dashboard.recent.title', ['name' => $title]) }}</h3>
@@ -13,7 +13,7 @@
         <div class="box-body">
             <ul class="products-list product-list-in-box">
                 @foreach ($models as $model)
-                    <li class="item">
+                    <li class="item entity">
                         <div class="product-img">
                             <img src="{{ $model->getImageUrl(true) }}" title="{{ $model->name }} Image" alt="{{ $model->name }} Image">
                         </div>
@@ -23,7 +23,7 @@
                                 <a href="{{ route('families.show', $model->family_id) }}">{{ $model->family->name }}</a>
                             @endif
                             <span class="pull-right product-description">{{ $model->elapsed() }}</span>
-                            <p class="text-justify">
+                            <p class="text-justify entity-short">
                                 {{ $model->shortHistory() }}
                             </p>
                         </div>

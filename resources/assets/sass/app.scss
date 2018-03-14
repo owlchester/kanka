@@ -108,3 +108,14 @@ table tbody td {
 tr.tr-hover {
   cursor: pointer;
 }
+
+// Dashboard home
+.dashboard-box {
+  p.entity-short {
+    margin: 0;
+  }
+
+  li.entity {
+    min-height: 90px;
+  }
+}
