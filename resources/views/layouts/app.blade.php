@@ -37,7 +37,7 @@
     <link href="{{ asset('css/app.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}?v={{ setting('kanka.version') }}" async></script>
+    <script src="{{ asset('js/app.js') }}?v={{ setting('kanka.version') }}"></script>
     <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js" async></script>
 </head>
 <body class="skin-black sidebar-mini @if (Session::has('campaign_id')) @else layout-top-nav @endif">
