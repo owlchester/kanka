@@ -11252,9 +11252,10 @@ window.Vue = __webpack_require__(38);
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-var app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
+
 
 // add custom js
 /*$('.sidebar-toggle').on('click', function() {
@@ -11266,42 +11267,44 @@ var app = new Vue({
     }
 });*/
 
-if ($('.select2').length > 0) {
-    $.each($('.select2'), function (index) {
-
-        //        var newOptions = [];
-        //        $(this).find('option').each(function() {
-        //            var newOption = new Option(this.text, this.id, true, true);
-        //            newOptions.push(newOption);
-        //        });
-
-        $(this).select2({
-            //            data: newOptions,
-            placeholder: $(this).attr('data-placeholder'),
-            allowClear: true,
-            minimumInputLength: 0,
-            ajax: {
-                quietMillis: 200,
-                url: $(this).attr('data-url'),
-                dataType: 'json',
-                data: function data(params) {
-                    return {
-                        q: $.trim(params.term)
-                    };
-                },
-                processResults: function processResults(data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
-            }
-        });
-    });
-}
-
 // Need to wait for ckeditor cdn
 $(document).ready(function () {
+
+    if ($('.select2').length > 0) {
+        console.log('found select 2s');
+        $.each($('.select2'), function (index) {
+
+            //        var newOptions = [];
+            //        $(this).find('option').each(function() {
+            //            var newOption = new Option(this.text, this.id, true, true);
+            //            newOptions.push(newOption);
+            //        });
+
+            $(this).select2({
+                //            data: newOptions,
+                placeholder: $(this).attr('data-placeholder'),
+                allowClear: true,
+                minimumInputLength: 0,
+                ajax: {
+                    quietMillis: 200,
+                    url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    data: function data(params) {
+                        return {
+                            q: $.trim(params.term)
+                        };
+                    },
+                    processResults: function processResults(data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    }
+
     if ($('.html-editor').length > 0) {
         $.each($('.html-editor'), function (index) {
             // Replace the <textarea id="editor1"> with a CKEditor
@@ -11491,14 +11494,13 @@ function manageTabs() {
 
     // store the currently selected tab in the hash value
     $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
-        var id = $(e.target).attr("href").substr(1);
-        window.location.hash = id;
+        var tabId = $(e.target).attr("href").substr(1);
+        window.location.hash = tabId;
     });
 
     // on load of the page: switch to the currently selected tab
-    var hash = window.location.hash;
-    console.log('preload', 'ul.nav-tabs > a[href="' + hash + '"]');
-    $('ul.nav-tabs > li > a[href="' + hash + '"]').tab('show');
+    var tabHash = window.location.hash;
+    $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
 
 /**

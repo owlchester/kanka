@@ -49,6 +49,7 @@ class CharacterController extends CrudController
      */
     public function random()
     {
+        // We replace the source for the form prefill function in the view
         return $this->crudCreate();
     }
 

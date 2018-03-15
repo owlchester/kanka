@@ -1,3 +1,5 @@
+@inject('formService', 'App\Services\FormService')
+
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
@@ -9,13 +11,13 @@
             <div class="panel-body">
                 <div class="form-group required">
                     <label>{{ trans('families.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     <label>{{ trans('families.fields.location') }}</label>
                     <div class="input-group input-group-sm">
-                        {!! Form::select('location_id', (isset($model) && !empty($model->location) ? [$model->location_id => $model->location->name] : []),
+                        {!! Form::select('location_id', (isset($model) && !empty($model->location) ? [$model->location_id => $model->location->name] : $formService->prefillSelect('location', $source)),
                          null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'),
                          'data-placeholder' => trans('families.placeholders.location')]) !!}
                         <div class="input-group-btn">
@@ -31,7 +33,7 @@
 
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private') !!}
+                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
                         {{ trans('crud.fields.is_private') }}
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
@@ -57,7 +59,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('families.fields.history') }}</label>
-                    {!! Form::textarea('history', null, ['class' => 'form-control html-editor', 'id' => 'history']) !!}
+                    {!! Form::textarea('history', $formService->prefill('history', $source), ['class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
                 <div class="form-group">
                     <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>

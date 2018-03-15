@@ -1,3 +1,5 @@
+@inject('formService', 'App\Services\FormService')
+
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
@@ -8,16 +10,16 @@
             <div class="panel-body">
                 <div class="form-group required">
                     <label>{{ trans('locations.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => trans('locations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('locations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('locations.fields.type') }}</label>
-                    {!! Form::text('type', null, ['placeholder' => trans('locations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('locations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('locations.fields.location') }}</label>
                     <div class="input-group input-group-sm">
-                        {!! Form::select('parent_location_id', (!empty($model->parentLocation) ? [$model->parent_location_id => $model->parentLocation->name] : []),
+                        {!! Form::select('parent_location_id', (!empty($model->parentLocation) ? [$model->parent_location_id => $model->parentLocation->name] : $formService->prefillSelect('parentLocation', $source)),
                         null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
                         <div class="input-group-btn">
                             <a class="btn btn-tab-form new-entity-selector" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="parent_location_id" data-entity="locations">
@@ -30,7 +32,7 @@
                 <hr>
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private') !!}
+                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
                         {{ trans('crud.fields.is_private') }}
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
@@ -56,7 +58,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('locations.fields.description') }}</label>
-                    {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+                    {!! Form::textarea('description', $formService->prefill('description', $source), ['class' => 'form-control html-editor', 'id' => 'description']) !!}
                 </div>
                 <div class="form-group">
                     <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
@@ -70,7 +72,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('locations.fields.history') }}:</label>
-                    {!! Form::textarea('history', null, ['class' => 'form-control html-editor', 'id' => 'history']) !!}
+                    {!! Form::textarea('history', $formService->prefill('history', $source), ['class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
                 <div class="form-group">
                     <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>

@@ -5,6 +5,7 @@ return [
         'move'  => 'Move',
         'back' => 'Back',
         'new' => 'New',
+        'copy' => 'Copy',
     ],
     'add'           => 'Add',
     'cancel'        => 'Cancel',

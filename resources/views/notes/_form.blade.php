@@ -1,3 +1,5 @@
+@inject('formService', 'App\Services\FormService')
+
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
@@ -8,15 +10,15 @@
             <div class="panel-body">
                 <div class="form-group required">
                     <label>{{ trans('notes.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => trans('notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 <div class="form-group">
                     <label>{{ trans('notes.fields.type') }}</label>
-                    {!! Form::text('type', null, ['placeholder' => trans('notes.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('notes.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private') !!}
+                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
                         {{ trans('crud.fields.is_private') }}
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
@@ -41,7 +43,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{ trans('notes.fields.description') }}</label>
-                    {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+                    {!! Form::textarea('description', $formService->prefill('description', $source), ['class' => 'form-control html-editor', 'id' => 'description']) !!}
                 </div>
                 <div class="form-group">
                     <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>

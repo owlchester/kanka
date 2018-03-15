@@ -85,7 +85,15 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
-        //if ()
+        if (!isset($params['source'])) {
+            $copyId = request()->input('copy');
+            if (!empty($copyId)) {
+                $model = new $this->model;
+                $params['source'] = $model->findOrFail($copyId);
+            } else {
+                $params['source'] = null;
+            }
+        }
 
         return view('cruds.create', array_merge(['name' => $this->view], $params));
     }
