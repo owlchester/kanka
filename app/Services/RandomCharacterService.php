@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Character;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class RandomCharacterService
 {
@@ -110,7 +111,7 @@ class RandomCharacterService
             return [];
         }
 
-        $first = (new $model)->inRandomOrder()->first();
+        $first = (new $model)->acl(Auth::user())->inRandomOrder()->first();
         if (!empty($first)) {
             return [$first->id => $first->name];
         }

@@ -96,7 +96,6 @@ abstract class MiscModel extends Model
             $entityIds[] = $permission->entityId();
         }
 
-
         return $query->whereIn('id', $entityIds);
     }
 

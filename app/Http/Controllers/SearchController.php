@@ -15,6 +15,7 @@ use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\LinkerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -53,7 +54,7 @@ class SearchController extends Controller
         foreach ($this->entity->entities() as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
-                $results[$element] = $model->search($term)->limit(5)->get();
+                $results[$element] = $model->acl(Auth::user())->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
             }
         }
@@ -92,9 +93,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Location::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Location::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Location::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Location::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
 
         $formatted = [];
@@ -116,9 +117,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Character::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Character::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Character::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Character::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -138,9 +139,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Family::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Family::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Family::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Family::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -160,9 +161,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Note::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Note::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Note::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Note::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -182,9 +183,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Organisation::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Organisation::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Organisation::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Organisation::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -204,9 +205,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Event::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Event::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Event::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Event::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -226,9 +227,9 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Quest::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Quest::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Quest::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Quest::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

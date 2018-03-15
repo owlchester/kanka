@@ -8,6 +8,7 @@ use App\Http\Requests\StoreLocation;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -51,6 +52,7 @@ class LocationController extends CrudController
         ]];
 
         $search = $model
+            ->acl(Auth::user())
             ->search(request()->get('search'))
             ->order(request()->get('order'), request()->has('desc'));
 
