@@ -11256,16 +11256,8 @@ window.Vue = __webpack_require__(38);
 //     el: '#app'
 // });
 
-
-// add custom js
-/*$('.sidebar-toggle').on('click', function() {
-    var cls = $('body').hasClass('sidebar-collapse');
-    if (cls == true) {
-        $('body').removeClass('sidebar-collapse');
-    } else {
-        $('body').addClass('sidebar-collapse');
-    }
-});*/
+var ckEditorCtrl = false;
+var ckEditorForm = false;
 
 // Need to wait for ckeditor cdn
 $(document).ready(function () {
@@ -11312,6 +11304,42 @@ $(document).ready(function () {
             CKEDITOR.replace($(this).attr('id'), {
                 removePlugins: 'sourcearea',
                 removeButtons: 'Source'
+            });
+
+            var editor = CKEDITOR.instances[$(this).attr('id')];
+            console.log('editors', editor);
+            //editor.setKeystroke( CKEDITOR.CTRL + 115, false );  // Disabled Ctrl+S keystroke assignment.
+
+            ckEditorForm = $(this).parents('form:first');
+
+            editor.on('contentDom', function (evt) {
+                editor.document.on('keyup', function (event) {
+                    if (event.data.$.keyCode == 17) {
+                        ckEditorCtrl = false;
+                    }
+                });
+
+                editor.document.on('keydown', function (event) {
+                    if (event.data.$.keyCode == 17) {
+                        ckEditorCtrl = true;
+                    }
+                    console.log('keyCode', event.data.$.keyCode);
+                    console.log('ctrl?', ckEditorCtrl);
+                    if (event.data.$.keyCode == 83 && ckEditorCtrl == true) {
+                        try {
+                            event.data.$.preventDefault();
+                            console.log('this', $(this));
+                            console.log('parents', $(this).parents('form:first'));
+                            ckEditorForm.submit();
+                        } catch (err) {}
+
+                        //Call to your save function
+
+                        return false;
+                    }
+                    //console.log('event', event);
+                    //console.log('keydown', event.data.$.keyCode);
+                });
             });
         });
     }

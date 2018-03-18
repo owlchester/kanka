@@ -21,17 +21,8 @@ window.Vue = require('vue');
 //     el: '#app'
 // });
 
-
-// add custom js
-/*$('.sidebar-toggle').on('click', function() {
-    var cls = $('body').hasClass('sidebar-collapse');
-    if (cls == true) {
-        $('body').removeClass('sidebar-collapse');
-    } else {
-        $('body').addClass('sidebar-collapse');
-    }
-});*/
-
+var ckEditorCtrl = false;
+var ckEditorForm = false;
 
 // Need to wait for ckeditor cdn
 $(document).ready(function() {
@@ -78,6 +69,37 @@ $(document).ready(function() {
             CKEDITOR.replace($(this).attr('id'), {
                 removePlugins: 'sourcearea',
                 removeButtons: 'Source'
+            });
+
+            // Submit the form on ctrl+s when in the ckeditor field
+            var editor = CKEDITOR.instances[$(this).attr('id')];
+            ckEditorForm = $(this).parents('form:first');
+
+            editor.on( 'contentDom', function( evt ) {
+                editor.document.on( 'keyup', function(event) {
+                    if(event.data.$.keyCode == 17) {
+                        ckEditorCtrl = false;
+                    }
+                });
+
+                editor.document.on('keydown', function (event) {
+                    if(event.data.$.keyCode == 17) {
+                        ckEditorCtrl = true;
+                    }
+                    if(event.data.$.keyCode == 83 && ckEditorCtrl == true) {
+                        try {
+                            event.data.$.preventDefault();
+                            ckEditorForm.submit();
+                        } catch(err) {}
+
+                        //Call to your save function
+
+                        return false;
+
+                    }
+                    //console.log('event', event);
+                    //console.log('keydown', event.data.$.keyCode);
+                });
             });
         });
     }
