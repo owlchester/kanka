@@ -32,7 +32,7 @@
                                     @if (App::getLocale() == $localeCode)
                                         <a href="#"><strong>{{ $langData['native'] }}</strong></a>
                                     @else
-                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}?updateLocale=true">
                                             {{ $langData['native'] }}
                                         </a>
                                     @endif

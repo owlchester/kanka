@@ -92,13 +92,8 @@ $(document).ready(function() {
                             ckEditorForm.submit();
                         } catch(err) {}
 
-                        //Call to your save function
-
                         return false;
-
                     }
-                    //console.log('event', event);
-                    //console.log('keydown', event.data.$.keyCode);
                 });
             });
         });
