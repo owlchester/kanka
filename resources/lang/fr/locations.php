@@ -46,11 +46,15 @@ return [
         'history'       => 'Histoire',
         'image'         => 'Image',
         'location'      => 'Lieu',
+        'locations'     => 'Lieux',
         'name'          => 'Nom',
         'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'index'         => [
+        'actions'       => [
+            'explore_view'  => 'Mode Exploration',
+        ],
         'add'           => 'New Lieu',
         'description'   => 'Gérer les lieux of :name.',
         'header'        => 'Lieux de :name',

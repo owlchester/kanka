@@ -1,18 +1,19 @@
 <?php
 
 return [
-    'campaigns'     => [
+    'campaigns'         => [
         'current'   => 'Campagne actuelle',
         'manage'    => 'Gérer mes campagnes',
     ],
-    'description'   => 'Place à la créativité',
-    'recent'        => [
+    'description'       => 'Place à la créativité',
+    'latest_release'    => 'Dernière modification',
+    'recent'            => [
         'add'           => 'Nouveau :name',
         'no_entries'    => 'Aucun élément de ce type pour l\'instant.',
         'title'         => 'Modifications récentes sur les :name',
         'view'          => 'Tous les :name',
     ],
-    'settings'      => [
+    'settings'          => [
         'description'   => 'Personnalisation du tableau de bord',
         'edit'          => [
             'success'   => 'Paramètres modifiés.',
@@ -23,5 +24,5 @@ return [
         ],
         'title'         => 'Paramètre du tableau de bord',
     ],
-    'title'         => 'Tableau de bord',
+    'title'             => 'Tableau de bord',
 ];

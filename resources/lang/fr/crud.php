@@ -2,9 +2,47 @@
 
 return [
     'actions'       => [
+        'back'  => 'Retour',
         'move'  => 'Déplacer',
+        'new'   => 'Nouveau',
     ],
     'add'           => 'Ajouter',
+    'attributes'    => [
+        'actions'       => [
+            'add'               => 'Ajouter un attribut',
+            'apply_template'    => 'Appliquer un modèle d\'attribut',
+            'manage'            => 'Gérer',
+        ],
+        'create'        => [
+            'success'   => 'Attribut :name ajouté à :entity.',
+            'title'     => 'Nouvel attribut pour :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Attribut :name supprimé de :entity.',
+        ],
+        'edit'          => [
+            'success'   => 'Attribut :name modifié pour :entity.',
+            'title'     => 'Modifier l\'attribut pour :name',
+        ],
+        'fields'        => [
+            'attribute' => 'Attribut',
+            'template'  => 'Modèle',
+            'value'     => 'Valeur',
+        ],
+        'index'         => [
+            'success'   => 'Attributs modifiés pour :entity.',
+            'title'     => 'Attributs pour :name',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Nombre de quêtes, niveau de difficulté, initiative, population',
+            'template'  => 'Sélectionner un modèle',
+            'value'     => 'Valeur de l\'attribut',
+        ],
+        'template'      => [
+            'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
+            'title'     => 'Appliquer un modèle d\'attribut pour :name',
+        ],
+    ],
     'cancel'        => 'Annuler',
     'click_modal'   => [
         'close'     => 'Fermer',
@@ -17,6 +55,9 @@ return [
         'delete'        => 'Supprimer',
         'description'   => 'Est-tu sûr de vouloir supprimer :tag?',
         'title'         => 'Confirmation la suppression',
+    ],
+    'destroy_many'  => [
+        'success'   => ':count élément supprimé.|:count éléments supprimés.',
     ],
     'edit'          => 'Modifier',
     'fields'        => [
@@ -79,7 +120,8 @@ return [
     'search'        => 'Rechercher',
     'select'        => 'Sélection',
     'tabs'          => [
-        'relations' => 'Relations',
+        'attributes'    => 'Attributs',
+        'relations'     => 'Relations',
     ],
     'update'        => 'Modifier',
     'view'          => 'Voir',
