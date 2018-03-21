@@ -1,14 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'create'        => [
-            'description'   => 'Add an attribute to a character',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Number of battles won, date of wedding, Initiative',
-        ],
-    ],
     'fields'        => [
         'eye'   => 'Eye color',
     ],

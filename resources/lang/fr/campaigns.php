@@ -98,7 +98,7 @@ return [
             'owner'     => 'Administrateur',
             'viewer'    => 'Observateur',
         ],
-        'your_role' => 'Rôle: \'<i>:role</i>\'',
+        'your_role' => 'Rôle: \'<i>:rôle</i>\'',
     ],
     'placeholders'  => [
         'description'   => 'Une petite description de la campagne',
@@ -122,5 +122,52 @@ return [
             'settings'      => 'Paramètres',
         ],
         'title'         => 'Campagne :name',
+    ],
+    'roles' => [
+        'actions' => [
+            'add' => 'Ajouter un rôle'
+        ],
+        'create' => [
+            'title' => 'Créer un nouveau rôle pour :name',
+            'success' => 'Rôle créé.',
+        ],
+        'edit' => [
+            'title' => 'Modifier le rôle :name',
+            'success' => 'Rôle modifié.',
+        ],
+        'destroy' => [
+            'success' => 'Rôle supprimé.',
+        ],
+        'show' => [
+            'title' => 'Rôles de campagne',
+            'description' => '',
+        ],
+        'members' => 'Membres',
+        'users' => [
+            'actions' => [
+                'add' => 'Ajouter',
+            ],
+            'create' => [
+                'title' => 'Ajouter un utilisateur au rôle :name',
+                'success' => 'Utilisateur ajouté au rôle.',
+            ],
+            'destroy' => [
+                'success' => 'Utilisateur supprimé du rôle.',
+            ],
+            'fields' => [
+                'name' => 'Nom',
+            ]
+        ],
+        'fields' => [
+            'name' => 'Nom',
+            'users' => 'Utilisateurs',
+            'permissions' => 'Permissions',
+        ],
+        'placeholders' => [
+            'name' => 'Nom du rôle',
+        ],
+        'permissions' => [
+            'hint' => 'Ce rôle a automatiquement accès à tout.',
+        ]
     ],
 ];

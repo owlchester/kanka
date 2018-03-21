@@ -1,31 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'actions'       => [
-            'add'   => 'Füge ein Attribut hinzu',
-        ],
-        'create'        => [
-            'description'   => 'Setze ein Attribut für einen Ort',
-            'success'       => 'Attribut hinzugefügt zu :name.',
-            'title'         => 'Neue Attribute für :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Ortsattribut für :name entfernt.',
-        ],
-        'edit'          => [
-            'success'   => 'Ortsattribut für :name aktualisiert.',
-            'title'     => 'Aktualisiere Attribut für :name',
-        ],
-        'fields'        => [
-            'attribute' => 'Attribut',
-            'value'     => 'Wert',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Population, Anzahl an Fluten, Armeegröße',
-            'value'     => 'Wert des Attributs',
-        ],
-    ],
     'create'        => [
         'success'   => 'Ort \':name\' erstellt.',
         'title'     => 'Erstelle einen neuen Ort',

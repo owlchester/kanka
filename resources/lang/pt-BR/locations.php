@@ -1,31 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'actions'       => [
-            'add'   => 'Adicionar um atributo',
-        ],
-        'create'        => [
-            'description'   => 'Definir um atributo a um local',
-            'success'       => 'Atributo adicionado to :name.',
-            'title'         => 'Novo atributo para :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Atributo de :name removido.',
-        ],
-        'edit'          => [
-            'success'   => 'Atributo de :name atualizado.',
-            'title'     => 'Atualizar atributo de :name',
-        ],
-        'fields'        => [
-            'attribute' => 'Atributo',
-            'value'     => 'Valor',
-        ],
-        'placeholders'  => [
-            'attribute' => 'População, Número de inundações, Tamanho das guarnições',
-            'value'     => 'Valor do atributo',
-        ],
-    ],
     'create'        => [
         'success'   => 'Local \':name\' criado.',
         'title'     => 'Criar um novo local',

@@ -1,32 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'actions'       => [
-            'add'   => 'Ajouter un attribut',
-        ],
-        'create'        => [
-            'description'   => 'Défini un attribut pour une personne',
-            'success'       => 'Attribut ajouté pour :name.',
-            'title'         => 'Nouveau Attribut pour :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Attribut pour :name supprimé.',
-        ],
-        'edit'          => [
-            'description'   => '',
-            'success'       => 'Attribut pour :name modifié.',
-            'title'         => 'Modifier attribut pour :name',
-        ],
-        'fields'        => [
-            'attribute' => 'Attribut',
-            'value'     => 'Valeur',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Nombre de bataille gagnée, date de marriage, initiative',
-            'value'     => 'Valeur',
-        ],
-    ],
     'create'        => [
         'description'   => '',
         'success'       => 'Personne \':name\' créée.',

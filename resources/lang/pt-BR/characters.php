@@ -1,31 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'actions'       => [
-            'add'   => 'Adicionar um atributo',
-        ],
-        'create'        => [
-            'description'   => 'Adicionar um atributo para um personagem',
-            'success'       => 'Atributo adicionado a :name.',
-            'title'         => 'Novo atributo para :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Atributo de :name removido.',
-        ],
-        'edit'          => [
-            'success'   => 'Atributo de :name atualizado.',
-            'title'     => 'Alterar atributo de :name',
-        ],
-        'fields'        => [
-            'attribute' => 'Atributo',
-            'value'     => 'Valor',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Numero de batalhas vencidas, dia de casamento, Iniciativa',
-            'value'     => 'Valor do atributo',
-        ],
-    ],
     'create'        => [
         'success'   => 'Personagem \':name\' criado.',
         'title'     => 'Criar um novo personagem',

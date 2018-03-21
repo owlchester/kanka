@@ -1,32 +1,6 @@
 <?php
 
 return [
-    'attributes'    => [
-        'actions'       => [
-            'add'   => 'Ajouter un attribut',
-        ],
-        'create'        => [
-            'description'   => 'Définir un attribut pour un lieu',
-            'success'       => 'Attribut ajouté à :name.',
-            'title'         => 'Nouvel attribut pour :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Attribut pour :name supprimé.',
-        ],
-        'edit'          => [
-            'description'   => '',
-            'success'       => 'Attribut pour :name modifié.',
-            'title'         => 'Modifier un attribut pour :name',
-        ],
-        'fields'        => [
-            'attribute' => 'Attribut',
-            'value'     => 'Valeur',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Population, Nombre d\'inondations, Taille',
-            'value'     => 'Valeur de l\'attribut',
-        ],
-    ],
     'create'        => [
         'description'   => '',
         'success'       => 'Lieu \':name\' créé.',
@@ -73,7 +47,23 @@ return [
             'information'   => 'Information',
             'locations'     => 'Lieux',
             'relations'     => 'Relations',
+            'map'           => 'Carte',
         ],
         'title'         => 'Lieu :name',
     ],
+    'map' => [
+        'helper' => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
+        'no_map' => 'Ajouter une carte au lieu en premier.',
+        'actions' => [
+            'points' => 'Modifier les points',
+        ],
+        'points' => [
+            'title' => 'Points pour le lieu :name'
+        ],
+        'success' => 'Points sauvegardés.',
+        'modal' => [
+            'title' => 'Cible du nouveau point',
+            'submit' => 'Ajouter',
+        ]
+    ]
 ];
