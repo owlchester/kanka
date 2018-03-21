@@ -11,5 +11,5 @@
         @endforeach
     </div>
 @else
-<p>{{ trans('location.map.helper') }}</p>
+<p>{{ trans('locations.map.no_map') }}</p>
 @endif

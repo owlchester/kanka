@@ -11467,6 +11467,9 @@ $.each($('.click-confirm'), function (index) {
     });
 });
 
+/**
+ *
+ */
 function toggleCrudMultiDelete() {
     var hide = true;
 
@@ -11505,19 +11508,23 @@ function treeViewInit() {
  * Save and manage tabs for when refreshing
  */
 function manageTabs() {
-    $('ul.nav-tabs > li > a').click(function (e) {
+    var tabLink = $('.nav-tabs li a');
+    tabLink.click(function (e) {
         e.preventDefault();
         $(this).tab('show');
+        $('.tab-content > .tab-pane.active').jScrollPane();
     });
 
     // store the currently selected tab in the hash value
-    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+    tabLink.on("shown.bs.tab", function (e) {
+        e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
-        window.location.hash = tabId;
+        // We fake a tab_ to avoid page jumps from the browser
+        window.location.hash = 'tab_' + tabId;
     });
 
     // on load of the page: switch to the currently selected tab
-    var tabHash = window.location.hash;
+    var tabHash = window.location.hash.replace('tab_', '');
     $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
 
@@ -50709,10 +50716,9 @@ $(document).ready(function () {
 });
 
 /**
- *
+ * Init Clicking on the Map
  */
 function initMapAdmin() {
-
     mapImg.on('click', function (e) {
 
         // Reset select 2
@@ -50722,6 +50728,7 @@ function initMapAdmin() {
         mapPositionX = Math.ceil((e.pageX - offset.left - 25) / mapImg.width() * 100);
         mapPositionY = Math.ceil((e.pageY - offset.top - 25) / mapImg.height() * 100);
 
+        // Don't allow negative positions
         if (mapPositionX < 0) {
             mapPositionX = 0;
         }

@@ -49,6 +49,7 @@ return [
     ],
     'map' => [
         'helper' => 'Click on the map to add a link to a location, or click on an existing point to remove it.',
+        'no_map' => 'Please upload a map to the location first.',
         'actions' => [
             'points' => 'Edit Points',
         ],

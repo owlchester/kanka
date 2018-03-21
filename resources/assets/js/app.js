@@ -234,6 +234,9 @@ $.each($('.click-confirm'), function(index) {
     });
 });
 
+/**
+ *
+ */
 function toggleCrudMultiDelete() {
     var hide = true;
 
@@ -254,8 +257,7 @@ function toggleCrudMultiDelete() {
 /**
  * Go through table trs to add on click support
  */
-function treeViewInit()
-{
+function treeViewInit() {
     var treeViewLoader = $('#location-treeview');
     var link = treeViewLoader.attr('data-url');
     $.each($('#locations > tbody > tr'), function(index) {
@@ -272,29 +274,30 @@ function treeViewInit()
 /**
  * Save and manage tabs for when refreshing
  */
-function manageTabs()
-{
-    $('ul.nav-tabs > li > a').click(function(e) {
+function manageTabs() {
+    var tabLink = $('.nav-tabs li a');
+    tabLink.click(function(e) {
         e.preventDefault();
         $(this).tab('show');
     });
 
     // store the currently selected tab in the hash value
-    $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
+    tabLink.on("shown.bs.tab", function(e) {
+        e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
-        window.location.hash = tabId;
+        // We fake a tab_ to avoid page jumps from the browser
+        window.location.hash = 'tab_' + tabId;
     });
 
     // on load of the page: switch to the currently selected tab
-    var tabHash = window.location.hash;
+    var tabHash = window.location.hash.replace('tab_', '');
     $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
 
 /**
  *
  */
-function manageDashboardNotifications()
-{
+function manageDashboardNotifications() {
     $.each($('.click-notification'), function(index) {
         $(this).modal();
     });
