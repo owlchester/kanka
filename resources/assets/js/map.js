@@ -17,10 +17,9 @@ $(document).ready(function() {
 });
 
 /**
- *
+ * Init Clicking on the Map
  */
 function initMapAdmin() {
-
     mapImg.on('click', function (e) {
 
         // Reset select 2
@@ -30,6 +29,7 @@ function initMapAdmin() {
         mapPositionX = Math.ceil(((e.pageX - offset.left - 25) / mapImg.width()) * 100);
         mapPositionY = Math.ceil(((e.pageY - offset.top - 25) / mapImg.height()) * 100);
 
+        // Don't allow negative positions
         if (mapPositionX < 0) {
             mapPositionX = 0;
         }
@@ -61,8 +61,7 @@ function initMapAdmin() {
 /**
  * Add delete click on all points
  */
-function initPointDelete()
-{
+function initPointDelete() {
     $.each($('.point'), function (index) {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function(e) {
