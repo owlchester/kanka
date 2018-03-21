@@ -105,6 +105,53 @@ return [
         'locale'        => 'La langue utilisée',
         'name'          => 'Le nom de la campagne',
     ],
+    'roles'         => [
+        'actions'       => [
+            'add'   => 'Ajouter un rôle',
+        ],
+        'create'        => [
+            'success'   => 'Rôle créé.',
+            'title'     => 'Créer un nouveau rôle pour :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Rôle supprimé.',
+        ],
+        'edit'          => [
+            'success'   => 'Rôle modifié.',
+            'title'     => 'Modifier le rôle :name',
+        ],
+        'fields'        => [
+            'name'          => 'Nom',
+            'permissions'   => 'Permissions',
+            'users'         => 'Utilisateurs',
+        ],
+        'members'       => 'Membres',
+        'permissions'   => [
+            'hint'  => 'Ce rôle a automatiquement accès à tout.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nom du rôle',
+        ],
+        'show'          => [
+            'description'   => '',
+            'title'         => 'Rôles de campagne',
+        ],
+        'users'         => [
+            'actions'   => [
+                'add'   => 'Ajouter',
+            ],
+            'create'    => [
+                'success'   => 'Utilisateur ajouté au rôle.',
+                'title'     => 'Ajouter un utilisateur au rôle :name',
+            ],
+            'destroy'   => [
+                'success'   => 'Utilisateur supprimé du rôle.',
+            ],
+            'fields'    => [
+                'name'  => 'Nom',
+            ],
+        ],
+    ],
     'settings'      => [
         'edit'      => [
             'success'   => 'Campagne modifiée.',
@@ -119,55 +166,9 @@ return [
         'tabs'          => [
             'information'   => 'Information',
             'members'       => 'Membres',
+            'roles'         => 'Rôles',
             'settings'      => 'Paramètres',
         ],
         'title'         => 'Campagne :name',
-    ],
-    'roles' => [
-        'actions' => [
-            'add' => 'Ajouter un rôle'
-        ],
-        'create' => [
-            'title' => 'Créer un nouveau rôle pour :name',
-            'success' => 'Rôle créé.',
-        ],
-        'edit' => [
-            'title' => 'Modifier le rôle :name',
-            'success' => 'Rôle modifié.',
-        ],
-        'destroy' => [
-            'success' => 'Rôle supprimé.',
-        ],
-        'show' => [
-            'title' => 'Rôles de campagne',
-            'description' => '',
-        ],
-        'members' => 'Membres',
-        'users' => [
-            'actions' => [
-                'add' => 'Ajouter',
-            ],
-            'create' => [
-                'title' => 'Ajouter un utilisateur au rôle :name',
-                'success' => 'Utilisateur ajouté au rôle.',
-            ],
-            'destroy' => [
-                'success' => 'Utilisateur supprimé du rôle.',
-            ],
-            'fields' => [
-                'name' => 'Nom',
-            ]
-        ],
-        'fields' => [
-            'name' => 'Nom',
-            'users' => 'Utilisateurs',
-            'permissions' => 'Permissions',
-        ],
-        'placeholders' => [
-            'name' => 'Nom du rôle',
-        ],
-        'permissions' => [
-            'hint' => 'Ce rôle a automatiquement accès à tout.',
-        ]
     ],
 ];

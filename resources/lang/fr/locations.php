@@ -16,11 +16,9 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personnages',
-        'description'   => 'Description',
-        'history'       => 'Histoire',
-        'image'         => 'Image',
         'location'      => 'Lieu',
         'locations'     => 'Lieux',
+        'map'           => 'Carte',
         'name'          => 'Nom',
         'relation'      => 'Relation',
         'type'          => 'Type',
@@ -34,6 +32,21 @@ return [
         'header'        => 'Lieux de :name',
         'title'         => 'Lieux',
     ],
+    'map'           => [
+        'actions'   => [
+            'points'    => 'Modifier les points',
+        ],
+        'helper'    => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
+        'modal'     => [
+            'submit'    => 'Ajouter',
+            'title'     => 'Cible du nouveau point',
+        ],
+        'no_map'    => 'Ajouter une carte au lieu en premier.',
+        'points'    => [
+            'title' => 'Points pour le lieu :name',
+        ],
+        'success'   => 'Points sauvegardés.',
+    ],
     'placeholders'  => [
         'location'  => 'Choix d\'un lieu parent',
         'name'      => 'Nom du lieu',
@@ -42,28 +55,11 @@ return [
     'show'          => [
         'description'   => 'Détail d\'un lieu',
         'tabs'          => [
-            'attributes'    => 'Attributs',
             'characters'    => 'Personnages',
             'information'   => 'Information',
             'locations'     => 'Lieux',
-            'relations'     => 'Relations',
             'map'           => 'Carte',
         ],
         'title'         => 'Lieu :name',
     ],
-    'map' => [
-        'helper' => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
-        'no_map' => 'Ajouter une carte au lieu en premier.',
-        'actions' => [
-            'points' => 'Modifier les points',
-        ],
-        'points' => [
-            'title' => 'Points pour le lieu :name'
-        ],
-        'success' => 'Points sauvegardés.',
-        'modal' => [
-            'title' => 'Cible du nouveau point',
-            'submit' => 'Ajouter',
-        ]
-    ]
 ];

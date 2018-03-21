@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'back'  => 'Retour',
+        'copy'  => 'Copier',
         'move'  => 'Déplacer',
         'new'   => 'Nouveau',
     ],
@@ -61,15 +62,21 @@ return [
     ],
     'edit'          => 'Modifier',
     'fields'        => [
-        'character' => 'Personnage',
-        'image'     => 'Image',
-        'is_private'=> 'Privé',
-        'location'  => 'Lieu',
+        'character'     => 'Personnage',
+        'description'   => 'Description',
+        'entity'        => 'Entité',
+        'history'       => 'Histoire',
+        'image'         => 'Image',
+        'is_private'    => 'Privé',
+        'location'      => 'Lieu',
     ],
     'filter'        => 'Filtre',
     'filters'       => 'Filtres',
     'hints'         => [
         'is_private'    => 'Cacher des membres de type "Observateur"',
+    ],
+    'image'         => [
+        'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
     ],
     'is_private'    => 'Cet élément est privé et pas visible.',
     'linking_help'  => 'Comment lier vers d\'autres éléments?',
@@ -99,6 +106,22 @@ return [
         'history'               => 'Histoire',
         'move'                  => 'Déplacer',
     ],
+    'permissions'   => [
+        'action'    => 'Action',
+        'actions'   => [
+            'delete'    => 'Supprimer',
+            'edit'      => 'Modifier',
+            'read'      => 'Lire',
+        ],
+        'allowed'   => 'Permis',
+        'fields'    => [
+            'member'    => 'Membre',
+            'role'      => 'Rôle',
+        ],
+        'helper'    => 'Utilisez cette interface pour affiner les utilisateurs et les rôles pouvant interagir avec cette entité.',
+        'success'   => 'Permissions enregistrées.',
+        'title'     => 'Permissions',
+    ],
     'placeholders'  => [
         'character' => 'Choix du personnage',
         'image_url' => 'Ou depuis une URL',
@@ -121,6 +144,7 @@ return [
     'select'        => 'Sélection',
     'tabs'          => [
         'attributes'    => 'Attributs',
+        'permissions'   => 'Permissions',
         'relations'     => 'Relations',
     ],
     'update'        => 'Modifier',

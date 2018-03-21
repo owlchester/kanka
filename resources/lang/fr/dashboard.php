@@ -7,6 +7,12 @@ return [
     ],
     'description'       => 'Place à la créativité',
     'latest_release'    => 'Dernière modification',
+    'notifications'     => [
+        'modal' => [
+            'confirm'   => 'Compris',
+            'title'     => 'Notification importante',
+        ],
+    ],
     'recent'            => [
         'add'           => 'Nouveau :name',
         'no_entries'    => 'Aucun élément de ce type pour l\'instant.',
