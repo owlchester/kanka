@@ -2,9 +2,47 @@
 
 return [
     'actions'       => [
+        'back'  => 'Zurück',
         'move'  => 'Verschieben',
+        'new'   => 'Neu',
     ],
     'add'           => 'Hinzufügen',
+    'attributes'    => [
+        'actions'       => [
+            'add'               => 'Attribut hinzufügen',
+            'apply_template'    => 'Eine Attributvorlage anwenden',
+            'manage'            => 'Verwalten',
+        ],
+        'create'        => [
+            'success'   => 'Attribut :name zu :entity hinzugefügt',
+            'title'     => 'Neues Attribute für :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Attribut :name für :entity entfernt',
+        ],
+        'edit'          => [
+            'success'   => 'Attribut :name für :entity aktualisiert',
+            'title'     => 'Aktualisiere Attribut für :name',
+        ],
+        'fields'        => [
+            'attribute' => 'Attribut',
+            'template'  => 'Vorlage',
+            'value'     => 'Wert',
+        ],
+        'index'         => [
+            'success'   => 'Attribute für :entity aktualisiert',
+            'title'     => 'Attribute für :name',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung',
+            'template'  => 'Wähle eine Vorlage',
+            'value'     => 'Wert des Attributs',
+        ],
+        'template'      => [
+            'success'   => 'Attributvorlage :name wird auf :entity angewendet',
+            'title'     => 'Wende eine Attributvorlage auf :name an',
+        ],
+    ],
     'cancel'        => 'Abbrechen',
     'click_modal'   => [
         'close'     => 'Schließen',
@@ -81,7 +119,8 @@ return [
     'search'        => 'Suchen',
     'select'        => 'Auswählen',
     'tabs'          => [
-        'relations' => 'Beziehungen',
+        'attributes'    => 'Attribute',
+        'relations'     => 'Beziehungen',
     ],
     'update'        => 'Aktualisieren',
     'view'          => 'Ansehen',

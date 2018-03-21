@@ -19,5 +19,6 @@ return [
     'releases'      => 'Notas de atualização',
     'search'        => 'Buscar...',
     'support'       => 'Suporte / Comunidade',
+    'team'          => 'Time',
     'translations'  => 'Traduções',
 ];

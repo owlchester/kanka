@@ -1,18 +1,19 @@
 <?php
 
 return [
-    'campaigns'     => [
+    'campaigns'         => [
         'current'   => 'Die aktuelle Kampagne',
         'manage'    => 'Kampagnen verwalten',
     ],
-    'description'   => 'Das Zuhause deiner Kreativität',
-    'recent'        => [
+    'description'       => 'Das Zuhause deiner Kreativität',
+    'latest_release'    => 'Letztes Release',
+    'recent'            => [
         'add'           => 'Erstelle :name',
         'no_entries'    => 'Es gibt keine Einträge zu diesem Typ.',
         'title'         => 'Vor kurzem bearbeitete :name',
         'view'          => 'Alle :name ansehen',
     ],
-    'settings'      => [
+    'settings'          => [
         'description'   => 'Bearbeite, was du auf dem Dashboard siehst',
         'edit'          => [
             'success'   => 'Deine Änderungen wurden gespeichert.',
@@ -23,5 +24,5 @@ return [
         ],
         'title'         => 'Dashboard Einstellungen',
     ],
-    'title'         => 'Dashboard',
+    'title'             => 'Dashboard',
 ];

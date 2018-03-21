@@ -43,11 +43,15 @@ return [
         'history'       => 'Geschichte',
         'image'         => 'Bild',
         'location'      => 'Ort',
+        'locations'     => 'Orte',
         'name'          => 'Name',
         'relation'      => 'Beziehung',
         'type'          => 'Typ',
     ],
     'index'         => [
+        'actions'       => [
+            'explore_view'  => 'Erkundungsansicht',
+        ],
         'add'           => 'Neuer Ort',
         'description'   => 'Verwalte den Ort von :name',
         'header'        => 'Orte in :name',
