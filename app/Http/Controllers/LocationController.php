@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
+use App\Services\LocationService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -26,11 +27,18 @@ class LocationController extends CrudController
     protected $model = \App\Models\Location::class;
 
     /**
+     * @var LocationService
+     */
+    protected $locationService;
+
+    /**
      * LocationController constructor.
      */
-    public function __construct()
+    public function __construct(LocationService $locationService)
     {
         parent::__construct();
+
+        $this->locationService = $locationService;
 
         $this->indexActions[] = [
             'route' => route('locations.tree'),
@@ -70,6 +78,26 @@ class LocationController extends CrudController
         $models = $search
             ->paginate();
         return view('locations.tree', compact('models', 'name', 'model', 'actions'));
+    }
+
+    /**
+     * @param Location $location
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function map(Location $location, Request $request)
+    {
+        $this->authorize('update', $location);
+
+        if ($request->isMethod('post')) {
+
+            //dd($request->all());
+            $this->locationService->managePoints($location, $request->only('map_point'));
+
+            return redirect()->route('locations.show', [$location, '#map'])
+                ->with('success', trans('locations.map.success'));
+        }
+        return view('locations.map', compact('location'));
     }
 
 

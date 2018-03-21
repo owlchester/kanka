@@ -43,7 +43,9 @@ Route::group([
     // Random character
     Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
 
+    // Locations
     Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
+    Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
 
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');

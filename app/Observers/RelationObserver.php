@@ -3,8 +3,6 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\Models\Character;
-use App\Models\CharacterRelation;
 use App\Models\Relation;
 use App\Traits\RelationTrait;
 use Illuminate\Support\Facades\Auth;

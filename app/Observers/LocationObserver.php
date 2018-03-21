@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Session;
 class LocationObserver extends MiscObserver
 {
     /**
+     * @param MiscModel $model
+     */
+    public function saving(MiscModel $model)
+    {
+        parent::saving($model);
+
+        // Handle image. Let's use a service for this.
+        ImageService::handle($model, $model->getTable(), 60, 'map');
+    }
+
+    /**
      * @param Location $location
      */
     public function deleting(MiscModel $location)
@@ -43,5 +54,7 @@ class LocationObserver extends MiscObserver
             $sub->location_id = null;
             $sub->save();
         }
+
+        ImageService::cleanup($model, 'map');
     }
 }

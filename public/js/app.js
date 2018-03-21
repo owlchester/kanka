@@ -11223,10 +11223,10 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-__webpack_require__(43);
 __webpack_require__(44);
 __webpack_require__(45);
-module.exports = __webpack_require__(46);
+__webpack_require__(46);
+module.exports = __webpack_require__(47);
 
 
 /***/ }),
@@ -11306,10 +11306,8 @@ $(document).ready(function () {
                 removeButtons: 'Source'
             });
 
+            // Submit the form on ctrl+s when in the ckeditor field
             var editor = CKEDITOR.instances[$(this).attr('id')];
-            console.log('editors', editor);
-            //editor.setKeystroke( CKEDITOR.CTRL + 115, false );  // Disabled Ctrl+S keystroke assignment.
-
             ckEditorForm = $(this).parents('form:first');
 
             editor.on('contentDom', function (evt) {
@@ -11323,22 +11321,14 @@ $(document).ready(function () {
                     if (event.data.$.keyCode == 17) {
                         ckEditorCtrl = true;
                     }
-                    console.log('keyCode', event.data.$.keyCode);
-                    console.log('ctrl?', ckEditorCtrl);
                     if (event.data.$.keyCode == 83 && ckEditorCtrl == true) {
                         try {
                             event.data.$.preventDefault();
-                            console.log('this', $(this));
-                            console.log('parents', $(this).parents('form:first'));
                             ckEditorForm.submit();
                         } catch (err) {}
 
-                        //Call to your save function
-
                         return false;
                     }
-                    //console.log('event', event);
-                    //console.log('keydown', event.data.$.keyCode);
                 });
             });
         });
@@ -11555,6 +11545,7 @@ function manageDashboardNotifications() {
 
 __webpack_require__(41);
 __webpack_require__(42);
+__webpack_require__(43);
 
 /***/ }),
 /* 12 */
@@ -50699,7 +50690,74 @@ function initSaveKeyboardShortcut(form) {
 /* 43 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/**
+ * Map
+ */
+var mapModal, mapAdmin, mapImg, locationInput;
+var mapPositionX, mapPositionY;
+
+$(document).ready(function () {
+    // Look for a form to save
+    mapAdmin = $('#location-map-admin');
+    mapModal = $('#point-location');
+    mapImg = $('#location-map-admin img');
+    locationInput = $('#location_id');
+
+    if (mapAdmin.length === 1) {
+        initMapAdmin();
+    }
+});
+
+/**
+ *
+ */
+function initMapAdmin() {
+
+    mapImg.on('click', function (e) {
+
+        // Reset select 2
+        locationInput.val(null).trigger('change');
+
+        var offset = $(this).offset();
+        mapPositionX = Math.ceil((e.pageX - offset.left - 25) / mapImg.width() * 100);
+        mapPositionY = Math.ceil((e.pageY - offset.top - 25) / mapImg.height() * 100);
+
+        if (mapPositionX < 0) {
+            mapPositionX = 0;
+        }
+        if (mapPositionY < 0) {
+            mapPositionY = 0;
+        }
+        //console.log('pos x', x, 'pos y', y);
+
+        mapModal.modal();
+    });
+
+    var mapModalSubmit = $('#point-location-submit');
+    mapModalSubmit.on('click', function (e) {
+        mapAdmin.append('<div class="point admin" style="top:' + mapPositionY + '%;left:' + mapPositionX + '%">' + '<input type="hidden" name="map_point[]" value="' + mapPositionX + '-' + mapPositionY + '-' + locationInput.val() + '" />' + '</div>');
+        mapModal.modal('toggle');
+
+        // Reset delete on all points
+        initPointDelete();
+    });
+
+    // Handle deleting already loaded points
+    initPointDelete();
+}
+
+/**
+ * Add delete click on all points
+ */
+function initPointDelete() {
+    $.each($('.point'), function (index) {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function (e) {
+            $(this).remove();
+            e.preventDefault();
+        });
+    });
+}
 
 /***/ }),
 /* 44 */
@@ -50715,6 +50773,12 @@ function initSaveKeyboardShortcut(form) {
 
 /***/ }),
 /* 46 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

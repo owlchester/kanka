@@ -16,9 +16,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
-        'description'   => 'Description',
-        'history'       => 'History',
-        'image'         => 'Image',
+        'map' => 'Map',
         'location'      => 'Location',
         'name'          => 'Name',
         'relation'      => 'Relation',
@@ -45,7 +43,22 @@ return [
             'characters'    => 'Characters',
             'information'   => 'Information',
             'locations'     => 'Locations',
+            'map' => 'Map',
         ],
         'title'         => 'Location :name',
     ],
+    'map' => [
+        'helper' => 'Please upload a map to the location.',
+        'actions' => [
+            'points' => 'Edit Points',
+        ],
+        'points' => [
+            'title' => 'Location :name Map Points'
+        ],
+        'success' => 'Map Points saved.',
+        'modal' => [
+            'title' => 'Target of new point',
+            'submit' => 'Add',
+        ]
+    ]
 ];

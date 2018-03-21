@@ -31,6 +31,8 @@ return [
         'is_private'=> 'Private',
         'location'  => 'Location',
         'entity' => 'Entity',
+        'description' => 'Description',
+        'history' => 'History',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
@@ -124,7 +126,7 @@ return [
             'template' => 'Select a template',
         ],
         'destroy' => [
-            'success' => 'Aattribute :name for :entity removed.',
+            'success' => 'Attribute :name for :entity removed.',
         ],
         'template' => [
             'title' => 'Apply an Attribute Template for :name',

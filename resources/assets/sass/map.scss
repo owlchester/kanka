@@ -1,0 +1,22 @@
+.map {
+  width: 900px;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .point {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    background-color: rgba(120, 120, 120, 0.3);
+    display: block;
+    border-radius: 25px;
+  }
+
+  .admin {
+    background-color: rgba(120, 120, 120, 0.5);
+  }
+}

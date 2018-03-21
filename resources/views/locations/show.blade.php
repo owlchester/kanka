@@ -61,6 +61,9 @@
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information">{{ trans('locations.show.tabs.information') }}</a>
                     </li>
+                    <li class="{{ (request()->get('tab') == 'map' ? ' active' : '') }}">
+                        <a href="#map">{{ trans('locations.show.tabs.map') }}</a>
+                    </li>
                     @if ($campaign->enabled('characters'))
                     <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}">
                         <a href="#character">{{ trans('locations.show.tabs.characters') }}</a>
@@ -89,35 +92,38 @@
                 <div class="tab-content">
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         <div class="post">
-                            <h3>{{ trans('locations.fields.description') }}</h3>
+                            <h3>{{ trans('crud.fields.description') }}</h3>
                             <p>{!! $model->description !!}</p>
                         </div>
 
                         <div class="post">
-                            <h3>{{ trans('locations.fields.history') }}</h3>
+                            <h3>{{ trans('crud.fields.history') }}</h3>
                             <p>{!! $model->history !!}</p>
                         </div>
                     </div>
+                    <div class="tab-pane" id="map">
+                        @include('locations._map')
+                    </div>
                     @if ($campaign->enabled('characters'))
-                    <div class="tab-pane {{ (request()->get('tab') == 'character' ? ' active' : '') }}" id="character">
+                    <div class="tab-pane" id="character">
                         @include('locations._characters')
                     </div>
                     @endif
-                    <div class="tab-pane {{ (request()->get('tab') == 'location' ? ' active' : '') }}" id="location">
+                    <div class="tab-pane" id="location">
                         @include('locations._locations')
                     </div>
                     @can('relation', $model)
-                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
+                    <div class="tab-pane" id="relations">
                         @include('cruds._relations')
                     </div>
                     @endcan
                     @can('attribute', $model)
-                    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
+                    <div class="tab-pane" id="attribute">
                         @include('cruds._attributes')
                     </div>
                     @endcan
                     @can('permission', $model)
-                        <div class="tab-pane {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="permissions">
+                        <div class="tab-pane" id="permissions">
                             @include('cruds._permissions')
                         </div>
                     @endcan

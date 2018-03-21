@@ -21,6 +21,7 @@ class Location extends MiscModel
         'slug',
         'type',
         'image',
+        'map',
         'description',
         'history',
         'parent_location_id',
@@ -95,6 +96,14 @@ class Location extends MiscModel
     public function organisations()
     {
         return $this->hasMany('App\Models\Organisation', 'location_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mapPoints()
+    {
+        return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
     }
 
     /**

@@ -46,6 +46,29 @@
             </div>
             <div class="panel-body">
                 @include('cruds.fields.image')
+
+                <hr />
+                <div class="form-group">
+                    <label>{{ trans('locations.fields.map') }}</label>
+                    {!! Form::hidden('remove-map') !!}
+                    <div class="row">
+                        <div class="col-md-5">
+                            {!! Form::file('map', array('class' => 'image form-control')) !!}
+                        </div>
+                    </div>
+
+                    @if (!empty($model->map))
+                        <div class="preview">
+                            <div class="image">
+                                <img src="/storage/{{ $model->map }}"/>
+                                <a href="#" class="img-delete" data-target="remove-map" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+                                </a>
+                            </div>
+                            <br class="clear">
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
@@ -57,7 +80,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('locations.fields.description') }}</label>
+                    <label>{{ trans('crud.fields.description') }}</label>
                     {!! Form::textarea('description', $formService->prefill('description', $source), ['class' => 'form-control html-editor', 'id' => 'description']) !!}
                 </div>
                 <div class="form-group">
@@ -71,7 +94,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('locations.fields.history') }}:</label>
+                    <label>{{ trans('crud.fields.history') }}:</label>
                     {!! Form::textarea('history', $formService->prefill('history', $source), ['class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
                 <div class="form-group">
