@@ -48,7 +48,7 @@ return [
         'title'         => 'Location :name',
     ],
     'map' => [
-        'helper' => 'Please upload a map to the location.',
+        'helper' => 'Click on the map to add a link to a location, or click on an existing point to remove it.',
         'actions' => [
             'points' => 'Edit Points',
         ],

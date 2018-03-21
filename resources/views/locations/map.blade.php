@@ -12,6 +12,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <p class="help-block">{{ trans('locations.map.helper') }}</p>
                     @include('partials.errors')
 
                     {!! Form::open(array('route' => ['locations.map', $location->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
