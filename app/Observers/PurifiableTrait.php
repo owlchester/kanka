@@ -10,7 +10,7 @@ trait PurifiableTrait
     {
         $config = [
             'HTML.Allowed' =>
-                'big,small,h1,h2,h3,h4,h5,h6,img[src|style|alt],div,ins,del,pre,a[href|target],strong,em,s,u,ul,ol,li,p,'
+                'big,small,h1,h2,h3,h4,h5,h6,img[src|style|alt|width|height],div,ins,del,pre,a[href|target],strong,em,s,u,ul,ol,li,p,'
                 . 'blockquote,sup,sub,'
                 . 'table,tbody,thead,tfoot,tr,td,hr,'
         ];

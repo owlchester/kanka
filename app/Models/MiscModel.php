@@ -30,7 +30,7 @@ abstract class MiscModel extends Model
      * Filterable fields
      * @var array
      */
-    public $filterableColumns = [];
+    protected $filterableColumns = [];
 
     /**
      * Create a short name for the interface

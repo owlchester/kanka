@@ -27,6 +27,12 @@ class Family extends MiscModel
     protected $searchableColumns = ['name', 'history'];
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'location_id'];
+
+    /**
      * Traits
      */
     use CampaignTrait;

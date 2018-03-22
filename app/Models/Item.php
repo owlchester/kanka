@@ -13,7 +13,8 @@ class Item extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'slug', 'type',
+        'slug',
+        'type',
         'image',
         'description',
         'history',
@@ -33,6 +34,12 @@ class Item extends MiscModel
      * @var string
      */
     protected $entityType = 'item';
+
+    /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'type', 'location_id', 'character_id'];
 
     /**
      * Traits

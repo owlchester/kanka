@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                @include('cruds._filters', ['route' => route($name . '.index'), 'filters' => $filters])
+                @include('cruds._filters', ['route' => route($name . '.index'), 'filters' => $filters, 'name' => $name])
 
                 {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">

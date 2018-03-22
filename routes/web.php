@@ -124,6 +124,7 @@ Route::group([
     Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
     Route::get('/search', 'SearchController@search')->name('search');
     Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
+    Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');
 
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 

@@ -20,6 +20,18 @@ class NoteController extends CrudController
     protected $model = \App\Models\Note::class;
 
     /**
+     * NoteController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            'type',
+        ];
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

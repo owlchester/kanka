@@ -36,6 +36,13 @@ class Character extends MiscModel
         'is_personality_visible',
     ];
 
+
+    /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'title', 'age', 'race', 'sex', 'location_id', 'family_id'];
+
     /**
      * Traits
      */

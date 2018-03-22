@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreOrganisation;
 use App\Http\Requests\StoreLocation;
+use App\Models\Location;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -23,6 +24,25 @@ class OrganisationController extends CrudController
      */
     protected $model = \App\Models\Organisation::class;
 
+    /**
+     * OrganisationController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            'type',
+            [
+                'field' => 'location_id',
+                'label' => trans('crud.fields.location'),
+                'type' => 'select2',
+                'route' => route('locations.find'),
+                'placeholder' =>  trans('crud.placeholders.location'),
+                'model' => Location::class,
+            ]
+        ];
+    }
 
     /**
      * Store a newly created resource in storage.

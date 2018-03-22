@@ -21,7 +21,7 @@
             </div>
         @else
             <div class="element" data-field="{{ $field }}" data-type="text">
-                <label class="field" for="{{ $field }}">{{ trans('locations.fields.' . $field) }}</label>
+                <label class="field" for="{{ $field }}">{{ trans($name . '.fields.' . $field) }}</label>
                 <div class="value">{{ request()->input($field) }}</div>
                 <div class="input" style="display:none;">
                     <input type="text" class="input-field" name="{{ $field }}" value="{{ request()->input($field) }}" />

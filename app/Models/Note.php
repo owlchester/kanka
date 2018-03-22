@@ -26,6 +26,12 @@ class Note extends MiscModel
     protected $searchableColumns = ['name', 'type', 'description'];
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'type'];
+
+    /**
      * Entity type
      * @var string
      */

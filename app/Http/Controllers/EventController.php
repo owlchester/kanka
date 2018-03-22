@@ -21,6 +21,19 @@ class EventController extends CrudController
     protected $model = \App\Models\Event::class;
 
     /**
+     * EventController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            'type',
+            'date',
+        ];
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

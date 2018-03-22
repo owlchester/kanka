@@ -25,6 +25,12 @@ class Journal extends MiscModel
     protected $entityType = 'journal';
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'type', 'date'];
+
+    /**
      * Traits
      */
     use CampaignTrait;

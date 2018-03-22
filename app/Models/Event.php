@@ -23,6 +23,12 @@ class Event extends MiscModel
     ];
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'type', 'date', 'location_id'];
+
+    /**
      * Traits
      */
     use CampaignTrait;

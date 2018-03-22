@@ -62,44 +62,6 @@ $(document).ready(function() {
         });
     }
 
-    if ($('.html-editor').length > 0) {
-        $.each($('.html-editor'), function (index) {
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            CKEDITOR.replace($(this).attr('id'), {
-                removePlugins: 'sourcearea',
-                removeButtons: 'Source'
-            });
-
-            // Submit the form on ctrl+s when in the ckeditor field
-            var editor = CKEDITOR.instances[$(this).attr('id')];
-            ckEditorForm = $(this).parents('form:first');
-
-            editor.on('contentDom', function (evt) {
-                editor.document.on('keyup', function (event) {
-                    if (event.data.$.keyCode == 17) {
-                        ckEditorCtrl = false;
-                    }
-                });
-
-                editor.document.on('keydown', function (event) {
-                    if (event.data.$.keyCode == 17) {
-                        ckEditorCtrl = true;
-                    }
-                    if (event.data.$.keyCode == 83 && ckEditorCtrl == true) {
-                        try {
-                            event.data.$.preventDefault();
-                            ckEditorForm.submit();
-                        } catch (err) {
-                        }
-
-                        return false;
-                    }
-                });
-            });
-        });
-    }
-
     if ($('.date-picker').length > 0) {
         $.each($('.date-picker'), function (index) {
             // Replace the <textarea id="editor1"> with a CKEditor
@@ -165,29 +127,6 @@ $(document).ready(function() {
     }
 
 
-    // Crud multi-delete
-    var crudDelete = $('#datagrid-select-all');
-    if (crudDelete.length > 0) {
-        crudDelete.click(function (e) {
-            if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function (index) {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                $.each($("input[name='model[]']"), function (index) {
-                    $(this).prop('checked', false);
-                });
-            }
-            toggleCrudMultiDelete();
-        });
-    }
-
-    $.each($("input[name='model[]']"), function (index) {
-        $(this).change(function (e) {
-            toggleCrudMultiDelete();
-        });
-    });
-
     // Treeview for locations
     var treeViewLoader = $('#location-treeview');
     if (treeViewLoader.length > 0) {
@@ -237,25 +176,6 @@ $(document).ready(function() {
     });
 });
 
-/**
- *
- */
-function toggleCrudMultiDelete() {
-    var hide = true;
-
-    $.each($("input[name='model[]']"), function(index) {
-        if ($(this).prop('checked')) {
-            hide = false;
-        }
-    });
-
-    var btn = $('#crud-multi-delete');
-    if (hide) {
-        btn.hide();
-    } else {
-        btn.show();
-    }
-}
 
 /**
  * Go through table trs to add on click support

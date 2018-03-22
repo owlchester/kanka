@@ -21,6 +21,19 @@ class JournalController extends CrudController
     protected $model = \App\Models\Journal::class;
 
     /**
+     * JournalController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            'type',
+            'date',
+        ];
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

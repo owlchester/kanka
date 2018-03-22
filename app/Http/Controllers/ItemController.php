@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreItem;
 use App\Models\Item;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -21,6 +22,34 @@ class ItemController extends CrudController
      * @var string
      */
     protected $model = \App\Models\Item::class;
+
+    /**
+     * ItemController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            'type',
+            [
+                'field' => 'location_id',
+                'label' => trans('crud.fields.location'),
+                'type' => 'select2',
+                'route' => route('locations.find'),
+                'placeholder' =>  trans('crud.placeholders.location'),
+                'model' => Location::class,
+            ],
+            [
+                'field' => 'character_id',
+                'label' => trans('crud.fields.character'),
+                'type' => 'select2',
+                'route' => route('characters.find'),
+                'placeholder' =>  trans('crud.placeholders.character'),
+                'model' => Character::class,
+            ]
+        ];
+    }
 
     /**
      * Store a newly created resource in storage.

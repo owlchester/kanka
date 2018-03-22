@@ -21,6 +21,18 @@ class QuestController extends CrudController
     protected $model = \App\Models\Quest::class;
 
     /**
+     * QuestController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            'type',
+        ];
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

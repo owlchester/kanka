@@ -19,3 +19,5 @@
         </div>
     </div>
 @endsection
+
+@include('layouts.widgets.tinymce')

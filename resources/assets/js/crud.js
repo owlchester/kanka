@@ -2,11 +2,55 @@
  * Crud
  */
 $(document).ready(function() {
+    // Filters
     var filters = $('#crud-filters');
     if (filters.length === 1) {
         initCrudFilters();
     }
+
+    // Multi-delete
+    var crudDelete = $('#datagrid-select-all');
+    if (crudDelete.length > 0) {
+        crudDelete.click(function (e) {
+            if ($(this).prop('checked')) {
+                $.each($("input[name='model[]']"), function (index) {
+                    $(this).prop('checked', true);
+                });
+            } else {
+                $.each($("input[name='model[]']"), function (index) {
+                    $(this).prop('checked', false);
+                });
+            }
+            toggleCrudMultiDelete();
+        });
+    }
+    $.each($("input[name='model[]']"), function (index) {
+        $(this).change(function (e) {
+            toggleCrudMultiDelete();
+        });
+    });
 });
+
+
+/**
+ *
+ */
+function toggleCrudMultiDelete() {
+    var hide = true;
+
+    $.each($("input[name='model[]']"), function(index) {
+        if ($(this).prop('checked')) {
+            hide = false;
+        }
+    });
+
+    var btn = $('#crud-multi-delete');
+    if (hide) {
+        btn.hide();
+    } else {
+        btn.show();
+    }
+}
 
 /**
  * Filters

@@ -24,6 +24,25 @@ class FamilyController extends CrudController
     protected $model = \App\Models\Family::class;
 
     /**
+     * FamilyController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->filters = [
+            'name',
+            [
+                'field' => 'location_id',
+                'label' => trans('crud.fields.location'),
+                'type' => 'select2',
+                'route' => route('locations.find'),
+                'placeholder' =>  trans('crud.placeholders.location'),
+                'model' => Location::class,
+            ],
+        ];
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

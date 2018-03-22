@@ -33,6 +33,12 @@ class Organisation extends MiscModel
     protected $entityType = 'organisation';
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'type', 'location_id'];
+
+    /**
      * Traits
      */
     use CampaignTrait;

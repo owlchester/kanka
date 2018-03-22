@@ -239,4 +239,25 @@ class SearchController extends Controller
 
         return \Response::json($formatted);
     }
+
+    /**
+     * Mentions
+     */
+    public function mentions(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            $models = Entity::limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Entity::where('name', 'like', "%$term%")->limit(10)->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'name' => $model->name, 'url' => route($model->pluralType() . '.show', $model->entity_id)];
+        }
+
+        return \Response::json($formatted);
+    }
 }

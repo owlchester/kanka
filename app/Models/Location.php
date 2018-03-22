@@ -14,9 +14,10 @@ class Location extends MiscModel
     protected $searchableColumns  = ['name', 'description', 'history', 'type'];
 
     /**
+     * Fields that can be filtered on
      * @var array
      */
-    public $filterableColumns = ['name', 'type', 'parent_location_id'];
+    protected $filterableColumns = ['name', 'type', 'parent_location_id'];
 
     /**
      * @var array

@@ -27,6 +27,12 @@ class Quest extends MiscModel
     protected $entityType = 'quest';
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = ['name', 'type'];
+
+    /**
      * Traits
      */
     use CampaignTrait;
