@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Models\CampaignRole;
+use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Services\CampaignService;
 use App\Services\ImageService;
@@ -58,6 +60,17 @@ class CampaignObserver
         $user->last_campaign_id = $campaign->id;
         $user->campaign_role = 'owner';
         $user->save();
+
+        $role = CampaignRole::create([
+            'campaign_id' => $campaign->id,
+            'name' => 'Owner',
+            'is_admin' => true,
+        ]);
+
+        CampaignRoleUser::create([
+            'campaign_role_id' => $role->id,
+            'user_id' => Auth::user()->id
+        ]);
 
         // Settings
         $setting = new CampaignSetting([

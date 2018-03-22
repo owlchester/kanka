@@ -29,7 +29,7 @@ $(document).ready(function() {
 
     if ($('.select2').length > 0) {
         console.log('found select 2s');
-        $.each($('.select2'), function(index) {
+        $.each($('.select2'), function (index) {
 
 //        var newOptions = [];
 //        $(this).find('option').each(function() {
@@ -63,7 +63,7 @@ $(document).ready(function() {
     }
 
     if ($('.html-editor').length > 0) {
-        $.each($('.html-editor'), function(index) {
+        $.each($('.html-editor'), function (index) {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             CKEDITOR.replace($(this).attr('id'), {
@@ -75,22 +75,23 @@ $(document).ready(function() {
             var editor = CKEDITOR.instances[$(this).attr('id')];
             ckEditorForm = $(this).parents('form:first');
 
-            editor.on( 'contentDom', function( evt ) {
-                editor.document.on( 'keyup', function(event) {
-                    if(event.data.$.keyCode == 17) {
+            editor.on('contentDom', function (evt) {
+                editor.document.on('keyup', function (event) {
+                    if (event.data.$.keyCode == 17) {
                         ckEditorCtrl = false;
                     }
                 });
 
                 editor.document.on('keydown', function (event) {
-                    if(event.data.$.keyCode == 17) {
+                    if (event.data.$.keyCode == 17) {
                         ckEditorCtrl = true;
                     }
-                    if(event.data.$.keyCode == 83 && ckEditorCtrl == true) {
+                    if (event.data.$.keyCode == 83 && ckEditorCtrl == true) {
                         try {
                             event.data.$.preventDefault();
                             ckEditorForm.submit();
-                        } catch(err) {}
+                        } catch (err) {
+                        }
 
                         return false;
                     }
@@ -100,7 +101,7 @@ $(document).ready(function() {
     }
 
     if ($('.date-picker').length > 0) {
-        $.each($('.date-picker'), function(index) {
+        $.each($('.date-picker'), function (index) {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             $(this).datepicker({
@@ -110,8 +111,8 @@ $(document).ready(function() {
         });
     }
 
-    $.each($('.img-delete'), function(index) {
-        $(this).click(function(e) {
+    $.each($('.img-delete'), function (index) {
+        $(this).click(function (e) {
             $('input[name=' + $(this).attr('data-target') + ']')[0].value = 1;
             $('.preview').hide();
         });
@@ -128,7 +129,7 @@ $(document).ready(function() {
         });
     }
 
-    $.each($('.new-entity-selector'), function(index) {
+    $.each($('.new-entity-selector'), function (index) {
         $(this).on('click', function (e) {
             $('#new-entity-type').val($(this).attr('data-entity'));
             $('#new-entity-form').attr('data-parent', $(this).attr('data-parent'));
@@ -136,7 +137,7 @@ $(document).ready(function() {
     });
 
     if ($('#new-entity-form').length > 0) {
-        $('#new-entity-form').on('submit', function(e) {
+        $('#new-entity-form').on('submit', function (e) {
             $('#new-entity-errors').hide();
             var target = $(this).attr('data-parent');
             $.ajax({
@@ -167,13 +168,13 @@ $(document).ready(function() {
     // Crud multi-delete
     var crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
-        crudDelete.click(function(e) {
+        crudDelete.click(function (e) {
             if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function(index) {
+                $.each($("input[name='model[]']"), function (index) {
                     $(this).prop('checked', true);
                 });
             } else {
-                $.each($("input[name='model[]']"), function(index) {
+                $.each($("input[name='model[]']"), function (index) {
                     $(this).prop('checked', false);
                 });
             }
@@ -181,10 +182,10 @@ $(document).ready(function() {
         });
     }
 
-    $.each($("input[name='model[]']"), function(index) {
-       $(this).change(function(e) {
-           toggleCrudMultiDelete();
-       });
+    $.each($("input[name='model[]']"), function (index) {
+        $(this).change(function (e) {
+            toggleCrudMultiDelete();
+        });
     });
 
     // Treeview for locations
@@ -195,42 +196,44 @@ $(document).ready(function() {
 
     manageTabs();
     manageDashboardNotifications();
-});
-// Live search on forms
-/*$.each($('.datagrid-search'), function(index) {
-    $(this).submit(function(event) {
-        event.preventDefault();
 
-        window.location.href =
+
+    // Live search on forms
+    /*$.each($('.datagrid-search'), function(index) {
+        $(this).submit(function(event) {
+            event.preventDefault();
+
+            window.location.href =
+        });
+    });*/
+
+    // Delete confirm dialog
+    $.each($('.delete-confirm'), function (index) {
+        $(this).click(function (e) {
+            var name = $(this).attr('data-name');
+            var text = $(this).attr('data-text');
+            if (text) {
+                $('#delete-confirm-text').text(text);
+            } else {
+                $('#delete-confirm-name').text(name);
+            }
+        });
     });
-});*/
 
-// Delete confirm dialog
-$.each($('.delete-confirm'), function(index) {
-    $(this).click(function(e) {
-        var name = $(this).attr('data-name');
-        var text = $(this).attr('data-text');
-        if (text) {
-            $('#delete-confirm-text').text(text);
-        } else {
-            $('#delete-confirm-name').text(name);
-        }
+    // Submit modal form
+    $.each($('#delete-confirm-submit'), function (index) {
+        $(this).click(function (e) {
+            $('#delete-confirm-form').submit();
+        })
     });
-});
 
-// Submit modal form
-$.each($('#delete-confirm-submit'), function(index) {
-   $(this).click(function(e) {
-       $('#delete-confirm-form').submit();
-   })
-});
-
-// Delete confirm dialog
-$.each($('.click-confirm'), function(index) {
-    $(this).click(function(e) {
-        var name = $(this).attr('data-message');
-        $('#click-confirm-text').text(name);
-        $('#click-confirm-url').attr('href', $(this).attr('data-url'));
+    // Delete confirm dialog
+    $.each($('.click-confirm'), function (index) {
+        $(this).click(function (e) {
+            var name = $(this).attr('data-message');
+            $('#click-confirm-text').text(name);
+            $('#click-confirm-url').attr('href', $(this).attr('data-url'));
+        });
     });
 });
 
