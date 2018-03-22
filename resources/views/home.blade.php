@@ -45,10 +45,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="clickModalLabel">{{ trans('dashboard.notifications.modal.title') }}</h4>
+                        <h4 class="modal-title" id="clickModalLabel">{{ trans('dashboard.notifications.modal.title') }} - {{ trans('notifications.' . $notification->data['key'] . '.title') }}</h4>
                     </div>
                     <div class="modal-body">
-                        <p>{!! trans('notifications.' . $notification->data['key'])!!}</p>
+                        <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary notification-delete" data-url="{{ route('notifications.delete', ['id' => $notification->id]) }}" data-parent="click-notification-{{ $notification->id }}">{{ trans('dashboard.notifications.modal.confirm') }}</button>
