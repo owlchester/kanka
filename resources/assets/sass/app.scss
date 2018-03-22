@@ -127,3 +127,40 @@ tr.entity-hidden {
     color: #444;
   }
 }
+
+/**
+ * Crud filters
+ */
+.filters {
+  background-color: #eee;
+  margin: 15px 15px;
+  border-radius: 5px;
+
+  .first, .element, .end {
+    float: left;
+    padding: 7px 15px;
+    cursor: pointer;
+
+    .field, .value {
+      float: left;
+    }
+    .value {
+      font-weight: 700;
+      padding-left: 15px;
+    }
+    label {
+      font-weight: 400;
+    }
+  }
+  .end {
+    float: right;
+
+    label {
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 700;
+      }
+    }
+  }
+}

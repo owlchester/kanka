@@ -27,6 +27,12 @@ abstract class MiscModel extends Model
     public $entityImagePath;
 
     /**
+     * Filterable fields
+     * @var array
+     */
+    public $filterableColumns = [];
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */
@@ -54,6 +60,24 @@ abstract class MiscModel extends Model
                 $q->orWhere($field, 'like', "%$term%");
             }
         });
+    }
+
+    /**
+     * @param $query
+     * @param $params
+     * @return mixed
+     */
+    public function scopeFilter($query, $params) {
+        if (!is_array($params) or empty($params) or empty($this->filterableColumns)) {
+            return $query;
+        }
+
+        foreach ($params as $key => $value) {
+            if (!empty($value) && in_array($key, $this->filterableColumns)) {
+                $query->where($key, 'like', "%$value%");
+            }
+        }
+        return $query;
     }
 
     /**

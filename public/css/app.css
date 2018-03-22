@@ -1,1 +1,182 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);.map{width:900px;position:relative}.map img{width:100%}.map .point{width:50px;height:50px;cursor:pointer;position:absolute;background-color:hsla(0,0%,47%,.3);display:block;border-radius:25px}.map .admin{background-color:hsla(0,0%,47%,.5)}ul.campaigns li{float:left;width:20%}ul.campaigns li.add{background-color:red}img.profile-user-img{width:200px}@font-face{font-family:Dubai;src:url("/fonts/dubai/DubaiW23-Light.eot");src:url("/fonts/dubai/DubaiW23-Light.eot?#iefix") format("embedded-opentype"),url("/fonts/dubai/DubaiW23-Light.woff2") format("woff2"),url("/fonts/dubai/DubaiW23-Light.woff") format("woff"),url("/fonts/dubai/DubaiW23-Light.ttf") format("truetype")}div.required label:after{content:" *";color:red}table th.avatar{width:60px}table tbody td{vertical-align:middle!important}.clear{clear:both}.profile-username{word-wrap:break-word}.preview{padding:5px;margin:10px 0;border:1px solid #bbb;background-color:#eee;border-radius:5px}.preview .image{width:20%;float:left;margin:0 10px 0 0}.preview img{width:100%}.preview a.img-delete{text-align:center;display:block;background-color:#eee;padding:5px}.footer-social a{margin:0 3px}.news .box-body img{width:100%;display:block}.news .box-body a{display:block;text-transform:uppercase;line-height:23px}tr.tr-hover{cursor:pointer}.dashboard-box p.entity-short{margin:0}.dashboard-box li.entity{min-height:90px}tr.entity-hidden td{font-style:italic;color:#444}
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);.map {
+  width: 900px;
+  position: relative;
+}
+
+.map img {
+  width: 100%;
+}
+
+.map .point {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  background-color: rgba(120, 120, 120, 0.3);
+  display: block;
+  border-radius: 25px;
+}
+
+.map .admin {
+  background-color: rgba(120, 120, 120, 0.5);
+}
+
+ul.campaigns li {
+  float: left;
+  width: 20%;
+}
+
+ul.campaigns li.add {
+  background-color: red;
+}
+
+img.profile-user-img {
+  width: 200px;
+}
+
+/*.main-sidebar {
+  padding-top: 0 !important;
+}*/
+
+@font-face {
+  font-family: 'Dubai';
+  src: url("/fonts/dubai/DubaiW23-Light.eot");
+  /* IE9 Compat Modes */
+  src: url("/fonts/dubai/DubaiW23-Light.eot?#iefix") format("embedded-opentype"), url("/fonts/dubai/DubaiW23-Light.woff2") format("woff2"), url("/fonts/dubai/DubaiW23-Light.woff") format("woff"), url("/fonts/dubai/DubaiW23-Light.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+
+/** required form fields **/
+
+div.required label:after {
+  content: " *";
+  color: red;
+}
+
+table th.avatar {
+  width: 60px;
+}
+
+table tbody td {
+  vertical-align: middle !important;
+}
+
+.clear {
+  clear: both;
+}
+
+.profile-username {
+  word-wrap: break-word;
+}
+
+.preview {
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #bbb;
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.preview .image {
+  width: 20%;
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+.preview img {
+  width: 100%;
+}
+
+.preview a.img-delete {
+  text-align: center;
+  display: block;
+  background-color: #eee;
+  padding: 5px;
+}
+
+.footer-social a {
+  margin: 0 3px;
+}
+
+/** news */
+
+.news .box-body img {
+  width: 100%;
+  display: block;
+}
+
+.news .box-body a {
+  display: block;
+  text-transform: uppercase;
+  line-height: 23px;
+}
+
+tr.tr-hover {
+  cursor: pointer;
+}
+
+.dashboard-box p.entity-short {
+  margin: 0;
+}
+
+.dashboard-box li.entity {
+  min-height: 90px;
+}
+
+tr.entity-hidden td {
+  font-style: italic;
+  color: #444;
+}
+
+/**
+ * Crud filters
+ */
+
+.filters {
+  background-color: #eee;
+  margin: 15px 15px;
+  border-radius: 5px;
+}
+
+.filters .first,
+.filters .element,
+.filters .end {
+  float: left;
+  padding: 7px 15px;
+  cursor: pointer;
+}
+
+.filters .first .field,
+.filters .first .value,
+.filters .element .field,
+.filters .element .value,
+.filters .end .field,
+.filters .end .value {
+  float: left;
+}
+
+.filters .first .value,
+.filters .element .value,
+.filters .end .value {
+  font-weight: 700;
+  padding-left: 15px;
+}
+
+.filters .first label,
+.filters .element label,
+.filters .end label {
+  font-weight: 400;
+}
+
+.filters .end {
+  float: right;
+}
+
+.filters .end label {
+  cursor: pointer;
+}
+
+.filters .end label:hover {
+  font-weight: 700;
+}
+

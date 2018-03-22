@@ -32,6 +32,8 @@
                     </div>
                 </div>
 
+                @include('cruds._filters', ['route' => route($name . '.index'), 'filters' => $filters])
+
                 {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">
                     @include($name . '._tree')

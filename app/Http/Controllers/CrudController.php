@@ -37,6 +37,11 @@ class CrudController extends Controller
     protected $indexActions = [];
 
     /**
+     * @var array
+     */
+    protected $filters = [];
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -63,13 +68,15 @@ class CrudController extends Controller
         $model = new $this->model;
         $name = $this->view;
         $actions = $this->indexActions;
+        $filters = $this->filters;
 
         $models = $model
             ->search(request()->get('search'))
+            ->filter(request()->all())
             ->acl(Auth::user())
             ->order(request()->get('order'), request()->has('desc'))
             ->paginate();
-        return view('cruds.index', compact('models', 'name', 'model', 'actions'));
+        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters'));
     }
 
     /**

@@ -16,6 +16,11 @@ class Location extends MiscModel
     /**
      * @var array
      */
+    public $filterableColumns = ['name', 'type', 'parent_location_id'];
+
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name',
         'slug',

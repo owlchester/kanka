@@ -45,6 +45,19 @@ class LocationController extends CrudController
             'class' => 'default',
             'label' => '<i class="fa fa-tree"></i> ' . trans('locations.index.actions.explore_view')
         ];
+
+        $this->filters = [
+            'name',
+            'type',
+            [
+                'field' => 'parent_location_id',
+                'label' => trans('crud.fields.location'),
+                'type' => 'select2',
+                'route' => route('locations.find'),
+                'placeholder' =>  trans('crud.placeholders.location'),
+                'model' => Location::class,
+            ]
+        ];
     }
 
     public function tree(Request $request)
@@ -52,6 +65,7 @@ class LocationController extends CrudController
         $model = new $this->model;
         $name = $this->view;
         $actions = $this->indexActions;
+        $filters = $this->filters;
 
         $actions = [[
             'route' => route('locations.index'),
@@ -61,6 +75,7 @@ class LocationController extends CrudController
 
         $search = $model
             ->acl(Auth::user())
+            ->filter(request()->all())
             ->search(request()->get('search'))
             ->order(request()->get('order'), request()->has('desc'));
 
@@ -77,7 +92,7 @@ class LocationController extends CrudController
         }
         $models = $search
             ->paginate();
-        return view('locations.tree', compact('models', 'name', 'model', 'actions'));
+        return view('locations.tree', compact('models', 'name', 'model', 'actions', 'filters'));
     }
 
     /**

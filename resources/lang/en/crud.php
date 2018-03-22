@@ -37,6 +37,7 @@ return [
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
+    'clear_filters' => 'Clear Filters',
     'hints'         => [
         'is_private'    => 'Hide from non "Admin" users.',
     ],
