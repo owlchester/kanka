@@ -18,63 +18,62 @@ class StarterService
     {
         // Generate locations
         $kingdom = new Location([
-            'name' => 'Genory',
-            'type' => 'Kingdom',
-            'description' => '<p>The Kingdomof Genory is situated on the Bolan planes of the Thaelian continent.</p>',
-            'history' => '<p>The Kingdom of Genory was founded by Genorian tribesmen in the late 5th century after they invaded the lands from the Hottens.</p>',
+            'name' => trans('starter.kingdom1.name'),
+            'type' => trans('starter.kingdom1.type'),
+            'description' => '<p>' . trans('starter.kingdom1.description') . '</p>',
+            'history' => '<p>' . trans('starter.kingdom1.history') . '</p>',
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
         $kingdom->save();
 
         $city = new Location([
-            'name' => 'Unria',
-            'type' => 'Capital',
+            'name' => trans('starter.kingdom2.name'),
+            'type' => trans('starter.kingdom2.type'),
             'parent_location_id' => $kingdom->id,
-            'description' => '<p>Unria is the capital city of the kingdom of Genory, and third biggest city of Agagir Alliance.</p>',
-            'history' => '<p>Unria is the capital city of the kingdom of Genory. It was founded by Frasan Irwen and is located on the Unri river.</p>',
+            'description' => '<p>' . trans('starter.kingdom2.description') . '</p>',
+            'history' => '<p>' . trans('starter.kingdom2.history') . '</p>',
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
         $city->save();
 
         $james = new Character([
-            'name' => 'James Owlchester',
-            'title' => 'Grey Hunter',
+            'name' => trans('starter.character1.name'),
+            'title' => trans('starter.character1.title'),
             'age' => '43',
-            'race' => 'Human',
-            'sex' => 'Male',
-            'history' => '<p>Born to Mance Owlchester and Rige Dunton, James grew up in the countryside of Genory before moving to the capital city of Unria to work as a scribe for the king.</p>',
+            'race' => trans('starter.character1.race'),
+            'sex' => trans('starter.character1.sex'),
+            'history' => '<p>' . trans('starter.character1.history') . '</p>',
             'location_id' => $city->id,
             'campaign_id' => $campaign->id,
-            'fears' => 'James is scared of loud noises and explosions.',
-            'traits' => 'Will always bend the truth to his advantage.',
+            'fears' => trans('starter.character1.fears'),
+            'traits' => trans('starter.character1.traits'),
             'is_private' => false,
-
         ]);
         $james->save();
 
         $irwie = new Character([
-            'name' => 'Irwie Gemstone',
-            'title' => 'Queen of Explosions',
-            'age' => '37',
-            'race' => 'Gnome',
-            'sex' => 'Female',
-            'history' => '<p>From a young age, Irwie has always been fascinated by explosives, and has dedicated her career to the craft.</p>',
-            'location_id' => $kingdom->id,
+            'name' => trans('starter.character2.name'),
+            'title' => trans('starter.character2.title'),
+            'age' => '31',
+            'race' => trans('starter.character2.race'),
+            'sex' => trans('starter.character2.sex'),
+            'history' => '<p>' . trans('starter.character2.history') . '</p>',
+            'location_id' => $city->id,
             'campaign_id' => $campaign->id,
-            'goals' => 'Create the biggest explosion possible',
-            'free' => 'Want to track something else? We\'ve got you covered with this free text section!',
+            'fears' => trans('starter.character2.fears'),
+            'traits' => trans('starter.character2.traits'),
             'is_private' => false,
         ]);
         $irwie->save();
 
         $item = new Item([
-            'name' => 'Dagger of Darkness',
+            'name' => trans('starter.item1.name'),
             'campaign_id' => $campaign->id,
-            'type' => 'Weapon',
-            'description' => '<p>Description of the item.</p>',
-            'history' => '<p>History of the item.</p>',
+            'type' => trans('starter.item1.type'),
+            'description' => '<p>' . trans('starter.item1.description') . '</p>',
+            'history' => '<p>' . trans('starter.item1.history') . '</p>',
             'character_id' => $irwie->id,
             'location_id' => $kingdom->id,
             'is_private' => false,

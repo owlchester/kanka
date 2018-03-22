@@ -72,7 +72,7 @@ class GenerateCampaignRoles extends Command
             // Need to do the other roles?
             $members = $campaign->members()->where('role', 'member')->get();
 
-            if (!empty($members)) {
+            if (count($members) > 0) {
                 $role = CampaignRole::create([
                     'campaign_id' => $campaign->id,
                     'is_admin' => false,
@@ -91,7 +91,7 @@ class GenerateCampaignRoles extends Command
             }
 
             $viewers = $campaign->members()->where('role', 'viewer')->get();
-            if (!empty($viewers)) {
+            if (count($viewers) > 0) {
                 $role = CampaignRole::create([
                     'campaign_id' => $campaign->id,
                     'is_admin' => false,
