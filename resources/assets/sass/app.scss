@@ -120,3 +120,10 @@ tr.tr-hover {
     min-height: 90px;
   }
 }
+
+tr.entity-hidden {
+  td {
+    font-style: italic;
+    color: #444;
+  }
+}

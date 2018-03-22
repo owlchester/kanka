@@ -77,12 +77,13 @@ abstract class MiscModel extends Model
 
         // Check for a permission related to this action.
         $key = $this->entityType . '_read';
-        $inRole = CampaignPermission::where('key', 'like', "%$key%")
+        $inRole = CampaignPermission::where(['key' => $key])
              ->whereIn('campaign_role_id', $roleIds)
             ->count() > 0;
         if ($inRole) {
             return $query;
         }
+
 
         // Specific access view to an entity for role or user
         $key = $this->entityType . '_read_';

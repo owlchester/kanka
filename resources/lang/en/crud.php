@@ -9,6 +9,7 @@ return [
     ],
     'add'           => 'Add',
     'cancel'        => 'Cancel',
+    'hidden'        => 'Hidden',
     'click_modal'   => [
         'close'     => 'Close',
         'confirm'   => 'Confirm',

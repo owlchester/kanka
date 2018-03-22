@@ -19,7 +19,7 @@
         <th>{{ trans('characters.fields.sex') }}</th>
         <th><br /></th>
     </tr>
-    <?php $r = $model->members()->has('character')->with('character', 'character.location')->paginate();?>
+    <?php $r = $model->members()->acl(auth()->user())->has('character')->with('character', 'character.location')->paginate();?>
     @foreach ($r->sortBy('character.name') as $relation)
         <tr>
             <td>

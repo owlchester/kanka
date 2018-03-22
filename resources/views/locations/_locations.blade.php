@@ -5,7 +5,7 @@
         <th>{{ trans('locations.fields.type') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->locations()->orderBy('name', 'ASC')->paginate() as $model)
+    @foreach ($r = $model->locations()->acl(auth()->user())->orderBy('name', 'ASC')->paginate() as $model)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }} picture">
