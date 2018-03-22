@@ -13,7 +13,6 @@ $(document).ready(function() {
  */
 var previousFilterInputValue = '';
 function initCrudFilters() {
-    console.log('init crud filters');
 
     $('#crud-filters .element').on('click', function(e) {
         $(this).children('.value').hide();
@@ -35,7 +34,6 @@ function initCrudFilters() {
     });
 
     $('#crud-filters select.select2').on('change', function(e) {
-        console.log('select2 change');
         $('#crud-filters-form').submit();
     });
 
