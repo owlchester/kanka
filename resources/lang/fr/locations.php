@@ -55,10 +55,12 @@ return [
     'show'          => [
         'description'   => 'Détail d\'un lieu',
         'tabs'          => [
+            'attributes'    => 'Attributs',
             'characters'    => 'Personnages',
             'information'   => 'Information',
             'locations'     => 'Lieux',
             'map'           => 'Carte',
+            'relations'     => 'Relations',
         ],
         'title'         => 'Lieu :name',
     ],

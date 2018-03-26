@@ -45,6 +45,7 @@ return [
         ],
     ],
     'cancel'        => 'Annuler',
+    'clear_filters' => 'Effacer les filtres',
     'click_modal'   => [
         'close'     => 'Fermer',
         'confirm'   => 'Confirmer',
@@ -72,8 +73,9 @@ return [
     ],
     'filter'        => 'Filtre',
     'filters'       => 'Filtres',
+    'hidden'        => 'Caché',
     'hints'         => [
-        'is_private'    => 'Cacher des membres de type "Observateur"',
+        'is_private'    => 'Cacher des membres pas de type "Admin"',
     ],
     'image'         => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',

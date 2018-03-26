@@ -16,21 +16,37 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
-        'map' => 'Map',
+        'image'         => 'Image',
         'location'      => 'Location',
+        'locations'     => 'Locations',
+        'map'           => 'Map',
         'name'          => 'Name',
         'relation'      => 'Relation',
         'type'          => 'Type',
-        'locations' => 'Locations',
     ],
     'index'         => [
+        'actions'       => [
+            'explore_view'  => 'Exploration View',
+        ],
         'add'           => 'New Location',
         'description'   => 'Manage the location of :name.',
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
-        'actions' => [
-            'explore_view' => 'Exploration View',
+    ],
+    'map'           => [
+        'actions'   => [
+            'points'    => 'Edit Points',
         ],
+        'helper'    => 'Click on the map to add a link to a location, or click on an existing point to remove it.',
+        'modal'     => [
+            'submit'    => 'Add',
+            'title'     => 'Target of new point',
+        ],
+        'no_map'    => 'Please upload a map to the location first.',
+        'points'    => [
+            'title' => 'Location :name Map Points',
+        ],
+        'success'   => 'Map Points saved.',
     ],
     'placeholders'  => [
         'location'  => 'Choose a parent location',
@@ -40,26 +56,13 @@ return [
     'show'          => [
         'description'   => 'A detailed view of a location',
         'tabs'          => [
+            'attributes'    => 'Attributes',
             'characters'    => 'Characters',
             'information'   => 'Information',
             'locations'     => 'Locations',
-            'map' => 'Map',
+            'map'           => 'Map',
+            'relations'     => 'Relations',
         ],
         'title'         => 'Location :name',
     ],
-    'map' => [
-        'helper' => 'Click on the map to add a link to a location, or click on an existing point to remove it.',
-        'no_map' => 'Please upload a map to the location first.',
-        'actions' => [
-            'points' => 'Edit Points',
-        ],
-        'points' => [
-            'title' => 'Location :name Map Points'
-        ],
-        'success' => 'Map Points saved.',
-        'modal' => [
-            'title' => 'Target of new point',
-            'submit' => 'Add',
-        ]
-    ]
 ];

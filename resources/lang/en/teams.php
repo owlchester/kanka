@@ -2,9 +2,9 @@
 
 return [
     'index' => [
-        'title' => 'Team',
-        'description' => 'These people make Kanka possible',
-        'core' => 'Core',
-        'translations' => 'Translations',
-    ]
+        'core'          => 'Core',
+        'description'   => 'These people make Kanka possible',
+        'title'         => 'Team',
+        'translations'  => 'Translations',
+    ],
 ];

@@ -40,7 +40,7 @@ return [
         'weight'                    => 'Poid',
     ],
     'hints'         => [
-        'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type \'Observateur\'.',
+        'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres non \'Admin\'.',
     ],
     'index'         => [
         'actions'       => [

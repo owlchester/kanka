@@ -15,8 +15,8 @@ return [
         'title'         => 'Edit Attribute Template :name',
     ],
     'fields'        => [
-        'name'      => 'Name',
-        'attributes' => 'Attributes',
+        'attributes'    => 'Attributes',
+        'name'          => 'Name',
     ],
     'index'         => [
         'add'           => 'New Attribute Template',
@@ -25,12 +25,12 @@ return [
         'title'         => 'Attribute Templates',
     ],
     'placeholders'  => [
-        'name'      => 'Name of the Attribute Template',
+        'name'  => 'Name of the Attribute Template',
     ],
     'show'          => [
         'description'   => 'A detailed view of an Attribute Template',
         'tabs'          => [
-            'attributes'   => 'Attributes',
+            'attributes'    => 'Attributes',
         ],
         'title'         => 'Attribute Template :name',
     ],

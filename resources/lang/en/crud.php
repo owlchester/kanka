@@ -2,14 +2,52 @@
 
 return [
     'actions'       => [
+        'back'  => 'Back',
+        'copy'  => 'Copy',
         'move'  => 'Move',
-        'back' => 'Back',
-        'new' => 'New',
-        'copy' => 'Copy',
+        'new'   => 'New',
     ],
     'add'           => 'Add',
+    'attributes'    => [
+        'actions'       => [
+            'add'               => 'Add an attribute',
+            'apply_template'    => 'Apply an Attribute Template',
+            'manage'            => 'Manage',
+        ],
+        'create'        => [
+            'description'   => '',
+            'success'       => 'Attribute :name added to :entity.',
+            'title'         => 'New Attribute for :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Attribute :name for :entity removed.',
+        ],
+        'edit'          => [
+            'description'   => '',
+            'success'       => 'Attribute :name for :entity updated.',
+            'title'         => 'Update attribute for :name',
+        ],
+        'fields'        => [
+            'attribute' => 'Attribute',
+            'template'  => 'Template',
+            'value'     => 'Value',
+        ],
+        'index'         => [
+            'success'   => 'Attributes for :entity updated.',
+            'title'     => 'Attributes for :name',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
+            'template'  => 'Select a template',
+            'value'     => 'Value of the attribute',
+        ],
+        'template'      => [
+            'success'   => 'Attribute Template :name applies on :entity',
+            'title'     => 'Apply an Attribute Template for :name',
+        ],
+    ],
     'cancel'        => 'Cancel',
-    'hidden'        => 'Hidden',
+    'clear_filters' => 'Clear Filters',
     'click_modal'   => [
         'close'     => 'Close',
         'confirm'   => 'Confirm',
@@ -27,21 +65,24 @@ return [
     ],
     'edit'          => 'Edit',
     'fields'        => [
-        'character' => 'Character',
-        'image'     => 'Image',
-        'is_private'=> 'Private',
-        'location'  => 'Location',
-        'entity' => 'Entity',
-        'description' => 'Description',
-        'history' => 'History',
+        'character'     => 'Character',
+        'description'   => 'Description',
+        'entity'        => 'Entity',
+        'history'       => 'History',
+        'image'         => 'Image',
+        'is_private'    => 'Private',
+        'location'      => 'Location',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
-    'clear_filters' => 'Clear Filters',
+    'hidden'        => 'Hidden',
     'hints'         => [
         'is_private'    => 'Hide from non "Admin" users.',
     ],
-    'is_private'    => 'This entity is private and not visible by non-admin users.',
+    'image'         => [
+        'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
+    ],
+    'is_private'    => 'This entity is private and not visible by non-Admin users.',
     'linking_help'  => 'How can I link to other entries?',
     'move'          => [
         'description'   => '',
@@ -69,6 +110,22 @@ return [
         'history'               => 'History',
         'move'                  => 'Move',
     ],
+    'permissions'   => [
+        'action'    => 'Action',
+        'actions'   => [
+            'delete'    => 'Delete',
+            'edit'      => 'Edit',
+            'read'      => 'Read',
+        ],
+        'allowed'   => 'Allowed',
+        'fields'    => [
+            'member'    => 'Member',
+            'role'      => 'Role',
+        ],
+        'helper'    => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
+        'success'   => 'Permissions saved.',
+        'title'     => 'Permissions',
+    ],
     'placeholders'  => [
         'character' => 'Choose a character',
         'image_url' => 'You can upload an image from a URL instead',
@@ -90,68 +147,10 @@ return [
     'search'        => 'Search',
     'select'        => 'Select',
     'tabs'          => [
-        'relations' => 'Relations',
-        'attributes' => 'Attributes',
-        'permissions' => 'Permissions',
+        'attributes'    => 'Attributes',
+        'permissions'   => 'Permissions',
+        'relations'     => 'Relations',
     ],
     'update'        => 'Update',
     'view'          => 'View',
-
-    'attributes' => [
-        'index' => [
-            'title' => 'Attributes for :name',
-            'success' => 'Attributes for :entity updated.',
-        ],
-        'create' => [
-            'title' => 'New Attribute for :name',
-            'description' => '',
-            'success' => 'Attribute :name added to :entity.',
-        ],
-        'actions' => [
-            'add' => 'Add an attribute',
-            'apply_template' => 'Apply an Attribute Template',
-            'manage' => 'Manage',
-        ],
-        'edit' => [
-            'title' => 'Update attribute for :name',
-            'description' => '',
-            'success' => 'Attribute :name for :entity updated.',
-        ],
-        'fields' => [
-            'attribute' => 'Attribute',
-            'value' =>  'Value',
-            'template' => 'Template',
-        ],
-        'placeholders' => [
-            'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
-            'value' => 'Value of the attribute',
-            'template' => 'Select a template',
-        ],
-        'destroy' => [
-            'success' => 'Attribute :name for :entity removed.',
-        ],
-        'template' => [
-            'title' => 'Apply an Attribute Template for :name',
-            'success' => 'Attribute Template :name applies on :entity',
-        ]
-    ],
-    'image' => [
-        'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
-    ],
-    'permissions' => [
-        'title' => 'Permissions',
-        'helper' => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
-        'fields' => [
-            'role' => 'Role',
-            'member' => 'Member'
-        ],
-        'action' => 'Action',
-        'actions' => [
-            'read' => 'Read',
-            'edit' => 'Edit',
-            'delete' => 'Delete',
-        ],
-        'allowed' => 'Allowed',
-        'success' => 'Permissions saved.',
-    ]
 ];

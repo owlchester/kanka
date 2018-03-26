@@ -72,7 +72,7 @@ return [
         ],
     ],
     'leave'         => [
-        'confirm'   => 'Est-tu sûr de vouloir quitter :name? Tu n\'aura plus accès aux données, sauf si un Proprio de la campagne t\'invites à nouveau.',
+        'confirm'   => 'Est-tu sûr de vouloir quitter :name? Tu n\'aura plus accès aux données, sauf si un Admin de la campagne t\'invites à nouveau.',
         'error'     => 'Impossible de quitter la campagne.',
         'success'   => 'Tu as quitté la campagne.',
     ],
@@ -98,7 +98,7 @@ return [
             'owner'     => 'Administrateur',
             'viewer'    => 'Observateur',
         ],
-        'your_role' => 'Rôle: \'<i>:rôle</i>\'',
+        'your_role' => 'Rôle: \'<i>:role</i>\'',
     ],
     'placeholders'  => [
         'description'   => 'Une petite description de la campagne',
@@ -134,7 +134,7 @@ return [
         ],
         'show'          => [
             'description'   => '',
-            'title'         => 'Rôles de campagne',
+            'title'         => 'Rôle \':role\' de la campagne \':campaign\'',
         ],
         'users'         => [
             'actions'   => [

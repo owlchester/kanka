@@ -58,7 +58,7 @@ class GenerateCampaignRoles extends Command
             $role = CampaignRole::create([
                 'campaign_id' => $campaign->id,
                 'is_admin' => true,
-                'name' => 'Owner',
+                'name' => 'Admin',
             ]);
 
             // Attach users

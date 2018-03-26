@@ -40,7 +40,7 @@ return [
         'weight'                    => 'Weight',
     ],
     'hints'         => [
-        'is_personality_visible'    => 'You can hide the whole personality section from non-Admin users.',
+        'is_personality_visible'    => 'You can hide the whole personality section from your Viewers.',
     ],
     'index'         => [
         'actions'       => [
@@ -108,10 +108,12 @@ return [
     'show'          => [
         'description'   => 'A detailed view of a character',
         'tabs'          => [
+            'attributes'    => 'Attributes',
             'free'          => 'Free Text',
             'history'       => 'History',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
+            'relations'     => 'Relations',
         ],
         'title'         => 'Character :name',
     ],

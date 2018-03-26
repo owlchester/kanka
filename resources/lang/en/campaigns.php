@@ -72,7 +72,7 @@ return [
         ],
     ],
     'leave'         => [
-        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an owner of the campaign invites you again.',
+        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
@@ -95,15 +95,62 @@ return [
         ],
         'roles'     => [
             'member'    => 'Member',
-            'owner'     => 'Owner',
+            'owner'     => 'Admin',
             'viewer'    => 'Viewer',
         ],
-        'your_role' => 'Your role: <i>:role</i>',
+        'your_role' => 'Role: <i>:role</i>',
     ],
     'placeholders'  => [
         'description'   => 'A short summary of your campaign',
         'locale'        => 'Language code',
         'name'          => 'Your campaign name',
+    ],
+    'roles'         => [
+        'actions'       => [
+            'add'   => 'Add a role',
+        ],
+        'create'        => [
+            'success'   => 'Role created.',
+            'title'     => 'Create a new role for :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Role removed.',
+        ],
+        'edit'          => [
+            'success'   => 'Role updated.',
+            'title'     => 'Edit Role :name',
+        ],
+        'fields'        => [
+            'name'          => 'Name',
+            'permissions'   => 'Permissions',
+            'users'         => 'Users',
+        ],
+        'members'       => 'Members',
+        'permissions'   => [
+            'hint'  => 'This role automatically has access to everything.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Name of the role',
+        ],
+        'show'          => [
+            'description'   => '',
+            'title'         => 'Role \':role\' for campaign \':campaign\'',
+        ],
+        'users'         => [
+            'actions'   => [
+                'add'   => 'Add',
+            ],
+            'create'    => [
+                'success'   => 'User added to the role.',
+                'title'     => 'Add a member to the :name role',
+            ],
+            'destroy'   => [
+                'success'   => 'User removed from the role.',
+            ],
+            'fields'    => [
+                'name'  => 'Name',
+            ],
+        ],
     ],
     'settings'      => [
         'edit'      => [
@@ -119,56 +166,9 @@ return [
         'tabs'          => [
             'information'   => 'Information',
             'members'       => 'Members',
+            'roles'         => 'Roles',
             'settings'      => 'Settings',
-            'roles' => 'Roles',
         ],
         'title'         => 'Campaign :name',
     ],
-    'roles' => [
-        'actions' => [
-            'add' => 'Add a role'
-        ],
-        'create' => [
-            'title' => 'Create a new role for :name',
-            'success' => 'Role created.',
-        ],
-        'edit' => [
-            'title' => 'Edit Role :name',
-            'success' => 'Role updated.',
-        ],
-        'destroy' => [
-            'success' => 'Role removed.',
-        ],
-        'show' => [
-            'title' => 'Campaign Roles',
-            'description' => '',
-        ],
-        'members' => 'Members',
-        'users' => [
-            'actions' => [
-                'add' => 'Add',
-            ],
-            'create' => [
-                'title' => 'Add a member to the :name role',
-                'success' => 'User added to the role.',
-            ],
-            'destroy' => [
-                'success' => 'User removed from the role.',
-            ],
-            'fields' => [
-                'name' => 'Name',
-            ]
-        ],
-        'fields' => [
-            'name' => 'Name',
-            'users' => 'Users',
-            'permissions' => 'Permissions',
-        ],
-        'placeholders' => [
-            'name' => 'Name of the role',
-        ],
-        'permissions' => [
-            'hint' => 'This role automatically has access to everything.',
-        ]
-    ]
 ];

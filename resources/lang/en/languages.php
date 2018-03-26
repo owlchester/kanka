@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'header'    => 'Languages',
     'codes' => [
-        'fr' => 'French',
-        'de' => 'German',
-        'es' =>  'Spanish',
-        'pt-BR' => 'Brazilian Portuguese',
+        'de'    => 'German',
         'en-US' => 'American English',
-    ]
+        'es'    => 'Spanish',
+        'fr'    => 'French',
+        'pt-BR' => 'Brazilian Portuguese',
+    ],
+    'header'=> 'Languages',
 ];

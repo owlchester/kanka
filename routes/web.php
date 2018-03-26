@@ -144,13 +144,15 @@ Route::group([
     // Notification
     Route::get('/notifications/delete/{id}', 'NotificationController@delete')->name('notifications.delete');
 
+
+    // 3rd party
+    Route::group(['middleware' => ['translator'], 'prefix' => 'translations'], function () {
+        Translator::routes();
+    });
+
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-// 3rd party
-Route::group(['middleware' => ['web', 'auth', 'translator'], 'prefix' => 'translations'], function () {
-    Translator::routes();
-});
