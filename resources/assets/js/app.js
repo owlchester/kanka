@@ -28,7 +28,6 @@ var ckEditorForm = false;
 $(document).ready(function() {
 
     if ($('.select2').length > 0) {
-        console.log('found select 2s');
         $.each($('.select2'), function (index) {
 
 //        var newOptions = [];
