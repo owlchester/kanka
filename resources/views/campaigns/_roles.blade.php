@@ -18,7 +18,11 @@
         <tr>
             <td><a href="{{ route('campaigns.campaign_roles.show', ['campaign' => $campaign, 'campaign_role' => $relation]) }}">{{ $relation->name }}</a></td>
             <td>{{ $relation->users()->count() }}</td>
-            <td>{{ $relation->permissions()->count() }}</td>
+            <td>@if ($relation->is_admin)
+
+                @else
+                    {{ $relation->permissions()->count() }}
+            @endif</td>
 
             <td class="text-right">
                 <a href="{{ route('campaigns.campaign_roles.show', ['campaign' => $campaign, 'campaign_role' => $relation]) }}" class="btn btn-xs btn-default">
