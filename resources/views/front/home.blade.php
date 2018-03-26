@@ -208,14 +208,24 @@
         <div class="container">
             <h2>{!! trans('front.contact.title', ['icon' => '<i class="fa fa-heart"></i>']) !!}</h2>
             <ul class="list-inline list-social">
+                <li class="list-inline-item social-google-plus">
+                    <a href="https://reddit.com/r/kanka" title="Reddit">
+                        <i class="fa fa-reddit"></i>
+                    </a>
+                </li>
                 <li class="list-inline-item social-twitter">
-                    <a href="https://twitter.com/kankaio">
+                    <a href="https://twitter.com/kankaio" title="Twitter">
                         <i class="fa fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-facebook">
-                    <a href="https://www.facebook.com/kanka.io.ch/">
+                    <a href="https://www.facebook.com/kanka.io.ch/" title="Facebook">
                         <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-discord">
+                    <a href="https://discord.gg/rhsyZJ4" title="Discord">
+                        <i class="fa fa-commenting-o"></i>
                     </a>
                 </li>
             </ul>

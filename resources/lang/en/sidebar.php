@@ -6,6 +6,7 @@ return [
     'campaigns'             => 'Campaigns',
     'characters'            => 'Characters',
     'dashboard'             => 'Dashboard',
+    'discord'               => 'Discord',
     'events'                => 'Events',
     'families'              => 'Families',
     'items'                 => 'Items',

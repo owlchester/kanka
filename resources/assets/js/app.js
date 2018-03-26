@@ -21,20 +21,10 @@ window.Vue = require('vue');
 //     el: '#app'
 // });
 
-var ckEditorCtrl = false;
-var ckEditorForm = false;
-
-// Need to wait for ckeditor cdn
 $(document).ready(function() {
 
     if ($('.select2').length > 0) {
         $.each($('.select2'), function (index) {
-
-//        var newOptions = [];
-//        $(this).find('option').each(function() {
-//            var newOption = new Option(this.text, this.id, true, true);
-//            newOptions.push(newOption);
-//        });
 
             $(this).select2({
 //            data: newOptions,
@@ -63,7 +53,6 @@ $(document).ready(function() {
 
     if ($('.date-picker').length > 0) {
         $.each($('.date-picker'), function (index) {
-            // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             $(this).datepicker({
                 autoclose: true,
