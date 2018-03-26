@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
+    'title' => trans('campaigns.roles.show.title', ['role' => $role->name, 'campagn' => $model->name]),
     'description' => trans('campaigns.roles.show.description'),
     'breadcrumbs' => [
         ['url' => route('campaigns.index', ['tab' => 'roles']), 'label' => trans('campaigns.index.title')]
@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ $relation->user->name }}</td>
                                 <td class="text-right">
-                                    @can('user', $role)
+                                    @can('removeUser', $role)
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.campaign_roles.campaign_role_users.destroy', 'campaign' => $model, 'campaign_role' => $role, 'campaign_role_user' => $relation->id], 'style'=>'display:inline']) !!}
                                         <button class="btn btn-xs btn-danger">
                                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}

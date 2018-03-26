@@ -112,7 +112,7 @@ class CampaignRoleUserController extends Controller
      */
     public function destroy(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
-        $this->authorize('user', $campaignRole);
+        $this->authorize('removeUser', $campaignRole);
 
         $campaignRoleUser->delete();
         return redirect()->route('campaigns.campaign_roles.show', [

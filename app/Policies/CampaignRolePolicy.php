@@ -70,6 +70,17 @@ class CampaignRolePolicy
         return $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
 
+    /**
+     * Only allow removing users from the admin role is there is more than one user in it
+     * @param User $user
+     * @param CampaignRole $campaignRole
+     * @return bool
+     */
+    public function removeUser(User $user, CampaignRole $campaignRole)
+    {
+        return $this->user($user, $campaignRole) && ($campaignRole->is_admin ? $campaignRole->users()->count() > 1 : true);
+    }
+
 
     /**
      * @param User $user
