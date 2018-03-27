@@ -55,6 +55,6 @@ class LocationObserver extends MiscObserver
             $sub->save();
         }
 
-        ImageService::cleanup($model, 'map');
+        ImageService::cleanup($location, 'map');
     }
 }
