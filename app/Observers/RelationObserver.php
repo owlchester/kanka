@@ -14,6 +14,11 @@ class RelationObserver
     public function creating(Relation $relation)
     {
         $relation->campaign_id = Session::get('campaign_id');
+
+        // Is private hook for non-admin (who can't set is_private)
+        if (!isset($relation->is_private)) {
+            $relation->is_private = false;
+        }
     }
 
     public function created(Relation $relation)

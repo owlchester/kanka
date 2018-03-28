@@ -62,6 +62,11 @@ abstract class MiscObserver
                 $model->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
             }
         }
+
+        // Is private hook for non-admin (who can't set is_private)
+        if (!isset($model->is_private)) {
+            $model->is_private = false;
+        }
     }
 
     /**
