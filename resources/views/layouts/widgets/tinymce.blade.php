@@ -20,15 +20,15 @@
             mentions: {
                 source: function(query, process, delimiter) {
                     if (delimiter === '@') {
-                        $.getJSON('{{ route('search.mentions') }}', function(data) {
-                            console.log('data', data);
-                            console.log('process', process);
+                        $.getJSON('{{ route('search.mentions') }}?q='+ query, function(data) {
+                            //console.log('data', data);
+                            //console.log('process', process);
                             process(data)
                         })
                     }
                 },
                 insert: function(item) {
-                    console.log('insert', item);
+                    //console.log('insert', item);
                     return '<a href="' + item.url + '">' + item.name + '</a>';
                 }
             }
