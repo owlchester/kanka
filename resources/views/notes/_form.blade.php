@@ -16,6 +16,7 @@
                     <label>{{ trans('notes.fields.type') }}</label>
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('notes.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if (Auth::user()->isAdmin())
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
                     <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
@@ -23,6 +24,7 @@
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
                 </div>
+                @endif
             </div>
         </div>
 

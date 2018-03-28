@@ -25,6 +25,7 @@
                         {!! Form::text('date', $formService->prefill('date', $source), ['placeholder' => trans('journals.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker']) !!}
                     </div>
                 </div>
+                @if (Auth::user()->isAdmin())
                 <hr />
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
@@ -33,6 +34,7 @@
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
                 </div>
+                @endif
             </div>
         </div>
     </div>

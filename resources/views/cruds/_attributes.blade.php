@@ -1,6 +1,6 @@
 @can('attribute', [$model, 'add'])
     <p class="text-right">
-        @if ($model->getEntityType() != 'attribute_template')
+        @if ($model->getEntityType() != 'attribute_template' && Auth::user()->isAdmin())
             <a href="{{ route('entities.attributes.template', ['entity' => $model->entity]) }}" class="btn btn-primary">
                 <i class="fa fa-copy"></i> {{ trans('crud.attributes.actions.apply_template') }}
             </a>

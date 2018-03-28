@@ -30,6 +30,8 @@
                     <label>{{ trans('organisations.fields.type') }}</label>
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('organisations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+
+                @if (Auth::user()->isAdmin())
                 <hr />
 
                 <div class="form-group">
@@ -39,6 +41,7 @@
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
                 </div>
+                @endif
             </div>
         </div>
 

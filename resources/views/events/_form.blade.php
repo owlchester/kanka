@@ -35,8 +35,9 @@
                     </div>
                 </div>
                 @endif
-                <hr />
 
+                @if (Auth::user()->isAdmin())
+                <hr />
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
                     <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
@@ -44,6 +45,7 @@
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
                 </div>
+                @endif
             </div>
         </div>
 

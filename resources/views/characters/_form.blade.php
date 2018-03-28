@@ -60,6 +60,7 @@ if (request()->route()->getName() == 'characters.random') {
                     {!! Form::text('race', ($isRandom ? $random->generate('race') : $formService->prefill('race', $source)), ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
 
+                @if (Auth::user()->isAdmin())
                 <div class="form-group">
                     {!! Form::hidden('is_private', 0) !!}
                     <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
@@ -67,6 +68,7 @@ if (request()->route()->getName() == 'characters.random') {
                     </label>
                     <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
                 </div>
+                @endif
             </div>
         </div>
 

@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-md-5">{{ trans('crud.attributes.fields.attribute') }}</div>
                         <div class="col-md-5">{{ trans('crud.attributes.fields.value') }}</div>
-                        <div class="col-md-2">{{ trans('crud.fields.is_private') }}</div>
+                        @if (Auth::user()->isAdmin())<div class="col-md-2">{{ trans('crud.fields.is_private') }}</div>@endif
                     </div>
                     @foreach ($r = $entity->attributes()->orderBy('name', 'ASC')->get() as $attribute)
                         <div class="form-group">
@@ -29,10 +29,12 @@
                                 <div class="col-md-5">
                                     {!! Form::text('value[' . $attribute->id . ']', $attribute->value, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                                 </div>
+                                @if (Auth::user()->isAdmin())
                                 <div class="col-md-1">
                                     {!! Form::hidden('is_private[' . $attribute->id . ']', 0) !!}
                                     {!! Form::checkbox('is_private[' . $attribute->id . ']', 1, $attribute->is_private) !!}
                                 </div>
+                                @endif
                                 @can('attribute', [$entity->child, 'delete'])
                                 <div class="col-md-1">
                                     <a class="btn btn-danger attribute_delete"><i class="fa fa-trash"></i></a>
@@ -52,9 +54,11 @@
                                 <div class="col-md-5">
                                     {!! Form::text('value[]', null, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                                 </div>
+                                @if (Auth::user()->isAdmin())
                                 <div class="col-md-1">
                                     {!! Form::checkbox('is_private[]', 1, false) !!}
                                 </div>
+                                @endif
                                 <div class="col-md-1">
                                     <button class="btn btn-danger attribute_delete"><i class="fa fa-trash"></i></button>
                                 </div>
