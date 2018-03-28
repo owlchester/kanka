@@ -51,7 +51,7 @@ class CrudAttributeController extends Controller
      */
     public function crudIndex(Entity $entity)
     {
-        $this->authorize('show', [$entity->child]);
+        $this->authorize('browse', [$entity->child]);
 
         $attributes = $entity->attributes()->paginate();
         $name = $this->view;

@@ -40,7 +40,7 @@ class AttributePolicy
      */
     public function create(User $user)
     {
-        return $user->member();
+        return $this->checkPermission('add', $user);
     }
 
     /**
@@ -53,7 +53,7 @@ class AttributePolicy
     public function update(User $user, Attribute $attribute)
     {
         return $user->campaign->id == $attribute->entity->campaign_id &&
-            ($user->member());
+            $this->checkPermission('edit', $user);
     }
 
     /**
@@ -66,6 +66,6 @@ class AttributePolicy
     public function delete(User $user, Attribute  $attribute)
     {
         return $user->campaign->id == $attribute->entity->campaign_id &&
-            ($user->member());
+            $this->checkPermission('delete', $user);
     }
 }

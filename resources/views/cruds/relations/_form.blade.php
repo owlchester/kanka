@@ -14,6 +14,7 @@
             {!! Form::text('relation', null, ['placeholder' => trans('relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
 
+        @if (Auth::user()->isAdmin())
         <div class="form-group">
             <label>
                 {!! Form::hidden('is_private', 0) !!}
@@ -22,6 +23,7 @@
                 <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
             </label>
         </div>
+        @endif
 
         @if(empty($relation) && (!isset($mirror) || $mirror == true))
             <div class="form-group">

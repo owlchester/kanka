@@ -9,7 +9,7 @@
             <label>{{ trans('crud.attributes.fields.value') }}</label>
             {!! Form::text('value', null, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
-
+        @if (Auth::user()->isAdmin())
         <div class="form-group">
             {!! Form::hidden('is_private', 0) !!}
             <label>{!! Form::checkbox('is_private') !!}
@@ -17,6 +17,7 @@
             </label>
             <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
         </div>
+        @endif
     </div>
 </div>
 

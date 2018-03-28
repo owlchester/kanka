@@ -90,7 +90,7 @@ return [
             'role'      => 'Role',
         ],
         'invite'    => [
-            'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a \'Viewer\'. You can also cancel the invitation at any time.',
+            'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a member but will have no permission. You will need to add them to an existing or a new role in the \'Roles\' tab. You can also cancel the invitation at any time.',
             'title'         => 'Invite',
         ],
         'roles'     => [

@@ -112,7 +112,8 @@ class AttributeController extends CrudAttributeController
      */
     public function template(Entity $entity)
     {
-        $this->authorize('create', 'App\Models\Attribute');
+        $this->authorize('update', $entity->child);
+
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
@@ -127,7 +128,7 @@ class AttributeController extends CrudAttributeController
 
     public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
     {
-        $this->authorize('create', $entity->child);
+        $this->authorize('update', $entity->child);
 
         // This is dirty
         $template = AttributeTemplate::findOrFail($request->get('template_id'));

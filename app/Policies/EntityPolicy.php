@@ -145,10 +145,6 @@ class EntityPolicy
             $keys[] = $this->model . '_' . $action . '_' . $entity->id;
         }
 
-/*        if ($action == 'organisation_browse') {
-            dd($keys);
-        }
-*/
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
         foreach ($user->roles as $role) {
