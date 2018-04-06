@@ -61,8 +61,9 @@ class CharacterController extends CrudController
                 'placeholder' =>  trans('characters.placeholders.family'),
                 'model' => Family::class,
             ],
-            'age',
             'race',
+            'type',
+            'age',
             'sex'
         ];
 

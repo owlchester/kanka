@@ -38,6 +38,7 @@ return [
         'title'                     => 'Title',
         'traits'                    => 'Traits',
         'weight'                    => 'Weight',
+        'type' => 'Type',
     ],
     'hints'         => [
         'is_personality_visible'    => 'You can hide the whole personality section from your non "Admin" members.',
@@ -98,6 +99,7 @@ return [
         'title'     => 'Title',
         'traits'    => 'Traits',
         'weight'    => 'Weight',
+        'type' => 'NPC, Player Character, Deity'
     ],
     'sections'      => [
         'appearance'    => 'Appearance',

@@ -59,6 +59,10 @@ if (request()->route()->getName() == 'characters.random') {
                     <label>{{ trans('characters.fields.race') }}</label>
                     {!! Form::text('race', ($isRandom ? $random->generate('race') : $formService->prefill('race', $source)), ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
+                <div class="form-group">
+                    <label>{{ trans('characters.fields.type') }}</label>
+                    {!! Form::text('type', ($isRandom ? $random->generate('type') : $formService->prefill('type', $source)), ['placeholder' => trans('characters.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                </div>
 
                 @if (Auth::user()->isAdmin())
                 <div class="form-group">

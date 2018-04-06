@@ -42,6 +42,12 @@
                             <br class="clear" />
                         </li>
                         @endif
+                        @if (!empty($model->type))
+                        <li class="list-group-item">
+                            <b>{{ trans('characters.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
+                            <br class="clear" />
+                        </li>
+                        @endif
 
                         @if ($campaign->enabled('organisations'))
                             @if ($model->organisations->count() > 0)

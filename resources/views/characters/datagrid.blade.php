@@ -22,8 +22,9 @@
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),
         ],
-        'age',
         'race',
+        'type',
+        'age',
         'sex',
         [
             'type' => 'is_private',
