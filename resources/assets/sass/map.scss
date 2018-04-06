@@ -11,24 +11,30 @@
     background-color: rgba(120, 120, 120, 0.3);
     display: block;
     border-radius: 25px;
-  }
-
-  .admin {
-    background-color: rgba(120, 120, 120, 0.5);
+    text-align: center;
 
     i {
       visibility: hidden;
       padding: 15px;
       font-size: 17pt;
+      color: white;
     }
+  }
+
+  .point:hover {
+    background-color: rgba(40, 82, 117, 0.69);
+    i {
+      visibility: visible;
+    }
+  }
+
+  .admin {
+    background-color: rgba(120, 120, 120, 0.5);
+
   }
 
   .admin:hover {
     background-color: rgba(149, 43, 40, 0.8);
-    i {
-      visibility: visible;
-      color: white;
-    }
   }
 }
 .map-admin {
