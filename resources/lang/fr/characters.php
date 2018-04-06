@@ -18,7 +18,7 @@ return [
         'age'                       => 'Age',
         'eye'                       => 'Couleur des yeux',
         'family'                    => 'Famille',
-        'fears'                     => 'Craine',
+        'fears'                     => 'Crainte',
         'free'                      => 'Texte libre',
         'goals'                     => 'Objectifs',
         'hair'                      => 'Cheveux',
