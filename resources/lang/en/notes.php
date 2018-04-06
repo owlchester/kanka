@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new note',
         'success'       => 'Note \':name\' created.',
-        'title'         => 'Create a new note',
+        'title'         => 'New note',
     ],
     'destroy'       => [
         'success'   => 'Note \':name\' removed.',

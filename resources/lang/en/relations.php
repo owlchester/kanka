@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new relation',
         'success'       => 'Relation added for :name.',
         'title'         => 'Create relations',
     ],

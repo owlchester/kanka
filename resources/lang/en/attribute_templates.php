@@ -2,17 +2,17 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new attribute template',
         'success'       => 'Attribute Template \':name\' created.',
-        'title'         => 'Create a new Attribute Template',
+        'title'         => 'New attribute template',
     ],
     'destroy'       => [
         'success'   => 'Attribute Template \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Edit an attribute template',
         'success'       => 'Attribute Template \':name\' updated.',
-        'title'         => 'Edit Attribute Template :name',
+        'title'         => 'Edit :name',
     ],
     'fields'        => [
         'attributes'    => 'Attributes',

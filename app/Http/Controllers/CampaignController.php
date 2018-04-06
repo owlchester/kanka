@@ -98,7 +98,7 @@ class CampaignController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        return view($this->view . '.edit', compact('campaign'));
+        return view($this->view . '.edit', ['model' => $campaign]);
     }
 
     /**

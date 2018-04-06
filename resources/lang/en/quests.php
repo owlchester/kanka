@@ -11,7 +11,7 @@ return [
             'success'   => 'Quest character for :name removed.',
         ],
         'edit'      => [
-            'description'   => '',
+            'description'   => 'Update a quest\'s character',
             'success'       => 'Quest character for :name updated.',
             'title'         => 'Update character for :name',
         ],
@@ -21,15 +21,15 @@ return [
         ],
     ],
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new quest',
         'success'       => 'Quest \':name\' created.',
-        'title'         => 'Create a new quest',
+        'title'         => 'New quest',
     ],
     'destroy'       => [
         'success'   => 'Quest \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Edit a quest',
         'success'       => 'Quest \':name\' updated.',
         'title'         => 'Edit Quest :name',
     ],
@@ -57,7 +57,7 @@ return [
             'success'   => 'Quest location for :name removed.',
         ],
         'edit'      => [
-            'description'   => '',
+            'description'   => 'Update a quest\'s location',
             'success'       => 'Quest location for :name updated.',
             'title'         => 'Update location for :name',
         ],

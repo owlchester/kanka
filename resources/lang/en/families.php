@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new family',
         'success'       => 'Family \':name\' created.',
-        'title'         => 'Create a new family',
+        'title'         => 'New family',
     ],
     'destroy'       => [
         'success'   => 'Family \':name\' removed.',

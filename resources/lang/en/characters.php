@@ -2,17 +2,17 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new character',
         'success'       => 'Character \':name\' created.',
-        'title'         => 'Create a new character',
+        'title'         => 'New character',
     ],
     'destroy'       => [
         'success'   => 'Character \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Edit a character',
         'success'       => 'Character \':name\' updated.',
-        'title'         => 'Edit Character :name',
+        'title'         => 'Edit :name',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -64,7 +64,7 @@ return [
             'success'   => 'Character organisation removed.',
         ],
         'edit'          => [
-            'description'   => '',
+            'description'   => 'Update a character\'s organisation',
             'success'       => 'Character organisation updated.',
             'title'         => 'Update Organisation for :name',
         ],

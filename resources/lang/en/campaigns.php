@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'description'           => '',
+        'description'           => 'Create a new campaign',
         'helper'                => [
             'first' => 'Thanks for trying our app out! Before we can go any further, we need you to provide one simple thing for us, your <b>campaign name</b>. This is the name of your world that separates it from others, so it has to be unique. If you don\'t have a good name yet, don\'t worry, you can <b>always change it later</b>, or create more campaigns.',
             'second'=> 'But enough chit-chat! So, what\'s it going to be?',
@@ -10,15 +10,15 @@ return [
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
-        'title'                 => 'Create a new campaign',
+        'title'                 => 'New campaign',
     ],
     'destroy'       => [
         'success'   => 'Campaign removed.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Edit your campaign',
         'success'       => 'Campaign updated.',
-        'title'         => 'Edit Campaign :campaign',
+        'title'         => 'Edit :campaign',
     ],
     'fields'        => [
         'description'   => 'Description',
@@ -45,9 +45,9 @@ return [
         ],
         'create'        => [
             'button'        => 'Invite',
-            'description'   => '',
+            'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
-            'title'         => 'Invite someone to your campaign',
+            'title'         => 'Campaign Invitation',
         ],
         'destroy'       => [
             'success'   => 'Invitation removed.',
@@ -81,8 +81,8 @@ return [
             'title' => 'Add a member to your campaign',
         ],
         'edit'      => [
-            'description'   => '',
-            'title'         => 'Edit member :name',
+            'description'   => 'Edit a member of your campaign',
+            'title'         => 'Edit :name',
         ],
         'fields'    => [
             'joined'    => 'Joined',
@@ -133,7 +133,7 @@ return [
             'name'  => 'Name of the role',
         ],
         'show'          => [
-            'description'   => '',
+            'description'   => 'Members and Permissions of a campaign role',
             'title'         => 'Role \':role\' for campaign \':campaign\'',
         ],
         'users'         => [

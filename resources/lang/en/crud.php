@@ -15,7 +15,7 @@ return [
             'manage'            => 'Manage',
         ],
         'create'        => [
-            'description'   => '',
+            'description'   => 'Create a new attribute',
             'success'       => 'Attribute :name added to :entity.',
             'title'         => 'New Attribute for :name',
         ],
@@ -23,7 +23,7 @@ return [
             'success'   => 'Attribute :name for :entity removed.',
         ],
         'edit'          => [
-            'description'   => '',
+            'description'   => 'Update an existing attribute',
             'success'       => 'Attribute :name for :entity updated.',
             'title'         => 'Update attribute for :name',
         ],
@@ -85,15 +85,15 @@ return [
     'is_private'    => 'This entity is private and not visible by non-Admin users.',
     'linking_help'  => 'How can I link to other entries?',
     'move'          => [
-        'description'   => '',
+        'description'   => 'Move this entity to another place',
         'fields'        => [
             'target'    => 'New type',
         ],
         'hints'         => [
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
         ],
-        'success'       => 'Entity :name moved.',
-        'title'         => 'Move :name to another place',
+        'success'       => 'Entity :name was moved.',
+        'title'         => 'Move :name',
     ],
     'new_entity'    => [
         'error' => 'Please review your values.',

@@ -56,7 +56,8 @@ $(document).ready(function() {
             // instance, using default configuration.
             $(this).datepicker({
                 autoclose: true,
-                format: 'yyyy-mm-dd'
+                format: 'yyyy-mm-dd',
+                todayHighlight: true
             });
         });
     }

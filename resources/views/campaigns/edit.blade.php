@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.edit.title', ['campaign' => $campaign->name]),
+    'title' => trans('campaigns.edit.title', ['campaign' => $model->name]),
     'description' => trans('campaigns.edit.description'),
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
-        ['url' => route('campaigns.show', $campaign->id), 'label' => $campaign->name],
+        ['url' => route('campaigns.show', $model->id), 'label' => $model->name],
         trans('crud.create')
     ]
 ])
@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($campaign, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['campaigns.update', $campaign->id]]) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['campaigns.update', $model->id]]) !!}
                         @include('campaigns._form')
                     {!! Form::close() !!}
                 </div>

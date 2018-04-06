@@ -8,22 +8,7 @@
     </div>
     <div class="col-md-6">
         @if (session()->has('campaign_id'))
-        <div class="form-group">
-            <label>{{ trans('campaigns.fields.image') }}</label>
-            {!! Form::hidden('remove-image') !!}
-            {!! Form::file('image', array('class' => 'image')) !!}
-            @if (!empty($campaign->image))
-                <div class="preview">
-                    <div class="image">
-                        <img src="/storage/{{ $campaign->image }}"/>
-                        <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
-                            <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
-                        </a>
-                    </div>
-                    <br class="clear">
-                </div>
-            @endif
-        </div>
+            @include('cruds.fields.image')
         @endif
     </div>
     @if (session()->has('campaign_id'))

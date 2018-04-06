@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new item',
         'success'       => 'Item \':name\' created.',
-        'title'         => 'Create a new item',
+        'title'         => 'New item',
     ],
     'destroy'       => [
         'success'   => 'Item \':name\' removed.',

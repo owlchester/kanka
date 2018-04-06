@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Create a new journal',
         'success'       => 'Journal \':name\' created.',
-        'title'         => 'Create a new journal',
+        'title'         => 'New journal',
     ],
     'destroy'       => [
         'success'   => 'Journal \':name\' removed.',
