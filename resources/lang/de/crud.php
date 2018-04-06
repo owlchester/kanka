@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'back'  => 'Zurück',
+        'copy'  => 'Kopieren',
         'move'  => 'Verschieben',
         'new'   => 'Neu',
     ],
@@ -44,6 +45,7 @@ return [
         ],
     ],
     'cancel'        => 'Abbrechen',
+    'clear_filters' => 'Filter zurücksetzen',
     'click_modal'   => [
         'close'     => 'Schließen',
         'confirm'   => 'Bestätigen',
@@ -61,15 +63,22 @@ return [
     ],
     'edit'          => 'Bearbeiten',
     'fields'        => [
-        'character' => 'Charakter',
-        'image'     => 'Bild',
-        'is_private'=> 'Privat',
-        'location'  => 'Ort',
+        'character'     => 'Charakter',
+        'description'   => 'Beschreibung',
+        'entity'        => 'Objekt',
+        'history'       => 'Geschichte',
+        'image'         => 'Bild',
+        'is_private'    => 'Privat',
+        'location'      => 'Ort',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filter',
+    'hidden'        => 'Versteckt',
     'hints'         => [
         'is_private'    => 'Vor \'Zuschauern\' verbergen',
+    ],
+    'image'         => [
+        'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
     ],
     'is_private'    => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
     'linking_help'  => 'Wie kann ich zu anderen Objekten verlinken?',
@@ -98,6 +107,22 @@ return [
         'history'               => 'Geschichte',
         'move'                  => 'Verschieben',
     ],
+    'permissions'   => [
+        'action'    => 'Aktion',
+        'actions'   => [
+            'delete'    => 'Löschen',
+            'edit'      => 'Bearbeiten',
+            'read'      => 'Lesen',
+        ],
+        'allowed'   => 'Erlaubt',
+        'fields'    => [
+            'member'    => 'Mitglied',
+            'role'      => 'Rolle',
+        ],
+        'helper'    => 'Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.',
+        'success'   => 'Berechtigungen gespeichert.',
+        'title'     => 'Berechtigungen',
+    ],
     'placeholders'  => [
         'character' => 'Wähle einen Character',
         'image_url' => 'Du kannst ein Bild auch von einer URL hochladen',
@@ -120,6 +145,7 @@ return [
     'select'        => 'Auswählen',
     'tabs'          => [
         'attributes'    => 'Attribute',
+        'permissions'   => 'Berechtigungen',
         'relations'     => 'Beziehungen',
     ],
     'update'        => 'Aktualisieren',

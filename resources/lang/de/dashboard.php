@@ -7,6 +7,12 @@ return [
     ],
     'description'       => 'Das Zuhause deiner Kreativität',
     'latest_release'    => 'Letztes Release',
+    'notifications'     => [
+        'modal' => [
+            'confirm'   => 'Verstanden',
+            'title'     => 'Wichtige Mitteilung',
+        ],
+    ],
     'recent'            => [
         'add'           => 'Erstelle :name',
         'no_entries'    => 'Es gibt keine Einträge zu diesem Typ.',

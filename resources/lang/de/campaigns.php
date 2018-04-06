@@ -101,6 +101,52 @@ return [
         'locale'        => 'Sprachcode',
         'name'          => 'Dein Kampagnenname',
     ],
+    'roles'         => [
+        'actions'       => [
+            'add'   => 'Rolle hinzufügen',
+        ],
+        'create'        => [
+            'success'   => 'Rolle erstellt.',
+            'title'     => 'Erstelle eine neue Rolle für :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Rolle entfernt.',
+        ],
+        'edit'          => [
+            'success'   => 'Rolle aktualisiert.',
+            'title'     => 'Rolle :name bearbeiten',
+        ],
+        'fields'        => [
+            'name'          => 'Name',
+            'permissions'   => 'Berechtigungen',
+            'users'         => 'Nutzer',
+        ],
+        'members'       => 'Mitglieder',
+        'permissions'   => [
+            'hint'  => 'Diese Rolle hat automatisch Zugriff auf alles.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Name der Rolle',
+        ],
+        'show'          => [
+            'title' => 'Rolle \':role\' für Kampagne \':campaign\'',
+        ],
+        'users'         => [
+            'actions'   => [
+                'add'   => 'Hinzufügen',
+            ],
+            'create'    => [
+                'success'   => 'Benutzer zu Rolle hinzugefügt.',
+                'title'     => 'Füge ein Mitglied zur Rolle :name hinzu',
+            ],
+            'destroy'   => [
+                'success'   => 'Benutzer aus Rolle entfernt',
+            ],
+            'fields'    => [
+                'name'  => 'Name',
+            ],
+        ],
+    ],
     'settings'      => [
         'edit'      => [
             'success'   => 'Kampagnen Einstellungen aktualisiert.',
@@ -115,6 +161,7 @@ return [
         'tabs'          => [
             'information'   => 'Informationen',
             'members'       => 'Mitglieder',
+            'roles'         => 'Rollen',
             'settings'      => 'Einstellungen',
         ],
         'title'         => 'Kampagne :name',
