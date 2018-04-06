@@ -37,7 +37,7 @@ return [
         'skin'                      => 'Peau',
         'title'                     => 'Titre',
         'traits'                    => 'Traits',
-        'weight'                    => 'Poid',
+        'weight'                    => 'Poids',
     ],
     'hints'         => [
         'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres non \'Admin\'.',
@@ -97,7 +97,7 @@ return [
         'skin'      => 'Peau',
         'title'     => 'Titre',
         'traits'    => 'Traits',
-        'weight'    => 'Poid',
+        'weight'    => 'Poids',
     ],
     'sections'      => [
         'appearance'    => 'Physique',
