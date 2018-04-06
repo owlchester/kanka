@@ -42,7 +42,7 @@ class ImageService
 
                 if (!empty($path)) {
                     // Remove old
-                    self::cleanup($model);
+                    self::cleanup($model, $field);
 
                     // Create a thumb of the picture
                     if ($thumbSize !== false) {
@@ -59,7 +59,6 @@ class ImageService
                     } else {
                         $path = request()->file($field)->store($folder, 'public');
                     }
-
                     $model->$field = $path;
                 }
             } catch (Exception $e) {
