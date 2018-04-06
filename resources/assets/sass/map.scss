@@ -1,10 +1,7 @@
 .map {
-  width: 900px;
+  width: 100%;
   position: relative;
-
-  img {
-    width: 100%;
-  }
+  overflow: auto;
 
   .point {
     width: 50px;
@@ -18,5 +15,22 @@
 
   .admin {
     background-color: rgba(120, 120, 120, 0.5);
+
+    i {
+      visibility: hidden;
+      padding: 15px;
+      font-size: 17pt;
+    }
   }
+
+  .admin:hover {
+    background-color: rgba(149, 43, 40, 0.8);
+    i {
+      visibility: visible;
+      color: white;
+    }
+  }
+}
+.map-admin {
+  margin-bottom: 15px;
 }

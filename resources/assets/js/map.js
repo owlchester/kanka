@@ -26,8 +26,8 @@ function initMapAdmin() {
          locationInput.val(null).trigger('change');
 
         var offset = $(this).offset();
-        mapPositionX = Math.ceil(((e.pageX - offset.left - 25) / mapImg.width()) * 100);
-        mapPositionY = Math.ceil(((e.pageY - offset.top - 25) / mapImg.height()) * 100);
+        mapPositionX = e.pageX - offset.left - 25;
+        mapPositionY = e.pageY - offset.top - 25;
 
         // Don't allow negative positions
         if (mapPositionX < 0) {
@@ -36,22 +36,26 @@ function initMapAdmin() {
         if (mapPositionY < 0) {
             mapPositionY = 0;
         }
-        //console.log('pos x', x, 'pos y', y);
 
         mapModal.modal();
     });
 
     var mapModalSubmit = $('#point-location-submit');
     mapModalSubmit.on('click', function(e) {
-        mapAdmin.append(
-            '<div class="point admin" style="top:'+mapPositionY+'%;left:'+mapPositionX+'%">' +
-            '<input type="hidden" name="map_point[]" value="'+mapPositionX+'-'+mapPositionY+'-'+locationInput.val()+'" />' +
-            '</div>'
-        );
-        mapModal.modal('toggle');
+        // Check that a location was selected
+        if (locationInput.val()) {
+            mapAdmin.append(
+                '<div class="point admin" style="top:' + mapPositionY + 'px;left:' + mapPositionX + 'px">' +
+                '<input type="hidden" name="map_point[]" value="' + mapPositionX + '-' + mapPositionY + '-' + locationInput.val() + '" />' +
+                '</div>'
+            );
+            mapModal.modal('toggle');
 
-        // Reset delete on all points
-        initPointDelete();
+            // Reset delete on all points
+            initPointDelete();
+        } else {
+
+        }
     });
 
     // Handle deleting already loaded points

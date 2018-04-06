@@ -7,7 +7,7 @@
     <div class="map">
         <img src="/storage/{{ $model->map }}" alt="{{ $model->name }}" />
         @foreach ($model->mapPoints()->with('location')->get() as $point)
-            <a class="point" style="top: {{ $point->axis_y }}%; left: {{ $point->axis_x }}%"  href="{{ route('locations.show', [$point->target, (!empty($point->target->map) ? '#tab_map' : null)]) }}" title="{{ $point->target->name }}"></a>
+            <a class="point" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px"  href="{{ route('locations.show', [$point->target, (!empty($point->target->map) ? '#tab_map' : null)]) }}" title="{{ $point->target->name }}"></a>
         @endforeach
     </div>
 @else
