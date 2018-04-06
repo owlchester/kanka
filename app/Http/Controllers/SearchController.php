@@ -255,7 +255,12 @@ class SearchController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'name' => $model->name, 'url' => route($model->pluralType() . '.show', $model->entity_id)];
+            $formatted[] = [
+                'id' => $model->id,
+                'fullname' => $model->name,
+                'name' => $model->name . ' (' . trans('entities.' . $model->type) . ')',
+                'url' => route($model->pluralType() . '.show', $model->entity_id
+                )];
         }
 
         return \Response::json($formatted);

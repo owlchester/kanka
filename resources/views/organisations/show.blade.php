@@ -5,11 +5,7 @@
             <!-- Profile Image -->
             <div class="box">
                 <div class="box-body box-profile">
-                    @if ($model->image)
-                    <a href="/storage/{{ $model->image }}">
-                        <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $model->image }}" alt="{{ $model->name }} picture">
-                    </a>
-                    @endif
+                    @include ('cruds._image')
 
                     <h3 class="profile-username text-center">{{ $model->name }}
                         @if ($model->is_private)

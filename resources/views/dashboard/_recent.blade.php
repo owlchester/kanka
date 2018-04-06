@@ -15,7 +15,7 @@
                 @foreach ($models as $model)
                     <li class="item entity">
                         <div class="product-img">
-                            <img src="{{ $model->getImageUrl(true) }}" title="{{ $model->name }} Image" alt="{{ $model->name }} Image">
+                            <a style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" class="entity-image" href="{{ route($route . '.show', $model->id) }}"></a>
                         </div>
                         <div class="product-info">
                             <a href="{{ route($route . '.show', $model->id) }}" class="product-title">{{ $model->name }}</a>

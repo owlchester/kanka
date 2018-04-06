@@ -164,3 +164,18 @@ tr.entity-hidden {
     }
   }
 }
+
+.entity-image, .product-img .entity-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: block;
+}
+.product-img .entity-image {
+  border-radius: 0;
+  height: 70px;
+  width: 50px;
+}

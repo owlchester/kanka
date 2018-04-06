@@ -29,7 +29,7 @@
                 },
                 insert: function(item) {
                     //console.log('insert', item);
-                    return '<a href="' + item.url + '">' + item.name + '</a>';
+                    return '<a href="' + item.url + '">' + item.fullname + '</a>';
                 }
             }
         };
