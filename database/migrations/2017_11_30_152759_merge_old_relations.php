@@ -13,7 +13,7 @@ class MergeOldRelations extends Migration
      */
     public function up()
     {
-        $relations = \App\Models\CharacterRelation::all();
+        /*$relations = \App\Models\CharacterRelation::all();
         foreach ($relations as $relation) {
             \App\Models\Relation::create([
                 'campaign_id' => $relation->first->campaign_id,
@@ -51,7 +51,7 @@ class MergeOldRelations extends Migration
                 'target_id' => $relation->second->entity->id,
                 'relation' => $relation->relation,
             ]);
-        }
+        }*/
     }
 
     /**
