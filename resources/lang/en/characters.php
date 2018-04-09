@@ -80,7 +80,7 @@ return [
     'placeholders'  => [
         'age'       => 'Age',
         'eye'       => 'Eye colour',
-        'family'    => 'Please select a character',
+        'family'    => 'Please select a family',
         'fears'     => 'Fears',
         'free'      => 'Free text',
         'goals'     => 'Goals',
