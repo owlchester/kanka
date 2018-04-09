@@ -7,7 +7,7 @@ Miscellany is a collaborative world building and campaign management tool tailor
 After cloning the project, execute the following commands.
 
 ```
-php artisan voager:install
+php artisan voyager:install
 php artisan migrate
 ```
 
