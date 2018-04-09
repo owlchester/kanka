@@ -179,3 +179,10 @@ tr.entity-hidden {
   height: 70px;
   width: 50px;
 }
+
+/**
+ * vendor layout fix for ckeditor full screen mode
+ */
+div.mce-fullscreen {
+    z-index: 1400;
+}
