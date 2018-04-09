@@ -12,7 +12,7 @@ The app revolves around the concept of `Entities`. This are for example:
 
 ## Structure
 
-Each entity is split between two databases: 
+Each entity is split between two tables: 
 
 * The `entity` table which contains some generic information available to all entities (name, id)
 * A table for the specific data of the entity.
