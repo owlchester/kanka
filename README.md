@@ -1,6 +1,17 @@
 # Miscellany
 
-Miscellany is a collaborative world building tool tailored for tabletop RPG players and game masters.
+Miscellany is a collaborative world building and campaign management tool tailored for tabletop RPG players and game masters.
+
+## Installation
+
+After cloning the project, execute the following commands.
+
+```
+php artisan voager:install
+php artisan migrate
+```
+
+That should cover you. You can now create an account. If you have errors on the dashboard, check that your `roles` table has entries, and that your user has a valid `role_id` value.
 
 ## Concepts
 
