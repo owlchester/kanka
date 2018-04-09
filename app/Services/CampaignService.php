@@ -62,7 +62,7 @@ class CampaignService
      * Leave a campaign
      * @param Campaign $campaign
      */
-    public static function leave(Campaign $campaign)
+    public static function leave(Campaign $campaign = null)
     {
         $member = CampaignUser::where('campaign_id', $campaign->id)
             ->where('user_id', Auth::user()->id)
@@ -122,6 +122,29 @@ class CampaignService
             // Need to create a new campaign
             Session::forget('campaign_id');
         }
+    }
+
+    /**
+     * Determine if the user is still part of the the current campaign
+     *
+     * @return bool True if the user is still part of the current campaign, false otherwise
+     */
+    public static function isUserPartOfCurrentCampaign()
+    {
+        $member = CampaignUser::where('campaign_id', Session::get('campaign_id'))
+            ->where('user_id', Auth::user()->id)
+            ->first();
+        return !empty($member);
+    }
+
+    /**
+     * Definitively remove the campaign from the user
+     */
+    public static function flushCurrentCampaign() {
+        Session::forget('campaign_id');
+        $user = Auth::user();
+        $user->last_campaign_id = null;
+        $user->save();
     }
 
     /**
