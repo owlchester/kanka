@@ -62,7 +62,7 @@ class CampaignService
      * Leave a campaign
      * @param Campaign $campaign
      */
-    public static function leave(Campaign $campaign = null)
+    public static function leave(Campaign $campaign)
     {
         $member = CampaignUser::where('campaign_id', $campaign->id)
             ->where('user_id', Auth::user()->id)
