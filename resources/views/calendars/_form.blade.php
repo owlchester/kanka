@@ -50,7 +50,7 @@
             <div class="panel-body">
 
                 <div class="form-group">
-                    <label>{{ trans('crud.fields.description') }}</label>
+                    <label>{{ trans('crud.fields.description') }}
                     {!! Form::textarea('description', $formService->prefill('description', $source), ['class' => 'form-control html-editor', 'id' => 'description']) !!}
                 </div>
                 <div class="form-group">
@@ -276,8 +276,3 @@
     <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
     {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
 </div>
-
-
-@section('styles')
-
-@endsection

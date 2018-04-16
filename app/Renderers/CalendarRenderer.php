@@ -3,6 +3,7 @@
 namespace App\Renderers;
 
 use App\Models\Calendar;
+use App\Models\Event;
 use Collective\Html\HtmlFacade;
 
 class CalendarRenderer
@@ -42,7 +43,7 @@ class CalendarRenderer
             $month = count($months);
         }
 
-        return HtmlFacade::linkRoute('calendars.show', "$year " . $months[$month-1]['name'], ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]);
+        return HtmlFacade::linkRoute('calendars.show', $months[$month-1]['name'] . " $year", ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]);
     }
 
     /**
@@ -54,16 +55,20 @@ class CalendarRenderer
         $month = $this->segments[1];
         $year = $this->segments[0];
         $months = $this->calendar->months();
-
+        $options = '';
         // Year name?
         $names = $this->calendar->years();
-        $yearName = '';
-        if (!empty($names[$year])) {
-            $yearName = '"' . $names[$year] . '" ';
+
+        for ($y = $year - 5; $y <= $year + 5; $y++) {
+            $yearName = '';
+            if (!empty($names[$y])) {
+                $yearName = ' "' . $names[$y] . '"';
+            }
+            $route = route('calendars.show', ['calendar' => $this->calendar, 'year' => $y, 'month' => $month]);
+            $options .= "<option value=\"$route\"" . ($y == $year ? ' selected="selected"' : null) . ">" . $months[$month-1]['name'] . " $y$yearName</option>";
         }
 
-
-        return "$year $yearName" . $months[$month-1]['name'];
+        return $options;
     }
 
     /**
@@ -81,7 +86,7 @@ class CalendarRenderer
             $month = 1;
         }
 
-        return HtmlFacade::linkRoute('calendars.show', "$year " . $months[$month-1]['name'], ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]);
+        return HtmlFacade::linkRoute('calendars.show', $months[$month-1]['name'] . " $year", ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]);
     }
 
     /**
@@ -94,14 +99,10 @@ class CalendarRenderer
         $weekdays = $this->calendar->weekdays();
         $months = $this->calendar->months();
         $month = $months[$this->segments[1]-1];
-
-        // Amount of weeks in this month: number of days in the month / length of a week
-        $weekCount = ceil($month['length'] / count($weekdays));
-
         $data = [];
-        $dayNumber = 1;
 
         $offset = $this->weekStartoffset();
+        $events = $this->events();
 
         // Check if this month is a leap month
         if ($this->calendar->has_leap_year) {
@@ -122,7 +123,12 @@ class CalendarRenderer
                 $offset--;
                 $day--;
             } else {
-                $week[] = $day;
+                $exact = $this->segments[0] . '-' . $this->segments[1] . '-' . $day;
+                if (isset($events[$exact])) {
+                    $week[] = ['day' => $day, 'events' => $events[$exact]];
+                } else {
+                    $week[] = ['day' => $day, 'events' => []];
+                }
             }
 
             $weekLength++;
@@ -143,28 +149,22 @@ class CalendarRenderer
 
         $data[] = $week;
 
-//        for ($week = 1; $week <= $weekCount; $week++) {
-//            $weekData = [];
-//            $weekDay = 0;
-//            foreach ($weekdays as $day) {
-//                // Offset for first week
-//                if ($week == 1 && $offset > 0) {
-//                    $offset--;
-//                    $weekData[] = null;
-//                }
-//                // Don't go over the max of the month length
-//                elseif ($dayNumber > $month['length']) {
-//                    $weekData[] = null;
-//                } else {
-//                    $weekData[] = $dayNumber;
-//                    $dayNumber++;
-//                }
-//                $weekDay++;
-//            }
-//
-//            $data[] = $weekData;
-//        }
         return $data;
+    }
+
+    public function yearSwitcher()
+    {
+        $currentYear = $this->segments[0];
+        $months = $this->calendar->months();
+        $html = '';
+        for ($year = $currentYear - 3; $year <= $currentYear + 3; $year++) {
+            $html .= '<div class="col-md-' . ($year == $currentYear ? '2 text-center' : 1) . '">' .
+                ($year < $currentYear ? '<i class="fa fa-angle-double-left"></i> ' : null) .
+                HtmlFacade::linkRoute('calendars.show', "$year " . $months[0]['name'], ['calendar' => $this->calendar, 'year' => $year, 'month' => 1]) .
+                ($year > $currentYear ? ' <i class="fa fa-angle-double-right"></i>' : null) .
+                '</div>';
+        }
+        return $html;
     }
 
     /**
@@ -208,10 +208,15 @@ class CalendarRenderer
             }
         }
 
-        if ($this->calendar->has_leap_year) {
+        if ($this->calendar->has_leap_year && $this->segments[0] >= $this->calendar->leap_year_start) {
             // Calc the number of years that were leap years
             $amountOfYears = floor(($this->segments[0] - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
+            if ($amountOfYears < 0) {
+                $amountOfYears = 0;
+            }
+
             $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
+
 
             // But if we are a leap year, we need to do the math
             if ($this->segments[0] % $this->calendar->leap_year_start == 0) {
@@ -228,5 +233,22 @@ class CalendarRenderer
         $offset = floor($totalDays % $weekLength);
 
         return $offset;
+    }
+
+    /**
+     * Load events of the year and month
+     * @return array
+     */
+    protected function events()
+    {
+        $events = [];
+        foreach (Event::where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')->get() as $event) {
+            if (!isset($events[$event->date])) {
+                $events[$event->date] = [];
+            }
+
+            $events[$event->date][] = $event;
+        }
+        return $events;
     }
 }

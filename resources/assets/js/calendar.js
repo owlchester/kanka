@@ -1,4 +1,5 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
+var calendarYearSwitcher;
 
 $(document).ready(function() {
     calendarAddMonth = $('#add_month');
@@ -8,9 +9,14 @@ $(document).ready(function() {
     calendarTemplateWeekday = $('#template_weekday');
     calendarTemplateYear = $('#template_year');
     calendarLeapYear = $('input[name="has_leap_year"]');
+    calendarYearSwitcher = $('#calendar-year-switcher');
 
     if (calendarAddMonth.length === 1) {
         initCalendar();
+    }
+
+    if (calendarYearSwitcher.length === 1) {
+        initCalendarYearSwitcher();
     }
 });
 
@@ -20,7 +26,6 @@ $(document).ready(function() {
 function initCalendar() {
     calendarAddMonth.on('click', function(e) {
         e.preventDefault();
-        console.log('calendarAddMonth', 'click');
 
         $(this).before('<div class="form-group">' +
             calendarTemplateMonth.html() +
@@ -34,7 +39,6 @@ function initCalendar() {
 
     calendarAddWeekday.on('click', function(e) {
         e.preventDefault();
-        console.log('calendarAddWeekday', 'click');
 
         $(this).before('<div class="form-group">' +
             calendarTemplateWeekday.html() +
@@ -49,7 +53,6 @@ function initCalendar() {
 
     calendarAddYear.on('click', function(e) {
         e.preventDefault();
-        console.log('calendarAddYear', 'click');
 
         $(this).before('<div class="form-group">' +
             calendarTemplateYear.html() +
@@ -79,5 +82,13 @@ function calendarDeleteRowHandler() {
             e.preventDefault();
         });
     });
+}
 
+function initCalendarYearSwitcher() {
+    calendarYearSwitcher.on('change', function() {
+        var option = $(this).find(':selected').val();
+        if (option) {
+            window.location = option;
+        }
+    });
 }

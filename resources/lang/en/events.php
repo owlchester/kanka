@@ -29,7 +29,7 @@ return [
         'title'         => 'Events',
     ],
     'placeholders'  => [
-        'date'      => 'A date for your event',
+        'date'      => 'A date for your event (year-month-day to appear in calendars)',
         'location'  => 'Choose a location',
         'name'      => 'Name of the event',
         'type'      => 'Ceremony, Festival, Disaster, Battle, Birth',
