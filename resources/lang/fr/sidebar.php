@@ -3,9 +3,11 @@
 return [
     'admin'                 => 'Admin',
     'attribute_templates'   => 'Modèles d\'attributs',
+    'calendars'             => 'Calendriers',
     'campaigns'             => 'Campagnes',
     'characters'            => 'Personnages',
     'dashboard'             => 'Tableau de bord',
+    'discord'               => 'Discord',
     'events'                => 'Evénements',
     'families'              => 'Familles',
     'items'                 => 'Objets',

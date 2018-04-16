@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer une nouvelle personne',
         'success'       => 'Personne \':name\' créée.',
         'title'         => 'Créer une nouvelle personne',
     ],
@@ -10,7 +10,7 @@ return [
         'success'   => 'Personne \':name\' supprimée.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Modifier une personne',
         'success'       => 'Personne \':name\' modifiée.',
         'title'         => 'Modifier Personne :name',
     ],
@@ -18,7 +18,7 @@ return [
         'age'                       => 'Age',
         'eye'                       => 'Couleur des yeux',
         'family'                    => 'Famille',
-        'fears'                     => 'Crainte',
+        'fears'                     => 'Craine',
         'free'                      => 'Texte libre',
         'goals'                     => 'Objectifs',
         'hair'                      => 'Cheveux',
@@ -37,10 +37,11 @@ return [
         'skin'                      => 'Peau',
         'title'                     => 'Titre',
         'traits'                    => 'Traits',
-        'weight'                    => 'Poids',
+        'type'                      => 'Type',
+        'weight'                    => 'Poid',
     ],
     'hints'         => [
-        'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres non \'Admin\'.',
+        'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type non Admin.',
     ],
     'index'         => [
         'actions'       => [
@@ -64,7 +65,7 @@ return [
             'success'   => 'Organisation de personne supprimée.',
         ],
         'edit'          => [
-            'description'   => '',
+            'description'   => 'Modifier l\'organisation d\'une personne',
             'success'       => 'Organisation de personne modifiée.',
             'title'         => 'Modifier l\'Organisation pour :name',
         ],
@@ -97,7 +98,8 @@ return [
         'skin'      => 'Peau',
         'title'     => 'Titre',
         'traits'    => 'Traits',
-        'weight'    => 'Poids',
+        'type'      => 'PNG, Joueurs, Autre',
+        'weight'    => 'Poid',
     ],
     'sections'      => [
         'appearance'    => 'Physique',

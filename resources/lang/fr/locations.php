@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer un nouveau lieu',
         'success'       => 'Lieu \':name\' créé.',
         'title'         => 'Ajouter un lieu',
     ],
@@ -16,6 +16,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personnages',
+        'image'         => 'Image',
         'location'      => 'Lieu',
         'locations'     => 'Lieux',
         'map'           => 'Carte',

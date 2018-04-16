@@ -2,15 +2,17 @@
 
 return [
     'create'        => [
-        'success'   => 'Modèle d\'attribut \':name\' créé.',
-        'title'     => 'Créer un nouveau Modèle d\'attribut',
+        'description'   => 'Créer un nouveau Modèle d\'attribut',
+        'success'       => 'Modèle d\'attribut \':name\' créé.',
+        'title'         => 'Créer un nouveau Modèle d\'attribut',
     ],
     'destroy'       => [
         'success'   => 'Modèle d\'attribut \':name\' supprimé.',
     ],
     'edit'          => [
-        'success'   => 'Modèle d\'attribut \':name\' mis à jour.',
-        'title'     => 'Modifier le modèle d\'attribut :name',
+        'description'   => 'Modifier un modèle d\'attribut',
+        'success'       => 'Modèle d\'attribut \':name\' mis à jour.',
+        'title'         => 'Modifier le modèle d\'attribut :name',
     ],
     'fields'        => [
         'attributes'    => 'Attributs',

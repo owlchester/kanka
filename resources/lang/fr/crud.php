@@ -15,15 +15,17 @@ return [
             'manage'            => 'Gérer',
         ],
         'create'        => [
-            'success'   => 'Attribut :name ajouté à :entity.',
-            'title'     => 'Nouvel attribut pour :name',
+            'description'   => 'Créer un nouvel attribut',
+            'success'       => 'Attribut :name ajouté à :entity.',
+            'title'         => 'Nouvel attribut pour :name',
         ],
         'destroy'       => [
             'success'   => 'Attribut :name supprimé de :entity.',
         ],
         'edit'          => [
-            'success'   => 'Attribut :name modifié pour :entity.',
-            'title'     => 'Modifier l\'attribut pour :name',
+            'description'   => 'Modifier un attribut existant',
+            'success'       => 'Attribut :name modifié pour :entity.',
+            'title'         => 'Modifier l\'attribut pour :name',
         ],
         'fields'        => [
             'attribute' => 'Attribut',
@@ -75,7 +77,7 @@ return [
     'filters'       => 'Filtres',
     'hidden'        => 'Caché',
     'hints'         => [
-        'is_private'    => 'Cacher des membres pas de type "Admin"',
+        'is_private'    => 'Cacher des membres de type "Observateur"',
     ],
     'image'         => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
@@ -83,7 +85,7 @@ return [
     'is_private'    => 'Cet élément est privé et pas visible.',
     'linking_help'  => 'Comment lier vers d\'autres éléments?',
     'move'          => [
-        'description'   => '',
+        'description'   => 'Déplacer cet élément à un nouveau endroit',
         'fields'        => [
             'target'    => 'Nouveau type',
         ],
@@ -102,7 +104,7 @@ return [
     ],
     'or_cancel'     => 'ou <a href=":url">annuler</a>',
     'panels'        => [
-        'appearance'            => 'Apparence',
+        'appearance'            => 'Apparance',
         'description'           => 'Description',
         'general_information'   => 'Information Generale',
         'history'               => 'Histoire',

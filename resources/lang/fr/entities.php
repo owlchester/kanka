@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'calendars'     => 'Calendriers',
     'campaign'      => 'Campagne',
     'campaigns'     => 'Campagnes',
     'character'     => 'Personnage',
