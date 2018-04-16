@@ -68,6 +68,11 @@
                 <a href="{{ route('quests.index') }}"><i class="fa fa-list"></i> <span>{{ trans('sidebar.quests') }}</span></a>
             </li>
             @endif
+            @if ($campaign->enabled('calendars'))
+            <li class="{{ $sidebar->active('calendars') }}">
+                <a href="{{ route('calendars.index') }}"><i class="fa fa-calendar"></i> <span>{{ trans('sidebar.calendars') }}</span></a>
+            </li>
+            @endif
             @if ($campaign->enabled('journals'))
             <li class="{{ $sidebar->active('journals') }}">
                 <a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a>

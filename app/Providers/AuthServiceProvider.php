@@ -13,6 +13,18 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 class AuthServiceProvider extends ServiceProvider
 {
     /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if (!app()->runningInConsole()) {
+            $this->registerPolicies();
+        }
+    }
+
+    /**
      * The policy mappings for the application.
      *
      * @var array
@@ -22,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         CampaignUser::class => CampaignUserPolicy::class,
         Campaign::class => CampaignPolicy::class,
         'App\Models\AttributeTemplate' => 'App\Policies\AttributeTemplatePolicy',
+        'App\Models\Calendar' => 'App\Policies\CalendarPolicy',
         'App\Models\CampaignInvite' => 'App\Policies\CampaignInvitePolicy',
         'App\Models\CampaignRole' => 'App\Policies\CampaignRolePolicy',
         'App\Models\CampaignRoleUser' => 'App\Policies\CampaignRoleUserPolicy',
@@ -45,16 +58,4 @@ class AuthServiceProvider extends ServiceProvider
         //'App\Models\Relation' => 'App\Policies\RelationPolicy',
         //'App\Models\Attribute' => 'App\Policies\AttributePolicy',
     ];
-
-    /**
-     * Register any authentication / authorization services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        if (!app()->runningInConsole()) {
-            $this->registerPolicies();
-        }
-    }
 }

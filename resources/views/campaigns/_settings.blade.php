@@ -4,6 +4,12 @@
 
 {!! Form::model($campaign->setting, ['method' => 'POST', 'route' => ['campaigns.settings.save', $campaign->id]]) !!}
 <div class="form-group">
+    {!! Form::hidden('calendars', 0) !!}
+    <label>{!! Form::checkbox('calendars') !!}
+        {{ trans('entities.calendars') }}
+    </label>
+</div>
+<div class="form-group">
     {!! Form::hidden('characters', 0) !!}
     <label>{!! Form::checkbox('characters') !!}
         {{ trans('entities.characters') }}

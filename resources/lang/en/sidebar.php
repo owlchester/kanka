@@ -3,6 +3,7 @@
 return [
     'admin'                 => 'Admin',
     'attribute_templates'   => 'Attribute Templates',
+    'calendars'             => 'Calendars',
     'campaigns'             => 'Campaigns',
     'characters'            => 'Characters',
     'dashboard'             => 'Dashboard',

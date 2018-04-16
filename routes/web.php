@@ -52,6 +52,7 @@ Route::group([
     Route::get('/team', 'TeamController@index')->name('team.index');
 
     // Multi-delete for cruds
+    Route::post('/calendars/deleteMany', 'CalendarController@deleteMany')->name('calendars.deleteMany');
     Route::post('/characters/deleteMany', 'CharacterController@deleteMany')->name('characters.deleteMany');
     Route::post('/events/deleteMany', 'EventController@deleteMany')->name('events.deleteMany');
     Route::post('/locations/deleteMany', 'LocationController@deleteMany')->name('locations.deleteMany');
@@ -72,6 +73,8 @@ Route::group([
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
+        'calendars' => 'CalendarController',
+        'calendars.relations' => 'CalendarRelationController',
         'campaigns' => 'CampaignController',
         'campaign_user' => 'CampaignUserController',
         'characters' => 'CharacterController',
@@ -114,6 +117,7 @@ Route::group([
 
 
     // Search
+    Route::get('/search/calendars', 'SearchController@calendars')->name('calendars.find');
     Route::get('/search/characters', 'SearchController@characters')->name('characters.find');
     Route::get('/search/campaigns', 'SearchController@campaigns')->name('campaigns.find');
     Route::get('/search/events', 'SearchController@events')->name('events.find');

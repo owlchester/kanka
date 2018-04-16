@@ -80,7 +80,7 @@ return [
     'placeholders'  => [
         'age'       => 'Age',
         'eye'       => 'Eye colour',
-        'family'    => 'Please select a family',
+        'family'    => 'Choose a family',
         'fears'     => 'Fears',
         'free'      => 'Free text',
         'goals'     => 'Goals',
@@ -89,7 +89,7 @@ return [
         'history'   => 'History',
         'image'     => 'Image',
         'languages' => 'Languages',
-        'location'  => 'Please select a location',
+        'location'  => 'Choose a location',
         'mannerisms'=> 'Mannerisms',
         'name'      => 'Name',
         'physical'  => 'Physical',

@@ -140,6 +140,14 @@ class Entity extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function calendar()
+    {
+        return $this->hasOne('App\Models\Calendar', 'id', 'entity_id');
+    }
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */

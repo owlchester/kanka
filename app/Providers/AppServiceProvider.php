@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Campaign;
 use App\CampaignUser;
 use App\Models\AttributeTemplate;
+use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
@@ -19,6 +20,7 @@ use App\Models\QuestCharacter;
 use App\Models\QuestLocation;
 use App\Models\Note;
 use App\Models\Relation;
+use App\Observers\CalendarObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\CharacterObserver;
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
         if (!app()->runningInConsole()) {
             // Observers
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
+            Calendar::observe(CalendarObserver::class);
             Campaign::observe(CampaignObserver::class);
             CampaignUser::observe(CampaignUserObserver::class);
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');

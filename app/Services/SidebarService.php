@@ -52,6 +52,9 @@ class SidebarService
         'quests' => [
             'quests',
         ],
+        'calendars' => [
+            'calendars',
+        ],
         'releases' => [
             'releases'
         ],
