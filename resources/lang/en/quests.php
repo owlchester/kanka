@@ -23,7 +23,7 @@ return [
     'create'        => [
         'description'   => 'Create a new quest',
         'success'       => 'Quest \':name\' created.',
-        'title'         => 'New quest',
+        'title'         => 'Create a new quest',
     ],
     'destroy'       => [
         'success'   => 'Quest \':name\' removed.',

@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new journal',
         'success'       => 'Journal \':name\' created.',
-        'title'         => 'New journal',
+        'title'         => 'Create a new journal',
     ],
     'destroy'       => [
         'success'   => 'Journal \':name\' removed.',

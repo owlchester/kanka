@@ -82,7 +82,7 @@ return [
     'image'         => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
     ],
-    'is_private'    => 'This entity is private and not visible by non-Admin users.',
+    'is_private'    => 'This entity is private and not visible by non-admin users.',
     'linking_help'  => 'How can I link to other entries?',
     'move'          => [
         'description'   => 'Move this entity to another place',
@@ -92,8 +92,8 @@ return [
         'hints'         => [
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
         ],
-        'success'       => 'Entity :name was moved.',
-        'title'         => 'Move :name',
+        'success'       => 'Entity :name moved.',
+        'title'         => 'Move :name to another place',
     ],
     'new_entity'    => [
         'error' => 'Please review your values.',

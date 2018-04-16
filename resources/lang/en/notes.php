@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new note',
         'success'       => 'Note \':name\' created.',
-        'title'         => 'New note',
+        'title'         => 'Create a new note',
     ],
     'destroy'       => [
         'success'   => 'Note \':name\' removed.',

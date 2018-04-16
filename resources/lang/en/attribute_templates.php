@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new attribute template',
         'success'       => 'Attribute Template \':name\' created.',
-        'title'         => 'New attribute template',
+        'title'         => 'Create a new Attribute Template',
     ],
     'destroy'       => [
         'success'   => 'Attribute Template \':name\' removed.',
@@ -12,7 +12,7 @@ return [
     'edit'          => [
         'description'   => 'Edit an attribute template',
         'success'       => 'Attribute Template \':name\' updated.',
-        'title'         => 'Edit :name',
+        'title'         => 'Edit Attribute Template :name',
     ],
     'fields'        => [
         'attributes'    => 'Attributes',

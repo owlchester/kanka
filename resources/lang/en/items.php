@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new item',
         'success'       => 'Item \':name\' created.',
-        'title'         => 'New item',
+        'title'         => 'Create a new item',
     ],
     'destroy'       => [
         'success'   => 'Item \':name\' removed.',

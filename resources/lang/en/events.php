@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new event',
         'success'       => 'Event \':name\' created.',
-        'title'         => 'New Event',
+        'title'         => 'Create a new event',
     ],
     'destroy'       => [
         'success'   => 'Event \':name\' removed.',
@@ -29,13 +29,13 @@ return [
         'title'         => 'Events',
     ],
     'placeholders'  => [
-        'date'      => 'A date for your event (year-month-day to appear in calendars)',
+        'date'      => 'A date for your event',
         'location'  => 'Choose a location',
         'name'      => 'Name of the event',
         'type'      => 'Ceremony, Festival, Disaster, Battle, Birth',
     ],
     'show'          => [
-        'description'   => 'A detailed view of an event',
+        'description'   => 'A detailed view of an event (year-month-day to appear in calendars)',
         'tabs'          => [
             'information'   => 'Information',
         ],

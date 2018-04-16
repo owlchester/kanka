@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new character',
         'success'       => 'Character \':name\' created.',
-        'title'         => 'New character',
+        'title'         => 'Create a new character',
     ],
     'destroy'       => [
         'success'   => 'Character \':name\' removed.',
@@ -12,7 +12,7 @@ return [
     'edit'          => [
         'description'   => 'Edit a character',
         'success'       => 'Character \':name\' updated.',
-        'title'         => 'Edit :name',
+        'title'         => 'Edit Character :name',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -37,11 +37,11 @@ return [
         'skin'                      => 'Skin',
         'title'                     => 'Title',
         'traits'                    => 'Traits',
+        'type'                      => 'Type',
         'weight'                    => 'Weight',
-        'type' => 'Type',
     ],
     'hints'         => [
-        'is_personality_visible'    => 'You can hide the whole personality section from your non "Admin" members.',
+        'is_personality_visible'    => 'You can hide the whole personality section from non-Admin users.',
     ],
     'index'         => [
         'actions'       => [
@@ -80,7 +80,7 @@ return [
     'placeholders'  => [
         'age'       => 'Age',
         'eye'       => 'Eye colour',
-        'family'    => 'Choose a family',
+        'family'    => 'Please select a character',
         'fears'     => 'Fears',
         'free'      => 'Free text',
         'goals'     => 'Goals',
@@ -89,7 +89,7 @@ return [
         'history'   => 'History',
         'image'     => 'Image',
         'languages' => 'Languages',
-        'location'  => 'Choose a location',
+        'location'  => 'Please select a location',
         'mannerisms'=> 'Mannerisms',
         'name'      => 'Name',
         'physical'  => 'Physical',
@@ -98,8 +98,8 @@ return [
         'skin'      => 'Skin',
         'title'     => 'Title',
         'traits'    => 'Traits',
+        'type'      => 'NPC, Player Character, Deity',
         'weight'    => 'Weight',
-        'type' => 'NPC, Player Character, Deity'
     ],
     'sections'      => [
         'appearance'    => 'Appearance',

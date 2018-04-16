@@ -10,7 +10,7 @@ return [
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
-        'title'                 => 'New campaign',
+        'title'                 => 'Create a new campaign',
     ],
     'destroy'       => [
         'success'   => 'Campaign removed.',
@@ -18,7 +18,7 @@ return [
     'edit'          => [
         'description'   => 'Edit your campaign',
         'success'       => 'Campaign updated.',
-        'title'         => 'Edit :campaign',
+        'title'         => 'Edit Campaign :campaign',
     ],
     'fields'        => [
         'description'   => 'Description',
@@ -47,7 +47,7 @@ return [
             'button'        => 'Invite',
             'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
-            'title'         => 'Campaign Invitation',
+            'title'         => 'Invite someone to your campaign',
         ],
         'destroy'       => [
             'success'   => 'Invitation removed.',
@@ -72,7 +72,7 @@ return [
         ],
     ],
     'leave'         => [
-        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
+        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an owner of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
@@ -82,7 +82,7 @@ return [
         ],
         'edit'      => [
             'description'   => 'Edit a member of your campaign',
-            'title'         => 'Edit :name',
+            'title'         => 'Edit member :name',
         ],
         'fields'    => [
             'joined'    => 'Joined',
@@ -90,15 +90,15 @@ return [
             'role'      => 'Role',
         ],
         'invite'    => [
-            'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a member but will have no permission. You will need to add them to an existing or a new role in the \'Roles\' tab. You can also cancel the invitation at any time.',
+            'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a \'Viewer\'. You can also cancel the invitation at any time.',
             'title'         => 'Invite',
         ],
         'roles'     => [
             'member'    => 'Member',
-            'owner'     => 'Admin',
+            'owner'     => 'Owner',
             'viewer'    => 'Viewer',
         ],
-        'your_role' => 'Role: <i>:role</i>',
+        'your_role' => 'Your role: <i>:role</i>',
     ],
     'placeholders'  => [
         'description'   => 'A short summary of your campaign',
@@ -134,7 +134,7 @@ return [
         ],
         'show'          => [
             'description'   => 'Members and Permissions of a campaign role',
-            'title'         => 'Role \':role\' for campaign \':campaign\'',
+            'title'         => 'Campaign Roles',
         ],
         'users'         => [
             'actions'   => [

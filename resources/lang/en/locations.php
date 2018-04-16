@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new location',
         'success'       => 'Location \':name\' created.',
-        'title'         => 'New location',
+        'title'         => 'Create a new location',
     ],
     'destroy'       => [
         'success'   => 'Location \':name\' removed.',
