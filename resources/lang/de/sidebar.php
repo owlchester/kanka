@@ -20,5 +20,6 @@ return [
     'releases'              => 'Versionshinweise',
     'search'                => 'Suche...',
     'support'               => 'Support / Community',
+    'team'                  => 'Team',
     'translations'          => 'Übersetzungen',
 ];
