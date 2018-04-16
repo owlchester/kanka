@@ -13,7 +13,7 @@ class MigrateAttributes extends Migration
      */
     public function up()
     {
-        $attributes = \App\Models\CharacterAttribute::with('character')->get();
+        /*$attributes = \App\Models\CharacterAttribute::with('character')->get();
 
         foreach ($attributes as $attribute) {
             \App\Models\Attribute::create([
@@ -32,7 +32,7 @@ class MigrateAttributes extends Migration
                 'value' => $attribute->value,
                 'is_private' => $attribute->is_private
             ]);
-        }
+        }*/
     }
 
     /**
