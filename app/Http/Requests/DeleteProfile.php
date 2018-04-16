@@ -25,9 +25,12 @@ class DeleteProfile extends FormRequest
     public function rules()
     {
         $user = Auth::user();
-        $rules = [
-            'password' => 'required|hash:' . $user->getAuthPassword()
-        ];
+        $rules = [];
+        if (empty($user->provider)) {
+            $rules = [
+                'password' => 'required|hash:' . $user->getAuthPassword()
+            ];
+        }
         return $rules;
     }
 }
