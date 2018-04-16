@@ -1,18 +1,25 @@
 <?php
 
 return [
-    'campaigns'     => [
+    'campaigns'         => [
         'current'   => 'A campanha atual',
         'manage'    => 'Gerencie suas campanhas',
     ],
-    'description'   => 'O lar de sua criatividade',
-    'recent'        => [
+    'description'       => 'O lar de sua criatividade',
+    'latest_release'    => 'Última Atualização',
+    'notifications'     => [
+        'modal' => [
+            'confirm'   => 'Entendi',
+            'title'     => 'Notificação Importante',
+        ],
+    ],
+    'recent'            => [
         'add'           => 'Criar nova :name',
         'no_entries'    => 'Atualmente não há entidade desse tipo.',
         'title'         => ':name Modificados(as) Recentemente',
         'view'          => 'Ver Todos(as) :name',
     ],
-    'settings'      => [
+    'settings'          => [
         'description'   => 'Customize o que você vê no seu dashboard',
         'edit'          => [
             'success'   => 'Suas modificações foram salvas.',
@@ -23,5 +30,5 @@ return [
         ],
         'title'         => 'Configurações do Dashboard',
     ],
-    'title'         => 'Dashboard',
+    'title'             => 'Dashboard',
 ];

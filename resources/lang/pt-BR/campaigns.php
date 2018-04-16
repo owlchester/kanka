@@ -2,6 +2,7 @@
 
 return [
     'create'        => [
+        'description'           => 'Criar uma nova Campanha',
         'helper'                => [
             'first' => 'Muito obrigado por testar o nosso app! Antes de continuarmos, nós precisamos que você nos informe uma coisa: O nome da sua <b>Campanha</b>. Esse será o nome do seu mundo que o diferencia dos outros, então precisa ser único. Se você não pensou em um bom nome ainda, não se preocupe, você <b>sempre pode mudar depois</b>, ou criar mais campanhas.',
             'second'=> 'Mas chega de conversinha! E então, qual será?',
@@ -15,8 +16,9 @@ return [
         'success'   => 'Campanha removida',
     ],
     'edit'          => [
-        'success'   => 'Campanha atualizada',
-        'title'     => 'Editar Campanha :campaign',
+        'description'   => 'Edite sua campanha',
+        'success'       => 'Campanha atualizada',
+        'title'         => 'Editar Campanha :campaign',
     ],
     'fields'        => [
         'description'   => 'Descrição',
@@ -42,9 +44,10 @@ return [
             'add'   => 'Convidar',
         ],
         'create'        => [
-            'button'    => 'Convidar',
-            'success'   => 'Convite enviado.',
-            'title'     => 'Convide alguém para sua campanha',
+            'button'        => 'Convidar',
+            'description'   => 'Convide um amigo para a sua campanha',
+            'success'       => 'Convite enviado.',
+            'title'         => 'Convide alguém para sua campanha',
         ],
         'destroy'       => [
             'success'   => 'Convite removido',
@@ -78,7 +81,8 @@ return [
             'title' => 'Adicionar um membro a sua campanha',
         ],
         'edit'      => [
-            'title' => 'Editar membro :name',
+            'description'   => 'Edite um membro da sua campanha',
+            'title'         => 'Editar membro :name',
         ],
         'fields'    => [
             'joined'    => 'Juntou-se em',
@@ -101,6 +105,53 @@ return [
         'locale'        => 'Idioma',
         'name'          => 'O nome da sua campanha',
     ],
+    'roles'         => [
+        'actions'       => [
+            'add'   => 'Adicione um cargo',
+        ],
+        'create'        => [
+            'success'   => 'Cargo criado',
+            'title'     => 'Criar um novo cargo para :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Cargo removido.',
+        ],
+        'edit'          => [
+            'success'   => 'Cargo atualizado',
+            'title'     => 'Editar Cargo :name',
+        ],
+        'fields'        => [
+            'name'          => 'Nome',
+            'permissions'   => 'Permissões',
+            'users'         => 'Usuários',
+        ],
+        'members'       => 'Membros',
+        'permissions'   => [
+            'hint'  => 'Esse cargo tem automaticamente acesso a tudo.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nome do cargo',
+        ],
+        'show'          => [
+            'description'   => 'Membros e Permissões do cargo da campanha',
+            'title'         => 'Cargo \':role\' para a campanha \':campaign\'',
+        ],
+        'users'         => [
+            'actions'   => [
+                'add'   => 'Adicionar',
+            ],
+            'create'    => [
+                'success'   => 'Usuário adicionado ao cargo',
+                'title'     => 'Adicione um membro para o cargo :name',
+            ],
+            'destroy'   => [
+                'success'   => 'Usuário removido do cargo.',
+            ],
+            'fields'    => [
+                'name'  => 'Nome',
+            ],
+        ],
+    ],
     'settings'      => [
         'edit'      => [
             'success'   => 'Configurações da campanha atualizadas.',
@@ -115,6 +166,7 @@ return [
         'tabs'          => [
             'information'   => 'Informações',
             'members'       => 'Membros',
+            'roles'         => 'Cargos',
             'settings'      => 'Configurações',
         ],
         'title'         => 'Campanha :name',

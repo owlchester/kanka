@@ -3,7 +3,9 @@
 return [
     'actions'       => [
         'back'  => 'Voltar',
+        'copy'  => 'Copiar',
         'move'  => 'Mover',
+        'new'   => 'Novo',
     ],
     'add'           => 'Adicionar',
     'attributes'    => [
@@ -13,15 +15,17 @@ return [
             'manage'            => 'Gerenciar',
         ],
         'create'        => [
-            'success'   => 'Atributo :name adicionado a :entity',
-            'title'     => 'Novo Atributo para :name',
+            'description'   => 'Criar um novo atributo',
+            'success'       => 'Atributo :name adicionado a :entity',
+            'title'         => 'Novo Atributo para :name',
         ],
         'destroy'       => [
             'success'   => 'Atributo :name para :entity removido',
         ],
         'edit'          => [
-            'success'   => 'Atributo :name para :entity atualizado',
-            'title'     => 'Atualizar atributo para :name',
+            'description'   => 'Atualizar um atributo existente',
+            'success'       => 'Atributo :name para :entity atualizado',
+            'title'         => 'Atualizar atributo para :name',
         ],
         'fields'        => [
             'attribute' => 'Atributo',
@@ -43,6 +47,7 @@ return [
         ],
     ],
     'cancel'        => 'Cancelar',
+    'clear_filters' => 'Limpar Filtros',
     'click_modal'   => [
         'close'     => 'Fechar',
         'confirm'   => 'Confirmar',
@@ -60,27 +65,35 @@ return [
     ],
     'edit'          => 'Editar',
     'fields'        => [
-        'character' => 'Personagem',
-        'image'     => 'Imagem',
-        'is_private'=> 'Privado',
-        'location'  => 'Local',
+        'character'     => 'Personagem',
+        'description'   => 'Descrição',
+        'entity'        => 'Entidade',
+        'history'       => 'História',
+        'image'         => 'Imagem',
+        'is_private'    => 'Privado',
+        'location'      => 'Local',
     ],
     'filter'        => 'Filtro',
     'filters'       => 'Filtros',
+    'hidden'        => 'Esconder',
     'hints'         => [
         'is_private'    => 'Esconder de "Espectadores"',
+    ],
+    'image'         => [
+        'error' => 'Nós não fomos capazes de conseguir a imagem requisitada. Pode ser que o site não autorize o download da imagem por nós (tipicamente para Squarespace e DeviantArt), ou o link não está mais válido.',
     ],
     'is_private'    => 'Essa entidade é privada e não visível para usuários espectadores.',
     'linking_help'  => 'Como eu posso vincular a outras entidades?',
     'move'          => [
-        'fields'    => [
+        'description'   => 'Mover a entidade para outro lugar',
+        'fields'        => [
             'target'    => 'Novo tipo',
         ],
-        'hints'     => [
+        'hints'         => [
             'target'    => 'Esteja ciente que alguns dados podem ser perdidos ao mudar um elemento de um tipo para outro.',
         ],
-        'success'   => 'Entidade :name movida.',
-        'title'     => 'Mover :name para outro lugar',
+        'success'       => 'Entidade :name movida.',
+        'title'         => 'Mover :name para outro lugar',
     ],
     'new_entity'    => [
         'error' => 'Por favor cheque seus valores',
@@ -96,6 +109,22 @@ return [
         'general_information'   => 'Informações Gerais',
         'history'               => 'História',
         'move'                  => 'Mover',
+    ],
+    'permissions'   => [
+        'action'    => 'Ação',
+        'actions'   => [
+            'delete'    => 'Deletar',
+            'edit'      => 'Editar',
+            'read'      => 'Ler',
+        ],
+        'allowed'   => 'Permitido',
+        'fields'    => [
+            'member'    => 'Membro',
+            'role'      => 'Cargo',
+        ],
+        'helper'    => 'Use essa interface para escolher quais usuários e cargos podem interagir com essa entidade.',
+        'success'   => 'Permissões salvas.',
+        'title'     => 'Permissões',
     ],
     'placeholders'  => [
         'character' => 'Escolha um personagem',
@@ -119,6 +148,7 @@ return [
     'select'        => 'Selecionar',
     'tabs'          => [
         'attributes'    => 'Atributos',
+        'permissions'   => 'Permissões',
         'relations'     => 'Relações',
     ],
     'update'        => 'Atualizar',

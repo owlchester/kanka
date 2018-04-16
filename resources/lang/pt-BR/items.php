@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Item \':name\' criado',
-        'title'     => 'Criar um novo item',
+        'description'   => 'Criar um novo item',
+        'success'       => 'Item \':name\' criado',
+        'title'         => 'Criar um novo item',
     ],
     'destroy'       => [
         'success'   => 'Item \':name\' removido',

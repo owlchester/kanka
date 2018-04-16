@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Organização \':name\' criada.',
-        'title'     => 'Criar nova organização',
+        'description'   => 'Criar uma nova organização',
+        'success'       => 'Organização \':name\' criada.',
+        'title'         => 'Criar nova organização',
     ],
     'destroy'       => [
         'success'   => 'Organização \':name\' removida.',

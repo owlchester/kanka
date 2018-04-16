@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Família \':name\' criada.',
-        'title'     => 'Criar nova família',
+        'description'   => 'Criar uma nova família',
+        'success'       => 'Família \':name\' criada.',
+        'title'         => 'Criar nova família',
     ],
     'destroy'       => [
         'success'   => 'Família \':name\' removida.',

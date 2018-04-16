@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Jornal criado.',
-        'title'     => 'Criar novo jornal',
+        'description'   => 'Criar um novo jornal',
+        'success'       => 'Jornal criado.',
+        'title'         => 'Criar novo jornal',
     ],
     'destroy'       => [
         'success'   => 'Jornal removido',

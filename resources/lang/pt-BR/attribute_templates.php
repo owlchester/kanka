@@ -2,15 +2,17 @@
 
 return [
     'create'        => [
-        'success'   => 'Modelo de Atributo \':name\' criado.',
-        'title'     => 'Criar um novo Modelo de Atributo',
+        'description'   => 'Criar um novo Modelo de Atributo',
+        'success'       => 'Modelo de Atributo \':name\' criado.',
+        'title'         => 'Criar um novo Modelo de Atributo',
     ],
     'destroy'       => [
         'success'   => 'Modelo de Atributo \':name\' removido.',
     ],
     'edit'          => [
-        'success'   => 'Modelo de Atributo \':name\' atualizado.',
-        'title'     => 'Editar Modelo de Atributo :name',
+        'description'   => 'Editar um Modelo de Atributo',
+        'success'       => 'Modelo de Atributo \':name\' atualizado.',
+        'title'         => 'Editar Modelo de Atributo :name',
     ],
     'fields'        => [
         'attributes'    => 'Atributos',

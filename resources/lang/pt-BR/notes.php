@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Nota \':name\' criada.',
-        'title'     => 'Criar uma nova nota',
+        'description'   => 'Criar uma nova nota',
+        'success'       => 'Nota \':name\' criada.',
+        'title'         => 'Criar uma nova nota',
     ],
     'destroy'       => [
         'success'   => 'Nota \':name\' removida.',

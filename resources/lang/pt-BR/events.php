@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Evento \':name\' criado.',
-        'title'     => 'Criar um novo evento',
+        'description'   => 'Criar um novo evento',
+        'success'       => 'Evento \':name\' criado.',
+        'title'         => 'Criar um novo evento',
     ],
     'destroy'       => [
         'success'   => 'Evento \':name\' removido.',

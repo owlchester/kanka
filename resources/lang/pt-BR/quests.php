@@ -11,8 +11,9 @@ return [
             'success'   => 'Missão do personagem para :name removida.',
         ],
         'edit'      => [
-            'success'   => 'Personagem da Missão para :name atualizado.',
-            'title'     => 'Atualizar personagem para :name',
+            'description'   => 'Atualizar o personagem da missão',
+            'success'       => 'Personagem da Missão para :name atualizado.',
+            'title'         => 'Atualizar personagem para :name',
         ],
         'fields'    => [
             'character'     => 'Personagem',

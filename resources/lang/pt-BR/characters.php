@@ -2,15 +2,17 @@
 
 return [
     'create'        => [
-        'success'   => 'Personagem \':name\' criado.',
-        'title'     => 'Criar um novo personagem',
+        'description'   => 'Criar um novo personagem',
+        'success'       => 'Personagem \':name\' criado.',
+        'title'         => 'Criar um novo personagem',
     ],
     'destroy'       => [
         'success'   => 'Personagem \':name\' removido.',
     ],
     'edit'          => [
-        'success'   => 'Personagem \':name\' atualizado.',
-        'title'     => 'Editar Personagem :name',
+        'description'   => 'Editar um personagem',
+        'success'       => 'Personagem \':name\' atualizado.',
+        'title'         => 'Editar Personagem :name',
     ],
     'fields'        => [
         'age'                       => 'Idade',
@@ -35,6 +37,7 @@ return [
         'skin'                      => 'Pele',
         'title'                     => 'Título',
         'traits'                    => 'Traços de Personalidade',
+        'type'                      => 'Tipo',
         'weight'                    => 'Peso',
     ],
     'hints'         => [
@@ -62,8 +65,9 @@ return [
             'success'   => 'Organização do personagem removida.',
         ],
         'edit'          => [
-            'success'   => 'Organização do personagem atualizada.',
-            'title'     => 'Atualizar Organização para :name',
+            'description'   => 'Atualize a organização de um personagem',
+            'success'       => 'Organização do personagem atualizada.',
+            'title'         => 'Atualizar Organização para :name',
         ],
         'fields'        => [
             'organisation'  => 'Organização',
@@ -94,6 +98,7 @@ return [
         'skin'      => 'Pele',
         'title'     => 'Título',
         'traits'    => 'Traços de Personalidade',
+        'type'      => 'NPC, Personagem de Jogador, Divindade',
         'weight'    => 'Peso',
     ],
     'sections'      => [

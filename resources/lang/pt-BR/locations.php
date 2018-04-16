@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Local \':name\' criado.',
-        'title'     => 'Criar um novo local',
+        'description'   => 'Criar um novo local',
+        'success'       => 'Local \':name\' criado.',
+        'title'         => 'Criar um novo local',
     ],
     'destroy'       => [
         'success'   => 'Local \':name\' removido',
@@ -19,6 +20,7 @@ return [
         'image'         => 'Imagem',
         'location'      => 'Local',
         'locations'     => 'Locais',
+        'map'           => 'Mapa',
         'name'          => 'Nome',
         'relation'      => 'Relação',
         'type'          => 'Tipo',
@@ -32,6 +34,21 @@ return [
         'header'        => 'Locais em :name',
         'title'         => 'Locais',
     ],
+    'map'           => [
+        'actions'   => [
+            'points'    => 'Editar Pontos',
+        ],
+        'helper'    => 'Clique no mapa para adicionar links para uma local, ou clique num ponto existente para removê-lo.',
+        'modal'     => [
+            'submit'    => 'Adicionar',
+            'title'     => 'Alvo do novo ponto',
+        ],
+        'no_map'    => 'Por favor carregue um mapa para o local primeiro',
+        'points'    => [
+            'title' => 'Pontos no Mapa do Local :name',
+        ],
+        'success'   => 'Pontos de Mapa salvos.',
+    ],
     'placeholders'  => [
         'location'  => 'Escolha uma localidade',
         'name'      => 'Nome do local',
@@ -44,6 +61,7 @@ return [
             'characters'    => 'Personagens',
             'information'   => 'Informações',
             'locations'     => 'Locais',
+            'map'           => 'Mapa',
             'relations'     => 'Relações',
         ],
         'title'         => 'Local :name',
