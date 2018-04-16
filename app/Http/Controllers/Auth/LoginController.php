@@ -60,7 +60,7 @@ class LoginController extends Controller
                 if (!Session::get('campaign_id')) {
                     // The user do not have any campaign
                     // So we invite him to create a campaign
-                    return redirect('campaigns/create');
+                    return redirect()->route('campaigns.create');
                 }
             }
         }
