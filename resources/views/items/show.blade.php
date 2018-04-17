@@ -32,7 +32,7 @@
                                 <br class="clear" />
                             </li>
                         @endif
-                            @if ($campaign->enabled('characters') && !empty($model->character))
+                        @if ($campaign->enabled('characters') && !empty($model->character))
                             <li class="list-group-item">
                                 <b>{{ trans('items.fields.character') }}</b>
                                 <span  class="pull-right">

@@ -159,6 +159,11 @@
                         </a></li>
                         @endcan
                     @endif
+                    @if ($campaign->enabled('items'))
+                        <li class="{{ (request()->get('tab') == 'items' ? ' active' : '') }}"><a href="#items">
+                                {{ trans('characters.show.tabs.items') }}
+                            </a></li>
+                    @endif
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
                         <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
@@ -201,6 +206,11 @@
                         @include('characters._organisations')
                     </div>
                         @endcan
+                    @endif
+                    @if ($campaign->enabled('items'))
+                        <div class="tab-pane {{ (request()->get('tab') == 'items' ? ' active' : '') }}" id="items">
+                            @include('characters._items')
+                        </div>
                     @endif
                     @can('attribute', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">

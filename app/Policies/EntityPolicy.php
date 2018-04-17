@@ -134,13 +134,16 @@ class EntityPolicy
     protected function checkPermission($action, User $user, $entity = null)
     {
         $key = $this->model . '_' . $action;
-        // Check for the entity too
-        if (!empty($entity)) {
-            $key = '_' . $entity->id;
-        }
-
         if (isset(self::$cached[$key])) {
             return self::$cached[$key];
+        }
+
+        // Check for the entity too
+        if (!empty($entity)) {
+            $entityKey = $key . '_' . $entity->id;
+            if (isset(self::$cached[$entityKey])) {
+                return self::$cached[$entityKey];
+            }
         }
 
 

@@ -113,6 +113,7 @@ return [
             'attributes'    => 'Attributes',
             'free'          => 'Free Text',
             'history'       => 'History',
+            'items'         => 'Items',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
             'relations'     => 'Relations',
