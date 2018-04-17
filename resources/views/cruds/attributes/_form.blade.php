@@ -5,7 +5,7 @@
             <label>{{ trans('crud.attributes.fields.attribute') }}</label>
             {!! Form::text('name', null, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
-        <div class="form-group required">
+        <div class="form-group">
             <label>{{ trans('crud.attributes.fields.value') }}</label>
             {!! Form::text('value', null, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
