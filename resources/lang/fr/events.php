@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer un nouvel événement',
         'success'       => 'Événement \':name\' créé.',
-        'title'         => 'Créer un nouvel Événement',
+        'title'         => 'Nouvel Evénement',
     ],
     'destroy'       => [
         'success'   => 'Événement \':name\' supprimé.',
@@ -40,5 +40,8 @@ return [
             'information'   => 'Information',
         ],
         'title'         => 'Événement :name',
+    ],
+    'tabs'          => [
+        'calendars' => 'Entrées calendrier',
     ],
 ];

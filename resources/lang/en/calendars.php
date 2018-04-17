@@ -19,6 +19,17 @@ return [
         'success'       => 'Calendar \':name\' updated.',
         'title'         => 'Edit Calendar :name',
     ],
+    'event'         => [
+        'destroy'   => 'Event removed from calendar \':name\'.',
+        'helpers'   => [
+            'add'   => 'Add an existing event to this calendar using the list.',
+            'new'   => 'Or you can create a new event by simply providing a name.',
+        ],
+        'modal'     => [
+            'title' => 'Add an event to the calendar',
+        ],
+        'success'   => 'Event \':event\' added to the calendar.',
+    ],
     'fields'        => [
         'current_day'       => 'Current Day',
         'current_month'     => 'Current Month',
@@ -77,15 +88,4 @@ return [
         ],
         'title'         => 'Calendar :name',
     ],
-    'event' => [
-        'modal' => [
-            'title' => 'Add an event to the calendar',
-        ],
-        'helpers' => [
-            'add' => 'Add an existing event to this calendar using the list.',
-            'new' => 'Or you can create a new event by simply providing a name.',
-        ],
-        'success' => 'Event \':event\' added to the calendar.',
-        'destroy' => 'Event removed from calendar \':name\'.',
-    ]
 ];

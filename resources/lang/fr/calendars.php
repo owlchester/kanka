@@ -18,6 +18,17 @@ return [
         'success'   => 'Calendrier \':name\' modifié.',
         'title'     => 'Modifier le calendrier :name',
     ],
+    'event'         => [
+        'destroy'   => 'Evénement retiré du calendrier \':name\'.',
+        'helpers'   => [
+            'add'   => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',
+            'new'   => 'Ou créer un nouveu événement en indiquant un nom.',
+        ],
+        'modal'     => [
+            'title' => 'Ajouter un événement au calendrier',
+        ],
+        'success'   => 'Evénement \':event\' ajouté au calendrier.',
+    ],
     'fields'        => [
         'current_day'       => 'Jour Actuel',
         'current_month'     => 'Mois actuel',

@@ -68,11 +68,11 @@ return [
         'character'     => 'Character',
         'description'   => 'Description',
         'entity'        => 'Entity',
+        'event'         => 'Event',
         'history'       => 'History',
         'image'         => 'Image',
         'is_private'    => 'Private',
         'location'      => 'Location',
-        'event' => 'Event',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
@@ -129,9 +129,9 @@ return [
     ],
     'placeholders'  => [
         'character' => 'Choose a character',
+        'event'     => 'Choose an event',
         'image_url' => 'You can upload an image from a URL instead',
         'location'  => 'Choose a location',
-        'event' => 'Choose an event',
     ],
     'relations'     => [
         'actions'   => [

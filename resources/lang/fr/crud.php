@@ -68,6 +68,7 @@ return [
         'character'     => 'Personnage',
         'description'   => 'Description',
         'entity'        => 'Entité',
+        'event'         => 'Evénement',
         'history'       => 'Histoire',
         'image'         => 'Image',
         'is_private'    => 'Privé',
@@ -77,7 +78,7 @@ return [
     'filters'       => 'Filtres',
     'hidden'        => 'Caché',
     'hints'         => [
-        'is_private'    => 'Cacher des membres de type "Observateur"',
+        'is_private'    => 'Cacher des membres de type non-Admin',
     ],
     'image'         => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
@@ -128,6 +129,7 @@ return [
     ],
     'placeholders'  => [
         'character' => 'Choix du personnage',
+        'event'     => 'Choix de l\'événement',
         'image_url' => 'Ou depuis une URL',
         'location'  => 'Choix du lieu',
     ],

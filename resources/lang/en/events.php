@@ -35,13 +35,13 @@ return [
         'type'      => 'Ceremony, Festival, Disaster, Battle, Birth',
     ],
     'show'          => [
-        'description'   => 'A detailed view of an event (year-month-day to appear in calendars)',
+        'description'   => 'A detailed view of an event',
         'tabs'          => [
             'information'   => 'Information',
         ],
         'title'         => 'Event :name',
     ],
-    'tabs' => [
+    'tabs'          => [
         'calendars' => 'Calendar Entries',
-    ]
+    ],
 ];
