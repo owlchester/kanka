@@ -64,6 +64,9 @@ Route::group([
     Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
     Route::post('/attribute_templates/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
 
+
+    Route::post('/calendars/{calendar}/addEvent', 'CalendarController@addEvent')->name('calendars.event.add');
+
     // Attribute multi-save
     Route::post('/entities/{entity}/attributes/saveMany', 'AttributeController@saveMany')->name('entities.attributes.saveMany');
 
@@ -74,6 +77,7 @@ Route::group([
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([
         'calendars' => 'CalendarController',
+        'calendar_event' => 'CalendarEventController',
         'calendars.relations' => 'CalendarRelationController',
         'campaigns' => 'CampaignController',
         'campaign_user' => 'CampaignUserController',
@@ -129,6 +133,7 @@ Route::group([
     Route::get('/search', 'SearchController@search')->name('search');
     Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
     Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');
+    Route::get('/search/months', 'SearchController@months')->name('search.months');
 
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 

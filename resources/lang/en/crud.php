@@ -72,6 +72,7 @@ return [
         'image'         => 'Image',
         'is_private'    => 'Private',
         'location'      => 'Location',
+        'event' => 'Event',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
@@ -130,6 +131,7 @@ return [
         'character' => 'Choose a character',
         'image_url' => 'You can upload an image from a URL instead',
         'location'  => 'Choose a location',
+        'event' => 'Choose an event',
     ],
     'relations'     => [
         'actions'   => [

@@ -61,4 +61,17 @@ class Event extends MiscModel
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function calendars()
+    {
+        return $this->hasManyThrough('App\Models\Calendar', 'App\Models\CalendarEvent', 'event_id', 'calendar_id');
+    }
+
+    public function calendarEvents()
+    {
+        return $this->hasMany('App\Models\CalendarEvent', 'event_id');
+    }
 }

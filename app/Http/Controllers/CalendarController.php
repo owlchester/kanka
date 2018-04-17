@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
+use App\Models\CalendarEvent;
+use App\Services\CalendarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -15,6 +17,8 @@ class CalendarController extends CrudController
     protected $view = 'calendars';
     protected $route = 'calendars';
 
+    protected $calendarService;
+
     /**
      * @var string
      */
@@ -23,13 +27,15 @@ class CalendarController extends CrudController
     /**
      * CalendarController constructor.
      */
-    public function __construct()
+    public function __construct(CalendarService $calendarService)
     {
         parent::__construct();
         $this->filters = [
             'name',
             'type',
         ];
+
+        $this->calendarService = $calendarService;
     }
 
     /**
@@ -86,5 +92,14 @@ class CalendarController extends CrudController
     public function destroy(Calendar $calendar)
     {
         return $this->crudDestroy($calendar);
+    }
+
+    public function addEvent(Request $request, Calendar $calendar)
+    {
+        $date = explode('-', request()->post('date'));
+        $link = $this->calendarService->addEvent($calendar, $request->only('event_id', 'name', 'date'));
+
+        return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]])
+            ->with('success', trans('calendars.event.success', ['event' => $link->event->name]));
     }
 }

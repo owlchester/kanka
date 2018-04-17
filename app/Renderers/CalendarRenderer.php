@@ -3,6 +3,7 @@
 namespace App\Renderers;
 
 use App\Models\Calendar;
+use App\Models\CalendarEvent;
 use App\Models\Event;
 use Collective\Html\HtmlFacade;
 
@@ -124,11 +125,16 @@ class CalendarRenderer
                 $day--;
             } else {
                 $exact = $this->segments[0] . '-' . $this->segments[1] . '-' . $day;
+                $dayData = [
+                    'day' => $day,
+                    'events' => [],
+                    'date' => $exact
+                ];
+
                 if (isset($events[$exact])) {
-                    $week[] = ['day' => $day, 'events' => $events[$exact]];
-                } else {
-                    $week[] = ['day' => $day, 'events' => []];
+                    $dayData['events'] = $events[$exact];
                 }
+                $week[] = $dayData;
             }
 
             $weekLength++;
@@ -152,6 +158,17 @@ class CalendarRenderer
         return $data;
     }
 
+    /**
+     * @return mixed
+     */
+    public function currentMonthId()
+    {
+        return $this->segments[1];
+    }
+
+    /**
+     * @return string
+     */
     public function yearSwitcher()
     {
         $currentYear = $this->segments[0];
@@ -242,12 +259,12 @@ class CalendarRenderer
     protected function events()
     {
         $events = [];
-        foreach (Event::where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')->get() as $event) {
+        foreach ($this->calendar->calendarEvents()->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')->get() as $event) {
             if (!isset($events[$event->date])) {
                 $events[$event->date] = [];
             }
 
-            $events[$event->date][] = $event;
+            $events[$event->date][] = $event->event;
         }
         return $events;
     }

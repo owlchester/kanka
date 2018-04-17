@@ -77,4 +77,15 @@ return [
         ],
         'title'         => 'Calendar :name',
     ],
+    'event' => [
+        'modal' => [
+            'title' => 'Add an event to the calendar',
+        ],
+        'helpers' => [
+            'add' => 'Add an existing event to this calendar using the list.',
+            'new' => 'Or you can create a new event by simply providing a name.',
+        ],
+        'success' => 'Event \':event\' added to the calendar.',
+        'destroy' => 'Event removed from calendar \':name\'.',
+    ]
 ];

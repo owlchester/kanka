@@ -94,6 +94,19 @@ class Calendar extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function events()
+    {
+        return $this->hasManyThrough('App\Models\Event', 'App\Models\CalendarEvent', 'calendar_id', 'event_id');
+    }
+
+    public function calendarEvents()
+    {
+        return $this->hasMany('App\Models\CalendarEvent', 'calendar_id');
+    }
+
+    /**
      * Get the months
      * @return null
      */
@@ -163,5 +176,4 @@ class Calendar extends MiscModel
         }
         return null;
     }
-
 }

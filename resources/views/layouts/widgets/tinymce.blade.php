@@ -18,18 +18,25 @@
             remove_script_host: false,
             branding: false,
             mentions: {
+                delimiter: ['@', '#'],
                 source: function(query, process, delimiter) {
                     if (delimiter === '@') {
                         $.getJSON('{{ route('search.mentions') }}?q='+ query, function(data) {
-                            //console.log('data', data);
-                            //console.log('process', process);
+                            process(data)
+                        })
+                    }
+                    if (delimiter === '#') {
+                        $.getJSON('{{ route('search.months') }}?q='+ query, function(data) {
                             process(data)
                         })
                     }
                 },
                 insert: function(item) {
-                    //console.log('insert', item);
-                    return '<a href="' + item.url + '">' + item.fullname + '</a>';
+                    if (item.url) {
+                        //console.log('insert', item);
+                        return '<a href="' + item.url + '">' + item.fullname + '</a>';
+                    }
+                    return item.fullname;
                 }
             }
         };

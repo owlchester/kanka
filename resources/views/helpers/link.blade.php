@@ -20,14 +20,6 @@
                     <p>
                         {{ trans('helpers.link.description') }}
                     </p>
-                    <ul>
-                        @foreach ($linker->elements() as $element)
-                        <li>
-                            {{ trans('entities.'.$element) }}:
-                            <code>{{ '{' . $element }}:name}</code>
-                        </li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
         </div>

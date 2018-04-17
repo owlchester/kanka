@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Family;
@@ -261,6 +262,34 @@ class SearchController extends Controller
                 'name' => $model->name . ' (' . trans('entities.' . $model->type) . ')',
                 'url' => route($model->pluralType() . '.show', $model->entity_id
                 )];
+        }
+
+        return \Response::json($formatted);
+    }
+
+    /**
+     * Search for month names
+     * @param Request $request
+     * @return mixed
+     */
+    public function months(Request $request)
+    {
+        $term = trim($request->q);
+        $formatted = [];
+
+        // Load up the calendars of a campaign to get the month names
+        $calendars = Calendar::all();
+        foreach ($calendars as $calendar) {
+            $months = $calendar->months();
+
+            foreach ($months as $month) {
+                if ((!empty($term) && strpos($month['name'], $term) !== false) || empty($term)) {
+                    $formatted[] = [
+                        'fullname' => $month['name'],
+                        'name' => $month['name'] . ' (' . $calendar->name . ')',
+                    ];
+                }
+            }
         }
 
         return \Response::json($formatted);

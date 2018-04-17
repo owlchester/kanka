@@ -1,5 +1,5 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
-var calendarYearSwitcher;
+var calendarYearSwitcher, calendarEventModal;
 
 $(document).ready(function() {
     calendarAddMonth = $('#add_month');
@@ -10,6 +10,7 @@ $(document).ready(function() {
     calendarTemplateYear = $('#template_year');
     calendarLeapYear = $('input[name="has_leap_year"]');
     calendarYearSwitcher = $('#calendar-year-switcher');
+    calendarEventModal = $('#add-calendar-event');
 
     if (calendarAddMonth.length === 1) {
         initCalendar();
@@ -17,6 +18,7 @@ $(document).ready(function() {
 
     if (calendarYearSwitcher.length === 1) {
         initCalendarYearSwitcher();
+        initCalendarEventModal();
     }
 });
 
@@ -90,5 +92,17 @@ function initCalendarYearSwitcher() {
         if (option) {
             window.location = option;
         }
+    });
+}
+
+function initCalendarEventModal() {
+    $.each($('.add'), function() {
+        $(this).on('click', function(e) {
+            e.preventDefault();
+            calendarEventModal.modal();
+
+            // Prepare date field
+            $('#date').val($(this).attr('data-date'));
+        });
     });
 }

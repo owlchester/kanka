@@ -59,6 +59,11 @@
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information">{{ trans('events.show.tabs.information') }}</a>
                     </li>
+                    @if ($campaign->enabled('calendars'))
+                        <li class="{{ (request()->get('tab') == 'calendars' ? ' active' : '') }}">
+                            <a href="#calendars">{{ trans('events.tabs.calendars') }}</a>
+                        </li>
+                    @endif
                     @can('relation', $model)
                     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
                         <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
@@ -92,6 +97,12 @@
                         </div>
                         @endif
                     </div>
+
+                    @if ($campaign->enabled('calendars'))
+                        <div class="tab-pane {{ (request()->get('tab') == 'calendars' ? ' active' : '') }}" id="calendars">
+                            @include('events._calendars')
+                        </div>
+                    @endif
                     @can('relation', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
                         @include('cruds._relations')

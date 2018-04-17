@@ -27,11 +27,18 @@
         <tr>
             @foreach ($days as $day)
                 <td>
+                    @if ($day['day'])
                     <h5>{{ $day['day'] }}</h5>
+                    <a href="#" class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <p>
                     @if (!empty($day['events']))
                         @foreach ($day['events'] as $event)
                             <a href="{{ route('events.show', $event) }}">{{ $event->name }}</a><br />
                         @endforeach
+                    @endif
+                    </p>
                     @endif
                 </td>
             @endforeach
@@ -39,3 +46,41 @@
     @endforeach
     </tbody>
 </table>
+
+
+
+<!-- Modal -->
+{!! Form::open(array('route' => ['calendars.event.add', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+<div class="modal fade" id="add-calendar-event" tabindex="false" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ trans('calendars.event.modal.title') }}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{ trans('calendars.event.helpers.add') }}</p>
+                <div class="form-group">
+                    <label>{{ trans('crud.fields.event') }}</label>
+                    {!! Form::select('event_id', [],
+                    null, ['id' => 'event_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('events.find'), 'data-placeholder' => trans('crud.placeholders.event')]) !!}
+                </div>
+
+                <hr />
+
+                <p>{{ trans('calendars.event.helpers.new') }}</p>
+                <div class="form-group">
+                    <label>{{ trans('events.fields.name') }}</label>
+                    {!! Form::text('name', null, ['placeholder' => trans('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal">{{ trans('crud.cancel') }}</a>
+                <button type="submit" class="btn btn-primary" id="point-location-submit">{{ trans('crud.save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{!! Form::hidden('date', '', ['id' => 'date']) !!}
+{{ csrf_field() }}
+{!! Form::close() !!}
