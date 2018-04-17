@@ -1,0 +1,26 @@
+/**
+ * SASS file for all that is print related.
+ * This file contains all the stuff to hide when printing
+ */
+
+@media print
+{
+  .main-footer {
+    display: none !important;
+  }
+
+  // Hide all buttons
+  .btn {
+    display: none !important;
+  }
+
+  // All tabs should be visible
+  .tab-pane {
+    display: block !important;
+    visibility: visible !important;
+  }
+  // Except permissions
+  #permissions, #map {
+    display: none !important;
+  }
+}
