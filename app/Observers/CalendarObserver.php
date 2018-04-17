@@ -60,9 +60,20 @@ class CalendarObserver extends MiscObserver
         $model->years = json_encode($years);
 
         // Calculate date
-        $year = request()->post('current_year');
-        $month = request()->post('current_month');
-        $day = request()->post('current_day');
+        $year = request()->post('current_year', 1);
+        $month = request()->post('current_month', 1);
+        $day = request()->post('current_day', 1);
+
+        // Empty values
+        if (empty($year)) {
+            $year = 1;
+        }
+        if (empty($month)) {
+            $month = 1;
+        }
+        if (empty($day)) {
+            $day = 1;
+        }
 
         // Fix date?
         if ($month > ($monthCount)) {
@@ -71,8 +82,6 @@ class CalendarObserver extends MiscObserver
         if (isset($monthLengths[$month - 1])) {
             if ($day > $monthLengths[$month - 1]) {
                 $day = $monthLengths[$month - 1];
-            } else {
-                $day = 1;
             }
         }
 
