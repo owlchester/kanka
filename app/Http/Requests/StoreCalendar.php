@@ -30,7 +30,7 @@ class StoreCalendar extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'month_name' => 'required|array|min:2',
             'weekday' => 'required|array|min:2',
-            'year_name' => 'required|array|min:2',
+            'year_name' => 'required|array',
         ];
     }
 }
