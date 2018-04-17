@@ -6,7 +6,7 @@
         <th>{{ trans('events.fields.date') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->calendarEvents()->with('calendar')->paginate() as $relation)
+    @foreach ($r = $model->calendarEvents()->has('calendar')->with('calendar')->paginate() as $relation)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $relation->calendar->getImageUrl(true) }}" alt="{{ $relation->calendar->name }} picture">

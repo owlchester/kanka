@@ -10,7 +10,7 @@ class CalendarEvent extends MiscModel
     /**
      * Traits
      */
-    use VisibleTrait;
+    //use VisibleTrait;
 
     /**
      * @var string

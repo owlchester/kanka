@@ -6,6 +6,7 @@ use App\Models\Calendar;
 use App\Models\CalendarEvent;
 use App\Models\Event;
 use Collective\Html\HtmlFacade;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarRenderer
 {
@@ -259,12 +260,19 @@ class CalendarRenderer
     protected function events()
     {
         $events = [];
-        foreach ($this->calendar->calendarEvents()->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')->get() as $event) {
+        foreach ($this->calendar->calendarEvents()
+                     ->has('event')
+                     ->with('event')
+                     ->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')
+                     ->get() as $event) {
             if (!isset($events[$event->date])) {
                 $events[$event->date] = [];
             }
 
-            $events[$event->date][] = $event->event;
+            // Make sure the user can actually see the requested event
+            if (Auth::user()->can('view', $event->event)) {
+                $events[$event->date][] = $event->event;
+            }
         }
         return $events;
     }
