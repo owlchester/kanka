@@ -5,8 +5,7 @@
     ],
 ])
 @section('content')
-
-    <section class="features" id="about">
+    <section class="features" id="tos">
         <div class="container">
             <div class="section-heading text-center">
                 <h2>{{ trans('front.tos.title') }}</h2>

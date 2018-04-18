@@ -7,7 +7,7 @@
 ])
 @section('content')
 
-    <header class="masthead">
+    <header class="masthead reduced-masthead">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-12 my-auto">

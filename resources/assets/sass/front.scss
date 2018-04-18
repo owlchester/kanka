@@ -7,6 +7,10 @@
 header.masthead {
   background: linear-gradient(to left, #2e8893,#0E2231) !important;
 }
+header.reduced-masthead {
+  min-height: 375px;
+  height: 50vh;
+}
 .bg-primary {
   background: linear-gradient(#FFF0BC, #FFF0BC) !important;
 }
@@ -35,4 +39,9 @@ section.contact ul.list-social li.social-discord a{
 }
 section.contact ul.list-social li.social-discord a:hover{
   background-color: #5078da;
+}
+
+hr {
+  max-width: 250px;
+  margin: 25px auto;
 }
