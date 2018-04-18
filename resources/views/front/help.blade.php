@@ -1,4 +1,5 @@
 @extends('layouts.front', [
+    'title' => trans('front.menu.help'),
     'menus' => [
         'help',
     ],
@@ -6,11 +7,22 @@
 ])
 @section('content')
 
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12 my-auto">
+                    <div class="header-content mx-auto">
+                        <h1 class="mb-5">{{ trans('front.help.title') }}</h1>
+                        <p class="mb-5">{{ trans('front.help.description') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <section class="features" id="help">
         <div class="container">
             <div class="section-heading text-center">
-                <h2>{{ trans('front.help.title') }}</h2>
-                <p class="text-muted">{{ trans('front.help.description') }}</p>
 
                 <div class="row">
                     <div class="col-lg-4 my-auto">

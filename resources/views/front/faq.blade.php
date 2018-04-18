@@ -1,16 +1,25 @@
 @extends('layouts.front', [
+    'title' => trans('front.menu.faq'),
     'menus' => [
         'faq',
     ],
-    'menu_js' => false
 ])
 @section('content')
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12 my-auto">
+                    <div class="header-content mx-auto">
+                        <h1 class="mb-5">{{ trans('front.faq.title') }}</h1>
+                        <p class="mb-5">{{ trans('front.faq.description') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <section class="features" id="faq">
         <div class="container">
-            <div class="section-heading text-center">
-                <h2>{{ trans('front.faq.title') }}</h2>
-                <p class="text-muted">{{ trans('front.faq.description') }}</p>
-            </div>
             <div class="section-body">
                 <div class="row">
                     <div class="col-md-5">

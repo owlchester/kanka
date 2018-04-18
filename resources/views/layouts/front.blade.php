@@ -16,7 +16,7 @@
     <meta name="description" content="{{ trans('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
-    <title>{{ trans('front.meta.title') }}</title>
+    <title>{{ $title or trans('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -37,7 +37,7 @@
 </noscript>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" @if(!isset($menu_js)) id="mainNav" @endif>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,6 +98,9 @@
             </li>
             <li class="list-inline-item">
                 <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
             </li>
             <!--<li class="list-inline-item">
                 <a href="{{ route('tos') }}">{{ trans('front.menu.tos') }}</a>

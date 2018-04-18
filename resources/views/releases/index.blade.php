@@ -1,40 +1,44 @@
-@extends('layouts.app', [
+@extends('layouts.front', [
     'title' => trans('releases.index.title'),
     'description' => trans('releases.index.description'),
-    'breadcrumbs' => [
-        trans('releases.index.title')
-    ]
+    'menus' => [
+        'releases'
+    ],
 ])
 
 @section('content')
-    <div class="row">
-        <?php $i = 0; ?>
-        @foreach ($models as $model)
-            <?php if ($i % 4 == 0) echo "</div><div class=\"row\">" ?>
-        <div class="col-md-3">
-            <div class="box news">
-                <div class="box-body">
-                    @if ($model->image)
-                    <img src="/storage/{{ $model->image }}" style="width:100%" />
-                    @endif
-
-                    <h2>
-                        <a href="{{ route('releases.show', $model->getSlug()) }}">
-                            {{ $model->title }}
-                        </a>
-                    </h2>
-
-                    {!! $model->excerpt !!}
-
-                    <p class="text-muted">
-                        {{ trans('releases.post.footer', ['date' => $model->updated_at, 'name' => $model->authorId->name]) }}
-                    </p>
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12 my-auto">
+                    <div class="header-content mx-auto">
+                        <h1 class="mb-5">{{ trans('front.release.title') }}</h1>
+                        <p class="mb-5">{{ trans('front.release.description') }}</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <?php $i++; ?>
-        @endforeach
-    </div>
+    </header>
 
-    {{ $models->appends('order', request()->get('order'))->links() }}
+    <section class="features" id="releases">
+        <div class="container">
+            @foreach ($models as $model)
+                <h4>
+                    <a href="{{ route('releases.show', $model->getSlug()) }}">
+                        {{ $model->title }}
+                    </a>
+                </h4>
+
+                <p class="text-muted">
+                    {{ trans('releases.post.footer', ['date' => $model->updated_at, 'name' => $model->authorId->name]) }}
+                </p>
+                <p>
+                    {!! $model->excerpt !!}
+                </p>
+                <hr>
+            @endforeach
+
+            {{ $models->appends('order', request()->get('order'))->links() }}
+        </div>
+    </section>
 @endsection

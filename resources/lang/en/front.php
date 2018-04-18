@@ -67,10 +67,15 @@ return [
         'help' => 'Help',
         'tos' => 'TOS',
         'contact_us' => 'Contact Us',
+        'releases' => 'Releases'
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
         'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
+    ],
+    'release' => [
+        'title' => 'Releases',
+        'description' => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.'
     ],
     'second_block'  => [
         'call_to_action'    => 'Let\'s Get Started!',

@@ -1,30 +1,23 @@
-@extends('layouts.app', [
+@extends('layouts.front', [
     'title' => trans('releases.show.title', ['name' => $model->title]),
     'description' => '',
-    'breadcrumbs' => [
-        ['url' => route('releases.index'), 'label' => trans('releases.index.title')],
-        $model->title,
-    ]
+    'menus' => [
+        'releases'
+    ],
+    'menu_js' => false,
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-body with-border">
+    <section class="features" id="releases">
+        <div class="container">
+            <h2>{{ $model->title }}</h2>
 
-                    @if ($model->image)
-                        <img src="/storage/{{ $model->image }}" />
-                    @endif
+            <p class="text-muted">
+                {{ trans('releases.post.footer', ['date' => $model->updated_at, 'name' => $model->authorId->name]) }}
+            </p>
 
-                    {!! $model->body !!}
-
-
-                </div>
-                <div class="box-footer">
-                    <a href="{{ route('releases.index') }}">{{ trans('releases.show.return') }}</a>
-                </div>
-            </div>
+            {!! $model->body !!}
+            <p><a href="{{ route('releases.index') }}">{{ trans('releases.show.return') }}</a></p>
         </div>
-    </div>
+    </section>
 @endsection
