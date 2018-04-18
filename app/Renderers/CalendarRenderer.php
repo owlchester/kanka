@@ -37,7 +37,7 @@ class CalendarRenderer
     public function previous()
     {
         $month = $this->segments[1]-1;
-        $year = $this->segments[0];
+        $year = $this->segments[0]+0;
         $months = $this->calendar->months();
 
         if ($month <= 0) {
@@ -55,7 +55,7 @@ class CalendarRenderer
     public function current()
     {
         $month = $this->segments[1];
-        $year = $this->segments[0];
+        $year = $this->segments[0]+0;
         $months = $this->calendar->months();
         $options = '';
         // Year name?
@@ -80,7 +80,7 @@ class CalendarRenderer
     public function next()
     {
         $month = $this->segments[1]+1;
-        $year = $this->segments[0];
+        $year = $this->segments[0]+0;
         $months = $this->calendar->months();
 
         if ($month > count($months)) {
