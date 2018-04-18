@@ -54,7 +54,7 @@ return [
         |
         */
 
-        'HTML.Doctype' => 'XHTML 1.0 Strict',
+        'HTML.Doctype' => 'XHTML 1.0 Transitional',
 
         /*
         |--------------------------------------------------------------------------
@@ -67,7 +67,13 @@ return [
         |
         */
 
-        'HTML.Allowed' => 'div,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]',
+        'HTML.Allowed' =>
+            'big,small,h1,h2,h3,h4,h5,h6,div,ins,del,pre,blockquote,sup,sub,hr,caption,'
+            . 'strong,em,b,ul,ol,li,p,i,'
+            . 'img[src|style|alt|width|height],'
+            . 'a[href|target|title|data-toggle],'
+            . 'p[style],span[style],'
+            . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr]',
 
         /*
         |--------------------------------------------------------------------------

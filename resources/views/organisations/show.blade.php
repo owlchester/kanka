@@ -18,9 +18,9 @@
                         <li class="list-group-item">
                             <b>{{ trans('organisations.fields.location') }}</b>
                             <span  class="pull-right">
-                                <a href="{{ route('locations.show', $model->location_id) }}">{{ $model->location->name }}</a>
+                                <a href="{{ route('locations.show', $model->location_id) }}" data-toggle="tooltip" title="{{ $model->location->tooltip() }}">{{ $model->location->name }}</a>
                                 @if ($model->location->parentLocation)
-                                    , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}">{{ $model->location->parentLocation->name }}</a>
+                                    , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->location->parentLocation->tooltip() }}">{{ $model->location->parentLocation->name }}</a>
                                 @endif
                             </span>
                             <br class="clear" />

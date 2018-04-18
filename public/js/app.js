@@ -11258,6 +11258,8 @@ window.Vue = __webpack_require__(38);
 
 $(document).ready(function () {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     if ($('.select2').length > 0) {
         $.each($('.select2'), function (index) {
 

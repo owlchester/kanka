@@ -23,6 +23,8 @@ window.Vue = require('vue');
 
 $(document).ready(function() {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     if ($('.select2').length > 0) {
         $.each($('.select2'), function (index) {
 

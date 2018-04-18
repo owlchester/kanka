@@ -14,11 +14,11 @@
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-success">
                     @if ($location->location->image)
-                        <img class="direct-chat-img" src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }}">
+                        <img class="direct-chat-img" src="{{ $location->location->getImageUrl(true) }}" alt="{{ $location->location->name }}">
                     @endif
                     <!-- /.widget-user-image -->
                     <h3 class="widget-user-username">
-                        <a href="{{ route('locations.show', $location->location) }}">
+                        <a href="{{ route('locations.show', $location->location) }}" data-toggle="tooltip" title="{{ $location->location->tooltip() }}">
                             {{ $location->location->name }}
                         </a>
                         @if ($location->is_private)

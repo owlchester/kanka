@@ -23,9 +23,9 @@
                                 <b>{{ trans('locations.fields.location') }}</b>
 
                                 <span class="pull-right">
-                                <a href="{{ route('locations.show', $model->parentLocation->id) }}">{{ $model->parentLocation->name }}</a>
+                                <a href="{{ route('locations.show', $model->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->parentLocation->tooltip() }}">{{ $model->parentLocation->name }}</a>
                                     @if ($model->parentLocation->parentLocation)
-                                        , <a href="{{ route('locations.show', $model->parentLocation->parentLocation->id) }}">{{ $model->parentLocation->parentLocation->name }}</a>
+                                        , <a href="{{ route('locations.show', $model->parentLocation->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->parentLocation->parentLocation->tooltip() }}">{{ $model->parentLocation->parentLocation->name }}</a>
                                     @endif
                                 </span>
                                 <br class="clear" />

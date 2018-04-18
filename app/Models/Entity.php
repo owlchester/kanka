@@ -159,6 +159,11 @@ class Entity extends Model
         return $this->name;
     }
 
+    public function tooltip()
+    {
+        return $this->child->shortHistory(250);
+    }
+
     /**
      * @param $query
      * @param $type

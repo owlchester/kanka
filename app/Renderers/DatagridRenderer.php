@@ -233,7 +233,7 @@ class DatagridRenderer
             // Just for name, a link to the view
             if ($column == 'name') {
                 $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
-                $content = '<a href="' . $route . '">' . $model->{$column} . '</a>';
+                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltip() . '">' . $model->{$column} . '</a>';
             } else {
                 $content = $model->{$column};
                 $class = 'visible-md visible-lg';
@@ -256,16 +256,16 @@ class DatagridRenderer
             } elseif ($type == 'location') {
                 $class = 'visible-md visible-lg';
                 if ($model->location) {
-                    $content = '<a href="' . route('locations.show', $model->location->id) . '}">' .
+                    $content = '<a href="' . route('locations.show', $model->location->id) . '}" data-toggle="tooltip" title="' . $model->location->tooltip() . '">' .
                         $model->location->name . '</a>';
                 } elseif ($model->parentLocation) {
-                    $content = '<a href="' . route('locations.show', $model->parentLocation->id) . '}">' .
+                    $content = '<a href="' . route('locations.show', $model->parentLocation->id) . '}" data-toggle="tooltip" title="' . $model->parentLocation->tooltip() . '">' .
                         $model->parentLocation->name . '</a>';
                 }
             } elseif ($type == 'character') {
                 $class = 'visible-md visible-lg';
                 if ($model->character) {
-                    $content = '<a href="' . route('characters.show', $model->character->id) . '}">' .
+                    $content = '<a href="' . route('characters.show', $model->character->id) . '}" data-toggle="tooltip" title="' . $model->character->tooltip() . '">' .
                         $model->character->name . '</a>';
                 }
             } elseif ($type == 'is_private') {

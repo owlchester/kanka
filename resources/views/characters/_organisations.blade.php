@@ -19,7 +19,7 @@
                 <img class="direct-chat-img" src="{{ $relation->organisation->getImageUrl(true) }}" alt="{{ $relation->organisation->name }} picture">
             </td>
             <td>
-                <a href="{{ route('organisations.show', $relation->organisation_id) }}">{{ $relation->organisation->name }}</a>
+                <a href="{{ route('organisations.show', $relation->organisation_id) }}" data-toggle="tooltip" title="{{ $relation->organisation->tooltip() }}">{{ $relation->organisation->name }}</a>
             </td>
             <td>{{ $relation->role }}</td>
             <td class="text-right">

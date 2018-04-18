@@ -45,6 +45,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Wrapper for short history
+     * @return mixed
+     */
+    public function tooltip()
+    {
+        return $this->shortHistory(250);
+    }
+
+    /**
      * Scope a query to only include users of a given type.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

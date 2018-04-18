@@ -20,7 +20,8 @@
                     <ul class="list-group list-group-unbordered">
                         @if ($campaign->enabled('families') && $model->family)
                             <li class="list-group-item">
-                                <b>{{ trans('characters.fields.family') }}</b> <a class="pull-right" href="{{ route('families.show', $model->family_id) }}">{{ $model->family->name }}</a>
+                                <b>{{ trans('characters.fields.family') }}</b>
+                                <a class="pull-right" href="{{ route('families.show', $model->family_id) }}" data-toggle="tooltip" title="{{ $model->family->tooltip() }}">{{ $model->family->name }}</a>
                                 <br class="clear" />
                             </li>
                         @endif
@@ -28,9 +29,9 @@
                             <li class="list-group-item">
                                 <b>{{ trans('characters.fields.location') }}</b>
                                 <span  class="pull-right">
-                                    <a href="{{ route('locations.show', $model->location_id) }}">{{ $model->location->name }}</a>
+                                    <a href="{{ route('locations.show', $model->location_id) }}" data-toggle="tooltip" title="{{ $model->location->tooltip() }}">{{ $model->location->name }}</a>
                                     @if ($model->location->parentLocation)
-                                        , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}">{{ $model->location->parentLocation->name }}</a>
+                                        , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->location->parentLocation->tooltip() }}">{{ $model->location->parentLocation->name }}</a>
                                     @endif
                                 </span>
                                 <br class="clear" />
@@ -55,7 +56,7 @@
                                     <li class="list-group-item">
                                         <b>{{ trans('characters.show.tabs.organisations') }}</b> <span class="pull-right">
                                         @foreach ($model->organisations()->has('organisation')->with('organisation')->limit(3)->get() as $org)
-                                            <a href="{{ route('organisations.show', $org->organisation) }}">{{ $org->organisation->name }}</a>.
+                                            <a href="{{ route('organisations.show', $org->organisation) }}" data-toggle="tooltip" title="{{ $org->organisation->tooltip() }}">{{ $org->organisation->name }}</a>.
                                         @endforeach
                                         </span>
                                         <br class="clear" />

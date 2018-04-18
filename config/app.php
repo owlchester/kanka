@@ -180,6 +180,8 @@ return [
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
 
+        App\Providers\PurifySetupProvider::class,
+
 
         /*
          * Application Service Providers...

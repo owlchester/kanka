@@ -11,7 +11,7 @@
                 <img class="direct-chat-img" src="{{ $item->getImageUrl(true) }}" alt="{{ $item->name }} picture">
             </td>
             <td>
-                <a href="{{ route('items.show', $item->id) }}">{{ $item->name }}</a>
+                <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltip() }}">{{ $item->name }}</a>
             </td>
             <td>{{ $item->type }}</td>
             <td class="text-right">

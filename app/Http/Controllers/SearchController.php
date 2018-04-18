@@ -260,6 +260,7 @@ class SearchController extends Controller
                 'id' => $model->id,
                 'fullname' => $model->name,
                 'name' => $model->name . ' (' . trans('entities.' . $model->type) . ')',
+                'tooltip' => $model->tooltip(),
                 'url' => route($model->pluralType() . '.show', $model->entity_id
                 )];
         }

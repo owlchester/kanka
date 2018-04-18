@@ -26,12 +26,12 @@
                 <img class="direct-chat-img" src="{{ $relation->character->getImageUrl(true) }}" alt="{{ $relation->character->name }} picture">
             </td>
             <td>
-                <a href="{{ route('characters.show', $relation->character->id) }}">{{ $relation->character->name }}</a>
+                <a href="{{ route('characters.show', $relation->character->id) }}" data-toggle="tooltip" title="{{ $relation->character->tooltip() }}">{{ $relation->character->name }}</a>
             </td>
             @if ($campaign->enabled('locations'))
             <td>
                 @if ($relation->character->location)
-                    <a href="{{ route('locations.show', $relation->character->location_id) }}">{{ $relation->character->location->name }}</a>
+                    <a href="{{ route('locations.show', $relation->character->location_id) }}" data-toggle="tooltip" title="{{ $relation->character->location->tooltip() }}">{{ $relation->character->location->name }}</a>
                 @endif
             </td>
             @endif

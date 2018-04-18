@@ -11,7 +11,7 @@
                 <img class="direct-chat-img" src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }} picture">
             </td>
             <td>
-                <a href="{{ route('locations.show', $model->id) }}">{{ $model->name }}</a>
+                <a href="{{ route('locations.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltip() }}">{{ $model->name }}</a>
             </td>
             <td>
                 {{ $model->type }}

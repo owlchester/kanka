@@ -13,11 +13,11 @@
                 <img class="direct-chat-img" src="{{ $character->getImageUrl(true) }}" alt="{{ $character->name }} picture">
             </td>
             <td>
-                <a href="{{ route('characters.show', $character->id) }}">{{ $character->name }}</a>
+                <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltip() }}">{{ $character->name }}</a>
             </td>
             <td>
                 @if ($character->family)
-                    <a href="{{ route('families.show', $character->family_id) }}">{{ $character->family->name }}</a>
+                    <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltip() }}">{{ $character->family->name }}</a>
                 @endif
             </td>
             <td>{{ $character->age }}</td>
