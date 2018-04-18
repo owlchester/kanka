@@ -23,7 +23,7 @@ class StoreCalendar extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required',
             'type' => 'max:191',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
@@ -31,6 +31,16 @@ class StoreCalendar extends FormRequest
             'month_name' => 'required|array|min:2',
             'weekday' => 'required|array|min:2',
             'year_name' => 'required|array',
+
         ];
+
+        $leapYear = request()->post('has_leap_year');
+        if (request()->post('has_leap_year') == true) {
+            $rules['leap_year_amount'] = 'required|min:1';
+            $rules['leap_year_offset'] = 'required|min:1';
+            $rules['leap_year_start'] = 'required|min:1';
+        }
+        
+        return $rules;
     }
 }

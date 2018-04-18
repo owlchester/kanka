@@ -248,7 +248,7 @@
                         {{ trans('calendars.fields.has_leap_year') }}
                     </label>
                 </div>
-                <div class="" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year)@else display:none; @endif">
+                <div class="" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year'))@else display:none; @endif">
                     <div class="form-group">
                         <label>{{ trans('calendars.fields.leap_year_amount') }}</label>
                         {!! Form::number('leap_year_amount', $formService->prefill('leap_year_amount', $source), ['placeholder' => trans('calendars.placeholders.leap_year_amount'), 'class' => 'form-control', 'maxlength' => 191]) !!}
