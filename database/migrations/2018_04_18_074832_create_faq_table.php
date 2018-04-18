@@ -28,7 +28,7 @@ class CreateFaqTable extends Migration
         Schema::dropIfExists('faq');
         Schema::create('faq', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('faq_category_id')->notNull();
+            $table->unsignedInteger('faq_category_id')->null();
             $table->string('locale', 5)->notNull()->default('en');
             $table->text('question')->notNull();
             $table->text('answer')->notNull();
