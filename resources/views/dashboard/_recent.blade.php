@@ -24,7 +24,7 @@
                             @endif
                             <span class="pull-right product-description">{{ $model->elapsed() }}</span>
                             <p class="text-justify entity-short">
-                                {{ $model->shortHistory() }}
+                                {{ $model->tooltip() }}
                             </p>
                         </div>
                     </li>

@@ -68,6 +68,12 @@ class Calendar extends MiscModel
     protected $filterableColumns = ['name', 'type'];
 
     /**
+     * Field used for tooltip (default is history)
+     * @var string
+     */
+    protected $tooltipField = 'description';
+
+    /**
      * Traits
      */
     use CampaignTrait;

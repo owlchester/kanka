@@ -33,6 +33,12 @@ abstract class MiscModel extends Model
     protected $filterableColumns = [];
 
     /**
+     * Field used for tooltips
+     * @var string
+     */
+    protected $tooltipField = 'history';
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */
@@ -48,9 +54,15 @@ abstract class MiscModel extends Model
      * Wrapper for short history
      * @return mixed
      */
-    public function tooltip()
+    public function tooltip($limit = 250)
     {
-        return $this->shortHistory(250);
+        $pureHistory = strip_tags($this->{$this->tooltipField});
+        if (!empty($pureHistory)) {
+            if (strlen($pureHistory) > $limit) {
+                return substr($pureHistory, 0, $limit) . '...';
+            }
+        }
+        return $pureHistory;
     }
 
     /**
@@ -231,6 +243,9 @@ abstract class MiscModel extends Model
         return $this->hasOne('App\Models\Entity', 'entity_id', 'id')->where('type', $this->entityType);
     }
 
+    /**
+     * @return mixed
+     */
     public function getEntityType()
     {
         return $this->entityType;

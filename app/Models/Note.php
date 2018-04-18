@@ -20,6 +20,12 @@ class Note extends MiscModel
     ];
 
     /**
+     * Field used for tooltip (default is history)
+     * @var string
+     */
+    protected $tooltipField = 'description';
+
+    /**
      * Searchable fields
      * @var array
      */
@@ -42,21 +48,4 @@ class Note extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
-
-
-    /**
-     * Get a short history/description for the dashboard
-     * @param int $limit
-     * @return string
-     */
-    public function shortHistory($limit = 150)
-    {
-        $pureHistory = strip_tags($this->description);
-        if (!empty($pureHistory)) {
-            if (strlen($pureHistory) > $limit) {
-                return substr($pureHistory, 0, $limit) . '...';
-            }
-        }
-        return $pureHistory;
-    }
 }

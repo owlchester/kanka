@@ -161,7 +161,7 @@ class Entity extends Model
 
     public function tooltip()
     {
-        return $this->child->shortHistory(250);
+        return $this->child->tooltip();
     }
 
     /**

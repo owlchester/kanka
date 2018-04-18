@@ -42,6 +42,12 @@ class Item extends MiscModel
     protected $filterableColumns = ['name', 'type', 'location_id', 'character_id'];
 
     /**
+     * Field used for tooltips
+     * @var string
+     */
+    protected $tooltipField = 'description';
+
+    /**
      * Traits
      */
     use CampaignTrait;
@@ -61,21 +67,5 @@ class Item extends MiscModel
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    /**
-     * Get a short history/description for the dashboard
-     * @param int $limit
-     * @return string
-     */
-    public function shortHistory($limit = 150)
-    {
-        $pureHistory = strip_tags($this->description);
-        if (!empty($pureHistory)) {
-            if (strlen($pureHistory) > $limit) {
-                return substr($pureHistory, 0, $limit) . '...';
-            }
-        }
-        return $pureHistory;
     }
 }

@@ -33,6 +33,12 @@ class Quest extends MiscModel
     protected $filterableColumns = ['name', 'type'];
 
     /**
+     * Field used for tooltip (default is history)
+     * @var string
+     */
+    protected $tooltipField = 'description';
+
+    /**
      * Traits
      */
     use CampaignTrait;
@@ -50,6 +56,11 @@ class Quest extends MiscModel
     public function campaign()
     {
         return $this->belongsTo('App\Campaign', 'campaign_id', 'id');
+    }
+
+    public function shortDescription()
+    {
+        return $this->name;
     }
 
     /**
