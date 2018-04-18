@@ -2,7 +2,7 @@
     <script>
         var editor_config = {
             path_absolute : "/",
-            language: '{{ App::getLocale() }}',
+            language: '{{ App::getLocale() == 'en-US' ? 'en' : App::getLocale() }}',
             selector: "textarea.html-editor",
             plugins: [
                 "save advlist autolink lists link image charmap hr anchor pagebreak",
