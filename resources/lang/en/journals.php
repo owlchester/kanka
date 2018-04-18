@@ -21,6 +21,7 @@ return [
         'name'      => 'Name',
         'relation'  => 'Relation',
         'type'      => 'Type',
+        'author'    => 'Author',
     ],
     'index'         => [
         'add'           => 'New Journal',
@@ -29,6 +30,7 @@ return [
         'title'         => 'Journals',
     ],
     'placeholders'  => [
+        'author' => 'Who wrote the journal',
         'date'  => 'Date of the journal',
         'name'  => 'Name of the journal',
         'type'  => 'Session, One Shot, Draft',

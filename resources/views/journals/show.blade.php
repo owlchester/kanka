@@ -38,7 +38,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#information">History</a>
+                        <a href="#information">{{ trans('crud.fields.entry') }}</a>
                     </li>
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
@@ -57,7 +57,6 @@
                     <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                         @if (!empty($model->history))
                         <div class="post">
-                            <h3>History</h3>
                             <p>{!! $model->history !!}</p>
                         </div>
                         @endif

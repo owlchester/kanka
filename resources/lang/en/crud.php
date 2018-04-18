@@ -73,6 +73,7 @@ return [
         'image'         => 'Image',
         'is_private'    => 'Private',
         'location'      => 'Location',
+        'entry'         => 'Entry',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
