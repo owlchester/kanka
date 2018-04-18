@@ -112,7 +112,8 @@ class EntityPolicy
      */
     public function permission(User $user, $entity)
     {
-        return $user->campaign->id == $entity->campaign_id && $user->campaign->roles()->count() > 1 &&
+        return $user->campaign->id == $entity->campaign_id &&
+            ($user->campaign->roles()->count() > 1 || $user->campaign->members()->count() > 1) &&
             $this->checkPermission('permission', $user, $entity);
     }
 
