@@ -15,9 +15,15 @@ use Vsch\TranslationManager\Translator;
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-], function() {
+], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
+
+    // Frontend stuff
+    Route::get('/about', 'FrontController@about')->name('about');
+    Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
+    Route::get('/help', 'FrontController@help')->name('help');
+    Route::get('/faq', 'FrontController@faq')->name('faq');
 
 
     Auth::routes();
@@ -153,12 +159,10 @@ Route::group([
     // Notification
     Route::get('/notifications/delete/{id}', 'NotificationController@delete')->name('notifications.delete');
 
-
     // 3rd party
     Route::group(['middleware' => ['translator'], 'prefix' => 'translations'], function () {
         Translator::routes();
     });
-
 });
 
 Route::group(['prefix' => 'admin'], function () {

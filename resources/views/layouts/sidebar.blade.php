@@ -98,6 +98,12 @@
                     <li class="{{ $sidebar->active('team') }}">
                         <a href="{{ route('team.index') }}"><i class="fa fa-users"></i> {{ trans('sidebar.team') }}</a>
                     </li>
+
+                    <li><a href="{{ route('about') }}"><i class="fa fa-info-circle"></i> {{ trans('front.menu.about') }}</a></li>
+                    <li><a href="{{ route('help') }}"><i class="fa fa-exclamation-circle"></i> {{ trans('front.menu.help') }}</a></li>
+                    <li><a href="{{ route('faq') }}"><i class="fa fa-question-circle"></i>{{ trans('front.menu.faq') }}</a></li>
+
+
                     <li><a href="https://www.reddit.com/r/kanka" target="_blank"><i class="fa fa-reddit"></i> {{ trans('sidebar.support') }}</a></li>
                     <li><a href="https://discord.gg/rhsyZJ4" target="_blank"><i class="fa fa-commenting-o"></i> {{ trans('sidebar.discord') }}</a></li>
                     <li><a href="https://www.patreon.com/kankaio" target="_blank"><i class="fa fa-gratipay"></i> {{ trans('sidebar.patreon') }}</a></li>

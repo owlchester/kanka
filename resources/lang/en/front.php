@@ -1,8 +1,16 @@
 <?php
 
 return [
+    'about' => [
+        'title' => 'About',
+        'description' => 'Kanka was born out of the desire of two passionnate RPG players to build and manage a world together in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way we wanted, we set out to build our own tool during the fall of 2017.'
+    ],
     'contact'       => [
         'title' => 'We :icon new friends!',
+    ],
+    'faq' => [
+        'title' => 'FAQ',
+        'description' => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
     ],
     'features'      => [
         'collaborative' => [
@@ -31,6 +39,13 @@ return [
     'footer'        => [
         'copyright' => '&copy; 2017 - :current kanka.io. All Rights Reserved.',
     ],
+    'help' => [
+        'title' => 'Help',
+        'description' => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
+        'twitter' => 'Tweet at us on twitter',
+        'discord' => 'Join the community on Discord',
+        'email' => 'Send us an email',
+    ],
     'master'        => [
         'call_to_action'    => 'Register now, it\'s free!',
         'description'       => 'Kanka is an easy and flexible tool to worldbuild and manage your RPG campaign online. Create and organize people, places, organisations, events and much more.',
@@ -47,6 +62,11 @@ return [
         'login'     => 'Login',
         'register'  => 'Register',
         'title'     => 'Menu',
+        'about' => 'About',
+        'faq' => 'FAQ',
+        'help' => 'Help',
+        'tos' => 'TOS',
+        'contact_us' => 'Contact Us',
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
