@@ -1,18 +1,19 @@
-@if (Auth::user()->can('update', $campaign))
-    <p class="text-right">
-        <a href="{{ route('campaigns.campaign_roles.create', ['campaign' => $campaign]) }}" class="btn btn-primary">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            {{ trans('campaigns.roles.actions.add') }}
-        </a>
-    </p>
-@endif
+<p class="help-block">{{ trans('campaigns.roles.helper.1') }}</p>
+<p class="help-block">{{ trans('campaigns.roles.helper.2') }}</p>
+<p class="help-block">{{ trans('campaigns.roles.helper.3') }}</p>
 
-<table id="campaigns" class="table table-hover">
+<table id="campaign-roles" class="table table-hover table-striped">
     <tbody><tr>
         <th>{{ trans('campaigns.roles.fields.name') }}</th>
         <th>{{ trans('campaigns.roles.fields.users') }}</th>
         <th>{{ trans('campaigns.roles.fields.permissions') }}</th>
-        <th>&nbsp;</th>
+        <th>
+            @if (Auth::user()->can('update', $campaign))
+                <a href="{{ route('campaigns.campaign_roles.create', ['campaign' => $campaign]) }}" class="btn btn-primary btn-sm pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    {{ trans('campaigns.roles.actions.add') }}
+                </a>
+            @endif</th>
     </tr>
     @foreach ($r = $campaign->roles()->with('users')->paginate() as $relation)
         <tr>
@@ -27,7 +28,7 @@
             <td class="text-right">
                 <a href="{{ route('campaigns.campaign_roles.show', ['campaign' => $campaign, 'campaign_role' => $relation]) }}" class="btn btn-xs btn-default">
                     <i class="fa fa-eye" aria-hidden="true"></i>
-                    {{ trans('crud.view') }}
+                    {{ trans('crud.manage') }}
                 </a>
                 @if (Auth::user()->can('update', $relation))
                     <a href="{{ route('campaigns.campaign_roles.edit', ['campaign' => $campaign, 'campaign_role' => $relation]) }}" class="btn btn-xs btn-primary">

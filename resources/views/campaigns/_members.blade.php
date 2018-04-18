@@ -1,5 +1,6 @@
+<p class="help-block">{{ trans('campaigns.members.help') }}</p>
 
-<table id="campaigns" class="table table-hover">
+<table id="campaign-members" class="table table-hover table-striped">
     <tbody><tr>
         <th>{{ trans('campaigns.members.fields.name') }}</th>
         <th>{{ trans('campaigns.members.fields.joined') }}</th>
@@ -28,21 +29,20 @@
 @if (Auth::user()->can('invite', $campaign))
     <hr />
     <h3>{{ trans('campaigns.members.invite.title') }}</h3>
-    <p>
+    <p class="help-block">
         {{ trans('campaigns.members.invite.description') }}
     </p>
-    <p class="text-right">
-        <a href="{{ route('campaigns.campaign_invites.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            {{ trans('campaigns.invites.actions.add') }}
-        </a>
-    </p>
 
-    <table id="invites" class="table table-hover">
+    <table id="campaign-invites" class="table table-hover table-striped">
         <tbody><tr>
             <th>{{ trans('campaigns.invites.fields.email') }}</th>
             <th>{{ trans('campaigns.invites.fields.created') }}</th>
-            <th>&nbsp;</th>
+            <th>
+                <a href="{{ route('campaigns.campaign_invites.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary btn-sm pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    {{ trans('campaigns.invites.actions.add') }}
+                </a>
+            </th>
         </tr>
         @foreach ($r = $campaign->unusedInvites()->paginate() as $relation)
             <tr>

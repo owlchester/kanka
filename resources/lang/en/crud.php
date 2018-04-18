@@ -8,6 +8,7 @@ return [
         'new'   => 'New',
     ],
     'add'           => 'Add',
+    'manage' => 'Manage',
     'attributes'    => [
         'actions'       => [
             'add'               => 'Add an attribute',

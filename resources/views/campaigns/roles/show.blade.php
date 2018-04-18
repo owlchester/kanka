@@ -20,6 +20,7 @@
                     @if (Auth::user()->can('user', $role))
                         <p class="text-right">
                             <a href="{{ route('campaigns.campaign_roles.campaign_role_users.create', ['campaign' => $model, 'campaign_role' => $role]) }}" class="btn btn-primary">
+                                <i class="fa fa-plus"></i>
                                 {{ trans('campaigns.roles.users.actions.add') }}
                             </a>
                         </p>
@@ -67,7 +68,7 @@
                         </tr>
                         @foreach ($permission->permissions($role) as $permission)
                             <tr>
-                                <td>{{ $permission['entity'] }}</td>
+                                <td>{{ trans('entities.' . $permission['entity']) }}</td>
                                 <td>{{ $permission['action'] }}</td>
                                 <td>{!! Form::checkbox('permissions[' . $permission['key'] . ']', $permission['entity'], $permission['enabled']) !!}</td>
                             </tr>
