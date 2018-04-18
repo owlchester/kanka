@@ -3,11 +3,12 @@
         <th class="avatar"><br /></th>
         <th>{{ trans('characters.fields.name') }}</th>
         <th>{{ trans('characters.fields.family') }}</th>
+        <th>{{ trans('crud.fields.location') }}</th>
         <th>{{ trans('characters.fields.age') }}</th>
         <th>{{ trans('characters.fields.race') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->characters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate() as $character)
+    @foreach ($r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate() as $character)
         <tr>
             <td>
                 <img class="direct-chat-img" src="{{ $character->getImageUrl(true) }}" alt="{{ $character->name }} picture">
@@ -19,6 +20,9 @@
                 @if ($character->family)
                     <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltip() }}">{{ $character->family->name }}</a>
                 @endif
+            </td>
+            <td>
+                <a href="{{ route('locations.show', $character->location_id) }}" data-toggle="tooltip" title="{{ $character->location->tooltip() }}">{{ $character->location->name }}</a>
             </td>
             <td>{{ $character->age }}</td>
             <td>{{ $character->race }}</td>

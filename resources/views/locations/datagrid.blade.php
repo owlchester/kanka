@@ -22,7 +22,11 @@
             'label' => trans('locations.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->characters->count();
+                $total = $model->characters->count();
+                foreach ($model->descendants()->with('characters')->get() as $child) {
+                    $total += $child->characters->count();
+                }
+                return $total;
             }
         ],
         [

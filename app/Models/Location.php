@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;
+use App\Traits\VisibleTrait;use Kalnoy\Nestedset\NodeTrait;
 
 class Location extends MiscModel
 {
@@ -47,6 +47,7 @@ class Location extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+    use NodeTrait;
 
     /**
      *
@@ -89,6 +90,19 @@ class Location extends MiscModel
     }
 
     /**
+     * Get all characters in the location and descendants
+     */
+    public function allCharacters()
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        return Character::whereIn('location_id', $locationIds)->with('location');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function families()
@@ -110,5 +124,22 @@ class Location extends MiscModel
     public function mapPoints()
     {
         return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'parent_location_id';
+    }
+
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     */
+    public function setParentLocationIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
     }
 }
