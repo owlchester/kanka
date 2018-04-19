@@ -98,7 +98,7 @@ return [
         'skin'      => 'Peau',
         'title'     => 'Titre',
         'traits'    => 'Traits',
-        'type'      => 'PNG, Joueurs, Autre',
+        'type'      => 'PNJ, Joueurs, Autre',
         'weight'    => 'Poid',
     ],
     'sections'      => [

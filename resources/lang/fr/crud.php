@@ -107,7 +107,7 @@ return [
     ],
     'or_cancel'     => 'ou <a href=":url">annuler</a>',
     'panels'        => [
-        'appearance'            => 'Apparance',
+        'appearance'            => 'Apparence',
         'description'           => 'Description',
         'general_information'   => 'Information Generale',
         'history'               => 'Histoire',
