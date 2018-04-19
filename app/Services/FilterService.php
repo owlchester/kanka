@@ -30,10 +30,16 @@ class FilterService
 //    }
 
     /**
+     * The filters as saved in the session
      * @var array
      */
     protected $filters = [];
 
+    /**
+     * @param $crud
+     * @param array $availableFilters
+     * @return array|mixed
+     */
     public function filter($crud, $availableFilters = [])
     {
         // No point in doing any work if the model has no fields to filter.
@@ -41,7 +47,7 @@ class FilterService
             return [];
         }
 
-        // Get all of the posted data. We need to see if any of it is part of a filter
+        // Get all of the posted data. We need to see if any of it is part of a filter.
         $data = request()->all();
 
         $sessionKey = 'filterService-' . $crud;
@@ -54,7 +60,7 @@ class FilterService
             }
         }
 
-        // Reseting?
+        // Reset the filters if requested, before saving it to the session.
         if (!empty($data['reset-filter'])) {
             $this->filters = [];
         }
