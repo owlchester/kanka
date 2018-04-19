@@ -67,6 +67,9 @@ class CampaignRole extends Model
         }
 
         // Loop on submitted form
+        if (empty($permissions)) {
+            $permissions = [];
+        }
         foreach ($permissions as $key => $value) {
             // Check if exists
             if (isset($existing[$key])) {

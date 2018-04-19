@@ -1,7 +1,7 @@
 @inject('permissionService', 'App\Services\PermissionService')
 <?php $permissions = $permissionService->entityPermissions($model->entity); ?>
 
-<p>{{ trans('crud.permissions.helper') }}</p>
+<p class="text-muted">{{ trans('crud.permissions.helper') }}</p>
 
 {!! Form::open(['route' => ['entities.permissions', $model->entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
 <table id="crud_permissions" class="table table-hover">
@@ -37,6 +37,9 @@
             </tr>
             @endif
         @endforeach
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
         <tr>
             <th>{{ trans('crud.permissions.fields.member') }}</th>
             <th>{{ trans('crud.permissions.actions.read') }}</th>

@@ -125,7 +125,7 @@ return [
             'member'    => 'Membre',
             'role'      => 'Rôle',
         ],
-        'helper'    => 'Utilisez cette interface pour affiner les utilisateurs et les rôles pouvant interagir avec cette entité.',
+        'helper'    => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
         'success'   => 'Permissions enregistrées.',
         'title'     => 'Permissions',
     ],
