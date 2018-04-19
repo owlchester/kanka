@@ -55,7 +55,6 @@ Route::group([
 
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
-    Route::get('/team', 'TeamController@index')->name('team.index');
 
     // Multi-delete for cruds
     Route::post('/calendars/deleteMany', 'CalendarController@deleteMany')->name('calendars.deleteMany');

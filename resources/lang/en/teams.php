@@ -3,7 +3,7 @@
 return [
     'index' => [
         'core'          => 'Core',
-        'description'   => 'These people make Kanka possible',
+        'description'   => 'These people make Kanka possible.',
         'title'         => 'Team',
         'translations'  => 'Translations',
     ],
