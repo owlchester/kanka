@@ -81,4 +81,7 @@ return [
         'call_to_action'    => 'Let\'s Get Started!',
         'title'             => 'Stop waiting.<br />Start building.',
     ],
+    'team' => [
+        'coffee' => 'By me coffee!',
+    ]
 ];
