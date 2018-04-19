@@ -28,7 +28,7 @@ return [
         'actions'       => [
             'explore_view'  => 'Mode Exploration',
         ],
-        'add'           => 'New Lieu',
+        'add'           => 'Nouveau Lieu',
         'description'   => 'Gérer les lieux of :name.',
         'header'        => 'Lieux de :name',
         'title'         => 'Lieux',
