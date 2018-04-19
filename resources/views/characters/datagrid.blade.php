@@ -9,6 +9,7 @@
         ],
         // Name
         'name',
+        'title',
         [
             'label' => trans('characters.fields.family'),
             'visible' => $campaign->enabled('families'),

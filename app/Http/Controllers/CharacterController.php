@@ -45,6 +45,7 @@ class CharacterController extends CrudController
 
         $this->filters = [
             'name',
+            'title',
             [
                 'field' => 'location_id',
                 'label' => trans('crud.fields.location'),
