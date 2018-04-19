@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid->render(
+    $filterService,
     // Columns
     [
         // Avatar
@@ -39,6 +40,5 @@
         'baseRoute' => 'characters',
         'trans' => 'characters.fields.',
         'campaign' => $campaign
-    ],
-    $filterService
+    ]
 ) !!}

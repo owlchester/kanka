@@ -45,15 +45,17 @@ class DatagridRenderer
     }
 
     /**
+     * @param FilterService $filterService
      * @param array $columns
      * @param array $data
      * @param array $options
+     * @return string
      */
     public function render(
+        FilterService $filterService,
         $columns = [],
         $data = [],
-        $options = [],
-        FilterService $filterService = null
+        $options = []
     ) {
         $this->columns = $columns;
         $this->data = $data;

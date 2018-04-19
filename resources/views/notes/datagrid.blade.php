@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid->render(
+    $filterService,
     // Columns
     [
         // Avatar
