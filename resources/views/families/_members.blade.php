@@ -10,7 +10,7 @@
     @foreach ($r = $model->members()->acl(auth()->user())->with('location')->paginate() as $relation)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $relation->getImageUrl(true) }}" alt="{{ $relation->name }} picture">
+                <a class="entity-image" style="background-image: url('{{ $relation->getImageUrl(true) }}');" title="{{ $relation->name }}" href="{{ route('characters.show', $relation->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route('characters.show', $relation->id) }}">{{ $relation->name }}</a>

@@ -16,7 +16,7 @@
     @foreach ($r = $model->organisations()->has('organisation')->with('organisation')->paginate() as $relation)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $relation->organisation->getImageUrl(true) }}" alt="{{ $relation->organisation->name }} picture">
+                <a class="entity-image" style="background-image: url('{{ $relation->organisation->getImageUrl(true) }}');" title="{{ $relation->organisation->name }}" href="{{ route('organisations.show', $relation->organisation->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route('organisations.show', $relation->organisation_id) }}" data-toggle="tooltip" title="{{ $relation->organisation->tooltip() }}">{{ $relation->organisation->name }}</a>

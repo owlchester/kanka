@@ -11,7 +11,7 @@
     @foreach ($r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate() as $character)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $character->getImageUrl(true) }}" alt="{{ $character->name }} picture">
+                <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(true) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltip() }}">{{ $character->name }}</a>

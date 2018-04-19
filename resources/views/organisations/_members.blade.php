@@ -23,7 +23,7 @@
     @foreach ($r->sortBy('character.name') as $relation)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $relation->character->getImageUrl(true) }}" alt="{{ $relation->character->name }} picture">
+                <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route('characters.show', $relation->character->id) }}" data-toggle="tooltip" title="{{ $relation->character->tooltip() }}">{{ $relation->character->name }}</a>

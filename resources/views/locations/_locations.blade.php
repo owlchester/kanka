@@ -9,7 +9,7 @@
     @foreach ($r = $model->descendants()->with('parent')->acl(auth()->user())->orderBy('name', 'ASC')->paginate() as $model)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }} picture">
+                <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route('locations.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltip() }}">{{ $model->name }}</a>

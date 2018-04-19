@@ -8,7 +8,7 @@
     @foreach ($r = $model->items()->paginate() as $item)
         <tr>
             <td>
-                <img class="direct-chat-img" src="{{ $item->getImageUrl(true) }}" alt="{{ $item->name }} picture">
+                <a class="entity-image" style="background-image: url('{{ $item->getImageUrl(true) }}');" title="{{ $item->name }}" href="{{ route('items.show', $item->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltip() }}">{{ $item->name }}</a>
