@@ -96,7 +96,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('crud.fields.history') }}:</label>
+                    <label>{{ trans('crud.fields.history') }}</label>
                     {!! Form::textarea('history', $formService->prefill('history', $source), ['class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
                 <div class="form-group">
