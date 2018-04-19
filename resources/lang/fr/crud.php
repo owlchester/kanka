@@ -68,6 +68,7 @@ return [
         'character'     => 'Personnage',
         'description'   => 'Description',
         'entity'        => 'Entité',
+        'entry'         => 'Entrée',
         'event'         => 'Evénement',
         'history'       => 'Histoire',
         'image'         => 'Image',
@@ -85,6 +86,7 @@ return [
     ],
     'is_private'    => 'Cet élément est privé et pas visible.',
     'linking_help'  => 'Comment lier vers d\'autres éléments?',
+    'manage'        => 'Gérer',
     'move'          => [
         'description'   => 'Déplacer cet élément à un nouveau endroit',
         'fields'        => [

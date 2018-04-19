@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'description'           => '',
+        'description'           => 'Créer une nouvelle campagne',
         'helper'                => [
             'first' => 'Merci pour l\'intérêt! Avant de pouvoir avancer, nous n\'avons que besoin d\'un <b>nom de campagne</b>. Ceci est le nom unique du monde qui le distingue des autres. Pas d\'inquiétude pour l\'originalité, le nom peut être changé à tout moment, autant de fois que désiré, et d\'autres campagnes peuvent être créées.',
             'second'=> 'Bref! Alors, ce nom?',
@@ -10,15 +10,15 @@ return [
         ],
         'success'               => 'Campagne créée.',
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créé pour aider à bien démarrer.',
-        'title'                 => 'Créer une nouvelle campagne',
+        'title'                 => 'Nouvelle Campagne',
     ],
     'destroy'       => [
         'success'   => 'Campagne supprimée.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Modifier la campagne',
         'success'       => 'Campagne modifiée.',
-        'title'         => 'Modifier la campagne :campagne',
+        'title'         => 'Modifier la campagne :campaign',
     ],
     'fields'        => [
         'description'   => 'Description',
@@ -45,7 +45,7 @@ return [
         ],
         'create'        => [
             'button'        => 'Inviter',
-            'description'   => '',
+            'description'   => 'Invite tes amis à ta campagne',
             'success'       => 'Invitation envoyée.',
             'title'         => 'Invite un ami à la campagne',
         ],
@@ -54,7 +54,7 @@ return [
         ],
         'email'         => [
             'link'      => '<a href=":link">Joindre la campagne de :name</a>',
-            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' on kanka.io! Utilises ce lien pour accepter son invitation.',
+            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' on kanka.io! Utilises ce lien pour accepter leur invitation.',
             'title'     => 'Invitation de :name',
         ],
         'error'         => [
@@ -81,7 +81,7 @@ return [
             'title' => 'Ajouter un membre à la campagne',
         ],
         'edit'      => [
-            'description'   => '',
+            'description'   => 'Modifier un membre de la campagne',
             'title'         => 'Modifier membre :name',
         ],
         'fields'    => [
@@ -89,6 +89,7 @@ return [
             'name'      => 'Utilisateur',
             'role'      => 'Rôle',
         ],
+        'help'      => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
         'invite'    => [
             'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté en tant que \'Observateur\'. Tu peux annuler une invitation à tout moment.',
             'title'         => 'Invitation',
@@ -125,15 +126,27 @@ return [
             'permissions'   => 'Permissions',
             'users'         => 'Utilisateurs',
         ],
+        'helper'        => [
+            '1' => 'Une campagne peut avoir autant de rôle que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
+            '2' => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne à plusieurs membres ou rôles.',
+            '3' => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
+        ],
         'members'       => 'Membres',
         'permissions'   => [
-            'hint'  => 'Ce rôle a automatiquement accès à tout.',
+            'actions'   => [
+                'add'           => 'Créer',
+                'delete'        => 'Supprimer',
+                'edit'          => 'Modifier',
+                'permission'    => 'Gérer les permissions',
+                'read'          => 'Voir',
+            ],
+            'hint'      => 'Ce rôle a automatiquement accès à tout.',
         ],
         'placeholders'  => [
             'name'  => 'Nom du rôle',
         ],
         'show'          => [
-            'description'   => '',
+            'description'   => 'Membres et Permissions d\'un rôle de campagne',
             'title'         => 'Rôles de campagne',
         ],
         'users'         => [

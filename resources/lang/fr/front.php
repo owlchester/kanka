@@ -1,8 +1,16 @@
 <?php
 
 return [
+    'about'         => [
+        'description'   => 'Kanka a été imaginé durant l\'été de 2017 par deux joueurs de JdR passionnés qui souhaient construire un gérer un monde ensemble. Après avoir essayé plusieurs outils existant à l\'époque, nous avons conclu qu\'aucune solution ne faisait exactement ce qu\'on voulait, alors on s\'est donné comme objectif de créer notre propre outil durant l\'automne de 2017.',
+        'title'         => 'A propos',
+    ],
     'contact'       => [
         'title' => 'Nous :icon de nouveaux amis!',
+    ],
+    'faq'           => [
+        'description'   => 'Nous avons couvert les questions les plus fréquentes et avons répondu de manière aussi clair que possible.',
+        'title'         => 'FAQ',
     ],
     'features'      => [
         'collaborative' => [
@@ -31,29 +39,49 @@ return [
     'footer'        => [
         'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
     ],
+    'help'          => [
+        'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacteront aussi rapidement que possible.',
+        'discord'       => 'Joins la communauté sur Discord',
+        'email'         => 'Envois nous un email',
+        'title'         => 'Aide',
+        'twitter'       => 'Tweet-nous sur Twitter',
+    ],
     'master'        => [
         'call_to_action'    => 'Inscrivez-vous maintenant, c\'est gratuit!',
         'description'       => 'Kanka est un outil en ligne flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créez et organisez des personnages, localités, organisations, événements et bien plus.',
         'title'             => 'Kanka',
     ],
     'menu'          => [
-        'contact'   => 'Contact',
-        'dashboard' => 'Accueuil',
-        'features'  => 'Fonctionnalités',
-        'languages' => [
+        'about'         => 'A propos',
+        'contact'       => 'Contact',
+        'contact_us'    => 'Nous contacter',
+        'dashboard'     => 'Accueuil',
+        'faq'           => 'FAQ',
+        'features'      => 'Fonctionnalités',
+        'help'          => 'Aide',
+        'languages'     => [
             'en'    => 'English',
             'fr'    => 'Français',
         ],
-        'login'     => 'Login',
-        'register'  => 'Inscription',
-        'title'     => 'Menu',
+        'login'         => 'Login',
+        'register'      => 'Inscription',
+        'releases'      => 'Mises à jours',
+        'title'         => 'Menu',
+        'tos'           => 'Conditions d\'utilisation',
     ],
     'meta'          => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
         'title'         => 'Kanka - Getionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
     ],
+    'release'       => [
+        'description'   => 'Kanka ne cesse de croître et de s\'améliorer, et nous voulons que le monde sache toutes les choses impressionnantes que nous ajoutons à l\'application.',
+        'title'         => 'Mises à jours',
+    ],
     'second_block'  => [
         'call_to_action'    => 'Commençons!',
         'title'             => 'Laissez libre à votre créativité.',
+    ],
+    'team'          => [
+        'coffee'    => 'Achète-moi un café!',
     ],
 ];

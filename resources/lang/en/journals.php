@@ -15,13 +15,13 @@ return [
         'title'         => 'Edit Journal :name',
     ],
     'fields'        => [
+        'author'    => 'Author',
         'date'      => 'Date',
         'history'   => 'History',
         'image'     => 'Image',
         'name'      => 'Name',
         'relation'  => 'Relation',
         'type'      => 'Type',
-        'author'    => 'Author',
     ],
     'index'         => [
         'add'           => 'New Journal',
@@ -30,10 +30,10 @@ return [
         'title'         => 'Journals',
     ],
     'placeholders'  => [
-        'author' => 'Who wrote the journal',
-        'date'  => 'Date of the journal',
-        'name'  => 'Name of the journal',
-        'type'  => 'Session, One Shot, Draft',
+        'author'    => 'Who wrote the journal',
+        'date'      => 'Date of the journal',
+        'name'      => 'Name of the journal',
+        'type'      => 'Session, One Shot, Draft',
     ],
     'show'          => [
         'description'   => 'A detailed view of a journal',

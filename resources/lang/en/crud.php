@@ -8,7 +8,6 @@ return [
         'new'   => 'New',
     ],
     'add'           => 'Add',
-    'manage' => 'Manage',
     'attributes'    => [
         'actions'       => [
             'add'               => 'Add an attribute',
@@ -69,12 +68,12 @@ return [
         'character'     => 'Character',
         'description'   => 'Description',
         'entity'        => 'Entity',
+        'entry'         => 'Entry',
         'event'         => 'Event',
         'history'       => 'History',
         'image'         => 'Image',
         'is_private'    => 'Private',
         'location'      => 'Location',
-        'entry'         => 'Entry',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
@@ -87,6 +86,7 @@ return [
     ],
     'is_private'    => 'This entity is private and not visible by non-admin users.',
     'linking_help'  => 'How can I link to other entries?',
+    'manage'        => 'Manage',
     'move'          => [
         'description'   => 'Move this entity to another place',
         'fields'        => [

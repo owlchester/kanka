@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'about' => [
-        'title' => 'About',
-        'description' => 'Kanka was born out of the desire of two passionnate RPG players to build and manage a world together in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way we wanted, we set out to build our own tool during the fall of 2017.'
+    'about'         => [
+        'description'   => 'Kanka was born out of the desire of two passionnate RPG players to build and manage a world together in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way we wanted, we set out to build our own tool during the fall of 2017.',
+        'title'         => 'About',
     ],
     'contact'       => [
         'title' => 'We :icon new friends!',
     ],
-    'faq' => [
-        'title' => 'FAQ',
-        'description' => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
+    'faq'           => [
+        'description'   => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
+        'title'         => 'FAQ',
     ],
     'features'      => [
         'collaborative' => [
@@ -39,12 +39,12 @@ return [
     'footer'        => [
         'copyright' => '&copy; 2017 - :current kanka.io. All Rights Reserved.',
     ],
-    'help' => [
-        'title' => 'Help',
-        'description' => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
-        'twitter' => 'Tweet at us on twitter',
-        'discord' => 'Join the community on Discord',
-        'email' => 'Send us an email',
+    'help'          => [
+        'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
+        'discord'       => 'Join the community on Discord',
+        'email'         => 'Send us an email',
+        'title'         => 'Help',
+        'twitter'       => 'Tweet at us on Twitter',
     ],
     'master'        => [
         'call_to_action'    => 'Register now, it\'s free!',
@@ -52,36 +52,36 @@ return [
         'title'             => 'Kanka',
     ],
     'menu'          => [
-        'contact'   => 'Contact',
-        'dashboard' => 'Dashboard',
-        'features'  => 'Features',
-        'languages' => [
+        'about'         => 'About',
+        'contact'       => 'Contact',
+        'contact_us'    => 'Contact Us',
+        'dashboard'     => 'Dashboard',
+        'faq'           => 'FAQ',
+        'features'      => 'Features',
+        'help'          => 'Help',
+        'languages'     => [
             'en'    => 'English',
             'fr'    => 'Français',
         ],
-        'login'     => 'Login',
-        'register'  => 'Register',
-        'title'     => 'Menu',
-        'about' => 'About',
-        'faq' => 'FAQ',
-        'help' => 'Help',
-        'tos' => 'TOS',
-        'contact_us' => 'Contact Us',
-        'releases' => 'Releases'
+        'login'         => 'Login',
+        'register'      => 'Register',
+        'releases'      => 'Releases',
+        'title'         => 'Menu',
+        'tos'           => 'TOS',
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
         'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
     ],
-    'release' => [
-        'title' => 'Releases',
-        'description' => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.'
+    'release'       => [
+        'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',
+        'title'         => 'Releases',
     ],
     'second_block'  => [
         'call_to_action'    => 'Let\'s Get Started!',
         'title'             => 'Stop waiting.<br />Start building.',
     ],
-    'team' => [
-        'coffee' => 'By me coffee!',
-    ]
+    'team'          => [
+        'coffee'    => 'By me coffee!',
+    ],
 ];

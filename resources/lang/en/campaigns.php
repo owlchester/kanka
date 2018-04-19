@@ -10,7 +10,7 @@ return [
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
-        'title'                 => 'Create a new campaign',
+        'title'                 => 'New Campaign',
     ],
     'destroy'       => [
         'success'   => 'Campaign removed.',
@@ -54,7 +54,7 @@ return [
         ],
         'email'         => [
             'link'      => '<a href=":link">Join :name\'s campaign</a>',
-            'subject'   => ':name has invited you to join their campaign \':campaign\' on kanka.io! Use the following link to accept their invitation.',
+            'subject'   => ':name has invited you to join his campaign \':campaign\' on kanka.io! Use the following link to accept his invitation.',
             'title'     => 'Invitation from :name',
         ],
         'error'         => [
@@ -89,11 +89,11 @@ return [
             'name'      => 'User',
             'role'      => 'Role',
         ],
+        'help'      => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
         'invite'    => [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a \'Viewer\'. You can also cancel the invitation at any time.',
             'title'         => 'Invite',
         ],
-        'help' => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
         'roles'     => [
             'member'    => 'Member',
             'owner'     => 'Owner',
@@ -127,20 +127,20 @@ return [
             'users'         => 'Users',
         ],
         'helper'        => [
-            1 => 'A campaign can have as many roles as wanted. The "Admin" role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
-            2 => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
-            3 => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
+            '1' => 'A campaign can have as many roles as wanted. The "Admin" role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
+            '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
+            '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
         ],
         'members'       => 'Members',
         'permissions'   => [
-            'hint'  => 'This role automatically has access to everything.',
-            'actions' => [
-                'read' => 'View',
-                'edit' => 'Edit',
-                'add' => 'Create',
-                'delete' => 'Delete',
-                'permission' => 'Manage Permissions',
+            'actions'   => [
+                'add'           => 'Create',
+                'delete'        => 'Delete',
+                'edit'          => 'Edit',
+                'permission'    => 'Manage Permissions',
+                'read'          => 'View',
             ],
+            'hint'      => 'This role automatically has access to everything.',
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',

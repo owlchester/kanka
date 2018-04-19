@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer un nouveau journal',
         'success'       => 'Journal créé.',
-        'title'         => 'Ajouter un journal',
+        'title'         => 'Nouveau Journal',
     ],
     'destroy'       => [
         'success'   => 'Journal supprimé.',
@@ -15,6 +15,7 @@ return [
         'title'         => 'Modifier Journal :name',
     ],
     'fields'        => [
+        'author'    => 'Auteur',
         'date'      => 'Date',
         'history'   => 'Histoire',
         'image'     => 'Image',
@@ -29,9 +30,10 @@ return [
         'title'         => 'Journaux',
     ],
     'placeholders'  => [
-        'date'  => 'Date du journal',
-        'name'  => 'Nom du journal',
-        'type'  => 'Session, One Shot, Brouillon',
+        'author'    => 'Qui a écrit le journal',
+        'date'      => 'Date du journal',
+        'name'      => 'Nom du journal',
+        'type'      => 'Session, One Shot, Brouillon',
     ],
     'show'          => [
         'description'   => 'Détail d\'un journal',
