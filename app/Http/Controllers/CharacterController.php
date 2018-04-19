@@ -51,7 +51,7 @@ class CharacterController extends CrudController
                 'label' => trans('characters.fields.family'),
                 'type' => 'select2',
                 'route' => route('families.find'),
-                'placeholder' =>  trans('characters.placeholders.family'),
+                'placeholder' =>  trans('crud.placeholders.family'),
                 'model' => Family::class,
             ],
             [
