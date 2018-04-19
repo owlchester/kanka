@@ -84,7 +84,7 @@ function initCrudFilters() {
     // Reset button
     $('#crud-filters .end').on('click', function(e) {
         // Redirect to page without params
-        window.location = window.location.href.split("?")[0];
+        window.location = window.location.href.split("?")[0] + '?reset-filter=true';
     });
 
     $('#crud-filters .input-field').keypress(function(e) {

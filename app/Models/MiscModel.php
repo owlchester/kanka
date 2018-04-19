@@ -250,4 +250,12 @@ abstract class MiscModel extends Model
     {
         return $this->entityType;
     }
+
+    /**
+     * @return array
+     */
+    public function filterableColumns()
+    {
+        return $this->filterableColumns;
+    }
 }

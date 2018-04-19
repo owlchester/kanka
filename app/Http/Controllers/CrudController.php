@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FilterService;
 use App\Services\PermissionService;
 use Arrilot\Widgets\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,11 @@ class CrudController extends Controller
     protected $filters = [];
 
     /**
+     * @var FilterService
+     */
+    protected $filterService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -50,6 +56,8 @@ class CrudController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
+
+        $this->filterService = new FilterService();
     }
 
     /**
@@ -69,14 +77,15 @@ class CrudController extends Controller
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;
+        $filterService = $this->filterService;
 
         $models = $model
             ->search(request()->get('search'))
-            ->filter(request()->all())
+            ->filter($this->filterService->filter($this->view, $model->filterableColumns()))
             ->acl(Auth::user())
             ->order(request()->get('order'), request()->has('desc'))
             ->paginate();
-        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters'));
+        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
     }
 
     /**

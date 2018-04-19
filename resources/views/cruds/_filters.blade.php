@@ -7,7 +7,7 @@
         @if (is_array($field))
             <div class="element" data-field="{{ $field['field'] }}" data-type="select2">
                 <?php $model = null;
-                $value = request()->input($field['field']);
+                $value = $filterService->single($field['field']);
                 if (!empty($value)) {
                     $modelclass = new $field['model'];
                     $model = $modelclass->acl(auth()->user())->find($value);
@@ -22,9 +22,9 @@
         @else
             <div class="element" data-field="{{ $field }}" data-type="text">
                 <label class="field" for="{{ $field }}">{{ trans($name . '.fields.' . $field) }}</label>
-                <div class="value">{{ request()->input($field) }}</div>
+                <div class="value">{{ $filterService->single($field) }}</div>
                 <div class="input" style="display:none;">
-                    <input type="text" class="input-field" name="{{ $field }}" value="{{ request()->input($field) }}" />
+                    <input type="text" class="input-field" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                 </div>
             </div>
         @endif
