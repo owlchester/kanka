@@ -56,7 +56,7 @@ abstract class MiscModel extends Model
      */
     public function tooltip($limit = 250)
     {
-        $pureHistory = strip_tags($this->{$this->tooltipField});
+        $pureHistory = trim(strip_tags($this->{$this->tooltipField}));
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return substr($pureHistory, 0, $limit) . '...';
@@ -159,10 +159,17 @@ abstract class MiscModel extends Model
      * @param $field
      * @return mixed
      */
-    public function scopeOrder($query, $field, $desc = false)
+    public function scopeOrder($query, $data)
     {
-        $order = $desc ? 'desc' : 'asc';
-
+        // Default
+        $field = 'name';
+        $direction = 'ASC';
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                $field = $key;
+                $direction = $value;
+            }
+        }
         if (!empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
@@ -170,12 +177,10 @@ abstract class MiscModel extends Model
                 //dd($relation->getForeignKey());
                 $foreignName = $relation->getQuery()->getQuery()->from;
                 return $query->join($foreignName . ' as f', 'f.id', $relation->getForeignKey())
-                    ->orderBy('f.' . $field, $order);
+                    ->orderBy('f.' . $field, $direction);
             } else {
-                return $query->orderBy($field, $order);
+                return $query->orderBy($field, $direction);
             }
-        } else {
-            return $query->orderBy('name', $order);
         }
     }
 
