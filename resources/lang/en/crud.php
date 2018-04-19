@@ -132,6 +132,7 @@ return [
     'placeholders'  => [
         'character' => 'Choose a character',
         'event'     => 'Choose an event',
+        'family'    => 'Choose a family',
         'image_url' => 'You can upload an image from a URL instead',
         'location'  => 'Choose a location',
     ],
