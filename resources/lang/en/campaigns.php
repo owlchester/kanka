@@ -134,6 +134,13 @@ return [
         'members'       => 'Members',
         'permissions'   => [
             'hint'  => 'This role automatically has access to everything.',
+            'actions' => [
+                'read' => 'View',
+                'edit' => 'Edit',
+                'add' => 'Create',
+                'delete' => 'Delete',
+                'permission' => 'Manage Permissions',
+            ],
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',

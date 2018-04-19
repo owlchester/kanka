@@ -69,7 +69,7 @@
                         @foreach ($permission->permissions($role) as $permission)
                             <tr>
                                 <td>{{ trans('entities.' . $permission['entity']) }}</td>
-                                <td>{{ $permission['action'] }}</td>
+                                <td>{{ trans('campaigns.roles.permissions.actions.' . $permission['action']) }}</td>
                                 <td>{!! Form::checkbox('permissions[' . $permission['key'] . ']', $permission['entity'], $permission['enabled']) !!}</td>
                             </tr>
                         @endforeach
