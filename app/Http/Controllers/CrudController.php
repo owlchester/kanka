@@ -74,6 +74,7 @@ class CrudController extends Controller
         $this->authorize('browse', $this->model);
 
         $model = new $this->model;
+        $this->filterService->prepare($this->view, request()->all(), $model->filterableColumns());
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;
@@ -81,9 +82,9 @@ class CrudController extends Controller
 
         $models = $model
             ->search(request()->get('search'))
-            ->filter($this->filterService->filter($this->view, $model->filterableColumns()))
+            ->filter($this->filterService->filters())
             ->acl(Auth::user())
-            ->order(request()->get('order'), request()->has('desc'))
+            ->order($this->filterService->order())
             ->paginate();
         return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
     }

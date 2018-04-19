@@ -39,5 +39,6 @@
         'baseRoute' => 'characters',
         'trans' => 'characters.fields.',
         'campaign' => $campaign
-    ]
+    ],
+    $filterService
 ) !!}

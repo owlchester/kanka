@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use App\Services\FilterService;
 use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,10 @@ class DatagridRenderer
      */
     protected $user;
 
+    /**
+     * @var FilterService null
+     */
+    protected $filterService = null;
 
     public function __construct()
     {
@@ -47,11 +52,14 @@ class DatagridRenderer
     public function render(
         $columns = [],
         $data = [],
-        $options = []
+        $options = [],
+        FilterService $filterService = null
     ) {
         $this->columns = $columns;
         $this->data = $data;
         $this->options = $options;
+
+        $this->filterService = $filterService;
 
         $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped">';
         $html .= '<thead><tr>';
@@ -165,15 +173,20 @@ class DatagridRenderer
             'page' => request()->get('page')
         ];
 
-        if (request()->has('order') && request()->get('order') == $field && !request()->has('desc')) {
-            $routeOptions['desc'] = true;
-        }
-        if (request()->has('search')) {
-            $routeOptions['search'] = request()->get('search');
+        // Order by
+        $order = $this->filterService->order();
+        $orderImg = '';
+        if (!empty($order) && isset($order[$field])) {
+            $direction = 'down';
+            if ($order[$field] != 'DESC') {
+                $routeOptions['desc'] = true;
+                $direction = 'up';
+            }
+            $orderImg = ' <i class="fa fa-long-arrow-' . $direction . '"></i>';
         }
 
         return "<a href='" .
-            url()->route($this->getOption('route'), $routeOptions). "'>" . $label . "</a>";
+            url()->route($this->getOption('route'), $routeOptions). "'>" . $label . $orderImg . "</a>";
     }
 
     /**

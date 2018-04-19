@@ -47,11 +47,7 @@
                     @endif
 
                     <div class="pull-right">
-                        <?php $keys = ['order']; foreach ($filters as $filter) {
-                            $keys[] = is_array($filter) ? $filter['field'] : $filter;
-                        }
-                        $querystringArray = request()->only($keys); ?>
-                        {{ $models->appends($querystringArray)->links() }}
+                        {{ $models->links() }}
                     </div>
                 </div>
                 {!! Form::close() !!}

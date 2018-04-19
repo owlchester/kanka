@@ -36,24 +36,46 @@ class FilterService
     protected $filters = [];
 
     /**
-     * @param $crud
-     * @param array $availableFilters
-     * @return array|mixed
+     * The order as saved in the session
+     * @var array
      */
-    public function filter($crud, $availableFilters = [])
+    protected $order = [];
+
+    /**
+     * The request data
+     * @var array
+     */
+    protected $data = [];
+
+    /**
+     * @param $crud
+     * @param array $requestData
+     * @param array $availableFilters
+     */
+    public function prepare($crud, $requestData = [], $availableFilters = [])
+    {
+        $this->data = $requestData;
+        $this->prepareFilters($crud, $availableFilters);
+        $this->prepareOrder($crud);
+    }
+
+    /**
+     * Prepare the filters
+     * @param string $crud
+     * @param array $availableFilters
+     * @return array
+     */
+    protected function prepareFilters($crud, $availableFilters = [])
     {
         // No point in doing any work if the model has no fields to filter.
         if (empty($availableFilters)) {
             return [];
         }
 
-        // Get all of the posted data. We need to see if any of it is part of a filter.
-        $data = request()->all();
-
-        $sessionKey = 'filterService-' . $crud;
+        $sessionKey = 'filterService-filter-' . $crud;
         $this->filters = session()->get($sessionKey);
 
-        foreach ($data as $key => $value) {
+        foreach ($this->data as $key => $value) {
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.
                 $this->filters[$key] = $value;
@@ -61,13 +83,43 @@ class FilterService
         }
 
         // Reset the filters if requested, before saving it to the session.
-        if (!empty($data['reset-filter'])) {
+        if (array_has($this->data, 'reset-filter')) {
             $this->filters = [];
         }
 
         // Save the new data into the session
         session()->put($sessionKey, $this->filters);
         return $this->filters;
+    }
+
+    /**
+     * Prepare the Order By data
+     * @param $crud
+     * @return array
+     */
+    protected function prepareOrder($crud)
+    {
+        // Get all of the posted data. We need to see if any of it is part of a filter.
+        $field = array_get($this->data, 'order');
+        $direction = array_get($this->data, 'desc');
+
+        $sessionKey = 'filterService-order-' . $crud;
+        $this->order = session()->get($sessionKey);
+
+        if (!empty($field)) {
+            $this->order = [
+                $field => empty($direction) ? 'ASC' : 'DESC'
+            ];
+        }
+
+        // Reset the filters if requested, before saving it to the session.
+        if (array_has($this->data, 'reset-filter')) {
+            $this->order = [];
+        }
+
+        // Save the new data into the session
+        session()->put($sessionKey, $this->order);
+        return $this->order;
     }
 
     /**
@@ -83,5 +135,23 @@ class FilterService
             return $this->filters[$key];
         }
         return null;
+    }
+
+    /**
+     * Get the filters
+     * @return array
+     */
+    public function filters()
+    {
+        return $this->filters;
+    }
+
+    /**
+     * Get the order data
+     * @return null
+     */
+    public function order()
+    {
+        return $this->order;
     }
 }
