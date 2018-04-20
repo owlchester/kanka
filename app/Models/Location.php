@@ -43,6 +43,12 @@ class Location extends MiscModel
     protected $entityType = 'location';
 
     /**
+     * Field used for tooltips
+     * @var string
+     */
+    protected $tooltipField = 'description';
+
+    /**
      * Traits
      */
     use CampaignTrait;
