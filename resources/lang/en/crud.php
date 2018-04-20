@@ -70,8 +70,10 @@ return [
         'entity'        => 'Entity',
         'entry'         => 'Entry',
         'event'         => 'Event',
+        'family'        => 'Family',
         'history'       => 'History',
         'image'         => 'Image',
+        'organisation'  => 'Organisation',
         'is_private'    => 'Private',
         'location'      => 'Location',
     ],
@@ -135,6 +137,7 @@ return [
         'family'    => 'Choose a family',
         'image_url' => 'You can upload an image from a URL instead',
         'location'  => 'Choose a location',
+        'organisation'  => 'Choose an organisation',
     ],
     'relations'     => [
         'actions'   => [

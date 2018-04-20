@@ -27,32 +27,22 @@ if (request()->route()->getName() == 'characters.random') {
                 </div>
                 @if ($campaign->enabled('families'))
                 <div class="form-group">
-                    <label>{{ trans('characters.fields.family') }}</label>
-                    <div class="input-group input-group-sm">
-                        {!! Form::select('family_id', (isset($model) && $model->family ? [$model->family_id => $model->family->name] : ($isRandom ? $random->generateForeign(App\Models\Family::class) : $formService->prefillSelect('family', $source))),
-                        null, ['id' => 'family_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('families.find'), 'data-placeholder' => trans('characters.placeholders.family')]) !!}
-
-                        <div class="input-group-btn">
-                            <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="family_id" data-entity="families">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </a>
-                        </div>
-                    </div>
+                    {!! Form::select2(
+                        'family_id',
+                        (isset($model) && $model->family ? $model->family : null),
+                        App\Models\Family::class,
+                        true
+                    ) !!}
                 </div>
                 @endif
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
-                    <label>{{ trans('characters.fields.location') }}</label>
-                    <div class="input-group input-group-sm">
-                        {!! Form::select('location_id', (isset($model) && $model->location ? [$model->location_id => $model->location->name] : ($isRandom ? $random->generateForeign(App\Models\Location::class) : $formService->prefillSelect('location', $source))),
-                        null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('characters.placeholders.location')]) !!}
-
-                        <div class="input-group-btn">
-                            <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="location_id" data-entity="locations">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </a>
-                        </div>
-                    </div>
+                    {!! Form::select2(
+                        'location_id',
+                        (isset($model) && $model->location ? $model->location : null),
+                        App\Models\Location::class,
+                        true
+                    ) !!}
                 </div>
                 @endif
                 <div class="form-group">

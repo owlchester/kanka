@@ -22,4 +22,5 @@ return [
     'organisations' => 'Organisations',
     'quest'         => 'Quest',
     'quests'        => 'Quests',
+    'attribute_template' => 'Attribute Template',
 ];

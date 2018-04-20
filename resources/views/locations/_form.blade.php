@@ -17,16 +17,15 @@
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('locations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
                 <div class="form-group">
-                    <label>{{ trans('locations.fields.location') }}</label>
-                    <div class="input-group input-group-sm">
-                        {!! Form::select('parent_location_id', (!empty($model->parentLocation) ? [$model->parent_location_id => $model->parentLocation->name] : $formService->prefillSelect('parentLocation', $source)),
-                        null, ['id' => 'parent_location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('locations.placeholders.location')]) !!}
-                        <div class="input-group-btn">
-                            <a class="btn btn-tab-form new-entity-selector" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="parent_location_id" data-entity="locations">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </a>
-                        </div>
-                    </div>
+                    {!! Form::select2(
+                        'parent_location_id',
+                        (isset($model) && $model->parentLocation ? $model->parentLocation : $formService->prefillSelect('parentLocation', $source)),
+                        App\Models\Location::class,
+                        true,
+                        'crud.fields.location',
+                        'locations.find',
+                        'locations.placeholders.location'
+                    ) !!}
                 </div>
 
                 @if (Auth::user()->isAdmin())

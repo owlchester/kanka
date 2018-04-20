@@ -35,6 +35,7 @@ class FormService
             if (!empty($value) and is_object($value)) {
                 return [$value->id => $value->name];
             }
+
         }
 
         return [];

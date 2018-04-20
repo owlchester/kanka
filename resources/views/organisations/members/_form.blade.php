@@ -2,18 +2,10 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('organisations.members.fields.character') }}</label>
-            {!! Form::select(
+            {!! Form::select2(
                 'character_id',
-                (!empty($member) && $member->character ? [$member->character->id => $member->character->name] : []),
-                [],
-                [
-                    'id' => 'character_id',
-                    'class' => 'form-control select2',
-                    'style' => 'width: 100%',
-                    'data-url' => route('characters.find'),
-                    'data-placeholder' => trans('organisations.members.placeholders.character')
-                ]
+                (!empty($member) && $member->character ? $member->character : null),
+                App\Models\Character::class
             ) !!}
         </div>
         <div class="form-group required">

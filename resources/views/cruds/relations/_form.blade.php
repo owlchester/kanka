@@ -2,11 +2,15 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('relations.fields.target') }}</label>
-            {!! Form::select('target_id', (!empty($relation) && $relation->target ? [
-                $relation->target->id => $relation->target->child->name . ' (' . trans('entities.' . $relation->target->type) . ')'
-            ] : []), null, ['id' => 'target', 'class' => 'form-control select2', 'style' => 'width: 100%',
-            'data-url' => route('search.relations'), 'data-placeholder' => trans('relations.placeholders.target')]) !!}
+            {!! Form::select2(
+                'target_id',
+                (!empty($relation) && $relation->target ? $relation->target->child : null),
+                App\Models\Entity::class,
+                false,
+                'relations.fields.target',
+                'search.relations',
+                'relations.placeholders.target'
+            ) !!}
         </div>
 
         <div class="form-group required">

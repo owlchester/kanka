@@ -18,30 +18,22 @@
                 </div>
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
-                    <label>{{ trans('items.fields.location') }}</label>
-                    <div class="input-group input-group-sm">
-                        {!! Form::select('location_id', (isset($model) && $model->location ? [$model->location_id => $model->location->name] : $formService->prefillSelect('location', $source)),
-                        null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('items.placeholders.location')]) !!}
-                        <div class="input-group-btn">
-                            <a class="btn btn-tab-form new-entity-selector" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="location_id" data-entity="locations">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </a>
-                        </div>
-                    </div>
+                    {!! Form::select2(
+                        'location_id',
+                        (isset($model) && $model->location ? $model->location : null),
+                        App\Models\Location::class,
+                        true
+                    ) !!}
                 </div>
                 @endif
                 @if ($campaign->enabled('characters'))
                 <div class="form-group">
-                    <label>{{ trans('items.fields.character') }}</label>
-                    <div class="input-group input-group-sm">
-                        {!! Form::select('character_id', (isset($model) && $model->character ? [$model->character_id => $model->character->name] : $formService->prefillSelect('character', $source)),
-                        null, ['id' => 'character_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('characters.find'), 'data-placeholder' => trans('items.placeholders.character')]) !!}
-                        <div class="input-group-btn">
-                            <a class="btn btn-tab-form new-entity-selector" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="character_id" data-entity="characters">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </a>
-                        </div>
-                    </div>
+                    {!! Form::select2(
+                        'character_id',
+                        (isset($model) && $model->character ? $model->character : null),
+                        App\Models\Character::class,
+                        true
+                    ) !!}
                 </div>
                 @endif
 

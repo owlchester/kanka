@@ -2,10 +2,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('quests.locations.fields.location') }}</label>
-            {!! Form::select('location_id', (!empty($model) && $model->location? [$model->location->id => $model->location->name] : []), null,
-            ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%',
-             'data-url' => route('locations.find'), 'data-placeholder' => trans('crud.placeholders.location')]) !!}
+            {!! Form::select2(
+                'location_id',
+                (isset($model) && $model->location ? $model->location : null),
+                App\Models\Location::class,
+                true
+            ) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('quests.locations.fields.description') }}</label>

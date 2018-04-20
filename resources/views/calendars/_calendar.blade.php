@@ -60,11 +60,9 @@
             </div>
             <div class="modal-body">
                 <p>{{ trans('calendars.event.helpers.add') }}</p>
-                <div class="form-group">
-                    <label>{{ trans('crud.fields.event') }}</label>
-                    {!! Form::select('event_id', [],
-                    null, ['id' => 'event_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('events.find'), 'data-placeholder' => trans('crud.placeholders.event')]) !!}
-                </div>
+                {!! Form::select2(
+                    'event_id'
+                ) !!}
 
                 <hr />
 

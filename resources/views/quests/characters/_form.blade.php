@@ -2,10 +2,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('quests.characters.fields.character') }}</label>
-            {!! Form::select('character_id', (!empty($model) && $model->character? [$model->character->id => $model->character->name] : []), null,
-             ['id' => 'character_id', 'class' => 'form-control select2', 'style' => 'width: 100%',
-             'data-url' => route('characters.find'), 'data-placeholder' => trans('crud.placeholders.character')]) !!}
+            {!! Form::select2(
+                'character_id',
+                (isset($model) && $model->character ? $model->character : null),
+                App\Models\Character::class,
+                true
+            ) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('quests.characters.fields.description') }}</label>

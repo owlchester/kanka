@@ -2,10 +2,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('characters.organisations.fields.organisation') }}</label>
-            {!! Form::select('organisation_id', (!empty($member) && $member->organisation ? [$member->organisation->id => $member->organisation->name] : []), [],
-            ['id' => 'organisation_id', 'class' => 'form-control select2', 'style' => 'width: 100%',
-             'data-url' => route('organisations.find'), 'data-placeholder' => trans('characters.organisations.placeholders.organisation')]) !!}
+            {!! Form::select2(
+                'organisation_id',
+                (!empty($member) && $member->organisation ? $member->organisation : null),
+                App\Models\Organisation::class
+            ) !!}
         </div>
         <div class="form-group required">
             <label>{{ trans('characters.organisations.fields.role') }}</label>

@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Session;
 
 class CalendarObserver extends MiscObserver
 {
+    /**
+     * Before the calendar model is saved
+     * @param MiscModel $model
+     */
     public function saving(MiscModel $model)
     {
         parent::saving($model);
-
 
         // Handle months
         $months = [];
@@ -22,9 +25,11 @@ class CalendarObserver extends MiscObserver
                 continue;
             }
 
+            // We want a month length of at least 1 day
+            $length = (int) $monthLengths[$monthCount];
             $months[] = [
                 'name' => $name,
-                'length' => $monthLengths[$monthCount]
+                'length' => $length < 1 ? 1 : $length
             ];
             $monthCount++;
         }
