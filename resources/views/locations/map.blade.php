@@ -48,10 +48,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ trans('crud.fields.location') }}</label>
-                            {!! Form::select('location_id', [],
-                            null, ['id' => 'location_id', 'class' => 'form-control select2', 'style' => 'width: 100%', 'data-url' => route('locations.find'), 'data-placeholder' => trans('crud.placeholders.location')]) !!}
-
+                        {!! Form::select2(
+                            'location_id',
+                            null,
+                            App\Models\Location::class,
+                            true
+                    ) !!}
                     </div>
                 </div>
                 <div class="modal-footer">

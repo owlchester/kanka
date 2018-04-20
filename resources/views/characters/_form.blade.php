@@ -29,7 +29,7 @@ if (request()->route()->getName() == 'characters.random') {
                 <div class="form-group">
                     {!! Form::select2(
                         'family_id',
-                        (isset($model) && $model->family ? $model->family : null),
+                        (isset($model) && $model->family ? $model->family : $formService->prefillSelect('family', $source)),
                         App\Models\Family::class,
                         true
                     ) !!}
@@ -39,7 +39,7 @@ if (request()->route()->getName() == 'characters.random') {
                 <div class="form-group">
                     {!! Form::select2(
                         'location_id',
-                        (isset($model) && $model->location ? $model->location : null),
+                        (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
                         App\Models\Location::class,
                         true
                     ) !!}

@@ -20,7 +20,7 @@
                 <div class="form-group">
                     {!! Form::select2(
                         'location_id',
-                        (isset($model) && $model->location ? $model->location : null),
+                        (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
                         App\Models\Location::class,
                         true
                     ) !!}
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     {!! Form::select2(
                         'character_id',
-                        (isset($model) && $model->character ? $model->character : null),
+                        (isset($model) && $model->character ? $model->character : $formService->prefillSelect('character', $source)),
                         App\Models\Character::class,
                         true
                     ) !!}
