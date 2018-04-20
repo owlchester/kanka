@@ -49,4 +49,4 @@
     </tbody>
 </table>
 
-{{ $r->appends('tab', 'roles')->links() }}
+{{ $r->fragment('tab_roles')->links() }}

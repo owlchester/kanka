@@ -24,7 +24,7 @@
     @endforeach
     </tbody></table>
 
-{{ $r->appends('tab', 'member')->links() }}
+{{ $r->fragment('tab_member')->links() }}
 
 @if (Auth::user()->can('invite', $campaign))
     <hr />
@@ -60,5 +60,5 @@
         @endforeach
         </tbody></table>
 
-    {{ $r->appends('tab', 'member')->links() }}
+    {{ $r->fragment('tab_member')->links() }}
 @endif

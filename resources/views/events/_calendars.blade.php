@@ -29,4 +29,4 @@
     @endforeach
     </tbody></table>
 
-{{ $r->appends('tab', 'calendars')->links() }}
+{{ $r->fragment('tab_calendars')->links() }}

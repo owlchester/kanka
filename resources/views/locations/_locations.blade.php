@@ -27,4 +27,4 @@
     </tbody>
 </table>
 
-{{ $r->appends('tab', 'location')->links() }}
+{{ $r->fragment('tab_location')->links() }}

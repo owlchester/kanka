@@ -27,4 +27,4 @@
     @endforeach
     </tbody></table>
 
-{{ $r->appends('tab', 'member')->links() }}
+{{ $r->fragment('tab_member')->links() }}

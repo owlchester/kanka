@@ -36,4 +36,4 @@
     </tbody>
 </table>
 
-{{ $r->appends('tab', 'character')->links() }}
+{{ $r->fragment('tab_character')->links() }}
