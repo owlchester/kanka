@@ -17,6 +17,7 @@ use App\Services\EntityService;
 use App\Services\LinkerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\FilterService;
 
 class SearchController extends Controller
 {
@@ -31,6 +32,11 @@ class SearchController extends Controller
     protected $entity;
 
     /**
+     * @var FilterService
+     */
+    protected $filterService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -41,6 +47,9 @@ class SearchController extends Controller
         $this->middleware('campaign.member');
 
         $this->entity = $entityService;
+
+
+        $this->filterService = new FilterService();
     }
 
     public function search(Request $request)
@@ -51,6 +60,7 @@ class SearchController extends Controller
         $elements = [];
         $results = [];
         $active = '';
+        $filterService = $this->filterService;
 
         foreach ($this->entity->entities() as $element => $class) {
             if ($this->campaign->enabled($element)) {
@@ -63,7 +73,8 @@ class SearchController extends Controller
         return view('search.index', compact(
             'term',
             'results',
-            'active'
+            'active',
+            'filterService'
         ));
     }
 
