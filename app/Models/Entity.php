@@ -159,9 +159,12 @@ class Entity extends Model
         return $this->name;
     }
 
+    /**
+     * @return null
+     */
     public function tooltip()
     {
-        return $this->child->tooltip();
+        return $this->child ? $this->child->tooltip() : null;
     }
 
     /**

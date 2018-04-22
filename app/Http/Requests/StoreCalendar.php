@@ -36,9 +36,9 @@ class StoreCalendar extends FormRequest
 
         $leapYear = request()->post('has_leap_year');
         if (request()->post('has_leap_year') == true) {
-            $rules['leap_year_amount'] = 'required|min:1';
-            $rules['leap_year_offset'] = 'required|min:1';
-            $rules['leap_year_start'] = 'required|min:1';
+            $rules['leap_year_amount'] = 'required|numeric|min:1';
+            $rules['leap_year_offset'] = 'required|numeric|min:1';
+            $rules['leap_year_start'] = 'required|numeric|min:1';
         }
         
         return $rules;
