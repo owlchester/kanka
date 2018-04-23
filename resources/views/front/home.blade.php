@@ -114,7 +114,7 @@
                 </li>
                 <li class="list-inline-item social-discord">
                     <a href="https://discord.gg/rhsyZJ4" title="Discord">
-                        <i class="fa fa-commenting-o"></i>
+                        <img src="/images/thirdparty/discord-logo-white.png" alt="Discord">
                     </a>
                 </li>
             </ul>
