@@ -14,6 +14,10 @@ class FrontController extends Controller
     {
         return view('front.tos');
     }
+    public function privacy()
+    {
+        return view('front.privacy');
+    }
     public function help()
     {
         return view('front.help');

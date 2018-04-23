@@ -67,7 +67,8 @@ return [
         'register'      => 'Register',
         'releases'      => 'Releases',
         'title'         => 'Menu',
-        'tos'           => 'TOS',
+        'tos'           => 'Terms of Service',
+        'privacy'           => 'Privacy Policy',
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
@@ -83,5 +84,9 @@ return [
     ],
     'team'          => [
         'coffee'    => 'By me coffee!',
+    ],
+    'privacy' =>  [
+        'title' => 'Privacy Policy',
+        'description' => 'Please read our privacy policy.',
     ],
 ];

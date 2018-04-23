@@ -21,7 +21,8 @@ Route::group([
 
     // Frontend stuff
     Route::get('/about', 'FrontController@about')->name('about');
-    Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
+    //Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
+    Route::get('/privacy-policy', 'FrontController@privacy')->name('privacy');
     Route::get('/help', 'FrontController@help')->name('help');
     Route::get('/faq', 'FrontController@faq')->name('faq');
 

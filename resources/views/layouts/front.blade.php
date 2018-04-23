@@ -100,11 +100,11 @@
                 <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
             </li>
             <li class="list-inline-item">
+                <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
+            </li>
+            <li class="list-inline-item">
                 <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
             </li>
-            <!--<li class="list-inline-item">
-                <a href="{{ route('tos') }}">{{ trans('front.menu.tos') }}</a>
-            </li>-->
         </ul>
         <p>{{ trans('front.footer.copyright', ['current' => date('Y')]) }}</p>
     </div>
