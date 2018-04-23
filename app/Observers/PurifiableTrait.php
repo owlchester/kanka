@@ -8,7 +8,13 @@ trait PurifiableTrait
 {
     public function purify($text = '')
     {
-        // Allowed HTML tags are set in config/purify.php
-        return Purify::clean($text);
+        $purified = Purify::clean($text);
+
+        // If it's really empty, zap it
+        if ($purified == "\r\n\r\n") {
+            return '';
+        }
+
+        return $purified;
     }
 }

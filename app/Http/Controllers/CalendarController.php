@@ -99,7 +99,10 @@ class CalendarController extends CrudController
         $date = explode('-', request()->post('date'));
         $link = $this->calendarService->addEvent($calendar, $request->only('event_id', 'name', 'date'));
 
-        return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]])
-            ->with('success', trans('calendars.event.success', ['event' => $link->event->name]));
+        if ($link !== false) {
+            return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]])
+                ->with('success', trans('calendars.event.success', ['event' => $link->event->name]));
+        }
+        return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]]);
     }
 }
