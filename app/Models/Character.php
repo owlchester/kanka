@@ -93,4 +93,12 @@ class Character extends MiscModel
     {
         return $this->hasMany('App\Models\Item', 'character_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function journals()
+    {
+        return $this->hasMany('App\Models\Journal', 'character_id', 'id');
+    }
 }

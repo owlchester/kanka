@@ -21,10 +21,19 @@
                         </li>
                         @endif
                         @if ($model->date)
-                        <li class="list-group-item">
-                            <b>{{ trans('journals.fields.date') }}</b> <span class="pull-right">{{ $model->date }}</span>
-                            <br class="clear" />
-                        </li>
+                            <li class="list-group-item">
+                                <b>{{ trans('journals.fields.date') }}</b> <span class="pull-right">{{ $model->date }}</span>
+                                <br class="clear" />
+                            </li>
+                        @endif
+                        @if ($model->character)
+                            <li class="list-group-item">
+                                <b>{{ trans('journals.fields.author') }}</b>
+                                    <span class="pull-right">
+                                        <a href="{{ route('characters.show', $model->character_id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
+                                    </span>
+                                <br class="clear" />
+                            </li>
                         @endif
                     </ul>
                     @include('.cruds._actions')

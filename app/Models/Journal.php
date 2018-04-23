@@ -10,7 +10,7 @@ class Journal extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['name', 'campaign_id', 'slug', 'type', 'image', 'history', 'date', 'is_private'];
+    protected $fillable = ['name', 'campaign_id', 'slug', 'type', 'image', 'history', 'date', 'character_id', 'is_private'];
 
     /**
      * Searchable fields
@@ -28,11 +28,19 @@ class Journal extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'date'];
+    protected $filterableColumns = ['name', 'type', 'date', 'character_id'];
 
     /**
      * Traits
      */
     use CampaignTrait;
     use VisibleTrait;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function character()
+    {
+        return $this->belongsTo('App\Models\Character', 'character_id');
+    }
 }

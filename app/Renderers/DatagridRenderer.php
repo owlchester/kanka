@@ -125,7 +125,7 @@ class DatagridRenderer
                 $html = trans('crud.fields.location');
             } elseif ($type == 'character') {
                 $class .= '  visible-md visible-lg';
-                $html = trans('crud.fields.character');
+                $html = !empty($column['label']) ? $column['label'] : trans('crud.fields.character');
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user->isAdmin()) {

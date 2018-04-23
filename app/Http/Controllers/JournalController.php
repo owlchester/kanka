@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
 use Illuminate\Http\Request;
@@ -30,6 +31,14 @@ class JournalController extends CrudController
             'name',
             'type',
             'date',
+            [
+                'field' => 'character_id',
+                'label' => trans('journals.fields.author'),
+                'type' => 'select2',
+                'route' => route('characters.find'),
+                'placeholder' =>  trans('crud.placeholders.character'),
+                'model' => Character::class,
+            ]
         ];
     }
 

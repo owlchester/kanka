@@ -13,6 +13,11 @@
         'type',
         'date',
         [
+            'type' => 'character',
+            'visible' => $campaign->enabled('characters'),
+            'label' => trans('journals.fields.author')
+        ],
+        [
             'type' => 'is_private',
         ]
     ],
