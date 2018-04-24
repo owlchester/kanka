@@ -148,4 +148,37 @@ class Location extends MiscModel
     {
         $this->setParentIdAttribute($value);
     }
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach()
+    {
+        foreach ($this->characters as $child) {
+            $child->location_id = null;
+            $child->save();
+        }
+
+        foreach ($this->locations as $child) {
+            $child->parent_location_id = null;
+            $child->save();
+        }
+
+        foreach ($this->organisations as $child) {
+            $child->location_id = null;
+            $child->save();
+        }
+
+        foreach ($this->families as $child) {
+            $child->location_id = null;
+            $child->save();
+        }
+
+        foreach ($this->items as $child) {
+            $child->location_id = null;
+            $child->save();
+        }
+
+        return parent::detach();
+    }
 }

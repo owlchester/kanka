@@ -182,4 +182,16 @@ class Calendar extends MiscModel
         }
         return null;
     }
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach()
+    {
+        foreach ($this->calendarEvents as $child) {
+            $child->delete();
+        }
+
+        return parent::detach();
+    }
 }

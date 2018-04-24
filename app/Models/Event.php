@@ -74,4 +74,16 @@ class Event extends MiscModel
     {
         return $this->hasMany('App\Models\CalendarEvent', 'event_id');
     }
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach()
+    {
+        foreach ($this->calendarEvents as $child) {
+            $child->delete();
+        }
+
+        return parent::detach();
+    }
 }

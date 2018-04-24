@@ -61,10 +61,15 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Detach children when moving this entity from one campaign to another
      */
-    public function relationships()
+    public function detach()
     {
-        return $this->hasMany('App\Models\FamilyRelation', 'first_id', 'id');
+        foreach ($this->members as $child) {
+            $child->family_id = null;
+            $child->save();
+        }
+
+        return parent::detach();
     }
 }

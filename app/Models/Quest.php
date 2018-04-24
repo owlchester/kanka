@@ -58,6 +58,9 @@ class Quest extends MiscModel
         return $this->belongsTo('App\Campaign', 'campaign_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function shortDescription()
     {
         return $this->name;
@@ -77,5 +80,20 @@ class Quest extends MiscModel
     public function characters()
     {
         return $this->hasMany('App\Models\QuestCharacter', 'quest_id', 'id');
+    }
+
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach()
+    {
+        foreach ($this->locations as $child) {
+            $child->delete();
+        }
+        foreach ($this->characters as $child) {
+            $child->delete();
+        }
+        return parent::detach();
     }
 }

@@ -61,10 +61,14 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Detach children when moving this entity from one campaign to another
      */
-    public function relationships()
+    public function detach()
     {
-        return $this->hasMany('App\Models\OrganisationRelation', 'first_id', 'id');
+        foreach ($this->members as $child) {
+            $child->delete();
+        }
+
+        return parent::detach();
     }
 }

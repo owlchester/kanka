@@ -26,6 +26,9 @@ if (empty($selectedOption) && !empty($prefill)) {
 // Assume placeholder key
 $singularFieldName = trim($fieldId, '_id');
 $pluralField = ($singularFieldName == 'family' ? 'families' : $singularFieldName . 's');
+if ($pluralField == 'parent_locations') {
+    $pluralField = 'locations';
+}
 $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . $singularFieldName : $placeholderKey;
 $labelKey = empty($labelKey) ? 'crud.fields.' . $singularFieldName : $labelKey;
 $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRouteName;

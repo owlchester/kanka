@@ -101,4 +101,22 @@ class Character extends MiscModel
     {
         return $this->hasMany('App\Models\Journal', 'character_id', 'id');
     }
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach()
+    {
+        foreach ($this->journals as $child) {
+            $child->character_id = null;
+            $child->save();
+        }
+
+        foreach ($this->items as $child) {
+            $child->character_id = null;
+            $child->save();
+        }
+
+        return parent::detach();
+    }
 }

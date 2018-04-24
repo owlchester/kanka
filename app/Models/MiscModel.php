@@ -272,4 +272,19 @@ abstract class MiscModel extends Model
     {
         return $this->filterableColumns;
     }
+
+    /**
+     * Detach children entities from this one. This is for the "Move" functionality, to keep a clean data set.
+     */
+    public function detach()
+    {
+        // Loop on children attributes and detach.
+        $attributes = $this->getAttributes();
+        foreach ($attributes as $attribute) {
+            if (strpos($attribute, '_id') !== false && $attribute != 'campaign_id') {
+                $this->$attribute = null;
+            }
+        }
+        $this->save();
+    }
 }

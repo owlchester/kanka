@@ -47,7 +47,7 @@ class EntityController extends Controller
         try {
             $entity = $this->entityService->move($entity, $request->only('target', 'campaign'));
 
-            if ($entity->campaign_id != Auth::user()->campaign->id) {
+            if ($entity->child->campaign_id != Auth::user()->campaign->id) {
 
                 return redirect()->route($entity->pluralType() . '.index') // can't use child->id, not new
                 ->with('success', trans('crud.move.success', ['name' => $entity->name]));
@@ -60,6 +60,10 @@ class EntityController extends Controller
         }
     }
 
+    /**
+     * @param CreateEntityRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(CreateEntityRequest $request)
     {
         $entity = $this->entityService->create($request->post('name'), $request->post('target'));

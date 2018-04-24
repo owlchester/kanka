@@ -105,6 +105,13 @@ class EntityService
         }
     }
 
+    /**
+     * Move an entity to another campaign
+     * @param Entity $entity
+     * @param $campaignId
+     * @return Entity
+     * @throws TranslatableException
+     */
     protected function moveCampaign(Entity $entity, $campaignId)
     {
         $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
@@ -118,27 +125,21 @@ class EntityService
         }
 
         // Can I create an entity of that type on the new campaign?
-        if (!Auth::user()->can('create', [get_class ($entity->child), null, $campaign])) {
+        if (!Auth::user()->can('create', [get_class($entity->child), null, $campaign])) {
             throw new TranslatableException('crud.move.errors.permission');
         }
 
         // Made it so far, we can move the entity's campaign_id. We just need to remove all the relations to it
         $entity->relationships()->delete();
         $entity->child->permissions()->delete();
-
-        // Remove all foreign ids
-        foreach ($entity->child->getAttributes() as $attribute) {
-            if (strpos($attribute, '_id') !== false && $attribute != 'campaign_id') {
-                $entity->child->$attribute = null;
-            }
-        }
+        $entity->child->detach();
 
         // Temp update session before saving
         $currentCampaign = Auth::user()->campaign;
+
         Session::put('campaign_id', $campaign->id);
 
-        $entity->campaign_id = $campaign->id;
-        $entity->save();
+        $entity->child->campaign_id = $campaign->id;
         $entity->child->save();
 
         Session::put('campaign_id', $currentCampaign->id);
@@ -263,7 +264,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown target '$target' for moving entity");
+            throw new \Exception("Unknown entity type '$target' for creating entity");
         }
 
         /**
