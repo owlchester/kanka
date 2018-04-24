@@ -34,6 +34,7 @@ class EntityService
             'notes' => 'App\Models\Note',
             'organisations' => 'App\Models\Organisation',
             'quests' => 'App\Models\Quest',
+            'sections' => 'App\Models\Section',
         ];
     }
 

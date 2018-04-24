@@ -21,6 +21,7 @@ use App\Models\QuestCharacter;
 use App\Models\QuestLocation;
 use App\Models\Note;
 use App\Models\Relation;
+use App\Models\Section;
 use App\Observers\CalendarObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
@@ -72,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
             Journal::observe(JournalObserver::class);
             Organisation::observe(OrganisationObserver::class);
             OrganisationMember::observe(OrganisationMemberObserver::class);
+            Section::observe('App\Observers\SectionObserver');
             Note::observe(NoteObserver::class);
             User::observe(UserObserver::class);
             Quest::observe('App\Observers\QuestObserver');

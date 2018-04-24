@@ -36,14 +36,24 @@ if (request()->route()->getName() == 'characters.random') {
                 </div>
                 @endif
                 @if ($campaign->enabled('locations'))
-                <div class="form-group">
-                    {!! Form::select2(
-                        'location_id',
-                        (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
-                        App\Models\Location::class,
-                        true
-                    ) !!}
-                </div>
+                    <div class="form-group">
+                        {!! Form::select2(
+                            'location_id',
+                            (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
+                            App\Models\Location::class,
+                            true
+                        ) !!}
+                    </div>
+                @endif
+                @if ($campaign->enabled('sections'))
+                    <div class="form-group">
+                        {!! Form::select2(
+                            'section_id',
+                            (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
+                            App\Models\Section::class,
+                            true
+                        ) !!}
+                    </div>
                 @endif
                 <div class="form-group">
                     <label>{{ trans('characters.fields.race') }}</label>

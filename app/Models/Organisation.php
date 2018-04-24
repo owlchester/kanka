@@ -18,6 +18,7 @@ class Organisation extends MiscModel
         'location_id',
         'type',
         'is_private',
+        'section_id',
     ];
 
     /**
@@ -36,7 +37,8 @@ class Organisation extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'location_id'];
+    protected $filterableColumns = ['name', 'type', 'location_id',
+        'section_id',];
 
     /**
      * Traits

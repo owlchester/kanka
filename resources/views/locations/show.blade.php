@@ -14,10 +14,12 @@
                     </h3>
 
                     <ul class="list-group list-group-unbordered">
+                        @if (!empty($model->type))
                         <li class="list-group-item">
                             <b>{{ trans('locations.fields.type') }}</b> <span class="pull-right clear">{{ $model->type }}</span>
                             <br class="clear" />
                         </li>
+                        @endif
                         @if (!empty($model->parentLocation))
                             <li class="list-group-item">
                                 <b>{{ trans('locations.fields.location') }}</b>
@@ -31,7 +33,7 @@
                                 <br class="clear" />
                             </li>
                         @endif
-
+                        @include('cruds.layouts.section')
                     </ul>
                     @include('.cruds._actions')
                 </div>

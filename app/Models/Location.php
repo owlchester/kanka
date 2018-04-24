@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;use Kalnoy\Nestedset\NodeTrait;
+use App\Traits\VisibleTrait;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Location extends MiscModel
 {
@@ -17,7 +18,8 @@ class Location extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'parent_location_id'];
+    protected $filterableColumns = ['name', 'type', 'parent_location_id',
+        'section_id'];
 
     /**
      * @var array
@@ -33,7 +35,7 @@ class Location extends MiscModel
         'parent_location_id',
         'campaign_id',
         'is_private',
-        'type',
+        'section_id',
     ];
 
     /**

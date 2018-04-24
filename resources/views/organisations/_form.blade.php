@@ -12,6 +12,10 @@
                     <label>{{ trans('organisations.fields.name') }}</label>
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('organisations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                <div class="form-group">
+                    <label>{{ trans('organisations.fields.type') }}</label>
+                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('organisations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                </div>
                 @if ($campaign->enabled('locations'))
                 <div class="form-group">
                     {!! Form::select2(
@@ -22,10 +26,16 @@
                     ) !!}
                 </div>
                 @endif
-                <div class="form-group">
-                    <label>{{ trans('organisations.fields.type') }}</label>
-                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('organisations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                @if ($campaign->enabled('sections'))
+                    <div class="form-group">
+                        {!! Form::select2(
+                            'section_id',
+                            (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
+                            App\Models\Section::class,
+                            true
+                        ) !!}
+                    </div>
+                @endif
 
                 @if (Auth::user()->isAdmin())
                     <hr>

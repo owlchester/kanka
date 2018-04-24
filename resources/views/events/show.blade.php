@@ -38,12 +38,13 @@
                                 <br class="clear" />
                             </li>
                         @endif
-                        @if (!empty($model->character))
+                        @if ($campaign->enabled('characters') && !empty($model->character))
                             <li class="list-group-item">
                                 <b>{{ trans('events.fields.character') }}</b> <a class="pull-right" href="{{ route('characters.show', $model->character_id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
                                 <br class="clear" />
                             </li>
                         @endif
+                        @include('cruds.layouts.section')
                     </ul>
 
                     @include('.cruds._actions')

@@ -17,6 +17,7 @@ class Note extends MiscModel
         'image',
         'type',
         'is_private',
+        'section_id',
     ];
 
     /**
@@ -35,7 +36,8 @@ class Note extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type'];
+    protected $filterableColumns = ['name', 'type',
+        'section_id',];
 
     /**
      * Entity type

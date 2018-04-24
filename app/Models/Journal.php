@@ -10,7 +10,18 @@ class Journal extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['name', 'campaign_id', 'slug', 'type', 'image', 'history', 'date', 'character_id', 'is_private'];
+    protected $fillable = [
+        'name',
+        'campaign_id',
+        'slug',
+        'type',
+        'image',
+        'history',
+        'date',
+        'character_id',
+        'is_private',
+        'section_id',
+    ];
 
     /**
      * Searchable fields
@@ -28,7 +39,7 @@ class Journal extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'date', 'character_id'];
+    protected $filterableColumns = ['name', 'type', 'date', 'character_id', 'section_id'];
 
     /**
      * Traits

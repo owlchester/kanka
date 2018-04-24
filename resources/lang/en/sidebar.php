@@ -21,6 +21,7 @@ return [
     'quests'                => 'Quests',
     'releases'              => 'Release notes',
     'search'                => 'Search...',
+    'sections'              => 'Sections',
     'support'               => 'Support / Community',
     'team'                  => 'Team',
     'translations'          => 'Translations',

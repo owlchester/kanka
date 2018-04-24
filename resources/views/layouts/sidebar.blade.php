@@ -78,6 +78,11 @@
                 <a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
+            @if ($campaign->enabled('journals'))
+                <li class="{{ $sidebar->active('sections') }}">
+                    <a href="{{ route('sections.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.sections') }}</span></a>
+                </li>
+            @endif
             @can('create', 'App\Models\AttributeTemplate')
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>

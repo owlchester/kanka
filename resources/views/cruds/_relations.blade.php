@@ -18,7 +18,7 @@
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
-                <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ route('characters.show', $relation->target->child->id) }}"></a>
+                <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ route($relation->target->pluralType() . '.show', $relation->target->child->id) }}"></a>
             </td>
             <td>
                 <a href="{{ route($relation->target->pluralType() . '.show', $relation->target->child->id) }}" data-toggle="tooltip" title="{{ $relation->target->child->tooltip() }}">

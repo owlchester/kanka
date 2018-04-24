@@ -18,6 +18,7 @@ class Quest extends MiscModel
         'type',
         'description',
         'is_private',
+        'section_id',
     ];
 
     /**
@@ -30,7 +31,8 @@ class Quest extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type'];
+    protected $filterableColumns = ['name', 'type',
+        'section_id'];
 
     /**
      * Field used for tooltip (default is history)

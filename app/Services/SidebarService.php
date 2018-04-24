@@ -63,7 +63,10 @@ class SidebarService
         ],
         'attribute_templates' => [
             'attribute_templates',
-        ]
+        ],
+        'sections' => [
+            'sections'
+        ],
     ];
 
     /**

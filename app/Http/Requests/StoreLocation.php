@@ -27,6 +27,7 @@ class StoreLocation extends FormRequest
             'name' => 'required|max:191',
             'type' => 'max:45',
             'parent_location_id', 'integer|exists:locations,id',
+            'section_id' => 'integer|exists:sections,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'image_url' => 'nullable|url|active_url',
         ];

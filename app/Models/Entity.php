@@ -148,6 +148,14 @@ class Entity extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function section()
+    {
+        return $this->hasOne('App\Models\Section', 'id', 'entity_id');
+    }
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */

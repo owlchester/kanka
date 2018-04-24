@@ -26,6 +26,7 @@
                             <br class="clear" />
                         </li>
                         @endif
+                        @include('cruds.layouts.section')
 
                         @if (!empty($model->type))
                             <li class="list-group-item">

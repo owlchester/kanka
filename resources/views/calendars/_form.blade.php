@@ -20,6 +20,16 @@
                     <label>{{ trans('calendars.fields.suffix') }}</label>
                     {!! Form::text('suffix', $formService->prefill('suffix', $source), ['placeholder' => trans('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('sections'))
+                    <div class="form-group">
+                        {!! Form::select2(
+                            'section_id',
+                            (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
+                            App\Models\Section::class,
+                            true
+                        ) !!}
+                    </div>
+                @endif
 
                 @if (Auth::user()->isAdmin())
                     <hr>

@@ -56,12 +56,10 @@ return [
     'show'          => [
         'description'   => 'A detailed view of a location',
         'tabs'          => [
-            'attributes'    => 'Attributes',
             'characters'    => 'Characters',
             'information'   => 'Information',
             'locations'     => 'Locations',
             'map'           => 'Map',
-            'relations'     => 'Relations',
         ],
         'title'         => 'Location :name',
     ],

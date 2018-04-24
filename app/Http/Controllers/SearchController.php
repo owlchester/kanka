@@ -12,6 +12,7 @@ use App\Models\Event;
 use App\Models\Quest;
 use App\Models\Note;
 use App\Models\Organisation;
+use App\Models\Section;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\LinkerService;
@@ -242,6 +243,28 @@ class SearchController extends Controller
             $models = Quest::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
             $models = Quest::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'text' => $model->name];
+        }
+
+        return \Response::json($formatted);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function sections(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            $models = Section::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Section::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

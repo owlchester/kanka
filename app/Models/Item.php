@@ -21,6 +21,7 @@ class Item extends MiscModel
         'character_id',
         'location_id',
         'is_private',
+        'section_id',
     ];
 
     /**
@@ -39,7 +40,7 @@ class Item extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'location_id', 'character_id'];
+    protected $filterableColumns = ['name', 'type', 'location_id', 'character_id', 'section_id'];
 
     /**
      * Field used for tooltips

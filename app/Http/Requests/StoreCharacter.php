@@ -28,6 +28,7 @@ class StoreCharacter extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'family_id' => 'integer|exists:families,id',
             'location_id' => 'integer|exists:locations,id',
+            'section_id' => 'integer|exists:sections,id',
             'age' => 'nullable|max:25',
             'height' => 'nullable|max:10',
             'weight' => 'nullable|max:10',

@@ -68,6 +68,7 @@ Route::group([
     Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
     Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
     Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
+    Route::post('/sections/deleteMany', 'SectionController@deleteMany')->name('sections.deleteMany');
     Route::post('/attribute_templates/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
 
 
@@ -109,8 +110,9 @@ Route::group([
         'quests.quest_locations' => 'QuestLocationController',
         'quests.quest_characters' => 'QuestCharacterController',
         'quests.relations' => 'QuestRelationController',
-
         'releases' => 'ReleaseController',
+        'sections' => 'SectionController',
+        'sections.relations' => 'SectionRelationController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
         'entities.attributes' => 'AttributeController',
         'entities.entity_notes' => 'EntityNoteController',
@@ -137,6 +139,7 @@ Route::group([
     Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
     Route::get('/search/notes', 'SearchController@notes')->name('notes.find');
     Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
+    Route::get('/search/sections', 'SearchController@sections')->name('sections.find');
     Route::get('/search', 'SearchController@search')->name('search');
     Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
     Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');

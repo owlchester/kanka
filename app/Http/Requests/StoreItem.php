@@ -27,6 +27,7 @@ class StoreItem extends FormRequest
             'name' => 'required',
             'location_id', 'integer|exists:locations,id',
             'character_id', 'integer|exists:character,id',
+            'section_id' => 'integer|exists:sections,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'image_url' => 'nullable|url|active_url',
         ];

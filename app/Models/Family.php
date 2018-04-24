@@ -17,6 +17,7 @@ class Family extends MiscModel
         'image',
         'location_id',
         'is_private',
+        'section_id',
         //'type',
     ];
 
@@ -30,7 +31,7 @@ class Family extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'location_id'];
+    protected $filterableColumns = ['name', 'location_id', 'section_id'];
 
     /**
      * Traits

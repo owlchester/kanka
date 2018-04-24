@@ -258,6 +258,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Entity's section
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function section()
+    {
+        return $this->belongsTo('App\Models\Section', 'section_id', 'id');
+    }
+
+    /**
      * @return mixed
      */
     public function getEntityType()

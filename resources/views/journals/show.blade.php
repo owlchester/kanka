@@ -35,6 +35,7 @@
                                 <br class="clear" />
                             </li>
                         @endif
+                        @include('cruds.layouts.section')
                     </ul>
                     @include('.cruds._actions')
                 </div>

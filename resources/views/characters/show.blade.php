@@ -63,6 +63,7 @@
                                     </li>
                             @endif
                         @endif
+                        @include('cruds.layouts.section')
                     </ul>
 
                     @include('.cruds._actions')

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNote extends FormRequest
+class StoreSection extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,19 @@ class StoreNote extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
+        $rules = [
+            'name' => 'required|max:191',
+            'type' => 'max:45',
+            'section_id', 'integer|exists:sections,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'image_url' => 'nullable|url|active_url',
-            'section_id' => 'integer|exists:sections,id',
         ];
+
+        $self = request()->segment(3);
+        if (!empty($self)) {
+            $rules['section_id'] = 'integer|not_in:' . ((int) $self) . '|exists:sections,id';
+        }
+
+        return $rules;
     }
 }
