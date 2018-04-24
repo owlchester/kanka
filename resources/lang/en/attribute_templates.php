@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new attribute template',
         'success'       => 'Attribute Template \':name\' created.',
-        'title'         => 'Create a new Attribute Template',
+        'title'         => 'New Attribute Template',
     ],
     'destroy'       => [
         'success'   => 'Attribute Template \':name\' removed.',

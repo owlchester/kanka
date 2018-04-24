@@ -13,6 +13,8 @@ use DateTime;
  * @property integer $entity_id
  * @property string $name
  * @property string $value
+ * @property string $entry
+ * @property integer $created_by
  * @property boolean $is_private
  */
 class EntityNote extends Model

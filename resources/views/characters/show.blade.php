@@ -138,26 +138,30 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history">
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#history">
                             {{ trans('characters.show.tabs.history') }}
-                        </a></li>
-
+                        </a>
+                    </li>
                     @if (Auth::user()->can('personality', $model))
-                    <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}"><a href="#personality">
-                            {{ trans('characters.show.tabs.personality') }}
-                        </a></li>
-                    <li class="{{ (request()->get('tab') == 'free' ? ' active' : '') }}"><a href="#free">
-                            {{ trans('characters.show.tabs.free') }}
-                        </a></li>
+                        <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}">
+                            <a href="#personality">
+                                {{ trans('characters.show.tabs.personality') }}
+                            </a>
+                        </li>
                     @endif
                     @can('relation', $model)
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}"><a href="#relations">{{ trans('crud.tabs.relations') }}</a></li>
+                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
+                    </li>
                     @endcan
                     @if ($campaign->enabled('organisations'))
                         @can('organisation', $model)
-                    <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}"><a href="#organisation">
+                    <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}">
+                        <a href="#organisation">
                             {{ trans('characters.show.tabs.organisations') }}
-                        </a></li>
+                        </a>
+                    </li>
                         @endcan
                     @endif
                     @if ($campaign->enabled('items'))
@@ -190,15 +194,21 @@
                     </div>
                     @if (Auth::user()->can('personality', $model))
                     <div class="tab-pane {{ (request()->get('tab') == 'personality' ? ' active' : '') }}" id="personality">
+                        @if (!empty($model->traits))
                         <p><b>{{ trans('characters.fields.traits') }}</b><br />{!! nl2br(e($model->traits)) !!}</p>
+                        @endif
+                        @if (!empty($model->goals))
                         <p><b>{{ trans('characters.fields.goals') }}</b><br />{!! nl2br(e($model->goals)) !!}</p>
+                        @endif
+                        @if (!empty($model->fears))
                         <p><b>{{ trans('characters.fields.fears') }}</b><br />{!! nl2br(e($model->fears)) !!}</p>
+                        @endif
+                        @if (!empty($model->mannerisms))
                         <p><b>{{ trans('characters.fields.mannerisms') }}</b><br />{!! nl2br(e($model->mannerisms)) !!}</p>
-                    </div>
-                    <div class="tab-pane {{ (request()->get('tab') == 'free' ? ' active' : '') }}" id="free">
-                        <div class="post">
-                            <p>{!! nl2br(e($model->free)) !!}</p>
-                        </div>
+                        @endif
+                        @foreach ($model->characterTraits()->personality()->get() as $trait)
+                            <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
+                         @endforeach
                     </div>
                     @endif
                     @can('relation', $model)

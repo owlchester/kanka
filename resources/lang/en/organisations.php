@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new organisation',
         'success'       => 'Organisation \':name\' created.',
-        'title'         => 'Create a new organisation',
+        'title'         => 'New Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' removed.',

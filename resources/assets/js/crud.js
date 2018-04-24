@@ -3,6 +3,9 @@
  */
 var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 
+// Character
+var characterAddPersonality, characterTemplatePersonality;
+
 $(document).ready(function() {
     // Filters
     var filters = $('#crud-filters');
@@ -47,6 +50,11 @@ $(document).ready(function() {
            $('[data-toggle="tooltip"]').tooltip();
         });
     });
+
+    characterAddPersonality = $('#add_personality');
+    if (characterAddPersonality.length === 1) {
+        initCharacterPersonality();
+    }
 });
 
 
@@ -113,6 +121,11 @@ function initCrudFilters() {
     });
 }
 
+/**
+ *
+ * @param field
+ * @param force
+ */
 function filterSubmit(field, force) {
     var element = field.parent().parent();
     var input = element.children('.input');
@@ -123,4 +136,39 @@ function filterSubmit(field, force) {
     if (force || field.val() !== previousFilterInputValue) {
         $('#crud-filters-form').submit();
     }
+}
+
+/**
+ *
+ */
+function initCharacterPersonality()
+{
+    characterTemplatePersonality = $('#template_personality');
+    characterAddPersonality.on('click', function(e) {
+        e.preventDefault();
+
+        $(this).before('<div class="form-group">' +
+            characterTemplatePersonality.html() +
+            '</div>');
+
+        // Handle deleting already loaded blocks
+        characterDeleteRowHandler();
+
+        return false;
+    });
+
+    characterDeleteRowHandler();
+}
+
+/**
+ *
+ */
+function characterDeleteRowHandler() {
+    $.each($('.personality-delete'), function (index) {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function(e) {
+            e.preventDefault();
+            $(this).parent().parent().parent().parent().remove();
+        });
+    });
 }

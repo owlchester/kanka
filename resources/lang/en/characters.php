@@ -1,10 +1,13 @@
 <?php
 
 return [
+    'actions' => [
+        'add_personality' => 'Add a personality',
+    ],
     'create'        => [
         'description'   => 'Create a new character',
         'success'       => 'Character \':name\' created.',
-        'title'         => 'Create a new character',
+        'title'         => 'New Character',
     ],
     'destroy'       => [
         'success'   => 'Character \':name\' removed.',
@@ -25,7 +28,7 @@ return [
         'height'                    => 'Height',
         'history'                   => 'History',
         'image'                     => 'Image',
-        'is_personality_visible'    => 'Is personality visible',
+        'is_personality_visible'    => 'Personality visible',
         'languages'                 => 'Languages',
         'location'                  => 'Location',
         'mannerisms'                => 'Mannerisms',
@@ -40,8 +43,11 @@ return [
         'type'                      => 'Type',
         'weight'                    => 'Weight',
     ],
+    'helpers' => [
+        'free' => 'Where did the "Free" field go? If this character had one, it\'s been moved over to the new Notes tab!',
+    ],
     'hints'         => [
-        'is_personality_visible'    => 'You can hide the whole personality section from non-Admin users.',
+        'is_personality_visible'    => 'You can hide the whole personality section from non "Admin" users.',
     ],
     'index'         => [
         'actions'       => [
@@ -100,6 +106,8 @@ return [
         'traits'    => 'Traits',
         'type'      => 'NPC, Player Character, Deity',
         'weight'    => 'Weight',
+        'personality_name' => 'Personality Trait: Goals, Mannerisms, Fears, Bonds',
+        'personality_entry' => 'Details',
     ],
     'sections'      => [
         'appearance'    => 'Appearance',

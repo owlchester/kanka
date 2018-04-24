@@ -36,15 +36,10 @@
                         {!! Form::text('date', $formService->prefill('date', $source), ['placeholder' => trans('journals.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker']) !!}
                     </div>
                 </div>
+
                 @if (Auth::user()->isAdmin())
-                <hr />
-                <div class="form-group">
-                    {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
-                        {{ trans('crud.fields.is_private') }}
-                    </label>
-                    <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
-                </div>
+                    <hr>
+                    @include('cruds.fields.private')
                 @endif
             </div>
         </div>
@@ -70,9 +65,9 @@
                 <div class="form-group">
                     {!! Form::textarea('history', $formService->prefill('history', $source), ['class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
-                <div class="form-group">
-                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
-                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
             </div>
         </div>
     </div>

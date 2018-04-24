@@ -16,14 +16,10 @@
                     <label>{{ trans('notes.fields.type') }}</label>
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('notes.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+
                 @if (Auth::user()->isAdmin())
-                <div class="form-group">
-                    {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
-                        {{ trans('crud.fields.is_private') }}
-                    </label>
-                    <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
-                </div>
+                    <hr>
+                    @include('cruds.fields.private')
                 @endif
             </div>
         </div>
@@ -44,12 +40,11 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('notes.fields.description') }}</label>
                     {!! Form::textarea('description', $formService->prefill('description', $source), ['class' => 'form-control html-editor', 'id' => 'description']) !!}
                 </div>
-                <div class="form-group">
-                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
-                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
             </div>
         </div>
     </div>

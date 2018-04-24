@@ -38,14 +38,8 @@
                 @endif
 
                 @if (Auth::user()->isAdmin())
-                <hr />
-                <div class="form-group">
-                    {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
-                        {{ trans('crud.fields.is_private') }}
-                    </label>
-                    <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
-                </div>
+                    <hr>
+                    @include('cruds.fields.private')
                 @endif
             </div>
         </div>
@@ -66,12 +60,11 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('items.fields.description') }}</label>
                     {!! Form::textarea('description', $formService->prefill('description', $source), ['class' => 'form-control html-editor', 'id' => 'description']) !!}
                 </div>
-                <div class="form-group">
-                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
-                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
             </div>
         </div>
 
@@ -81,12 +74,11 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('items.fields.history') }}</label>
                     {!! Form::textarea('history', $formService->prefill('history', $source), ['class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
-                <div class="form-group">
-                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
-                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
             </div>
         </div>
     </div>

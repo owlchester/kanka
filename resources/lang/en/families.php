@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new family',
         'success'       => 'Family \':name\' created.',
-        'title'         => 'Create a new family',
+        'title'         => 'New Family',
     ],
     'destroy'       => [
         'success'   => 'Family \':name\' removed.',

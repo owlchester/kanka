@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Create a new event',
         'success'       => 'Event \':name\' created.',
-        'title'         => 'Create a new event',
+        'title'         => 'New Event',
     ],
     'destroy'       => [
         'success'   => 'Event \':name\' removed.',

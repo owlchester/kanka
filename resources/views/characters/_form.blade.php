@@ -55,13 +55,8 @@ if (request()->route()->getName() == 'characters.random') {
                 </div>
 
                 @if (Auth::user()->isAdmin())
-                <div class="form-group">
-                    {!! Form::hidden('is_private', 0) !!}
-                    <label>{!! Form::checkbox('is_private', 1, $formService->prefill('is_private', $source)) !!}
-                        {{ trans('crud.fields.is_private') }}
-                    </label>
-                    <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
-                </div>
+                    <hr>
+                    @include('cruds.fields.private')
                 @endif
             </div>
         </div>
@@ -116,12 +111,11 @@ if (request()->route()->getName() == 'characters.random') {
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label>{{ trans('characters.fields.history') }}</label>
                     {!! Form::textarea('history', $formService->prefill('history', $source), ['placeholder' => trans('characters.placeholders.history'), 'class' => 'form-control html-editor', 'id' => 'history']) !!}
                 </div>
-                <div class="form-group">
-                    <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
-                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="{{ route('helpers.link') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
             </div>
         </div>
     </div>
@@ -131,27 +125,88 @@ if (request()->route()->getName() == 'characters.random') {
                 <h4>{{ trans('characters.sections.personality') }}</h4>
             </div>
             <div class="panel-body">
+                @if (isset($model) && !empty($model->traits))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.traits') }}</label>
                     {!! Form::textarea('traits', ($isRandom ? $random->generate('trait') : $formService->prefill('traits', $source)), ['placeholder' => trans('characters.placeholders.traits'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
+                @endif
+                @if (isset($model) && !empty($model->goals))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.goals') }}</label>
                     {!! Form::textarea('goals', ($isRandom ? $random->generate('goal') : $formService->prefill('goals', $source)), ['placeholder' => trans('characters.placeholders.goals'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
+                @endif
+                @if (isset($model) && !empty($model->fears))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.fears') }}</label>
                     {!! Form::textarea('fears', ($isRandom ? $random->generate('fear') : $formService->prefill('fears', $source)), ['placeholder' => trans('characters.placeholders.fears'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
+                @endif
+                @if (isset($model) && !empty($model->mannerisms))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.mannerisms') }}</label>
                     {!! Form::textarea('mannerisms', ($isRandom ? $random->generate('mannerism') : $formService->prefill('mannerisms', $source)), ['placeholder' => trans('characters.placeholders.mannerisms'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
+                @endif
+                @if (isset($model) && !empty($model->free))
                 <div class="form-group">
                     <label>{{ trans('characters.fields.free') }}</label>
                     {!! Form::textarea('free', $formService->prefill('free', $source), ['placeholder' => trans('characters.placeholders.free'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
-                <hr>
+                @endif
+                @if (isset($model))
+                    @foreach ($model->characterTraits()->personality()->get() as $trait)
+                        <div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, ['class' => 'form-control']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, ['class' => 'form-control', 'rows' => 4]) !!}
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+                <a class="btn btn-default" id="add_personality" href="#" title="{{ trans('characters.actions.add_personality') }}">
+                    <i class="fa fa-plus"></i> {{ trans('characters.actions.add_personality') }}
+                </a>
+                <div id="template_personality" style="display: none">
+                    <div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    {!! Form::text('personality_name[]', null, ['class' => 'form-control', 'placeholder' => trans('characters.placeholders.personality_name')]) !!}
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::textarea('personality_entry[]', null, ['class' => 'form-control', 'placeholder' => trans('characters.placeholders.personality_entry'), 'rows' => 4]) !!}
+                        </div>
+                    </div>
+                </div>
+
+                @if (Auth::user()->id < 1700)
+                    <div class="form-group">
+                        <p class="help-block">{{ trans('characters.helpers.free') }}</p>
+                    </div>
+                @endif
+
+            </div>
+            <div class="panel-footer">
                 <div class="form-group">
                     {!! Form::hidden('is_personality_visible', 0) !!}
                     <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? $formService->prefill('is_personality_visible', $source) : 1))) !!}

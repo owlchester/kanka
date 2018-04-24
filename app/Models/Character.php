@@ -103,6 +103,14 @@ class Character extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function characterTraits()
+    {
+        return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
