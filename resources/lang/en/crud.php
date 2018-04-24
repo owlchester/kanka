@@ -140,7 +140,7 @@ return [
             'title'     => 'Notes for :name',
         ],
         'placeholders'  => [
-            'name' => 'Inventory, Motivation, Past military experience',
+            'name' => 'Name of the note, observation or remark.',
         ],
     ],
     'or_cancel'     => 'or <a href=":url">cancel</a>',
