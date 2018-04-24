@@ -55,6 +55,35 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Get a list of campaigns the user is in
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function campaigns()
+    {
+        return $this->hasManyThrough(
+            'App\Campaign',
+            'App\CampaignUser',
+            'user_id',
+            'id',
+            'id',
+            'id'
+        );
+    }
+
+    /**
+     * Get the other campaigns of the user
+     * @return mixed
+     */
+    public function moveCampaignList()
+    {
+        $campaigns = [0 => ''];
+        foreach ($this->campaigns()->whereNotIn('campaign_id', [$this->campaign->id])->get() as $campaign) {
+            $campaigns[$campaign->id] = $campaign->name;
+        }
+        return $campaigns;
+    }
+
+    /**
      * Get the user's campaign
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -152,8 +181,24 @@ class User extends \TCG\Voyager\Models\User
      */
     public function roles()
     {
-        return $this->hasManyThrough('App\Models\CampaignRole', 'App\Models\CampaignRoleUser', 'user_id', 'id', 'id', 'campaign_role_id')
-            ->where('campaign_id', $this->campaign->id);
+        return $this->campaignRoles($this->campaign->id);
+    }
+
+    /**
+     * @param $campaignId
+     * @return $this
+     */
+    public function campaignRoles($campaignId)
+    {
+        return $this->hasManyThrough(
+            'App\Models\CampaignRole',
+            'App\Models\CampaignRoleUser',
+            'user_id',
+            'id',
+            'id',
+            'campaign_role_id'
+        )
+            ->where('campaign_id', $campaignId);
     }
 
     /**

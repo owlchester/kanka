@@ -146,6 +146,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function permissions()
+    {
+        return CampaignPermission::where('table_name', $this->entity->pluralType())
+            ->where('key', 'like', '%_' . $this->id);
+    }
+
+    /**
      * @param $query
      * @return mixed
      */

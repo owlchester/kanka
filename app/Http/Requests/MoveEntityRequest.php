@@ -42,6 +42,11 @@ class MoveEntityRequest extends FormRequest
      */
     public function rules()
     {
+        if (request()->post('campaign')) {
+            return [
+                'campaign' => 'required|exists:campaigns,id',
+            ];
+        }
         return [
             'target' => 'required|in:' . $this->entities,
         ];

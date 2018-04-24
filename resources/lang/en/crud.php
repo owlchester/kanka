@@ -93,12 +93,19 @@ return [
         'description'   => 'Move this entity to another place',
         'fields'        => [
             'target'    => 'New type',
+            'campaign' => 'New campaign',
         ],
         'hints'         => [
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
+            'campaign' => 'You can also try to move this entity to another campaign.',
         ],
-        'success'       => 'Entity :name moved.',
-        'title'         => 'Move :name to another place',
+        'success'       => 'Entity \':name\' moved.',
+        'title'         => 'Move :name',
+        'errors' => [
+            'permission' => 'You aren\'t allowed to create entities of that type in the target campaign.',
+            'same_campaign' => 'You need to select another campaign to move the entity to.',
+            'unknown_campaign' => 'Unknown campaign.'
+        ]
     ],
     'new_entity'    => [
         'error' => 'Please review your values.',

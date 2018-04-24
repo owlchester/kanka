@@ -22,12 +22,23 @@
                             <h4>{{ trans('crud.panels.move') }}</h4>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label>{{ trans('crud.move.fields.target') }}</label>
                                 {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
                                 <p class="help-block">{{ trans('crud.move.hints.target') }}</p>
                             </div>
+
+
+                            @if (Auth::user()->campaigns()->count() > 1)
+                                <hr>
+                                <div class="form-group">
+                                    <label>{{ trans('crud.move.fields.campaign') }}</label>
+                                    {!! Form::select('campaign', Auth::user()->moveCampaignList(), null, ['class' => 'form-control']) !!}
+                                    <p class="help-block">{{ trans('crud.move.hints.campaign') }}</p>
+                                </div>
+                            @endif
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -13,11 +13,11 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    @if (Auth::user()->can('create', $model))
+                    @can('create', $model)
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i> {{ trans($name . '.index.add') }}
                     </a>
-                    @endif
+                    @endcan
                     @foreach ($actions as $action)
                         @if (empty($action['policy']) || Auth::user()->can($action['policy'], $model))
                             <a href="{{ $action['route'] }}" class="btn btn-sm btn-{{ $action['class'] }}">
@@ -42,9 +42,9 @@
                 </div>
                 <div class="box-footer">
 
-                    @if (Auth::user()->can('create', $model))
+                    @can('delete', $model))
                     {!! Form::submit(trans('crud.remove'), ['class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
-                    @endif
+                    @endcan
 
                     <div class="pull-right">
                         {{ $models->links() }}

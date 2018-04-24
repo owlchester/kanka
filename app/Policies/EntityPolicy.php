@@ -42,14 +42,15 @@ class EntityPolicy
     }
 
     /**
-     * Determine whether the user can create entitys.
-     *
-     * @param  \App\User  $user
-     * @return mixed
+     * Determine whether the user can create entities.
+     * @param User $user
+     * @param null $model
+     * @param Campaign|null $campaign
+     * @return bool
      */
-    public function create(User $user)
+    public function create(User $user, $entity = null, Campaign $campaign = null)
     {
-        return $this->checkPermission('add', $user);
+        return $this->checkPermission('add', $user, null, $campaign);
     }
 
     /**
@@ -130,9 +131,10 @@ class EntityPolicy
      * @param string $action
      * @param User $user
      * @param Entity|null $entity
+     * @param Campaign|null $campaign
      * @return bool
      */
-    protected function checkPermission($action, User $user, $entity = null)
+    protected function checkPermission($action, User $user, $entity = null, Campaign $campaign = null)
     {
         $key = $this->model . '_' . $action;
         if (isset(self::$cached[$key])) {
@@ -147,7 +149,6 @@ class EntityPolicy
             }
         }
 
-
         // Want to get my user's permissions and roles
         $keys = [$key];
         // If we've specified an entity, it could be that our role or user has permissions on it
@@ -155,9 +156,14 @@ class EntityPolicy
             $keys[] = $this->model . '_' . $action . '_' . $entity->id;
         }
 
+        // No campaign? Use the user's
+        if (empty($campaign)) {
+            $campaign = $user->campaign;
+        }
+
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
-        foreach ($user->roles as $role) {
+        foreach ($user->campaignRoles($campaign->id)->get() as $role) {
             if ($role->is_admin) {
                 return true;
             }

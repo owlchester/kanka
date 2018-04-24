@@ -6,7 +6,10 @@ use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Exceptions\TranslatableException;
 
 class EntityService
 {
@@ -51,9 +54,13 @@ class EntityService
      * @param null $ignore
      * @return array
      */
-    public function labelledEntities($singular = true, $ignore = null)
+    public function labelledEntities($singular = true, $ignore = null, $includeNull = false)
     {
         $labels = [];
+        if ($includeNull) {
+            $labels = ['' => ''];
+        }
+
         foreach ($this->entities() as $entity => $class) {
             if ($singular) {
                 $labels[$entity] = trans('entities.' . $this->singular($entity));
@@ -83,13 +90,69 @@ class EntityService
     }
 
     /**
-     * Move an entity to another type
+     * Move an entity to another type or campaign
      *
      * @param Entity $entity
      * @param String $target
      * @return Entity
      */
-    public function move(Entity $entity, $target)
+    public function move(Entity $entity, $request)
+    {
+        if (!empty($request['campaign'])) {
+            return $this->moveCampaign($entity, $request['campaign']);
+        } else {
+            return $this->moveType($entity, $request['target']);
+        }
+    }
+
+    protected function moveCampaign(Entity $entity, $campaignId)
+    {
+        $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
+        if (empty($campaign)) {
+            throw new TranslatableException('crud.move.errors.unknown_campaign');
+        }
+
+        // New campaign different
+        if ($campaign->id == $entity->campaign_id) {
+            throw new TranslatableException('crud.move.errors.same_campaign');
+        }
+
+        // Can I create an entity of that type on the new campaign?
+        if (!Auth::user()->can('create', [get_class ($entity->child), null, $campaign])) {
+            throw new TranslatableException('crud.move.errors.permission');
+        }
+
+        // Made it so far, we can move the entity's campaign_id. We just need to remove all the relations to it
+        $entity->relationships()->delete();
+        $entity->child->permissions()->delete();
+
+        // Remove all foreign ids
+        foreach ($entity->child->getAttributes() as $attribute) {
+            if (strpos($attribute, '_id') !== false && $attribute != 'campaign_id') {
+                $entity->child->$attribute = null;
+            }
+        }
+
+        // Temp update session before saving
+        $currentCampaign = Auth::user()->campaign;
+        Session::put('campaign_id', $campaign->id);
+
+        $entity->campaign_id = $campaign->id;
+        $entity->save();
+        $entity->child->save();
+
+        Session::put('campaign_id', $currentCampaign->id);
+
+        return $entity;
+    }
+
+    /**
+     * @param Entity $entity
+     * @param $target
+     * @return Entity
+     * @throws \Exception
+     */
+    protected function moveType(Entity $entity, $target)
     {
         // Create new model
         if (!isset($this->entities[$target])) {
