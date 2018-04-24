@@ -114,6 +114,35 @@ return [
         ],
         'title' => 'New entity',
     ],
+    'notes'    => [
+        'actions'       => [
+            'add'               => 'Add a note',
+        ],
+        'create'        => [
+            'description'   => 'Create a new note',
+            'success'       => 'Note \':name\' added to :entity.',
+            'title'         => 'New Note for :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Note \':name\' for :entity removed.',
+        ],
+        'edit'          => [
+            'description'   => 'Update an existing note',
+            'success'       => 'Note \':name\' for :entity updated.',
+            'title'         => 'Update note for :name',
+        ],
+        'fields'        => [
+            'name' => 'Name',
+            'entry'  => 'Entry',
+            'creator' => 'Creator',
+        ],
+        'index'         => [
+            'title'     => 'Notes for :name',
+        ],
+        'placeholders'  => [
+            'name' => 'Inventory, Motivation, Past military experience',
+        ],
+    ],
     'or_cancel'     => 'or <a href=":url">cancel</a>',
     'panels'        => [
         'appearance'            => 'Appearance',
@@ -165,6 +194,7 @@ return [
         'attributes'    => 'Attributes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
+        'notes'         => 'Notes',
     ],
     'update'        => 'Update',
     'view'          => 'View',

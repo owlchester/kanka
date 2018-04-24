@@ -15,7 +15,7 @@ use DateTime;
  * @property string $value
  * @property boolean $is_private
  */
-class Attribute extends Model
+class EntityNote extends Model
 {
     /**
      * @var array
@@ -23,7 +23,8 @@ class Attribute extends Model
     protected $fillable = [
         'entity_id',
         'name',
-        'value',
+        'entry',
+        'created_by',
         'is_private',
     ];
 
@@ -45,6 +46,15 @@ class Attribute extends Model
      */
     public function entity()
     {
-        return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
+        return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * Who created this entry
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'created_by');
     }
 }

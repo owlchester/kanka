@@ -113,6 +113,7 @@ Route::group([
         'releases' => 'ReleaseController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
         'entities.attributes' => 'AttributeController',
+        'entities.entity_notes' => 'EntityNoteController',
 
         'attribute_templates' => 'AttributeTemplateController',
 

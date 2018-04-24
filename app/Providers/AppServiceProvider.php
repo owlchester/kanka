@@ -7,6 +7,7 @@ use App\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
+use App\Models\EntityNote;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
 use App\Models\Item;
@@ -64,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             Event::observe(EventObserver::class);
+            EntityNote::observe('App\Observers\EntityNoteObserver');
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
             Item::observe(ItemObserver::class);

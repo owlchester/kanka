@@ -70,6 +70,11 @@
                     </li>
                     @endcan
                     @can('attribute', $model)
+                        <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">
+                            <a href="#notes">{{ trans('crud.tabs.notes') }}</a>
+                        </li>
+                    @endcan
+                    @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
                         <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
                     </li>
@@ -107,6 +112,11 @@
                     <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
                         @include('cruds._relations')
                     </div>
+                    @endcan
+                    @can('attribute', $model)
+                        <div class="tab-pane {{ (request()->get('tab') == 'notes' ? ' active' : '') }}" id="notes">
+                            @include('cruds._notes')
+                        </div>
                     @endcan
                     @can('attribute', $model)
                     <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">

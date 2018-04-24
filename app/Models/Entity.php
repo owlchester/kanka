@@ -212,4 +212,12 @@ class Entity extends Model
     {
         return $this->hasMany('App\Models\Relation', 'target_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notes()
+    {
+        return $this->hasMany('App\Models\EntityNote', 'entity_id', 'id');
+    }
 }

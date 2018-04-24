@@ -24,7 +24,7 @@ class CrudAttributeController extends Controller
     /**
      * @var Entity
      */
-    protected $model = \App\Entitys\Attribute::class;
+    protected $model = \App\Models\Attribute::class;
 
     /**
      * @var AttributeService
