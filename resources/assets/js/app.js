@@ -179,7 +179,7 @@ function treeViewInit() {
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {
-                window.location = link + '?parent_location_id=' + $(this).attr('data-id');
+                window.location = link + '?parent_id=' + $(this).attr('data-id');
             });
         }
     });

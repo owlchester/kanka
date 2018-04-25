@@ -81,14 +81,25 @@ class LocationController extends CrudController
             ->search(request()->get('search'))
             ->order($this->filterService->order());
 
-        if (request()->has('parent_location_id')) {
-            $search = $search->where(['parent_location_id' => request()->get('parent_location_id')]);
-            // Go back
-            $actions[] = [
-                'route' => redirect()->back()->getTargetUrl(),
-                'class' => 'default',
-                'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
-            ];
+        if (request()->has('parent_id')) {
+            $search = $search->where(['parent_location_id' => request()->get('parent_id')]);
+
+            $parent = $model->with('parentLocation')->where('id', request()->get('parent_id'))->first();
+            if (!empty($parent) && !empty($parent->parentLocation)) {
+                // Go back to parent
+                $actions[] = [
+                    'route' => route('locations.tree', ['parent_id' => $parent->parentLocation->id]),
+                    'class' => 'default',
+                    'label' => '<i class="fa fa-arrow-left"></i> ' . $parent->parentLocation->name
+                ];
+            } else {
+                // Go back to first level
+                $actions[] = [
+                    'route' => route('locations.tree'),
+                    'class' => 'default',
+                    'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
+                ];
+            }
         } else {
             $search = $search->whereNull('parent_location_id');
         }
