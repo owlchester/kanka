@@ -2,23 +2,23 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new section',
-        'success'       => 'Section \':name\' created.',
-        'title'         => 'New Section',
+        'description'   => 'Create a new category',
+        'success'       => 'Category \':name\' created.',
+        'title'         => 'New Category',
     ],
     'destroy'       => [
-        'success'   => 'Section \':name\' removed.',
+        'success'   => 'Category \':name\' removed.',
     ],
     'edit'          => [
         'description'   => '',
-        'success'       => 'Section \':name\' updated.',
-        'title'         => 'Edit Section :name',
+        'success'       => 'Category \':name\' updated.',
+        'title'         => 'Edit Category :name',
     ],
     'fields'        => [
         'characters'    => 'Characters',
         'image'         => 'Image',
-        'section'      => 'Section',
-        'sections'     => 'Sections',
+        'section'      => 'Category',
+        'sections'     => 'Categories',
         'map'           => 'Map',
         'name'          => 'Name',
         'relation'      => 'Relation',
@@ -28,23 +28,23 @@ return [
         'actions'       => [
             'explore_view'  => 'Exploration View',
         ],
-        'add'           => 'New Section',
-        'description'   => 'Manage the section of :name.',
-        'header'        => 'Sections in :name',
-        'title'         => 'Sections',
+        'add'           => 'New Category',
+        'description'   => 'Manage the category of :name.',
+        'header'        => 'Categories in :name',
+        'title'         => 'Categories',
     ],
     'placeholders'  => [
-        'section'  => 'Choose a parent section',
-        'name'      => 'Name of the section',
-        'type'      => 'City, Kingdom, Ruin',
+        'section'  => 'Choose a parent category',
+        'name'      => 'Name of the category',
+        'type'      => 'Lore, Wars, History, Religion, Vexology',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a section',
+        'description'   => 'A detailed view of a category',
         'tabs'          => [
             'children'    => 'Children',
             'information'   => 'Information',
-            'sections'     => 'Sections',
+            'sections'     => 'Categories',
         ],
-        'title'         => 'Section :name',
+        'title'         => 'Category :name',
     ],
 ];

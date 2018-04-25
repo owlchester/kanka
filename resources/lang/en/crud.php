@@ -76,7 +76,7 @@ return [
         'organisation'  => 'Organisation',
         'is_private'    => 'Private',
         'location'      => 'Location',
-        'section'       => 'Section',
+        'section'       => 'Category',
         'name'          => 'Name',
     ],
     'filter'        => 'Filter',
@@ -176,7 +176,7 @@ return [
         'image_url' => 'You can upload an image from a URL instead',
         'location'  => 'Choose a location',
         'organisation'  => 'Choose an organisation',
-        'section'  => 'Choose a section',
+        'section'  => 'Choose a category',
     ],
     'relations'     => [
         'actions'   => [

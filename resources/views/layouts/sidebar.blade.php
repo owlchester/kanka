@@ -78,7 +78,7 @@
                 <a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
-            @if ($campaign->enabled('journals'))
+            @if ($campaign->enabled('sections'))
                 <li class="{{ $sidebar->active('sections') }}">
                     <a href="{{ route('sections.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.sections') }}</span></a>
                 </li>

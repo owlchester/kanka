@@ -26,6 +26,8 @@ class CampaignSetting extends Model
         'notes',
         'organisations',
         'quests',
+        'calendars',
+        'sections',
     ];
 
     /**
