@@ -55,7 +55,7 @@ class CampaignService
      */
     public function name()
     {
-        return $this->campaign()->name;
+        return $this->campaign->name;
     }
 
     /**

@@ -91,192 +91,14 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            $models = Entity::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Entity::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
         foreach ($models as $model) {
             $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function locations(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Location::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Location::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function characters(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Character::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Character::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function families(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Family::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Family::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function notes(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Note::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Note::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function organisations(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Organisation::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Organisation::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function events(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Event::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Event::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function quests(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Quest::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Quest::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
-        }
-
-        return Response::json($formatted);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function sections(Request $request)
-    {
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            $models = Section::acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Section::acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
         return Response::json($formatted);
@@ -290,17 +112,11 @@ class SearchController extends Controller
         $term = trim($request->q);
 
         // Figure out what kind of entities we want.
-        $entityTypes = [];
-        foreach ($this->entity->entities() as $element => $class) {
-            if ($this->campaign->enabled($element)) {
-                $entityTypes[] = $this->entity->singular($element);
-            }
-        }
 
         if (empty($term)) {
-            $models = Entity::whereIn('type', $entityTypes)->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Entity::whereIn('type', $entityTypes)->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -315,6 +131,77 @@ class SearchController extends Controller
         }
 
         return Response::json($formatted);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function locations(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Location::class);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function characters(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Character::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function families(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Family::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function organisations(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Organisation::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function events(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Event::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function quests(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Quest::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function sections(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Section::class);
     }
 
     /**
@@ -340,6 +227,44 @@ class SearchController extends Controller
                     ];
                 }
             }
+        }
+
+        return Response::json($formatted);
+    }
+
+    /**
+     * Get a list of enabled entity types for the campaign to filter on the entities table
+     * @return array
+     */
+    protected function enabledEntityTypes()
+    {
+        $entityTypes = [];
+        foreach ($this->entity->entities() as $element => $class) {
+            if ($this->campaign->enabled($element)) {
+                $entityTypes[] = $this->entity->singular($element);
+            }
+        }
+        return $entityTypes;
+    }
+
+    /**
+     * Build the search results
+     * @param $term
+     * @param $class
+     * @return mixed
+     */
+    protected function buildSearchResults($term, $class)
+    {
+        $modelClass = new $class;
+        if (empty($term)) {
+            $models = $modelClass->acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = $modelClass->acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
         return Response::json($formatted);
