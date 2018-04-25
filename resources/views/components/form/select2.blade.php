@@ -18,6 +18,8 @@ if (!empty($previous) && !empty($prefillModel)) {
 if (empty($selectedOption) && !empty($prefill)) {
     if ($prefill instanceof \App\Models\MiscModel) {
         $selectedOption = [$prefill->id => $prefill->name];
+    } elseif ($prefill instanceof \App\Models\Entity) {
+        $selectedOption = [$prefill->id => $prefill->name];
     } elseif (is_array($prefill)) {
         $selectedOption = $prefill;
     }

@@ -4,7 +4,7 @@
         <div class="form-group required">
             {!! Form::select2(
                 'target_id',
-                (!empty($relation) && $relation->target ? $relation->target->child : null),
+                (!empty($relation) && $relation->target ? $relation->target : null),
                 App\Models\Entity::class,
                 false,
                 'relations.fields.target',

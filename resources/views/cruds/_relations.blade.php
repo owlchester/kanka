@@ -11,6 +11,9 @@
         <th class="avatar"><br></th>
         <th>{{ trans('crud.relations.fields.name') }}</th>
         @if ($campaign->enabled('locations'))<th>{{ trans('crud.relations.fields.location') }}</th>@endif
+        @if (Auth::user()->isAdmin())
+            <th>{{ trans('crud.fields.is_private') }}</th>
+        @endif
         <th>&nbsp;</th>
     </tr>
     @foreach ($r = $model->entity->relationships()->has('target')->with('target')->paginate() as $relation)
@@ -29,7 +32,15 @@
                 @if ($relation->target->child->location)
                     <a href="{{ route('locations.show', $relation->target->child->location_id) }}" data-toggle="tooltip" title="{{ $relation->target->child->location->tooltip() }}">{{ $relation->target->child->location->name }}</a>
                 @endif
-            </td>@endif
+            </td>
+            @endif
+            @if (Auth::user()->isAdmin())
+                <td>
+                    @if ($relation->is_private == true)
+                        <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                    @endif
+                </td>
+            @endif
             <td class="text-right">
                 @can('relation', [$model, 'edit'])
                     <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
