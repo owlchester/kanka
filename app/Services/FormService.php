@@ -27,6 +27,12 @@ class FormService
         return null;
     }
 
+    /**
+     * Prefill a select dropdown
+     * @param $field
+     * @param null $entity
+     * @return array
+     */
     public function prefillSelect($field, $entity = null)
     {
         // Only copy on MiscModel (entity) models
@@ -35,9 +41,21 @@ class FormService
             if (!empty($value) and is_object($value)) {
                 return [$value->id => $value->name];
             }
-
         }
 
+        return [];
+    }
+
+    /**
+     * Character traits
+     * @param null $entity
+     * @return array
+     */
+    public function prefillCharacterPersonality($entity = null)
+    {
+        if ($entity instanceof MiscModel) {
+            return $entity->characterTraits()->personality()->get();
+        }
         return [];
     }
 

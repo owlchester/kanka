@@ -165,36 +165,15 @@ if (request()->route()->getName() == 'characters.random') {
                     {!! Form::textarea('free', $formService->prefill('free', $source), ['placeholder' => trans('characters.placeholders.free'), 'class' => 'form-control', 'rows' => 4]) !!}
                 </div>
                 @endif
-                @if (isset($model))
-                    @foreach ($model->characterTraits()->personality()->get() as $trait)
-                        <div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, ['class' => 'form-control']) !!}
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, ['class' => 'form-control', 'rows' => 4]) !!}
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-                <a class="btn btn-default" id="add_personality" href="#" title="{{ trans('characters.actions.add_personality') }}">
-                    <i class="fa fa-plus"></i> {{ trans('characters.actions.add_personality') }}
-                </a>
-                <div id="template_personality" style="display: none">
+                @foreach ((isset($model) ? $model->characterTraits()->personality()->get() : $formService->prefillCharacterPersonality($source)) as $trait)
                     <div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-9">
-                                    {!! Form::text('personality_name[]', null, ['class' => 'form-control', 'placeholder' => trans('characters.placeholders.personality_name')]) !!}
+                                    {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
+                                        'class' => 'form-control',
+                                        'placeholder' => trans('characters.placeholders.personality_name')
+                                    ]) !!}
                                 </div>
                                 <div class="col-md-3">
                                     <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
@@ -204,7 +183,40 @@ if (request()->route()->getName() == 'characters.random') {
                             </div>
                         </div>
                         <div class="form-group">
-                            {!! Form::textarea('personality_entry[]', null, ['class' => 'form-control', 'placeholder' => trans('characters.placeholders.personality_entry'), 'rows' => 4]) !!}
+                            {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
+                                'class' => 'form-control',
+                                'placeholder' => trans('characters.placeholders.personality_entry'),
+                                'rows' => 4
+                            ]) !!}
+                        </div>
+                    </div>
+                @endforeach
+                <a class="btn btn-default" id="add_personality" href="#" title="{{ trans('characters.actions.add_personality') }}">
+                    <i class="fa fa-plus"></i> {{ trans('characters.actions.add_personality') }}
+                </a>
+                <div id="template_personality" style="display: none">
+                    <div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    {!! Form::text('personality_name[]', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => trans('characters.placeholders.personality_name')
+                                    ]) !!}
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::textarea('personality_entry[]', null, [
+                                'class' => 'form-control',
+                                'placeholder' => trans('characters.placeholders.personality_entry'),
+                                'rows' => 4
+                            ]) !!}
                         </div>
                     </div>
                 </div>
