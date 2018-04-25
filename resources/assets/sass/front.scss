@@ -50,3 +50,13 @@ hr {
   max-width: 250px;
   margin: 25px auto;
 }
+
+footer {
+  padding-bottom: 60px;
+  p {
+    padding-top: 20px;
+  }
+  li > a {
+    font-size: 16px !important;
+  }
+}

@@ -139,5 +139,27 @@
     if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
     else window.addEventListener('load', loadDeferredStyles);
 </script>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+    window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#252e39"
+                },
+                "button": {
+                    "background": "#14a7d0"
+                }
+            },
+            "theme": "classic",
+            "content": {
+                "message": "{{ trans('front.cookie.message') }}",
+                "dismiss": "{{ trans('front.cookie.dismiss') }}",
+                "link": "{{ trans('front.cookie.link') }}"
+            }
+        })});
+</script>
 </body>
 </html>

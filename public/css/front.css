@@ -4076,3 +4076,15 @@ hr {
   margin: 25px auto;
 }
 
+footer {
+  padding-bottom: 60px;
+}
+
+footer p {
+  padding-top: 20px;
+}
+
+footer li > a {
+  font-size: 16px !important;
+}
+

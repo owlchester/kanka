@@ -8,6 +8,11 @@ return [
     'contact'       => [
         'title' => 'We :icon new friends!',
     ],
+    'cookie' => [
+        'message' => 'This website uses cookies to ensure you get the best experience on our website.',
+        'dismiss' => 'Got it!',
+        'link' => 'Learn more',
+    ],
     'faq'           => [
         'description'   => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
         'title'         => 'FAQ',
