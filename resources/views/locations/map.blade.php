@@ -18,7 +18,7 @@
                     {!! Form::open(array('route' => ['locations.map', $location->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
 
                     <div class="map map-admin" id="location-map-admin">
-                        <img src="/storage/{{ $location->map }}" alt="{{ $location->name }}" />
+                        <img src="/storage/{{ $location->map }}" alt="{{ $location->name }}" id="location-map-image" />
                         @foreach ($location->mapPoints as $point)
                             <div class="point admin" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px" title="{{ trans('crud.remove') }}">
                                 {!! Form::hidden('map_point[' . $point->id  . ']', 1) !!}

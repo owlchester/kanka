@@ -17,8 +17,7 @@
 
 .map .point i {
   visibility: hidden;
-  padding: 15px;
-  font-size: 17pt;
+  padding-top: 25%;
   color: white;
 }
 
@@ -40,6 +39,20 @@
 
 .map-admin {
   margin-bottom: 15px;
+}
+
+.map-zoom {
+  position: absolute;
+  z-index: 1000;
+  padding: 5px;
+  display: inline-block;
+  overflow: visible;
+}
+
+.map-zoom button {
+  display: block;
+  width: 100%;
+  margin-bottom: 3px;
 }
 
 .calendar tbody td {
