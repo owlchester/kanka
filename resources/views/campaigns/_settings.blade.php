@@ -69,6 +69,12 @@
                 {{ trans('entities.quests') }}
             </label>
         </div>
+        <div class="form-group">
+            {!! Form::hidden('sections', 0) !!}
+            <label>{!! Form::checkbox('sections') !!}
+                {{ trans('entities.sections') }}
+            </label>
+        </div>
     </div>
 </div>
 

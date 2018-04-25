@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Campaign;
 use App\CampaignUser;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Exception;
@@ -16,17 +17,37 @@ class CampaignService
     protected $id;
 
     /**
+     * The user's current Campaign
      * @var Campaign
      */
-    protected $campaign;
+    protected $campaign = false;
+
+    /**
+     * The Campaign model (DI)
+     * @var Campaign
+     */
+    protected $campaignModel;
+
+    /**
+     * @var Store
+     */
+    protected $session;
 
     /**
      * CampaignService constructor.
      */
-    public function __construct()
+    public function __construct(Store $session, Campaign $campaignModel)
     {
-        $this->id = Session::get('campaign_id');
-        $this->campaign = Campaign::where('id', $this->id)->first();
+        $this->session = $session;
+        $this->campaignModel = $campaignModel;
+    }
+
+    public function campaign()
+    {
+        if ($this->campaign === false) {
+            $this->campaign = $this->campaignModel->where('id', $this->session->get('campaign_id'))->first();
+        }
+        return $this->campaign;
     }
 
     /**
@@ -34,7 +55,7 @@ class CampaignService
      */
     public function name()
     {
-        return $this->campaign->name;
+        return $this->campaign()->name;
     }
 
     /**
@@ -155,7 +176,7 @@ class CampaignService
      */
     public function enabled($entity = '')
     {
-        return $this->campaign->enabled($entity);
+        return $this->campaign()->enabled($entity);
     }
 
     /**
@@ -164,7 +185,7 @@ class CampaignService
      */
     public function member()
     {
-        return $this->campaign->member();
+        return $this->campaign()->member();
     }
 
     /**
@@ -172,7 +193,7 @@ class CampaignService
      */
     public function roles()
     {
-        return $this->campaign->roles;
+        return $this->campaign()->roles;
     }
 
     /**
@@ -180,6 +201,6 @@ class CampaignService
      */
     public function users()
     {
-        return $this->campaign->users;
+        return $this->campaign()->users;
     }
 }

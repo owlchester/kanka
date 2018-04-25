@@ -169,7 +169,7 @@ return [
         'edit'      => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'    => 'You can easily disable elements from your campaign that will be hidden. If you have already created elements in the categories you disable, they won\'t be deleted, just hidden.',
+        'helper'    => 'All modules of the app can be enabled or disabled at will from your campaign. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hiden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
     ],
     'show'          => [
         'actions'       => [

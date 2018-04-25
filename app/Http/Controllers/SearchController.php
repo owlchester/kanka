@@ -19,6 +19,7 @@ use App\Services\LinkerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\FilterService;
+use Response;
 
 class SearchController extends Controller
 {
@@ -48,17 +49,19 @@ class SearchController extends Controller
         $this->middleware('campaign.member');
 
         $this->entity = $entityService;
+        $this->campaign = $campaignService;
 
 
         $this->filterService = new FilterService();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function search(Request $request)
     {
-        $this->campaign = new CampaignService();
-
         $term = trim($request->q);
-        $elements = [];
         $results = [];
         $active = '';
         $filterService = $this->filterService;
@@ -79,6 +82,10 @@ class SearchController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function entities(Request $request)
     {
         $term = trim($request->q);
@@ -94,7 +101,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -117,7 +124,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
 
@@ -140,7 +147,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -162,7 +169,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -184,7 +191,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -206,7 +213,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -228,7 +235,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -250,7 +257,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -272,7 +279,7 @@ class SearchController extends Controller
             $formatted[] = ['id' => $model->id, 'text' => $model->name];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -282,10 +289,18 @@ class SearchController extends Controller
     {
         $term = trim($request->q);
 
+        // Figure out what kind of entities we want.
+        $entityTypes = [];
+        foreach ($this->entity->entities() as $element => $class) {
+            if ($this->campaign->enabled($element)) {
+                $entityTypes[] = $this->entity->singular($element);
+            }
+        }
+
         if (empty($term)) {
-            $models = Entity::limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Entity::whereIn('type', $entityTypes)->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Entity::where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Entity::whereIn('type', $entityTypes)->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 
@@ -299,7 +314,7 @@ class SearchController extends Controller
                 )];
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 
     /**
@@ -327,6 +342,6 @@ class SearchController extends Controller
             }
         }
 
-        return \Response::json($formatted);
+        return Response::json($formatted);
     }
 }
