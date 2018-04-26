@@ -38,5 +38,8 @@ class SectionObserver extends MiscObserver
             $child->section_id = null;
             $child->save();
         }
+
+        // Refresh the model to make sure we have new foreign keys?
+        $section->refresh();
     }
 }

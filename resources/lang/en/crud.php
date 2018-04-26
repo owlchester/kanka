@@ -64,6 +64,9 @@ return [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
     ],
     'edit'          => 'Edit',
+    'errors'        => [
+        'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.'
+    ],
     'fields'        => [
         'character'     => 'Character',
         'description'   => 'Description',

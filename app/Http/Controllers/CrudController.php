@@ -8,6 +8,7 @@ use Arrilot\Widgets\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use LogicException;
 
 class CrudController extends Controller
 {
@@ -126,20 +127,25 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
-        $model = new $this->model;
-        $new = $model->create($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->route . '.create')
-                ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
-        }
+        try {
+            $model = new $this->model;
+            $new = $model->create($request->all());
+            if ($request->has('submit-new')) {
+                return redirect()->route($this->route . '.create')
+                    ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+            }
 
-        if ($redirectToCreated) {
-            return redirect()->route($this->route . '.show', $new)
-                ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+            if ($redirectToCreated) {
+                return redirect()->route($this->route . '.show', $new)
+                    ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+            }
+            return redirect()->route($this->route . '.index')
+                ->with('success_raw', trans($this->view . '.create.success', ['name' =>
+                    link_to_route($this->route . '.show', e($new->name), $new)]));
+        } catch (LogicException $exception) {
+            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
+            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
         }
-        return redirect()->route($this->route . '.index')
-            ->with('success_raw', trans($this->view . '.create.success', ['name' =>
-                link_to_route($this->route . '.show', e($new->name), $new)]));
     }
 
     /**
@@ -187,15 +193,20 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
 
-        $model->update($request->all());
-        if ($request->has('submit-new')) {
-            return redirect()->route($this->route . '.create')
-            ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
-                link_to_route($this->route . '.show', e($model->name), $model)]));
+        try {
+            $model->update($request->all());
+            if ($request->has('submit-new')) {
+                return redirect()->route($this->route . '.create')
+                    ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
+                        link_to_route($this->route . '.show', e($model->name), $model)]));
+            }
+            return redirect()->route($this->route . '.show', $model->id)
+                ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
+                    link_to_route($this->route . '.show', e($model->name), $model)]));
+        } catch (LogicException $exception) {
+            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
+            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
         }
-        return redirect()->route($this->route . '.show', $model->id)
-            ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
-                link_to_route($this->route . '.show', e($model->name), $model)]));
     }
 
     /**
