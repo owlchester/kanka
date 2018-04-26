@@ -24,8 +24,8 @@ class CharacterObserver extends MiscObserver
         }
 
         $traitCount = 0;
-        $traitNames = request()->post('personality_name');
-        $traitEntry = request()->post('personality_entry');
+        $traitNames = request()->post('personality_name', []);
+        $traitEntry = request()->post('personality_entry', []);
         foreach ($traitNames as $id => $name) {
             if (empty($name)) {
                 continue;
