@@ -91,9 +91,9 @@ class Section extends MiscModel
      */
     public function detach()
     {
-        foreach ($this->allChildren as $child) {
-            $child->entity->section_id = null;
-            $child->save();
+        foreach ($this->allChildren() as $child) {
+            $child->child->section_id = null;
+            $child->child->save();
         }
         return parent::detach();
     }

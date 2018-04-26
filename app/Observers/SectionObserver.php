@@ -28,7 +28,7 @@ class SectionObserver extends MiscObserver
         parent::deleting($section);
 
         // Set all children to no longer have this section
-        foreach ($section->allChildren as $child) {
+        foreach ($section->allChildren() as $child) {
             $child->child->section_id = null;
             $child->child->save();
         }
