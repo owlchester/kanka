@@ -66,7 +66,7 @@ class User extends \TCG\Voyager\Models\User
             'user_id',
             'id',
             'id',
-            'id'
+            'campaign_id'
         );
     }
 
