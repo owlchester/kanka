@@ -137,7 +137,8 @@ class EntityPolicy
     protected function checkPermission($action, User $user, $entity = null, Campaign $campaign = null)
     {
         $key = $this->model . '_' . $action;
-        if (isset(self::$cached[$key])) {
+        // If cached on whole entities and we have read access, we're goot!
+        if (isset(self::$cached[$key]) && self::$cached[$key]) {
             return self::$cached[$key];
         }
 
@@ -171,10 +172,17 @@ class EntityPolicy
         }
 
         // Check for a permission related to this action.
-        $value = CampaignPermission::whereIn('key', $keys)
+        $value = false;
+        foreach (CampaignPermission::whereIn('key', $keys)
             ->where(function ($query) use ($user, $roleIds) {
                 return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
-            })->count() > 0;
+            })->get() as $permission) {
+            // If we got a permission for the exact entity, save that
+            if (isset($keys[1]) && strpos($permission->key, $keys[1]) !== false) {
+                $key = $keys[1];
+            }
+            $value = true;
+        }
 
         // Cache the result
         self::$cached[$key] = $value;

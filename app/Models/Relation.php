@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Exception;
 
 class Relation extends Model
 {
+
+    /**
+     *
+     */
+    use VisibleTrait;
+
     /**
      * @var array
      */
