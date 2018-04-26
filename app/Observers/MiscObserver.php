@@ -56,7 +56,7 @@ abstract class MiscObserver
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable());
 
-        $nullable = ['parent_location_id', 'location_id', 'character_id', 'family_id', 'section_id'];
+        $nullable = ['parent_location_id', 'location_id', 'character_id', 'family_id'];
         foreach ($nullable as $attr) {
             if (array_key_exists($attr, $attributes)) {
                 $model->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
@@ -88,6 +88,7 @@ abstract class MiscObserver
         }
         $entity->is_private = $model->is_private;
         $entity->name = $model->name;
+        $entity->section_id = $model->section_id;
         $entity->type = $model->getEntityType();
         $entity->save();
     }

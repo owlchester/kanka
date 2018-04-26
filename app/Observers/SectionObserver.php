@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Campaign;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Models\Section;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Session;
@@ -20,36 +21,22 @@ class SectionObserver extends MiscObserver
     }
 
     /**
-     * @param Location $location
+     * @param Section $section
      */
     public function deleting(MiscModel $section)
     {
         parent::deleting($section);
 
-        // Todo: remove this and update schema instead
-        foreach ($section->characters as $character) {
-            $character->section_id = null;
-            $character->save();
+        // Set all children to no longer have this section
+        foreach ($section->allChildren as $child) {
+            $child->child->section_id = null;
+            $child->child->save();
         }
 
-        foreach ($section->families as $family) {
-            $family->section_id = null;
-            $family->save();
-        }
-
-        foreach ($section->items as $item) {
-            $item->section_id = null;
-            $item->save();
-        }
-
-        foreach ($section->locations as $sub) {
-            $sub->parent_section_id = null;
-            $sub->save();
-        }
-
-        foreach ($section->organisations as $sub) {
-            $sub->section_id = null;
-            $sub->save();
+        // Update sub sections to clean them  up
+        foreach ($section->sections as $child) {
+            $child->section_id = null;
+            $child->save();
         }
     }
 }

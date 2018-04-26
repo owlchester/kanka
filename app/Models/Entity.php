@@ -13,8 +13,9 @@ use DateTime;
  * @property integer $entity_id
  * @property integer $campaign_id
  * @property string $name
- * @property string $enum
+ * @property string $type
  * @property boolean $is_private
+ * @property integer $section_id
  */
 class Entity extends Model
 {
@@ -27,6 +28,7 @@ class Entity extends Model
         'name',
         'type',
         'is_private',
+        'section_id',
     ];
 
     /**
@@ -153,6 +155,15 @@ class Entity extends Model
     public function section()
     {
         return $this->hasOne('App\Models\Section', 'id', 'entity_id');
+    }
+
+    /**
+     * Not to be confused with the "section" which is the child entity, category is the section
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function category()
+    {
+        return $this->hasOne('App\Models\Section', 'id', 'section_id');
     }
 
     /**

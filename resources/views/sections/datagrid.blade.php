@@ -30,6 +30,13 @@
             }
         ],
         [
+            'label' => trans('sections.fields.children'),
+            'render' => function($model) {
+                $total = $model->allChildren()->count();
+                return $total;
+            }
+        ],
+        [
             'type' => 'is_private',
         ]
     ],

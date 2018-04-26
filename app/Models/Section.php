@@ -70,86 +70,6 @@ class Section extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function characters()
-    {
-        return $this->hasMany('App\Models\Character', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locations()
-    {
-        return $this->hasMany('App\Models\Location', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function notes()
-    {
-        return $this->hasMany('App\Models\Note', 'section_id', 'id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function families()
-    {
-        return $this->hasMany('App\Models\Family', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function organisations()
-    {
-        return $this->hasMany('App\Models\Organisation', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function items()
-    {
-        return $this->hasMany('App\Models\Item', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
-    {
-        return $this->hasMany('App\Models\Event', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function quests()
-    {
-        return $this->hasMany('App\Models\Quest', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendars()
-    {
-        return $this->hasMany('App\Models\Calendar', 'section_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function journals()
-    {
-        return $this->hasMany('App\Models\Journal', 'section_id', 'id');
-    }
-
-    /**
      * @return string
      */
     public function getParentIdName()
@@ -171,41 +91,10 @@ class Section extends MiscModel
      */
     public function detach()
     {
-        foreach ($this->characters as $child) {
-            $child->section_id = null;
+        foreach ($this->allChildren as $child) {
+            $child->entity->section_id = null;
             $child->save();
         }
-
-        foreach ($this->locations as $child) {
-            $child->section_id = null;
-            $child->save();
-        }
-
-        foreach ($this->organisations as $child) {
-            $child->section_id = null;
-            $child->save();
-        }
-
-        foreach ($this->families as $child) {
-            $child->section_id = null;
-            $child->save();
-        }
-
-        foreach ($this->items as $child) {
-            $child->section_id = null;
-            $child->save();
-        }
-
-        foreach ($this->notes as $child) {
-            $child->section_id = null;
-            $child->save();
-        }
-
-        foreach ($this->sections as $child) {
-            $child->section_id = null;
-            $child->save();
-        }
-
         return parent::detach();
     }
 
@@ -215,37 +104,10 @@ class Section extends MiscModel
      */
     public function allChildren()
     {
-        $all = [];
-        foreach ($this->characters as $model) {
-            $all[] = $model;
+        $sectionIds = [$this->id];
+        foreach ($this->descendants as $desc) {
+            $sectionIds[] = $desc->id;
         }
-        foreach ($this->locations as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->notes as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->families as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->organisations as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->items as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->events as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->quests as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->calendars as $model) {
-            $all[] = $model;
-        }
-        foreach ($this->journals as $model) {
-            $all[] = $model;
-        }
-        return $all;
+        return Entity::whereIn('section_id', $sectionIds)->whereNotIn('type', ['section']);
     }
 }
