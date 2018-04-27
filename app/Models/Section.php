@@ -91,9 +91,11 @@ class Section extends MiscModel
      */
     public function detach()
     {
-        foreach ($this->allChildren() as $child) {
-            $child->child->section_id = null;
-            $child->child->save();
+        foreach ($this->allChildren(true)->get() as $child) {
+            if (!empty($child->child)) {
+                $child->child->section_id = null;
+                $child->child->save();
+            }
         }
         return parent::detach();
     }
@@ -102,11 +104,14 @@ class Section extends MiscModel
      * Get all the children
      * @return array
      */
-    public function allChildren()
+    public function allChildren($withSections = false)
     {
         $sectionIds = [$this->id];
         foreach ($this->descendants as $desc) {
             $sectionIds[] = $desc->id;
+        }
+        if ($withSections) {
+            return Entity::whereIn('section_id', $sectionIds);
         }
         return Entity::whereIn('section_id', $sectionIds)->whereNotIn('type', ['section']);
     }

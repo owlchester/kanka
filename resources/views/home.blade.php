@@ -61,7 +61,7 @@
     @if (!empty($notes))
         <div class="row">
             @foreach ($notes as $note)
-                <div class="col-md-4">
+                <div class="col-md-{{ (12 / (count($notes))) }}">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4><a href="{{ route('notes.show', $note->id) }}">{{ $note->name }}</a></h4>
