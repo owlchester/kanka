@@ -80,7 +80,7 @@
             @endif
             @if ($campaign->enabled('sections'))
                 <li class="{{ $sidebar->active('sections') }}">
-                    <a href="{{ route('sections.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.sections') }}</span></a>
+                    <a href="{{ route('sections.index') }}"><i class="fa fa-folder-open"></i> <span>{{ trans('sidebar.sections') }}</span></a>
                 </li>
             @endif
             @can('create', 'App\Models\AttributeTemplate')
