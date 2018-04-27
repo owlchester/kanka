@@ -18,6 +18,7 @@ class Note extends MiscModel
         'type',
         'is_private',
         'section_id',
+        'is_pinned',
     ];
 
     /**
@@ -50,4 +51,14 @@ class Note extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+
+    /**
+     * Prepare the notes for the dashboard
+     * @param $query
+     * @return mixed
+     */
+    public function scopeDashboard($query)
+    {
+        return $query->where(['is_pinned' => 1])->orderBy('name', 'ASC')->take(3);
+    }
 }

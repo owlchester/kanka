@@ -20,6 +20,12 @@
                                 <br class="clear" />
                             </li>
                         @endif
+                        @if (!empty($model->is_pinned))
+                            <li class="list-group-item">
+                                <b>{{ trans('notes.fields.is_pinned') }}</b> <span class="pull-right"><i class="fa fa-check-circle" title="{{ trans('notes.hints.is_pinned') }}"></i></span>
+                                <br class="clear" />
+                            </li>
+                        @endif
                         @include('cruds.layouts.section')
                     </ul>
                     @include('.cruds._actions')

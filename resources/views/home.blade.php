@@ -58,6 +58,26 @@
         </div>
     @endforeach
 
+    @if (!empty($notes))
+        <div class="row">
+            @foreach ($notes as $note)
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4><a href="{{ route('notes.show', $note->id) }}">{{ $note->name }}</a></h4>
+                        </div>
+                        <div class="panel-body">
+                            {!! $note->description !!}
+                        </div>
+                        <div class="panel-footer">
+                            <a href="{{ route('notes.show', $note->id) }}">{{ trans('crud.view') }}</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
+
     <div class="row">
         @if ($campaign->enabled('characters') && $settings->has('characters'))
             @include('dashboard._recent', ['title' => trans('entities.characters'), 'route' => 'characters', 'models' => $characters])

@@ -19,6 +19,7 @@ return [
         'image'         => 'Image',
         'name'          => 'Name',
         'type'          => 'Type',
+        'is_pinned'     => 'Pinned',
     ],
     'index'         => [
         'add'           => 'New Note',
@@ -29,6 +30,9 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the note',
         'type'  => 'Religion, Race, Political system',
+    ],
+    'hints' => [
+        'is_pinned' => 'Up to 3 notes can be pinned to be displayed on the dashboard.',
     ],
     'show'          => [
         'description'   => 'A detailed view of a note',

@@ -8,6 +8,7 @@ use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
+use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Release;
 use Illuminate\Http\Request;
@@ -59,6 +60,7 @@ class HomeController extends Controller
             return redirect()->route('campaigns.index');
         }
 
+        $notes = Note::acl(Auth::user())->dashboard()->get();
         $settings = Auth::user()->dashboardSetting;
         $campaign = Campaign::findOrFail(Session::get('campaign_id'));
         $characters = Character::acl(Auth::user())->recent()->take($settings->recent_count)->get();
@@ -78,6 +80,7 @@ class HomeController extends Controller
 
         return view('home', compact(
             'campaign',
+            'notes',
             'characters',
             'families',
             'locations',

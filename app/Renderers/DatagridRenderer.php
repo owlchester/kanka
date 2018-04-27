@@ -250,7 +250,12 @@ class DatagridRenderer
                 $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
                 $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltip() . '">' . $model->{$column} . '</a>';
             } else {
-                $content = $model->{$column};
+                // Handle boolean values (has, is)
+                if ($this->isBoolean($column)) {
+                    $content = $model->{$column} ? '<i class="fa fa-check-circle"></i>' : '';
+                } else {
+                    $content = $model->{$column};
+                }
                 $class = 'visible-md visible-lg';
             }
             return '<td' . (!empty($class) ? ' class="' . $class . '"' : null) . '>' . $content . '</td>';
@@ -351,5 +356,15 @@ class DatagridRenderer
         }
 
         return '<td class="text-right">' . $content . '</td>';
+    }
+
+    /**
+     * Determin if a column is a boolean column
+     * @param $column
+     * @return bool
+     */
+    private function isBoolean($column)
+    {
+        return substr($column, 0, 3) == 'is_' || substr($column, 0, 4) == 'has_';
     }
 }

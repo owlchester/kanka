@@ -13,7 +13,8 @@
         'type',
         [
             'type' => 'is_private',
-        ]
+        ],
+        'is_pinned',
     ],
     // Data
     $models,
