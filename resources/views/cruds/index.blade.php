@@ -42,7 +42,7 @@
                 </div>
                 <div class="box-footer">
 
-                    @can('delete', $model))
+                    @can('delete', $model)
                     {!! Form::submit(trans('crud.remove'), ['class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
                     @endcan
 

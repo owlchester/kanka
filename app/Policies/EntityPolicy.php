@@ -6,6 +6,7 @@ use App\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -74,7 +75,7 @@ class EntityPolicy
      */
     public function delete(User $user, $entity)
     {
-        return $user->campaign->id == $entity->campaign_id && $this->checkPermission('delete', $user, $entity);
+        return (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('delete', $user, $entity);
     }
 
     /**
