@@ -12,11 +12,41 @@ use Illuminate\Support\Facades\Session;
 
 class CharacterObserver extends MiscObserver
 {
-    public function saving(MiscModel $model)
+    /**
+     * After a character model has been saved to the db
+     * @param MiscModel $model
+     */
+    public function saved(MiscModel $model)
     {
-        parent::saving($model);
+        parent::saved($model);
 
         // Handle character traits
+        if (request()->has('personality_name')) {
+            $this->saveTraits($model);
+        }
+    }
+
+    /**
+     * @param Character $character
+     */
+    public function deleting(MiscModel $character)
+    {
+        parent::deleting($character);
+
+        foreach ($character->items as $item) {
+            $item->character_id = null;
+            $item->save();
+        }
+
+        // Delete members
+        $character->organisations()->delete();
+    }
+
+    /**
+     * @param MiscModel $model
+     */
+    protected function saveTraits(MiscModel $model)
+    {
         $traits = [];
         $existing = [];
         foreach ($model->characterTraits()->personality()->get() as $pers) {
@@ -48,20 +78,5 @@ class CharacterObserver extends MiscObserver
         foreach ($existing as $id => $trait) {
             $trait->delete();
         }
-    }
-    /**
-     * @param Character $character
-     */
-    public function deleting(MiscModel $character)
-    {
-        parent::deleting($character);
-
-        foreach ($character->items as $item) {
-            $item->character_id = null;
-            $item->save();
-        }
-
-        // Delete members
-        $character->organisations()->delete();
     }
 }

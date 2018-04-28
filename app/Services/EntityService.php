@@ -99,11 +99,12 @@ class EntityService
      */
     public function move(Entity $entity, $request)
     {
-        if (!empty($request['campaign'])) {
-            return $this->moveCampaign($entity, $request['campaign']);
-        } else {
+        if (!empty($request['target'])) {
             return $this->moveType($entity, $request['target']);
+        } elseif (!empty($request['campaign'])) {
+            return $this->moveCampaign($entity, $request['campaign']);
         }
+        return false;
     }
 
     /**
@@ -115,34 +116,53 @@ class EntityService
      */
     protected function moveCampaign(Entity $entity, $campaignId)
     {
+        // First we make sure we have access to the new campaign.
         $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
         if (empty($campaign)) {
             throw new TranslatableException('crud.move.errors.unknown_campaign');
         }
 
-        // New campaign different
+        // Check that the new campaign is different than the current one.
         if ($campaign->id == $entity->campaign_id) {
             throw new TranslatableException('crud.move.errors.same_campaign');
         }
 
-        // Can I create an entity of that type on the new campaign?
+        // Can the user create an entity of that type on the new campaign?
         if (!Auth::user()->can('create', [get_class($entity->child), null, $campaign])) {
             throw new TranslatableException('crud.move.errors.permission');
         }
 
-        // Made it so far, we can move the entity's campaign_id. We just need to remove all the relations to it
+        // Made it so far, we can move the entity's campaign_id. We first need to remove all the relations and, since
+        // they won't make sense on the new campaign.
         $entity->relationships()->delete();
-        $entity->child->permissions()->delete();
-        $entity->child->detach();
+        $entity->targetRelationships()->delete();
 
-        // Temp update session before saving
+        // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
+        // won't make sense on the new campaign either.
+        /* @var MiscModel $child */
+        $child = $entity->child;
+        $child->permissions()->delete();
+
+        // Detach is a custom function on a child to remove itself from where it is parent to other entities.
+        $child->detach();
+
+        // Save and keep the current campaign before updating the entity
         $currentCampaign = Auth::user()->campaign;
-
         Session::put('campaign_id', $campaign->id);
 
-        $entity->child->campaign_id = $campaign->id;
-        $entity->child->save();
+        // Update Entity first, as there are no hooks on the Entity model.
+        $entity->campaign_id = $campaign->id;
+        $entity->save();
 
+        // Finally, we can change and save the child. Should be all good. But tell the app not to create the entity to
+        // avoid silly duplicates and new entities.
+        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+
+        // Update child second. We do this otherwise we'll have an old entity and a new one
+        $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
+        $child->save();
+
+        // Switch back to the original campaign and cross your fingers that everything worked!
         Session::put('campaign_id', $currentCampaign->id);
 
         return $entity;

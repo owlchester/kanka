@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
 use DateTime;
 
+/**
+ * Class MiscModel
+ * @package App\Models
+ *
+ * @property integer $campaign_id
+ * @property string $name
+ * @property boolean $is_private
+ * @property integer $section_id
+ */
 abstract class MiscModel extends Model
 {
     /**
@@ -56,7 +65,7 @@ abstract class MiscModel extends Model
      */
     public function tooltip($limit = 250)
     {
-        $pureHistory = trim(strip_tags($this->{$this->tooltipField}));
+        $pureHistory = htmlspecialchars(trim(strip_tags($this->{$this->tooltipField})));
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return substr($pureHistory, 0, $limit) . '...';
