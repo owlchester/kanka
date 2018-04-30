@@ -50,7 +50,7 @@
             @endif
             @if ($campaign->enabled('items'))
             <li class="{{ $sidebar->active('items') }}">
-                <a href="{{ route('items.index') }}"><i class="fa fa-wrench"></i> <span>{{ trans('sidebar.items') }}</span></a>
+                <a href="{{ route('items.index') }}"><i class="fa fa-shield"></i> <span>{{ trans('sidebar.items') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('notes'))
