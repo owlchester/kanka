@@ -16,13 +16,10 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
-        'image'         => 'Image',
         'section'      => 'Category',
         'sections'     => 'Subcategories',
         'children'      => 'Children',
-        'map'           => 'Map',
         'name'          => 'Name',
-        'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'index'         => [
