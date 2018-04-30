@@ -45,7 +45,7 @@
                     @endif
 
                     <div class="pull-right">
-                        {{ $models->appends('order', request()->get('order'))->links() }}
+                        {{ $models->appends('parent_id', request()->get('parent_id'))->links() }}
                     </div>
                 </div>
                 {!! Form::close() !!}

@@ -6,7 +6,7 @@
     @endcan
     <div class="map-zoom">
         <button id="map-zoom-in" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa fa-plus"></i></button>
-        <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa fa-minus"></i></button>
+        <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa fa-minus"></i></button>
     </div>
     <div class="map">
         <img src="/storage/{{ $model->map }}" alt="{{ $model->name }}" id="location-map-image" />
