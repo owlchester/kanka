@@ -89,6 +89,7 @@ return [
             'name'      => 'Usuário',
             'role'      => 'Cargo',
         ],
+        'help'      => 'Não há limite para o número de membros que uma campanha pode ter, e como Administrador da campanha, você pode remover membros que não estão mais ativos nela.',
         'invite'    => [
             'description'   => 'Você pode convidar amigos para se juntar a sua campanha fornecendo o endereço de email deles. Assim que eles aceitarem o convite, serão adicionados como um "Espectador". Você também pode cancelar o convite a qualquer momento.',
             'title'         => 'Convidar',
@@ -125,9 +126,21 @@ return [
             'permissions'   => 'Permissões',
             'users'         => 'Usuários',
         ],
+        'helper'        => [
+            '1' => 'Uma campanha pode ter quantos cargos quiser. O cargo de "Administrador" tem automaticamente acesso a tudo de uma campanha, mas cada outro cargo pode ter permissões específicas em cada tipo de entidade (personagem, local, etc).',
+            '2' => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
+            '3' => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
+        ],
         'members'       => 'Membros',
         'permissions'   => [
-            'hint'  => 'Esse cargo tem automaticamente acesso a tudo.',
+            'actions'   => [
+                'add'           => 'Criar',
+                'delete'        => 'Deletar',
+                'edit'          => 'Editar',
+                'permission'    => 'Gerenciar Permissões',
+                'read'          => 'Ver',
+            ],
+            'hint'      => 'Esse cargo tem automaticamente acesso a tudo.',
         ],
         'placeholders'  => [
             'name'  => 'Nome do cargo',

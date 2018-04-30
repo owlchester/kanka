@@ -21,15 +21,17 @@ return [
         ],
     ],
     'create'        => [
-        'success'   => 'Missão \':name\' criada.',
-        'title'     => 'Criar nova missão',
+        'description'   => 'Criar uma nova missão',
+        'success'       => 'Missão \':name\' criada.',
+        'title'         => 'Criar nova missão',
     ],
     'destroy'       => [
         'success'   => 'Missão \':name\' removida.',
     ],
     'edit'          => [
-        'success'   => 'Missão \':name\' atualizada.',
-        'title'     => 'Editar Missão :name',
+        'description'   => 'Editar uma missão',
+        'success'       => 'Missão \':name\' atualizada.',
+        'title'         => 'Editar Missão :name',
     ],
     'fields'        => [
         'characters'    => 'Personagem',
@@ -55,8 +57,9 @@ return [
             'success'   => 'Local da Missão para :name removido.',
         ],
         'edit'      => [
-            'success'   => 'Local da Missão para :name atualizado.',
-            'title'     => 'Atualizar local para :name',
+            'description'   => 'Atualize o local de uma missão',
+            'success'       => 'Local da Missão para :name atualizado.',
+            'title'         => 'Atualizar local para :name',
         ],
         'fields'    => [
             'description'   => 'Descrição',

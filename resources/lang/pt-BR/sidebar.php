@@ -3,6 +3,7 @@
 return [
     'admin'                 => 'Administrador',
     'attribute_templates'   => 'Modelos de Atributo',
+    'calendars'             => 'Calendários',
     'campaigns'             => 'Campanhas',
     'characters'            => 'Personagens',
     'dashboard'             => 'Dashboard',

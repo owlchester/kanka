@@ -68,6 +68,8 @@ return [
         'character'     => 'Personagem',
         'description'   => 'Descrição',
         'entity'        => 'Entidade',
+        'entry'         => 'Entrada',
+        'event'         => 'Evento',
         'history'       => 'História',
         'image'         => 'Imagem',
         'is_private'    => 'Privado',
@@ -84,6 +86,7 @@ return [
     ],
     'is_private'    => 'Essa entidade é privada e não visível para usuários espectadores.',
     'linking_help'  => 'Como eu posso vincular a outras entidades?',
+    'manage'        => 'Gerenciar',
     'move'          => [
         'description'   => 'Mover a entidade para outro lugar',
         'fields'        => [
@@ -128,6 +131,8 @@ return [
     ],
     'placeholders'  => [
         'character' => 'Escolha um personagem',
+        'event'     => 'Escolha um evento',
+        'family'    => 'Escolha uma família',
         'image_url' => 'Você também pode dar upload de uma imagem por uma URL',
         'location'  => 'Escolha um local',
     ],

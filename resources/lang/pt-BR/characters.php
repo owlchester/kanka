@@ -113,6 +113,7 @@ return [
             'attributes'    => 'Atributos',
             'free'          => 'Texto Livre',
             'history'       => 'História',
+            'items'         => 'Itens',
             'organisations' => 'Organizações',
             'personality'   => 'Personalidade',
             'relations'     => 'Relações',

@@ -40,4 +40,7 @@ return [
         ],
         'title'         => 'Evento :name',
     ],
+    'tabs'          => [
+        'calendars' => 'Registros no Calendário',
+    ],
 ];

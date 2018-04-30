@@ -14,6 +14,7 @@ return [
         'title'     => 'Editar Jornal :name',
     ],
     'fields'        => [
+        'author'    => 'Autor',
         'date'      => 'Data',
         'history'   => 'História',
         'image'     => 'Imagem',
@@ -28,9 +29,10 @@ return [
         'title'         => 'Jornais',
     ],
     'placeholders'  => [
-        'date'  => 'Data do jornal',
-        'name'  => 'Nome do jornal',
-        'type'  => 'Sessão, One Shot, Rascunho',
+        'author'    => 'Quem escreveu o jornal',
+        'date'      => 'Data do jornal',
+        'name'      => 'Nome do jornal',
+        'type'      => 'Sessão, One Shot, Rascunho',
     ],
     'show'          => [
         'description'   => 'Uma visão detalhada de um jornal',
