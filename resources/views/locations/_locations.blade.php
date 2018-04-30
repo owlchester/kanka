@@ -19,7 +19,7 @@
             </td>
             <td>
                 @if ($model->parent)
-                    <a href="{{ route('locations.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltip() }}">{{ $model->name }}</a>
+                    <a href="{{ route('locations.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltip() }}">{{ $model->parent->name }}</a>
                 @endif
             </td>
         </tr>
