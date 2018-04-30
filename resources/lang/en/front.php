@@ -8,10 +8,10 @@ return [
     'contact'       => [
         'title' => 'We :icon new friends!',
     ],
-    'cookie' => [
-        'message' => 'This website uses cookies to ensure you get the best experience on our website.',
-        'dismiss' => 'Got it!',
-        'link' => 'Learn more',
+    'cookie'        => [
+        'dismiss'   => 'Got it!',
+        'link'      => 'Learn more',
+        'message'   => 'This website uses cookies to ensure you get the best experience on our website.',
     ],
     'faq'           => [
         'description'   => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
@@ -69,15 +69,19 @@ return [
             'fr'    => 'Français',
         ],
         'login'         => 'Login',
+        'privacy'       => 'Privacy Policy',
         'register'      => 'Register',
         'releases'      => 'Releases',
         'title'         => 'Menu',
         'tos'           => 'Terms of Service',
-        'privacy'           => 'Privacy Policy',
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
         'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
+    ],
+    'privacy'       => [
+        'description'   => 'Please read our privacy policy.',
+        'title'         => 'Privacy Policy',
     ],
     'release'       => [
         'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',
@@ -89,9 +93,5 @@ return [
     ],
     'team'          => [
         'coffee'    => 'By me coffee!',
-    ],
-    'privacy' =>  [
-        'title' => 'Privacy Policy',
-        'description' => 'Please read our privacy policy.',
     ],
 ];

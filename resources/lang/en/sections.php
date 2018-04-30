@@ -16,10 +16,10 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
-        'section'      => 'Category',
-        'sections'     => 'Subcategories',
         'children'      => 'Children',
         'name'          => 'Name',
+        'section'       => 'Category',
+        'sections'      => 'Subcategories',
         'type'          => 'Type',
     ],
     'index'         => [
@@ -32,16 +32,16 @@ return [
         'title'         => 'Categories',
     ],
     'placeholders'  => [
-        'section'  => 'Choose a parent category',
         'name'      => 'Name of the category',
+        'section'   => 'Choose a parent category',
         'type'      => 'Lore, Wars, History, Religion, Vexology',
     ],
     'show'          => [
         'description'   => 'A detailed view of a category',
         'tabs'          => [
-            'children'    => 'Children',
+            'children'      => 'Children',
             'information'   => 'Information',
-            'sections'     => 'Categories',
+            'sections'      => 'Categories',
         ],
         'title'         => 'Category :name',
     ],

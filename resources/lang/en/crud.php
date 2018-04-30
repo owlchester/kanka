@@ -65,7 +65,7 @@ return [
     ],
     'edit'          => 'Edit',
     'errors'        => [
-        'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.'
+        'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.',
     ],
     'fields'        => [
         'character'     => 'Character',
@@ -76,11 +76,11 @@ return [
         'family'        => 'Family',
         'history'       => 'History',
         'image'         => 'Image',
-        'organisation'  => 'Organisation',
         'is_private'    => 'Private',
         'location'      => 'Location',
-        'section'       => 'Category',
         'name'          => 'Name',
+        'organisation'  => 'Organisation',
+        'section'       => 'Category',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
@@ -96,21 +96,21 @@ return [
     'manage'        => 'Manage',
     'move'          => [
         'description'   => 'Move this entity to another place',
+        'errors'        => [
+            'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
+            'same_campaign'     => 'You need to select another campaign to move the entity to.',
+            'unknown_campaign'  => 'Unknown campaign.',
+        ],
         'fields'        => [
+            'campaign'  => 'New campaign',
             'target'    => 'New type',
-            'campaign' => 'New campaign',
         ],
         'hints'         => [
+            'campaign'  => 'You can also try to move this entity to another campaign.',
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
-            'campaign' => 'You can also try to move this entity to another campaign.',
         ],
         'success'       => 'Entity \':name\' moved.',
         'title'         => 'Move :name',
-        'errors' => [
-            'permission' => 'You aren\'t allowed to create entities of that type in the target campaign.',
-            'same_campaign' => 'You need to select another campaign to move the entity to.',
-            'unknown_campaign' => 'Unknown campaign.'
-        ]
     ],
     'new_entity'    => [
         'error' => 'Please review your values.',
@@ -119,9 +119,9 @@ return [
         ],
         'title' => 'New entity',
     ],
-    'notes'    => [
+    'notes'         => [
         'actions'       => [
-            'add'               => 'Add a note',
+            'add'   => 'Add a note',
         ],
         'create'        => [
             'description'   => 'Create a new note',
@@ -137,15 +137,15 @@ return [
             'title'         => 'Update note for :name',
         ],
         'fields'        => [
-            'name' => 'Name',
-            'entry'  => 'Entry',
-            'creator' => 'Creator',
+            'creator'   => 'Creator',
+            'entry'     => 'Entry',
+            'name'      => 'Name',
         ],
         'index'         => [
-            'title'     => 'Notes for :name',
+            'title' => 'Notes for :name',
         ],
         'placeholders'  => [
-            'name' => 'Name of the note, observation or remark.',
+            'name'  => 'Name of the note, observation or remark.',
         ],
     ],
     'or_cancel'     => 'or <a href=":url">cancel</a>',
@@ -173,13 +173,13 @@ return [
         'title'     => 'Permissions',
     ],
     'placeholders'  => [
-        'character' => 'Choose a character',
-        'event'     => 'Choose an event',
-        'family'    => 'Choose a family',
-        'image_url' => 'You can upload an image from a URL instead',
-        'location'  => 'Choose a location',
+        'character'     => 'Choose a character',
+        'event'         => 'Choose an event',
+        'family'        => 'Choose a family',
+        'image_url'     => 'You can upload an image from a URL instead',
+        'location'      => 'Choose a location',
         'organisation'  => 'Choose an organisation',
-        'section'  => 'Choose a category',
+        'section'       => 'Choose a category',
     ],
     'relations'     => [
         'actions'   => [
@@ -198,9 +198,9 @@ return [
     'select'        => 'Select',
     'tabs'          => [
         'attributes'    => 'Attributes',
+        'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
-        'notes'         => 'Notes',
     ],
     'update'        => 'Update',
     'view'          => 'View',

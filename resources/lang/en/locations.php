@@ -36,8 +36,8 @@ return [
     'map'           => [
         'actions'   => [
             'points'    => 'Edit Points',
-            'zoom_in' => 'Zoom In',
-            'zoom_out' => 'Zoom Out',
+            'zoom_in'   => 'Zoom In',
+            'zoom_out'  => 'Zoom Out',
         ],
         'helper'    => 'Click on the map to add a link to a location, or click on an existing point to remove it.',
         'modal'     => [

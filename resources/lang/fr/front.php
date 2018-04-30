@@ -8,6 +8,11 @@ return [
     'contact'       => [
         'title' => 'Nous :icon de nouveaux amis!',
     ],
+    'cookie'        => [
+        'dismiss'   => 'Compris!',
+        'link'      => 'En savoir plus',
+        'message'   => 'Kanka utilise des cookies pour assurer une bonne expérience sur notre site web.',
+    ],
     'faq'           => [
         'description'   => 'Nous avons couvert les questions les plus fréquentes et avons répondu de manière aussi clair que possible.',
         'title'         => 'FAQ',
@@ -64,6 +69,7 @@ return [
             'fr'    => 'Français',
         ],
         'login'         => 'Login',
+        'privacy'       => 'Politique de confidentialité',
         'register'      => 'Inscription',
         'releases'      => 'Mises à jours',
         'title'         => 'Menu',
@@ -72,6 +78,10 @@ return [
     'meta'          => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
         'title'         => 'Kanka - Getionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
+    ],
+    'privacy'       => [
+        'description'   => 'Veuillez lire notre politique de confidentialité.',
+        'title'         => 'Politique de confidentialité',
     ],
     'release'       => [
         'description'   => 'Kanka ne cesse de croître et de s\'améliorer, et nous voulons que le monde sache toutes les choses impressionnantes que nous ajoutons à l\'application.',

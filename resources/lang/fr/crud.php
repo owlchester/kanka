@@ -64,16 +64,23 @@ return [
         'success'   => ':count élément supprimé.|:count éléments supprimés.',
     ],
     'edit'          => 'Modifier',
+    'errors'        => [
+        'node_must_not_be_a_descendant' => 'Node invalide (catégorie, lieu parent): l\'entité serait un descendant de lui-même.',
+    ],
     'fields'        => [
         'character'     => 'Personnage',
         'description'   => 'Description',
         'entity'        => 'Entité',
         'entry'         => 'Entrée',
         'event'         => 'Evénement',
+        'family'        => 'Famille',
         'history'       => 'Histoire',
         'image'         => 'Image',
         'is_private'    => 'Privé',
         'location'      => 'Lieu',
+        'name'          => 'Nom',
+        'organisation'  => 'Organisation',
+        'section'       => 'Catégorie',
     ],
     'filter'        => 'Filtre',
     'filters'       => 'Filtres',
@@ -89,10 +96,17 @@ return [
     'manage'        => 'Gérer',
     'move'          => [
         'description'   => 'Déplacer cet élément à un nouveau endroit',
+        'errors'        => [
+            'permission'        => 'Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.',
+            'same_campaign'     => 'Une autre campagne doit être sélectionnée pour y déplacer l\'entité.',
+            'unknown_campaign'  => 'Campagne inconnue.',
+        ],
         'fields'        => [
+            'campaign'  => 'Nouvelle campagne',
             'target'    => 'Nouveau type',
         ],
         'hints'         => [
+            'campaign'  => 'Il est aussi possible de déplacer cette entité vers une autre campagne.',
             'target'    => 'Attention! Certaines informations peuvent être perdues lors du déplacement d\'un élément.',
         ],
         'success'       => 'Elément :name déplacé.',
@@ -104,6 +118,35 @@ return [
             'name'  => 'Nom',
         ],
         'title' => 'Nouvel élément',
+    ],
+    'notes'         => [
+        'actions'       => [
+            'add'   => 'Ajouter une note',
+        ],
+        'create'        => [
+            'description'   => 'Créer une nouvelle note',
+            'success'       => 'Note \':name\' ajoutée à :entity.',
+            'title'         => 'Nouvelle Note pour :name',
+        ],
+        'destroy'       => [
+            'success'   => 'La note \':name\' a été retirée.',
+        ],
+        'edit'          => [
+            'description'   => 'Modifier une note existante',
+            'success'       => 'La note \':name\' pour :entity a été modifiée.',
+            'title'         => 'Modifier la note pour :name',
+        ],
+        'fields'        => [
+            'creator'   => 'Créé par',
+            'entry'     => 'Entrée',
+            'name'      => 'Nom',
+        ],
+        'index'         => [
+            'title' => 'Notes pour :name',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nom de la note, observation ou remarque',
+        ],
     ],
     'or_cancel'     => 'ou <a href=":url">annuler</a>',
     'panels'        => [
@@ -130,11 +173,13 @@ return [
         'title'     => 'Permissions',
     ],
     'placeholders'  => [
-        'character' => 'Choix du personnage',
-        'event'     => 'Choix de l\'événement',
-        'family'     => 'Choix de la famille',
-        'image_url' => 'Ou depuis une URL',
-        'location'  => 'Choix du lieu',
+        'character'     => 'Choix du personnage',
+        'event'         => 'Choix de l\'événement',
+        'family'        => 'Choix de la famille',
+        'image_url'     => 'Ou depuis une URL',
+        'location'      => 'Choix du lieu',
+        'organisation'  => 'Choix d\'une organisation',
+        'section'       => 'Choix d\'une catégorie',
     ],
     'relations'     => [
         'actions'   => [
@@ -153,6 +198,7 @@ return [
     'select'        => 'Sélection',
     'tabs'          => [
         'attributes'    => 'Attributs',
+        'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
     ],

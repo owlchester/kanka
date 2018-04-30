@@ -36,6 +36,8 @@ return [
     'map'           => [
         'actions'   => [
             'points'    => 'Modifier les points',
+            'zoom_in'   => 'Agrandir',
+            'zoom_out'  => 'Dézoomer',
         ],
         'helper'    => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
         'modal'     => [
@@ -56,12 +58,10 @@ return [
     'show'          => [
         'description'   => 'Détail d\'un lieu',
         'tabs'          => [
-            'attributes'    => 'Attributs',
             'characters'    => 'Personnages',
             'information'   => 'Information',
             'locations'     => 'Lieux',
             'map'           => 'Carte',
-            'relations'     => 'Relations',
         ],
         'title'         => 'Lieu :name',
     ],

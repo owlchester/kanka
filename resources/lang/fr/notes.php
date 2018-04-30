@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Ajouter une nouvelle note',
         'success'       => 'Note \':name\' créée.',
-        'title'         => 'Ajouter une note',
+        'title'         => 'Nouvelle Note',
     ],
     'destroy'       => [
         'success'   => 'Note \':name\' supprimée.',
@@ -17,8 +17,12 @@ return [
     'fields'        => [
         'description'   => 'Description',
         'image'         => 'Image',
+        'is_pinned'     => 'Épinglé',
         'name'          => 'Nom',
         'type'          => 'Type',
+    ],
+    'hints'         => [
+        'is_pinned' => 'Jusqu\'à 3 notes peuvent être affichées sur le tableau de bord en les épinglant.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Note',
