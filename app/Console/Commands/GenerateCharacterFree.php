@@ -45,6 +45,13 @@ class GenerateCharacterFree extends Command
         $notes = 0;
 
         foreach (Character::whereNotNull('free')->get() as $character) {
+            if ($character->free == 'Want to track something else? We\'ve got you covered with this free text section!') {
+                continue;
+            }
+            if (empty($character->entity)) {
+                $this->info("skipping character " . $character->id);
+                continue;
+            }
             // Create a new note
             $note = new EntityNote();
             $note->entity_id = $character->entity->id;
