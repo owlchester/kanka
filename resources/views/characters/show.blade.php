@@ -140,44 +140,52 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#history">
-                            {{ trans('characters.show.tabs.history') }}
+                        <a href="#history" title="{{ trans('characters.show.tabs.history') }}" data-toggle="tooltip">
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.history') }}</span>
                         </a>
                     </li>
                     @if (Auth::user()->can('personality', $model))
                         <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}">
-                            <a href="#personality">
-                                {{ trans('characters.show.tabs.personality') }}
+                            <a href="#personality" title="{{ trans('characters.show.tabs.personality') }}" data-toggle="tooltip">
+                                <i class="fa fa-heart"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.personality') }}</span>
                             </a>
                         </li>
                     @endif
                     @can('relation', $model)
                     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
+                        <a href="#relations" title="{{ trans('crud.tabs.relations') }}" data-toggle="tooltip">
+                            <i class="fa fa-users"></i> <span class="hidden-sm">{{ trans('crud.tabs.relations') }}</span>
+                        </a>
                     </li>
                     @endcan
                     @if ($campaign->enabled('organisations'))
                         @can('organisation', $model)
                     <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}">
-                        <a href="#organisation">
-                            {{ trans('characters.show.tabs.organisations') }}
+                        <a href="#organisation" title="{{ trans('characters.show.tabs.organisations') }}" data-toggle="tooltip">
+                            <i class="fa fa-user-secret"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.organisations') }}</span>
                         </a>
                     </li>
                         @endcan
                     @endif
                     @if ($campaign->enabled('items'))
-                        <li class="{{ (request()->get('tab') == 'items' ? ' active' : '') }}"><a href="#items">
-                                {{ trans('characters.show.tabs.items') }}
-                            </a></li>
+                        <li class="{{ (request()->get('tab') == 'items' ? ' active' : '') }}">
+                            <a href="#items" title="{{ trans('characters.show.tabs.items') }}" data-toggle="tooltip">
+                                <i class="fa fa-shield"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.items') }}</span>
+                            </a>
+                        </li>
                     @endif
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">
-                        <a href="#notes">{{ trans('crud.tabs.notes') }}</a>
+                        <a href="#notes" title="{{ trans('crud.tabs.notes') }}" data-toggle="tooltip">
+                            <i class="fa fa-file"></i> <span class="hidden-sm">{{ trans('crud.tabs.notes') }}</span>
+                        </a>
                     </li>
                     @endcan
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
+                        <a href="#attribute" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
+                            <i class="fa fa-th-list"></i> <span class="hidden-sm">{{ trans('crud.tabs.attributes') }}</span>
+                        </a>
                     </li>
                     @endcan
                     @can('permission', $model)
