@@ -76,11 +76,9 @@ function initMapAdmin() {
  * Register click on the map zoom controls
  */
 function initMapControls() {
-    mapImageOriginalWidth = mapImage.width();
     mapZoomIn.on('click', function(e) {
         e.preventDefault();
         mapZoom(25);
-
     });
     mapZoomOut.on('click', function(e) {
         e.preventDefault();
@@ -94,6 +92,11 @@ function initMapControls() {
  * @returns {boolean}
  */
 function mapZoom(change) {
+    // Don't have the size yet? Calculate it. We don't calc on page load because if it's on a hidden tab,
+    // it evaluates to 0
+    if (!mapImageOriginalWidth) {
+        mapImageOriginalWidth = mapImage.width();
+    }
     // Min/Max
     var newZoom = mapZoomValue + change;
     if (newZoom > 150 || newZoom < 50) {
