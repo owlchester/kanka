@@ -63,8 +63,8 @@
                     </li>
                     @endcan
                     @can('permission', $model)
-                        <li class="{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}">
-                            <a href="#permissions">{{ trans('crud.tabs.permissions') }}</a>
+                        <li class="pull-right{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
+                            <a href="#permissions"><i class="fa fa-cog"></i></a>
                         </li>
                     @endcan
                 </ul>

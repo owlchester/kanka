@@ -1,6 +1,7 @@
 @inject('permissionService', 'App\Services\PermissionService')
 <?php $permissions = $permissionService->entityPermissions($model->entity); ?>
 
+<h4>{{ trans('crud.tabs.permissions') }}</h4>
 <p class="text-muted">{{ trans('crud.permissions.helper') }}</p>
 
 {!! Form::open(['route' => ['entities.permissions', $model->entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
