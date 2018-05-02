@@ -1,12 +1,6 @@
-@can('member', $model)
-<p class="text-right">
-    <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary">
-        {{ trans('organisations.members.actions.add') }}
-    </a>
-</p>
-@endcan
+<p>{{ trans('organisations.members.hint') }}</p>
 
-<table id="characters" class="table table-hover">
+<table id="organisation-characters" class="table table-hover">
     <tbody><tr>
         <th class="avatar"><br></th>
         <th>{{ trans('characters.fields.name') }}</th>
@@ -17,7 +11,13 @@
         <th>{{ trans('characters.fields.age') }}</th>
         <th>{{ trans('characters.fields.race') }}</th>
         <th>{{ trans('characters.fields.sex') }}</th>
-        <th><br /></th>
+        <th class="pull-right">
+            @can('member', $model)
+                <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm">
+                    <i class="fa fa-plus"></i> {{ trans('organisations.members.actions.add') }}
+                </a>
+            @endcan
+        </th>
     </tr>
     <?php $r = $model->members()->acl(auth()->user())->has('character')->with('character', 'character.location')->paginate();?>
     @foreach ($r->sortBy('character.name') as $relation)

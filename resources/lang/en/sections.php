@@ -22,6 +22,10 @@ return [
         'sections'      => 'Subcategories',
         'type'          => 'Type',
     ],
+    'hints' => [
+        'section' => 'Displayed below are all the categories that are directly under this category.',
+        'children' => 'This list contains all the entities directly in this category and in all nested categories.',
+    ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Exploration View',

@@ -114,8 +114,11 @@ Route::group([
         'sections' => 'SectionController',
         'sections.relations' => 'SectionRelationController',
         'campaigns.campaign_invites' => 'CampaignInviteController',
+
+        // Entities
         'entities.attributes' => 'AttributeController',
         'entities.entity_notes' => 'EntityNoteController',
+        'entities.entity_events' => 'EntityEventController',
 
         'attribute_templates' => 'AttributeTemplateController',
 

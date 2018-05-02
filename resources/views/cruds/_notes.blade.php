@@ -1,10 +1,4 @@
-@can('attribute', [$model, 'add'])
-    <p class="text-right">
-        <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary">
-            <i class="fa fa-plus"></i> {{ trans('crud.notes.actions.add') }}
-        </a>
-    </p>
-@endcan
+<p>{{ trans('crud.notes.hint') }}</p>
 
 <table id="crud_notes" class="table table-hover">
     <tbody><tr>
@@ -13,7 +7,12 @@
         @if (Auth::user()->isAdmin())
             <th>{{ trans('crud.fields.is_private') }}</th>
         @endif
-        <th>&nbsp;</th>
+        <th class="text-right">@can('attribute', [$model, 'add'])
+                <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
+                    <i class="fa fa-plus"></i> {{ trans('crud.notes.actions.add') }}
+                </a>
+            @endcan
+        </th>
     </tr>
     @foreach ($r = $model->entity->notes()->with('creator')->orderBy('name', 'ASC')->paginate() as $note)
         <tr>

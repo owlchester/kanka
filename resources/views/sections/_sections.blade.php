@@ -1,3 +1,4 @@
+<p>{{ trans('sections.hints.section') }}</p>
 <table id="section-sections" class="table table-hover">
     <tbody><tr>
         <th class="avatar"><br /></th>

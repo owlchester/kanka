@@ -1,9 +1,5 @@
-@can('relation', [$model, 'add'])
-    <p class="text-right">
-        <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary">
-            <i class="fa fa-plus"></i> {{ trans('crud.relations.actions.add') }}    </a>
-    </p>
-@endcan
+<p>{{ trans('crud.relations.hint') }}
+</p>
 
 <table id="crud_families" class="table table-hover">
     <tbody><tr>
@@ -14,7 +10,12 @@
         @if (Auth::user()->isAdmin())
             <th>{{ trans('crud.fields.is_private') }}</th>
         @endif
-        <th>&nbsp;</th>
+        <th class="text-right">
+            @can('relation', [$model, 'add'])
+                <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary btn-sm">
+                    <i class="fa fa-plus"></i> {{ trans('crud.relations.actions.add') }}    </a>
+            @endcan
+        </th>
     </tr>
     @foreach ($r = $model->entity->relationships()->has('target')->with('target')->paginate() as $relation)
         @can('view', $relation->target->child)

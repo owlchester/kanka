@@ -1,17 +1,16 @@
-@can('organisation', [$model, 'add'])
-    <p class="text-right">
-        <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary">
-            {{ trans('characters.organisations.actions.add') }}
-        </a>
-    </p>
-@endcan
-
+<p>{{ trans('characters.organisations.hint') }}</p>
 <table id="organisations" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>
         <th>{{ trans('organisations.fields.name') }}</th>
         <th>{{ trans('organisations.members.fields.role') }}</th>
-        <th>&nbsp;</th>
+        <th class="pull-right">
+            @can('organisation', [$model, 'add'])
+                <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary btn-sm">
+                    <i class="fa fa-plus"></i> {{ trans('characters.organisations.actions.add') }}
+                </a>
+            @endcan
+        </th>
     </tr>
     @foreach ($r = $model->organisations()->has('organisation')->with('organisation')->paginate() as $relation)
         <tr>

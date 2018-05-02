@@ -1,8 +1,8 @@
+<p>{{ trans('crud.events.hint') }}</p>
 <table id="entity-event-list" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>
         <th>{{ trans('calendars.fields.name') }}</th>
-        <th>{{ trans('calendars.fields.type') }}</th>
         <th>{{ trans('events.fields.date') }}</th>
         <th>{{ trans('calendars.fields.comment') }}</th>
         <th>{{ trans('calendars.fields.is_recurring') }}</th>
@@ -16,13 +16,14 @@
             <td>
                 <a href="{{ route('calendars.show', $relation->calendar_id) }}">{{ $relation->calendar->name }}</a>
             </td>
-            <td>{{ $relation->calendar->type }}</td>
-            <td>{{ $relation->date }}</td>
+            <td>{{ $relation->getDate() }}</td>
             <td>{{ $relation->comment }}</td>
-            <td>{{ $relation->is_recurring }}</td>
+            <td>@if ($relation->is_recurring)
+                  <i class="fa fa-check"></i>
+            @endif</td>
             <td class="text-right">
-                @can('calendar', $model)
-                {!! Form::open(['method' => 'DELETE', 'route' => ['calendar_event.destroy', $relation->id],'style'=>'display:inline']) !!}
+                @can('update', $model)
+                {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $relation->entity, $relation->id], 'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>

@@ -46,30 +46,19 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}"><a href="#history">{{ trans('organisations.show.tabs.history') }}</a></li>
+                    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                        <a href="#history" data-toggle="tooltip" title="{{ trans('organisations.show.tabs.history') }}">
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('organisations.show.tabs.history') }}</span>
+                        </a>
+                    </li>
                     @if ($campaign->enabled('characters'))
-                        <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}"><a href="#member">{{ trans('organisations.show.tabs.members') }}</a></li>
+                        <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
+                            <a href="#member" data-toggle="tooltip" title="{{ trans('organisations.show.tabs.members') }}">
+                                <i class="fa fa-user"></i> <span class="hidden-sm">{{ trans('organisations.show.tabs.members') }}</span>
+                            </a>
+                        </li>
                     @endif
-                    @can('relation', $model)
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
-                    </li>
-                    @endcan
-                    @can('attribute', $model)
-                        <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">
-                            <a href="#notes">{{ trans('crud.tabs.notes') }}</a>
-                        </li>
-                    @endcan
-                    @can('attribute', $model)
-                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
-                    </li>
-                    @endcan
-                    @can('permission', $model)
-                        <li class="pull-right{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
-                            <a href="#permissions"><i class="fa fa-cog"></i></a>
-                        </li>
-                    @endcan
+                    @include('cruds._tabs')
                 </ul>
 
                 <div class="tab-content">
@@ -83,26 +72,7 @@
                         @include('organisations._members')
                     </div>
                     @endif
-                    @can('relation', $model)
-                    <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
-                        @include('cruds._relations')
-                    </div>
-                    @endcan
-                    @can('attribute', $model)
-                        <div class="tab-pane {{ (request()->get('tab') == 'notes' ? ' active' : '') }}" id="notes">
-                            @include('cruds._notes')
-                        </div>
-                    @endcan
-                    @can('attribute', $model)
-                    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
-                        @include('cruds._attributes')
-                    </div>
-                    @endcan
-                    @can('permission', $model)
-                        <div class="tab-pane {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="permissions">
-                            @include('cruds._permissions')
-                        </div>
-                    @endcan
+                    @include('cruds._panes')
                 </div>
             </div>
 

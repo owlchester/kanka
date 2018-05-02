@@ -28,7 +28,7 @@ class CalendarService
             $link->entity_id = $entity->id;
             $link->date = $data['date'];
             $link->comment = Purify::clean($data['comment']);
-            $link->is_recurring = $data['is_recurring'];
+            $link->is_recurring = array_get($data, 'is_recurring', false);
             if ($link->save()) {
                 return $link;
             }

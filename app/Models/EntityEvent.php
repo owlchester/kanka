@@ -48,4 +48,18 @@ class EntityEvent extends MiscModel
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
+
+    public function getDate()
+    {
+        $date = explode('-', $this->date);
+
+        // Replace month with real month, and year maybe
+        $months = $this->calendar->months();
+        $years = $this->calendar->years();
+
+        return $date[2] . ' ' .
+            (isset($months[$date[1]-1]) ? $months[$date[1]-1]['name'] : $date[1]) . ', ' .
+            (isset($years[$date[0]]) ? $years[$date[0]] : $date[0]) . ' ' .
+            $this->calendar->suffix;
+    }
 }

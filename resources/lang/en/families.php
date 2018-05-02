@@ -22,6 +22,9 @@ return [
         'name'      => 'Name',
         'relation'  => 'Relation',
     ],
+    'hints' => [
+        'members' => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.'
+    ],
     'index'         => [
         'add'           => 'New Family',
         'description'   => 'Manage the families of :name.',

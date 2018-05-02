@@ -48,6 +48,7 @@ return [
     ],
     'hints'         => [
         'is_personality_visible'    => 'You can hide the whole personality section from non "Admin" users.',
+        'hide_personality' => 'This tab can be hidden from non "Admin" users by disabling the "Personality Visible" option when editing this character.',
     ],
     'index'         => [
         'actions'       => [
@@ -57,6 +58,9 @@ return [
         'description'   => 'Manage the characters of :name.',
         'header'        => 'Characters in :name',
         'title'         => 'Characters',
+    ],
+    'items' => [
+        'hint' => 'Items can be assigned to characters and will be displayed here.',
     ],
     'organisations' => [
         'actions'       => [
@@ -79,6 +83,7 @@ return [
             'organisation'  => 'Organisation',
             'role'          => 'Role',
         ],
+        'hint' => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
         'placeholders'  => [
             'organisation'  => 'Choose an organisation...',
         ],

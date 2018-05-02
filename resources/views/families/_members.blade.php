@@ -1,4 +1,6 @@
-<table id="characters" class="table table-hover">
+<p>{{ trans('families.hints.members') }}</p>
+
+<table id="family-members" class="table table-hover">
     <tbody><tr>
         <th class="avatar"><br></th>
         <th>{{ trans('characters.fields.name') }}</th>

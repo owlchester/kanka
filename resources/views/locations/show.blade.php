@@ -57,34 +57,28 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#information">{{ trans('locations.show.tabs.information') }}</a>
+                        <a href="#information" data-toggle="tooltip" title="{{ trans('locations.show.tabs.information') }}">
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('locations.show.tabs.information') }}</span>
+                        </a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'map' ? ' active' : '') }}">
-                        <a href="#map">{{ trans('locations.show.tabs.map') }}</a>
+                        <a href="#map" data-toggle="tooltip" title="{{ trans('locations.show.tabs.map') }}">
+                            <i class="fa fa-map"></i> <span class="hidden-sm">{{ trans('locations.show.tabs.map') }}</span>
+                        </a>
                     </li>
                     @if ($campaign->enabled('characters'))
                     <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}">
-                        <a href="#character">{{ trans('locations.show.tabs.characters') }}</a>
+                        <a href="#character" data-toggle="tooltip" title="{{ trans('locations.show.tabs.characters') }}">
+                            <i class="fa fa-user"></i> <span class="hidden-sm">{{ trans('locations.show.tabs.characters') }}</span>
+                        </a>
                     </li>
                     @endif
                     <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}">
-                        <a href="#location">{{ trans('locations.show.tabs.locations') }}</a>
+                        <a href="#location" data-toggle="tooltip" title="{{ trans('locations.show.tabs.locations') }}">
+                            <i class="fa fa-globe"></i> <span class="hidden-sm">{{ trans('locations.show.tabs.locations') }}</span>
+                        </a>
                     </li>
-                    @can('relation', $model)
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
-                    </li>
-                    @endcan
-                    @can('attribute', $model)
-                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
-                    </li>
-                    @endcan
-                    @can('permission', $model)
-                        <li class="pull-right{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
-                            <a href="#permissions"><i class="fa fa-cog"></i></a>
-                        </li>
-                    @endcan
+                    @include('cruds._tabs')
                 </ul>
 
                 <div class="tab-content">
@@ -110,21 +104,7 @@
                     <div class="tab-pane" id="location">
                         @include('locations._locations')
                     </div>
-                    @can('relation', $model)
-                    <div class="tab-pane" id="relations">
-                        @include('cruds._relations')
-                    </div>
-                    @endcan
-                    @can('attribute', $model)
-                    <div class="tab-pane" id="attribute">
-                        @include('cruds._attributes')
-                    </div>
-                    @endcan
-                    @can('permission', $model)
-                        <div class="tab-pane" id="permissions">
-                            @include('cruds._permissions')
-                        </div>
-                    @endcan
+                    @include('cruds._panes')
                 </div>
             </div>
             <!-- actions -->

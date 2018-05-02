@@ -46,29 +46,24 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                        <a href="#information">{{ trans('sections.show.tabs.information') }}</a>
+                        <a href="#information" data-toggle="tooltip" title="{{ trans('sections.show.tabs.information') }}">
+                            <i class="fa fa-th-list"></i> <span class="hidden-sm">
+                                {{ trans('sections.show.tabs.information') }}</span>
+                        </a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'sections' ? ' active' : '') }}">
-                        <a href="#sections">{{ trans('sections.show.tabs.sections') }}</a>
+                        <a href="#sections" data-toggle="tooltip" title="{{ trans('sections.show.tabs.sections') }}">
+                            <i class="fa fa-folder-open"></i> <span class="hidden-sm">
+                                {{ trans('sections.show.tabs.sections') }}</span>
+                        </a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'children' ? ' active' : '') }}">
-                        <a href="#children">{{ trans('sections.show.tabs.children') }}</a>
+                        <a href="#children" data-toggle="tooltip" title="{{ trans('sections.show.tabs.children') }}">
+                            <i class="fa fa-sitemap"></i> <span class="hidden-sm">
+                                {{ trans('sections.show.tabs.children') }}</span>
+                        </a>
                     </li>
-                    @can('relation', $model)
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations">{{ trans('crud.tabs.relations') }}</a>
-                    </li>
-                    @endcan
-                    @can('attribute', $model)
-                    <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
-                        <a href="#attribute">{{ trans('crud.tabs.attributes') }}</a>
-                    </li>
-                    @endcan
-                    @can('permission', $model)
-                        <li class="pull-right{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
-                            <a href="#permissions"><i class="fa fa-cog"></i></a>
-                        </li>
-                    @endcan
+                    @include('cruds._tabs')
                 </ul>
 
                 <div class="tab-content">
@@ -84,21 +79,7 @@
                     <div class="tab-pane" id="children">
                         @include('sections._children')
                     </div>
-                    @can('relation', $model)
-                    <div class="tab-pane" id="relations">
-                        @include('cruds._relations')
-                    </div>
-                    @endcan
-                    @can('attribute', $model)
-                    <div class="tab-pane" id="attribute">
-                        @include('cruds._attributes')
-                    </div>
-                    @endcan
-                    @can('permission', $model)
-                        <div class="tab-pane" id="permissions">
-                            @include('cruds._permissions')
-                        </div>
-                    @endcan
+                    @include('cruds._panes')
                 </div>
             </div>
             <!-- actions -->

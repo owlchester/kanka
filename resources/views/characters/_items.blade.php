@@ -1,3 +1,4 @@
+<p>{{ trans('characters.items.hint') }}</p>
 <table id="character-items" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>

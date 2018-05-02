@@ -64,6 +64,9 @@ return [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
     ],
     'edit'          => 'Edit',
+    'events' => [
+        'hint' => 'Calendar events associated to this entity are displayed here.',
+    ],
     'errors'        => [
         'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.',
     ],
@@ -141,6 +144,7 @@ return [
             'entry'     => 'Entry',
             'name'      => 'Name',
         ],
+        'hint' => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Notes.',
         'index'         => [
             'title' => 'Notes for :name',
         ],
@@ -183,6 +187,7 @@ return [
         'section'       => 'Choose a category',
     ],
     'relations'     => [
+        'hint' => 'Relations between entities can be set up to represent their connections.',
         'actions'   => [
             'add'   => 'Add a relation',
         ],
@@ -202,6 +207,7 @@ return [
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
+        'events'        => 'Events',
     ],
     'update'        => 'Update',
     'view'          => 'View',
