@@ -13,6 +13,7 @@
         'title',
         [
             'label' => trans('characters.fields.family'),
+            'field' => 'family.name',
             'visible' => $campaign->enabled('families'),
             'render' => function($model) {
                 if ($model->family) {

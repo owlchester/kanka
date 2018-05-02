@@ -13,6 +13,7 @@
         'type',
         [
             'label' => trans('crud.fields.section'),
+            'field' => 'section.name',
             'render' => function($model) {
                 if ($model->section) {
                     return '<a href="' . route('sections.show', $model->section->id) . '">' . $model->section->name . '</a>';
@@ -27,14 +28,16 @@
                     $total += $child->sections->count();
                 }
                 return $total;
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'label' => trans('sections.fields.children'),
             'render' => function($model) {
                 $total = $model->allChildren()->count();
                 return $total;
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

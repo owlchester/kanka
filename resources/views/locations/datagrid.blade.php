@@ -13,6 +13,7 @@
         'type',
         [
             'label' => trans('locations.fields.location'),
+            'field' => 'parentLocation.name',
             'render' => function($model) {
                 if ($model->parentLocation) {
                     return '<a href="' . route('locations.show', $model->parentLocation->id) . '">' . $model->parentLocation->name . '</a>';
@@ -28,7 +29,8 @@
                     $total += $child->characters->count();
                 }
                 return $total;
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

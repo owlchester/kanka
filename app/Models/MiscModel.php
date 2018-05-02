@@ -84,10 +84,13 @@ abstract class MiscModel extends Model
     public function scopeSearch($query, $term)
     {
         $searchFields = $this->searchableColumns;
+        if (empty($term)) {
+            return $query;
+        }
 
         return $query->where(function($q) use ($term, $searchFields) {
             foreach ($searchFields as $field) {
-                $q->orWhere($field, 'like', "%$term%");
+                $q->orWhere($this->getTable() . '.' . $field, 'like', "%$term%");
             }
         });
     }
@@ -104,7 +107,7 @@ abstract class MiscModel extends Model
 
         foreach ($params as $key => $value) {
             if (!empty($value) && in_array($key, $this->filterableColumns)) {
-                $query->where($key, 'like', "%$value%");
+                $query->where($this->getTable() . '.' . $key, 'like', "%$value%");
             }
         }
         return $query;
@@ -191,13 +194,21 @@ abstract class MiscModel extends Model
         if (!empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
-                $relation = $this->{$segments[0]}();
-                //dd($relation->getForeignKey());
+                $relationName = $segments[0];
+
+//                return $query->with([$relationName => function ($subquery) use ($field, $direction, $relationName) {
+//                    $subquery->orderBy(str_replace($relationName . '.', '', $field), $direction);
+//                }]);
+
+                $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
-                return $query->join($foreignName . ' as f', 'f.id', $relation->getForeignKey())
-                    ->orderBy('f.' . $field, $direction);
+                return $query
+                    ->select($this->getTable() . '.*')
+                    ->with($relationName)
+                    ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
+                    ->orderBy(str_replace($relationName, 'f', $field), $direction);
             } else {
-                return $query->orderBy($field, $direction);
+                return $query->orderBy($this->getTable() . '.' . $field, $direction);
             }
         }
     }

@@ -10,7 +10,8 @@
             'label' => trans('attribute_templates.fields.attributes'),
             'render' => function($model) {
                 return $model->entity->attributes()->count();
-            }
+            },
+            'disableSort' => true,
         ],
     ],
     // Data

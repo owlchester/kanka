@@ -16,14 +16,16 @@
             'visible' => $campaign->enabled('locations'),
             'render' => function($model) {
                 return $model->locations()->count();
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'label' => trans('quests.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters()->count();
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

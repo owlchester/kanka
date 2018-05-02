@@ -122,10 +122,10 @@ class DatagridRenderer
                 $html = null;
             } elseif ($type == 'location') {
                 $class .= '  visible-md visible-lg';
-                $html = trans('crud.fields.location');
+                $html = $this->route('location.name', trans('crud.fields.location'));
             } elseif ($type == 'character') {
                 $class .= '  visible-md visible-lg';
-                $html = !empty($column['label']) ? $column['label'] : trans('crud.fields.character');
+                $html = $this->route('character.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.character'));
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user->isAdmin()) {
@@ -142,7 +142,7 @@ class DatagridRenderer
                 $label = $column['label'];
 
                 // We have a label, that's nice. If we have a custom render, we probably can't orderBy
-                if (!empty($column['render'])) {
+                if (!empty($column['disableSort'])) {
                     $html = $label;
                 } else {
                     // So we have a label and no renderer, so we can order by. We just need a field
