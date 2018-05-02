@@ -4,6 +4,10 @@
   overflow: auto;
 }
 
+.map #draggable-map {
+  cursor: move;
+}
+
 .map .point {
   width: 50px;
   height: 50px;
@@ -216,6 +220,7 @@ tr.entity-hidden td {
 
 .campaign-name {
   white-space: normal !important;
+  overflow: hidden;
 }
 
 /**

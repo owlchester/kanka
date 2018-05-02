@@ -1,4 +1,8 @@
 .map {
+  #draggable-map {
+    cursor: move;
+  }
+
   width: 100%;
   position: relative;
   overflow: auto;

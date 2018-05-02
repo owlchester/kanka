@@ -76,6 +76,7 @@ function initMapAdmin() {
  * Register click on the map zoom controls
  */
 function initMapControls() {
+    $('#draggable-map').draggable();
     mapZoomIn.on('click', function(e) {
         e.preventDefault();
         mapZoom(25);

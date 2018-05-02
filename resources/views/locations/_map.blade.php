@@ -9,14 +9,16 @@
         <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa fa-minus"></i></button>
     </div>
     <div class="map">
-        <img src="/storage/{{ $model->map }}" alt="{{ $model->name }}" id="location-map-image" />
-        @foreach ($model->mapPoints()->with('location')->get() as $point)
-            @can('view', $point->target)
-            <a class="point" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px" data-top="{{ $point->axis_y }}" data-left="{{ $point->axis_x }}" href="{{ route('locations.show', [$point->target, (!empty($point->target->map) ? '#tab_map' : null)]) }}" title="{{ $point->target->tooltip() }}" data-toggle="tooltip">
-                <i class="fa fa-map-marker"></i>
-            </a>
-            @endcan
-        @endforeach
+        <div id="draggable-map">
+            <img src="/storage/{{ $model->map }}" alt="{{ $model->name }}" id="location-map-image" />
+            @foreach ($model->mapPoints()->with('location')->get() as $point)
+                @can('view', $point->target)
+                <a class="point" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px" data-top="{{ $point->axis_y }}" data-left="{{ $point->axis_x }}" href="{{ route('locations.show', [$point->target, (!empty($point->target->map) ? '#tab_map' : null)]) }}" title="{{ $point->target->tooltip() }}" data-toggle="tooltip">
+                    <i class="fa fa-map-marker"></i>
+                </a>
+                @endcan
+            @endforeach
+            </div>
     </div>
 @else
 <p>{{ trans('locations.map.no_map') }}</p>

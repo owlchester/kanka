@@ -17,6 +17,8 @@ require('admin-lte');
 require('select2');
 require('bootstrap-datepicker');
 
+require('jquery-ui/ui/widgets/draggable');
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
