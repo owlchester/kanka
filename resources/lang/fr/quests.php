@@ -78,7 +78,7 @@ return [
         'description'   => 'Détail de la quête',
         'tabs'          => [
             'characters'    => 'Personnages',
-            'information'   => 'Infourmation',
+            'information'   => 'Information',
             'locations'     => 'Lieux',
         ],
         'title'         => 'Quête :name',
