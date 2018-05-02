@@ -261,17 +261,30 @@ class CalendarRenderer
     {
         $events = [];
         foreach ($this->calendar->calendarEvents()
-                     ->has('event')
-                     ->with('event')
-                     ->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')
+                     ->has('entity')
+                     ->with('entity')
+                    ->where(function ($query) {
+                        $query
+                            ->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')
+                            ->orWhere(function ($sub) {
+                                $sub->where('date', 'like', '%-' . $this->segments[1] . '-%')
+                                    ->where('is_recurring', true);
+                            });
+                    })
                      ->get() as $event) {
-            if (!isset($events[$event->date])) {
-                $events[$event->date] = [];
+            // Calc date
+            $date = $event->date;
+            if ($event->is_recurring) {
+                $blocks = explode('-', $date);
+                $date = $this->segments[0] . '-' . $blocks[1] . '-' . $blocks[2];
+            }
+            if (!isset($events[$date])) {
+                $events[$date] = [];
             }
 
             // Make sure the user can actually see the requested event
-            if (Auth::user()->can('view', $event->event)) {
-                $events[$event->date][] = $event->event;
+            if (Auth::user()->can('view', $event->entity->child)) {
+                $events[$date][] = $event;
             }
         }
         return $events;

@@ -12,7 +12,7 @@
         <div class="col-md-4">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>{!! $campaign->shortName() !!}</h3>
+                    <h3 class="campaign-name">{{ $campaign->name }}</h3>
                 </div>
                 <div class="icon">
                     <i class="ion ion-map"></i>

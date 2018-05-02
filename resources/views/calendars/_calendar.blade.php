@@ -35,7 +35,11 @@
                     <p>
                     @if (!empty($day['events']))
                         @foreach ($day['events'] as $event)
-                            <a href="{{ route('events.show', $event) }}">{{ $event->name }}</a><br />
+                            <a href="{{ route($event->entity->pluralType() . '.show', $event->entity->entity_id) }}">{{ $event->entity->name }}</a>
+                            @if ($event->comment)
+                                - {{ $event->comment }}
+                            @endif
+                            <br />
                         @endforeach
                     @endif
                     </p>
@@ -59,17 +63,37 @@
                 <h4 class="modal-title" id="myModalLabel">{{ trans('calendars.event.modal.title') }}</h4>
             </div>
             <div class="modal-body">
-                <p>{{ trans('calendars.event.helpers.add') }}</p>
-                {!! Form::select2(
-                    'event_id'
-                ) !!}
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>{{ trans('calendars.event.helpers.add') }}</p>
+                        {!! Form::select2(
+                            'entity_id',
+                            null,
+                            App\Models\Entity::class,
+                            false,
+                            'crud.fields.entity',
+                            'search.relations'
+                        ) !!}
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ trans('calendars.event.helpers.new') }}</p>
+                        <div class="form-group">
+                            <label>{{ trans('events.fields.name') }}</label>
+                            {!! Form::text('name', null, ['placeholder' => trans('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                        </div>
+                    </div>
+                </div>
 
-                <hr />
-
-                <p>{{ trans('calendars.event.helpers.new') }}</p>
                 <div class="form-group">
-                    <label>{{ trans('events.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => trans('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    <label>{{ trans('calendars.fields.comment') }}</label>
+                    {!! Form::text('comment', null, ['placeholder' => trans('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        {!! Form::checkbox('is_recurring') !!}
+                        {{ trans('calendars.fields.is_recurring') }}
+                    </label><p class="help-block">{{ trans('calendars.hints.is_recurring') }}</p>
                 </div>
             </div>
             <div class="modal-footer">

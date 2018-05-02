@@ -22,8 +22,8 @@ return [
     'event'         => [
         'destroy'   => 'Event removed from calendar \':name\'.',
         'helpers'   => [
-            'add'   => 'Add an existing event to this calendar using the list.',
-            'new'   => 'Or you can create a new event by simply providing a name.',
+            'add'   => 'Add an existing event to this calendar.',
+            'new'   => 'Or create a new event by simply providing a name.',
         ],
         'modal'     => [
             'title' => 'Add an event to the calendar',
@@ -47,6 +47,11 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
+        'comment'           => 'Comment',
+        'is_recurring'      => 'Recurring'
+    ],
+    'hints'     => [
+        'is_recurring' => 'An event can be set to recurring. It will reappear every year on the same date.',
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -80,6 +85,7 @@ return [
         'suffix'            => 'Current Era suffix (AC, BC)',
         'type'              => 'Type of the calendar',
         'weekdays'          => 'Number of days in a week',
+        'comment'           => 'Birthday, festival, solstice',
     ],
     'show'          => [
         'description'   => 'A detailed view of an calendar',

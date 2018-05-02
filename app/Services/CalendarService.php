@@ -4,8 +4,12 @@ namespace App\Services;
 
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
+use App\Models\Entity;
+use App\Models\EntityEvent;
 use App\Models\Event;
+use App\Observers\PurifiableTrait;
 use Exception;
+use Stevebauman\Purify\Facades\Purify;
 
 class CalendarService
 {
@@ -17,12 +21,14 @@ class CalendarService
      */
     public function addEvent(Calendar $calendar, $data = [])
     {
-        $event = $this->event($data);
-        if ($event) {
-            $link = new CalendarEvent();
+        $entity = $this->entity($data);
+        if ($entity) {
+            $link = new EntityEvent();
             $link->calendar_id = $calendar->id;
-            $link->event_id = $event->id;
+            $link->entity_id = $entity->id;
             $link->date = $data['date'];
+            $link->comment = Purify::clean($data['comment']);
+            $link->is_recurring = $data['is_recurring'];
             if ($link->save()) {
                 return $link;
             }
@@ -35,17 +41,17 @@ class CalendarService
      * @return Event
      * @throws Exception
      */
-    protected function event($data = [])
+    protected function entity($data = [])
     {
-        if (empty($data['event_id']) && !empty($data['name'])) {
+        if (empty($data['entity_id']) && !empty($data['name'])) {
             // Create an event
             $event = new Event();
             $event->name = $data['name'];
             $event->date = $data['date'];
             $event->save();
-            return $event;
-        } elseif(!empty($data['event_id'])) {
-            return Event::findOrFail($data['event_id']);
+            return $event->entity;
+        } elseif(!empty($data['entity_id'])) {
+            return Entity::findOrFail($data['entity_id']);
         }
 
         return false;

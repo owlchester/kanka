@@ -104,12 +104,15 @@ class Calendar extends MiscModel
      */
     public function events()
     {
-        return $this->hasManyThrough('App\Models\Event', 'App\Models\CalendarEvent', 'calendar_id', 'event_id');
+        return $this->hasManyThrough('App\Models\Event', 'App\Models\EntityEvent', 'calendar_id', 'entity_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function calendarEvents()
     {
-        return $this->hasMany('App\Models\CalendarEvent', 'calendar_id');
+        return $this->hasMany('App\Models\EntityEvent', 'calendar_id');
     }
 
     /**

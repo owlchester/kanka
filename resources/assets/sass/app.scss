@@ -139,6 +139,10 @@ tr.entity-hidden {
     color: #444;
   }
 }
+.campaign-name {
+  white-space: normal !important;
+  overflow: hidden;
+}
 
 /**
  * Crud filters

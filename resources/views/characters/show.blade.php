@@ -151,13 +151,6 @@
                             </a>
                         </li>
                     @endif
-                    @can('relation', $model)
-                    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-                        <a href="#relations" title="{{ trans('crud.tabs.relations') }}" data-toggle="tooltip">
-                            <i class="fa fa-users"></i> <span class="hidden-sm">{{ trans('crud.tabs.relations') }}</span>
-                        </a>
-                    </li>
-                    @endcan
                     @if ($campaign->enabled('organisations'))
                         @can('organisation', $model)
                     <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}">
@@ -173,6 +166,22 @@
                                 <i class="fa fa-shield"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.items') }}</span>
                             </a>
                         </li>
+                    @endif
+                    @can('relation', $model)
+                        <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
+                            <a href="#relations" title="{{ trans('crud.tabs.relations') }}" data-toggle="tooltip">
+                                <i class="fa fa-users"></i> <span class="hidden-sm">{{ trans('crud.tabs.relations') }}</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @if ($campaign->enabled('calendars'))
+                        @can('attribute', $model)
+                            <li class="{{ (request()->get('tab') == 'events' ? ' active' : '') }}">
+                                <a href="#events" title="{{ trans('crud.tabs.events') }}" data-toggle="tooltip">
+                                    <i class="fa fa-calendar-o"></i> <span class="hidden-sm">{{ trans('crud.tabs.events') }}</span>
+                                </a>
+                            </li>
+                        @endcan
                     @endif
                     @can('attribute', $model)
                     <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">
@@ -235,6 +244,11 @@
                     @if ($campaign->enabled('items'))
                         <div class="tab-pane {{ (request()->get('tab') == 'items' ? ' active' : '') }}" id="items">
                             @include('characters._items')
+                        </div>
+                    @endif
+                    @if ($campaign->enabled('calendars'))
+                        <div class="tab-pane {{ (request()->get('tab') == 'events' ? ' active' : '') }}" id="events">
+                            @include('cruds._events')
                         </div>
                     @endif
                     @can('attribute', $model)
