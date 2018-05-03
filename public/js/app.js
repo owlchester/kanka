@@ -53325,6 +53325,9 @@ var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 // Character
 var characterAddPersonality, characterTemplatePersonality;
 
+// Crud button
+var crudMultiDeleteBtn, crudMultiPublicBtn, crudMultiPrivateBtn;
+
 $(document).ready(function () {
     // Filters
     var filters = $('#crud-filters');
@@ -53335,6 +53338,9 @@ $(document).ready(function () {
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
+        crudMultiDeleteBtn = $('#crud-multi-delete');
+        crudMultiPublicBtn = $('#crud-multi-public');
+        crudMultiPrivateBtn = $('#crud-multi-private');
         crudDelete.click(function (e) {
             if ($(this).prop('checked')) {
                 $.each($("input[name='model[]']"), function (index) {
@@ -53388,11 +53394,14 @@ function toggleCrudMultiDelete() {
         }
     });
 
-    var btn = $('#crud-multi-delete');
     if (hide) {
-        btn.hide();
+        crudMultiDeleteBtn.hide();
+        crudMultiPublicBtn.hide();
+        crudMultiPrivateBtn.hide();
     } else {
-        btn.show();
+        crudMultiDeleteBtn.show();
+        crudMultiPublicBtn.show();
+        crudMultiPrivateBtn.show();
     }
 }
 

@@ -233,6 +233,8 @@ class CrudController extends Controller
     {
         $model = new $this->model;
 
+        dd("multi?");
+
         $ids = $request->get('model');
 
         $count = 0;

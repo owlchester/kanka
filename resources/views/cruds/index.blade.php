@@ -33,22 +33,27 @@
                     </div>
                 </div>
 
+                @include('partials.errors')
                 @include('cruds._filters', ['route' => route($name . '.index'), 'filters' => $filters, 'filterService' => $filterService, 'name' => $name])
 
-                {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
+                {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">
                     @include($name . '.datagrid')
-
                 </div>
                 <div class="box-footer">
 
                     @can('delete', $model)
-                    {!! Form::submit(trans('crud.remove'), ['class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
+                    {!! Form::button('<i class="fa fa-trash"></i> ' . trans('crud.remove'), ['type' => 'submit', 'name' => 'delete', 'class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
                     @endcan
+                    @if (Auth::user()->isAdmin())
+                        {!! Form::button('<i class="fa fa-lock"></i> ' . trans('crud.actions.private'), ['type' => 'submit', 'name' => 'private', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-private']) !!}
+                        {!! Form::button('<i class="fa fa-unlock"></i> ' . trans('crud.actions.public'), ['type' => 'submit', 'name' => 'public', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-public']) !!}
+                    @endif
 
                     <div class="pull-right">
                         {{ $models->links() }}
                     </div>
+                    {!! Form::hidden('entity', $name) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

@@ -121,7 +121,7 @@ class DatagridRenderer
             if ($type == 'avatar') {
                 $html = null;
             } elseif ($type == 'location') {
-                $class .= '  visible-md visible-lg';
+                $class .= '';
                 $html = $this->route('location.name', trans('crud.fields.location'));
             } elseif ($type == 'character') {
                 $class .= '  visible-md visible-lg';
@@ -274,7 +274,7 @@ class DatagridRenderer
                 $content = '<a class="entity-image" style="background-image: url(\'' . $model->getImageUrl(true) .
                     '\');" title="' . $model->name . '" href="' . $route . '"></a>';
             } elseif ($type == 'location') {
-                $class = 'visible-md visible-lg';
+                $class = ' ';
                 if ($model->location) {
                     $content = '<a href="' . route('locations.show', $model->location->id) . '" data-toggle="tooltip" title="' . $model->location->tooltip() . '">' .
                         $model->location->name . '</a>';
@@ -346,12 +346,12 @@ class DatagridRenderer
         $content = '
         <a href="' . route($this->getOption('baseRoute') . '.show', ['id' => $model->id]) .
             '" class="btn btn-xs btn-default">
-            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-md visible-lg">' . trans('crud.view') . '</span>
+            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-lg">' . trans('crud.view') . '</span>
         </a>';
 
         if ($this->user->can('update', $model)) {
             $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" class="btn btn-xs btn-primary">
-                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="visible-md visible-lg">' . trans('crud.edit') . '</span>
+                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="visible-lg">' . trans('crud.edit') . '</span>
             </a>';
         }
 

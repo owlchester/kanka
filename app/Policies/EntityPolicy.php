@@ -63,7 +63,7 @@ class EntityPolicy
      */
     public function update(User $user, $entity)
     {
-        return $user->campaign->id == $entity->campaign_id && $this->checkPermission('edit', $user, $entity);
+        return (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('edit', $user, $entity);
     }
 
     /**

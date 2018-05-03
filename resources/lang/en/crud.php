@@ -6,6 +6,8 @@ return [
         'copy'  => 'Copy',
         'move'  => 'Move',
         'new'   => 'New',
+        'private' => 'Private',
+        'public' => 'Public',
     ],
     'add'           => 'Add',
     'attributes'    => [
@@ -45,6 +47,16 @@ return [
             'success'   => 'Attribute Template :name applies on :entity',
             'title'     => 'Apply an Attribute Template for :name',
         ],
+    ],
+    'bulk' => [
+        'success' => [
+            'private' => ':count entity is now private|:count entities are now private.',
+            'public' => ':count entity is now visible|:count entities are now visible.',
+        ],
+        'errors' => [
+            'admin' => 'Only campaign admins can change the private status of entities.',
+
+        ]
     ],
     'cancel'        => 'Cancel',
     'clear_filters' => 'Clear Filters',

@@ -297,4 +297,14 @@ class EntityService
         $new->save();
         return $new;
     }
+
+    /**
+     * Get an entity object string based on the entity type
+     * @param $entity
+     * @return mixed
+     */
+    public function getClass($entity)
+    {
+        return array_get($this->entities, $entity, false);
+    }
 }

@@ -58,18 +58,19 @@ Route::group([
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
     // Multi-delete for cruds
-    Route::post('/calendars/deleteMany', 'CalendarController@deleteMany')->name('calendars.deleteMany');
-    Route::post('/characters/deleteMany', 'CharacterController@deleteMany')->name('characters.deleteMany');
-    Route::post('/events/deleteMany', 'EventController@deleteMany')->name('events.deleteMany');
-    Route::post('/locations/deleteMany', 'LocationController@deleteMany')->name('locations.deleteMany');
-    Route::post('/families/deleteMany', 'FamilyController@deleteMany')->name('families.deleteMany');
-    Route::post('/items/deleteMany', 'ItemController@deleteMany')->name('items.deleteMany');
-    Route::post('/journals/deleteMany', 'JournalController@deleteMany')->name('journals.deleteMany');
-    Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
-    Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
-    Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
-    Route::post('/sections/deleteMany', 'SectionController@deleteMany')->name('sections.deleteMany');
-    Route::post('/attribute_templates/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
+//    Route::post('/calendars/deleteMany', 'CalendarController@deleteMany')->name('calendars.deleteMany');
+//    Route::post('/characters/deleteMany', 'CharacterController@deleteMany')->name('characters.deleteMany');
+//    Route::post('/events/deleteMany', 'EventController@deleteMany')->name('events.deleteMany');
+//    Route::post('/locations/deleteMany', 'LocationController@deleteMany')->name('locations.deleteMany');
+//    Route::post('/families/deleteMany', 'FamilyController@deleteMany')->name('families.deleteMany');
+//    Route::post('/items/deleteMany', 'ItemController@deleteMany')->name('items.deleteMany');
+//    Route::post('/journals/deleteMany', 'JournalController@deleteMany')->name('journals.deleteMany');
+//    Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
+//    Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
+//    Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
+//    Route::post('/sections/deleteMany', 'SectionController@deleteMany')->name('sections.deleteMany');
+//    Route::post('/attribute_templates/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
+    Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 
 
     Route::post('/calendars/{calendar}/addEvent', 'CalendarController@addEvent')->name('calendars.event.add');

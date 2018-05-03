@@ -9,6 +9,7 @@ use App\Models\Family;
 use App\Models\Item;
 use App\Models\Location;
 use App\Models\Event;
+use App\Models\MiscModel;
 use App\Models\Quest;
 use App\Models\Note;
 use App\Models\Organisation;
@@ -65,13 +66,27 @@ class SearchController extends Controller
         $results = [];
         $active = '';
         $filterService = $this->filterService;
+        $found = null;
 
         foreach ($this->entity->entities() as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
                 $results[$element] = $model->acl(Auth::user())->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
+
+                if (count($results[$element]) == 1) {
+                    if ($found === null) {
+                        $found = $results[$element][0];
+                    } else {
+                        $found = false;
+                    }
+                }
             }
+        }
+
+        // Found just one result?
+        if ($found instanceof MiscModel) {
+            return redirect()->route($found->entity->pluralType() . '.show', $found);
         }
 
         return view('search.index', compact(
