@@ -82,6 +82,15 @@ class FilterService
             }
         }
 
+        // Checkbox? If no request but it's post, we don't have it anymore
+        if (request()->isMethod('get') && !empty($this->filters)) {
+            foreach ($this->filters as $key => $value) {
+                if (strpos($key, 'is_') !== false && !isset($this->data[$key])) {
+                    unset($this->filters[$key]);
+                }
+            }
+        }
+
         // Reset the filters if requested, before saving it to the session.
         if (array_has($this->data, 'reset-filter')) {
             $this->filters = [];
@@ -132,6 +141,9 @@ class FilterService
             throw new \Exception('Key for FilterService can\'t be an array');
         }
         if (!empty($this->filters) && isset($this->filters[$key])) {
+            if ($this->isCheckbox($key)) {
+                return $this->filters[$key] == '1' ? '<i class="fa fa-check"></i>' : '';
+            }
             return $this->filters[$key];
         }
         return null;
@@ -153,5 +165,10 @@ class FilterService
     public function order()
     {
         return $this->order;
+    }
+
+    public function isCheckbox($field)
+    {
+        return strpos($field, 'is_') !== false;
     }
 }

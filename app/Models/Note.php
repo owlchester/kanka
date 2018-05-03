@@ -37,8 +37,12 @@ class Note extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type',
-        'section_id',];
+    protected $filterableColumns = [
+        'name',
+        'type',
+        'is_pinned',
+        'section_id',
+    ];
 
     /**
      * Entity type

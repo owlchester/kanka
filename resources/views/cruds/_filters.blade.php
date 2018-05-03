@@ -22,10 +22,17 @@
         @else
             <div class="element" data-field="{{ $field }}" data-type="text">
                 <label class="field" for="{{ $field }}">{{ trans($name . '.fields.' . $field) }}</label>
+                @if ($filterService->isCheckbox($field))
+                <div class="value">{!! $filterService->single($field) !!}</div>
+                <div class="input" style="display:none;">
+                    <input type="checkbox" class="input-field" name="{{ $field }}" @if (!empty($filterService->single($field))) checked="checked" @endif value="1" />
+                </div>
+                @else
                 <div class="value">{{ $filterService->single($field) }}</div>
                 <div class="input" style="display:none;">
                     <input type="text" class="input-field" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                 </div>
+                @endif
             </div>
         @endif
     @endforeach

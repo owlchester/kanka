@@ -28,6 +28,7 @@ class NoteController extends CrudController
         $this->filters = [
             'name',
             'type',
+            'is_pinned',
         ];
     }
 

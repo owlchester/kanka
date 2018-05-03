@@ -53421,7 +53421,8 @@ function initCrudFilters() {
         var tmp = input.val();
         input.val('');
         input.val(tmp);
-        previousFilterInputValue = tmp;
+        previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp;
+        console.log('previous filter', input, previousFilterInputValue);
     });
 
     $('#crud-filters .element input').on('focusout', function (e) {
@@ -53457,10 +53458,21 @@ function filterSubmit(field, force) {
     var element = field.parent().parent();
     var input = element.children('.input');
     input.hide();
-    element.children('.value').html(field.val());
+    if (field.is(':checkbox')) {
+        if (field.prop('checked')) {
+            element.children('.value').html('<i class="fa fa-check"></i>');
+        } else {
+            element.children('.value').html('');
+        }
+    } else {
+        element.children('.value').html(field.val());
+    }
     element.children('.value').show();
 
-    if (force || field.val() !== previousFilterInputValue) {
+    var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val();
+    console.log('compare', field, compare, previousFilterInputValue);
+
+    if (force || compare !== previousFilterInputValue) {
         $('#crud-filters-form').submit();
     }
 }
