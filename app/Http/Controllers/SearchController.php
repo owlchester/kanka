@@ -120,6 +120,28 @@ class SearchController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function calendarEvent(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            $models = Entity::whereIn('type', $this->enabledEntityTypes(['calendars', 'categories']))->limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Entity::whereIn('type', $this->enabledEntityTypes(['calendars', 'categories']))->where('name', 'like', "%$term%")->limit(10)->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+        }
+
+        return Response::json($formatted);
+    }
+
+    /**
      * Mentions
      */
     public function mentions(Request $request)
@@ -249,12 +271,16 @@ class SearchController extends Controller
 
     /**
      * Get a list of enabled entity types for the campaign to filter on the entities table
+     * @param array $except A list of entities that aren't desired
      * @return array
      */
-    protected function enabledEntityTypes()
+    protected function enabledEntityTypes($except = [])
     {
         $entityTypes = [];
         foreach ($this->entity->entities() as $element => $class) {
+            if (in_array($element, $except)) {
+                continue;
+            }
             if ($this->campaign->enabled($element)) {
                 $entityTypes[] = $this->entity->singular($element);
             }

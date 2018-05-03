@@ -31,7 +31,9 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#attribute">{{ trans('attribute_templates.show.tabs.attributes') }}</a>
+                        <a href="#attribute" data-toggle="tooltip" title="{{ trans('attribute_templates.show.tabs.attributes') }}">
+                            <i class="fa fa-th-list"></i> <span class="hidden-sm"> {{ trans('attribute_templates.show.tabs.attributes') }}
+                        </a>
                     </li>
                 </ul>
 

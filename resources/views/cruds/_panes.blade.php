@@ -6,7 +6,7 @@
     </div>
 @endcan
 @endif
-@if ($campaign->enabled('calendars'))
+@if (!isset($calendars) && $campaign->enabled('calendars'))
     <div class="tab-pane {{ (request()->get('tab') == 'events' ? ' active' : '') }}" id="events">
         @include('cruds._events')
     </div>

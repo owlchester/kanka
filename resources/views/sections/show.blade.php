@@ -63,7 +63,7 @@
                                 {{ trans('sections.show.tabs.children') }}</span>
                         </a>
                     </li>
-                    @include('cruds._tabs')
+                    @include('cruds._tabs', ['calendars' => false])
                 </ul>
 
                 <div class="tab-content">

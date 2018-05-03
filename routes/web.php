@@ -146,6 +146,7 @@ Route::group([
     Route::get('/search/sections', 'SearchController@sections')->name('sections.find');
     Route::get('/search', 'SearchController@search')->name('search');
     Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
+    Route::get('/search/calendar_event', 'SearchController@calendarEvent')->name('search.calendar_event');
     Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');
     Route::get('/search/months', 'SearchController@months')->name('search.months');
 

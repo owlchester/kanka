@@ -72,7 +72,7 @@
                             App\Models\Entity::class,
                             false,
                             'crud.fields.entity',
-                            'search.relations'
+                            'search.calendar_event'
                         ) !!}
                     </div>
                     <div class="col-md-6">

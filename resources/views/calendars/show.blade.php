@@ -50,7 +50,7 @@
                             <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('calendars.show.tabs.information') }}</span>
                         </a>
                     </li>
-                    @include('cruds._tabs')
+                    @include('cruds._tabs', ['calendars' => false])
                 </ul>
 
                 <div class="tab-content">
@@ -64,7 +64,7 @@
 
                         @include('calendars._calendar')
                     </div>
-                    @include('cruds._panes')
+                    @include('cruds._panes', ['calendars' => false])
                 </div>
             </div>
             <!-- actions -->

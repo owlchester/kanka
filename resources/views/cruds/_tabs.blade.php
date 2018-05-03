@@ -8,7 +8,7 @@
 @endcan
 @endif
 
-@if ($campaign->enabled('calendars'))
+@if (!isset($calendars) && $campaign->enabled('calendars'))
     @can('attribute', $model)
         <li class="{{ (request()->get('tab') == 'events' ? ' active' : '') }}">
             <a href="#events" title="{{ trans('crud.tabs.events') }}" data-toggle="tooltip">
@@ -17,6 +17,7 @@
         </li>
     @endcan
 @endif
+
 @can('attribute', $model)
     <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">
         <a href="#notes" title="{{ trans('crud.tabs.notes') }}" data-toggle="tooltip">
