@@ -79,25 +79,41 @@
                     </div>
                 </div>
 
-                @if (isset($model))
-                    @foreach ($model->months() as $month)
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
-                                </div>
-                                <div class="col-md-5">
-                                    {!! Form::text('month_length[]', $month['length'], ['class' => 'form-control']) !!}
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                <?php
+                $months = [];
+                $names = old('month_name');
+                $lengths = old('month_length');
+                if (!empty($names)) {
+                    $cpt = 0;
+                    foreach ($names as $name) {
+                        if (!empty($name) || !empty($lengths[$cpt])) {
+                        $months[] = [
+                            'name' => $name,
+                            'length' => $lengths[$cpt]
+                        ];
+                        }
+                        $cpt++;
+                    }
+                } elseif (isset($model)) {
+                    $months = $model->months();
+                } ?>
+                @foreach ($months as $month)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-md-5">
+                                {!! Form::text('month_length[]', $month['length'], ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                @endforeach
                 <a class="btn btn-default" id="add_month" href="#" title="{{ trans('calendars.actions.add_month') }}">
                     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_month') }}
                 </a>
@@ -127,22 +143,32 @@
             </div>
             <div class="panel-body">
 
-                @if (isset($model))
-                    @foreach ($model->weekdays() as $weekday)
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                <?php
+                $weekdays = [];
+                $names = old('weekday');
+                if (!empty($names)) {
+                    foreach ($names as $name) {
+                        if (!empty($name)) {
+                            $weekdays[] = $name;
+                        }
+                    }
+                } elseif (isset($model)) {
+                    $weekdays = $model->weekdays();
+                } ?>
+                @foreach ($weekdays as $weekday)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10">
+                                {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                @endforeach
                 <a class="btn btn-default" id="add_weekday" href="#" title="{{ trans('calendars.actions.add_weekday') }}">
                     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_weekday') }}
                 </a>
@@ -175,26 +201,38 @@
                         <div class="col-md-5">{{ trans('calendars.parameters.year.name') }}</div>
                     </div>
                 </div>
-
-                @if (isset($model))
-                    @foreach ($model->years() as $year => $name)
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
-                                </div>
-                                <div class="col-md-5">
-                                    {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                <?php
+                $years = [];
+                $numbers = old('year_number');
+                $names = old('year_name');
+                if (!empty($numbers)) {
+                    $cpt = 0;
+                    foreach ($numbers as $number) {
+                        if (!empty($number) || !empty($names[$cpt])) {
+                            $years[$number] = $names[$cpt];
+                        }
+                        $cpt++;
+                    }
+                } elseif (isset($model)) {
+                    $years = $model->years();
+                } ?>
+                @foreach ($years as $year => $name)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-md-5">
+                                {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                @endforeach
                 <a class="btn btn-default" id="add_year" href="#" title="{{ trans('calendars.actions.add_year') }}">
                     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_year') }}
                 </a>
