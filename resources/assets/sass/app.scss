@@ -25,20 +25,20 @@ ul.campaigns {
   }
 }
 
-//.table {
-//  img.direct-chat-img {
-//    margin-right: 10px;
-//  }
-//}
-
 img.profile-user-img {
   width: 200px;
 }
 
-/*.main-sidebar {
-  padding-top: 0 !important;
-}*/
-
+.navbar-nav {
+  .campaign-menu .campaign-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+  }
+}
 @font-face {
   font-family: 'Dubai';
   src: url('/fonts/dubai/DubaiW23-Light.eot'); /* IE9 Compat Modes */
@@ -200,5 +200,5 @@ tr.entity-hidden {
  * vendor layout fix for ckeditor full screen mode
  */
 div.mce-fullscreen {
-    z-index: 1400;
+  z-index: 1400;
 }

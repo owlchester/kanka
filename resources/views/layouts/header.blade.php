@@ -17,6 +17,51 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                @if (Auth::check() and !empty(Auth::user()->campaigns))
+                    <?php $currentCampaign = Auth::user()->campaign; ?>
+                    @if(count(Auth::user()->campaigns) > 1)
+                    <li class="dropdown messages-menu campaign-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            @if ($currentCampaign->image)
+                                <img src="/storage/{{ $currentCampaign->image }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                            @else
+                                <i class="fa fa-globe"></i>
+                            @endif {{ $currentCampaign->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    @foreach (Auth::user()->campaigns as $campaign)
+                                        @if ($campaign->id != Auth::user()->campaign->id)
+                                            <li>
+                                                <a href="{{ route('campaigns.index', ['campaign_id' => $campaign->id]) }}">
+                                                    @if ($campaign->image)
+                                                        <img src="/storage/{{ $campaign->image }}" alt="{{ $campaign->name }}" class="campaign-image" />
+                                                    @else
+                                                        <i class="fa fa-globe"></i>
+                                                    @endif
+                                                    {{ $campaign->name }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    @else
+                    <li class="messages-menu campaign-menu">
+                        <a href="{{ route('home') }}">
+                        @if ($currentCampaign->image)
+                            <img src="/storage/{{ $currentCampaign->image }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                        @else
+                            <i class="fa fa-globe"></i>
+                        @endif {{ $currentCampaign->name }}
+                        </a>
+                    </li>
+                    @endif
+                @endauth
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -43,20 +88,15 @@
                     </ul>
                 </li>
 
-                <!-- User Account Menu -->
                 <? /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
-                    <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <!-- The user image in the navbar-->
                         <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
 
-                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <!-- The user image in the menu -->
                         <li class="user-header">
                             <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
                             <p>
@@ -64,7 +104,6 @@
                                 <small>{{ trans('header.member_since', ['date' => Auth::user()->elapsed('created_at')]) }}</small>
                             </p>
                         </li>
-                        <!-- Menu Footer-->
                         <li class="user-footer">
                             @if (session()->has('campaign_id'))
                             <div class="pull-left">
@@ -72,12 +111,9 @@
                             </div>
                             @endif
                             <div class="pull-right">
-                                <a href="{{ route('logout') }}" class="btn btn-default"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <a href="{{ route('logout') }}" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ trans('header.logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>

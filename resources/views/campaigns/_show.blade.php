@@ -6,7 +6,7 @@
             <div class="box-body box-profile">
                 @if ($campaign->image)
                 <a href="/storage/{{ $campaign->image }}" title="{{ $campaign->name }}" target="_blank">
-                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $campaign->image }}" alt="{{ $campaign->name }} picture">
+                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $campaign->image }}" alt="{{ $campaign->name }}">
                 </a>
                 @endif
 

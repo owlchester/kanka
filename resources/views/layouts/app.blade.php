@@ -61,32 +61,30 @@
                         </h1>
                     </div>
                 </div>
-
-                        <!-- You can dynamically generate breadcrumbs here -->
-                        <ol class="breadcrumb">
-                            <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
-                            @if (isset($breadcrumbs))
-                            @foreach ($breadcrumbs as $breadcrumb)
-                                <li>
-                                    @if (!empty($breadcrumb['url']))
-                                    <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
-                                        @if (strlen($breadcrumb['label']) > 22)
-                                            {{ substr($breadcrumb['label'], 0, 20) . '...' }}
-                                        @else
-                                            {{ $breadcrumb['label'] }}
-                                        @endif
-                                        </a>
-                                    @else
-                                        @if (strlen($breadcrumb) > 22)
-                                            <span title="{{ $breadcrumb }}">{{ substr($breadcrumb, 0, 20) . '...' }}</span>
-                                        @else
-                                            {{ $breadcrumb }}
-                                        @endif
-                                    @endif
-                                </li>
-                            @endforeach
+                <ol class="breadcrumb">
+                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @if (isset($breadcrumbs))
+                    @foreach ($breadcrumbs as $breadcrumb)
+                        <li>
+                            @if (!empty($breadcrumb['url']))
+                            <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
+                                @if (strlen($breadcrumb['label']) > 22)
+                                    {{ substr($breadcrumb['label'], 0, 20) . '...' }}
+                                @else
+                                    {{ $breadcrumb['label'] }}
+                                @endif
+                                </a>
+                            @else
+                                @if (strlen($breadcrumb) > 22)
+                                    <span title="{{ $breadcrumb }}">{{ substr($breadcrumb, 0, 20) . '...' }}</span>
+                                @else
+                                    {{ $breadcrumb }}
+                                @endif
                             @endif
-                        </ol>
+                        </li>
+                    @endforeach
+                    @endif
+                </ol>
             </section>
 
             <!-- Main content -->
