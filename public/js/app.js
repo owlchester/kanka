@@ -53160,7 +53160,7 @@ $(document).ready(function () {
  */
 function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function (e) {
-        if ((event.ctrlKey || event.metaKey) && e.which === 83) {
+        if ((e.ctrlKey || e.metaKey) && e.which === 83) {
             $(form).submit();
             return false;
         }
@@ -53422,7 +53422,7 @@ function initCrudFilters() {
         input.val('');
         input.val(tmp);
         previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp;
-        console.log('previous filter', input, previousFilterInputValue);
+        //console.log('previous filter', input, previousFilterInputValue);
     });
 
     $('#crud-filters .element input').on('focusout', function (e) {
@@ -53470,7 +53470,7 @@ function filterSubmit(field, force) {
     element.children('.value').show();
 
     var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val();
-    console.log('compare', field, compare, previousFilterInputValue);
+    //console.log('compare', field, compare, previousFilterInputValue);
 
     if (force || compare !== previousFilterInputValue) {
         $('#crud-filters-form').submit();

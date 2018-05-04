@@ -34,6 +34,7 @@ if ($pluralField == 'parent_locations') {
 $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . $singularFieldName : $placeholderKey;
 $labelKey = empty($labelKey) ? 'crud.fields.' . $singularFieldName : $labelKey;
 $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRouteName;
+
 ?>
 
 <label>{{ trans($labelKey) }}</label>
@@ -50,7 +51,7 @@ $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRou
         'class' => 'form-control select2',
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName),
-        'data-placeholder' => trans($placeholderKey)
+        'data-placeholder' => trans($placeholderKey),
     ]
 ) !!}
 

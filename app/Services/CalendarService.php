@@ -48,8 +48,9 @@ class CalendarService
             $event = new Event();
             $event->name = $data['name'];
             $event->date = $data['date'];
-            $event->save();
-            return $event->entity;
+            if ($event->save()) {
+                return $event->entity;
+            }
         } elseif(!empty($data['entity_id'])) {
             return Entity::findOrFail($data['entity_id']);
         }

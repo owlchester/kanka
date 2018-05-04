@@ -94,6 +94,11 @@ class CalendarController extends CrudController
         return $this->crudDestroy($calendar);
     }
 
+    /**
+     * @param Request $request
+     * @param Calendar $calendar
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addEvent(Request $request, Calendar $calendar)
     {
         $date = explode('-', request()->post('date'));

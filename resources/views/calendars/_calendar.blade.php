@@ -35,7 +35,7 @@
                     <p>
                     @if (!empty($day['events']))
                         @foreach ($day['events'] as $event)
-                            <a href="{{ route($event->entity->pluralType() . '.show', $event->entity->entity_id) }}">{{ $event->entity->name }}</a>
+                            <a href="{{ route($event->entity->pluralType() . '.show', $event->entity->entity_id) }}" data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</a>
                             @if ($event->comment)
                                 - {{ $event->comment }}
                             @endif
@@ -55,7 +55,7 @@
 
 <!-- Modal -->
 {!! Form::open(array('route' => ['calendars.event.add', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
-<div class="modal fade" id="add-calendar-event" tabindex="false" role="dialog" aria-labelledby="deleteConfirmLabel">
+<div class="modal fade" id="add-calendar-event" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

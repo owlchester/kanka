@@ -90,7 +90,11 @@ abstract class MiscObserver
         $entity->name = $model->name;
         $entity->section_id = $model->section_id;
         $entity->type = $model->getEntityType();
-        $entity->save();
+
+        // Once saved, refresh the model so that we can call $model->entity
+        if ($entity->save()) {
+            $model->refresh();
+        }
     }
 
     /**

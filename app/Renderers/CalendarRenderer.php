@@ -268,6 +268,7 @@ class CalendarRenderer
                             ->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')
                             ->orWhere(function ($sub) {
                                 $sub->where('date', 'like', '%-' . $this->segments[1] . '-%')
+                                    ->whereYear('date', '<=', $this->segments[0])
                                     ->where('is_recurring', true);
                             });
                     })
