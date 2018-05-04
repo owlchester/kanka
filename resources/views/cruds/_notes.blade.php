@@ -2,10 +2,10 @@
 
 <table id="crud_notes" class="table table-hover">
     <tbody><tr>
-        <th>{{ trans('crud.notes.fields.name') }}</th>
-        <th>{{ trans('crud.notes.fields.creator') }}</th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/name', '#notes']) }}">{{ trans('crud.notes.fields.name') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/creator.name', '#notes']) }}">{{ trans('crud.notes.fields.creator') }}</a></th>
         @if (Auth::user()->isAdmin())
-            <th>{{ trans('crud.fields.is_private') }}</th>
+            <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/is_private', '#notes']) }}">{{ trans('crud.fields.is_private') }}</a></th>
         @endif
         <th class="text-right">@can('attribute', [$model, 'add'])
                 <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
@@ -14,7 +14,7 @@
             @endcan
         </th>
     </tr>
-    @foreach ($r = $model->entity->notes()->with('creator')->orderBy('name', 'ASC')->paginate() as $note)
+    @foreach ($r = $model->entity->notes()->with('creator')->order(request()->get('order'))->paginate() as $note)
         <tr>
             <td><a href="#" data-toggle="entity-note" data-target="#entity-note" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a></td>
             <td>

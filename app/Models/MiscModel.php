@@ -196,10 +196,6 @@ abstract class MiscModel extends Model
             if (count($segments) > 1) {
                 $relationName = $segments[0];
 
-//                return $query->with([$relationName => function ($subquery) use ($field, $direction, $relationName) {
-//                    $subquery->orderBy(str_replace($relationName . '.', '', $field), $direction);
-//                }]);
-
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
                 return $query

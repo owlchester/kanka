@@ -18,14 +18,14 @@
 
 <table id="crud_attributes" class="table table-hover">
     <tbody><tr>
-        <th>{{ trans('crud.attributes.fields.attribute') }}</th>
-        <th>{{ trans('crud.attributes.fields.value') }}</th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'attributes/name', '#attribute']) }}">{{ trans('crud.attributes.fields.attribute') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'attributes/value', '#attribute']) }}">{{ trans('crud.attributes.fields.value') }}</a></th>
         @if (Auth::user()->isAdmin())
-            <th>{{ trans('crud.fields.is_private') }}</th>
+            <th><a href="{{ route($name . '.show', [$model, 'order' => 'attributes/is_private', '#attribute']) }}">{{ trans('crud.fields.is_private') }}</a></th>
         @endif
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->entity->attributes()->orderBy('name', 'ASC')->paginate() as $attribute)
+    @foreach ($r = $model->entity->attributes()->order(request()->get('order'))->paginate() as $attribute)
         <tr>
             <td>{{ $attribute->name }}</td>
             <td>{{ $attribute->value }}</td>

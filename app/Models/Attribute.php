@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
@@ -28,9 +29,16 @@ class Attribute extends Model
     ];
 
     /**
+     * Trigger for filtering based on the order request.
+     * @var string
+     */
+    protected $orderTrigger = 'attributes/';
+
+    /**
      * Traits
      */
     use VisibleTrait;
+    use OrderableTrait;
 
     /**
      * Searchable fields

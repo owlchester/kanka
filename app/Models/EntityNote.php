@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
@@ -31,9 +32,16 @@ class EntityNote extends Model
     ];
 
     /**
+     * Trigger for filtering based on the order request.
+     * @var string
+     */
+    protected $orderTrigger = 'notes/';
+
+    /**
      * Traits
      */
     use VisibleTrait;
+    use OrderableTrait;
 
     /**
      * Searchable fields

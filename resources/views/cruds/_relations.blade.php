@@ -3,12 +3,12 @@
 
 <table id="crud_families" class="table table-hover">
     <tbody><tr>
-        <th>{{ trans('crud.relations.fields.relation') }}</th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/relation', '#relations']) }}">{{ trans('crud.relations.fields.relation') }}</a></th>
         <th class="avatar"><br></th>
-        <th>{{ trans('crud.relations.fields.name') }}</th>
-        @if ($campaign->enabled('locations'))<th>{{ trans('crud.relations.fields.location') }}</th>@endif
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/target.name', '#relations']) }}">{{ trans('crud.relations.fields.name') }}</a></th>
+        @if ($campaign->enabled('locations'))<th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/entity.location.name', '#relations']) }}">{{ trans('crud.relations.fields.location') }}</a></th>@endif
         @if (Auth::user()->isAdmin())
-            <th>{{ trans('crud.fields.is_private') }}</th>
+            <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/is_private', '#relations']) }}">{{ trans('crud.fields.is_private') }}</a></th>
         @endif
         <th class="text-right">
             @can('relation', [$model, 'add'])
@@ -17,7 +17,7 @@
             @endcan
         </th>
     </tr>
-    @foreach ($r = $model->entity->relationships()->has('target')->with('target')->paginate() as $relation)
+    @foreach ($r = $model->entity->relationships()->has('target')->with('target')->order(request()->get('order'), 'relation')->paginate() as $relation)
         @can('view', $relation->target->child)
         <tr>
             <td>{{ $relation->relation }}</td>

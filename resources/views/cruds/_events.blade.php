@@ -2,13 +2,13 @@
 <table id="entity-event-list" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>
-        <th>{{ trans('calendars.fields.name') }}</th>
-        <th>{{ trans('events.fields.date') }}</th>
-        <th>{{ trans('calendars.fields.comment') }}</th>
-        <th>{{ trans('calendars.fields.is_recurring') }}</th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/calendar.name', '#events']) }}">{{ trans('calendars.fields.name') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/date', '#events']) }}">{{ trans('events.fields.date') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/comment', '#events']) }}">{{ trans('calendars.fields.comment') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#events']) }}">{{ trans('calendars.fields.is_recurring') }}</a></th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->entity->events()->has('calendar')->with('calendar')->paginate() as $relation)
+    @foreach ($r = $model->entity->events()->has('calendar')->with('calendar')->order(request()->get('order'), 'date')->paginate() as $relation)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(true) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>

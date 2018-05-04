@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\MiscModel;
+use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 
 /**
@@ -22,6 +23,13 @@ class EntityEvent extends MiscModel
      * Traits
      */
     //use VisibleTrait;
+    use OrderableTrait;
+
+    /**
+     * Trigger for filtering based on the order request.
+     * @var string
+     */
+    protected $orderTrigger = 'events/';
 
     /**
      * @var string

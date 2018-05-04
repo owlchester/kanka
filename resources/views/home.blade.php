@@ -69,9 +69,6 @@
                         <div class="panel-body">
                             {!! $note->description !!}
                         </div>
-                        <div class="panel-footer">
-                            <a href="{{ route('notes.show', $note->id) }}">{{ trans('crud.view') }}</a>
-                        </div>
                     </div>
                 </div>
             @endforeach

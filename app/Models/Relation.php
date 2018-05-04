@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Exception;
@@ -13,6 +14,13 @@ class Relation extends Model
      *
      */
     use VisibleTrait;
+    use OrderableTrait;
+
+    /**
+     * Trigger for filtering based on the order request.
+     * @var string
+     */
+    protected $orderTrigger = 'relations/';
 
     /**
      * @var array
@@ -40,4 +48,5 @@ class Relation extends Model
     {
         return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
+
 }
