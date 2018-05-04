@@ -15,7 +15,8 @@
             'label' => trans('locations.fields.locations'),
             'render' => function($model) {
                 return $model->locations()->count();
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'label' => trans('locations.fields.location'),
@@ -23,14 +24,16 @@
                 if ($model->parentLocation) {
                     return '<a href="' . route('locations.show', $model->parentLocation->id) . '">' . $model->parentLocation->name . '</a>';
                 }
-            }
+            },
+            'field' => 'parentLocation.name',
         ],
         [
             'label' => trans('locations.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();
-            }
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

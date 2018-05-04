@@ -34,20 +34,25 @@
 
                 @include('cruds._filters', ['route' => route($name . '.tree'), 'filters' => $filters])
 
-                {!! Form::open(['url' => route($name . '.deleteMany'), 'method' => 'POST']) !!}
+                {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
                 <div class="box-body no-padding">
                     @include($name . '._tree')
                 </div>
                 <div class="box-footer">
 
-                    @if (Auth::user()->can('create', $model))
-                    {!! Form::submit(trans('crud.remove'), ['class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
+                    @can('delete', $model)
+                        {!! Form::button('<i class="fa fa-trash"></i> ' . trans('crud.remove'), ['type' => 'submit', 'name' => 'delete', 'class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
+                    @endcan
+                    @if (Auth::user()->isAdmin())
+                        {!! Form::button('<i class="fa fa-lock"></i> ' . trans('crud.actions.private'), ['type' => 'submit', 'name' => 'private', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-private']) !!}
+                        {!! Form::button('<i class="fa fa-unlock"></i> ' . trans('crud.actions.public'), ['type' => 'submit', 'name' => 'public', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-public']) !!}
                     @endif
 
                     <div class="pull-right">
                         {{ $models->appends('parent_id', request()->get('parent_id'))->links() }}
                     </div>
                 </div>
+                {!! Form::hidden('entity', $name) !!}
                 {!! Form::close() !!}
             </div>
         </div>
