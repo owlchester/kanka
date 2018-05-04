@@ -56,7 +56,7 @@
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information" data-toggle="tooltip" title="{{ trans('items.show.tabs.information') }}">
-                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('items.show.tabs.information') }}</span>
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('items.show.tabs.information') }}</span>
                         </a>
                     </li>
                     @include('cruds._tabs')

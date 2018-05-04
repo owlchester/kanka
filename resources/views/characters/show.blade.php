@@ -141,13 +141,13 @@
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#history" title="{{ trans('characters.show.tabs.history') }}" data-toggle="tooltip">
-                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.history') }}</span>
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.history') }}</span>
                         </a>
                     </li>
                     @if (Auth::user()->can('personality', $model))
                         <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}">
                             <a href="#personality" title="{{ trans('characters.show.tabs.personality') }}" data-toggle="tooltip">
-                                <i class="fa fa-heart"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.personality') }}</span>
+                                <i class="fa fa-heart"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.personality') }}</span>
                             </a>
                         </li>
                     @endif
@@ -155,7 +155,7 @@
                         @can('organisation', $model)
                     <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}">
                         <a href="#organisation" title="{{ trans('characters.show.tabs.organisations') }}" data-toggle="tooltip">
-                            <i class="fa fa-user-secret"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.organisations') }}</span>
+                            <i class="fa fa-user-secret"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.organisations') }}</span>
                         </a>
                     </li>
                         @endcan
@@ -163,7 +163,7 @@
                     @if ($campaign->enabled('items'))
                         <li class="{{ (request()->get('tab') == 'items' ? ' active' : '') }}">
                             <a href="#items" title="{{ trans('characters.show.tabs.items') }}" data-toggle="tooltip">
-                                <i class="fa fa-shield"></i> <span class="hidden-sm">{{ trans('characters.show.tabs.items') }}</span>
+                                <i class="fa fa-shield"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.items') }}</span>
                             </a>
                         </li>
                     @endif

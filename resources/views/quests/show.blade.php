@@ -35,20 +35,20 @@
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information" data-toggle="tooltip" title="{{ trans('quests.show.tabs.information') }}">
-                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('quests.show.tabs.information') }}</span>
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('quests.show.tabs.information') }}</span>
                         </a>
                     </li>
                     @if ($campaign->enabled('characters'))
                         <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}">
                             <a href="#character" data-toggle="tooltip" title="{{ trans('quests.show.tabs.characters') }}">
-                                <i class="fa fa-user"></i> <span class="hidden-sm">{{ trans('quests.show.tabs.characters') }}</span>
+                                <i class="fa fa-user"></i> <span class="hidden-sm hidden-xs">{{ trans('quests.show.tabs.characters') }}</span>
                             </a>
                         </li>
                     @endif
                     @if ($campaign->enabled('locations'))
                         <li class="{{ (request()->get('tab') == 'location' ? ' active' : '') }}">
                             <a href="#location" data-toggle="tooltip" title="{{ trans('quests.show.tabs.locations') }}">
-                                <i class="fa fa-globe"></i> <span class="hidden-sm">{{ trans('quests.show.tabs.locations') }}</span>
+                                <i class="fa fa-globe"></i> <span class="hidden-sm hidden-xs">{{ trans('quests.show.tabs.locations') }}</span>
                             </a>
                         </li>
                     @endif

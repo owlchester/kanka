@@ -42,12 +42,12 @@
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#history" data-toggle="tooltip" title="{{ trans('families.show.tabs.history') }}">
-                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('families.show.tabs.history') }}</span>
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('families.show.tabs.history') }}</span>
                         </a>
                     </li>
                     @if ($campaign->enabled('characters'))<li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
                         <a href="#member" data-toggle="tooltip" title="{{ trans('families.show.tabs.member') }}">
-                            <i class="fa fa-user"></i> <span class="hidden-sm">{{ trans('families.show.tabs.member') }}</span>
+                            <i class="fa fa-user"></i> <span class="hidden-sm hidden-xs">{{ trans('families.show.tabs.member') }}</span>
                         </a>
                     </li>
                     @endif

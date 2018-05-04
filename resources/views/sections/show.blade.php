@@ -47,19 +47,19 @@
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#information" data-toggle="tooltip" title="{{ trans('sections.show.tabs.information') }}">
-                            <i class="fa fa-th-list"></i> <span class="hidden-sm">
+                            <i class="fa fa-th-list"></i> <span class="hidden-sm hidden-xs">
                                 {{ trans('sections.show.tabs.information') }}</span>
                         </a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'sections' ? ' active' : '') }}">
                         <a href="#sections" data-toggle="tooltip" title="{{ trans('sections.show.tabs.sections') }}">
-                            <i class="fa fa-folder-open"></i> <span class="hidden-sm">
+                            <i class="fa fa-folder-open"></i> <span class="hidden-sm hidden-xs">
                                 {{ trans('sections.show.tabs.sections') }}</span>
                         </a>
                     </li>
                     <li class="{{ (request()->get('tab') == 'children' ? ' active' : '') }}">
                         <a href="#children" data-toggle="tooltip" title="{{ trans('sections.show.tabs.children') }}">
-                            <i class="fa fa-sitemap"></i> <span class="hidden-sm">
+                            <i class="fa fa-sitemap"></i> <span class="hidden-sm hidden-xs">
                                 {{ trans('sections.show.tabs.children') }}</span>
                         </a>
                     </li>

@@ -41,7 +41,7 @@
                 <ul class="nav nav-tabs">
                     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                         <a href="#history" data-toggle="tooltip" title="{{ trans('notes.show.tabs.description') }}">
-                            <i class="fa fa-align-justify"></i> <span class="hidden-sm">{{ trans('notes.show.tabs.description') }}</span>
+                            <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('notes.show.tabs.description') }}</span>
                         </a>
                     </li>
                     @include('cruds._tabs')

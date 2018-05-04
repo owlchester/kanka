@@ -2,7 +2,7 @@
 @can('relation', $model)
     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
         <a href="#relations" title="{{ trans('crud.tabs.relations') }}" data-toggle="tooltip">
-            <i class="fa fa-users"></i> <span class="hidden-sm">{{ trans('crud.tabs.relations') }}</span>
+            <i class="fa fa-users"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.relations') }}</span>
         </a>
     </li>
 @endcan
@@ -12,7 +12,7 @@
     @can('attribute', $model)
         <li class="{{ (request()->get('tab') == 'events' ? ' active' : '') }}">
             <a href="#events" title="{{ trans('crud.tabs.events') }}" data-toggle="tooltip">
-                <i class="fa fa-calendar-o"></i> <span class="hidden-sm">{{ trans('crud.tabs.events') }}</span>
+                <i class="fa fa-calendar-o"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.events') }}</span>
             </a>
         </li>
     @endcan
@@ -21,14 +21,14 @@
 @can('attribute', $model)
     <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">
         <a href="#notes" title="{{ trans('crud.tabs.notes') }}" data-toggle="tooltip">
-            <i class="fa fa-file"></i> <span class="hidden-sm">{{ trans('crud.tabs.notes') }}</span>
+            <i class="fa fa-file"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.notes') }}</span>
         </a>
     </li>
 @endcan
 @can('attribute', $model)
     <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
         <a href="#attribute" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
-            <i class="fa fa-th-list"></i> <span class="hidden-sm">{{ trans('crud.tabs.attributes') }}</span>
+            <i class="fa fa-th-list"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.attributes') }}</span>
         </a>
     </li>
 @endcan
