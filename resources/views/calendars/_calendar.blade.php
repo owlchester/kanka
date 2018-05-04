@@ -36,8 +36,11 @@
                     @if (!empty($day['events']))
                         @foreach ($day['events'] as $event)
                             <a href="{{ route($event->entity->pluralType() . '.show', $event->entity->entity_id) }}" data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</a>
+                            @if ($event->is_recurring)
+                                &nbsp;<i class="fa fa-refresh" data-toggle="tooltip" title="{{ trans('calendars.fields.is_recurring') }}"></i>
+                            @endif
                             @if ($event->comment)
-                                - {{ $event->comment }}
+                                &nbsp;- {{ $event->comment }}
                             @endif
                             <br />
                         @endforeach
