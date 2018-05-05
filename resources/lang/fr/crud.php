@@ -2,10 +2,12 @@
 
 return [
     'actions'       => [
-        'back'  => 'Retour',
-        'copy'  => 'Copier',
-        'move'  => 'Déplacer',
-        'new'   => 'Nouveau',
+        'back'      => 'Retour',
+        'copy'      => 'Copier',
+        'move'      => 'Déplacer',
+        'new'       => 'Nouveau',
+        'private'   => 'Privé',
+        'public'    => 'Publique',
     ],
     'add'           => 'Ajouter',
     'attributes'    => [
@@ -46,6 +48,15 @@ return [
             'title'     => 'Appliquer un modèle d\'attribut pour :name',
         ],
     ],
+    'bulk'          => [
+        'errors'    => [
+            'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
+        ],
+        'success'   => [
+            'private'   => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
+            'public'    => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
+        ],
+    ],
     'cancel'        => 'Annuler',
     'clear_filters' => 'Effacer les filtres',
     'click_modal'   => [
@@ -66,6 +77,9 @@ return [
     'edit'          => 'Modifier',
     'errors'        => [
         'node_must_not_be_a_descendant' => 'Node invalide (catégorie, lieu parent): l\'entité serait un descendant de lui-même.',
+    ],
+    'events'        => [
+        'hint'  => 'Les événements de calendrier peuvent être associé à cette entité et être affiché ici.',
     ],
     'fields'        => [
         'character'     => 'Personnage',
@@ -141,6 +155,7 @@ return [
             'entry'     => 'Entrée',
             'name'      => 'Nom',
         ],
+        'hint'          => 'Des informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privés peuvent être ajoutée en tant que Note.',
         'index'         => [
             'title' => 'Notes pour :name',
         ],
@@ -174,6 +189,7 @@ return [
     ],
     'placeholders'  => [
         'character'     => 'Choix du personnage',
+        'entity'        => 'Entité',
         'event'         => 'Choix de l\'événement',
         'family'        => 'Choix de la famille',
         'image_url'     => 'Ou depuis une URL',
@@ -190,6 +206,7 @@ return [
             'name'      => 'Nom',
             'relation'  => 'Relation',
         ],
+        'hint'      => 'Des relations entre les entités peuvent être définies pour représenter leur connexion.',
     ],
     'remove'        => 'Supprimer',
     'save'          => 'Enregistrer',
@@ -198,6 +215,7 @@ return [
     'select'        => 'Sélection',
     'tabs'          => [
         'attributes'    => 'Attributs',
+        'events'        => 'Événements',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',

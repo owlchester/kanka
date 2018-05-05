@@ -30,11 +30,13 @@ return [
         'success'   => 'Evénement \':event\' ajouté au calendrier.',
     ],
     'fields'        => [
+        'comment'           => 'Commentaire',
         'current_day'       => 'Jour Actuel',
         'current_month'     => 'Mois actuel',
         'current_year'      => 'Année actuelle',
         'date'              => 'Date actuelle',
         'has_leap_year'     => 'Année bissextile',
+        'is_recurring'      => 'Récurrent',
         'leap_year_amount'  => 'Jours à ajouter',
         'leap_year_month'   => 'Mois',
         'leap_year_offset'  => 'Chaque',
@@ -46,6 +48,9 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Jours de la semaine',
+    ],
+    'hints'         => [
+        'is_recurring'  => 'Un événement peut être récurrent. Il réapparaitera chaque année à la même date.',
     ],
     'index'         => [
         'add'           => 'Nouveau Calendrier',
@@ -68,6 +73,7 @@ return [
         ],
     ],
     'placeholders'  => [
+        'comment'           => 'Anniversaire, festival, solstice',
         'date'              => 'La date actuelle',
         'leap_year_amount'  => 'Nombre de jours à ajouter lors d\'une année bissextile',
         'leap_year_month'   => 'Mois durant lequel les jours sont à ajouter',

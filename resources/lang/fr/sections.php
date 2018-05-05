@@ -21,6 +21,10 @@ return [
         'sections'      => 'Sous-catégories',
         'type'          => 'Type',
     ],
+    'hints'         => [
+        'children'  => 'Cette liste contient toutes les entités directement dans cette catégorie et toutes les catégories enfants.',
+        'section'   => 'Affiché ci-dessous sont toutes les catégories enfants de cette catégorie.',
+    ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Mode Exploration',

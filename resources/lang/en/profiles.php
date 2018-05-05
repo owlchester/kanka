@@ -35,12 +35,12 @@ return [
             'title' => 'Change your password',
         ],
     ],
+    'theme'         => [
+        'success'   => 'Theme changed.',
+        'themes'    => [
+            'default'   => 'Default',
+            'future'    => 'Future',
+        ],
+    ],
     'title'         => 'Update your profile',
-    'theme' => [
-        'success' => 'Theme changed.',
-        'themes' => [
-            'default' => 'Default',
-            'future' => 'Future',
-        ]
-    ]
 ];

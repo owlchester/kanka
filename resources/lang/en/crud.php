@@ -2,12 +2,12 @@
 
 return [
     'actions'       => [
-        'back'  => 'Back',
-        'copy'  => 'Copy',
-        'move'  => 'Move',
-        'new'   => 'New',
-        'private' => 'Private',
-        'public' => 'Public',
+        'back'      => 'Back',
+        'copy'      => 'Copy',
+        'move'      => 'Move',
+        'new'       => 'New',
+        'private'   => 'Private',
+        'public'    => 'Public',
     ],
     'add'           => 'Add',
     'attributes'    => [
@@ -48,15 +48,14 @@ return [
             'title'     => 'Apply an Attribute Template for :name',
         ],
     ],
-    'bulk' => [
-        'success' => [
-            'private' => ':count entity is now private|:count entities are now private.',
-            'public' => ':count entity is now visible|:count entities are now visible.',
-        ],
-        'errors' => [
+    'bulk'          => [
+        'errors'    => [
             'admin' => 'Only campaign admins can change the private status of entities.',
-
-        ]
+        ],
+        'success'   => [
+            'private'   => ':count entity is now private|:count entities are now private.',
+            'public'    => ':count entity is now visible|:count entities are now visible.',
+        ],
     ],
     'cancel'        => 'Cancel',
     'clear_filters' => 'Clear Filters',
@@ -76,11 +75,11 @@ return [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
     ],
     'edit'          => 'Edit',
-    'events' => [
-        'hint' => 'Calendar events associated to this entity are displayed here.',
-    ],
     'errors'        => [
         'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.',
+    ],
+    'events'        => [
+        'hint'  => 'Calendar events associated to this entity are displayed here.',
     ],
     'fields'        => [
         'character'     => 'Character',
@@ -156,7 +155,7 @@ return [
             'entry'     => 'Entry',
             'name'      => 'Name',
         ],
-        'hint' => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Notes.',
+        'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Notes.',
         'index'         => [
             'title' => 'Notes for :name',
         ],
@@ -199,7 +198,6 @@ return [
         'section'       => 'Choose a category',
     ],
     'relations'     => [
-        'hint' => 'Relations between entities can be set up to represent their connections.',
         'actions'   => [
             'add'   => 'Add a relation',
         ],
@@ -208,6 +206,7 @@ return [
             'name'      => 'Name',
             'relation'  => 'Relation',
         ],
+        'hint'      => 'Relations between entities can be set up to represent their connections.',
     ],
     'remove'        => 'Remove',
     'save'          => 'Save',
@@ -216,10 +215,10 @@ return [
     'select'        => 'Select',
     'tabs'          => [
         'attributes'    => 'Attributes',
+        'events'        => 'Events',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
-        'events'        => 'Events',
     ],
     'update'        => 'Update',
     'view'          => 'View',

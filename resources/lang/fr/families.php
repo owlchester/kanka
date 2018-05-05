@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer une nouvelle famille',
         'success'       => 'Famille \':name\' ajoutée.',
-        'title'         => 'Ajouter une Famille',
+        'title'         => 'Nouvelle Famille',
     ],
     'destroy'       => [
         'success'   => 'Famille \':name\' supprimée.',
@@ -21,6 +21,9 @@ return [
         'members'   => 'Members',
         'name'      => 'Nom',
         'relation'  => 'Relation',
+    ],
+    'hints'         => [
+        'members'   => 'Les membres d\'une famille sont affichés ici. Un personnage peut être ajouté à une famille lors de l\'édition du personnage en utilisant le champ "Famille".',
     ],
     'index'         => [
         'add'           => 'Nouvelle Famille',

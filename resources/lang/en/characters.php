@@ -2,8 +2,8 @@
 
 return [
     'actions'       => [
+        'add_appearance'    => 'Add an appearance',
         'add_personality'   => 'Add a personality',
-        'add_appearance'   => 'Add an appearance',
     ],
     'create'        => [
         'description'   => 'Create a new character',
@@ -48,8 +48,8 @@ return [
         'free'  => 'Where did the "Free" field go? If this character had one, it\'s been moved over to the new Notes tab!',
     ],
     'hints'         => [
+        'hide_personality'          => 'This tab can be hidden from non "Admin" users by disabling the "Personality Visible" option when editing this character.',
         'is_personality_visible'    => 'You can hide the whole personality section from non "Admin" users.',
-        'hide_personality' => 'This tab can be hidden from non "Admin" users by disabling the "Personality Visible" option when editing this character.',
     ],
     'index'         => [
         'actions'       => [
@@ -60,8 +60,8 @@ return [
         'header'        => 'Characters in :name',
         'title'         => 'Characters',
     ],
-    'items' => [
-        'hint' => 'Items can be assigned to characters and will be displayed here.',
+    'items'         => [
+        'hint'  => 'Items can be assigned to characters and will be displayed here.',
     ],
     'organisations' => [
         'actions'       => [
@@ -84,13 +84,15 @@ return [
             'organisation'  => 'Organisation',
             'role'          => 'Role',
         ],
-        'hint' => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
+        'hint'          => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
         'placeholders'  => [
             'organisation'  => 'Choose an organisation...',
         ],
     ],
     'placeholders'  => [
         'age'               => 'Age',
+        'appearance_entry'  => 'Description',
+        'appearance_name'   => 'Hair, Eyes, Skin, Height',
         'eye'               => 'Eye colour',
         'family'            => 'Please select a character',
         'fears'             => 'Fears',
@@ -106,8 +108,6 @@ return [
         'name'              => 'Name',
         'personality_entry' => 'Details',
         'personality_name'  => 'Goals, Mannerisms, Fears, Bonds',
-        'appearance_entry' => 'Description',
-        'appearance_name'  => 'Hair, Eyes, Skin, Height',
         'physical'          => 'Physical',
         'race'              => 'Race',
         'sex'               => 'Sex',

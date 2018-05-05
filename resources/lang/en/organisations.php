@@ -50,7 +50,7 @@ return [
             'character' => 'Character',
             'role'      => 'Role',
         ],
-        'hint' => 'Most organisations require members to run successfully.',
+        'hint'          => 'Most organisations require members to run successfully.',
         'placeholders'  => [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',

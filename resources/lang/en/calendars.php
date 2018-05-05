@@ -31,11 +31,13 @@ return [
         'success'   => 'Event \':event\' added to the calendar.',
     ],
     'fields'        => [
+        'comment'           => 'Comment',
         'current_day'       => 'Current Day',
         'current_month'     => 'Current Month',
         'current_year'      => 'Current Year',
         'date'              => 'Current Date',
         'has_leap_year'     => 'Has leap years',
+        'is_recurring'      => 'Recurring',
         'leap_year_amount'  => 'Add Days',
         'leap_year_month'   => 'Month',
         'leap_year_offset'  => 'Every',
@@ -47,11 +49,9 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
-        'comment'           => 'Comment',
-        'is_recurring'      => 'Recurring'
     ],
-    'hints'     => [
-        'is_recurring' => 'An event can be set to recurring. It will reappear every year on the same date.',
+    'hints'         => [
+        'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -74,6 +74,7 @@ return [
         ],
     ],
     'placeholders'  => [
+        'comment'           => 'Birthday, festival, solstice',
         'date'              => 'The current date',
         'leap_year_amount'  => 'Number of days added on a leap year',
         'leap_year_month'   => 'Month on which days are added',
@@ -85,7 +86,6 @@ return [
         'suffix'            => 'Current Era suffix (AC, BC)',
         'type'              => 'Type of the calendar',
         'weekdays'          => 'Number of days in a week',
-        'comment'           => 'Birthday, festival, solstice',
     ],
     'show'          => [
         'description'   => 'A detailed view of an calendar',

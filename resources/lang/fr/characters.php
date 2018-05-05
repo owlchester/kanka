@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'add_appearance'    => 'Ajouter une apparence',
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
     'create'        => [
@@ -47,6 +48,7 @@ return [
         'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',
     ],
     'hints'         => [
+        'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de ce personnage.',
         'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type non Admin.',
     ],
     'index'         => [
@@ -57,6 +59,9 @@ return [
         'description'   => 'Gérer les personnes de :name.',
         'header'        => 'Personnes de :name',
         'title'         => 'Personnes',
+    ],
+    'items'         => [
+        'hint'  => 'Des objets peuvent être assigné à des personnages et seront affichés ici.',
     ],
     'organisations' => [
         'actions'       => [
@@ -79,12 +84,15 @@ return [
             'organisation'  => 'Organisation',
             'role'          => 'Rôle',
         ],
+        'hint'          => 'Des personnages peuvent faire partie de nombreuses organisations, représentant leur employeur ou les sociétés auxquelles ils appartiennent.',
         'placeholders'  => [
             'organisation'  => 'Choix d\'une organisation...',
         ],
     ],
     'placeholders'  => [
         'age'               => 'Age',
+        'appearance_entry'  => 'Description',
+        'appearance_name'   => 'Cheveux, Yeux, Peau, Taille',
         'eye'               => 'Couleur des yeux',
         'family'            => 'Choix d\'une famille',
         'fears'             => 'Craintes',

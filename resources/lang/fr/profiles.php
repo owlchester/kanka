@@ -13,6 +13,7 @@ return [
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'newsletter'                => 'Je souhaite être contacté par email de temps en temps.',
         'password'                  => 'Mot de passe actuel',
+        'theme'                     => 'Thème',
     ],
     'password'      => [
         'success'   => 'Mot de passe modifié.',
@@ -32,6 +33,13 @@ return [
         ],
         'password'  => [
             'title' => 'Modification du mot de passe',
+        ],
+    ],
+    'theme'         => [
+        'success'   => 'Thème modifié.',
+        'themes'    => [
+            'default'   => 'Défaut',
+            'future'    => 'Futur',
         ],
     ],
     'title'         => 'Profil',
