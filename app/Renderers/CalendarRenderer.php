@@ -203,6 +203,11 @@ class CalendarRenderer
             if (empty($this->segments[1])) {
                 $this->segments[1] = 1;
             }
+
+            // If the month is too big? Then use the max
+            if ($this->segments[1] > count($this->calendar->months())) {
+                $this->segments[1] = count($this->calendar->months()) ;
+            }
         }
     }
 
