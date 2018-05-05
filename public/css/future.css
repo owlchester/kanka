@@ -35,9 +35,15 @@
   border: none !important;
 }
 
-.input-group-btn .btn {
-  height: 38px;
-  padding-top: 15px;
+.btn-danger:hover {
+  background-color: #992329 !important;
+  color: white !important;
+}
+
+.input-group-btn .btn,
+.input-group-btn .new-entity-selector {
+  height: 38px !important;
+  padding-top: 15px !important;
 }
 
 .box,
@@ -51,6 +57,7 @@
 .panel .box-header,
 .panel .panel-heading {
   background: none !important;
+  border: none !important;
 }
 
 .box .with-border,
@@ -218,6 +225,12 @@ p {
   color: white;
 }
 
+pre,
+blockquote {
+  background-color: #0B1F20;
+  color: white;
+}
+
 .nav-tabs-custom {
   border: 1px solid #42FFFF;
   background: none;
@@ -242,13 +255,17 @@ p {
 }
 
 .nav-tabs-custom li.active a {
-  color: white !important;
-  background-color: #0B1F20 !important;
+  color: #0C1416 !important;
+  background-color: #42FFFF !important;
   border: none !important;
 }
 
 .nav-tabs-custom .tab-content {
   background: none;
+}
+
+.nav-tabs {
+  border: none !important;
 }
 
 .alert {
@@ -313,6 +330,11 @@ p {
 
 .modal-content .modal-header {
   border-color: #42FFFF !important;
+  border: none !important;
+}
+
+.modal-content .modal-footer {
+  border: none !important;
 }
 
 /**

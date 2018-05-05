@@ -157,19 +157,4 @@ class Campaign extends MiscModel
         }
         return false;
     }
-
-    /**
-     * Check if a user has access to a resource
-     * @param string $permission
-     * @param Model $entity
-     * @return bool
-     */
-    public function can($action = '', Model $entity)
-    {
-        // This is split in two parts. We look if the user is part of a is_admin role, or of a role that has the permission
-        /*
-         * Select * from campaign_roles as r
-         * where r.campaign_id = $1
-         */
-    }
 }

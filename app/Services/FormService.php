@@ -60,6 +60,19 @@ class FormService
     }
 
     /**
+     * Character traits
+     * @param null $entity
+     * @return array
+     */
+    public function prefillCharacterAppearance($entity = null)
+    {
+        if ($entity instanceof MiscModel) {
+            return $entity->characterTraits()->appearance()->get();
+        }
+        return [];
+    }
+
+    /**
      * @param $field
      * @param null $entity
      */

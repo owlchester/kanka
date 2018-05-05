@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_personality'   => 'Add a personality',
+        'add_appearance'   => 'Add an appearance',
     ],
     'create'        => [
         'description'   => 'Create a new character',
@@ -104,7 +105,9 @@ return [
         'mannerisms'        => 'Mannerisms',
         'name'              => 'Name',
         'personality_entry' => 'Details',
-        'personality_name'  => 'Personality Trait: Goals, Mannerisms, Fears, Bonds',
+        'personality_name'  => 'Goals, Mannerisms, Fears, Bonds',
+        'appearance_entry' => 'Description',
+        'appearance_name'  => 'Hair, Eyes, Skin, Height',
         'physical'          => 'Physical',
         'race'              => 'Race',
         'sex'               => 'Sex',

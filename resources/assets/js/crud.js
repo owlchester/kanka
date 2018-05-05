@@ -5,6 +5,7 @@ var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 
 // Character
 var characterAddPersonality, characterTemplatePersonality;
+var characterAddAppearance, characterTemplateAppearance;
 
 // Crud button
 var crudMultiDeleteBtn, crudMultiPublicBtn, crudMultiPrivateBtn;
@@ -60,6 +61,10 @@ $(document).ready(function() {
     characterAddPersonality = $('#add_personality');
     if (characterAddPersonality.length === 1) {
         initCharacterPersonality();
+    }
+    characterAddAppearance = $('#add_appearance');
+    if (characterAddAppearance.length === 1) {
+        initCharacterAppearance();
     }
 });
 
@@ -184,12 +189,34 @@ function initCharacterPersonality()
 /**
  *
  */
+function initCharacterAppearance()
+{
+    characterTemplateAppearance = $('#template_appearance');
+    characterAddAppearance.on('click', function(e) {
+        e.preventDefault();
+
+        $(this).before('<div class="form-group">' +
+            characterTemplateAppearance.html() +
+            '</div>');
+
+        // Handle deleting already loaded blocks
+        characterDeleteRowHandler();
+
+        return false;
+    });
+
+    characterDeleteRowHandler();
+}
+
+/**
+ *
+ */
 function characterDeleteRowHandler() {
     $.each($('.personality-delete'), function (index) {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function(e) {
             e.preventDefault();
-            $(this).parent().parent().parent().parent().remove();
+            $(this).parent().parent().parent().remove();
         });
     });
 }

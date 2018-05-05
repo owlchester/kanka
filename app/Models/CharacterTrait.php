@@ -36,4 +36,9 @@ class CharacterTrait extends Model
     {
         return $query->where('section', 'personality');
     }
+
+    public function scopeAppearance($query)
+    {
+        return $query->where('section', 'appearance');
+    }
 }

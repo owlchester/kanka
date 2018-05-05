@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\MapPoint;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class GenerateCharacterTraits extends Command
@@ -41,34 +42,49 @@ class GenerateCharacterTraits extends Command
      */
     public function handle()
     {
-        $traits = 0;
+        $moral = $appearance = 0;
 
         $loop = ['traits', 'goals', 'fears', 'mannerisms'];
+        $physicals = ['height', 'weight', 'eye_colour', 'hair', 'skin', 'languages'];
 
-        foreach (Character::get() as $char) {
+        foreach (Character::with('campaign')->get() as $char) {
             foreach ($loop as $trait) {
                 if (!empty($char->$trait)) {
                     $this->newTrait($char, $trait, $char->$trait);
-                    $traits++;
+                    $moral++;
+                }
+            }
+
+            foreach ($physicals as $physical) {
+                if (!empty($char->$physical)) {
+                    $this->newTrait($char, $physical, $char->$physical, 'appearance');
+                    $appearance++;
                 }
             }
         }
 
-        $this->info("Created $traits traits.");
+        $this->info("Created $moral moral and $appearance physical traits.");
     }
 
     /**
+     * Create the new character trait
      * @param Character $character
      * @param $name
      * @param $entry
+     * @param string $section
      */
-    protected function newTrait(Character $character, $name, $entry)
+    protected function newTrait(Character $character, $name, $entry, $section = 'personality')
     {
+        // Not following a standard
+        if ($name == 'eye_colour') {
+            $name = 'eye';
+        }
+
         $trait = new CharacterTrait();
-        $trait->charactr_id = $character->id;
-        $trait->name = trans('characters.fields.' . $name);
+        $trait->character_id = $character->id;
+        $trait->name = trans('characters.fields.' . $name, [], $character->campaign->locale);
         $trait->entry = $entry;
-        $trait->section = 'personality';
+        $trait->section = $section;
         $trait->save();
     }
 }

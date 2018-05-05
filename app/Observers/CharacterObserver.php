@@ -22,7 +22,10 @@ class CharacterObserver extends MiscObserver
 
         // Handle character traits
         if (request()->has('personality_name')) {
-            $this->saveTraits($model);
+            $this->saveTraits($model, 'personality');
+        }
+        if (request()->has('appearance_name')) {
+            $this->saveTraits($model, 'appearance');
         }
     }
 
@@ -45,17 +48,17 @@ class CharacterObserver extends MiscObserver
     /**
      * @param MiscModel $model
      */
-    protected function saveTraits(MiscModel $model)
+    protected function saveTraits(MiscModel $model, $trait = 'personality')
     {
         $traits = [];
         $existing = [];
-        foreach ($model->characterTraits()->personality()->get() as $pers) {
+        foreach ($model->characterTraits()->{$trait}()->get() as $pers) {
             $existing[$pers->id] = $pers;
         }
 
         $traitCount = 0;
-        $traitNames = request()->post('personality_name', []);
-        $traitEntry = request()->post('personality_entry', []);
+        $traitNames = request()->post($trait . '_name', []);
+        $traitEntry = request()->post($trait . '_entry', []);
         foreach ($traitNames as $id => $name) {
             if (empty($name)) {
                 continue;
@@ -67,7 +70,7 @@ class CharacterObserver extends MiscObserver
             } else {
                 $trait = new CharacterTrait();
                 $trait->character_id = $model->id;
-                $trait->section = 'personality';
+                $trait->section = $trait;
             }
             $trait->name = $name;
             $trait->entry = $traitEntry[$id];

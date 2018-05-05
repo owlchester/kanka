@@ -34,10 +34,16 @@ $futureUnfocused: #157778;
     border: none !important;
   }
 }
+.btn-danger {
+  &:hover {
+    background-color: #992329 !important;
+    color: white !important;
+  }
+}
 .input-group-btn {
-  .btn {
-    height: 38px;
-    padding-top: 15px;
+  .btn, .new-entity-selector {
+    height: 38px !important;
+    padding-top: 15px !important;
   }
 }
 
@@ -47,6 +53,7 @@ $futureUnfocused: #157778;
 
   .box-header, .panel-heading {
     background: none !important;
+    border: none !important;
   }
   .with-border {
     background: none !important;
@@ -200,6 +207,10 @@ p {
   text-align: justify;
   color: white;
 }
+pre, blockquote {
+  background-color: $futureDetail;
+  color: white;
+}
 
 .nav-tabs-custom {
   border: 1px solid $futureHard;
@@ -219,14 +230,17 @@ p {
   li.active {
     border: none;
     a {
-      color: white !important;
-      background-color: $futureDetail !important;
+      color: $futureSoft !important;
+      background-color: $futureHard !important;
       border: none !important;
     }
   }
   .tab-content {
     background: none;
   }
+}
+.nav-tabs {
+  border: none !important;
 }
 
 .alert  {
@@ -279,6 +293,10 @@ p {
   background: $futureDetail;
   .modal-header {
     border-color: $futureHard !important;
+    border: none !important;
+  }
+  .modal-footer {
+    border: none !important;
   }
 }
 

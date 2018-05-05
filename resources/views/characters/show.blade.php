@@ -93,42 +93,12 @@
                             <br class="clear" />
                         </li>
                         @endif
-                        @if ($model->height)
+                        @foreach ($model->characterTraits()->appearance()->get() as $trait)
                         <li class="list-group-item">
-                            <b>{{ trans('characters.fields.height') }}</b> <span class="pull-right">{{ $model->height }}</span>
+                            <b>{{ $trait->name }}</b> <span class="pull-right">{{ $trait->entry }}</span>
                             <br class="clear" />
                         </li>
-                        @endif
-                        @if ($model->weight)
-                        <li class="list-group-item">
-                            <b>{{ trans('characters.fields.weight') }}</b> <span class="pull-right">{{ $model->weight }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
-                        @if ($model->eye_colour)
-                        <li class="list-group-item">
-                            <b>{{ trans('characters.fields.eye') }}</b> <span class="pull-right">{{ $model->eye_colour }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
-                        @if ($model->hair)
-                        <li class="list-group-item">
-                            <b>{{ trans('characters.fields.hair') }}</b> <span class="pull-right">{{ $model->hair }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
-                        @if ($model->skin)
-                        <li class="list-group-item">
-                            <b>{{ trans('characters.fields.skin') }}</b> <span class="pull-right">{{ $model->skin }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
-                        @if ($model->languages)
-                        <li class="list-group-item">
-                            <b>{{ trans('characters.fields.languages') }}</b> <span class="pull-right">{{ $model->languages }}</span>
-                            <br class="clear" />
-                        </li>
-                        @endif
+                        @endforeach
                     </ul>
                 </div>
                 <!-- /.box-body -->
@@ -178,21 +148,9 @@
                     </div>
                     @if (Auth::user()->can('personality', $model))
                     <div class="tab-pane {{ (request()->get('tab') == 'personality' ? ' active' : '') }}" id="personality">
-                        @if (!empty($model->traits))
-                        <p><b>{{ trans('characters.fields.traits') }}</b><br />{!! nl2br(e($model->traits)) !!}</p>
-                        @endif
-                        @if (!empty($model->goals))
-                        <p><b>{{ trans('characters.fields.goals') }}</b><br />{!! nl2br(e($model->goals)) !!}</p>
-                        @endif
-                        @if (!empty($model->fears))
-                        <p><b>{{ trans('characters.fields.fears') }}</b><br />{!! nl2br(e($model->fears)) !!}</p>
-                        @endif
-                        @if (!empty($model->mannerisms))
-                        <p><b>{{ trans('characters.fields.mannerisms') }}</b><br />{!! nl2br(e($model->mannerisms)) !!}</p>
-                        @endif
                         @foreach ($model->characterTraits()->personality()->get() as $trait)
                             <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
-                         @endforeach
+                        @endforeach
                         <p class="help-block">{{ trans('characters.hints.hide_personality') }}</p>
                     </div>
                     @endif

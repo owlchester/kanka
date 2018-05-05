@@ -167,6 +167,14 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Model's relation to a campaign
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function campaign()
+    {
+        return $this->belongsTo('App\Campaign', 'campaign_id');
+    }
+    /**
      * @param $query
      * @return mixed
      */

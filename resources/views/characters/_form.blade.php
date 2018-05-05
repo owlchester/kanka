@@ -84,30 +84,57 @@ if (request()->route()->getName() == 'characters.random') {
                     <label>{{ trans('characters.fields.sex') }}</label>
                     {!! Form::text('sex', ($isRandom ? $random->generate('sex') : $formService->prefill('sex', $source)), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 10]) !!}
                 </div>
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.height') }}</label>
-                    {!! Form::text('height', ($isRandom ? $random->generateNumber('height') : $formService->prefill('height', $source)), ['placeholder' => trans('characters.placeholders.height'), 'class' => 'form-control', 'maxlength' => 10]) !!}
+                @foreach ((isset($model) ? $model->characterTraits()->appearance()->get() : $formService->prefillCharacterAppearance($source)) as $trait)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.appearance_name')
+                                ]) !!}
+                            </div>
+                            <div class="col-md-8">
+                                {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.appearance_entry')
+                                ]) !!}
+                            </div>
+                            <div class="col-md-1">
+                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <a class="btn btn-default" id="add_appearance" href="#" title="{{ trans('characters.actions.add_appearance') }}">
+                    <i class="fa fa-plus"></i> {{ trans('characters.actions.add_appearance') }}
+                </a>
+                <div id="template_appearance" style="display: none">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {!! Form::text('appearance_name[]', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.appearance_name')
+                                ]) !!}
+                            </div>
+                            <div class="col-md-8">
+                                {!! Form::text('appearance_name[]', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.appearance_entry')
+                                ]) !!}
+                            </div>
+                            <div class="col-md-1">
+                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.weight') }}</label>
-                    {!! Form::text('weight', ($isRandom ? $random->generateNumber('weight') : $formService->prefill('weight', $source)), ['placeholder' => trans('characters.placeholders.weight'), 'class' => 'form-control', 'maxlength' => 10]) !!}
-                </div>
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.eye') }}</label>
-                    {!! Form::text('eye_colour', ($isRandom ? $random->generate('eye') : $formService->prefill('eye_colour', $source)), ['placeholder' => trans('characters.placeholders.eye'), 'class' => 'form-control', 'maxlength' => 12]) !!}
-                </div>
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.hair') }}</label>
-                    {!! Form::text('hair', ($isRandom ? $random->generate('hair') : $formService->prefill('hair', $source)), ['placeholder' => trans('characters.placeholders.hair'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-                </div>
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.skin') }}</label>
-                    {!! Form::text('skin', ($isRandom ? $random->generate('skin') : $formService->prefill('skin', $source)), ['placeholder' => trans('characters.placeholders.skin'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-                </div>
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.languages') }}</label>
-                    {!! Form::text('languages', ($isRandom ? $random->generate('language', 3) : $formService->prefill('languages', $source)), ['placeholder' => trans('characters.placeholders.languages'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+
+                <div class="form-group"><br /></div>
 
                 @include('cruds.fields.image')
             </div>
@@ -135,59 +162,27 @@ if (request()->route()->getName() == 'characters.random') {
                 <h4>{{ trans('characters.sections.personality') }}</h4>
             </div>
             <div class="panel-body">
-                @if (isset($model) && !empty($model->traits))
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.traits') }}</label>
-                    {!! Form::textarea('traits', ($isRandom ? $random->generate('trait') : $formService->prefill('traits', $source)), ['placeholder' => trans('characters.placeholders.traits'), 'class' => 'form-control', 'rows' => 4]) !!}
-                </div>
-                @endif
-                @if (isset($model) && !empty($model->goals))
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.goals') }}</label>
-                    {!! Form::textarea('goals', ($isRandom ? $random->generate('goal') : $formService->prefill('goals', $source)), ['placeholder' => trans('characters.placeholders.goals'), 'class' => 'form-control', 'rows' => 4]) !!}
-                </div>
-                @endif
-                @if (isset($model) && !empty($model->fears))
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.fears') }}</label>
-                    {!! Form::textarea('fears', ($isRandom ? $random->generate('fear') : $formService->prefill('fears', $source)), ['placeholder' => trans('characters.placeholders.fears'), 'class' => 'form-control', 'rows' => 4]) !!}
-                </div>
-                @endif
-                @if (isset($model) && !empty($model->mannerisms))
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.mannerisms') }}</label>
-                    {!! Form::textarea('mannerisms', ($isRandom ? $random->generate('mannerism') : $formService->prefill('mannerisms', $source)), ['placeholder' => trans('characters.placeholders.mannerisms'), 'class' => 'form-control', 'rows' => 4]) !!}
-                </div>
-                @endif
-                @if (isset($model) && !empty($model->free))
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.free') }}</label>
-                    {!! Form::textarea('free', $formService->prefill('free', $source), ['placeholder' => trans('characters.placeholders.free'), 'class' => 'form-control', 'rows' => 4]) !!}
-                </div>
-                @endif
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->get() : $formService->prefillCharacterPersonality($source)) as $trait)
-                    <div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
-                                        'class' => 'form-control',
-                                        'placeholder' => trans('characters.placeholders.personality_name')
-                                    ]) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.personality_name')
+                                ]) !!}
                             </div>
-                        </div>
-                        <div class="form-group">
-                            {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
-                                'class' => 'form-control',
-                                'placeholder' => trans('characters.placeholders.personality_entry'),
-                                'rows' => 4
-                            ]) !!}
+                            <div class="col-md-8">
+                                {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.personality_entry'),
+                                    'rows' => 4
+                                ]) !!}
+                            </div>
+                            <div class="col-md-1">
+                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -195,28 +190,26 @@ if (request()->route()->getName() == 'characters.random') {
                     <i class="fa fa-plus"></i> {{ trans('characters.actions.add_personality') }}
                 </a>
                 <div id="template_personality" style="display: none">
-                    <div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    {!! Form::text('personality_name[]', null, [
-                                        'class' => 'form-control',
-                                        'placeholder' => trans('characters.placeholders.personality_name')
-                                    ]) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {!! Form::text('personality_name[]', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.personality_name')
+                                ]) !!}
                             </div>
-                        </div>
-                        <div class="form-group">
-                            {!! Form::textarea('personality_entry[]', null, [
-                                'class' => 'form-control',
-                                'placeholder' => trans('characters.placeholders.personality_entry'),
-                                'rows' => 4
-                            ]) !!}
+                            <div class="col-md-8">
+                                {!! Form::textarea('personality_entry[]', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('characters.placeholders.personality_entry'),
+                                    'rows' => 4
+                                ]) !!}
+                            </div>
+                            <div class="col-md-1">
+                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
