@@ -2,10 +2,10 @@
 <table id="entity-event-list" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/calendar.name', '#events']) }}">{{ trans('calendars.fields.name') }}</a></th>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/date', '#events']) }}">{{ trans('events.fields.date') }}</a></th>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/comment', '#events']) }}">{{ trans('calendars.fields.comment') }}</a></th>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#events']) }}">{{ trans('calendars.fields.is_recurring') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/calendar.name', '#events']) }}">{{ trans('calendars.fields.name') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/date', '#events']) }}">{{ trans('events.fields.date') }}@if (request()->get('order') == 'events/date') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/comment', '#events']) }}">{{ trans('calendars.fields.comment') }}@if (request()->get('order') == 'events/comment') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#events']) }}">{{ trans('calendars.fields.is_recurring') }}@if (request()->get('order') == 'events/is_recurring') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th>&nbsp;</th>
     </tr>
     @foreach ($r = $model->entity->events()->has('calendar')->with('calendar')->order(request()->get('order'), 'date')->paginate() as $relation)

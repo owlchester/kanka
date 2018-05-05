@@ -2,10 +2,10 @@
 
 <table id="crud_notes" class="table table-hover">
     <tbody><tr>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/name', '#notes']) }}">{{ trans('crud.notes.fields.name') }}</a></th>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/creator.name', '#notes']) }}">{{ trans('crud.notes.fields.creator') }}</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/name', '#notes']) }}">{{ trans('crud.notes.fields.name') }}@if (request()->get('order') == 'notes/name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/creator.name', '#notes']) }}">{{ trans('crud.notes.fields.creator') }}@if (request()->get('order') == 'notes/creator.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         @if (Auth::user()->isAdmin())
-            <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/is_private', '#notes']) }}">{{ trans('crud.fields.is_private') }}</a></th>
+            <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/is_private', '#notes']) }}">{{ trans('crud.fields.is_private') }}@if (request()->get('order') == 'notes/is_private') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         @endif
         <th class="text-right">@can('attribute', [$model, 'add'])
                 <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
