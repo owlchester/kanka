@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreFamily;
 use App\Http\Requests\StoreLocation;
 use App\Models\Family;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
