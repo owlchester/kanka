@@ -121,7 +121,7 @@ h4,
 h5,
 h6,
 h1 > small {
-  color: white !important;
+  color: #eee !important;
 }
 
 a {
@@ -150,7 +150,7 @@ select {
 
 .form-control,
 label {
-  color: white;
+  color: #eee;
 }
 
 .preview {
@@ -216,7 +216,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .post {
-  color: white;
+  color: #eee;
 }
 
 .help-block {
@@ -227,13 +227,13 @@ input[type="checkbox"]:checked:after {
 
 p {
   text-align: justify;
-  color: white;
+  color: #eee;
 }
 
 pre,
 blockquote {
   background-color: #0B1F20;
-  color: white;
+  color: #eee;
 }
 
 .nav-tabs-custom {
@@ -275,7 +275,7 @@ blockquote {
 
 .alert {
   background-color: #157778 !important;
-  color: white !important;
+  color: #eee !important;
   border-radius: 2px !important;
   border: 0;
 }
@@ -287,7 +287,7 @@ blockquote {
 .list-group-item {
   background: none;
   border: 1px solid #0B1F20;
-  color: white;
+  color: #eee;
 }
 
 .badge {
@@ -316,13 +316,13 @@ blockquote {
   border: 1px solid #157778 !important;
   border-radius: 2px !important;
   background: none !important;
-  color: white !important;
+  color: #eee !important;
 }
 
 .mce-menubtn button,
 .mce-menubtn button span,
 .mce-ico {
-  color: white !important;
+  color: #eee !important;
 }
 
 /**
@@ -380,12 +380,12 @@ blockquote {
 }
 
 .dropdown-menu li {
-  color: white !important;
+  color: #eee !important;
 }
 
 .dropdown-menu li a {
   border: none;
-  color: white;
+  color: #eee;
 }
 
 .main-header,

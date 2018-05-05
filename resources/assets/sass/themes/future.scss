@@ -2,6 +2,7 @@ $futureHard: #42FFFF;
 $futureSoft: #0C1416;
 $futureDetail: #0B1F20;
 $futureUnfocused: #157778;
+$futureWhite: #eee;
 
 body {
   background-color: $futureSoft;
@@ -115,7 +116,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, h1 > small {
-  color: white !important;
+  color: $futureWhite !important;
 }
 a {
   color: $futureUnfocused !important;
@@ -139,7 +140,7 @@ input, textarea, .select2, select  {
   color: white;
 }
 .form-control, label {
-  color: white;
+  color: $futureWhite;
 }
 .preview {
   background-color: $futureDetail;
@@ -200,7 +201,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .post {
-  color: white;
+  color: $futureWhite;
 }
 .help-block {
   color: #bbb;
@@ -209,11 +210,11 @@ input[type="checkbox"]:checked:after {
 }
 p {
   text-align: justify;
-  color: white;
+  color: $futureWhite;
 }
 pre, blockquote {
   background-color: $futureDetail;
-  color: white;
+  color: $futureWhite;
 }
 
 .nav-tabs-custom {
@@ -249,7 +250,7 @@ pre, blockquote {
 
 .alert  {
   background-color: $futureUnfocused !important;
-  color: white !important;
+  color: $futureWhite !important;
   border-radius: 2px !important;
   border: 0;
 
@@ -261,7 +262,7 @@ pre, blockquote {
 .list-group-item {
   background: none;
   border: 1px solid $futureDetail;
-  color: white;
+  color: $futureWhite;
 }
 
 .badge {
@@ -284,10 +285,10 @@ pre, blockquote {
   border: 1px solid $futureUnfocused !important;
   border-radius: 2px !important;
   background: none !important;
-  color: white !important;
+  color: $futureWhite !important;
 }
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
-  color: white !important;
+  color: $futureWhite !important;
 }
 
 /**
@@ -334,10 +335,10 @@ pre, blockquote {
     background: none !important;
   }
   li {
-    color: white !important;
+    color: $futureWhite !important;
     a {
       border: none;
-      color: white;
+      color: $futureWhite;
     }
   }
 }
