@@ -120,7 +120,7 @@ if (request()->route()->getName() == 'characters.random') {
                                 ]) !!}
                             </div>
                             <div class="col-md-8">
-                                {!! Form::text('appearance_name[]', null, [
+                                {!! Form::text('appearance_entry[]', null, [
                                     'class' => 'form-control',
                                     'placeholder' => trans('characters.placeholders.appearance_entry')
                                 ]) !!}

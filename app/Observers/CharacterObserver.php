@@ -48,38 +48,38 @@ class CharacterObserver extends MiscObserver
     /**
      * @param MiscModel $model
      */
-    protected function saveTraits(MiscModel $model, $trait = 'personality')
+    protected function saveTraits(MiscModel $character, $trait = 'personality')
     {
-        $traits = [];
         $existing = [];
-        foreach ($model->characterTraits()->{$trait}()->get() as $pers) {
+        foreach ($character->characterTraits()->{$trait}()->get() as $pers) {
             $existing[$pers->id] = $pers;
         }
 
         $traitCount = 0;
         $traitNames = request()->post($trait . '_name', []);
         $traitEntry = request()->post($trait . '_entry', []);
+
         foreach ($traitNames as $id => $name) {
             if (empty($name)) {
                 continue;
             }
 
             if (!empty($existing[$id])) {
-                $trait = $existing[$id];
+                $model = $existing[$id];
                 unset($existing[$id]);
             } else {
-                $trait = new CharacterTrait();
-                $trait->character_id = $model->id;
-                $trait->section = $trait;
+                $model = new CharacterTrait();
+                $model->character_id = $character->id;
+                $model->section = $trait;
             }
-            $trait->name = $name;
-            $trait->entry = $traitEntry[$id];
-            $trait->save();
+            $model->name = $name;
+            $model->entry = $traitEntry[$id];
+            $model->save();
             $traitCount++;
         }
 
-        foreach ($existing as $id => $trait) {
-            $trait->delete();
+        foreach ($existing as $id => $model) {
+            $model->delete();
         }
     }
 }
