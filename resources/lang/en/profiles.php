@@ -13,6 +13,7 @@ return [
         'new_password_confirmation' => 'New Password Confirmation',
         'newsletter'                => 'I wish to sometimes be contacted by email.',
         'password'                  => 'Current password',
+        'theme'                     => 'Theme',
     ],
     'password'      => [
         'success'   => 'Password updated',
@@ -35,4 +36,11 @@ return [
         ],
     ],
     'title'         => 'Update your profile',
+    'theme' => [
+        'success' => 'Theme changed.',
+        'themes' => [
+            'default' => 'Default',
+            'future' => 'Future',
+        ]
+    ]
 ];

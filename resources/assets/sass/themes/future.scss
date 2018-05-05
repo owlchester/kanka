@@ -1,0 +1,333 @@
+$futureHard: #42FFFF;
+$futureSoft: #0C1416;
+$futureDetail: #0B1F20;
+$futureUnfocused: #157778;
+
+#app {
+  background-color: $futureSoft;
+  background: linear-gradient(to left, $futureDetail, $futureSoft) !important;
+}
+.main-sidebar {
+  background: $futureDetail !important;
+
+  li:hover, li.active {
+    background-color: $futureDetail !important;
+    a {
+      color: $futureHard !important;
+    }
+  }
+}
+
+.content-wrapper {
+  background: none !important;
+}
+
+.btn {
+  background-color: $futureUnfocused !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 2px !important;
+
+  &:hover {
+    color: $futureDetail !important;
+    background-color: $futureHard !important;
+    border: none !important;
+  }
+}
+.input-group-btn {
+  .btn {
+    height: 38px;
+    padding-top: 15px;
+  }
+}
+
+.box, .panel  {
+  border: 1px solid $futureHard !important;
+  background: none !important;
+
+  .box-header, .panel-heading {
+    background: none !important;
+  }
+  .with-border {
+    background: none !important;
+    border-bottom: 1px solid $futureHard !important;
+  }
+
+  .box-footer, .panel-footer {
+    background: none !important;
+    border: none !important;
+  }
+
+  .panel-body {
+
+  }
+}
+
+.filters {
+  background: $futureDetail !important;
+  margin: 0 !important;
+  border-bottom: none; //1px solid $futureUnfocused;
+  border-radius: 0 !important;
+  color: white;
+
+  .element {
+    cursor: pointer;
+    &:hover {
+      background: $futureSoft !important;
+    }
+  }
+  .first {
+    border-left: 1px solid $futureUnfocused;
+  }
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: $futureDetail !important;
+}
+.table {
+  tr {
+    td, th {
+      border: none !important;
+      border-top: none !important;
+      border-bottom: none !important;
+      color: #eee;
+    }
+  }
+}
+.table-hover {
+  tbody {
+    tr {
+      &:hover {
+        background-color: $futureDetail !important;
+      }
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6, h1 > small {
+  color: $futureHard !important;
+}
+a {
+  color: $futureUnfocused !important;
+  &:hover {
+    color: $futureHard !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  a {
+    span.visible-lg {
+      display: none !important;
+    }
+  }
+}
+
+input, textarea, .select2, select  {
+  border: 1px solid $futureHard !important;
+  border-radius: 0 !important;
+  background-color: $futureDetail !important;
+  color: white;
+}
+.form-control, label {
+  color: white;
+}
+.preview {
+  background-color: $futureDetail;
+  min-height: 40px;
+
+  a.img-delete {
+    background: none;
+    margin-top: -30px;
+    position: relative;
+    background-color: rgba(11, 31, 31, 0.6);
+  }
+}
+
+.select2 {
+  .select2-selection {
+    background: none;
+    border: none;
+    height: 36px;
+
+    .select2-selection__rendered {
+      color: white;
+    }
+  }
+}
+.select2-dropdown {
+  background-color: $futureDetail;
+  .select2-results {
+    color: white;
+  }
+}
+input[type=checkbox] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  width: 16px;
+  height: 16px;
+}
+input[type=checkbox]:after {
+  background-color: $futureDetail !important;
+  border: 1px solid $futureHard !important;
+}
+input[type="checkbox"]:checked {
+  background: $futureHard !important;
+}
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+.main-footer {
+  background: none !important;
+  border-top: none !important;
+  color: #999fac !important;
+}
+
+.user-footer {
+  background-color: $futureDetail !important;
+}
+
+.post {
+  color: white;
+}
+.help-block {
+  color: $futureUnfocused;
+  text-align: justify;
+}
+p {
+  text-align: justify;
+  color: white;
+}
+
+.nav-tabs-custom {
+  border: 1px solid $futureHard;
+  background: none;
+
+  li {
+    border: none;
+    &:hover {
+      background: $futureDetail;
+      border: none;
+      border-bottom: none;
+      a {
+        background: none;
+      }
+    }
+  }
+  li.active {
+    border: none;
+    a {
+      color: white !important;
+      background-color: $futureDetail !important;
+      border: none !important;
+    }
+  }
+  .tab-content {
+    background: none;
+  }
+}
+
+.alert  {
+  background-color: $futureUnfocused !important;
+  color: white !important;
+  border-radius: 2px !important;
+  border: 0;
+
+  a {
+    color: $futureHard !important;
+  }
+}
+
+.list-group-item {
+  background: none;
+  border: 1px solid $futureDetail;
+  color: white;
+}
+
+.badge {
+  background-color: $futureHard !important;
+  color: $futureSoft !important;
+}
+/**
+ * Tinymce
+ */
+.mce-panel {
+  background-color: $futureDetail !important;
+}
+.mce-menubar {
+  border: 0 !important;
+}
+.mce-edit-area, .mce-content-body {
+  background: none !important;
+}
+.mce-btn {
+  border: 1px solid $futureUnfocused !important;
+  border-radius: 2px !important;
+  background: none !important;
+  color: white !important;
+}
+.mce-menubtn button, .mce-menubtn button span, .mce-ico {
+  color: white !important;
+}
+
+/**
+ * Modal
+ */
+.modal-content {
+  background: $futureDetail;
+  .modal-header {
+    border-color: $futureHard !important;
+  }
+}
+
+/**
+ * Dashboard
+ */
+.products-list > .item {
+  background: none;
+}
+.product-list-in-box > .item {
+  border-bottom: 1px solid $futureUnfocused;
+}
+.small-box, .info-box {
+  background-color: $futureDetail !important;
+  border: 1px solid $futureDetail;
+  border-radius: 2px;
+}
+.info-box-icon {
+  background-color: $futureUnfocused !important;
+}
+
+/**
+ * Menu
+ */
+.dropdown-menu {
+  background-color: $futureDetail;
+  border: 1px solid $futureUnfocused;
+  border-radius: 2px;
+
+  li.header {
+    background: none !important;
+  }
+  li {
+    color: white !important;
+    a {
+      border: none;
+      color: white;
+    }
+  }
+}
+.main-header, .navbar {
+  background: none !important;
+  a {
+    background: none !important;
+    border: none !important;
+
+    &:hover {
+      color: $futureHard !important;
+      background: $futureDetail !important;
+    }
+  }
+}

@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12 col-md-offset">
+        <div class="col-md-6 col-md-offset">
             <div class="panel panel-default">
                 <div class="panel-body">
                     @include('partials.errors')
@@ -20,9 +20,20 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['profile.theme']]) !!}
+                    @include('profiles._theme')
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
 
         @if (empty($user->provider))
-        <div class="col-md-12 col-md-offset">
+        <div class="col-md-6 col-md-offset">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>{{ trans('profiles.sections.password.title') }}</h4>
@@ -36,7 +47,9 @@
         </div>
         @endif
 
-        <div class="col-md-12 col-md-offset">
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>{{ trans('profiles.sections.delete.title') }}</h4>

@@ -35,6 +35,9 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
+    @if (Auth::check() && !empty(Auth::user()->theme))
+    <link href="{{ asset('css/' . Auth::user()->theme . '.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
+    @endif
 
     @yield('styles')
 </head>

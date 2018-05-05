@@ -31,6 +31,7 @@ Route::group([
 
     Route::get('/profile', 'ProfileController@edit')->name('profile');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
+    Route::patch('/profile/theme', 'ProfileController@theme')->name('profile.theme');
 
     Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
     Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');

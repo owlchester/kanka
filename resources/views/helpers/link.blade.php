@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    {{ trans('helpers.link.title') }}
+                    <h4>{{ trans('helpers.link.title') }}</h4>
                 </div>
 
                 <div class="box-body">

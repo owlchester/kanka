@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeleteProfile;
 use App\Http\Requests\StoreProfile;
 use App\Http\Requests\StoreProfilePassword;
+use App\Http\Requests\StoreProfileTheme;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,6 +56,19 @@ class ProfileController extends Controller
     {
         Auth::user()->update($request->only('password_new'));
         return redirect()->route('profile')->with('success', trans('profiles.password.success'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Family $family
+     * @return \Illuminate\Http\Response
+     */
+    public function theme(StoreProfileTheme $request)
+    {
+        Auth::user()->update($request->only('theme'));
+        return redirect()->route('profile')->with('success', trans('profiles.theme.success'));
     }
 
 
