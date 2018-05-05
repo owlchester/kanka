@@ -17,7 +17,7 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                @if (Auth::check() and !empty(Auth::user()->campaigns))
+                @if (Auth::check() and !empty(Auth::user()->campaign))
                     <?php $currentCampaign = Auth::user()->campaign; ?>
                     @if(count(Auth::user()->campaigns) > 1)
                     <li class="dropdown messages-menu campaign-menu">
