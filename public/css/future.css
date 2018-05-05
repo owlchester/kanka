@@ -121,7 +121,7 @@ h4,
 h5,
 h6,
 h1 > small {
-  color: #42FFFF !important;
+  color: white !important;
 }
 
 a {
@@ -220,7 +220,8 @@ input[type="checkbox"]:checked:after {
 }
 
 .help-block {
-  color: #157778;
+  color: #bbb;
+  font-style: italic;
   text-align: justify;
 }
 

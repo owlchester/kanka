@@ -115,7 +115,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, h1 > small {
-  color: $futureHard !important;
+  color: white !important;
 }
 a {
   color: $futureUnfocused !important;
@@ -203,7 +203,8 @@ input[type="checkbox"]:checked:after {
   color: white;
 }
 .help-block {
-  color: $futureUnfocused;
+  color: #bbb;
+  font-style: italic;
   text-align: justify;
 }
 p {
