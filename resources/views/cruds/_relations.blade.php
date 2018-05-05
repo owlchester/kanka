@@ -6,7 +6,7 @@
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/relation', '#relations']) }}">{{ trans('crud.relations.fields.relation') }}</a></th>
         <th class="avatar"><br></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/target.name', '#relations']) }}">{{ trans('crud.relations.fields.name') }}</a></th>
-        @if ($campaign->enabled('locations'))<th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/entity.location.name', '#relations']) }}">{{ trans('crud.relations.fields.location') }}</a></th>@endif
+        @if ($campaign->enabled('locations'))<th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/target.location.name', '#relations']) }}">{{ trans('crud.relations.fields.location') }}</a></th>@endif
         @if (Auth::user()->isAdmin())
             <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/is_private', '#relations']) }}">{{ trans('crud.fields.is_private') }}</a></th>
         @endif

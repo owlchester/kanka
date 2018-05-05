@@ -15,8 +15,8 @@
                 <div class="widget-user-header bg-success">
                     @if ($character->character->image)
                         <img class="direct-chat-img" src="{{ $character->character->getImageUrl(true) }}" alt="{{ $model->name }}">
-                @endif
-                <!-- /.widget-user-image -->
+                    @endif
+
                     <h3 class="widget-user-username">
                         <a href="{{ route('characters.show', $character->character) }}" data-toggle="tooltip" title="{{ $character->character->tooltip() }}">
                             {{ $character->character->name }}

@@ -3,9 +3,12 @@ $futureSoft: #0C1416;
 $futureDetail: #0B1F20;
 $futureUnfocused: #157778;
 
-#app {
+body {
   background-color: $futureSoft;
   background: linear-gradient(to left, $futureDetail, $futureSoft) !important;
+}
+#app {
+  background: none;
 }
 .main-sidebar {
   background: $futureDetail !important;
@@ -348,4 +351,11 @@ pre, blockquote {
       background: $futureDetail !important;
     }
   }
+}
+
+/**
+ * Quests
+ */
+.bg-success {
+  background-color: $futureDetail;
 }
