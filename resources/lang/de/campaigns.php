@@ -2,6 +2,7 @@
 
 return [
     'create'        => [
+        'description'           => 'Erstelle eine neue Kampagne',
         'helper'                => [
             'first' => 'Danke, dass du unsere App ausprobierst! Bevor es losgehen kann, brauchen wir nur eine Kleinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder weitere Kampagnen erstellen.',
             'second'=> 'Aber genug Geplauder! Was soll es sein?',
@@ -15,8 +16,9 @@ return [
         'success'   => 'Kampagne gelöscht',
     ],
     'edit'          => [
-        'success'   => 'Kampagne aktualisiert',
-        'title'     => 'Kampagne :campaign bearbeiten',
+        'description'   => 'Bearbeite deine Kampagne',
+        'success'       => 'Kampagne aktualisiert',
+        'title'         => 'Kampagne :campaign bearbeiten',
     ],
     'fields'        => [
         'description'   => 'Beschreibung',
@@ -42,9 +44,10 @@ return [
             'add'   => 'Einladung',
         ],
         'create'        => [
-            'button'    => 'Einladen',
-            'success'   => 'Einladung verschickt.',
-            'title'     => 'Lade jemanden zu deiner Kampagne ein',
+            'button'        => 'Einladen',
+            'description'   => 'Lade einen Freund zu deiner Kampagne ein',
+            'success'       => 'Einladung verschickt.',
+            'title'         => 'Lade jemanden zu deiner Kampagne ein',
         ],
         'destroy'       => [
             'success'   => 'Einladung entfernt.',
@@ -78,13 +81,15 @@ return [
             'title' => 'Füge ein Mitglied zu deiner Kampagne hinzu.',
         ],
         'edit'      => [
-            'title' => 'Bearbeite Mitglied :name',
+            'description'   => 'Bearbeite ein Mitglied deiner Kampagne',
+            'title'         => 'Bearbeite Mitglied :name',
         ],
         'fields'    => [
             'joined'    => 'Beigetreten',
             'name'      => 'Nutzer',
             'role'      => 'Rolle',
         ],
+        'help'      => 'Es gibt kein Limit der Anzahl der Mitglieder einer Kampagne und als ein Admin kannst du Mitglieder entfernen, die nicht mehr aktiv sind.',
         'invite'    => [
             'description'   => 'Du kannst deine Freunde zu deiner Kampagne einladen, in dem du ihre Email Adresse eingibst. Wenn sie die Einladung annehmen, werden sie als \'Zuschauer\' hinzugefügt. Du kannst die Einladung auch jederzeit abbrechen.',
             'title'         => 'Einladen',
@@ -121,15 +126,28 @@ return [
             'permissions'   => 'Berechtigungen',
             'users'         => 'Nutzer',
         ],
+        'helper'        => [
+            '1' => 'Eine Kampagne kann so viele Rollen haben, wie du willst. Die "Admin" Rolle hat automatisch Zugriff auf alles in einer Kampagne, aber jede andere Rolle kann spezielle Berechtigungen auf unterschiedliche Typen von Objekten (Charaktere, Orte, etc.) haben.',
+            '2' => 'Objekte können feiner abgestimmte Berechtigungen haben, die du im "Berechtigungen" Tab des Objekts einstellen kannst. Dieser Tab erscheint, wenn du mehrere Rollen in deiner Kampagne hast.',
+            '3' => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
+        ],
         'members'       => 'Mitglieder',
         'permissions'   => [
-            'hint'  => 'Diese Rolle hat automatisch Zugriff auf alles.',
+            'actions'   => [
+                'add'           => 'Erstellen',
+                'delete'        => 'Entfernen',
+                'edit'          => 'Bearbeiten',
+                'permission'    => 'Verwalte Berechtigungen',
+                'read'          => 'Anschauen',
+            ],
+            'hint'      => 'Diese Rolle hat automatisch Zugriff auf alles.',
         ],
         'placeholders'  => [
             'name'  => 'Name der Rolle',
         ],
         'show'          => [
-            'title' => 'Rolle \':role\' für Kampagne \':campaign\'',
+            'description'   => 'Mitglieder und Berechtigungen einer Rolle',
+            'title'         => 'Rolle \':role\' für Kampagne \':campaign\'',
         ],
         'users'         => [
             'actions'   => [

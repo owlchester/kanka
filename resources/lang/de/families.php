@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Familie \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Familie',
+        'description'   => 'Erstelle eine neue Familie',
+        'success'       => 'Familie \':name\' erstellt.',
+        'title'         => 'Erstelle eine neue Familie',
     ],
     'destroy'       => [
         'success'   => 'Familie \':name\' entfernt.',
@@ -19,6 +20,9 @@ return [
         'members'   => 'Mitglieder',
         'name'      => 'Name',
         'relation'  => 'Beziehung',
+    ],
+    'hints'         => [
+        'members'   => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],
     'index'         => [
         'add'           => 'Neue Familie',

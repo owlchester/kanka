@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Ereignis \':name\' erstellt',
-        'title'     => 'Neues Ereignis erstellen',
+        'description'   => 'Erstellen ein neues Ereignis',
+        'success'       => 'Ereignis \':name\' erstellt',
+        'title'         => 'Neues Ereignis erstellen',
     ],
     'destroy'       => [
         'success'   => 'Ereignis \':name\' entfernt.',
@@ -38,5 +39,8 @@ return [
             'information'   => 'Informationen',
         ],
         'title'         => 'Ereignis :name',
+    ],
+    'tabs'          => [
+        'calendars' => 'Kalendereinträge',
     ],
 ];

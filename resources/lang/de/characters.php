@@ -1,16 +1,21 @@
 <?php
 
 return [
+    'actions'       => [
+        'add_personality'   => 'Füge eine Persönlichkeit hinzu',
+    ],
     'create'        => [
-        'success'   => 'Charakter \':name\' erstellt.',
-        'title'     => 'Erstelle einen neuen Charakter',
+        'description'   => 'Erstelle einen neuen Charakter',
+        'success'       => 'Charakter \':name\' erstellt.',
+        'title'         => 'Erstelle einen neuen Charakter',
     ],
     'destroy'       => [
         'success'   => 'Charakter \':name\' entfernt.',
     ],
     'edit'          => [
-        'success'   => 'Charakter \':name\' aktualisiert',
-        'title'     => 'Bearbeite Charakter :name',
+        'description'   => 'Bearbeite einen Charakter',
+        'success'       => 'Charakter \':name\' aktualisiert',
+        'title'         => 'Bearbeite Charakter :name',
     ],
     'fields'        => [
         'age'                       => 'Alter',
@@ -35,9 +40,14 @@ return [
         'skin'                      => 'Haut',
         'title'                     => 'Titel',
         'traits'                    => 'Eigenschaften',
+        'type'                      => 'Typ',
         'weight'                    => 'Gewicht',
     ],
+    'helpers'       => [
+        'free'  => 'Wo ist das "Freitext" Feld? Wenn dieser Charakter ein solches Feld hatte, wurde es in den neuen Notizen Tab verschoben.',
+    ],
     'hints'         => [
+        'hide_personality'          => 'Dieser Tab kann vor nicht "Admin" Nutzern versteckt werden, in dem die "Persönlichkeit sichtbar" Option ausgewählt wird, wenn man den Charakter bearbeitet.',
         'is_personality_visible'    => 'Du kannst den kompletten Persönlichkeitsbereich vor deinen Zuschauern verstecken.',
     ],
     'index'         => [
@@ -48,6 +58,9 @@ return [
         'description'   => 'Bearbeite die Charaktere von :name',
         'header'        => 'Charakter in :name',
         'title'         => 'Charaktere',
+    ],
+    'items'         => [
+        'hint'  => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',
     ],
     'organisations' => [
         'actions'       => [
@@ -62,20 +75,21 @@ return [
             'success'   => 'Character aus Organisation entfernt.',
         ],
         'edit'          => [
-            'success'   => 'Organisation des Charakters aktualisiert',
-            'title'     => 'Aktualisiere Organisation für :name',
+            'description'   => 'Aktualisiere die Organisation eines Charakters',
+            'success'       => 'Organisation des Charakters aktualisiert',
+            'title'         => 'Aktualisiere Organisation für :name',
         ],
         'fields'        => [
             'organisation'  => 'Organisation',
             'role'          => 'Rolle',
         ],
+        'hint'          => 'Charaktere können Mitglied mehrerer Organisationen sein, um darzustellen, für wen sie arbeiten oder welcher Geheimgesellschaft sie angehören.',
         'placeholders'  => [
             'organisation'  => 'Wähle eine Organisation...',
         ],
     ],
     'placeholders'  => [
         'age'               => 'Alter',
-        'appearance_name'   => 'Haare, Augenfarbe, Haut, Größe',
         'eye'               => 'Augenfarbe',
         'family'            => 'Bitte wähle einen Charakter',
         'fears'             => 'Ängste',
@@ -89,12 +103,15 @@ return [
         'location'          => 'Bitte wähle einen Aufenthaltsort',
         'mannerisms'        => 'Angewohnheiten',
         'name'              => 'Name',
+        'personality_entry' => 'Details',
+        'personality_name'  => 'Persönlichkeitsmerkmal: Ziele, Gewohnheiten, Ängste, Bindungen',
         'physical'          => 'Körper',
         'race'              => 'Rasse',
         'sex'               => 'Geschlecht',
         'skin'              => 'Haut',
         'title'             => 'Titel',
         'traits'            => 'Eigenschaften',
+        'type'              => 'NPC, Spieler Charakter, Gottheit',
         'weight'            => 'Gewicht',
     ],
     'sections'      => [
@@ -109,6 +126,7 @@ return [
             'attributes'    => 'Attribute',
             'free'          => 'Freitext',
             'history'       => 'Geschichte',
+            'items'         => 'Items',
             'organisations' => 'Organisationen',
             'personality'   => 'Persönlichkeit',
             'relations'     => 'Beziehungen',

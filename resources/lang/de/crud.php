@@ -2,10 +2,12 @@
 
 return [
     'actions'       => [
-        'back'  => 'Zurück',
-        'copy'  => 'Kopieren',
-        'move'  => 'Verschieben',
-        'new'   => 'Neu',
+        'back'      => 'Zurück',
+        'copy'      => 'Kopieren',
+        'move'      => 'Verschieben',
+        'new'       => 'Neu',
+        'private'   => 'Privat',
+        'public'    => 'Öffentlich',
     ],
     'add'           => 'Hinzufügen',
     'attributes'    => [
@@ -15,15 +17,17 @@ return [
             'manage'            => 'Verwalten',
         ],
         'create'        => [
-            'success'   => 'Attribut :name zu :entity hinzugefügt',
-            'title'     => 'Neues Attribute für :name',
+            'description'   => 'Erstelle ein neues Attribut',
+            'success'       => 'Attribut :name zu :entity hinzugefügt',
+            'title'         => 'Neues Attribute für :name',
         ],
         'destroy'       => [
             'success'   => 'Attribut :name für :entity entfernt',
         ],
         'edit'          => [
-            'success'   => 'Attribut :name für :entity aktualisiert',
-            'title'     => 'Aktualisiere Attribut für :name',
+            'description'   => 'Aktualisiere ein bestehendes Attribut',
+            'success'       => 'Attribut :name für :entity aktualisiert',
+            'title'         => 'Aktualisiere Attribut für :name',
         ],
         'fields'        => [
             'attribute' => 'Attribut',
@@ -44,6 +48,15 @@ return [
             'title'     => 'Wende eine Attributvorlage auf :name an',
         ],
     ],
+    'bulk'          => [
+        'errors'    => [
+            'admin' => 'Nur Kampagnenadmins können den "Privat" Status eines Objektes ändern.',
+        ],
+        'success'   => [
+            'private'   => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
+            'public'    => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
+        ],
+    ],
     'cancel'        => 'Abbrechen',
     'clear_filters' => 'Filter zurücksetzen',
     'click_modal'   => [
@@ -62,14 +75,26 @@ return [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
     ],
     'edit'          => 'Bearbeiten',
+    'errors'        => [
+        'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
+    ],
+    'events'        => [
+        'hint'  => 'Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt.',
+    ],
     'fields'        => [
         'character'     => 'Charakter',
         'description'   => 'Beschreibung',
         'entity'        => 'Objekt',
+        'entry'         => 'Eintrag',
+        'event'         => 'Ereignis',
+        'family'        => 'Familie',
         'history'       => 'Geschichte',
         'image'         => 'Bild',
         'is_private'    => 'Privat',
         'location'      => 'Ort',
+        'name'          => 'Name',
+        'organisation'  => 'Organisation',
+        'section'       => 'Kategorie',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filter',
@@ -82,15 +107,24 @@ return [
     ],
     'is_private'    => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
     'linking_help'  => 'Wie kann ich zu anderen Objekten verlinken?',
+    'manage'        => 'Verwalten',
     'move'          => [
-        'fields'    => [
+        'description'   => 'Verschiebe diese Objekt an einen anderen Ort',
+        'errors'        => [
+            'permission'        => 'Du hast keine Berechtigung, Objekte diesen Typs in dieser Kampagne zu erstellen.',
+            'same_campaign'     => 'Du musst eine andere Kampagne auswählen, in welche du das Objekt verschieben willst.',
+            'unknown_campaign'  => 'Unbekannte Kampagne.',
+        ],
+        'fields'        => [
+            'campaign'  => 'Neue Kampagne',
             'target'    => 'Neuer Typ',
         ],
-        'hints'     => [
+        'hints'         => [
+            'campaign'  => 'Du kannst auch versuchen, diese Objekt in eine andere Kampagne zu verschieben.',
             'target'    => 'Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird.',
         ],
-        'success'   => 'Objekt :name verschoben',
-        'title'     => 'Verschiebe :name an einen anderen Ort',
+        'success'       => 'Objekt :name verschoben',
+        'title'         => 'Verschiebe :name an einen anderen Ort',
     ],
     'new_entity'    => [
         'error' => 'Bitte überprüfe deine Eingabe.',
@@ -98,6 +132,36 @@ return [
             'name'  => 'Name',
         ],
         'title' => 'Neues Objekt',
+    ],
+    'notes'         => [
+        'actions'       => [
+            'add'   => 'Notiz hinzufügen',
+        ],
+        'create'        => [
+            'description'   => 'Erstelle eine neue Notiz',
+            'success'       => 'Notiz \':name\' zu :entity hinzugefügt.',
+            'title'         => 'Neue Notiz für :name',
+        ],
+        'destroy'       => [
+            'success'   => 'Notiz \':name\' von :entity entfernt.',
+        ],
+        'edit'          => [
+            'description'   => 'Aktualisiere eine bestehende Notiz',
+            'success'       => 'Notiz \':name\' für :entity aktualisiert.',
+            'title'         => 'Aktualisiere Notiz für :name',
+        ],
+        'fields'        => [
+            'creator'   => 'Ersteller',
+            'entry'     => 'Eintrag',
+            'name'      => 'Name',
+        ],
+        'hint'          => 'Informationen, die nicht ganz in die Standardfelder eines Objektes passen oder privat bleiben sollen, können als Notiz hinzugefügt werden.',
+        'index'         => [
+            'title' => 'Notizen für :name',
+        ],
+        'placeholders'  => [
+            'name'  => 'Name der Notiz, Beobachtung oder Anmerkung',
+        ],
     ],
     'or_cancel'     => 'oder <a href=":url">abbrechen</a>',
     'panels'        => [
@@ -124,9 +188,14 @@ return [
         'title'     => 'Berechtigungen',
     ],
     'placeholders'  => [
-        'character' => 'Wähle einen Character',
-        'image_url' => 'Du kannst ein Bild auch von einer URL hochladen',
-        'location'  => 'Wähle einen Ort',
+        'character'     => 'Wähle einen Character',
+        'entity'        => 'Objekt',
+        'event'         => 'Wähle ein Ereignis',
+        'family'        => 'Wähle eine Familie',
+        'image_url'     => 'Du kannst ein Bild auch von einer URL hochladen',
+        'location'      => 'Wähle einen Ort',
+        'organisation'  => 'Wähle eine Organisation',
+        'section'       => 'Wähle eine Kategorie',
     ],
     'relations'     => [
         'actions'   => [
@@ -137,6 +206,7 @@ return [
             'name'      => 'Name',
             'relation'  => 'Beziehung',
         ],
+        'hint'      => 'Beziehungen zwischen Objekten können erstellt werden, um deren Verbindung darzustellen.',
     ],
     'remove'        => 'Löschen',
     'save'          => 'Speichern',
@@ -145,6 +215,8 @@ return [
     'select'        => 'Auswählen',
     'tabs'          => [
         'attributes'    => 'Attribute',
+        'events'        => 'Ereignisse',
+        'notes'         => 'Notizen',
         'permissions'   => 'Berechtigungen',
         'relations'     => 'Beziehungen',
     ],
