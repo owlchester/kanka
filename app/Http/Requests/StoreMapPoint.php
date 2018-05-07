@@ -24,9 +24,9 @@ class StoreMapPoint extends FormRequest
     public function rules()
     {
         return [
-            'location_id', 'integer|exists:locations,id',
-            'axis_x' => 'required',
-            'axis_y' => 'required',
+            'target_id' => 'required|integer|exists:locations,id',
+            'axis_x' => 'required|integer',
+            'axis_y' => 'required|integer',
             'colour' => 'required',
         ];
     }

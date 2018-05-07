@@ -181,6 +181,11 @@ class Location extends MiscModel
             $child->save();
         }
 
+        // Remove all the map points as they wouldn't make any sense in the new campaign
+        foreach ($this->mapPoints as $child) {
+            $child->delete();
+        }
+
         return parent::detach();
     }
 }

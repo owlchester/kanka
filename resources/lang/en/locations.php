@@ -51,7 +51,7 @@ return [
             'title' => 'Location :name Map Points',
             'fields' => [
                 'axis_y' => 'Y Axis',
-                'axis_x' => 'Z Axis',
+                'axis_x' => 'X Axis',
                 'colour' => 'Colour',
             ],
             'placeholders' => [
