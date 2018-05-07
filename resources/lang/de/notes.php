@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Notiz \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Notiz',
+        'description'   => 'Eine neue Notiz erstellen',
+        'success'       => 'Notiz \':name\' erstellt.',
+        'title'         => 'Erstelle eine neue Notiz',
     ],
     'destroy'       => [
         'success'   => 'Notiz \':name\' entfernt.',
@@ -15,8 +16,12 @@ return [
     'fields'        => [
         'description'   => 'Beschreibung',
         'image'         => 'Bild',
+        'is_pinned'     => 'Angepinnt',
         'name'          => 'Name',
         'type'          => 'Typ',
+    ],
+    'hints'         => [
+        'is_pinned' => 'Bis zu 3 Notizen können angepinnt werden und werden dann auf dem Dashboard angezeigt.',
     ],
     'index'         => [
         'add'           => 'Neue Notiz',

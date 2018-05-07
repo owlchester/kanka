@@ -35,11 +35,11 @@ return [
     ],
     'map'           => [
         'actions'   => [
-            'points'    => 'Edit Points',
-            'zoom_in'   => 'Zoom In',
-            'zoom_out'  => 'Zoom Out',
-            'toggle_show' => 'Show Points',
-            'toggle_hide' => 'Hide Points',
+            'points'        => 'Edit Points',
+            'toggle_hide'   => 'Hide Points',
+            'toggle_show'   => 'Show Points',
+            'zoom_in'       => 'Zoom In',
+            'zoom_out'      => 'Zoom Out',
         ],
         'helper'    => 'Click on the map to add a new point to a location, or click on an existing point to change or delete it.',
         'modal'     => [
@@ -48,22 +48,22 @@ return [
         ],
         'no_map'    => 'Please upload a map to the location first.',
         'points'    => [
-            'title' => 'Location :name Map Points',
-            'fields' => [
-                'axis_y' => 'Y Axis',
-                'axis_x' => 'X Axis',
-                'colour' => 'Colour',
+            'fields'        => [
+                'axis_x'    => 'X Axis',
+                'axis_y'    => 'Y Axis',
+                'colour'    => 'Colour',
             ],
-            'placeholders' => [
-                'axis_y' => 'Top position',
-                'axis_x' => 'Left position',
+            'placeholders'  => [
+                'axis_x'    => 'Left position',
+                'axis_y'    => 'Top position',
             ],
-            'return' => 'Back to :name',
-            'success' => [
-                'create' => 'Location Map Point created.',
-                'update' => 'Location Map Point updated.',
-                'delete' => 'Location Map Point removed.',
-            ]
+            'return'        => 'Back to :name',
+            'success'       => [
+                'create'    => 'Location Map Point created.',
+                'delete'    => 'Location Map Point removed.',
+                'update'    => 'Location Map Point updated.',
+            ],
+            'title'         => 'Location :name Map Points',
         ],
         'success'   => 'Map Points saved.',
     ],

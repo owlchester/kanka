@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Ort \':name\' erstellt.',
-        'title'     => 'Erstelle einen neuen Ort',
+        'description'   => 'Erstelle einen neuen Ort',
+        'success'       => 'Ort \':name\' erstellt.',
+        'title'         => 'Erstelle einen neuen Ort',
     ],
     'destroy'       => [
         'success'   => 'Ort \':name\' entfernt.',
@@ -14,8 +15,6 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Charaktere',
-        'description'   => 'Beschreibung',
-        'history'       => 'Geschichte',
         'image'         => 'Bild',
         'location'      => 'Ort',
         'locations'     => 'Orte',
@@ -36,6 +35,8 @@ return [
     'map'           => [
         'actions'   => [
             'points'    => 'Punkte bearbeiten',
+            'zoom_in'   => 'Hereinzoomen',
+            'zoom_out'  => 'Herauszoomen',
         ],
         'helper'    => 'Klicke auf die Karte um einen Link zu einem Ort hinzu zu fügen oder klicke auf einen existierenden Punkt, um ihn zu entfernen.',
         'modal'     => [
@@ -56,12 +57,10 @@ return [
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Ortes',
         'tabs'          => [
-            'attributes'    => 'Attribute',
             'characters'    => 'Charaktere',
             'information'   => 'Informationen',
             'locations'     => 'Orte',
             'map'           => 'Karte',
-            'relations'     => 'Beziehungen',
         ],
         'title'         => 'Ort :name',
     ],

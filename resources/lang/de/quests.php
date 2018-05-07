@@ -11,8 +11,9 @@ return [
             'success'   => 'Charakter :name von Quest entfernt.',
         ],
         'edit'      => [
-            'success'   => 'Charakter für Quest :name aktualisiert.',
-            'title'     => 'Aktualisiere Charakter für :name',
+            'description'   => 'Aktualisiere die Charaktere eines Quests.',
+            'success'       => 'Charakter für Quest :name aktualisiert.',
+            'title'         => 'Aktualisiere Charakter für :name',
         ],
         'fields'    => [
             'character'     => 'Charakter',
@@ -20,15 +21,17 @@ return [
         ],
     ],
     'create'        => [
-        'success'   => 'Quest \':name\' erstellt.',
-        'title'     => 'Erstelle einen neuen Quest',
+        'description'   => 'Erstelle einen neuen Quest',
+        'success'       => 'Quest \':name\' erstellt.',
+        'title'         => 'Erstelle einen neuen Quest',
     ],
     'destroy'       => [
         'success'   => 'Quest \':name\' entfernt',
     ],
     'edit'          => [
-        'success'   => 'Quest \':name\' aktualisiert',
-        'title'     => 'Bearbeite Quest :name',
+        'description'   => 'Bearbeite einen Quest',
+        'success'       => 'Quest \':name\' aktualisiert',
+        'title'         => 'Bearbeite Quest :name',
     ],
     'fields'        => [
         'characters'    => 'Charaktere',
@@ -54,8 +57,9 @@ return [
             'success'   => 'Questort für :name entfernt.',
         ],
         'edit'      => [
-            'success'   => 'Questort für :name aktualisiert.',
-            'title'     => 'Aktualisiere den Ort für :name',
+            'description'   => 'Aktualisiere den Ort eines Quests',
+            'success'       => 'Questort für :name aktualisiert.',
+            'title'         => 'Aktualisiere den Ort für :name',
         ],
         'fields'    => [
             'description'   => 'Beschreibung',

@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Logbuch erstellt.',
-        'title'     => 'Erstelle ein neues Logbuch',
+        'description'   => 'Erstelle ein neues Logbuch',
+        'success'       => 'Logbuch erstellt.',
+        'title'         => 'Erstelle ein neues Logbuch',
     ],
     'destroy'       => [
         'success'   => 'Logbuch entfernt.',
@@ -13,6 +14,7 @@ return [
         'title'     => 'Bearbeite Logbuch :name',
     ],
     'fields'        => [
+        'author'    => 'Autor',
         'date'      => 'Datum',
         'history'   => 'Geschichte',
         'image'     => 'Bild',
@@ -27,9 +29,10 @@ return [
         'title'         => 'Logbücher',
     ],
     'placeholders'  => [
-        'date'  => 'Datum des Logbuchs',
-        'name'  => 'Name des Logbuchs',
-        'type'  => 'Session, One Shot, Entwurf',
+        'author'    => 'Wer hat das Logbuch geschrieben',
+        'date'      => 'Datum des Logbuchs',
+        'name'      => 'Name des Logbuchs',
+        'type'      => 'Session, One Shot, Entwurf',
     ],
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Logbuchs',

@@ -35,9 +35,11 @@ return [
     ],
     'map'           => [
         'actions'   => [
-            'points'    => 'Modifier les points',
-            'zoom_in'   => 'Agrandir',
-            'zoom_out'  => 'Dézoomer',
+            'points'        => 'Modifier les points',
+            'toggle_hide'   => 'Cacher les Points',
+            'toggle_show'   => 'Afficher les Points',
+            'zoom_in'       => 'Agrandir',
+            'zoom_out'      => 'Dézoomer',
         ],
         'helper'    => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
         'modal'     => [
@@ -46,7 +48,22 @@ return [
         ],
         'no_map'    => 'Ajouter une carte au lieu en premier.',
         'points'    => [
-            'title' => 'Points pour le lieu :name',
+            'fields'        => [
+                'axis_x'    => 'Axis X',
+                'axis_y'    => 'Axis Y',
+                'colour'    => 'Couleur',
+            ],
+            'placeholders'  => [
+                'axis_x'    => 'Position verticale',
+                'axis_y'    => 'Position horizontale',
+            ],
+            'return'        => 'Retour à :name',
+            'success'       => [
+                'create'    => 'Point ajouté.',
+                'delete'    => 'Point retiré.',
+                'update'    => 'Point modifié.',
+            ],
+            'title'         => 'Points pour le lieu :name',
         ],
         'success'   => 'Points sauvegardés.',
     ],

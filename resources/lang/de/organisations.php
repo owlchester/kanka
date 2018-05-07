@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Organisation \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Organisation',
+        'description'   => 'Erstelle eine neue Organisation',
+        'success'       => 'Organisation \':name\' erstellt.',
+        'title'         => 'Erstelle eine neue Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' entfernt.',
@@ -47,6 +48,7 @@ return [
             'character' => 'Charakter',
             'role'      => 'Rolle',
         ],
+        'hint'          => 'Die meisten Organisationen brauchen Mitglieder um erfolgreich zu sein.',
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',
             'role'      => 'Anführer, Mitglied, Hoher Septon, Meisterspion',

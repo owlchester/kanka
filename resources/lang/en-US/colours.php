@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'grey' => 'Gray',
+    'grey'  => 'Gray',
 ];

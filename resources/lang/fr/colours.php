@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'grey' => 'Gris',
-    'red' => 'Rouge',
-    'blue' => 'Bleu',
-    'green' => 'Vert',
-    'yellow' => 'Jaune',
     'black' => 'Noir',
+    'blue'  => 'Bleu',
+    'green' => 'Vert',
+    'grey'  => 'Gris',
+    'red'   => 'Rouge',
     'white' => 'Blanc',
+    'yellow'=> 'Jaune',
 ];

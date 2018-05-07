@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer une nouvelle organisation',
         'success'       => 'Organisation \':name\' créée.',
-        'title'         => 'Ajouter une organisation',
+        'title'         => 'Nouvelle Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' supprimée.',
@@ -50,6 +50,7 @@ return [
             'character' => 'Personnage',
             'role'      => 'Rôle',
         ],
+        'hint'          => 'Les organisations ont généralement besoin de membre pour fonctionner correctement.',
         'placeholders'  => [
             'character' => 'Choix du personnage',
             'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
