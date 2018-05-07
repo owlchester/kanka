@@ -97,6 +97,7 @@ Route::group([
         'events.relations' => 'EventRelationController',
         'locations' => 'LocationController',
         'locations.relations' => 'LocationRelationController',
+        'locations.map_points' => 'LocationMapPointController',
         'families' => 'FamilyController',
         'families.relations' => 'FamilyRelationController',
         'items' => 'ItemController',

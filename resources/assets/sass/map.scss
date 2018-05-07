@@ -12,32 +12,20 @@
     height: 50px;
     cursor: pointer;
     position: absolute;
-    background-color: rgba(120, 120, 120, 0.3);
+    opacity: 0.6;
     display: block;
     border-radius: 25px;
     text-align: center;
+    font-size: 26px;
 
     i {
-      visibility: hidden;
       padding-top: 25%;
       color: white;
     }
   }
 
   .point:hover {
-    background-color: rgba(40, 82, 117, 0.69);
-    i {
-      visibility: visible;
-    }
-  }
-
-  .admin {
-    background-color: rgba(120, 120, 120, 0.5);
-
-  }
-
-  .admin:hover {
-    background-color: rgba(149, 43, 40, 0.8);
+    opacity: 0.8;
   }
 }
 .map-admin {

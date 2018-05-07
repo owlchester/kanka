@@ -4,7 +4,9 @@
 var mapModal, mapAdmin, mapAdminImg, locationInput, mapImage, mapImageOriginalWidth;
 var mapPositionX, mapPositionY;
 var mapZoomIn, mapZoomOut;
+var mapToggleShow, mapToggleHide;
 var mapZoomValue = 100, mapZoomIncrements = 0;
+var mapPointModalBody;
 
 $(document).ready(function() {
     // Look for a form to save
@@ -16,6 +18,10 @@ $(document).ready(function() {
     mapImage = $('#location-map-image');
     mapZoomIn = $('#map-zoom-in');
     mapZoomOut = $('#map-zoom-out');
+    mapToggleHide = $('#map-toggle-hide');
+    mapToggleShow = $('#map-toggle-show');
+
+    mapPointModalBody = $('#map-point-body');
 
     if (mapAdmin.length === 1) {
         initMapAdmin();
@@ -32,9 +38,6 @@ $(document).ready(function() {
 function initMapAdmin() {
     mapAdminImg.on('click', function (e) {
 
-        // Reset select 2
-         locationInput.val(null).trigger('change');
-
         var offset = $(this).offset();
         mapPositionX = e.pageX - offset.left - 25;
         mapPositionY = e.pageY - offset.top - 25;
@@ -47,7 +50,17 @@ function initMapAdmin() {
             mapPositionY = 0;
         }
 
-        mapModal.modal();
+        $.ajax({
+            url: $(this).attr('data-url') + '?axis_y=' + mapPositionY + '&axis_x=' + mapPositionX
+        }).done(function (result, textStatus, xhr) {
+            if (result) {
+                mapPointModalBody.html(result);
+                initSelect2();
+                mapModal.modal();
+            }
+        }).fail(function (result, textStatus, xhr) {
+            console.log('map point error', result);
+        });
     });
 
     var mapModalSubmit = $('#point-location-submit');
@@ -85,6 +98,14 @@ function initMapControls() {
         e.preventDefault();
         mapZoom(-25);
     });
+    mapToggleHide.on('click', function(e) {
+        e.preventDefault();
+        mapTogglePoints(false);
+    });
+    mapToggleShow.on('click', function(e) {
+        e.preventDefault();
+        mapTogglePoints(true);
+    });
 }
 
 /**
@@ -95,12 +116,15 @@ function initMapControls() {
 function mapZoom(change) {
     // Don't have the size yet? Calculate it. We don't calc on page load because if it's on a hidden tab,
     // it evaluates to 0
+    var min = 25;
+    var max = 175;
+
     if (!mapImageOriginalWidth) {
         mapImageOriginalWidth = mapImage.width();
     }
     // Min/Max
     var newZoom = mapZoomValue + change;
-    if (newZoom > 150 || newZoom < 50) {
+    if (newZoom > max || newZoom < min) {
         return false;
     }
 
@@ -123,11 +147,12 @@ function mapZoom(change) {
         $(this).css('width', (50 * magnifier)+ 'px');
         $(this).css('height', (50 * magnifier)+ 'px');
         $(this).css('border-radius', (25 * magnifier)+ 'px');
+        $(this).css('font-size', (24 * magnifier) + 'px');
     });
 
-    if (mapZoomValue <= 50) {
+    if (mapZoomValue <= min) {
         mapZoomOut.attr('disabled', 'disabled');
-    } else if (newZoom >= 150) {
+    } else if (newZoom >= max) {
         mapZoomIn.attr('disabled', 'disabled');
     }
 }
@@ -139,8 +164,74 @@ function initPointDelete() {
     $.each($('.point'), function (index) {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function(e) {
-            $(this).remove();
-            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('data-url')
+            }).done(function (result, textStatus, xhr) {
+                if (result) {
+                    mapPointModalBody.html(result);
+                    initSelect2();
+                    mapModal.modal();
+                }
+            }).fail(function (result, textStatus, xhr) {
+                console.log('map point error', result);
+            });
         });
     });
+}
+
+
+/**
+ * This is re-defined (copy-paste) from app.js, since the minify changes the original name
+ */
+function initSelect2() {
+    if ($('.select2').length > 0) {
+        $.each($('.select2'), function (index) {
+
+            $(this).select2({
+//            data: newOptions,
+                placeholder: $(this).attr('data-placeholder'),
+                allowClear: true,
+                minimumInputLength: 0,
+                ajax: {
+                    quietMillis: 200,
+                    url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: $.trim(params.term)
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    }
+}
+
+/**
+ * Toggle showing or hiding of points on the map
+ * @param show
+ */
+function mapTogglePoints(show)
+{
+    if (show) {
+        mapToggleHide.show();
+        mapToggleShow.hide();
+
+        $.each($('#map .point'), function() {
+            $(this).show();
+        });
+    } else {
+        mapToggleHide.hide();
+        mapToggleShow.show();
+
+        $.each($('#map .point'), function() {
+            $(this).hide();
+        });
+    }
 }

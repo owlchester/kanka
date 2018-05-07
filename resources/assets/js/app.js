@@ -25,33 +25,7 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    if ($('.select2').length > 0) {
-        $.each($('.select2'), function (index) {
-
-            $(this).select2({
-//            data: newOptions,
-                placeholder: $(this).attr('data-placeholder'),
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
+    initSelect2();
 
     if ($('.date-picker').length > 0) {
         $.each($('.date-picker'), function (index) {
@@ -167,6 +141,38 @@ $(document).ready(function() {
     });
 });
 
+/**
+ *
+ */
+function initSelect2() {
+    if ($('.select2').length > 0) {
+        $.each($('.select2'), function (index) {
+
+            $(this).select2({
+//            data: newOptions,
+                placeholder: $(this).attr('data-placeholder'),
+                allowClear: true,
+                minimumInputLength: 0,
+                ajax: {
+                    quietMillis: 200,
+                    url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: $.trim(params.term)
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    }
+}
 
 /**
  * Go through table trs to add on click support

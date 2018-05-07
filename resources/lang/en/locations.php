@@ -38,8 +38,10 @@ return [
             'points'    => 'Edit Points',
             'zoom_in'   => 'Zoom In',
             'zoom_out'  => 'Zoom Out',
+            'toggle_show' => 'Show Points',
+            'toggle_hide' => 'Hide Points',
         ],
-        'helper'    => 'Click on the map to add a link to a location, or click on an existing point to remove it.',
+        'helper'    => 'Click on the map to add a new point to a location, or click on an existing point to change or delete it.',
         'modal'     => [
             'submit'    => 'Add',
             'title'     => 'Target of new point',
@@ -47,6 +49,21 @@ return [
         'no_map'    => 'Please upload a map to the location first.',
         'points'    => [
             'title' => 'Location :name Map Points',
+            'fields' => [
+                'axis_y' => 'Y Axis',
+                'axis_x' => 'Z Axis',
+                'colour' => 'Colour',
+            ],
+            'placeholders' => [
+                'axis_y' => 'Top position',
+                'axis_x' => 'Left position',
+            ],
+            'return' => 'Back to :name',
+            'success' => [
+                'create' => 'Location Map Point created.',
+                'update' => 'Location Map Point updated.',
+                'delete' => 'Location Map Point removed.',
+            ]
         ],
         'success'   => 'Map Points saved.',
     ],
