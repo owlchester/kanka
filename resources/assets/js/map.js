@@ -51,7 +51,7 @@ function initMapAdmin() {
         }
 
         $.ajax({
-            url: $(this).attr('data-url') + '?axis_y=' + mapPositionY + '&axis_x=' + mapPositionX
+            url: $(this).attr('data-url') + '?axis_y=' + parseInt(mapPositionY) + '&axis_x=' + parseInt(mapPositionX)
         }).done(function (result, textStatus, xhr) {
             if (result) {
                 mapPointModalBody.html(result);

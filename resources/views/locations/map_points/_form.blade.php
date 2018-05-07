@@ -1,7 +1,3 @@
-<?php
-$x = (int) request()->get('axis_x', null);
-$y = (int) request()->get('axis_y', null);
-?>
 {{ csrf_field() }}
 <div class="form-group required">
     {!! Form::select2(
@@ -16,11 +12,11 @@ $y = (int) request()->get('axis_y', null);
 </div>
 <div class="form-group required">
     <label>{{ trans('locations.map.points.fields.axis_x') }}</label>
-    {!! Form::number('axis_x', (!isset($model) ? $x : null), ['placeholder' => trans('locations.map.points.placeholders.axis_x'), 'class' => 'form-control', 'maxlength' => 6]) !!}
+    {!! Form::number('axis_x', (!isset($model) ? request()->get('axis_x', null) : null), ['placeholder' => trans('locations.map.points.placeholders.axis_x'), 'class' => 'form-control', 'maxlength' => 6]) !!}
 </div>
 <div class="form-group required">
     <label>{{ trans('locations.map.points.fields.axis_y') }}</label>
-    {!! Form::number('axis_y', (!isset($model) ? $y : null), ['placeholder' => trans('locations.map.points.placeholders.axis_y'), 'class' => 'form-control', 'maxlength' => 6]) !!}
+    {!! Form::number('axis_y', (!isset($model) ? request()->get('axis_y', null) : null), ['placeholder' => trans('locations.map.points.placeholders.axis_y'), 'class' => 'form-control', 'maxlength' => 6]) !!}
 </div>
 <div class="form-group">
     <label>{{ trans('locations.map.points.fields.colour') }}</label>
