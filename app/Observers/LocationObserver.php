@@ -55,6 +55,11 @@ class LocationObserver extends MiscObserver
             $sub->save();
         }
 
+        foreach ($location->items as $sub) {
+            $sub->location_id = null;
+            $sub->save();
+        }
+
         ImageService::cleanup($location, 'map');
     }
 }
