@@ -29,34 +29,12 @@ class LocationObserver extends MiscObserver
     {
         parent::deleting($location);
 
-        // Todo: remove this and update schema instead
-        foreach ($location->characters as $character) {
-            $character->location_id = null;
-            $character->save();
-        }
-
-        foreach ($location->families as $family) {
-            $family->location_id = null;
-            $family->save();
-        }
-
-        foreach ($location->items as $item) {
-            $item->location_id = null;
-            $item->save();
-        }
-
+        /**
+         * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
+         * all descendants when deleting the parent, which is stupid.
+         */
         foreach ($location->locations as $sub) {
             $sub->parent_location_id = null;
-            $sub->save();
-        }
-
-        foreach ($location->organisations as $sub) {
-            $sub->location_id = null;
-            $sub->save();
-        }
-
-        foreach ($location->items as $sub) {
-            $sub->location_id = null;
             $sub->save();
         }
 

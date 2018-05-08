@@ -11,13 +11,4 @@ use Illuminate\Support\Facades\Session;
 
 class QuestObserver extends MiscObserver
 {
-    /**
-     * @param Quest $quest
-     */
-    public function deleting(MiscModel $quest)
-    {
-        parent::deleting($quest);
-        $quest->locations()->delete();
-        $quest->characters()->delete();
-    }
 }

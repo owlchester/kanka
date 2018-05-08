@@ -27,6 +27,9 @@ class SectionObserver extends MiscObserver
     {
         parent::deleting($section);
 
+        /**
+         * We need to keep this, because the tree plugin wants to delete child when deleting the parent. It's stupid.
+         */
         // Set all children to no longer have this section
         foreach ($section->allChildren() as $child) {
             $child->child->section_id = null;

@@ -10,5 +10,4 @@ use Illuminate\Support\Facades\Session;
 
 class OrganisationMemberObserver
 {
-
 }
