@@ -39,7 +39,8 @@ abstract class MiscObserver
 
 
         // If we're from the "move" service, we can skip this part.
-        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
+        // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
+        if (defined('MISCELLANY_SKIP_ENTITY_CREATION') || request()->isMethod('delete') === true) {
             return;
         }
 
@@ -56,6 +57,7 @@ abstract class MiscObserver
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable());
 
+        // Default foreign ids that can be set to null. This should probably be in each individual observer instead
         $nullable = ['parent_location_id', 'location_id', 'character_id', 'family_id', 'section_id'];
         foreach ($nullable as $attr) {
             if (array_key_exists($attr, $attributes)) {
