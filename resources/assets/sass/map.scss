@@ -1,6 +1,11 @@
 .map {
   #draggable-map {
     cursor: move;
+
+    .map-container {
+      display: inline-block;
+      position: relative;
+    }
   }
 
   width: 100%;

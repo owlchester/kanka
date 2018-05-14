@@ -6,6 +6,7 @@ var mapPositionX, mapPositionY;
 var mapZoomIn, mapZoomOut;
 var mapToggleShow, mapToggleHide;
 var mapZoomValue = 100, mapZoomIncrements = 0;
+var mapDraggable, mapDraggableIsMoving = false;
 var mapPointModalBody;
 
 $(document).ready(function() {
@@ -22,14 +23,13 @@ $(document).ready(function() {
     mapToggleShow = $('#map-toggle-show');
 
     mapPointModalBody = $('#map-point-body');
+    mapDraggable = $('#draggable-map');
 
     if (mapAdmin.length === 1) {
         initMapAdmin();
     }
 
-    if (mapZoomIn.length === 1) {
-        initMapControls();
-    }
+    initMapControls();
 });
 
 /**
@@ -37,6 +37,11 @@ $(document).ready(function() {
  */
 function initMapAdmin() {
     mapAdminImg.on('click', function (e) {
+        // Don't click if moving
+        if ( mapDraggableIsMoving === true ) {
+            mapDraggableIsMoving = false;
+            return;
+        }
 
         var offset = $(this).offset();
         mapPositionX = e.pageX - offset.left - 25;
@@ -89,23 +94,32 @@ function initMapAdmin() {
  * Register click on the map zoom controls
  */
 function initMapControls() {
-    $('#draggable-map').draggable();
-    mapZoomIn.on('click', function(e) {
-        e.preventDefault();
-        mapZoom(25);
-    });
-    mapZoomOut.on('click', function(e) {
-        e.preventDefault();
-        mapZoom(-25);
-    });
-    mapToggleHide.on('click', function(e) {
-        e.preventDefault();
-        mapTogglePoints(false);
-    });
-    mapToggleShow.on('click', function(e) {
-        e.preventDefault();
-        mapTogglePoints(true);
-    });
+    if (mapDraggable.length === 1) {
+        $('#draggable-map').draggable({
+            drag: function () {
+                mapDraggableIsMoving = true;
+            }
+        });
+    }
+
+    if (mapZoomIn.length === 1) {
+        mapZoomIn.on('click', function (e) {
+            e.preventDefault();
+            mapZoom(25);
+        });
+        mapZoomOut.on('click', function (e) {
+            e.preventDefault();
+            mapZoom(-25);
+        });
+        mapToggleHide.on('click', function (e) {
+            e.preventDefault();
+            mapTogglePoints(false);
+        });
+        mapToggleShow.on('click', function (e) {
+            e.preventDefault();
+            mapTogglePoints(true);
+        });
+    }
 }
 
 /**
@@ -217,8 +231,7 @@ function initSelect2() {
  * Toggle showing or hiding of points on the map
  * @param show
  */
-function mapTogglePoints(show)
-{
+function mapTogglePoints(show) {
     if (show) {
         mapToggleHide.show();
         mapToggleShow.hide();
