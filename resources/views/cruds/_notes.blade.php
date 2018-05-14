@@ -1,6 +1,7 @@
-<p>{{ trans('crud.notes.hint') }}</p>
+<?php $r = $model->entity->notes()->with('creator')->order(request()->get('order'))->paginate(); ?>
+<p class="{{ ($r->count() == 0 ? 'export-hidden' : '') }}">{{ trans('crud.notes.hint') }}</p>
 
-<table id="crud_notes" class="table table-hover">
+<table id="crud_notes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/name', '#notes']) }}">{{ trans('crud.notes.fields.name') }}@if (request()->get('order') == 'notes/name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/creator.name', '#notes']) }}">{{ trans('crud.notes.fields.creator') }}@if (request()->get('order') == 'notes/creator.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
@@ -14,7 +15,7 @@
             @endcan
         </th>
     </tr>
-    @foreach ($r = $model->entity->notes()->with('creator')->order(request()->get('order'))->paginate() as $note)
+    @foreach ($r as $note)
         <tr>
             <td><a href="#" data-toggle="entity-note" data-target="#entity-note" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a></td>
             <td>
@@ -50,7 +51,7 @@
 {{ $r->fragment('tab_notes')->links() }}
 
 <!-- Modal -->
-<div class="modal fade" id="entity-note" tabindex="false" role="dialog" aria-labelledby="deleteConfirmLabel">
+<div class="modal fade export-hidden" id="entity-note" tabindex="false" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

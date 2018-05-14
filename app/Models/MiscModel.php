@@ -267,9 +267,9 @@ abstract class MiscModel extends Model
     public function getImageUrl($thumb = false)
     {
         if (empty($this->image)) {
-            return '/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg';
+            return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
         } else {
-            return '/storage/' . ($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image);
+            return asset('/storage/' . ($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image));
         }
     }
 

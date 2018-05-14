@@ -7,9 +7,6 @@ var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 
-// Crud button
-var crudMultiDeleteBtn, crudMultiPublicBtn, crudMultiPrivateBtn;
-
 $(document).ready(function() {
     // Filters
     var filters = $('#crud-filters');
@@ -20,9 +17,6 @@ $(document).ready(function() {
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
-        crudMultiDeleteBtn = $('#crud-multi-delete');
-        crudMultiPublicBtn = $('#crud-multi-public');
-        crudMultiPrivateBtn = $('#crud-multi-private');
         crudDelete.click(function (e) {
             if ($(this).prop('checked')) {
                 $.each($("input[name='model[]']"), function (index) {
@@ -82,13 +76,9 @@ function toggleCrudMultiDelete() {
     });
 
     if (hide) {
-        crudMultiDeleteBtn.hide();
-        crudMultiPublicBtn.hide();
-        crudMultiPrivateBtn.hide();
+        $('.btn-crud-multi').hide();
     } else {
-        crudMultiDeleteBtn.show();
-        crudMultiPublicBtn.show();
-        crudMultiPrivateBtn.show();
+        $('.btn-crud-multi').show();
     }
 }
 

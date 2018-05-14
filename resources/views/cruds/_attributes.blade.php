@@ -15,8 +15,8 @@
         </a>
     </p>
 @endcan
-
-<table id="crud_attributes" class="table table-hover">
+<?php $r = $model->entity->attributes()->order(request()->get('order'))->paginate(); ?>
+<table id="crud_attributes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th>
             <a href="{{ route($name . '.show', [$model, 'order' => 'attributes/name', '#attribute']) }}">
@@ -40,7 +40,7 @@
         @endif
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->entity->attributes()->order(request()->get('order'))->paginate() as $attribute)
+    @foreach ($r as $attribute)
         <tr>
             <td>{{ $attribute->name }}</td>
             <td>{{ $attribute->value }}</td>

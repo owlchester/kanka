@@ -179,13 +179,12 @@ return [
         //Ilestis\LaravelElasticEmail\LaravelElasticEmailServiceProvider::class,
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
-
-        App\Providers\PurifySetupProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
+        App\Providers\PurifySetupProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -250,6 +249,7 @@ return [
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
         // Custom
 

@@ -45,6 +45,22 @@ class BulkService
     /**
      * @param $entityName
      * @param array $ids
+     * @return array
+     * @throws Exception
+     */
+    public function export($entityName, $ids = [])
+    {
+        $model = $this->getEntity($entityName);
+        $entities = [];
+        foreach ($ids as $id) {
+            $entities[] = $model->findOrFail($id);
+        }
+        return $entities;
+    }
+
+    /**
+     * @param $entityName
+     * @param array $ids
      * @return int
      */
     public function makePrivate($entityName, $ids = [])

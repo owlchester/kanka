@@ -1,5 +1,8 @@
-<p>{{ trans('crud.events.hint') }}</p>
-<table id="entity-event-list" class="table table-hover">
+<?php
+$r = $model->entity->events()->has('calendar')->with('calendar')->order(request()->get('order'), 'date')->paginate();
+?>
+<p class="{{ ($r->count() == 0 ? 'export-hidden' : '') }}">{{ trans('crud.events.hint') }}</p>
+<table id="entity-event-list" class="table table-hover {{ ($r->count() == 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th class="avatar"></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/calendar.name', '#events']) }}">{{ trans('calendars.fields.name') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
@@ -8,7 +11,7 @@
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#events']) }}">{{ trans('calendars.fields.is_recurring') }}@if (request()->get('order') == 'events/is_recurring') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->entity->events()->has('calendar')->with('calendar')->order(request()->get('order'), 'date')->paginate() as $relation)
+    @foreach ($r as $relation)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(true) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>

@@ -1,4 +1,4 @@
-<p>{{ trans('families.hints.members') }}</p>
+<p class="export-hidden">{{ trans('families.hints.members') }}</p>
 
 <table id="family-members" class="table table-hover">
     <tbody><tr>

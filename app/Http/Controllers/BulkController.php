@@ -33,6 +33,11 @@ class BulkController extends Controller
             $count = $this->bulkService->delete($entity, $models);
             return redirect()->route($entity . '.index')
                 ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
+        } elseif ($request->has('export')) {
+            $pdf = \App::make('dompdf.wrapper');
+            $entities = $this->bulkService->export($entity, $models);
+            $name = $entity;
+            return $pdf->loadView('cruds.export', compact('entity', 'entities', 'name'))->stream('kanka ' . $entity . ' export.pdf');
         } elseif ($request->has('private')) {
             $count = $this->bulkService->makePrivate($entity, $models);
             return redirect()->route($entity . '.index')

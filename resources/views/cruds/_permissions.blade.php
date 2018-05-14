@@ -5,7 +5,7 @@
 <p class="text-muted">{{ trans('crud.permissions.helper') }}</p>
 
 {!! Form::open(['route' => ['entities.permissions', $model->entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
-<table id="crud_permissions" class="table table-hover">
+<table id="crud_permissions" class="table table-hover export-hidden">
     <tbody>
         <tr>
             <th>{{ trans('crud.permissions.fields.role') }}</th>

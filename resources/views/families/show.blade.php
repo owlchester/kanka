@@ -1,4 +1,4 @@
-@section('content')
+
     <div class="row">
         <div class="col-md-3">
 
@@ -72,4 +72,3 @@
             <!-- actions -->
         </div>
     </div>
-@endsection

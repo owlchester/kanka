@@ -81,6 +81,7 @@ return [
     'events'        => [
         'hint'  => 'Les événements de calendrier peuvent être associé à cette entité et être affiché ici.',
     ],
+    'export'        => 'Export',
     'fields'        => [
         'character'     => 'Personnage',
         'description'   => 'Description',

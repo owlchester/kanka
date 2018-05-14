@@ -1,7 +1,7 @@
-<p>{{ trans('crud.relations.hint') }}
-</p>
+<?php $r = $model->entity->relationships()->has('target')->with('target')->order(request()->get('order'), 'relation')->paginate(); ?>
+<p class="{{ ($r->count() == 0 ? 'export-hidden' : '') }}">{{ trans('crud.relations.hint') }}</p>
 
-<table id="crud_families" class="table table-hover">
+<table id="crud_families" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/relation', '#relations']) }}">{{ trans('crud.relations.fields.relation') }}@if (request()->get('order') == 'relations/relation') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th class="avatar"><br></th>
@@ -17,7 +17,7 @@
             @endcan
         </th>
     </tr>
-    @foreach ($r = $model->entity->relationships()->has('target')->with('target')->order(request()->get('order'), 'relation')->paginate() as $relation)
+    @foreach ($r as $relation)
         @can('view', $relation->target->child)
         <tr>
             <td>{{ $relation->relation }}</td>
