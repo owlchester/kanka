@@ -21,12 +21,13 @@ class CalendarRenderer
      */
     protected $segments = false;
 
-    public function __construct()
+    /**
+     * Initializer
+     * @param Calendar $calendar
+     */
+    public function setCalendar(Calendar $calendar)
     {
-        // Get the calendar from the router
-        $this->calendar = request()->route('calendar');
-
-
+        $this->calendar = $calendar;
         $this->buildCurrentSegments();
     }
 

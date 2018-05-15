@@ -1,4 +1,5 @@
 @inject('renderer', 'App\Renderers\CalendarRenderer')
+{{ $renderer->setCalendar($model) }}
 
 <div class="row form-group">
     <div class="col-md-4 text-right">
@@ -58,7 +59,7 @@
 
 <!-- Modal -->
 {!! Form::open(array('route' => ['calendars.event.add', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
-<div class="modal fade" id="add-calendar-event" role="dialog" aria-labelledby="deleteConfirmLabel">
+<div class="modal fade export-hidden" id="add-calendar-event" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
