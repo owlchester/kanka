@@ -18,7 +18,10 @@
     </tr>
     @foreach ($r as $note)
         <tr>
-            <td><a href="#" data-toggle="entity-note" data-target="#entity-note" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a></td>
+            <td>
+                <a href="#" data-toggle="entity-note" data-target="#entity-note" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a>
+                <p class="export-visible">{{ $note->entry }}</p>
+            </td>
             <td>
                 @if ($note->creator)
                     {{ $note->creator->name }}

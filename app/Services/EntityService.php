@@ -35,6 +35,7 @@ class EntityService
             'organisations' => 'App\Models\Organisation',
             'quests' => 'App\Models\Quest',
             'sections' => 'App\Models\Section',
+            'attribute_templates' => 'App\Models\AttributeTemplate',
         ];
     }
 
