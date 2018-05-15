@@ -38,6 +38,9 @@ class LocationObserver extends MiscObserver
             $sub->save();
         }
 
+        // We need to refresh our foreign relations to avoid deleting our children nodes again
+        $location->refresh();
+
         ImageService::cleanup($location, 'map');
     }
 }
