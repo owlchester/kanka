@@ -32,8 +32,9 @@
     float: right !important;
 }
 
-table {
+table, .table {
     width: 100%;
+    table-layout: fixed;
 }
 tr {
     display: table-row;
@@ -42,8 +43,9 @@ tr {
 td {
     padding: 8px;
 }
-th.avatar {
-    min-width: 60px;
+.avatar {
+    width: 60px;
+    max-width: 60px;
 }
 .entity-image, .product-img .entity-image {
     border-radius: 50%;
@@ -55,4 +57,7 @@ th.avatar {
     background-repeat: no-repeat;
     background-position: 50% 50%;
     display: block;
+}
+.export-visible {
+    font-size: 18pt;
 }

@@ -44,8 +44,8 @@
 
                     @can('delete', $model)
                     {!! Form::button('<i class="fa fa-trash"></i> ' . trans('crud.remove'), ['type' => 'submit', 'name' => 'delete', 'class' => 'btn-crud-multi btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
-                    {!! Form::button('<i class="fa fa-arrow-down"></i> ' . trans('crud.export'), ['type' => 'submit', 'name' => 'export', 'class' => 'btn-crud-multi btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-export']) !!}
                     @endcan
+                    {!! Form::button('<i class="fa fa-arrow-down"></i> ' . trans('crud.export'), ['type' => 'submit', 'name' => 'export', 'class' => 'btn-crud-multi btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-export']) !!}
                     @if (Auth::user()->isAdmin())
                         {!! Form::button('<i class="fa fa-lock"></i> ' . trans('crud.actions.private'), ['type' => 'submit', 'name' => 'private', 'class' => 'btn-crud-multi btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-private']) !!}
                         {!! Form::button('<i class="fa fa-unlock"></i> ' . trans('crud.actions.public'), ['type' => 'submit', 'name' => 'public', 'class' => 'btn-crud-multi btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-public']) !!}

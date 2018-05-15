@@ -1,12 +1,15 @@
-<p>{{ trans('characters.items.hint') }}</p>
-<table id="character-items" class="table table-hover">
+<?php $r = $model->items()->paginate(); ?>
+<p class="export-hidden">{{ trans('characters.items.hint') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('characters.show.tabs.items') }}</p>
+
+<table id="character-items" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th class="avatar"></th>
         <th>{{ trans('items.fields.name') }}</th>
         <th>{{ trans('items.fields.type') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->items()->paginate() as $item)
+    @foreach ($r as $item)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $item->getImageUrl(true) }}');" title="{{ $item->name }}" href="{{ route('items.show', $item->id) }}"></a>

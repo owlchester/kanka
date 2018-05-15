@@ -299,3 +299,7 @@ div.mce-fullscreen {
   z-index: 1400;
 }
 
+.export-visible {
+  display: none;
+}
+

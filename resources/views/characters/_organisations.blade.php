@@ -1,5 +1,8 @@
-<p>{{ trans('characters.organisations.hint') }}</p>
-<table id="organisations" class="table table-hover">
+<?php $r = $model->organisations()->has('organisation')->with('organisation')->paginate(); ?>
+<p class="export-hidden">{{ trans('characters.organisations.hint') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('characters.show.tabs.organisations') }}</p>
+
+<table id="organisations" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th class="avatar"></th>
         <th>{{ trans('organisations.fields.name') }}</th>
@@ -12,7 +15,7 @@
             @endcan
         </th>
     </tr>
-    @foreach ($r = $model->organisations()->has('organisation')->with('organisation')->paginate() as $relation)
+    @foreach ($r as $relation)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->organisation->getImageUrl(true) }}');" title="{{ $relation->organisation->name }}" href="{{ route('organisations.show', $relation->organisation->id) }}"></a>

@@ -1,4 +1,6 @@
-<table id="characters" class="table table-hover">
+<?php  $r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
+<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
+<table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
     <tbody><tr>
         <th class="avatar"><br /></th>
         <th>{{ trans('characters.fields.name') }}</th>
@@ -8,7 +10,7 @@
         <th>{{ trans('characters.fields.race') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate() as $character)
+    @foreach ($r as $character)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(true) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>

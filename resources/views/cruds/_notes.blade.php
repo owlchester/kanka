@@ -1,5 +1,6 @@
 <?php $r = $model->entity->notes()->with('creator')->order(request()->get('order'))->paginate(); ?>
-<p class="{{ ($r->count() == 0 ? 'export-hidden' : '') }}">{{ trans('crud.notes.hint') }}</p>
+<p class="export-hidden">{{ trans('crud.notes.hint') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('crud.tabs.notes') }}</p>
 
 <table id="crud_notes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
