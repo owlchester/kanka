@@ -1,7 +1,7 @@
 @can('location', $model)
 <p class="text-right">
     <a href="{{ route('quests.quest_locations.create', ['quest' => $model->id]) }}" class="btn btn-primary">
-        {{ trans('quests.show.actions.add_location') }}
+        <i class="fa fa-plus"></i> {{ trans('quests.show.actions.add_location') }}
     </a>
 </p>
 @endcan

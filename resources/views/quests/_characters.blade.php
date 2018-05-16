@@ -1,7 +1,7 @@
 @can('character', $model)
 <p class="text-right">
     <a href="{{ route('quests.quest_characters.create', ['quest' => $model->id]) }}" class="btn btn-primary">
-        {{ trans('quests.show.actions.add_character') }}
+        <i class="fa fa-plus"></i> {{ trans('quests.show.actions.add_character') }}
     </a>
 </p>
 @endcan
@@ -14,7 +14,7 @@
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-success">
                     @if ($character->character->image)
-                        <img class="direct-chat-img" src="{{ $character->character->getImageUrl(true) }}" alt="{{ $model->name }}">
+                        <img class="direct-chat-img" src="{{ $character->character->getImageUrl(true) }}" alt="{{ $character->character->name }}">
                     @endif
 
                     <h3 class="widget-user-username">
