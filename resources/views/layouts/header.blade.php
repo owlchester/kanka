@@ -19,6 +19,28 @@
             <ul class="nav navbar-nav">
                 @if (Auth::check() and !empty(Auth::user()->campaign))
                     <?php $currentCampaign = Auth::user()->campaign; ?>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">{{ Auth::user()->unreadNotifications()->count() }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">{{ trans('header.notifications.header', ['count' => Auth::user()->unreadNotifications()->count()]) }}</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        @foreach (Auth::user()->unreadNotifications as $notification)
+                                        <li>
+                                            <a href="{{ route('notifications') }}">
+                                                <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {{ trans('notifications.' . $notification->data['key'], $notification->data['params']) }}
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>
+                            </ul>
+                        </li>
                     @if(count(Auth::user()->campaigns) > 1)
                     <li class="dropdown messages-menu campaign-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -73,11 +95,12 @@
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
                                 @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
+                                    <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
                                     <li>
                                     @if (App::getLocale() == $localeCode)
                                         <a href="#"><strong>{{ $langData['native'] }}</strong></a>
                                     @else
-                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}?updateLocale=true">
+                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
                                             {{ $langData['native'] }}
                                         </a>
                                     @endif

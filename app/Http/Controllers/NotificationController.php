@@ -17,6 +17,16 @@ class NotificationController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        // Set all notifications as read
+        Auth::user()->unreadNotifications->markAsRead();
+
+        return view('notifications.index');
+    }
 
     /**
      * Remove the specified resource from storage.

@@ -3,11 +3,11 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{ trans('dashboard.recent.title', ['name' => $title]) }}</h3>
 
-            @if ($createAcl)
+            @can('create', $perm)
             <div class="box-tools pull-right">
                 <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-xs" title="{{ trans('dashboard.recent.add', ['name' => $title]) }}"><i class="fa fa-plus"></i></a>
             </div>
-            @endif
+            @endcan
         </div>
         <!-- /.box-header -->
         <div class="box-body">

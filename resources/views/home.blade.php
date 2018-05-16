@@ -39,25 +39,6 @@
         @endif
     </div>
 
-    @foreach (Auth::user()->notifications as $notification)
-        <div class="modal fade click-notification" id="click-notification-{{ $notification->id }}" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="clickModalLabel">{{ trans('dashboard.notifications.modal.title') }} - {{ trans('notifications.' . $notification->data['key'] . '.title') }}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary notification-delete" data-url="{{ route('notifications.delete', ['id' => $notification->id]) }}" data-parent="click-notification-{{ $notification->id }}">{{ trans('dashboard.notifications.modal.confirm') }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-
     @if (!empty($notes))
         <div class="row">
             @foreach ($notes as $note)
@@ -75,24 +56,37 @@
         </div>
     @endif
 
+    <?php $cpt = 0; ?>
     <div class="row">
         @if ($campaign->enabled('characters') && $settings->has('characters'))
-            @include('dashboard._recent', ['title' => trans('entities.characters'), 'route' => 'characters', 'models' => $characters])
+            @if ($cpt == 3) </div><div class="row"> @endif
+            @include('dashboard._recent', ['title' => trans('entities.characters'), 'route' => 'characters', 'models' => $characters, 'perm' => 'App\Models\Character'])
+            <?php $cpt++; ?>
         @endif
         @if ($campaign->enabled('families') && $settings->has('families'))
-            @include('dashboard._recent', ['title' => trans('entities.families'), 'route' => 'families', 'models' => $families])
+            @if ($cpt == 3) </div><div class="row"> @endif
+            @include('dashboard._recent', ['title' => trans('entities.families'), 'route' => 'families', 'models' => $families, 'perm' => 'App\Models\Family'])
+        <?php $cpt++; ?>
         @endif
         @if ($campaign->enabled('locations') && $settings->has('locations'))
-            @include('dashboard._recent', ['title' => trans('entities.locations'), 'route' => 'locations', 'models' => $locations])
+            @if ($cpt == 3) </div><div class="row"> @endif
+            @include('dashboard._recent', ['title' => trans('entities.locations'), 'route' => 'locations', 'models' => $locations, 'perm' => 'App\Models\Location'])
+        <?php $cpt++; ?>
         @endif
         @if ($campaign->enabled('organisations') && $settings->has('organisations'))
-            @include('dashboard._recent', ['title' => trans('entities.organisations'), 'route' => 'organisations', 'models' => $organisations])
+            @if ($cpt == 3) </div><div class="row"> @endif
+            @include('dashboard._recent', ['title' => trans('entities.organisations'), 'route' => 'organisations', 'models' => $organisations, 'perm' => 'App\Models\Organisation'])
+        <?php $cpt++; ?>
         @endif
         @if ($campaign->enabled('items') && $settings->has('items'))
-            @include('dashboard._recent', ['title' => trans('entities.items'), 'route' => 'items', 'models' => $items])
+            @if ($cpt == 3) </div><div class="row"> @endif
+            @include('dashboard._recent', ['title' => trans('entities.items'), 'route' => 'items', 'models' => $items, 'perm' => 'App\Models\Item'])
+        <?php $cpt++; ?>
         @endif
         @if ($campaign->enabled('journals') && $settings->has('journals'))
-            @include('dashboard._recent', ['title' => trans('entities.journals'), 'route' => 'journals', 'models' => $journals])
+            @if ($cpt == 3) </div><div class="row"> @endif
+            @include('dashboard._recent', ['title' => trans('entities.journals'), 'route' => 'journals', 'models' => $journals, 'perm' => 'App\Models\Journal'])
+        <?php $cpt++; ?>
         @endif
     </div>
 @endsection

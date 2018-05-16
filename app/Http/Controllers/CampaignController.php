@@ -11,16 +11,26 @@ use Illuminate\Support\Facades\Session;
 
 class CampaignController extends Controller
 {
+    /**
+     * @var string
+     */
     protected $view = 'campaigns';
-    
+
+    /**
+     * @var CampaignService
+     */
+    protected $campaignService;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * CampaignController constructor.
+     * @param CampaignService $campaignService
      */
-    public function __construct()
+    public function __construct(CampaignService $campaignService)
     {
         $this->middleware('auth');
+        $this->campaignService = $campaignService;
     }
 
     /**
@@ -138,7 +148,7 @@ class CampaignController extends Controller
         $this->authorize('leave', $campaign);
 
         try {
-            CampaignService::leave($campaign);
+            $this->campaignService->leave($campaign);
             return redirect()->route('home');
         } catch (\Exception $e) {
             return redirect()->route('campaigns.index')->withErrors($e->getMessage());

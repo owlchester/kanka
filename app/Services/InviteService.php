@@ -5,6 +5,7 @@ namespace App\Services;
 use App\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
+use App\Notifications\Header;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -73,6 +74,16 @@ class InviteService
 
         $invite->is_active = false;
         $invite->save();
+
+        // Notify all admins of the campaign
+        foreach ($invite->campaign->admins() as $user) {
+            $user->notify(new Header(
+                'campaign.join',
+                'user',
+                'green',
+                ['user' => Auth::user()->name, 'campaign' => $invite->campaign->name]
+            ));
+        }
 
         return $role->campaign;
     }

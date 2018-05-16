@@ -71,7 +71,6 @@ class HomeController extends Controller
         $journals = Journal::acl(Auth::user())->recent()->take($settings->recent_count)->get();
 
         //$characters = Character::
-        $createAcl = Auth::user()->campaign->owner() || Auth::user()->campaign->member();
 
         $release = Release::with(['category'])
             ->where('status', 'PUBLISHED')
@@ -87,7 +86,6 @@ class HomeController extends Controller
             'items',
             'journals',
             'organisations',
-            'createAcl',
             'settings',
             'release'
         ));

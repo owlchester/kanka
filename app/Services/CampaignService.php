@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Notifications\Header;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -76,14 +77,14 @@ class CampaignService
      */
     public static function generateBoilerplate(Campaign $campaign)
     {
-
+        // Do nothing
     }
 
     /**
      * Leave a campaign
      * @param Campaign $campaign
      */
-    public static function leave(Campaign $campaign)
+    public function leave(Campaign $campaign)
     {
         $member = CampaignUser::where('campaign_id', $campaign->id)
             ->where('user_id', Auth::user()->id)
@@ -114,6 +115,14 @@ class CampaignService
         // Delete the member
         $member->delete();
 
+        // Notify admins
+        $this->notify(
+            $campaign,
+            'leave',
+            'user',
+            'yellow',
+            ['user' => Auth::user()->name, 'campaign' => $campaign->name]
+        );
 
         self::switchToNext();
     }
@@ -202,5 +211,20 @@ class CampaignService
     public function users()
     {
         return $this->campaign()->users;
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @param $key
+     * @param $icon
+     * @param $colour
+     * @param array $params
+     */
+    public function notify(Campaign $campaign, $key, $icon, $colour, array $params = [])
+    {
+        // Notify all admins
+        foreach ($campaign->admins() as $user) {
+            $user->notify(new Header('campaign.' . $key, $icon, $colour, $params));
+        }
     }
 }
