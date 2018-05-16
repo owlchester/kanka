@@ -66,7 +66,7 @@ if (request()->route()->getName() == 'characters.random') {
 
                 <div class="form-group">
                     {!! Form::hidden('is_dead', 0) !!}
-                    <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? $formService->prefill('is_dead', $source) : 1))) !!}
+                    <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? $formService->prefill('is_dead', $source) : 0))) !!}
                         {{ trans('characters.fields.is_dead') }}
                     </label>
                     <p class="help-block">{{ trans('characters.hints.is_dead') }}</p>
