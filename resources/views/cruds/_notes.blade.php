@@ -20,7 +20,6 @@
         <tr>
             <td>
                 <a href="#" data-toggle="entity-note" data-target="#entity-note" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a>
-                <p class="export-visible">{{ $note->entry }}</p>
             </td>
             <td>
                 @if ($note->creator)
@@ -47,6 +46,11 @@
                     </button>
                     {!! Form::close() !!}
                 @endcan
+            </td>
+        </tr>
+        <tr class="export-visible">
+            <td colspan="4" style="font-size: 12pt">
+                {!! $note->entry !!}
             </td>
         </tr>
     @endforeach
