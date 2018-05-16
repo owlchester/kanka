@@ -18,7 +18,6 @@ class ImageService
     public static function handle(MiscModel $model, $folder = '', $thumbSize = 60, $field = 'image')
     {
         if (request()->has($field) or request()->filled($field . '_url')) {
-
             try {
                 $file = $path = null;
                 $url = request()->filled($field . '_url');
@@ -38,7 +37,7 @@ class ImageService
                     $path = $file->hashName($folder);
                 }
 
-                $thumb = '/public/' . str_replace('.', '_thumb.', $path);
+                $thumb = str_replace('.', '_thumb.', $path);
 
                 if (!empty($path)) {
                     // Remove old
@@ -49,15 +48,15 @@ class ImageService
                         $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
                             $constraint->aspectRatio();
                         });
-                        Storage::put($thumb, $image->encode());
+                        Storage::put($thumb, (string) $image->encode(), 'public');
                     }
 
                     // Save new image
                     if ($url) {
                         $image = Image::make($file);
-                        Storage::put('/public/' . $path, $image->encode());
+                        Storage::put($path, $image->encode(), 'public');
                     } else {
-                        $path = request()->file($field)->store($folder, 'public');
+                        $path = request()->file($field)->storePublicly($folder);
                     }
                     $model->$field = $path;
                 }
@@ -78,10 +77,10 @@ class ImageService
     public static function cleanup(MiscModel $model, $field = 'image')
     {
         if ($model->$field) {
-            Storage::disk('public')->delete($model->$field);
+            Storage::delete($model->$field);
             $thumb = str_replace('.', '_thumb.', $model->$field);
-            if (Storage::disk('public')->has($thumb)) {
-                Storage::disk('public')->delete($thumb);
+            if (Storage::has($thumb)) {
+                Storage::delete($thumb);
             }
             $model->$field = null;
         }

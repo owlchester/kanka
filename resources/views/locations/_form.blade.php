@@ -65,7 +65,7 @@
                     @if (!empty($model->map))
                         <div class="preview">
                             <div class="image">
-                                <img src="/storage/{{ $model->map }}"/>
+                                <img src="{{ Storage::url($model->map) }}"/>
                                 <a href="#" class="img-delete" data-target="remove-map" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                                 </a>

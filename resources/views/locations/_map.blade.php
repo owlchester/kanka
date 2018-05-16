@@ -13,7 +13,7 @@
     <div class="map">
         <div id="draggable-map">
             <div class="map-container">
-                <img src="/storage/{{ $model->map }}" alt="{{ $model->name }}" id="location-map-image" />
+                <img src="{{ Storage::url($model->map) }}" alt="{{ $model->name }}" id="location-map-image" />
                 @foreach ($model->mapPoints()->with('location')->get() as $point)
                     @can('view', $point->target)
                     <a class="point" style="top: {{ $point->axis_y }}px; left: {{ $point->axis_x }}px; background-color: {{ $point->colour }};" data-top="{{ $point->axis_y }}" data-left="{{ $point->axis_x }}" href="{{ route('locations.show', [$point->target, (!empty($point->target->map) ? '#tab_map' : null)]) }}" title="{{ $point->target->tooltip() }}" data-toggle="tooltip">

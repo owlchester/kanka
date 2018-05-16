@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Scopes\RecentScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Sofa\Eloquence\Eloquence;
 use DateTime;
 
@@ -269,7 +270,7 @@ abstract class MiscModel extends Model
         if (empty($this->image)) {
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
         } else {
-            return asset('/storage/' . ($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image));
+            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image));
         }
     }
 
