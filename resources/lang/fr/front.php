@@ -77,7 +77,7 @@ return [
     ],
     'meta'          => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
-        'title'         => 'Kanka - Getionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
+        'title'         => 'Kanka - Gestionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
     ],
     'privacy'       => [
         'description'   => 'Veuillez lire notre politique de confidentialité.',

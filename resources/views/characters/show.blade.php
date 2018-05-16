@@ -10,6 +10,9 @@
                 @if ($model->is_private)
                      <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
                 @endif
+                @if ($model->is_dead)
+                     <span class="fa fa-cross" title="{{ trans('characters.hints.is_dead') }}">†</span>
+                @endif
                 </h3>
 
                 @if ($model->title)

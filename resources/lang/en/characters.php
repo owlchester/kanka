@@ -43,12 +43,14 @@ return [
         'traits'                    => 'Traits',
         'type'                      => 'Type',
         'weight'                    => 'Weight',
+        'is_dead'                   => 'Dead',
     ],
     'helpers'       => [
         'free'  => 'Where did the "Free" field go? If this character had one, it\'s been moved over to the new Notes tab!',
     ],
     'hints'         => [
         'hide_personality'          => 'This tab can be hidden from non "Admin" users by disabling the "Personality Visible" option when editing this character.',
+        'is_dead'                   => 'This character is dead',
         'is_personality_visible'    => 'You can hide the whole personality section from non "Admin" users.',
     ],
     'index'         => [

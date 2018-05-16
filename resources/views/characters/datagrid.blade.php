@@ -29,6 +29,7 @@
         'type',
         'age',
         'sex',
+        'is_dead',
         [
             'type' => 'is_private',
         ]

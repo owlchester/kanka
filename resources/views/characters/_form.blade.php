@@ -64,6 +64,14 @@ if (request()->route()->getName() == 'characters.random') {
                     {!! Form::text('type', ($isRandom ? $random->generate('type') : $formService->prefill('type', $source)), ['placeholder' => trans('characters.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::hidden('is_dead', 0) !!}
+                    <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? $formService->prefill('is_dead', $source) : 1))) !!}
+                        {{ trans('characters.fields.is_dead') }}
+                    </label>
+                    <p class="help-block">{{ trans('characters.hints.is_dead') }}</p>
+                </div>
+
                 @if (Auth::user()->isAdmin())
                     <hr>
                     @include('cruds.fields.private')
@@ -219,7 +227,6 @@ if (request()->route()->getName() == 'characters.random') {
                         <p class="help-block">{{ trans('characters.helpers.free') }}</p>
                     </div>
                 @endif
-
             </div>
             <div class="panel-footer">
                 <div class="form-group">
