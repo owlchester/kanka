@@ -25,6 +25,10 @@
                 </tbody>
             </table>
             {!! $r->links() !!}
+
+            @if (Auth::user()->notifications()->count() == 0)
+                <p class="text-muted">{{ trans('notifications.no_notifications') }}</p>
+            @endif
         </div>
     </div>
 @endsection

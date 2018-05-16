@@ -19,17 +19,18 @@
             <ul class="nav navbar-nav">
                 @if (Auth::check() and !empty(Auth::user()->campaign))
                     <?php $currentCampaign = Auth::user()->campaign; ?>
+                    <?php $notifications = Auth::user()->unreadNotifications; ?>
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">{{ Auth::user()->unreadNotifications()->count() }}</span>
+                                <span class="label label-{{ count($notifications) > 0 ? 'warning' : 'success' }}">{{ count($notifications) }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">{{ trans('header.notifications.header', ['count' => Auth::user()->unreadNotifications()->count()]) }}</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
-                                        @foreach (Auth::user()->unreadNotifications as $notification)
+                                        @foreach (Auth::user()->notifications()->take(5)->get() as $notification)
                                         <li>
                                             <a href="{{ route('notifications') }}">
                                                 <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {{ trans('notifications.' . $notification->data['key'], $notification->data['params']) }}
