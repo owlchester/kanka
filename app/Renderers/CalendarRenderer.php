@@ -274,15 +274,19 @@ class CalendarRenderer
                             ->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')
                             ->orWhere(function ($sub) {
                                 $sub->where('date', 'like', '%-' . $this->segments[1] . '-%')
-                                    ->whereYear('date', '<=', $this->segments[0])
                                     ->where('is_recurring', true);
                             });
                     })
                      ->get() as $event) {
-            // Calc date
             $date = $event->date;
+
+            // If the event is recurring, get the year to make sure it should start showing. This was previously
+            // done in the query, but it didn't work on all systems.
             if ($event->is_recurring) {
                 $blocks = explode('-', $date);
+                if ($blocks[0] > $this->segments[0]) {
+                    continue;
+                }
                 $date = $this->segments[0] . '-' . $blocks[1] . '-' . $blocks[2];
             }
             if (!isset($events[$date])) {
