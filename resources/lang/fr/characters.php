@@ -43,12 +43,14 @@ return [
         'traits'                    => 'Traits',
         'type'                      => 'Type',
         'weight'                    => 'Poid',
+        'is_dead'                   => 'Mort',
     ],
     'helpers'       => [
         'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',
     ],
     'hints'         => [
         'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de ce personnage.',
+        'is_dead'                   => 'Ce personnage est mort.',
         'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type non Admin.',
     ],
     'index'         => [
