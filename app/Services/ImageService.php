@@ -31,7 +31,7 @@ class ImageService
                     copy($externalUrl, $tempImage);
 
                     $file = $tempImage;
-                    $path = "$folder/" . $model->id . "_" . $externalFile;
+                    $path = "$folder/" . uniqid() . "_" . $externalFile;
                 } else {
                     $file = request()->file($field);
                     $path = $file->hashName($folder);
