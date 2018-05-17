@@ -15,8 +15,6 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personagens',
-        'description'   => 'Descrição',
-        'history'       => 'História',
         'image'         => 'Imagem',
         'location'      => 'Local',
         'locations'     => 'Locais',
@@ -57,12 +55,10 @@ return [
     'show'          => [
         'description'   => 'Uma visão detalhada de um local',
         'tabs'          => [
-            'attributes'    => 'Atributos',
             'characters'    => 'Personagens',
             'information'   => 'Informações',
             'locations'     => 'Locais',
             'map'           => 'Mapa',
-            'relations'     => 'Relações',
         ],
         'title'         => 'Local :name',
     ],

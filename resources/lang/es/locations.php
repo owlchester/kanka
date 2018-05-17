@@ -14,8 +14,6 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personajes',
-        'description'   => 'Descripción',
-        'history'       => 'Historia',
         'image'         => 'Imagen',
         'location'      => 'Lugar',
         'name'          => 'Nombre',
@@ -36,11 +34,9 @@ return [
     'show'          => [
         'description'   => 'Vista detallada del lugar',
         'tabs'          => [
-            'attributes'    => 'Atributos',
             'characters'    => 'Personajes',
             'information'   => 'Información',
             'locations'     => 'Lugares',
-            'relations'     => 'Relación',
         ],
         'title'         => 'Lugar :name',
     ],
