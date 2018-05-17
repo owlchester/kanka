@@ -29,7 +29,8 @@
     margin-top: 20px;
 }
 .pull-right {
-    float: right !important;
+    display: inline-block;
+    text-align: right;
 }
 
 table, .table {
@@ -60,4 +61,12 @@ td {
 }
 .export-visible {
     font-size: 18pt;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
 }
