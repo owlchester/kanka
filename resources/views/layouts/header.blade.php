@@ -46,7 +46,7 @@
                     <li class="dropdown messages-menu campaign-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             @if ($currentCampaign->image)
-                                <img src="/storage/{{ $currentCampaign->image }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                <img src="{{ Storage::url($currentCampaign->image) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
                             @endif {{ $currentCampaign->name }}
@@ -60,7 +60,7 @@
                                             <li>
                                                 <a href="{{ route('campaigns.index', ['campaign_id' => $campaign->id]) }}">
                                                     @if ($campaign->image)
-                                                        <img src="/storage/{{ $campaign->image }}" alt="{{ $campaign->name }}" class="campaign-image" />
+                                                        <img src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }}" class="campaign-image" />
                                                     @else
                                                         <i class="fa fa-globe"></i>
                                                     @endif

@@ -5,9 +5,9 @@
         <div class="box">
             <div class="box-body box-profile">
                 @if ($campaign->image)
-                <a href="/storage/{{ $campaign->image }}" title="{{ $campaign->name }}" target="_blank">
-                    <img class="profile-user-img img-responsive img-circle" src="/storage/{{ $campaign->image }}" alt="{{ $campaign->name }}">
-                </a>
+                    <a href="{{ Storage::url($campaign->image) }}" title="{{ $campaign->name }}" target="_blank">
+                        <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
+                    </a>
                 @endif
 
                 <h3 class="profile-username text-center">{{ $campaign->name }}</h3>
