@@ -16,8 +16,11 @@
                 @foreach ($r = Auth::user()->notifications()->paginate() as $notification)
                     <tr>
                         <td>
+                            @if (!empty($notification->data['icon']))
                             <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {{ trans('notifications.' . $notification->data['key'], $notification->data['params']) }}
-
+                            @else
+                                <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
+                            @endif
                             <span class="text-muted pull-right">{{ $notification->created_at }}</span>
                         </td>
                     </tr>
