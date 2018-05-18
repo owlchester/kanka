@@ -160,6 +160,9 @@ Route::group([
     Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
     Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 
+    // Export
+    Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
+
     // Attribute template
     Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
     Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');

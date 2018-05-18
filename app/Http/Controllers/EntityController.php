@@ -35,6 +35,16 @@ class EntityController extends Controller
         return view('cruds.move', ['entity' => $entity, 'entities' => $entities]);
     }
 
+    public function export(Entity $entity)
+    {
+        $realEntity = $entity;
+        $pdf = \App::make('dompdf.wrapper');
+        $entities = [$realEntity->child];
+        $name = $realEntity->pluralType();
+        $entity = $realEntity->pluralType();
+        return $pdf->loadView('cruds.export', compact('entity', 'name', 'entities'))->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
+    }
+
     /**
      * @param MoveEntityRequest $request
      * @param Entity $entity

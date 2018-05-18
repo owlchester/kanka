@@ -4,10 +4,12 @@ return [
     'actions'       => [
         'back'      => 'Back',
         'copy'      => 'Copy',
+        'export'    => 'Export',
         'move'      => 'Move',
         'new'       => 'New',
         'private'   => 'Private',
         'public'    => 'Public',
+        'more'      => 'More Actions',
     ],
     'add'           => 'Add',
     'attributes'    => [
