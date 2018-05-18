@@ -21,7 +21,7 @@ class VisibleScope implements Scope
     {
         if (!app()->runningInConsole()) {
             if (!Auth::user()->isAdmin()) {
-                $builder->where('is_private', false);
+                $builder->where($model->getTable() . '.is_private', false);
             }
         }
     }
