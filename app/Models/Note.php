@@ -42,6 +42,7 @@ class Note extends MiscModel
         'type',
         'is_pinned',
         'section_id',
+        'is_private',
     ];
 
     /**

@@ -21,11 +21,15 @@
             </div>
         @else
             <div class="element" data-field="{{ $field }}" data-type="text">
-                <label class="field" for="{{ $field }}">{{ trans($name . '.fields.' . $field) }}</label>
+                <label class="field" for="{{ $field }}">{{ trans(($field == 'is_private' ? 'crud' : $name) . '.fields.' . $field) }}</label>
                 @if ($filterService->isCheckbox($field))
                 <div class="value">{!! $filterService->single($field) !!}</div>
                 <div class="input" style="display:none;">
-                    <input type="checkbox" class="input-field" name="{{ $field }}" @if (!empty($filterService->single($field))) checked="checked" @endif value="1" />
+                    <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
+                        <option value=""></option>
+                        <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ trans('voyager.generic.no') }}</option>
+                        <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ trans('voyager.generic.yes') }}</option>
+                    </select>
                 </div>
                 @else
                 <div class="value">{{ $filterService->single($field) }}</div>

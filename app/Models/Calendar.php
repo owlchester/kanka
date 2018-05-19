@@ -65,7 +65,11 @@ class Calendar extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type'];
+    protected $filterableColumns = [
+        'name',
+        'type',
+        'is_private',
+    ];
 
     /**
      * Field used for tooltip (default is history)

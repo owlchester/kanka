@@ -66,7 +66,7 @@ class CharacterController extends CrudController
             'type',
             'age',
             'sex',
-            'is_dead'
+            'is_dead',
         ];
 
         parent::__construct();

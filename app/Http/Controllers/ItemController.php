@@ -47,7 +47,7 @@ class ItemController extends CrudController
                 'route' => route('characters.find'),
                 'placeholder' =>  trans('crud.placeholders.character'),
                 'model' => Character::class,
-            ]
+            ],
         ];
     }
 

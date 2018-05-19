@@ -42,7 +42,7 @@ class SectionController extends CrudController
                 'route' => route('sections.find'),
                 'placeholder' =>  trans('crud.placeholders.section'),
                 'model' => Section::class,
-            ]
+            ],
         ];
     }
 

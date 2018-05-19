@@ -112,6 +112,10 @@ function initCrudFilters() {
         $('#crud-filters-form').submit();
     });
 
+    $('#crud-filters select.filter-select').on('change', function(e) {
+        $('#crud-filters-form').submit();
+    });
+
     // Reset button
     $('#crud-filters .end').on('click', function(e) {
         // Redirect to page without params

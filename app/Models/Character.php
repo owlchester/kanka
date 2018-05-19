@@ -54,7 +54,8 @@ class Character extends MiscModel
         'family_id',
         'type',
         'section_id',
-        'is_dead'
+        'is_dead',
+        'is_private',
     ];
 
     /**

@@ -135,18 +135,36 @@ class FilterService
      * @param $key
      * @return mixed|null
      */
-    public function single($key)
+    public function single($key, $default = null)
     {
         if (is_array($key)) {
             throw new \Exception('Key for FilterService can\'t be an array');
         }
         if (!empty($this->filters) && isset($this->filters[$key])) {
             if ($this->isCheckbox($key)) {
-                return $this->filters[$key] == '1' ? '<i class="fa fa-check"></i>' : '';
+                return $this->filters[$key] == '1' ? trans('voyager.generic.yes') : trans('voyager.generic.no');
             }
             return $this->filters[$key];
         }
-        return null;
+        return $default;
+    }
+
+    /**
+     * @param $key
+     * @param $default
+     * @return mixed
+     * @throws \Exception
+     */
+    public function filterValue($key, $default = null)
+    {
+        if (is_array($key)) {
+            throw new \Exception('Key for FilterService can\'t be an array');
+        }
+        if (!empty($this->filters) && isset($this->filters[$key])) {
+            return $this->filters[$key];
+        }
+        return $default;
+
     }
 
     /**

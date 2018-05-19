@@ -74,6 +74,11 @@ class CrudController extends Controller
     {
         $this->authorize('browse', $this->model);
 
+        // Add the is_private filter only for admins.
+        if (Auth::user()->isAdmin()) {
+            $this->filters[] = 'is_private';
+        }
+
         $model = new $this->model;
         $this->filterService->prepare($this->view, request()->all(), $model->filterableColumns());
         $name = $this->view;

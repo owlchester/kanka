@@ -107,7 +107,7 @@ abstract class MiscModel extends Model
         }
 
         foreach ($params as $key => $value) {
-            if (!empty($value) && in_array($key, $this->filterableColumns)) {
+            if (isset($value) && in_array($key, $this->filterableColumns)) {
                 $query->where($this->getTable() . '.' . $key, 'like', "%$value%");
             }
         }
