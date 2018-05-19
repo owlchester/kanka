@@ -35,6 +35,10 @@ class EntityController extends Controller
         return view('cruds.move', ['entity' => $entity, 'entities' => $entities]);
     }
 
+    /**
+     * @param Entity $entity
+     * @return mixed
+     */
     public function export(Entity $entity)
     {
         $realEntity = $entity;
