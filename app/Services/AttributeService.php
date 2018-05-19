@@ -19,7 +19,7 @@ class AttributeService
             $value = $data['value'][$id];
             $isPrivate = !empty($data['is_private'][$id]);
 
-            if (empty($name) or empty($value)) {
+            if (empty($name)) {
                 continue;
             }
 
