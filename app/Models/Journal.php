@@ -39,7 +39,14 @@ class Journal extends MiscModel
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'date', 'character_id', 'section_id'];
+    protected $filterableColumns = [
+        'name',
+        'type',
+        'date',
+        'character_id',
+        'section_id',
+        'is_private',
+    ];
 
     /**
      * Traits

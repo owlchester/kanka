@@ -40,7 +40,7 @@ class OrganisationController extends CrudController
                 'route' => route('locations.find'),
                 'placeholder' =>  trans('crud.placeholders.location'),
                 'model' => Location::class,
-            ]
+            ],
         ];
     }
 
