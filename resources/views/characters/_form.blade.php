@@ -90,7 +90,7 @@ if (request()->route()->getName() == 'characters.random') {
                 </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.sex') }}</label>
-                    {!! Form::text('sex', ($isRandom ? $random->generate('sex') : $formService->prefill('sex', $source)), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 10]) !!}
+                    {!! Form::text('sex', ($isRandom ? $random->generate('sex') : $formService->prefill('sex', $source)), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
                 @foreach ((isset($model) ? $model->characterTraits()->appearance()->get() : $formService->prefillCharacterAppearance($source)) as $trait)
                     <div class="form-group">
