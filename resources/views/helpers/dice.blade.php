@@ -11,13 +11,12 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h4>{{ trans('helpers.link.title') }}</h4>
+                    <h4>{{ trans('helpers.dice.title') }}</h4>
                 </div>
 
                 <div class="box-body">
-                    <p>
-                        {{ trans('helpers.link.description') }}
-                    </p>
+                    <p>{{ trans('helpers.dice.description') }}</p>
+                    <p><a href="https://github.com/ringmaster/dicecalc" target="_blank">{{ trans('helpers.dice.more') }}</a></p>
                 </div>
             </div>
         </div>

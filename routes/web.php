@@ -37,6 +37,7 @@ Route::group([
     Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
     Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
+    Route::get('/helper/dice', 'HelperController@dice')->name('helpers.dice');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -93,6 +94,7 @@ Route::group([
         'characters' => 'CharacterController',
         'characters.character_organisations' => 'CharacterOrganisationController',
         'characters.relations' => 'CharacterRelationController',
+        'dice_rolls' => 'DiceRollController',
         'events' => 'EventController',
         'events.relations' => 'EventRelationController',
         'locations' => 'LocationController',

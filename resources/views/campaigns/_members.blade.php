@@ -3,12 +3,14 @@
 <table id="campaign-members" class="table table-hover table-striped">
     <tbody><tr>
         <th>{{ trans('campaigns.members.fields.name') }}</th>
+        <th>{{ trans('campaigns.members.fields.roles') }}</th>
         <th>{{ trans('campaigns.members.fields.joined') }}</th>
         <th>&nbsp;</th>
     </tr>
     @foreach ($r = $campaign->members()->with('user')->paginate() as $relation)
         <tr>
             <td>{{ $relation->user->name }}</td>
+            <td>{{ $relation->user->rolesList($campaign->id) }}</td>
             <td>{{ $relation->created_at }}</td>
 
             <td class="text-right">

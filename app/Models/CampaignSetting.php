@@ -28,6 +28,7 @@ class CampaignSetting extends Model
         'quests',
         'calendars',
         'sections',
+        'dice_rolls',
     ];
 
     /**

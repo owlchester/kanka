@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c5be5933146fe9d01ea248206b13250",
+    "content-hash": "50b02b8a38128ebab4a3be805cbdcb62",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -3736,6 +3736,59 @@
                 "sentry"
             ],
             "time": "2017-08-11T17:29:14+00:00"
+        },
+        {
+            "name": "sergej-kurakin/diceroller",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sergej-kurakin/dicecalc.git",
+                "reference": "3af4edaa3005733f5f2a3e3606b2bc3869b43016"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sergej-kurakin/dicecalc/zipball/3af4edaa3005733f5f2a3e3606b2bc3869b43016",
+                "reference": "3af4edaa3005733f5f2a3e3606b2bc3869b43016",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "@stable",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "pdepend/pdepend": "@stable",
+                "phploc/phploc": "@stable",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "@stable",
+                "sebastian/phpcpd": "@stable",
+                "sebastian/phpdcd": "@stable",
+                "squizlabs/php_codesniffer": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DiceCalc\\": "src/DiceCalc"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Owen Winkler",
+                    "email": "a_github@midnightcircus.com"
+                }
+            ],
+            "description": "Dice Roller, PSR compatible fork from https://github.com/ringmaster/dicecalc",
+            "keywords": [
+                "dice",
+                "dice calc",
+                "dice calculator",
+                "dice roller"
+            ],
+            "time": "2016-05-29T07:44:14+00:00"
         },
         {
             "name": "sofa/eloquence",

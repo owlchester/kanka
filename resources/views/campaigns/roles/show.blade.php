@@ -56,6 +56,7 @@
                     <h3 class="box-title">{{ trans('crud.permissions.title') }}</h3>
                 </div>
                 <div class="box-body">
+                    <p class="help-block">{{ trans('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
 
                     @can('permission', $role)
                     {{ Form::open(['route' => ['campaigns.campaign_roles.savePermissions', 'campaign' => $model, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
@@ -67,7 +68,7 @@
                             <th><br /></th>
                         </tr>
                         @foreach ($permission->permissions($role) as $permission)
-                            <tr>
+                            <tr {{ ($permission['action'] == 'permission' ? 'class="danger"' : null)  }}>
                                 <td>{{ trans('entities.' . $permission['entity']) }}</td>
                                 <td>{{ trans('campaigns.roles.permissions.actions.' . $permission['action']) }}</td>
                                 <td>{!! Form::checkbox('permissions[' . $permission['key'] . ']', $permission['entity'], $permission['enabled']) !!}</td>

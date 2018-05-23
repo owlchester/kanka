@@ -56,9 +56,9 @@
 
                                 <li class="list-group-item">
                                     <b>{{ trans('characters.show.tabs.organisations') }}</b> <span class="pull-right">
-                                    @foreach ($model->organisations()->has('organisation')->with('organisation')->limit(3)->get() as $org)
-                                        <a href="{{ route('organisations.show', $org->organisation) }}" data-toggle="tooltip" title="{{ $org->organisation->tooltip() }}">{{ $org->organisation->name }}</a>.
-                                    @endforeach
+                                    <?php $orgs = []; foreach ($model->organisations()->has('organisation')->with('organisation')->limit(3)->get() as $org) {
+                                        $orgs[] = '<a href="' . route('organisations.show', $org->organisation) . '" data-toggle="tooltip" title="' . $org->organisation->tooltip() . '">' . $org->organisation->name . '</a>';
+                                    } echo implode(', ', $orgs); ?>
                                     </span>
                                     <br class="clear" />
                                 </li>

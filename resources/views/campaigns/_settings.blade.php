@@ -75,6 +75,12 @@
                 {{ trans('entities.sections') }}
             </label>
         </div>
+        <div class="form-group">
+            {!! Form::hidden('dice_rolls', 0) !!}
+            <label>{!! Form::checkbox('dice_rolls') !!}
+                {{ trans('entities.dice_rolls') }}
+            </label>
+        </div>
     </div>
 </div>
 
