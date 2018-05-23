@@ -32,7 +32,7 @@ class StoreCharacter extends FormRequest
             'age' => 'nullable|max:25',
             'height' => 'nullable|max:10',
             'weight' => 'nullable|max:10',
-            'sex' => 'nullable|max:10',
+            'sex' => 'nullable|max:45',
             'race' => 'nullable|max:45',
             'eye_colour' => 'nullable|max:12',
             'hair' => 'nullable|max:45',
