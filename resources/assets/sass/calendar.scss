@@ -1,8 +1,11 @@
 .calendar {
+  table-layout: fixed;
+
   tbody {
     td {
       height: 100px;
       vertical-align: top !important;
+      word-wrap: break-word;
 
       .add {
         visibility: hidden;

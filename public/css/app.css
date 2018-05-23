@@ -53,9 +53,14 @@
   margin-bottom: 3px;
 }
 
+.calendar {
+  table-layout: fixed;
+}
+
 .calendar tbody td {
   height: 100px;
   vertical-align: top !important;
+  word-wrap: break-word;
 }
 
 .calendar tbody td .add {
