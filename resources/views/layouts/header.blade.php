@@ -23,7 +23,7 @@
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-{{ count($notifications) > 0 ? 'warning' : 'success' }}">{{ count($notifications) }}</span>
+                                @if (count($notifications) > 0) <span class="label label-warning">{{ count($notifications) }}</span> @endif
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">{{ trans('header.notifications.header', ['count' => Auth::user()->unreadNotifications()->count()]) }}</li>
