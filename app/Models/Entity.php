@@ -80,6 +80,14 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    public function dice_roll()
+    {
+        return $this->hasOne('App\Models\DiceRoll', 'id', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function event()
     {
         return $this->hasOne('App\Models\Event', 'id', 'entity_id');

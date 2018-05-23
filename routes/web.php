@@ -95,6 +95,7 @@ Route::group([
         'characters.character_organisations' => 'CharacterOrganisationController',
         'characters.relations' => 'CharacterRelationController',
         'dice_rolls' => 'DiceRollController',
+        'dice_rolls.relations' => 'DiceRollRelationController',
         'events' => 'EventController',
         'events.relations' => 'EventRelationController',
         'locations' => 'LocationController',
