@@ -54,13 +54,14 @@ class ImageService
                     // Save new image
                     if ($url) {
                         $image = Image::make($file);
-                        Storage::put($path, $image->encode(), 'public');
+                        Storage::put($path, (string) $image->encode(), 'public');
                     } else {
                         $path = request()->file($field)->storePublicly($folder);
                     }
                     $model->$field = $path;
                 }
             } catch (Exception $e) {
+                $e->getTraceAsString()
                 // There was an error getting the image. Could be the url, could be the request.
                 session()->flash('warning', trans('crud.image.error'));
             }
