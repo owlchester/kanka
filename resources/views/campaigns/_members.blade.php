@@ -38,6 +38,7 @@
     <table id="campaign-invites" class="table table-hover table-striped">
         <tbody><tr>
             <th>{{ trans('campaigns.invites.fields.email') }}</th>
+            <th>{{ trans('campaigns.invites.fields.role') }}</th>
             <th>{{ trans('campaigns.invites.fields.created') }}</th>
             <th>
                 <a href="{{ route('campaigns.campaign_invites.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary btn-sm pull-right">
@@ -46,9 +47,10 @@
                 </a>
             </th>
         </tr>
-        @foreach ($r = $campaign->unusedInvites()->paginate() as $relation)
+        @foreach ($r = $campaign->unusedInvites()->with('role')->paginate() as $relation)
             <tr>
                 <td>{{ $relation->email }}</td>
+                <td>{{ $relation->role ? $relation->role->name : null }}</td>
                 <td>{{ $relation->elapsed('created_at') }}</td>
 
                 <td class="text-right">

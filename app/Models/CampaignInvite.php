@@ -15,7 +15,12 @@ class CampaignInvite extends MiscModel
      * @var array
      */
     protected $fillable = [
-        'email', 'campaign_id', 'created_by', 'token', 'is_active'
+        'email',
+        'role_id',
+        'campaign_id',
+        'created_by',
+        'token',
+        'is_active'
     ];
 
     /**
@@ -24,5 +29,13 @@ class CampaignInvite extends MiscModel
     public function campaign()
     {
         return $this->belongsTo('App\Campaign', 'campaign_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Models\CampaignRole', 'role_id', 'id');
     }
 }

@@ -66,6 +66,7 @@ return [
         'fields'        => [
             'created'   => 'Sent',
             'email'     => 'Email',
+            'role'   => 'Role',
         ],
         'placeholders'  => [
             'email' => 'Email address of the person you wish to invite',
@@ -92,7 +93,7 @@ return [
         ],
         'help'      => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
         'invite'    => [
-            'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a \'Viewer\'. You can also cancel the invitation at any time.',
+            'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
         'roles'     => [

@@ -5,6 +5,8 @@ namespace App\Services;
 use App\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
+use App\Models\CampaignRole;
+use App\Models\CampaignRoleUser;
 use App\Notifications\Header;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -70,6 +72,14 @@ class InviteService
                 'role' => 'viewer'
             ]);
             $role->save();
+        }
+
+        // Add the user to a role if it's provided by the invite link
+        if ($invite->role) {
+            $memberRole = CampaignRoleUser::create([
+                'campaign_role_id' => $invite->role->id,
+                'user_id' => $role->user_id
+            ]);
         }
 
         $invite->is_active = false;
