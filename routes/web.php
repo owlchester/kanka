@@ -53,6 +53,9 @@ Route::group([
     // Random character
     Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
 
+    Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
+    Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
+
     // Locations
     Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
     Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
@@ -61,18 +64,6 @@ Route::group([
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
     // Multi-delete for cruds
-//    Route::post('/calendars/deleteMany', 'CalendarController@deleteMany')->name('calendars.deleteMany');
-//    Route::post('/characters/deleteMany', 'CharacterController@deleteMany')->name('characters.deleteMany');
-//    Route::post('/events/deleteMany', 'EventController@deleteMany')->name('events.deleteMany');
-//    Route::post('/locations/deleteMany', 'LocationController@deleteMany')->name('locations.deleteMany');
-//    Route::post('/families/deleteMany', 'FamilyController@deleteMany')->name('families.deleteMany');
-//    Route::post('/items/deleteMany', 'ItemController@deleteMany')->name('items.deleteMany');
-//    Route::post('/journals/deleteMany', 'JournalController@deleteMany')->name('journals.deleteMany');
-//    Route::post('/organisations/deleteMany', 'OrganisationController@deleteMany')->name('organisations.deleteMany');
-//    Route::post('/notes/deleteMany', 'NoteController@deleteMany')->name('notes.deleteMany');
-//    Route::post('/quests/deleteMany', 'QuestController@deleteMany')->name('quests.deleteMany');
-//    Route::post('/sections/deleteMany', 'SectionController@deleteMany')->name('sections.deleteMany');
-//    Route::post('/attribute_templates/deleteMany', 'AttributeTemplateController@deleteMany')->name('attribute_templates.deleteMany');
     Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 
 

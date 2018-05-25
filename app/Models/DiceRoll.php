@@ -13,11 +13,10 @@ class DiceRoll extends MiscModel
         'name',
         'slug',
         'campaign_id',
-        'user_id',
         'character_id',
+        'section_id',
         'system',
         'parameters',
-        'results',
         'is_private',
     ];
 
@@ -33,7 +32,6 @@ class DiceRoll extends MiscModel
      */
     protected $filterableColumns = [
         'name',
-        'user_id',
         'character_id',
         'is_private',
     ];
@@ -60,26 +58,16 @@ class DiceRoll extends MiscModel
      * Who created this entry
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
-    {
-        return $this->belongsTo('App\User', 'created_by');
-    }
-
-    /**
-     * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'created_by');
-    }
-
-    /**
-     * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function character()
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function diceRollResults()
+    {
+        return $this->hasMany('App\Models\DiceRollResult', 'dice_roll_id');
     }
 }

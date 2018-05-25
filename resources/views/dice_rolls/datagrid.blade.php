@@ -7,16 +7,6 @@
         // Name
         'name',
         'parameters',
-        'results',
-        [
-            'label' => trans('crud.notes.fields.creator'),
-            'field' => 'user.name',
-            'render' => function($model) {
-                if ($model->creator) {
-                    return $model->creator->name;
-                }
-            }
-        ],
         [
             'label' => trans('crud.fields.character'),
             'field' => 'character.name',

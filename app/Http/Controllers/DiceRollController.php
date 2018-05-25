@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use App\Models\DiceRoll;
 use App\Http\Requests\StoreDiceRoll;
+use App\Models\DiceRollResult;
 use App\Services\RandomDiceRollService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class DiceRollController extends CrudController
@@ -96,5 +98,37 @@ class DiceRollController extends CrudController
     public function destroy(DiceRoll $diceRoll)
     {
         return $this->crudDestroy($diceRoll);
+    }
+
+    /**
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function roll(DiceRoll $diceRoll)
+    {
+        $this->authorize('roll', $diceRoll);
+
+        $result = DiceRollResult::create([
+            'dice_roll_id' => $diceRoll->id,
+            'created_by' => Auth::user()->id,
+        ]);
+        return redirect()->route('dice_rolls.show', $diceRoll)
+            ->with('success', trans('dice_rolls.results.success'));
+    }
+
+    /**
+     * @param DiceRoll $diceRoll
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function destroyRoll(DiceRoll $diceRoll, DiceRollResult $diceRollResult)
+    {
+        $this->authorize('delete', $diceRoll);
+
+        $diceRollResult->delete();
+
+        return redirect()->route('dice_rolls.show', $diceRoll)
+            ->with('success', trans('dice_rolls.destroy.dice_roll'));
     }
 }

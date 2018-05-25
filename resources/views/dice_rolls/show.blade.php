@@ -4,6 +4,8 @@
         <!-- Profile Image -->
         <div class="box">
             <div class="box-body box-profile">
+                @include ('cruds._image')
+
                 <h3 class="profile-username text-center">{{ $model->name }}</h3>
 
                 <ul class="list-group list-group-unbordered">
@@ -16,16 +18,16 @@
                             <br class="clear" />
                         </li>
                     @endif
+                    @if ($model->parameters)
+                        <li class="list-group-item">
+                            <b>{{ trans('dice_rolls.fields.parameters') }}</b> <span class="pull-right">{{ $model->parameters }}</span>
+                            <br class="clear" />
+                        </li>
+                    @endif
                     @include('cruds.layouts.section')
                 </ul>
 
-                @if (Auth::user()->can('delete', $model))
-                <button class="btn pull-right btn-danger delete-confirm" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                </button>
-                {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
-                {!! Form::close() !!}
-                @endif
+                @include('.cruds._actions')
             </div>
             <!-- /.box-body -->
         </div>
@@ -45,7 +47,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="results">
-                    <p>{{ $model->parameters }} = {{ $model->results }}</p>
+                    @include('dice_rolls._results')
                 </div>
                 @include('cruds._panes')
             </div>

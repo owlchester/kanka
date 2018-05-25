@@ -12,4 +12,9 @@ class DiceRollPolicy extends EntityPolicy
      * @var string
      */
     protected $model = 'dice_roll';
+
+    public function roll(User $user, $entity)
+    {
+        return $this->view($user, $entity);
+    }
 }

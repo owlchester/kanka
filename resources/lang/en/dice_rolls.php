@@ -8,6 +8,7 @@ return [
     ],
     'destroy'       => [
         'success'   => 'Dice Roll \':name\' removed.',
+        'dice_roll' => 'Dice roll removed.',
     ],
     'edit'          => [
         'description'   => 'Edit an dice Roll',
@@ -31,6 +32,18 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the Dice Roll',
         'parameters' => '4d6+3'
+    ],
+    'results' => [
+        'success' => 'Dice rolled.',
+        'fields' => [
+            'creator' => 'Creator',
+            'result' => 'Result',
+            'date' => 'Date',
+        ],
+        'hint' => 'All the rolls done for this dice roll template.',
+        'actions' => [
+            'add' => 'Roll',
+        ]
     ],
     'show'          => [
         'description'   => 'A detailed view of a Dice Roll',
