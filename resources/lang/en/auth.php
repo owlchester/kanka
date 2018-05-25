@@ -44,7 +44,7 @@ return [
             'email'                 => 'Email',
             'name'                  => 'Username',
             'password'              => 'Password',
-            'password_confirmation' => 'Password confirmation',
+            'tos'                   => 'I agree to the <a href=":privacyUrl" target="_blank">Privacy Policy</a>.',
         ],
         'register_with_facebook'    => 'Register with Facebook',
         'register_with_google'      => 'Register with Google',

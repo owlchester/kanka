@@ -40,10 +40,17 @@
                 </span>
             @endif
         </div>
+        <div class="form-group has-feedback{{ $errors->has('tos') ? ' has-error' : '' }}">
+            <label for="tos">
+                <input id="tos" type="checkbox" name="tos" value="1" required>
+                {!! trans('auth.register.fields.tos', ['privacyUrl' => route('privacy')]) !!}
+            </label>
 
-        <div class="form-group has-feedback">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('auth.register.fields.password_confirmation') }}" required>
-            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+            @if ($errors->has('tos'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('tos') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="form-group text-right">
