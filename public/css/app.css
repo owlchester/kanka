@@ -322,7 +322,8 @@ div.mce-fullscreen {
   z-index: 1400;
 }
 
-.export-visible {
+.export-visible,
+.export-hidden {
   display: none;
 }
 
