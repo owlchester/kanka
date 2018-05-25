@@ -54,7 +54,7 @@ class ImageService
                     // Save new image
                     if ($url) {
                         $image = Image::make($file);
-                        Storage::put($path, $image->encode(), 'public');
+                        Storage::put($path, (string) $image->encode(), 'public');
                     } else {
                         $path = request()->file($field)->storePublicly($folder);
                     }
