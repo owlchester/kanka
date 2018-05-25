@@ -35,6 +35,7 @@ return [
     ],
     'map'           => [
         'actions'   => [
+            'download'      => 'Download',
             'points'        => 'Edit Points',
             'toggle_hide'   => 'Hide Points',
             'toggle_show'   => 'Show Points',
