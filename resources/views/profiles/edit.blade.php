@@ -8,32 +8,19 @@
 ])
 
 @section('content')
+    @include('partials.errors')
     <div class="row">
-        <div class="col-md-6 col-md-offset">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @include('partials.errors')
 
-                    {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['profile.update']]) !!}
+                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['profile.update']]) !!}
                         @include('profiles._form')
                     {!! Form::close() !!}
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['profile.theme']]) !!}
-                    @include('profiles._theme')
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
 
-        @if (empty($user->provider))
-        <div class="col-md-6 col-md-offset">
+            @if (empty($user->provider))
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>{{ trans('profiles.sections.password.title') }}</h4>
@@ -44,12 +31,8 @@
                     {!! Form::close() !!}
                 </div>
             </div>
-        </div>
-        @endif
+            @endif
 
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>{{ trans('profiles.sections.delete.title') }}</h4>
@@ -63,6 +46,29 @@
                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('profiles.sections.delete.delete') }}
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{ trans('profiles.fields.avatar') }}</h4>
+                </div>
+                <div class="panel-body">
+                    {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['profile.avatar']]) !!}
+                    @include('profiles._avatar')
+                    {!! Form::close() !!}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{ trans('profiles.fields.theme') }}</h4>
+                </div>
+                <div class="panel-body">
+                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['profile.theme']]) !!}
+                    @include('profiles._theme')
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

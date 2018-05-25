@@ -7,7 +7,7 @@ return [
         'title'         => 'Linking to other entries and shortcuts',
     ],
     'dice' => [
-        'description' => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentil and "df" for fudge.',
+        'description' => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentile and "df" for fudge.',
         'more' => 'More options are available and explained on the dice roller plugin page.',
         'title' => 'Dice Rolls',
     ],

@@ -127,6 +127,24 @@ img.profile-user-img {
   margin-top: -2px;
 }
 
+.user-header a {
+  display: inline;
+  background: none;
+}
+
+.user-header a:hover {
+  background: none !important;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header > a > img {
+  z-index: 5;
+  height: 90px;
+  width: 90px;
+  border: 3px solid;
+  border-color: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 @font-face {
   font-family: 'Dubai';
   src: url("/fonts/dubai/DubaiW23-Light.eot");

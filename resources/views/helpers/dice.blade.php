@@ -16,7 +16,7 @@
 
                 <div class="box-body">
                     <p>{{ trans('helpers.dice.description') }}</p>
-                    <p><a href="https://github.com/ringmaster/dicecalc" target="_blank">{{ trans('helpers.dice.more') }}</a></p>
+                    <p><a href="https://github.com/ringmaster/dicecalc#Dice" target="_blank">{{ trans('helpers.dice.more') }}</a></p>
                 </div>
             </div>
         </div>
