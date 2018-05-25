@@ -49,6 +49,9 @@ class UserObserver
     {
     }
 
+    /**
+     * @param User $user
+     */
     public function updated(User $user)
     {
         $log = UserLog::create([

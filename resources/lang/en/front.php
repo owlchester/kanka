@@ -80,7 +80,7 @@ return [
         'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
     ],
     'privacy'       => [
-        'description'   => 'Please read our privacy policy.',
+        'description'   => 'Effective date: May 25th, 2018',
         'title'         => 'Privacy Policy',
     ],
     'release'       => [
