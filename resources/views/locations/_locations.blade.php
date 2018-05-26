@@ -1,5 +1,5 @@
 <?php $r = $model->descendants()->with('parent')->acl(auth()->user())->orderBy('name', 'ASC')->paginate(); ?>
-<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>
 <table id="locations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
     <tbody><tr>
         <th class="avatar"><br /></th>

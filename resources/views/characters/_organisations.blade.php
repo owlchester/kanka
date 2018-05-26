@@ -1,6 +1,6 @@
 <?php $r = $model->organisations()->has('organisation')->with('organisation')->paginate(); ?>
 <p class="export-hidden">{{ trans('characters.organisations.hint') }}</p>
-<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('characters.show.tabs.organisations') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('characters.show.tabs.organisations') }}</p>
 
 <table id="organisations" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
