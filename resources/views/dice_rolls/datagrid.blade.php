@@ -4,6 +4,10 @@
     $filterService,
     // Columns
     [
+        // Avatar
+        [
+            'type' => 'avatar'
+        ],
         // Name
         'name',
         'parameters',
