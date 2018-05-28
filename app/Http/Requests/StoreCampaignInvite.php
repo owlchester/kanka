@@ -26,6 +26,7 @@ class StoreCampaignInvite extends FormRequest
     {
         return [
             'email' => 'required|email|unique:campaign_invites,email,NULL,id,campaign_id,' . Auth::user()->campaign->id.',is_active,1',
+            'role_id' => 'required|exists:campaign_roles,id',
         ];
     }
 }

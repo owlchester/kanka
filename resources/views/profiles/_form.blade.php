@@ -12,13 +12,6 @@
         <hr />
 
         <div class="form-group">
-            <label>{{ trans('profiles.fields.avatar') }}:</label>
-            {!! Form::file('avatar', array('class' => 'image')) !!}
-        </div>
-
-        <hr />
-
-        <div class="form-group">
             <label>
                 {!! Form::hidden('newsletter', 0) !!}
                 {!! Form::checkbox('newsletter') !!}

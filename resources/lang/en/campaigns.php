@@ -66,6 +66,7 @@ return [
         'fields'        => [
             'created'   => 'Sent',
             'email'     => 'Email',
+            'role'   => 'Role',
         ],
         'placeholders'  => [
             'email' => 'Email address of the person you wish to invite',
@@ -87,11 +88,12 @@ return [
         'fields'    => [
             'joined'    => 'Joined',
             'name'      => 'User',
+            'roles'     => 'Roles',
             'role'      => 'Role',
         ],
         'help'      => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
         'invite'    => [
-            'description'   => 'You can invite friends to join your campaign by providing their email address. Once they accept the invitation, they will be added as a \'Viewer\'. You can also cancel the invitation at any time.',
+            'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
         'roles'     => [
@@ -131,6 +133,9 @@ return [
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
         ],
+        'hints' => [
+            'role_permissions' => 'Enable the \':name\' role to do the following actions on all entities.',
+        ],
         'members'       => 'Members',
         'permissions'   => [
             'actions'   => [
@@ -169,7 +174,7 @@ return [
         'edit'      => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'    => 'All modules of the app can be enabled or disabled at will from your campaign. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hiden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hiden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
     ],
     'show'          => [
         'actions'       => [
@@ -180,7 +185,7 @@ return [
             'information'   => 'Information',
             'members'       => 'Members',
             'roles'         => 'Roles',
-            'settings'      => 'Settings',
+            'settings'      => 'Modules',
         ],
         'title'         => 'Campaign :name',
     ],

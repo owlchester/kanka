@@ -208,13 +208,14 @@ class DatagridRenderer
      */
     private function renderRow(Model $model)
     {
+        $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
-        if (empty($model->entity)) {
+        if ($useEntity && empty($model->entity)) {
             $model->save();
             $model->refresh();
         }
 
-        $html = '<tr data-id="' . $model->id . '" data-entity-id="' . $model->entity->id . '"';
+        $html = '<tr data-id="' . $model->id . '" ' . ($useEntity ? 'data-entity-id="' . $model->entity->id . '"' : null);
         if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {
                 $html .= ' ' . $name . '="' . $data($model) . '"';

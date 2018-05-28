@@ -66,6 +66,7 @@ return [
         'fields'        => [
             'created'   => 'Envoyé',
             'email'     => 'Email',
+            'role'      => 'Rôle',
         ],
         'placeholders'  => [
             'email' => 'L\'adresse email de ton ami',
@@ -88,10 +89,11 @@ return [
             'joined'    => 'Rejoint',
             'name'      => 'Utilisateur',
             'role'      => 'Rôle',
+            'roles'     => 'Rôles',
         ],
         'help'      => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
         'invite'    => [
-            'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté en tant que \'Observateur\'. Tu peux annuler une invitation à tout moment.',
+            'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté à la campagne. Tu peux annuler une invitation à tout moment.',
             'title'         => 'Invitation',
         ],
         'roles'     => [
@@ -130,6 +132,9 @@ return [
             '1' => 'Une campagne peut avoir autant de rôle que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
             '2' => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne à plusieurs membres ou rôles.',
             '3' => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
+        ],
+        'hints'         => [
+            'role_permissions'  => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',
         'permissions'   => [
@@ -180,7 +185,7 @@ return [
             'information'   => 'Information',
             'members'       => 'Membres',
             'roles'         => 'Rôles',
-            'settings'      => 'Paramètres',
+            'settings'      => 'Modules',
         ],
         'title'         => 'Campagne :name',
     ],

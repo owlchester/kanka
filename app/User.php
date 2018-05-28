@@ -179,9 +179,21 @@ class User extends \TCG\Voyager\Models\User
      * Get the user's roles
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function roles()
+    public function roles($campaignId = null)
     {
-        return $this->campaignRoles($this->campaign->id);
+        if (empty($campaignId)) {
+            $campaignId = $this->campaign->id;
+        }
+        return $this->campaignRoles($campaignId);
+    }
+
+    public function rolesList($campaignId = null)
+    {
+        if (empty($campaignId)) {
+            $campaignId = $this->campaign->id;
+        }
+        $roles = $this->campaignRoles($campaignId)->get();
+        return $roles->implode('name', ', ');
     }
 
     /**

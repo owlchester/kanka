@@ -67,6 +67,9 @@ class SidebarService
         'sections' => [
             'sections'
         ],
+        'dice_rolls' => [
+            'dice_rolls',
+        ],
     ];
 
     /**

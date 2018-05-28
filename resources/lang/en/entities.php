@@ -8,6 +8,8 @@ return [
     'campaigns'             => 'Campaigns',
     'character'             => 'Character',
     'characters'            => 'Characters',
+    'dice_roll'             => 'Dice Roll',
+    'dice_rolls'            => 'Dice Rolls',
     'event'                 => 'Event',
     'events'                => 'Events',
     'families'              => 'Families',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeleteProfile;
 use App\Http\Requests\StoreProfile;
+use App\Http\Requests\StoreProfileAvatar;
 use App\Http\Requests\StoreProfilePassword;
 use App\Http\Requests\StoreProfileTheme;
 use App\User;
@@ -69,6 +70,19 @@ class ProfileController extends Controller
     {
         Auth::user()->update($request->only('theme'));
         return redirect()->route('profile')->with('success', trans('profiles.theme.success'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Family $family
+     * @return \Illuminate\Http\Response
+     */
+    public function avatar(StoreProfileAvatar $request)
+    {
+        Auth::user()->update($request->only('avatar'));
+        return redirect()->route('profile')->with('success', trans('profiles.avatar.success'));
     }
 
 

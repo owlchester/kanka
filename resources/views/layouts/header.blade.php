@@ -124,7 +124,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
+                            <a href="{{ route('profile') }}">
+                                <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
+                            </a>
                             <p>
                                 {{ Auth::user()->name }}
                                 <small>{{ trans('header.member_since', ['date' => Auth::user()->elapsed('created_at')]) }}</small>

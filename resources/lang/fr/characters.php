@@ -29,6 +29,7 @@ return [
         'height'                    => 'Taille',
         'history'                   => 'Histoire',
         'image'                     => 'Image',
+        'is_dead'                   => 'Mort',
         'is_personality_visible'    => 'Personnalité visible',
         'languages'                 => 'Langues',
         'location'                  => 'Lieu',
@@ -43,7 +44,6 @@ return [
         'traits'                    => 'Traits',
         'type'                      => 'Type',
         'weight'                    => 'Poid',
-        'is_dead'                   => 'Mort',
     ],
     'helpers'       => [
         'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',

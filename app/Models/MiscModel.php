@@ -108,7 +108,16 @@ abstract class MiscModel extends Model
 
         foreach ($params as $key => $value) {
             if (isset($value) && in_array($key, $this->filterableColumns)) {
+<<<<<<< HEAD
                 $query->where($this->getTable() . '.' . $key, 'like', "%$value%");
+=======
+                // It's possible to request "not" values
+                if (isset($value[0]) && $value[0] == '!') {
+                    $query->where($this->getTable() . '.' . $key, 'not like', '%' . ltrim($value, '!') . '%');
+                } else {
+                    $query->where($this->getTable() . '.' . $key, 'like', "%$value%");
+                }
+>>>>>>> develop
             }
         }
         return $query;

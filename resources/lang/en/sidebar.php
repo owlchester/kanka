@@ -7,6 +7,7 @@ return [
     'campaigns'             => 'Campaigns',
     'characters'            => 'Characters',
     'dashboard'             => 'Dashboard',
+    'dice_rolls'            => 'Dice Rolls',
     'discord'               => 'Discord',
     'events'                => 'Events',
     'families'              => 'Families',

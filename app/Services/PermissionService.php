@@ -31,6 +31,10 @@ class PermissionService
         $this->entityService = $entityService;
     }
 
+    /**
+     * @param CampaignRole $role
+     * @return array
+     */
     public function permissions(CampaignRole $role)
     {
         $permissions = [];
@@ -43,7 +47,12 @@ class PermissionService
         $entityActions = ['read', 'edit', 'add', 'delete', 'permission'];
         $actions = ['read', 'edit', 'add', 'delete'];
 
+        $excludedEntities = ['attribute_templates'];
+
         foreach ($this->entityService->entities() as $entity => $class) {
+            if (in_array($entity, $excludedEntities)) {
+                continue;
+            }
             $singularEntity = $this->entityService->singular($entity);
 
             foreach ($entityActions as $action) {

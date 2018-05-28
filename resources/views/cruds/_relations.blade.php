@@ -1,6 +1,6 @@
 <?php $r = $model->entity->relationships()->has('target')->with('target')->order(request()->get('order'), 'relation')->paginate(); ?>
 <p class="export-hidden">{{ trans('crud.relations.hint') }}</p>
-<p class="export-{{ ($r->count() === 0 ? 'hidden' : 'visible') }}">{{ trans('crud.tabs.relations') }}</p>
+<p class="export-{{ ($r->count() === 0 ? 'visible export-hidden' : 'visible') }}">{{ trans('crud.tabs.relations') }}</p>
 
 <table id="crud_families" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>

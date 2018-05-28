@@ -83,6 +83,11 @@
                     <a href="{{ route('sections.index') }}"><i class="fa fa-folder-open"></i> <span>{{ trans('sidebar.sections') }}</span></a>
                 </li>
             @endif
+            @if ($campaign->enabled('dice_rolls'))
+                <li class="{{ $sidebar->active('dice_rolls') }}">
+                    <a href="{{ route('dice_rolls.index') }}"><i class="fa fa-square"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
+                </li>
+            @endif
             @can('create', 'App\Models\AttributeTemplate')
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>

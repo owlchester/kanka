@@ -36,6 +36,7 @@ class EntityService
             'quests' => 'App\Models\Quest',
             'sections' => 'App\Models\Section',
             'attribute_templates' => 'App\Models\AttributeTemplate',
+            'dice_rolls' => 'App\Models\DiceRoll',
         ];
     }
 

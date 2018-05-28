@@ -7,6 +7,7 @@ return [
     'campaigns'             => 'Campagnes',
     'characters'            => 'Personnages',
     'dashboard'             => 'Tableau de bord',
+    'dice_rolls'            => 'Jets de dés',
     'discord'               => 'Discord',
     'events'                => 'Evénements',
     'families'              => 'Familles',

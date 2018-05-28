@@ -1,5 +1,5 @@
 <?php  $r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
-<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
 <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
     <tbody><tr>
         <th class="avatar"><br /></th>

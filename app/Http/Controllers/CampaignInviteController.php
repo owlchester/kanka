@@ -43,7 +43,7 @@ class CampaignInviteController extends Controller
     {
         $this->authorize('invite', $campaign);
 
-        $invitation = CampaignInvite::create($request->all());
+        $invitation = CampaignInvite::create($request->only('email', 'role_id'));
 
         return redirect()->route('campaigns.index', ['#member'])
             ->with('success', trans('campaigns.invites.create.success'));

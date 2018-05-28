@@ -84,12 +84,12 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        if (!empty($user->image)) {
-            // Delete
-            Storage::disk('public')->delete($user->image);
+        // If the user has an avatar, delete it from the disk to free up some space.
+        if (!empty($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
         }
 
-        // New user, send notification
+        // Send notification that an account has been removed
         Mail::to('hello@kanka.io')->send(new UserDeleted($user));
     }
 

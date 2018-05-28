@@ -1,6 +1,6 @@
 <?php $r = $model->items()->paginate(); ?>
 <p class="export-hidden">{{ trans('characters.items.hint') }}</p>
-<p class="export-{{ $r->count() === 0 ? 'hidden' : 'visible' }}">{{ trans('characters.show.tabs.items') }}</p>
+<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('characters.show.tabs.items') }}</p>
 
 <table id="character-items" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
