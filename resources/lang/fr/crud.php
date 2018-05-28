@@ -4,6 +4,8 @@ return [
     'actions'       => [
         'back'      => 'Retour',
         'copy'      => 'Copier',
+        'export'    => 'Export',
+        'more'      => 'Autres Actions',
         'move'      => 'Déplacer',
         'new'       => 'Nouveau',
         'private'   => 'Privé',

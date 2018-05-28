@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'avatar'        => [
+        'success'   => 'Photo profile modifié.',
+    ],
     'description'   => 'Modification du profil',
     'edit'          => [
         'success'   => 'Profil modifié',

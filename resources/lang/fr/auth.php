@@ -45,6 +45,7 @@ return [
             'name'                  => 'Votre nom d\'utilisateur',
             'password'              => 'Mot de passe',
             'password_confirmation' => 'Confirmez votre mot de passe',
+            'tos'                   => 'J\'accepte la <a href=":privacyUrl" target="_blank">Politique de confidentialité</a>.',
         ],
         'register_with_facebook'    => 'S\'enregister avec Facebook',
         'register_with_google'      => 'S\'enregister avec Google',

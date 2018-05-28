@@ -8,6 +8,8 @@ return [
     'campaigns'             => 'Campagnes',
     'character'             => 'Personnage',
     'characters'            => 'Personnages',
+    'dice_roll'             => 'Jet de dés',
+    'dice_rolls'            => 'Jets de dés',
     'event'                 => 'Evénement',
     'events'                => 'Evénements',
     'families'              => 'Familles',
