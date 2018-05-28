@@ -109,12 +109,17 @@ class DiceRollController extends CrudController
     {
         $this->authorize('roll', $diceRoll);
 
-        $result = DiceRollResult::create([
-            'dice_roll_id' => $diceRoll->id,
-            'created_by' => Auth::user()->id,
-        ]);
-        return redirect()->route('dice_rolls.show', $diceRoll)
-            ->with('success', trans('dice_rolls.results.success'));
+        try {
+            $result = DiceRollResult::create([
+                'dice_roll_id' => $diceRoll->id,
+                'created_by' => Auth::user()->id,
+            ]);
+            return redirect()->route('dice_rolls.show', $diceRoll)
+                ->with('success', trans('dice_rolls.results.success'));
+        } catch (\Exception $e) {
+            return redirect()->route('dice_rolls.show', $diceRoll)
+                ->with('error', trans('dice_rolls.results.error'));
+        }
     }
 
     /**

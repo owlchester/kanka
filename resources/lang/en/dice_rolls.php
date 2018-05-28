@@ -35,6 +35,7 @@ return [
     ],
     'results' => [
         'success' => 'Dice rolled.',
+        'error' => 'Dice roll unsuccessful. Can\'t parse the parameters.',
         'fields' => [
             'creator' => 'Creator',
             'result' => 'Result',
