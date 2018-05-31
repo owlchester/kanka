@@ -5,6 +5,14 @@ namespace App\Traits;
 use App\Models\CampaignPermission;
 use App\Scopes\VisibleScope;
 
+/**
+ * Trait AclTrait
+ * @package App\Traits
+ *
+ * Todo: Refactor for less calls on each page load. Cache results? To session? Do the logic in php?
+ * Load all "item" and "items" on calls and loop through the results?
+ * At least cache the roles.
+ */
 trait AclTrait
 {
     /**

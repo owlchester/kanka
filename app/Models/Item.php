@@ -62,6 +62,16 @@ class Item extends MiscModel
     use VisibleTrait;
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with(['entity', 'location', 'location.entity', 'character', 'character.entity']);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function character()

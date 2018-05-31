@@ -87,6 +87,7 @@ return [
     'fields'        => [
         'character'     => 'Character',
         'description'   => 'Description',
+        'dice_roll'     => 'Dice Roll',
         'entity'        => 'Entity',
         'entry'         => 'Entry',
         'event'         => 'Event',
@@ -98,6 +99,7 @@ return [
         'name'          => 'Name',
         'organisation'  => 'Organisation',
         'section'       => 'Category',
+        'creator'       => 'Creator',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',

@@ -45,10 +45,7 @@ class CampaignService
 
     public function campaign()
     {
-        if ($this->campaign === false) {
-            $this->campaign = $this->campaignModel->where('id', $this->session->get('campaign_id'))->first();
-        }
-        return $this->campaign;
+        return Auth::user()->campaign;
     }
 
     /**
@@ -132,9 +129,9 @@ class CampaignService
      */
     public static function switchToLast()
     {
-        $last = Auth::user()->campaign;
+        $last = Auth::user()->lastCampaign;
         if ($last) {
-            self::switchCampaign(Auth::user()->campaign);
+            self::switchCampaign($last);
         }
     }
 

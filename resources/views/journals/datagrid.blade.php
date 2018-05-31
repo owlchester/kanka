@@ -12,6 +12,13 @@
         'name',
         'type',
         'date',
+        // Character
+        [
+            'type' => 'avatar',
+            'parent' => 'character',
+            'parent_route' => 'characters',
+            'visible' => $campaign->enabled('characters'),
+        ],
         [
             'type' => 'character',
             'visible' => $campaign->enabled('characters'),

@@ -87,6 +87,7 @@ class CrudController extends Controller
         $filterService = $this->filterService;
 
         $models = $model
+            ->preparedWith()
             ->search(request()->get('search'))
             ->filter($this->filterService->filters())
             ->acl(Auth::user())

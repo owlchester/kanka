@@ -26,7 +26,7 @@
                                 @if (count($notifications) > 0) <span class="label label-warning">{{ count($notifications) }}</span> @endif
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">{{ trans('header.notifications.header', ['count' => Auth::user()->unreadNotifications()->count()]) }}</li>
+                                <li class="header">{{ trans('header.notifications.header', ['count' => $notifications]) }}</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu">

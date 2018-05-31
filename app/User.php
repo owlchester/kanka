@@ -6,6 +6,7 @@ use App\Campaign;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
+use Illuminate\Support\Facades\Session;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -14,6 +15,8 @@ class User extends \TCG\Voyager\Models\User
      * @var null
      */
     protected $isAdminCached = null;
+
+    protected static $currentCampaign = false;
 
     use Notifiable;
 
@@ -40,7 +43,21 @@ class User extends \TCG\Voyager\Models\User
      * Get the user's campaign
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function campaign()
+    public function getCampaignAttribute()
+    {
+        // We use a dirty static system because relying on the last_campaign_id doesn't work when two sessions
+        // are active form the same user.
+        if (self::$currentCampaign === false) {
+            self::$currentCampaign = Campaign::where('id', Session::get('campaign_id'))->first();
+        }
+        return self::$currentCampaign;
+    }
+
+    /**
+     * Last campaign the user switched to.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function lastCampaign()
     {
         return $this->belongsTo(Campaign::class, 'last_campaign_id', 'id');
     }

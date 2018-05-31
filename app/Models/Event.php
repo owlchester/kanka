@@ -38,6 +38,16 @@ class Event extends MiscModel
     use VisibleTrait;
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with(['entity', 'location', 'location.entity']);
+    }
+
+    /**
      * Entity type
      * @var string
      */

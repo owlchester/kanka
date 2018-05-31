@@ -11,6 +11,10 @@ use App\Models\Entity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class PermissionService
+ * @package App\Services
+ */
 class PermissionService
 {
     /**
@@ -18,6 +22,9 @@ class PermissionService
      */
     private $entityService;
 
+    /**
+     * @var array
+     */
     public $entityActions = [
         'read', 'edit', 'delete'
     ];

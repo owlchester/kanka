@@ -271,9 +271,13 @@ class DatagridRenderer
         if (!empty($column['type'])) {
             $type = $column['type'];
             if ($type == 'avatar') {
-                $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
-                $content = '<a class="entity-image" style="background-image: url(\'' . $model->getImageUrl(true) .
-                    '\');" title="' . $model->name . '" href="' . $route . '"></a>';
+                $who = !empty($column['parent']) ? $model->{$column['parent']} : $model;
+                if (!empty($who)) {
+                    $whoRoute = !empty($column['parent_route']) ? $column['parent_route'] : $this->getOption('baseRoute');
+                    $route = route($whoRoute . '.show', ['id' => $who->id]);
+                    $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(true) .
+                        '\');" title="' . $who->name . '" href="' . $route . '"></a>';
+                }
             } elseif ($type == 'location') {
                 $class = ' ';
                 if ($model->location) {
