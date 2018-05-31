@@ -34,4 +34,4 @@
     @endforeach
     </tbody></table>
 
-{{ $r->fragment('tab_items')->links() }}
+{{ $r->fragment('tab_dice_rolls')->links() }}
