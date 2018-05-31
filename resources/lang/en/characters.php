@@ -13,6 +13,9 @@ return [
     'destroy'       => [
         'success'   => 'Character \':name\' removed.',
     ],
+    'dice_rolls'    => [
+        'hint'     => 'Dice rolls can be assigned to a character for in game usage.',
+    ],
     'edit'          => [
         'description'   => 'Edit a character',
         'success'       => 'Character \':name\' updated.',
@@ -128,13 +131,12 @@ return [
     'show'          => [
         'description'   => 'A detailed view of a character',
         'tabs'          => [
-            'attributes'    => 'Attributes',
+            'dice_rolls'    => 'Dice Rolls',
             'free'          => 'Free Text',
             'history'       => 'History',
             'items'         => 'Items',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
-            'relations'     => 'Relations',
         ],
         'title'         => 'Character :name',
     ],

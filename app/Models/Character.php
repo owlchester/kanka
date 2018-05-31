@@ -129,6 +129,14 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function diceRolls()
+    {
+        return $this->hasMany('App\Models\DiceRoll', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function characterTraits()
     {
         return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');
