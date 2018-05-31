@@ -204,6 +204,10 @@ class User extends \TCG\Voyager\Models\User
         return $this->campaignRoles($campaignId);
     }
 
+    /**
+     * @param null $campaignId
+     * @return mixed
+     */
     public function rolesList($campaignId = null)
     {
         if (empty($campaignId)) {

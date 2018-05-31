@@ -15,7 +15,7 @@
                 </a>
             @endif</th>
     </tr>
-    @foreach ($r = $campaign->roles()->with('users')->paginate() as $relation)
+    @foreach ($r = $campaign->roles()->with(['users'])->paginate() as $relation)
         <tr>
             <td><a href="{{ route('campaigns.campaign_roles.show', ['campaign' => $campaign, 'campaign_role' => $relation]) }}">{{ $relation->name }}</a></td>
             <td>{{ $relation->users()->count() }}</td>

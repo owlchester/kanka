@@ -53,7 +53,7 @@ class CampaignController extends Controller
         $campaign = null;
         if (!empty($active)) {
             $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', '!=', $active)->get();
-            $campaign = Campaign::where('id', $active)->first();
+            $campaign = Auth::user()->campaign;
         } else {
             $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->get();
         }
