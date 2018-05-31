@@ -19,11 +19,17 @@ return [
         'parameters'    => 'Parameters',
         'name'          => 'Name',
         'results'       => 'Results',
+        'rolls'         => 'Rolls',
+        'created_at'    => 'Rolled At',
     ],
     'hints'         => [
         'parameters' => 'What are my dice options?'
     ],
     'index'         => [
+        'actions'       => [
+            'dice' => 'Dice Rolls',
+            'results' => 'Results',
+        ],
         'add'           => 'New Dice Roll',
         'description'   => 'Manage the dice Rolls of :name.',
         'header'        => 'Dice Rolls of :name',
@@ -31,7 +37,8 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Name of the Dice Roll',
-        'parameters' => '4d6+3'
+        'parameters' => '4d6+3',
+        'dice_roll' => 'Dice Roll',
     ],
     'results' => [
         'success' => 'Dice rolled.',

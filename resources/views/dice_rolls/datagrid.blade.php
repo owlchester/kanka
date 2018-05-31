@@ -20,6 +20,13 @@
                 }
             }
         ],
+        [
+            'label' => trans('dice_rolls.fields.rolls'),
+            'render' => function($model) {
+                return $model->diceRollResults()->count();
+            },
+            'disableSort' => true,
+        ],
     ],
     // Data
     $models,

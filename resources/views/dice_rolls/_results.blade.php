@@ -21,7 +21,7 @@
                 {{ $relation->creator->name }}
             </td>
             <td>{{ $relation->results }}</td>
-            <td>{{ $relation->created_at }}</td>
+            <td>{{ $relation->elapsed() }}</td>
             <td class="text-right">
                 @can('delete', $model)
                 {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $model, $relation->id],'style'=>'display:inline']) !!}

@@ -31,6 +31,12 @@ class DiceRollController extends CrudController
     {
         parent::__construct();
 
+        $this->indexActions[] = [
+            'route' => route('dice_roll_results.index'),
+            'class' => 'default',
+            'label' => '<i class="fa fa-list"></i> ' . trans('dice_rolls.index.actions.results')
+        ];
+
         $this->filters = [
             'name',
             [
@@ -135,5 +141,57 @@ class DiceRollController extends CrudController
 
         return redirect()->route('dice_rolls.show', $diceRoll)
             ->with('success', trans('dice_rolls.destroy.dice_roll'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function rolls()
+    {
+        $actions = [[
+            'route' => route('dice_rolls.index'),
+            'class' => 'default',
+            'label' => '<i class="fa fa-block"></i> ' . trans('dice_rolls.index.actions.dice')
+        ]];
+
+        $filters = [
+            [
+                'field' => 'dice_roll_id',
+                'label' => trans('crud.fields.dice_roll'),
+                'type' => 'select2',
+                'route' => route('dice_rolls.find'),
+                'placeholder' =>  trans('crud.placeholders.dice_roll'),
+                'model' => DiceRoll::class,
+            ],
+            [
+                'field' => 'diceRoll-character_id',
+                'label' => trans('crud.fields.character'),
+                'type' => 'select2',
+                'route' => route('characters.find'),
+                'placeholder' =>  trans('crud.placeholders.character'),
+                'model' => Character::class,
+            ],
+        ];
+
+        $this->authorize('browse', $this->model);
+
+        // Add the is_private filter only for admins.
+//        if (Auth::user()->isAdmin()) {
+//            $this->filters[] = 'is_private';
+//        }
+
+        $model = new DiceRollResult();
+        $this->filterService->prepare('dice_rolls-rolls', request()->all(), $model->filterableColumns());
+        $name = $this->view . '.rolls';
+        $filterService = $this->filterService;
+
+        $models = $model
+            ->search(request()->get('search'))
+            ->filter($this->filterService->filters())
+            ->acl(Auth::user())
+            ->order($this->filterService->order())
+            ->paginate();
+        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
     }
 }

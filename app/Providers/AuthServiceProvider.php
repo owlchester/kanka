@@ -42,6 +42,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Character' => 'App\Policies\CharacterPolicy',
         //'App\Models\CharacterRelation' => 'App\Policies\CharacterRelationPolicy',
         'App\Models\DiceRoll' => 'App\Policies\DiceRollPolicy',
+        'App\Models\DiceRollResult' => 'App\Policies\DiceRollResultPolicy',
         'App\Models\Event' => 'App\Policies\EventPolicy',
         'App\Models\Family' => 'App\Policies\FamilyPolicy',
         //'App\Models\FamilyRelation' => 'App\Policies\FamilyRelationPolicy',

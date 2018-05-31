@@ -88,6 +88,7 @@ Route::group([
         'characters.relations' => 'CharacterRelationController',
         'dice_rolls' => 'DiceRollController',
         'dice_rolls.relations' => 'DiceRollRelationController',
+        'dice_roll_results' => 'DiceRollResultController',
         'events' => 'EventController',
         'events.relations' => 'EventRelationController',
         'locations' => 'LocationController',
@@ -129,7 +130,6 @@ Route::group([
     Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
     Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
-
     // Search
     Route::get('/search/calendars', 'SearchController@calendars')->name('calendars.find');
     Route::get('/search/characters', 'SearchController@characters')->name('characters.find');
@@ -141,6 +141,8 @@ Route::group([
     Route::get('/search/notes', 'SearchController@notes')->name('notes.find');
     Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
     Route::get('/search/sections', 'SearchController@sections')->name('sections.find');
+    Route::get('/search/dice_rolls', 'SearchController@diceRolls')->name('dice_rolls.find');
+
     Route::get('/search', 'SearchController@search')->name('search');
     Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
     Route::get('/search/calendar_event', 'SearchController@calendarEvent')->name('search.calendar_event');
