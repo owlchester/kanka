@@ -63,7 +63,7 @@ class HomeController extends Controller
         $notes = Note::acl(Auth::user())->dashboard()->get();
         $settings = Auth::user()->dashboardSetting;
         $campaign = Campaign::findOrFail(Session::get('campaign_id'));
-        $characters = Character::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        $characters = Character::acl(Auth::user())->recent()->with('family')->take($settings->recent_count)->get();
         $families = Family::acl(Auth::user())->recent()->take($settings->recent_count)->get();
         $locations = Location::acl(Auth::user())->recent()->take($settings->recent_count)->get();
         $items = Item::acl(Auth::user())->recent()->take($settings->recent_count)->get();
