@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
-use App\Http\Requests\StoreItem;
-use App\Models\Item;
-use App\Models\Location;
+use App\Http\Requests\StoreMenuLink;
+use App\Models\MenuLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class ItemController extends CrudController
+class MenuLinkController extends CrudController
 {
     /**
      * @var string
      */
-    protected $view = 'items';
-    protected $route = 'items';
+    protected $view = 'menu_links';
+    protected $route = 'menu_links';
 
     /**
      * @var string
      */
-    protected $model = \App\Models\Item::class;
+    protected $model = \App\Models\MenuLink::class;
 
     /**
      * ItemController constructor.
@@ -30,23 +28,6 @@ class ItemController extends CrudController
         parent::__construct();
         $this->filters = [
             'name',
-            'type',
-            [
-                'field' => 'location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'character_id',
-                'label' => trans('crud.fields.character'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  trans('crud.placeholders.character'),
-                'model' => Character::class,
-            ],
         ];
     }
 
@@ -56,7 +37,7 @@ class ItemController extends CrudController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreItem $request)
+    public function store(StoreMenuLink $request)
     {
         return $this->crudStore($request);
     }
@@ -67,9 +48,9 @@ class ItemController extends CrudController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(MenuLink $menuLink)
     {
-        return $this->crudShow($item);
+        return $this->crudShow($menuLink);
     }
 
     /**
@@ -78,9 +59,9 @@ class ItemController extends CrudController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(MenuLink $menuLink)
     {
-        return $this->crudEdit($item);
+        return $this->crudEdit($menuLink);
     }
 
     /**
@@ -90,9 +71,9 @@ class ItemController extends CrudController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreItem $request, Item $item)
+    public function update(StoreMenuLink $request, MenuLink $menuLink)
     {
-        return $this->crudUpdate($request, $item);
+        return $this->crudUpdate($request, $menuLink);
     }
 
     /**
@@ -101,8 +82,8 @@ class ItemController extends CrudController
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(MenuLink $menuLink)
     {
-        return $this->crudDestroy($item);
+        return $this->crudDestroy($menuLink);
     }
 }

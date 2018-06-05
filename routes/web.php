@@ -99,6 +99,7 @@ Route::group([
         'items' => 'ItemController',
         'items.relations' => 'ItemRelationController',
         'journals' => 'JournalController',
+        'menu_links' => 'MenuLinkController',
         'organisations' => 'OrganisationController',
         'organisations.relations' => 'OrganisationRelationController',
         //'organisation_member' => 'OrganisationMemberController',

@@ -26,4 +26,6 @@ return [
     'support'               => 'Support / Community',
     'team'                  => 'Team',
     'translations'          => 'Translations',
+    'custom_links'          => 'Custom Links',
+    'manage_links'          => 'Manage Links',
 ];
