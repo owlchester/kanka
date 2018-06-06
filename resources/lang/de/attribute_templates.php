@@ -2,15 +2,17 @@
 
 return [
     'create'        => [
-        'success'   => 'Attributvorlage \':name\' erstellt.',
-        'title'     => 'Erstelle eine neue Attributvorlage',
+        'description'   => 'Erstelle eine neue Attributvorlage',
+        'success'       => 'Attributvorlage \':name\' erstellt.',
+        'title'         => 'Erstelle eine neue Attributvorlage',
     ],
     'destroy'       => [
         'success'   => 'Attributvorlage \':name\' entfernt.',
     ],
     'edit'          => [
-        'success'   => 'Attributvorlage \':name\' aktualisiert.',
-        'title'     => 'Attributvorlage :name bearbeiten',
+        'description'   => 'Bearbeite eine Attributvorlage',
+        'success'       => 'Attributvorlage \':name\' aktualisiert.',
+        'title'         => 'Attributvorlage :name bearbeiten',
     ],
     'fields'        => [
         'attributes'    => 'Attribute',

@@ -59,6 +59,16 @@ class Section extends MiscModel
     use NodeTrait;
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with(['entity', 'section', 'section.entity']);
+    }
+
+    /**
      * Parent
      */
     public function section()

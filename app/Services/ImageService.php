@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -15,7 +16,7 @@ class ImageService
      * @param MiscModel $model
      * @param string $folder
      */
-    public static function handle(MiscModel $model, $folder = '', $thumbSize = 60, $field = 'image')
+    public static function handle(Model $model, $folder = '', $thumbSize = 60, $field = 'image')
     {
         if (request()->has($field) or request()->filled($field . '_url')) {
             try {
@@ -74,7 +75,7 @@ class ImageService
      * Delete old image and thumb
      * @param MiscModel $model
      */
-    public static function cleanup(MiscModel $model, $field = 'image')
+    public static function cleanup(Model $model, $field = 'image')
     {
         if ($model->$field) {
             Storage::delete($model->$field);

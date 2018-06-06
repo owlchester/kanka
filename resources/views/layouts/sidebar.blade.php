@@ -28,6 +28,32 @@
             <li class="{{ $sidebar->active('campaigns') }}">
                 <a href="{{ route('campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>
             </li>
+            @if ($campaign->enabled('menu_links'))
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i>
+                    <span>{{ trans('sidebar.custom_links') }}</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: none;">
+                    @foreach ($campaign->campaign()->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
+                        @if ($menuLink->entity->child)
+                        <li>
+                            <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->entity->child->id) }}">
+                                <i class="fa fa-circle-o"></i> {{ $menuLink->name }}
+                            </a>
+                        </li>
+                        @endif
+                    @endforeach
+                    @if(Auth::user()->isAdmin())
+                        <li><a href="{{ route('menu_links.index') }}"><i class="fa fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
+                    @endif
+                </ul>
+            </li>
+            @endif
+
             @if ($campaign->enabled('characters'))
             <li class="{{ $sidebar->active('characters') }}">
                 <a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ trans('sidebar.characters') }}</span></a>

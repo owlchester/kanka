@@ -49,6 +49,13 @@ abstract class MiscModel extends Model
     protected $tooltipField = 'history';
 
     /**
+     * Default ordering
+     * @var string
+     */
+    protected $defaultOrderField = 'name';
+    protected $defaultOrderDirection = 'asc';
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */
@@ -89,7 +96,7 @@ abstract class MiscModel extends Model
             return $query;
         }
 
-        return $query->where(function($q) use ($term, $searchFields) {
+        return $query->where(function ($q) use ($term, $searchFields) {
             foreach ($searchFields as $field) {
                 $q->orWhere($this->getTable() . '.' . $field, 'like', "%$term%");
             }
@@ -97,11 +104,23 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * This call should be adapted in each entity model to add required "with()" statements to the query for performance
+     * on the datagrids.
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with('entity');
+    }
+
+    /**
      * @param $query
      * @param $params
      * @return mixed
      */
-    public function scopeFilter($query, $params) {
+    public function scopeFilter($query, $params)
+    {
         if (!is_array($params) or empty($params) or empty($this->filterableColumns)) {
             return $query;
         }
@@ -109,10 +128,22 @@ abstract class MiscModel extends Model
         foreach ($params as $key => $value) {
             if (isset($value) && in_array($key, $this->filterableColumns)) {
                 // It's possible to request "not" values
-                if (isset($value[0]) && $value[0] == '!') {
-                    $query->where($this->getTable() . '.' . $key, 'not like', '%' . ltrim($value, '!') . '%');
+                $like = (isset($value[0]) && $value[0] == '!' ? 'not like' : 'like');
+                $filterValue = (isset($value[0]) && $value[0] == '!') ? ltrim($value, '!') : $value;
+
+                $segments = explode('-', $key);
+                if (count($segments) > 1) {
+                    $relationName = $segments[0];
+
+                    $relation = $this->{$relationName}();
+                    $foreignName = $relation->getQuery()->getQuery()->from;
+                    return $query
+                        ->select($this->getTable() . '.*')
+                        ->with($relationName)
+                        ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
+                        ->where(str_replace($relationName, 'f', str_replace('-', '.', $key)), $like, "%$filterValue%");
                 } else {
-                    $query->where($this->getTable() . '.' . $key, 'like', "%$value%");
+                    $query->where($this->getTable() . '.' . $key, $like, "%$filterValue%");
                 }
             }
         }
@@ -141,8 +172,8 @@ abstract class MiscModel extends Model
         // Check for a permission related to this action.
         $key = $this->entityType . '_read';
         $inRole = CampaignPermission::where(['key' => $key])
-             ->whereIn('campaign_role_id', $roleIds)
-            ->count() > 0;
+                ->whereIn('campaign_role_id', $roleIds)
+                ->count() > 0;
         if ($inRole) {
             return $query;
         }
@@ -180,6 +211,7 @@ abstract class MiscModel extends Model
     {
         return $this->belongsTo('App\Campaign', 'campaign_id');
     }
+
     /**
      * @param $query
      * @return mixed
@@ -197,8 +229,8 @@ abstract class MiscModel extends Model
     public function scopeOrder($query, $data)
     {
         // Default
-        $field = 'name';
-        $direction = 'ASC';
+        $field = $this->defaultOrderField;
+        $direction = $this->defaultOrderDirection;
         if (!empty($data)) {
             foreach ($data as $key => $value) {
                 $field = $key;
@@ -259,7 +291,7 @@ abstract class MiscModel extends Model
         }
         // Formatting
         if ($string) {
-            return  trans('datetime.elapsed_ago', ['duration' => implode(', ', $string)]);
+            return trans('datetime.elapsed_ago', ['duration' => implode(', ', $string)]);
         }
         return trans('datetime.just_now');
     }

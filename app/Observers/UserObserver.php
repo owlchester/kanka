@@ -9,6 +9,7 @@ use App\Mail\UserRegistered;
 use App\Mail\WelcomeEmail;
 use App\Models\UserDashboardSetting;
 use App\Models\UserLog;
+use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -28,18 +29,9 @@ class UserObserver
         }
 
         // Uploading an avatar
-        if (request()->has('avatar')) {
-            $path = request()->file('avatar')->store('profiles', 'public');
-            if (!empty($path)) {
-                // Remove old
-                $original = $user->getOriginal('avatar');
-                if (!empty($original)) {
-                    // Delete
-                    Storage::disk('public')->delete($original);
-                }
-                $user->avatar = $path;
-            }
-        }
+
+        // Handle image. Let's use a service for this.
+        ImageService::handle($user, $user->getTable(), 60, 'avatar');
     }
 
     /**

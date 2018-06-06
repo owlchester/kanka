@@ -28,4 +28,5 @@ return [
     'quests'                => 'Quests',
     'section'               => 'Category',
     'sections'              => 'Categories',
+    'menu_links'            => 'Menu Links',
 ];

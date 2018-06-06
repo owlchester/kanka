@@ -18,6 +18,7 @@ use App\Models\Location;
 use App\Models\CampaignInvite;
 use App\Models\Event;
 use App\Models\MapPoint;
+use App\Models\MenuLink;
 use App\Models\Quest;
 use App\Models\QuestCharacter;
 use App\Models\QuestLocation;
@@ -74,6 +75,7 @@ class AppServiceProvider extends ServiceProvider
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
             Item::observe(ItemObserver::class);
+            MenuLink::observe('App\Observers\MenuLinkObserver');
             Journal::observe(JournalObserver::class);
             Organisation::observe(OrganisationObserver::class);
             OrganisationMember::observe(OrganisationMemberObserver::class);

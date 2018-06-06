@@ -29,6 +29,7 @@ class CampaignSetting extends Model
         'calendars',
         'sections',
         'dice_rolls',
+        'menu_links',
     ];
 
     /**

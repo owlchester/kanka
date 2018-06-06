@@ -6,7 +6,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class DiceRollResult extends Model
+class DiceRollResult extends MiscModel
 {
     //
     protected $fillable = [
@@ -15,6 +15,20 @@ class DiceRollResult extends Model
         'results',
         'is_private',
     ];
+
+    /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = [
+        'dice_roll_id',
+        'created_at',
+        'created_by',
+        'diceRoll-character_id',
+    ];
+
+    protected $defaultOrderField = 'created_at';
+    protected $defaultOrderDirection = 'DESC';
 
     /**
      * Who created this entry
@@ -40,5 +54,10 @@ class DiceRollResult extends Model
     public function diceRoll()
     {
         return $this->belongsTo('App\Models\DiceRoll', 'dice_roll_id');
+    }
+
+    public function character()
+    {
+        return $this->diceRoll->character();
     }
 }

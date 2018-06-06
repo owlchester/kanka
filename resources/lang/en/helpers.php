@@ -8,6 +8,7 @@ return [
     ],
     'dice' => [
         'description' => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentile and "df" for fudge.',
+        'description_attributes' => 'It is also possible to get a character\'s attribute by using the {character.attribute_name} syntax. For example, {character.level}d6+{character.wisdom}.',
         'more' => 'More options are available and explained on the dice roller plugin page.',
         'title' => 'Dice Rolls',
     ],

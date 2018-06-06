@@ -1,4 +1,4 @@
-<?php $r = $model->entity->relationships()->has('target')->with('target')->order(request()->get('order'), 'relation')->paginate(); ?>
+<?php $r = $model->entity->relationships()->has('target')->with(['target'])->order(request()->get('order'), 'relation')->paginate(); ?>
 <p class="export-hidden">{{ trans('crud.relations.hint') }}</p>
 <p class="export-{{ ($r->count() === 0 ? 'visible export-hidden' : 'visible') }}">{{ trans('crud.tabs.relations') }}</p>
 
@@ -7,7 +7,7 @@
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/relation', '#relations']) }}">{{ trans('crud.relations.fields.relation') }}@if (request()->get('order') == 'relations/relation') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th class="avatar"><br></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/target.name', '#relations']) }}">{{ trans('crud.relations.fields.name') }}@if (request()->get('order') == 'relations/target.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
-        @if ($campaign->enabled('locations'))<th>{{ trans('crud.relations.fields.location') }}</a>@endif
+        @if ($campaign->enabled('locations'))<th>{{ trans('crud.relations.fields.location') }}</th>@endif
         @if (Auth::user()->isAdmin())
             <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/is_private', '#relations']) }}">{{ trans('crud.fields.is_private') }}@if (request()->get('order') == 'relations/is_private') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         @endif

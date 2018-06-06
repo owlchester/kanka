@@ -34,9 +34,12 @@ return [
     ],
     'map'           => [
         'actions'   => [
-            'points'    => 'Punkte bearbeiten',
-            'zoom_in'   => 'Hereinzoomen',
-            'zoom_out'  => 'Herauszoomen',
+            'download'      => 'Herunterladen',
+            'points'        => 'Punkte bearbeiten',
+            'toggle_hide'   => 'Punkte verstecken',
+            'toggle_show'   => 'Punkte anzeigen',
+            'zoom_in'       => 'Hereinzoomen',
+            'zoom_out'      => 'Herauszoomen',
         ],
         'helper'    => 'Klicke auf die Karte um einen Link zu einem Ort hinzu zu fügen oder klicke auf einen existierenden Punkt, um ihn zu entfernen.',
         'modal'     => [
@@ -45,7 +48,22 @@ return [
         ],
         'no_map'    => 'Bitte erst eine Karte hinzufügen.',
         'points'    => [
-            'title' => 'Ort :name Kartenpunkte',
+            'fields'        => [
+                'axis_x'    => 'X-Achse',
+                'axis_y'    => 'Y-Achse',
+                'colour'    => 'Farbe',
+            ],
+            'placeholders'  => [
+                'axis_x'    => 'Linke Position',
+                'axis_y'    => 'Obere Position',
+            ],
+            'return'        => 'Zurück zu :name',
+            'success'       => [
+                'create'    => 'Kartenpunkt für Ort erstellt.',
+                'delete'    => 'Kartenpunkt für Ort entfernt.',
+                'update'    => 'Kartenpunkt für Ort aktualisiert.',
+            ],
+            'title'         => 'Ort :name Kartenpunkte',
         ],
         'success'   => 'Kartenpunkte gespeichert.',
     ],

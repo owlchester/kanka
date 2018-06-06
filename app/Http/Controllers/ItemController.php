@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
-use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreItem;
 use App\Models\Item;
 use App\Models\Location;

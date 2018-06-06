@@ -54,6 +54,14 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return mixed
+     */
+    public function menuLinks()
+    {
+        return $this->hasMany('App\Models\MenuLink');
+    }
+
+    /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool
      */

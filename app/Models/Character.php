@@ -77,6 +77,16 @@ class Character extends MiscModel
     protected $searchableColumns  = ['name', 'title', 'history'];
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with(['entity', 'location', 'location.entity', 'family', 'family.entity']);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function location()
@@ -114,6 +124,14 @@ class Character extends MiscModel
     public function journals()
     {
         return $this->hasMany('App\Models\Journal', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function diceRolls()
+    {
+        return $this->hasMany('App\Models\DiceRoll', 'character_id', 'id');
     }
 
     /**

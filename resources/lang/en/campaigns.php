@@ -174,7 +174,7 @@ return [
         'edit'      => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hiden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
     ],
     'show'          => [
         'actions'       => [

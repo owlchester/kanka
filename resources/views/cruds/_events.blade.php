@@ -1,4 +1,4 @@
-<?php $r = $model->entity->events()->has('calendar')->with('calendar')->order(request()->get('order'), 'date')->paginate(); ?>
+<?php $r = $model->entity->events()->has('calendar')->with(['calendar', 'entity'])->order(request()->get('order'), 'date')->paginate(); ?>
 <p class="export-hidden">{{ trans('crud.events.hint') }}</p>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.events') }}</p>
 <table id="entity-event-list" class="table table-hover {{ ($r->count() == 0 ? 'export-hidden' : '') }}">

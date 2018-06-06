@@ -37,6 +37,7 @@ class EntityService
             'sections' => 'App\Models\Section',
             'attribute_templates' => 'App\Models\AttributeTemplate',
             'dice_rolls' => 'App\Models\DiceRoll',
+            'menu_links' => 'App\Models\MenuLink',
         ];
     }
 
@@ -77,6 +78,18 @@ class EntityService
         }
 
         return $labels;
+    }
+
+    public function dashboardEntities()
+    {
+        $real = [];
+        foreach ($this->entities() as $name => $class) {
+            if (in_array($name, ['characters', 'families', 'locations', 'organisations', 'items', 'journals'])) {
+                $real[$name] = $class;
+            }
+        }
+
+        return $real;
     }
 
     /**

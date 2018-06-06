@@ -11,6 +11,10 @@ use App\Models\Entity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class PermissionService
+ * @package App\Services
+ */
 class PermissionService
 {
     /**
@@ -18,6 +22,9 @@ class PermissionService
      */
     private $entityService;
 
+    /**
+     * @var array
+     */
     public $entityActions = [
         'read', 'edit', 'delete'
     ];
@@ -47,7 +54,7 @@ class PermissionService
         $entityActions = ['read', 'edit', 'add', 'delete', 'permission'];
         $actions = ['read', 'edit', 'add', 'delete'];
 
-        $excludedEntities = ['attribute_templates'];
+        $excludedEntities = ['attribute_templates', 'menu_links'];
 
         foreach ($this->entityService->entities() as $entity => $class) {
             if (in_array($entity, $excludedEntities)) {

@@ -29,6 +29,12 @@
                 {{ trans('entities.families') }}
             </label>
         </div>
+        <div class="form-group">
+            {!! Form::hidden('menu_links', 0) !!}
+            <label>{!! Form::checkbox('menu_links') !!}
+                {{ trans('entities.menu_links') }}
+            </label>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">

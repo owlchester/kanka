@@ -51,6 +51,16 @@ class Family extends MiscModel
     protected $entityType = 'family';
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with(['entity', 'location', 'location.entity']);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function location()

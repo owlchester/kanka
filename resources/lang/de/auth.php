@@ -33,6 +33,7 @@ return [
             'name'                  => 'Nutzername',
             'password'              => 'Passwort',
             'password_confirmation' => 'Passwort bestätigen',
+            'tos'                   => 'Ich stimme der <a href=":privacyUrl" target="_blank">Privacy Policy</a> zu.',
         ],
         'register_with_facebook'    => 'Mit Facebook registrieren',
         'register_with_google'      => 'Mit Google registrieren',

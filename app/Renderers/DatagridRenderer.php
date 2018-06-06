@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use App\Models\Entity;
 use App\Services\FilterService;
 use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
@@ -126,6 +127,9 @@ class DatagridRenderer
             } elseif ($type == 'character') {
                 $class .= '  visible-md visible-lg';
                 $html = $this->route('character.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.character'));
+            } elseif ($type == 'entity') {
+                $class .= '  visible-md visible-lg';
+                $html = $this->route('entity.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.entity'));
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user->isAdmin()) {
@@ -271,9 +275,16 @@ class DatagridRenderer
         if (!empty($column['type'])) {
             $type = $column['type'];
             if ($type == 'avatar') {
-                $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
-                $content = '<a class="entity-image" style="background-image: url(\'' . $model->getImageUrl(true) .
-                    '\');" title="' . $model->name . '" href="' . $route . '"></a>';
+                $who = !empty($column['parent']) ? $model->{$column['parent']} : $model;
+                if ($who instanceof Entity) {
+                    $who = $who->child;
+                }
+                if (!empty($who)) {
+                    $whoRoute = !empty($column['parent_route']) ? (is_string($column['parent_route']) ? $column['parent_route'] : $column['parent_route']($model)) : $this->getOption('baseRoute');
+                    $route = route($whoRoute . '.show', ['id' => $who->id]);
+                    $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(true) .
+                        '\');" title="' . $who->name . '" href="' . $route . '"></a>';
+                }
             } elseif ($type == 'location') {
                 $class = ' ';
                 if ($model->location) {
@@ -288,6 +299,12 @@ class DatagridRenderer
                 if ($model->character) {
                     $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" title="' . $model->character->tooltip() . '">' .
                         $model->character->name . '</a>';
+                }
+            } elseif ($type == 'entity') {
+                $class = 'visible-md visible-lg';
+                if ($model->entity) {
+                    $content = '<a href="' . route($model->entity->pluralType() . '.show', $model->entity->child->id) . '" data-toggle="tooltip" title="' . $model->entity->child->tooltip() . '">' .
+                        $model->entity->child->name . '</a>';
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private

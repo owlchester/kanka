@@ -66,6 +66,7 @@ return [
         'fields'        => [
             'created'   => 'Senden',
             'email'     => 'Email',
+            'role'      => 'Rolle',
         ],
         'placeholders'  => [
             'email' => 'Email Adresse der Person, die du zu der Kampagne einladen möchtest',
@@ -88,6 +89,7 @@ return [
             'joined'    => 'Beigetreten',
             'name'      => 'Nutzer',
             'role'      => 'Rolle',
+            'roles'     => 'Rollen',
         ],
         'help'      => 'Es gibt kein Limit der Anzahl der Mitglieder einer Kampagne und als ein Admin kannst du Mitglieder entfernen, die nicht mehr aktiv sind.',
         'invite'    => [
@@ -130,6 +132,9 @@ return [
             '1' => 'Eine Kampagne kann so viele Rollen haben, wie du willst. Die "Admin" Rolle hat automatisch Zugriff auf alles in einer Kampagne, aber jede andere Rolle kann spezielle Berechtigungen auf unterschiedliche Typen von Objekten (Charaktere, Orte, etc.) haben.',
             '2' => 'Objekte können feiner abgestimmte Berechtigungen haben, die du im "Berechtigungen" Tab des Objekts einstellen kannst. Dieser Tab erscheint, wenn du mehrere Rollen in deiner Kampagne hast.',
             '3' => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
+        ],
+        'hints'         => [
+            'role_permissions'  => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',
         'permissions'   => [

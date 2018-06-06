@@ -25,7 +25,7 @@ class StoreProfileAvatar extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:8192',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
         ];
     }
 }

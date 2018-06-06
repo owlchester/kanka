@@ -164,7 +164,6 @@ class FilterService
             return $this->filters[$key];
         }
         return $default;
-
     }
 
     /**

@@ -20,6 +20,7 @@ return [
     'journals'              => 'Journaux',
     'location'              => 'Lieu',
     'locations'             => 'Lieux',
+    'menu_links'            => 'Liens personnalisés',
     'note'                  => 'Note',
     'notes'                 => 'Notes',
     'organisation'          => 'Organisation',

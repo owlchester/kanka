@@ -16,6 +16,8 @@ class EntityPolicy
 
     protected static $cached = [];
 
+    protected static $roles = false;
+
     protected $model = '';
 
     public function browse(User $user)
@@ -165,7 +167,11 @@ class EntityPolicy
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
-        foreach ($user->campaignRoles($campaign->id)->get() as $role) {
+        // This needs to be cached.
+        if (self::$roles === false) {
+            self::$roles = $user->campaignRoles($campaign->id)->get();
+        }
+        foreach (self::$roles as $role) {
             if ($role->is_admin) {
                 return true;
             }

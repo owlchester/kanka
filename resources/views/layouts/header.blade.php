@@ -26,7 +26,7 @@
                                 @if (count($notifications) > 0) <span class="label label-warning">{{ count($notifications) }}</span> @endif
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">{{ trans('header.notifications.header', ['count' => Auth::user()->unreadNotifications()->count()]) }}</li>
+                                <li class="header">{{ trans('header.notifications.header', ['count' => $notifications]) }}</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
@@ -48,10 +48,10 @@
                     <li class="dropdown messages-menu campaign-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             @if ($currentCampaign->image)
-                                <img src="{{ Storage::url($currentCampaign->image) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
-                            @endif {{ $currentCampaign->name }}
+                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -62,7 +62,7 @@
                                             <li>
                                                 <a href="{{ route('campaigns.index', ['campaign_id' => $campaign->id]) }}">
                                                     @if ($campaign->image)
-                                                        <img src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }}" class="campaign-image" />
+                                                        <img src="{{ $campaign->getImageUrl(true) }}" alt="{{ $campaign->name }}" class="campaign-image" />
                                                     @else
                                                         <i class="fa fa-globe"></i>
                                                     @endif
@@ -79,10 +79,10 @@
                     <li class="messages-menu campaign-menu">
                         <a href="{{ route('home') }}">
                         @if ($currentCampaign->image)
-                            <img src="/storage/{{ $currentCampaign->image }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                            <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                         @else
                             <i class="fa fa-globe"></i>
-                        @endif {{ $currentCampaign->name }}
+                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
                         </a>
                     </li>
                     @endif

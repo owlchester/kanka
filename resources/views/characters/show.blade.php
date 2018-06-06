@@ -138,6 +138,13 @@
                         </a>
                     </li>
                 @endif
+                @if ($campaign->enabled('dice_rolls'))
+                    <li class="{{ (request()->get('tab') == 'dice_rolls' ? ' active' : '') }}">
+                        <a href="#dice_rolls" title="{{ trans('characters.show.tabs.dice_rolls') }}" data-toggle="tooltip">
+                            <i class="fa fa-square"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.dice_rolls') }}</span>
+                        </a>
+                    </li>
+                @endif
                 @include('cruds._tabs')
             </ul>
 
@@ -165,6 +172,11 @@
                 @if ($campaign->enabled('items'))
                     <div class="tab-pane {{ (request()->get('tab') == 'items' ? ' active' : '') }}" id="items">
                         @include('characters._items')
+                    </div>
+                @endif
+                @if ($campaign->enabled('dice_rolls'))
+                    <div class="tab-pane {{ (request()->get('tab') == 'dice_rolls' ? ' active' : '') }}" id="dice_rolls">
+                        @include('characters._dice_rolls')
                     </div>
                 @endif
                 @include('cruds._panes')
