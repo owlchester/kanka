@@ -41,7 +41,7 @@
                         @if ($menuLink->entity->child)
                         <li>
                             <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->entity->child->id) }}">
-                                <i class="fa fa-circle-o"></i> {{ $menuLink->entity->name }}
+                                <i class="fa fa-circle-o"></i> {{ $menuLink->name }}
                             </a>
                         </li>
                         @endif
