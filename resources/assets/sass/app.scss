@@ -86,11 +86,7 @@ table tbody td {
 }
 
 .preview {
-  padding: 5px;
-  margin: 10px 0;
-  border: 1px solid #bbb;
-  background-color: #eee;
-  border-radius: 5px;
+  padding-top: 10px;
 
   .image {
     width: 20%;
@@ -101,10 +97,14 @@ table tbody td {
     width: 100%;
   }
   a.img-delete {
+    color: white;
     text-align: center;
     display: block;
-    background-color: #eee;
     padding: 5px;
+    background: none;
+    margin-top: -30px;
+    position: relative;
+    background-color: rgba(11, 31, 31, 0.6);
   }
 }
 

@@ -64,6 +64,7 @@ class SearchController extends Controller
     {
         $term = trim($request->q);
         $results = [];
+        $resultCount = 0;
         $active = '';
         $filterService = $this->filterService;
         $found = null;
@@ -73,6 +74,7 @@ class SearchController extends Controller
                 $model = new $class;
                 $results[$element] = $model->acl(Auth::user())->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
+                $resultCount += count($results[$element]);
 
                 if (count($results[$element]) == 1) {
                     if ($found === null) {
@@ -85,7 +87,7 @@ class SearchController extends Controller
         }
 
         // Found just one result?
-        if ($found instanceof MiscModel) {
+        if ($resultCount == 1 && $found instanceof MiscModel) {
             return redirect()->route($found->entity->pluralType() . '.show', $found);
         }
 

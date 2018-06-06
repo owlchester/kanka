@@ -13,6 +13,9 @@ return [
     'destroy'       => [
         'success'   => 'Personne \':name\' supprimée.',
     ],
+    'dice_rolls'    => [
+        'hint'  => 'Les jets de dés peuvent être assigné à des personnages.',
+    ],
     'edit'          => [
         'description'   => 'Modifier une personne',
         'success'       => 'Personne \':name\' modifiée.',
@@ -129,6 +132,7 @@ return [
         'description'   => 'Détail d\'une personne',
         'tabs'          => [
             'attributes'    => 'Attributs',
+            'dice_rolls'    => 'Jets de dés',
             'free'          => 'Texte libre',
             'history'       => 'Histoire',
             'items'         => 'Objets',

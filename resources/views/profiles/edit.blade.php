@@ -56,7 +56,7 @@
                 </div>
                 <div class="panel-body">
                     {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['profile.avatar']]) !!}
-                    @include('profiles._avatar')
+                    @include('profiles._avatar', ['model' => $user])
                     {!! Form::close() !!}
                 </div>
             </div>

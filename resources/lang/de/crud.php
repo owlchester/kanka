@@ -4,6 +4,8 @@ return [
     'actions'       => [
         'back'      => 'Zurück',
         'copy'      => 'Kopieren',
+        'export'    => 'Exportieren',
+        'more'      => 'Mehr Aktionen',
         'move'      => 'Verschieben',
         'new'       => 'Neu',
         'private'   => 'Privat',
@@ -81,6 +83,7 @@ return [
     'events'        => [
         'hint'  => 'Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt.',
     ],
+    'export'        => 'Exportieren',
     'fields'        => [
         'character'     => 'Charakter',
         'description'   => 'Beschreibung',

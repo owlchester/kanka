@@ -86,7 +86,9 @@ return [
     'export'        => 'Export',
     'fields'        => [
         'character'     => 'Personnage',
+        'creator'       => 'Créateur',
         'description'   => 'Description',
+        'dice_roll'     => 'Jet de dés',
         'entity'        => 'Entité',
         'entry'         => 'Entrée',
         'event'         => 'Evénement',

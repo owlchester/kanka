@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'add_appearance'    => 'Füge ein Aussehen hinzu',
         'add_personality'   => 'Füge eine Persönlichkeit hinzu',
     ],
     'create'        => [
@@ -28,6 +29,7 @@ return [
         'height'                    => 'Größe',
         'history'                   => 'Geschichte',
         'image'                     => 'Bild',
+        'is_dead'                   => 'Tot',
         'is_personality_visible'    => 'Ist die Perönlichkeit sichtbar?',
         'languages'                 => 'Sprachen',
         'location'                  => 'Aufenthaltsort',
@@ -48,6 +50,7 @@ return [
     ],
     'hints'         => [
         'hide_personality'          => 'Dieser Tab kann vor nicht "Admin" Nutzern versteckt werden, in dem die "Persönlichkeit sichtbar" Option ausgewählt wird, wenn man den Charakter bearbeitet.',
+        'is_dead'                   => 'Dieser Charakter ist tot',
         'is_personality_visible'    => 'Du kannst den kompletten Persönlichkeitsbereich vor deinen Zuschauern verstecken.',
     ],
     'index'         => [
@@ -90,6 +93,8 @@ return [
     ],
     'placeholders'  => [
         'age'               => 'Alter',
+        'appearance_entry'  => 'Beschreibung',
+        'appearance_name'   => 'Haare, Augen, Haut, Größe',
         'eye'               => 'Augenfarbe',
         'family'            => 'Bitte wähle einen Charakter',
         'fears'             => 'Ängste',

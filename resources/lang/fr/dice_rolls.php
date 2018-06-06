@@ -16,22 +16,29 @@ return [
         'title'         => 'Modifier le jet de dés :name',
     ],
     'fields'        => [
+        'created_at'    => 'Jetté à',
         'name'          => 'Nom',
         'parameters'    => 'Paramètres',
         'results'       => 'Résultats',
+        'rolls'         => 'Jets',
     ],
     'hints'         => [
         'parameters'    => 'Quelles sont mes options de dés?',
     ],
     'index'         => [
+        'actions'       => [
+            'dice'      => 'Jets de dés',
+            'results'   => 'Résultats',
+        ],
         'add'           => 'Nouveau jet de dés',
         'description'   => 'Gérer les jet de dés de :name.',
         'header'        => 'Jets de dés pour :name',
         'title'         => 'Jets de dés',
     ],
     'placeholders'  => [
-        'name'          => 'Nom du jet de dés',
-        'parameters'    => '4d6+3',
+        'dice_roll' => 'Jet de dés',
+        'name'      => 'Nom du jet de dés',
+        'parameters'=> '4d6+3',
     ],
     'results'       => [
         'actions'   => [
