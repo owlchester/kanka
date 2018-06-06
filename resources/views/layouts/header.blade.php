@@ -51,7 +51,7 @@
                                 <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
-                            @endif {{ $currentCampaign->name }}
+                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -82,7 +82,7 @@
                             <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                         @else
                             <i class="fa fa-globe"></i>
-                        @endif {{ $currentCampaign->name }}
+                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
                         </a>
                     </li>
                     @endif

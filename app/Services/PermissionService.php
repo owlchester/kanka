@@ -54,7 +54,7 @@ class PermissionService
         $entityActions = ['read', 'edit', 'add', 'delete', 'permission'];
         $actions = ['read', 'edit', 'add', 'delete'];
 
-        $excludedEntities = ['attribute_templates'];
+        $excludedEntities = ['attribute_templates', 'menu_links'];
 
         foreach ($this->entityService->entities() as $entity => $class) {
             if (in_array($entity, $excludedEntities)) {
