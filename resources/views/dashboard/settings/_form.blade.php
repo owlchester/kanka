@@ -13,8 +13,8 @@
     <div class="col-md-6">
 
         <?php $i = 0; ?>
-        @foreach ($entities->entities() as $entity => $class)
-            @if ($i > (count($entities->entities()) / 2))
+        @foreach ($total = $entities->dashboardEntities() as $entity => $class)
+            @if ($i > (count($total) / 2))
     </div>
     <div class="col-md-6">
             @endif

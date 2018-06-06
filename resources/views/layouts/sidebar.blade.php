@@ -28,6 +28,7 @@
             <li class="{{ $sidebar->active('campaigns') }}">
                 <a href="{{ route('campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>
             </li>
+            @if ($campaign->enabled('menu_links'))
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i>
@@ -51,6 +52,7 @@
                     @endif
                 </ul>
             </li>
+            @endif
 
             @if ($campaign->enabled('characters'))
             <li class="{{ $sidebar->active('characters') }}">
