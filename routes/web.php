@@ -59,6 +59,9 @@ Route::group([
     // Locations
     Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
     Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
+    Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
+    Route::get('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
+
 
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
@@ -75,7 +78,6 @@ Route::group([
     // Permission save
     Route::post('/campaigns/{campaign}/campaign_role{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaigns.campaign_roles.savePermissions');
 
-    Route::get('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
 
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');

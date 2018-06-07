@@ -115,6 +115,18 @@ class LocationController extends CrudController
      */
     public function map(Location $location, Request $request)
     {
+        $this->authorize('view', $location);
+
+        return view('locations.map.show', compact('location'));
+    }
+
+    /**
+     * @param Location $location
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function mapAdmin(Location $location, Request $request)
+    {
         $this->authorize('update', $location);
 
         if ($request->isMethod('post')) {
@@ -125,7 +137,7 @@ class LocationController extends CrudController
             return redirect()->route('locations.show', [$location, '#map'])
                 ->with('success', trans('locations.map.success'));
         }
-        return view('locations.map', compact('location'));
+        return view('locations.map.edit', compact('location'));
     }
 
 
