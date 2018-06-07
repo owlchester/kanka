@@ -27,19 +27,19 @@
                         <td>
                             <label>
                                 {!! Form::checkbox('role[' . $role->id . '][]', 'read', !empty($permissions['role'][$role->id]['read'])) !!}
-                                {{ trans('crud.permissions.allowed') }}
+                                <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
                             </label>
                         </td>
                         <td>
                             <label>
                                 {!! Form::checkbox('role[' . $role->id . '][]', 'edit', !empty($permissions['role'][$role->id]['edit'])) !!}
-                                {{ trans('crud.permissions.allowed') }}
+                                <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
                             </label>
                         </td>
                         <td>
                             <label>
                                 {!! Form::checkbox('role[' . $role->id . '][]', 'delete', !empty($permissions['role'][$role->id]['delete'])) !!}
-                                {{ trans('crud.permissions.allowed') }}
+                                <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
                             </label>
                         </td>
                     </tr>
@@ -61,19 +61,19 @@
                         <td>
                             <label>
                             {!! Form::checkbox('user[' . $member->user_id . '][]', 'read', !empty($permissions['user'][$member->user_id]['read'])) !!}
-                                {{ trans('crud.permissions.allowed') }}
+                                <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
                             </label>
                         </td>
                         <td>
                             <label>
                             {!! Form::checkbox('user[' . $member->user_id . '][]', 'edit', !empty($permissions['user'][$member->user_id]['edit'])) !!}
-                                {{ trans('crud.permissions.allowed') }}
+                                <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
                             </label>
                         </td>
                         <td>
                             <label>
                             {!! Form::checkbox('user[' . $member->user_id . '][]', 'delete', !empty($permissions['user'][$member->user_id]['delete'])) !!}
-                                {{ trans('crud.permissions.allowed') }}
+                                <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
                             </label>
                         </td>
                     </tr>

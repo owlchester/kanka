@@ -117,12 +117,14 @@ class AttributeController extends CrudAttributeController
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
-        return view('cruds.attributes.template', compact(
+        $ajax = request()->ajax();
+        return view('cruds.attributes.' . ($ajax ? '_' : null) . 'template', compact(
             'attribute',
             'name',
             'route',
             'entity',
-            'parentRoute'
+            'parentRoute',
+            'ajax'
         ));
     }
 

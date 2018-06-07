@@ -11,8 +11,5 @@
 
 @section('content')
     @include('partials.errors')
-
-    {!! Form::model($entity, ['method' => 'POST', 'route' => ['entities.permissions', $entity], 'data-shortcut' => "1"]) !!}
-        @include('cruds.panels.permissions')
-    {!! Form::close() !!}
+    @include('cruds.panels.permissions')
 @endsection
