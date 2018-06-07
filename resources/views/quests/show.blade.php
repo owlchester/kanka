@@ -19,6 +19,22 @@
                         <br class="clear" />
                     </li>
                     @endif
+                    @if ($campaign->enabled('characters') && !empty($model->character))
+                    <li class="list-group-item">
+                        <b>{{ trans('quests.fields.character') }}</b>
+                        <span  class="pull-right">
+                    <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
+                    </span>
+                        <br class="clear" />
+                    </li>
+                    @endif
+                    @if ($model->is_completed)
+                        <li class="list-group-item">
+                            <b>{{ trans('quests.fields.is_completed') }}</b>
+                            <span class="pull-right">{{ trans('voyager.generic.yes') }}</span>
+                        </li>
+                    @endif
+
                     @include('cruds.layouts.section')
                 </ul>
 

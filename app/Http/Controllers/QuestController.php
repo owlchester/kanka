@@ -29,6 +29,8 @@ class QuestController extends CrudController
         $this->filters = [
             'name',
             'type',
+            'character_id',
+            'is_completed',
         ];
     }
 

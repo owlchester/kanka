@@ -11,6 +11,17 @@
         // Name
         'name',
         'type',
+        // Character
+        [
+            'type' => 'avatar',
+            'parent' => 'character',
+            'parent_route' => 'characters',
+            'visible' => $campaign->enabled('characters'),
+        ],
+        [
+            'type' => 'character',
+            'visible' => $campaign->enabled('characters'),
+        ],
         [
             'label' => trans('quests.fields.locations'),
             'visible' => $campaign->enabled('locations'),
@@ -27,6 +38,7 @@
             },
             'disableSort' => true,
         ],
+        'is_completed',
         [
             'type' => 'is_private',
         ]

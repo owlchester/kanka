@@ -19,6 +19,8 @@ class Quest extends MiscModel
         'description',
         'is_private',
         'section_id',
+        'character_id',
+        'is_completed',
     ];
 
     /**
@@ -35,6 +37,8 @@ class Quest extends MiscModel
         'name',
         'type',
         'section_id',
+        'character_id',
+        'is_completed',
         'is_private',
     ];
 
@@ -88,6 +92,13 @@ class Quest extends MiscModel
         return $this->hasMany('App\Models\QuestCharacter', 'quest_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function character()
+    {
+        return $this->belongsTo('App\Models\Character');
+    }
 
     /**
      * Detach children when moving this entity from one campaign to another

@@ -16,6 +16,16 @@
                     <label>{{ trans('quests.fields.type') }}</label>
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('quests.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                @if ($campaign->enabled('characters'))
+                    <div class="form-group">
+                        {!! Form::select2(
+                            'character_id',
+                            (isset($model) && $model->character ? $model->character : $formService->prefillSelect('character', $source)),
+                            App\Models\Character::class,
+                            true
+                        ) !!}
+                    </div>
+                @endif
                 @if ($campaign->enabled('sections'))
                     <div class="form-group">
                         {!! Form::select2(
@@ -26,6 +36,13 @@
                         ) !!}
                     </div>
                 @endif
+
+                <div class="form-group">
+                    {!! Form::hidden('is_completed', 0) !!}
+                    <label>{!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? $formService->prefill('is_completed', $source) : 0))) !!}
+                        {{ trans('quests.fields.is_completed') }}
+                    </label>
+                </div>
 
                 @if (Auth::user()->isAdmin())
                     <hr>

@@ -40,6 +40,8 @@ return [
         'locations'     => 'Locations',
         'name'          => 'Name',
         'type'          => 'Type',
+        'character'     => 'Instigator',
+        'is_completed' => 'Completed',
     ],
     'index'         => [
         'add'           => 'New Quest',
