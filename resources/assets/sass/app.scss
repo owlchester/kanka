@@ -197,7 +197,7 @@ tr.entity-hidden {
   }
 }
 
-.entity-image, .product-img .entity-image {
+.entity-image, .product-img .entity-image, .entity-image-mention {
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -210,6 +210,13 @@ tr.entity-hidden {
   border-radius: 0;
   height: 70px;
   width: 50px;
+}
+.entity-image-mention {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 8px;
+  display: inline-block;
 }
 
 /**

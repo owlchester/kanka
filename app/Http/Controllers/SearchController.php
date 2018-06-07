@@ -20,6 +20,7 @@ use App\Services\LinkerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\FilterService;
+use Illuminate\Support\Facades\Storage;
 use Response;
 
 class SearchController extends Controller
@@ -163,7 +164,7 @@ class SearchController extends Controller
             $formatted[] = [
                 'id' => $model->id,
                 'fullname' => $model->name,
-                'name' => $model->name . ' (' . trans('entities.' . $model->type) . ')',
+                'name' => (!empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : null) . $model->name . ' (' . trans('entities.' . $model->type) . ')',
                 'tooltip' => $model->tooltip(),
                 'url' => route($model->pluralType() . '.show', $model->entity_id
                 )];
