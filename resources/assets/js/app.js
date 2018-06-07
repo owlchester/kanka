@@ -205,6 +205,10 @@ function manageTabs() {
     tabLink.on("shown.bs.tab", function(e) {
         e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
+        if ($(e.target).attr('data-toggle')) {
+            // Modal? Don't do more.
+            return true;
+        }
         // We fake a tab_ to avoid page jumps from the browser
         window.location.hash = 'tab_' + tabId;
     });

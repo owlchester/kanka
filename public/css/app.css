@@ -335,3 +335,7 @@ div.mce-fullscreen {
   display: none;
 }
 
+table label {
+  font-weight: normal;
+}
+

@@ -33,7 +33,9 @@
     </li>
 @endcan
 @can('permission', $model)
-    <li class="pull-right{{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
-        <a href="#permissions"><i class="fa fa-cog"></i></a>
+    <li class="pull-right" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
+        <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="modal" data-target="#permissions-modal" data-url="{{ route('entities.permissions', $model->entity) }}">
+            <i class="fa fa-cog"></i>
+        </a>
     </li>
 @endcan

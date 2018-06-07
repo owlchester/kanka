@@ -164,7 +164,8 @@ Route::group([
     // Attribute template
     Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
     Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');
-    Route::post('/entities/{entity}/permissions', 'PermissionController@permissions')->name('entities.permissions');
+    Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
+    Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
     Route::post('/entities/create', 'EntityController@create')->name('entities.create');
 

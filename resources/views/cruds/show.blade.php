@@ -10,4 +10,11 @@
 
 @section('content')
     @include($name . '.show')
+
+    <!-- Permissions Modal -->
+    <div class="modal fade" id="permissions-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 @endsection

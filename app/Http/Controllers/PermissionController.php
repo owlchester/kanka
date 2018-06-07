@@ -8,7 +8,7 @@ use App\Services\PermissionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class PermissionController extends CrudController
+class PermissionController extends Controller
 {
     /**
      * @var PermissionService
@@ -22,8 +22,18 @@ class PermissionController extends CrudController
     public function __construct(PermissionService $permissionService)
     {
         $this->permissionService = $permissionService;
+    }
 
-        return parent::__construct();
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function view(Entity $entity)
+    {
+        $this->authorize('permission', $entity->child);
+        $ajax = request()->ajax();
+
+        return view('cruds.' . (request()->ajax() ? 'panels.' : null) . 'permissions', compact('entity', 'ajax'));
     }
 
     /**
@@ -32,13 +42,13 @@ class PermissionController extends CrudController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function permissions(StorePermission $request, Entity $entity)
+    public function store(StorePermission $request, Entity $entity)
     {
         $this->authorize('permission', $entity->child);
 
         $this->permissionService->saveEntity($request->only('role', 'user'), $entity);
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#permissions'])
+        return redirect()->route($entity->pluralType() . '.show', $entity->child->id)
             ->with('success_raw', trans('crud.permissions.success'));
 
     }

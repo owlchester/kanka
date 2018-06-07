@@ -21,8 +21,3 @@
         @include('cruds._attributes')
     </div>
 @endcan
-@can('permission', $model)
-    <div class="tab-pane {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="permissions">
-        @include('cruds._permissions')
-    </div>
-@endcan
