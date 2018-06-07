@@ -12,7 +12,7 @@
                     <label>{{ trans('menu_links.fields.name') }}</label>
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('menu_links.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                <div class="form-group">
+                <div class="form-group required">
                     {!! Form::select2(
                         'entity_id',
                         (!empty($model) && $model->entity? $model->entity: null),
