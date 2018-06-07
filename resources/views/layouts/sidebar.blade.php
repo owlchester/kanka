@@ -39,7 +39,7 @@
                 </a>
                 <ul class="treeview-menu" style="display: none;">
                     @foreach ($campaign->campaign()->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
-                        @if ($menuLink->entity->child)
+                        @if ($menuLink->entity && $menuLink->entity->child)
                         <li>
                             <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->entity->child->id) }}">
                                 <i class="fa fa-circle-o"></i> {{ $menuLink->name }}

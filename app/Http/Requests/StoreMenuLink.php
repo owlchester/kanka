@@ -25,7 +25,7 @@ class StoreMenuLink extends FormRequest
     {
         return [
             'name' => 'required',
-            'entity_id', 'integer|exists:entities,id',
+            'entity_id' => 'required|exists:entities,id',
             'icon' => '',
         ];
     }
