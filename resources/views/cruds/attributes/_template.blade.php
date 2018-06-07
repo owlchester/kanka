@@ -1,11 +1,11 @@
 
 <div class="panel panel-default">
+    @if ($ajax)
     <div class="panel-heading">
-        @if ($ajax)
             <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-        @endif
         <h4>{{ trans('crud.attributes.template.title', ['name' => $entity->name]) }}</h4>
     </div>
+    @endif
     <div class="panel-body">
         {!! Form::open(array('route' => ['entities.attributes.template', $entity->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
         {{ csrf_field() }}

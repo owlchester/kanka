@@ -12205,7 +12205,9 @@ function manageTabs() {
     tabLink.on("shown.bs.tab", function (e) {
         e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
-        if ($(e.target).attr('data-toggle')) {
+        var dataToggle = $(e.target).attr('ajax-modal');
+        console.log('data-toggle?', $(e.target).attr('data-toggle'), e.target);
+        if (dataToggle && dataToggle == 'ajax-modal') {
             // Modal? Don't do more.
             return true;
         }
@@ -53442,6 +53444,8 @@ var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 
+var ajaxModalTarget;
+
 $(document).ready(function () {
     // Filters
     var filters = $('#crud-filters');
@@ -53495,6 +53499,27 @@ $(document).ready(function () {
     if (characterAddAppearance.length === 1) {
         initCharacterAppearance();
     }
+
+    $.each($('[data-toggle="ajax-modal"]'), function () {
+        $(this).click(function (e) {
+            e.preventDefault();
+            ajaxModalTarget = $(this).attr('data-target');
+            $.ajax({
+                url: $(this).attr('data-url')
+            }).done(function (result, textStatus, xhr) {
+                if (result) {
+                    $(ajaxModalTarget).find('.modal-content').html(result);
+                    $(ajaxModalTarget).modal();
+
+                    // Reset select2
+                    initSelect2();
+                }
+            }).fail(function (result, textStatus, xhr) {
+                //console.log('modal ajax error', result);
+            });
+            return false;
+        });
+    });
 });
 
 /**
@@ -53641,6 +53666,39 @@ function characterDeleteRowHandler() {
             $(this).parent().parent().parent().remove();
         });
     });
+}
+
+/**
+ * This is re-defined (copy-paste) from app.js, since the minify changes the original name
+ */
+function initSelect2() {
+    if ($('.select2').length > 0) {
+        $.each($('.select2'), function (index) {
+
+            $(this).select2({
+                //            data: newOptions,
+                placeholder: $(this).attr('data-placeholder'),
+                allowClear: true,
+                minimumInputLength: 0,
+                ajax: {
+                    quietMillis: 200,
+                    url: $(this).attr('data-url'),
+                    dataType: 'json',
+                    data: function data(params) {
+                        return {
+                            q: $.trim(params.term)
+                        };
+                    },
+                    processResults: function processResults(data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    }
 }
 
 /***/ }),

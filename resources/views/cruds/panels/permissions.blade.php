@@ -2,12 +2,12 @@
 <?php $permissions = $permissionService->entityPermissions($entity); ?>
 
 <div class="panel panel-default">
+    @if ($ajax)
     <div class="panel-heading">
-        @if ($ajax)
             <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-        @endif
-            <h4>{{ trans('crud.permissions.title') }}</h4>
+            <h4>{{ trans('crud.permissions.title', ['name' => $entity->name]) }}</h4>
     </div>
+    @endif
     <div class="panel-body">
         <p class="text-muted">{{ trans('crud.permissions.helper') }}</p>
 

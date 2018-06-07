@@ -9,7 +9,7 @@
         <th>{{ trans('organisations.members.fields.role') }}</th>
         <th class="pull-right">
             @can('organisation', [$model, 'add'])
-                <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
                     <i class="fa fa-plus"></i> {{ trans('characters.organisations.actions.add') }}
                 </a>
             @endcan
@@ -26,7 +26,8 @@
             <td>{{ $relation->role }}</td>
             <td class="text-right">
                 @can('organisation', [$model, 'edit'])
-                    <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary">
+                    <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary"
+                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $relation]) }}">
                         <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                     </a>
                 @endcan

@@ -36,8 +36,9 @@ class CharacterOrganisationController extends Controller
     public function create(Character $character)
     {
         $this->authorize('organisation', [$character, 'add']);
+        $ajax = request()->ajax();
 
-        return view($this->view . '.create', ['model' => $character]);
+        return view($this->view . '.' . ($ajax ? '_' : null) . 'create', ['model' => $character, 'ajax' => $ajax]);
     }
 
     /**
@@ -80,10 +81,12 @@ class CharacterOrganisationController extends Controller
     public function edit(Character $character, CharacterOrganisation $characterOrganisation)
     {
         $this->authorize('organisation', [$character, 'edit']);
+        $ajax = request()->ajax();
 
-        return view($this->view . '.edit', [
+        return view($this->view . '.' . ($ajax ? '_' : null) . 'edit', [
             'model' => $character,
-            'member' => $characterOrganisation
+            'member' => $characterOrganisation,
+            'ajax' => $ajax
         ]);
     }
 

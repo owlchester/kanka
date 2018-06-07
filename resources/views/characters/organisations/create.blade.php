@@ -8,20 +8,6 @@
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @include('partials.errors')
-
-                    {!! Form::open(array('route' => ['characters.character_organisations.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
-                    @include('characters.organisations._form')
-
-                    {!! Form::hidden('character_id', $model->id) !!}
-                    
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('partials.errors')
+    @include('characters.organisations._create')
 @endsection

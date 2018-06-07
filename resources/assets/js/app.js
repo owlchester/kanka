@@ -205,7 +205,9 @@ function manageTabs() {
     tabLink.on("shown.bs.tab", function(e) {
         e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
-        if ($(e.target).attr('data-toggle')) {
+        var dataToggle = $(e.target).attr('ajax-modal');
+        console.log('data-toggle?', $(e.target).attr('data-toggle'), e.target);
+        if (dataToggle && dataToggle == 'ajax-modal') {
             // Modal? Don't do more.
             return true;
         }
