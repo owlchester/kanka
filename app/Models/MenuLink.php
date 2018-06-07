@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 
 class MenuLink extends MiscModel
@@ -26,6 +27,7 @@ class MenuLink extends MiscModel
      *
      */
     use VisibleTrait;
+    use CampaignTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
