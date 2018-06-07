@@ -75,6 +75,8 @@ Route::group([
     // Permission save
     Route::post('/campaigns/{campaign}/campaign_role{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaigns.campaign_roles.savePermissions');
 
+    Route::get('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
+
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
     Route::resources([

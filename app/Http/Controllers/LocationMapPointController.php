@@ -121,6 +121,29 @@ class LocationMapPointController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Location  $location
+     * @param  \App\Models\MapPoint  $mapPoint
+     * @return \Illuminate\Http\Response
+     */
+    public function move(Request $request, Location $location, MapPoint $mapPoint)
+    {
+        $this->authorize('update', $location);
+
+        try {
+            $mapPoint->update($request->only('axis_y', 'axis_x'));
+            die("yop");
+            return true;
+        } catch (LogicException $exception) {
+            //
+        }
+        die("nop");
+        return false;
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Location  $location

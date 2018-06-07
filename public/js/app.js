@@ -53195,7 +53195,8 @@ var mapToggleShow, mapToggleHide;
 var mapZoomValue = 100,
     mapZoomIncrements = 0;
 var mapDraggable,
-    mapDraggableIsMoving = false;
+    mapDraggableIsMoving = false,
+    mapPointIsMoving = false;
 var mapPointModalBody;
 
 $(document).ready(function () {
@@ -53227,6 +53228,10 @@ $(document).ready(function () {
 function initMapAdmin() {
     mapAdminImg.on('click', function (e) {
         // Don't click if moving
+        if (mapPointIsMoving === true) {
+            return;
+        }
+        console.log('click on map admin');
         if (mapDraggableIsMoving === true) {
             mapDraggableIsMoving = false;
             return;
@@ -53265,12 +53270,41 @@ function initMapAdmin() {
             mapModal.modal('toggle');
 
             // Reset delete on all points
-            initPointDelete();
+            initPointUpdate();
         } else {}
     });
 
+    // Draggable is only once.
+    $.each($('.point'), function (index) {
+        $(this).draggable({
+            start: function start(event, ui) {
+                console.log('start moving point');
+                mapPointIsMoving = true;
+            },
+            stop: function stop(event, ui) {
+                event.preventDefault();
+                var location = $(event.target);
+
+                var offset = mapAdminImg.offset();
+                mapPositionX = event.pageX - offset.left - 25;
+                mapPositionY = event.pageY - offset.top - 25;
+
+                $.ajax({
+                    url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
+                }).done(function (result, textStatus, xhr) {
+                    event.preventDefault();
+                    // Stuff
+                    console.log('finished moving point');
+                    mapPointIsMoving = false;
+                }).fail(function (result, textStatus, xhr) {
+                    console.log('map point error', result);
+                });
+            }
+        });
+    });
+
     // Handle deleting already loaded points
-    initPointDelete();
+    initPointUpdate();
 }
 
 /**
@@ -53355,12 +53389,15 @@ function mapZoom(change) {
 }
 
 /**
- * Add delete click on all points
+ * Add update click on all points
  */
-function initPointDelete() {
+function initPointUpdate() {
     $.each($('.point'), function (index) {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function (e) {
+            if (mapPointIsMoving === true) {
+                return;
+            }
             $.ajax({
                 url: $(this).attr('data-url')
             }).done(function (result, textStatus, xhr) {
