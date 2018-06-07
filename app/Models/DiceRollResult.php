@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class DiceRollResult extends MiscModel
 {
@@ -29,6 +30,16 @@ class DiceRollResult extends MiscModel
 
     protected $defaultOrderField = 'created_at';
     protected $defaultOrderDirection = 'DESC';
+
+    /**
+     *
+     */
+    public function newQuery()
+    {
+        return parent::newQuery()->whereHas('diceRoll', function($query) {
+            $query->where('campaign_id', Session::get('campaign_id'));
+        });
+    }
 
     /**
      * Who created this entry
