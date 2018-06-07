@@ -70,7 +70,7 @@ class SearchController extends Controller
         $filterService = $this->filterService;
         $found = null;
 
-        foreach ($this->entity->entities() as $element => $class) {
+        foreach ($this->entity->entities(['menu_links']) as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
                 $results[$element] = $model->acl(Auth::user())->search($term)->limit(5)->get();

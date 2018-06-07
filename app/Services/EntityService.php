@@ -46,9 +46,19 @@ class EntityService
      *
      * @return array
      */
-    public function entities()
+    public function entities($excluded = null)
     {
-        return $this->entities;
+        if (empty($excluded)) {
+            return $this->entities;
+        }
+
+        $entities = [];
+        foreach ($this->entities as $name => $class) {
+            if (!in_array($name, $excluded)) {
+                $entities[$name] = $class;
+            }
+        }
+        return $entities;
     }
 
     /**
