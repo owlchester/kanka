@@ -17,6 +17,9 @@ require('admin-lte');
 require('select2');
 require('bootstrap-datepicker');
 
+// require('corejs-typeahead');
+// Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
+
 require('jquery-ui/ui/widgets/draggable');
 
 /**

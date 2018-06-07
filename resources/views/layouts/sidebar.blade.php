@@ -7,13 +7,16 @@
 
         {!! Form::open(array('route' => 'search', 'class' => 'sidebar-form', 'method'=>'GET')) !!}
         <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="{{ trans('sidebar.search') }}">
+            <input type="text" name="q" class="typeahead form-control" autocomplete="off"
+                   placeholder="{{ trans('sidebar.search') }}" data-url="{{ route('search.live') }}"
+                    data-empty="{{ trans('search.no_results') }}">
             <span class="input-group-btn">
                 <button type="submit" id="search-btn" class="btn btn-flat">
                   <i class="fa fa-search"></i>
                 </button>
               </span>
         </div>
+        <div id="live-search-results" class="live-search-results"></div>
         {!! Form::close() !!}
 
         @inject('sidebar', 'App\Services\SidebarService')

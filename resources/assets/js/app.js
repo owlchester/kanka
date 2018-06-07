@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // const app = new Vue({
 //     el: '#app'
 // });
+var liveSearchField, liveSearchResults, liveSearchRunning = false;
 
 $(document).ready(function() {
 
@@ -139,6 +140,8 @@ $(document).ready(function() {
             $('#click-confirm-url').attr('href', $(this).attr('data-url'));
         });
     });
+
+    initLiveSearch();
 });
 
 /**
@@ -242,6 +245,70 @@ function manageDashboardNotifications() {
 
     });
 }
+
+/**
+ * Live Search
+ */
+function initLiveSearch() {
+    liveSearchField = $('.typeahead');
+    liveSearchResults = $('#live-search-results');
+    if (liveSearchField.length == 0) {
+        return;
+    }
+
+    liveSearchField.keyup(function (e) {
+        if (liveSearchField.val().length >= 3) {
+            // Delay the request for 250 seconds
+            var value = liveSearchField.val();
+            setTimeout(function() { requestLiveSearch(value); }, 250);
+        } else {
+            liveSearchResults.empty();
+        }
+    });
+
+    liveSearchField.focusout(function (e) {
+        console.log('liveSearchResults lost focus');
+        setTimeout(function() {
+            liveSearchResults.empty();
+        }, 250);
+    });
+}
+
+function requestLiveSearch(value) {
+    if (liveSearchField.val() == value && !liveSearchRunning) {
+        liveSearchRunning = true;
+
+        // Reset results
+        liveSearchResults.empty();
+        liveSearchResults.append('<div class="loading"><i class="fa fa-spinner"></i></div>');
+
+        $.ajax({
+            url: liveSearchField.attr('data-url') + '?q=' + liveSearchField.val()
+        }).done(function (result, textStatus, xhr) {
+            liveSearchRunning = false;
+            if (textStatus === 'success' && result) {
+                liveSearchResults.empty();
+                // Append all the results to the result box
+                $.each(result, function(i) {
+                    var data = result[i];
+                    liveSearchResults.append('<a href="' + data.url + '" class="list-group-item">' + data.image + data.name + ' (' + data.type + ')</a>');
+                });
+
+                // Empty result
+                if (result.length == 0) {
+                    liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
+                }
+                liveSearchResults.focus();
+            }
+        }).fail(function (result, textStatus, xhr) {
+            liveSearchRunning = false;
+            liveSearchResults.empty();
+            liveSearchResults.append('Error!');
+            console.log('error', result);
+        });
+    }
+}
+
 
 require('./attributes.js');
 require('./keyboard.js');

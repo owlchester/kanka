@@ -174,6 +174,35 @@ class SearchController extends Controller
     }
 
     /**
+     * Mentions
+     */
+    public function live(Request $request)
+    {
+        $term = trim($request->q);
+
+        // Figure out what kind of entities we want.
+        if (empty($term)) {
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->where('name', 'like', "%$term%")->limit(10)->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $formatted[] = [
+                'id' => $model->id,
+                'fullname' => $model->name,
+                'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
+                'name' => $model->name,
+                'type' => trans('entities.' . $model->type),
+                'tooltip' => $model->tooltip(),
+                'url' => route($model->pluralType() . '.show', $model->entity_id)];
+        }
+
+        return Response::json($formatted);
+    }
+
+    /**
      * @param Request $request
      * @return mixed
      */

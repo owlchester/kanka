@@ -153,6 +153,7 @@ Route::group([
     Route::get('/search/calendar_event', 'SearchController@calendarEvent')->name('search.calendar_event');
     Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');
     Route::get('/search/months', 'SearchController@months')->name('search.months');
+    Route::get('/search/live', 'SearchController@live')->name('search.live');
 
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 

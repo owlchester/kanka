@@ -339,3 +339,25 @@ table label {
   font-weight: normal;
 }
 
+/**
+ * Search
+ */
+
+.live-search-results {
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  min-width: 190px;
+  overflow: auto;
+}
+
+.live-search-results .loading {
+  text-align: center;
+  padding: 15px;
+}
+
+.live-search-results .list-group-item:first-child {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
