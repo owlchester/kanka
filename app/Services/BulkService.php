@@ -91,6 +91,9 @@ class BulkService
             throw new TranslatableException("crud.bulk.errors.admin");
         }
 
+        // Don't want other stuff happening while saving
+        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+
         $model = $this->getEntity($entityName);
         $count = 0;
         foreach ($ids as $id) {

@@ -75,25 +75,25 @@
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                     <a href="#info">
-                        {{ trans('campaigns.show.tabs.information') }}
+                        <span class="fa fa-align-justify"></span> {{ trans('campaigns.show.tabs.information') }}
                     </a>
                 </li>
                 <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
                     <a href="#member">
-                        {{ trans('campaigns.show.tabs.members') }}
+                        <span class="fa fa-users"></span> {{ trans('campaigns.show.tabs.members') }}
                     </a>
                 </li>
                 @can('update', $campaign)
                 <li class="{{ (request()->get('tab') == 'roles' ? ' active' : '') }}">
                     <a href="#roles">
-                        {{ trans('campaigns.show.tabs.roles') }}
+                        <span class="fa fa-lock"></span> {{ trans('campaigns.show.tabs.roles') }}
                     </a>
                 </li>
                 @endcan
                 @if (Auth::user()->can('setting', $campaign))
                 <li class="{{ (request()->get('tab') == 'setting' ? ' active' : '') }}">
                     <a href="#setting">
-                        {{ trans('campaigns.show.tabs.settings') }}
+                        <span class="fa fa-cubes"></span> {{ trans('campaigns.show.tabs.settings') }}
                     </a>
                 </li>
                 @endif
