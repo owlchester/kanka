@@ -1,6 +1,6 @@
 @if ($model->map)
     <p>
-        <a href="{{ route('locations.map.admin', ['location' => $model]) }}" class="btn btn-default">
+        <a href="{{ route('locations.map', ['location' => $model]) }}" class="btn btn-default">
             <i class="fa fa-arrows-alt"></i> {{ trans('locations.map.actions.big') }}
         </a>
 

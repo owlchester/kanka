@@ -35,7 +35,7 @@ class LocationMapPointController extends Controller
     public function index(Request $request, Location $location)
     {
         $this->authorize('update', $location);
-        return view('locations.map', compact('location'));
+        return view('locations.map.edit', compact('location'));
     }
 
     /**
@@ -52,9 +52,7 @@ class LocationMapPointController extends Controller
 
     public function show(Location $location, MapPoint $mapPoint)
     {
-        $this->authorize('update', $location);
-
-        dd('wuu');
+        $this->authorize('break', $location);
     }
 
     /**
@@ -70,7 +68,7 @@ class LocationMapPointController extends Controller
         try {
             $model = new MapPoint();
             $new = $model->create($request->all());
-            return redirect()->route('locations.map_points.index', $location)
+            return redirect()->route('locations.map.admin', $location)
                 ->with('success', trans('locations.map.points.success.create'));
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
@@ -108,7 +106,7 @@ class LocationMapPointController extends Controller
         try {
             if ($request->has('remove')) {
                 $mapPoint->delete();
-                return redirect()->route('locations.map_points.index', $location)
+                return redirect()->route('locations.map.admin', $location)
                     ->with('success', trans('locations.map.points.success.delete'));
             }
             $mapPoint->update($request->all());
