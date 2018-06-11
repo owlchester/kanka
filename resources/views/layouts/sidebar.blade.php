@@ -7,7 +7,7 @@
 
         {!! Form::open(array('route' => 'search', 'class' => 'sidebar-form', 'method'=>'GET')) !!}
         <div class="input-group">
-            <input type="text" name="q" class="typeahead form-control" autocomplete="off"
+            <input type="text" name="q" class="form-control" autocomplete="off"
                    placeholder="{{ trans('sidebar.search') }}" data-url="{{ route('search.live') }}"
                     data-empty="{{ trans('search.no_results') }}">
             <span class="input-group-btn">

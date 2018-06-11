@@ -60,6 +60,10 @@ class LocationController extends CrudController
         ];
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function tree(Request $request)
     {
         $model = new $this->model;

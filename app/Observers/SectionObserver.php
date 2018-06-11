@@ -17,6 +17,23 @@ class SectionObserver extends MiscObserver
         parent::saving($model);
     }
 
+//    public function saved(MiscModel $model)
+//    {
+//        // Need to update the parent tree
+//        $newParentId = $model->section_id;
+//        $originalParentId = $model->getOriginal('section_id');
+//        echo "Comparing original $originalParentId to the current " . $model->section_id . '<br>';
+//
+//        if (!empty($originalParentId) && $originalParentId != $model->section_id) {
+//
+//            $model->section_id = $originalParentId;
+//            ++$model::$actionsPerformed;
+//            $model->refreshNode();
+//            dd($model->parent->name);
+//            $model->section_id = $newParentId;
+//        }
+//    }
+
     /**
      * @param Section $section
      */

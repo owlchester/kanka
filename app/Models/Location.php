@@ -63,6 +63,14 @@ class Location extends MiscModel
     use NodeTrait;
 
     /**
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'parent_location_id';
+    }
+
+    /**
      * Performance with for datagrids
      * @param $query
      * @return mixed
@@ -147,14 +155,6 @@ class Location extends MiscModel
     public function mapPoints()
     {
         return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
-    }
-
-    /**
-     * @return string
-     */
-    public function getParentIdName()
-    {
-        return 'parent_location_id';
     }
 
     /**

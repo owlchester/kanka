@@ -20,6 +20,16 @@ class LocationObserver extends MiscObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable(), 60, 'map');
+
+//        // Need to update the parent tree
+//        $newParentId = $model->parent_location_id;
+//        $originalParentId = $model->getOriginal('parent_location_id');
+//        if (!empty($originalParentId) && $originalParentId != $model->parent_location_id) {
+//            $model->parent_location_id = $originalParentId;
+//            dd($model->parent->name);
+//            $model->refreshNode();
+//            $model->parent_location_id = $newParentId;
+//        }
     }
 
     /**
