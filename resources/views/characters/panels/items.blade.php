@@ -1,4 +1,4 @@
-<table class="table no-border">
+<table class="table no-border table-condensed table-hover">
 @foreach ($model->items as $item)
     <tr>
         <td class="avatar">

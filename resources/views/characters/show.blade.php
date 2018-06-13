@@ -114,8 +114,8 @@
                 @include('cruds._panes')
             </div>
         </div>
-        @if (Auth::user()->can('personality', $model))
 
+        @if (Auth::user()->can('personality', $model))
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('characters.show.tabs.personality') }}</h3>
@@ -128,6 +128,18 @@
                 <p class="help-block export-hidden">{{ trans('characters.hints.hide_personality') }}</p>
             </div>
         </div>
+        @endif
+
+        @if ($campaign->enabled('journals') && $model->journals()->count() > 0)
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ trans('characters.show.tabs.journals') }}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @include('characters.panels.journals')
+                </div>
+            </div>
         @endif
     </div>
 
@@ -163,18 +175,6 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     @include('characters.panels.dice_rolls')
-                </div>
-            </div>
-        @endif
-
-        @if ($campaign->enabled('journals') && $model->journals()->count() > 0)
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('characters.show.tabs.journals') }}</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    @include('characters.panels.journals')
                 </div>
             </div>
         @endif

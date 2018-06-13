@@ -1,5 +1,5 @@
 <table class="table no-border">
-@foreach ($model->journals as $journal)
+@foreach ($r = $model->journals()->orderBy('date', 'ASC')->paginate() as $journal)
     <tr>
         <td class="avatar">
             <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(true) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
@@ -12,3 +12,5 @@
     </tr>
 @endforeach
 </table>
+
+{{ $r->links() }}

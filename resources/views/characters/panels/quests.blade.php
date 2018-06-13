@@ -1,4 +1,4 @@
-<table class="table no-border">
+<table class="table no-border table-condensed table-hover">
     @foreach ($model->quests()->with('quest')->has('quest')->get() as $r)
         <tr>
             <td class="avatar">
