@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
 
         <!-- Profile Image -->
         <div class="box">
@@ -11,7 +11,7 @@
                      <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if ($model->is_dead)
-                     <span class="fa fa-cross" title="{{ trans('characters.hints.is_dead') }}">†</span>
+                     <span class="ra ra-skull" title="{{ trans('characters.hints.is_dead') }}"></span>
                 @endif
                 </h3>
 
@@ -51,19 +51,6 @@
                     </li>
                     @endif
 
-                    @if ($campaign->enabled('organisations'))
-                        @if ($model->organisations->count() > 0)
-
-                                <li class="list-group-item">
-                                    <b>{{ trans('characters.show.tabs.organisations') }}</b> <span class="pull-right">
-                                    <?php $orgs = []; foreach ($model->organisations()->has('organisation')->with('organisation')->limit(3)->get() as $org) {
-                                        $orgs[] = '<a href="' . route('organisations.show', $org->organisation) . '" data-toggle="tooltip" title="' . $org->organisation->tooltip() . '">' . $org->organisation->name . '</a>';
-                                    } echo implode(', ', $orgs); ?>
-                                    </span>
-                                    <br class="clear" />
-                                </li>
-                        @endif
-                    @endif
                     @include('cruds.layouts.section')
                 </ul>
 
@@ -107,7 +94,7 @@
         <!-- /.box -->
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-8">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
@@ -115,36 +102,6 @@
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.history') }}</span>
                     </a>
                 </li>
-                @if (Auth::user()->can('personality', $model))
-                    <li class="{{ (request()->get('tab') == 'personality' ? ' active' : '') }}">
-                        <a href="#personality" title="{{ trans('characters.show.tabs.personality') }}" data-toggle="tooltip">
-                            <i class="fa fa-heart"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.personality') }}</span>
-                        </a>
-                    </li>
-                @endif
-                @if ($campaign->enabled('organisations'))
-                    @can('organisation', $model)
-                <li class="{{ (request()->get('tab') == 'organisation' ? ' active' : '') }}">
-                    <a href="#organisation" title="{{ trans('characters.show.tabs.organisations') }}" data-toggle="tooltip">
-                        <i class="fa fa-user-secret"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.organisations') }}</span>
-                    </a>
-                </li>
-                    @endcan
-                @endif
-                @if ($campaign->enabled('items'))
-                    <li class="{{ (request()->get('tab') == 'items' ? ' active' : '') }}">
-                        <a href="#items" title="{{ trans('characters.show.tabs.items') }}" data-toggle="tooltip">
-                            <i class="fa fa-shield"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.items') }}</span>
-                        </a>
-                    </li>
-                @endif
-                @if ($campaign->enabled('dice_rolls'))
-                    <li class="{{ (request()->get('tab') == 'dice_rolls' ? ' active' : '') }}">
-                        <a href="#dice_rolls" title="{{ trans('characters.show.tabs.dice_rolls') }}" data-toggle="tooltip">
-                            <i class="fa fa-square"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.dice_rolls') }}</span>
-                        </a>
-                    </li>
-                @endif
                 @include('cruds._tabs')
             </ul>
 
@@ -154,35 +111,92 @@
                         <p>{!! $model->history !!}</p>
                     </div>
                 </div>
-                @if (Auth::user()->can('personality', $model))
-                <div class="tab-pane {{ (request()->get('tab') == 'personality' ? ' active' : '') }}" id="personality">
-                    @foreach ($model->characterTraits()->personality()->get() as $trait)
-                        <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
-                    @endforeach
-                    <p class="help-block export-hidden">{{ trans('characters.hints.hide_personality') }}</p>
-                </div>
-                @endif
-                @if ($campaign->enabled('organisations'))
-                    @can('organisation', $model)
-                <div class="tab-pane {{ (request()->get('tab') == 'organisation' ? ' active' : '') }}" id="organisation">
-                    @include('characters._organisations')
-                </div>
-                    @endcan
-                @endif
-                @if ($campaign->enabled('items'))
-                    <div class="tab-pane {{ (request()->get('tab') == 'items' ? ' active' : '') }}" id="items">
-                        @include('characters._items')
-                    </div>
-                @endif
-                @if ($campaign->enabled('dice_rolls'))
-                    <div class="tab-pane {{ (request()->get('tab') == 'dice_rolls' ? ' active' : '') }}" id="dice_rolls">
-                        @include('characters._dice_rolls')
-                    </div>
-                @endif
                 @include('cruds._panes')
             </div>
         </div>
+        @if (Auth::user()->can('personality', $model))
 
-        <!-- actions -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ trans('characters.show.tabs.personality') }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @foreach ($model->characterTraits()->personality()->get() as $trait)
+                    <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
+                @endforeach
+                <p class="help-block export-hidden">{{ trans('characters.hints.hide_personality') }}</p>
+            </div>
+        </div>
+        @endif
+    </div>
+
+    <div class="col-md-2">
+        @if ($campaign->enabled('items'))
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ trans('characters.show.tabs.items') }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @include('characters.panels.items')
+            </div>
+        </div>
+        @endif
+        @if ($campaign->enabled('organisations'))
+            @if ($model->organisations()->count() > 0)
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{ trans('characters.show.tabs.organisations') }}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        @include('characters.panels.organisations')
+                    </div>
+                </div>
+            @endif
+        @endif
+
+        @if ($campaign->enabled('dice_rolls'))
+            @if ($model->diceRolls()->count() > 0)
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ trans('characters.show.tabs.dice_rolls') }}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @include('characters.panels.dice_rolls')
+                </div>
+            </div>
+            @endif
+        @endif
+
+        @if ($campaign->enabled('journals'))
+            @if ($model->journals()->count() > 0)
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ trans('characters.show.tabs.journals') }}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @include('characters.panels.journals')
+                </div>
+            </div>
+            @endif
+        @endif
+
+        @if ($campaign->enabled('quests'))
+            @if ($model->quests()->count() > 0)
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ trans('characters.show.tabs.quests') }}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @include('characters.panels.quests')
+                </div>
+            </div>
+            @endif
+        @endif
     </div>
 </div>

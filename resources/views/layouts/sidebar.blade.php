@@ -64,27 +64,27 @@
             @endif
             @if ($campaign->enabled('families'))
             <li class="{{ $sidebar->active('families') }}">
-                <a href="{{ route('families.index') }}"><i class="fa fa-sitemap"></i> <span>{{ trans('sidebar.families') }}</span></a>
+                <a href="{{ route('families.index') }}"><i class="ra ra-double-team"></i> <span>{{ trans('sidebar.families') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('locations'))
             <li class="{{ $sidebar->active('locations') }}">
-                <a href="{{ route('locations.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.locations') }}</span></a>
+                <a href="{{ route('locations.index') }}"><i class="ra ra-tower"></i> <span>{{ trans('sidebar.locations') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('organisations'))
             <li class="{{ $sidebar->active('organisations') }}">
-                <a href="{{ route('organisations.index') }}"><i class="fa fa-user-secret"></i> <span>{{ trans('sidebar.organisations') }}</span></a>
+                <a href="{{ route('organisations.index') }}"><i class="ra ra-hood"></i> <span>{{ trans('sidebar.organisations') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('items'))
             <li class="{{ $sidebar->active('items') }}">
-                <a href="{{ route('items.index') }}"><i class="fa fa-shield"></i> <span>{{ trans('sidebar.items') }}</span></a>
+                <a href="{{ route('items.index') }}"><i class="ra ra-gem-pendant"></i> <span>{{ trans('sidebar.items') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('notes'))
             <li class="{{ $sidebar->active('notes') }}">
-                <a href="{{ route('notes.index') }}"><i class="fa fa-file"></i> <span>{{ trans('sidebar.notes') }}</span></a>
+                <a href="{{ route('notes.index') }}"><i class="ra ra-book"></i> <span>{{ trans('sidebar.notes') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('events'))
@@ -94,17 +94,17 @@
             @endif
             @if ($campaign->enabled('calendars'))
                 <li class="{{ $sidebar->active('calendars') }}">
-                    <a href="{{ route('calendars.index') }}"><i class="fa fa-calendar"></i> <span>{{ trans('sidebar.calendars') }}</span></a>
+                    <a href="{{ route('calendars.index') }}"><i class="ra ra-moon-sun"></i> <span>{{ trans('sidebar.calendars') }}</span></a>
                 </li>
             @endif
             @if ($campaign->enabled('quests'))
             <li class="{{ $sidebar->active('quests') }}">
-                <a href="{{ route('quests.index') }}"><i class="fa fa-list"></i> <span>{{ trans('sidebar.quests') }}</span></a>
+                <a href="{{ route('quests.index') }}"><i class="ra ra-wooden-sign"></i> <span>{{ trans('sidebar.quests') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('journals'))
             <li class="{{ $sidebar->active('journals') }}">
-                <a href="{{ route('journals.index') }}"><i class="fa fa-book"></i> <span>{{ trans('sidebar.journals') }}</span></a>
+                <a href="{{ route('journals.index') }}"><i class="ra ra-scroll-unfurled"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('sections'))
@@ -114,7 +114,7 @@
             @endif
             @if ($campaign->enabled('dice_rolls'))
                 <li class="{{ $sidebar->active('dice_rolls') }}">
-                    <a href="{{ route('dice_rolls.index') }}"><i class="fa fa-square"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
+                    <a href="{{ route('dice_rolls.index') }}"><i class="ra ra-perspective-dice-one"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
                 </li>
             @endif
             @can('create', 'App\Models\AttributeTemplate')

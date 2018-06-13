@@ -113,6 +113,14 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function quests()
+    {
+        return $this->hasMany('App\Models\QuestCharacter', 'character_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
         return $this->hasMany('App\Models\Item', 'character_id', 'id');
