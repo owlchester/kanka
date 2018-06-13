@@ -132,7 +132,7 @@
     </div>
 
     <div class="col-md-2">
-        @if ($campaign->enabled('items'))
+        @if ($campaign->enabled('items') && $model->items()->count() > 0)
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('characters.show.tabs.items') }}</h3>
@@ -143,22 +143,19 @@
             </div>
         </div>
         @endif
-        @if ($campaign->enabled('organisations'))
-            @if ($model->organisations()->count() > 0)
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{ trans('characters.show.tabs.organisations') }}</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        @include('characters.panels.organisations')
-                    </div>
+        @if ($campaign->enabled('organisations') && $model->organisations()->count() > 0)
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ trans('characters.show.tabs.organisations') }}</h3>
                 </div>
-            @endif
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @include('characters.panels.organisations')
+                </div>
+            </div>
         @endif
 
-        @if ($campaign->enabled('dice_rolls'))
-            @if ($model->diceRolls()->count() > 0)
+        @if ($campaign->enabled('dice_rolls') && $model->diceRolls()->count() > 0)
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('characters.show.tabs.dice_rolls') }}</h3>
@@ -168,11 +165,9 @@
                     @include('characters.panels.dice_rolls')
                 </div>
             </div>
-            @endif
         @endif
 
-        @if ($campaign->enabled('journals'))
-            @if ($model->journals()->count() > 0)
+        @if ($campaign->enabled('journals') && $model->journals()->count() > 0)
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('characters.show.tabs.journals') }}</h3>
@@ -182,11 +177,9 @@
                     @include('characters.panels.journals')
                 </div>
             </div>
-            @endif
         @endif
 
-        @if ($campaign->enabled('quests'))
-            @if ($model->quests()->count() > 0)
+        @if ($campaign->enabled('quests') && $model->quests()->count() > 0)
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('characters.show.tabs.quests') }}</h3>
@@ -196,7 +189,6 @@
                     @include('characters.panels.quests')
                 </div>
             </div>
-            @endif
         @endif
     </div>
 </div>
