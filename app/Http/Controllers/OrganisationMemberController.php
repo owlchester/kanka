@@ -36,8 +36,11 @@ class OrganisationMemberController extends Controller
     public function create(Organisation $organisation)
     {
         $this->authorize('member', $organisation);
-        return view($this->view . '.create', [
-            'model' => $organisation
+        $ajax = request()->ajax();
+
+        return view($this->view . '.' . ($ajax ? '_' : null) . 'create', [
+            'model' => $organisation,
+            'ajax' => $ajax
         ]);
     }
 
@@ -81,10 +84,12 @@ class OrganisationMemberController extends Controller
     public function edit(Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('member', $organisation);
+        $ajax = request()->ajax();
 
-        return view($this->view . '.edit', [
+        return view($this->view . '.' . ($ajax ? '_' : null) . 'edit', [
             'model' => $organisation,
-            'member' => $organisationMember
+            'member' => $organisationMember,
+            'ajax' => $ajax
         ]);
     }
 
