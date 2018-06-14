@@ -11,6 +11,7 @@
         <th>{{ trans('characters.fields.age') }}</th>
         <th>{{ trans('characters.fields.race') }}</th>
         <th>{{ trans('characters.fields.sex') }}</th>
+        <th>{{ trans('characters.fields.is_dead') }}</th>
         <th class="pull-right">
             @can('member', $model)
                 <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm">
@@ -39,6 +40,7 @@
             <td>{{ $relation->character->age }}</td>
             <td>{{ $relation->character->race }}</td>
             <td>{{ $relation->character->sex }}</td>
+            <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
             <td class="text-right">
                 @can('member', $model)
                     <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary">
