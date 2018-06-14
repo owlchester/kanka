@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('crud.permissions.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -10,6 +10,101 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
-    @include('partials.errors')
-    @include('cruds.panels.permissions')
+    @inject('permissionService', 'App\Services\PermissionService')
+    <?php $permissions = $permissionService->entityPermissions($entity); ?>
+
+    <div class="panel panel-default">
+        @if ($ajax)
+            <div class="panel-heading">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4>{{ trans('crud.permissions.title', ['name' => $entity->name]) }}</h4>
+            </div>
+        @endif
+        <div class="panel-body">
+            <p class="text-muted">{{ trans('crud.permissions.helper') }}</p>
+
+            @include('partials.errors')
+
+            {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
+            <table id="crud_permissions" class="table table-hover export-hidden">
+                <tbody>
+                <tr>
+                    <th>{{ trans('crud.permissions.fields.role') }}</th>
+                    <th>{{ trans('crud.permissions.actions.read') }}</th>
+                    <th>{{ trans('crud.permissions.actions.edit') }}</th>
+                    <th>{{ trans('crud.permissions.actions.delete') }}</th>
+                </tr>
+                @foreach (Auth::user()->campaign->roles as $role)
+                    @if (!$role->is_admin)
+                        <tr>
+                            <td>{{ $role->name }}</td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('role[' . $role->id . '][]', 'read', !empty($permissions['role'][$role->id]['read'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
+                                </label>
+                            </td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('role[' . $role->id . '][]', 'edit', !empty($permissions['role'][$role->id]['edit'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
+                                </label>
+                            </td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('role[' . $role->id . '][]', 'delete', !empty($permissions['role'][$role->id]['delete'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
+                                </label>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+                <tr>
+                    <td colspan="4">&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>{{ trans('crud.permissions.fields.member') }}</th>
+                    <th>{{ trans('crud.permissions.actions.read') }}</th>
+                    <th>{{ trans('crud.permissions.actions.edit') }}</th>
+                    <th>{{ trans('crud.permissions.actions.delete') }}</th>
+                </tr>
+                @foreach (Auth::user()->campaign->members()->with('user')->get() as $member)
+                    @if (!$member->isAdmin())
+                        <tr>
+                            <td>{{ $member->user->name }}</td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('user[' . $member->user_id . '][]', 'read', !empty($permissions['user'][$member->user_id]['read'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
+                                </label>
+                            </td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('user[' . $member->user_id . '][]', 'edit', !empty($permissions['user'][$member->user_id]['edit'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
+                                </label>
+                            </td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('user[' . $member->user_id . '][]', 'delete', !empty($permissions['user'][$member->user_id]['delete'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.allowed') }}</span>
+                                </label>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+                </tbody>
+            </table>
+
+
+            {!! Form::hidden('entity_id', $entity->id) !!}
+
+            <div class="form-group">
+                <button class="btn btn-success">{{ trans('crud.save') }}</button>
+            </div>
+
+            {!! Form::close() !!}
+
+        </div>
+    </div>
 @endsection

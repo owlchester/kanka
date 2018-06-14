@@ -33,7 +33,7 @@ class PermissionController extends Controller
         $this->authorize('permission', $entity->child);
         $ajax = request()->ajax();
 
-        return view('cruds.' . (request()->ajax() ? 'panels.' : null) . 'permissions', compact('entity', 'ajax'));
+        return view('cruds.permissions', compact('entity', 'ajax'));
     }
 
     /**

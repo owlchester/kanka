@@ -29,8 +29,9 @@ class CampaignInviteController extends Controller
     public function create(Campaign $campaign)
     {
         $this->authorize('invite', $campaign);
+        $ajax = request()->ajax();
 
-        return view('campaigns.invites.create', compact('campaign'));
+        return view('campaigns.invites.create', compact('campaign', 'ajax'));
     }
 
     /**

@@ -84,7 +84,7 @@
             @endif
             @if ($campaign->enabled('notes'))
             <li class="{{ $sidebar->active('notes') }}">
-                <a href="{{ route('notes.index') }}"><i class="ra ra-book"></i> <span>{{ trans('sidebar.notes') }}</span></a>
+                <a href="{{ route('notes.index') }}"><i class="ra ra-quill-ink"></i> <span>{{ trans('sidebar.notes') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('events'))
@@ -114,7 +114,7 @@
             @endif
             @if ($campaign->enabled('dice_rolls'))
                 <li class="{{ $sidebar->active('dice_rolls') }}">
-                    <a href="{{ route('dice_rolls.index') }}"><i class="ra ra-perspective-dice-one"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
+                    <a href="{{ route('dice_rolls.index') }}"><i class="ra ra-dice-five"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
                 </li>
             @endif
             @can('create', 'App\Models\AttributeTemplate')

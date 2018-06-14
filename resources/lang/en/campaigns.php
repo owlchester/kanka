@@ -175,6 +175,21 @@ return [
             'success'   => 'Campaign settings updated.',
         ],
         'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helpers' => [
+            'calendars' => 'A place to define the calendars of your world.',
+            'characters' => 'The people who inhabit your world.',
+            'events' => 'Holidays, festivals, disasters, birthdays, wars.',
+            'families' => 'Clans or families, their relations and their members.',
+            'menu_links' => 'Custom menu links in the side bar.',
+            'items' => 'Weapons, vehicles, relics, potions.',
+            'journals' => 'Observations written by characters, or session prep for the dungeon master.',
+            'locations' => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
+            'notes' => 'Lore, religions, history, magic, races.',
+            'organisations' => 'Cults, military units, factions, guilds.',
+            'quests' => 'To keep track of various quests with characters and locations.',
+            'categories' => 'Each entity can have a category. Categories can belong to other categories, and entries can be filtered by category.',
+            'dice_rolls' => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
+        ],
     ],
     'show'          => [
         'actions'       => [

@@ -41,7 +41,8 @@
             <th>{{ trans('campaigns.invites.fields.role') }}</th>
             <th>{{ trans('campaigns.invites.fields.created') }}</th>
             <th>
-                <a href="{{ route('campaigns.campaign_invites.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary btn-sm pull-right">
+                <a href="{{ route('campaigns.campaign_invites.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary btn-sm pull-right"
+                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaigns.campaign_invites.create', $campaign) }}">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     {{ trans('campaigns.invites.actions.add') }}
                 </a>

@@ -115,8 +115,8 @@
                     <p id="delete-confirm-text">{!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.delete_modal.close') }}</button>
-                    <button type="button" class="btn btn-danger" id="delete-confirm-submit">{{ trans('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-danger" id="delete-confirm-submit"><span class="fa fa-trash"></span> {{ trans('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>
@@ -161,6 +161,13 @@
                 {!! Form::hidden('target', null, ['id' => 'new-entity-type']) !!}
                 {!! Form::close() !!}
             </div>
+        </div>
+    </div>
+
+    <!-- Permissions Modal -->
+    <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
         </div>
     </div>
 

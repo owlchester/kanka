@@ -38,7 +38,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
         $ajax = request()->ajax();
 
-        return view($this->view . '.' . ($ajax ? '_' : null) . 'create', [
+        return view($this->view . '.create', [
             'model' => $organisation,
             'ajax' => $ajax
         ]);
@@ -86,7 +86,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
         $ajax = request()->ajax();
 
-        return view($this->view . '.' . ($ajax ? '_' : null) . 'edit', [
+        return view($this->view . '.edit', [
             'model' => $organisation,
             'member' => $organisationMember,
             'ajax' => $ajax
