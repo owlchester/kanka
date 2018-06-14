@@ -31,7 +31,12 @@ class CampaignInviteController extends Controller
         $this->authorize('invite', $campaign);
         $ajax = request()->ajax();
 
-        return view('campaigns.invites.create', compact('campaign', 'ajax'));
+        $type = request()->get('type', 'email');
+        if (!in_array($type, ['email', 'link'])) {
+            $type = 'email';
+        }
+
+        return view('campaigns.invites.create', compact('campaign', 'ajax', 'type'));
     }
 
     /**
@@ -44,10 +49,15 @@ class CampaignInviteController extends Controller
     {
         $this->authorize('invite', $campaign);
 
-        $invitation = CampaignInvite::create($request->only('email', 'role_id'));
+        $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type', 'validity'));
 
         return redirect()->route('campaigns.index', ['#member'])
-            ->with('success', trans('campaigns.invites.create.success'));
+            ->with('success_raw',
+                trans(
+                    'campaigns.invites.create.' . ($invitation->type == 'email' ? 'success' : 'link'),
+                    ['url' => route('campaigns.join', $invitation->token)]
+                )
+            );
     }
 
     /**

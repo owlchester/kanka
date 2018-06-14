@@ -16,12 +16,14 @@ class CampaignInviteObserver
     public function created(CampaignInvite $campaignInvite)
     {
         // Send email to the new user too join
-        Mail::to($campaignInvite->email)->send(
-            new CampaignInviteMail(
-                Auth::user(),
-                $campaignInvite
-            )
-        );
+        if ($campaignInvite->type == 'email') {
+            Mail::to($campaignInvite->email)->send(
+                new CampaignInviteMail(
+                    Auth::user(),
+                    $campaignInvite
+                )
+            );
+        }
     }
 
     /**
@@ -33,5 +35,11 @@ class CampaignInviteObserver
         $campaignInvite->is_active = true;
         $campaignInvite->created_by = Auth::user()->id;
         $campaignInvite->campaign_id = Auth::user()->campaign->id;
+
+        if ($campaignInvite->type == 'link') {
+            $campaignInvite->email = '';
+        } else {
+            $campaignInvite->validity = 1;
+        }
     }
 }

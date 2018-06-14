@@ -72,6 +72,10 @@ class InviteService
                 'role' => 'viewer'
             ]);
             $role->save();
+        } else {
+            // User is already part of the campaign, don't go further otherwise one user can spam the join link and
+            // use up all the available tokens (validity field).
+            return true;
         }
 
         // Add the user to a role if it's provided by the invite link
@@ -82,7 +86,15 @@ class InviteService
             ]);
         }
 
-        $invite->is_active = false;
+        // Check the type. Links have a number of usage (validity)
+        if ($invite->type == 'link') {
+            $invite->validity--;
+            if ($invite->validity <= 0) {
+                $invite->is_active = false;
+            }
+        } else {
+            $invite->is_active = false;
+        }
         $invite->save();
 
         // Notify all admins of the campaign

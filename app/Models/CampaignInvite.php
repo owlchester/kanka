@@ -20,7 +20,9 @@ class CampaignInvite extends MiscModel
         'campaign_id',
         'created_by',
         'token',
-        'is_active'
+        'is_active',
+        'type',
+        'validity',
     ];
 
     /**

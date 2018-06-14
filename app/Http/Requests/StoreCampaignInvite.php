@@ -24,9 +24,19 @@ class StoreCampaignInvite extends FormRequest
      */
     public function rules()
     {
-        return [
-            'email' => 'required|email|unique:campaign_invites,email,NULL,id,campaign_id,' . Auth::user()->campaign->id.',is_active,1',
+        $type = request()->post('type');
+
+        $rules = [
+            'type' => 'required|in:email,link',
             'role_id' => 'required|exists:campaign_roles,id',
         ];
+
+        if ($type == 'email') {
+            $rules['email'] = 'required|email|unique:campaign_invites,email,NULL,id,campaign_id,' . Auth::user()->campaign->id.',is_active,1';
+        } else {
+            $rules['validity'] = 'required|integer';
+        }
+
+        return $rules;
     }
 }

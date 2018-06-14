@@ -23,7 +23,6 @@ class CampaignUserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign.owner');
     }
 
 
@@ -68,6 +67,8 @@ class CampaignUserController extends Controller
      */
     public function update(StoreCampaignUser $request, CampaignUser $campaignUser)
     {
+        $this->authorize('invite', $campaignUser->campaign);
+
         $campaignUser->update($request->all());
         return redirect()->route('campaigns.index', ['#relation']);
     }
@@ -80,6 +81,8 @@ class CampaignUserController extends Controller
      */
     public function destroy(CampaignUser $campaignUser)
     {
+        $this->authorize('invite', $campaignUser->campaign);
+
         $campaignUser->delete();
         return redirect()->route('campaigns.index', ['#relation']);
     }

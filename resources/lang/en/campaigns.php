@@ -42,11 +42,13 @@ return [
     'invites'       => [
         'actions'       => [
             'add'   => 'Invite',
+            'link'  => 'New Link',
         ],
         'create'        => [
             'button'        => 'Invite',
             'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
+            'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'title'         => 'Invite someone to your campaign',
         ],
         'destroy'       => [
@@ -67,9 +69,18 @@ return [
             'created'   => 'Sent',
             'email'     => 'Email',
             'role'   => 'Role',
+            'validity' => 'Validity',
+            'type' => 'Type',
+        ],
+        'helpers' => [
+            'validity' => 'How many users can use this link before it is deactivated.',
         ],
         'placeholders'  => [
             'email' => 'Email address of the person you wish to invite',
+        ],
+        'types' => [
+            'email' => 'Email',
+            'link' => 'Link',
         ],
     ],
     'leave'         => [

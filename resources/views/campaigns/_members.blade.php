@@ -37,11 +37,19 @@
 
     <table id="campaign-invites" class="table table-hover table-striped">
         <tbody><tr>
+            <th>{{ trans('campaigns.invites.fields.type') }}</th>
             <th>{{ trans('campaigns.invites.fields.email') }}</th>
+            <th>{{ trans('campaigns.invites.fields.validity') }}</th>
             <th>{{ trans('campaigns.invites.fields.role') }}</th>
             <th>{{ trans('campaigns.invites.fields.created') }}</th>
-            <th>
-                <a href="{{ route('campaigns.campaign_invites.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary btn-sm pull-right"
+            <th class="text-right">
+                <a href="{{ route('campaigns.campaign_invites.create', [$campaign, 'type' => 'link']) }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaigns.campaign_invites.create', [$campaign, 'type' => 'link']) }}">
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                    {{ trans('campaigns.invites.actions.link') }}
+                </a>
+
+                <a href="{{ route('campaigns.campaign_invites.create', [$campaign]) }}" class="btn btn-primary btn-sm"
                 data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaigns.campaign_invites.create', $campaign) }}">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     {{ trans('campaigns.invites.actions.add') }}
@@ -50,7 +58,9 @@
         </tr>
         @foreach ($r = $campaign->unusedInvites()->with('role')->paginate() as $relation)
             <tr>
-                <td>{{ $relation->email }}</td>
+                <td>{{ trans('campaigns.invites.types.' . $relation->type) }}</td>
+                <td>@if($relation->type == 'email'){{ $relation->email }}@else<a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">{{ $relation->token }}</a>@endif</td>
+                <td>{{ $relation->validity }}</td>
                 <td>{{ $relation->role ? $relation->role->name : null }}</td>
                 <td>{{ $relation->elapsed('created_at') }}</td>
 
