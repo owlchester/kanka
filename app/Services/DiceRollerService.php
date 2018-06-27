@@ -16,7 +16,7 @@ class DiceRollerService
     public function roll(DiceRoll $diceRoll)
     {
         // Switch character attributes with the values
-        $query = $diceRoll->parameters;
+        $query = strtolower($diceRoll->parameters);
 
         $attributes = [];
         if ($diceRoll->character) {
