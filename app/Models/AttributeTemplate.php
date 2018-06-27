@@ -38,7 +38,12 @@ class AttributeTemplate extends MiscModel
      */
     public function apply(Entity $entity)
     {
+        $existing = array_values($entity->attributes()->pluck('name')->toArray());
         foreach ($this->entity->attributes()->get() as $attribute) {
+            // Don't re-create existing attributes.
+            if (in_array($attribute->name, $existing)) {
+                continue;
+            }
             $new  = Attribute::create([
                 'entity_id' => $entity->id,
                 'name' => $attribute->name,
