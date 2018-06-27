@@ -98,6 +98,7 @@ if (request()->route()->getName() == 'characters.random') {
                             <div class="col-md-3">
                                 {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
+                                    'maxlength' => 191,
                                     'placeholder' => trans('characters.placeholders.appearance_name')
                                 ]) !!}
                             </div>
