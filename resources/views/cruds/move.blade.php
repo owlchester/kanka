@@ -28,7 +28,7 @@
                                 <p class="help-block">{{ trans('crud.move.hints.target') }}</p>
                             </div>
 
-                            @if (Auth::user()->campaigns()->count() > 2)
+                            @if (Auth::user()->campaigns()->count() >= 2)
                                 <hr>
                                 <div class="form-group">
                                     <label>{{ trans('crud.move.fields.campaign') }}</label>
