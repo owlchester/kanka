@@ -6,6 +6,7 @@ return [
     'calendars'             => 'Calendars',
     'campaigns'             => 'Campaigns',
     'characters'            => 'Characters',
+    'custom_links'          => 'Custom Links',
     'dashboard'             => 'Dashboard',
     'dice_rolls'            => 'Dice Rolls',
     'discord'               => 'Discord',
@@ -14,6 +15,7 @@ return [
     'items'                 => 'Items',
     'journals'              => 'Journals',
     'locations'             => 'Locations',
+    'manage_links'          => 'Manage Links',
     'navigation'            => 'Navigation',
     'notes'                 => 'Notes',
     'organisations'         => 'Organisations',
@@ -26,6 +28,4 @@ return [
     'support'               => 'Support / Community',
     'team'                  => 'Team',
     'translations'          => 'Translations',
-    'custom_links'          => 'Custom Links',
-    'manage_links'          => 'Manage Links',
 ];

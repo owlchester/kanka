@@ -2,17 +2,19 @@
 
 return [
     'create'        => [
-        'success'   => 'Diario creado.',
-        'title'     => 'Crear nuevo diario',
+        'description'   => 'Crear nuevo diario',
+        'success'       => 'Diario creado.',
+        'title'         => 'Nuevo Diario',
     ],
     'destroy'       => [
         'success'   => 'Diario borrado.',
     ],
     'edit'          => [
         'success'   => 'Diario actualizado.',
-        'title'     => 'Editar Diario :name',
+        'title'     => 'Editar diario :name',
     ],
     'fields'        => [
+        'author'    => 'Autor',
         'date'      => 'Fecha',
         'history'   => 'Historia',
         'image'     => 'Imagen',
@@ -27,9 +29,10 @@ return [
         'title'         => 'Diarios',
     ],
     'placeholders'  => [
-        'date'  => 'Fecha del diario',
-        'name'  => 'Nombre del diario',
-        'type'  => 'Sesión, Borrador...',
+        'author'    => 'Quién ha escrito el diario',
+        'date'      => 'Fecha del diario',
+        'name'      => 'Nombre del diario',
+        'type'      => 'Sesión, Borrador...',
     ],
     'show'          => [
         'description'   => 'Vista detallada del diario',

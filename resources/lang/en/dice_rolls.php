@@ -7,8 +7,8 @@ return [
         'title'         => 'New Dice Roll',
     ],
     'destroy'       => [
-        'success'   => 'Dice Roll \':name\' removed.',
         'dice_roll' => 'Dice roll removed.',
+        'success'   => 'Dice Roll \':name\' removed.',
     ],
     'edit'          => [
         'description'   => 'Edit an dice Roll',
@@ -16,19 +16,19 @@ return [
         'title'         => 'Edit Dice Roll :name',
     ],
     'fields'        => [
-        'parameters'    => 'Parameters',
+        'created_at'    => 'Rolled At',
         'name'          => 'Name',
+        'parameters'    => 'Parameters',
         'results'       => 'Results',
         'rolls'         => 'Rolls',
-        'created_at'    => 'Rolled At',
     ],
     'hints'         => [
-        'parameters' => 'What are my dice options?'
+        'parameters'    => 'What are my dice options?',
     ],
     'index'         => [
         'actions'       => [
-            'dice' => 'Dice Rolls',
-            'results' => 'Results',
+            'dice'      => 'Dice Rolls',
+            'results'   => 'Results',
         ],
         'add'           => 'New Dice Roll',
         'description'   => 'Manage the dice Rolls of :name.',
@@ -36,27 +36,27 @@ return [
         'title'         => 'Dice Rolls',
     ],
     'placeholders'  => [
-        'name'  => 'Name of the Dice Roll',
-        'parameters' => '4d6+3',
         'dice_roll' => 'Dice Roll',
+        'name'      => 'Name of the Dice Roll',
+        'parameters'=> '4d6+3',
     ],
-    'results' => [
-        'success' => 'Dice rolled.',
-        'error' => 'Dice roll unsuccessful. Can\'t parse the parameters.',
-        'fields' => [
-            'creator' => 'Creator',
-            'result' => 'Result',
-            'date' => 'Date',
+    'results'       => [
+        'actions'   => [
+            'add'   => 'Roll',
         ],
-        'hint' => 'All the rolls done for this dice roll template.',
-        'actions' => [
-            'add' => 'Roll',
-        ]
+        'error'     => 'Dice roll unsuccessful. Can\'t parse the parameters.',
+        'fields'    => [
+            'creator'   => 'Creator',
+            'date'      => 'Date',
+            'result'    => 'Result',
+        ],
+        'hint'      => 'All the rolls done for this dice roll template.',
+        'success'   => 'Dice rolled.',
     ],
     'show'          => [
         'description'   => 'A detailed view of a Dice Roll',
         'tabs'          => [
-            'results'    => 'Results',
+            'results'   => 'Results',
         ],
         'title'         => 'Dice Roll :name',
     ],

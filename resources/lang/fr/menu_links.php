@@ -10,8 +10,9 @@ return [
         'success'   => 'Lien de menu \':name\' retiré.',
     ],
     'edit'          => [
-        'success'   => 'Lien de menu \':name\' modifié.',
-        'title'     => 'Lien de menu :name',
+        'description'   => 'Modification du lien de menu.',
+        'success'       => 'Lien de menu \':name\' modifié.',
+        'title'         => 'Lien de menu :name',
     ],
     'fields'        => [
         'entity'    => 'Entité',

@@ -77,7 +77,7 @@ return [
             'add_character' => 'Add a character',
             'add_location'  => 'Add a location',
         ],
-        'description'   => 'A detailed view of an quest',
+        'description'   => 'A detailed view of a quest',
         'tabs'          => [
             'characters'    => 'Characters',
             'information'   => 'Information',

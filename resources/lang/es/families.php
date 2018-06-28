@@ -2,15 +2,16 @@
 
 return [
     'create'        => [
-        'success'   => 'Familia \':name\' creada.',
-        'title'     => 'Crear una nueva familia',
+        'description'   => 'Crear nueva familia',
+        'success'       => 'Familia \':name\' creada.',
+        'title'         => 'Crear una nueva familia',
     ],
     'destroy'       => [
         'success'   => 'Familia \':name\' borrada.',
     ],
     'edit'          => [
         'success'   => 'Familia \':name\' actualizada.',
-        'title'     => 'Editar Familia \':name\'',
+        'title'     => 'Editar familia \':name\'',
     ],
     'fields'        => [
         'history'   => 'Biografia',
@@ -18,11 +19,14 @@ return [
         'location'  => 'Procedencia',
         'members'   => 'Miembros',
         'name'      => 'Nombre',
-        'relation'  => 'Vinculos',
+        'relation'  => 'Vínculos',
+    ],
+    'hints'         => [
+        'members'   => 'Aquí se enumeran los miembros de una familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
     ],
     'index'         => [
         'add'           => 'Nueva Familia',
-        'description'   => 'Gestionar las familias de :name.',
+        'description'   => 'Administrar las familias de :name.',
         'header'        => 'Familias de :name',
         'title'         => 'Familias',
     ],
@@ -31,11 +35,11 @@ return [
         'name'      => 'Nombre de la familia',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de una familia',
+        'description'   => 'Vista detallada de la familia',
         'tabs'          => [
             'history'   => 'Biografía',
             'member'    => 'Miembros',
-            'relation'  => 'Vinculos',
+            'relation'  => 'Vínculos',
         ],
         'title'         => 'Familia :name',
     ],

@@ -2,25 +2,30 @@
 
 return [
     'create'        => [
-        'success'   => 'Nota \':name\' creada.',
-        'title'     => 'Crear nueva nota',
+        'description'   => 'Crear nueva nota',
+        'success'       => 'Nota \':name\' creada.',
+        'title'         => 'Nueva Nota',
     ],
     'destroy'       => [
-        'success'   => 'Nota \':name\' borrada.',
+        'success'   => 'Nota \':name\' eliminada.',
     ],
     'edit'          => [
         'success'   => 'Nota \':name\' actualizada.',
-        'title'     => 'Editar Nota :name',
+        'title'     => 'Editar nota :name',
     ],
     'fields'        => [
         'description'   => 'Descripción',
         'image'         => 'Imagen',
+        'is_pinned'     => 'Fijada',
         'name'          => 'Nombre',
         'type'          => 'Tipo',
     ],
+    'hints'         => [
+        'is_pinned' => 'Se pueden fijar hasta 3 notas para que se muestren en el tablero.',
+    ],
     'index'         => [
         'add'           => 'Nueva Nota',
-        'description'   => 'Gestionar las notas de :name.',
+        'description'   => 'Administrar las notas de :name.',
         'header'        => 'Notas de :name',
         'title'         => 'Notas',
     ],

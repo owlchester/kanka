@@ -20,6 +20,7 @@ return [
     'journals'              => 'Journals',
     'location'              => 'Location',
     'locations'             => 'Locations',
+    'menu_links'            => 'Menu Links',
     'note'                  => 'Note',
     'notes'                 => 'Notes',
     'organisation'          => 'Organisation',
@@ -28,5 +29,4 @@ return [
     'quests'                => 'Quests',
     'section'               => 'Category',
     'sections'              => 'Categories',
-    'menu_links'            => 'Menu Links',
 ];

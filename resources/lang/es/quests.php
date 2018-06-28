@@ -3,16 +3,17 @@
 return [
     'characters'    => [
         'create'    => [
-            'description'   => 'Poner personaje en una Misión',
+            'description'   => 'Poner personaje en una misión',
             'success'       => 'Personaje añadido a :name.',
-            'title'         => 'Nuevo Personaje para :name',
+            'title'         => 'Nuevo personaje para :name',
         ],
         'destroy'   => [
             'success'   => 'Personaje de misión para :name eliminado.',
         ],
         'edit'      => [
-            'success'   => 'Personaje de misión para :name actualizado.',
-            'title'     => 'Actualizar personaje para :name',
+            'description'   => 'Actualizar personaje de la misión',
+            'success'       => 'Personaje de misión para :name actualizado.',
+            'title'         => 'Actualizar personaje para :name',
         ],
         'fields'    => [
             'character'     => 'Personaje',
@@ -20,42 +21,45 @@ return [
         ],
     ],
     'create'        => [
-        'success'   => 'Misión \':name\' creada.',
-        'title'     => 'Crear nueva misión',
+        'description'   => 'Crear nueva misión',
+        'success'       => 'Misión \':name\' creada.',
+        'title'         => 'Nueva Misión',
     ],
     'destroy'       => [
         'success'   => 'Misión \':name\' borrada.',
     ],
     'edit'          => [
-        'success'   => 'Misión \':name\' actualizada.',
-        'title'     => 'Editar Misión :name',
+        'description'   => 'Editar misión',
+        'success'       => 'Misión \':name\' actualizada.',
+        'title'         => 'Editar misión :name',
     ],
     'fields'        => [
         'characters'    => 'Personajes',
         'description'   => 'Descripción',
         'image'         => 'Imagen',
-        'locations'     => 'Localización',
+        'locations'     => 'Localizaciones',
         'name'          => 'Nombre',
         'type'          => 'Tipo',
     ],
     'index'         => [
         'add'           => 'Nueva Misión',
-        'description'   => 'Gestionar las misiones de :name.',
+        'description'   => 'Administrar las misiones de :name.',
         'header'        => 'Misiones de :name',
         'title'         => 'Misiones',
     ],
     'locations'     => [
         'create'    => [
-            'description'   => 'Seleccionar una localización para la Misión',
+            'description'   => 'Seleccionar una localización para la misión',
             'success'       => 'Localización añadida a :name.',
-            'title'         => 'Nueva Localización para :name',
+            'title'         => 'Nueva localización para :name',
         ],
         'destroy'   => [
             'success'   => 'Localización de la misión :name eliminada.',
         ],
         'edit'      => [
-            'success'   => 'Localización de la misión :name actualizada.',
-            'title'     => 'Actualizar localizacion para :name',
+            'description'   => 'Actualizar la localización de una misión',
+            'success'       => 'Localización de la misión :name actualizada.',
+            'title'         => 'Actualizar localización para :name',
         ],
         'fields'    => [
             'description'   => 'Descripción',
@@ -68,8 +72,8 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character' => 'Añadir un personaje',
-            'add_location'  => 'Añadir una localización',
+            'add_character' => 'Añadir personaje',
+            'add_location'  => 'Añadir localización',
         ],
         'description'   => 'Vista detallada de la misión',
         'tabs'          => [

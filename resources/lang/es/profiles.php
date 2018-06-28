@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'avatar'        => [
+        'success'   => 'Avatar actualizado.',
+    ],
     'description'   => 'Actualiza los detalles de tu perfil',
     'edit'          => [
         'success'   => 'Perfil actualizado',
@@ -13,6 +16,7 @@ return [
         'new_password_confirmation' => 'Confirmar nueva contraseña',
         'newsletter'                => 'Me gustaría recibir noticias de la web por correo electrónico.',
         'password'                  => 'Contraseña actual',
+        'theme'                     => 'Tema',
     ],
     'password'      => [
         'success'   => 'Contraseña actualizada',
@@ -32,6 +36,13 @@ return [
         ],
         'password'  => [
             'title' => 'Cambia tu contraseña',
+        ],
+    ],
+    'theme'         => [
+        'success'   => 'Tema cambiado.',
+        'themes'    => [
+            'default'   => 'Por defecto',
+            'future'    => 'Futuro',
         ],
     ],
     'title'         => 'Actualizar perfil',

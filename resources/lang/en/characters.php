@@ -14,7 +14,7 @@ return [
         'success'   => 'Character \':name\' removed.',
     ],
     'dice_rolls'    => [
-        'hint'     => 'Dice rolls can be assigned to a character for in game usage.',
+        'hint'  => 'Dice rolls can be assigned to a character for in game usage.',
     ],
     'edit'          => [
         'description'   => 'Edit a character',
@@ -32,6 +32,7 @@ return [
         'height'                    => 'Height',
         'history'                   => 'History',
         'image'                     => 'Image',
+        'is_dead'                   => 'Dead',
         'is_personality_visible'    => 'Personality visible',
         'languages'                 => 'Languages',
         'location'                  => 'Location',
@@ -46,7 +47,6 @@ return [
         'traits'                    => 'Traits',
         'type'                      => 'Type',
         'weight'                    => 'Weight',
-        'is_dead'                   => 'Dead',
     ],
     'helpers'       => [
         'free'  => 'Where did the "Free" field go? If this character had one, it\'s been moved over to the new Notes tab!',
@@ -135,10 +135,8 @@ return [
             'free'          => 'Free Text',
             'history'       => 'History',
             'items'         => 'Items',
-            'journals'      => 'Journals',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
-            'quests'        => 'Quests',
         ],
         'title'         => 'Character :name',
     ],

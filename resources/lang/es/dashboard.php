@@ -1,18 +1,25 @@
 <?php
 
 return [
-    'campaigns'     => [
+    'campaigns'         => [
         'current'   => 'Campaña actual',
         'manage'    => 'Gestionar campañas',
     ],
-    'description'   => 'Tu plaza creativa',
-    'recent'        => [
+    'description'       => 'Tu plaza creativa',
+    'latest_release'    => 'Publicación reciente',
+    'notifications'     => [
+        'modal' => [
+            'confirm'   => 'Entendido',
+            'title'     => 'Notificación importante',
+        ],
+    ],
+    'recent'            => [
         'add'           => 'Crear nuevo :name',
         'no_entries'    => 'Actualmente no hay entradas de este tipo.',
         'title'         => ':name recientemente modificados',
         'view'          => 'Ver todos los :name',
     ],
-    'settings'      => [
+    'settings'          => [
         'description'   => 'Personaliza lo que ves en tu tablero',
         'edit'          => [
             'success'   => 'Se han guardado tus modificaciones.',
@@ -23,5 +30,5 @@ return [
         ],
         'title'         => 'Ajustes del Tablero',
     ],
-    'title'         => 'Tablero',
+    'title'             => 'Tablero',
 ];

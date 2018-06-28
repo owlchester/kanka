@@ -5,11 +5,11 @@ return [
         'back'      => 'Back',
         'copy'      => 'Copy',
         'export'    => 'Export',
+        'more'      => 'More Actions',
         'move'      => 'Move',
         'new'       => 'New',
         'private'   => 'Private',
         'public'    => 'Public',
-        'more'      => 'More Actions',
     ],
     'add'           => 'Add',
     'attributes'    => [
@@ -86,6 +86,7 @@ return [
     'export'        => 'Export',
     'fields'        => [
         'character'     => 'Character',
+        'creator'       => 'Creator',
         'description'   => 'Description',
         'dice_roll'     => 'Dice Roll',
         'entity'        => 'Entity',
@@ -99,7 +100,6 @@ return [
         'name'          => 'Name',
         'organisation'  => 'Organisation',
         'section'       => 'Category',
-        'creator'       => 'Creator',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',

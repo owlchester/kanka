@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Objeto \':name\' creado.',
-        'title'     => 'Crear objeto nuevo',
+        'description'   => 'Crear nuevo objeto',
+        'success'       => 'Objeto \':name\' creado.',
+        'title'         => 'Nuevo Objeto',
     ],
     'destroy'       => [
         'success'   => 'Objeto \':name\' borrado.',

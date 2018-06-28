@@ -2,15 +2,16 @@
 
 return [
     'create'        => [
-        'success'   => 'Organización \':name\' creada.',
-        'title'     => 'Crear nueva organización',
+        'description'   => 'Crear nueva organización',
+        'success'       => 'Organización \':name\' creada.',
+        'title'         => 'Nueva Organización',
     ],
     'destroy'       => [
         'success'   => 'Organización \':name\' borrada.',
     ],
     'edit'          => [
         'success'   => 'Organización \':name\' actualizada.',
-        'title'     => 'Editar Organización \':name\'',
+        'title'     => 'Editar organización \':name\'',
     ],
     'fields'        => [
         'history'   => 'Historia',
@@ -18,12 +19,12 @@ return [
         'location'  => 'Lugar',
         'members'   => 'Miembros',
         'name'      => 'Nombre',
-        'relation'  => 'Vinculo',
+        'relation'  => 'Vínculo',
         'type'      => 'Tipo',
     ],
     'index'         => [
         'add'           => 'Nueva Organización',
-        'description'   => 'Gestionar las organizaciones de :name.',
+        'description'   => 'Administrar las organizaciones de :name.',
         'header'        => 'Organizaciones de :name',
         'title'         => 'Organizaciones',
     ],
@@ -34,22 +35,23 @@ return [
         'create'        => [
             'description'   => 'Añadir miembro a la organización',
             'success'       => 'Miembro añadido a la organización',
-            'title'         => 'Nuevo Miembro para :name',
+            'title'         => 'Nuevo miembro para :name',
         ],
         'destroy'       => [
             'success'   => 'Miembro borrado de la organización',
         ],
         'edit'          => [
             'success'   => 'Miembro actualizado',
-            'title'     => 'Actualizar Miembro de :name',
+            'title'     => 'Actualizar miembro de :name',
         ],
         'fields'        => [
             'character' => 'Personaje',
             'role'      => 'Rol',
         ],
+        'hint'          => 'Muchas organizaciones necesitan miembros para funcionar bien.',
         'placeholders'  => [
             'character' => 'Elegir personaje',
-            'role'      => 'Lider, Miembro, Maestro de Espias, Septón Supremo...',
+            'role'      => 'Líder, Miembro, Maestro de Espías, Septón Supremo...',
         ],
     ],
     'placeholders'  => [
@@ -58,11 +60,11 @@ return [
         'type'      => 'Culto, banda, Rebelión, Gremio...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de una organización',
+        'description'   => 'Vista detallada de la organización',
         'tabs'          => [
             'history'   => 'Historia',
             'members'   => 'Miembros',
-            'relations' => 'Vinculos',
+            'relations' => 'Vínculos',
         ],
         'title'         => 'Organización :name',
     ],

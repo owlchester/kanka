@@ -15,8 +15,8 @@ return [
         'title'         => 'Menu Link :name',
     ],
     'fields'        => [
-        'name' => 'Name',
-        'entity' => 'Entity',
+        'entity'    => 'Entity',
+        'name'      => 'Name',
     ],
     'index'         => [
         'add'           => 'New Menu Link',

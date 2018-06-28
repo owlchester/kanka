@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'map'           => [
+    'map'   => [
         'points'    => [
-            'fields'        => [
+            'fields'    => [
                 'colour'    => 'Color',
             ],
         ],
