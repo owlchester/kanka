@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\ElapsedTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Entity
@@ -19,6 +21,7 @@ use DateTime;
  */
 class Entity extends Model
 {
+
     /**
      * @var array
      */
@@ -35,6 +38,8 @@ class Entity extends Model
      * Traits
      */
     use CampaignTrait;
+    use BlameableTrait;
+    use ElapsedTrait;
 
     /**
      * Searchable fields

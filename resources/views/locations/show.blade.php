@@ -1,7 +1,5 @@
 <div class="row">
     <div class="col-md-3">
-
-        <!-- Profile Image -->
         <div class="box">
             <div class="box-body box-profile">
                 @include ('cruds._image')
@@ -35,20 +33,7 @@
                 </ul>
                 @include('.cruds._actions')
             </div>
-            <!-- /.box-body -->
         </div>
-        <!-- /.box -->
-
-        <!-- About Me Box -->
-        <!--<div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title"></h3>
-            </div>
-            <div class="box-body">
-
-            </div>
-        </div>-->
-        <!-- /.box -->
     </div>
 
     <div class="col-md-9">
@@ -106,5 +91,6 @@
             </div>
         </div>
         <!-- actions -->
+        @include('cruds.boxes.history')
     </div>
 </div>

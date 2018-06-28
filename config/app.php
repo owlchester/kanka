@@ -180,6 +180,7 @@ return [
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        RichanFongdasen\EloquentBlameable\ServiceProvider::class,
 
         /*
          * Application Service Providers...
