@@ -77,6 +77,22 @@ class Character extends MiscModel
     protected $searchableColumns  = ['name', 'title', 'history'];
 
     /**
+     * Casting for order by
+     * @var array
+     */
+    protected $orderCasting = [
+        'age' => 'unsigned'
+    ];
+
+    /**
+     * Explicit filters
+     * @var array
+     */
+    protected $explicitFilters = [
+        'sex'
+    ];
+
+    /**
      * Performance with for datagrids
      * @param $query
      * @return mixed

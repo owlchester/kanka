@@ -43,6 +43,20 @@ abstract class MiscModel extends Model
     protected $filterableColumns = [];
 
     /**
+     * Casting order for mysql.
+     * Ex. ['age' => 'unsigned']
+     * @var array
+     */
+    protected $orderCasting = [];
+
+    /**
+     * Explicit fields for filtering.
+     * Ex. ['sex']
+     * @var array
+     */
+    protected $explicitFilters = [];
+
+    /**
      * Field used for tooltips
      * @var string
      */
@@ -143,7 +157,11 @@ abstract class MiscModel extends Model
                         ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
                         ->where(str_replace($relationName, 'f', str_replace('-', '.', $key)), $like, "%$filterValue%");
                 } else {
-                    $query->where($this->getTable() . '.' . $key, $like, "%$filterValue%");
+                    if (in_array($key, $this->explicitFilters)) {
+                        $query->where($this->getTable() . '.' . $key, $like, "$filterValue");
+                    } else {
+                        $query->where($this->getTable() . '.' . $key, $like, "%$filterValue%");
+                    }
                 }
             }
         }
@@ -250,6 +268,10 @@ abstract class MiscModel extends Model
                     ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
                     ->orderBy(str_replace($relationName, 'f', $field), $direction);
             } else {
+                // If the field has a casting
+                if (!empty($this->orderCasting[$field])) {
+                    return $query->orderByRaw('cast(' . $this->getTable() . '.' . $field . ' as ' . $this->orderCasting[$field] . ')', $direction);
+                }
                 return $query->orderBy($this->getTable() . '.' . $field, $direction);
             }
         }
