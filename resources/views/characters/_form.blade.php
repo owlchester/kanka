@@ -109,7 +109,7 @@ if (request()->route()->getName() == 'characters.random') {
                                 ]) !!}
                             </div>
                             <div class="col-md-1">
-                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                <a class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -135,7 +135,7 @@ if (request()->route()->getName() == 'characters.random') {
                                 ]) !!}
                             </div>
                             <div class="col-md-1">
-                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                <a class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -188,7 +188,7 @@ if (request()->route()->getName() == 'characters.random') {
                                 ]) !!}
                             </div>
                             <div class="col-md-1">
-                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                <a class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -215,7 +215,7 @@ if (request()->route()->getName() == 'characters.random') {
                                 ]) !!}
                             </div>
                             <div class="col-md-1">
-                                <a href="#" class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
+                                <a class="personality-delete btn btn-danger pull-right" title="{{ trans('crud.remove') }}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>

@@ -92,7 +92,7 @@ abstract class MiscModel extends Model
         $pureHistory = htmlspecialchars(trim(strip_tags($this->{$this->tooltipField})));
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
-                return substr($pureHistory, 0, $limit) . '...';
+                return mb_substr($pureHistory, 0, $limit) . '...';
             }
         }
         return $pureHistory;
