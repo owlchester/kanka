@@ -68,7 +68,7 @@ return [
         */
 
         'HTML.Allowed' =>
-            'big,small,h1,h2,h3,h4,h5,h6,div,ins,del,pre,blockquote,sup,sub,hr,caption,'
+            'big,small,h1,h2,h3,h4,h5,h6,div[style],ins,del,pre,blockquote,sup,sub,hr,caption,'
             . 'strong,em,b,ul,ol,li,p,i,br,'
             . 'img[src|style|alt|width|height],'
             . 'a[href|target|title|data-toggle],'
