@@ -47,7 +47,7 @@
                             <strong>{{ trans('languages.codes.en-US') }}</strong>: Oriek
                         </p>
                         <p>
-                            <strong>{{ trans('languages.codes.es') }}</strong>: Raigho
+                            <strong>{{ trans('languages.codes.es') }}</strong>: Raigho, Helionking
                         </p>
                         <p>
                             <strong>{{ trans('languages.codes.pt-BR') }}</strong>: Republik
