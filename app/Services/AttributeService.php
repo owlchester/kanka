@@ -15,6 +15,7 @@ class AttributeService
             $existing[$att->id] = $att;
         }
 
+        $order = 0;
         foreach ($data['name'] as $id => $name) {
             $value = $data['value'][$id];
             $isPrivate = !empty($data['is_private'][$id]);
@@ -25,10 +26,12 @@ class AttributeService
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
+                /** @var \App\Models\Attribute $attribute */
                 $attribute = $existing[$id];
                 $attribute->name = $name;
                 $attribute->value = $value;
                 $attribute->is_private = $isPrivate;
+                $attribute->default_order = $order;
                 $attribute->save();
 
                 // Remove it from the list of existing ids so it doesn't get deleted
@@ -39,8 +42,11 @@ class AttributeService
                     'name' => $name,
                     'value' => $value,
                     'is_private' => $isPrivate,
+                    'default_order' => $order,
                 ]);
             }
+
+            $order++;
         }
 
         // Remaining existing have been deleted

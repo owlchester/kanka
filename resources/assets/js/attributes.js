@@ -27,6 +27,9 @@ function initAttributeUI()
  * This function rebinds the delete on all buttons
  */
 function initAttributeDelete() {
+
+    $('.entity-attributes').sortable();
+
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function() {

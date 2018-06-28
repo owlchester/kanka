@@ -14,6 +14,7 @@ use DateTime;
  * @property integer $entity_id
  * @property string $name
  * @property string $value
+ * @property integer $default_order
  * @property boolean $is_private
  */
 class Attribute extends Model
@@ -26,6 +27,7 @@ class Attribute extends Model
         'name',
         'value',
         'is_private',
+        'default_order',
     ];
 
     /**

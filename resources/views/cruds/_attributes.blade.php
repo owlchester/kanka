@@ -15,7 +15,7 @@
         </a>
     </p>
 @endcan
-<?php $r = $model->entity->attributes()->order(request()->get('order'))->paginate(); ?>
+<?php $r = $model->entity->attributes()->order(request()->get('order'), 'default_order')->paginate(); ?>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.attributes') }}</p>
 <table id="crud_attributes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
