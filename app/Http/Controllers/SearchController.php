@@ -116,7 +116,10 @@ class SearchController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+            // Force there to be a child! There seems to be a bug where deleted entities still have a row in the "entities" table.
+            if ($model->child) {
+                $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+            }
         }
 
         return Response::json($formatted);
@@ -138,7 +141,10 @@ class SearchController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
-            $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+            // Force having a child for "ghost" entities.
+            if ($model->child) {
+                $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+            }
         }
 
         return Response::json($formatted);
@@ -161,13 +167,16 @@ class SearchController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
-            $formatted[] = [
-                'id' => $model->id,
-                'fullname' => $model->name,
-                'name' => (!empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : null) . $model->name . ' (' . trans('entities.' . $model->type) . ')',
-                'tooltip' => $model->tooltip(),
-                'url' => route($model->pluralType() . '.show', $model->entity_id
-                )];
+            // Force having a child for "ghost" entities.
+            if ($model->child) {
+                $formatted[] = [
+                    'id' => $model->id,
+                    'fullname' => $model->name,
+                    'name' => (!empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : null) . $model->name . ' (' . trans('entities.' . $model->type) . ')',
+                    'tooltip' => $model->tooltip(),
+                    'url' => route($model->pluralType() . '.show', $model->entity_id)
+                ];
+            }
         }
 
         return Response::json($formatted);
@@ -189,14 +198,18 @@ class SearchController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
-            $formatted[] = [
-                'id' => $model->id,
-                'fullname' => $model->name,
-                'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
-                'name' => $model->name,
-                'type' => trans('entities.' . $model->type),
-                'tooltip' => $model->tooltip(),
-                'url' => route($model->pluralType() . '.show', $model->entity_id)];
+            // Force having a child for "ghost" entities.
+            if ($model->child) {
+                $formatted[] = [
+                    'id' => $model->id,
+                    'fullname' => $model->name,
+                    'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
+                    'name' => $model->name,
+                    'type' => trans('entities.' . $model->type),
+                    'tooltip' => $model->tooltip(),
+                    'url' => route($model->pluralType() . '.show', $model->entity_id)
+                ];
+            }
         }
 
         return Response::json($formatted);

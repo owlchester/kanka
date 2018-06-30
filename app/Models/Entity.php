@@ -38,7 +38,6 @@ class Entity extends Model
      * Traits
      */
     use CampaignTrait;
-    use BlameableTrait;
     use ElapsedTrait;
 
     /**
