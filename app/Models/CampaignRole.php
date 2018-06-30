@@ -70,6 +70,7 @@ class CampaignRole extends Model
         if (empty($permissions)) {
             $permissions = [];
         }
+
         foreach ($permissions as $key => $value) {
             // Check if exists
             if (isset($existing[$key])) {
@@ -86,7 +87,10 @@ class CampaignRole extends Model
 
         // Delete existing that weren't updated
         foreach ($existing as $permission) {
-            $permission->delete();
+            // Only delete if it's a "general" and not an entity specific permission
+            if (!is_numeric($permission->entityId())) {
+                $permission->delete();
+            }
         }
     }
 }

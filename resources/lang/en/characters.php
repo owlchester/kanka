@@ -137,6 +137,7 @@ return [
             'items'         => 'Items',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Character :name',
     ],

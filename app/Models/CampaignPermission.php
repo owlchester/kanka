@@ -55,6 +55,9 @@ class CampaignPermission extends Model
         return $segments[count($segments)-1];
     }
 
+    /**
+     * @return mixed
+     */
     public function action()
     {
         $segments = explode('_', $this->key);
