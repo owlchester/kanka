@@ -100,6 +100,7 @@ return [
         'name'          => 'Name',
         'organisation'  => 'Organisation',
         'section'       => 'Category',
+        'attribute_template' => 'Attribute Template',
     ],
     'filter'        => 'Filter',
     'filters'       => 'Filters',
