@@ -32,6 +32,7 @@ class StoreCalendar extends FormRequest
             'weekday' => 'required|array|min:2',
             'year_name' => 'required|array',
             'section_id' => 'integer|exists:sections,id',
+            'template_id' => 'exists:attribute_templates,id',
         ];
 
         $leapYear = request()->post('has_leap_year');

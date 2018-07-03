@@ -29,6 +29,7 @@ class StoreFamily extends FormRequest
             'section_id' => 'integer|exists:sections,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'image_url' => 'nullable|url|active_url',
+            'template_id' => 'exists:attribute_templates,id',
         ];
     }
 }

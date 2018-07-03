@@ -16,17 +16,8 @@
                     <label>{{ trans('sections.fields.type') }}</label>
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('sections.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::select2(
-                        'section_id',
-                        (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
-                        App\Models\Section::class,
-                        true,
-                        'crud.fields.section',
-                        'sections.find',
-                        'sections.placeholders.section'
-                    ) !!}
-                </div>
+                @include('cruds.fields.section')
+                @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())
                     <hr>
@@ -62,9 +53,4 @@
     </div>
 </div>
 
-
-<div class="form-group">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
-    {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-</div>
+@include('cruds.fields.save')

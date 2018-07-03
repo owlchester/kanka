@@ -35,26 +35,9 @@ if (request()->route()->getName() == 'characters.random') {
                     ) !!}
                 </div>
                 @endif
-                @if ($campaign->enabled('locations'))
-                    <div class="form-group">
-                        {!! Form::select2(
-                            'location_id',
-                            (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
-                            App\Models\Location::class,
-                            true
-                        ) !!}
-                    </div>
-                @endif
-                @if ($campaign->enabled('sections'))
-                    <div class="form-group">
-                        {!! Form::select2(
-                            'section_id',
-                            (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
-                            App\Models\Section::class,
-                            true
-                        ) !!}
-                    </div>
-                @endif
+                @include('cruds.fields.location')
+                @include('cruds.fields.section')
+                @include('cruds.fields.attribute_template')
                 <div class="form-group">
                     <label>{{ trans('characters.fields.race') }}</label>
                     {!! Form::text('race', ($isRandom ? $random->generate('race') : $formService->prefill('race', $source)), ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
@@ -242,10 +225,4 @@ if (request()->route()->getName() == 'characters.random') {
     </div>
 </div>
 
-<div class="col-md-12">
-    <div class="form-group">
-        <button class="btn btn-success">{{ trans('crud.save') }}</button>
-        <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
-        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-    </div>
-</div>
+@include('cruds.fields.save')

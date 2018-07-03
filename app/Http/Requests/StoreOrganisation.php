@@ -30,6 +30,7 @@ class StoreOrganisation extends FormRequest
             'location_id' => 'integer|exists:locations,id',
             'section_id' => 'integer|exists:sections,id',
             'image_url' => 'nullable|url|active_url',
+            'template_id' => 'exists:attribute_templates,id',
         ];
     }
 }

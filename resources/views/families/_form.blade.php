@@ -13,26 +13,9 @@
                     <label>{{ trans('families.fields.name') }}</label>
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                @if ($campaign->enabled('locations'))
-                <div class="form-group">
-                    {!! Form::select2(
-                        'location_id',
-                        (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
-                        App\Models\Location::class,
-                        true
-                    ) !!}
-                </div>
-                @endif
-                @if ($campaign->enabled('sections'))
-                    <div class="form-group">
-                        {!! Form::select2(
-                            'section_id',
-                            (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
-                            App\Models\Section::class,
-                            true
-                        ) !!}
-                    </div>
-                @endif
+                @include('cruds.fields.location')
+                @include('cruds.fields.section')
+                @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())
                     <hr>
@@ -68,9 +51,4 @@
     </div>
 </div>
 
-
-<div class="form-group">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
-    {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-</div>
+@include('cruds.fields.save')

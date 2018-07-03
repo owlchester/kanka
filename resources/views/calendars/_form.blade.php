@@ -20,16 +20,8 @@
                     <label>{{ trans('calendars.fields.suffix') }}</label>
                     {!! Form::text('suffix', $formService->prefill('suffix', $source), ['placeholder' => trans('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                @if ($campaign->enabled('sections'))
-                    <div class="form-group">
-                        {!! Form::select2(
-                            'section_id',
-                            (isset($model) && $model->section ? $model->section : $formService->prefillSelect('section', $source)),
-                            App\Models\Section::class,
-                            true
-                        ) !!}
-                    </div>
-                @endif
+                @include('cruds.fields.section')
+                @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())
                     <hr>
@@ -313,8 +305,4 @@
     </div>
 </div>
 
-<div class="form-group">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    <button class="btn btn-default" name="submit-new">{{ trans('crud.save_and_new') }}</button>
-    {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-</div>
+@include('cruds.fields.save')

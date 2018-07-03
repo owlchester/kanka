@@ -40,6 +40,7 @@ class StoreCharacter extends FormRequest
             'title' => 'nullable|max:191',
             'languages' => 'nullable|max:191',
             'image_url' => 'nullable|url|active_url',
+            'template_id' => 'exists:attribute_templates,id',
         ];
     }
 }

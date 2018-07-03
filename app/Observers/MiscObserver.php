@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\AttributeTemplate;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\ImageService;
@@ -96,6 +97,12 @@ abstract class MiscObserver
         // Once saved, refresh the model so that we can call $model->entity
         if ($entity->save()) {
             $model->refresh();
+        }
+
+        // Attribute templates
+        if (request()->has('template_id')) {
+            $template = AttributeTemplate::findOrFail(request()->get('template_id'));
+            $template->apply($entity);
         }
     }
 

@@ -106,6 +106,7 @@ return [
     'hidden'        => 'Hidden',
     'hints'         => [
         'is_private'    => 'Hide from non "Admin" users.',
+        'attribute_template' => 'Apply an attribute template directly when creating this entity.',
     ],
     'history'       => [
         'created' => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -181,6 +182,7 @@ return [
         'history'               => 'History',
         'move'                  => 'Move',
         'system'                => 'System',
+        'attribute_template' => 'Attribute Template',
     ],
     'permissions'   => [
         'action'    => 'Action',
