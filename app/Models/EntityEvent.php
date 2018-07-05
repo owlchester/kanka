@@ -13,6 +13,7 @@ use App\Traits\VisibleTrait;
  * @property integer $entity_id
  * @property integer $calendar_id
  * @property string $date
+ * @property integer $length
  * @property string $comment
  * @property boolean $is_recurring
  * @property boolean $is_private
@@ -39,7 +40,15 @@ class EntityEvent extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['calendar_id', 'entity_id', 'date', 'comment', 'is_recurring'];
+    protected $fillable = [
+        'calendar_id',
+        'entity_id',
+        'date',
+        'length',
+        'comment',
+        'is_recurring',
+        'recurring_until'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

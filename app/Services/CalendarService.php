@@ -27,8 +27,10 @@ class CalendarService
             $link->calendar_id = $calendar->id;
             $link->entity_id = $entity->id;
             $link->date = $data['date'];
+            $link->length = $data['length'];
             $link->comment = Purify::clean($data['comment']);
             $link->is_recurring = array_get($data, 'is_recurring', false);
+            $link->recurring_until = array_get($data, 'recurring_until', null);
             if ($link->save()) {
                 return $link;
             }
@@ -51,7 +53,7 @@ class CalendarService
             if ($event->save()) {
                 return $event->entity;
             }
-        } elseif(!empty($data['entity_id'])) {
+        } elseif (!empty($data['entity_id'])) {
             return Entity::findOrFail($data['entity_id']);
         }
 

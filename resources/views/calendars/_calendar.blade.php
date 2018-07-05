@@ -88,16 +88,34 @@
                     </div>
                 </div>
 
+                <hr>
+
                 <div class="form-group">
                     <label>{{ trans('calendars.fields.comment') }}</label>
                     {!! Form::text('comment', null, ['placeholder' => trans('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
 
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>
+                                {!! Form::checkbox('is_recurring') !!}
+                                {{ trans('calendars.fields.is_recurring') }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group" style="display:none" id="add_event_recurring_until">
+                            <label>{{ trans('calendars.fields.recurring_until') }}</label>
+                            {!! Form::text('recurring_until', null, ['placeholder' => trans('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
+                        </div>
+                    </div>
+                </div>
+                <p class="help-block">{{ trans('calendars.hints.is_recurring') }}</p>
+
                 <div class="form-group">
-                    <label>
-                        {!! Form::checkbox('is_recurring') !!}
-                        {{ trans('calendars.fields.is_recurring') }}
-                    </label><p class="help-block">{{ trans('calendars.hints.is_recurring') }}</p>
+                    <label>{{ trans('calendars.fields.length') }}</label>
+                    {!! Form::number('length', 1, ['placeholder' => trans('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1]) !!}
                 </div>
             </div>
             <div class="modal-footer">

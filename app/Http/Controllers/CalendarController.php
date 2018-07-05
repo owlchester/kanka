@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
@@ -99,12 +100,10 @@ class CalendarController extends CrudController
      * @param Calendar $calendar
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addEvent(Request $request, Calendar $calendar)
+    public function addEvent(AddCalendarEvent $request, Calendar $calendar)
     {
         $date = explode('-', request()->post('date'));
-        $link = $this->calendarService->addEvent($calendar, $request->only(
-            'entity_id', 'name', 'date', 'comment', 'is_recurring'
-        ));
+        $link = $this->calendarService->addEvent($calendar, $request->all());
 
         if ($link !== false) {
             return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]])

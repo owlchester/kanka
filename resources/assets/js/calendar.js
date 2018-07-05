@@ -105,4 +105,8 @@ function initCalendarEventModal() {
             $('#date').val($(this).attr('data-date'));
         });
     });
+
+    $('input[name="is_recurring"]').on('click', function(e) {
+        $('#add_event_recurring_until').toggle();
+    })
 }

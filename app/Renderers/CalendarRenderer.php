@@ -22,6 +22,18 @@ class CalendarRenderer
     protected $segments = false;
 
     /**
+     * Current month
+     * @var integer
+     */
+    protected $month;
+
+    /**
+     * Current Year
+     * @var integer
+     */
+    protected $year;
+
+    /**
      * Initializer
      * @param Calendar $calendar
      */
@@ -37,8 +49,8 @@ class CalendarRenderer
      */
     public function previous()
     {
-        $month = $this->segments[1]-1;
-        $year = $this->segments[0]+0;
+        $month = $this->getMonth(-1);
+        $year = $this->getYear();
         $months = $this->calendar->months();
 
         if ($month <= 0) {
@@ -55,8 +67,8 @@ class CalendarRenderer
      */
     public function current()
     {
-        $month = $this->segments[1];
-        $year = $this->segments[0]+0;
+        $month = $this->getMonth();
+        $year = $this->getYear();
         $months = $this->calendar->months();
         $options = '';
         // Year name?
@@ -80,8 +92,8 @@ class CalendarRenderer
      */
     public function next()
     {
-        $month = $this->segments[1]+1;
-        $year = $this->segments[0]+0;
+        $month = $this->getMonth(1);
+        $year = $this->getYear();
         $months = $this->calendar->months();
 
         if ($month > count($months)) {
@@ -101,7 +113,7 @@ class CalendarRenderer
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
         $months = $this->calendar->months();
-        $month = $months[$this->segments[1]-1];
+        $month = $months[$this->getMonth()-1];
         $data = [];
 
         $offset = $this->weekStartoffset();
@@ -109,9 +121,9 @@ class CalendarRenderer
 
         // Check if this month is a leap month
         if ($this->calendar->has_leap_year) {
-            if ($this->calendar->leap_year_month == $this->segments[1]) {
+            if ($this->calendar->leap_year_month == $this->getMonth()) {
                 // Is this the starting year, or an increment of the offset?
-                $handle = $this->segments[0] - $this->calendar->leap_year_start;
+                $handle = $this->getYear() - $this->calendar->leap_year_start;
                 if ($handle % $this->calendar->leap_year_offset === 0) {
                     $month['length'] += $this->calendar->leap_year_amount;
                 }
@@ -126,7 +138,7 @@ class CalendarRenderer
                 $offset--;
                 $day--;
             } else {
-                $exact = $this->segments[0] . '-' . $this->segments[1] . '-' . $day;
+                $exact = $this->getYear() . '-' . $this->getMonth() . '-' . $day;
                 $dayData = [
                     'day' => $day,
                     'events' => [],
@@ -165,7 +177,7 @@ class CalendarRenderer
      */
     public function currentMonthId()
     {
-        return $this->segments[1];
+        return $this->getMonth();
     }
 
     /**
@@ -173,7 +185,7 @@ class CalendarRenderer
      */
     public function yearSwitcher()
     {
-        $currentYear = $this->segments[0];
+        $currentYear = $this->getYear();
         $months = $this->calendar->months();
         $html = '';
         for ($year = $currentYear - 3; $year <= $currentYear + 3; $year++) {
@@ -187,27 +199,31 @@ class CalendarRenderer
     }
 
     /**
-     *
+     * Build the current month and year segments
      */
     protected function buildCurrentSegments()
     {
         if ($this->segments === false) {
-            $this->segments = explode('-', $this->calendar->date);
+            $this->segments = true;
+
+            $segments = explode('-', $this->calendar->date);
+            $this->setMonth($segments[1]);
+            $this->setYear($segments[0]);
 
             if (request()->has('month')) {
-                $this->segments[1] = request()->input('month');
+                $this->setMonth(request()->input('month'));
             }
             if (request()->has('year')) {
-                $this->segments[0] = request()->input('year');
+                $this->setYear(request()->input('year'));
             }
 
-            if (empty($this->segments[1])) {
-                $this->segments[1] = 1;
+            if (empty($this->getMonth())) {
+                $this->setMonth(1);
             }
 
             // If the month is too big? Then use the max
-            if ($this->segments[1] > count($this->calendar->months())) {
-                $this->segments[1] = count($this->calendar->months()) ;
+            if ($this->getMonth() > count($this->calendar->months())) {
+                $this->setMonth(count($this->calendar->months()));
             }
         }
     }
@@ -227,14 +243,14 @@ class CalendarRenderer
             $daysInAYear += $length;
 
             // If the month has already passed, add it to the days for this year
-            if ($count < $this->segments[1]-1) {
+            if ($count < $this->getMonth()-1) {
                 $days += $length;
             }
         }
 
-        if ($this->calendar->has_leap_year && $this->segments[0] >= $this->calendar->leap_year_start) {
+        if ($this->calendar->has_leap_year && $this->getYear() >= $this->calendar->leap_year_start) {
             // Calc the number of years that were leap years
-            $amountOfYears = floor(($this->segments[0] - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
+            $amountOfYears = floor(($this->getYear() - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
             if ($amountOfYears < 0) {
                 $amountOfYears = 0;
             }
@@ -243,8 +259,8 @@ class CalendarRenderer
 
 
             // But if we are a leap year, we need to do the math
-            if ($this->segments[0] % $this->calendar->leap_year_start == 0) {
-                if ($this->segments[1] > $this->calendar->leap_year_month) {
+            if ($this->getYear() % $this->calendar->leap_year_start == 0) {
+                if ($this->getMonth() > $this->calendar->leap_year_month) {
                     // We've passed the leap month of the year
                     $leapDays += $this->calendar->leap_year_amount;
                 }
@@ -252,7 +268,7 @@ class CalendarRenderer
         }
 
         // Amount of days since the beginning of the year
-        $totalDays = ($daysInAYear * $this->segments[0]) + $days + $leapDays;
+        $totalDays = ($daysInAYear * $this->getYear()) + $days + $leapDays;
         $weekLength = count($this->calendar->weekdays());
         $offset = floor($totalDays % $weekLength);
 
@@ -271,10 +287,15 @@ class CalendarRenderer
                      ->with('entity')
                     ->where(function ($query) {
                         $query
-                            ->where('date', 'like', $this->segments[0] . '-' . $this->segments[1] . '%')
+                            ->where('date', 'like', $this->getYear() . '-' . $this->getMonth() . '%')
                             ->orWhere(function ($sub) {
-                                $sub->where('date', 'like', '%-' . $this->segments[1] . '-%')
+                                $sub->where('date', 'like', '%-' . $this->getMonth() . '-%')
                                     ->where('is_recurring', true);
+                            })
+                            // Events from previous month that spill over
+                            ->orWhere(function ($sub) {
+                                $sub->where('date', 'like', $this->subMonth($this->getYear(), $this->getMonth()) . '%')
+                                    ->where('length', '>', 1);
                             });
                     })
                      ->get() as $event) {
@@ -284,10 +305,14 @@ class CalendarRenderer
             // done in the query, but it didn't work on all systems.
             if ($event->is_recurring) {
                 $blocks = explode('-', $date);
-                if ($blocks[0] > $this->segments[0]) {
+                if ($blocks[0] > $this->getYear()) {
                     continue;
                 }
-                $date = $this->segments[0] . '-' . $blocks[1] . '-' . $blocks[2];
+                // Over max reoccuring year?
+                if (!empty($event->recurring_until) && $event->recurring_until < $this->getYear()) {
+                    continue;
+                }
+                $date = $this->getYear() . '-' . $blocks[1] . '-' . $blocks[2];
             }
             if (!isset($events[$date])) {
                 $events[$date] = [];
@@ -296,8 +321,93 @@ class CalendarRenderer
             // Make sure the user can actually see the requested event
             if (Auth::user()->can('view', $event->entity->child)) {
                 $events[$date][] = $event;
+
+                // Does the day go over a few days?
+                if ($event->length > 1) {
+                    $extraDate = $date;
+                    for ($extra = 1; $extra < $event->length; $extra++) {
+                        $extraDate = $this->addDay($extraDate);
+                        $events[$extraDate][] = $event;
+                    }
+                }
             }
         }
         return $events;
+    }
+
+    /**
+     * Add an extra day to a date.
+     * @param $date string
+     */
+    protected function addDay($date)
+    {
+        list($year, $month, $day) = explode('-', $date);
+        $day++;
+
+        // Day longer than month?
+        $months = $this->calendar->months();
+        if ($day > $months[$month-1]['length']) {
+            $day = 1;
+            $month++;
+        }
+
+        // Month longer than max year?
+        if ($month >= count($months)) {
+            $month = 1;
+            $year++;
+        }
+
+        return "$year-$month-$day";
+    }
+
+    /**
+     * @param $year
+     * @param $month
+     * @return string
+     */
+    protected function subMonth($year, $month)
+    {
+        $months = $this->calendar->months();
+        $month--;
+        if ($month < 0) {
+            $month = count($months);
+            $year--;
+        }
+        return "$year-$month";
+    }
+
+    /**
+     * Get the current year
+     * @return mixed
+     */
+    protected function getYear($add = 0)
+    {
+        return $this->year + $add;
+    }
+
+    /**
+     * Get the current month
+     * @param int $add
+     * @return int|mixed
+     */
+    protected function getMonth($add = 0)
+    {
+        return $this->month + $add;
+    }
+
+    /**
+     * @param $year
+     */
+    protected function setYear($year)
+    {
+        $this->year = $year;
+    }
+
+    /**
+     * @param $month
+     */
+    protected function setMonth($month)
+    {
+        $this->month = $month;
     }
 }

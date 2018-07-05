@@ -6,6 +6,7 @@
         <th class="avatar"></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/calendar.name', '#events']) }}">{{ trans('calendars.fields.name') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/date', '#events']) }}">{{ trans('events.fields.date') }}@if (request()->get('order') == 'events/date') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/length', '#events']) }}">{{ trans('calendars.fields.length') }}@if (request()->get('order') == 'events/length') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/comment', '#events']) }}">{{ trans('calendars.fields.comment') }}@if (request()->get('order') == 'events/comment') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#events']) }}">{{ trans('calendars.fields.is_recurring') }}@if (request()->get('order') == 'events/is_recurring') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th>&nbsp;</th>
@@ -19,6 +20,7 @@
                 <a href="{{ route('calendars.show', $relation->calendar_id) }}">{{ $relation->calendar->name }}</a>
             </td>
             <td>{{ $relation->getDate() }}</td>
+            <td>{{ trans_choice('calendars.fields.length_days', $relation->length, ['count' => $relation->length]) }}</td>
             <td>{{ $relation->comment }}</td>
             <td>@if ($relation->is_recurring)
                   <i class="fa fa-check"></i>

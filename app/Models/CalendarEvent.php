@@ -20,7 +20,11 @@ class CalendarEvent extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['calendar_id', 'event_id', 'date'];
+    protected $fillable = [
+        'calendar_id',
+        'event_id',
+        'date',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
