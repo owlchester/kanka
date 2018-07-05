@@ -42,7 +42,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- actions -->
+        @include('cruds.boxes.history')
     </div>
 </div>

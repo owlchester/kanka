@@ -39,6 +39,7 @@ class Entity extends Model
      */
     use CampaignTrait;
     use ElapsedTrait;
+    use BlameableTrait;
 
     /**
      * Searchable fields
