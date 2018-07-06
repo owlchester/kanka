@@ -102,7 +102,15 @@ class CalendarController extends CrudController
      */
     public function addEvent(AddCalendarEvent $request, Calendar $calendar)
     {
+        // We need to handle negative year dates (start with -)
+        $fullDate = request()->post('date');
         $date = explode('-', request()->post('date'));
+        if (count($date) == 4 && substr($fullDate, 0, 1) === '-') {
+            $date[0] = '-' . $date[1];
+            $date[1] = $date[2];
+            $date[2] = $date[3];
+            unset($date[4]);
+        }
         $link = $this->calendarService->addEvent($calendar, $request->all());
 
         if ($link !== false) {

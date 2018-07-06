@@ -54,7 +54,7 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#information" data-toggle="tooltip" title=">{{ trans('events.show.tabs.information') }}">
+                    <a href="#information" data-toggle="tooltip" title="{{ trans('events.show.tabs.information') }}">
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('events.show.tabs.information') }}</span>
                     </a>
                 </li>

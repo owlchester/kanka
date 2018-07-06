@@ -206,7 +206,7 @@ class CalendarRenderer
         if ($this->segments === false) {
             $this->segments = true;
 
-            $segments = explode('-', $this->calendar->date);
+            $segments = $this->splitDate($this->calendar->date);
             $this->setMonth($segments[1]);
             $this->setYear($segments[0]);
 
@@ -304,7 +304,7 @@ class CalendarRenderer
             // If the event is recurring, get the year to make sure it should start showing. This was previously
             // done in the query, but it didn't work on all systems.
             if ($event->is_recurring) {
-                $blocks = explode('-', $date);
+                $blocks = $this->splitDate($date);
                 if ($blocks[0] > $this->getYear()) {
                     continue;
                 }
@@ -341,7 +341,7 @@ class CalendarRenderer
      */
     protected function addDay($date)
     {
-        list($year, $month, $day) = explode('-', $date);
+        list($year, $month, $day) = $this->splitDate($date);
         $day++;
 
         // Day longer than month?
@@ -409,5 +409,19 @@ class CalendarRenderer
     protected function setMonth($month)
     {
         $this->month = $month;
+    }
+
+    /**
+     * Split the date into segments. Handle negative years
+     * @param $date
+     * @return array
+     */
+    protected function splitDate($date)
+    {
+        $segments = explode('-', ltrim($date, '-'));
+        if (substr($date, 0, 1) === '-') {
+            $segments[0] = '-' . $segments[0];
+        }
+        return $segments;
     }
 }
