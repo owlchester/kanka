@@ -28,7 +28,7 @@ class StoreCharacter extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'family_id' => 'integer|exists:families,id',
             'location_id' => 'integer|exists:locations,id',
-            'section_id' => 'integer|exists:sections,id',
+            'section_id' => 'nullable|integer|exists:sections,id',
             'age' => 'nullable|max:25',
             'height' => 'nullable|max:10',
             'weight' => 'nullable|max:10',
@@ -40,7 +40,7 @@ class StoreCharacter extends FormRequest
             'title' => 'nullable|max:191',
             'languages' => 'nullable|max:191',
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'exists:attribute_templates,id',
+            'template_id' => 'nullable|exists:attribute_templates,id',
         ];
     }
 }

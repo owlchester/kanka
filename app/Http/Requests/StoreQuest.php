@@ -28,9 +28,9 @@ class StoreQuest extends FormRequest
             'type' => 'nullable|max:45',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'image_url' => 'nullable|url|active_url',
-            'section_id' => 'integer|exists:sections,id',
-            'character_id' => 'integer|exists:characters,id',
-            'template_id' => 'exists:attribute_templates,id',
+            'section_id' => 'nullable|integer|exists:sections,id',
+            'character_id' => 'nullable|integer|exists:characters,id',
+            'template_id' => 'nullable|exists:attribute_templates,id',
         ];
     }
 }

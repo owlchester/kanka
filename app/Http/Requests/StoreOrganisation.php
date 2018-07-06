@@ -27,10 +27,10 @@ class StoreOrganisation extends FormRequest
             'name' => 'required|max:191',
             'type' => 'max:191',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
-            'location_id' => 'integer|exists:locations,id',
-            'section_id' => 'integer|exists:sections,id',
+            'location_id' => 'nullable|integer|exists:locations,id',
+            'section_id' => 'nullable|integer|exists:sections,id',
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'exists:attribute_templates,id',
+            'template_id' => 'nullable|exists:attribute_templates,id',
         ];
     }
 }
