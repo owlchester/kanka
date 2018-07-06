@@ -47,7 +47,6 @@
                 @include('.cruds._actions')
             </div>
         </div>
-        @include('cruds.boxes.history')
     </div>
 
     <div class="col-md-9">
@@ -81,6 +80,6 @@
                 @include('cruds._panes')
             </div>
         </div>
-        <!-- actions -->
+        @include('cruds.boxes.history')
     </div>
 </div>
