@@ -7,6 +7,11 @@ use App\Models\Entity;
 
 class AttributeService
 {
+    /**
+     * @param Entity $entity
+     * @param $data
+     * @throws \Exception
+     */
     public function saveMany(Entity $entity, $data)
     {
         // Get the existing ones to build an array of ids
@@ -45,7 +50,6 @@ class AttributeService
                     'default_order' => $order,
                 ]);
             }
-
             $order++;
         }
 

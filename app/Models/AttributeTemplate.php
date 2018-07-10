@@ -48,6 +48,7 @@ class AttributeTemplate extends MiscModel
                 'entity_id' => $entity->id,
                 'name' => $attribute->name,
                 'value' => $attribute->value,
+                'default_order' => $attribute->default_order,
                 'is_private' => $attribute->is_private,
             ]);
         }
