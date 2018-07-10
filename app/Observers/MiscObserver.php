@@ -100,7 +100,7 @@ abstract class MiscObserver
         }
 
         // Attribute templates
-        if (request()->has('template_id') && request()->filled('templated_id')) {
+        if (request()->has('template_id') && request()->filled('template_id')) {
             $template = AttributeTemplate::findOrFail(request()->get('template_id'));
             $template->apply($entity);
         }
