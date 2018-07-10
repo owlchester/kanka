@@ -28,11 +28,11 @@ class UpdateTablesBlameable extends Migration
                  */
                 $table->foreign('created_by')
                     ->references('id')->on('users')
-                    ->onDelete('cascade');
+                    ->onDelete('set null');
 
                 $table->foreign('updated_by')
                     ->references('id')->on('users')
-                    ->onDelete('cascade');
+                    ->onDelete('set null');
             });
         }
     }
