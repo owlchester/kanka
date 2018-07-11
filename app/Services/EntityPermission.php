@@ -81,7 +81,7 @@ class EntityPermission
             }
 
             // No roles? Use the public one.
-            if ($this->roles->count() == 0 ) {
+            if ($this->roles === false || $this->roles->count() == 0 ) {
                 // Use the campaign's public role
                 $this->roles = $campaign->roles()->public()->get();
             }
