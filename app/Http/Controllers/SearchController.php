@@ -47,7 +47,7 @@ class SearchController extends Controller
      */
     public function __construct(CampaignService $campaignService, EntityService $entityService)
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         $this->middleware('campaign.member');
 
         $this->entity = $entityService;

@@ -5,7 +5,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(array('route' => ['campaigns.campaign_invites.store', 'campaign' => $campaign->id], 'method'=>'POST')) !!}
+            {!! Form::open(array('route' => ['campaign_invites.store'], 'method'=>'POST')) !!}
             @include('campaigns.invites._form')
             {!! Form::close() !!}
         </div>

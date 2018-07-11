@@ -12,6 +12,16 @@
 
                 <h3 class="profile-username text-center">{{ $campaign->name }}</h3>
 
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>{{ trans('campaigns.fields.visibility') }}</b>
+                        <span  class="pull-right">
+                            {{ trans('campaigns.visibilities.' . $campaign->visibility) }}
+                        </span>
+                        <br class="clear" />
+                    </li>
+                </ul>
+
                 @if (Auth::user()->can('update', $campaign))
                 <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-primary btn-block">
                     <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
@@ -48,7 +58,7 @@
                         <div class="icon">
                             <i class="ion ion-map"></i>
                         </div>
-                        <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
+                        <a href="{{ url(App::getLocale() . '/campaign-' . $campaign->id) }}" class="small-box-footer">
                             <i class="fa fa-arrow-circle-right"></i> {{ trans('crud.select') }}
                         </a>
                     </div>

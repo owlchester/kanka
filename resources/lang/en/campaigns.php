@@ -20,11 +20,19 @@ return [
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
+    'errors'    => [
+        'access' => "You don't have access to this campaign.",
+        'unknown_id' => 'Unknown Campaign.',
+    ],
     'fields'        => [
         'description'   => 'Description',
         'image'         => 'Image',
         'locale'        => 'Locale',
         'name'          => 'Name',
+        'visibility'    => 'Visibility',
+    ],
+    'helpers' => [
+        'visibility' => 'Making a campaign public will mean anyone will be able to see it once it has been approved by the moderation team.'
     ],
     'index'         => [
         'actions'       => [
@@ -137,6 +145,7 @@ return [
         'fields'        => [
             'name'          => 'Name',
             'permissions'   => 'Permissions',
+            'type'          => 'Type',
             'users'         => 'Users',
         ],
         'helper'        => [
@@ -163,7 +172,12 @@ return [
         ],
         'show'          => [
             'description'   => 'Members and Permissions of a campaign role',
-            'title'         => 'Campaign Roles',
+            'title'         => 'Campaign Role \':role\'',
+        ],
+        'types' => [
+            'owner' => 'Owner',
+            'public' => 'Public',
+            'standard' => 'Standard',
         ],
         'users'         => [
             'actions'   => [
@@ -215,4 +229,9 @@ return [
         ],
         'title'         => 'Campaign :name',
     ],
+    'visibilities' => [
+        'public' => 'Public',
+        'private' => 'Private',
+        'review' => 'Awaiting Review',
+    ]
 ];

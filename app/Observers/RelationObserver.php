@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
+use App\Facades\CampaignLocalization;
 use App\Models\Relation;
 use App\Traits\RelationTrait;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class RelationObserver
 {
     public function creating(Relation $relation)
     {
-        $relation->campaign_id = Session::get('campaign_id');
+        $relation->campaign_id = CampaignLocalization::getCampaign()->id;
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($relation->is_private)) {

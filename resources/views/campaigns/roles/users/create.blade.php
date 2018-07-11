@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(['route' => ['campaigns.campaign_roles.campaign_role_users.store', 'campaign' => $campaign, 'campaign_role' => $role], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
+                    {!! Form::open(['route' => ['campaign_roles.campaign_role_users.store', 'campaign_role' => $role], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
                     @include('campaigns.roles.users._form')
 
                     {!! Form::hidden('campaign_role_id', $role->id) !!}

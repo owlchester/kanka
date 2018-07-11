@@ -57,7 +57,7 @@ class CampaignRolePolicy
      */
     public function delete(User $user, CampaignRole $campaignRole)
     {
-        return !$campaignRole->is_admin && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
+        return !$campaignRole->is_admin && !$campaignRole->is_public && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
 
     /**

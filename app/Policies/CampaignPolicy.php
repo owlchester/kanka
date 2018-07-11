@@ -92,6 +92,6 @@ class CampaignPolicy
     {
         return $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
-            (!$this->isAdmin($user) || count($campaign->admins()) > 1);
+            $campaign->user() && (!$this->isAdmin($user) || count($campaign->admins()) > 1);
     }
 }

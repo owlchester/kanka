@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +38,7 @@ class DiceRollResult extends MiscModel
     public function newQuery()
     {
         return parent::newQuery()->whereHas('diceRoll', function($query) {
-            $query->where('campaign_id', Session::get('campaign_id'));
+            $query->where('campaign_id', CampaignLocalization::getCampaign()->id);
         });
     }
 

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
@@ -35,7 +36,16 @@ class CampaignObserver
         // Purity text
         $campaign->description = $this->purify($campaign->description);
 
-        // Handle image. Let's use a service for this.
+        // Public?
+        $previousVisibility = $campaign->getOriginal('visibility');
+        $isPublic = request()->get('is_public', null);
+        if (!empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
+            $campaign->visibility = Campaign::VISIBILITY_PUBLIC;
+            // Default to public for now. Later will have REVIEW mode.
+        } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
+            $campaign->visibility = Campaign::VISIBILITY_PRIVATE;
+        }
+            // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
     }
 
@@ -52,8 +62,8 @@ class CampaignObserver
         $role->save();
 
         // If it's the user's first campaign, let's help out a bit.
-        $first = !Session::has('campaign_id');
-        Session::put('campaign_id', $campaign->id);
+        $first = !Auth::user()->hasCampaigns();
+        CampaignLocalization::setCampaign($campaign->id);
 
         // Make sure we save the last campaign id to avoid infinite loops
         $user = Auth::user();
@@ -65,6 +75,12 @@ class CampaignObserver
             'campaign_id' => $campaign->id,
             'name' => 'Owner',
             'is_admin' => true,
+        ]);
+
+        $publicRole = CampaignRole::create([
+            'campaign_id' => $campaign->id,
+            'name' => 'Public',
+            'is_public' => true,
         ]);
 
         CampaignRoleUser::create([

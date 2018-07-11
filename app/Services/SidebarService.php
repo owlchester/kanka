@@ -17,6 +17,8 @@ class SidebarService
         'campaigns' => [
             'campaigns',
             'campaign_user',
+            'campaign_roles',
+            'campaign_invites',
         ],
         'characters' => [
             'characters',
@@ -82,13 +84,13 @@ class SidebarService
         }
 
         foreach ($this->rules[$menu] as $rule) {
-            if (request()->segment(2) == $rule) {
+            if (request()->segment(3) == $rule) {
                 return " $class";
             }
         }
 
         // Entities? It's complicated
-        if (request()->segment(2) == 'entities') {
+        if (request()->segment(3) == 'entities') {
             $entity = request()->route('entity');
             if ($entity->pluralType() == $menu) {
                 return " $class";

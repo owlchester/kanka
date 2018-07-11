@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
+use App\Facades\EntityPermission;
 use App\Services\FilterService;
 use App\Services\PermissionService;
 use Arrilot\Widgets\ServiceProvider;
@@ -55,7 +57,7 @@ class CrudController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         $this->middleware('campaign.member');
 
         $this->filterService = new FilterService();
@@ -72,10 +74,10 @@ class CrudController extends Controller
     }
     public function crudIndex(Request $request)
     {
-        $this->authorize('browse', $this->model);
+        //$this->authorize('browse', $this->model);
 
         // Add the is_private filter only for admins.
-        if (Auth::user()->isAdmin()) {
+        if (Auth::check() && Auth::user()->isAdmin()) {
             $this->filters[] = 'is_private';
         }
 
@@ -162,7 +164,12 @@ class CrudController extends Controller
      */
     public function crudShow(Model $model)
     {
-        $this->authorize('view', $model);
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $model);
+        } else {
+            $this->authorizeForGuest('read', $model);
+        }
         $name = $this->view;
 
         // Fix for models without an entity
@@ -238,9 +245,6 @@ class CrudController extends Controller
     public function deleteMany(Request $request)
     {
         $model = new $this->model;
-
-        dd("multi?");
-
         $ids = $request->get('model');
 
         $count = 0;
@@ -254,5 +258,23 @@ class CrudController extends Controller
 
         return redirect()->route($this->route . '.index')
             ->with('success', trans_choice('crud.destroy_many.success', $count,['count' => $count]));
+    }
+
+    /**
+     * Secondary Authentication for Guest users
+     * @param $action
+     * @param $model
+     */
+    protected function authorizeForGuest($action, $model)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $mainModel = new $this->model;
+        $permission = EntityPermission::hasPermission($mainModel->getEntityType(), $action, null, $model, $campaign);
+
+        if ($campaign->id != $model->campaign_id || !$permission) {
+            // Raise an error
+            dd($permission);
+            abort('403');
+        }
     }
 }
