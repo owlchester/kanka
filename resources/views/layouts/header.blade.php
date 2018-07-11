@@ -1,3 +1,5 @@
+<?php $currentCampaign = CampaignLocalization::getCampaign(); ?>
+<?php $notifications = Auth::check() ? Auth::user()->unreadNotifications : []; ?>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -8,7 +10,7 @@
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
-        @if (Auth::user()->hasCampaigns())
+        @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
@@ -19,8 +21,6 @@
             <ul class="nav navbar-nav">
                 @if (Auth::check())
                     @if (Auth::user()->hasCampaigns())
-                    <?php $currentCampaign = CampaignLocalization::getCampaign(); ?>
-                    <?php $notifications = Auth::user()->unreadNotifications; ?>
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-bell-o"></i>

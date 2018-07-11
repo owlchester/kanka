@@ -41,7 +41,7 @@
 
     @yield('styles')
 </head>
-<body class="skin-black sidebar-mini @if (Auth::check() && Auth::user()->hasCampaigns()) @else layout-top-nav @endif">
+<body class="skin-black sidebar-mini @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check()) @else layout-top-nav @endif">
     <div id="app" class="wrapper">
         <!-- Header -->
         @include('layouts.header')
