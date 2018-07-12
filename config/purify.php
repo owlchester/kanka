@@ -104,7 +104,8 @@ return [
         |
         */
 
-        'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+        'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
+            'color,background-color,text-align,width,border-collapse',
 
         /*
         |--------------------------------------------------------------------------
