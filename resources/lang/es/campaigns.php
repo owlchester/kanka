@@ -42,10 +42,12 @@ return [
     'invites'       => [
         'actions'       => [
             'add'   => 'Invitar',
+            'link'  => 'Nuevo enlace',
         ],
         'create'        => [
             'button'        => 'Invitar',
             'description'   => 'Invita a un amigo a tu campaña',
+            'link'          => 'Enlace creado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitación enviada.',
             'title'         => 'Invita a alguien a tu campaña',
         ],
@@ -67,9 +69,18 @@ return [
             'created'   => 'Enviado',
             'email'     => 'Correo electrónico',
             'role'      => 'Rol',
+            'type'      => 'Tipo',
+            'validity'  => 'Validez',
+        ],
+        'helpers'       => [
+            'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive.',
         ],
         'placeholders'  => [
             'email' => 'Correo electrónico de la persona a la que quieres invitar',
+        ],
+        'types'         => [
+            'email' => 'Correo electrónico',
+            'link'  => 'Enlace',
         ],
     ],
     'leave'         => [
@@ -175,6 +186,21 @@ return [
             'success'   => 'Ajustes de campaña actualizados.',
         ],
         'helper'    => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
+        'helpers'   => [
+            'calendars'     => 'El sitio para definir los calendarios de tu mundo.',
+            'categories'    => 'Cada entidad puede tener una categoría. Las categorías pueden pertenecer a otras categorías, y las entradas pueden filtrarse por categoría.',
+            'characters'    => 'Las personas que viven en tu mundo.',
+            'dice_rolls'    => 'Una manera de manejar las tiradas de dados para aquellos que usan Kanka para campañas de rol.',
+            'events'        => 'Celebraciones, festivales, desastres, cumpleaños, guerras...',
+            'families'      => 'Clanes o familias, sus relaciones y sus miembros.',
+            'items'         => 'Armas, vehículos, reliquias, pociones...',
+            'journals'      => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
+            'locations'     => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
+            'menu_links'    => 'Enlaces de menú personalizados en la barra lateral.',
+            'notes'         => 'Tradiciones, religiones, historia, magia, razas...',
+            'organisations' => 'Sectas, unidades militares, facciones, gremios...',
+            'quests'        => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
+        ],
     ],
     'show'          => [
         'actions'       => [

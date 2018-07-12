@@ -34,9 +34,11 @@ return [
         'title'         => 'Editar misión :name',
     ],
     'fields'        => [
+        'character'     => 'Instigador',
         'characters'    => 'Personajes',
         'description'   => 'Descripción',
         'image'         => 'Imagen',
+        'is_completed'  => 'Completada',
         'locations'     => 'Localizaciones',
         'name'          => 'Nombre',
         'type'          => 'Tipo',

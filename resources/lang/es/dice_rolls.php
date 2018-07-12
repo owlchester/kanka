@@ -16,6 +16,7 @@ return [
         'title'         => 'Editar tirada de dados :name',
     ],
     'fields'        => [
+        'created_at'    => 'Tirada en',
         'name'          => 'Nombre',
         'parameters'    => 'Parámetros',
         'results'       => 'Resultados',

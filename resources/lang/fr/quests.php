@@ -11,7 +11,7 @@ return [
             'success'   => 'Personnage pour :name supprimé.',
         ],
         'edit'      => [
-            'description'   => '',
+            'description'   => 'Modifier le personnage d\'une quête',
             'success'       => 'Personnage pour :name modifié.',
             'title'         => 'Modifier un personnage pour :name',
         ],
@@ -21,7 +21,7 @@ return [
         ],
     ],
     'create'        => [
-        'description'   => '',
+        'description'   => 'Créer une nouvelle quête',
         'success'       => 'Quête \':name\' créée.',
         'title'         => 'Ajouter une quête',
     ],
@@ -29,14 +29,16 @@ return [
         'success'   => 'Quête \':name\' supprimée.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Modifier une quête',
         'success'       => 'Quête \':name\' modifiée.',
         'title'         => 'Modifier Quête :name',
     ],
     'fields'        => [
+        'character'     => 'Instigateur',
         'characters'    => 'Personnages',
         'description'   => 'Description',
         'image'         => 'Image',
+        'is_completed'  => 'Completée',
         'locations'     => 'Lieux',
         'name'          => 'Nom',
         'type'          => 'Type',
@@ -57,7 +59,7 @@ return [
             'success'   => 'Lieu pour :name supprimé.',
         ],
         'edit'      => [
-            'description'   => '',
+            'description'   => 'Modifier un lieu d\'une quête',
             'success'       => 'Lieu pour :name modifié.',
             'title'         => 'Modifier lieu pour :name',
         ],

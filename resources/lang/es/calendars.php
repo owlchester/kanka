@@ -60,6 +60,7 @@ return [
     ],
     'panels'        => [
         'leap_year' => 'Año bisiesto',
+        'years'     => 'Años con nombre',
     ],
     'parameters'    => [
         'month' => [

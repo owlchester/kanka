@@ -17,7 +17,7 @@ return [
         'characters'    => 'Personajes',
         'image'         => 'Imagen',
         'location'      => 'Localización',
-        'locations'     => 'Localizaciones',
+        'locations'     => 'Lugares',
         'map'           => 'Mapa',
         'name'          => 'Nombre',
         'relation'      => 'Vínculo',
@@ -34,6 +34,7 @@ return [
     ],
     'map'           => [
         'actions'   => [
+            'big'           => 'Vista completa',
             'download'      => 'Descargar',
             'points'        => 'Editar puntos',
             'toggle_hide'   => 'Ocultar puntos',

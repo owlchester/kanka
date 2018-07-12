@@ -25,7 +25,7 @@ return [
             'title' => '¡Bienvenido a kanka.io!',
         ],
         'errors'                    => [
-            'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electronico.',
+            'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electrónico.',
             'general_error'         => 'Ha ocurrido un error mientras se registraba la cuenta. Inténtalo de nuevo.',
         ],
         'fields'                    => [

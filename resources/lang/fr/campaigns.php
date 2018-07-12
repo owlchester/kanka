@@ -42,10 +42,12 @@ return [
     'invites'       => [
         'actions'       => [
             'add'   => 'Inviter',
+            'link'  => 'Nouveau Lien',
         ],
         'create'        => [
             'button'        => 'Inviter',
             'description'   => 'Invite tes amis à ta campagne',
+            'link'          => 'Lien créé: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation envoyée.',
             'title'         => 'Invite un ami à la campagne',
         ],
@@ -67,9 +69,18 @@ return [
             'created'   => 'Envoyé',
             'email'     => 'Email',
             'role'      => 'Rôle',
+            'type'      => 'Type',
+            'validity'  => 'Validité',
+        ],
+        'helpers'       => [
+            'validity'  => 'Nombre de fois que le lie peut être utilisé avant d\'être désactivé.',
         ],
         'placeholders'  => [
             'email' => 'L\'adresse email de ton ami',
+        ],
+        'types'         => [
+            'email' => 'Email',
+            'link'  => 'Lien',
         ],
     ],
     'leave'         => [
@@ -175,6 +186,21 @@ return [
             'success'   => 'Campagne modifiée.',
         ],
         'helper'    => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
+        'helpers'   => [
+            'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
+            'categories'    => 'Chaque entité peut être attribuée à une catégorie. Les catégories peuvent appartenir à d\'autres catégories.',
+            'characters'    => 'Les peuples de ton monde.',
+            'dice_rolls'    => 'Pour ceux qui utilisent Kanka pour une campagne JdR, un système pour des jets de dés.',
+            'events'        => 'Jours fériers, festivaux, désastres, anniversaires, guerres.',
+            'families'      => 'Clans ou familles, leurs relations et leur membres.',
+            'items'         => 'Armes, véhicules, artéfacts, objets légendaires.',
+            'journals'      => 'Observations écritent par des personnages, ou préparation de session pour le maître de jeu.',
+            'locations'     => 'Planetes, plaines, continents, rivières, pays, temples, tavernes.',
+            'menu_links'    => 'Liens personnalisés dans la navigation.',
+            'notes'         => 'Histoires, légendes, religions, magies, races.',
+            'organisations' => 'Cultes, unités militaires, factions, guildes.',
+            'quests'        => 'Gestionnaire de quêtes avec personnages et lieux.',
+        ],
     ],
     'show'          => [
         'actions'       => [
