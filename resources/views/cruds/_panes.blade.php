@@ -11,13 +11,9 @@
         @include('cruds._events')
     </div>
 @endif
-@can('attribute', $model)
-    <div class="tab-pane {{ (request()->get('tab') == 'notes' ? ' active' : '') }}" id="notes">
-        @include('cruds._notes')
-    </div>
-@endcan
-@can('attribute', $model)
-    <div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
-        @include('cruds._attributes')
-    </div>
-@endcan
+<div class="tab-pane {{ (request()->get('tab') == 'notes' ? ' active' : '') }}" id="notes">
+    @include('cruds._notes')
+</div>
+<div class="tab-pane {{ (request()->get('tab') == 'attribute' ? ' active' : '') }}" id="attribute">
+    @include('cruds._attributes')
+</div>

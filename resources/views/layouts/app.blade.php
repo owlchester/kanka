@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
                         <li>

@@ -33,6 +33,12 @@ class DiceRollResult extends MiscModel
     protected $defaultOrderDirection = 'DESC';
 
     /**
+     * We want to use the dice_roll entity type for permissions
+     * @var string
+     */
+    protected $entityType = 'dice_roll';
+
+    /**
      *
      */
     public function newQuery()
