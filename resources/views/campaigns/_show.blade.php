@@ -78,46 +78,54 @@
                         <span class="fa fa-align-justify"></span> {{ trans('campaigns.show.tabs.information') }}
                     </a>
                 </li>
-                <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
+                <li class="">
                     <a href="#member">
                         <span class="fa fa-users"></span> {{ trans('campaigns.show.tabs.members') }}
                     </a>
                 </li>
                 @can('update', $campaign)
-                <li class="{{ (request()->get('tab') == 'roles' ? ' active' : '') }}">
+                <li class="">
                     <a href="#roles">
                         <span class="fa fa-lock"></span> {{ trans('campaigns.show.tabs.roles') }}
                     </a>
                 </li>
                 @endcan
-                @if (Auth::user()->can('setting', $campaign))
-                <li class="{{ (request()->get('tab') == 'setting' ? ' active' : '') }}">
+                @can('setting', $campaign)
+                <li class="">
                     <a href="#setting">
                         <span class="fa fa-cubes"></span> {{ trans('campaigns.show.tabs.settings') }}
                     </a>
                 </li>
-                @endif
+                <li class="">
+                    <a href="#export">
+                        <span class="fa fa-download"></span> {{ trans('campaigns.show.tabs.export') }}
+                    </a>
+                </li>
+                @endcan
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="info">
+                <div class="tab-pane" id="info">
                     <div class="post">
                         <p>{!! $campaign->description !!}</p>
                     </div>
                 </div>
-                <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
+                <div class="tab-pane" id="member">
                     @include('campaigns._members')
                 </div>
                 @can('update', $campaign)
-                <div class="tab-pane {{ (request()->get('tab') == 'roles' ? ' active' : '') }}" id="roles">
+                <div class="tab-pane" id="roles">
                     @include('campaigns._roles')
                 </div>
                 @endcan
-                @if (Auth::user()->can('setting', $campaign))
-                <div class="tab-pane {{ (request()->get('tab') == 'setting' ? ' active' : '') }}" id="setting">
+                @can('setting', $campaign)
+                <div class="tab-pane" id="setting">
                     @include('campaigns._settings')
                 </div>
-                @endif
+                <div class="tab-pane" id="export">
+                    @include('campaigns._export')
+                </div>
+                @endcan
             </div>
         </div>
 

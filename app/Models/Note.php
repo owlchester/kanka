@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 
 class Note extends MiscModel
@@ -56,6 +57,7 @@ class Note extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+    use ExportableTrait;
 
     /**
      * Prepare the notes for the dashboard

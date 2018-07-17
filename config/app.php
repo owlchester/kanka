@@ -181,6 +181,7 @@ return [
         Vsch\TranslationManager\TranslationServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         RichanFongdasen\EloquentBlameable\ServiceProvider::class,
+        Chumper\Zipper\ZipperServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -251,6 +252,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Zipper' => Chumper\Zipper\Zipper::class
 
         // Custom
 

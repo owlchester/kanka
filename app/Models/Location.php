@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Kalnoy\Nestedset\NodeTrait;
 
@@ -61,6 +62,7 @@ class Location extends MiscModel
     use CampaignTrait;
     use VisibleTrait;
     use NodeTrait;
+    use ExportableTrait;
 
     /**
      * @return string

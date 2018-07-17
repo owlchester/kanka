@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\MiscModel;
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 
 class Quest extends MiscModel
@@ -53,6 +54,7 @@ class Quest extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+    use ExportableTrait;
 
     /**
      * Searchable fields

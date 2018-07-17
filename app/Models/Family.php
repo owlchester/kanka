@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 
 class Family extends MiscModel
@@ -43,6 +44,7 @@ class Family extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+    use ExportableTrait;
 
     /**
      * Entity type

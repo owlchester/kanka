@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Services\CampaignService;
+use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -22,15 +23,21 @@ class CampaignController extends Controller
     protected $campaignService;
 
     /**
+     * @var EntityService
+     */
+    protected $entityService;
+
+    /**
      * Create a new controller instance.
      *
      * CampaignController constructor.
      * @param CampaignService $campaignService
      */
-    public function __construct(CampaignService $campaignService)
+    public function __construct(CampaignService $campaignService, EntityService $entityService)
     {
         $this->middleware('auth');
         $this->campaignService = $campaignService;
+        $this->entityService = $entityService;
     }
 
     /**
@@ -143,6 +150,11 @@ class CampaignController extends Controller
         return redirect()->route('home');
     }
 
+    /**
+     * @param Campaign $campaign
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function leave(Campaign $campaign)
     {
         $this->authorize('leave', $campaign);
@@ -152,6 +164,23 @@ class CampaignController extends Controller
             return redirect()->route('home');
         } catch (\Exception $e) {
             return redirect()->route('campaigns.index')->withErrors($e->getMessage());
+        }
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function export(Campaign $campaign)
+    {
+        $this->authorize('setting', $campaign);
+
+        try {
+            $this->campaignService->export($campaign, Auth::user(), $this->entityService);
+            return redirect()->route('campaigns.index', '#tab_export')
+                ->with('success', trans('campaigns.export.success'));
+        } catch (\Exception $e) {
+            return redirect()->route('campaigns.index', '#tab_export')->withErrors($e->getMessage());
         }
     }
 }

@@ -12,7 +12,14 @@ class Campaign extends MiscModel
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'locale', 'description', 'image', 'join_token'
+        'name',
+        'slug',
+        'locale',
+        'description',
+        'image',
+        'join_token',
+        'export_path',
+        'export_date',
     ];
 
     /**
@@ -54,11 +61,107 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function characters()
+    {
+        return $this->hasMany('App\Models\Character');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function locations()
+    {
+        return $this->hasMany('App\Models\Location');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function calendars()
+    {
+        return $this->hasMany('App\Models\Calendar');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function families()
+    {
+        return $this->hasMany('App\Models\Family');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function items()
+    {
+        return $this->hasMany('App\Models\Item');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function journals()
+    {
+        return $this->hasMany('App\Models\Journal');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function notes()
+    {
+        return $this->hasMany('App\Models\Note');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function organisations()
+    {
+        return $this->hasMany('App\Models\Organisation');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function quests()
+    {
+        return $this->hasMany('App\Models\Quest');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
+    public function sections()
+    {
+        return $this->hasMany('App\Models\Section');
+    }
+
+    /**
      * @return mixed
      */
     public function menuLinks()
     {
         return $this->hasMany('App\Models\MenuLink');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function diceRolls()
+    {
+        return $this->hasMany('App\Models\DiceRoll');
     }
 
     /**

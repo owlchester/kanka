@@ -17,11 +17,11 @@
                     <tr>
                         <td>
                             @if (!empty($notification->data['icon']))
-                            <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {{ trans('notifications.' . $notification->data['key'], $notification->data['params']) }}
+                            <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {!! trans('notifications.' . $notification->data['key'], $notification->data['params']) !!}
                             @else
                                 <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
                             @endif
-                            <span class="text-muted pull-right">{{ $notification->created_at }}</span>
+                            <span class="text-muted pull-right">{{ $notification->created_at->diffForHumans() }}</span>
                         </td>
                     </tr>
                 @endforeach

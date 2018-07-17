@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,12 +48,21 @@ class DiceRoll extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+    use ExportableTrait;
 
     /**
      * Field used for tooltips
      * @var string
      */
     protected $tooltipField = 'name';
+
+    /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'diceRollResults'
+    ];
 
     /**
      * Who created this entry

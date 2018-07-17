@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Stevebauman\Purify\Facades\Purify;
 
@@ -59,10 +60,29 @@ class Character extends MiscModel
     ];
 
     /**
+     * Hidden from export
+     * @var array
+     */
+    protected $hidden = [
+        'traits',
+        'goals',
+        'fears',
+        'mannerisms',
+        'languages',
+        'free',
+        'height',
+        'weight',
+        'eye_colour',
+        'hair',
+        'skin',
+    ];
+
+    /**
      * Traits
      */
     use CampaignTrait;
     use VisibleTrait;
+    use ExportableTrait;
 
     /**
      * Entity type
@@ -90,6 +110,14 @@ class Character extends MiscModel
      */
     protected $explicitFilters = [
         'sex'
+    ];
+
+    /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'characterTraits'
     ];
 
     /**

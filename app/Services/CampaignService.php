@@ -4,7 +4,10 @@ namespace App\Services;
 
 use App\Campaign;
 use App\CampaignUser;
+use App\Exceptions\TranslatableException;
+use App\Jobs\ExportCampaign;
 use App\Notifications\Header;
+use App\User;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -223,5 +226,19 @@ class CampaignService
         foreach ($campaign->admins() as $user) {
             $user->notify(new Header('campaign.' . $key, $icon, $colour, $params));
         }
+    }
+
+    /**
+     * @param Campaign $campaign
+     */
+    public function export(Campaign $campaign, User $user, EntityService $service)
+    {
+        if (!empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
+            throw new TranslatableException(trans('campaigns.export.errors.limit'));
+        }
+        $campaign->export_date = date('Y-m-d');
+        $campaign->save();
+
+        ExportCampaign::dispatch($campaign, $user, $service);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\MiscModel;
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Collective\Html\HtmlFacade;
 
@@ -82,6 +83,7 @@ class Calendar extends MiscModel
      */
     use CampaignTrait;
     use VisibleTrait;
+    use ExportableTrait;
 
     /**
      * Entity type

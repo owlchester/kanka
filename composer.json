@@ -11,6 +11,7 @@
         "php": ">=7.0.0",
         "almasaeed2010/adminlte": "~2.4",
         "barryvdh/laravel-dompdf": "^0.8.2",
+        "chumper/zipper": "^1.0",
         "fideloper/proxy": "~3.3",
         "intervention/image": "^2.4",
         "kalnoy/nestedset": "^4.3",

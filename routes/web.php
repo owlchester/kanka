@@ -78,6 +78,8 @@ Route::group([
     // Permission save
     Route::post('/campaigns/{campaign}/campaign_role{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaigns.campaign_roles.savePermissions');
 
+    // Campaign Export
+    Route::post('/campaigns/{campaign}/export', 'CampaignController@export')->name('campaigns.export');
 
 
     //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
