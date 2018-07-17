@@ -64,6 +64,7 @@ class ExportCampaign implements ShouldQueue
             $this->campaign->save();
         }
 
+        // We want the full path for jobs running in the queue.
         $zipName = storage_path() . '/exports/campaigns/campaign_' . $this->campaign->id . '_' .  uniqid() . '.zip';
         $zipper = new \Chumper\Zipper\Zipper;
         $zipper->make($zipName);
@@ -81,6 +82,7 @@ class ExportCampaign implements ShouldQueue
                         }
                     }
                 } catch(Exception $e) {
+                    $zipper->close();
                     unlink($zipName);
                     throw new Exception('Missing campaign entity relation: ' . $entity . '-' . $class . '? ' . $e->getMessage());
                 }
