@@ -233,7 +233,9 @@ class CampaignService
      */
     public function export(Campaign $campaign, User $user, EntityService $service)
     {
-        if (!empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
+        // On prod, only 1 export per "day"
+        $env = env('APP_ENV', 'dev');
+        if (strtolower($env) == 'prod' && !empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
             throw new TranslatableException(trans('campaigns.export.errors.limit'));
         }
         $campaign->export_date = date('Y-m-d');
