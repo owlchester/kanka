@@ -64,8 +64,7 @@ class ExportCampaign implements ShouldQueue
             $this->campaign->save();
         }
 
-        chmod('public/exports/campaigns', 755);
-        $zipName = 'exports/campaigns/campaign_' . $this->campaign->id . '_' .  uniqid() . '.zip';
+        $zipName = storage_path() . '/exports/campaigns/campaign_' . $this->campaign->id . '_' .  uniqid() . '.zip';
         $zipper = new \Chumper\Zipper\Zipper;
         $zipper->make($zipName);
 
