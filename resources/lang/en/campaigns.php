@@ -47,8 +47,8 @@ return [
         'create'        => [
             'button'        => 'Invite',
             'description'   => 'Invite a friend to your campaign',
-            'success'       => 'Invitation sent.',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
+            'success'       => 'Invitation sent.',
             'title'         => 'Invite someone to your campaign',
         ],
         'destroy'       => [
@@ -68,19 +68,19 @@ return [
         'fields'        => [
             'created'   => 'Sent',
             'email'     => 'Email',
-            'role'   => 'Role',
-            'validity' => 'Validity',
-            'type' => 'Type',
+            'role'      => 'Role',
+            'type'      => 'Type',
+            'validity'  => 'Validity',
         ],
-        'helpers' => [
-            'validity' => 'How many users can use this link before it is deactivated.',
+        'helpers'       => [
+            'validity'  => 'How many users can use this link before it is deactivated.',
         ],
         'placeholders'  => [
             'email' => 'Email address of the person you wish to invite',
         ],
-        'types' => [
+        'types'         => [
             'email' => 'Email',
-            'link' => 'Link',
+            'link'  => 'Link',
         ],
     ],
     'leave'         => [
@@ -99,8 +99,8 @@ return [
         'fields'    => [
             'joined'    => 'Joined',
             'name'      => 'User',
-            'roles'     => 'Roles',
             'role'      => 'Role',
+            'roles'     => 'Roles',
         ],
         'help'      => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
         'invite'    => [
@@ -144,8 +144,8 @@ return [
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
         ],
-        'hints' => [
-            'role_permissions' => 'Enable the \':name\' role to do the following actions on all entities.',
+        'hints'         => [
+            'role_permissions'  => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
         'permissions'   => [
@@ -186,20 +186,20 @@ return [
             'success'   => 'Campaign settings updated.',
         ],
         'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
-        'helpers' => [
-            'calendars' => 'A place to define the calendars of your world.',
-            'characters' => 'The people who inhabit your world.',
-            'events' => 'Holidays, festivals, disasters, birthdays, wars.',
-            'families' => 'Clans or families, their relations and their members.',
-            'menu_links' => 'Custom menu links in the side bar.',
-            'items' => 'Weapons, vehicles, relics, potions.',
-            'journals' => 'Observations written by characters, or session prep for the dungeon master.',
-            'locations' => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
-            'notes' => 'Lore, religions, history, magic, races.',
+        'helpers'   => [
+            'calendars'     => 'A place to define the calendars of your world.',
+            'categories'    => 'Each entity can have a category. Categories can belong to other categories, and entries can be filtered by category.',
+            'characters'    => 'The people who inhabit your world.',
+            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
+            'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
+            'families'      => 'Clans or families, their relations and their members.',
+            'items'         => 'Weapons, vehicles, relics, potions.',
+            'journals'      => 'Observations written by characters, or session prep for the dungeon master.',
+            'locations'     => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
+            'menu_links'    => 'Custom menu links in the side bar.',
+            'notes'         => 'Lore, religions, history, magic, races.',
             'organisations' => 'Cults, military units, factions, guilds.',
-            'quests' => 'To keep track of various quests with characters and locations.',
-            'categories' => 'Each entity can have a category. Categories can belong to other categories, and entries can be filtered by category.',
-            'dice_rolls' => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
+            'quests'        => 'To keep track of various quests with characters and locations.',
         ],
     ],
     'show'          => [

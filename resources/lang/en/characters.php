@@ -138,7 +138,6 @@ return [
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
             'quests'        => 'Quests',
-            'journals'      => 'Journals',
         ],
         'title'         => 'Character :name',
     ],

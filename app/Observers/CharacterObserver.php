@@ -47,7 +47,7 @@ class CharacterObserver extends MiscObserver
             $existing[$pers->id] = $pers;
         }
 
-        $traitCount = 0;
+        $traitCount = $traitOrder = 0;
         $traitNames = request()->post($trait . '_name', []);
         $traitEntry = request()->post($trait . '_entry', []);
 
@@ -66,8 +66,10 @@ class CharacterObserver extends MiscObserver
             }
             $model->name = $name;
             $model->entry = $traitEntry[$id];
+            $model->default_order = $traitOrder;
             $model->save();
             $traitCount++;
+            $traitOrder++;
         }
 
         foreach ($existing as $id => $model) {

@@ -6,6 +6,7 @@ var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 // Character
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
+var characterSortPersonality, characterSortAppearance;
 
 var ajaxModalTarget;
 
@@ -53,6 +54,9 @@ $(document).ready(function() {
            $('[data-toggle="tooltip"]').tooltip();
         });
     });
+
+    characterSortPersonality = $('.character-personality');
+    characterSortAppearance = $('.character-appearance');
 
     characterAddPersonality = $('#add_personality');
     if (characterAddPersonality.length === 1) {
@@ -191,7 +195,7 @@ function initCharacterPersonality()
     characterAddPersonality.on('click', function(e) {
         e.preventDefault();
 
-        $(this).before('<div class="form-group">' +
+        $(characterSortPersonality).append('<div class="form-group">' +
             characterTemplatePersonality.html() +
             '</div>');
 
@@ -213,7 +217,7 @@ function initCharacterAppearance()
     characterAddAppearance.on('click', function(e) {
         e.preventDefault();
 
-        $(this).before('<div class="form-group">' +
+        $(characterSortAppearance).append('<div class="form-group">' +
             characterTemplateAppearance.html() +
             '</div>');
 
@@ -237,6 +241,10 @@ function characterDeleteRowHandler() {
             $(this).parent().parent().parent().remove();
         });
     });
+
+    // Always re-calc the sortable traits
+    characterSortPersonality.sortable();
+    characterSortAppearance.sortable();
 }
 
 /**

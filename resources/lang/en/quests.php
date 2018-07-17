@@ -34,14 +34,14 @@ return [
         'title'         => 'Edit Quest :name',
     ],
     'fields'        => [
+        'character'     => 'Instigator',
         'characters'    => 'Characters',
         'description'   => 'Description',
         'image'         => 'Image',
+        'is_completed'  => 'Completed',
         'locations'     => 'Locations',
         'name'          => 'Name',
         'type'          => 'Type',
-        'character'     => 'Instigator',
-        'is_completed' => 'Completed',
     ],
     'index'         => [
         'add'           => 'New Quest',

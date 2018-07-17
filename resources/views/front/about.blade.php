@@ -56,6 +56,13 @@
                             <strong>{{ trans('languages.codes.fr') }}</strong>: Ilestis
                         </p>
                     </div>
+
+                    <div class="col-lg-4">
+                        <h4>{{ trans('teams.index.other') }}</h4>
+                        <p>
+                            <strong>{{ trans('teams.index.qa') }}</strong>: ArcOnyx, anna unfairest, RS_Chops
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

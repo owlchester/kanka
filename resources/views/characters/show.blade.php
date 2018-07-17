@@ -77,7 +77,7 @@
                         <br class="clear" />
                     </li>
                     @endif
-                    @foreach ($model->characterTraits()->appearance()->get() as $trait)
+                    @foreach ($model->characterTraits()->appearance()->orderBy('default_order')->get() as $trait)
                     <li class="list-group-item">
                         <b>{{ $trait->name }}</b> <span class="pull-right">{{ $trait->entry }}</span>
                         <br class="clear" />
@@ -116,7 +116,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                @foreach ($model->characterTraits()->personality()->get() as $trait)
+                @foreach ($model->characterTraits()->personality()->orderBy('default_order')->get() as $trait)
                     <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
                 @endforeach
                 <p class="help-block export-hidden">{{ trans('characters.hints.hide_personality') }}</p>

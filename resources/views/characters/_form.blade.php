@@ -75,15 +75,21 @@ if (request()->route()->getName() == 'characters.random') {
                     <label>{{ trans('characters.fields.sex') }}</label>
                     {!! Form::text('sex', ($isRandom ? $random->generate('sex') : $formService->prefill('sex', $source)), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
-                @foreach ((isset($model) ? $model->characterTraits()->appearance()->get() : $formService->prefillCharacterAppearance($source)) as $trait)
+                <div class="character-appearance">
+                @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : $formService->prefillCharacterAppearance($source)) as $trait)
                     <div class="form-group">
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-md-3">
-                                {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'form-control',
-                                    'maxlength' => 191,
-                                    'placeholder' => trans('characters.placeholders.appearance_name')
-                                ]) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
+                                        'class' => 'form-control',
+                                        'maxlength' => 191,
+                                        'placeholder' => trans('characters.placeholders.appearance_name')
+                                    ]) !!}
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
@@ -99,6 +105,7 @@ if (request()->route()->getName() == 'characters.random') {
                         </div>
                     </div>
                 @endforeach
+                </div>
                 <a class="btn btn-default" id="add_appearance" href="#" title="{{ trans('characters.actions.add_appearance') }}">
                     <i class="fa fa-plus"></i> {{ trans('characters.actions.add_appearance') }}
                 </a>
@@ -106,10 +113,15 @@ if (request()->route()->getName() == 'characters.random') {
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
-                                {!! Form::text('appearance_name[]', null, [
-                                    'class' => 'form-control',
-                                    'placeholder' => trans('characters.placeholders.appearance_name')
-                                ]) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('appearance_name[]', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => trans('characters.placeholders.appearance_name')
+                                    ]) !!}
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 {!! Form::text('appearance_entry[]', null, [
@@ -154,14 +166,20 @@ if (request()->route()->getName() == 'characters.random') {
                 <h4>{{ trans('characters.sections.personality') }}</h4>
             </div>
             <div class="panel-body">
-                @foreach ((isset($model) ? $model->characterTraits()->personality()->get() : $formService->prefillCharacterPersonality($source)) as $trait)
+                <div class="character-personality">
+                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : $formService->prefillCharacterPersonality($source)) as $trait)
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
-                                {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'form-control',
-                                    'placeholder' => trans('characters.placeholders.personality_name')
-                                ]) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
+                                        'class' => 'form-control',
+                                        'placeholder' => trans('characters.placeholders.personality_name')
+                                    ]) !!}
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
@@ -178,6 +196,7 @@ if (request()->route()->getName() == 'characters.random') {
                         </div>
                     </div>
                 @endforeach
+                </div>
                 <a class="btn btn-default" id="add_personality" href="#" title="{{ trans('characters.actions.add_personality') }}">
                     <i class="fa fa-plus"></i> {{ trans('characters.actions.add_personality') }}
                 </a>
@@ -185,10 +204,15 @@ if (request()->route()->getName() == 'characters.random') {
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
-                                {!! Form::text('personality_name[]', null, [
-                                    'class' => 'form-control',
-                                    'placeholder' => trans('characters.placeholders.personality_name')
-                                ]) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('personality_name[]', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => trans('characters.placeholders.personality_name')
+                                    ]) !!}
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 {!! Form::textarea('personality_entry[]', null, [

@@ -5,6 +5,17 @@ namespace App\Models;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class CharacterTrait
+ * @package App\Models
+ *
+ * @property integer $character_id
+ * @property string $name
+ * @property string $entry
+ * @property string $section
+ * @property boolean $is_private
+ * @property integer $default_order
+ */
 class CharacterTrait extends Model
 {
     /**
@@ -17,6 +28,7 @@ class CharacterTrait extends Model
         'section',
         'created_by',
         'is_private',
+        'default_order',
     ];
 
     /**
@@ -32,11 +44,19 @@ class CharacterTrait extends Model
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopePersonality($query)
     {
         return $query->where('section', 'personality');
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeAppearance($query)
     {
         return $query->where('section', 'appearance');
