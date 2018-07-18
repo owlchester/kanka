@@ -26,7 +26,7 @@
             <h2>{{ $model->title }}</h2>
 
             <p class="text-muted">
-                {{ trans('releases.post.footer', ['date' => $model->updated_at, 'name' => $model->authorId->name]) }}
+                {{ trans('releases.post.footer', ['date' => $model->updated_at->diffForHumans(), 'name' => $model->authorId->name]) }}
             </p>
 
             {!! $model->body !!}

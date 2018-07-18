@@ -127,17 +127,14 @@ class CampaignLocalization
      */
     public function setCampaign($campaignId = null)
     {
-        if (empty($campaignId) || !is_string($campaignId)) {
+        if (empty($campaignId)) {
             // If the locale has not been passed through the function
             // it tries to get it from the first segment of the url
-            $segment = $this->request->segment(2);
-            $segments = explode('-', $segment);
+            $campaignId = $this->request->segment(3);
+        }
 
-            if (count($segments) != 2 || empty($segments[1]) || !is_numeric($segments[1])) {
-                // Use session?
-            } else {
-                $campaignId = $segments[1];
-            }
+        if (!empty($campaignId) && !is_numeric($campaignId)){
+            abort(404);
         }
 
         if (!empty($campaignId)) {
@@ -146,7 +143,7 @@ class CampaignLocalization
             // There is no session at this point. No use trying to read it.
             $this->campaignId = 0;
         }
-        return 'campaign-' . $this->campaignId;
+        return 'campaign/' . $this->campaignId;
     }
 
     /**

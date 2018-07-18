@@ -58,7 +58,7 @@
                         <div class="icon">
                             <i class="ion ion-map"></i>
                         </div>
-                        <a href="{{ url(App::getLocale() . '/campaign-' . $c->id) }}" class="small-box-footer">
+                        <a href="{{ url(App::getLocale() . '/' . $c->getMiddlewareLink()) }}" class="small-box-footer">
                             <i class="fa fa-arrow-circle-right"></i> {{ trans('crud.select') }}
                         </a>
                     </div>

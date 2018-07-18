@@ -327,4 +327,12 @@ class Campaign extends MiscModel
     {
         return $query->visibility(Campaign::VISIBILITY_REVIEW);
     }
+
+    /**
+     * @return string
+     */
+    public function getMiddlewareLink()
+    {
+        return 'campaign/' . $this->id;
+    }
 }

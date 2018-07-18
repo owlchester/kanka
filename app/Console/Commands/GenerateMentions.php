@@ -73,7 +73,7 @@ class GenerateMentions extends Command
 
         foreach ($entities as $entity) {
             $model = new $entity;
-            $model->chunk(200, function ($models) {
+            $model->with('campaign')->chunk(200, function ($models) {
                 foreach ($models as $model) {
                     $attributes = $model->getAttributes();
                     $campaignId = $model->campaign_id;
@@ -85,9 +85,9 @@ class GenerateMentions extends Command
                         if (array_has($attributes, $field)) {
                             // Does it have an old link?
                             if (strpos($model->$field, 'data-toggle="tooltip"') !== false) {
-                                if (strpos($model->$field, '/campaign-' . $campaignId) === false) {
+                                if (strpos($model->$field, '/campaign/' . $campaignId) === false) {
                                     // Fix!
-                                    $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/campaign-$campaignId/$2", $model->$field);
+                                    $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/" . $model->campaign->getMiddlewareLink() . "/$2", $model->$field);
                                     $updated = true;
                                 }
                             }

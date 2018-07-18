@@ -18,8 +18,7 @@ class Campaign
     {
         // If the campaign has not been passed through the function
         // it tries to get it from the first segment of the url
-        $segments = explode('-', $request->segment(2));
-        $campaignId = !empty($segments) && !empty($segments[1]) ? $segments[1] : null;
+        $campaignId = $request->segment(3, null);
 
         if (empty($campaignId)) {
             abort(404);

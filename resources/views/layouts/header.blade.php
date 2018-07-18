@@ -61,7 +61,7 @@
                                             @foreach (Auth::user()->campaigns as $campaign)
                                                 @if ($campaign->id != Auth::user()->campaign->id)
                                                     <li>
-                                                        <a href="{{ url(App::getLocale() . '/campaign-' . $campaign->id) }}">
+                                                        <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}">
                                                             @if ($campaign->image)
                                                                 <img src="{{ $campaign->getImageUrl(true) }}" alt="{{ $campaign->name }}" class="campaign-image" />
                                                             @else

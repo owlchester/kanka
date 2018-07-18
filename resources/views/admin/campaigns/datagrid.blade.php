@@ -8,8 +8,8 @@
     <tbody>
     @foreach ($models as $campaign)
         <tr>
-            <td><a class="entity-image" style="background-image: url('{{ $campaign->getImageUrl(true) }}');" href="{{ app()->getLocale() . '/campaign-' . $campaign->id }}"></a></td>
-            <td>{{ link_to(app()->getLocale() . '/campaign-' . $campaign->id, $campaign->name) }}</td>
+            <td><a class="entity-image" style="background-image: url('{{ $campaign->getImageUrl(true) }}');" href="{{ app()->getLocale() . '/' . $campaign->getMiddlewareLink() }}"></a></td>
+            <td>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</td>
             <td>{{ trans('campaigns.visibilities.' . $campaign->visibility) }}</td>
         </tr>
     @endforeach

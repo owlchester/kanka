@@ -171,7 +171,7 @@
                 <li class="header">{{ trans('sidebar.navigation') }}</li>
                 @foreach (Auth::user()->campaigns as $campaign)
                 <li class="">
-                    <a href="{{ url(App::getLocale() . '/campaign-' . $campaign->id) }}"><i class="fa fa-globe"></i> <span>{{ $campaign->name }}</span></a>
+                    <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"><i class="fa fa-globe"></i> <span>{{ $campaign->name }}</span></a>
                 </li>
                 @endforeach
             </ul>
