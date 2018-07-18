@@ -105,7 +105,7 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane" id="info">
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="info">
                     <div class="post">
                         <p>{!! $campaign->description !!}</p>
                     </div>
