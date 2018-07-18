@@ -109,7 +109,11 @@ return [
         'attribute_template' => 'Apply an attribute template directly when creating this entity.',
         'is_private'    => 'Hide from non "Admin" users.',
     ],
-    'history'       => [],
+    'history'       => [
+        'created' => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated' => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown' => 'Unknown',
+    ],
     'image'         => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
     ],
