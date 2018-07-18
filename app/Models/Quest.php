@@ -63,6 +63,14 @@ class Quest extends MiscModel
     protected $searchableColumns  = ['name', 'type', 'description'];
 
     /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'locations', 'characters',
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()
