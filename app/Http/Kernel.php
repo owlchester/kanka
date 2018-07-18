@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'campaign' => '\App\Http\Middleware\Campaign',
         'campaign.member' => \App\Http\Middleware\CampaignMember::class,
         'campaign.owner' => \App\Http\Middleware\CampaignOwner::class,
 

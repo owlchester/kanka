@@ -1,3 +1,4 @@
+<?php $campaign = CampaignLocalization::getCampaign(); ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -65,7 +66,11 @@
                     </div>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @if ($campaign)
+                    <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @else
+                    <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @endif
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
                         <li>

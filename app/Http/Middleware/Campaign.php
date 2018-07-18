@@ -8,6 +8,10 @@ use App\Campaign as CampaignModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class Campaign
+ * @package App\Http\Middleware
+ */
 class Campaign
 {
     public function handle($request, Closure $next)
@@ -26,6 +30,7 @@ class Campaign
         // Make sure we can view this campaign?
         if ($campaign->visibility == 'public') {
             Session::put('campaign_id', $campaign->id);
+            $this->saveUserLastCampaignId($campaign);
             return $next($request);
         } elseif (Auth::check()) {
             // Obvious check: are we a member of the campaign?
@@ -34,6 +39,8 @@ class Campaign
                 if ($campaign->visibility == \App\Campaign::VISIBILITY_REVIEW && !(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))) {
                     abort(403);
                 }
+            } else {
+                $this->saveUserLastCampaignId($campaign);
             }
         } else {
             // No session, nada.
@@ -41,5 +48,20 @@ class Campaign
         }
 
         return $next($request);
+    }
+
+    /**
+     * Save the new campaign on the user for further actions
+     * @param CampaignModel $campaign
+     */
+    protected function saveUserLastCampaignId(\App\Campaign $campaign)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->last_campaign_id != $campaign->id) {
+                $user->last_campaign_id = $campaign->id;
+                $user->save();
+            }
+        }
     }
 }

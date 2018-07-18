@@ -45,7 +45,7 @@
                                 <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>
                             </ul>
                         </li>
-                        @if(Auth::user()->hasCampaigns(1) || !$currentCampaign->user())
+                        @if($currentCampaign && (Auth::user()->hasCampaigns(1) || !$currentCampaign->user()))
                             <li class="dropdown messages-menu campaign-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     @if ($currentCampaign->image)
@@ -76,7 +76,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @else
+                        @elseif (!empty($currentCampaign))
                             <li class="messages-menu campaign-menu">
                                 <a href="{{ route('dashboard') }}">
                                     @if ($currentCampaign->image)
