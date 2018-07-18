@@ -134,7 +134,9 @@ class CampaignLocalization
         }
 
         if (!empty($campaignId) && !is_numeric($campaignId)){
-            abort(404);
+            if ($this->request->segment(2) == 'campaign') {
+                abort(404);
+            }
         }
 
         if (!empty($campaignId)) {
