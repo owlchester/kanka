@@ -59,6 +59,7 @@ class AppServiceProvider extends ServiceProvider
         // Older mysql versions workaround
         Schema::defaultStringLength(191);
 
+
         if (!app()->runningInConsole()) {
             // Observers
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');

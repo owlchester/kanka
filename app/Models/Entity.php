@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
-use App\Traits\ElapsedTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
@@ -38,7 +37,6 @@ class Entity extends Model
      * Traits
      */
     use CampaignTrait;
-    use ElapsedTrait;
     use BlameableTrait;
 
     /**

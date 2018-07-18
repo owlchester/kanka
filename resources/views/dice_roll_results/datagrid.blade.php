@@ -47,7 +47,7 @@
             'label' => trans('dice_rolls.results.fields.date'),
             'field' => 'created_at',
             'render' => function($model) {
-                return $model->elapsed();
+                return $model->updated_at->diffForHumans();
             }
         ],
     ],

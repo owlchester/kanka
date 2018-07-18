@@ -22,7 +22,7 @@
                             @if ($model->family)
                                 <a href="{{ route('families.show', $model->family_id) }}" data-toggle="tooltip" title="{{ $model->family->tooltip() }}">{{ $model->family->name }}</a>
                             @endif
-                            <span class="pull-right product-description">{{ $model->elapsed() }}</span>
+                            <span class="pull-right product-description">{{ $model->updated_at->diffForHumans() }}</span>
                             <p class="text-justify entity-short">
                                 {{ $model->tooltip() }}
                             </p>

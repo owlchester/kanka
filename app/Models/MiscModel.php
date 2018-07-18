@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Scopes\RecentScope;
-use App\Traits\ElapsedTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Sofa\Eloquence\Eloquence;
@@ -19,7 +18,6 @@ use Sofa\Eloquence\Eloquence;
  */
 abstract class MiscModel extends Model
 {
-    use ElapsedTrait;
 
     /**
      * Eloquence trait for easy search

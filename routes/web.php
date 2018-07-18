@@ -14,7 +14,7 @@ use Vsch\TranslationManager\Translator;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime' ]
 ], function () {
 
     Route::get('/', 'HomeController@index')->name('home');

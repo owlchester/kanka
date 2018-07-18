@@ -62,7 +62,7 @@
                 <td>@if($relation->type == 'email'){{ $relation->email }}@else<a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">{{ $relation->token }}</a>@endif</td>
                 <td>{{ $relation->validity }}</td>
                 <td>{{ $relation->role ? $relation->role->name : null }}</td>
-                <td>{{ $relation->elapsed('created_at') }}</td>
+                <td>{{ $relation->created_at->diffForHumans() }}</td>
 
                 <td class="text-right">
                     {!! Form::open(['method' => 'DELETE','route' => ['campaigns.campaign_invites.destroy', $campaign->id, $relation->id],'style'=>'display:inline']) !!}
