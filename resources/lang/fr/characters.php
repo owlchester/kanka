@@ -131,14 +131,14 @@ return [
     'show'          => [
         'description'   => 'Détail d\'une personne',
         'tabs'          => [
-            'attributes'    => 'Attributs',
             'dice_rolls'    => 'Jets de dés',
             'free'          => 'Texte libre',
             'history'       => 'Histoire',
             'items'         => 'Objets',
+            'journals'      => 'Journaux',
             'organisations' => 'Organisations',
             'personality'   => 'Personnalité',
-            'relations'     => 'Relations',
+            'quests'        => 'Quêtes',
         ],
         'title'         => 'Personne :name',
     ],

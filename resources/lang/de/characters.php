@@ -128,13 +128,11 @@ return [
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Charakters',
         'tabs'          => [
-            'attributes'    => 'Attribute',
             'free'          => 'Freitext',
             'history'       => 'Geschichte',
             'items'         => 'Items',
             'organisations' => 'Organisationen',
             'personality'   => 'Persönlichkeit',
-            'relations'     => 'Beziehungen',
         ],
         'title'         => 'Charakter :name',
     ],

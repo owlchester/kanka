@@ -42,10 +42,12 @@ return [
     'invites'       => [
         'actions'       => [
             'add'   => 'Convidar',
+            'link'  => 'Novo Link',
         ],
         'create'        => [
             'button'        => 'Convidar',
             'description'   => 'Convide um amigo para a sua campanha',
+            'link'          => 'Link criado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Convite enviado.',
             'title'         => 'Convide alguém para sua campanha',
         ],
@@ -66,9 +68,19 @@ return [
         'fields'        => [
             'created'   => 'Enviado',
             'email'     => 'Email',
+            'role'      => 'Cargo',
+            'type'      => 'Tipo',
+            'validity'  => 'Validade',
+        ],
+        'helpers'       => [
+            'validity'  => 'Quantos usuários podem usar esse link antes que seja desativado.',
         ],
         'placeholders'  => [
             'email' => 'Email da pessoa que você deseja convidar',
+        ],
+        'types'         => [
+            'email' => 'Email',
+            'link'  => 'Link',
         ],
     ],
     'leave'         => [
@@ -88,6 +100,7 @@ return [
             'joined'    => 'Juntou-se em',
             'name'      => 'Usuário',
             'role'      => 'Cargo',
+            'roles'     => 'Cargos',
         ],
         'help'      => 'Não há limite para o número de membros que uma campanha pode ter, e como Administrador da campanha, você pode remover membros que não estão mais ativos nela.',
         'invite'    => [
@@ -131,6 +144,9 @@ return [
             '2' => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
             '3' => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
         ],
+        'hints'         => [
+            'role_permissions'  => 'Habilitar o cargo \':name\' a fazer as seguintes ações em todas as entidades.',
+        ],
         'members'       => 'Membros',
         'permissions'   => [
             'actions'   => [
@@ -170,6 +186,21 @@ return [
             'success'   => 'Configurações da campanha atualizadas.',
         ],
         'helper'    => 'Você pode facilmente desabilitar elementos da sua campanha que serão escondidos. Se você já havia criado elementos nas categorias que desabilitar, eles não serão deletados, apenas ocultados.',
+        'helpers'   => [
+            'calendars'     => 'Um lugar para definir todos os calendários do seu mundo.',
+            'categories'    => 'Cada entidade pode ter uma categoria. Categorias podem pertencer a outras categorias, e entidades podem ser filtradas por categorias.',
+            'characters'    => 'O povo que habita seu mundo.',
+            'dice_rolls'    => 'Para aqueles que usam Kanka para campanhas de RPG, uma maneira de cuidar das rolagens de dados.',
+            'events'        => 'Feriados, festivais, desastres, aniversários, guerras.',
+            'families'      => 'Clãs ou famílias, suas relações e seus membros.',
+            'items'         => 'Armas, veículos, relíquias, poções.',
+            'journals'      => 'Observações escritas por personagens, ou preparações de sessões para o mestre do jogo.',
+            'locations'     => 'Planetas, planos, continentes, rios, estados, acampamentos, templos, tavernas.',
+            'menu_links'    => 'Links de menus personalizados na barra lateral.',
+            'notes'         => 'História, religião, magia, raças.',
+            'organisations' => 'Cultos, uniões militares, facções, guildas',
+            'quests'        => 'Para manter controle de várias missões com personagens e locais.',
+        ],
     ],
     'show'          => [
         'actions'       => [

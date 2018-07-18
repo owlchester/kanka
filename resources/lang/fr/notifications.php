@@ -2,8 +2,9 @@
 
 return [
     'campaign'          => [
-        'join'  => ':user a rejoind la campagne :campaign.',
-        'leave' => ':user a quitté la campagne :campaign.',
+        'export'    => 'Un export de la campagne est disponnible. <a href=":link">Télécharger</a>. Ce lien sera disponnible durant 30 minutes.',
+        'join'      => ':user a rejoind la campagne :campaign.',
+        'leave'     => ':user a quitté la campagne :campaign.',
     ],
     'header'            => ':count notifications',
     'index'             => [

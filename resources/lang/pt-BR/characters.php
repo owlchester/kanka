@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'       => [
+        'add_appearance'    => 'Adicionar uma aparência',
+        'add_personality'   => 'Adicionar uma personalidade',
+    ],
     'create'        => [
         'description'   => 'Criar um novo personagem',
         'success'       => 'Personagem \':name\' criado.',
@@ -8,6 +12,9 @@ return [
     ],
     'destroy'       => [
         'success'   => 'Personagem \':name\' removido.',
+    ],
+    'dice_rolls'    => [
+        'hint'  => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
     ],
     'edit'          => [
         'description'   => 'Editar um personagem',
@@ -25,6 +32,7 @@ return [
         'height'                    => 'Altura',
         'history'                   => 'História',
         'image'                     => 'Imagem',
+        'is_dead'                   => 'Morto',
         'is_personality_visible'    => 'A personalidade é visível',
         'languages'                 => 'Idiomas',
         'location'                  => 'Local',
@@ -40,7 +48,12 @@ return [
         'type'                      => 'Tipo',
         'weight'                    => 'Peso',
     ],
+    'helpers'       => [
+        'free'  => 'Onde o campo "Livre" foi parar? Se esse personagem possuía um, ele foi movido para a nova aba Anotações!',
+    ],
     'hints'         => [
+        'hide_personality'          => 'Essa aba pode ser escondida de usuários não "Administradores"  desabilitando a opção "Personalidade Visível" quando editando esse personagem.',
+        'is_dead'                   => 'Esse personagem está morto',
         'is_personality_visible'    => 'Você pode ocultar toda a seção de personalidade dos seus Espectadores.',
     ],
     'index'         => [
@@ -51,6 +64,9 @@ return [
         'description'   => 'Gerencie os personagens de :name.',
         'header'        => 'Personagens em :name',
         'title'         => 'Personagens',
+    ],
+    'items'         => [
+        'hint'  => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',
     ],
     'organisations' => [
         'actions'       => [
@@ -73,33 +89,38 @@ return [
             'organisation'  => 'Organização',
             'role'          => 'Função',
         ],
+        'hint'          => 'Personagens podem ser parte de diversas organizações, representando para quem eles trabalham ou qual sociedade secreta eles fazem parte.',
         'placeholders'  => [
             'organisation'  => 'Escolha uma organização...',
         ],
     ],
     'placeholders'  => [
-        'age'       => 'Idade',
-        'eye'       => 'Cor dos olhos',
-        'family'    => 'Por favor selecione uma família',
-        'fears'     => 'Medos',
-        'free'      => 'Texto Livre',
-        'goals'     => 'Objetivos',
-        'hair'      => 'Cabelo',
-        'height'    => 'Altura',
-        'history'   => 'História',
-        'image'     => 'Imagem',
-        'languages' => 'Idiomas',
-        'location'  => 'Por favor selecione um local',
-        'mannerisms'=> 'Maneirismos',
-        'name'      => 'Nome',
-        'physical'  => 'Físico',
-        'race'      => 'Raça',
-        'sex'       => 'Sexo',
-        'skin'      => 'Pele',
-        'title'     => 'Título',
-        'traits'    => 'Traços de Personalidade',
-        'type'      => 'NPC, Personagem de Jogador, Divindade',
-        'weight'    => 'Peso',
+        'age'               => 'Idade',
+        'appearance_entry'  => 'Descrição',
+        'appearance_name'   => 'Cabelo, Olhos, Pele, Altura',
+        'eye'               => 'Cor dos olhos',
+        'family'            => 'Por favor selecione uma família',
+        'fears'             => 'Medos',
+        'free'              => 'Texto Livre',
+        'goals'             => 'Objetivos',
+        'hair'              => 'Cabelo',
+        'height'            => 'Altura',
+        'history'           => 'História',
+        'image'             => 'Imagem',
+        'languages'         => 'Idiomas',
+        'location'          => 'Por favor selecione um local',
+        'mannerisms'        => 'Maneirismos',
+        'name'              => 'Nome',
+        'personality_entry' => 'Detalhes',
+        'personality_name'  => 'Objetivos, Maneirismos, Medos, Ligações',
+        'physical'          => 'Físico',
+        'race'              => 'Raça',
+        'sex'               => 'Sexo',
+        'skin'              => 'Pele',
+        'title'             => 'Título',
+        'traits'            => 'Traços de Personalidade',
+        'type'              => 'NPC, Personagem de Jogador, Divindade',
+        'weight'            => 'Peso',
     ],
     'sections'      => [
         'appearance'    => 'Aparência',
@@ -110,13 +131,14 @@ return [
     'show'          => [
         'description'   => 'Uma visão geral do personagem',
         'tabs'          => [
-            'attributes'    => 'Atributos',
+            'dice_rolls'    => 'Rolagem de Dados',
             'free'          => 'Texto Livre',
             'history'       => 'História',
             'items'         => 'Itens',
+            'journals'      => 'Jornais',
             'organisations' => 'Organizações',
             'personality'   => 'Personalidade',
-            'relations'     => 'Relações',
+            'quests'        => 'Missões',
         ],
         'title'         => 'Personagem :name',
     ],

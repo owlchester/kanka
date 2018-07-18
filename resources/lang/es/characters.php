@@ -131,14 +131,14 @@ return [
     'show'          => [
         'description'   => 'Vista detallada del personaje',
         'tabs'          => [
-            'attributes'    => 'Atributos',
             'dice_rolls'    => 'Tiradas de dados',
             'free'          => 'Observaciones',
             'history'       => 'Biografía',
             'items'         => 'Objetos',
+            'journals'      => 'Diarios',
             'organisations' => 'Organizaciones',
             'personality'   => 'Personalidad',
-            'relations'     => 'Vínculos',
+            'quests'        => 'Misiones',
         ],
         'title'         => 'Personaje :name',
     ],

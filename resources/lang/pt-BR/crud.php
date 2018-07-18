@@ -2,10 +2,14 @@
 
 return [
     'actions'       => [
-        'back'  => 'Voltar',
-        'copy'  => 'Copiar',
-        'move'  => 'Mover',
-        'new'   => 'Novo',
+        'back'      => 'Voltar',
+        'copy'      => 'Copiar',
+        'export'    => 'Exportar',
+        'more'      => 'Mais Ações',
+        'move'      => 'Mover',
+        'new'       => 'Novo',
+        'private'   => 'Privado',
+        'public'    => 'Público',
     ],
     'add'           => 'Adicionar',
     'attributes'    => [
@@ -46,6 +50,11 @@ return [
             'title'     => 'Aplicar um Modelo de Atributo a :name',
         ],
     ],
+    'bulk'          => [
+        'errors'    => [
+            'admin' => 'Apenas administradores de campanha podem mudar o status privado de entidades',
+        ],
+    ],
     'cancel'        => 'Cancelar',
     'clear_filters' => 'Limpar Filtros',
     'click_modal'   => [
@@ -66,7 +75,9 @@ return [
     'edit'          => 'Editar',
     'fields'        => [
         'character'     => 'Personagem',
+        'creator'       => 'Criador',
         'description'   => 'Descrição',
+        'dice_roll'     => 'Rolagem de Dados',
         'entity'        => 'Entidade',
         'entry'         => 'Entrada',
         'event'         => 'Evento',

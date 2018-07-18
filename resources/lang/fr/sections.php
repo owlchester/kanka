@@ -10,8 +10,9 @@ return [
         'success'   => 'La catégorie \':name\' a été retirée.',
     ],
     'edit'          => [
-        'success'   => 'La catégorie \':name\' a été mise à jour.',
-        'title'     => 'Modifier la catégorie :name',
+        'description'   => 'Modification d\'une catégorie',
+        'success'       => 'La catégorie \':name\' a été mise à jour.',
+        'title'         => 'Modifier la catégorie :name',
     ],
     'fields'        => [
         'characters'    => 'Personnages',

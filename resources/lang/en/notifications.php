@@ -2,9 +2,9 @@
 
 return [
     'campaign'          => [
-        'join'  => ':user joined the campaign :campaign.',
-        'leave' => ':user left the campaign :campaign.',
-        'export' => 'An export of a campaign is available. You can download it by clicking <a href=":link">here</a>. The link is available for 30 minutes.',
+        'export'    => 'An export of a campaign is available. You can download it by clicking <a href=":link">here</a>. The link is available for 30 minutes.',
+        'join'      => ':user joined the campaign :campaign.',
+        'leave'     => ':user left the campaign :campaign.',
     ],
     'header'            => 'You have :count notifications',
     'index'             => [

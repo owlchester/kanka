@@ -20,6 +20,13 @@ return [
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
+    'export'        => [
+        'errors'    => [
+            'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
+        ],
+        'helper'    => 'Export your campaign. A notification with a download link will be made available.',
+        'success'   => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
+    ],
     'fields'        => [
         'description'   => 'Description',
         'image'         => 'Image',
@@ -215,12 +222,5 @@ return [
             'settings'      => 'Modules',
         ],
         'title'         => 'Campaign :name',
-    ],
-    'export' => [
-        'helper' => 'Export your campaign. A notification with a download link will be made available.',
-        'success' => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
-        'errors' => [
-            'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
-        ]
     ],
 ];

@@ -135,6 +135,7 @@ return [
             'free'          => 'Free Text',
             'history'       => 'History',
             'items'         => 'Items',
+            'journals'      => 'Journals',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
             'quests'        => 'Quests',

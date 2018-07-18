@@ -20,6 +20,13 @@ return [
         'success'       => 'Campagne modifiée.',
         'title'         => 'Modifier la campagne :campaign',
     ],
+    'export'        => [
+        'errors'    => [
+            'limit' => 'Nombre d\'export maximal par jour excédé pour cette campagne.',
+        ],
+        'helper'    => 'Export de la campagne. Une notification content un lien de téléchargement sera généré.',
+        'success'   => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
+    ],
     'fields'        => [
         'description'   => 'Description',
         'image'         => 'Image',
@@ -208,6 +215,7 @@ return [
         ],
         'description'   => 'Détail d\'une campagne',
         'tabs'          => [
+            'export'        => 'Export',
             'information'   => 'Information',
             'members'       => 'Membres',
             'roles'         => 'Rôles',
