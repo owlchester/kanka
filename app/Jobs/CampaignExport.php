@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Exception;
 
-class ExportCampaign implements ShouldQueue
+class CampaignExport implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -65,11 +65,16 @@ class ExportCampaign implements ShouldQueue
         }
 
         // We want the full path for jobs running in the queue.
-        $zipName = storage_path() . '/exports/campaigns/campaign_' . $this->campaign->id . '_' .  uniqid() . '.zip';
+        $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '.zip';
+        $pathName = storage_path() . '/exports/campaigns/' . $zipName;
         $zipper = new \Chumper\Zipper\Zipper;
-        $zipper->make($zipName);
+        $zipper->make($pathName);
 
+        // Campaign
         $zipper->addString('campaign.json', $this->campaign->toJson());
+        if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
+            $zipper->addString($this->campaign->image, Storage::get($this->campaign->image));
+        }
 
         foreach ($this->entity->entities() as $entity => $class) {
             if ($this->campaign->enabled($entity) && method_exists($class, 'export')) {
@@ -80,10 +85,15 @@ class ExportCampaign implements ShouldQueue
                         if (!empty($model->image) && Storage::exists($model->image)) {
                             $zipper->addString($model->image, Storage::get($model->image));
                         }
+
+                        // Locations have maps
+                        if ($model->getEntityType() == 'location' && !empty($model->map) && Storage::exists($model->map)) {
+                            $zipper->addString($model->map, Storage::get($model->map));
+                        }
                     }
                 } catch(Exception $e) {
                     $zipper->close();
-                    unlink($zipName);
+                    unlink($pathName);
                     throw new Exception('Missing campaign entity relation: ' . $entity . '-' . $class . '? ' . $e->getMessage());
                 }
             }
@@ -93,9 +103,9 @@ class ExportCampaign implements ShouldQueue
         $zipper->close();
 
         // Move to ?
-        $downloadPath = Storage::putFile('exports/campaigns', new File($zipName), 'public');
+        $downloadPath = Storage::putFileAs('exports/campaigns', new File($pathName), $zipName, 'public');
         $zipper->delete();
-        unlink($zipName);
+        unlink($pathName);
 
         // Email ?
         $this->user->notify(new Header(
@@ -109,7 +119,11 @@ class ExportCampaign implements ShouldQueue
         $this->campaign->export_path = $downloadPath;
         $this->campaign->save();
 
-        CampaignExportCleanup::dispatch($this->campaign)->delay(now()->addMinutes(30));
+        // Don't delete in "sync" mode as there is no delay.
+        $queue = config('queue.default');
+        if ($queue != 'sync') {
+            CampaignExportCleanup::dispatch($this->campaign)->delay(now()->addMinutes(30));
+        }
     }
 
     public function failure()

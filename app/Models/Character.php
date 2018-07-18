@@ -117,7 +117,7 @@ class Character extends MiscModel
      * @var array
      */
     protected $foreignExport = [
-        'characterTraits'
+        'characterTraits', 'items'
     ];
 
     /**

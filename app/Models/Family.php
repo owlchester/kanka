@@ -40,6 +40,14 @@ class Family extends MiscModel
     ];
 
     /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'members'
+    ];
+
+    /**
      * Traits
      */
     use CampaignTrait;

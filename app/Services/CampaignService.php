@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Campaign;
 use App\CampaignUser;
 use App\Exceptions\TranslatableException;
-use App\Jobs\ExportCampaign;
+use App\Jobs\CampaignExport;
 use App\Notifications\Header;
 use App\User;
 use Illuminate\Session\Store;
@@ -234,13 +234,12 @@ class CampaignService
     public function export(Campaign $campaign, User $user, EntityService $service)
     {
         // On prod, only 1 export per "day"
-        $env = env('APP_ENV', 'dev');
-        if (strtolower($env) == 'prod' && !empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
+        if (app()->environment('prod') && !empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
             throw new TranslatableException(trans('campaigns.export.errors.limit'));
         }
         $campaign->export_date = date('Y-m-d');
         $campaign->save();
 
-        ExportCampaign::dispatch($campaign, $user, $service);
+        CampaignExport::dispatch($campaign, $user, $service);
     }
 }
