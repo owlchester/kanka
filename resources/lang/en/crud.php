@@ -182,6 +182,8 @@ return [
         'general_information'   => 'General Information',
         'history'               => 'History',
         'move'                  => 'Move',
+        'system'                => 'System',
+        'attribute_template' => 'Attribute Template',
     ],
     'permissions'   => [
         'action'    => 'Action',
