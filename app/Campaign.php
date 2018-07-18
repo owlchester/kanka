@@ -6,8 +6,19 @@ use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class Campaign
+ * @package App
+ */
 class Campaign extends MiscModel
 {
+    /**
+     * Visibility of a campaign
+     */
+    const VISIBILITY_PRIVATE = 'private';
+    const VISIBILITY_REVIEW = 'review';
+    const VISIBILITY_PUBLIC = 'public';
+
     /**
      * @var array
      */
@@ -20,6 +31,7 @@ class Campaign extends MiscModel
         'join_token',
         'export_path',
         'export_date',
+        'visibility',
     ];
 
     /**
@@ -286,5 +298,33 @@ class Campaign extends MiscModel
             return $this->setting->$entity;
         }
         return false;
+    }
+
+    /**
+     * Get the is public checkbox for the campaign form.
+     */
+    public function getIsPublicAttribute()
+    {
+        return $this->visibility != self::VISIBILITY_PRIVATE;
+    }
+
+    /**
+     * @param $query
+     * @param $visibility
+     * @return mixed
+     */
+    public function scopeVisibility($query, $visibility)
+    {
+        return $query->where('visibility', $visibility);
+    }
+
+    /**
+     * Admin crud datagrid
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAdmin($query)
+    {
+        return $query->visibility(Campaign::VISIBILITY_REVIEW);
     }
 }

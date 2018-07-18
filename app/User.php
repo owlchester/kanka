@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Campaign;
+use App\Facades\CampaignLocalization;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
@@ -48,7 +49,7 @@ class User extends \TCG\Voyager\Models\User
         // We use a dirty static system because relying on the last_campaign_id doesn't work when two sessions
         // are active form the same user.
         if (self::$currentCampaign === false) {
-            self::$currentCampaign = Campaign::where('id', Session::get('campaign_id'))->first();
+            self::$currentCampaign = CampaignLocalization::getCampaign();
         }
         return self::$currentCampaign;
     }
@@ -211,5 +212,13 @@ class User extends \TCG\Voyager\Models\User
             $this->isAdminCached = $this->roles()->where(['is_admin' => true])->count() > 0;
         }
         return $this->isAdminCached;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasCampaigns($count = 0)
+    {
+        return $this->campaigns()->count() > $count ;
     }
 }

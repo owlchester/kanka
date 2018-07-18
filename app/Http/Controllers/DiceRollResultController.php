@@ -63,10 +63,10 @@ class DiceRollResultController extends CrudController
      */
     public function index(Request $request)
     {
-        $this->authorize('browse', $this->model);
+        //$this->authorize('browse', $this->model);
 
         // Add the is_private filter only for admins.
-        if (Auth::user()->isAdmin()) {
+        if (Auth::check() && Auth::user()->isAdmin()) {
             //$this->filters[] = 'is_private';
         }
 

@@ -18,7 +18,7 @@
                 <div class="box-body">
                     @if (Auth::user()->can('user', $role))
                         <p class="text-right">
-                            <a href="{{ route('campaigns.campaign_roles.campaign_role_users.create', ['campaign' => $model, 'campaign_role' => $role]) }}" class="btn btn-primary">
+                            <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}" class="btn btn-primary">
                                 {{ trans('campaigns.roles.users.actions.add') }}
                             </a>
                         </p>
@@ -34,11 +34,11 @@
                                 <td>{{ $r->name }}</td>
                                 <td class="text-right">
                                     @if (Auth::user()->can('user', $role))
-                                        <a href="{{ route('campaigns.campaign_roles.campaign_role_users.edit', ['campaign' => $model, 'campaign_role' => $role, 'campaign_role_user' => $relation]) }}" class="btn btn-xs btn-primary">
+                                        <a href="{{ route('campaign_roles.campaign_role_users.edit', ['campaign_role' => $role, 'campaign_role_user' => $relation]) }}" class="btn btn-xs btn-primary">
                                             <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                                         </a>
 
-                                        {!! Form::open(['method' => 'DELETE', 'route' => 'campaigns.campaign_roles.campaign_role_users.destroy', ['campaign' => $model, 'campaign_role' => $role, 'campaign_role_user' => $relation], 'style'=>'display:inline']) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => 'campaign_roles.campaign_role_users.destroy', ['campaign_role' => $role, 'campaign_role_user' => $relation], 'style'=>'display:inline']) !!}
                                         <button class="btn btn-xs btn-danger">
                                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                                         </button>

@@ -193,6 +193,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
+        App\Providers\CampaignLocalizationServiceProvider::class,
+        App\Providers\EntityPermissionServiceProvider::class,
 
     ],
 
@@ -255,6 +257,8 @@ return [
         'Zipper' => Chumper\Zipper\Zipper::class
 
         // Custom
+        'CampaignLocalization' => App\Facades\CampaignLocalization::class,
+        'EntityPermission' => App\Facades\EntityPermission::class,
 
     ],
 

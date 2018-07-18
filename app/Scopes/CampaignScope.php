@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Session;
+use App\Facades\CampaignLocalization;
 
 class CampaignScope implements Scope
 {
@@ -19,7 +20,10 @@ class CampaignScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         if (!app()->runningInConsole()) {
-            $builder->where($model->getTable() . '.campaign_id', '=', Session::get('campaign_id'));
+            $campaign = CampaignLocalization::getCampaign();
+            if ($campaign) {
+                $builder->where($model->getTable() . '.campaign_id', '=', $campaign->id);
+            }
         }
     }
 }

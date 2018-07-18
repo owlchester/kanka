@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Facades\CampaignLocalization;
 use App\Models\CampaignPermission;
 use App\Scopes\VisibleScope;
 
@@ -27,11 +28,17 @@ trait AclTrait
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
 
-        foreach ($user->roles as $role) {
-            if ($role->is_admin) {
-                return $query;
+        if ($user) {
+            foreach ($user->roles as $role) {
+                if ($role->is_admin) {
+                    return $query;
+                }
+                $roleIds[] = $role->id;
             }
-            $roleIds[] = $role->id;
+        } else {
+            // Campaign public role
+            $campaign = CampaignLocalization::getCampaign();
+            $roleIds = $campaign->roles()->public()->pluck('id')->toArray();
         }
 
         // Check for a permission related to this action.

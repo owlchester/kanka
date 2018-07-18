@@ -41,7 +41,7 @@
 
     @yield('styles')
 </head>
-<body class="skin-black sidebar-mini @if (Session::has('campaign_id')) @else layout-top-nav @endif">
+<body class="skin-black sidebar-mini @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check()) @else layout-top-nav @endif">
     <div id="app" class="wrapper">
         <!-- Header -->
         @include('layouts.header')
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
                         <li>

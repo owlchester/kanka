@@ -68,6 +68,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'campaign.member' => \App\Http\Middleware\CampaignMember::class,
         'campaign.owner' => \App\Http\Middleware\CampaignOwner::class,
+
+        // Roles & permissions (doesn't work yet)
         'translator' => \App\Http\Middleware\Translator::class,
+        'moderator' => \App\Http\Middleware\Moderator::class,
     ];
 }

@@ -48,7 +48,7 @@ class CampaignService
 
     public function campaign()
     {
-        return Auth::user()->campaign;
+        return \App\Facades\CampaignLocalization::getCampaign();
     }
 
     /**
@@ -165,16 +165,6 @@ class CampaignService
             ->where('user_id', Auth::user()->id)
             ->first();
         return !empty($member);
-    }
-
-    /**
-     * Definitively remove the campaign from the user
-     */
-    public static function flushCurrentCampaign() {
-        Session::forget('campaign_id');
-        $user = Auth::user();
-        $user->last_campaign_id = null;
-        $user->save();
     }
 
     /**

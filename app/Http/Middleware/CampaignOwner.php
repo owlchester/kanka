@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\CampaignLocalization;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +19,7 @@ class CampaignOwner
     public function handle($request, Closure $next)
     {
         // Make sure we have an id
-        $campaignId = Session::get('campaign_id');
+        $campaignId = CampaignLocalization::getCampaign()->id;
         if (empty($campaignId)) {
             return redirect()->route('campaigns.index');
         }

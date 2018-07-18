@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Scopes\RecentScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Sofa\Eloquence\Eloquence;
 
@@ -180,11 +182,23 @@ abstract class MiscModel extends Model
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
 
-        foreach ($user->roles as $role) {
-            if ($role->is_admin) {
-                return $query;
+        if (Auth::check()) {
+            foreach ($user->roles as $role) {
+                if ($role->is_admin) {
+                    return $query;
+                }
+                $roleIds[] = $role->id;
             }
-            $roleIds[] = $role->id;
+        }
+
+        // if there are no roles, we might be in Public mode. Just load public anyway!
+        if (empty($roleIds)) {
+            // Go and get the "public" role.
+            $campaign = CampaignLocalization::getCampaign();
+            $publicRole = $campaign->roles()->where('is_public', true)->first();
+            if ($publicRole) {
+                $roleIds[] = $publicRole->id;
+            }
         }
 
         // Check for a permission related to this action.
@@ -202,6 +216,9 @@ abstract class MiscModel extends Model
         $entityIds = [];
         foreach (CampaignPermission::where('key', 'like', "%$key%")
                      ->where(function ($query) use ($user, $roleIds) {
+                         if (!$user) {
+                             return $query->whereIn('campaign_role_id', $roleIds);
+                         }
                          return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
                      })
                      ->get() as $permission) {

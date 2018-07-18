@@ -31,7 +31,7 @@
                 @if (request()->get('order') == 'attributes/value') <i class="fa fa-long-arrow-down"></i>@endif
             </a>
         </th>
-        @if (Auth::user()->isAdmin())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <th>
                 <a href="{{ route($name . '.show', [$model, 'order' => 'attributes/is_private', '#attribute']) }}">
                     {{ trans('crud.fields.is_private') }}
@@ -45,7 +45,7 @@
         <tr>
             <td>{{ $attribute->name }}</td>
             <td>{{ $attribute->value }}</td>
-            @if (Auth::user()->isAdmin())
+            @if (Auth::check() && Auth::user()->isAdmin())
                 <td>
                     @if ($attribute->is_private == true)
                         <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>

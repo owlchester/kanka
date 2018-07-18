@@ -31,6 +31,14 @@
 </div>
 @endif
 
+<div class="form-group">
+    {!! Form::hidden('is_public', 0) !!}
+    <label>{!! Form::checkbox('is_public') !!}
+        {{ trans('campaigns.visibilities.public') }}
+    </label>
+    <p class="help-block">{{ trans('campaigns.helpers.visibility') }}</p>
+</div>
+
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('crud.save') }}</button>

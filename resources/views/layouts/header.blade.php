@@ -1,3 +1,5 @@
+<?php $currentCampaign = CampaignLocalization::getCampaign(); ?>
+<?php $notifications = Auth::check() ? Auth::user()->unreadNotifications : []; ?>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -8,7 +10,7 @@
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
-        @if (Session::has('campaign_id'))
+        @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
@@ -17,9 +19,8 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                @if (Auth::check() and !empty(Auth::user()->campaign))
-                    <?php $currentCampaign = Auth::user()->campaign; ?>
-                    <?php $notifications = Auth::user()->unreadNotifications; ?>
+                @if (Auth::check())
+                    @if (Auth::user()->hasCampaigns())
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-bell-o"></i>
@@ -44,50 +45,57 @@
                                 <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>
                             </ul>
                         </li>
-                    @if(count(Auth::user()->campaigns) > 1)
-                    <li class="dropdown messages-menu campaign-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
-                            @else
-                                <i class="fa fa-globe"></i>
-                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    @foreach (Auth::user()->campaigns as $campaign)
-                                        @if ($campaign->id != Auth::user()->campaign->id)
-                                            <li>
-                                                <a href="{{ route('campaigns.index', ['campaign_id' => $campaign->id]) }}">
-                                                    @if ($campaign->image)
-                                                        <img src="{{ $campaign->getImageUrl(true) }}" alt="{{ $campaign->name }}" class="campaign-image" />
-                                                    @else
-                                                        <i class="fa fa-globe"></i>
-                                                    @endif
-                                                    {{ $campaign->name }}
-                                                </a>
-                                            </li>
-                                        @endif
-                                    @endforeach
+                        @if(Auth::user()->hasCampaigns(1) || !$currentCampaign->user())
+                            <li class="dropdown messages-menu campaign-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    @if ($currentCampaign->image)
+                                        <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                    @else
+                                        <i class="fa fa-globe"></i>
+                                    @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu">
+                                            @foreach (Auth::user()->campaigns as $campaign)
+                                                @if ($campaign->id != Auth::user()->campaign->id)
+                                                    <li>
+                                                        <a href="{{ url(App::getLocale() . '/campaign-' . $campaign->id) }}">
+                                                            @if ($campaign->image)
+                                                                <img src="{{ $campaign->getImageUrl(true) }}" alt="{{ $campaign->name }}" class="campaign-image" />
+                                                            @else
+                                                                <i class="fa fa-globe"></i>
+                                                            @endif
+                                                            {{ $campaign->name }}
+                                                        </a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-                        </ul>
-                    </li>
-                    @else
-                    <li class="messages-menu campaign-menu">
-                        <a href="{{ route('home') }}">
-                        @if ($currentCampaign->image)
-                            <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                         @else
-                            <i class="fa fa-globe"></i>
-                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
-                        </a>
-                    </li>
+                            <li class="messages-menu campaign-menu">
+                                <a href="{{ route('dashboard') }}">
+                                    @if ($currentCampaign->image)
+                                        <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                    @else
+                                        <i class="fa fa-globe"></i>
+                                    @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
+                                </a>
+                            </li>
+                        @endif
                     @endif
+                @else
+                    <li class="messages-menu">
+                        <a href="{{ route('login') }}">{{ trans('front.menu.login') }}</a>
+                    </li>
+                    <li class="messages-menu">
+                        <a href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
+                    </li>
                 @endauth
-                <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-caret-down"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}

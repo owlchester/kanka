@@ -14,10 +14,10 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => ['campaigns.campaign_roles.store', 'campaign' => $model], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+                    {!! Form::open(array('route' => ['campaign_roles.store'], 'method'=>'POST', 'data-shortcut' => "1")) !!}
                     @include('campaigns.roles._form')
 
-                    {!! Form::hidden('campaign_id', $model->id) !!}
+                    {!! Form::hidden('campaign_id', CampaignLocalization::getCampaign()->id) !!}
                     
                     {!! Form::close() !!}
                 </div>

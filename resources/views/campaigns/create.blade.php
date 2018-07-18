@@ -20,7 +20,7 @@
             @endif
             @include('partials.errors')
 
-            {!! Form::open(array('route' => 'campaigns.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
+            {!! Form::open(array('route' => (!empty($start) ? 'start' : 'campaigns.store'), 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
                 @include('campaigns._form')
             {!! Form::close() !!}
         </div>

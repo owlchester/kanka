@@ -20,7 +20,7 @@ class VisibleScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         if (!app()->runningInConsole()) {
-            if (!Auth::user()->isAdmin()) {
+            if (!Auth::check() || !Auth::user()->isAdmin()) {
                 $builder->where($model->getTable() . '.is_private', false);
             }
         }

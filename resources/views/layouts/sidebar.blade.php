@@ -1,4 +1,5 @@
-@if (Session::has('campaign_id'))
+<?php $campaign = CampaignLocalization::getCampaign(); ?>
+@if (!empty($campaign))
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
@@ -26,11 +27,13 @@
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="header">{{ trans('sidebar.navigation') }}</li>
             <li class="{{ $sidebar->active('dashboard') }}">
-                <a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
+                <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
             </li>
+            @if (Auth::check())
             <li class="{{ $sidebar->active('campaigns') }}">
                 <a href="{{ route('campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>
             </li>
+            @endif
             @if ($campaign->enabled('menu_links'))
             <li class="treeview">
                 <a href="#">
@@ -50,7 +53,7 @@
                         </li>
                         @endif
                     @endforeach
-                    @if(Auth::user()->isAdmin())
+                    @if(Auth::check() && Auth::user()->isAdmin())
                         <li><a href="{{ route('menu_links.index') }}"><i class="fa fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
                     @endif
                 </ul>
@@ -145,13 +148,16 @@
                 </ul>
             </li>
 
-            @if (Auth::user()->is_translator)
+            @if (Auth::check() && Auth::user()->is_translator)
                 <li><a href="/translations"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.translations') }}</span></a></li>
             @endif
 
 
-            @if (Auth::user()->hasRole('admin'))
-            <li><a href="{{ route('voyager.dashboard') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
+            @if (Auth::check() && Auth::user()->hasRole('admin'))
+                <li><a href="{{ route('voyager.dashboard') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
+                <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
+            @elseif (Auth::check() && Auth::user()->hasRole('moderator'))
+                <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
             @endif
         </ul><!-- /.sidebar-menu -->
 
