@@ -85,6 +85,7 @@ return [
     ],
     'export'        => 'Export',
     'fields'        => [
+        'attribute_template' => 'Attribute Template',
         'character'     => 'Character',
         'creator'       => 'Creator',
         'description'   => 'Description',
@@ -105,6 +106,7 @@ return [
     'filters'       => 'Filters',
     'hidden'        => 'Hidden',
     'hints'         => [
+        'attribute_template' => 'Apply an attribute template directly when creating this entity.',
         'is_private'    => 'Hide from non "Admin" users.',
     ],
     'history'       => [],
