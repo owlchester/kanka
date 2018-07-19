@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Campaign;
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;

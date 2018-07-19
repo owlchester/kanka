@@ -80,7 +80,7 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasManyThrough(
             'App\Campaign',
-            'App\CampaignUser',
+            'App\Models\CampaignUser',
             'user_id',
             'id',
             'id',

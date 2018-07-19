@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Campaign;
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Exceptions\TranslatableException;
 use App\Jobs\CampaignExport;
 use App\Notifications\Header;

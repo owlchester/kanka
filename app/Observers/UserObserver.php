@@ -2,8 +2,7 @@
 
 namespace App\Observers;
 
-use App\Campaign;
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Mail\UserDeleted;
 use App\Mail\UserRegistered;
 use App\Mail\WelcomeEmail;

@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
-use App\CampaignUser;
-use App\Models\Family;
-use App\Models\FamilyRelation;
-use App\Http\Requests\StoreCampaign;
+use App\Models\CampaignUser;
 use App\Http\Requests\StoreCampaignUser;
-use App\Http\Requests\StoreFamily;
-use App\Http\Requests\StoreFamilyRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -50,7 +44,7 @@ class CampaignUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignUser  $campaignUser
      * @return \Illuminate\Http\Response
      */
     public function edit(CampaignUser $campaignUser)
@@ -62,7 +56,7 @@ class CampaignUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignUser  $campaignUser
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCampaignUser $request, CampaignUser $campaignUser)
@@ -76,7 +70,7 @@ class CampaignUserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignUser  $campaignUser
      * @return \Illuminate\Http\Response
      */
     public function destroy(CampaignUser $campaignUser)

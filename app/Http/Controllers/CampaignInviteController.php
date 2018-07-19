@@ -66,7 +66,7 @@ class CampaignInviteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignInvite  $campaignUser
      * @return \Illuminate\Http\Response
      */
     public function destroy(CampaignInvite $campaignInvite)

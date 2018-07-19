@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
 use App\Models\CampaignPermission;

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Campaign;
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Policies\CampaignPolicy;
 use App\Policies\CampaignUserPolicy;
 use App\Policies\CharacterPolicy;

@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Campaign;
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;

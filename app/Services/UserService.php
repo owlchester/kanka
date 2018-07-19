@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\User;
 
 class UserService

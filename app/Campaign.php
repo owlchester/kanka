@@ -61,7 +61,7 @@ class Campaign extends MiscModel
      */
     public function members()
     {
-        return $this->hasMany('App\CampaignUser');
+        return $this->hasMany('App\Models\CampaignUser');
     }
 
     /**

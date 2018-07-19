@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\CampaignUser;
+use App\Models\CampaignUser;
 
 class CampaignUserObserver
 {
