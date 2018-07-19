@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\CampaignPermission;
-use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class EntityPermission
 {

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CampaignRoleController extends Controller
 {

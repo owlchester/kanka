@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignPermission;

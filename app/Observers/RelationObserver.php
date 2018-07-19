@@ -2,13 +2,8 @@
 
 namespace App\Observers;
 
-use App\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\Relation;
-use App\Traits\RelationTrait;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 
 class RelationObserver
 {

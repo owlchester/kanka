@@ -20,7 +20,7 @@ class AddUserCampaignRole extends Migration
         $users = \App\User::with('campaign')->get();
         foreach ($users as $user) {
             if ($user->campaign) {
-                $role = \App\CampaignUser::where('campaign_id', $user->campaign->id)->where('user_id', $user->id)->first();
+                $role = \App\Models\CampaignUser::where('campaign_id', $user->campaign->id)->where('user_id', $user->id)->first();
                 if ($role) {
                     $user->campaign_role = $role->role;
                     $user->save();

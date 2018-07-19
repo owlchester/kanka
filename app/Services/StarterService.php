@@ -2,12 +2,10 @@
 
 namespace App\Services;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Item;
 use App\Models\Location;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class StarterService
 {

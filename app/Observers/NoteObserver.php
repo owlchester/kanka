@@ -2,15 +2,13 @@
 
 namespace App\Observers;
 
-use App\Campaign;
 use App\Models\MiscModel;
-use App\Models\Note;
-use App\Services\ImageService;
-use App\Services\LinkerService;
-use Illuminate\Support\Facades\Session;
 
 class NoteObserver extends MiscObserver
 {
+    /**
+     * @param MiscModel $model
+     */
     public function saving(MiscModel $model)
     {
         parent::saving($model);

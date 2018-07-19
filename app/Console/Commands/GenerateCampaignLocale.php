@@ -2,12 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Campaign;
-use App\Models\Character;
-use App\Models\CharacterTrait;
-use App\Models\MapPoint;
+use App\Models\Campaign;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class GenerateCampaignLocale extends Command
 {

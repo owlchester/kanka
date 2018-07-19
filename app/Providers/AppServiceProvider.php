@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Campaign;
+use App\Models\Campaign;
 
 class CampaignReviewController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Campaign;
+use App\Models\Campaign;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

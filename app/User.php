@@ -2,12 +2,9 @@
 
 namespace App;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use DateTime;
-use Illuminate\Support\Facades\Session;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -79,7 +76,7 @@ class User extends \TCG\Voyager\Models\User
     public function campaigns()
     {
         return $this->hasManyThrough(
-            'App\Campaign',
+            'App\Models\Campaign',
             'App\Models\CampaignUser',
             'user_id',
             'id',

@@ -13,7 +13,7 @@ class PopulateCampaignSettings extends Migration
      */
     public function up()
     {
-        $campaigns = \App\Campaign::get();
+        $campaigns = \App\Models\Campaign::get();
         foreach ($campaigns as $campaign) {
             $setting = \App\Models\CampaignSetting::create([
                 'campaign_id' => $campaign->id,
@@ -29,7 +29,7 @@ class PopulateCampaignSettings extends Migration
      */
     public function down()
     {
-        $campaigns = \App\Campaign::get();
+        $campaigns = \App\Models\Campaign::get();
         foreach ($campaigns as $campaign) {
             $campaign->setting->delete();
         }

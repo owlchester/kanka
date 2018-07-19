@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Services\CampaignService;
 use App\Services\EntityService;
@@ -83,7 +83,7 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaign $request)
     {
-        $this->authorize('create', 'App\Campaign');
+        $this->authorize('create', 'App\Models\Campaign');
 
         $first = !Session::has('campaign_id');
         Campaign::create($request->all());
@@ -94,7 +94,7 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function show(Campaign $campaign)
@@ -105,7 +105,7 @@ class CampaignController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function edit(Campaign $campaign)
@@ -119,7 +119,7 @@ class CampaignController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Campaign  $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCampaign $request, Campaign $campaign)
@@ -134,7 +134,7 @@ class CampaignController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function destroy(Campaign $campaign)

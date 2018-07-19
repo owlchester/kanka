@@ -35,7 +35,7 @@ class MenuLink extends MiscModel
      */
     public function campaign()
     {
-        return $this->belongsTo('App\Campaign', 'campaign_id');
+        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
     }
 
     /**

@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCampaignInvite;
 use App\Models\CampaignInvite;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CampaignInviteController extends Controller
 {

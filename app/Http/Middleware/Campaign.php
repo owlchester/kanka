@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Exception;
-use App\Campaign as CampaignModel;
+use App\Models\Campaign as CampaignModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -35,7 +35,7 @@ class Campaign
             // Obvious check: are we a member of the campaign?
             if (!$campaign->user()) {
                 // Let's check if it's in Review mode, then we need to be an admin or moderator
-                if ($campaign->visibility == \App\Campaign::VISIBILITY_REVIEW && !(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))) {
+                if ($campaign->visibility == \App\Models\Campaign::VISIBILITY_REVIEW && !(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))) {
                     abort(403);
                 }
             } else {
@@ -53,7 +53,7 @@ class Campaign
      * Save the new campaign on the user for further actions
      * @param CampaignModel $campaign
      */
-    protected function saveUserLastCampaignId(\App\Campaign $campaign)
+    protected function saveUserLastCampaignId(\App\Models\Campaign $campaign)
     {
         if (Auth::check()) {
             $user = Auth::user();

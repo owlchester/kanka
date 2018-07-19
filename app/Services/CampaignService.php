@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\TranslatableException;
 use App\Jobs\CampaignExport;

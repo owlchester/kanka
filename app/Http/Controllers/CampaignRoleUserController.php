@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\CampaignRoleUser;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CampaignRoleUserController extends Controller
 {

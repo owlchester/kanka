@@ -2,13 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\CampaignRole;
-use App\Models\Character;
-use App\Models\CharacterTrait;
-use App\Models\MapPoint;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class GenerateCampaignPublic extends Command
 {

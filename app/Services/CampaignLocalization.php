@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Campaign;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use App\Models\Campaign;
 
 class CampaignLocalization
 {

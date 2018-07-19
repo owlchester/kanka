@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreUserDashboardSetting;
 use Illuminate\Support\Facades\Auth;
 
-use App\Campaign;
 use App\Models\Character;
 use App\Models\Family;
 use App\Models\Item;
@@ -15,9 +14,6 @@ use App\Models\Location;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Release;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {

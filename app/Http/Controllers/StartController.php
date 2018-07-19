@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCampaign;
 use App\Services\CampaignService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class StartController extends Controller
 {
@@ -51,7 +50,7 @@ class StartController extends Controller
      */
     public function store(StoreCampaign $request)
     {
-        $this->authorize('create', 'App\Campaign');
+        $this->authorize('create', 'App\Models\Campaign');
 
         $first = Auth::user()->hasCampaigns();
         Campaign::create($request->all());

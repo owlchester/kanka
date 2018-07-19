@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Campaign;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use App\Models\Campaign;
 
 class CampaignController extends AdminCrudController
 {
@@ -17,7 +15,7 @@ class CampaignController extends AdminCrudController
     /**
      * @var string
      */
-    protected $model = \App\Campaign::class;
+    protected $model = \App\Models\Campaign::class;
 
     /**
      * CharacterController constructor.
@@ -35,7 +33,7 @@ class CampaignController extends AdminCrudController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function destroy(Campaign $campaign)

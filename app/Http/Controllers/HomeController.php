@@ -2,18 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
-use App\Models\Character;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Note;
-use App\Models\Organisation;
-use App\Models\Release;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 

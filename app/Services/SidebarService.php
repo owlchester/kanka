@@ -2,11 +2,6 @@
 
 namespace App\Services;
 
-use App\Campaign;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-
 class SidebarService
 {
     protected $rules = [

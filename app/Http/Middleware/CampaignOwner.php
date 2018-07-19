@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use Closure;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class CampaignOwner
 {
@@ -25,7 +24,7 @@ class CampaignOwner
         }
 
         // Make sure the campaign exists
-        $campaign = \App\Campaign::with('members')->where('id', $campaignId)->first();
+        $campaign = Campaign::with('members')->where('id', $campaignId)->first();
         if (empty($campaign)) {
             return redirect()->route('campaigns.index');
         }

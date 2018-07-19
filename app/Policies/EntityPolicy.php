@@ -2,12 +2,9 @@
 
 namespace App\Policies;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Facades\EntityPermission;
-use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +19,10 @@ class EntityPolicy
 
     protected $model = '';
 
+    /**
+     * @param User $user
+     * @return bool
+     */
     public function browse(User $user)
     {
         return true;

@@ -2,18 +2,15 @@
 
 namespace App\Observers;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
-use App\Services\CampaignService;
 use App\Services\ImageService;
 use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 
 class CampaignObserver
 {
