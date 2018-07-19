@@ -133,6 +133,7 @@ class CampaignLocalization
             $campaignId = $this->request->segment(3);
         }
 
+        // Check to make sure the campaign is an id (we don't want to check the db at this point)
         if (!empty($campaignId) && !is_numeric($campaignId)){
             if ($this->request->segment(2) == 'campaign') {
                 abort(404);
