@@ -24,7 +24,7 @@ class DashboardController extends Controller
     {
         // Check the campaign
         $campaign = CampaignLocalization::getCampaign();
-        if (empty($campaign) || (Auth::check() && !Auth::user()->hasCampaigns())) {
+        if (empty($campaign) && (Auth::check() && !Auth::user()->hasCampaigns())) {
             return redirect()->route('start');
         }
 

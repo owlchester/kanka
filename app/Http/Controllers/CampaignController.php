@@ -48,9 +48,9 @@ class CampaignController extends Controller
     public function index(Request $request)
     {
         // If the user has no campaigns, we'll need to move him to the new campaign interface first.
-        if (Auth::user()->campaigns()->count() == 0) {
-            return redirect()->route('campaigns.create');
-        }
+//        if (Auth::user()->campaigns()->count() == 0) {
+//            return redirect()->route('campaigns.create');
+//        }
 
         $active = Session::get('campaign_id');
         $campaigns = null;

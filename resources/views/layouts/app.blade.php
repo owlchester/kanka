@@ -42,7 +42,8 @@
 
     @yield('styles')
 </head>
-<body class="skin-black sidebar-mini @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check()) @else layout-top-nav @endif">
+{{-- Hide the sidebar if the there is no current campaign --}}
+<body class="skin-black sidebar-mini @if (!empty($campaign)) @else layout-top-nav @endif">
     <div id="app" class="wrapper">
         <!-- Header -->
         @include('layouts.header')

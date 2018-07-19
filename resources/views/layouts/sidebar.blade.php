@@ -164,7 +164,7 @@
     </section>
     <!-- /.sidebar -->
 </aside>
-@elseif (Auth::check())
+@elseif (Auth::check() && Auth::user()->hasCampaigns())
     <aside class="main-sidebar">
         <section class="sidebar">
             <ul class="sidebar-menu tree" data-widget="tree">

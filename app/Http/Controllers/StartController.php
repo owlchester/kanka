@@ -34,6 +34,7 @@ class StartController extends Controller
      */
     public function index(Request $request)
     {
+        // A user with campaigns doesn't need this process.
         if (Auth::user()->hasCampaigns()) {
             // Take the first campaign
             $campaign = Auth::user()->campaigns()->first();

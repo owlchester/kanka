@@ -7,7 +7,7 @@
         <th>{{ trans('campaigns.members.fields.joined') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $campaign->members()->with('user')->paginate() as $relation)
+    @foreach ($r = $campaign->members()->with(['user', 'campaign'])->paginate() as $relation)
         <tr>
             <td>{{ $relation->user->name }}</td>
             <td>{{ $relation->user->rolesList($campaign->id) }}</td>
