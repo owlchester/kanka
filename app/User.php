@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -115,7 +116,7 @@ class User extends \TCG\Voyager\Models\User
     public function getAvatarUrl()
     {
         if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
-            return '/storage/' . $this->avatar;
+            return Storage::url($this->avatar);
         } else {
             return '/images/defaults/user.svg';
         }
