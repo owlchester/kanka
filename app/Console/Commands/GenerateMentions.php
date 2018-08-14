@@ -67,7 +67,7 @@ class GenerateMentions extends Command
 
         foreach ($entities as $entity) {
             $model = new $entity;
-            $model->with('campaign')->chunk(200, function ($models) {
+            $model->with('campaign')->chunk(200, function ($models) use ($entity) {
                 foreach ($models as $model) {
                     $attributes = $model->getAttributes();
                     $campaignId = $model->campaign_id;
@@ -80,8 +80,12 @@ class GenerateMentions extends Command
                             // Does it have an old link?
                             if (strpos($model->$field, 'data-toggle="tooltip"') !== false) {
                                 if (strpos($model->$field, '/campaign/' . $campaignId) === false) {
-                                    // Fix!
-                                    $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/" . $model->campaign->getMiddlewareLink() . "/$2", $model->$field);
+                                    // Fix the link. If the entity is a campaign, use the proper call
+                                    if ($entity == 'App\Models\Campaign') {
+                                        $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/" . $model->getMiddlewareLink() . "/$2", $model->$field);
+                                    } else {
+                                        $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/" . $model->campaign->getMiddlewareLink() . "/$2", $model->$field);
+                                    }
                                     $updated = true;
                                 }
                             }
