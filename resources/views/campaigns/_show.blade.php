@@ -12,62 +12,54 @@
 
                 <h3 class="profile-username text-center">{{ $campaign->name }}</h3>
 
-                @if (Auth::user()->can('update', $campaign))
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>{{ trans('campaigns.fields.visibility') }}</b>
+                        <span  class="pull-right">
+                            {{ trans('campaigns.visibilities.' . $campaign->visibility) }}
+                        </span>
+                        <br class="clear" />
+                    </li>
+                </ul>
+
+                @can('update', $campaign)
                 <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-primary btn-block">
                     <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
                 </a>
-                @endif
-                @if (Auth::user()->can('leave', $campaign))
+                @endcan
+                @can('leave', $campaign)
                 <button data-url="{{ route('campaigns.leave', $campaign->id) }}" class="btn btn-warning btn-block click-confirm" data-toggle="modal" data-target="#click-confirm" data-message="{{ trans('campaigns.leave.confirm', ['name' => $campaign->name]) }}">
                     <i class="fa fa-sign-out" aria-hidden="true"></i> {{ trans('campaigns.show.actions.leave') }}
                 </button>
-                @endif
+                @endcan
 
-                @if (Auth::user()->can('delete', $campaign))
+                @can('delete', $campaign)
                 <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>
                 {!! Form::open(['method' => 'DELETE','route' => ['campaigns.destroy', $campaign->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                 {!! Form::close() !!}
                 {!! Form::close() !!}
-                @endif
+                @endcan
             </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-
-
-        @if (!empty($campaigns))
-            @foreach ($campaigns as $c)
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h4>{!! $c->shortName(50) !!}</h4>
-
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-map"></i>
-                        </div>
-                        <a href="{{ route('campaigns.index', ['campaign_id' => $c->id]) }}" class="small-box-footer">
-                            <i class="fa fa-arrow-circle-right"></i> {{ trans('crud.select') }}
-                        </a>
-                    </div>
-            @endforeach
-        @endif
-
-    <!-- small box -->
-        <div class="small-box bg-blue">
-            <div class="inner">
-                <h4>{{ trans('campaigns.index.actions.new.title') }}</h4>
-            </div>
-            <div class="icon">
-                <i class="ion ion-plus"></i>
-            </div>
-            <a href="{{ route('campaigns.create') }}" class="small-box-footer">
-                <i class="fa fa-plus-circle"></i> {{ trans('campaigns.index.actions.new.description') }}
-            </a>
         </div>
 
+        {{--@if (!empty($campaigns))--}}
+            {{--@foreach ($campaigns as $c)--}}
+                {{--<div class="small-box bg-green">--}}
+                    {{--<div class="inner">--}}
+                        {{--<h4>{!! $c->shortName(50) !!}</h4>--}}
+
+                    {{--</div>--}}
+                    {{--<div class="icon">--}}
+                        {{--<i class="ion ion-map"></i>--}}
+                    {{--</div>--}}
+                    {{--<a href="{{ url(App::getLocale() . '/' . $c->getMiddlewareLink()) }}" class="small-box-footer">--}}
+                        {{--<i class="fa fa-arrow-circle-right"></i> {{ trans('crud.select') }}--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+            {{--@endforeach--}}
+        {{--@endif--}}
     </div>
 
     <div class="col-md-9">
@@ -89,8 +81,6 @@
                         <span class="fa fa-lock"></span> {{ trans('campaigns.show.tabs.roles') }}
                     </a>
                 </li>
-                @endcan
-                @can('setting', $campaign)
                 <li class="">
                     <a href="#setting">
                         <span class="fa fa-cubes"></span> {{ trans('campaigns.show.tabs.settings') }}
@@ -117,8 +107,6 @@
                 <div class="tab-pane" id="roles">
                     @include('campaigns._roles')
                 </div>
-                @endcan
-                @can('setting', $campaign)
                 <div class="tab-pane" id="setting">
                     @include('campaigns._settings')
                 </div>

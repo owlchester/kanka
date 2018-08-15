@@ -2,10 +2,8 @@
 
 namespace App\Policies;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\User;
-use App\Models\Character;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class DiceRollResultPolicy extends EntityPolicy
 {

@@ -10,7 +10,7 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-body">
-            @if (!session()->has('campaign_id'))
+            @if (isset($start))
                 <div class="callout callout-info">
                     <h4>{{ trans('campaigns.create.helper.title', ['name' => config('app.name')]) }}</h4>
 
@@ -20,7 +20,7 @@
             @endif
             @include('partials.errors')
 
-            {!! Form::open(array('route' => 'campaigns.store', 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
+            {!! Form::open(array('route' => (isset($start) ? 'start' : 'campaigns.store'), 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
                 @include('campaigns._form')
             {!! Form::close() !!}
         </div>

@@ -11,6 +11,7 @@
     @inject('permission', 'App\Services\PermissionService')
 
     <div class="row">
+        @if (!$role->is_public)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -19,7 +20,7 @@
                 <div class="box-body">
                     @if (Auth::user()->can('user', $role))
                         <p class="text-right">
-                            <a href="{{ route('campaigns.campaign_roles.campaign_role_users.create', ['campaign' => $model, 'campaign_role' => $role]) }}" class="btn btn-primary">
+                            <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}" class="btn btn-primary">
                                 <i class="fa fa-plus"></i>
                                 {{ trans('campaigns.roles.users.actions.add') }}
                             </a>
@@ -35,7 +36,7 @@
                                 <td>{{ $relation->user->name }}</td>
                                 <td class="text-right">
                                     @can('removeUser', $role)
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.campaign_roles.campaign_role_users.destroy', 'campaign' => $model, 'campaign_role' => $role, 'campaign_role_user' => $relation->id], 'style'=>'display:inline']) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id], 'style'=>'display:inline']) !!}
                                         <button class="btn btn-xs btn-danger">
                                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                                         </button>
@@ -49,6 +50,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="col-md-6">
             <div class="box box-default">
@@ -59,7 +61,7 @@
                     <p class="help-block">{{ trans('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
 
                     @can('permission', $role)
-                    {{ Form::open(['route' => ['campaigns.campaign_roles.savePermissions', 'campaign' => $model, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
+                    {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
                     <table id="permissions" class="table table-hover">
                         <tbody><tr>
                             <th>{{ trans('crud.fields.entity') }}</th>

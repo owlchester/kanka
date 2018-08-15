@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Traits\AdminPolicyTrait;
 use App\User;
-use App\Campaign;
+use App\Models\Campaign;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
@@ -15,8 +15,8 @@ class CampaignPolicy
     /**
      * Determine whether the user can view the campaign.
      *
-     * @param  \App\User  $user
-     * @param  \App\Campaign  $campaign
+     * @param  User  $user
+     * @param  Campaign  $campaign
      * @return mixed
      */
     public function view(User $user, Campaign $campaign)
@@ -27,7 +27,7 @@ class CampaignPolicy
     /**
      * Determine whether the user can create campaigns.
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -38,8 +38,8 @@ class CampaignPolicy
     /**
      * Determine whether the user can update the campaign.
      *
-     * @param  \App\User  $user
-     * @param  \App\Campaign  $campaign
+     * @param  User  $user
+     * @param  Campaign  $campaign
      * @return mixed
      */
     public function update(User $user, Campaign $campaign)
@@ -51,8 +51,8 @@ class CampaignPolicy
     /**
      * Determine whether the user can delete the campaign.
      *
-     * @param  \App\User  $user
-     * @param  \App\Campaign  $campaign
+     * @param  User  $user
+     * @param  Campaign  $campaign
      * @return mixed
      */
     public function delete(User $user, Campaign $campaign)
@@ -92,6 +92,6 @@ class CampaignPolicy
     {
         return $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
-            (!$this->isAdmin($user) || count($campaign->admins()) > 1);
+            $campaign->user() && (!$this->isAdmin($user) || count($campaign->admins()) > 1);
     }
 }

@@ -193,6 +193,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
+        App\Providers\CampaignLocalizationServiceProvider::class,
+        App\Providers\EntityPermissionServiceProvider::class,
 
     ],
 
@@ -252,10 +254,11 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Zipper' => Chumper\Zipper\Zipper::class
+        'Zipper' => Chumper\Zipper\Zipper::class,
 
         // Custom
-
+        'CampaignLocalization' => App\Facades\CampaignLocalization::class,
+        'EntityPermission' => App\Facades\EntityPermission::class,
     ],
 
 ];

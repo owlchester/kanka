@@ -2,19 +2,16 @@
 
 namespace App\Jobs;
 
-use App\Campaign;
-use App\Mail\CampaignExportMail;
+use App\Models\Campaign;
 use App\Notifications\Header;
 use App\Services\EntityService;
 use App\User;
-use http\Url;
 use Illuminate\Bus\Queueable;
 use Illuminate\Http\File;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Exception;

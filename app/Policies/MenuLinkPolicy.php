@@ -21,7 +21,7 @@ class MenuLinkPolicy
      * Determine whether the user can view the campaign.
      *
      * @param  \App\User  $user
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Models\MenuLink  $menuLink
      * @return mixed
      */
     public function view(User $user, MenuLink $menuLink)
@@ -45,7 +45,7 @@ class MenuLinkPolicy
      * Determine whether the user can update the campaign.
      *
      * @param  \App\User  $user
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Models\MenuLink  $menuLink
      * @return mixed
      */
     public function update(User $user, MenuLink $menuLink)
@@ -58,7 +58,7 @@ class MenuLinkPolicy
      * Determine whether the user can delete the campaign.
      *
      * @param  \App\User  $user
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Models\MenuLink  $menuLink
      * @return mixed
      */
     public function delete(User $user, MenuLink $menuLink)

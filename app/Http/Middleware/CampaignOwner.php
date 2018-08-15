@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use Closure;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class CampaignOwner
 {
@@ -18,13 +18,13 @@ class CampaignOwner
     public function handle($request, Closure $next)
     {
         // Make sure we have an id
-        $campaignId = Session::get('campaign_id');
+        $campaignId = CampaignLocalization::getCampaign()->id;
         if (empty($campaignId)) {
             return redirect()->route('campaigns.index');
         }
 
         // Make sure the campaign exists
-        $campaign = \App\Campaign::with('members')->where('id', $campaignId)->first();
+        $campaign = Campaign::with('members')->where('id', $campaignId)->first();
         if (empty($campaign)) {
             return redirect()->route('campaigns.index');
         }

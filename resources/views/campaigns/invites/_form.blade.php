@@ -12,7 +12,7 @@
 
 <div class="form-group required">
     <label>{{ trans('campaigns.invites.fields.role') }}</label>
-    {!! Form::select('role_id', Auth::user()->campaign->roles()->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
+    {!! Form::select('role_id', Auth::user()->campaign->roles()->where('is_public', false)->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
 </div>
 
 <div class="form-group">

@@ -109,7 +109,7 @@
             </div>
         </div>
 
-        @if (Auth::user()->can('personality', $model))
+        @if (Auth::check() && Auth::user()->can('personality', $model))
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('characters.show.tabs.personality') }}</h3>

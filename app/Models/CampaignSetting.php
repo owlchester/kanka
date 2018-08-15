@@ -37,6 +37,6 @@ class CampaignSetting extends Model
      */
     public function campaign()
     {
-        return $this->belongsTo('App\Campaign', 'campaign_id', 'id');
+        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 }

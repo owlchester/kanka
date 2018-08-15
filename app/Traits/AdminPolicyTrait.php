@@ -7,18 +7,27 @@ use App\User;
 trait AdminPolicyTrait
 {
     /**
+     * Cached value of the check
+     * @var null|boolean
+     */
+    protected $cachedAdminPolicy = null;
+
+    /**
      * Determin if a user is admin of a campaign
      * @param User $user
      * @return bool
      */
     public function isAdmin(User $user)
     {
-        foreach ($user->roles as $role) {
-            if ($role->is_admin) {
-                return true;
+        if ($this->cachedAdminPolicy === null) {
+            $this->cachedAdminPolicy = false;
+            foreach ($user->roles as $role) {
+                if ($role->is_admin) {
+                    $this->cachedAdminPolicy = true;
+                }
             }
         }
 
-        return false;
+        return $this->cachedAdminPolicy;
     }
 }

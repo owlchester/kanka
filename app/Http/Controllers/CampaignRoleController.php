@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Models\Campaign;
+use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CampaignRoleController extends Controller
 {
@@ -31,10 +31,10 @@ class CampaignRoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Campaign $campaign)
+    public function create()
     {
         $this->authorize('create', CampaignRole::class);
-        return view($this->view . '.create', ['model' => $campaign]);
+        return view($this->view . '.create');
     }
 
     /**
@@ -43,11 +43,11 @@ class CampaignRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCampaignRole $request, Campaign $campaign)
+    public function store(StoreCampaignRole $request)
     {
         $this->authorize('create', CampaignRole::class);
         $relation = CampaignRole::create($request->all());
-        return redirect()->route('campaigns.show', [$campaign->id, '#roles'])
+        return redirect()->route('campaigns.show', ['#roles'])
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -57,10 +57,11 @@ class CampaignRoleController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function show(Campaign $campaign, CampaignRole $campaignRole)
+    public function show(CampaignRole $campaignRole)
     {
         $this->authorize('view', $campaignRole);
 
+        $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', [
             'model' => $campaign,
             'role' => $campaignRole
@@ -73,9 +74,10 @@ class CampaignRoleController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function edit(Campaign $campaign, CampaignRole $campaignRole)
+    public function edit(CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.edit', [
             'model' => $campaign,
@@ -90,9 +92,10 @@ class CampaignRoleController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCampaignRole $request, Campaign $campaign, CampaignRole $campaignRole)
+    public function update(StoreCampaignRole $request, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
 
         $campaignRole->update($request->all());
         return redirect()->route('campaigns.show', [$campaign->id, '#roles'])
@@ -105,7 +108,7 @@ class CampaignRoleController extends Controller
      * @param  \App\Models\CampaignRole  $campaignRole
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Campaign $campaign, CampaignRole $campaignRole)
+    public function destroy(CampaignRole $campaignRole)
     {
         $this->authorize('delete', $campaignRole);
 
@@ -114,13 +117,20 @@ class CampaignRoleController extends Controller
             ->with('success', trans($this->view . '.destroy.success'));
     }
 
-    public function savePermissions(Request $request, Campaign $campaign, CampaignRole $campaignRole)
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @param CampaignRole $campaignRole
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function savePermissions(Request $request, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
 
         $campaignRole->savePermissions($request->post('permissions'));
 
-        return redirect()->route('campaigns.campaign_roles.show', ['campaign' => $campaign, 'campaign_role' => $campaignRole])
+        return redirect()->route('campaign_roles.show', ['campaign_role' => $campaignRole])
             ->with('success', trans('crud.permissions.success'));
     }
 }

@@ -2,17 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
-use App\Models\Character;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Note;
-use App\Models\Organisation;
-use App\Models\Release;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use App\Models\Campaign;
+use App\Facades\CampaignLocalization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -55,39 +46,27 @@ class HomeController extends Controller
      */
     protected function back()
     {
-        $campaign = Session::get('campaign_id');
-        if (empty($campaign) || !isset($campaign) || Auth::user()->campaigns()->count() == 0) {
-            return redirect()->route('campaigns.index');
+        $campaignId = Session::get('campaign_id');
+        if (empty($campaignId) || !isset($campaignId) || !Auth::user()->hasCampaigns()) {
+            return redirect()->route('start');
         }
 
-        $notes = Note::acl(Auth::user())->dashboard()->get();
-        $settings = Auth::user()->dashboardSetting;
-        $campaign = Campaign::findOrFail(Session::get('campaign_id'));
-        $characters = Character::acl(Auth::user())->recent()->with('family')->take($settings->recent_count)->get();
-        $families = Family::acl(Auth::user())->recent()->take($settings->recent_count)->get();
-        $locations = Location::acl(Auth::user())->recent()->take($settings->recent_count)->get();
-        $items = Item::acl(Auth::user())->recent()->take($settings->recent_count)->get();
-        $organisations = Organisation::acl(Auth::user())->recent()->take($settings->recent_count)->get();
-        $journals = Journal::acl(Auth::user())->recent()->take($settings->recent_count)->get();
+        // Redirect to real dashboard
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign) {
+            return redirect()->route('home');
+        }
 
-        //$characters = Character::
+        // Otherwise, redirect to the last campaign the user has
+        $last = Auth::user()->last_campaign_id;
+        if (!empty($last)) {
+            $campaign = Campaign::find($last);
+            if ($campaign) {
+                CampaignLocalization::setCampaign($campaign->id);
+                return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+            }
+        }
 
-        $release = Release::with(['category'])
-            ->where('status', 'PUBLISHED')
-            ->orderBy('created_at', 'DESC')
-            ->first();
-
-        return view('home', compact(
-            'campaign',
-            'notes',
-            'characters',
-            'families',
-            'locations',
-            'items',
-            'journals',
-            'organisations',
-            'settings',
-            'release'
-        ));
+        abort(500);
     }
 }

@@ -7,7 +7,7 @@
         <th>{{ trans('campaigns.members.fields.joined') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $campaign->members()->with('user')->paginate() as $relation)
+    @foreach ($r = $campaign->members()->with(['user', 'campaign'])->paginate() as $relation)
         <tr>
             <td>{{ $relation->user->name }}</td>
             <td>{{ $relation->user->rolesList($campaign->id) }}</td>
@@ -43,14 +43,14 @@
             <th>{{ trans('campaigns.invites.fields.role') }}</th>
             <th>{{ trans('campaigns.invites.fields.created') }}</th>
             <th class="text-right">
-                <a href="{{ route('campaigns.campaign_invites.create', [$campaign, 'type' => 'link']) }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaigns.campaign_invites.create', [$campaign, 'type' => 'link']) }}">
+                <a href="{{ route('campaign_invites.create', ['type' => 'link']) }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
                     <i class="fa fa-link" aria-hidden="true"></i>
                     {{ trans('campaigns.invites.actions.link') }}
                 </a>
 
-                <a href="{{ route('campaigns.campaign_invites.create', [$campaign]) }}" class="btn btn-primary btn-sm"
-                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaigns.campaign_invites.create', $campaign) }}">
+                <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
+                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create') }}">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     {{ trans('campaigns.invites.actions.add') }}
                 </a>
@@ -65,7 +65,7 @@
                 <td>{{ $relation->created_at->diffForHumans() }}</td>
 
                 <td class="text-right">
-                    {!! Form::open(['method' => 'DELETE','route' => ['campaigns.campaign_invites.destroy', $campaign->id, $relation->id],'style'=>'display:inline']) !!}
+                    {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
                     <button class="btn btn-xs btn-danger">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>

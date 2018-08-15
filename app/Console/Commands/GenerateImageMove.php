@@ -2,16 +2,14 @@
 
 namespace App\Console\Commands;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Models\Character;
-use App\Models\CharacterTrait;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
-use App\Models\MapPoint;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Quest;

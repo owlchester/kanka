@@ -2,12 +2,8 @@
 
 namespace App\Observers;
 
-use App\Campaign;
-use App\Models\Item;
+use App\Facades\CampaignLocalization;
 use App\Models\MiscModel;
-use App\Services\ImageService;
-use App\Services\LinkerService;
-use Illuminate\Support\Facades\Session;
 
 class MenuLinkObserver
 {
@@ -16,7 +12,7 @@ class MenuLinkObserver
      */
     public function saving(MiscModel $model)
     {
-        $model->campaign_id = Session::get('campaign_id');
+        $model->campaign_id = CampaignLocalization::getCampaign()->id;
         $model->icon = '';
 
         // Is private hook for non-admin (who can't set is_private)

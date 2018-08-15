@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
-use App\Http\Requests\StoreCampaignInvite;
-use App\Models\CampaignInvite;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class CampaignSettingController extends Controller
 {

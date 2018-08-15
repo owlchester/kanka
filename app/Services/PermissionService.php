@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
 use App\Models\CampaignPermission;
@@ -52,7 +52,13 @@ class PermissionService
         }
 
         $entityActions = ['read', 'edit', 'add', 'delete', 'permission'];
-        $actions = ['read', 'edit', 'add', 'delete'];
+        //$actions = ['read', 'edit', 'add', 'delete'];
+
+        // Public actions
+        if ($role->is_public) {
+            //$actions = ['read'];
+            $entityActions = ['read'];
+        }
 
         $excludedEntities = ['attribute_templates', 'menu_links'];
 
@@ -73,62 +79,6 @@ class PermissionService
                     'enabled' => isset($campaignRolePermissions[$key]),
                 ];
             }
-
-
-            # If a user can view an entity, it can view the related entities.
-            # So if user James can view character King of
-            // Attributes
-//            foreach ($actions as $action) {
-//                $key = "{$singularEntity}_attribute_{$action}";
-//                $table = "{$entity}_attributes";
-//                $permissions[] = [
-//                    'entity' => $entity . ' attributes',
-//                    'action' => $action,
-//                    'table' => $table,
-//                    'key' => $key,
-//                    'enabled' => isset($campaignRolePermissions[$key]),
-//                ];
-//            }
-//
-//            // Relations
-//            foreach ($actions as $action) {
-//                $key = "{$singularEntity}_relation_{$action}";
-//                $table = "{$entity}_relations";
-//                $permissions[] = [
-//                    'entity' => $entity . ' relations',
-//                    'action' => $action,
-//                    'table' => $table,
-//                    'key' => $key,
-//                    'enabled' => isset($campaignRolePermissions[$key]),
-//                ];
-//            }
-//
-//            // Members or org?
-//            if ($entity == 'organisations') {
-//                foreach ($actions as $action) {
-//                    $key = "{$singularEntity}_members_{$action}";
-//                    $table = "{$entity}_members";
-//                    $permissions[] = [
-//                        'entity' => $entity . ' members',
-//                        'action' => $action,
-//                        'table' => $table,
-//                        'key' => $key,
-//                        'enabled' => isset($campaignRolePermissions[$key]),
-//                    ];
-//                }
-//            } elseif ($entity == 'characters') {
-//                foreach ($actions as $action) {
-//                    $key = "{$singularEntity}_organisation_{$action}";
-//                    $table = "{$entity}_organisation";
-//                    $permissions[] = [
-//                        'entity' => $entity . ' organisations',
-//                        'action' => $action,
-//                        'table' => $table,
-//                        'key' => $key,
-//                        'enabled' => isset($campaignRolePermissions[$key]),
-//                    ];
-//                }
-//            }
         }
 
         return $permissions;
@@ -142,7 +92,6 @@ class PermissionService
     {
         // First, let's get all the stuff for this entity
         $permissions = $this->entityPermissions($entity);
-
 
         // Next, start looping the data
         if (!empty($request['role'])) {

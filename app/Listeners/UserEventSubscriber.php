@@ -2,15 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Campaign;
-use App\Mail\UserRegistered;
 use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\InviteService;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Exception;
 

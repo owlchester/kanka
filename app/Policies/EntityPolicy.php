@@ -2,13 +2,12 @@
 
 namespace App\Policies;
 
-use App\Campaign;
-use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
+use App\Models\Campaign;
+use App\Facades\EntityPermission;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class EntityPolicy
 {
@@ -20,6 +19,10 @@ class EntityPolicy
 
     protected $model = '';
 
+    /**
+     * @param User $user
+     * @return bool
+     */
     public function browse(User $user)
     {
         return true;
@@ -53,7 +56,7 @@ class EntityPolicy
      */
     public function create(User $user, $entity = null, Campaign $campaign = null)
     {
-        return $this->checkPermission('add', $user, null, $campaign);
+        return Auth::check() && $this->checkPermission('add', $user, null, $campaign);
     }
 
     /**
@@ -65,7 +68,7 @@ class EntityPolicy
      */
     public function update(User $user, $entity)
     {
-        return (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('edit', $user, $entity);
+        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('edit', $user, $entity);
     }
 
     /**
@@ -77,7 +80,7 @@ class EntityPolicy
      */
     public function delete(User $user, $entity)
     {
-        return (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('delete', $user, $entity);
+        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('delete', $user, $entity);
     }
 
     /**
@@ -92,9 +95,9 @@ class EntityPolicy
     public function relatedElement(User $user, $entity, $subAction = 'browse')
     {
         if ($subAction == 'browse') {
-            return $this->view($user, $entity);
+            return Auth::check() && $this->view($user, $entity);
         } else {
-            return $this->update($user, $entity);
+            return Auth::check() && $this->update($user, $entity);
         }
     }
 
@@ -139,61 +142,6 @@ class EntityPolicy
      */
     protected function checkPermission($action, User $user, $entity = null, Campaign $campaign = null)
     {
-        $key = $this->model . '_' . $action;
-        // If cached on whole entities and we have read access, we're goot!
-        if (isset(self::$cached[$key]) && self::$cached[$key]) {
-            return self::$cached[$key];
-        }
-
-        // Check for the entity too
-        if (!empty($entity)) {
-            $entityKey = $key . '_' . $entity->id;
-            if (isset(self::$cached[$entityKey])) {
-                return self::$cached[$entityKey];
-            }
-        }
-
-        // Want to get my user's permissions and roles
-        $keys = [$key];
-        // If we've specified an entity, it could be that our role or user has permissions on it
-        if (!empty($entity)) {
-            $keys[] = $this->model . '_' . $action . '_' . $entity->id;
-        }
-
-        // No campaign? Use the user's
-        if (empty($campaign)) {
-            $campaign = $user->campaign;
-        }
-
-        // Loop through the roles to build a list of ids, and check if one of our roles is an admin
-        $roleIds = [];
-        // This needs to be cached.
-        if (self::$roles === false) {
-            self::$roles = $user->campaignRoles($campaign->id)->get();
-        }
-        foreach (self::$roles as $role) {
-            if ($role->is_admin) {
-                return true;
-            }
-            $roleIds[] = $role->id;
-        }
-
-        // Check for a permission related to this action.
-        $value = false;
-        foreach (CampaignPermission::whereIn('key', $keys)
-            ->where(function ($query) use ($user, $roleIds) {
-                return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
-            })->get() as $permission) {
-            // If we got a permission for the exact entity, save that
-            if (isset($keys[1]) && strpos($permission->key, $keys[1]) !== false) {
-                $key = $keys[1];
-            }
-            $value = true;
-        }
-
-        // Cache the result
-        self::$cached[$key] = $value;
-
-        return $value;
+        return EntityPermission::hasPermission($this->model, $action, $user, $entity, $campaign);
     }
 }

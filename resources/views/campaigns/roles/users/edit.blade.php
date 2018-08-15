@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($user, ['route' => ['campaigns.campaign_roles.campaign_role_users.update', 'campaign' => $campaign, 'campaign_role' => $role, 'campaign_role_user' => $user], 'method'=>'PATCH', 'data-shortcut' => "1"]) !!}
+                    {!! Form::model($user, ['route' => ['campaign_roles.campaign_role_users.update', 'campaign_role' => $role, 'campaign_role_user' => $user], 'method'=>'PATCH', 'data-shortcut' => "1"]) !!}
                     @include('campaigns.roles.users._form')
 
                     {!! Form::hidden('campaign_role_id', $role->id) !!}

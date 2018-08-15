@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuest;
+use App\Models\Character;
 use App\Models\Quest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -29,7 +30,14 @@ class QuestController extends CrudController
         $this->filters = [
             'name',
             'type',
-            'character_id',
+            [
+                'field' => 'character_id',
+                'label' => trans('quests.fields.character'),
+                'type' => 'select2',
+                'route' => route('characters.find'),
+                'placeholder' =>  trans('crud.placeholders.character'),
+                'model' => Character::class,
+            ],
             'is_completed',
         ];
     }

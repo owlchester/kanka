@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Traits\AdminPolicyTrait;
 use App\User;
-use App\CampaignUser;
+use App\Models\CampaignUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignUserPolicy
@@ -16,7 +16,7 @@ class CampaignUserPolicy
      * Determine whether the user can view the campaignUser.
      *
      * @param  \App\User  $user
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignUser  $campaignUser
      * @return mixed
      */
     public function view(User $user, CampaignUser $campaignUser)
@@ -39,7 +39,7 @@ class CampaignUserPolicy
      * Determine whether the user can update the campaignUser.
      *
      * @param  \App\User  $user
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignUser  $campaignUser
      * @return mixed
      */
     public function update(User $user, CampaignUser $campaignUser)
@@ -51,7 +51,7 @@ class CampaignUserPolicy
      * Determine whether the user can delete the campaignUser.
      *
      * @param  \App\User  $user
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignUser  $campaignUser
      * @return mixed
      */
     public function delete(User $user, CampaignUser $campaignUser)

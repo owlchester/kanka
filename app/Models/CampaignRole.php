@@ -13,6 +13,7 @@ use DateTime;
  * @property integer $campaign_id
  * @property string $name
  * @property boolean $is_admin
+ * @property boolean $is_public
  */
 class CampaignRole extends Model
 {
@@ -22,6 +23,7 @@ class CampaignRole extends Model
     protected $fillable = [
         'campaign_id',
         'is_admin',
+        'is_public',
         'name',
     ];
 
@@ -38,7 +40,7 @@ class CampaignRole extends Model
      */
     public function campaign()
     {
-        return $this->belongsTo('App\Campaign', 'campaign_id', 'id');
+        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
     /**
@@ -48,6 +50,17 @@ class CampaignRole extends Model
     {
         return $this->hasMany('App\Models\CampaignRoleUser', 'campaign_role_id');
         //return $this->belongsToMany('App\User', 'campaign_role_users');
+    }
+
+    /**
+     * Filter on a campaign role's public status
+     * @param $query
+     * @param int $value
+     * @return mixed
+     */
+    public function scopePublic($query, $value = 1)
+    {
+        return $query->where('is_public', $value);
     }
 
     /**

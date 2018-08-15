@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCampaignInvite;
 use App\Models\CampaignInvite;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CampaignInviteController extends Controller
 {
@@ -26,8 +24,9 @@ class CampaignInviteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Campaign $campaign)
+    public function create()
     {
+        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
         $ajax = request()->ajax();
 
@@ -45,8 +44,9 @@ class CampaignInviteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCampaignInvite $request, Campaign $campaign)
+    public function store(StoreCampaignInvite $request)
     {
+        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
 
         $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type', 'validity'));
@@ -63,10 +63,10 @@ class CampaignInviteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CampaignUser  $campaignUser
+     * @param  \App\Models\CampaignInvite  $campaignUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Campaign $campaign, CampaignInvite $campaignInvite)
+    public function destroy(CampaignInvite $campaignInvite)
     {
         $this->authorize('delete', $campaignInvite);
 

@@ -265,3 +265,9 @@ table label {
   font-style: italic;
   font-size: 13px;
 }
+
+.sidebar-menu {
+  li {
+    overflow: hidden;
+  }
+}

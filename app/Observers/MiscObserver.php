@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\AttributeTemplate;
 use App\Models\Entity;
 use App\Models\MiscModel;
@@ -36,7 +37,7 @@ abstract class MiscObserver
     public function saving(MiscModel $model)
     {
         $model->slug = str_slug($model->name, '');
-        $model->campaign_id = Session::get('campaign_id');
+        $model->campaign_id = CampaignLocalization::getCampaign()->id;
 
 
         // If we're from the "move" service, we can skip this part.

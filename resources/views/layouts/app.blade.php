@@ -1,3 +1,4 @@
+<?php $campaign = CampaignLocalization::getCampaign(); ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -41,7 +42,8 @@
 
     @yield('styles')
 </head>
-<body class="skin-black sidebar-mini @if (Session::has('campaign_id')) @else layout-top-nav @endif">
+{{-- Hide the sidebar if the there is no current campaign --}}
+<body class="skin-black sidebar-mini @if (!empty($campaign)) @else layout-top-nav @endif">
     <div id="app" class="wrapper">
         <!-- Header -->
         @include('layouts.header')
@@ -65,7 +67,11 @@
                     </div>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @if ($campaign)
+                    <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @else
+                    <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @endif
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
                         <li>

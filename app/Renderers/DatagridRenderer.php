@@ -132,7 +132,7 @@ class DatagridRenderer
                 $html = $this->route('entity.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.entity'));
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
-                if (!$this->user->isAdmin()) {
+                if (!$this->user || !$this->user->isAdmin()) {
                     return null;
                 }
                 $html = $this->route('is_private', trans('crud.fields.is_private'));
@@ -308,7 +308,7 @@ class DatagridRenderer
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
-                if (!$this->user->isAdmin()) {
+                if (!$this->user || !$this->user->isAdmin()) {
                     return null;
                 }
                 $content = $model->is_private ?
@@ -367,7 +367,7 @@ class DatagridRenderer
             <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-lg">' . trans('crud.view') . '</span>
         </a>';
 
-        if ($this->user->can('update', $model)) {
+        if ($this->user && $this->user->can('update', $model)) {
             $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" class="btn btn-xs btn-primary">
                 <i class="fa fa-pencil" aria-hidden="true"></i> <span class="visible-lg">' . trans('crud.edit') . '</span>
             </a>';

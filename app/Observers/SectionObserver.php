@@ -2,10 +2,8 @@
 
 namespace App\Observers;
 
-use App\Campaign;
 use App\Models\MiscModel;
 use App\Models\Section;
-use Illuminate\Support\Facades\Session;
 
 class SectionObserver extends MiscObserver
 {

@@ -2,13 +2,9 @@
 
 namespace App\Observers;
 
-use App\Campaign;
 use App\Models\DiceRollResult;
-use App\Models\MiscModel;
-use App\Models\DiceRoll;
 use App\Services\DiceRollerService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class DiceRollResultObserver
 {

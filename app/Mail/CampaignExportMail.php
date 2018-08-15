@@ -2,12 +2,11 @@
 
 namespace App\Mail;
 
-use App\Campaign;
+use App\Models\Campaign;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CampaignExportMail extends Mailable
 {

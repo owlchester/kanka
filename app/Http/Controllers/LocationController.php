@@ -119,7 +119,7 @@ class LocationController extends CrudController
      */
     public function map(Location $location, Request $request)
     {
-        $this->authorize('view', $location);
+        //$this->authorize('view', $location);
 
         return view('locations.map.show', compact('location'));
     }

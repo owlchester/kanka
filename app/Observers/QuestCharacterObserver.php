@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Campaign;
 use App\Models\QuestCharacter;
 use App\Services\LinkerService;
 

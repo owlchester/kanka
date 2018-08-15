@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
-use App\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
 use App\Services\CampaignService;
