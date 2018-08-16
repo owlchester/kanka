@@ -142,11 +142,16 @@ class CalendarRenderer
                 $dayData = [
                     'day' => $day,
                     'events' => [],
-                    'date' => $exact
+                    'date' => $exact,
+                    'isToday' => false,
                 ];
 
                 if (isset($events[$exact])) {
                     $dayData['events'] = $events[$exact];
+                }
+
+                if ($exact == $this->calendar->date) {
+                    $dayData['isToday'] = true;
                 }
                 $week[] = $dayData;
             }
@@ -178,6 +183,26 @@ class CalendarRenderer
     public function currentMonthId()
     {
         return $this->getMonth();
+    }
+
+    /**
+     * Show a button for today if the current view isn't the current year-month.
+     */
+    public function todayButton()
+    {
+        $calendarYear = $this->calendar->currentDate('year');
+        $calendarMonth = $this->calendar->currentDate('month');
+        if ($this->year != $calendarYear || $this->month != $calendarMonth) {
+            return link_to_route(
+                'calendars.show',
+                trans('calendars.actions.today'),
+                [$this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
+                ['class' => 'btn btn-default btn-flat']
+            );
+            // <a href="{{ route('', [$model, 'month' => $model->currentDate('month'), 'year' => $model->currentDate('year')]) }}" class="btn btn-default btn-flat">{{ trans('calendars.actions.today') }}</a>
+        }
+
+        return '';
     }
 
     /**

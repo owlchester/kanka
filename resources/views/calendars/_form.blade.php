@@ -70,7 +70,6 @@
                         <div class="col-md-5">{{ trans('calendars.parameters.month.length') }}</div>
                     </div>
                 </div>
-
                 <?php
                 $months = [];
                 $names = old('month_name');
@@ -89,11 +88,17 @@
                 } elseif (isset($model)) {
                     $months = $model->months();
                 } ?>
+                <div class="calendar-months">
                 @foreach ($months as $month)
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-5">
-                                {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
+                                </div>
                             </div>
                             <div class="col-md-5">
                                 {!! Form::text('month_length[]', $month['length'], ['class' => 'form-control']) !!}
@@ -106,6 +111,7 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
                 <a class="btn btn-default" id="add_month" href="#" title="{{ trans('calendars.actions.add_month') }}">
                     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_month') }}
                 </a>
@@ -113,7 +119,12 @@
                 <div class="form-group" id="template_month" style="display: none">
                     <div class="row">
                         <div class="col-md-5">
-                            {!! Form::text('month_name[]', null, ['class' => 'form-control']) !!}
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-arrows-v"></span>
+                                </span>
+                                {!! Form::text('month_name[]', null, ['class' => 'form-control']) !!}
+                            </div>
                         </div>
                         <div class="col-md-5">
                             {!! Form::text('month_length[]', null, ['class' => 'form-control']) !!}
@@ -134,7 +145,6 @@
                 <h4>{{ trans('calendars.fields.weekdays') }}</h4>
             </div>
             <div class="panel-body">
-
                 <?php
                 $weekdays = [];
                 $names = old('weekday');
@@ -147,11 +157,17 @@
                 } elseif (isset($model)) {
                     $weekdays = $model->weekdays();
                 } ?>
+                <div class="calendar-weekdays">
                 @foreach ($weekdays as $weekday)
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-10">
-                                {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
+                                </div>
                             </div>
                             <div class="col-md-2">
                                 <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
@@ -161,6 +177,7 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
                 <a class="btn btn-default" id="add_weekday" href="#" title="{{ trans('calendars.actions.add_weekday') }}">
                     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_weekday') }}
                 </a>
@@ -168,7 +185,12 @@
                 <div class="form-group" id="template_weekday" style="display: none">
                     <div class="row">
                         <div class="col-md-10">
-                            {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-arrows-v"></span>
+                                </span>
+                                {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
+                            </div>
                         </div>
                         <div class="col-md-2">
                             <a href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
@@ -208,11 +230,17 @@
                 } elseif (isset($model)) {
                     $years = $model->years();
                 } ?>
+                <div class="calendar-years">
                 @foreach ($years as $year => $name)
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-5">
-                                {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                    {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
+                                </div>
                             </div>
                             <div class="col-md-5">
                                 {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
@@ -225,6 +253,7 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
                 <a class="btn btn-default" id="add_year" href="#" title="{{ trans('calendars.actions.add_year') }}">
                     <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_year') }}
                 </a>
@@ -232,7 +261,12 @@
                 <div class="form-group" id="template_year" style="display: none">
                     <div class="row">
                         <div class="col-md-5">
-                            {!! Form::number('year_number[]', null, ['class' => 'form-control']) !!}
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-arrows-v"></span>
+                                </span>
+                                {!! Form::number('year_number[]', null, ['class' => 'form-control']) !!}
+                            </div>
                         </div>
                         <div class="col-md-5">
                             {!! Form::text('year_name[]', null, ['class' => 'form-control']) !!}

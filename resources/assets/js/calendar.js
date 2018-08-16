@@ -1,5 +1,6 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
 var calendarYearSwitcher, calendarEventModal;
+var calendarSortMonths, calendarSortWeekdays, calendarSortYears;
 
 $(document).ready(function() {
     calendarAddMonth = $('#add_month');
@@ -11,6 +12,10 @@ $(document).ready(function() {
     calendarLeapYear = $('input[name="has_leap_year"]');
     calendarYearSwitcher = $('#calendar-year-switcher');
     calendarEventModal = $('#add-calendar-event');
+
+    calendarSortMonths = $(".calendar-months");
+    calendarSortWeekdays = $(".calendar-weekdays");
+    calendarSortYears = $(".calendar-years");
 
     if (calendarAddMonth.length === 1) {
         initCalendar();
@@ -84,6 +89,10 @@ function calendarDeleteRowHandler() {
             e.preventDefault();
         });
     });
+
+    calendarSortMonths.sortable();
+    calendarSortWeekdays.sortable();
+    calendarSortYears.sortable();
 }
 
 function initCalendarYearSwitcher() {

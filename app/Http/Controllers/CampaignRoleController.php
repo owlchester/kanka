@@ -34,7 +34,9 @@ class CampaignRoleController extends Controller
     public function create()
     {
         $this->authorize('create', CampaignRole::class);
-        return view($this->view . '.create');
+        $campaign = CampaignLocalization::getCampaign();
+
+        return view($this->view . '.create', ['model' => $campaign]);
     }
 
     /**

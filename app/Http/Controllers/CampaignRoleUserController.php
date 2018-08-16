@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRoleUser;
@@ -30,9 +31,11 @@ class CampaignRoleUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Campaign $campaign, CampaignRole $campaignRole)
+    public function create(CampaignRole $campaignRole)
     {
         $this->authorize('user', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
+
         return view($this->view . '.create', ['campaign' => $campaign, 'role' => $campaignRole]);
     }
 
@@ -42,12 +45,13 @@ class CampaignRoleUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCampaignRoleUser $request, Campaign $campaign, CampaignRole $campaignRole)
+    public function store(StoreCampaignRoleUser $request, CampaignRole $campaignRole)
     {
         $this->authorize('create', CampaignRole::class);
+        $campaign = $campaignRole->campaign;
         $relation = CampaignRoleUser::create($request->all());
-        return redirect()->route('campaigns.campaign_roles.show', [
-            'campaign' => $campaign, 'campaign_role' => $campaignRole])
+        return redirect()->route('campaign_roles.show', [
+            'campaign_role' => $campaignRole])
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -57,9 +61,10 @@ class CampaignRoleUserController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function show(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
+    public function show(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         $this->authorize('user', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.show', [
             'campaign' => $campaign,
@@ -74,9 +79,10 @@ class CampaignRoleUserController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function edit(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
+    public function edit(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         $this->authorize('user', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.edit', [
             'campaign' => $campaign,
@@ -92,13 +98,14 @@ class CampaignRoleUserController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCampaignRoleUser $request, Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
+    public function update(StoreCampaignRoleUser $request, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         $this->authorize('user', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
 
         $campaignRoleUser->update($request->all());
-        return redirect()->route('campaigns.campaign_roles.show', [
-            'campaign' => $campaign, 'campaignRole' => $campaignRole])
+        return redirect()->route('campaign_roles.show', [
+            'campaignRole' => $campaignRole])
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -108,13 +115,14 @@ class CampaignRoleUserController extends Controller
      * @param  \App\Models\CampaignRole  $campaignRole
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
+    public function destroy(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         $this->authorize('removeUser', $campaignRole);
+        $campaign = CampaignLocalization::getCampaign();
 
         $campaignRoleUser->delete();
-        return redirect()->route('campaigns.campaign_roles.show', [
-            'campaign' => $campaign, 'campaignRole' => $campaignRole])
+        return redirect()->route('campaign_roles.show', [
+            'campaignRole' => $campaignRole])
             ->with('success', trans($this->view . '.destroy.success'));
     }
 }

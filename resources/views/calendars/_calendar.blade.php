@@ -2,7 +2,10 @@
 {{ $renderer->setCalendar($model) }}
 
 <div class="row form-group">
-    <div class="col-md-4 text-right">
+    <div class="col-md-2">
+        {{ $renderer->todayButton() }}
+    </div>
+    <div class="col-md-2 text-right">
         <i class="fa fa-angle-double-left"></i> {{ $renderer->previous() }}
     </div>
     <div class="col-md-4 text-center">
@@ -27,9 +30,9 @@
     @foreach ($renderer->month() as $week => $days)
         <tr>
             @foreach ($days as $day)
-                <td>
+                <td class="{{ $day['isToday'] ? 'today' : null}}">
                     @if ($day['day'])
-                    <h5>{{ $day['day'] }}</h5>
+                    <h5 class="{{ $day['isToday'] ? "label label-primary" : null}}">{{ $day['day'] }}</h5>
                     <a href="#" class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
                         <i class="fa fa-plus"></i>
                     </a>

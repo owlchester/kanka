@@ -5,6 +5,7 @@ return [
         'add_month'     => 'Add a month',
         'add_weekday'   => 'Add a week day',
         'add_year'      => 'Add a year name',
+        'today'         => 'Today',
     ],
     'create'        => [
         'description'   => 'Create a new calendar',

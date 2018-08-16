@@ -39,7 +39,7 @@ return [
         'visibility'    => 'Visibility',
     ],
     'helpers' => [
-        'visibility' => 'Making a campaign public will mean anyone will be able to see it once it has been approved by the moderation team.'
+        'visibility' => 'Making a campaign public will mean anyone with a link to it will be able to see it.'
     ],
     'index'         => [
         'actions'       => [
