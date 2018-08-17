@@ -41,6 +41,7 @@ return [
     'theme'         => [
         'success'   => 'Theme changed.',
         'themes'    => [
+            'dark'      => 'Dark',
             'default'   => 'Default',
             'future'    => 'Future',
         ],

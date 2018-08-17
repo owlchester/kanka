@@ -36,14 +36,14 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
-    @if (Auth::check() && !empty(Auth::user()->theme))
-    <link href="{{ asset('css/' . Auth::user()->theme . '.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
+    @if (auth()->check() && !empty(auth()->user()->theme))
+    <link href="{{ asset('css/' . auth()->user()->theme . '.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
     @endif
 
     @yield('styles')
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="skin-black sidebar-mini @if (!empty($campaign)) @else layout-top-nav @endif">
+<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns())) @else layout-top-nav @endif">
     <div id="app" class="wrapper">
         <!-- Header -->
         @include('layouts.header')
@@ -107,7 +107,7 @@
         <!-- Footer -->
         @include('layouts.footer')
 
-    </div><!-- ./wrapper -->
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">

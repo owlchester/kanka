@@ -4,5 +4,6 @@
     "/css/vendor.css": "/css/vendor.css",
     "/css/app.css": "/css/app.css",
     "/css/front.css": "/css/front.css",
-    "/css/future.css": "/css/future.css"
+    "/css/future.css": "/css/future.css",
+    "/css/dark.css": "/css/dark.css"
 }

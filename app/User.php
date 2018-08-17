@@ -20,6 +20,8 @@ class User extends \TCG\Voyager\Models\User
 
     protected static $currentCampaign = false;
 
+    protected $cachedHasCampaign = null;
+
     use Notifiable;
 
     /**
@@ -216,10 +218,14 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Check if a user has campaigns
      * @return bool
      */
     public function hasCampaigns($count = 0)
     {
-        return $this->campaigns()->count() > $count ;
+        if ($this->cachedHasCampaign === null) {
+            $this->cachedHasCampaign = $this->campaigns()->count() > $count;
+        }
+        return $this->cachedHasCampaign;
     }
 }
