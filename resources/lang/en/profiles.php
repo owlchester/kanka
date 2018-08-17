@@ -16,6 +16,7 @@ return [
         'new_password_confirmation' => 'New Password Confirmation',
         'newsletter'                => 'I wish to sometimes be contacted by email.',
         'password'                  => 'Current password',
+        'settings'                  => 'Settings',
         'theme'                     => 'Theme',
     ],
     'password'      => [
@@ -37,6 +38,13 @@ return [
         'password'  => [
             'title' => 'Change your password',
         ],
+    ],
+    'settings' => [
+        'fields' => [
+            'pagination' => 'Pagination (elements per page)',
+            'date_format' => 'Date Formatting',
+        ],
+        'success' => 'Settings changed.',
     ],
     'theme'         => [
         'success'   => 'Theme changed.',

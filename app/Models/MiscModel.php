@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Paginatable;
 use App\Scopes\RecentScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ use Sofa\Eloquence\Eloquence;
  */
 abstract class MiscModel extends Model
 {
+    use Paginatable;
 
     /**
      * Eloquence trait for easy search
@@ -354,5 +356,10 @@ abstract class MiscModel extends Model
             }
         }
         $this->save();
+    }
+
+    public function paginate()
+    {
+        return parent::paginate();
     }
 }

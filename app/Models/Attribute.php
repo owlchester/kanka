@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Paginatable;
 use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,7 @@ class Attribute extends Model
      */
     use VisibleTrait;
     use OrderableTrait;
+    use Paginatable;
 
     /**
      * Searchable fields

@@ -31,6 +31,7 @@ Route::group([
     Route::get('/profile', 'ProfileController@edit')->name('profile');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
     Route::patch('/profile/theme', 'ProfileController@theme')->name('profile.theme');
+    Route::patch('/profile/setting', 'ProfileController@setting')->name('profile.setting');
     Route::patch('/profile/avatar', 'ProfileController@avatar')->name('profile.avatar');
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 

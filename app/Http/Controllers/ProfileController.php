@@ -6,6 +6,7 @@ use App\Http\Requests\DeleteProfile;
 use App\Http\Requests\StoreProfile;
 use App\Http\Requests\StoreProfileAvatar;
 use App\Http\Requests\StoreProfilePassword;
+use App\Http\Requests\StoreProfileSetting;
 use App\Http\Requests\StoreProfileTheme;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,19 @@ class ProfileController extends Controller
     {
         Auth::user()->update($request->only('theme'));
         return redirect()->route('profile')->with('success', trans('profiles.theme.success'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Family $family
+     * @return \Illuminate\Http\Response
+     */
+    public function setting(StoreProfileSetting $request)
+    {
+        Auth::user()->update($request->only('default_pagination', 'date_format'));
+        return redirect()->route('profile')->with('success', trans('profiles.settings.success'));
     }
 
     /**

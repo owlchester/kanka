@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Paginatable;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +36,7 @@ class CharacterTrait extends Model
      * Traits
      */
     use VisibleTrait;
+    use Paginatable;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -71,6 +71,17 @@
                     {!! Form::close() !!}
                 </div>
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{ trans('profiles.fields.settings') }}</h4>
+                </div>
+                <div class="panel-body">
+                    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['profile.setting']]) !!}
+                    @include('profiles._setting')
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
     </div>
 @endsection

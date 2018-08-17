@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Paginatable;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,8 @@ class OrganisationMember extends Model
      * ACL Trait config
      */
     use AclTrait;
+    use Paginatable;
+    
     public $entityType = 'character';
     public $aclFieldName = 'character_id';
 

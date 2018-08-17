@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Paginatable;
 use App\Scopes\CampaignScope;
 use Illuminate\Database\Eloquent\Model;
 
 class CampaignUser extends Model
 {
+    use Paginatable;
+
     /**
      * @var string
      */

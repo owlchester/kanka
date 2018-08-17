@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Paginatable;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
@@ -17,6 +18,8 @@ use DateTime;
  */
 class CampaignRole extends Model
 {
+    use Paginatable;
+
     /**
      * @var array
      */

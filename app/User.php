@@ -30,8 +30,19 @@ class User extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'last_campaign_id', 'provider', 'provider_id', 'newsletter', 'locale', 'timezone',
-        'campaign_role', 'theme',
+        'name',
+        'email',
+        'password',
+        'last_campaign_id',
+        'provider',
+        'provider_id',
+        'newsletter',
+        'locale',
+        'timezone',
+        'campaign_role',
+        'theme',
+        'date_format',
+        'default_pagination',
     ];
 
     /**
