@@ -72,6 +72,7 @@ Route::group([
         Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
 
         // Locations
+        Route::get('/sections/tree', 'SectionController@tree')->name('sections.tree');
         Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
         Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
         Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');

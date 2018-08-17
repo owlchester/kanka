@@ -79,13 +79,13 @@ class SidebarService
         }
 
         foreach ($this->rules[$menu] as $rule) {
-            if (request()->segment(3) == $rule) {
+            if (request()->segment(4) == $rule) {
                 return " $class";
             }
         }
 
         // Entities? It's complicated
-        if (request()->segment(3) == 'entities') {
+        if (request()->segment(4) == 'entities') {
             $entity = request()->route('entity');
             if ($entity->pluralType() == $menu) {
                 return " $class";

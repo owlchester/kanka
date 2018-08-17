@@ -94,9 +94,15 @@ $(document).ready(function() {
 
 
     // Treeview for locations
-    var treeViewLoader = $('#location-treeview');
+    var treeViewLoader = $('#locations-treeview');
     if (treeViewLoader.length > 0) {
-        treeViewInit();
+        treeViewInit('locations');
+    }
+
+    // Treeview for sections
+    var sectionViewLoader = $('#sections-treeview');
+    if (sectionViewLoader.length > 0) {
+        treeViewInit('sections');
     }
 
     manageTabs();
@@ -180,10 +186,10 @@ function initSelect2() {
 /**
  * Go through table trs to add on click support
  */
-function treeViewInit() {
-    var treeViewLoader = $('#location-treeview');
+function treeViewInit(element) {
+    var treeViewLoader = $('#' + element + '-treeview');
     var link = treeViewLoader.attr('data-url');
-    $.each($('#locations > tbody > tr'), function(index) {
+    $.each($('#' + element + ' > tbody > tr'), function(index) {
         children = $(this).attr('data-children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');

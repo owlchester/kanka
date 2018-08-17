@@ -60,5 +60,5 @@
         </div>
     </div>
 
-    <input type="hidden" id="locations-treeview" value="1" data-url="{{ route('locations.tree') }}">
+    <input type="hidden" id="sections-treeview" value="1" data-url="{{ route('sections.tree') }}">
 @endsection

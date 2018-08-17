@@ -32,6 +32,12 @@ class SectionController extends CrudController
     {
         parent::__construct();
 
+        $this->indexActions[] = [
+            'route' => route('sections.tree'),
+            'class' => 'default',
+            'label' => '<i class="fa fa-tree"></i> ' . trans('sections.index.actions.explore_view')
+        ];
+
         $this->filters = [
             'name',
             'type',
@@ -46,6 +52,11 @@ class SectionController extends CrudController
         ];
     }
 
+    /**
+     * Tree / Exploration mode
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function tree(Request $request)
     {
         $model = new $this->model;
@@ -67,16 +78,27 @@ class SectionController extends CrudController
             ->search(request()->get('search'))
             ->order($this->filterService->order());
 
-        if (request()->has('parent_section_id')) {
-            $search = $search->where(['parent_section_id' => request()->get('parent_section_id')]);
-            // Go back
-            $actions[] = [
-                'route' => redirect()->back()->getTargetUrl(),
-                'class' => 'default',
-                'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
-            ];
+        if (request()->has('parent_id')) {
+            $search = $search->where(['section_id' => request()->get('parent_id')]);
+
+            $parent = $model->with('section')->where('id', request()->get('parent_id'))->first();
+            if (!empty($parent) && !empty($parent->section)) {
+                // Go back to parent
+                $actions[] = [
+                    'route' => route('sections.tree', ['parent_id' => $parent->section->id]),
+                    'class' => 'default',
+                    'label' => '<i class="fa fa-arrow-left"></i> ' . $parent->section->name
+                ];
+            } else {
+                // Go back to first level
+                $actions[] = [
+                    'route' => route('sections.tree'),
+                    'class' => 'default',
+                    'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
+                ];
+            }
         } else {
-            $search = $search->whereNull('parent_section_id');
+            $search = $search->whereNull('section_id');
         }
         $models = $search
             ->paginate();
