@@ -273,7 +273,6 @@ class CrudController extends Controller
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
-            dd($permission);
             abort('403');
         }
     }
