@@ -10,6 +10,10 @@
         </div>
     </div>
 
+    <p class="text-muted">
+        {{ trans('crud.hints.image_limitations', ['size' => '10mb']) }}
+    </p>
+
     @if (!empty($model->image))
         <div class="preview">
             <div class="image">
