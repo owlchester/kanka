@@ -25,6 +25,12 @@ trait Paginatable
             $pageSize = auth()->user()->default_pagination;
         }
 
+        // Currently exporting single or bulk? Rise limit to 100.
+        $request = request()->route()->getAction();
+        if (!empty($request['as']) && in_array($request['as'], ['entities.export', 'bulk.process'])) {
+            return 100;
+        }
+
         return min(max($pageSize, $this->pageSizeMinimum), $this->pageSizeLimit);
     }
 }
