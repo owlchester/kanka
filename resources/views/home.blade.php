@@ -14,9 +14,6 @@
                 <div class="inner">
                     <h3 class="campaign-name">{{ $campaign->name }}</h3>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-map"></i>
-                </div>
                 @if (Auth::check())
                 <a class="small-box-footer" href="{{ route('campaigns.index') }}">
                     <i class="fa fa-arrow-circle-right"></i> {{ trans('dashboard.campaigns.manage') }}
@@ -24,7 +21,7 @@
                 @endif
             </div>
         </div>
-        @if ($settings && $settings->has('release'))
+        @if ($settings && $settings->has('release') && !empty($release))
         <div class="col-md-4 col-md-offset-4">
             <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fa fa-lightbulb-o"></i></span>

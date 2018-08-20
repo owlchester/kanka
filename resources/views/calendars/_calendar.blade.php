@@ -33,9 +33,11 @@
                 <td class="{{ $day['isToday'] ? 'today' : null}}">
                     @if ($day['day'])
                     <h5 class="{{ $day['isToday'] ? "label label-primary" : null}}">{{ $day['day'] }}</h5>
+                    @if (Auth::check() && Auth::user()->can('update', $model))
                     <a href="#" class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
                         <i class="fa fa-plus"></i>
                     </a>
+                    @endif
                     <p>
                     @if (!empty($day['events']))
                         @foreach ($day['events'] as $event)

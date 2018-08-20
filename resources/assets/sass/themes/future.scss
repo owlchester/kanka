@@ -354,3 +354,12 @@ pre, blockquote {
 .bg-success {
   background-color: $futureDetail;
 }
+
+/**
+ * Calendar
+ */
+.calendar {
+  td.today {
+    background-color: #1C2828;
+  }
+}

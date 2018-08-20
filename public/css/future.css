@@ -406,3 +406,11 @@ blockquote {
   background-color: #0B1F20;
 }
 
+/**
+ * Calendar
+ */
+
+.calendar td.today {
+  background-color: #1C2828;
+}
+

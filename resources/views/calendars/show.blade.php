@@ -1,5 +1,5 @@
 @include('partials.errors')
-@inject('dateRenderer', 'App\Renderers\DateRenderer');
+@inject('dateRenderer', 'App\Renderers\DateRenderer')
 <div class="row">
     <div class="col-md-3">
         <div class="box">

@@ -1,11 +1,12 @@
 $futureHard: #fff;
 $futureSoft: #333;
 $futureDetail: #222;
-$futureUnfocused: #666;
+$futureUnfocused: #999;
 $futureWhite: #eee;
 
 body {
   background-color: $futureSoft;
+  color: #777;
 }
 #app {
   background: none;
@@ -13,10 +14,11 @@ body {
 .main-sidebar {
   background: $futureDetail !important;
 
-  li:hover, li.active {
+  li:hover, li.active, li.header {
     background-color: $futureDetail !important;
     a {
       color: $futureHard !important;
+      background-color: $futureDetail !important;
     }
   }
 }
@@ -354,4 +356,13 @@ pre, blockquote {
  */
 .bg-success {
   background-color: $futureDetail;
+}
+
+/**
+ * Calendar
+ */
+.calendar {
+  td.today {
+    background-color: #515142;
+  }
 }

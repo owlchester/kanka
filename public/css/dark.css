@@ -1,5 +1,6 @@
 body {
   background-color: #333;
+  color: #777;
 }
 
 #app {
@@ -11,13 +12,16 @@ body {
 }
 
 .main-sidebar li:hover,
-.main-sidebar li.active {
+.main-sidebar li.active,
+.main-sidebar li.header {
   background-color: #222 !important;
 }
 
 .main-sidebar li:hover a,
-.main-sidebar li.active a {
+.main-sidebar li.active a,
+.main-sidebar li.header a {
   color: #fff !important;
+  background-color: #222 !important;
 }
 
 .content-wrapper {
@@ -79,7 +83,7 @@ body {
 }
 
 .filters .first {
-  border-left: 1px solid #666;
+  border-left: 1px solid #999;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -101,7 +105,7 @@ h1 > small {
 }
 
 a {
-  color: #666 !important;
+  color: #999 !important;
 }
 
 a:hover {
@@ -240,7 +244,7 @@ blockquote {
 }
 
 .alert {
-  background-color: #666 !important;
+  background-color: #999 !important;
   color: #eee !important;
   border-radius: 2px !important;
   border: 0;
@@ -279,7 +283,7 @@ blockquote {
 }
 
 .mce-btn {
-  border: 1px solid #666 !important;
+  border: 1px solid #999 !important;
   border-radius: 2px !important;
   background: none !important;
   color: #eee !important;
@@ -317,7 +321,7 @@ blockquote {
 }
 
 .product-list-in-box > .item {
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #999;
 }
 
 .small-box,
@@ -328,7 +332,7 @@ blockquote {
 }
 
 .info-box-icon {
-  background-color: #666 !important;
+  background-color: #999 !important;
 }
 
 /**
@@ -337,7 +341,7 @@ blockquote {
 
 .dropdown-menu {
   background-color: #222;
-  border: 1px solid #666;
+  border: 1px solid #999;
   border-radius: 2px;
 }
 
@@ -377,5 +381,13 @@ blockquote {
 
 .bg-success {
   background-color: #222;
+}
+
+/**
+ * Calendar
+ */
+
+.calendar td.today {
+  background-color: #515142;
 }
 
