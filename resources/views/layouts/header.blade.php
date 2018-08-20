@@ -148,7 +148,7 @@
                             </p>
                         </li>
                         <li class="user-footer">
-                            @if (session()->has('campaign_id'))
+                            @if (Auth::user()->hasCampaigns())
                             <div class="pull-left">
                                 <a href="{{ route('profile') }}" class="btn btn-default btn-flat"> {{ trans('header.profile') }}</a>
                             </div>

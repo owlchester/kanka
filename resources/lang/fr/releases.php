@@ -6,7 +6,7 @@ return [
         'title'         => 'Annonces',
     ],
     'post'  => [
-        'footer'    => 'De :name le :date',
+        'footer'    => 'De :name :date',
     ],
     'show'  => [
         'return'    => 'Retour aux annonces',

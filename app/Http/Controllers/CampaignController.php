@@ -47,21 +47,16 @@ class CampaignController extends Controller
      */
     public function index(Request $request)
     {
-        // If the user has no campaigns, we'll need to move him to the new campaign interface first.
-//        if (Auth::user()->campaigns()->count() == 0) {
-//            return redirect()->route('campaigns.create');
-//        }
-
-        $active = Session::get('campaign_id');
+        $campaign = Auth::user()->campaign;
         $campaigns = null;
-        $campaign = null;
-        if (!empty($active)) {
-            $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->where('id', '!=', $active)->get();
-            $campaign = Auth::user()->campaign;
-        } else {
-            $campaigns = Campaign::whereHas('users', function ($q) { $q->where('users.id', Auth::user()->id); })->get();
-        }
-
+        $campaigns = Campaign::whereHas(
+            'users',
+            function ($q) {
+                $q->where('users.id', Auth::user()->id);
+            }
+        )
+            ->where('id', '!=', $campaign->id)
+            ->get();
         return view($this->view . '.index', compact('campaigns', 'campaign', 'active'));
     }
 

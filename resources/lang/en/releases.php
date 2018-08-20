@@ -6,7 +6,7 @@ return [
         'title'         => 'Releases',
     ],
     'post'  => [
-        'footer'    => 'By :name on :date',
+        'footer'    => 'By :name :date',
     ],
     'show'  => [
         'return'    => 'Back to releases',
