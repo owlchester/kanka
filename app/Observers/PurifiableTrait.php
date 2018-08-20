@@ -14,6 +14,8 @@ trait PurifiableTrait
         if ($purified == "\r\n\r\n") {
             return '';
         }
+//        dump($text);
+//        dd($purified);
 
         return $purified;
     }
