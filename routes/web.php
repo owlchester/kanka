@@ -58,6 +58,10 @@ Route::group([
     Route::get('/start', 'StartController@index')->name('start');
     Route::post('/start', 'StartController@store')->name('start');
 
+    // Invitation's campaign comes from the token.
+    Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
+
+
     Route::group([
         'prefix' => CampaignLocalization::setCampaign(),
         'middleware' => ['campaign']
@@ -167,9 +171,6 @@ Route::group([
         Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');
         Route::get('/search/months', 'SearchController@months')->name('search.months');
         Route::get('/search/live', 'SearchController@live')->name('search.live');
-
-        Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
-
         Route::get('/redirect', 'RedirectController@index')->name('redirect');
 
         // Move
