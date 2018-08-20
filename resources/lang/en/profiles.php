@@ -39,12 +39,12 @@ return [
             'title' => 'Change your password',
         ],
     ],
-    'settings' => [
-        'fields' => [
-            'pagination' => 'Pagination (elements per page)',
-            'date_format' => 'Date Formatting',
+    'settings'      => [
+        'fields'    => [
+            'date_format'   => 'Date Formatting',
+            'pagination'    => 'Pagination (elements per page)',
         ],
-        'success' => 'Settings changed.',
+        'success'   => 'Settings changed.',
     ],
     'theme'         => [
         'success'   => 'Theme changed.',

@@ -20,9 +20,9 @@ return [
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
-    'errors'    => [
-        'access' => "You don't have access to this campaign.",
-        'unknown_id' => 'Unknown Campaign.',
+    'errors'        => [
+        'access'        => 'You don\'t have access to this campaign.',
+        'unknown_id'    => 'Unknown Campaign.',
     ],
     'export'        => [
         'errors'    => [
@@ -38,8 +38,8 @@ return [
         'name'          => 'Name',
         'visibility'    => 'Visibility',
     ],
-    'helpers' => [
-        'visibility' => 'Making a campaign public will mean anyone with a link to it will be able to see it.'
+    'helpers'       => [
+        'visibility'    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
     'index'         => [
         'actions'       => [
@@ -62,8 +62,8 @@ return [
         'create'        => [
             'button'        => 'Invite',
             'description'   => 'Invite a friend to your campaign',
-            'success'       => 'Invitation sent.',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
+            'success'       => 'Invitation sent.',
             'title'         => 'Invite someone to your campaign',
         ],
         'destroy'       => [
@@ -181,10 +181,10 @@ return [
             'description'   => 'Members and Permissions of a campaign role',
             'title'         => 'Campaign Role \':role\'',
         ],
-        'types' => [
-            'owner' => 'Owner',
-            'public' => 'Public',
-            'standard' => 'Standard',
+        'types'         => [
+            'owner'     => 'Owner',
+            'public'    => 'Public',
+            'standard'  => 'Standard',
         ],
         'users'         => [
             'actions'   => [
@@ -237,9 +237,9 @@ return [
         ],
         'title'         => 'Campaign :name',
     ],
-    'visibilities' => [
-        'public' => 'Public',
-        'private' => 'Private',
-        'review' => 'Awaiting Review',
-    ]
+    'visibilities'  => [
+        'private'   => 'Private',
+        'public'    => 'Public',
+        'review'    => 'Awaiting Review',
+    ],
 ];

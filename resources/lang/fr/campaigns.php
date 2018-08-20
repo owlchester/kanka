@@ -20,6 +20,10 @@ return [
         'success'       => 'Campagne modifiée.',
         'title'         => 'Modifier la campagne :campaign',
     ],
+    'errors'        => [
+        'access'        => 'Accès refusé pour cette campagne.',
+        'unknown_id'    => 'Campagne inconnue.',
+    ],
     'export'        => [
         'errors'    => [
             'limit' => 'Nombre d\'export maximal par jour excédé pour cette campagne.',
@@ -32,6 +36,10 @@ return [
         'image'         => 'Image',
         'locale'        => 'Langue',
         'name'          => 'Nom',
+        'visibility'    => 'Visibilité',
+    ],
+    'helpers'       => [
+        'visibility'    => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
     'index'         => [
         'actions'       => [
@@ -144,6 +152,7 @@ return [
         'fields'        => [
             'name'          => 'Nom',
             'permissions'   => 'Permissions',
+            'type'          => 'Type',
             'users'         => 'Utilisateurs',
         ],
         'helper'        => [
@@ -171,6 +180,11 @@ return [
         'show'          => [
             'description'   => 'Membres et Permissions d\'un rôle de campagne',
             'title'         => 'Rôles de campagne',
+        ],
+        'types'         => [
+            'owner'     => 'Propriétaire',
+            'public'    => 'Publique',
+            'standard'  => 'Strandard',
         ],
         'users'         => [
             'actions'   => [
@@ -222,5 +236,10 @@ return [
             'settings'      => 'Modules',
         ],
         'title'         => 'Campagne :name',
+    ],
+    'visibilities'  => [
+        'private'   => 'Privé',
+        'public'    => 'Publique',
+        'review'    => 'En attente de revue',
     ],
 ];

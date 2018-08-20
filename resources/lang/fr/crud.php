@@ -107,6 +107,7 @@ return [
     'hidden'        => 'Caché',
     'hints'         => [
         'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création de cette entité.',
+        'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'is_private'            => 'Cacher des membres de type non-Admin',
     ],
     'history'       => [

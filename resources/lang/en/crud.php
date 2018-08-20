@@ -107,7 +107,7 @@ return [
     'hidden'        => 'Hidden',
     'hints'         => [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
-        'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size',
+        'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'is_private'            => 'Hide from non "Admin" users.',
     ],
     'history'       => [

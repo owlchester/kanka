@@ -16,7 +16,7 @@ return [
         'success'   => 'Calendar \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
+        'description'   => 'Update the calendar',
         'success'       => 'Calendar \':name\' updated.',
         'title'         => 'Edit Calendar :name',
     ],

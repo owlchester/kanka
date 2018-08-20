@@ -16,6 +16,7 @@ return [
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'newsletter'                => 'Je souhaite être contacté par email de temps en temps.',
         'password'                  => 'Mot de passe actuel',
+        'settings'                  => 'Paramètres',
         'theme'                     => 'Thème',
     ],
     'password'      => [
@@ -38,9 +39,17 @@ return [
             'title' => 'Modification du mot de passe',
         ],
     ],
+    'settings'      => [
+        'fields'    => [
+            'date_format'   => 'Format de date',
+            'pagination'    => 'Pagination (éléments par page)',
+        ],
+        'success'   => 'Paramètres modifiés.',
+    ],
     'theme'         => [
         'success'   => 'Thème modifié.',
         'themes'    => [
+            'dark'      => 'Sombre',
             'default'   => 'Défaut',
             'future'    => 'Futur',
         ],
