@@ -8,7 +8,7 @@ return [
         'title'         => 'Würfelwürfe',
     ],
     'link'          => [
-        'description'   => 'Du kannst einfach andere Objekte verlinken, wenn du einen Charakter, Ort, etc. erstellst oder bearbeitest. Schreibe einfach den folgenden Code mit dem Namen des Objekts, dass du verlinken möchtest.',
+        'description'   => 'Du kannst einfach andere Objekte verlinken wenn du \'@\' schreibst. Du kannst auch \'#\' schreiben für eine liste von Monaten namen zu laden.',
         'title'         => 'Andere Objekte verlinken',
     ],
     'title'         => 'Hilfe',
