@@ -45,6 +45,8 @@
 
             @can('update', $model)
                 @include('partials.errors')
+                <?php $memberList = $campaign->membersList($model->participantsList(false)); ?>
+                @if($model->target == \App\Models\Conversation::TARGET_CHARACTERS || count($memberList) > 0)
                 {!! Form::open(['route' => ['conversations.conversation_participants.store', $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
                 <div class="row">
                     <div class="col-sm-8">
@@ -59,7 +61,7 @@
                             @else
                                 {!! Form::select(
                                     'user_id',
-                                    $campaign->membersList($model->participantsList(false)),
+                                    $memberList,
                                     null,
                                     ['class' => 'form-control']
                                 ) !!}
@@ -74,6 +76,7 @@
                 </div>
                 {!! Form::hidden('conversation_id', $model->id) !!}
                 {!! Form::close() !!}
+                @endif
             @endcan
         </div>
     </div>
