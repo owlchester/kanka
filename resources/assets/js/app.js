@@ -207,7 +207,11 @@ function manageTabs() {
     var tabLink = $('.nav-tabs li a');
     tabLink.click(function(e) {
         e.preventDefault();
-        $(this).tab('show');
+
+        // If tab isn't ajax request
+        if (!$(this).data('url')) {
+            $(this).tab('show');
+        }
     });
 
     // store the currently selected tab in the hash value
@@ -215,7 +219,7 @@ function manageTabs() {
         e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
         var dataToggle = $(e.target).attr('ajax-modal');
-        console.log('data-toggle?', $(e.target).attr('data-toggle'), e.target);
+
         if (dataToggle && dataToggle == 'ajax-modal') {
             // Modal? Don't do more.
             return true;

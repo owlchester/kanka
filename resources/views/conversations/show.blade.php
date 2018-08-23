@@ -49,9 +49,7 @@
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }} box-conversation" id="conversation">
                     <div class="box-body no-padding box-comments" id="conversation_body" data-url="{{ route('conversations.conversation_messages.index', $model) }}">
-                        <div class="load-more" >
-                            <i class="fa fa-spinner fa-spin"></i>
-                        </div>
+                        @include('conversations._latest', ['oldest' => null, 'newest' => null])
                     </div>
                     @can('update', $model)
                         {!! Form::open([

@@ -59,13 +59,15 @@ function initConversation() {
     conversationMessage = $("input[name='message']");
 
     // Load the first messages
-    $.ajax(
-        conversationBody.data('url')
-    ).done(function(data) {
-        conversationBody.html(data);
-        scrollToBottom(conversationBody);
-        initLoadPrevious();
-    });
+    // $.ajax(
+    //     conversationBody.data('url')
+    // ).done(function(data) {
+    //     conversationBody.html(data);
+    //     scrollToBottom(conversationBody);
+    //     initLoadPrevious();
+    // });
+    scrollToBottom(conversationBody);
+    initLoadPrevious();
 
     conversationSend.on('submit', function(e) {
         e.preventDefault();

@@ -81,7 +81,7 @@ if (request()->route()->getName() == 'characters.random') {
                         <div class="row ">
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <span class="input-group-addon">
+                                    <span class="input-group-addon hidden-xs hidden-sm">
                                         <span class="fa fa-arrows-v"></span>
                                     </span>
                                     {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
@@ -114,7 +114,7 @@ if (request()->route()->getName() == 'characters.random') {
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <span class="input-group-addon">
+                                    <span class="input-group-addon hidden-xs hidden-sm">
                                         <span class="fa fa-arrows-v"></span>
                                     </span>
                                     {!! Form::text('appearance_name[]', null, [
@@ -172,7 +172,7 @@ if (request()->route()->getName() == 'characters.random') {
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <span class="input-group-addon">
+                                    <span class="input-group-addon hidden-xs hidden-sm">
                                         <span class="fa fa-arrows-v"></span>
                                     </span>
                                     {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
@@ -205,7 +205,7 @@ if (request()->route()->getName() == 'characters.random') {
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <span class="input-group-addon">
+                                    <span class="input-group-addon hidden-xs hidden-sm">
                                         <span class="fa fa-arrows-v"></span>
                                     </span>
                                     {!! Form::text('personality_name[]', null, [

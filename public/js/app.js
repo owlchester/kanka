@@ -12571,7 +12571,11 @@ function manageTabs() {
     var tabLink = $('.nav-tabs li a');
     tabLink.click(function (e) {
         e.preventDefault();
-        $(this).tab('show');
+
+        // If tab isn't ajax request
+        if (!$(this).data('url')) {
+            $(this).tab('show');
+        }
     });
 
     // store the currently selected tab in the hash value
@@ -12579,7 +12583,7 @@ function manageTabs() {
         e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
         var dataToggle = $(e.target).attr('ajax-modal');
-        console.log('data-toggle?', $(e.target).attr('data-toggle'), e.target);
+
         if (dataToggle && dataToggle == 'ajax-modal') {
             // Modal? Don't do more.
             return true;
@@ -55317,13 +55321,13 @@ function initCrudFilters() {
         filterSubmit($(this), false);
     });
 
-    $('#crud-filters select').on('change', function (e) {
+    $('#crud-filters select.select2').on('change', function (e) {
         $('#crud-filters-form').submit();
     });
 
-    // $('#crud-filters select.filter-select').on('change', function(e) {
-    //     $('#crud-filters-form').submit();
-    // });
+    $('#crud-filters select.filter-select').on('change', function (e) {
+        $('#crud-filters-form').submit();
+    });
 
     // Reset button
     $('#crud-filters .end').on('click', function (e) {
@@ -55635,11 +55639,15 @@ function initConversation() {
     conversationMessage = $("input[name='message']");
 
     // Load the first messages
-    $.ajax(conversationBody.data('url')).done(function (data) {
-        conversationBody.html(data);
-        scrollToBottom(conversationBody);
-        initLoadPrevious();
-    });
+    // $.ajax(
+    //     conversationBody.data('url')
+    // ).done(function(data) {
+    //     conversationBody.html(data);
+    //     scrollToBottom(conversationBody);
+    //     initLoadPrevious();
+    // });
+    scrollToBottom(conversationBody);
+    initLoadPrevious();
 
     conversationSend.on('submit', function (e) {
         e.preventDefault();
