@@ -29,4 +29,5 @@ return [
     'support'               => 'Support / Community',
     'team'                  => 'Team',
     'translations'          => 'Translations',
+    'trello'                => 'Trello',
 ];
