@@ -26,6 +26,7 @@ class EntityService
         $this->entities = [
             'characters' => 'App\Models\Character',
             'calendars' => 'App\Models\Calendar',
+            'conversations' => 'App\Models\Conversation',
             'events' => 'App\Models\Event',
             'families' => 'App\Models\Family',
             'items' => 'App\Models\Item',

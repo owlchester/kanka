@@ -120,6 +120,11 @@
                     <a href="{{ route('dice_rolls.index') }}"><i class="ra ra-dice-five"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
                 </li>
             @endif
+            @if ($campaign->enabled('conversations'))
+                <li class="{{ $sidebar->active('conversations') }}">
+                    <a href="{{ route('conversations.index') }}"><i class="ra ra-speech-bubbles"></i> <span>{{ trans('sidebar.conversations') }}</span></a>
+                </li>
+            @endif
             @can('create', 'App\Models\AttributeTemplate')
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>

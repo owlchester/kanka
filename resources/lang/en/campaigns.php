@@ -211,6 +211,7 @@ return [
             'calendars'     => 'A place to define the calendars of your world.',
             'categories'    => 'Each entity can have a category. Categories can belong to other categories, and entries can be filtered by category.',
             'characters'    => 'The people who inhabit your world.',
+            'conversations' => 'Fictional conversations between characters or between campaign users.',
             'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
             'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'      => 'Clans or families, their relations and their members.',

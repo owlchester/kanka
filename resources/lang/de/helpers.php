@@ -8,7 +8,7 @@ return [
         'title'         => 'Würfelwürfe',
     ],
     'link'          => [
-        'description'   => 'Du kannst einfach andere Objekte verlinken wenn du \'@\' schreibst. Du kannst auch \'#\' schreiben für eine liste von Monaten namen zu laden.',
+        'description'   => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',
         'title'         => 'Andere Objekte verlinken',
     ],
     'title'         => 'Hilfe',

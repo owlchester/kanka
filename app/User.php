@@ -137,6 +137,19 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * @param bool $thumb
+     * @return string
+     */
+    public function getImageUrl($thumb = false)
+    {
+        if (empty($this->avatar)) {
+            return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
+        } else {
+            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->avatar) : $this->avatar));
+        }
+    }
+
+    /**
      * Determine if the user is currently viewer a campaign as a member or owner
      * @param bool $strict
      * @return bool
@@ -238,5 +251,11 @@ class User extends \TCG\Voyager\Models\User
             $this->cachedHasCampaign = $this->campaigns()->count() > $count;
         }
         return $this->cachedHasCampaign;
+    }
+
+    public function getAvatar($thumb = false)
+    {
+        return "<span class=\"entity-image\" style=\"background-image: url('" .
+            $this->getImageUrl(true) . "');\" title=\"" . e($this->name) . "\"></span>";
     }
 }

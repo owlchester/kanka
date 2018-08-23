@@ -169,6 +169,14 @@ class Entity extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function conversation()
+    {
+        return $this->hasOne('App\Models\Conversation', 'id', 'entity_id');
+    }
+
+    /**
      * Not to be confused with the "section" which is the child entity, category is the section
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

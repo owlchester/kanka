@@ -19,6 +19,10 @@ class SidebarService
             'characters',
             'character_relation',
         ],
+        'conversations' => [
+            'conversations',
+            'conversation_messages',
+        ],
         'events' => [
             'events',
         ],

@@ -34,11 +34,8 @@ if ($pluralField == 'parent_locations') {
 $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . $singularFieldName : $placeholderKey;
 $labelKey = empty($labelKey) ? 'crud.fields.' . $singularFieldName : $labelKey;
 $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRouteName;
-
 ?>
-
 <label>{{ trans($labelKey) }}</label>
-
 @if ($allowNew)
     <div class="input-group input-group-sm">
 @endif

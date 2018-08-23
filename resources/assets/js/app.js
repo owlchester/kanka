@@ -281,7 +281,7 @@ function initLiveSearch() {
 }
 
 function requestLiveSearch(value) {
-    if (liveSearchField.val() == value && !liveSearchRunning) {
+    if (liveSearchField.val() === value && !liveSearchRunning) {
         liveSearchRunning = true;
 
         // Reset results
@@ -301,7 +301,7 @@ function requestLiveSearch(value) {
                 });
 
                 // Empty result
-                if (result.length == 0) {
+                if (result.length === 0) {
                     liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
                 }
                 liveSearchResults.focus();
@@ -315,9 +315,12 @@ function requestLiveSearch(value) {
     }
 }
 
+// Helpers are injected directly in the window functions.
+require('./helpers.js');
 
 require('./attributes.js');
 require('./keyboard.js');
 require('./map.js');
 require('./crud.js');
 require('./calendar.js');
+require('./conversation.js');

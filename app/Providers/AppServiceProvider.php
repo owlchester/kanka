@@ -7,6 +7,7 @@ use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
+use App\Models\Conversation;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\EntityNote;
@@ -69,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
+            Conversation::observe('App\Observers\ConversationObserver');
             DiceRoll::observe('App\Observers\DiceRollObserver');
             DiceRollResult::observe('App\Observers\DiceRollResultObserver');
             Event::observe(EventObserver::class);

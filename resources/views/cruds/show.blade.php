@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans($name . '.show.title', ['name' => $model->name]),
     'description' => trans($name . '.show.description'),
     'breadcrumbs' => [

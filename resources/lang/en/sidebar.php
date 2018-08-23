@@ -6,6 +6,7 @@ return [
     'calendars'             => 'Calendars',
     'campaigns'             => 'Campaigns',
     'characters'            => 'Characters',
+    'conversations'         => 'Conversations',
     'custom_links'          => 'Custom Links',
     'dashboard'             => 'Dashboard',
     'dice_rolls'            => 'Dice Rolls',

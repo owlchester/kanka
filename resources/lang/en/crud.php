@@ -236,5 +236,8 @@ return [
         'relations'     => 'Relations',
     ],
     'update'        => 'Update',
+    'users'         => [
+        'unknown' => 'Unknown',
+    ],
     'view'          => 'View',
 ];

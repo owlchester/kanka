@@ -38,6 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\CampaignRoleUser' => 'App\Policies\CampaignRoleUserPolicy',
         'App\Models\CampaignPermission' => 'App\Policies\CampaignPermission',
         'App\Models\Character' => 'App\Policies\CharacterPolicy',
+        'App\Models\Conversation' => 'App\Policies\ConversationPolicy',
         'App\Models\DiceRoll' => 'App\Policies\DiceRollPolicy',
         'App\Models\DiceRollResult' => 'App\Policies\DiceRollResultPolicy',
         'App\Models\Event' => 'App\Policies\EventPolicy',

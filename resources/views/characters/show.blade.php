@@ -185,5 +185,17 @@
                 </div>
             </div>
         @endif
+
+        @if ($campaign->enabled('conversations') && $model->conversations()->count() > 0)
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ trans('characters.show.tabs.conversations') }}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @include('characters.panels.conversations')
+                </div>
+            </div>
+        @endif
     </div>
 </div>

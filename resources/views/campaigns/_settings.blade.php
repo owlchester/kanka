@@ -100,6 +100,13 @@
             </label>
             <p class="help-block">{{ trans('campaigns.settings.helpers.dice_rolls') }}</p>
         </div>
+        <div class="form-group">
+            {!! Form::hidden('conversations', 0) !!}
+            <label>{!! Form::checkbox('conversations') !!}
+                {{ trans('entities.conversations') }}
+            </label>
+            <p class="help-block">{{ trans('campaigns.settings.helpers.conversations') }}</p>
+        </div>
     </div>
 </div>
 

@@ -120,6 +120,7 @@ class CrudController extends Controller
                 $params['source'] = null;
             }
         }
+        $params['ajax'] = request()->ajax();
 
         return view('cruds.create', array_merge(['name' => $this->view], $params));
     }
@@ -171,6 +172,7 @@ class CrudController extends Controller
             $this->authorizeForGuest('read', $model);
         }
         $name = $this->view;
+        $ajax = request()->ajax();
 
         // Fix for models without an entity
         if (empty($model->entity)) {
@@ -178,7 +180,10 @@ class CrudController extends Controller
             $model->load('entity');
         }
 
-        return view('cruds.show', compact('model', 'name', 'permissions'));
+        return view(
+            'cruds.show',
+            compact('model', 'name', 'permissions', 'ajax')
+        );
     }
 
     /**
@@ -191,8 +196,9 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
         $name = $this->view;
+        $ajax = request()->ajax();
 
-        return view('cruds.edit', compact('model', 'name'));
+        return view('cruds.edit', compact('model', 'name', 'ajax'));
     }
 
     /**

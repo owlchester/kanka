@@ -1,0 +1,29 @@
+/**
+ * Conversations
+ */
+.box-conversation {
+  .box-comments {
+    .box-comment {
+      margin: 5px;
+
+      .entity-image {
+        float: left;
+      }
+      .comment-text {
+        margin-left: 50px;
+      }
+    }
+  }
+
+  .load-more {
+    margin: 10px 55px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+
+  #conversation_body {
+    max-height: 400px;
+    overflow: auto;
+  }
+}

@@ -188,12 +188,14 @@ class Campaign extends MiscModel
     /**
      * @return array
      */
-    public function membersList()
+    public function membersList($removedIds = [])
     {
         $members = [];
 
         foreach ($this->members()->with('user')->get() as $m) {
-            $members[$m->user->id] = $m->user->name;
+            if (!in_array($m->user->id, $removedIds)) {
+                $members[$m->user->id] = $m->user->name;
+            }
         }
 
         return $members;

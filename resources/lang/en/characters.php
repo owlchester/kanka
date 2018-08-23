@@ -131,6 +131,7 @@ return [
     'show'          => [
         'description'   => 'A detailed view of a character',
         'tabs'          => [
+            'conversations' => 'Conversations',
             'dice_rolls'    => 'Dice Rolls',
             'free'          => 'Free Text',
             'history'       => 'History',

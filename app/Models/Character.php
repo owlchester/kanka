@@ -189,6 +189,14 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function conversations()
+    {
+        return $this->hasManyThrough('App\Models\Conversation', 'App\Models\ConversationParticipant', 'character_id', 'id', 'id', 'conversation_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function characterTraits()
     {
         return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');
