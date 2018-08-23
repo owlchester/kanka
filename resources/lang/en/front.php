@@ -23,6 +23,7 @@ return [
             'title'         => 'Collaborative',
         ],
         'description'   => 'Here are but a few things that we think you will love with our app!',
+        'description_full' => 'A showcase of some of our best and most loved features.',
         'free'          => [
             'description'   => 'The best things in life are those which are free.',
             'title'         => 'Free to Use',
@@ -36,6 +37,7 @@ return [
             'title'         => 'Journals',
         ],
         'title'         => 'Unlimited Features, Unlimited Fun',
+        'learn_more'    => 'Learn more about Kanka\'s features',
     ],
     'first_block'   => [
         'description'   => 'Our app is available on any mobile device and browser! No need to install anything, it\'s all in your browser. Best of all, it\'s completely free!',

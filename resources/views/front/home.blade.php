@@ -78,6 +78,11 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center">
+                <h4>
+                    <a href="{{ route('features') }}">{{ trans('front.features.learn_more') }}</a>
+                </h4>
+            </div>
         </div>
     </section>
 

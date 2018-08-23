@@ -25,6 +25,7 @@ Route::group([
     Route::get('/privacy-policy', 'FrontController@privacy')->name('privacy');
     Route::get('/help', 'FrontController@help')->name('help');
     Route::get('/faq', 'FrontController@faq')->name('faq');
+    Route::get('/features', 'FrontController@features')->name('features');
 
     Auth::routes();
 
