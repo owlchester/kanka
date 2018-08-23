@@ -77,6 +77,7 @@
                                             [
                                                 'class' => 'form-control',
                                                 'autocomplete' => 'off',
+                                                'maxlength' => 500,
                                                 'placeholder' => trans('conversations.messages.placeholders.message')
                                             ]
                                         ) !!}
