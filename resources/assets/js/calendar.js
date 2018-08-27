@@ -1,27 +1,31 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
-var calendarYearSwitcher, calendarEventModal;
+var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var calendarSortMonths, calendarSortWeekdays, calendarSortYears;
 
 $(document).ready(function() {
+    // Form
     calendarAddMonth = $('#add_month');
-    calendarAddWeekday = $('#add_weekday');
-    calendarAddYear = $('#add_year');
-    calendarTemplateMonth = $('#template_month');
-    calendarTemplateWeekday = $('#template_weekday');
-    calendarTemplateYear = $('#template_year');
-    calendarLeapYear = $('input[name="has_leap_year"]');
-    calendarYearSwitcher = $('#calendar-year-switcher');
-    calendarEventModal = $('#add-calendar-event');
-
-    calendarSortMonths = $(".calendar-months");
-    calendarSortWeekdays = $(".calendar-weekdays");
-    calendarSortYears = $(".calendar-years");
-
     if (calendarAddMonth.length === 1) {
-        initCalendar();
+        calendarAddWeekday = $('#add_weekday');
+        calendarAddYear = $('#add_year');
+        calendarTemplateMonth = $('#template_month');
+        calendarTemplateWeekday = $('#template_weekday');
+        calendarTemplateYear = $('#template_year');
+        calendarLeapYear = $('input[name="has_leap_year"]');
+
+        calendarSortMonths = $(".calendar-months");
+        calendarSortWeekdays = $(".calendar-weekdays");
+        calendarSortYears = $(".calendar-years");
+
+        initCalendarForm();
     }
 
+    // View
+    calendarYearSwitcher = $('#calendar-year-switcher');
     if (calendarYearSwitcher.length === 1) {
+        calendarYearSwitcherField = $('#calendar-year-switcher-field');
+        calendarEventModal = $('#add-calendar-event');
+
         initCalendarYearSwitcher();
         initCalendarEventModal();
     }
@@ -30,7 +34,7 @@ $(document).ready(function() {
 /**
  * Initialize the calendar
  */
-function initCalendar() {
+function initCalendarForm() {
     calendarAddMonth.on('click', function(e) {
         e.preventDefault();
 
@@ -101,11 +105,10 @@ function calendarDeleteRowHandler() {
 }
 
 function initCalendarYearSwitcher() {
-    calendarYearSwitcher.on('change', function() {
-        var option = $(this).find(':selected').val();
-        if (option) {
-            window.location = option;
-        }
+    calendarYearSwitcher.on('click', function() {
+        $(this).hide();
+        year = calendarYearSwitcherField.val();
+        calendarYearSwitcherField.show().focus().val('').val(year);
     });
 }
 

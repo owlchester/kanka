@@ -1,6 +1,7 @@
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 {{ $renderer->setCalendar($model) }}
 
+{!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
 <div class="row form-group">
     <div class="col-md-2">
         {{ $renderer->todayButton() }}
@@ -9,14 +10,16 @@
         <i class="fa fa-angle-double-left"></i> {{ $renderer->previous() }}
     </div>
     <div class="col-md-4 text-center">
-        <select id="calendar-year-switcher" class="form-control">
-            {!! $renderer->current() !!}
-        </select>
+        {!! $renderer->current() !!}
+        {!! Form::text('year', null, ['class' => 'form-input form-input-sm', 'id' => 'calendar-year-switcher-field', 'style' => 'display:none']) !!}
+
     </div>
     <div class="col-md-2 text-left">
         {{ $renderer->next() }} <i class="fa fa-angle-double-right"></i>
     </div>
 </div>
+{!! Form::hidden('month', $renderer->currentMonthId()) !!}
+{!! Form::close() !!}
 
 <table class="calendar table table-bordered table-striped">
     <thead>

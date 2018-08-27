@@ -73,17 +73,11 @@ class CalendarRenderer
         $options = '';
         // Year name?
         $names = $this->calendar->years();
+        $hasYearName = isset($names[$year]) ? $names[$year] : null;
 
-        for ($y = $year - 5; $y <= $year + 5; $y++) {
-            $yearName = '';
-            if (!empty($names[$y])) {
-                $yearName = ' "' . $names[$y] . '"';
-            }
-            $route = route('calendars.show', ['calendar' => $this->calendar, 'year' => $y, 'month' => $month]);
-            $options .= "<option value=\"$route\"" . ($y == $year ? ' selected="selected"' : null) . ">" . $months[$month-1]['name'] . " $y$yearName</option>";
-        }
-
-        return $options;
+        return $months[$this->getMonth()]['name']
+            . ($hasYearName ? ', ' : ' ')
+            . '<a href="#" id="calendar-year-switcher">' . (isset($names[$year]) ? $names[$year] : $year) . '</a>';
     }
 
     /**
@@ -203,24 +197,6 @@ class CalendarRenderer
         }
 
         return '';
-    }
-
-    /**
-     * @return string
-     */
-    public function yearSwitcher()
-    {
-        $currentYear = $this->getYear();
-        $months = $this->calendar->months();
-        $html = '';
-        for ($year = $currentYear - 3; $year <= $currentYear + 3; $year++) {
-            $html .= '<div class="col-md-' . ($year == $currentYear ? '2 text-center' : 1) . '">' .
-                ($year < $currentYear ? '<i class="fa fa-angle-double-left"></i> ' : null) .
-                HtmlFacade::linkRoute('calendars.show', "$year " . $months[0]['name'], ['calendar' => $this->calendar, 'year' => $year, 'month' => 1]) .
-                ($year > $currentYear ? ' <i class="fa fa-angle-double-right"></i>' : null) .
-                '</div>';
-        }
-        return $html;
     }
 
     /**
