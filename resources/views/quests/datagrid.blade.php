@@ -23,6 +23,15 @@
             'visible' => $campaign->enabled('characters'),
         ],
         [
+            'label' => trans('quests.fields.quest'),
+            'field' => 'quest.name',
+            'render' => function($model) {
+                if ($model->quest) {
+                    return '<a href="' . route('quests.show', $model->quest->id) . '">' . $model->quest->name . '</a>';
+                }
+            }
+        ],
+        [
             'label' => trans('quests.fields.locations'),
             'visible' => $campaign->enabled('locations'),
             'render' => function($model) {

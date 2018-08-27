@@ -17,12 +17,25 @@
                         <br class="clear" />
                     </li>
                     @endif
+                    @if ($model->quest)
+                        <li class="list-group-item">
+                            <b>{{ trans('quests.fields.quest') }}</b>
+                            <span class="pull-right">
+                                <a href="{{ route('quests.show', $model->quest->id) }}" data-toggle="tooltip" title="{{ $model->quest->tooltip() }}">
+                                    {{ $model->quest->name }}
+                                </a>
+                            </span>
+                            <br class="clear" />
+                        </li>
+                    @endif
                     @if ($campaign->enabled('characters') && !empty($model->character))
                     <li class="list-group-item">
                         <b>{{ trans('quests.fields.character') }}</b>
                         <span  class="pull-right">
-                    <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
-                    </span>
+                            <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">
+                                {{ $model->character->name }}
+                            </a>
+                        </span>
                         <br class="clear" />
                     </li>
                     @endif
@@ -49,6 +62,11 @@
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('quests.show.tabs.information') }}</span>
                     </a>
                 </li>
+                <li class="{{ (request()->get('tab') == 'quests' ? ' active' : '') }}">
+                    <a href="#quests" data-toggle="tooltip" title="{{ trans('quests.show.tabs.quests') }}">
+                        <i class="ra ra-wooden-sign"></i> <span class="hidden-sm hidden-xs">{{ trans('quests.show.tabs.quests') }}</span>
+                    </a>
+                </li>
                 @if ($campaign->enabled('characters'))
                     <li class="{{ (request()->get('tab') == 'character' ? ' active' : '') }}">
                         <a href="#character" data-toggle="tooltip" title="{{ trans('quests.show.tabs.characters') }}">
@@ -72,6 +90,10 @@
                         <h3>{{ trans('quests.fields.description') }}</h3>
                         <p>{!! $model->description !!}</p>
                     </div>
+                </div>
+
+                <div class="tab-pane {{ (request()->get('tab') == 'quests' ? ' active' : '') }}" id="quests">
+                    @include('quests._quests')
                 </div>
                 @if ($campaign->enabled('characters'))
                     <div class="tab-pane {{ (request()->get('tab') == 'character' ? ' active' : '') }}" id="character">

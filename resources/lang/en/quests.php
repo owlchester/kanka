@@ -42,6 +42,10 @@ return [
         'locations'     => 'Locations',
         'name'          => 'Name',
         'type'          => 'Type',
+        'quest'         => 'Parent Quest',
+    ],
+    'hints' => [
+        'quests' => 'A web of interlocking quests can be built using the Parent Quest field.',
     ],
     'index'         => [
         'add'           => 'New Quest',
@@ -71,6 +75,7 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the quest',
         'type'  => 'Character Arc, Sidequest, Main',
+        'quest' => 'Parent Quest',
     ],
     'show'          => [
         'actions'       => [
@@ -82,6 +87,7 @@ return [
             'characters'    => 'Characters',
             'information'   => 'Information',
             'locations'     => 'Locations',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Quest :name',
     ],

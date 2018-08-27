@@ -14,6 +14,7 @@ class Quest extends MiscModel
      */
     protected $fillable = [
         'campaign_id',
+        'quest_id',
         'name',
         'slug',
         'type',
@@ -37,6 +38,7 @@ class Quest extends MiscModel
     protected $filterableColumns = [
         'name',
         'type',
+        'quest_id',
         'section_id',
         'character_id',
         'is_completed',
@@ -67,7 +69,8 @@ class Quest extends MiscModel
      * @var array
      */
     protected $foreignExport = [
-        'locations', 'characters',
+        'locations',
+        'characters',
     ];
 
     /**
@@ -76,6 +79,14 @@ class Quest extends MiscModel
     public function campaign()
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function quest()
+    {
+        return $this->belongsTo('App\Models\Quest', 'quest_id', 'id');
     }
 
     /**
@@ -105,6 +116,14 @@ class Quest extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function quests()
+    {
+        return $this->hasMany('App\Models\Quest', 'quest_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function character()
     {
         return $this->belongsTo('App\Models\Character');
@@ -120,6 +139,10 @@ class Quest extends MiscModel
         }
         foreach ($this->characters as $child) {
             $child->delete();
+        }
+        foreach ($this->quests as $quest) {
+            $quest->quest_id = null;
+            $quest->save();
         }
         return parent::detach();
     }

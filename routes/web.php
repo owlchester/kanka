@@ -168,6 +168,8 @@ Route::group([
         Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
         Route::get('/search/sections', 'SearchController@sections')->name('sections.find');
         Route::get('/search/dice_rolls', 'SearchController@diceRolls')->name('dice_rolls.find');
+        Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
+        Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');
 
         Route::get('/search', 'SearchController@search')->name('search');
         Route::get('/search/entities', 'SearchController@entities')->name('search.relations');

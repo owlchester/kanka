@@ -297,6 +297,16 @@ class SearchController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function conversations(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Conversation::class);
+    }
+
+    /**
      * Search for month names
      * @param Request $request
      * @return mixed
