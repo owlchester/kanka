@@ -13,7 +13,7 @@
                     $model = $modelclass->acl(auth()->user())->find($value);
                 }?>
                 <label class="field" for="{{ $field['field'] }}">{{ $field['label'] }}</label>
-                <div class="value">{{ (!empty($model) ? $model->name : !empty($value) ? trans($field['valueKey'] . $value) : null) }}</div>
+                <div class="value">{{ (!empty($model) ? $model->name : (!empty($value) ? trans($field['valueKey'] . $value) : null)) }}</div>
                 <div class="input" style="display:none;">
                     @if ($field['type'] == 'select')
                         {!! Form::select(

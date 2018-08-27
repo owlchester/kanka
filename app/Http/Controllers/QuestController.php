@@ -38,6 +38,14 @@ class QuestController extends CrudController
                 'placeholder' =>  trans('crud.placeholders.character'),
                 'model' => Character::class,
             ],
+            [
+                'field' => 'quest_id',
+                'label' => trans('quests.fields.quest'),
+                'type' => 'select2',
+                'route' => route('quests.find'),
+                'placeholder' =>  trans('quests.placeholders.quest'),
+                'model' => Quest::class,
+            ],
             'is_completed',
         ];
     }
