@@ -25,7 +25,7 @@ return [
         'description'   => 'Here are but a few things that we think you will love with our app!',
         'description_full' => 'A showcase of some of our best and most loved features.',
         'free'          => [
-            'description'   => 'The best things in life are those which are free. No adds, no hidden costs, no pay wall.',
+            'description'   => 'The best things in life are those which are free. No ads, no hidden costs, no pay wall.',
             'title'         => 'Free to Use',
         ],
         'layers'        => [
