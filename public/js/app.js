@@ -55541,8 +55541,13 @@ function calendarDeleteRowHandler() {
     $.each($('.month-delete'), function (index) {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function (e) {
-            $(this).parent().parent().remove();
+            if ($(this).data('remove') === 4) {
+                $(this).parent().parent().parent().parent().remove();
+            } else {
+                $(this).parent().parent().parent().remove();
+            }
             e.preventDefault();
+            return false;
         });
     });
 
