@@ -20,8 +20,8 @@
                     @else
                         {{ trans('crud.users.unknown') }}
                     @endif
-                    <span class="text-muted pull-right">{{ $message->created_at->diffForHumans() }}</span>
                 </span>
+                <span class="text-muted pull-right">{{ $message->created_at->diffForHumans() }}</span>
             {{ nl2br($message->message) }}
         </div>
     </div>
