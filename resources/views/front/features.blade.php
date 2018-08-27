@@ -96,11 +96,42 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="feature-item">
-                                        <i class="icon-question text-primary"></i>
-                                        <h3>{{ trans('front.features.tbd.title') }}</h3>
-                                        <p class="text-muted">{{ trans('front.features.tbd.description') }}</p>
+                                        <i class="icon-list text-primary"></i>
+                                        <h3>{{ trans('front.features.modular.title') }}</h3>
+                                        <p class="text-muted">{{ trans('front.features.modular.description') }}</p>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-4">
+                                    <div class="feature-item">
+                                        <i class="icon-map text-primary"></i>
+                                        <h3>{{ trans('front.features.maps.title') }}</h3>
+                                        <p class="text-muted">{{ trans('front.features.maps.description') }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="feature-item">
+                                        <i class="icon-calendar text-primary"></i>
+                                        <h3>{{ trans('front.features.calendars.title') }}</h3>
+                                        <p class="text-muted">{{ trans('front.features.calendars.description') }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="feature-item">
+                                        <i class="icon-compass text-primary"></i>
+                                        <h3>{{ trans('front.features.relations.title') }}</h3>
+                                        <p class="text-muted">{{ trans('front.features.relations.description') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container-fluid">
+                            <div class="row">
                             </div>
                         </div>
                     </div>
