@@ -139,18 +139,31 @@ class CrudController extends Controller
         try {
             $model = new $this->model;
             $new = $model->create($request->all());
+
+            $success = trans($this->view . '.create.success', [
+                'name' => link_to_route(
+                    $this->view . '.show',
+                    e($new->name),
+                    $new
+                )
+            ]);
             if ($request->has('submit-new')) {
                 return redirect()->route($this->route . '.create')
-                    ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+                    ->with('success_raw', $success);
+            } elseif ($request->has('submit-update')) {
+                return redirect()->route($this->route . '.edit', $new)
+                    ->with('success_raw', $success);
+            } elseif ($request->has('submit-view')) {
+                return redirect()->route($this->route . '.show', $new)
+                    ->with('success_raw', $success);
             }
 
             if ($redirectToCreated) {
                 return redirect()->route($this->route . '.show', $new)
-                    ->with('success', trans($this->view . '.create.success', ['name' => $new->name]));
+                    ->with('success_raw', $success);
             }
             return redirect()->route($this->route . '.index')
-                ->with('success_raw', trans($this->view . '.create.success', ['name' =>
-                    link_to_route($this->route . '.show', e($new->name), $new)]));
+                ->with('success_raw', $success);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
@@ -214,14 +227,26 @@ class CrudController extends Controller
 
         try {
             $model->update($request->all());
+            $success = trans($this->view . '.edit.success', [
+                'name' => link_to_route(
+                    $this->route . '.show',
+                    e($model->name),
+                    $model
+                )
+            ]);
+
             if ($request->has('submit-new')) {
                 return redirect()->route($this->route . '.create')
-                    ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
-                        link_to_route($this->route . '.show', e($model->name), $model)]));
+                    ->with('success_raw', $success);
+            } elseif ($request->has('submit-update')) {
+                return redirect()->route($this->route . '.edit', $model->id)
+                    ->with('success_raw', $success);
+            } elseif ($request->has('submit-close')) {
+                return redirect()->route($this->route . '.index')
+                    ->with('success_raw', $success);
             }
             return redirect()->route($this->route . '.show', $model->id)
-                ->with('success_raw', trans($this->view . '.edit.success', ['name' =>
-                    link_to_route($this->route . '.show', e($model->name), $model)]));
+                ->with('success_raw', $success);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));

@@ -9,6 +9,12 @@
 
 @section('content')
     <div class="panel panel-default">
+        @if ($ajax)
+            <div class="panel-heading">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4>{{ trans('organisations.members.create.title', ['name' => $model->name]) }}</h4>
+            </div>
+        @endif
         <div class="panel-body">
             @include('partials.errors')
 
