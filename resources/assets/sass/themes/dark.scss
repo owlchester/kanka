@@ -73,7 +73,9 @@ body {
   }
 
   .panel-body {
-
+    ul {
+      color: $White;
+    }
   }
 }
 
@@ -217,6 +219,14 @@ pre, blockquote {
   border: 1px solid $Hard;
   background: none;
 
+  .tab-content {
+    background: none;
+  }
+}
+
+.nav-tabs {
+  border: none !important;
+
   li {
     border: none;
     &:hover {
@@ -236,12 +246,6 @@ pre, blockquote {
       border: none !important;
     }
   }
-  .tab-content {
-    background: none;
-  }
-}
-.nav-tabs {
-  border: none !important;
 }
 
 .alert  {
