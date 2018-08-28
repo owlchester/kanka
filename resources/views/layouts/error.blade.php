@@ -32,7 +32,7 @@
 <body id="page-top">
 <!-- Custom styles for this template -->
 <link href="/css/front/new-age.min.css" rel="stylesheet">
-<link href="{{ asset('css/front.css') }}" rel="stylesheet">
+<link href="{{ mix('css/front.css') }}" rel="stylesheet">
 <noscript id="deferred-styles">
 </noscript>
 

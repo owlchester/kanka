@@ -12,7 +12,7 @@
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Styles -->
-    <link href="{{ asset('css/export.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/export.css') }}" rel="stylesheet">
 </head>
 <body>
     @inject('campaign', 'App\Services\CampaignService')
@@ -26,6 +26,6 @@
     @endforeach
 
 <!-- Scripts -->
-{{--<script src="{{ asset('js/app.js') }}"></script>--}}
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}
 </body>
 </html>

@@ -33,11 +33,11 @@
     <![endif]-->
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
+    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }} }}" rel="stylesheet">
     @if (auth()->check() && !empty(auth()->user()->theme))
-    <link href="{{ asset('css/' . auth()->user()->theme . '.css') }}?v={{ setting('kanka.version') }}" rel="stylesheet">
+    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }} }}" rel="stylesheet">
     @endif
 
     @yield('styles')
@@ -178,7 +178,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}?v={{ setting('kanka.version') }}"></script>
+    <script src="{{ mix('js/app.js') }} }}"></script>
     <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
     @yield('scripts')
 </body>
