@@ -44991,6 +44991,13 @@ function mapTogglePoints(show) {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/export.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/front.scss":
 /***/ (function(module, exports) {
 
@@ -45026,6 +45033,7 @@ __webpack_require__("./resources/assets/js/app.js");
 __webpack_require__("./resources/assets/sass/bootstrap.scss");
 __webpack_require__("./resources/assets/sass/vendor.scss");
 __webpack_require__("./resources/assets/sass/app.scss");
+__webpack_require__("./resources/assets/sass/export.scss");
 __webpack_require__("./resources/assets/sass/front.scss");
 __webpack_require__("./resources/assets/sass/themes/future.scss");
 module.exports = __webpack_require__("./resources/assets/sass/themes/dark.scss");
