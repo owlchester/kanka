@@ -35,7 +35,7 @@
             </li>
             @endif
             @if ($campaign->enabled('menu_links'))
-            <li class="treeview">
+            <li class="treeview {{ $sidebar->open('menu_links') }}">
                 <a href="#">
                     <i class="fa fa-link"></i>
                     <span>{{ trans('sidebar.custom_links') }}</span>
@@ -43,18 +43,18 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu" style="display: none;">
+                <ul class="treeview-menu" style="{{ ($sidebar->open('menu_links') == 'menu-open' ? 'display:block' : 'display:none') }}">
                     @foreach ($campaign->campaign()->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
                         @if ($menuLink->entity && $menuLink->entity->child)
                         <li>
-                            <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->entity->child->id) }}">
+                            <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->getRouteParams()) }}">
                                 <i class="fa fa-circle-o"></i> {{ $menuLink->name }}
                             </a>
                         </li>
                         @endif
                     @endforeach
                     @if(Auth::check() && Auth::user()->isAdmin())
-                        <li><a href="{{ route('menu_links.index') }}"><i class="fa fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
+                        <li class="{{ $sidebar->active('menu_links') }}"><a href="{{ route('menu_links.index') }}"><i class="fa fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
                     @endif
                 </ul>
             </li>

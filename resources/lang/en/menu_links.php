@@ -17,6 +17,7 @@ return [
     'fields'        => [
         'entity'    => 'Entity',
         'name'      => 'Name',
+        'tab'       => 'Tab',
     ],
     'index'         => [
         'add'           => 'New Menu Link',
@@ -27,6 +28,7 @@ return [
     'placeholders'  => [
         'entity'    => 'Choose an entity',
         'name'      => 'Name of the menu link',
+        'tabs'      => 'history, relations, notes',
     ],
     'show'          => [
         'description'   => 'A detailed view of a menu link',

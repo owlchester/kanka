@@ -21,6 +21,8 @@ class MenuLink extends MiscModel
         'entity_id',
         'name',
         'icon',
+        'tab',
+        'filters',
         'is_private',
     ];
 
@@ -44,5 +46,20 @@ class MenuLink extends MiscModel
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @return array
+     */
+    public function getRouteParams()
+    {
+        if (!empty($this->tab)) {
+            return [
+                $this->entity->child->id,
+                '#tab_' . ltrim($this->tab, 'tab_')
+            ];
+        }
+
+        return $this->entity->child->id;
     }
 }

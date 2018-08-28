@@ -71,6 +71,9 @@ class SidebarService
         'dice_rolls' => [
             'dice_rolls',
         ],
+        'menu_links' => [
+            'menu_links',
+        ]
     ];
 
     /**
@@ -111,7 +114,7 @@ class SidebarService
         }
 
         foreach ($this->rules[$menu] as $rule) {
-            if (request()->segment(2) == $rule) {
+            if (request()->segment(4) == $rule) {
                 return $css;
             }
         }

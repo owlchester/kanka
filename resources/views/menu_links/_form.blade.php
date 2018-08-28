@@ -23,6 +23,15 @@
                         'menu_links.placeholders.entity'
                     ) !!}
                 </div>
+
+                <div class="form-group">
+                    <label>{{ trans('menu_links.fields.tab') }}</label>
+                    {!! Form::text('tab', $formService->prefill('tab', $source), ['placeholder' => trans('menu_links.placeholders.tab'), 'class' => 'form-control', 'maxlength' => 20]) !!}
+                </div>
+                {{--<div class="form-group">--}}
+                    {{--<label>{{ trans('menu_links.fields.filters') }}</label>--}}
+                    {{--{!! Form::text('filters', $formService->prefill('filters', $source), ['placeholder' => trans('menu_links.placeholders.filters'), 'class' => 'form-control', 'maxlength' => 191]) !!}--}}
+                {{--</div>--}}
                 @include('cruds.fields.private')
             </div>
         </div>
