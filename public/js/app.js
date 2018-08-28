@@ -44522,7 +44522,7 @@ function initCrudFilters() {
     });
 
     // Reset button
-    $('#crud-filters #filter-reset').on('click', function (e) {
+    $('#crud-filters #filters-reset').on('click', function (e) {
         // Redirect to page without params
         window.location = window.location.href.split("?")[0] + '?reset-filter=true';
     });

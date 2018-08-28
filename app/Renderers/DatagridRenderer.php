@@ -106,7 +106,7 @@ class DatagridRenderer
             if ($column == 'name') {
                 return "<th>" . $this->route($column) . "</th>\n";
             } else {
-                return "<th class='visible-md visible-lg'>" . $this->route($column) . "</th>\n";
+                return "<th class='hidden-xs hidden-sm'>" . $this->route($column) . "</th>\n";
             }
         }
 
@@ -120,28 +120,33 @@ class DatagridRenderer
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
+                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class;
                 $html = null;
             } elseif ($type == 'location') {
-                $class .= '';
+                $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('location.name', trans('crud.fields.location'));
             } elseif ($type == 'character') {
-                $class .= '  visible-md visible-lg';
+                $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('character.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.character'));
             } elseif ($type == 'entity') {
-                $class .= '  visible-md visible-lg';
+                $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('entity.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.entity'));
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user || !$this->user->isAdmin()) {
                     return null;
                 }
-                $html = $this->route('is_private', trans('crud.fields.is_private'));
+                $html = $this->route('is_private',
+                    '<i class="fa fa-lock visible-xs visible-xm"></i> ' .
+                    '<span class="visible-md visible-lg">' . trans('crud.fields.is_private') . '</span>'
+                );
             } else {
                 // No idea what is expected
                 $html = null;
             }
         } else {
             // Now the 'fun' starts
+            $class .= '  hidden-xs hidden-sm';
             if (!empty($column['label'])) {
                 $label = $column['label'];
 
@@ -261,7 +266,7 @@ class DatagridRenderer
                 } else {
                     $content = $model->{$column};
                 }
-                $class = 'visible-md visible-lg';
+                $class = 'hidden-xs hidden-sm';
             }
             return '<td' . (!empty($class) ? ' class="' . $class . '"' : null) . '>' . $content . '</td>';
         }
@@ -279,6 +284,7 @@ class DatagridRenderer
                 if ($who instanceof Entity) {
                     $who = $who->child;
                 }
+                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class;
                 if (!empty($who)) {
                     $whoRoute = !empty($column['parent_route']) ? (is_string($column['parent_route']) ? $column['parent_route'] : $column['parent_route']($model)) : $this->getOption('baseRoute');
                     $route = route($whoRoute . '.show', ['id' => $who->id]);
@@ -286,7 +292,7 @@ class DatagridRenderer
                         '\');" title="' . $who->name . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {
-                $class = ' ';
+                $class = 'hidden-xs hidden-sm';
                 if ($model->location) {
                     $content = '<a href="' . route('locations.show', $model->location->id) . '" data-toggle="tooltip" title="' . $model->location->tooltip() . '">' .
                         $model->location->name . '</a>';
@@ -295,13 +301,13 @@ class DatagridRenderer
                         $model->parentLocation->name . '</a>';
                 }
             } elseif ($type == 'character') {
-                $class = 'visible-md visible-lg';
+                $class = 'hidden-xs hidden-sm';
                 if ($model->character) {
                     $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" title="' . $model->character->tooltip() . '">' .
                         $model->character->name . '</a>';
                 }
             } elseif ($type == 'entity') {
-                $class = 'visible-md visible-lg';
+                $class = 'hidden-xs hidden-sm';
                 if ($model->entity) {
                     $content = '<a href="' . route($model->entity->pluralType() . '.show', $model->entity->child->id) . '" data-toggle="tooltip" title="' . $model->entity->child->tooltip() . '">' .
                         $model->entity->child->name . '</a>';
@@ -321,10 +327,11 @@ class DatagridRenderer
         } elseif (!empty($column['render'])) {
             // If it's not a type, do we have a renderer?
             $content = $column['render']($model, $column);
+            $class = 'hidden-xs hidden-sm';
         } elseif (!empty($column['field'])) {
             // A field was given? This could be when a field needs another label than anticipated.
             $content = $model->{$column['field']};
-            $class = 'visible-md visible-lg';
+            $class = 'hidden-xs hidden-sm';
         } else {
             // I have no idea.
             $content = 'ERR_UNKNOWN';
