@@ -7,6 +7,7 @@ var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
+var entityFormActions, entityFormDefaultAction;
 
 var ajaxModalTarget;
 
@@ -67,7 +68,6 @@ $(document).ready(function() {
         initCharacterAppearance();
     }
 
-
     $.each($('[data-toggle="ajax-modal"]'), function () {
         $(this).click(function (e) {
             e.preventDefault();
@@ -88,6 +88,11 @@ $(document).ready(function() {
             return false;
         });
     });
+
+    entityFormActions = $('.form-submit-actions');
+    if (entityFormActions.length > 0) {
+        registerEntityFormActions();
+    }
 });
 
 
@@ -278,4 +283,18 @@ function initSelect2() {
             });
         });
     }
+}
+
+/**
+ *
+ */
+function registerEntityFormActions() {
+    entityFormDefaultAction = $('#form-submit-main');
+    $.each(entityFormActions, function(ele) {
+        $(this).on('click', function(e) {
+            console.log('clicked on', $(this).data('action'));
+            entityFormDefaultAction.html($(this).html()).attr('name', $(this).data('action')).click();
+            return false;
+        });
+    })
 }
