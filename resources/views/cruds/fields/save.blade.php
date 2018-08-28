@@ -1,4 +1,4 @@
-<div class="col-md-<?=(isset($saveColLength) ? $saveColLength : 12)?>">
+<div class="col-md-<?=(isset($saveColLength) ? $saveColLength : 12)?> margin-bottom">
     <div class="form-group">
         <div class="btn-group">
             <button class="btn btn-success" id="form-submit-main">{{ trans('crud.save') }}</button>
