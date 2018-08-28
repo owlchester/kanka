@@ -12,7 +12,7 @@
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Styles -->
-    <link href="{{ mix('/css/export.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/export.css') }}" rel="stylesheet">
 </head>
 <body>
 @inject('campaign', 'App\Services\CampaignService')
