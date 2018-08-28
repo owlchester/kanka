@@ -24,7 +24,12 @@ var liveSearchField, liveSearchResults, liveSearchRunning = false;
 
 $(document).ready(function() {
 
-    $('[data-toggle="tooltip"]').tooltip();
+    // Inject the isMobile variable into the window. We don't want ALL of the javascript
+    // for mobiles, namely the tooltip tool.
+    window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
+    if (!window.kankaIsMobile.matches) {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
 
     initSelect2();
 

@@ -1,8 +1,9 @@
 @if (!empty($filters))
 {!! Form::open(['url' => $route, 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
 <div class="filters" id="crud-filters">
-    <div class="first">{{ trans('crud.filters') }}</div>
+    <div class="first">{{ trans('crud.filters.title') }}</div>
 
+    <div class="hidden-xs hidden-sm" id="available-filters">
     @foreach ($filters as $field)
         @if (is_array($field))
             <div class="element" data-field="{{ $field['field'] }}" data-type="{{ $field['type'] }}">
@@ -61,12 +62,21 @@
             </div>
         @endif
     @endforeach
+    </div>
     <div class="end">
-        <label>
-            <i class="fa fa-eraser"></i> {{ trans('crud.clear_filters') }}
+        <label id="filters-reset">
+            <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
         </label>
     </div>
     <br style="clear: both;" />
+    <div class="visible-xs visible-sm text-center">
+        <span href="#" id="filters-show-action">
+            <i class="fa fa-angle-double-down"></i> {{ trans('crud.filters.show') }}
+        </span>
+        <span href="#" id="filters-hide-action" style="display:none">
+            <i class="fa fa-angle-double-up"></i> {{ trans('crud.filters.hide') }}
+        </span>
+    </div>
 </div>
 {!! Form::close() !!}
 @endif

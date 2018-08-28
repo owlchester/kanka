@@ -12175,7 +12175,12 @@ var liveSearchField,
 
 $(document).ready(function () {
 
-    $('[data-toggle="tooltip"]').tooltip();
+    // Inject the isMobile variable into the window. We don't want ALL of the javascript
+    // for mobiles, namely the tooltip tool.
+    window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
+    if (!window.kankaIsMobile.matches) {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
 
     initSelect2();
 
@@ -44375,6 +44380,8 @@ var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
 var entityFormActions, entityFormDefaultAction;
 
+var filtersActionsShow, filtersActionHide;
+
 var ajaxModalTarget;
 
 $(document).ready(function () {
@@ -44515,9 +44522,26 @@ function initCrudFilters() {
     });
 
     // Reset button
-    $('#crud-filters .end').on('click', function (e) {
+    $('#crud-filters #filter-reset').on('click', function (e) {
         // Redirect to page without params
         window.location = window.location.href.split("?")[0] + '?reset-filter=true';
+    });
+
+    // Show on small displays
+    filtersActionShow = $('#crud-filters #filters-show-action');
+    filtersActionHide = $('#crud-filters #filters-hide-action');
+    filtersActionShow.on('click', function (e) {
+        $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
+        $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
+        filtersActionShow.hide();
+        filtersActionHide.show();
+    });
+
+    filtersActionHide.on('click', function (e) {
+        $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
+        $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
+        filtersActionHide.hide();
+        filtersActionShow.show();
     });
 
     $('#crud-filters .input-field').keypress(function (e) {

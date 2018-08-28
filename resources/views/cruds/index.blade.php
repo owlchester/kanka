@@ -15,7 +15,7 @@
                 <div class="box-header with-border">
                     @can('create', $model)
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fa fa-plus"></i> {{ trans($name . '.index.add') }}
+                        <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
                     </a>
                     @endcan
                     @foreach ($actions as $action)

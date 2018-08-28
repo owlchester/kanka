@@ -60,7 +60,6 @@ return [
         ],
     ],
     'cancel'        => 'Cancel',
-    'clear_filters' => 'Clear Filters',
     'click_modal'   => [
         'close'     => 'Close',
         'confirm'   => 'Confirm',
@@ -103,7 +102,12 @@ return [
         'section'               => 'Category',
     ],
     'filter'        => 'Filter',
-    'filters'       => 'Filters',
+    'filters'       => [
+        'title'     => 'Filters',
+        'clear'     => 'Clear Filters',
+        'show'      => 'Show Filters',
+        'hide'      => 'Hide Filters',
+    ],
     'hidden'        => 'Hidden',
     'hints'         => [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
