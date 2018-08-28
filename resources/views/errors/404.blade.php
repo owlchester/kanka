@@ -1,3 +1,3 @@
 @extends('layouts.error', [
-    'error' => 403
+    'error' => 404
 ])
