@@ -3,7 +3,9 @@
 
 @import "~font-awesome/scss/font-awesome";
 @import "~simple-line-icons/scss/simple-line-icons";
-
+body {
+  background-color: #222;
+}
 header.masthead {
   background: linear-gradient(to left, #2e8893,#0E2231) !important;
 }
@@ -41,6 +43,9 @@ section.contact ul.list-social li.social-discord a{
     width: 70%;
     margin-top: -7px;
   }
+}
+section {
+  background-color: #fff;
 }
 section.contact ul.list-social li.social-discord a:hover{
   background-color: #5078da;

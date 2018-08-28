@@ -4018,6 +4018,10 @@
   content: "\E620";
 }
 
+body {
+  background-color: #222;
+}
+
 header.masthead {
   background: -webkit-gradient(linear, right top, left top, from(#2e8893), to(#0E2231)) !important;
   background: linear-gradient(to left, #2e8893, #0E2231) !important;
@@ -4065,6 +4069,10 @@ section.contact ul.list-social li.social-discord a {
 section.contact ul.list-social li.social-discord a img {
   width: 70%;
   margin-top: -7px;
+}
+
+section {
+  background-color: #fff;
 }
 
 section.contact ul.list-social li.social-discord a:hover {
