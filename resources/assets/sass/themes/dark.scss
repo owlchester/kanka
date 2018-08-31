@@ -1,24 +1,24 @@
-$futureHard: #fff;
-$futureSoft: #333;
-$futureDetail: #222;
-$futureUnfocused: #999;
-$futureWhite: #eee;
+$Hard: #fff;
+$Soft: #333;
+$Detail: #222;
+$Unfocused: #999;
+$White: #eee;
 
 body {
-  background-color: $futureSoft;
+  background-color: $Soft;
   color: #777;
 }
 #app {
   background: none;
 }
 .main-sidebar {
-  background: $futureDetail !important;
+  background: $Detail !important;
 
   li:hover, li.active, li.header {
-    background-color: $futureDetail !important;
+    background-color: $Detail !important;
     a {
-      color: $futureHard !important;
-      background-color: $futureDetail !important;
+      color: $Hard !important;
+      background-color: $Detail !important;
     }
   }
 }
@@ -28,13 +28,13 @@ body {
 }
 
 .btn {
-  //background-color: $futureUnfocused !important;
+  //background-color: $Unfocused !important;
   color: white !important;
   //border: none !important;
 
   &:hover {
-    //color: $futureDetail !important;
-    //background-color: $futureHard !important;
+    //color: $Detail !important;
+    //background-color: $Hard !important;
     //border: none !important;
   }
 }
@@ -55,7 +55,7 @@ body {
 //}
 
 .box, .panel  {
-  border: 1px solid $futureHard !important;
+  border: 1px solid $Hard !important;
   background: none !important;
 
   .box-header, .panel-heading {
@@ -64,7 +64,7 @@ body {
   }
   .with-border {
     background: none !important;
-    border-bottom: 1px solid $futureHard !important;
+    border-bottom: 1px solid $Hard !important;
   }
 
   .box-footer, .panel-footer {
@@ -73,30 +73,32 @@ body {
   }
 
   .panel-body {
-
+    ul {
+      color: $White;
+    }
   }
 }
 
 .filters {
-  background: $futureDetail !important;
+  background: $Detail !important;
   //margin: 0 !important;
-  //border-bottom: none; //1px solid $futureUnfocused;
+  //border-bottom: none; //1px solid $Unfocused;
   //border-radius: 0 !important;
   color: white;
 
   .element {
     cursor: pointer;
     &:hover {
-      background: $futureSoft !important;
+      background: $Soft !important;
     }
   }
   .first {
-    border-left: 1px solid $futureUnfocused;
+    border-left: 1px solid $Unfocused;
   }
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: $futureDetail !important;
+  background-color: $Detail !important;
 }
 .table {
   tr {
@@ -112,19 +114,19 @@ body {
   tbody {
     tr {
       &:hover {
-        background-color: $futureDetail !important;
+        background-color: $Detail !important;
       }
     }
   }
 }
 
 h1, h2, h3, h4, h5, h6, h1 > small {
-  color: $futureWhite !important;
+  color: $White !important;
 }
 a {
-  color: $futureUnfocused !important;
+  color: $Unfocused !important;
   &:hover {
-    color: $futureHard !important;
+    color: $Hard !important;
   }
 }
 
@@ -137,16 +139,16 @@ a {
 }
 
 input, textarea, .select2, select  {
-  border: 1px solid $futureHard !important;
+  border: 1px solid $Hard !important;
   //border-radius: 0 !important;
-  background-color: $futureDetail !important;
+  background-color: $Detail !important;
   color: white;
 }
 .form-control, label {
-  color: $futureWhite;
+  color: $White;
 }
 .preview {
-  background-color: $futureDetail;
+  background-color: $Detail;
   min-height: 40px;
 }
 
@@ -162,7 +164,7 @@ input, textarea, .select2, select  {
   }
 }
 .select2-dropdown {
-  background-color: $futureDetail;
+  background-color: $Detail;
   .select2-results {
     color: white;
   }
@@ -176,11 +178,11 @@ input[type=checkbox] {
   height: 16px;
 }
 input[type=checkbox]:after {
-  background-color: $futureDetail !important;
-  border: 1px solid $futureHard !important;
+  background-color: $Detail !important;
+  border: 1px solid $Hard !important;
 }
 input[type="checkbox"]:checked {
-  background: $futureHard !important;
+  background: $Hard !important;
 }
 input[type="checkbox"]:checked:after {
   display: block;
@@ -193,11 +195,11 @@ input[type="checkbox"]:checked:after {
 }
 
 .user-footer {
-  background-color: $futureDetail !important;
+  background-color: $Detail !important;
 }
 
 .post {
-  color: $futureWhite;
+  color: $White;
 }
 .help-block {
   color: #bbb;
@@ -206,21 +208,29 @@ input[type="checkbox"]:checked:after {
 }
 p {
   text-align: justify;
-  color: $futureWhite;
+  color: $White;
 }
 pre, blockquote {
-  background-color: $futureDetail;
-  color: $futureWhite;
+  background-color: $Detail;
+  color: $White;
 }
 
 .nav-tabs-custom {
-  border: 1px solid $futureHard;
+  border: 1px solid $Hard;
   background: none;
+
+  .tab-content {
+    background: none;
+  }
+}
+
+.nav-tabs {
+  border: none !important;
 
   li {
     border: none;
     &:hover {
-      background: $futureDetail;
+      background: $Detail;
       border: none;
       border-bottom: none;
       a {
@@ -231,45 +241,39 @@ pre, blockquote {
   li.active {
     border: none;
     a {
-      color: $futureSoft !important;
-      background-color: $futureHard !important;
+      color: $Soft !important;
+      background-color: $Hard !important;
       border: none !important;
     }
   }
-  .tab-content {
-    background: none;
-  }
-}
-.nav-tabs {
-  border: none !important;
 }
 
 .alert  {
-  background-color: $futureUnfocused !important;
-  color: $futureWhite !important;
+  background-color: $Unfocused !important;
+  color: $White !important;
   border-radius: 2px !important;
   border: 0;
 
   a {
-    color: $futureHard !important;
+    color: $Hard !important;
   }
 }
 
 .list-group-item {
   background: none;
-  border: 1px solid $futureDetail;
-  color: $futureWhite;
+  border: 1px solid $Detail;
+  color: $White;
 }
 
 .badge {
-  background-color: $futureHard !important;
-  color: $futureSoft !important;
+  background-color: $Hard !important;
+  color: $Soft !important;
 }
 /**
  * Tinymce
  */
 .mce-panel {
-  background-color: $futureDetail !important;
+  background-color: $Detail !important;
 }
 .mce-menubar {
   border: 0 !important;
@@ -278,22 +282,22 @@ pre, blockquote {
   background: none !important;
 }
 .mce-btn {
-  border: 1px solid $futureUnfocused !important;
+  border: 1px solid $Unfocused !important;
   border-radius: 2px !important;
   background: none !important;
-  color: $futureWhite !important;
+  color: $White !important;
 }
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
-  color: $futureWhite !important;
+  color: $White !important;
 }
 
 /**
  * Modal
  */
 .modal-content {
-  background: $futureDetail;
+  background: $Detail;
   .modal-header {
-    border-color: $futureHard !important;
+    border-color: $Hard !important;
     border: none !important;
   }
   .modal-footer {
@@ -308,33 +312,33 @@ pre, blockquote {
   background: none;
 }
 .product-list-in-box > .item {
-  border-bottom: 1px solid $futureUnfocused;
+  border-bottom: 1px solid $Unfocused;
 }
 .small-box, .info-box {
-  background-color: $futureDetail !important;
-  border: 1px solid $futureDetail;
+  background-color: $Detail !important;
+  border: 1px solid $Detail;
   border-radius: 2px;
 }
 .info-box-icon {
-  background-color: $futureUnfocused !important;
+  background-color: $Unfocused !important;
 }
 
 /**
  * Menu
  */
 .dropdown-menu {
-  background-color: $futureDetail;
-  border: 1px solid $futureUnfocused;
+  background-color: $Detail;
+  border: 1px solid $Unfocused;
   border-radius: 2px;
 
   li.header {
     background: none !important;
   }
   li {
-    color: $futureWhite !important;
+    color: $White !important;
     a {
       border: none;
-      color: $futureWhite;
+      color: $White;
     }
   }
 }
@@ -345,8 +349,8 @@ pre, blockquote {
     border: none !important;
 
     &:hover {
-      color: $futureHard !important;
-      background: $futureDetail !important;
+      color: $Hard !important;
+      background: $Detail !important;
     }
   }
 }
@@ -355,7 +359,7 @@ pre, blockquote {
  * Quests
  */
 .bg-success {
-  background-color: $futureDetail;
+  background-color: $Detail;
 }
 
 /**
@@ -366,3 +370,21 @@ pre, blockquote {
     background-color: #515142;
   }
 }
+
+/**
+ * Conversations
+ */
+ .box-comments, .box-comment {
+   background-color: $Soft;
+
+   .comment-text {
+     color: $White;
+     .username {
+       color: $White;
+     }
+   }
+
+ }
+ .box-conversation .box-footer {
+   background-color: $Soft;
+ }
