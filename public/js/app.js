@@ -44385,6 +44385,8 @@ $(document).ready(function () {
     if (entityFormActions.length > 0) {
         registerEntityFormActions();
     }
+
+    registerFormSubmitAnimation();
 });
 
 /**
@@ -44592,11 +44594,36 @@ function initSelect2() {
  */
 function registerEntityFormActions() {
     entityFormDefaultAction = $('#form-submit-main');
+    // Register click on each sub action
     $.each(entityFormActions, function (ele) {
         $(this).on('click', function (e) {
-            console.log('clicked on', $(this).data('action'));
-            entityFormDefaultAction.html($(this).html()).attr('name', $(this).data('action')).click();
+            entityFormDefaultAction.attr('name', $(this).data('action')).click();
+            // .prop('disabled', true);
+
             return false;
+        });
+    });
+}
+
+/**
+ * On all forms, we want to animate the submit button when it's clicked.
+ */
+function registerFormSubmitAnimation() {
+    $.each($('form'), function (ele) {
+        $(this).on('submit', function (e) {
+            // Find the main button
+            submit = $(this).find('.btn-success');
+            if (submit.length > 0) {
+                $.each(submit, function (su) {
+                    if ($(this).hasClass('dropdown-toggle')) {
+                        $(this).prop('disabled', true);
+                    } else {
+                        $(this).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
+                    }
+                });
+            }
+
+            return true;
         });
     });
 }
