@@ -31,6 +31,11 @@ class GenerateMentions extends Command
     protected $url = '';
 
     /**
+     * @var string
+     */
+    protected $campaignLink = '';
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -67,27 +72,37 @@ class GenerateMentions extends Command
 
         foreach ($entities as $entity) {
             $model = new $entity;
-            $model->with('campaign')->chunk(200, function ($models) use ($entity) {
+            $model->with('campaign')->chunk(500, function ($models) use ($entity) {
                 foreach ($models as $model) {
                     $attributes = $model->getAttributes();
                     $campaignId = $model->campaign_id;
                     $updated = false;
                     /** @var $model \App\Models\Character */
 
+                    if ($entity == 'App\Models\Campaign') {
+                        $this->campaignLink = $model->getMiddlewareLink();
+                    } else {
+                        $this->campaignLink = $model->campaign->getMiddlewareLink();
+                    }
+
                     $fields = ['history', 'description', 'entry'];
                     foreach ($fields as $field) {
                         if (array_has($attributes, $field)) {
-                            // Does it have an old link?
-                            if (strpos($model->$field, 'data-toggle="tooltip"') !== false) {
-                                if (strpos($model->$field, '/campaign/' . $campaignId) === false) {
-                                    // Fix the link. If the entity is a campaign, use the proper call
-                                    if ($entity == 'App\Models\Campaign') {
-                                        $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/" . $model->getMiddlewareLink() . "/$2", $model->$field);
-                                    } else {
-                                        $model->$field = preg_replace("`" . $this->url . '\/(.*?)\/(.*?)`i', $this->url . "/$1/" . $model->campaign->getMiddlewareLink() . "/$2", $model->$field);
-                                    }
+                            if (strpos($model->$field, 'kanka.io') !== false) {
+
+                                // Fix http to https & www to direct
+                                $model->$field = str_replace(
+                                    ['http://kanka.io', 'http://www.kanka.io', 'https://www.kanka.io'],
+                                    ['https://kanka.io', 'https://kanka.io', 'https://kanka.io'],
+                                    $model->$field
+                                );
+
+                                $model->$field = preg_replace_callback("`" . $this->url . '\/(.*?)\/(.*?)\/(.*?)`i', [$this, 'fixUrls'], $model->$field);
+
+                                if ($model->isDirty($field)) {
                                     $updated = true;
                                 }
+
                             }
                         }
                     }
@@ -100,11 +115,22 @@ class GenerateMentions extends Command
             });
         }
 
-
-
-
         $this->info("Updated {$this->count} entities.");
 
         return true;
+    }
+
+    private function fixUrls($segments)
+    {
+        if ($segments[2] === 'campaign') {
+            return $segments[0]; // Good
+        }
+
+        // Redirect?
+        if (empty($segments[1])) {
+            dd($segments);
+        }
+
+        return $this->url . "/" . $segments[1] . "/" . $this->campaignLink . "/" . $segments[2] . "/";
     }
 }
