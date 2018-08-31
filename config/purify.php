@@ -71,7 +71,7 @@ return [
             'big,small,h1[style],h2[style],h3[style],h4[style],h5[style],h6[style],div[style],ins,del,pre,blockquote,sup,sub,hr,caption,'
             . 'strong,em,b,ul,ol,li,p,i,br,'
             . 'img[src|style|alt|width|height],'
-            . 'a[href|target|title|data-toggle],'
+            . 'a[href|target|title|data-toggle|data-html],'
             . 'p[style],span[style],'
             . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr]',
 

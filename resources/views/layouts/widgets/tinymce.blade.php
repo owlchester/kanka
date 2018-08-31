@@ -34,9 +34,8 @@
                 insert: function(item) {
                     if (item.url) {
                         if (item.tooltip) {
-                            return '<a href="' + item.url + '" data-toggle="tooltip" title="' + item.tooltip + '">' + item.fullname + '</a>';
+                            return '<a href="' + item.url + '" title="' + item.tooltip + '" data-toggle="tooltip" data-html="true" >' + item.fullname + '</a>';
                         }
-                        //console.log('insert', item);
                         return '<a href="' + item.url + '">' + item.fullname + '</a>';
                     }
                     return item.fullname;

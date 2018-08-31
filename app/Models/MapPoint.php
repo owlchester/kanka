@@ -57,7 +57,7 @@ class MapPoint extends Model
         } else {
             $route = route('locations.show', [$this->target, (!empty($this->target->map) ? '#tab_map' : null)]);
             return '<a class="point" style="top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour . ';" data-top="' . $this->axis_y . '" data-left="' . $this->axis_x . '" href="' .
-                $route . '" title="' . $this->target->tooltipWithName() . '" data-toggle="tooltip">' . $market . '
+                $route . '" title="' . $this->target->tooltipWithName() . '" data-toggle="tooltip" data-html="true">' . $market . '
             </a>';
         }
     }

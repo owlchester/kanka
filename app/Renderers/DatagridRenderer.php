@@ -258,7 +258,7 @@ class DatagridRenderer
             // Just for name, a link to the view
             if ($column == 'name') {
                 $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
-                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltip() . '">' . $model->{$column} . '</a>';
+                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltipWithName() . '" data-html="true">' . $model->{$column} . '</a>';
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
@@ -294,22 +294,22 @@ class DatagridRenderer
             } elseif ($type == 'location') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->location) {
-                    $content = '<a href="' . route('locations.show', $model->location->id) . '" data-toggle="tooltip" title="' . $model->location->tooltip() . '">' .
+                    $content = '<a href="' . route('locations.show', $model->location->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->location->tooltipWithName() . '">' .
                         $model->location->name . '</a>';
                 } elseif ($model->parentLocation) {
-                    $content = '<a href="' . route('locations.show', $model->parentLocation->id) . '" data-toggle="tooltip" title="' . $model->parentLocation->tooltip() . '">' .
+                    $content = '<a href="' . route('locations.show', $model->parentLocation->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->parentLocation->tooltipWithName() . '">' .
                         $model->parentLocation->name . '</a>';
                 }
             } elseif ($type == 'character') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->character) {
-                    $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" title="' . $model->character->tooltip() . '">' .
+                    $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->character->tooltipWithName() . '">' .
                         $model->character->name . '</a>';
                 }
             } elseif ($type == 'entity') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->entity) {
-                    $content = '<a href="' . route($model->entity->pluralType() . '.show', $model->entity->child->id) . '" data-toggle="tooltip" title="' . $model->entity->child->tooltip() . '">' .
+                    $content = '<a href="' . route($model->entity->pluralType() . '.show', $model->entity->child->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->entity->child->tooltipWithName() . '">' .
                         $model->entity->child->name . '</a>';
                 }
             } elseif ($type == 'is_private') {

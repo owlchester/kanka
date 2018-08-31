@@ -206,6 +206,19 @@ class Entity extends Model
     }
 
     /**
+     * Short tooltip with location name
+     * @return mixed
+     */
+    public function tooltipWithName()
+    {
+        $text = $this->tooltip();
+        if (empty($text)) {
+            return $this->child->name;
+        }
+        return '<h4>' . $this->child->name . '</h4>' . $text;
+    }
+
+    /**
      * @param $query
      * @param $type
      * @return mixed

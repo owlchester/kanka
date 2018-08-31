@@ -101,6 +101,19 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Short tooltip with location name
+     * @return mixed
+     */
+    public function tooltipWithName($limit = 250)
+    {
+        $text = $this->tooltip($limit);
+        if (empty($text)) {
+            return $this->name;
+        }
+        return '<h4>' . $this->name . '</h4>' . $text;
+    }
+
+    /**
      * Scope a query to only include users of a given type.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

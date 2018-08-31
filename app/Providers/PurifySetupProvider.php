@@ -73,5 +73,6 @@ class PurifySetupProvider extends ServiceProvider
 //        $def->addAttribute('img', 'data-trix-mutable', 'Enum#true,false');
 //        $def->addAttribute('img', 'data-trix-store-key', 'Text');
         $def->addAttribute('a', 'data-toggle', 'Text');
+        $def->addAttribute('a', 'data-html', 'Text');
     }
 }
