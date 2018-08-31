@@ -65,7 +65,7 @@
             <div class="box-body">
 
                 <ul class="list-group list-group-unbordered">
-                    @if ($model->age)
+                    @if ($model->age || $model->age === '0')
                     <li class="list-group-item">
                         <b>{{ trans('characters.fields.age') }}</b> <span class="pull-right">{{ $model->age }}</span>
                         <br class="clear" />
