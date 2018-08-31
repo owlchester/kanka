@@ -8,25 +8,17 @@
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @include('partials.errors')
+    @include('partials.errors')
 
-                    {!! Form::open(array('route' => ['locations.map_points.store', $location], 'method'=>'POST', 'data-shortcut' => "1")) !!}
-                    @include('locations.map_points._form')
+    {!! Form::open(array('route' => ['locations.map_points.store', $location], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+    @include('locations.map_points._form')
 
-                    <div class="form-group">
-                        <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        @if(!isset($ajax))
-                        {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
-                        @endif
-                    </div>
-
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
+    <div class="form-group">
+        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+        @if(!isset($ajax))
+        {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
+        @endif
     </div>
+
+    {!! Form::close() !!}
 @endsection

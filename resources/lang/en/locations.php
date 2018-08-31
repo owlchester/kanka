@@ -54,10 +54,15 @@ return [
                 'axis_x'    => 'X Axis',
                 'axis_y'    => 'Y Axis',
                 'colour'    => 'Colour',
+                'name'      => 'Name',
+            ],
+            'helpers' => [
+                'location_or_name' => 'A map point can either point to an existing location, or just have a name.',
             ],
             'placeholders'  => [
                 'axis_x'    => 'Left position',
                 'axis_y'    => 'Top position',
+                'name'      => 'Name of the point'
             ],
             'return'        => 'Back to :name',
             'success'       => [

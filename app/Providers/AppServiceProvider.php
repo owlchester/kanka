@@ -78,6 +78,7 @@ class AppServiceProvider extends ServiceProvider
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
             Item::observe(ItemObserver::class);
+            MapPoint::observe('App\Observers\MapPointObserver');
             MenuLink::observe('App\Observers\MenuLinkObserver');
             Journal::observe(JournalObserver::class);
             Organisation::observe(OrganisationObserver::class);
