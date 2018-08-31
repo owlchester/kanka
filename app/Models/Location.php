@@ -205,4 +205,15 @@ class Location extends MiscModel
 
         return parent::detach();
     }
+
+
+    /**
+     * Short tooltip with location name
+     * @return mixed
+     */
+    public function tooltipWithName($limit = 250)
+    {
+        $text = $this->tooltip($limit);
+        return $this->name . (!empty($text) ? ' - ' . $text : null);
+    }
 }
