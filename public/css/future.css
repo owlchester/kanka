@@ -78,6 +78,11 @@ body {
   border: none !important;
 }
 
+.box .panel-body ul,
+.panel .panel-body ul {
+  color: #eee;
+}
+
 .filters {
   background: #0B1F20 !important;
   margin: 0 !important;
@@ -234,35 +239,35 @@ blockquote {
   background: none;
 }
 
-.nav-tabs-custom li {
-  border: none;
-}
-
-.nav-tabs-custom li:hover {
-  background: #0B1F20;
-  border: none;
-  border-bottom: none;
-}
-
-.nav-tabs-custom li:hover a {
-  background: none;
-}
-
-.nav-tabs-custom li.active {
-  border: none;
-}
-
-.nav-tabs-custom li.active a {
-  color: #0C1416 !important;
-  background-color: #42FFFF !important;
-  border: none !important;
-}
-
 .nav-tabs-custom .tab-content {
   background: none;
 }
 
 .nav-tabs {
+  border: none !important;
+}
+
+.nav-tabs li {
+  border: none;
+}
+
+.nav-tabs li:hover {
+  background: #0B1F20;
+  border: none;
+  border-bottom: none;
+}
+
+.nav-tabs li:hover a {
+  background: none;
+}
+
+.nav-tabs li.active {
+  border: none;
+}
+
+.nav-tabs li.active a {
+  color: #0C1416 !important;
+  background-color: #42FFFF !important;
   border: none !important;
 }
 
@@ -412,5 +417,28 @@ blockquote {
 
 .calendar td.today {
   background-color: #1C2828;
+}
+
+/**
+ * Conversations
+ */
+
+.box-comments,
+.box-comment {
+  background-color: #0C1416;
+}
+
+.box-comments .comment-text,
+.box-comment .comment-text {
+  color: #eee;
+}
+
+.box-comments .comment-text .username,
+.box-comment .comment-text .username {
+  color: #eee;
+}
+
+.box-conversation .box-footer {
+  background-color: #0C1416;
 }
 
