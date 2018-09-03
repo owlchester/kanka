@@ -68,7 +68,7 @@ class GenerateMentions extends Command
             'App\Models\Section',
         ];
 
-        $this->url = rtrim(getenv('APP_URL'), '/');
+        $this->url = "https://kanka.io"; // console doesn't properly read ENV on cloudways
 
         foreach ($entities as $entity) {
             $model = new $entity;
@@ -89,7 +89,6 @@ class GenerateMentions extends Command
                     foreach ($fields as $field) {
                         if (array_has($attributes, $field)) {
                             if (strpos($model->$field, 'kanka.io') !== false) {
-
                                 // Fix http to https & www to direct
                                 $model->$field = str_replace(
                                     ['http://kanka.io', 'http://www.kanka.io', 'https://www.kanka.io'],
