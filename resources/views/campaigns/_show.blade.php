@@ -66,8 +66,8 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#info">
-                        <span class="fa fa-align-justify"></span> {{ trans('campaigns.show.tabs.information') }}
+                    <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
+                        <span class="fa fa-align-justify"></span> {{ trans('crud.panels.entry') }}
                     </a>
                 </li>
                 <li class="">
@@ -95,9 +95,9 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="info">
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <div class="post">
-                        <p>{!! $campaign->description !!}</p>
+                        <p>{!! $campaign->entry !!}</p>
                     </div>
                 </div>
                 <div class="tab-pane" id="member">

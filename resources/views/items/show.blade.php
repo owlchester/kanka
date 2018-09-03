@@ -50,25 +50,18 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#information" data-toggle="tooltip" title="{{ trans('items.show.tabs.information') }}">
-                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('items.show.tabs.information') }}</span>
+                    <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
+                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
                 @include('cruds._tabs')
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
-                    @if (!empty($model->history))
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
+                    @if (!empty($model->entry))
                     <div class="post">
-                        <h3>{{ trans('items.fields.history') }}</h3>
-                        <p>{!! $model->history !!}</p>
-                    </div>
-                    @endif
-                    @if (!empty($model->description))
-                    <div class="post">
-                        <h3>{{ trans('items.fields.description') }}</h3>
-                        <p>{!! $model->description !!}</p>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                     @endif
                 </div>

@@ -14,7 +14,7 @@ class Organisation extends MiscModel
     protected $fillable = [
         'name',
         'slug',
-        'history',
+        'entry',
         'image',
         'location_id',
         'type',
@@ -26,7 +26,7 @@ class Organisation extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name', 'history', 'type'];
+    protected $searchableColumns = ['name', 'entry', 'type'];
 
     /**
      * Entity type

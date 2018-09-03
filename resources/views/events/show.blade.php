@@ -62,17 +62,10 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
-                    @if (!empty($model->description))
-                    <div class="post">
-                        <h3>{{ trans('events.fields.description') }}</h3>
-                        <p>{!! $model->description !!}</p>
-                    </div>
-                    @endif
 
-                    @if (!empty($model->history))
+                    @if (!empty($model->entry))
                     <div class="post">
-                        <h3>{{ trans('events.fields.history') }}</h3>
-                        <p>{!! $model->history !!}</p>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                     @endif
                 </div>

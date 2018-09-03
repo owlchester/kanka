@@ -35,8 +35,8 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#history" data-toggle="tooltip" title="{{ trans('families.show.tabs.history') }}">
-                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('families.show.tabs.history') }}</span>
+                    <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
+                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
                 @if ($campaign->enabled('characters'))<li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
@@ -49,9 +49,9 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="history">
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <div class="post">
-                        <p>{!! $model->history !!}</p>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                 </div>
                 @if ($campaign->enabled('characters'))

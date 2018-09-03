@@ -51,9 +51,9 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
-                    @if (!empty($model->history))
+                    @if (!empty($model->entry))
                     <div class="post">
-                        <p>{!! $model->history !!}</p>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                     @endif
                 </div>

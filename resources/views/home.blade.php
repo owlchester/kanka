@@ -47,7 +47,7 @@
                             <h4><a href="{{ route('notes.show', $note->id) }}">{{ $note->name }}</a></h4>
                         </div>
                         <div class="panel-body">
-                            {!! $note->description !!}
+                            {!! $note->entry !!}
                         </div>
                     </div>
                 </div>

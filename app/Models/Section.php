@@ -13,7 +13,7 @@ class Section extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type', 'description'];
+    protected $searchableColumns  = ['name', 'type', 'entry'];
 
     /**
      * Entity type
@@ -40,17 +40,11 @@ class Section extends MiscModel
         'slug',
         'type',
         'image',
-        'description',
+        'entry',
         'section_id',
         'campaign_id',
         'is_private',
     ];
-
-    /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'description';
 
     /**
      * Traits

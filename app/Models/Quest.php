@@ -18,7 +18,7 @@ class Quest extends MiscModel
         'name',
         'slug',
         'type',
-        'description',
+        'entry',
         'is_private',
         'section_id',
         'character_id',
@@ -46,12 +46,6 @@ class Quest extends MiscModel
     ];
 
     /**
-     * Field used for tooltip (default is history)
-     * @var string
-     */
-    protected $tooltipField = 'description';
-
-    /**
      * Traits
      */
     use CampaignTrait;
@@ -62,7 +56,7 @@ class Quest extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type', 'description'];
+    protected $searchableColumns  = ['name', 'type', 'entry'];
 
     /**
      * Foreign relations to add to export

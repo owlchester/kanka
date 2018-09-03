@@ -18,7 +18,7 @@ class Event extends MiscModel
         'slug',
         'type',
         'date',
-        'history',
+        'entry',
         'is_private',
         'location_id',
         'section_id',
@@ -59,7 +59,7 @@ class Event extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'history', 'type'];
+    protected $searchableColumns  = ['name', 'entry', 'type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

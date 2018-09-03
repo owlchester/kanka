@@ -14,7 +14,7 @@ class Note extends MiscModel
     protected $fillable = [
         'name',
         'slug',
-        'description',
+        'entry',
         'image',
         'type',
         'is_private',
@@ -23,16 +23,10 @@ class Note extends MiscModel
     ];
 
     /**
-     * Field used for tooltip (default is history)
-     * @var string
-     */
-    protected $tooltipField = 'description';
-
-    /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name', 'type', 'description'];
+    protected $searchableColumns = ['name', 'type', 'entry'];
 
     /**
      * Fields that can be filtered on

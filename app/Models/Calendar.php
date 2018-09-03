@@ -18,7 +18,7 @@ class Calendar extends MiscModel
         'name',
         'slug',
         'type',
-        'description',
+        'entry',
         'is_private',
         'parameters',
         'months',
@@ -73,12 +73,6 @@ class Calendar extends MiscModel
     ];
 
     /**
-     * Field used for tooltip (default is history)
-     * @var string
-     */
-    protected $tooltipField = 'description';
-
-    /**
      * Traits
      */
     use CampaignTrait;
@@ -95,7 +89,7 @@ class Calendar extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'description', 'type'];
+    protected $searchableColumns  = ['name', 'entry', 'type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

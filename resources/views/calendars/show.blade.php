@@ -43,8 +43,8 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#information" data-toggle="tooltip" title="{{ trans('calendars.show.tabs.information') }}">
-                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('calendars.show.tabs.information') }}</span>
+                    <a href="#information" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
+                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
                 @include('cruds._tabs', ['calendars' => false])
@@ -52,10 +52,10 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
-                    @if (!empty($model->description))
+                    @if (!empty($model->entry))
                     <div class="post">
-                        <h3>{{ trans('crud.fields.description') }}</h3>
-                        <p>{!! $model->description !!}</p>
+                        <h3>{{ trans('crud.fields.entry') }}</h3>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                     @endif
 

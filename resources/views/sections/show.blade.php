@@ -41,9 +41,9 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#information" data-toggle="tooltip" title="{{ trans('sections.show.tabs.information') }}">
+                    <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
                         <i class="fa fa-th-list"></i> <span class="hidden-sm hidden-xs">
-                            {{ trans('sections.show.tabs.information') }}</span>
+                            {{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
                 <li class="{{ (request()->get('tab') == 'sections' ? ' active' : '') }}">
@@ -64,8 +64,7 @@
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
                     <div class="post">
-                        <h3>{{ trans('crud.fields.description') }}</h3>
-                        <p>{!! $model->description !!}</p>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                 </div>
                 <div class="tab-pane" id="sections">

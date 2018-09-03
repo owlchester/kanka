@@ -23,7 +23,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label>{{ trans('campaigns.fields.description') }}</label>
-            {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+            {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'entry']) !!}
         </div>
     </div>
 </div>

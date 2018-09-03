@@ -17,8 +17,7 @@ class Item extends MiscModel
         'slug',
         'type',
         'image',
-        'description',
-        'history',
+        'entry',
         'character_id',
         'location_id',
         'is_private',
@@ -29,7 +28,7 @@ class Item extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type', 'description', 'history'];
+    protected $searchableColumns  = ['name', 'type', 'entry'];
 
     /**
      * Entity type
@@ -49,12 +48,6 @@ class Item extends MiscModel
         'section_id',
         'is_private',
     ];
-
-    /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'description';
 
     /**
      * Traits

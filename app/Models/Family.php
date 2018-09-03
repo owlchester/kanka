@@ -14,7 +14,7 @@ class Family extends MiscModel
     protected $fillable = [
         'name',
         'slug',
-        'history',
+        'entry',
         'image',
         'location_id',
         'is_private',
@@ -26,7 +26,7 @@ class Family extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns = ['name', 'history'];
+    protected $searchableColumns = ['name', 'entry'];
 
     /**
      * Fields that can be filtered on

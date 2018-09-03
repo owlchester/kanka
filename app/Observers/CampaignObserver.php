@@ -31,7 +31,7 @@ class CampaignObserver
         }
 
         // Purity text
-        $campaign->description = $this->purify($campaign->description);
+        $campaign->entry = $this->purify($campaign->entry);
 
         // Public?
         $previousVisibility = $campaign->getOriginal('visibility');

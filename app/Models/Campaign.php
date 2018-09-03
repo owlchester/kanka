@@ -26,7 +26,7 @@ class Campaign extends MiscModel
         'name',
         'slug',
         'locale',
-        'description',
+        'entry',
         'image',
         'join_token',
         'export_path',

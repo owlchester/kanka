@@ -17,7 +17,7 @@ class Character extends MiscModel
         'family_id',
         'location_id',
         'title',
-        'history',
+        'entry',
         'age',
         'height',
         'weight',
@@ -94,7 +94,7 @@ class Character extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'title', 'history'];
+    protected $searchableColumns  = ['name', 'title', 'entry'];
 
     /**
      * Casting for order by

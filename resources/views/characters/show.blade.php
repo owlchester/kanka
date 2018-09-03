@@ -92,17 +92,17 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#history" title="{{ trans('characters.show.tabs.history') }}" data-toggle="tooltip">
-                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.history') }}</span>
+                    <a href="#entry" title="{{ trans('characters.show.tabs.entry') }}" data-toggle="tooltip">
+                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.entry') }}</span>
                     </a>
                 </li>
                 @include('cruds._tabs')
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="history">
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <div class="post">
-                        <p>{!! $model->history !!}</p>
+                        <p>{!! $model->entry !!}</p>
                     </div>
                 </div>
                 @include('cruds._panes')

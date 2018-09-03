@@ -47,13 +47,9 @@ abstract class MiscObserver
         }
 
         $attributes = $model->getAttributes();
-        if (array_key_exists('history', $attributes)) {
-            $model->history = $this->purify($model->history);
-            $model->history = $this->linkerService->parse($model->history);
-        }
-        if (array_key_exists('description', $attributes)) {
-            $model->description = $this->purify($model->description);
-            $model->description = $this->linkerService->parse($model->description);
+        if (array_key_exists('entry', $attributes)) {
+            $model->entry = $this->purify($model->entry);
+            $model->entry = $this->linkerService->parse($model->entry);
         }
 
         // Handle image. Let's use a service for this.

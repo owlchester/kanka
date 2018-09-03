@@ -225,11 +225,8 @@ class EntityService
         }
 
         // Special support for description/history
-        if (in_array('description', $fillable) && empty($new->description) && !empty($old->history)) {
-            $new->description = $old->history;
-        }
-        if (in_array('history', $fillable) && empty($new->history) && !empty($old->description)) {
-            $new->history = $old->description;
+        if (in_array('entry', $fillable) && empty($new->entry) && !empty($old->entry)) {
+            $new->entry = $old->entry;
         }
         // Special import for location parent_location_id
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {

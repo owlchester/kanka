@@ -13,7 +13,7 @@ class Location extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'description', 'history', 'type'];
+    protected $searchableColumns  = ['name', 'entry', 'entry', 'type'];
 
     /**
      * Fields that can be filtered on
@@ -36,8 +36,7 @@ class Location extends MiscModel
         'type',
         'image',
         'map',
-        'description',
-        'history',
+        'entry',
         'parent_location_id',
         'campaign_id',
         'is_private',
@@ -49,12 +48,6 @@ class Location extends MiscModel
      * @var string
      */
     protected $entityType = 'location';
-
-    /**
-     * Field used for tooltips
-     * @var string
-     */
-    protected $tooltipField = 'description';
 
     /**
      * Traits

@@ -17,7 +17,7 @@ class Journal extends MiscModel
         'slug',
         'type',
         'image',
-        'history',
+        'entry',
         'date',
         'character_id',
         'is_private',
@@ -28,7 +28,7 @@ class Journal extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'history', 'type'];
+    protected $searchableColumns  = ['name', 'entry', 'type'];
 
     /**
      * Entity type

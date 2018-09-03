@@ -64,7 +64,7 @@ abstract class MiscModel extends Model
      * Field used for tooltips
      * @var string
      */
-    protected $tooltipField = 'history';
+    protected $tooltipField = 'entry';
 
     /**
      * Default ordering
@@ -86,7 +86,7 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Wrapper for short history
+     * Wrapper for short entry
      * @return mixed
      */
     public function tooltip($limit = 250)
