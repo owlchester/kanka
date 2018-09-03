@@ -75,7 +75,7 @@ class CalendarRenderer
         $names = $this->calendar->years();
         $hasYearName = isset($names[$year]) ? $names[$year] : null;
 
-        return $months[$this->getMonth()]['name']
+        return $months[$this->getMonth(-1)]['name']
             . ($hasYearName ? ', ' : ' ')
             . '<a href="#" id="calendar-year-switcher">' . (isset($names[$year]) ? $names[$year] : $year) . '</a>';
     }
