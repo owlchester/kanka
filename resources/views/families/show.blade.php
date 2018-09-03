@@ -11,18 +11,7 @@
                 </h3>
 
                 <ul class="list-group list-group-unbordered">
-                    @if ($campaign->enabled('locations') && $model->location)
-                        <li class="list-group-item">
-                            <b>{{ trans('families.fields.location') }}</b>
-                            <span  class="pull-right">
-                            <a href="{{ route('locations.show', $model->location_id) }}">{{ $model->location->name }}</a>
-                                @if ($model->location->parentLocation)
-                                    , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}">{{ $model->location->parentLocation->name }}</a>
-                                @endif
-                            </span>
-                            <br class="clear" />
-                        </li>
-                    @endif
+                    @include('cruds.lists.location')
                     @include('cruds.layouts.section')
                 </ul>
 

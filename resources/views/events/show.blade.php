@@ -23,18 +23,7 @@
                         <br class="clear" />
                     </li>
                     @endif
-                    @if ($campaign->enabled('locations') && !empty($model->location))
-                        <li class="list-group-item">
-                            <b>{{ trans('events.fields.location') }}</b>
-                            <span  class="pull-right">
-                            <a href="{{ route('locations.show', $model->location_id) }}" data-toggle="tooltip" title="{{ $model->location->tooltip() }}">{{ $model->location->name }}</a>
-                                @if ($model->location->parentLocation)
-                                    , <a href="{{ route('locations.show', $model->location->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->location->parentLocation->tooltip() }}">{{ $model->location->parentLocation->name }}</a>
-                                @endif
-                            </span>
-                            <br class="clear" />
-                        </li>
-                    @endif
+                    @include('cruds.lists.location')
                     @if ($campaign->enabled('characters') && !empty($model->character))
                         <li class="list-group-item">
                             <b>{{ trans('events.fields.character') }}</b> <a class="pull-right" href="{{ route('characters.show', $model->character_id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>

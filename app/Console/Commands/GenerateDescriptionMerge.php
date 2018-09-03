@@ -54,7 +54,7 @@ class GenerateDescriptionMerge extends Command
 
                     $updated = false;
                     /** @var $model \App\Models\Item */
-                    if (!empty($model->history)) {
+                    if (!empty(strip_tags($model->history))) {
                         $updated = true;
 
                         $model->description .= '<h3>'

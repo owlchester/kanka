@@ -19,7 +19,9 @@
                     @endif
                     @if (!empty($model->parentLocation))
                         <li class="list-group-item">
-                            <b>{{ trans('locations.fields.location') }}</b>
+                            <b title="{{ trans('crud.fields.location') }}">
+                                <i class="ra ra-tower"></i> <span class="visible-xs-inline">{{ trans('locations.fields.location') }}</span>
+                            </b>
 
                             <span class="pull-right">
                             <a href="{{ route('locations.show', $model->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->parentLocation->tooltip() }}">{{ $model->parentLocation->name }}</a>@if ($model->parentLocation->parentLocation),

@@ -1,12 +1,12 @@
 @if(Auth::check())
     @can('update', $model)
-        <a href="{{ route($name . '.edit', ['id' => $model->id]) }}" class="btn btn-primary">
+        <a href="{{ route($name . '.edit', ['id' => $model->id]) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
         </a>
     @endcan
     <div class="btn-group pull-right">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span>{{ trans('crud.actions.more') }}</span>
+        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <span></span>
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
@@ -31,13 +31,12 @@
             </li>
             @endif
 
-            <li>
+            <li class="margin-bottom">
                 <a href="{{ route('entities.export', $model->entity) }}">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ trans('crud.actions.export') }}
                 </a>
             </li>
             @can('delete', $model)
-            <li class="divider"></li>
             <li>
                 <button class="btn btn-danger btn-flat delete-confirm btn-block" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}

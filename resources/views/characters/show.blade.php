@@ -25,17 +25,7 @@
                             <br class="clear" />
                         </li>
                     @endif
-                    @if ($campaign->enabled('locations') && $model->location)
-                        <li class="list-group-item">
-                            <b>{{ trans('characters.fields.location') }}</b>
-                            <span  class="pull-right">
-                                <a href="{{ route('locations.show', $model->location_id) }}" data-toggle="tooltip" title="{{ $model->location->tooltip() }}">{{ $model->location->name }}</a>@if ($model->location->parentLocation),
-                                <a href="{{ route('locations.show', $model->location->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->location->parentLocation->tooltip() }}">{{ $model->location->parentLocation->name }}</a>
-                                @endif
-                            </span>
-                            <br class="clear" />
-                        </li>
-                    @endif
+                    @include('cruds.lists.location')
                     @if (!empty($model->race))
                     <li class="list-group-item">
                         <b>{{ trans('characters.fields.race') }}</b> <span class="pull-right">{{ $model->race }}</span>
@@ -92,8 +82,8 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#entry" title="{{ trans('characters.show.tabs.entry') }}" data-toggle="tooltip">
-                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('characters.show.tabs.entry') }}</span>
+                    <a href="#entry" title="{{ trans('crud.panels.entry') }}" data-toggle="tooltip">
+                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
                 @include('cruds._tabs')
