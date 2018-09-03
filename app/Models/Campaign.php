@@ -177,6 +177,14 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return mixed
+     */
+    public function conversations()
+    {
+        return $this->hasMany('App\Models\Conversation');
+    }
+
+    /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool
      */
