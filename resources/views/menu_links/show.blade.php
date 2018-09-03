@@ -11,13 +11,23 @@
                 </h3>
 
                 <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>{{ trans('menu_links.fields.entity') }}</b>
+                        <span  class="pull-right">
+                        <a href="{{ route($model->entity->pluralType() . '.show', $model->entity_id) }}" data-toggle="tooltip" title="{{ $model->entity->tooltip() }}">{{ $model->entity->name }}</a>
+                        </span>
+                        <br class="clear" />
+                    </li>
+                    @if ($model->tab)
+
                         <li class="list-group-item">
-                            <b>{{ trans('menu_links.fields.entity') }}</b>
+                            <b>{{ trans('menu_links.fields.tab') }}</b>
                             <span  class="pull-right">
-                            <a href="{{ route($model->entity->pluralType() . '.show', $model->entity_id) }}" data-toggle="tooltip" title="{{ $model->entity->tooltip() }}">{{ $model->entity->name }}</a>
+                                {{ $model->tab }}
                             </span>
                             <br class="clear" />
                         </li>
+                    @endif
                 </ul>
 
                 @include('.cruds._actions', ['disableMove' => true])

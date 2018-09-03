@@ -14,7 +14,7 @@ class MenuLinkObserver
     {
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
         $model->icon = '';
-        $model->tab = strtolower($model->target);
+        $model->tab = strtolower($model->tab);
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
