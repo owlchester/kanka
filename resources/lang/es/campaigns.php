@@ -20,11 +20,26 @@ return [
         'success'       => 'Campaña actualizada.',
         'title'         => 'Editar campaña :campaign',
     ],
+    'errors'        => [
+        'access'        => 'No tienes acceso a esta campaña.',
+        'unknown_id'    => 'Campaña desconocida.',
+    ],
+    'export'        => [
+        'errors'    => [
+            'limit' => 'Has alcanzado el máximo de una exportación por día. Por favor, inténtalo de nuevo mañana.',
+        ],
+        'helper'    => 'Exportar campaña. Recibirás una notificación con el enlace de descarga.',
+        'success'   => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
+    ],
     'fields'        => [
         'description'   => 'Descripción',
         'image'         => 'Imagen',
         'locale'        => 'Lugar',
         'name'          => 'Nombre',
+        'visibility'    => 'Visibilidad',
+    ],
+    'helpers'       => [
+        'visibility'    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'         => [
         'actions'       => [
@@ -137,6 +152,7 @@ return [
         'fields'        => [
             'name'          => 'Nombre',
             'permissions'   => 'Permisos',
+            'type'          => 'Tipo',
             'users'         => 'Usuarios',
         ],
         'helper'        => [
@@ -164,6 +180,11 @@ return [
         'show'          => [
             'description'   => 'Miembros y permisos de un rol de campaña',
             'title'         => 'Roles de campaña',
+        ],
+        'types'         => [
+            'owner'     => 'Propietario',
+            'public'    => 'Público',
+            'standard'  => 'Estándar',
         ],
         'users'         => [
             'actions'   => [
@@ -208,11 +229,17 @@ return [
         ],
         'description'   => 'Vista detallada de la campaña',
         'tabs'          => [
+            'export'        => 'Exportar',
             'information'   => 'Información',
             'members'       => 'Miembros',
             'roles'         => 'Roles',
             'settings'      => 'Ajustes',
         ],
         'title'         => 'Campaña :name',
+    ],
+    'visibilities'  => [
+        'private'   => 'Privada',
+        'public'    => 'Pública',
+        'review'    => 'Esperando revisión',
     ],
 ];

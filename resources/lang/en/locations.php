@@ -56,13 +56,13 @@ return [
                 'colour'    => 'Colour',
                 'name'      => 'Label',
             ],
-            'helpers' => [
-                'location_or_name' => 'A map point can either point to an existing location, or just have a label.',
+            'helpers'       => [
+                'location_or_name'  => 'A map point can either point to an existing location, or just have a label.',
             ],
             'placeholders'  => [
                 'axis_x'    => 'Left position',
                 'axis_y'    => 'Top position',
-                'name'      => 'Label of the point when no location is provided.'
+                'name'      => 'Label of the point when no location is provided.',
             ],
             'return'        => 'Back to :name',
             'success'       => [

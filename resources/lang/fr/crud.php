@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'back'      => 'Retour',
         'copy'      => 'Copier',
         'export'    => 'Export',
@@ -11,8 +11,8 @@ return [
         'private'   => 'Privé',
         'public'    => 'Publique',
     ],
-    'add'           => 'Ajouter',
-    'attributes'    => [
+    'add'               => 'Ajouter',
+    'attributes'        => [
         'actions'       => [
             'add'               => 'Ajouter un attribut',
             'apply_template'    => 'Appliquer un modèle d\'attribut',
@@ -50,7 +50,7 @@ return [
             'title'     => 'Appliquer un modèle d\'attribut pour :name',
         ],
     ],
-    'bulk'          => [
+    'bulk'              => [
         'errors'    => [
             'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
         ],
@@ -59,32 +59,32 @@ return [
             'public'    => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
         ],
     ],
-    'cancel'        => 'Annuler',
-    'clear_filters' => 'Effacer les filtres',
-    'click_modal'   => [
+    'cancel'            => 'Annuler',
+    'clear_filters'     => 'Effacer les filtres',
+    'click_modal'       => [
         'close'     => 'Fermer',
         'confirm'   => 'Confirmer',
         'title'     => 'Confirme ton action',
     ],
-    'create'        => 'Créer',
-    'delete_modal'  => [
+    'create'            => 'Créer',
+    'delete_modal'      => [
         'close'         => 'Fermer',
         'delete'        => 'Supprimer',
         'description'   => 'Est-tu sûr de vouloir supprimer :tag?',
         'title'         => 'Confirmation la suppression',
     ],
-    'destroy_many'  => [
+    'destroy_many'      => [
         'success'   => ':count élément supprimé.|:count éléments supprimés.',
     ],
-    'edit'          => 'Modifier',
-    'errors'        => [
+    'edit'              => 'Modifier',
+    'errors'            => [
         'node_must_not_be_a_descendant' => 'Node invalide (catégorie, lieu parent): l\'entité serait un descendant de lui-même.',
     ],
-    'events'        => [
+    'events'            => [
         'hint'  => 'Les événements de calendrier peuvent être associé à cette entité et être affiché ici.',
     ],
-    'export'        => 'Export',
-    'fields'        => [
+    'export'            => 'Export',
+    'fields'            => [
         'attribute_template'    => 'Modèle d\'attribut',
         'character'             => 'Personnage',
         'creator'               => 'Créateur',
@@ -102,26 +102,31 @@ return [
         'organisation'          => 'Organisation',
         'section'               => 'Catégorie',
     ],
-    'filter'        => 'Filtre',
-    'filters'       => 'Filtres',
-    'hidden'        => 'Caché',
-    'hints'         => [
+    'filter'            => 'Filtre',
+    'filters'           => [
+        'clear' => 'Effacer les filtres',
+        'hide'  => 'Cacher les filtres',
+        'show'  => 'Afficher les filtres',
+        'title' => 'Filtres',
+    ],
+    'hidden'            => 'Caché',
+    'hints'             => [
         'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création de cette entité.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'is_private'            => 'Cacher des membres de type non-Admin',
     ],
-    'history'       => [
+    'history'           => [
         'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Inconnu',
         'updated'   => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
-    'image'         => [
+    'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
     ],
-    'is_private'    => 'Cet élément est privé et pas visible.',
-    'linking_help'  => 'Comment lier vers d\'autres éléments?',
-    'manage'        => 'Gérer',
-    'move'          => [
+    'is_private'        => 'Cet élément est privé et pas visible.',
+    'linking_help'      => 'Comment lier vers d\'autres éléments?',
+    'manage'            => 'Gérer',
+    'move'              => [
         'description'   => 'Déplacer cet élément à un nouveau endroit',
         'errors'        => [
             'permission'        => 'Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.',
@@ -139,14 +144,14 @@ return [
         'success'       => 'Elément :name déplacé.',
         'title'         => 'Déplacer :name autre part',
     ],
-    'new_entity'    => [
+    'new_entity'        => [
         'error' => 'Vérifier les valeures.',
         'fields'=> [
             'name'  => 'Nom',
         ],
         'title' => 'Nouvel élément',
     ],
-    'notes'         => [
+    'notes'             => [
         'actions'       => [
             'add'   => 'Ajouter une note',
         ],
@@ -176,8 +181,8 @@ return [
             'name'  => 'Nom de la note, observation ou remarque',
         ],
     ],
-    'or_cancel'     => 'ou <a href=":url">annuler</a>',
-    'panels'        => [
+    'or_cancel'         => 'ou <a href=":url">annuler</a>',
+    'panels'            => [
         'appearance'            => 'Apparence',
         'attribute_template'    => 'Modèle d\'attribut',
         'description'           => 'Description',
@@ -186,7 +191,7 @@ return [
         'move'                  => 'Déplacer',
         'system'                => 'Système',
     ],
-    'permissions'   => [
+    'permissions'       => [
         'action'    => 'Action',
         'actions'   => [
             'delete'    => 'Supprimer',
@@ -202,7 +207,7 @@ return [
         'success'   => 'Permissions enregistrées.',
         'title'     => 'Permissions',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'character'     => 'Choix du personnage',
         'entity'        => 'Entité',
         'event'         => 'Choix de l\'événement',
@@ -212,7 +217,7 @@ return [
         'organisation'  => 'Choix d\'une organisation',
         'section'       => 'Choix d\'une catégorie',
     ],
-    'relations'     => [
+    'relations'         => [
         'actions'   => [
             'add'   => 'Ajouter une relation',
         ],
@@ -223,18 +228,24 @@ return [
         ],
         'hint'      => 'Des relations entre les entités peuvent être définies pour représenter leur connexion.',
     ],
-    'remove'        => 'Supprimer',
-    'save'          => 'Enregistrer',
-    'save_and_new'  => 'Enregistrer et Nouveau',
-    'search'        => 'Rechercher',
-    'select'        => 'Sélection',
-    'tabs'          => [
+    'remove'            => 'Supprimer',
+    'save'              => 'Enregistrer',
+    'save_and_close'    => 'Enregistrer et Fermer',
+    'save_and_new'      => 'Enregistrer et Nouveau',
+    'save_and_update'   => 'Enregistrer et continuer la modification',
+    'save_and_view'     => 'Enregistrer et Afficher',
+    'search'            => 'Rechercher',
+    'select'            => 'Sélection',
+    'tabs'              => [
         'attributes'    => 'Attributs',
         'events'        => 'Événements',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
     ],
-    'update'        => 'Modifier',
-    'view'          => 'Voir',
+    'update'            => 'Modifier',
+    'users'             => [
+        'unknown'   => 'Inconnu',
+    ],
+    'view'              => 'Voir',
 ];

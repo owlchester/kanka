@@ -16,6 +16,7 @@ return [
         'new_password_confirmation' => 'Confirmar nueva contraseña',
         'newsletter'                => 'Me gustaría recibir noticias de la web por correo electrónico.',
         'password'                  => 'Contraseña actual',
+        'settings'                  => 'Ajustes',
         'theme'                     => 'Tema',
     ],
     'password'      => [
@@ -38,9 +39,17 @@ return [
             'title' => 'Cambia tu contraseña',
         ],
     ],
+    'settings'      => [
+        'fields'    => [
+            'date_format'   => 'Formato de fecha',
+            'pagination'    => 'Paginación (elementos por página)',
+        ],
+        'success'   => 'Ajustes cambiados.',
+    ],
     'theme'         => [
         'success'   => 'Tema cambiado.',
         'themes'    => [
+            'dark'      => 'Oscuro',
             'default'   => 'Por defecto',
             'future'    => 'Futuro',
         ],

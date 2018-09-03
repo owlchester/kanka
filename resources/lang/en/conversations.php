@@ -14,15 +14,15 @@ return [
         'success'       => 'Conversation \':name\' updated.',
         'title'         => 'Conversation :name',
     ],
-    'fields' => [
-        'target' => 'Target',
-        'name' => 'Name',
-        'participants' => 'Participants',
-        'messages' => 'Messages',
-        'type' => 'Type',
+    'fields'        => [
+        'messages'      => 'Messages',
+        'name'          => 'Name',
+        'participants'  => 'Participants',
+        'target'        => 'Target',
+        'type'          => 'Type',
     ],
-    'hints' => [
-        'participants' => 'Please add participants to your conversation.',
+    'hints'         => [
+        'participants'  => 'Please add participants to your conversation.',
     ],
     'index'         => [
         'add'           => 'New Conversation',
@@ -30,37 +30,37 @@ return [
         'header'        => 'Conversations in :name',
         'title'         => 'Conversations',
     ],
-    'messages' => [
+    'messages'      => [
         'load_previous' => 'Load previous messages',
-        'placeholders' => [
-            'message' => 'Your message',
-        ]
-    ],
-    'participants' => [
-        'modal' => 'Participants',
-        'description' => 'Add or remove participants of a conversation',
-        'title' => 'Participants of :name',
-        'create' => [
-            'success' => 'Participant :entity added to the conversation.',
+        'placeholders'  => [
+            'message'   => 'Your message',
         ],
-        'destroy' => [
-            'success' => 'Participant :entity removed from the conversation.',
-        ]
+    ],
+    'participants'  => [
+        'create'        => [
+            'success'   => 'Participant :entity added to the conversation.',
+        ],
+        'description'   => 'Add or remove participants of a conversation',
+        'destroy'       => [
+            'success'   => 'Participant :entity removed from the conversation.',
+        ],
+        'modal'         => 'Participants',
+        'title'         => 'Participants of :name',
     ],
     'placeholders'  => [
-        'name'      => 'Name of the conversation',
-        'type'      => 'In Game, Prep, Plot',
+        'name'  => 'Name of the conversation',
+        'type'  => 'In Game, Prep, Plot',
     ],
     'show'          => [
         'description'   => 'A detailed view of a conversation',
         'title'         => 'Conversation :name',
     ],
-    'tabs' => [
-        'conversation' => 'Conversation',
-        'participants' => 'Participants',
+    'tabs'          => [
+        'conversation'  => 'Conversation',
+        'participants'  => 'Participants',
     ],
-    'targets' => [
-        'members' => 'Members',
-        'characters' => 'Characters',
-    ]
+    'targets'       => [
+        'characters'    => 'Characters',
+        'members'       => 'Members',
+    ],
 ];

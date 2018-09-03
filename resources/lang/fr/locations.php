@@ -54,10 +54,15 @@ return [
                 'axis_x'    => 'Axis X',
                 'axis_y'    => 'Axis Y',
                 'colour'    => 'Couleur',
+                'name'      => 'Label',
+            ],
+            'helpers'       => [
+                'location_or_name'  => 'Un point peut être soit un lieu existant, soit un label.',
             ],
             'placeholders'  => [
                 'axis_x'    => 'Position verticale',
                 'axis_y'    => 'Position horizontale',
+                'name'      => 'Label du point quand il n\'y a pas de lieu.',
             ],
             'return'        => 'Retour à :name',
             'success'       => [

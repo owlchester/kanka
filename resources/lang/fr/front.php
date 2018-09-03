@@ -18,24 +18,50 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
-        'collaborative' => [
+        'calendars'         => [
+            'description'   => 'Créer des calendriers personnalisés et organiser la campagne autour de ceux-ci.',
+            'title'         => 'Calendriers',
+        ],
+        'collaborative'     => [
             'description'   => 'Vous êtes une équipe? Pas de problème! Vous pouvez inviter vos amis ou co-contributeur pour vous aidez dans vos campagnes.',
             'title'         => 'Collaboratif',
         ],
-        'description'   => 'Voici quelques éléments de notre application que vous allez adorer!',
-        'free'          => [
+        'description'       => 'Voici quelques éléments de notre application que vous allez adorer!',
+        'description_full'  => 'Une vitrine de certaines de nos fonctionnalités les plus aimées.',
+        'free'              => [
             'description'   => 'Nous sommes convaincus que les meilleures choses dans la vie sont gratuites.',
             'title'         => 'Gratuit un jour, gratuit toujours',
         ],
-        'layers'        => [
+        'layers'            => [
             'description'   => 'Organisez vos personnages, leurs familles, leur emplacement et bien plus à tout moment.',
             'title'         => 'Personnages, Familles, Lieux',
         ],
-        'notebook'      => [
+        'learn_more'        => 'En savoir plus sur les fonctionnalités de Kanka',
+        'maps'              => [
+            'description'   => 'Télécharger des cartes des mondes, villes et grottes et ajouter des marqueurs et des liens utiles.',
+            'title'         => 'Cartes',
+        ],
+        'modular'           => [
+            'description'   => 'Chaque module (personnage, lieu) peut être activé ou désactivé à tout moment, ce qui facilite la personnalisation de la campagne.',
+            'title'         => 'Modulaire',
+        ],
+        'notebook'          => [
             'description'   => 'Préparez votre prochaine session ou gardez trace de ce qu\'il s\'est passé avec les journaux!',
             'title'         => 'Journaux',
         ],
-        'title'         => 'Nos forces',
+        'public'            => [
+            'description'   => 'Les autorisations peuvent être définies pour les modules ou pour chaque entité. Les campagnes peuvent également être publiques pour un accès à tous.',
+            'title'         => 'Permissions',
+        ],
+        'relations'         => [
+            'description'   => 'Chaque entité peut avoir un réseau complexe de relations avec d\'autres entités, y compris des relations secrètes et invisibles des joueurs.',
+            'title'         => 'Relations',
+        ],
+        'title'             => 'Nos forces',
+        'updates'           => [
+            'description'   => 'Kanka bénéficie de mises à jour fréquentes qui sont issues par la communauté.',
+            'title'         => 'Mise à jour Fréquentes',
+        ],
     ],
     'first_block'   => [
         'description'   => 'Notre application est disponible depuis n\'importe quel appareil mobile et navigateur! Rien à installer, tout ce dont vous avez besoin est votre navigateur. Et en plus, c\'est complètement gratuit!',

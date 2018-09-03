@@ -9,7 +9,7 @@ return [
     'character'             => 'Character',
     'characters'            => 'Characters',
     'conversation'          => 'Conversation',
-    'conversations'          => 'Conversations',
+    'conversations'         => 'Conversations',
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',
     'event'                 => 'Event',

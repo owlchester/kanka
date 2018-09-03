@@ -6,6 +6,7 @@ return [
     'calendars'             => 'Calendriers',
     'campaigns'             => 'Campagnes',
     'characters'            => 'Personnages',
+    'conversations'         => 'Conversations',
     'custom_links'          => 'Liens personnalisés',
     'dashboard'             => 'Tableau de bord',
     'dice_rolls'            => 'Jets de dés',
@@ -28,4 +29,5 @@ return [
     'support'               => 'Support / Communauté',
     'team'                  => 'Équipe',
     'translations'          => 'Traductions',
+    'trello'                => 'Trello',
 ];

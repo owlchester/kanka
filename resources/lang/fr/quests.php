@@ -41,7 +41,11 @@ return [
         'is_completed'  => 'Completée',
         'locations'     => 'Lieux',
         'name'          => 'Nom',
+        'quest'         => 'Quête Parentale',
         'type'          => 'Type',
+    ],
+    'hints'         => [
+        'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Quête',
@@ -70,6 +74,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Nom de la quête',
+        'quest' => 'Quête Parentale',
         'type'  => 'Principale, side quest, personnage',
     ],
     'show'          => [
@@ -82,6 +87,7 @@ return [
             'characters'    => 'Personnages',
             'information'   => 'Information',
             'locations'     => 'Lieux',
+            'quests'        => 'Quêtes',
         ],
         'title'         => 'Quête :name',
     ],

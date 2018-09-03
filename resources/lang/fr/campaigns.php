@@ -211,6 +211,7 @@ return [
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
             'categories'    => 'Chaque entité peut être attribuée à une catégorie. Les catégories peuvent appartenir à d\'autres catégories.',
             'characters'    => 'Les peuples de ton monde.',
+            'conversations' => 'Conversations fictives entre des personnages ou entre membres de la campagne.',
             'dice_rolls'    => 'Pour ceux qui utilisent Kanka pour une campagne JdR, un système pour des jets de dés.',
             'events'        => 'Jours fériers, festivaux, désastres, anniversaires, guerres.',
             'families'      => 'Clans ou familles, leurs relations et leur membres.',

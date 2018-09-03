@@ -18,50 +18,50 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
-        'collaborative' => [
+        'calendars'         => [
+            'description'   => 'Create custom calendars and organise your campaign around them.',
+            'title'         => 'Calendars',
+        ],
+        'collaborative'     => [
             'description'   => 'Not alone? We\'ve got you covered! You can invite your friends and co-dungeon master to help you build your campaign together!',
             'title'         => 'Collaborative',
         ],
-        'description'   => 'Here are but a few things that we think you will love with our app!',
-        'description_full' => 'A showcase of some of our best and most loved features.',
-        'free'          => [
+        'description'       => 'Here are but a few things that we think you will love with our app!',
+        'description_full'  => 'A showcase of some of our best and most loved features.',
+        'free'              => [
             'description'   => 'The best things in life are those which are free. No ads, no hidden costs, no pay wall.',
             'title'         => 'Free to Use',
         ],
-        'layers'        => [
+        'layers'            => [
             'description'   => 'Keep track of characters, their families, their whereabouts and lots more at all times.',
             'title'         => 'Characters, Families, Location',
         ],
-        'public' => [
-            'description' => 'Permissions can be set for modules, or on each single entity. Campaigns can also be public for the whole world to see.',
-            'title' => 'Permissions',
+        'learn_more'        => 'Learn more about Kanka\'s features',
+        'maps'              => [
+            'description'   => 'Upload maps of your worlds, cities and caves, and add handy markers and links on them.',
+            'title'         => 'Maps',
         ],
-        'updates' => [
-            'description' => 'Kanka goes through frequent updates that are submitted by the community.',
-            'title' => 'Frequent Updates',
+        'modular'           => [
+            'description'   => 'Every module (characters, locations) can be enabled or disabled at any time, making it easy for you to customise your campaign.',
+            'title'         => 'Modular',
         ],
-        'maps' => [
-            'description' => 'Upload maps of your worlds, cities and caves, and add handy markers and links on them.',
-            'title' => 'Maps',
-        ],
-        'calendars' => [
-            'description' => 'Create custom calendars and organise your campaign around them.',
-            'title' => 'Calendars',
-        ],
-        'modular' => [
-            'description' => 'Every module (characters, locations) can be enabled or disabled at any time, making it easy for you to customise your campaign.',
-            'title' => 'Modular',
-        ],
-        'notebook'      => [
+        'notebook'          => [
             'description'   => 'Prepare your next session or log what happened with our rich-text journal feature!',
             'title'         => 'Journals',
         ],
-        'relations'      => [
+        'public'            => [
+            'description'   => 'Permissions can be set for modules, or on each single entity. Campaigns can also be public for the whole world to see.',
+            'title'         => 'Permissions',
+        ],
+        'relations'         => [
             'description'   => 'Every entity can have a complex web of relations with other entities, including secret relations invisible to your players.',
             'title'         => 'Relations',
         ],
-        'title'         => 'Unlimited Features, Unlimited Fun',
-        'learn_more'    => 'Learn more about Kanka\'s features',
+        'title'             => 'Unlimited Features, Unlimited Fun',
+        'updates'           => [
+            'description'   => 'Kanka goes through frequent updates that are submitted by the community.',
+            'title'         => 'Frequent Updates',
+        ],
     ],
     'first_block'   => [
         'description'   => 'Our app is available on any mobile device and browser! No need to install anything, it\'s all in your browser. Best of all, it\'s completely free!',

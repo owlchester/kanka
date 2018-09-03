@@ -41,11 +41,11 @@ return [
         'is_completed'  => 'Completed',
         'locations'     => 'Locations',
         'name'          => 'Name',
-        'type'          => 'Type',
         'quest'         => 'Parent Quest',
+        'type'          => 'Type',
     ],
-    'hints' => [
-        'quests' => 'A web of interlocking quests can be built using the Parent Quest field.',
+    'hints'         => [
+        'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',
     ],
     'index'         => [
         'add'           => 'New Quest',
@@ -74,8 +74,8 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Name of the quest',
-        'type'  => 'Character Arc, Sidequest, Main',
         'quest' => 'Parent Quest',
+        'type'  => 'Character Arc, Sidequest, Main',
     ],
     'show'          => [
         'actions'       => [

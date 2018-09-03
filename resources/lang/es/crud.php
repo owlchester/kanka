@@ -107,6 +107,7 @@ return [
     'hidden'        => 'Oculto',
     'hints'         => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
+        'image_limitations'     => 'Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: :size.',
         'is_private'            => 'Ocultar a los "Invitados"',
     ],
     'history'       => [

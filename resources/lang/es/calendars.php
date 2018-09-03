@@ -5,6 +5,7 @@ return [
         'add_month'     => 'Añadir mes',
         'add_weekday'   => 'Añadir día de la semana',
         'add_year'      => 'Añadir nombre del año',
+        'today'         => 'Hoy',
     ],
     'create'        => [
         'description'   => 'Crear nuevo calendario',
@@ -15,8 +16,9 @@ return [
         'success'   => 'Calendario \':name\' eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Calendario \':name\' actualizado.',
-        'title'     => 'Editar calendario :name',
+        'description'   => 'Actualizar calendario',
+        'success'       => 'Calendario \':name\' actualizado.',
+        'title'         => 'Editar calendario :name',
     ],
     'event'         => [
         'destroy'   => 'Evento eliminado del calendario \':name\'',
@@ -42,6 +44,7 @@ return [
         'leap_year_offset'  => 'Cada',
         'leap_year_start'   => 'Año bisiesto',
         'length'            => 'Duración del evento',
+        'length_days'       => ':count day|:count days',
         'months'            => 'Meses',
         'name'              => 'Nombre',
         'parameters'        => 'Parámetros',

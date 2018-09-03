@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'back'      => 'Back',
         'copy'      => 'Copy',
         'export'    => 'Export',
@@ -11,8 +11,8 @@ return [
         'private'   => 'Private',
         'public'    => 'Public',
     ],
-    'add'           => 'Add',
-    'attributes'    => [
+    'add'               => 'Add',
+    'attributes'        => [
         'actions'       => [
             'add'               => 'Add an attribute',
             'apply_template'    => 'Apply an Attribute Template',
@@ -50,7 +50,7 @@ return [
             'title'     => 'Apply an Attribute Template for :name',
         ],
     ],
-    'bulk'          => [
+    'bulk'              => [
         'errors'    => [
             'admin' => 'Only campaign admins can change the private status of entities.',
         ],
@@ -59,31 +59,31 @@ return [
             'public'    => ':count entity is now visible|:count entities are now visible.',
         ],
     ],
-    'cancel'        => 'Cancel',
-    'click_modal'   => [
+    'cancel'            => 'Cancel',
+    'click_modal'       => [
         'close'     => 'Close',
         'confirm'   => 'Confirm',
         'title'     => 'Confirm your action',
     ],
-    'create'        => 'Create',
-    'delete_modal'  => [
+    'create'            => 'Create',
+    'delete_modal'      => [
         'close'         => 'Close',
         'delete'        => 'Delete',
         'description'   => 'Are you sure you want to remove :tag?',
         'title'         => 'Delete confirmation',
     ],
-    'destroy_many'  => [
+    'destroy_many'      => [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
     ],
-    'edit'          => 'Edit',
-    'errors'        => [
+    'edit'              => 'Edit',
+    'errors'            => [
         'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.',
     ],
-    'events'        => [
+    'events'            => [
         'hint'  => 'Calendar events associated to this entity are displayed here.',
     ],
-    'export'        => 'Export',
-    'fields'        => [
+    'export'            => 'Export',
+    'fields'            => [
         'attribute_template'    => 'Attribute Template',
         'character'             => 'Character',
         'creator'               => 'Creator',
@@ -101,31 +101,31 @@ return [
         'organisation'          => 'Organisation',
         'section'               => 'Category',
     ],
-    'filter'        => 'Filter',
-    'filters'       => [
-        'title'     => 'Filters',
-        'clear'     => 'Clear Filters',
-        'show'      => 'Show Filters',
-        'hide'      => 'Hide Filters',
+    'filter'            => 'Filter',
+    'filters'           => [
+        'clear' => 'Clear Filters',
+        'hide'  => 'Hide Filters',
+        'show'  => 'Show Filters',
+        'title' => 'Filters',
     ],
-    'hidden'        => 'Hidden',
-    'hints'         => [
+    'hidden'            => 'Hidden',
+    'hints'             => [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'is_private'            => 'Hide from non "Admin" users.',
     ],
-    'history'       => [
+    'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Unknown',
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
-    'image'         => [
+    'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
     ],
-    'is_private'    => 'This entity is private and not visible by non-admin users.',
-    'linking_help'  => 'How can I link to other entries?',
-    'manage'        => 'Manage',
-    'move'          => [
+    'is_private'        => 'This entity is private and not visible by non-admin users.',
+    'linking_help'      => 'How can I link to other entries?',
+    'manage'            => 'Manage',
+    'move'              => [
         'description'   => 'Move this entity to another place',
         'errors'        => [
             'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
@@ -143,14 +143,14 @@ return [
         'success'       => 'Entity \':name\' moved.',
         'title'         => 'Move :name',
     ],
-    'new_entity'    => [
+    'new_entity'        => [
         'error' => 'Please review your values.',
         'fields'=> [
             'name'  => 'Name',
         ],
         'title' => 'New entity',
     ],
-    'notes'         => [
+    'notes'             => [
         'actions'       => [
             'add'   => 'Add a note',
         ],
@@ -180,8 +180,8 @@ return [
             'name'  => 'Name of the note, observation or remark.',
         ],
     ],
-    'or_cancel'     => 'or <a href=":url">cancel</a>',
-    'panels'        => [
+    'or_cancel'         => 'or <a href=":url">cancel</a>',
+    'panels'            => [
         'appearance'            => 'Appearance',
         'attribute_template'    => 'Attribute Template',
         'description'           => 'Description',
@@ -190,7 +190,7 @@ return [
         'move'                  => 'Move',
         'system'                => 'System',
     ],
-    'permissions'   => [
+    'permissions'       => [
         'action'    => 'Action',
         'actions'   => [
             'delete'    => 'Delete',
@@ -206,7 +206,7 @@ return [
         'success'   => 'Permissions saved.',
         'title'     => 'Permissions',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'character'     => 'Choose a character',
         'entity'        => 'Entity',
         'event'         => 'Choose an event',
@@ -216,7 +216,7 @@ return [
         'organisation'  => 'Choose an organisation',
         'section'       => 'Choose a category',
     ],
-    'relations'     => [
+    'relations'         => [
         'actions'   => [
             'add'   => 'Add a relation',
         ],
@@ -227,24 +227,24 @@ return [
         ],
         'hint'      => 'Relations between entities can be set up to represent their connections.',
     ],
-    'remove'        => 'Remove',
-    'save'          => 'Save',
-    'save_and_new'  => 'Save and New',
-    'save_and_update' => 'Save and Update',
-    'save_and_close' => 'Save and Close',
-    'save_and_view' => 'Save and View',
-    'search'        => 'Search',
-    'select'        => 'Select',
-    'tabs'          => [
+    'remove'            => 'Remove',
+    'save'              => 'Save',
+    'save_and_close'    => 'Save and Close',
+    'save_and_new'      => 'Save and New',
+    'save_and_update'   => 'Save and Update',
+    'save_and_view'     => 'Save and View',
+    'search'            => 'Search',
+    'select'            => 'Select',
+    'tabs'              => [
         'attributes'    => 'Attributes',
         'events'        => 'Events',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
     ],
-    'update'        => 'Update',
-    'users'         => [
-        'unknown' => 'Unknown',
+    'update'            => 'Update',
+    'users'             => [
+        'unknown'   => 'Unknown',
     ],
-    'view'          => 'View',
+    'view'              => 'View',
 ];

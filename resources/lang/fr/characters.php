@@ -131,6 +131,7 @@ return [
     'show'          => [
         'description'   => 'Détail d\'une personne',
         'tabs'          => [
+            'conversations' => 'Conversations',
             'dice_rolls'    => 'Jets de dés',
             'free'          => 'Texte libre',
             'history'       => 'Histoire',
