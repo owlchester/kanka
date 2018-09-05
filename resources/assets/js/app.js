@@ -332,7 +332,7 @@ function requestLiveSearch(value) {
 function initTogglePasswordFields() {
     var passwordField = $('#password');
     var passwordToggleIcon = $('.toggle-password-icon');
-    $('.toggle-password').on('click', function() {
+    $('.toggle-password').on('click', function(e) {
         e.preventDefault();
         if (passwordField.prop('type') === 'text') {
             passwordField.prop('type', 'password');
