@@ -24,7 +24,7 @@ class StoreCampaign extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3',
+            'name' => 'required|string|min:4',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
             'locale' => 'string',
         ];

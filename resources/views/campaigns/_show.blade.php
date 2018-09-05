@@ -20,6 +20,13 @@
                         </span>
                         <br class="clear" />
                     </li>
+                    <li class="list-group-item">
+                        <b>{{ trans('campaigns.fields.locale') }}</b>
+                        <span  class="pull-right">
+                            {{ trans('languages.codes.' . $campaign->locale) }}
+                        </span>
+                        <br class="clear" />
+                    </li>
                 </ul>
 
                 @can('update', $campaign)

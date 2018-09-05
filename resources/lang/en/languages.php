@@ -3,6 +3,7 @@
 return [
     'codes' => [
         'de'    => 'German',
+        'en'    => 'English',
         'en-US' => 'American English',
         'es'    => 'Spanish',
         'fr'    => 'French',
