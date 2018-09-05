@@ -264,7 +264,7 @@ function characterDeleteRowHandler() {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function(e) {
             e.preventDefault();
-            $(this).parent().parent().parent().remove();
+            $(this).closest('.parent-delete-row').remove();
         });
     });
 
