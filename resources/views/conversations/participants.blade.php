@@ -20,26 +20,27 @@
         <div class="panel-body">
             <ul class="list-group list-group-unbordered margin-bottom">
                 @foreach ($model->participants as $participant)
+
+                    @can('view', $participant->entity())
                     <li class="list-group-item">
                         @can('update', $model)
                             {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', 'conversation' => $model, 'participant' => $participant], 'style'=>'display:inline']) !!}
                         @endcan
-                        <b>
+
                         @if ($participant->target() == \App\Models\Conversation::TARGET_USERS)
                             {{ $participant->entity()->name }}
                         @else
                             <a href="{{ route('characters.show', $participant->entity()) }}">{{ $participant->entity()->name }}</a>
                         @endif
-                        </b>
 
-
-                        <button class="btn btn-xs btn-danger pull-right">
-                            <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                        </button>
                         @can('update', $model)
+                            <button class="btn btn-xs btn-danger pull-right">
+                                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                            </button>
                             {!! Form::close() !!}
                         @endcan
                     </li>
+                    @endcan
                 @endforeach
             </ul>
 

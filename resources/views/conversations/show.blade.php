@@ -60,6 +60,7 @@
                         <div class="box-footer">
                             @if ($model->participants()->count() > 0)
                                 <div class="row">
+                                    @if ($model->target == \App\Models\Conversation::TARGET_CHARACTERS)
                                     <div class="col-md-3">
                                         {!! Form::select(
                                             ($model->target == \App\Models\Conversation::TARGET_CHARACTERS ? 'character_id' : 'user_id'),
@@ -71,6 +72,10 @@
                                         ) !!}
                                     </div>
                                     <div class="col-md-9">
+                                    @else
+                                    {!! Form::hidden('user_id', auth()->user()->id) !!}
+                                    <div class="col-md-12">
+                                    @endif
                                         {!! Form::text(
                                             'context',
                                             null,
@@ -84,7 +89,7 @@
                                     </div>
                                 </div>
                             @else
-                                <p class="text-muted">{{ trans('conversations.hints.participants') }}</p>
+                                <p class="text-muted">{!! trans('conversations.hints.participants', ['icon' => '<i class="fa fa-users"></i>']) !!}</p>
                             @endif
                         </div>
                         {!! Form::hidden('conversation_id', $model->id) !!}

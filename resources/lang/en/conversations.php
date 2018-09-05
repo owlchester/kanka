@@ -22,7 +22,7 @@ return [
         'type'          => 'Type',
     ],
     'hints'         => [
-        'participants'  => 'Please add participants to your conversation.',
+        'participants'  => 'Please add participants to your conversation by pressing on the :icon icon on the upper-right.',
     ],
     'index'         => [
         'add'           => 'New Conversation',

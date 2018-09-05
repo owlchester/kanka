@@ -8,14 +8,14 @@
     <div class="box-comment" data-id="{{ $message->id }}">
         @if ($message->target() == \App\Models\Conversation::TARGET_USERS)
             {!! $message->user->getAvatar(true) !!}
-        @elseif ($message->target() == \App\Models\Conversation::TARGET_CHARACTERS)
+        @elseif ($message->target() == \App\Models\Conversation::TARGET_CHARACTERS && !empty($message->character))
             <a class="entity-image" style="background-image: url('{{ $message->character->getImageUrl(true) }}');" title="{{ $message->character->name }}" href="{{ route('characters.show', $message->character) }}"></a>
         @endif
         <div class="comment-text">
                 <span class="username">
                     @if ($message->target() == \App\Models\Conversation::TARGET_USERS)
                         {{ $message->user->name }}
-                    @elseif ($message->target() == \App\Models\Conversation::TARGET_CHARACTERS)
+                    @elseif ($message->target() == \App\Models\Conversation::TARGET_CHARACTERS && !empty($message->character))
                         <a href="{{ route('characters.show', $message->character) }}">{{ $message->character->name }}</a>
                     @else
                         {{ trans('crud.users.unknown') }}
