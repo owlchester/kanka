@@ -39,6 +39,8 @@ return [
         'visibility'    => 'Visibility',
     ],
     'helpers'       => [
+        'name'          => 'Your campaign/world can have any name as long as it contains at least 3 letters or numbers.',
+        'locale'        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'visibility'    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
     'index'         => [

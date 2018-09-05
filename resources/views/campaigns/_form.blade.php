@@ -1,21 +1,24 @@
+@inject('languages', 'App\Services\LanguageService')
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-{{ (isset($start) ? 12 : 6) }}">
         <div class="form-group required">
             <label>{{ trans('campaigns.fields.name') }}</label>
             {!! Form::text('name', null, ['placeholder' => trans('campaigns.placeholders.name'), 'class' => 'form-control']) !!}
+            <p class="help-block">{{ trans('campaigns.helpers.name') }}</p>
         </div>
     </div>
     @if (!isset($start))
     <div class="col-md-6">
             @include('cruds.fields.image')
     </div>
-    <!--<div class="col-md-6">
+    <div class="col-md-6">
         <div class="form-group">
-            <label>Locale:</label>
-            {!! Form::text('locale', null, ['placeholder' => trans('campaigns.placeholders.locale'), 'class' => 'form-control']) !!}
+            <label>{{ trans('campaigns.fields.locale') }}</label>
+            {!! Form::select('locale', $languages->getSupportedLanguagesList(), null, ['class' => 'form-control']) !!}
+            <p class="help-block">{{ trans('campaigns.helpers.locale') }}</p>
         </div>
-    </div>-->
+    </div>
     @endif
 </div>
 @if (!isset($start))
