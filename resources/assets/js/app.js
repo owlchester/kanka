@@ -153,6 +153,8 @@ $(document).ready(function() {
     });
 
     initLiveSearch();
+
+    initTogglePasswordFields();
 });
 
 /**
@@ -322,6 +324,23 @@ function requestLiveSearch(value) {
             console.log('error', result);
         });
     }
+}
+
+/**
+ * Show/Hide password field helpers
+ */
+function initTogglePasswordFields() {
+    var passwordField = $('#password');
+    var passwordToggleIcon = $('.toggle-password-icon');
+    $('.toggle-password').on('click', function() {
+        if (passwordField.prop('type') === 'text') {
+            passwordField.prop('type', 'password');
+            passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye')
+        } else {
+            passwordField.prop('type', 'text');
+            passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+        }
+    });
 }
 
 // Helpers are injected directly in the window functions.

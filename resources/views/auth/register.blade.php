@@ -30,9 +30,13 @@
             @endif
         </div>
 
-        <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-            <input id="password" type="password" class="form-control" name="password" placeholder="{{ trans('auth.register.fields.password') }}" required>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <div class="input-group">
+                <input id="password" type="password" class="form-control" name="password" required placeholder="{{ trans('auth.register.fields.password') }}">
+                <a href="#" class="toggle-password input-group-addon" title="{{ trans('auth.helpers.password') }}">
+                    <i class="toggle-password-icon fa fa-eye"></i>
+                </a>
+            </div>
 
             @if ($errors->has('password'))
                 <span class="help-block">

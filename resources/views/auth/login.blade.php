@@ -16,7 +16,7 @@
 
         <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ trans('auth.login.fields.email') }}" required autofocus>
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
             @if ($errors->has('email'))
                 <span class="help-block">
@@ -25,9 +25,13 @@
             @endif
         </div>
 
-        <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-            <input id="password" type="password" class="form-control" name="password" required placeholder="{{ trans('auth.login.fields.password') }}">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <div class="input-group">
+                <input id="password" type="password" class="form-control" name="password" required placeholder="{{ trans('auth.login.fields.password') }}">
+                <a href="#" class="toggle-password input-group-addon" title="{{ trans('auth.helpers.password') }}">
+                    <i class="toggle-password-icon fa fa-eye"></i>
+                </a>
+            </div>
 
             @if ($errors->has('password'))
                 <span class="help-block">
