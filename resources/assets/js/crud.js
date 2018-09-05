@@ -342,6 +342,9 @@ function registerFormSubmitAnimation() {
                             .prop('disabled', true);
                     }
                 });
+
+                // Inject the selected option for the "workflow" (submit-action)
+                $(this).append('<input type="hidden" name="' + $('#form-submit-main').attr('name') + '" />');
             }
 
             return true;
