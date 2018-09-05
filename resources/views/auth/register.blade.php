@@ -45,16 +45,18 @@
             @endif
         </div>
         <div class="form-group has-feedback{{ $errors->has('tos') ? ' has-error' : '' }}">
-            <label for="tos">
-                <input id="tos" type="checkbox" name="tos" value="1" required>
-                {!! trans('auth.register.fields.tos', ['privacyUrl' => route('privacy')]) !!}
-            </label>
+            <div class="checkbox">
+                <label for="tos">
+                    <input id="tos" type="checkbox" name="tos" value="1" required>
+                    {!! trans('auth.register.fields.tos', ['privacyUrl' => route('privacy')]) !!}
+                </label>
 
-            @if ($errors->has('tos'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('tos') }}</strong>
-                </span>
-            @endif
+                @if ($errors->has('tos'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('tos') }}</strong>
+                    </span>
+                @endif
+            </div>
         </div>
 
         <div class="form-group text-right">

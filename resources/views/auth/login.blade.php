@@ -3,7 +3,6 @@
 @section('content')
 <h3>{{ trans('auth.login.title') }}</h3>
 
-<div class="panel-body">
     @if (session()->has('info'))
         <div class="alert alert-info alert-dismissable">
             {{ session()->get('info') }}
@@ -11,7 +10,7 @@
     @endif
     @include('partials.errors')
 
-    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 
         <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -87,5 +86,4 @@
 
         </div>
     </div>
-</div>
 @endsection
