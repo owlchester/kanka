@@ -43876,6 +43876,7 @@ function initTogglePasswordFields() {
     var passwordField = $('#password');
     var passwordToggleIcon = $('.toggle-password-icon');
     $('.toggle-password').on('click', function () {
+        e.preventDefault();
         if (passwordField.prop('type') === 'text') {
             passwordField.prop('type', 'password');
             passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
@@ -43883,6 +43884,7 @@ function initTogglePasswordFields() {
             passwordField.prop('type', 'text');
             passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
         }
+        return false;
     });
 }
 
