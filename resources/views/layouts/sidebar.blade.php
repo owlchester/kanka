@@ -1,29 +1,9 @@
 <?php $campaign = CampaignLocalization::getCampaign(); ?>
+@inject('sidebar', 'App\Services\SidebarService')
+@inject('campaign', 'App\Services\CampaignService')
 @if (!empty($campaign))
-<!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
-
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
-        {!! Form::open(array('route' => 'search', 'class' => 'sidebar-form', 'method'=>'GET')) !!}
-        <div class="input-group">
-            <input type="text" name="q" class="form-control" autocomplete="off"
-                   placeholder="{{ trans('sidebar.search') }}" data-url="{{ route('search.live') }}"
-                    data-empty="{{ trans('search.no_results') }}">
-            <span class="input-group-btn">
-                <button type="submit" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-        <div id="live-search-results" class="live-search-results"></div>
-        {!! Form::close() !!}
-
-        @inject('sidebar', 'App\Services\SidebarService')
-        @inject('campaign', 'App\Services\CampaignService')
-
-        <!-- Sidebar Menu -->
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="header">{{ trans('sidebar.navigation') }}</li>
             <li class="{{ $sidebar->active('dashboard') }}">
@@ -165,10 +145,8 @@
             @elseif (Auth::check() && Auth::user()->hasRole('moderator'))
                 <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
             @endif
-        </ul><!-- /.sidebar-menu -->
-
+        </ul>
     </section>
-    <!-- /.sidebar -->
 </aside>
 @elseif (Auth::check() && Auth::user()->hasCampaigns())
     <aside class="main-sidebar">
