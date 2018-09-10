@@ -374,17 +374,28 @@ pre, blockquote {
 /**
  * Conversations
  */
- .box-comments, .box-comment {
-   background-color: $Soft;
+.box-comments, .box-comment {
+ background-color: $Soft;
 
-   .comment-text {
+ .comment-text {
+   color: $White;
+   .username {
      color: $White;
-     .username {
-       color: $White;
-     }
    }
+ }
 
- }
- .box-conversation .box-footer {
-   background-color: $Soft;
- }
+}
+.box-conversation .box-footer {
+ background-color: $Soft;
+}
+
+/*
+ Search
+ */
+.tt-menu {
+  background-color: $Detail;
+  border-color: $Soft;
+}
+.tt-cursor {
+  color: $Hard !important;
+}

@@ -385,3 +385,15 @@ pre, blockquote {
  .box-conversation .box-footer {
    background-color: $Soft;
  }
+
+
+/*
+ Search
+ */
+.tt-menu {
+  background-color: $Detail;
+  border-color: $Soft;
+}
+.tt-cursor {
+  color: $Hard !important;
+}

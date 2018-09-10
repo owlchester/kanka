@@ -1,7 +1,7 @@
 <?php $campaign = CampaignLocalization::getCampaign(); ?>
-@inject('sidebar', 'App\Services\SidebarService')
-@inject('campaign', 'App\Services\CampaignService')
 @if (!empty($campaign))
+    @inject('sidebar', 'App\Services\SidebarService')
+    @inject('campaign', 'App\Services\CampaignService')
 <aside class="main-sidebar">
     <section class="sidebar">
         <ul class="sidebar-menu tree" data-widget="tree">
