@@ -11,8 +11,8 @@
 @if (!isset($calendars) && $campaign->enabled('calendars'))
     @can('attribute', $model)
         <li class="{{ (request()->get('tab') == 'events' ? ' active' : '') }}">
-            <a href="#events" title="{{ trans('crud.tabs.events') }}" data-toggle="tooltip">
-                <i class="fa fa-calendar-o"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.events') }}</span>
+            <a href="#calendars" title="{{ trans('crud.tabs.calendars') }}" data-toggle="tooltip">
+                <i class="ra ra-moon-sun"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.calendars') }}</span>
             </a>
         </li>
     @endcan

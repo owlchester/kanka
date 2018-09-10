@@ -218,6 +218,7 @@ return [
     'select'        => 'Auswählen',
     'tabs'          => [
         'attributes'    => 'Attribute',
+        'calendars'     => 'Kalender',
         'events'        => 'Ereignisse',
         'notes'         => 'Notizen',
         'permissions'   => 'Berechtigungen',

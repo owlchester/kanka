@@ -158,6 +158,7 @@ return [
     'select'        => 'Selecionar',
     'tabs'          => [
         'attributes'    => 'Atributos',
+        'calendars'     => 'Calendários',
         'permissions'   => 'Permissões',
         'relations'     => 'Relações',
     ],
