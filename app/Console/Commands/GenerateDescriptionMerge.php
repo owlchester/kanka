@@ -58,7 +58,7 @@ class GenerateDescriptionMerge extends Command
                         $updated = true;
 
                         $model->description .= '<h3>'
-                            . trans('crud.fields.history', [], $model->campaign->locale)
+                            . 'History'
                             . '</h3>'
                             . $model->history;
                         $model->history = null;
