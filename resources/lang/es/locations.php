@@ -53,10 +53,15 @@ return [
                 'axis_x'    => 'Eje X',
                 'axis_y'    => 'Eje Y',
                 'colour'    => 'Color',
+                'name'      => 'Etiqueta',
+            ],
+            'helpers'       => [
+                'location_or_name'  => 'Un punto del mapa puede dirigir a una localización existente, o simplemente tener una etiqueta.',
             ],
             'placeholders'  => [
                 'axis_x'    => 'Posición izquierda',
                 'axis_y'    => 'Posición superior',
+                'name'      => 'Etiqueta del punto cuando no se ha establecido ninguna localización.',
             ],
             'return'        => 'Volver a :name',
             'success'       => [

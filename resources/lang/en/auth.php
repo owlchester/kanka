@@ -14,6 +14,9 @@ return [
     */
 
     'failed'    => 'These credentials do not match our records.',
+    'helpers'   => [
+        'password'  => 'Show / Hide password',
+    ],
     'login'     => [
         'fields'                => [
             'email'     => 'Email',
@@ -63,7 +66,4 @@ return [
         'title'     => 'Reset password',
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
-    'helpers' => [
-        'password' => 'Show / Hide password',
-    ],
 ];

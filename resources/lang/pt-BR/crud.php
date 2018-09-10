@@ -56,7 +56,6 @@ return [
         ],
     ],
     'cancel'        => 'Cancelar',
-    'clear_filters' => 'Limpar Filtros',
     'click_modal'   => [
         'close'     => 'Fechar',
         'confirm'   => 'Confirmar',
@@ -76,18 +75,15 @@ return [
     'fields'        => [
         'character'     => 'Personagem',
         'creator'       => 'Criador',
-        'description'   => 'Descrição',
         'dice_roll'     => 'Rolagem de Dados',
         'entity'        => 'Entidade',
         'entry'         => 'Entrada',
         'event'         => 'Evento',
-        'history'       => 'História',
         'image'         => 'Imagem',
         'is_private'    => 'Privado',
         'location'      => 'Local',
     ],
     'filter'        => 'Filtro',
-    'filters'       => 'Filtros',
     'hidden'        => 'Esconder',
     'hints'         => [
         'is_private'    => 'Esconder de "Espectadores"',
@@ -119,9 +115,7 @@ return [
     'or_cancel'     => 'ou <a href=":url">cancel</a>',
     'panels'        => [
         'appearance'            => 'Aparência',
-        'description'           => 'Descrição',
         'general_information'   => 'Informações Gerais',
-        'history'               => 'História',
         'move'                  => 'Mover',
     ],
     'permissions'   => [

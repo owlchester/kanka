@@ -60,7 +60,6 @@ return [
         ],
     ],
     'cancel'            => 'Annuler',
-    'clear_filters'     => 'Effacer les filtres',
     'click_modal'       => [
         'close'     => 'Fermer',
         'confirm'   => 'Confirmer',
@@ -186,6 +185,7 @@ return [
         'appearance'            => 'Apparence',
         'attribute_template'    => 'Modèle d\'attribut',
         'description'           => 'Description',
+        'entry'                 => 'Entrée',
         'general_information'   => 'Information Generale',
         'history'               => 'Histoire',
         'move'                  => 'Déplacer',

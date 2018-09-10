@@ -15,6 +15,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personajes',
+        'children'      => 'Subcategorías',
         'name'          => 'Nombre',
         'section'       => 'Categoría',
         'sections'      => 'Subcategorías',
@@ -41,6 +42,7 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la categoría',
         'tabs'          => [
+            'children'      => 'Subcategorías',
             'information'   => 'Información',
             'sections'      => 'Categorías',
         ],

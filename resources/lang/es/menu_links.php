@@ -16,6 +16,7 @@ return [
     'fields'        => [
         'entity'    => 'Entidad',
         'name'      => 'Nombre',
+        'tab'       => 'Pestaña',
     ],
     'index'         => [
         'add'           => 'Nuevo enlace de menú',
@@ -26,6 +27,7 @@ return [
     'placeholders'  => [
         'entity'    => 'Elige una entidad',
         'name'      => 'Nombre del enlace de menú',
+        'tab'       => 'Historia, Vínculos, Notas',
     ],
     'show'          => [
         'description'   => 'Vista detallada del enlace de menú',

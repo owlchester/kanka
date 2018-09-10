@@ -18,24 +18,50 @@ return [
         'title'         => 'Preguntas Frecuentes',
     ],
     'features'      => [
-        'collaborative' => [
-            'description'   => '¿No estas solo? ¡Cuenta con nosotros! ¡Puedes invitar a tus amigos para ayudarte a construir tu campaña juntos!',
+        'calendars'         => [
+            'description'   => 'Crea calendarios personalizados y organiza tu campaña con ellos.',
+            'title'         => 'Calendarios',
+        ],
+        'collaborative'     => [
+            'description'   => '¿No estás solo? ¡Cuenta con nosotros! ¡Puedes invitar a tus amigos para ayudarte a construir tu campaña juntos!',
             'title'         => 'Colaborativo',
         ],
-        'description'   => '¡El por que creemos que te enamoraras de nuestra aplicación!',
-        'free'          => [
-            'description'   => 'Lo mejor de la vida es aquello que es gratuito.',
+        'description'       => '¡Las razones por las que creemos que te enamoraras de nuestra aplicación!',
+        'description_full'  => 'Muestra de algunas de las mejores y más queridas funciones.',
+        'free'              => [
+            'description'   => 'Lo mejor de la vida es lo gratis. Sin anuncios, sin costes ocultos, sin suscripciones de pago.',
             'title'         => 'Uso Gratuito',
         ],
-        'layers'        => [
+        'layers'            => [
             'description'   => 'Monitoriza tus personajes, sus familias su situación y mucho más en cualquier momento.',
             'title'         => 'Personajes, Familias, Localizaciones',
         ],
-        'notebook'      => [
+        'learn_more'        => 'Saber más sobre las funciones de Kanka',
+        'maps'              => [
+            'description'   => 'Sube mapas de tus mundos, ciudades y cuevas, y añádeles prácticos marcadores y enlaces.',
+            'title'         => 'Mapas',
+        ],
+        'modular'           => [
+            'description'   => 'Cada módulo (personajes, localizaciones) puede habilitarse o deshabilitarse en cualquier momento, facilitándote la personalización de tu campaña.',
+            'title'         => 'Modular',
+        ],
+        'notebook'          => [
             'description'   => '¡Prepara tu siguiente sesión o registra lo ocurrido con nuestro editor de Diarios!',
             'title'         => 'Diarios',
         ],
-        'title'         => 'Funciones Ilimitadas, Diversión Ilimitada',
+        'public'            => [
+            'description'   => 'Se pueden establecer permisos en los módulos, o en cada entidad por separado. Las campañas también pueden hacerse públicas para que todo el mundo las vea.',
+            'title'         => 'Permisos',
+        ],
+        'relations'         => [
+            'description'   => 'Cada entidad puede tener una complicada red de relaciones con otras entidades, incluyendo relaciones secretas, invisibles para tus jugadores.',
+            'title'         => 'Vínculos',
+        ],
+        'title'             => 'Funciones ilimitadas, diversión ilimitada',
+        'updates'           => [
+            'description'   => 'Kanka se actualiza frecuentemente gracias a las aportaciones de la comunidad.',
+            'title'         => 'Actualizaciones frecuentes',
+        ],
     ],
     'first_block'   => [
         'description'   => '¡Nuestra aplicación esta disponible en cualquier dispositivo! No hay necesidad de instalar nada, esta todo en tu navegador. Lo mejor de todo, ¡es completamente gratis!',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'back'      => 'Atrás',
         'copy'      => 'Copiar',
         'export'    => 'Exportar',
@@ -11,8 +11,8 @@ return [
         'private'   => 'Privado',
         'public'    => 'Público',
     ],
-    'add'           => 'Añadir',
-    'attributes'    => [
+    'add'               => 'Añadir',
+    'attributes'        => [
         'actions'       => [
             'add'               => 'Añadir atributo',
             'apply_template'    => 'Aplicar una plantilla de atributos',
@@ -50,7 +50,7 @@ return [
             'title'     => 'Aplicar plantilla de atributos para :name',
         ],
     ],
-    'bulk'          => [
+    'bulk'              => [
         'errors'    => [
             'admin' => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
         ],
@@ -59,32 +59,31 @@ return [
             'public'    => ':count entidad es ahora visible|:count son ahora visibles.',
         ],
     ],
-    'cancel'        => 'Cancelar',
-    'clear_filters' => 'Borrar filtros',
-    'click_modal'   => [
+    'cancel'            => 'Cancelar',
+    'click_modal'       => [
         'close'     => 'Cerrar',
         'confirm'   => 'Confirmar',
         'title'     => 'Confirmar acción',
     ],
-    'create'        => 'Crear',
-    'delete_modal'  => [
+    'create'            => 'Crear',
+    'delete_modal'      => [
         'close'         => 'Cerrar',
         'delete'        => 'Eliminar',
         'description'   => '¿Seguro que quieres eliminar :tag?',
         'title'         => 'Eliminar',
     ],
-    'destroy_many'  => [
+    'destroy_many'      => [
         'success'   => ':count entidad eliminada|:count entidades eliminadas.',
     ],
-    'edit'          => 'Editar',
-    'errors'        => [
+    'edit'              => 'Editar',
+    'errors'            => [
         'node_must_not_be_a_descendant' => 'Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo.',
     ],
-    'events'        => [
+    'events'            => [
         'hint'  => 'Los eventos del calendario asociados a esta entidad se muestran aquí.',
     ],
-    'export'        => 'Exportar',
-    'fields'        => [
+    'export'            => 'Exportar',
+    'fields'            => [
         'attribute_template'    => 'Plantilla de atributos',
         'character'             => 'Personaje',
         'creator'               => 'Creador',
@@ -102,26 +101,31 @@ return [
         'organisation'          => 'Organización',
         'section'               => 'Categoría',
     ],
-    'filter'        => 'Filtrar',
-    'filters'       => 'Filtros',
-    'hidden'        => 'Oculto',
-    'hints'         => [
+    'filter'            => 'Filtrar',
+    'filters'           => [
+        'clear' => 'Quitar filtros',
+        'hide'  => 'Ocultar filtros',
+        'show'  => 'Mostrar filtros',
+        'title' => 'Filtros',
+    ],
+    'hidden'            => 'Oculto',
+    'hints'             => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
         'image_limitations'     => 'Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: :size.',
         'is_private'            => 'Ocultar a los "Invitados"',
     ],
-    'history'       => [
+    'history'           => [
         'created'   => 'Creado por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Desconocido',
         'updated'   => 'Última modificación por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
-    'image'         => [
+    'image'             => [
         'error' => 'No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no es válido.',
     ],
-    'is_private'    => 'Esta entidad es privada y no será visible por los usuarios Invitados.',
-    'linking_help'  => '¿Como puedo enlazar otras entradas?',
-    'manage'        => 'Administrar',
-    'move'          => [
+    'is_private'        => 'Esta entidad es privada y no será visible por los usuarios Invitados.',
+    'linking_help'      => '¿Como puedo enlazar otras entradas?',
+    'manage'            => 'Administrar',
+    'move'              => [
         'description'   => 'Mover esta entidad a otro lugar',
         'errors'        => [
             'permission'        => 'No tienes permiso para crear entidades de este tipo en la campaña seleccionada.',
@@ -139,14 +143,14 @@ return [
         'success'       => 'Entidad :name movida.',
         'title'         => 'Mover :name',
     ],
-    'new_entity'    => [
+    'new_entity'        => [
         'error' => 'Por favor revisa lo introducido.',
         'fields'=> [
             'name'  => 'Nombre',
         ],
         'title' => 'Nueva entidad',
     ],
-    'notes'         => [
+    'notes'             => [
         'actions'       => [
             'add'   => 'Añadir nota',
         ],
@@ -176,8 +180,8 @@ return [
             'name'  => 'Nombre de la nota, observación o comentario.',
         ],
     ],
-    'or_cancel'     => 'o <a href=":url">Cancelar</a>',
-    'panels'        => [
+    'or_cancel'         => 'o <a href=":url">Cancelar</a>',
+    'panels'            => [
         'appearance'            => 'Apariencia',
         'attribute_template'    => 'Plantilla de atributos',
         'description'           => 'Descripción',
@@ -186,7 +190,7 @@ return [
         'move'                  => 'Mover',
         'system'                => 'Sistema',
     ],
-    'permissions'   => [
+    'permissions'       => [
         'action'    => 'Acción',
         'actions'   => [
             'delete'    => 'Eliminar',
@@ -202,7 +206,7 @@ return [
         'success'   => 'Permisos guardados.',
         'title'     => 'Permisos',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'character'     => 'Escoge un personaje',
         'entity'        => 'Entidad',
         'event'         => 'Elige un evento',
@@ -212,7 +216,7 @@ return [
         'organisation'  => 'Elige una organización',
         'section'       => 'Elige una categoría',
     ],
-    'relations'     => [
+    'relations'         => [
         'actions'   => [
             'add'   => 'Añadir un vínculo',
         ],
@@ -223,18 +227,24 @@ return [
         ],
         'hint'      => 'Se pueden vincular entidades para representar sus conexiones.',
     ],
-    'remove'        => 'Eliminar',
-    'save'          => 'Guardar',
-    'save_and_new'  => 'Guardar y Crear',
-    'search'        => 'Buscar',
-    'select'        => 'Seleccionar',
-    'tabs'          => [
+    'remove'            => 'Eliminar',
+    'save'              => 'Guardar',
+    'save_and_close'    => 'Guardar y Cerrar',
+    'save_and_new'      => 'Guardar y Crear',
+    'save_and_update'   => 'Guardar y Actualizar',
+    'save_and_view'     => 'Guardar y Ver',
+    'search'            => 'Buscar',
+    'select'            => 'Seleccionar',
+    'tabs'              => [
         'attributes'    => 'Atributos',
         'events'        => 'Eventos',
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
         'relations'     => 'Vínculos',
     ],
-    'update'        => 'Actualizar',
-    'view'          => 'Ver',
+    'update'            => 'Actualizar',
+    'users'             => [
+        'unknown'   => 'Desconocido',
+    ],
+    'view'              => 'Ver',
 ];

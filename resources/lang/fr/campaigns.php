@@ -39,6 +39,8 @@ return [
         'visibility'    => 'Visibilité',
     ],
     'helpers'       => [
+        'locale'        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
+        'name'          => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
         'visibility'    => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
     'index'         => [

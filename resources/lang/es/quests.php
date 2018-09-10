@@ -41,7 +41,11 @@ return [
         'is_completed'  => 'Completada',
         'locations'     => 'Localizaciones',
         'name'          => 'Nombre',
+        'quest'         => 'Misión superior',
         'type'          => 'Tipo',
+    ],
+    'hints'         => [
+        'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',
     ],
     'index'         => [
         'add'           => 'Nueva Misión',
@@ -70,6 +74,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Nombre de la misión',
+        'quest' => 'Misión superior',
         'type'  => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
     ],
     'show'          => [
@@ -82,6 +87,7 @@ return [
             'characters'    => 'Personajes',
             'information'   => 'Información',
             'locations'     => 'Localización',
+            'quests'        => 'Misiones',
         ],
         'title'         => 'Misión :name',
     ],

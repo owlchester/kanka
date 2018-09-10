@@ -131,6 +131,7 @@ return [
     'show'          => [
         'description'   => 'Vista detallada del personaje',
         'tabs'          => [
+            'conversations' => 'Conversaciones',
             'dice_rolls'    => 'Tiradas de dados',
             'free'          => 'Observaciones',
             'history'       => 'Biografía',

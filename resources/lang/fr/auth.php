@@ -14,6 +14,9 @@ return [
     */
 
     'failed'    => 'Ces informations ne correspondent pas avec nos entrées.',
+    'helpers'   => [
+        'password'  => 'Afficher / Cacher le mot de passe',
+    ],
     'login'     => [
         'fields'                => [
             'email'     => 'Adresse Email',
