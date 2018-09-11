@@ -17,16 +17,27 @@
         </a>
         @endif
         @if (!empty($currentCampaign))
-            {!! Form::open(['route' => 'search', 'class' => 'navbar-form navbar-left', 'method'=>'GET']) !!}
+            {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-xl navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
                 <input type="text" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
                        placeholder="{{ trans('sidebar.search') }}" data-url="{{ route('search.live') }}"
                        data-empty="{{ trans('search.no_results') }}">
+
+                    <a href="#" class="live-search-close visible-xs visible-sm pull-right">
+                        <i class="fa fa-close"></i>
+                    </a>
             {!! Form::close() !!}
         @endif
 
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                @if (!empty($currentCampaign))
+                    <li class="visible-xs visible-sm">
+                        <a href="#" class="mobile-search">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </li>
+                @endif
                 <!-- Only logged in users can have this dropdown, Also only show this if the user has campaigns -->
                 @if (Auth::check() && Auth::user()->hasCampaigns())
                     <li class="dropdown notifications-menu">

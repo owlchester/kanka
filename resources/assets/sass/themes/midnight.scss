@@ -1,0 +1,428 @@
+$Hard: #fff;
+$Soft: #333;
+$Detail: #0a121b;
+$Unfocused: #999;
+$White: #eee;
+
+// Links
+$Link: #9CD7F7;
+$LinkHover: #d4eff7;
+
+body {
+  background-color: #061F2F;
+  color: #d3d4d4;
+}
+
+#app {
+  background: none;
+}
+
+.main-sidebar {
+  background: none !important;
+  li:hover, li.active, li.header {
+    background-color: $Detail !important;
+    a {
+      color: $Hard !important;
+      background-color: $Detail !important;
+    }
+  }
+}
+
+.content-wrapper {
+  background: none !important;
+}
+
+.btn {
+  //background-color: $Unfocused !important;
+  color: white !important;
+  //border: none !important;
+
+  &:hover {
+    //color: $Detail !important;
+    //background-color: $Hard !important;
+    //border: none !important;
+  }
+}
+.btn-danger {
+  &:hover {
+    background-color: #992329 !important;
+    color: white !important;
+  }
+}
+.btn-default {
+  color: #444 !important;
+}
+//.input-group-btn {
+//  .btn, .new-entity-selector {
+//    height: 38px !important;
+//    padding-top: 15px !important;
+//  }
+//}
+
+.box, .panel  {
+  border: 1px solid $Unfocused !important;
+  background: none !important;
+
+  .box-header, .panel-heading {
+    background: none !important;
+    border: none !important;
+  }
+  .with-border {
+    background: none !important;
+    border-bottom: 1px solid $Unfocused !important;
+  }
+
+  .box-footer, .panel-footer {
+    background: none !important;
+    border: none !important;
+  }
+
+  .panel-body {
+    ul {
+      color: $White;
+    }
+  }
+}
+
+.filters {
+  background: $Detail !important;
+  //margin: 0 !important;
+  //border-bottom: none; //1px solid $Unfocused;
+  //border-radius: 0 !important;
+  color: white;
+
+  .element {
+    cursor: pointer;
+    &:hover {
+      background: $Soft !important;
+    }
+  }
+  .first {
+    border-left: 1px solid $Unfocused;
+  }
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: $Detail !important;
+}
+.table {
+  tr {
+    td, th {
+      //border: none !important;
+      //border-top: none !important;
+      //border-bottom: none !important;
+      //color: #eee;
+    }
+  }
+}
+.table-hover {
+  tbody {
+    tr {
+      &:hover {
+        background-color: $Detail !important;
+      }
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6, h1 > small {
+  color: $White !important;
+}
+a {
+  color: $Link !important;
+  &:hover {
+    color: $LinkHover !important;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  a {
+    span.visible-lg {
+      display: none !important;
+    }
+  }
+}
+
+input, textarea, .select2, select  {
+  border: 1px solid $Hard !important;
+  //border-radius: 0 !important;
+  background-color: $Detail !important;
+  color: white;
+}
+.form-control, label {
+  color: $White;
+}
+.preview {
+  background-color: $Detail;
+  min-height: 40px;
+}
+
+.select2 {
+  .select2-selection {
+    background: none;
+    //border: none;
+    //height: 36px;
+
+    .select2-selection__rendered {
+      color: white;
+    }
+  }
+}
+.select2-dropdown {
+  background-color: $Detail;
+  .select2-results {
+    color: white;
+  }
+}
+input[type=checkbox] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  width: 16px;
+  height: 16px;
+}
+input[type=checkbox]:after {
+  background-color: $Detail !important;
+  border: 1px solid $Hard !important;
+}
+input[type="checkbox"]:checked {
+  background: $Hard !important;
+}
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+.main-footer {
+  background: none !important;
+  border-top: none !important;
+  color: #999fac !important;
+}
+
+.user-footer {
+  background-color: $Detail !important;
+}
+
+.post {
+  color: $White;
+}
+.help-block {
+  color: #bbb;
+  font-style: italic;
+  text-align: justify;
+}
+p {
+  text-align: justify;
+  color: $White;
+}
+pre, blockquote {
+  background-color: $Detail;
+  color: $White;
+}
+
+.nav-tabs-custom {
+  border: 1px solid $Hard;
+  background: none;
+
+  .tab-content {
+    background: none;
+  }
+}
+
+.nav-tabs {
+  border: none !important;
+
+  li {
+    border: none;
+    &:hover {
+      background: $Detail;
+      border: none;
+      border-bottom: none;
+      a {
+        background: none;
+      }
+    }
+  }
+  li.active {
+    border: none;
+    a {
+      color: $Soft !important;
+      background-color: $Hard !important;
+      border: none !important;
+    }
+  }
+}
+
+.alert  {
+  background-color: $Unfocused !important;
+  color: $White !important;
+  border-radius: 2px !important;
+  border: 0;
+
+  a {
+    color: $Hard !important;
+  }
+}
+
+.list-group-item {
+  background: none;
+  border: 1px solid $Detail;
+  color: $White;
+}
+
+.badge {
+  background-color: $Hard !important;
+  color: $Soft !important;
+}
+/**
+ * Tinymce
+ */
+.mce-panel {
+  background-color: $Detail !important;
+}
+.mce-menubar {
+  border: 0 !important;
+}
+.mce-edit-area, .mce-content-body {
+  background: none !important;
+}
+.mce-btn {
+  border: 1px solid $Unfocused !important;
+  border-radius: 2px !important;
+  background: none !important;
+  color: $White !important;
+}
+.mce-menubtn button, .mce-menubtn button span, .mce-ico {
+  color: $White !important;
+}
+
+/**
+ * Modal
+ */
+.modal-content {
+  background: $Detail;
+  .modal-header {
+    border-color: $Hard !important;
+    border: none !important;
+  }
+  .modal-footer {
+    border: none !important;
+  }
+}
+
+/**
+ * Dashboard
+ */
+.products-list > .item {
+  background: none;
+}
+.product-list-in-box > .item {
+  border-bottom: 1px solid $Unfocused;
+}
+.small-box, .info-box {
+  background-color: $Detail !important;
+  border: 1px solid $Detail;
+  border-radius: 2px;
+}
+.info-box-icon {
+  background-color: $Unfocused !important;
+}
+
+/**
+ * Menu
+ */
+.dropdown-menu {
+  background-color: $Detail;
+  border: 1px solid $Unfocused;
+  border-radius: 2px;
+
+  li.header {
+    background: none !important;
+  }
+  li {
+    color: $White !important;
+    a {
+      border: none;
+      color: $White;
+    }
+  }
+}
+
+.main-header, .navbar {
+  background: $Detail !important;
+
+  a {
+    background: none !important;
+    border: none !important;
+    color: $Hard !important;
+
+    &:hover {
+      background: $Soft !important;
+    }
+  }
+
+  .btn {
+    color: $Unfocused !important;
+    background: $Soft !important;
+  }
+
+  .typeahead {
+    border-color: $Unfocused !important;
+  }
+
+  li.header {
+    border: 0 !important;
+  }
+}
+
+/**
+ * Quests
+ */
+.bg-success {
+  background-color: $Detail;
+}
+
+/**
+ * Calendar
+ */
+.calendar {
+  td.today {
+    background-color: #515142;
+  }
+}
+
+/**
+ * Conversations
+ */
+.box-comments, .box-comment {
+ background-color: $Soft;
+
+ .comment-text {
+   color: $White;
+   .username {
+     color: $White;
+   }
+ }
+
+}
+.box-conversation .box-footer {
+ background-color: $Soft;
+}
+
+/*
+ Search
+ */
+.tt-menu {
+  background-color: $Detail;
+  border-color: $Soft;
+}
+.tt-cursor {
+  color: $Hard !important;
+}
+
+@media (max-width: 991px) {
+  .content-header > .breadcrumb {
+    background: none !important;
+  }
+}

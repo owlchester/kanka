@@ -14,23 +14,25 @@
 
         <?php $i = 0; ?>
         @foreach ($total = $entities->dashboardEntities() as $entity => $class)
-            @if ($i > (count($total) / 2))
+            @if ($i == (count($total) / 2))
     </div>
     <div class="col-md-6">
             @endif
         <div class="form-group">
-            <label>
-                {!! Form::hidden($entity, 0) !!}
-                {!! Form::checkbox($entity) !!}
-                {{ trans('entities.' . $entity) }}
-            </label>
+            <div class="checkbox">
+                <label>
+                    {!! Form::hidden($entity, 0) !!}
+                    {!! Form::checkbox($entity) !!}
+                    {{ trans('entities.' . $entity) }}
+                </label>
+            </div>
         </div>
             <?php $i++; ?>
         @endforeach
     </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
+</div>
+    <div class="form-group">
+        <div class="checkbox">
             <label>
                 {!! Form::hidden('release', 0) !!}
                 {!! Form::checkbox('release') !!}
@@ -38,7 +40,6 @@
             </label>
         </div>
     </div>
-</div>
 
 
 <div class="form-group">

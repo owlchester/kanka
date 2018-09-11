@@ -52,6 +52,7 @@ return [
             'dark'      => 'Dark',
             'default'   => 'Default',
             'future'    => 'Future',
+            'midnight'  => 'Midnight Blue',
         ],
     ],
     'title'         => 'Update your profile',

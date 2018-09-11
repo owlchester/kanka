@@ -8,17 +8,13 @@
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-6 col-md-offset">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @include('partials.errors')
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @include('partials.errors')
 
-                    {!! Form::model(Auth::user()->dashboardSetting, ['method' => 'PATCH', 'route' => ['dashboard.settings.update']]) !!}
-                    @include('dashboard.settings._form')
-                    {!! Form::close() !!}
-                </div>
-            </div>
+            {!! Form::model(Auth::user()->dashboardSetting, ['method' => 'PATCH', 'route' => ['dashboard.settings.update']]) !!}
+            @include('dashboard.settings._form')
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

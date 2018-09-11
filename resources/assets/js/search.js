@@ -4,6 +4,7 @@ require('corejs-typeahead');
 window.Bloodhound = require('bloodhound-js');
 
 var liveSearchField, liveSearchResults, liveSearchRunning = false;
+var liveSearchForm, liveSearchClose;
 var searchEngine;
 
 
@@ -61,6 +62,22 @@ function initLiveSearch() {
     //Catch typeahead events
     .on('typeahead:select', submitSuggestion)
     .on('typeahead:autocomplete', submitSuggestion);
+
+    // Mobile search
+    liveSearchForm = $('.live-search-form');
+    liveSearchClose = $('.live-search-close');
+    $('.mobile-search').on('click', function(e) {
+        e.preventDefault();
+        liveSearchForm.removeClass('visible-md').removeClass('visible-xl');
+        $('.navbar-custom-menu').hide();
+    });
+
+    liveSearchClose.on('click', function(e) {
+        e.preventDefault();
+        liveSearchForm.addClass('visible-md').addClass('visible-xl');
+        $('.navbar-custom-menu').show();
+
+    })
 }
 /*
  * User triggered a submit, either via the typeahead:submit

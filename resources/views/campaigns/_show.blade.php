@@ -74,28 +74,28 @@
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                     <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
-                        <span class="fa fa-align-justify"></span> {{ trans('crud.panels.entry') }}
+                        <span class="fa fa-align-justify"></span> <span class="hidden-xs hidden-sm">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
                 <li class="">
                     <a href="#member">
-                        <span class="fa fa-users"></span> {{ trans('campaigns.show.tabs.members') }}
+                        <span class="fa fa-users"></span> <span class="hidden-xs hidden-sm">{{ trans('campaigns.show.tabs.members') }}</span>
                     </a>
                 </li>
                 @can('update', $campaign)
                 <li class="">
                     <a href="#roles">
-                        <span class="fa fa-lock"></span> {{ trans('campaigns.show.tabs.roles') }}
+                        <span class="fa fa-lock"></span> <span class="hidden-xs hidden-sm">{{ trans('campaigns.show.tabs.roles') }}</span>
                     </a>
                 </li>
                 <li class="">
                     <a href="#setting">
-                        <span class="fa fa-cubes"></span> {{ trans('campaigns.show.tabs.settings') }}
+                        <span class="fa fa-cubes"></span> <span class="hidden-xs hidden-sm">{{ trans('campaigns.show.tabs.settings') }}</span>
                     </a>
                 </li>
                 <li class="">
                     <a href="#export">
-                        <span class="fa fa-download"></span> {{ trans('campaigns.show.tabs.export') }}
+                        <span class="fa fa-download"></span> <span class="hidden-xs hidden-sm">{{ trans('campaigns.show.tabs.export') }}</span>
                     </a>
                 </li>
                 @endcan
