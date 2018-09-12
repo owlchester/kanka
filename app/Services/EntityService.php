@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
 
 class EntityService
 {
@@ -173,10 +174,10 @@ class EntityService
         $child->detach();
 
         // Save and keep the current campaign before updating the entity
-        $currentCampaign = Auth::user()->campaign;
-        Session::put('campaign_id', $campaign->id);
+        $currentCampaign = CampaignLocalization::getCampaign();
 
         // Update Entity first, as there are no hooks on the Entity model.
+        CampaignLocalization::forceCampaign($campaign);
         $entity->campaign_id = $campaign->id;
         $entity->save();
 
@@ -188,8 +189,8 @@ class EntityService
         $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
         $child->save();
 
-        // Switch back to the original campaign and cross your fingers that everything worked!
-        Session::put('campaign_id', $currentCampaign->id);
+        // Switch back to the original campaign
+        CampaignLocalization::forceCampaign($currentCampaign);
 
         return $entity;
     }

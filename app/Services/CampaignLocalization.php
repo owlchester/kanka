@@ -159,6 +159,15 @@ class CampaignLocalization
     }
 
     /**
+     * Force the campaign. This is use for moving entities between campaigns.
+     * @param Campaign $campaign
+     */
+    public function forceCampaign(Campaign $campaign)
+    {
+        $this->campaign = $campaign;
+    }
+
+    /**
      * Get the url of the campaign
      * @param $campaignId
      * @return string
