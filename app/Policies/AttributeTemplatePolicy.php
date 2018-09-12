@@ -119,7 +119,7 @@ class AttributeTemplatePolicy
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
-        foreach ($user->roles as $role) {
+        foreach ($user->campaignRoles as $role) {
             if ($role->is_admin) {
                 return true;
             }

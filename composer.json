@@ -1,21 +1,22 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "ilestis/miscellany",
+    "description": "Campaign Management Tool.",
     "keywords": [
-        "framework",
-        "laravel"
+        "campaign",
+        "rpg",
+        "worldbuilding"
     ],
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.1.3",
         "almasaeed2010/adminlte": "~2.4",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "chumper/zipper": "^1.0",
-        "fideloper/proxy": "~3.3",
+        "fideloper/proxy": "^4.0",
         "intervention/image": "^2.4",
         "kalnoy/nestedset": "^4.3",
-        "laravel/framework": "5.5.*",
+        "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
@@ -37,7 +38,7 @@
         "fzaninotto/faker": "~1.4",
         "laravel/homestead": "^7.0",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "classmap": [

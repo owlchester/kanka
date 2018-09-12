@@ -21,7 +21,7 @@ trait AdminPolicyTrait
     {
         if ($this->cachedAdminPolicy === null) {
             $this->cachedAdminPolicy = false;
-            foreach ($user->roles as $role) {
+            foreach ($user->campaignRoles as $role) {
                 if ($role->is_admin) {
                     $this->cachedAdminPolicy = true;
                 }

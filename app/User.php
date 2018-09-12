@@ -183,13 +183,13 @@ class User extends \TCG\Voyager\Models\User
      * Get the user's roles
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function roles($campaignId = null)
-    {
-        if (empty($campaignId)) {
-            $campaignId = $this->campaign->id;
-        }
-        return $this->campaignRoles($campaignId);
-    }
+//    public function roles($campaignId = null)
+//    {
+//        if (empty($campaignId)) {
+//            $campaignId = $this->campaign->id;
+//        }
+//        return $this->campaignRoles($campaignId);
+//    }
 
     /**
      * @param null $campaignId
@@ -208,8 +208,12 @@ class User extends \TCG\Voyager\Models\User
      * @param $campaignId
      * @return $this
      */
-    public function campaignRoles($campaignId)
+    public function campaignRoles($campaignId = null)
     {
+        if (empty($campaignId)) {
+            $campaignId = $this->campaign->id;
+        }
+
         return $this->hasManyThrough(
             'App\Models\CampaignRole',
             'App\Models\CampaignRoleUser',
@@ -236,7 +240,7 @@ class User extends \TCG\Voyager\Models\User
     public function isAdmin()
     {
         if ($this->isAdminCached === null) {
-            $this->isAdminCached = $this->roles()->where(['is_admin' => true])->count() > 0;
+            $this->isAdminCached = $this->campaignRoles()->where(['is_admin' => true])->count() > 0;
         }
         return $this->isAdminCached;
     }

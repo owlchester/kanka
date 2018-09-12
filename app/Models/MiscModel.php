@@ -198,7 +198,7 @@ abstract class MiscModel extends Model
         $roleIds = [];
 
         if (Auth::check()) {
-            foreach ($user->roles as $role) {
+            foreach ($user->campaignRoles as $role) {
                 if ($role->is_admin) {
                     return $query;
                 }

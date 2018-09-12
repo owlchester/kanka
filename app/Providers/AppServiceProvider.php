@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -91,6 +92,8 @@ class AppServiceProvider extends ServiceProvider
             QuestLocation::observe('App\Observers\QuestLocationObserver');
 
             Relation::observe('App\Observers\RelationObserver');
+
+            Paginator::useBootstrapThree();
         }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
