@@ -1,13 +1,16 @@
 <!-- Main Footer -->
 <footer class="main-footer">
     <div class="row">
-        <div class="col-md-4 hidden-xs">
+        <div class="col-xs-4 hidden-xs hidden-sm">
             <strong>{{ trans('footer.copyright', ['year' => date('Y')]) }} <a href="#">{{ config('app.name') }}</a> - <a href="{{ route('releases.index') }}">{{ setting('kanka.version') }}</a>.</strong> All rights reserved.
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-xs-4 text-center hidden-xs hidden-sm">
             <a href="mailto:#">hello@kanka.io</a>
         </div>
-        <div class="col-md-4 text-right footer-social hidden-xs">
+        <div class="col-xs-8 visible-xs visible-sm">
+            <a href="mailto:#">hello@kanka.io</a>
+        </div>
+        <div class="col-xs-4 text-right footer-social">
             <a href="//twitter.com/kankaio" title="Twitter">
                 <i class="fa fa-twitter"></i>
             </a>

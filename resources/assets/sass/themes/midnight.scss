@@ -60,16 +60,15 @@ body {
 //}
 
 .box, .panel  {
-  border: 1px solid $Unfocused !important;
-  background: none !important;
+  border: none !important;
+  background-color: $Detail !important;
 
   .box-header, .panel-heading {
-    background: none !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
     border: none !important;
   }
   .with-border {
-    background: none !important;
-    border-bottom: 1px solid $Unfocused !important;
+    border-bottom: none !important;
   }
 
   .box-footer, .panel-footer {
@@ -195,9 +194,10 @@ input[type="checkbox"]:checked:after {
 }
 
 .main-footer {
-  background: none !important;
+  background-color: $Detail !important;
   border-top: none !important;
   color: #999fac !important;
+  margin-left: 0;
 }
 
 .user-footer {
@@ -318,7 +318,7 @@ pre, blockquote {
   background: none;
 }
 .product-list-in-box > .item {
-  border-bottom: 1px solid $Unfocused;
+  border-bottom: 1px solid $Soft;
 }
 .small-box, .info-box {
   background-color: $Detail !important;

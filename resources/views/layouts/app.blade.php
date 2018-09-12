@@ -55,6 +55,35 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
+                <ol class="breadcrumb">
+                    @if ($campaign)
+                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @else
+                        <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                    @endif
+                    @if (isset($breadcrumbs))
+                        @foreach ($breadcrumbs as $breadcrumb)
+                            <li>
+                                @if (!empty($breadcrumb['url']))
+                                    <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
+                                        @if (strlen($breadcrumb['label']) > 22)
+                                            {{ substr($breadcrumb['label'], 0, 20) . '...' }}
+                                        @else
+                                            {{ $breadcrumb['label'] }}
+                                        @endif
+                                    </a>
+                                @else
+                                    @if (strlen($breadcrumb) > 22)
+                                        <span title="{{ $breadcrumb }}">{{ substr($breadcrumb, 0, 20) . '...' }}</span>
+                                    @else
+                                        {{ $breadcrumb }}
+                                    @endif
+                                @endif
+                            </li>
+                        @endforeach
+                    @endif
+                </ol>
+
                 <div class="row">
                     <div class="col-md-12 content-header">
                         <h1>
@@ -66,34 +95,6 @@
                         </h1>
                     </div>
                 </div>
-                <ol class="breadcrumb">
-                    @if ($campaign)
-                    <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
-                    @else
-                    <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
-                    @endif
-                    @if (isset($breadcrumbs))
-                    @foreach ($breadcrumbs as $breadcrumb)
-                        <li>
-                            @if (!empty($breadcrumb['url']))
-                            <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
-                                @if (strlen($breadcrumb['label']) > 22)
-                                    {{ substr($breadcrumb['label'], 0, 20) . '...' }}
-                                @else
-                                    {{ $breadcrumb['label'] }}
-                                @endif
-                                </a>
-                            @else
-                                @if (strlen($breadcrumb) > 22)
-                                    <span title="{{ $breadcrumb }}">{{ substr($breadcrumb, 0, 20) . '...' }}</span>
-                                @else
-                                    {{ $breadcrumb }}
-                                @endif
-                            @endif
-                        </li>
-                    @endforeach
-                    @endif
-                </ol>
             </section>
 
             <!-- Main content -->

@@ -2333,6 +2333,11 @@ img.profile-user-img {
   width: 200px;
 }
 
+.content-header .breadcrumb {
+  position: relative;
+  float: left;
+}
+
 .navbar-nav .campaign-menu .campaign-image {
   float: left;
   width: 25px;

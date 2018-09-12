@@ -224,10 +224,6 @@ class EntityService
             }
         }
 
-        // Special support for description/history
-        if (in_array('entry', $fillable) && empty($new->entry) && !empty($old->entry)) {
-            $new->entry = $old->entry;
-        }
         // Special import for location parent_location_id
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
             $new->location_id = $old->parent_location_id;
@@ -290,7 +286,6 @@ class EntityService
         $entity->type = $new->getEntityType();
         $entity->entity_id = $new->id;
         $entity->save();
-
 
         // Delete old, this will take care of pictures and stuff
         $old->delete();
