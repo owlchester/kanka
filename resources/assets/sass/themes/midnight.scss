@@ -222,8 +222,8 @@ pre, blockquote {
 }
 
 .nav-tabs-custom {
-  border: 1px solid $Hard;
-  background: none;
+  border: none;
+  background-color: $Detail;
 
   .tab-content {
     background: none;

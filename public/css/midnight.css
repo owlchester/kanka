@@ -213,8 +213,8 @@ blockquote {
 }
 
 .nav-tabs-custom {
-  border: 1px solid #fff;
-  background: none;
+  border: none;
+  background-color: #0a121b;
 }
 
 .nav-tabs-custom .tab-content {
