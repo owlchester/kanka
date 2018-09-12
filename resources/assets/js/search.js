@@ -68,13 +68,13 @@ function initLiveSearch() {
     liveSearchClose = $('.live-search-close');
     $('.mobile-search').on('click', function(e) {
         e.preventDefault();
-        liveSearchForm.removeClass('visible-md').removeClass('visible-xl');
+        liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
         $('.navbar-custom-menu').hide();
     });
 
     liveSearchClose.on('click', function(e) {
         e.preventDefault();
-        liveSearchForm.addClass('visible-md').addClass('visible-xl');
+        liveSearchForm.addClass('visible-md').addClass('visible-lg');
         $('.navbar-custom-menu').show();
 
     })

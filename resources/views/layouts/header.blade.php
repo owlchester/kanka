@@ -17,7 +17,7 @@
         </a>
         @endif
         @if (!empty($currentCampaign))
-            {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-xl navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
+            {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
                 <input type="text" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
                        placeholder="{{ trans('sidebar.search') }}" data-url="{{ route('search.live') }}"
                        data-empty="{{ trans('search.no_results') }}">
