@@ -94,7 +94,7 @@ class Character extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'title', 'entry'];
+    protected $searchableColumns = ['name', 'title', 'entry'];
 
     /**
      * Casting for order by
@@ -192,6 +192,14 @@ class Character extends MiscModel
     public function conversations()
     {
         return $this->hasManyThrough('App\Models\Conversation', 'App\Models\ConversationParticipant', 'character_id', 'id', 'id', 'conversation_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function conversationParticipants()
+    {
+        return $this->hasMany('App\Models\ConversationParticipant', 'character_id');
     }
 
     /**

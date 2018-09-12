@@ -281,6 +281,12 @@ class EntityService
                 }
             }
         }
+        // Remove a character from conversations
+        if ($old->getEntityType() == 'character') {
+            foreach ($old->conversationParticipants as $conPar) {
+                $conPar->delete();
+            }
+        }
 
         // Update entity
         $entity->type = $new->getEntityType();

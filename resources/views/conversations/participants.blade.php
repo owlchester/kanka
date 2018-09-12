@@ -20,8 +20,7 @@
         <div class="panel-body">
             <ul class="list-group list-group-unbordered margin-bottom">
                 @foreach ($model->participants as $participant)
-
-                    @can('view', $participant->entity())
+                    @if ($participant->target() == \App\Models\Conversation::TARGET_USERS || auth()->user()->can('view', $participant->entity()))
                     <li class="list-group-item">
                         @can('update', $model)
                             {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', 'conversation' => $model, 'participant' => $participant], 'style'=>'display:inline']) !!}
@@ -40,7 +39,7 @@
                             {!! Form::close() !!}
                         @endcan
                     </li>
-                    @endcan
+                    @endif
                 @endforeach
             </ul>
 
@@ -70,6 +69,9 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+                        @if ($model->target ==  \App\Models\Conversation::TARGET_CHARACTERS)
+                            <label></label>
+                        @endif
                         <button class="btn btn-primary btn-info btn-flat btn-block">
                             <i class="fa fa-plus"></i> {{ trans('crud.add') }}
                         </button>
