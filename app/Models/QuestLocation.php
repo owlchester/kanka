@@ -20,7 +20,7 @@ class QuestLocation extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['quest_id', 'location_id', 'entry', 'is_private'];
+    protected $fillable = ['quest_id', 'location_id', 'description', 'is_private'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

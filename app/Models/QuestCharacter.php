@@ -20,7 +20,7 @@ class QuestCharacter extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['quest_id', 'character_id', 'entry', 'is_private'];
+    protected $fillable = ['quest_id', 'character_id', 'description', 'is_private'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
