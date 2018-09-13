@@ -85,18 +85,23 @@ class GenerateMentions extends Command
                         $this->campaignLink = $model->campaign->getMiddlewareLink();
                     }
 
-                    $fields = ['history', 'description', 'entry'];
+                    $fields = ['entry'];
                     foreach ($fields as $field) {
                         if (array_has($attributes, $field)) {
-                            if (strpos($model->$field, 'kanka.io') !== false) {
+                            if (strpos($model->$field, '/redirect?what') !== false) {
                                 // Fix http to https & www to direct
                                 $model->$field = str_replace(
-                                    ['http://kanka.io', 'http://www.kanka.io', 'https://www.kanka.io'],
-                                    ['https://kanka.io', 'https://kanka.io', 'https://kanka.io'],
+                                    [
+                                        '"/redirect?what',
+                                        'https://kanka.io/redirect?what'
+                                    ],
+                                    [
+                                        '"https://kanka.io/en/' . $this->campaignLink . '/redirect?what',
+                                        'https://kanka.io/en/' . $this->campaignLink . '/redirect?what',
+                                    ],
                                     $model->$field
                                 );
-
-                                $model->$field = preg_replace_callback("`" . $this->url . '\/(.*?)\/(.*?)\/(.*?)`i', [$this, 'fixUrls'], $model->$field);
+                                //$model->$field = preg_replace_callback("`" . $this->url . '\/(.*?)\/(.*?)\/(.*?)`i', [$this, 'fixUrls'], $model->$field);
 
                                 if ($model->isDirty($field)) {
                                     $updated = true;
