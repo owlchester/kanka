@@ -29,6 +29,20 @@ Route::group([
 
     Auth::routes();
 
+    Route::get('/settings/profile', 'Settings\ProfileController@index')->name('settings.profile');
+    Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
+
+    Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account');
+    Route::patch('/settings/account/password', 'Settings\AccountController@password')->name('settings.account.password');
+    Route::patch('/settings/account/email', 'Settings\AccountController@email')->name('settings.account.email');
+    Route::patch('/settings/account/destroy', 'Settings\AccountController@destroy')->name('settings.account.destroy');
+
+    Route::get('/settings/api', 'Settings\ApiController@index')->name('settings.api');
+
+    Route::get('/settings/layout', 'Settings\LayoutController@index')->name('settings.layout');
+    Route::patch('/settings/layout', 'Settings\LayoutController@update')->name('settings.layout');
+
+
     Route::get('/profile', 'ProfileController@edit')->name('profile');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
     Route::patch('/profile/theme', 'ProfileController@theme')->name('profile.theme');

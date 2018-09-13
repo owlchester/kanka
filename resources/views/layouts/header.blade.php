@@ -157,7 +157,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <a href="{{ route('profile') }}">
+                            <a href="{{ route('settings.profile') }}">
                                 <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
                             </a>
                             <p>
@@ -168,7 +168,7 @@
                         <li class="user-footer">
                             @if (Auth::user()->hasCampaigns())
                             <div class="pull-left">
-                                <a href="{{ route('profile') }}" class="btn btn-default btn-flat"> {{ trans('header.profile') }}</a>
+                                <a href="{{ route('settings.profile') }}" class="btn btn-default btn-flat"> {{ trans('header.profile') }}</a>
                             </div>
                             @endif
                             <div class="pull-right">

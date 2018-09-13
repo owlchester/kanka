@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreProfileTheme extends FormRequest
+class StoreSettingsLayout extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,8 @@ class StoreProfileTheme extends FormRequest
     public function rules()
     {
         return [
+            'date_format' => '',
+            'default_pagination' => 'required|numeric',
             'theme' => '',
         ];
     }

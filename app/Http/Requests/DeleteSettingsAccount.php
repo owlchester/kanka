@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreProfileAvatar extends FormRequest
+class DeleteSettingsAccount extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,13 @@ class StoreProfileAvatar extends FormRequest
      */
     public function rules()
     {
-        return [
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
-        ];
+        $user = Auth::user();
+        $rules = [];
+        if (empty($user->provider)) {
+            $rules = [
+                'password' => 'required|hash:' . $user->getAuthPassword()
+            ];
+        }
+        return $rules;
     }
 }

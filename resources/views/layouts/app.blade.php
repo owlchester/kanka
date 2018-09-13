@@ -55,6 +55,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
+                @if (!isset($breadcrumbs) || $breadcrumbs !== false)
                 <ol class="breadcrumb">
                     @if ($campaign)
                         <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
@@ -83,18 +84,14 @@
                         @endforeach
                     @endif
                 </ol>
-
-                <div class="row">
-                    <div class="col-md-12 content-header">
-                        <h1>
-                            {{ $title or "Page Title" }}
-                            <small>{{ $description or null }}</small>
-                            @if (!empty($headerExtra))
-                                {!! $headerExtra !!}
-                            @endif
-                        </h1>
-                    </div>
-                </div>
+                @endif
+                <h1>
+                    {{ $title or "Page Title" }}
+                    <small>{{ $description or null }}</small>
+                    @if (!empty($headerExtra))
+                        {!! $headerExtra !!}
+                    @endif
+                </h1>
             </section>
 
             <!-- Main content -->
