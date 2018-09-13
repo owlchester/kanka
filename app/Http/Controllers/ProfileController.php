@@ -111,4 +111,12 @@ class ProfileController extends Controller
         $user->delete();
         return redirect()->route('home');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function api()
+    {
+        return view('profiles.api');
+    }
 }

@@ -370,9 +370,4 @@ abstract class MiscModel extends Model
         }
         $this->save();
     }
-
-    public function paginate()
-    {
-        return parent::paginate();
-    }
 }

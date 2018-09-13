@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Passport\HasApiTokens;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -22,7 +23,7 @@ class User extends \TCG\Voyager\Models\User
 
     protected $cachedHasCampaign = null;
 
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

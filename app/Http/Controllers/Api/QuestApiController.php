@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Models\Campaign;
+use App\Models\Quest;
+use App\Http\Requests\StoreQuest as Request;
+use App\Http\Resources\Quest as Resource;
+use App\Http\Resources\QuestCollection as Collection;
+
+class QuestApiController extends ApiController
+{
+    /**
+     * @param Campaign $campaign
+     * @return Collection
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function index(Campaign $campaign)
+    {
+        $this->authorize('access', $campaign);
+        return new Collection($campaign->quests);
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @param Quest $quest
+     * @return Resource
+     */
+    public function show(Campaign $campaign, Quest $quest)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('view', $quest);
+        return new Resource($quest);
+    }
+
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function store(Request $request, Campaign $campaign)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('create', Quest::class);
+        $model = Quest::create($request->all());
+        return new Resource($model);
+    }
+
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @param Quest $quest
+     * @return Resource
+     */
+    public function update(Request $request, Campaign $campaign, Quest $quest)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('update', $quest);
+        $quest->update($request->all());
+
+        return new Resource($quest);
+    }
+
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @param Quest $quest
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function delete(Request $request, Campaign $campaign, Quest $quest)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('delete', $quest);
+        $quest->delete();
+
+        return response()->json(null, 204);
+    }
+}
