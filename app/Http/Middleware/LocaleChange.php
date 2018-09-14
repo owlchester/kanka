@@ -24,6 +24,11 @@ class LocaleChange
                 $user->update(['locale' => $locale]);
                 return redirect()->to($request->url());
             } elseif ($user->locale != $locale) {
+                // If the locale is empty, we need to set it.
+                if (empty($user->locale)) {
+                    $user->locale = $locale;
+                    $user->save();
+                }
                 // Redirect to the user's normal locale
                 return redirect()->to(LaravelLocalization::getLocalizedURL($user->locale));
             }

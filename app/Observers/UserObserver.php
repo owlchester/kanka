@@ -13,6 +13,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
 {
@@ -51,6 +52,11 @@ class UserObserver
             'ip' => request()->ip()
         ]);
         $log->save();
+    }
+
+    public function creating(User $user)
+    {
+        $user->locale = LaravelLocalization::getCurrentLocale();
     }
 
     /**

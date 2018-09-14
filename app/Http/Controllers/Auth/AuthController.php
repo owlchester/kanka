@@ -7,7 +7,6 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AuthController extends Controller
 {
@@ -87,8 +86,7 @@ class AuthController extends Controller
             'email'    => $user->email,
             'password' => $user->email,
             'provider' => $provider,
-            'provider_id' => $user->id,
-            'locale' => LaravelLocalization::getCurrentLocale()
+            'provider_id' => $user->id
         ]);
     }
 
