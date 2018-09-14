@@ -23,7 +23,7 @@ return [
     'api' => [
         'title' => 'API',
         'description' => 'Update your API settings',
-        'help' => 'Kanka will soon provide an RESTfull API so that third-party apps can connect to the app. Details on how to manage your API keys will be shown here.',
+        'help' => 'Kanka will soon provide an RESTful API so that third-party apps can connect to the app. Details on how to manage your API keys will be shown here.',
     ],
     'layout' => [
         'title' => 'Layout',
