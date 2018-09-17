@@ -45,7 +45,14 @@ class Campaign extends MiscModel
      */
     public function users()
     {
-        return $this->belongsToMany('App\User', 'campaign_user');
+        return $this->hasManyThrough(
+            'App\User',
+            'App\Models\CampaignUser',
+            'campaign_id',
+            'id',
+            'id',
+            'user_id'
+        );
     }
 
     /**

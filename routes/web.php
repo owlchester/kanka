@@ -62,6 +62,7 @@ Route::group([
     // Password
     Route::patch('/profile/password', 'ProfileController@password')->name('profile.password');
     Route::patch('/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
+    Route::get('/profile/api', 'ProfileController@api')->name('profile.api');
 
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');

@@ -25,6 +25,21 @@ class CampaignPolicy
     }
 
     /**
+     * Determine whether the user can access the campaign
+     *
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function access(User $user, Campaign $campaign)
+    {
+        if ($campaign->visibility == 'public') {
+            return true;
+        }
+        return $campaign->user();
+    }
+
+    /**
      * Determine whether the user can create campaigns.
      *
      * @param  User  $user
