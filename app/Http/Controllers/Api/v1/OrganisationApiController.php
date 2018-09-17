@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Section;
-use App\Http\Requests\StoreSection as Request;
-use App\Http\Resources\Section as Resource;
-use App\Http\Resources\SectionCollection as Collection;
+use App\Models\Organisation;
+use App\Http\Requests\StoreOrganisation as Request;
+use App\Http\Resources\Organisation as Resource;
+use App\Http\Resources\OrganisationCollection as Collection;
 
-class SectionApiController extends ApiController
+class OrganisationApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class SectionApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->sections);
+        return new Collection($campaign->organisations);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Section $section
+     * @param Organisation $organisation
      * @return Resource
      */
-    public function show(Campaign $campaign, Section $section)
+    public function show(Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $section);
-        return new Resource($section);
+        $this->authorize('view', $organisation);
+        return new Resource($organisation);
     }
 
     /**
@@ -42,38 +42,38 @@ class SectionApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Section::class);
-        $model = Section::create($request->all());
+        $this->authorize('create', Organisation::class);
+        $model = Organisation::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Section $section
+     * @param Organisation $organisation
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Section $section)
+    public function update(Request $request, Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $section);
-        $section->update($request->all());
+        $this->authorize('update', $organisation);
+        $organisation->update($request->all());
 
-        return new Resource($section);
+        return new Resource($organisation);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Section $section
+     * @param Organisation $organisation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Section $section)
+    public function delete(Request $request, Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $section);
-        $section->delete();
+        $this->authorize('delete', $organisation);
+        $organisation->delete();
 
         return response()->json(null, 204);
     }

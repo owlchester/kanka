@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Item;
-use App\Http\Requests\StoreItem as Request;
-use App\Http\Resources\Item as Resource;
-use App\Http\Resources\ItemCollection as Collection;
+use App\Models\Family;
+use App\Http\Requests\StoreFamily as Request;
+use App\Http\Resources\Family as Resource;
+use App\Http\Resources\FamilyCollection as Collection;
 
-class ItemApiController extends ApiController
+class FamilyApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class ItemApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->items);
+        return new Collection($campaign->families);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Item $item
+     * @param Family $family
      * @return Resource
      */
-    public function show(Campaign $campaign, Item $item)
+    public function show(Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $item);
-        return new Resource($item);
+        $this->authorize('view', $family);
+        return new Resource($family);
     }
 
     /**
@@ -42,38 +42,38 @@ class ItemApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Item::class);
-        $model = Item::create($request->all());
+        $this->authorize('create', Family::class);
+        $model = Family::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Item $item
+     * @param Family $family
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Item $item)
+    public function update(Request $request, Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $item);
-        $item->update($request->all());
+        $this->authorize('update', $family);
+        $family->update($request->all());
 
-        return new Resource($item);
+        return new Resource($family);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Item $item
+     * @param Family $family
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Item $item)
+    public function delete(Request $request, Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $item);
-        $item->delete();
+        $this->authorize('delete', $family);
+        $family->delete();
 
         return response()->json(null, 204);
     }

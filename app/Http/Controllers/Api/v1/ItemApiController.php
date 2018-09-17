@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Journal;
-use App\Http\Requests\StoreJournal as Request;
-use App\Http\Resources\Journal as Resource;
-use App\Http\Resources\JournalCollection as Collection;
+use App\Models\Item;
+use App\Http\Requests\StoreItem as Request;
+use App\Http\Resources\Item as Resource;
+use App\Http\Resources\ItemCollection as Collection;
 
-class JournalApiController extends ApiController
+class ItemApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class JournalApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->journals);
+        return new Collection($campaign->items);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Journal $journal
+     * @param Item $item
      * @return Resource
      */
-    public function show(Campaign $campaign, Journal $journal)
+    public function show(Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $journal);
-        return new Resource($journal);
+        $this->authorize('view', $item);
+        return new Resource($item);
     }
 
     /**
@@ -42,38 +42,38 @@ class JournalApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Journal::class);
-        $model = Journal::create($request->all());
+        $this->authorize('create', Item::class);
+        $model = Item::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Journal $journal
+     * @param Item $item
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Journal $journal)
+    public function update(Request $request, Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $journal);
-        $journal->update($request->all());
+        $this->authorize('update', $item);
+        $item->update($request->all());
 
-        return new Resource($journal);
+        return new Resource($item);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Journal $journal
+     * @param Item $item
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Journal $journal)
+    public function delete(Request $request, Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $journal);
-        $journal->delete();
+        $this->authorize('delete', $item);
+        $item->delete();
 
         return response()->json(null, 204);
     }

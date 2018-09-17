@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Family;
-use App\Http\Requests\StoreFamily as Request;
-use App\Http\Resources\Family as Resource;
-use App\Http\Resources\FamilyCollection as Collection;
+use App\Models\Calendar;
+use App\Http\Requests\StoreCalendar as Request;
+use App\Http\Resources\Calendar as Resource;
+use App\Http\Resources\CalendarCollection as Collection;
 
-class FamilyApiController extends ApiController
+class CalendarApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class FamilyApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->families);
+        return new Collection($campaign->calendars);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Family $family
+     * @param Calendar $calendar
      * @return Resource
      */
-    public function show(Campaign $campaign, Family $family)
+    public function show(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $family);
-        return new Resource($family);
+        $this->authorize('view', $calendar);
+        return new Resource($calendar);
     }
 
     /**
@@ -42,38 +42,38 @@ class FamilyApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Family::class);
-        $model = Family::create($request->all());
+        $this->authorize('create', Calendar::class);
+        $model = Calendar::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Family $family
+     * @param Calendar $calendar
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Family $family)
+    public function update(Request $request, Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $family);
-        $family->update($request->all());
+        $this->authorize('update', $calendar);
+        $calendar->update($request->all());
 
-        return new Resource($family);
+        return new Resource($calendar);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Family $family
+     * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Family $family)
+    public function delete(Request $request, Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $family);
-        $family->delete();
+        $this->authorize('delete', $calendar);
+        $calendar->delete();
 
         return response()->json(null, 204);
     }

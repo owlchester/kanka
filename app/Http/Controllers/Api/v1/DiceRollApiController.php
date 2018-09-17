@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Location;
-use App\Http\Requests\StoreLocation as Request;
-use App\Http\Resources\Location as Resource;
-use App\Http\Resources\LocationCollection as Collection;
+use App\Models\DiceRoll;
+use App\Http\Requests\StoreDiceRoll as Request;
+use App\Http\Resources\DiceRoll as Resource;
+use App\Http\Resources\DiceRollCollection as Collection;
 
-class LocationApiController extends ApiController
+class DiceRollApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class LocationApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->locations);
+        return new Collection($campaign->diceRolls);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Location $location
+     * @param DiceRoll $diceRoll
      * @return Resource
      */
-    public function show(Campaign $campaign, Location $location)
+    public function show(Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $location);
-        return new Resource($location);
+        $this->authorize('view', $diceRoll);
+        return new Resource($diceRoll);
     }
 
     /**
@@ -42,38 +42,38 @@ class LocationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Location::class);
-        $model = Location::create($request->all());
+        $this->authorize('create', DiceRoll::class);
+        $model = DiceRoll::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Location $location
+     * @param DiceRoll $diceRoll
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Location $location)
+    public function update(Request $request, Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $location);
-        $location->update($request->all());
+        $this->authorize('update', $diceRoll);
+        $diceRoll->update($request->all());
 
-        return new Resource($location);
+        return new Resource($diceRoll);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Location $location
+     * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Location $location)
+    public function delete(Request $request, Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $location);
-        $location->delete();
+        $this->authorize('delete', $diceRoll);
+        $diceRoll->delete();
 
         return response()->json(null, 204);
     }

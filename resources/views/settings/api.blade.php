@@ -17,7 +17,9 @@
                         {{ trans('settings.api.title') }}
                     </h2>
 
-                    <p class="text-muted">{{ trans('settings.api.help') }}</p>
+                    <passport-clients></passport-clients>
+                    <passport-authorized-clients></passport-authorized-clients>
+                    <passport-personal-access-tokens></passport-personal-access-tokens>
                 </div>
             </div>
         </div>

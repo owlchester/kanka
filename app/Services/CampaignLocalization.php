@@ -129,6 +129,11 @@ class CampaignLocalization
             // If the locale has not been passed through the function
             // it tries to get it from the first segment of the url
             $campaignId = $this->request->segment(3);
+
+            // Workaround for the API, where we need the 4th segment
+            if ($this->request->segment(1) == 'api') {
+                $campaignId = $this->request->segment(4);
+            }
         }
 
         // Check to make sure the campaign is an id (we don't want to check the db at this point)

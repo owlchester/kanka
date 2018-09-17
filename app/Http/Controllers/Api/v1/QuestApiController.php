@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Organisation;
-use App\Http\Requests\StoreOrganisation as Request;
-use App\Http\Resources\Organisation as Resource;
-use App\Http\Resources\OrganisationCollection as Collection;
+use App\Models\Quest;
+use App\Http\Requests\StoreQuest as Request;
+use App\Http\Resources\Quest as Resource;
+use App\Http\Resources\QuestCollection as Collection;
 
-class OrganisationApiController extends ApiController
+class QuestApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class OrganisationApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->organisations);
+        return new Collection($campaign->quests);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Organisation $organisation
+     * @param Quest $quest
      * @return Resource
      */
-    public function show(Campaign $campaign, Organisation $organisation)
+    public function show(Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $organisation);
-        return new Resource($organisation);
+        $this->authorize('view', $quest);
+        return new Resource($quest);
     }
 
     /**
@@ -42,38 +42,38 @@ class OrganisationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Organisation::class);
-        $model = Organisation::create($request->all());
+        $this->authorize('create', Quest::class);
+        $model = Quest::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Organisation $organisation
+     * @param Quest $quest
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Organisation $organisation)
+    public function update(Request $request, Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $organisation);
-        $organisation->update($request->all());
+        $this->authorize('update', $quest);
+        $quest->update($request->all());
 
-        return new Resource($organisation);
+        return new Resource($quest);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Organisation $organisation
+     * @param Quest $quest
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Organisation $organisation)
+    public function delete(Request $request, Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $organisation);
-        $organisation->delete();
+        $this->authorize('delete', $quest);
+        $quest->delete();
 
         return response()->json(null, 204);
     }

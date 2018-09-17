@@ -42,12 +42,6 @@ Route::group([
     Route::get('/settings/layout', 'Settings\LayoutController@index')->name('settings.layout');
     Route::patch('/settings/layout', 'Settings\LayoutController@update')->name('settings.layout');
 
-
-    Route::get('/profile', 'ProfileController@edit')->name('profile');
-    Route::patch('/profile', 'ProfileController@update')->name('profile.update');
-    Route::patch('/profile/theme', 'ProfileController@theme')->name('profile.theme');
-    Route::patch('/profile/setting', 'ProfileController@setting')->name('profile.setting');
-    Route::patch('/profile/avatar', 'ProfileController@avatar')->name('profile.avatar');
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
     Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
@@ -58,11 +52,6 @@ Route::group([
     Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
-
-    // Password
-    Route::patch('/profile/password', 'ProfileController@password')->name('profile.password');
-    Route::patch('/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
-    Route::get('/profile/api', 'ProfileController@api')->name('profile.api');
 
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
