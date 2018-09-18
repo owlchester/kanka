@@ -229,7 +229,17 @@ pre, blockquote {
     background: none;
   }
 }
+.nav-stacked {
+  li {
+    border-bottom: 1px solid $Soft !important;
 
+    a {
+      &:hover {
+        background-color: $Soft !important;
+      }
+    }
+  }
+}
 .nav-tabs {
   border: none !important;
 
