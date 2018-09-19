@@ -435,4 +435,8 @@ pre, blockquote {
   .content-header > .breadcrumb {
     background: none !important;
   }
+
+  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    background-color: $Detail;
+  }
 }
