@@ -2,8 +2,7 @@
 
 return [
     'campaigns'         => [
-        'current'   => 'The current campaign',
-        'manage'    => 'Manage campaigns',
+        'manage'    => 'Manage campaign',
     ],
     'description'       => 'The home for your creativity',
     'latest_release'    => 'Latest Release',

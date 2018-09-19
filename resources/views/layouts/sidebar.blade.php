@@ -11,7 +11,7 @@
             </li>
             @if (Auth::check())
             <li class="{{ $sidebar->active('campaigns') }}">
-                <a href="{{ route('campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>
+                <a href="{{ route('campaign') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaign') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('menu_links'))
