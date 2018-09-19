@@ -42,6 +42,8 @@ use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
@@ -94,6 +96,8 @@ class AppServiceProvider extends ServiceProvider
             Relation::observe('App\Observers\RelationObserver');
 
             Paginator::useBootstrapThree();
+
+            $this->addBladeDirectives();
         }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
@@ -109,5 +113,31 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     *
+     */
+    protected function addBladeDirectives()
+    {
+        // Role based directives
+        Blade::if('admin', function () {
+            return auth()->check() && auth()->user()->hasRole('admin');
+        });
+        Blade::if('translator', function () {
+            return auth()->check() && auth()->user()->hasRole('translator');
+        });
+        Blade::if('moderator', function () {
+            return auth()->check() && auth()->user()->hasRole('moderator');
+        });
+
+        // API directive for users in the API role
+        Blade::if('api', function () {
+            return auth()->check() && auth()->user()->hasRole('api');
+        });
+
+//        Blade::if('campaigns', function () {
+//            return auth()->check() && auth()->user()->hasCampaigns();
+//        });
     }
 }

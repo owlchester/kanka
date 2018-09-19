@@ -134,17 +134,19 @@
                 </ul>
             </li>
 
-            @if (Auth::check() && Auth::user()->is_translator)
+            @auth
+                @translator
                 <li><a href="/translations"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.translations') }}</span></a></li>
-            @endif
+                @endtranslator
+                @admin
+                    <li><a href="{{ route('voyager.dashboard') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
+                @endadmin
+                @moderator
+                    <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
+                @endmoderator
+            @endauth
 
 
-            @if (Auth::check() && Auth::user()->hasRole('admin'))
-                <li><a href="{{ route('voyager.dashboard') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
-                {{--<li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>--}}
-            @elseif (Auth::check() && Auth::user()->hasRole('moderator'))
-                <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
-            @endif
         </ul>
     </section>
 </aside>
