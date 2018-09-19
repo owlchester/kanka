@@ -51,22 +51,6 @@
             </div>
         </div>
 
-        {{--@if (!empty($campaigns))--}}
-            {{--@foreach ($campaigns as $c)--}}
-                {{--<div class="small-box bg-green">--}}
-                    {{--<div class="inner">--}}
-                        {{--<h4>{!! $c->shortName(50) !!}</h4>--}}
-
-                    {{--</div>--}}
-                    {{--<div class="icon">--}}
-                        {{--<i class="ion ion-map"></i>--}}
-                    {{--</div>--}}
-                    {{--<a href="{{ url(App::getLocale() . '/' . $c->getMiddlewareLink()) }}" class="small-box-footer">--}}
-                        {{--<i class="fa fa-arrow-circle-right"></i> {{ trans('crud.select') }}--}}
-                    {{--</a>--}}
-                {{--</div>--}}
-            {{--@endforeach--}}
-        {{--@endif--}}
     </div>
 
     <div class="col-md-9">

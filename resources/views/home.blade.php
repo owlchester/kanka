@@ -15,7 +15,7 @@
                     <h3 class="campaign-name">{{ $campaign->name }}</h3>
                 </div>
                 @if (Auth::check())
-                <a class="small-box-footer" href="{{ route('campaigns.index') }}">
+                <a class="small-box-footer" href="{{ route('campaign') }}">
                     <i class="fa fa-arrow-circle-right"></i> {{ trans('dashboard.campaigns.manage') }}
                 </a>
                 @endif

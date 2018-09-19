@@ -25,11 +25,13 @@ return [
         'unknown_id'    => 'Unknown Campaign.',
     ],
     'export'        => [
+        'description' => 'Export the campaign.',
         'errors'    => [
             'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
         ],
         'helper'    => 'Export your campaign. A notification with a download link will be made available.',
         'success'   => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
+        'title' => 'Campaign :name Export',
     ],
     'fields'        => [
         'description'   => 'Description',
@@ -109,6 +111,7 @@ return [
         'create'    => [
             'title' => 'Add a member to your campaign',
         ],
+        'description' => 'Manage the members of the campaign',
         'edit'      => [
             'description'   => 'Edit a member of your campaign',
             'title'         => 'Edit member :name',
@@ -124,6 +127,7 @@ return [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
+        'title' => 'Campaign :name Members',
         'roles'     => [
             'member'    => 'Member',
             'owner'     => 'Owner',
@@ -137,6 +141,8 @@ return [
         'name'          => 'Your campaign name',
     ],
     'roles'         => [
+        'title' => 'Campaign :name Roles',
+        'description' => 'Manage the roles of the campaign',
         'actions'       => [
             'add'   => 'Add a role',
         ],
@@ -225,6 +231,8 @@ return [
             'organisations' => 'Cults, military units, factions, guilds.',
             'quests'        => 'To keep track of various quests with characters and locations.',
         ],
+        'title' => 'Campaign :name Modules',
+        'description' => 'Enable or disable modules of the campaign.',
     ],
     'show'          => [
         'actions'       => [
@@ -235,6 +243,7 @@ return [
             'export'        => 'Export',
             'information'   => 'Information',
             'members'       => 'Members',
+            'menu'          => 'Menu',
             'roles'         => 'Roles',
             'settings'      => 'Modules',
         ],

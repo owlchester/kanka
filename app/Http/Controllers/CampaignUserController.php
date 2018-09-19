@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\CampaignUser;
 use App\Http\Requests\StoreCampaignUser;
 use Illuminate\Http\Request;
@@ -19,52 +20,13 @@ class CampaignUserController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function index()
     {
-        /*$campaign = Campaign::findOrFail(Session::get('campaign_id'));
-        return view('campaigns.members.create', compact('campaign'));*/
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCampaignUser $request)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CampaignUser $campaignUser)
-    {
-        return view('campaigns.members.edit', compact('campaignUser'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return \Illuminate\Http\Response
-     */
-    public function update(StoreCampaignUser $request, CampaignUser $campaignUser)
-    {
-        $this->authorize('invite', $campaignUser->campaign);
-
-        $campaignUser->update($request->all());
-        return redirect()->route('campaigns.index', ['#relation']);
+        $campaign = CampaignLocalization::getCampaign();
+        return view('campaigns.users', ['campaign' => $campaign]);
     }
 
     /**
@@ -78,6 +40,6 @@ class CampaignUserController extends Controller
         $this->authorize('invite', $campaignUser->campaign);
 
         $campaignUser->delete();
-        return redirect()->route('campaigns.index', ['#relation']);
+        return redirect()->route('campaign_users.index');
     }
 }

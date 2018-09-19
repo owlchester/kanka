@@ -1,3 +1,7 @@
+<h2 class="page-header with-border">
+    {{ trans('campaigns.show.tabs.roles') }}
+</h2>
+
 <p class="help-block">{{ trans('campaigns.roles.helper.1') }}</p>
 <p class="help-block">{{ trans('campaigns.roles.helper.2') }}</p>
 <p class="help-block">{{ trans('campaigns.roles.helper.3') }}</p>

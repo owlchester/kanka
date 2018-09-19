@@ -27,6 +27,15 @@ class CampaignRoleController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        return view('campaigns.roles', ['campaign' => $campaign]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -49,7 +58,7 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('create', CampaignRole::class);
         $relation = CampaignRole::create($request->all());
-        return redirect()->route('campaigns.show', ['#roles'])
+        return redirect()->route('campaign_roles')
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -100,7 +109,7 @@ class CampaignRoleController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $campaignRole->update($request->all());
-        return redirect()->route('campaigns.show', [$campaign->id, '#roles'])
+        return redirect()->route('campaign_roles.index')
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -115,7 +124,7 @@ class CampaignRoleController extends Controller
         $this->authorize('delete', $campaignRole);
 
         $campaignRole->delete();
-        return redirect()->route('campaigns.show', [$campaignRole->campaign_id, '#roles'])
+        return redirect()->route('campaign_roles.index')
             ->with('success', trans($this->view . '.destroy.success'));
     }
 

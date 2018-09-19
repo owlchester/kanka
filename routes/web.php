@@ -109,7 +109,7 @@ Route::group([
             'calendar_event' => 'CalendarEventController',
             'calendars.relations' => 'CalendarRelationController',
             'campaigns' => 'CampaignController',
-            'campaign_user' => 'CampaignUserController',
+            'campaign_users' => 'CampaignUserController',
             'characters' => 'CharacterController',
             'characters.character_organisations' => 'CharacterOrganisationController',
             'characters.relations' => 'CharacterRelationController',
@@ -197,6 +197,13 @@ Route::group([
         Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
         Route::post('/entities/create', 'EntityController@create')->name('entities.create');
+
+        // The campaign management sub pages
+        Route::get('/campaign', 'CampaignController@index')->name('campaign');
+        Route::get('/campaign/settings', 'CampaignSettingController@index')->name('campaign_settings');
+        Route::post('/campaign/settings', 'CampaignSettingController@save')->name('campaign_settings.save');
+        Route::get('/campaign/export', 'CampaignExportController@index')->name('campaign_export');
+        Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
     });
 
     // Notification

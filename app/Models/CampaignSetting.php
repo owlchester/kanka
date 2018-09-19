@@ -40,4 +40,20 @@ class CampaignSetting extends Model
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
+
+    /**
+     * Count the number of activated modules
+     * @return int
+     */
+    public function countEnabledModules()
+    {
+        $count = 0;
+        foreach ($this->fillable as $col) {
+            if ($col != 'campaign_id' && $this->$col == true) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
 }
