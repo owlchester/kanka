@@ -32,6 +32,7 @@ class Campaign extends MiscModel
         'export_path',
         'export_date',
         'visibility',
+        'entity_visibility',
     ];
 
     /**

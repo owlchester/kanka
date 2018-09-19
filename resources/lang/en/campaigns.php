@@ -20,6 +20,9 @@ return [
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
+    'entity_visibilities' => [
+        'private' => 'New entities are private'
+    ],
     'errors'        => [
         'access'        => 'You don\'t have access to this campaign.',
         'unknown_id'    => 'Unknown Campaign.',
@@ -39,11 +42,13 @@ return [
         'locale'        => 'Locale',
         'name'          => 'Name',
         'visibility'    => 'Visibility',
+        'entity_visibility' => 'Entity Visibility',
     ],
     'helpers'       => [
         'locale'        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'visibility'    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
+        'entity_visibility' => 'When creating a new entity, the "Private" option will automatically be selected.',
     ],
     'index'         => [
         'actions'       => [
