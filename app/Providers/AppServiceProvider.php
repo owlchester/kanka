@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Campaign;
+use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
@@ -70,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
             Calendar::observe(CalendarObserver::class);
             Campaign::observe(CampaignObserver::class);
             CampaignUser::observe(CampaignUserObserver::class);
+            CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
