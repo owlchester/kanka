@@ -52,17 +52,11 @@
                             {{ trans('sections.show.tabs.sections') }}</span>
                     </a>
                 </li>
-                <li class="{{ (request()->get('tab') == 'children' ? ' active' : '') }}">
-                    <a href="#children" data-toggle="tooltip" title="{{ trans('sections.show.tabs.children') }}">
-                        <i class="fa fa-sitemap"></i> <span class="hidden-sm hidden-xs">
-                            {{ trans('sections.show.tabs.children') }}</span>
-                    </a>
-                </li>
                 @include('cruds._tabs', ['calendars' => false])
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="information">
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <div class="post">
                         <p>{!! $model->entry !!}</p>
                     </div>
@@ -70,12 +64,19 @@
                 <div class="tab-pane" id="sections">
                     @include('sections._sections')
                 </div>
-                <div class="tab-pane" id="children">
-                    @include('sections._children')
-                </div>
                 @include('cruds._panes')
             </div>
         </div>
+
+        <div class="box box-flat">
+            <div class="box-body">
+                <h2 class="page-header with-border">
+                    {{ trans('sections.show.tabs.children') }}
+                </h2>
+                @include('sections._children')
+            </div>
+        </div>
+
         <!-- actions -->
         @include('cruds.boxes.history')
     </div>
