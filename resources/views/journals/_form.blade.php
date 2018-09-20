@@ -56,6 +56,9 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        @include('cruds.fields.calendar')
+    </div>
 
 
     <div class="col-md-12">

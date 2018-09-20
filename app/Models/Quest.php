@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\MiscModel;
+use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -48,9 +49,7 @@ class Quest extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, CalendarDateTrait;
 
     /**
      * Searchable fields

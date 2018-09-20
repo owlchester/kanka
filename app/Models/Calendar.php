@@ -187,6 +187,21 @@ class Calendar extends MiscModel
     }
 
     /**
+     * Get a list of months for select fields
+     * @return array
+     */
+    public function monthList()
+    {
+        $months = [];
+        $i = 1;
+        foreach ($this->months() as $month) {
+            $months[$i] = $month['name'];
+            $i++;
+        }
+        return $months;
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()

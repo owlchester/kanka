@@ -46,6 +46,7 @@
                         </li>
                     @endif
 
+                    @include('cruds.layouts.calendar')
                     @include('cruds.layouts.section')
                 </ul>
 

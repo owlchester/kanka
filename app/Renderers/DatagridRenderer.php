@@ -40,9 +40,12 @@ class DatagridRenderer
      */
     protected $filterService = null;
 
-    public function __construct()
+    protected $dateRenderer;
+
+    public function __construct(DateRenderer $dateRenderer)
     {
         $this->user = Auth::user();
+        $this->dateRenderer = $dateRenderer;
     }
 
     /**
@@ -140,6 +143,9 @@ class DatagridRenderer
                     '<i class="fa fa-lock visible-xs visible-xm"></i> ' .
                     '<span class="visible-md visible-lg">' . trans('crud.fields.is_private') . '</span>'
                 );
+            } elseif ($type == 'calendar_date') {
+                $class .= ' hidden-xs hidden-sm';
+                $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
             } else {
                 // No idea what is expected
                 $html = null;
@@ -320,6 +326,10 @@ class DatagridRenderer
                 $content = $model->is_private ?
                     '<i class="fa fa-lock" title="' . trans('crud.is_private') . '"></i>' :
                     '<br />';
+            } elseif ($type == 'calendar_date') {
+                if ($model->hasCalendar()) {
+                    $content = $this->dateRenderer->render($model->getDate());
+                }
             } else {
                 // Exception
                 $content = 'ERR_UNKNOWN_TYPE';

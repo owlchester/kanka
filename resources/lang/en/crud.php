@@ -85,6 +85,8 @@ return [
     'export'            => 'Export',
     'fields'            => [
         'attribute_template'    => 'Attribute Template',
+        'calendar'              => 'Calendar',
+        'calendar_date'         => 'Calendar Date',
         'character'             => 'Character',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
@@ -105,6 +107,11 @@ return [
         'hide'  => 'Hide Filters',
         'show'  => 'Show Filters',
         'title' => 'Filters',
+    ],
+    'forms' => [
+        'actions' => [
+            'calendar' => 'Add a calendar date',
+        ],
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
@@ -182,6 +189,7 @@ return [
     'panels'            => [
         'appearance'            => 'Appearance',
         'attribute_template'    => 'Attribute Template',
+        'calendar_date'         => 'Calendar Date',
         'entry'                 => 'Entry',
         'general_information'   => 'General Information',
         'move'                  => 'Move',
@@ -204,6 +212,7 @@ return [
         'title'     => 'Permissions',
     ],
     'placeholders'      => [
+        'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
         'entity'        => 'Entity',
         'event'         => 'Choose an event',

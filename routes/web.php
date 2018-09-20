@@ -93,6 +93,7 @@ Route::group([
 
 
         Route::post('/calendars/{calendar}/addEvent', 'CalendarController@addEvent')->name('calendars.event.add');
+        Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
 
         // Attribute multi-save
         Route::post('/entities/{entity}/attributes/saveMany', 'AttributeController@saveMany')->name('entities.attributes.saveMany');

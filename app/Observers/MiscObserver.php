@@ -56,7 +56,10 @@ abstract class MiscObserver
         ImageService::handle($model, $model->getTable());
 
         // Default foreign ids that can be set to null. This should probably be in each individual observer instead
-        $nullable = ['parent_location_id', 'location_id', 'character_id', 'family_id', 'section_id', 'quest_id'];
+        $nullable = [
+            'parent_location_id', 'location_id', 'character_id', 'family_id',
+            'section_id', 'quest_id', 'calendar_id'
+        ];
         foreach ($nullable as $attr) {
             if (array_key_exists($attr, $attributes)) {
                 $model->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
@@ -66,6 +69,21 @@ abstract class MiscObserver
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;
+        }
+
+        // Calendar trait hook
+        if (method_exists($model, 'hasCalendarDateTrait')) {
+            if (request()->has(['calendar_id', 'calendar_day', 'calendar_month', 'calendar_year'])) {
+                $model->calendar_id = request()->post('calendar_id');
+                $model->calendar_year = request()->post('calendar_year');
+                $model->calendar_month = request()->post('calendar_month');
+                $model->calendar_day = request()->post('calendar_day');
+            } else {
+                $model->calendar_id = null;
+                $model->calendar_year = null;
+                $model->calendar_month = null;
+                $model->calendar_day = null;
+            }
         }
     }
 

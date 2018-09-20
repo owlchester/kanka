@@ -8,6 +8,7 @@ use App\Models\Calendar;
 use App\Models\CalendarEvent;
 use App\Services\CalendarService;
 use Illuminate\Http\Request;
+use Response;
 use Illuminate\Support\Facades\Session;
 
 class CalendarController extends CrudController
@@ -118,5 +119,10 @@ class CalendarController extends CrudController
                 ->with('success', trans('calendars.event.success', ['event' => $link->entity->name]));
         }
         return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]]);
+    }
+
+    public function monthList(Calendar $calendar)
+    {
+        return Response::json($calendar->months());
     }
 }

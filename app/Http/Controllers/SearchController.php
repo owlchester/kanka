@@ -280,6 +280,16 @@ class SearchController extends Controller
      * @param Request $request
      * @return mixed
      */
+    public function calendars(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Calendar::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function sections(Request $request)
     {
         $term = trim($request->q);

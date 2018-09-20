@@ -287,6 +287,16 @@ abstract class MiscModel extends Model
                 $direction = $value;
             }
         }
+
+        // Calendar dates are handled differently since we have free fields
+        if ($field == 'calendar_date') {
+            return $query
+                ->orderBy( $this->getTable() . '.calendar_year', $direction)
+                ->orderBy( $this->getTable() . '.calendar_month', $direction)
+                ->orderBy( $this->getTable() . '.calendar_day', $direction);
+        }
+
+
         if (!empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {

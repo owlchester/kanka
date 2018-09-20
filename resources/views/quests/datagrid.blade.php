@@ -49,6 +49,9 @@
         ],
         'is_completed',
         [
+            'type' => 'calendar_date',
+        ],
+        [
             'type' => 'is_private',
         ]
     ],

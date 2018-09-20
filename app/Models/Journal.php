@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -52,9 +53,7 @@ class Journal extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, CalendarDateTrait;
 
     /**
      * Performance with for datagrids

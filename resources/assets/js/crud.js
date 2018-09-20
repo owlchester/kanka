@@ -13,6 +13,9 @@ var filtersActionsShow, filtersActionHide;
 
 var ajaxModalTarget;
 
+// Entity Calendar
+var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
+
 $(document).ready(function() {
     // Filters
     var filters = $('#crud-filters');
@@ -97,6 +100,8 @@ $(document).ready(function() {
     }
 
     registerFormSubmitAnimation();
+
+    registerEntityCalendarForm();
 });
 
 
@@ -350,4 +355,47 @@ function registerFormSubmitAnimation() {
             return true;
         })
     });
+}
+
+function registerEntityCalendarForm() {
+    entityCalendarAdd = $('#entity-calendar-form-add');
+    if (entityCalendarAdd.length === 1) {
+        entityCalendarForm = $('.entity-calendar-form');
+        entityCalendarSubForm = $('.entity-calendar-subform');
+        entityCalendarField = $('#calendar_id');
+        entityCalendarMonthField = $('select[name="calendar_month"]');
+        var entityCalendarLoading = $('.entity-calendar-loading');
+
+        entityCalendarAdd.on('click', function(e) {
+            e.preventDefault();
+            entityCalendarForm.show();
+            entityCalendarAdd.hide();
+            return false;
+        });
+
+        entityCalendarField.on('change', function(e) {
+            entityCalendarSubForm.hide();
+            // No new calendar selected? hide everything again
+            if (!entityCalendarField.val()) {
+                entityCalendarForm.hide();
+                entityCalendarAdd.show();
+                return;
+            }
+            entityCalendarLoading.show();
+            // Load month list
+            var url = entityCalendarAdd.data('url').replace('0', entityCalendarField.val());
+            $.ajax(url)
+                .done(function(data) {
+                    entityCalendarMonthField.html('');
+                    var id = 1;
+                    $.each(data, function() {
+                        entityCalendarMonthField.append('<option value="' + id + '">' + this.name + '</option>');
+                        id++;
+                    });
+                    entityCalendarLoading.hide();
+                    entityCalendarSubForm.show();
+                }
+            );
+        });
+    }
 }

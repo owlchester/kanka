@@ -12,6 +12,9 @@
         'name',
         'type',
         'date',
+        [
+            'type' => 'calendar_date',
+        ],
         // Character
         [
             'type' => 'avatar',
