@@ -29,4 +29,4 @@
     </tbody>
 </table>
 
-{{ $r->fragment('tab_children')->links() }}
+{{ $r->links() }}
