@@ -46,7 +46,7 @@ class EntityEventController extends CrudController
         $this->authorize('attribute', $entity->child);
         $entityEvent->delete();
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'events'])
+        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'calendars'])
             ->with('success', trans('calendars.event.destroy', ['name' => $entityEvent->calendar->name]));
     }
 }

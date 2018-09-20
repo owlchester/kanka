@@ -4,10 +4,12 @@
     </div>
     <div class="panel-body">
         <div class="form-group">
+            <p class="help-block">{{ __('crud.hints.calendar_date') }}</p>
+
             <a href="#" id="entity-calendar-form-add" class="btn btn-default" data-url="{{ route('calendars.month-list', ['calendar' => 0]) }}" style="<?=(!empty($model) && $model->hasCalendar() ? "display: none" : null)?>">
                 <i class="ra ra-moon-sun"></i> {{ trans('crud.forms.actions.calendar') }}
             </a>
-
+            
             <div class="entity-calendar-form" style="<?=(!isset($model) || !$model->hasCalendar() ? "display: none" : null)?>">
                 <div class="form-group">
                     {!! Form::select2(

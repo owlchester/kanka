@@ -4,7 +4,9 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Models\AttributeTemplate;
+use App\Models\CalendarEvent;
 use App\Models\Entity;
+use App\Models\EntityEvent;
 use App\Models\MiscModel;
 use App\Services\ImageService;
 use App\Services\LinkerService;
@@ -111,6 +113,9 @@ abstract class MiscObserver
 
         // Once saved, refresh the model so that we can call $model->entity
         if ($entity->save()) {
+            // Before we refresh the model, check if the model has a calendar date, and
+            // if those values are dirty.
+            $this->syncEntityEvent($model, $entity);
             $model->refresh();
         }
 
@@ -137,6 +142,52 @@ abstract class MiscObserver
         // Delete the entity
         if ($model->entity) {
             $model->entity->delete();
+        }
+    }
+
+    /**
+     * Sync the entity event if the model has the calendar date trait
+     * @param $model
+     */
+    protected function syncEntityEvent($model, Entity $entity)
+    {
+        if (method_exists($model, 'hasCalendarDateTrait')) {
+            $previousCalendarId = $model->getOriginal('calendar_id');
+            $previousDate = $model->getOriginal('calendar_year') . '-'
+                . $model->getOriginal('calendar_month') . '-'
+                . $model->getOriginal('calendar_day');
+
+            // Changed?
+            if ($model->isDirty(['calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'])) {
+                // We already had this event linked
+                $event = EntityEvent::where([
+                    'calendar_id' => $previousCalendarId,
+                    'entity_id' => $entity->id,
+                    'date' => $previousDate
+                ])->first();
+                if ($event) {
+                    // We no longer have a calendar attached to this model
+                    if (empty($model->calendar_id)) {
+                        $event->delete();
+                    } else {
+                        // Update the existing one
+                        $event->calendar_id = $model->calendar_id;
+                        $event->date = $model->calendar_year . '-'
+                            . $model->calendar_month . '-'
+                            . $model->calendar_day;
+                        $event->save();
+                    }
+                } elseif ($model->hasCalendar()) {
+                    // We need to create something
+                    $event = EntityEvent::create([
+                        'calendar_id' => $model->calendar_id,
+                        'entity_id' => $entity->id,
+                        'date' => $model->calendar_year . '-'
+                            . $model->calendar_month . '-'
+                            . $model->calendar_day
+                    ]);
+                }
+            }
         }
     }
 }
