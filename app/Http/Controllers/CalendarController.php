@@ -114,11 +114,19 @@ class CalendarController extends CrudController
         }
         $link = $this->calendarService->addEvent($calendar, $request->all());
 
+        $routeOptions = [$calendar->id, 'year' => $date[0]];
+        if (request()->has('layout')) {
+            $routeOptions['layout'] = 'year';
+        } else {
+            $routeOptions['month'] = $date[1];
+        }
+
         if ($link !== false) {
-            return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]])
+            return redirect()->route($this->route . '.show', $routeOptions)
                 ->with('success', trans('calendars.event.success', ['event' => $link->entity->name]));
         }
-        return redirect()->route($this->route . '.show', [$calendar->id, 'year' => $date[0], 'month' => $date[1]]);
+
+        return redirect()->route($this->route . '.show', $routeOptions);
     }
 
     public function monthList(Calendar $calendar)

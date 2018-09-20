@@ -2,23 +2,34 @@
 {{ $renderer->setCalendar($model) }}
 
 {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
-<div class="row form-group">
-    <div class="col-md-2">
+<div class="calendar-toolbar">
+    <div class="pull-left">
+        <div class="btn-group">
+            <a href="{{ $renderer->previous() }}" class="btn btn-default btn-corner-left">
+                <i class="fa fa-angle-left"></i> {{ $renderer->previous(true) }}
+            </a>
+            <a href="{{ $renderer->next() }}" class="btn btn-default btn-corner-right">
+                {{ $renderer->next(true) }} <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
         {{ $renderer->todayButton() }}
     </div>
-    <div class="col-md-2 text-right">
-        <i class="fa fa-angle-double-left"></i> {{ $renderer->previous() }}
+    <div class="pull-right">
+        <div class="btn-group">
+            <a href="{{ route('calendars.show', [$model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-left"<?=($renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ trans('calendars.layouts.year') }}</a>
+            <a href="{{ route('calendars.show', [$model, 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-right"<?=(!$renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ trans('calendars.layouts.month') }}</a>
+        </div>
     </div>
-    <div class="col-md-4 text-center">
-        {!! $renderer->current() !!}
+    <div class="calendar-center">
+        <h2>{!! $renderer->current() !!}</h2>
         {!! Form::text('year', null, ['class' => 'form-input form-input-sm', 'id' => 'calendar-year-switcher-field', 'style' => 'display:none']) !!}
-
-    </div>
-    <div class="col-md-2 text-left">
-        {{ $renderer->next() }} <i class="fa fa-angle-double-right"></i>
     </div>
 </div>
-{!! Form::hidden('month', $renderer->currentMonthId()) !!}
+@if ($renderer->isYearlyLayout())
+    <input type="hidden" name="layout" value="yearly">
+@else
+    {!! Form::hidden('month', $renderer->currentMonthId()) !!}
+@endif
 {!! Form::close() !!}
 
 <table class="calendar table table-bordered table-striped">
@@ -30,43 +41,31 @@
     </tr>
     </thead>
     <tbody>
-    @foreach ($renderer->month() as $week => $days)
+    @if ($renderer->isYearlyLayout())
         <tr>
-            @foreach ($days as $day)
-                <td class="{{ $day['isToday'] ? 'today' : null}}">
-                    @if ($day['day'])
-                    <h5 class="{{ $day['isToday'] ? "label label-primary" : null}}">{{ $day['day'] }}</h5>
-                    @if (Auth::check() && Auth::user()->can('update', $model))
-                    <a href="#" class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                    @endif
-                    <p>
-                    @if (!empty($day['events']))
-                        @foreach ($day['events'] as $event)
-                            <a href="{{ route($event->entity->pluralType() . '.show', $event->entity->entity_id) }}" data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</a>
-                            @if ($event->is_recurring)
-                                &nbsp;<i class="fa fa-refresh" data-toggle="tooltip" title="{{ trans('calendars.fields.is_recurring') }}"></i>
-                            @endif
-                            @if ($event->comment)
-                                &nbsp;- {{ $event->comment }}
-                            @endif
-                            <br />
-                        @endforeach
-                    @endif
-                    </p>
-                    @endif
-                </td>
-            @endforeach
+        @foreach ($renderer->weeks() as $key => $day)
+            @if($key % count($model->weekdays()) == 0)
+                </tr><tr>
+            @endif
+            @include('calendars._day', ['showMonth' => true])
+        @endforeach
         </tr>
-    @endforeach
+    @else
+        @foreach ($renderer->month() as $week => $days)
+            <tr>
+            @foreach ($days as $day)
+                @include('calendars._day')
+            @endforeach
+            </tr>
+        @endforeach
+    @endif
     </tbody>
 </table>
 
 
 
 <!-- Modal -->
-{!! Form::open(array('route' => ['calendars.event.add', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+{!! Form::open(['route' => ['calendars.event.add', $model->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
 <div class="modal fade export-hidden" id="add-calendar-event" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -134,5 +133,8 @@
     </div>
 </div>
 {!! Form::hidden('date', '', ['id' => 'date']) !!}
+@if($renderer->isYearlyLayout())
+    <input type="hidden" name="layout" value="year">
+@endif
 {{ csrf_field() }}
 {!! Form::close() !!}

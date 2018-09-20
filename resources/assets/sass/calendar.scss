@@ -32,3 +32,18 @@
     }
   }
 }
+
+.calendar-toolbar {
+  margin-bottom: 1em;
+  text-align: center;
+  padding: 10px;
+
+  .calendar-center {
+    display: inline-block;
+
+    h2 {
+      margin: 0;
+      float: left;
+    }
+  }
+}

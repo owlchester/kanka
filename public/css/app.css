@@ -86,6 +86,21 @@
   visibility: visible;
 }
 
+.calendar-toolbar {
+  margin-bottom: 1em;
+  text-align: center;
+  padding: 10px;
+}
+
+.calendar-toolbar .calendar-center {
+  display: inline-block;
+}
+
+.calendar-toolbar .calendar-center h2 {
+  margin: 0;
+  float: left;
+}
+
 /**
  * Conversations
  */

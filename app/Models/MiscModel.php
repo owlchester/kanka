@@ -380,4 +380,13 @@ abstract class MiscModel extends Model
         }
         $this->save();
     }
+
+    /**
+     * @return bool
+     */
+    public function hasEntry()
+    {
+        // If all that's in the entry is two \n, then there is no real content
+        return strlen($this->entry) > 2;
+    }
 }

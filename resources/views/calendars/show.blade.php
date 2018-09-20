@@ -1,7 +1,7 @@
 @include('partials.errors')
 @inject('dateRenderer', 'App\Renderers\DateRenderer')
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="box">
             <div class="box-body box-profile">
                 @include ('cruds._image')
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-10">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
@@ -52,11 +52,8 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
-                    @if (!empty($model->entry))
-                    <div class="post">
-                        <h3>{{ trans('crud.fields.entry') }}</h3>
+                    @if ($model->hasEntry())))
                         <p>{!! $model->entry !!}</p>
-                    </div>
                     @endif
 
                     @include('calendars._calendar')

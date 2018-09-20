@@ -100,4 +100,8 @@ return [
         ],
         'title'         => 'Calendar :name',
     ],
+    'layouts' => [
+        'year' => 'Year',
+        'month' => 'Month',
+    ]
 ];

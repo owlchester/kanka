@@ -34,6 +34,11 @@ class CalendarRenderer
     protected $year;
 
     /**
+     * Layout option
+     * @var string
+     */
+    protected $layout = 'year';
+    /**
      * Initializer
      * @param Calendar $calendar
      */
@@ -47,18 +52,38 @@ class CalendarRenderer
      * Get previous month link
      * @return string
      */
-    public function previous()
+    public function previous($title = false)
     {
         $month = $this->getMonth(-1);
         $year = $this->getYear();
         $months = $this->calendar->months();
+
+        // Yearly navigation
+        if ($this->isYearlyLayout()) {
+            $year--;
+            if ($title) {
+                return $year;
+            } else {
+                return route(
+                    'calendars.show',
+                    ['calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                );
+            }
+        }
 
         if ($month <= 0) {
             $year--;
             $month = count($months);
         }
 
-        return HtmlFacade::linkRoute('calendars.show', $months[$month-1]['name'] . " $year", ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]);
+        if ($title) {
+            return $months[$month-1]['name'] . " $year";
+        }
+
+        return route(
+            'calendars.show',
+            ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]
+        );
     }
 
     /**
@@ -75,8 +100,10 @@ class CalendarRenderer
         $names = $this->calendar->years();
         $hasYearName = isset($names[$year]) ? $names[$year] : null;
 
-        return $months[$this->getMonth(-1)]['name']
-            . ($hasYearName ? ', ' : ' ')
+
+        $monthName = $months[$this->getMonth(-1)]['name']
+            . ($hasYearName ? ', ' : ' ');
+        return ($this->isYearlyLayout() ? null : $monthName)
             . '<a href="#" id="calendar-year-switcher">' . (isset($names[$year]) ? $names[$year] : $year) . '</a>';
     }
 
@@ -84,18 +111,38 @@ class CalendarRenderer
      * Get next month link
      * @return string
      */
-    public function next()
+    public function next($title = false)
     {
         $month = $this->getMonth(1);
         $year = $this->getYear();
         $months = $this->calendar->months();
+
+        // Yearly navigation
+        if ($this->isYearlyLayout()) {
+            $year++;
+            if ($title) {
+                return $year;
+            } else {
+                return route(
+                    'calendars.show',
+                    ['calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                );
+            }
+        }
 
         if ($month > count($months)) {
             $year++;
             $month = 1;
         }
 
-        return HtmlFacade::linkRoute('calendars.show', $months[$month-1]['name'] . " $year", ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]);
+        if ($title) {
+            return $months[$month-1]['name'] . " $year";
+        }
+
+        return route(
+            'calendars.show',
+            ['calendar' => $this->calendar, 'month' => $month, 'year' => $year]
+        );
     }
 
     /**
@@ -124,9 +171,10 @@ class CalendarRenderer
             }
         }
 
+        $monthLength = $month['length'];
         $weekLength = 0;
         $week = [];
-        for ($day = 1; $day <= $month['length']; $day++) {
+        for ($day = 1; $day <= $monthLength; $day++) {
             if ($offset > 0) {
                 $week[] = null;
                 $offset--;
@@ -172,6 +220,81 @@ class CalendarRenderer
     }
 
     /**
+     * @return array
+     */
+    public function weeks()
+    {
+        // Number of weeks in this month?
+        $weekdays = $this->calendar->weekdays();
+        $months = $this->calendar->months();
+        $data = [];
+
+        $events = $this->events();
+        $offset = $this->weekStartoffset();
+
+        // Add empty days for the beginning of the year
+        for ($i = $offset; $i>0; $i--) {
+            $data[] = null;
+        }
+
+        $monthNumber = 1;
+        foreach ($months as $month) {
+            $month = $months[$monthNumber-1];
+            $this->month = $monthNumber;
+
+            // Check if this month is a leap month
+            if ($this->calendar->has_leap_year) {
+                if ($this->calendar->leap_year_month == $monthNumber) {
+                    // Is this the starting year, or an increment of the offset?
+                    $handle = $this->getYear() - $this->calendar->leap_year_start;
+                    if ($handle % $this->calendar->leap_year_offset === 0) {
+                        $month['length'] += $this->calendar->leap_year_amount;
+                    }
+                }
+            }
+
+            $monthLength = $month['length'];
+            $weekLength = 0;
+            $week = [];
+
+            // Add each day of the month to the day thing
+            for ($day = 1; $day <= $monthLength; $day++) {
+
+                $exact = $this->getYear() . '-' . $monthNumber . '-' . $day;
+                $dayData = [
+                    'day' => $day,
+                    'events' => [],
+                    'date' => $exact,
+                    'isToday' => false,
+                    'month' => $month['name'],
+                ];
+
+                if (isset($events[$exact])) {
+                    $dayData['events'] = $events[$exact];
+                }
+
+                if ($exact == $this->calendar->date) {
+                    $dayData['isToday'] = true;
+                }
+                $data[] = $dayData;
+            }
+
+            // Fill in the last week?
+//            $lastWeekDiff = count($week) - count($weekdays);
+//            if ($lastWeekDiff < 0) {
+//                for ($day = $lastWeekDiff; $day < 0; $day++) {
+//                    $week[] = null;
+//                }
+//            }
+
+//            $data[] = $week;
+            $monthNumber++;
+        }
+
+        return $data;
+    }
+
+    /**
      * @return mixed
      */
     public function currentMonthId()
@@ -186,15 +309,20 @@ class CalendarRenderer
     {
         $calendarYear = $this->calendar->currentDate('year');
         $calendarMonth = $this->calendar->currentDate('month');
-        if ($this->year != $calendarYear || $this->month != $calendarMonth) {
-            return link_to_route(
-                'calendars.show',
-                trans('calendars.actions.today'),
-                [$this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
-                ['class' => 'btn btn-default btn-flat']
-            );
-            // <a href="{{ route('', [$model, 'month' => $model->currentDate('month'), 'year' => $model->currentDate('year')]) }}" class="btn btn-default btn-flat">{{ trans('calendars.actions.today') }}</a>
+
+        $options = ['class' => 'btn btn-default'];
+        if ($this->year == $calendarYear && $this->month == $calendarMonth) {
+            $options['disabled'] = 'disabled';
         }
+
+        return link_to_route(
+            'calendars.show',
+            trans('calendars.actions.today'),
+            [$this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
+            $options
+        );
+
+
 
         return '';
     }
@@ -225,6 +353,12 @@ class CalendarRenderer
             // If the month is too big? Then use the max
             if ($this->getMonth() > count($this->calendar->months())) {
                 $this->setMonth(count($this->calendar->months()));
+            }
+
+            // Yearly layout does things a bit differently, reset month to first
+            $this->layout = request()->get('layout', 'monthly');
+            if ($this->isYearlyLayout()) {
+                $this->setMonth(1);
             }
         }
     }
@@ -288,10 +422,14 @@ class CalendarRenderer
                      ->with('entity')
                     ->where(function ($query) {
                         $query
-                            ->where('date', 'like', $this->getYear() . '-' . $this->getMonth() . '%')
+                            ->where('date', 'like', $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%')
                             ->orWhere(function ($sub) {
-                                $sub->where('date', 'like', '%-' . $this->getMonth() . '-%')
-                                    ->where('is_recurring', true);
+                                if ($this->isYearlyLayout()) {
+                                    $sub->where('is_recurring', true);
+                                } else {
+                                    $sub->where('date', 'like', '%-' . $this->getMonth() . '-%')
+                                        ->where('is_recurring', true);
+                                }
                             })
                             // Events from previous month that spill over
                             ->orWhere(function ($sub) {
@@ -424,5 +562,21 @@ class CalendarRenderer
             $segments[0] = '-' . $segments[0];
         }
         return $segments;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isYearlyLayout()
+    {
+        return $this->layout == 'year';
+    }
+
+    /**
+     * @return int
+     */
+    public function currentYear()
+    {
+        return $this->year;
     }
 }
