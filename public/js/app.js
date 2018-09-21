@@ -64892,6 +64892,30 @@ function initCalendarEventModal() {
     $('input[name="is_recurring"]').on('click', function (e) {
         $('#add_event_recurring_until').toggle();
     });
+
+    $('#calendar-action-existing').on('click', function () {
+        $('#calendar-event-first').hide();
+        $('.calendar-new-event-field').hide();
+        $('#calendar-event-subform').fadeToggle();
+        $('#calendar-event-submit').removeAttr('disabled');
+    });
+
+    $('#calendar-action-new').on('click', function () {
+        $('#calendar-event-first').hide();
+        $('.calendar-existing-event-field').hide();
+        $('#calendar-event-subform').fadeToggle();
+        $('#calendar-event-submit').removeAttr('disabled');
+    });
+
+    $('#calendar-event-switch').on('click', function (e) {
+        e.preventDefault();
+        $('#calendar-event-subform').hide();
+        $('#calendar-event-first').fadeToggle();
+        $('.calendar-existing-event-field').show();
+        $('.calendar-new-event-field').show();
+
+        $('#calendar-event-submit').attr('disabled', 'disabled');
+    });
 }
 
 /***/ }),

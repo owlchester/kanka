@@ -21,6 +21,11 @@ return [
         'title'         => 'Edit Calendar :name',
     ],
     'event'         => [
+        'actions'   => [
+            'existing' => 'Existing Entity',
+            'new' => 'New Event',
+            'switch' => 'Change choice',
+        ],
         'destroy'   => 'Event removed from calendar \':name\'.',
         'helpers'   => [
             'add'   => 'Add an existing event to this calendar.',
