@@ -80,7 +80,7 @@ return [
         'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.',
     ],
     'events'            => [
-        'hint'  => 'Calendar events associated to this entity are displayed here.',
+        'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',
     ],
     'export'            => 'Export',
     'fields'            => [
