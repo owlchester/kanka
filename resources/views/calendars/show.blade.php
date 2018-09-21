@@ -52,7 +52,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
-                    @if ($model->hasEntry())))
+                    @if ($model->hasEntry())
                         <p>{!! $model->entry !!}</p>
                     @endif
 
