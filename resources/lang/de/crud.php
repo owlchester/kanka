@@ -60,7 +60,6 @@ return [
         ],
     ],
     'cancel'        => 'Abbrechen',
-    'clear_filters' => 'Filter zurücksetzen',
     'click_modal'   => [
         'close'     => 'Schließen',
         'confirm'   => 'Bestätigen',
@@ -100,7 +99,12 @@ return [
         'section'       => 'Kategorie',
     ],
     'filter'        => 'Filter',
-    'filters'       => 'Filter',
+    'filters'       => [
+        'clear' => 'Filter zurücksetzen',
+        'hide' => 'Verstecken',
+        'show' => 'Zeigen',
+        'title' => 'Filter',
+    ],
     'hidden'        => 'Versteckt',
     'hints'         => [
         'is_private'    => 'Vor \'Zuschauern\' verbergen',
