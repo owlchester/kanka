@@ -89,9 +89,13 @@ abstract class MiscModel extends Model
      * Wrapper for short entry
      * @return mixed
      */
-    public function tooltip($limit = 250)
+    public function tooltip($limit = 250, $stripSpecial = true)
     {
-        $pureHistory = htmlentities(htmlspecialchars(trim(strip_tags($this->{$this->tooltipField}))));
+        $pureHistory = strip_tags($this->{$this->tooltipField});
+        if ($stripSpecial) {
+            $pureHistory = htmlentities(htmlspecialchars($pureHistory));
+        }
+        $pureHistory = trim($pureHistory);
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return mb_substr($pureHistory, 0, $limit) . '...';

@@ -69,7 +69,7 @@ class JournalApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Journal $journal)
+    public function destroy(Request $request, Campaign $campaign, Journal $journal)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $journal);

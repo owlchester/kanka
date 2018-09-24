@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Organisation;
 use App\Models\Campaign;
 use App\Models\OrganisationMember;
-use App\Http\Reorganisations\StoreOrganisationMember as ReorganisationMember;
+use App\Http\Requests\StoreOrganisationMember as Request;
 use App\Http\Resources\OrganisationMember as Resource;
 use App\Http\Resources\OrganisationMemberCollection as Collection;
 
@@ -36,30 +36,30 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param ReorganisationMember $reorganisationMember
+     * @param StoreOrganisationMember $reorganisationMember
      * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(ReorganisationMember $reorganisationMember, Campaign $campaign, Organisation $organisation)
+    public function store(Request $request, Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation);
-        $model = OrganisationMember::create($reorganisationMember->all());
+        $model = OrganisationMember::create($request->all());
         return new Resource($model);
     }
 
     /**
-     * @param ReorganisationMember $reorganisationMember
+     * @param StoreOrganisationMember $reorganisationMember
      * @param Campaign $campaign
      * @param OrganisationMember $organisationMember
      * @return Resource
      */
-    public function update(ReorganisationMember $reorganisationMember, Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
+    public function update(Request $request, Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation);
-        $organisationMember->update($reorganisationMember->all());
+        $organisationMember->update($request->all());
 
         return new Resource($organisationMember);
     }
@@ -67,11 +67,11 @@ class OrganisationMemberApiController extends ApiController
     /**
      * @param ReorganisationMember $reorganisationMember
      * @param Campaign $campaign
-     * @param OrganisationMember $organisationMember
+     * @param StoreOrganisationMember $organisationMember
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(ReorganisationMember $reorganisationMember, Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
+    public function destroy(Request $request, Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation);

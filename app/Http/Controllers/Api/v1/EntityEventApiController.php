@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\StoreEntityEvent as Request;
+use App\Http\Requests\AddCalendarEvent as Request;
 use App\Http\Resources\EntityEvent as Resource;
 use App\Http\Resources\EntityEventCollection as Collection;
 use App\Models\EntityEvent;
@@ -74,7 +74,7 @@ class EntityEventApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
+    public function destroy(Request $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

@@ -69,7 +69,7 @@ class QuestApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Quest $quest)
+    public function destroy(Request $request, Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $quest);
