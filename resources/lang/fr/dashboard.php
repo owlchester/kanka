@@ -2,8 +2,7 @@
 
 return [
     'campaigns'         => [
-        'current'   => 'Campagne actuelle',
-        'manage'    => 'Gérer mes campagnes',
+        'manage'    => 'Gérer la campagne',
     ],
     'description'       => 'Place à la créativité',
     'latest_release'    => 'Dernière modification',

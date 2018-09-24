@@ -34,11 +34,13 @@ return [
     'fields'        => [
         'description'   => 'Descripción',
         'image'         => 'Imagen',
-        'locale'        => 'Lugar',
+        'locale'        => 'Idioma',
         'name'          => 'Nombre',
         'visibility'    => 'Visibilidad',
     ],
     'helpers'       => [
+        'locale'        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
+        'name'          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
         'visibility'    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'         => [

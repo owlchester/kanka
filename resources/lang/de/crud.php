@@ -101,8 +101,8 @@ return [
     'filter'        => 'Filter',
     'filters'       => [
         'clear' => 'Filter zurücksetzen',
-        'hide' => 'Verstecken',
-        'show' => 'Zeigen',
+        'hide'  => 'Verstecken',
+        'show'  => 'Zeigen',
         'title' => 'Filter',
     ],
     'hidden'        => 'Versteckt',

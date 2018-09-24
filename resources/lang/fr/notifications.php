@@ -5,6 +5,10 @@ return [
         'export'    => 'Un export de la campagne est disponnible. <a href=":link">Télécharger</a>. Ce lien sera disponnible durant 30 minutes.',
         'join'      => ':user a rejoind la campagne :campaign.',
         'leave'     => ':user a quitté la campagne :campaign.',
+        'role'      => [
+            'add'       => 'Tu es maintenant membre du rôle :role de la campagne :campaign.',
+            'remove'    => 'Tu ne fait plus partie du rôle :role de la campagne :campaign.',
+        ],
     ],
     'header'            => ':count notifications',
     'index'             => [

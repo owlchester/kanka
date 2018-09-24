@@ -2,6 +2,9 @@
 
 return [
     'failed'    => 'Los datos introducidos no coinciden con ningún usuario registrado.',
+    'helpers'   => [
+        'password'  => 'Mostrar/ocultar contraseña',
+    ],
     'login'     => [
         'fields'                => [
             'email'     => 'Email',

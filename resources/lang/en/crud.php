@@ -108,17 +108,17 @@ return [
         'show'  => 'Show Filters',
         'title' => 'Filters',
     ],
-    'forms' => [
-        'actions' => [
-            'calendar' => 'Add a calendar date',
+    'forms'             => [
+        'actions'   => [
+            'calendar'  => 'Add a calendar date',
         ],
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
+        'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'is_private'            => 'Hide from non "Admin" users.',
-        'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',

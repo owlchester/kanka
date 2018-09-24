@@ -52,6 +52,7 @@ return [
             'dark'      => 'Sombre',
             'default'   => 'Défaut',
             'future'    => 'Futur',
+            'midnight'  => 'Bleu Minuit',
         ],
     ],
     'title'         => 'Profil',

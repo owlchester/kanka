@@ -2,7 +2,6 @@
 
 return [
     'campaigns'         => [
-        'current'   => 'Campaña actual',
         'manage'    => 'Gestionar campañas',
     ],
     'description'       => 'Tu plaza creativa',

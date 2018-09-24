@@ -2,7 +2,6 @@
 
 return [
     'campaigns'         => [
-        'current'   => 'Die aktuelle Kampagne',
         'manage'    => 'Kampagnen verwalten',
     ],
     'description'       => 'Das Zuhause deiner Kreativität',

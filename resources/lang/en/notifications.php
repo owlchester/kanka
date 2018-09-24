@@ -6,9 +6,9 @@ return [
         'join'      => ':user joined the campaign :campaign.',
         'leave'     => ':user left the campaign :campaign.',
         'role'      => [
-            'add' => 'You have been added to the :role role in the :campaign campaign.',
-            'remove' => 'You have been removed from the :role role in the :campaign campaign.',
-        ]
+            'add'       => 'You have been added to the :role role in the :campaign campaign.',
+            'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
+        ],
     ],
     'header'            => 'You have :count notifications',
     'index'             => [

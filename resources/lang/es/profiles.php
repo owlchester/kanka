@@ -52,6 +52,7 @@ return [
             'dark'      => 'Oscuro',
             'default'   => 'Por defecto',
             'future'    => 'Futuro',
+            'midnight'  => 'Azul medianoche',
         ],
     ],
     'title'         => 'Actualizar perfil',

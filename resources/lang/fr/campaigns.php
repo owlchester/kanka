@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'        => [
+    'create'                => [
         'description'           => 'Créer une nouvelle campagne',
         'helper'                => [
             'first' => 'Merci pour l\'intérêt! Avant de pouvoir avancer, nous n\'avons que besoin d\'un <b>nom de campagne</b>. Ceci est le nom unique du monde qui le distingue des autres. Pas d\'inquiétude pour l\'originalité, le nom peut être changé à tout moment, autant de fois que désiré, et d\'autres campagnes peuvent être créées.',
@@ -12,38 +12,45 @@ return [
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créé pour aider à bien démarrer.',
         'title'                 => 'Nouvelle Campagne',
     ],
-    'destroy'       => [
+    'destroy'               => [
         'success'   => 'Campagne supprimée.',
     ],
-    'edit'          => [
+    'edit'                  => [
         'description'   => 'Modifier la campagne',
         'success'       => 'Campagne modifiée.',
         'title'         => 'Modifier la campagne :campaign',
     ],
-    'errors'        => [
+    'entity_visibilities'   => [
+        'private'   => 'Nouvelles entités privées',
+    ],
+    'errors'                => [
         'access'        => 'Accès refusé pour cette campagne.',
         'unknown_id'    => 'Campagne inconnue.',
     ],
-    'export'        => [
-        'errors'    => [
+    'export'                => [
+        'description'   => 'Exporter la campagne.',
+        'errors'        => [
             'limit' => 'Nombre d\'export maximal par jour excédé pour cette campagne.',
         ],
-        'helper'    => 'Export de la campagne. Une notification content un lien de téléchargement sera généré.',
-        'success'   => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
+        'helper'        => 'Export de la campagne. Une notification content un lien de téléchargement sera généré.',
+        'success'       => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
+        'title'         => 'Export Campagne :name',
     ],
-    'fields'        => [
-        'description'   => 'Description',
-        'image'         => 'Image',
-        'locale'        => 'Langue',
-        'name'          => 'Nom',
-        'visibility'    => 'Visibilité',
+    'fields'                => [
+        'description'       => 'Description',
+        'entity_visibility' => 'Visibilité d\'entité',
+        'image'             => 'Image',
+        'locale'            => 'Langue',
+        'name'              => 'Nom',
+        'visibility'        => 'Visibilité',
     ],
-    'helpers'       => [
-        'locale'        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
-        'name'          => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
-        'visibility'    => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
+    'helpers'               => [
+        'entity_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
+        'locale'            => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
+        'name'              => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
+        'visibility'        => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
-    'index'         => [
+    'index'                 => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Créer une nouvelle campagne',
@@ -56,7 +63,7 @@ return [
         'select'        => 'Choisi une campagne',
         'title'         => 'Campagnes',
     ],
-    'invites'       => [
+    'invites'               => [
         'actions'       => [
             'add'   => 'Inviter',
             'link'  => 'Nouveau Lien',
@@ -100,43 +107,45 @@ return [
             'link'  => 'Lien',
         ],
     ],
-    'leave'         => [
+    'leave'                 => [
         'confirm'   => 'Est-tu sûr de vouloir quitter :name? Tu n\'aura plus accès aux données, sauf si un Proprio de la campagne t\'invites à nouveau.',
         'error'     => 'Impossible de quitter la campagne.',
         'success'   => 'Tu as quitté la campagne.',
     ],
-    'members'       => [
-        'create'    => [
+    'members'               => [
+        'create'        => [
             'title' => 'Ajouter un membre à la campagne',
         ],
-        'edit'      => [
+        'description'   => 'Gestion des membres de la campagne',
+        'edit'          => [
             'description'   => 'Modifier un membre de la campagne',
             'title'         => 'Modifier membre :name',
         ],
-        'fields'    => [
+        'fields'        => [
             'joined'    => 'Rejoint',
             'name'      => 'Utilisateur',
             'role'      => 'Rôle',
             'roles'     => 'Rôles',
         ],
-        'help'      => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
-        'invite'    => [
+        'help'          => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
+        'invite'        => [
             'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté à la campagne. Tu peux annuler une invitation à tout moment.',
             'title'         => 'Invitation',
         ],
-        'roles'     => [
+        'roles'         => [
             'member'    => 'Membre',
             'owner'     => 'Administrateur',
             'viewer'    => 'Observateur',
         ],
-        'your_role' => 'Rôle: \'<i>:rôle</i>\'',
+        'title'         => 'Membres de la campagne :name',
+        'your_role'     => 'Rôle: \'<i>:rôle</i>\'',
     ],
-    'placeholders'  => [
+    'placeholders'          => [
         'description'   => 'Une petite description de la campagne',
         'locale'        => 'La langue utilisée',
         'name'          => 'Le nom de la campagne',
     ],
-    'roles'         => [
+    'roles'                 => [
         'actions'       => [
             'add'   => 'Ajouter un rôle',
         ],
@@ -144,6 +153,7 @@ return [
             'success'   => 'Rôle créé.',
             'title'     => 'Créer un nouveau rôle pour :name',
         ],
+        'description'   => 'Gestion des membres de la campagne',
         'destroy'       => [
             'success'   => 'Rôle supprimé.',
         ],
@@ -183,6 +193,7 @@ return [
             'description'   => 'Membres et Permissions d\'un rôle de campagne',
             'title'         => 'Rôles de campagne',
         ],
+        'title'         => 'Rôles de la campagne :name',
         'types'         => [
             'owner'     => 'Propriétaire',
             'public'    => 'Publique',
@@ -204,12 +215,13 @@ return [
             ],
         ],
     ],
-    'settings'      => [
-        'edit'      => [
+    'settings'              => [
+        'description'   => 'Activer ou désactiver des modules de la campagne.',
+        'edit'          => [
             'success'   => 'Campagne modifiée.',
         ],
-        'helper'    => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
-        'helpers'   => [
+        'helper'        => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
+        'helpers'       => [
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
             'categories'    => 'Chaque entité peut être attribuée à une catégorie. Les catégories peuvent appartenir à d\'autres catégories.',
             'characters'    => 'Les peuples de ton monde.',
@@ -225,8 +237,9 @@ return [
             'organisations' => 'Cultes, unités militaires, factions, guildes.',
             'quests'        => 'Gestionnaire de quêtes avec personnages et lieux.',
         ],
+        'title'         => 'Modules de la campagne :name',
     ],
-    'show'          => [
+    'show'                  => [
         'actions'       => [
             'leave' => 'Quitter la campagne',
         ],
@@ -235,12 +248,13 @@ return [
             'export'        => 'Export',
             'information'   => 'Information',
             'members'       => 'Membres',
+            'menu'          => 'Menu',
             'roles'         => 'Rôles',
             'settings'      => 'Modules',
         ],
         'title'         => 'Campagne :name',
     ],
-    'visibilities'  => [
+    'visibilities'          => [
         'private'   => 'Privé',
         'public'    => 'Publique',
         'review'    => 'En attente de revue',

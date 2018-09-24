@@ -85,6 +85,8 @@ return [
     'export'            => 'Export',
     'fields'            => [
         'attribute_template'    => 'Modèle d\'attribut',
+        'calendar'              => 'Calendrier',
+        'calendar_date'         => 'Date calendrier',
         'character'             => 'Personnage',
         'creator'               => 'Créateur',
         'description'           => 'Description',
@@ -108,9 +110,15 @@ return [
         'show'  => 'Afficher les filtres',
         'title' => 'Filtres',
     ],
+    'forms'             => [
+        'actions'   => [
+            'calendar'  => 'Ajouter une date de calendrier',
+        ],
+    ],
     'hidden'            => 'Caché',
     'hints'             => [
         'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création de cette entité.',
+        'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'is_private'            => 'Cacher des membres de type non-Admin',
     ],
@@ -184,10 +192,9 @@ return [
     'panels'            => [
         'appearance'            => 'Apparence',
         'attribute_template'    => 'Modèle d\'attribut',
-        'description'           => 'Description',
+        'calendar_date'         => 'Date Calendrier',
         'entry'                 => 'Entrée',
         'general_information'   => 'Information Generale',
-        'history'               => 'Histoire',
         'move'                  => 'Déplacer',
         'system'                => 'Système',
     ],
@@ -208,6 +215,7 @@ return [
         'title'     => 'Permissions',
     ],
     'placeholders'      => [
+        'calendar'      => 'Choix du calendrier',
         'character'     => 'Choix du personnage',
         'entity'        => 'Entité',
         'event'         => 'Choix de l\'événement',

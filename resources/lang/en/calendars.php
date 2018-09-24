@@ -22,9 +22,9 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing' => 'Existing Entity',
-            'new' => 'New Event',
-            'switch' => 'Change choice',
+            'existing'  => 'Existing Entity',
+            'new'       => 'New Event',
+            'switch'    => 'Change choice',
         ],
         'destroy'   => 'Event removed from calendar \':name\'.',
         'helpers'   => [
@@ -68,6 +68,10 @@ return [
         'header'        => 'Calendars of :name',
         'title'         => 'Calendars',
     ],
+    'layouts'       => [
+        'month' => 'Month',
+        'year'  => 'Year',
+    ],
     'panels'        => [
         'leap_year' => 'Leap Year',
         'years'     => 'Named Years',
@@ -105,8 +109,4 @@ return [
         ],
         'title'         => 'Calendar :name',
     ],
-    'layouts' => [
-        'year' => 'Year',
-        'month' => 'Month',
-    ]
 ];

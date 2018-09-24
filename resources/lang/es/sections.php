@@ -15,7 +15,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personajes',
-        'children'      => 'Subcategorías',
+        'children'      => 'Descendientes',
         'name'          => 'Nombre',
         'section'       => 'Categoría',
         'sections'      => 'Subcategorías',
@@ -42,7 +42,7 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la categoría',
         'tabs'          => [
-            'children'      => 'Subcategorías',
+            'children'      => 'Descendientes',
             'information'   => 'Información',
             'sections'      => 'Categorías',
         ],

@@ -2,7 +2,6 @@
 
 return [
     'campaigns'         => [
-        'current'   => 'A campanha atual',
         'manage'    => 'Gerencie suas campanhas',
     ],
     'description'       => 'O lar de sua criatividade',

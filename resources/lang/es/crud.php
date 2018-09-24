@@ -185,6 +185,7 @@ return [
         'appearance'            => 'Apariencia',
         'attribute_template'    => 'Plantilla de atributos',
         'description'           => 'Descripción',
+        'entry'                 => 'Presentación',
         'general_information'   => 'Información general',
         'history'               => 'Historia',
         'move'                  => 'Mover',

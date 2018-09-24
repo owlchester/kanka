@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'        => [
+    'create'                => [
         'description'           => 'Create a new campaign',
         'helper'                => [
             'first' => 'Thanks for trying our app out! Before we can go any further, we need you to provide one simple thing for us, your <b>campaign name</b>. This is the name of your world that separates it from others, so it has to be unique. If you don\'t have a good name yet, don\'t worry, you can <b>always change it later</b>, or create more campaigns.',
@@ -12,45 +12,45 @@ return [
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
         'title'                 => 'New Campaign',
     ],
-    'destroy'       => [
+    'destroy'               => [
         'success'   => 'Campaign removed.',
     ],
-    'edit'          => [
+    'edit'                  => [
         'description'   => 'Edit your campaign',
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
-    'entity_visibilities' => [
-        'private' => 'New entities are private'
+    'entity_visibilities'   => [
+        'private'   => 'New entities are private',
     ],
-    'errors'        => [
+    'errors'                => [
         'access'        => 'You don\'t have access to this campaign.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
-    'export'        => [
-        'description' => 'Export the campaign.',
-        'errors'    => [
+    'export'                => [
+        'description'   => 'Export the campaign.',
+        'errors'        => [
             'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
         ],
-        'helper'    => 'Export your campaign. A notification with a download link will be made available.',
-        'success'   => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
-        'title' => 'Campaign :name Export',
+        'helper'        => 'Export your campaign. A notification with a download link will be made available.',
+        'success'       => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
+        'title'         => 'Campaign :name Export',
     ],
-    'fields'        => [
-        'description'   => 'Description',
-        'image'         => 'Image',
-        'locale'        => 'Locale',
-        'name'          => 'Name',
-        'visibility'    => 'Visibility',
+    'fields'                => [
+        'description'       => 'Description',
         'entity_visibility' => 'Entity Visibility',
+        'image'             => 'Image',
+        'locale'            => 'Locale',
+        'name'              => 'Name',
+        'visibility'        => 'Visibility',
     ],
-    'helpers'       => [
-        'locale'        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
-        'name'          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
-        'visibility'    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
+    'helpers'               => [
         'entity_visibility' => 'When creating a new entity, the "Private" option will automatically be selected.',
+        'locale'            => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
+        'name'              => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
+        'visibility'        => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
-    'index'         => [
+    'index'                 => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Create a new campaign',
@@ -63,7 +63,7 @@ return [
         'select'        => 'Select a campaign',
         'title'         => 'Campaigns',
     ],
-    'invites'       => [
+    'invites'               => [
         'actions'       => [
             'add'   => 'Invite',
             'link'  => 'New Link',
@@ -107,47 +107,45 @@ return [
             'link'  => 'Link',
         ],
     ],
-    'leave'         => [
+    'leave'                 => [
         'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an owner of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
-    'members'       => [
-        'create'    => [
+    'members'               => [
+        'create'        => [
             'title' => 'Add a member to your campaign',
         ],
-        'description' => 'Manage the members of the campaign',
-        'edit'      => [
+        'description'   => 'Manage the members of the campaign',
+        'edit'          => [
             'description'   => 'Edit a member of your campaign',
             'title'         => 'Edit member :name',
         ],
-        'fields'    => [
+        'fields'        => [
             'joined'    => 'Joined',
             'name'      => 'User',
             'role'      => 'Role',
             'roles'     => 'Roles',
         ],
-        'help'      => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
-        'invite'    => [
+        'help'          => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
+        'invite'        => [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
-        'title' => 'Campaign :name Members',
-        'roles'     => [
+        'roles'         => [
             'member'    => 'Member',
             'owner'     => 'Owner',
             'viewer'    => 'Viewer',
         ],
-        'your_role' => 'Your role: <i>:role</i>',
+        'title'         => 'Campaign :name Members',
+        'your_role'     => 'Your role: <i>:role</i>',
     ],
-    'placeholders'  => [
+    'placeholders'          => [
         'description'   => 'A short summary of your campaign',
         'locale'        => 'Language code',
         'name'          => 'Your campaign name',
     ],
-    'roles'         => [
-        'title' => 'Campaign :name Roles',
-        'description' => 'Manage the roles of the campaign',
+    'roles'                 => [
         'actions'       => [
             'add'   => 'Add a role',
         ],
@@ -155,6 +153,7 @@ return [
             'success'   => 'Role created.',
             'title'     => 'Create a new role for :name',
         ],
+        'description'   => 'Manage the roles of the campaign',
         'destroy'       => [
             'success'   => 'Role removed.',
         ],
@@ -194,6 +193,7 @@ return [
             'description'   => 'Members and Permissions of a campaign role',
             'title'         => 'Campaign Role \':role\'',
         ],
+        'title'         => 'Campaign :name Roles',
         'types'         => [
             'owner'     => 'Owner',
             'public'    => 'Public',
@@ -215,12 +215,13 @@ return [
             ],
         ],
     ],
-    'settings'      => [
-        'edit'      => [
+    'settings'              => [
+        'description'   => 'Enable or disable modules of the campaign.',
+        'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
-        'helpers'   => [
+        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helpers'       => [
             'calendars'     => 'A place to define the calendars of your world.',
             'categories'    => 'Each entity can have a category. Categories can belong to other categories, and entries can be filtered by category.',
             'characters'    => 'The people who inhabit your world.',
@@ -236,10 +237,9 @@ return [
             'organisations' => 'Cults, military units, factions, guilds.',
             'quests'        => 'To keep track of various quests with characters and locations.',
         ],
-        'title' => 'Campaign :name Modules',
-        'description' => 'Enable or disable modules of the campaign.',
+        'title'         => 'Campaign :name Modules',
     ],
-    'show'          => [
+    'show'                  => [
         'actions'       => [
             'leave' => 'Leave campaign',
         ],
@@ -254,7 +254,7 @@ return [
         ],
         'title'         => 'Campaign :name',
     ],
-    'visibilities'  => [
+    'visibilities'          => [
         'private'   => 'Private',
         'public'    => 'Public',
         'review'    => 'Awaiting Review',
