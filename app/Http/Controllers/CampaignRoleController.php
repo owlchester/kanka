@@ -58,7 +58,7 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('create', CampaignRole::class);
         $relation = CampaignRole::create($request->all());
-        return redirect()->route('campaign_roles')
+        return redirect()->route('campaign_roles.index')
             ->with('success', trans($this->view . '.create.success'));
     }
 
