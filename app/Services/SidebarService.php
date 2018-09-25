@@ -10,6 +10,7 @@ class SidebarService
             'dashboard',
         ],
         'campaigns' => [
+            'campaign',
             'campaigns',
             'campaign_user',
             'campaign_roles',

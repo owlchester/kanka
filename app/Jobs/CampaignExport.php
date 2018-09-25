@@ -21,6 +21,13 @@ class CampaignExport implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 1;
+
+    /**
      * @var Campaign
      */
     protected $campaign;
@@ -123,8 +130,25 @@ class CampaignExport implements ShouldQueue
         }
     }
 
+    /**
+     *
+     */
     public function failure()
     {
-        // Sentry will handle this
+        // Set the campaign export date to null so that the user can try again.
+        // If it failed once, trying again won't help, but this might motivate
+        // them to report the error.
+        $this->campaign->update([
+            'export_date' => null
+        ]);
+
+        // Notify the user that something went wrong
+        $this->user->notify(new Header(
+            'campaign.export_error',
+            'times',
+            'red'
+        ));
+
+        // Sentry will handle the rest
     }
 }

@@ -56,7 +56,8 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     /**
-     * Get the user's campaign
+     * Get the user's campaign.
+     * This is the equivalent of calling user->campaign or user->getCampaign
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function getCampaignAttribute()
@@ -198,7 +199,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function rolesList($campaignId = null)
     {
-        if (empty($campaignId)) {
+        if (empty($campaignId) && !empty($this->campaign)) {
             $campaignId = $this->campaign->id;
         }
         $roles = $this->campaignRoles($campaignId)->get();
@@ -211,7 +212,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function campaignRoles($campaignId = null)
     {
-        if (empty($campaignId)) {
+        if (empty($campaignId) && !empty($this->campaign)) {
             $campaignId = $this->campaign->id;
         }
 
