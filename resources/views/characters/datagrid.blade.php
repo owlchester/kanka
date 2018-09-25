@@ -31,7 +31,7 @@
             'visible' => $campaign->enabled('races'),
             'render' => function($model) {
                 if ($model->race) {
-                    return '<a href="' . route('races.show', $model->race_id) . '" data-toggle="tooltip" title="' . $model->race->tooltip() . '">' . $model->name . '</a>';
+                    return '<a href="' . route('races.show', $model->race_id) . '" data-toggle="tooltip" title="' . $model->race->tooltip() . '">' . $model->race->name . '</a>';
                 }
             }
         ],
