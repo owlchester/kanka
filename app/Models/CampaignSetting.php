@@ -31,6 +31,7 @@ class CampaignSetting extends Model
         'dice_rolls',
         'menu_links',
         'conversations',
+        'races',
     ];
 
     /**

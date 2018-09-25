@@ -80,6 +80,11 @@
                     <a href="{{ route('calendars.index') }}"><i class="ra ra-moon-sun"></i> <span>{{ trans('sidebar.calendars') }}</span></a>
                 </li>
             @endif
+            @if ($campaign->enabled('races'))
+                <li class="{{ $sidebar->active('races') }}">
+                    <a href="{{ route('races.index') }}"><i class="ra ra-wyvern"></i> <span>{{ trans('sidebar.races') }}</span></a>
+                </li>
+            @endif
             @if ($campaign->enabled('quests'))
             <li class="{{ $sidebar->active('quests') }}">
                 <a href="{{ route('quests.index') }}"><i class="ra ra-wooden-sign"></i> <span>{{ trans('sidebar.quests') }}</span></a>

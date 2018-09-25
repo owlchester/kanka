@@ -236,6 +236,7 @@ return [
             'notes'         => 'Lore, religions, history, magic, races.',
             'organisations' => 'Cults, military units, factions, guilds.',
             'quests'        => 'To keep track of various quests with characters and locations.',
+            'races'         => 'If your campaign has more than one race, this will make keeping track easy.',
         ],
         'title'         => 'Campaign :name Modules',
     ],

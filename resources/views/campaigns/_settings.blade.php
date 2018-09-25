@@ -75,6 +75,13 @@
                     </label>
                     <p class="help-block">{{ trans('campaigns.settings.helpers.notes') }}</p>
                 </div>
+                <div class="form-group">
+                    {!! Form::hidden('races', 0) !!}
+                    <label>{!! Form::checkbox('races') !!}
+                        {{ trans('entities.races') }}
+                    </label>
+                    <p class="help-block">{{ trans('campaigns.settings.helpers.races') }}</p>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">

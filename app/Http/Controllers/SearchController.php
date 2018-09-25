@@ -317,6 +317,16 @@ class SearchController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function races(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Race::class);
+    }
+
+    /**
      * Search for month names
      * @param Request $request
      * @return mixed

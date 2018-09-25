@@ -20,13 +20,13 @@ class Character extends MiscModel
         'entry',
         'age',
         'sex',
-        'race',
         'image',
         'is_private',
         'is_personality_visible',
         'type',
         'section_id',
         'is_dead',
+        'race_id',
     ];
 
 
@@ -38,7 +38,6 @@ class Character extends MiscModel
         'name',
         'title',
         'age',
-        'race',
         'sex',
         'location_id',
         'family_id',
@@ -46,6 +45,7 @@ class Character extends MiscModel
         'section_id',
         'is_dead',
         'is_private',
+        'race_id',
     ];
 
     /**
@@ -116,7 +116,7 @@ class Character extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity', 'family', 'family.entity']);
+        return $query->with(['entity', 'location', 'location.entity', 'family', 'family.entity', 'race']);
     }
 
     /**
@@ -133,6 +133,14 @@ class Character extends MiscModel
     public function family()
     {
         return $this->belongsTo('App\Models\Family', 'family_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function race()
+    {
+        return $this->belongsTo('App\Models\Race', 'race_id', 'id');
     }
 
     /**

@@ -30,6 +30,8 @@ return [
     'organisations'         => 'Organisations',
     'quest'                 => 'Quest',
     'quests'                => 'Quests',
+    'race'                  => 'Race',
+    'races'                 => 'Races',
     'section'               => 'Category',
     'sections'              => 'Categories',
 ];

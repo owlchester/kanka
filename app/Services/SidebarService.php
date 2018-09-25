@@ -74,6 +74,9 @@ class SidebarService
         ],
         'menu_links' => [
             'menu_links',
+        ],
+        'races' => [
+            'races',
         ]
     ];
 

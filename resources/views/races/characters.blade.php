@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('locations.characters.title', ['name' => $model->name]),
-    'description' => trans('locations.characters.description'),
+    'title' => trans('races.characters.title', ['name' => $model->name]),
+    'description' => trans('races.characters.description'),
     'breadcrumbs' => [
-        ['url' => route('locations.show', $model), 'label' => $model->name],
-        trans('locations.show.tabs.characters')
+        ['url' => route('races.show', $model), 'label' => $model->name],
+        trans('races.show.tabs.characters')
     ]
 ])
 
@@ -13,30 +13,29 @@
     @include('partials.errors')
     <div class="row">
         <div class="col-md-3">
-            @include('locations._menu', ['active' => 'characters'])
+            @include('races._menu', ['active' => 'characters'])
         </div>
         <div class="col-md-9">
 
             <div class="box box-flat">
                 <div class="box-body">
                     <h2 class="page-header with-border">
-                        {{ trans('locations.show.tabs.characters') }}
+                        {{ trans('races.show.tabs.characters') }}
                     </h2>
 
-                    <?php  $r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
-                    <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
+                    <?php  $r = $model->characters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['family'])->paginate(); ?>
+                    <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('races.show.tabs.characters') }}</p>
                     <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
                         <tbody><tr>
                             <th class="avatar"><br /></th>
                             <th>{{ trans('characters.fields.name') }}</th>
+                            @if ($campaign->enabled('locations'))
+                                <th>{{ trans('crud.fields.location') }}</th>
+                            @endif
                             @if ($campaign->enabled('families'))
-                            <th>{{ trans('characters.fields.family') }}</th>
+                                <th>{{ trans('characters.fields.family') }}</th>
                             @endif
-                            <th>{{ trans('crud.fields.location') }}</th>
                             <th>{{ trans('characters.fields.age') }}</th>
-                            @if ($campaign->enabled('races'))
-                            <th>{{ trans('characters.fields.race') }}</th>
-                            @endif
                             <th>&nbsp;</th>
                         </tr>
                         @foreach ($r as $character)
@@ -47,24 +46,21 @@
                                 <td>
                                     <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltip() }}">{{ $character->name }}</a>
                                 </td>
-                                @if ($campaign->enabled('family'))
+                                @if ($campaign->enabled('locations'))
+                                    <td>
+                                        @if ($character->location)
+                                            <a href="{{ route('locations.show', $character->location_id) }}" data-toggle="tooltip" title="{{ $character->location->tooltip() }}">{{ $character->location->name }}</a>
+                                        @endif
+                                    </td>
+                                @endif
+                                @if ($campaign->enabled('families'))
                                 <td>
                                     @if ($character->family)
                                         <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltip() }}">{{ $character->family->name }}</a>
                                     @endif
                                 </td>
                                 @endif
-                                <td>
-                                    <a href="{{ route('locations.show', $character->location_id) }}" data-toggle="tooltip" title="{{ $character->location->tooltip() }}">{{ $character->location->name }}</a>
-                                </td>
                                 <td>{{ $character->age }}</td>
-                                @if ($campaign->enabled('races'))
-                                    <td>
-                                        @if ($character->race)
-                                            <a href="{{ route('races.show', $character->race_id) }}" data-toggle="tooltip" title="{{ $character->race->tooltip() }}">{{ $character->race->name }}</a>
-                                        @endif
-                                    </td>
-                                @endif
                                 <td class="text-right">
                                     <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
                                         <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}

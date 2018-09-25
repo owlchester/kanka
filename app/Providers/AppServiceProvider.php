@@ -25,6 +25,7 @@ use App\Models\Quest;
 use App\Models\QuestCharacter;
 use App\Models\QuestLocation;
 use App\Models\Note;
+use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Section;
 use App\Observers\CalendarObserver;
@@ -94,6 +95,7 @@ class AppServiceProvider extends ServiceProvider
             Quest::observe('App\Observers\QuestObserver');
             QuestCharacter::observe('App\Observers\QuestCharacterObserver');
             QuestLocation::observe('App\Observers\QuestLocationObserver');
+            Race::observe('App\Observers\RaceObserver');
 
             Relation::observe('App\Observers\RelationObserver');
 

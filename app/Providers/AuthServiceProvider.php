@@ -54,6 +54,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Note' => 'App\Policies\NotePolicy',
         'App\Models\Organisation' => 'App\Policies\OrganisationPolicy',
         'App\Models\Quest' => 'App\Policies\QuestPolicy',
+        'App\Models\Race' => 'App\Policies\RacePolicy',
         'App\Models\Section' => 'App\Policies\SectionPolicy',
     ];
 }

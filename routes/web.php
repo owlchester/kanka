@@ -93,6 +93,9 @@ Route::group([
         Route::get('/locations/{location}/items', 'LocationController@items')->name('locations.items');
         Route::get('/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
 
+
+        Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
+
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 
@@ -149,6 +152,8 @@ Route::group([
             'sections' => 'SectionController',
             'sections.relations' => 'SectionRelationController',
             'campaign_invites' => 'CampaignInviteController',
+            'races' => 'RaceController',
+            'races.relations' => 'RaceRelationController',
 
             // Entities
             'entities.attributes' => 'AttributeController',
@@ -180,6 +185,7 @@ Route::group([
         Route::get('/search/dice_rolls', 'SearchController@diceRolls')->name('dice_rolls.find');
         Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
         Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');
+        Route::get('/search/races', 'SearchController@races')->name('races.find');
 
         Route::get('/search', 'SearchController@search')->name('search');
         Route::get('/search/entities', 'SearchController@entities')->name('search.relations');

@@ -193,6 +193,14 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return mixed
+     */
+    public function races()
+    {
+        return $this->hasMany('App\Models\Race');
+    }
+
+    /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool
      */

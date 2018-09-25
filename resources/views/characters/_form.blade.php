@@ -35,13 +35,19 @@ if (request()->route()->getName() == 'characters.random') {
                     ) !!}
                 </div>
                 @endif
+                @if ($campaign->enabled('races'))
+                    <div class="form-group">
+                        {!! Form::select2(
+                            'race_id',
+                            (isset($model) && $model->face ? $model->race : $formService->prefillSelect('race', $source)),
+                            App\Models\Race::class,
+                            true
+                        ) !!}
+                    </div>
+                @endif
                 @include('cruds.fields.location')
                 @include('cruds.fields.section')
                 @include('cruds.fields.attribute_template')
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.race') }}</label>
-                    {!! Form::text('race', ($isRandom ? $random->generate('race') : $formService->prefill('race', $source)), ['placeholder' => trans('characters.placeholders.race'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-                </div>
                 <div class="form-group">
                     <label>{{ trans('characters.fields.type') }}</label>
                     {!! Form::text('type', ($isRandom ? $random->generate('type') : $formService->prefill('type', $source)), ['placeholder' => trans('characters.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}

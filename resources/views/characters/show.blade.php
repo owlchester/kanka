@@ -26,11 +26,12 @@
                         </li>
                     @endif
                     @include('cruds.lists.location')
-                    @if (!empty($model->race))
-                    <li class="list-group-item">
-                        <b>{{ trans('characters.fields.race') }}</b> <span class="pull-right">{{ $model->race }}</span>
-                        <br class="clear" />
-                    </li>
+                    @if ($campaign->enabled('races') && $model->race)
+                        <li class="list-group-item">
+                            <b>{{ trans('characters.fields.race') }}</b>
+                            <a class="pull-right" href="{{ route('races.show', $model->race_id) }}" data-toggle="tooltip" title="{{ $model->race->tooltip() }}">{{ $model->race->name }}</a>
+                            <br class="clear" />
+                        </li>
                     @endif
                     @if (!empty($model->type))
                     <li class="list-group-item">

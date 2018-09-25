@@ -25,7 +25,16 @@
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),
         ],
-        'race',
+        [
+            'label' => trans('characters.fields.race'),
+            'field' => 'race.name',
+            'visible' => $campaign->enabled('races'),
+            'render' => function($model) {
+                if ($model->race) {
+                    return '<a href="' . route('races.show', $model->race_id) . '" data-toggle="tooltip" title="' . $model->race->tooltip() . '">' . $model->name . '</a>';
+                }
+            }
+        ],
         'type',
         'age',
         'sex',

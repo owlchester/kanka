@@ -40,6 +40,7 @@ class EntityService
             'attribute_templates' => 'App\Models\AttributeTemplate',
             'dice_rolls' => 'App\Models\DiceRoll',
             'menu_links' => 'App\Models\MenuLink',
+            'races' => 'App\Models\Races',
         ];
     }
 
