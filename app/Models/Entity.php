@@ -177,6 +177,14 @@ class Entity extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function race()
+    {
+        return $this->hasOne('App\Models\Race', 'id', 'entity_id');
+    }
+
+    /**
      * Not to be confused with the "section" which is the child entity, category is the section
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
