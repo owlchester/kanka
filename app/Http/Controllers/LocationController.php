@@ -200,4 +200,45 @@ class LocationController extends CrudController
     {
         return $this->crudDestroy($location);
     }
+
+    /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function events(Location $location)
+    {
+        return $this->menuView($location, 'events');
+    }
+
+    /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function characters(Location $location)
+    {
+        return $this->menuView($location, 'characters');
+    }
+
+
+    /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function items(Location $location)
+    {
+        return $this->menuView($location, 'items');
+    }
+
+    /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function locations(Location $location)
+    {
+        return $this->menuView($location, 'locations');
+    }
 }

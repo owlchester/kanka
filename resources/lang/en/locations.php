@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'characters' => [
+        'title' => 'Location :name Characters',
+        'description' => 'Characters located at the location.',
+    ],
     'create'        => [
         'description'   => 'Create a new location',
         'success'       => 'Location \':name\' created.',
@@ -32,6 +36,10 @@ return [
         'description'   => 'Manage the location of :name.',
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
+    ],
+    'locations' => [
+        'title' => 'Location :name Locations',
+        'description' => 'Locations located in the location.',
     ],
     'map'           => [
         'actions'   => [
@@ -83,10 +91,21 @@ return [
         'description'   => 'A detailed view of a location',
         'tabs'          => [
             'characters'    => 'Characters',
+            'events'        => 'Events',
             'information'   => 'Information',
+            'items'         => 'Items',
             'locations'     => 'Locations',
             'map'           => 'Map',
+            'menu'          => 'Menu',
         ],
         'title'         => 'Location :name',
     ],
+    'items' => [
+        'title' => 'Location :name Items',
+        'description' => 'Items located in or from the location.',
+    ],
+    'events' => [
+        'title' => 'Location :name Events',
+        'description' => 'Events which took place at the location.',
+    ]
 ];

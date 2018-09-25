@@ -307,4 +307,20 @@ class CrudController extends Controller
             abort('403');
         }
     }
+
+    protected function menuView($model, $view)
+    {
+
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $model);
+        } else {
+            $this->authorizeForGuest('read', $model);
+        }
+        $name = $this->view;
+        return view($this->view . '.' . $view, compact(
+            'model',
+            'name'
+        ));
+    }
 }

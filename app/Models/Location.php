@@ -116,6 +116,14 @@ class Location extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event', 'location_id', 'id');
+    }
+
+    /**
      * Get all characters in the location and descendants
      */
     public function allCharacters()
