@@ -29,7 +29,7 @@ class StoreCharacter extends FormRequest
             'family_id' => 'integer|exists:families,id',
             'location_id' => 'integer|exists:locations,id',
             'section_id' => 'nullable|integer|exists:sections,id',
-            'race_id' => 'nullable|integer|exists:race,id',
+            'race_id' => 'nullable|integer|exists:races,id',
             'age' => 'nullable|max:25',
             'height' => 'nullable|max:10',
             'weight' => 'nullable|max:10',
