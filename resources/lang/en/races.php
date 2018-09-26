@@ -33,11 +33,16 @@ return [
         'name'      => 'Name of the race',
         'type'      => 'Human, Fey, Borg',
     ],
+    'races' => [
+        'title' => 'Race :name Subraces',
+        'description' => 'Races belonging to the race.',
+    ],
     'show'          => [
         'description'   => 'A detailed view of a race',
         'tabs'          => [
             'menu' => 'Menu',
             'characters' => 'Characters',
+            'races'      => 'Subraces',
         ],
         'title'         => 'Race :name',
 

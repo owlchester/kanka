@@ -95,6 +95,7 @@ Route::group([
 
 
         Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
+        Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');

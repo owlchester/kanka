@@ -31,6 +31,14 @@ class RaceController extends CrudController
         $this->filters = [
             'name',
             'type',
+            [
+                'field' => 'race_id',
+                'label' => trans('characters.fields.race'),
+                'type' => 'select2',
+                'route' => route('races.find'),
+                'placeholder' =>  trans('crud.placeholders.race'),
+                'model' => Race::class,
+            ],
         ];
     }
 
@@ -97,5 +105,14 @@ class RaceController extends CrudController
     public function characters(Race $race)
     {
         return $this->menuView($race, 'characters');
+    }
+
+    /**
+     * @param Race $race
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function races(Race $race)
+    {
+        return $this->menuView($race, 'races');
     }
 }

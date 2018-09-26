@@ -10,6 +10,13 @@
         </h3>
 
         <ul class="list-group list-group-unbordered">
+            @if ($model->race)
+                <li class="list-group-item">
+                    <b>{{ trans('characters.fields.race') }}</b>
+                    <a class="pull-right" href="{{ route('races.show', $model->race_id) }}" data-toggle="tooltip" title="{{ $model->race->tooltip() }}">{{ $model->race->name }}</a>
+                    <br class="clear" />
+                </li>
+            @endif
             @if ($model->type)
                 <li class="list-group-race">
                     <b>{{ trans('races.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
@@ -23,7 +30,6 @@
     </div>
 </div>
 
-@if ($campaign->enabled('races'))
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -37,6 +43,7 @@
                     {{ __('crud.panels.entry') }}
                 </a>
             </li>
+            @if ($campaign->enabled('characters'))
             <li class="@if(!empty($active) && $active == 'characters')active @endif">
                 <a href="{{ route('races.characters', $model) }}">
                     {{ __('races.show.tabs.characters') }}
@@ -45,7 +52,15 @@
                     </span>
                 </a>
             </li>
+            @endif
+            <li class="@if(!empty($active) && $active == 'races')active @endif">
+                <a href="{{ route('races.races', $model) }}">
+                    {{ __('races.show.tabs.races') }}
+                    <span class="label label-default pull-right">
+                        <?=$model->races()->count()?>
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
-@endif

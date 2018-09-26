@@ -19,6 +19,7 @@ class Race extends MiscModel
         'image',
         'entry',
         'is_private',
+        'race_id',
         'section_id',
     ];
 
@@ -41,6 +42,7 @@ class Race extends MiscModel
     protected $filterableColumns = [
         'name',
         'type',
+        'race_id',
         'section_id',
         'is_private',
     ];
@@ -63,10 +65,29 @@ class Race extends MiscModel
     }
 
     /**
+     * Characters belonging to this race
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters()
     {
         return $this->hasMany('App\Models\Character', 'race_id', 'id');
+    }
+
+    /**
+     * Parent Race
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function race()
+    {
+        return $this->belongsTo('App\Models\Race', 'race_id', 'id');
+    }
+
+    /**
+     * Children Races
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function races()
+    {
+        return $this->hasMany('App\Models\Race', 'race_id', 'id');
     }
 }

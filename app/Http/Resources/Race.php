@@ -16,6 +16,7 @@ class Race extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'race_id' => $this->race_id
         ]);
     }
 }
