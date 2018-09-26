@@ -9,7 +9,9 @@
         @endif
         <th>{{ trans('organisations.members.fields.role') }}</th>
         <th>{{ trans('characters.fields.age') }}</th>
+        @if ($campaign->enabled('races'))
         <th>{{ trans('characters.fields.race') }}</th>
+        @endif
         <th>{{ trans('characters.fields.sex') }}</th>
         <th>{{ trans('characters.fields.is_dead') }}</th>
         <th class="pull-right">
@@ -39,7 +41,13 @@
             @endif
             <td>{{ $relation->role }}</td>
             <td>{{ $relation->character->age }}</td>
-            <td>{{ $relation->character->race }}</td>
+            @if ($campaign->enabled('races'))
+                <td>
+                    @if ($relation->character->race)
+                        <a href="{{ route('races.show', $relation->character->race_id) }}" data-toggle="tooltip" title="{{ $relation->character->race->tooltip() }}">{{ $relation->character->race->name }}</a>
+                    @endif
+                </td>
+            @endif
             <td>{{ $relation->character->sex }}</td>
             <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
             <td class="text-right">

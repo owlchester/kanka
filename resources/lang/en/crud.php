@@ -245,6 +245,7 @@ return [
     'search'            => 'Search',
     'select'            => 'Select',
     'tabs'              => [
+        'menu'          => 'Menu',
         'attributes'    => 'Attributes',
         'calendars'     => 'Calendars',
         'events'        => 'Events',

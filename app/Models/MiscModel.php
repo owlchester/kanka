@@ -114,7 +114,7 @@ abstract class MiscModel extends Model
         if (empty($text)) {
             return $this->name;
         }
-        return '<h4>' . $this->name . '</h4>' . $text;
+        return '<h4>' . e($this->name) . '</h4>' . $text;
     }
 
     /**

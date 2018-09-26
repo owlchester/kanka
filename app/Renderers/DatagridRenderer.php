@@ -295,7 +295,7 @@ class DatagridRenderer
                     $whoRoute = !empty($column['parent_route']) ? (is_string($column['parent_route']) ? $column['parent_route'] : $column['parent_route']($model)) : $this->getOption('baseRoute');
                     $route = route($whoRoute . '.show', ['id' => $who->id]);
                     $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(true) .
-                        '\');" title="' . $who->name . '" href="' . $route . '"></a>';
+                        '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {
                 $class = 'hidden-xs hidden-sm';

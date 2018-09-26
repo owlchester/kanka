@@ -156,7 +156,13 @@ class Character extends MiscModel
      */
     public function quests()
     {
-        return $this->hasMany('App\Models\QuestCharacter', 'character_id', 'id');
+        return $this->hasManyThrough(
+            'App\Models\Quest',
+            'App\Models\QuestCharacter',
+            'character_id',
+            'id',
+            'id',
+            'quest_id');
     }
 
     /**

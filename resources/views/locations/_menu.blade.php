@@ -39,7 +39,7 @@
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{ __('locations.show.tabs.menu') }}
+            {{ __('crud.tabs.menu') }}
         </h3>
     </div>
     <div class="box-body no-padding">

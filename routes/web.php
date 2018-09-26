@@ -75,8 +75,15 @@ Route::group([
         Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
         Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
-        // Random character
+        // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
+        Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
+        Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
+        Route::get('/characters/{character}/items', 'CharacterSubController@items')->name('characters.items');
+        Route::get('/characters/{character}/map', 'CharacterSubController@map')->name('characters.map');
+        Route::get('/characters/{character}/dice_rolls', 'CharacterSubController@diceRolls')->name('characters.dice_rolls');
+        Route::get('/characters/{character}/conversations', 'CharacterSubController@conversations')->name('characters.conversations');
+        Route::get('/characters/{character}/journals', 'CharacterSubController@journals')->name('characters.journals');
 
         Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
         Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');

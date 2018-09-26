@@ -1,3 +1,4 @@
+@inject('dateRenderer', 'App\Renderers\DateRenderer')
 <div class="row">
     <div class="col-md-3">
         <div class="box">
@@ -19,7 +20,7 @@
                     @endif
                     @if ($model->date)
                         <li class="list-group-item">
-                            <b>{{ trans('journals.fields.date') }}</b> <span class="pull-right">{{ $model->date }}</span>
+                            <b>{{ trans('journals.fields.date') }}</b> <span class="pull-right">{{ $dateRenderer->render($model->date) }}</span>
                             <br class="clear" />
                         </li>
                     @endif

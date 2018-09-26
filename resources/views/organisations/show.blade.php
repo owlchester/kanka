@@ -16,7 +16,7 @@
 
                     @if (!empty($model->type))
                         <li class="list-group-item">
-                            <b>{{ trans('organisations.fields.type') }}</b> <a class="pull-right" href="#">{{ $model->type }}</a>
+                            <b>{{ trans('organisations.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
                             <br class="clear" />
                         </li>
                     @endif
