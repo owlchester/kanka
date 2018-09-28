@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
@@ -332,5 +333,25 @@ class EntityService
     public function getClass($entity)
     {
         return array_get($this->entities, $entity, false);
+    }
+
+    /**
+     * Get a list of enabled entities of a campaign
+     * @param Campaign $campaign
+     * @param array $except
+     * @return array
+     */
+    public function getEnabledEntities(Campaign $campaign, $except = [])
+    {
+        $entityTypes = [];
+        foreach ($this->entities() as $element => $class) {
+            if (in_array($element, $except)) {
+                continue;
+            }
+            if ($campaign->enabled($element)) {
+                $entityTypes[] = $this->singular($element);
+            }
+        }
+        return $entityTypes;
     }
 }

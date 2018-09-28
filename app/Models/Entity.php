@@ -227,6 +227,15 @@ class Entity extends Model
     }
 
     /**
+     * @param string $action
+     * @return string
+     */
+    public function url($action = 'show')
+    {
+        return route($this->pluralType() . '.' . $action, $this->child->id);
+    }
+
+    /**
      * @param $query
      * @param $type
      * @return mixed

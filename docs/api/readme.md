@@ -20,27 +20,27 @@ Returns a list of campaigns the authenticated user is a member of.
 * STORE /api/v1/campaigns
 Not yet available! To create a new campaign.
 
-* GET /api/v1/campaigns/{campaign_id}
+* GET /api/v1/campaigns/`campaign_id`
 Returns the same data as the campaigns list.
 
-* GET /api/v1/campaigns/{campaign_id}/users
+* GET /api/v1/campaigns/`campaign_id`/users
 Returns a list of users of a campaign.
 
 ### Calendars
 
-* GET /api/v1/campaigns/{campaign_id}/calendars
+* GET /api/v1/campaigns/`campaign_id`/calendars
 Returns a list of the campaign's calendars.
 
-* STORE /api/v1/campaigns/{campaign_id}/calendars
+* STORE /api/v1/campaigns/`campaign_id`/calendars
 Create a new calendar.
 
-* GET /api/v1/campaigns/{campaign_id}/calendars/{calendar_id}
+* GET /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
 Returns the details of a calendar.
 
-* POST /api/v1/campaigns/{campaign_id}/calendars/{calendar_id}
+* POST /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
 Update a calendar's data.
 
-* DELETE /api/v1/campaigns/{campaign_id}/calendars/{calendar_id}
+* DELETE /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
 Delete a calendar.
 
 ### Characters
@@ -65,22 +65,22 @@ Same as calendars but with `journals` instead of `calendars`.
 Same as calendars but with `locations` instead of `calendars`.
 
 #### Location Map Points
-* GET /api/v1/campaigns/{campaign_id}/locations/{location_id}/map_points
+* GET /api/v1/campaigns/`campaign_id`/locations/`location_id`/map_points
 
 ### Organisations 
 Same as calendars but with `organisations` instead of `calendars`.
 
 #### Organisation Members 
-* Get /api/v1/campaigns{campaign_id}/organisations/{organisation_id}/organisation_members
+* Get /api/v1/campaigns`campaign_id`/organisations/`organisation_id`/organisation_members
 
 ### Quest 
 Same as calendars but with `quests` instead of `calendars`.
 
 #### Quest Characters
-* GET /api/v1/campaigns{campaign_id}/quest/{quest_id}/quest_characters_
+* GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_characters_
 
 #### Quest Locations
-* GET /api/v1/campaigns{campaign_id}/quest/{quest_id}/quest_locations
+* GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_locations
 
 ### Sections
 Same as calendars but with `sections` instead of `calendars`.
@@ -89,19 +89,19 @@ Same as calendars but with `sections` instead of `calendars`.
 Entities are a global concept in the app. Every character, location etc has an `entity_id` attribute that indicates the parent entity. This attribute is used to get the entity's attributes, relations etc.
 
 #### Entity Attributes
-* GET /api/v1/campaigns/{campaign_id}/entities/{entity_id}/attributes
+* GET /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes
 Returns a list of the entity's attributes
 
-* STORE /api/v1/campaigns/{campaign_id}/entities/{entity_id}/attributes
+* STORE /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes
 Create a new entity attribute.
 
-* GET /api/v1/campaigns/{campaign_id}/entities/{entity_id}/attributes/{attribute_id}
+* GET /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
 Returns the details of an entity attribute.
 
-* POST /api/v1/campaigns/{campaign_id}/entities/{entity_id}/attributes/{attribute_id}
+* POST /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
 Update an entity attribute's data.
 
-* DELETE /api/v1/campaigns/{campaign_id}/entities/{entity_id}/attributes/{attribute_id}
+* DELETE /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
 Delete an entity attribute.
 
 #### Entity Notes
@@ -112,3 +112,6 @@ Same as entity attributes but with `entity_events` instead of `attributes`.
 
 #### Entity Relations
 Same as entity attributes but with `relations` instead of `attributes`.
+
+## Search
+* [Search API](search.md)
