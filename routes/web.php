@@ -81,6 +81,7 @@ Route::group([
         Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
         Route::get('/characters/{character}/items', 'CharacterSubController@items')->name('characters.items');
         Route::get('/characters/{character}/map', 'CharacterSubController@map')->name('characters.map');
+        Route::get('/characters/{character}/map_data', 'CharacterSubController@mapData')->name('characters.map_data');
         Route::get('/characters/{character}/dice_rolls', 'CharacterSubController@diceRolls')->name('characters.dice_rolls');
         Route::get('/characters/{character}/conversations', 'CharacterSubController@conversations')->name('characters.conversations');
         Route::get('/characters/{character}/journals', 'CharacterSubController@journals')->name('characters.journals');

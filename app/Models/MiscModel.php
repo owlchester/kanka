@@ -363,6 +363,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * @param string $route
+     * @return string
+     */
+    public function getLink($route = 'show')
+    {
+        return route($this->entity->pluralType() . '.' . $route, $this->id);
+    }
+
+    /**
      * @return array
      */
     public function filterableColumns()

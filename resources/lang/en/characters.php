@@ -80,6 +80,10 @@ return [
         'description'   => 'Journals the character is an author of.',
         'title'         => 'Character :name Journals',
     ],
+    'maps' => [
+        'title' => 'Character :name Relation Map',
+        'description' => 'Relation map for a character.',
+    ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Add organisation',
@@ -155,6 +159,7 @@ return [
             'history'       => 'History',
             'items'         => 'Items',
             'journals'      => 'Journals',
+            'map'           => 'Relation Map',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
             'quests'        => 'Quests',
