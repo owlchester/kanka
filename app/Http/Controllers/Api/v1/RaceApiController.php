@@ -69,7 +69,7 @@ class RaceApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Race $race)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Race $race)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $race);

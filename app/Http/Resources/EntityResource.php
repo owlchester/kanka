@@ -24,9 +24,9 @@ class EntityResource extends JsonResource
             'entity_id' => $this->entity->id,
 
             'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
+            'created_by' => $this->entity->created_by,
             'updated_at' => $this->updated_at,
-            'updated_by' => $this->updated_by,
+            'updated_by' => $this->entity->updated_by,
         ];
 
         // Foreign elements
@@ -41,8 +41,8 @@ class EntityResource extends JsonResource
             $merged['character_id'] = $this->character_id;
         }
 
-        $final = array_merge($prepared, $merged);
-        ksort($final);
+        $final = array_merge($merged, $prepared);
+        //ksort($final);
         return $final;
     }
 }

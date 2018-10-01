@@ -71,7 +71,7 @@ class QuestLocationApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(RequestLocation $requestLocation, Campaign $campaign, Quest $quest, QuestLocation $questLocation)
+    public function destroy(\Illuminate\Http\RequestLocation $requestLocation, Campaign $campaign, Quest $quest, QuestLocation $questLocation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest);

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resources([
+Route::apiResources([
     'campaigns' => 'CampaignApiController',
     //'campaigns.campaign_users' => 'CampaignUserApiController',
     'campaigns.calendars' => 'CalendarApiController',

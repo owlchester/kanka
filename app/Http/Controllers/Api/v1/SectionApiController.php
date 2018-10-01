@@ -69,7 +69,7 @@ class SectionApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Section $section)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Section $section)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $section);

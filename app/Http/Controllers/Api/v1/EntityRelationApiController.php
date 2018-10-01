@@ -74,7 +74,7 @@ class EntityRelationApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Entity $entity, Relation $relation)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

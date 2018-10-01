@@ -74,7 +74,7 @@ class LocationMapPointApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Location $location, MapPoint $mapPoint)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Location $location, MapPoint $mapPoint)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $location);

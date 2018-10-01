@@ -69,7 +69,7 @@ class EventApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Event $event)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Event $event)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $event);

@@ -69,7 +69,7 @@ class ItemApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Item $item)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $item);
