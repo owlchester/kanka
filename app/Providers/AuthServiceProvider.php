@@ -9,6 +9,7 @@ use App\Policies\CampaignUserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Auth;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         if (!app()->runningInConsole()) {
             $this->registerPolicies();
-            Passport::routes();
+            Passport::routes(null, [
+                'prefix' => LaravelLocalization::setLocale() . '/oauth',
+            ]);
         }
     }
 
