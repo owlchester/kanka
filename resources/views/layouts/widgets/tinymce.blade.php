@@ -11,7 +11,7 @@
                 "emoticons paste textcolor colorpicker textpattern",
                 "fullpage help mention"
             ],
-            toolbar: "save undo redo | styleselect | bold italic strikethrough | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent removeformat formatselect| link image media | emoticons charmap | | forecolor backcolor",
+            toolbar: "save undo redo | styleselect | bold italic strikethrough | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent removeformat formatselect| link image | emoticons charmap | | forecolor backcolor",
             nanospell_server:"php",
             browser_spellcheck: true,
             relative_urls: false,
