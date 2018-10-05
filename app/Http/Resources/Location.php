@@ -16,6 +16,7 @@ class Location extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'map' => $this->map,
             'parent_location_id' => $this->parent_location_id,
         ]);
     }

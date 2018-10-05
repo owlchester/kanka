@@ -15,7 +15,7 @@ class EntityEvent extends EntityChild
     public function toArray($request)
     {
         return $this->entity([
-            'calendar_id' => $this->name,
+            'calendar_id' => $this->calendar_id,
             'date' => $this->date,
             'length' => $this->length,
             'comment' => $this->comment,
