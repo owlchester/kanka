@@ -26,9 +26,9 @@ class Entity extends EntityChild
             'is_private' => (bool) $this->child->is_private,
 
             'created_at' => $this->child->created_at,
-            'created_by' => $this->child->created_by,
+            'created_by' => $this->created_by,
             'updated_at' => $this->child->updated_at,
-            'updated_by' => $this->child->updated_by,
+            'updated_by' => $this->updated_by,
 
             /*
              *
