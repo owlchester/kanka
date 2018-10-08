@@ -60,7 +60,7 @@ class CharacterRelationMapBuilder
             // Add relation between character and family
             $this->addLink($this->character, $this->character->family);
 
-            foreach ($this->character->family->characters as $char) {
+            foreach ($this->character->family->members as $char) {
                 $this->addNode($char, $group);
                 $this->addLink($char, $char->family, $relationMemberDistance);
             }
