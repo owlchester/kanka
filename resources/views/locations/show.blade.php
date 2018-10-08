@@ -33,3 +33,16 @@
         @include('cruds.boxes.history')
     </div>
 </div>
+
+@if (isset($exporting))
+    @include('locations.panels.locations')
+    @if ($campaign->enabled('characters'))
+        @include('locations.panels.characters')
+    @endif
+    @if ($campaign->enabled('events'))
+        @include('locations.panels.events')
+    @endif
+    @if ($campaign->enabled('items'))
+        @include('locations.panels.items')
+    @endif
+@endif

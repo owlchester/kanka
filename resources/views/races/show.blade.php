@@ -28,3 +28,8 @@
         @include('cruds.boxes.history')
     </div>
 </div>
+
+@if (isset($exporting))
+    @include('races.panels.characters')
+    @include('races.panels.races')
+@endif

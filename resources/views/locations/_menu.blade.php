@@ -36,6 +36,7 @@
     </div>
 </div>
 
+@if (!isset($exporting))
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -86,3 +87,4 @@
         </ul>
     </div>
 </div>
+@endif

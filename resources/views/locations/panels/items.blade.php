@@ -1,18 +1,17 @@
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('characters.show.tabs.items') }}
+            {{ trans('locations.show.tabs.items') }}
         </h2>
 
-        <?php  $r = $model->items()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
-        <table id="character-items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <?php  $r = $model->items()->acl(auth()->user())->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.items') }}</p>
+        <table id="items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('items.fields.name') }}</th>
                 <th>{{ trans('items.fields.type') }}</th>
-                @if ($campaign->enabled('locations'))
-                    <th>{{ trans('crud.fields.location') }}</th>
-                @endif
+                @if ($campaign->enabled('characters'))<th>{{ trans('crud.fields.character') }}</th>@endif
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $item)
@@ -24,13 +23,12 @@
                         <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltip() }}">{{ $item->name }}</a>
                     </td>
                     <td>{{ $item->type }}</td>
-                    @if ($campaign->enabled('locations'))
-                        <td>
-                            @if ($item->location)
-                                <a href="{{ route('locations.show', $item->location_id) }}" data-toggle="tooltip" title="{{ $item->location->tooltip() }}">{{ $item->location->name }}</a>
-                            @endif
-                        </td>
-                    @endif
+
+                    @if ($campaign->enabled('characters'))<td>
+                        @if ($item->character)
+                            <a href="{{ route('characters.show', $item->character) }}" data-toggle="tooltip" title="{{ $item->character->tooltip() }}">{{ $item->character->name }}</a>
+                        @endif
+                    </td>@endif
                     <td class="text-right">
                         <a href="{{ route('items.show', ['id' => $item->id]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}

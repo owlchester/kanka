@@ -1,14 +1,52 @@
-<table class="table no-border table-condensed table-hover">
-    @foreach ($model->quests()->with('quest')->has('quest')->get() as $r)
-        <tr>
-            <td class="avatar">
-                <a class="entity-image" style="background-image: url('{{ $r->quest->getImageUrl(true) }}');" title="{{ $r->quest->name }}" href="{{ route('quests.show', $r->quest->id) }}"></a>
-            </td>
-            <td>
-                <a href="{{ route('quests.show', $r->quest_id) }}" data-toggle="tooltip" title="{{ $r->quest->tooltip() }}" class="entity-name">
-                    {{ $r->quest->name }}
-                </a>
-            </td>
-        </tr>
-@endforeach
-</table>
+<div class="box box-flat">
+    <div class="box-body">
+        <h2 class="page-header with-border">
+            {{ trans('characters.show.tabs.quests') }}
+        </h2>
+
+        <?php  $r = $model->quests()->acl(auth()->user())->orderBy('name', 'ASC')->with(['characters', 'locations', 'quests'])->paginate(); ?>
+        <table id="character-quests" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+            <tbody><tr>
+                <th class="avatar"><br /></th>
+                <th>{{ trans('quests.fields.name') }}</th>
+                <th>{{ trans('quests.fields.type') }}</th>
+                <th>{{ trans('quests.fields.quest') }}</th>
+                @if ($campaign->enabled('locations'))
+                    <th>{{ trans('quests.fields.locations') }}</th>
+                @endif
+                <th>{{ trans('quests.fields.characters') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            @foreach ($r as $quest)
+                <tr>
+                    <td>
+                        <a class="entity-image" style="background-image: url('{{ $quest->getImageUrl(true) }}');" title="{{ $quest->name }}" href="{{ route('quests.show', $quest->id) }}"></a>
+                    </td>
+                    <td>
+                        <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltip() }}">{{ $quest->name }}</a>
+                    </td>
+                    <td>{{ $quest->type }}</td>
+                    <td>
+                        <a href="{{ route('quests.show', $quest->quest->id) }}" data-toggle="tooltip" title="{{ $quest->quest->tooltip() }}">{{ $quest->quest->name }}</a>
+                    </td>
+                    @if ($campaign->enabled('locations'))
+                        <td>
+                            {{ $quest->locations()->count() }}
+                        </td>
+                    @endif
+                    <td>
+                        {{ $quest->characters()->count() }}
+                    </td>
+                    <td class="text-right">
+                        <a href="{{ route('quests.show', ['id' => $quest->id]) }}" class="btn btn-xs btn-primary">
+                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
+        {{ $r->links() }}
+    </div>
+</div>

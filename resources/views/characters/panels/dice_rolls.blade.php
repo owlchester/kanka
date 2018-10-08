@@ -1,15 +1,38 @@
-<table class="table no-border table-condensed table-hover">
-@foreach ($model->diceRolls as $r)
-        <tr>
-            <td class="avatar">
-                <a class="entity-image" style="background-image: url('{{ $r->getImageUrl(true) }}');" title="{{ $r->name }}" href="{{ route('dice_rolls.show', $r->id) }}"></a>
-            </td>
-            <td>
-                <a href="{{ route('dice_rolls.show', $r->id) }}" data-toggle="tooltip" title="{{ $r->tooltip() }}" class="entity-name">
-                    {{ $r->name }}
-                </a>
-                <span class="label label-primary pull-right" data-toggle="tooltip" title="{{ trans('dice_rolls.fields.rolls') }}">{{ $r->diceRollResults()->count() }}</span>
-            </td>
-        </tr>
-@endforeach
-</table>
+<div class="box box-flat">
+    <div class="box-body">
+        <h2 class="page-header with-border">
+            {{ trans('characters.show.tabs.dice_rolls') }}
+        </h2>
+
+        <?php  $r = $model->diceRolls()->acl(auth()->user())->orderBy('name', 'ASC')->with([])->paginate(); ?>
+        <table id="character-dice_rolls" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+            <tbody><tr>
+                <th class="avatar"><br /></th>
+                <th>{{ trans('dice_rolls.fields.name') }}</th>
+                <th>{{ trans('dice_rolls.fields.parameters') }}</th>
+                <th>{{ trans('dice_rolls.fields.rolls') }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            @foreach ($r as $dice_roll)
+                <tr>
+                    <td>
+                        <a class="entity-image" style="background-image: url('{{ $dice_roll->getImageUrl(true) }}');" title="{{ $dice_roll->name }}" href="{{ route('dice_rolls.show', $dice_roll->id) }}"></a>
+                    </td>
+                    <td>
+                        <a href="{{ route('dice_rolls.show', $dice_roll->id) }}" data-toggle="tooltip" title="{{ $dice_roll->tooltip() }}">{{ $dice_roll->name }}</a>
+                    </td>
+                    <td>{{ $dice_roll->parameters }}</td>
+                    <td>{{ $dice_roll->diceRollResults()->count() }}</td>
+                    <td class="text-right">
+                        <a href="{{ route('dice_rolls.show', ['id' => $dice_roll->id]) }}" class="btn btn-xs btn-primary">
+                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
+        {{ $r->links() }}
+    </div>
+</div>
