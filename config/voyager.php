@@ -133,9 +133,9 @@ return [
          */
         'locales' => [
             'en',
-            'fr',
-            'de',
-            'es'
+//            'fr',
+//            'de',
+//            'es'
             //'pt',
         ],
     ],
