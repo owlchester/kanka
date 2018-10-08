@@ -10,9 +10,8 @@ return [
         'success'   => 'Famille \':name\' supprimée.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Famille \':name\' modifiée.',
-        'title'         => 'Modifier la famille :name',
+        'success'   => 'Famille \':name\' modifiée.',
+        'title'     => 'Modifier la famille :name',
     ],
     'fields'        => [
         'history'   => 'Histoire',

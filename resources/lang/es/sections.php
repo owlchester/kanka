@@ -15,7 +15,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personajes',
-        'children'      => 'Descendientes',
+        'children'      => 'Categorías anidadas',
         'name'          => 'Nombre',
         'section'       => 'Categoría',
         'sections'      => 'Subcategorías',
@@ -42,7 +42,7 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la categoría',
         'tabs'          => [
-            'children'      => 'Descendientes',
+            'children'      => 'Categorías anidadas',
             'information'   => 'Información',
             'sections'      => 'Categorías',
         ],

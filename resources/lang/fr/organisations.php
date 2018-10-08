@@ -10,9 +10,8 @@ return [
         'success'   => 'Organisation \':name\' supprimée.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Organisation \':name\' modifiée.',
-        'title'         => 'Modifier Organisation :name',
+        'success'   => 'Organisation \':name\' modifiée.',
+        'title'     => 'Modifier Organisation :name',
     ],
     'fields'        => [
         'history'   => 'Histoire',
@@ -42,9 +41,8 @@ return [
             'success'   => 'Membre retiré de l\'organisation',
         ],
         'edit'          => [
-            'description'   => '',
-            'success'       => 'Membre modifié.',
-            'title'         => 'Modifier Member pour :name',
+            'success'   => 'Membre modifié.',
+            'title'     => 'Modifier Member pour :name',
         ],
         'fields'        => [
             'character' => 'Personnage',

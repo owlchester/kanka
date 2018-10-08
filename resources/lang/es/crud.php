@@ -85,6 +85,8 @@ return [
     'export'            => 'Exportar',
     'fields'            => [
         'attribute_template'    => 'Plantilla de atributos',
+        'calendar'              => 'Calendario',
+        'calendar_date'         => 'Fecha del calendario',
         'character'             => 'Personaje',
         'creator'               => 'Creador',
         'description'           => 'Descripción',
@@ -108,9 +110,15 @@ return [
         'show'  => 'Mostrar filtros',
         'title' => 'Filtros',
     ],
+    'forms'             => [
+        'actions'   => [
+            'calendar'  => 'Añadir fecha de calendario',
+        ],
+    ],
     'hidden'            => 'Oculto',
     'hints'             => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
+        'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
         'image_limitations'     => 'Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: :size.',
         'is_private'            => 'Ocultar a los "Invitados"',
     ],
@@ -184,6 +192,7 @@ return [
     'panels'            => [
         'appearance'            => 'Apariencia',
         'attribute_template'    => 'Plantilla de atributos',
+        'calendar_date'         => 'Fecha de calendario',
         'description'           => 'Descripción',
         'entry'                 => 'Presentación',
         'general_information'   => 'Información general',
@@ -208,6 +217,7 @@ return [
         'title'     => 'Permisos',
     ],
     'placeholders'      => [
+        'calendar'      => 'Escoge un calendario',
         'character'     => 'Escoge un personaje',
         'entity'        => 'Entidad',
         'event'         => 'Elige un evento',

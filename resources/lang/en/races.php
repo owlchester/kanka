@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'characters' => [
-        'title' => 'Race :name Characters',
-        'description' => 'Characters belonging to the race.',
+    'characters'    => [
+        'description'   => 'Characters belonging to the race.',
+        'title'         => 'Race :name Characters',
     ],
     'create'        => [
         'description'   => 'Create a new race',
@@ -14,14 +14,13 @@ return [
         'success'   => 'Race \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Race \':name\' updated.',
-        'title'         => 'Edit Race :name',
+        'success'   => 'Race \':name\' updated.',
+        'title'     => 'Edit Race :name',
     ],
     'fields'        => [
+        'characters'    => 'Characters',
         'name'          => 'Name',
         'type'          => 'Type',
-        'characters'    => 'Characters',
     ],
     'index'         => [
         'add'           => 'New Race',
@@ -30,21 +29,20 @@ return [
         'title'         => 'Races',
     ],
     'placeholders'  => [
-        'name'      => 'Name of the race',
-        'type'      => 'Human, Fey, Borg',
+        'name'  => 'Name of the race',
+        'type'  => 'Human, Fey, Borg',
     ],
-    'races' => [
-        'title' => 'Race :name Subraces',
-        'description' => 'Races belonging to the race.',
+    'races'         => [
+        'description'   => 'Races belonging to the race.',
+        'title'         => 'Race :name Subraces',
     ],
     'show'          => [
         'description'   => 'A detailed view of a race',
         'tabs'          => [
-            'menu' => 'Menu',
-            'characters' => 'Characters',
-            'races'      => 'Subraces',
+            'characters'    => 'Characters',
+            'menu'          => 'Menu',
+            'races'         => 'Subraces',
         ],
         'title'         => 'Race :name',
-
     ],
 ];

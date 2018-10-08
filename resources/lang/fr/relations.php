@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => '',
-        'success'       => 'Relation ajoutée pour :name.',
-        'title'         => 'Nouvelle relation pour :name',
+        'success'   => 'Relation ajoutée pour :name.',
+        'title'     => 'Nouvelle relation pour :name',
     ],
     'destroy'       => [
         'success'   => 'Relation supprimée pour :name.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Relation modifiée pour :name.',
-        'title'         => 'Modifier la relation de :name',
+        'success'   => 'Relation modifiée pour :name.',
+        'title'     => 'Modifier la relation de :name',
     ],
     'fields'        => [
         'relation'  => 'Relation',

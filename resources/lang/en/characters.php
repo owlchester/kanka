@@ -5,22 +5,22 @@ return [
         'add_appearance'    => 'Add an appearance',
         'add_personality'   => 'Add a personality',
     ],
+    'conversations' => [
+        'description'   => 'Conversations the character is participating in.',
+        'title'         => 'Character :name Conversations',
+    ],
     'create'        => [
         'description'   => 'Create a new character',
         'success'       => 'Character \':name\' created.',
         'title'         => 'New Character',
     ],
-    'conversations' => [
-        'description'   => 'Conversations the character is participating in.',
-        'title'         => 'Character :name Conversations',
-    ],
     'destroy'       => [
         'success'   => 'Character \':name\' removed.',
     ],
     'dice_rolls'    => [
-        'description' => 'Dice rolls assigned to the character.',
-        'hint'  => 'Dice rolls can be assigned to a character for in game usage.',
-        'title' => 'Character :name Dice Rolls',
+        'description'   => 'Dice rolls assigned to the character.',
+        'hint'          => 'Dice rolls can be assigned to a character for in game usage.',
+        'title'         => 'Character :name Dice Rolls',
     ],
     'edit'          => [
         'description'   => 'Edit a character',
@@ -72,17 +72,17 @@ return [
         'title'         => 'Characters',
     ],
     'items'         => [
-        'description' => 'Items held or owned by the character.',
-        'hint'  => 'Items can be assigned to characters and will be displayed here.',
-        'title' => 'Character :name Items',
+        'description'   => 'Items held or owned by the character.',
+        'hint'          => 'Items can be assigned to characters and will be displayed here.',
+        'title'         => 'Character :name Items',
     ],
-    'journals' => [
+    'journals'      => [
         'description'   => 'Journals the character is an author of.',
         'title'         => 'Character :name Journals',
     ],
-    'maps' => [
-        'title' => 'Character :name Relation Map',
-        'description' => 'Relation map for a character.',
+    'maps'          => [
+        'description'   => 'Relation map for a character.',
+        'title'         => 'Character :name Relation Map',
     ],
     'organisations' => [
         'actions'       => [
@@ -93,7 +93,7 @@ return [
             'success'       => 'Character added to organisation.',
             'title'         => 'New Organisation for :name',
         ],
-        'description' => 'Organisations the character is part of.',
+        'description'   => 'Organisations the character is part of.',
         'destroy'       => [
             'success'   => 'Character organisation removed.',
         ],
@@ -110,7 +110,7 @@ return [
         'placeholders'  => [
             'organisation'  => 'Choose an organisation...',
         ],
-        'title' => 'Character :name Organisations',
+        'title'         => 'Character :name Organisations',
     ],
     'placeholders'  => [
         'age'               => 'Age',
@@ -140,7 +140,7 @@ return [
         'type'              => 'NPC, Player Character, Deity',
         'weight'            => 'Weight',
     ],
-    'quests' => [
+    'quests'        => [
         'description'   => 'Quests a character are part of.',
         'title'         => 'Character :name Quests',
     ],

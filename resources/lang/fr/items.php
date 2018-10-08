@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => '',
-        'success'       => 'Objet \':name\' créé.',
-        'title'         => 'Ajouter un objet',
+        'success'   => 'Objet \':name\' créé.',
+        'title'     => 'Ajouter un objet',
     ],
     'destroy'       => [
         'success'   => 'Objet \':name\' supprimé.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Objet \':name\' modifié.',
-        'title'         => 'Modifier Objet :name',
+        'success'   => 'Objet \':name\' modifié.',
+        'title'     => 'Modifier Objet :name',
     ],
     'fields'        => [
         'character'     => 'Personnage',

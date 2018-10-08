@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'        => [
+    'create'                => [
         'description'           => 'Crear nueva campaña',
         'helper'                => [
             'first' => '¡Gracias por probar nuestra web! Antes de que prosigamos, necesitamos que nos indiques algo muy simple: el nombre de tu <b> campaña </b>. El nombre de tu mundo que lo separa de los demás, así que tiene que ser único. Si aun no se te ocurre ninguno, no te preocupes, siempre <b>puedes cambiarlo despues</b>, o crear otras campañas.',
@@ -12,38 +12,45 @@ return [
         'success_first_time'    => '¡Tu campaña ha sido creada! Como es tu primera campaña, hemos rellenado algunas cosas para que te familiarices y con suerte proveerte con algo de inspiración, para que veas que puedes conseguir.',
         'title'                 => 'Nueva Campaña',
     ],
-    'destroy'       => [
+    'destroy'               => [
         'success'   => 'Campaña eliminada',
     ],
-    'edit'          => [
+    'edit'                  => [
         'description'   => 'Editar tu campaña',
         'success'       => 'Campaña actualizada.',
         'title'         => 'Editar campaña :campaign',
     ],
-    'errors'        => [
+    'entity_visibilities'   => [
+        'private'   => 'Nuevas entidades privadas por defecto',
+    ],
+    'errors'                => [
         'access'        => 'No tienes acceso a esta campaña.',
         'unknown_id'    => 'Campaña desconocida.',
     ],
-    'export'        => [
-        'errors'    => [
+    'export'                => [
+        'description'   => 'Exportar la campaña',
+        'errors'        => [
             'limit' => 'Has alcanzado el máximo de una exportación por día. Por favor, inténtalo de nuevo mañana.',
         ],
-        'helper'    => 'Exportar campaña. Recibirás una notificación con el enlace de descarga.',
-        'success'   => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
+        'helper'        => 'Exportar campaña. Recibirás una notificación con el enlace de descarga.',
+        'success'       => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
+        'title'         => 'Exportar campaña :name',
     ],
-    'fields'        => [
-        'description'   => 'Descripción',
-        'image'         => 'Imagen',
-        'locale'        => 'Idioma',
-        'name'          => 'Nombre',
-        'visibility'    => 'Visibilidad',
+    'fields'                => [
+        'description'       => 'Descripción',
+        'entity_visibility' => 'Visibilidad de la entidad',
+        'image'             => 'Imagen',
+        'locale'            => 'Idioma',
+        'name'              => 'Nombre',
+        'visibility'        => 'Visibilidad',
     ],
-    'helpers'       => [
-        'locale'        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
-        'name'          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
-        'visibility'    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
+    'helpers'               => [
+        'entity_visibility' => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
+        'locale'            => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
+        'name'              => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
+        'visibility'        => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
-    'index'         => [
+    'index'                 => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Crear nueva campaña',
@@ -56,7 +63,7 @@ return [
         'select'        => 'Seleccionar una campaña',
         'title'         => 'Campañas',
     ],
-    'invites'       => [
+    'invites'               => [
         'actions'       => [
             'add'   => 'Invitar',
             'link'  => 'Nuevo enlace',
@@ -100,43 +107,45 @@ return [
             'link'  => 'Enlace',
         ],
     ],
-    'leave'         => [
+    'leave'                 => [
         'confirm'   => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que el dueño de la campaña te invite de nuevo.',
         'error'     => 'No puedes abandonar la campaña.',
         'success'   => 'Has abandonado la campaña.',
     ],
-    'members'       => [
-        'create'    => [
+    'members'               => [
+        'create'        => [
             'title' => 'Añade un miembro a tu campaña.',
         ],
-        'edit'      => [
+        'description'   => 'Gestionar miembros de la campaña',
+        'edit'          => [
             'description'   => 'Editar un miembro de tu campaña',
             'title'         => 'Editar miembro :name',
         ],
-        'fields'    => [
+        'fields'        => [
             'joined'    => 'Inscrito',
             'name'      => 'Usuario',
             'role'      => 'Rol',
             'roles'     => 'Roles',
         ],
-        'help'      => 'No hay límite de miembros que puede tener una campaña, y como Administrador de la campaña, puedes eliminar miembros que ya no están activos.',
-        'invite'    => [
+        'help'          => 'No hay límite de miembros que puede tener una campaña, y como Administrador de la campaña, puedes eliminar miembros que ya no están activos.',
+        'invite'        => [
             'description'   => 'Puedes invitar a tus amigos a unirse a la campaña si provees su correo electrónico. Una vez acepten la invitación, les verás añadidos como "Visitante". Siempre puedes cancelar la invitación en cualquier momento.',
             'title'         => 'Invitar',
         ],
-        'roles'     => [
+        'roles'         => [
             'member'    => 'Miembro',
             'owner'     => 'Administrador',
             'viewer'    => 'Invitado',
         ],
-        'your_role' => 'Tu eres un <i>:role</i>',
+        'title'         => 'Miembros de la campaña :name',
+        'your_role'     => 'Tu eres un <i>:role</i>',
     ],
-    'placeholders'  => [
+    'placeholders'          => [
         'description'   => 'Corto resumen de tu campaña',
         'locale'        => 'Código de idioma',
         'name'          => 'Nombre de tu campaña',
     ],
-    'roles'         => [
+    'roles'                 => [
         'actions'       => [
             'add'   => 'Añadir un rol',
         ],
@@ -144,6 +153,7 @@ return [
             'success'   => 'Rol creado.',
             'title'     => 'Crear un nuevo rol para :name',
         ],
+        'description'   => 'Gestionar los roles de la campaña',
         'destroy'       => [
             'success'   => 'Rol eliminado.',
         ],
@@ -183,6 +193,7 @@ return [
             'description'   => 'Miembros y permisos de un rol de campaña',
             'title'         => 'Roles de campaña',
         ],
+        'title'         => 'Roles de la campaña :name',
         'types'         => [
             'owner'     => 'Propietario',
             'public'    => 'Público',
@@ -204,12 +215,13 @@ return [
             ],
         ],
     ],
-    'settings'      => [
-        'edit'      => [
+    'settings'              => [
+        'description'   => 'Habilitar o deshabilitar módulos de la campaña.',
+        'edit'          => [
             'success'   => 'Ajustes de campaña actualizados.',
         ],
-        'helper'    => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
-        'helpers'   => [
+        'helper'        => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
+        'helpers'       => [
             'calendars'     => 'El sitio para definir los calendarios de tu mundo.',
             'categories'    => 'Cada entidad puede tener una categoría. Las categorías pueden pertenecer a otras categorías, y las entradas pueden filtrarse por categoría.',
             'characters'    => 'Las personas que viven en tu mundo.',
@@ -225,8 +237,9 @@ return [
             'organisations' => 'Sectas, unidades militares, facciones, gremios...',
             'quests'        => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
         ],
+        'title'         => 'Módulos de la campaña :name',
     ],
-    'show'          => [
+    'show'                  => [
         'actions'       => [
             'leave' => 'Abandonar campaña',
         ],
@@ -235,12 +248,13 @@ return [
             'export'        => 'Exportar',
             'information'   => 'Información',
             'members'       => 'Miembros',
+            'menu'          => 'Menú',
             'roles'         => 'Roles',
-            'settings'      => 'Ajustes',
+            'settings'      => 'Módulos',
         ],
         'title'         => 'Campaña :name',
     ],
-    'visibilities'  => [
+    'visibilities'          => [
         'private'   => 'Privada',
         'public'    => 'Pública',
         'review'    => 'Esperando revisión',

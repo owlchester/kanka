@@ -10,9 +10,8 @@ return [
         'success'   => 'Journal supprimé.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Journal modifié.',
-        'title'         => 'Modifier Journal :name',
+        'success'   => 'Journal modifié.',
+        'title'     => 'Modifier Journal :name',
     ],
     'fields'        => [
         'author'    => 'Auteur',

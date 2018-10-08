@@ -10,9 +10,8 @@ return [
         'success'   => 'Relation removed for :name.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Relation updated for :name.',
-        'title'         => 'Update relations',
+        'success'   => 'Relation updated for :name.',
+        'title'     => 'Update relations',
     ],
     'fields'        => [
         'relation'  => 'Relation',

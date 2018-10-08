@@ -4,6 +4,7 @@ return [
     'admin'                 => 'Administrar',
     'attribute_templates'   => 'Plantillas de atributos',
     'calendars'             => 'Calendarios',
+    'campaign'              => 'Campaña',
     'campaigns'             => 'Campañas',
     'characters'            => 'Personajes',
     'conversations'         => 'Conversaciones',

@@ -2,7 +2,7 @@
 
 return [
     'campaigns'         => [
-        'manage'    => 'Gestionar campañas',
+        'manage'    => 'Gestionar campaña',
     ],
     'description'       => 'Tu plaza creativa',
     'latest_release'    => 'Publicación reciente',

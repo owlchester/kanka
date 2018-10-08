@@ -21,6 +21,11 @@ return [
         'title'         => 'Editar calendario :name',
     ],
     'event'         => [
+        'actions'   => [
+            'existing'  => 'Entidad existente',
+            'new'       => 'Nuevo evento',
+            'switch'    => 'Cambiar elección',
+        ],
         'destroy'   => 'Evento eliminado del calendario \':name\'',
         'helpers'   => [
             'add'   => 'Añade un evento existente a este calendario.',
@@ -62,6 +67,10 @@ return [
         'description'   => 'Administrar calendarios de :name.',
         'header'        => 'Calendarios de :name',
         'title'         => 'Calendarios',
+    ],
+    'layouts'       => [
+        'month' => 'Mes',
+        'year'  => 'Año',
     ],
     'panels'        => [
         'leap_year' => 'Año bisiesto',

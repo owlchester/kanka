@@ -10,9 +10,8 @@ return [
         'success'   => 'Lieu \':name\' supprimé.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Lieu \':name\' modifié.',
-        'title'         => 'Modifier Lieu :name',
+        'success'   => 'Lieu \':name\' modifié.',
+        'title'     => 'Modifier Lieu :name',
     ],
     'fields'        => [
         'characters'    => 'Personnages',

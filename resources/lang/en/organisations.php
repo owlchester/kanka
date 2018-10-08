@@ -10,9 +10,8 @@ return [
         'success'   => 'Organisation \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Organisation \':name\' updated.',
-        'title'         => 'Edit Organisation :name',
+        'success'   => 'Organisation \':name\' updated.',
+        'title'     => 'Edit Organisation :name',
     ],
     'fields'        => [
         'history'   => 'History',
@@ -42,9 +41,8 @@ return [
             'success'   => 'Member removed from the organisation.',
         ],
         'edit'          => [
-            'description'   => '',
-            'success'       => 'Organisation member updated.',
-            'title'         => 'Update Member for :name',
+            'success'   => 'Organisation member updated.',
+            'title'     => 'Update Member for :name',
         ],
         'fields'        => [
             'character' => 'Character',

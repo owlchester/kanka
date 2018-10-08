@@ -10,9 +10,8 @@ return [
         'success'   => 'Événement \':name\' supprimé.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Événement \':name\' modifier.',
-        'title'         => 'Modifier l\'événement :name',
+        'success'   => 'Événement \':name\' modifier.',
+        'title'     => 'Modifier l\'événement :name',
     ],
     'fields'        => [
         'date'      => 'Date',

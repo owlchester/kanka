@@ -99,8 +99,8 @@ return [
         'location'              => 'Location',
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
-        'section'               => 'Category',
         'race'                  => 'Race',
+        'section'               => 'Category',
     ],
     'filter'            => 'Filter',
     'filters'           => [
@@ -222,8 +222,8 @@ return [
         'image_url'     => 'You can upload an image from a URL instead',
         'location'      => 'Choose a location',
         'organisation'  => 'Choose an organisation',
-        'section'       => 'Choose a category',
         'race'          => 'Choose a race',
+        'section'       => 'Choose a category',
     ],
     'relations'         => [
         'actions'   => [
@@ -245,10 +245,10 @@ return [
     'search'            => 'Search',
     'select'            => 'Select',
     'tabs'              => [
-        'menu'          => 'Menu',
         'attributes'    => 'Attributes',
         'calendars'     => 'Calendars',
         'events'        => 'Events',
+        'menu'          => 'Menu',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',

@@ -5,6 +5,10 @@ return [
         'export'    => 'Ya se ha exportado tu campaña. Puedes descargarla haciendo click en <a href=":link">aquí</a>. El enlace estará disponible durante 30 minutos.',
         'join'      => ':user se ha unido a la campaña :campaign.',
         'leave'     => ':user ha abandonado la campaña :campaign.',
+        'role'      => [
+            'add'       => 'Te han asignado el rol :role en la campaña :campaign.',
+            'remove'    => 'Has sido eliminado del rol :role en la campaña :campaign.',
+        ],
     ],
     'header'            => 'Tienes :count notificaciones',
     'index'             => [

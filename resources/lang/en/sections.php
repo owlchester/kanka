@@ -10,9 +10,8 @@ return [
         'success'   => 'Category \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Category \':name\' updated.',
-        'title'         => 'Edit Category :name',
+        'success'   => 'Category \':name\' updated.',
+        'title'     => 'Edit Category :name',
     ],
     'fields'        => [
         'characters'    => 'Characters',

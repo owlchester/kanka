@@ -10,9 +10,8 @@ return [
         'success'   => 'Note \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Note \':name\' updated.',
-        'title'         => 'Edit Note :name',
+        'success'   => 'Note \':name\' updated.',
+        'title'     => 'Edit Note :name',
     ],
     'fields'        => [
         'description'   => 'Description',

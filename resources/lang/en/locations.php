@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'characters' => [
-        'title' => 'Location :name Characters',
-        'description' => 'Characters located at the location.',
+    'characters'    => [
+        'description'   => 'Characters located at the location.',
+        'title'         => 'Location :name Characters',
     ],
     'create'        => [
         'description'   => 'Create a new location',
@@ -14,9 +14,12 @@ return [
         'success'   => 'Location \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => '',
-        'success'       => 'Location \':name\' updated.',
-        'title'         => 'Edit Location :name',
+        'success'   => 'Location \':name\' updated.',
+        'title'     => 'Edit Location :name',
+    ],
+    'events'        => [
+        'description'   => 'Events which took place at the location.',
+        'title'         => 'Location :name Events',
     ],
     'fields'        => [
         'characters'    => 'Characters',
@@ -37,9 +40,13 @@ return [
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
     ],
-    'locations' => [
-        'title' => 'Location :name Locations',
-        'description' => 'Locations located in the location.',
+    'items'         => [
+        'description'   => 'Items located in or from the location.',
+        'title'         => 'Location :name Items',
+    ],
+    'locations'     => [
+        'description'   => 'Locations located in the location.',
+        'title'         => 'Location :name Locations',
     ],
     'map'           => [
         'actions'   => [
@@ -100,12 +107,4 @@ return [
         ],
         'title'         => 'Location :name',
     ],
-    'items' => [
-        'title' => 'Location :name Items',
-        'description' => 'Items located in or from the location.',
-    ],
-    'events' => [
-        'title' => 'Location :name Events',
-        'description' => 'Events which took place at the location.',
-    ]
 ];
