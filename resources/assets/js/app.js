@@ -94,7 +94,7 @@ $(document).ready(function() {
                 data: $(this).serialize()
             }).done(function (result, textStatus, xhr) {
                 if (textStatus === 'success' && result.id) {
-                    $('#' + target).append(new Option(result.name, result.id)).val(result.id).trigger('change');
+                    $('#' + target).children().remove().end().append(new Option(result.name, result.id)).val(result.id).trigger('change');
 
                     // Close modal
                     $('#new-entity-modal').modal('toggle');

@@ -223,7 +223,8 @@ class Entity extends Model
         if (empty($text)) {
             return $this->child->name;
         }
-        return '<h4>' . $this->child->name . '</h4>' . $text;
+        // Replace double quotes with real quotes again, as they break tinymce
+        return '<h4>' . $this->child->name . '</h4>' . str_replace('&amp;quot;', '"', $text);
     }
 
     /**
