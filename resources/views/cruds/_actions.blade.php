@@ -1,4 +1,4 @@
-@if(Auth::check())
+@if(Auth::check() && !isset($exporting))
     @can('update', $model)
         <a href="{{ route($name . '.edit', ['id' => $model->id]) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.update') }}
@@ -47,5 +47,4 @@
             @endcan
         </ul>
     </div>
-
 @endif

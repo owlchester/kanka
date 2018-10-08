@@ -46,7 +46,8 @@ class EntityController extends Controller
         $entities = [$realEntity->child];
         $name = $realEntity->pluralType();
         $entity = $realEntity->pluralType();
-        return $pdf->loadView('cruds.export', compact('entity', 'name', 'entities'))->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
+        $exporting = true; // This can be used in views to know we are exporting
+        return $pdf->loadView('cruds.export', compact('entity', 'name', 'entities', 'exporting'))->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
     }
 
     /**

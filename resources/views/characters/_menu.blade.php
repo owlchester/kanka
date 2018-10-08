@@ -46,6 +46,7 @@
     </div>
 </div>
 
+@if (!isset($exporting))
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -59,11 +60,11 @@
                     {{ __('crud.panels.entry') }}
                 </a>
             </li>
-            <li class="@if(!empty($active) && $active == 'map')active @endif">
-                <a href="{{ route('characters.map', $model) }}">
-                    {{ __('characters.show.tabs.map') }}
-                </a>
-            </li>
+            {{--<li class="@if(!empty($active) && $active == 'map')active @endif">--}}
+                {{--<a href="{{ route('characters.map', $model) }}">--}}
+                    {{--{{ __('characters.show.tabs.map') }}--}}
+                {{--</a>--}}
+            {{--</li>--}}
             @if ($campaign->enabled('items') && $model->items()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'items')active @endif">
                     <a href="{{ route('characters.items', $model) }}">
@@ -127,3 +128,4 @@
         </ul>
     </div>
 </div>
+@endif

@@ -75,3 +75,24 @@
         </div>
     </div>
 </div>
+
+@if(isset($exporting))
+    @if ($campaign->enabled('items') && $model->items()->count() > 0)
+        @include('characters.panels.items')
+    @endif
+    @if ($campaign->enabled('organisations') && $model->organisations()->count() > 0)
+        @include('characters.panels.organisations')
+    @endif
+    @if ($campaign->enabled('journals') && $model->journals()->count() > 0)
+        @include('characters.panels.journals')
+    @endif
+    @if ($campaign->enabled('quests') && $model->quests()->count() > 0)
+        @include('characters.panels.quests')
+    @endif
+    @if ($campaign->enabled('dice_rolls') && $model->diceRolls()->count() > 0)
+        @include('characters.panels.dice_rolls')
+    @endif
+    @if ($campaign->enabled('conversations') && $model->conversations()->count() > 0)
+        @include('characters.panels.conversations')
+    @endif
+@endif
