@@ -34,7 +34,8 @@
                 insert: function(item) {
                     if (item.url) {
                         if (item.tooltip) {
-                            return '<a href="' + item.url + '" title="' + item.tooltip + '" data-toggle="tooltip" data-html="true" >' + item.fullname + '</a>';
+                            var str = '<a href="' + item.url + '" title="' + item.tooltip.replace(/["]/g, '\'') + '" data-toggle="tooltip" data-html="true" >' + item.fullname + '</a>';
+                            return str;
                         }
                         return '<a href="' + item.url + '">' + item.fullname + '</a>';
                     }
