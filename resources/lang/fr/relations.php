@@ -2,8 +2,9 @@
 
 return [
     'create'        => [
-        'success'   => 'Relation ajoutée pour :name.',
-        'title'     => 'Nouvelle relation pour :name',
+        'description'   => 'Créer une nouvelle relation',
+        'success'       => 'Relation ajoutée pour :name.',
+        'title'         => 'Nouvelle relation pour :name',
     ],
     'destroy'       => [
         'success'   => 'Relation supprimée pour :name.',

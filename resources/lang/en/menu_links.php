@@ -10,8 +10,9 @@ return [
         'success'   => 'Menu Link \':name\' removed.',
     ],
     'edit'          => [
-        'success'   => 'Menu Link \':name\' updated.',
-        'title'     => 'Menu Link :name',
+        'description'   => 'Edit a menu item.',
+        'success'       => 'Menu Link \':name\' updated.',
+        'title'         => 'Menu Link :name',
     ],
     'fields'        => [
         'entity'    => 'Entity',

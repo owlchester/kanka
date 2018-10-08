@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'characters'    => [
+        'description'   => 'Personnages qui se trouvent dans ce lieu.',
+        'title'         => 'Personnages situé dans :name',
+    ],
     'create'        => [
         'description'   => 'Créer un nouveau lieu',
         'success'       => 'Lieu \':name\' créé.',
@@ -12,6 +16,10 @@ return [
     'edit'          => [
         'success'   => 'Lieu \':name\' modifié.',
         'title'     => 'Modifier Lieu :name',
+    ],
+    'events'        => [
+        'description'   => 'Evénements qui se sont déroulé dans ce lieu.',
+        'title'         => 'Evénements du lieu :name',
     ],
     'fields'        => [
         'characters'    => 'Personnages',
@@ -31,6 +39,14 @@ return [
         'description'   => 'Gérer les lieux of :name.',
         'header'        => 'Lieux de :name',
         'title'         => 'Lieux',
+    ],
+    'items'         => [
+        'description'   => 'Objets situés dans ce lieu.',
+        'title'         => 'Objets du lieu :name',
+    ],
+    'locations'     => [
+        'description'   => 'Lieu situé dans ce lieu.',
+        'title'         => 'Sous-lieux du lieu :name',
     ],
     'map'           => [
         'actions'   => [
@@ -82,9 +98,12 @@ return [
         'description'   => 'Détail d\'un lieu',
         'tabs'          => [
             'characters'    => 'Personnages',
+            'events'        => 'Evénements',
             'information'   => 'Information',
+            'items'         => 'Objets',
             'locations'     => 'Lieux',
             'map'           => 'Carte',
+            'menu'          => 'Menu',
         ],
         'title'         => 'Lieu :name',
     ],

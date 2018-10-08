@@ -24,6 +24,7 @@ return [
     'other'                 => 'Autre',
     'patreon'               => 'Patreon',
     'quests'                => 'Quêtes',
+    'races'                 => 'Races',
     'releases'              => 'Annonces',
     'search'                => 'Recherche...',
     'sections'              => 'Catégories',

@@ -236,6 +236,7 @@ return [
             'notes'         => 'Histoires, légendes, religions, magies, races.',
             'organisations' => 'Cultes, unités militaires, factions, guildes.',
             'quests'        => 'Gestionnaire de quêtes avec personnages et lieux.',
+            'races'         => 'Si la campagne a plus d\'une race, ce module permet de facilement organiser celles-ci.',
         ],
         'title'         => 'Modules de la campagne :name',
     ],

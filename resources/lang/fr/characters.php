@@ -5,6 +5,10 @@ return [
         'add_appearance'    => 'Ajouter une apparence',
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
+    'conversations' => [
+        'description'   => 'Conversations auxquelles le personnage participe.',
+        'title'         => 'Conversations du personnage :name',
+    ],
     'create'        => [
         'description'   => 'Créer une nouvelle personne',
         'success'       => 'Personne \':name\' créée.',
@@ -14,7 +18,9 @@ return [
         'success'   => 'Personne \':name\' supprimée.',
     ],
     'dice_rolls'    => [
-        'hint'  => 'Les jets de dés peuvent être assigné à des personnages.',
+        'description'   => 'Jet de dés attribué au personnage.',
+        'hint'          => 'Les jets de dés peuvent être assigné à des personnages.',
+        'title'         => 'Jet de dés de :name',
     ],
     'edit'          => [
         'description'   => 'Modifier une personne',
@@ -66,7 +72,17 @@ return [
         'title'         => 'Personnes',
     ],
     'items'         => [
-        'hint'  => 'Des objets peuvent être assigné à des personnages et seront affichés ici.',
+        'description'   => 'Objets tenus ou apparenant au personnage.',
+        'hint'          => 'Des objets peuvent être assigné à des personnages et seront affichés ici.',
+        'title'         => 'Objets de :name',
+    ],
+    'journals'      => [
+        'description'   => 'Journaux dont l\'auteur est le personnage.',
+        'title'         => 'Journaux de :name',
+    ],
+    'maps'          => [
+        'description'   => 'Visualisations des relations du personnage.',
+        'title'         => 'Carte relationnelle de :name',
     ],
     'organisations' => [
         'actions'       => [
@@ -77,6 +93,7 @@ return [
             'success'       => 'Personne ajoutée à l\'organisation.',
             'title'         => 'Nouvelle Organisation pour :name',
         ],
+        'description'   => 'Organisations dont le personnage est un membre.',
         'destroy'       => [
             'success'   => 'Organisation de personne supprimée.',
         ],
@@ -93,6 +110,7 @@ return [
         'placeholders'  => [
             'organisation'  => 'Choix d\'une organisation...',
         ],
+        'title'         => 'Organisations de :name',
     ],
     'placeholders'  => [
         'age'               => 'Age',
@@ -122,6 +140,10 @@ return [
         'type'              => 'PNJ, Joueurs, Autre',
         'weight'            => 'Poid',
     ],
+    'quests'        => [
+        'description'   => 'Quêtes auxquelles le personnage est lié.',
+        'title'         => 'Quêtes de :name',
+    ],
     'sections'      => [
         'appearance'    => 'Physique',
         'general'       => 'Inpourmation générale',
@@ -137,6 +159,7 @@ return [
             'history'       => 'Histoire',
             'items'         => 'Objets',
             'journals'      => 'Journaux',
+            'map'           => 'Carte Relationnelle',
             'organisations' => 'Organisations',
             'personality'   => 'Personnalité',
             'quests'        => 'Quêtes',
