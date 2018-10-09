@@ -26,6 +26,7 @@
                 }
             },
             'field' => 'parentLocation.name',
+            'disableSort' => true,
         ],
         [
             'label' => trans('locations.fields.characters'),

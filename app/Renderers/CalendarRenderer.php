@@ -458,7 +458,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (Auth::user()->can('view', $event->entity->child)) {
+            if (Auth()->check() && Auth::user()->can('view', $event->entity->child)) {
                 $events[$date][] = $event;
 
                 // Does the day go over a few days?
