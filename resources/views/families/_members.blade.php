@@ -23,7 +23,9 @@
                 @endif
             </td>
             <td>{{ $relation->age }}</td>
-            <td>{{ $relation->race }}</td>
+            <td>@if ($relation->race)
+                    <a href="{{ route('races.show', $relation->race_id) }}" data-toggle="tooltip" title="{{ $relation->race->tooltip() }}">{{ $relation->race->name }}</a>
+            @endif</td>
             <td>{{ $relation->sex }}</td>
         </tr>
     @endforeach
