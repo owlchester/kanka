@@ -27,7 +27,9 @@
                     </td>
                     <td>{{ $quest->type }}</td>
                     <td>
+                        @if ($quest->quest)
                         <a href="{{ route('quests.show', $quest->quest->id) }}" data-toggle="tooltip" title="{{ $quest->quest->tooltip() }}">{{ $quest->quest->name }}</a>
+                        @endif
                     </td>
                     @if ($campaign->enabled('locations'))
                         <td>

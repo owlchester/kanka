@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Family;
 use App\Models\Location;
+use App\Models\Race;
 use App\Services\RandomCharacterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
