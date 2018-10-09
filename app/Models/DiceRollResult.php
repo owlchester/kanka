@@ -43,9 +43,13 @@ class DiceRollResult extends MiscModel
      */
     public function newQuery()
     {
-        return parent::newQuery()->whereHas('diceRoll', function($query) {
-            $query->where('campaign_id', CampaignLocalization::getCampaign()->id);
-        });
+        // When exporting in console, we don't have this so don't use it
+        if (!app()->runningInConsole()) {
+            return parent::newQuery()->whereHas('diceRoll', function ($query) {
+                $query->where('campaign_id', CampaignLocalization::getCampaign()->id);
+            });
+        }
+        return parent::newQuery();
     }
 
     /**
