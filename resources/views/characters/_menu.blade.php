@@ -70,7 +70,7 @@
                     <a href="{{ route('characters.items', $model) }}">
                         {{ __('characters.show.tabs.items') }}
                         <span class="label label-default pull-right">
-                        <?=$model->items()->count()?>
+                        <?=$model->items()->acl(auth()->user())->count()?>
                     </span>
                     </a>
                 </li>
@@ -80,7 +80,7 @@
                     <a href="{{ route('characters.organisations', $model) }}">
                         {{ __('characters.show.tabs.organisations') }}
                         <span class="label label-default pull-right">
-                        <?=$model->organisations()->count()?>
+                        <?=$model->organisations()->acl(auth()->user())->count()?>
                     </span>
                     </a>
                 </li>
@@ -90,7 +90,7 @@
                     <a href="{{ route('characters.journals', $model) }}">
                         {{ __('characters.show.tabs.journals') }}
                         <span class="label label-default pull-right">
-                        <?=$model->journals()->count()?>
+                        <?=$model->journals()->acl(auth()->user())->count()?>
                     </span>
                     </a>
                 </li>
@@ -100,7 +100,7 @@
                     <a href="{{ route('characters.quests', $model) }}">
                         {{ __('characters.show.tabs.quests') }}
                         <span class="label label-default pull-right">
-                        <?=$model->quests()->count()?>
+                        <?=$model->quests()->acl(auth()->user())->count()?>
                     </span>
                     </a>
                 </li>
@@ -110,7 +110,7 @@
                     <a href="{{ route('characters.dice_rolls', $model) }}">
                         {{ __('characters.show.tabs.dice_rolls') }}
                         <span class="label label-default pull-right">
-                        <?=$model->diceRolls()->count()?>
+                        <?=$model->diceRolls()->acl(auth()->user())->count()?>
                     </span>
                     </a>
                 </li>
@@ -120,7 +120,7 @@
                     <a href="{{ route('characters.conversations', $model) }}">
                         {{ __('characters.show.tabs.conversations') }}
                         <span class="label label-default pull-right">
-                        <?=$model->conversations()->count()?>
+                        <?=$model->conversations()->acl(auth()->user())->count()?>
                     </span>
                     </a>
                 </li>

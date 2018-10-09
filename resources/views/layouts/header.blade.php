@@ -117,7 +117,7 @@
                     <li class="messages-menu">
                         <a href="{{ route('login') }}">{{ trans('front.menu.login') }}</a>
                     </li>
-                    <li class="messages-menu">
+                    <li class="messages-menu hidden-xs">
                         <a href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
                     </li>
                 @endif
