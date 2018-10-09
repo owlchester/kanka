@@ -405,6 +405,9 @@ class CalendarRenderer
         // Amount of days since the beginning of the year
         $totalDays = ($daysInAYear * $this->getYear()) + $days + $leapDays;
         $weekLength = count($this->calendar->weekdays());
+        if ($weekLength == 0) {
+            $weekLength = 1;
+        }
         $offset = floor($totalDays % $weekLength);
 
         return $offset;
