@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\User;
+use TCG\Voyager\Models\Role;
 
 class FrontController extends Controller
 {
@@ -11,7 +13,12 @@ class FrontController extends Controller
      */
     public function about()
     {
-        return view('front.about');
+        // We need to do this workaround since role->users() returns the TCG\User group, which doesn't have
+        // our accessors for the patreon data.
+        $role = Role::where(['name' => 'patreon'])->first();
+        $ids = $role->users()->pluck('id');
+        $users = User::whereIn('id', $ids)->get();
+        return view('front.about', compact('users'));
     }
 
     /**

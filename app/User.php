@@ -23,6 +23,9 @@ class User extends \TCG\Voyager\Models\User
 
     protected $cachedHasCampaign = null;
 
+
+    public $additional_attributes = ['patreon_fullname'];
+
     use Notifiable, HasApiTokens;
 
     /**
@@ -38,7 +41,6 @@ class User extends \TCG\Voyager\Models\User
         'provider',
         'provider_id',
         'newsletter',
-        'locale',
         'timezone',
         'campaign_role',
         'theme',
@@ -263,5 +265,35 @@ class User extends \TCG\Voyager\Models\User
     {
         return "<span class=\"entity-image\" style=\"background-image: url('" .
             $this->getImageUrl(true) . "');\" title=\"" . e($this->name) . "\"></span>";
+    }
+
+
+    /**
+     * @param $value
+     */
+    public function setPledgeAttribute($value)
+    {
+        $this->attributes['settings'] = collect($this->settings)->merge(['pledge' => $value]);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setPatreonEmailAttribute($value)
+    {
+        $this->attributes['settings'] = collect($this->settings)->merge(['patreon_email' => $value]);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setPatreonFullnameAttribute($value)
+    {
+        $this->attributes['settings'] = collect($this->settings)->merge(['patreon_fullname' => $value]);
+    }
+
+    public function getPatreonFullnameAttribute()
+    {
+        return $this->settings['patreon_fullname'];
     }
 }

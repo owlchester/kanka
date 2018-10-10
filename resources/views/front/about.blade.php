@@ -67,4 +67,21 @@
             </div>
         </div>
     </section>
+
+    <section class="features" id="patreon">
+        <div class="container">
+            <div class="section-body">
+                <h1>{{ trans('teams.patreon.title') }}</h1>
+                <p class="text-muted">{{ trans('teams.patreon.description') }}
+                    <a href="https://patreon.com/kankaio" class="" target="_blank">{{ __('footer.patreon') }}</a>
+                </p>
+
+                <div class="row">
+                    @foreach ($users as $user)
+                        <div class="col-md-3 col-sm-4 col-xs-6">{{ $user->patreon_fullname }}</div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

@@ -9,4 +9,8 @@ return [
         'title'         => 'Team',
         'translations'  => 'Translations',
     ],
+    'patreon' => [
+        'title' => 'Patreon',
+        'description' => 'These amazing people help and support Kanka on Patreon.',
+    ]
 ];

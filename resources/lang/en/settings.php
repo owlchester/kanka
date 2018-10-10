@@ -32,6 +32,21 @@ return [
         'personal_settings' => 'Personal Settings',
         'profile'           => 'Profile',
     ],
+    'patreon' => [
+        'actions' => [
+            'link' => 'Link Account',
+        ],
+        'description' => 'Syncing with Patreon',
+        'errors' => [
+            'invalid_token' => 'Invalid token! Patreon couldn\'t validate your request.',
+            'missing_code' => 'Missing code! Patreon didn\'t send back a code identifying your account.',
+            'no_pledge' => 'No pledge! Patreon identified your account, but doesn\'t know of any active pledge.',
+        ],
+        'success' => 'Thank you for supporting Kanka on Patreon!',
+        'link' => 'Use the following button if you are currently supporting Kanka on Patreon. This will give you access to some cool extra stuff!',
+        'linked' => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
+        'title' => 'Patreon',
+    ],
     'profile'   => [
         'actions'       => [
             'update_profile'    => 'Update profile',

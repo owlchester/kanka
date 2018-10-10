@@ -38,7 +38,7 @@ Route::group([
     Route::patch('/settings/account/destroy', 'Settings\AccountController@destroy')->name('settings.account.destroy');
 
     Route::get('/settings/patreon', 'Settings\PatreonController@index')->name('settings.patreon');
-    Route::get('/settings/patreon_callback', 'Settings\PatreonController@callback')->name('settings.patreon.callback');
+    Route::get('/settings/patreon-callback', 'Settings\PatreonController@callback')->name('settings.patreon.callback');
 
     Route::get('/settings/api', 'Settings\ApiController@index')->name('settings.api');
 

@@ -57,7 +57,7 @@ return [
     'placeholders'  => [
         'location'  => 'Choose a location',
         'name'      => 'Name of the organisation',
-        'type'      => 'Cult, Gang, Rebelion, Fandom',
+        'type'      => 'Cult, Gang, Rebellion, Fandom',
     ],
     'show'          => [
         'description'   => 'A detailed view of an organisation',
