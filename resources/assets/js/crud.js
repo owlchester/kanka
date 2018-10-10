@@ -383,7 +383,7 @@ function registerEntityCalendarForm() {
             }
             entityCalendarLoading.show();
             // Load month list
-            var url = entityCalendarAdd.data('url').replace('0', entityCalendarField.val());
+            var url = entityCalendarAdd.data('url').replace('/0/', '/' + entityCalendarField.val() + '/');
             $.ajax(url)
                 .done(function(data) {
                     entityCalendarMonthField.html('');

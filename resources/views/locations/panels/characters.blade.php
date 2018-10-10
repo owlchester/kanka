@@ -28,7 +28,7 @@
                     <td>
                         <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltip() }}">{{ $character->name }}</a>
                     </td>
-                    @if ($campaign->enabled('family'))
+                    @if ($campaign->enabled('families'))
                         <td>
                             @if ($character->family)
                                 <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltip() }}">{{ $character->family->name }}</a>
