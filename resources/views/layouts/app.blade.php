@@ -159,7 +159,7 @@
                     <p class="text-red" id="new-entity-errors" style="display:none">{{ trans('crud.new_entity.error') }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" id="new-entity-save">{{ trans('crud.save') }}</button>
+                    <button class="btn btn-success" id="new-entity-save" data-text="{{ trans('crud.save') }}">{{ trans('crud.save') }}</button>
                 </div>
                 {{ csrf_field() }}
                 {!! Form::hidden('target', null, ['id' => 'new-entity-type']) !!}

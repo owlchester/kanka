@@ -3,6 +3,7 @@
 /public/storage
 /public/.htaccess
 /public/exports
+/public/info.php
 /storage/*.key
 /storage
 /vendor

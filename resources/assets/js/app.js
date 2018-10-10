@@ -100,6 +100,10 @@ $(document).ready(function() {
                     $('#new-entity-modal').modal('toggle');
                     $('#new-entity-errors').hide();
                     $('#new-entity-name').val('');
+
+                    // Reset submit button
+                    var newEntitySaveButton = $('#new-entity-save');
+                    newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
                 } else {
                     $('#new-entity-errors').show();
                 }
