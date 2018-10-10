@@ -49,5 +49,5 @@
 @endsection
 @section('scripts')
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="{{ mix('js/character-map.js') }} }}"></script>
+    <script src="{{ mix('js/character-map.js') }}"></script>
 @endsection

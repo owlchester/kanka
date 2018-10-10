@@ -35,9 +35,9 @@
     <!-- Styles -->
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }} }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @if (auth()->check() && !empty(auth()->user()->theme))
-    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }} }}" rel="stylesheet">
+    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
     @endif
 
     @yield('styles')
@@ -176,7 +176,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }} }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
     @yield('scripts')
 </body>
