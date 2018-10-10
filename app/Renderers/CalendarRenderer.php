@@ -405,6 +405,9 @@ class CalendarRenderer
         // Amount of days since the beginning of the year
         $totalDays = ($daysInAYear * $this->getYear()) + $days + $leapDays;
         $weekLength = count($this->calendar->weekdays());
+        if ($weekLength == 0) {
+            $weekLength = 1;
+        }
         $offset = floor($totalDays % $weekLength);
 
         return $offset;
@@ -458,7 +461,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (Auth::user()->can('view', $event->entity->child)) {
+            if (Auth()->check() && Auth::user()->can('view', $event->entity->child)) {
                 $events[$date][] = $event;
 
                 // Does the day go over a few days?
