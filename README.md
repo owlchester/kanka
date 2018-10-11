@@ -4,9 +4,19 @@ Miscellany is a collaborative world building and campaign management tool tailor
 
 ## Installation
 
-After cloning the project, execute the following commands.
+After cloning the project, create the following files.
+
+* `.env`
+  * `cp .env.example .env`
+  * You'll need to fill it out to your needs.
+* `public/.htaccess`
+  * If on Apache.
+  
+Execute the following commands:
 
 ```
+php artisan key:generate
+php artisan storage:link
 php artisan voyager:install
 php artisan migrate
 ```
@@ -35,7 +45,10 @@ For example, there are `Relations` that link two entities together, as well as `
 
 ## Assets
 
-Assets can be compiled by following the [Laravel Documentation](https://laravel.com/docs/5.5/mix)
+Assets can be compiled by following the [Laravel Documentation](https://laravel.com/docs/5.6/mix)
+
+You'll need to install the various npm packages first.
+> npm install
 
 The following will produce assets for development
 
@@ -76,8 +89,8 @@ Once a feature is ready and tested, the admin will merge it into the master bran
 To work on translations, execute the following command to clean you translations and re-import them.
 
 ```php
-    php artisan translations:reset
-    php artisan translations:import
+php artisan translations:reset
+php artisan translations:import
 ```
 
 In the database, change your user's `is_translator` to `true`._Navigate to `/translations` to start working on your translations. Add your new language to `app/config/laravel-translation-manager.php` if needed.
@@ -85,5 +98,5 @@ In the database, change your user's `is_translator` to `true`._Navigate to `/tra
 When you are finished, export your changes.
 
 ```php
-php artisan translations:export
+php artisan translations:export *
 ```
