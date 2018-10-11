@@ -60,7 +60,7 @@
                     <div class="col-lg-4">
                         <h4>{{ trans('teams.index.other') }}</h4>
                         <p>
-                            <strong>{{ trans('teams.index.qa') }}</strong>: ArcOnyx, anna unfairest, RS_Chops
+                            <strong>{{ trans('teams.index.qa') }}</strong>: ArcOnyx, ArcaneXS
                         </p>
                     </div>
                 </div>

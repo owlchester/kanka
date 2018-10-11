@@ -119,6 +119,7 @@ return [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
+        'image_patreon' => 'Increase the limit by supporting us on Patreon',
         'is_private'            => 'Hide from non "Admin" users.',
     ],
     'history'           => [
@@ -127,7 +128,7 @@ return [
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
     'image'             => [
-        'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid.',
+        'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
     ],
     'is_private'        => 'This entity is private and not visible by non-admin users.',
     'linking_help'      => 'How can I link to other entries?',

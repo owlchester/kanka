@@ -26,7 +26,7 @@ class StoreQuest extends FormRequest
         return [
             'name' => 'required|max:191',
             'type' => 'nullable|max:45',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'quest_id', 'nullable|integer|exists:quests,id',
             'section_id' => 'nullable|integer|exists:sections,id',

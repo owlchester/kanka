@@ -292,8 +292,24 @@ class User extends \TCG\Voyager\Models\User
         $this->attributes['settings'] = collect($this->settings)->merge(['patreon_fullname' => $value]);
     }
 
+    /**
+     * @return mixed
+     */
     public function getPatreonFullnameAttribute()
     {
         return $this->settings['patreon_fullname'];
+    }
+
+    /**
+     * Get max file size of user
+     * @param bool $readable
+     * @return int|string
+     */
+    public function maxUploadSize($readable = false)
+    {
+        if ($this->hasRole('patreon')) {
+            return $readable ? '8MB' : 8192;
+        }
+        return $readable ? '2MB' : 2048;
     }
 }

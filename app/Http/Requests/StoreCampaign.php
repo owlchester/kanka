@@ -25,7 +25,7 @@ class StoreCampaign extends FormRequest
     {
         return [
             'name' => 'required|string|min:4',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'locale' => 'string',
         ];
     }

@@ -26,6 +26,7 @@ class StoreMenuLink extends FormRequest
         return [
             'name' => 'required',
             'entity_id' => 'required|exists:entities,id',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'icon' => '',
         ];
     }

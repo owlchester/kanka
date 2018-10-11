@@ -26,7 +26,7 @@ class StoreOrganisation extends FormRequest
         return [
             'name' => 'required|max:191',
             'type' => 'max:191',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'location_id' => 'nullable|integer|exists:locations,id',
             'section_id' => 'nullable|integer|exists:sections,id',
             'image_url' => 'nullable|url|active_url',

@@ -33,6 +33,13 @@ class ImageService
 
                     $file = $tempImage;
                     $path = "$folder/" . uniqid() . "_" . $externalFile;
+
+                    // Check if file is too big
+                    $copiedFileSize = ceil(filesize($tempImage) / 1000);
+                    if ($copiedFileSize > auth()->user()->maxUploadSize()) {
+                        unlink($tempImage);
+                        throw new \Exception('image_url target too big');
+                    }
                 } else {
                     $file = request()->file($field);
                     $path = $file->hashName($folder);
@@ -63,7 +70,7 @@ class ImageService
                 }
             } catch (Exception $e) {
                 // There was an error getting the image. Could be the url, could be the request.
-                session()->flash('warning', trans('crud.image.error'));
+                session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
             }
         } elseif (request()->post('remove-' . $field) == '1') {
             // Remove old
