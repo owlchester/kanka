@@ -105,7 +105,7 @@ return [
         */
 
         'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
-            'color,background-color,text-align,width,border-collapse',
+            'color,background-color,text-align,width,border,border-collapse,max-width,max-height',
 
         /*
         |--------------------------------------------------------------------------
@@ -136,6 +136,10 @@ return [
         */
 
         'AutoFormat.RemoveEmpty' => false,
+
+        // To allow max-width and max-height on images. This might cause imageattacks?
+        'HTML.MaxImgLength'   => NULL,
+        'CSS.MaxImgLength'   => NULL,
 
     ],
 
