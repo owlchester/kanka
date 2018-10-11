@@ -58,17 +58,12 @@ class PatreonService
         $patron = $patreon->get('data');
 
         if ($patron->has('relationships.pledges')) {
-            /*
-             * To look up the full resource that the relationship is referencing,
-             * we have extended art4/json-api-client/ResourceIdentifier
-             * (https://github.com/Art4/json-api-client/blob/master/docs/objects-resource-identifier.md)
-             * with the `->resolve` method.
-             * You pass in the original response document, and you get back a full resource,
-             * with attributes, relationships, etc.
-             */
+            // Some pledge object that doesn't provide exact details
             $pledge = $patron->relationship('pledges')->get(0)->resolve($patreon);
 
-            $this->user->pledge = $pledge->id;
+            // This value is useless, probably.
+            $this->user->pledge = $pledge->get('id');
+
             $this->user->patreonEmail = $patron->attribute('email');
             $this->user->patreonFullname = $patron->attribute('full_name');
             $this->user->update(['settings']);
@@ -77,6 +72,8 @@ class PatreonService
             if ($pledge && !$this->user->hasRole($this->patreonRoleName)) {
                 $this->user->roles()->attach($this->getRole()->id);
             }
+
+            return true;
         }
 
         throw new Exception('no_pledge');
