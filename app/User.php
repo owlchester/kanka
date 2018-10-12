@@ -305,9 +305,12 @@ class User extends \TCG\Voyager\Models\User
      * @param bool $readable
      * @return int|string
      */
-    public function maxUploadSize($readable = false)
+    public function maxUploadSize($readable = false, $what = 'image')
     {
         if ($this->hasRole('patreon')) {
+            if ($what == 'map') {
+                return $readable ? '10MB' : 10240;
+            }
             return $readable ? '8MB' : 8192;
         }
         return $readable ? '2MB' : 2048;
