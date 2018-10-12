@@ -17,7 +17,7 @@ When calling the API, add the following headers:
 * GET /api/v1/campaigns
 Returns a list of campaigns the authenticated user is a member of.
 
-* STORE /api/v1/campaigns
+* POST /api/v1/campaigns
 Not yet available! To create a new campaign.
 
 * GET /api/v1/campaigns/`campaign_id`
@@ -28,16 +28,16 @@ Returns a list of users of a campaign.
 
 ### Calendars
 
-* GET /api/v1/campaigns/`campaign_id`/calendars
+* GET|HEAD /api/v1/campaigns/`campaign_id`/calendars
 Returns a list of the campaign's calendars.
 
-* STORE /api/v1/campaigns/`campaign_id`/calendars
+* POST /api/v1/campaigns/`campaign_id`/calendars
 Create a new calendar.
 
-* GET /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
+* GET|HEAD /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
 Returns the details of a calendar.
 
-* POST /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
+* PUT|PATCH /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
 Update a calendar's data.
 
 * DELETE /api/v1/campaigns/`campaign_id`/calendars/`calendar_id`
@@ -45,6 +45,30 @@ Delete a calendar.
 
 ### Characters
 Same as calendars but with `characters` instead of `calendars`.
+
+#### Character Traits
+To save character traits, provide a list of `personality_name`, `personality_entry`, `appearance_name` and `appearance_entry` fields in the data sent to the `characters` API. Make sure that name and entry rows follow the "correct" order as shown below.
+
+```json
+{
+  "personality_name" : [
+      "fears",
+      "goals"
+  ],
+  "personality_entry": [
+      "spiders",
+      "rule the world"
+  ],
+  "appearance_name": [
+      "height",
+      "hair"
+  ],
+  "appearance_entry": [
+      "5 feet 3",
+      "blue"
+  ]
+}
+```
 
 ### Dice Rolls
 Same as calendars but with `dice_rolls` instead of `calendars`.
@@ -89,16 +113,16 @@ Same as calendars but with `sections` instead of `calendars`.
 Entities are a global concept in the app. Every character, location etc has an `entity_id` attribute that indicates the parent entity. This attribute is used to get the entity's attributes, relations etc.
 
 #### Entity Attributes
-* GET /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes
+* GET|HEAD /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes
 Returns a list of the entity's attributes
 
-* STORE /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes
+* POST /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes
 Create a new entity attribute.
 
-* GET /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
+* GET|HEAD /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
 Returns the details of an entity attribute.
 
-* POST /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
+* PUT|PATCH /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
 Update an entity attribute's data.
 
 * DELETE /api/v1/campaigns/`campaign_id`/entities/`entity_id`/attributes/`attribute_id`
