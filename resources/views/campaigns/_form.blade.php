@@ -43,13 +43,15 @@
     </div>
 </div>
 
-<div class="form-group">
-    {!! Form::hidden('is_public', 0) !!}
-    <label>{!! Form::checkbox('is_public') !!}
-        {{ trans('campaigns.visibilities.public') }}
-    </label>
-    <p class="help-block">{{ trans('campaigns.helpers.visibility') }}</p>
-</div>
+    @if (isset($model))
+    <div class="form-group">
+        {!! Form::hidden('is_public', 0) !!}
+        <label>{!! Form::checkbox('is_public') !!}
+            {{ trans('campaigns.visibilities.public') }}
+        </label>
+        <p class="help-block">{{ trans('campaigns.helpers.visibility') }}</p>
+    </div>
+    @endif
 @endif
 
 <div class="form-group">
