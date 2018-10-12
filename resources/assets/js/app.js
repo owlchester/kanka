@@ -314,7 +314,6 @@ require('./helpers.js');
 
 require('./attributes.js');
 require('./keyboard.js');
-require('./map.js');
 require('./crud.js');
 require('./calendar.js');
 require('./conversation.js');

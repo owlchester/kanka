@@ -130,15 +130,13 @@ class LocationMapPointController extends Controller
     {
         $this->authorize('update', $location);
 
-        try {
-            $mapPoint->update($request->only('axis_y', 'axis_x'));
-            die("yop");
-            return true;
-        } catch (LogicException $exception) {
-            //
-        }
-        die("nop");
-        return false;
+        $mapPoint->axis_x = $request->get('axis_x');
+        $mapPoint->axis_y = $request->get('axis_y');
+        $mapPoint->save();
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 
     /**

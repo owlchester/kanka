@@ -91,33 +91,7 @@ function initMapAdmin() {
     });
 
     // Draggable is only once.
-    $.each($('.point'), function(index) {
-        $(this).draggable({
-            start: function(event, ui) {
-                console.log('start moving point');
-                mapPointIsMoving = true;
-            },
-            stop: function (event, ui) {
-                event.preventDefault();
-                var location = $(event.target);
-
-                var offset = mapAdminImg.offset();
-                mapPositionX = event.pageX - offset.left - 25;
-                mapPositionY = event.pageY - offset.top - 25;
-
-                $.ajax({
-                    url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
-                }).done(function (result, textStatus, xhr) {
-                    event.preventDefault();
-                    // Stuff
-                    console.log('finished moving point');
-                    mapPointIsMoving = false;
-                }).fail(function (result, textStatus, xhr) {
-                    console.log('map point error', result);
-                });
-            }
-        });
-    });
+    initDraggablePoints();
 
     // Handle deleting already loaded points
     initPointUpdate();
@@ -261,6 +235,47 @@ function initSelect2() {
             });
         });
     }
+}
+
+/**
+ * Allow the map points to be draggable
+ */
+function initDraggablePoints() {
+    console.log('init Draggable Points');
+
+    $.each($('.point'), function(index) {
+        $(this).draggable({
+            revert: false,
+            start: function(event, ui) {
+                // console.log('start moving point');
+                mapPointIsMoving = true;
+            },
+            stop: function (event, ui) {
+                // event.preventDefault();
+                var location = $(event.target);
+
+                var offset = mapAdminImg.offset();
+                mapPositionX = event.pageX - offset.left - 25;
+                mapPositionY = event.pageY - offset.top - 25;
+
+                $.ajax({
+                    url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
+                }).done(function (result, textStatus, xhr) {
+                    //event.preventDefault();
+
+                    // console.log('finished moving point');
+                    mapPointIsMoving = false;
+                }).fail(function (result, textStatus, xhr) {
+                    // console.log('map point error', result);
+                    mapPointIsMoving = false;
+                });
+
+                //$(this).removeClass('ui-draggable-dragging');
+
+                return true;
+            }
+        });
+    });
 }
 
 /**

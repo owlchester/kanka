@@ -14,3 +14,7 @@
 @else
 <p>{{ trans('locations.map.no_map') }}</p>
 @endif
+
+@section('scripts')
+    <script src="{{ mix('js/location/map.js') }}"></script>
+@endsection

@@ -52,3 +52,8 @@
         </div>
     </div>
 @endsection
+
+
+@section('scripts')
+    <script src="{{ mix('js/location/map.js') }}"></script>
+@endsection

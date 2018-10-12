@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/character-map.js', 'public/js')
+    .js('resources/assets/js/location/map.js', 'public/js/location')
     .sass('resources/assets/sass/bootstrap.scss', 'public/css')
     .sass('resources/assets/sass/vendor.scss', 'public/css')
     .sass('resources/assets/sass/app.scss', 'public/css')
