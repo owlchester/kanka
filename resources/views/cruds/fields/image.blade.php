@@ -11,10 +11,8 @@
     </div>
 
     <p class="text-muted">
+        {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
         @if (!auth()->user()->hasRole('patreon'))
-        {{ trans('crud.hints.image_limitations', ['size' => '10mb']) }}
-        @else
-            {{ trans('crud.hints.image_limitations', ['size' => '2mb']) }}
             <a href="https://patreon.com/kankaio" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
         @endif
     </p>

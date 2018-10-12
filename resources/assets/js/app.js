@@ -102,13 +102,18 @@ $(document).ready(function() {
                     $('#new-entity-name').val('');
 
                     // Reset submit button
-                    var newEntitySaveButton = $('#new-entity-save');
-                    newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
+                    resetSubmitButton('#new-entity-save');
                 } else {
                     $('#new-entity-errors').show();
+
+                    // Reset submit button
+                    resetSubmitButton('#new-entity-save');
                 }
             }).fail(function (result, textStatus, xhr) {
                 $('#new-entity-errors').show();
+
+                // Re-enable the submit button
+                resetSubmitButton('#new-entity-save');
             });
 
             e.preventDefault();
@@ -300,6 +305,10 @@ function initTogglePasswordFields() {
     });
 }
 
+function resetSubmitButton(id) {
+    var newEntitySaveButton = $(id);
+    newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
+}
 // Helpers are injected directly in the window functions.
 require('./helpers.js');
 
