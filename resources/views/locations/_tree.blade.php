@@ -52,7 +52,7 @@
                 'data-children' => function($model) {
                     return $model->locations()->count();
                 }
-            ]
+            ],
         ]
     ]
 ) !!}

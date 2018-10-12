@@ -2484,6 +2484,11 @@ footer .footer-patreon img {
 
 tr.tr-hover {
   cursor: pointer;
+  font-weight: 700;
+}
+
+tr.tr-hover:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .dashboard-box p.entity-short {
