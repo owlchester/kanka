@@ -4096,3 +4096,58 @@ footer li > a {
   font-size: 16px !important;
 }
 
+.campaign {
+  overflow: hidden;
+  display: block;
+}
+
+.campaign .image-wrapper {
+  max-width: 100%;
+  display: block;
+  height: 200px;
+  background-color: #ebebeb;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.campaign .small-campaign {
+  height: 160px;
+}
+
+.campaign .campaign-title {
+  margin-top: 6px;
+  max-height: 56px;
+  padding: 5px;
+}
+
+.campaign:hover {
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  color: #c09853;
+}
+
+.featured-campaigns {
+  padding-bottom: 50px;
+}
+
+ul.pagination li a {
+  display: inline-block;
+  padding: 10px;
+}
+
+ul.pagination li a:hover {
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+
+ul.pagination li span {
+  display: inline-block;
+  padding: 10px;
+}
+

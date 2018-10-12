@@ -65,3 +65,54 @@ footer {
     font-size: 16px !important;
   }
 }
+
+.campaign {
+  overflow: hidden;
+  display: block;
+  .image-wrapper {
+    max-width: 100%;
+    display: block;
+    height: 200px;
+    background-color: #ebebeb;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .small-campaign {
+    height: 160px;
+  }
+
+  .campaign-title {
+    margin-top: 6px;
+    max-height: 56px;
+    padding: 5px;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.15s ease;
+    text-decoration: none;
+    color: #c09853;
+  }
+}
+
+.featured-campaigns {
+  padding-bottom: 50px;
+}
+
+ul.pagination {
+  li {
+    a {
+      display: inline-block;
+      padding: 10px;
+      &:hover {
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        transition: all 0.15s ease;
+      }
+    }
+    span {
+      display: inline-block;
+      padding: 10px;
+    }
+  }
+}

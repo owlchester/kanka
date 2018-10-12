@@ -26,6 +26,7 @@ Route::group([
     Route::get('/help', 'FrontController@help')->name('help');
     Route::get('/faq', 'FrontController@faq')->name('faq');
     Route::get('/features', 'FrontController@features')->name('features');
+    Route::get('/public-campaigns', 'FrontController@campaigns')->name('public_campaigns');
 
     Auth::routes();
 

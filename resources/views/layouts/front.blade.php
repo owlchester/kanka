@@ -94,6 +94,9 @@
                 <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
             </li>
             <li class="list-inline-item">
+                <a href="{{ route('public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
+            </li>
+            <li class="list-inline-item">
                 <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
             </li>
             <li class="list-inline-item">

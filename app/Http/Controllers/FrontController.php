@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Faq;
 use App\User;
 use TCG\Voyager\Models\Role;
@@ -60,5 +61,19 @@ class FrontController extends Controller
     {
         $faqs = Faq::locale(app()->getLocale())->visible()->ordered()->get();
         return view('front.faq')->with('faqs', $faqs);
+    }
+
+    /**
+     * Public Campaigns
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function campaigns()
+    {
+        $features = Campaign::public()->featured()->orderBy('name', SORT_ASC)->get();
+        $campaigns = Campaign::public()->featured(false)->orderBy('name', SORT_ASC)->paginate();
+
+        return view('front.campaigns')
+            ->with('featured', $features)
+            ->with('campaigns', $campaigns);
     }
 }

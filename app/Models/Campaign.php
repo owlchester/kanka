@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\MiscModel;
+use App\Models\Scopes\CampaignScopes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,8 @@ class Campaign extends MiscModel
         'visibility',
         'entity_visibility',
     ];
+
+    use CampaignScopes;
 
     /**
      * Searchable fields
@@ -332,26 +335,6 @@ class Campaign extends MiscModel
     public function getIsPublicAttribute()
     {
         return $this->visibility != self::VISIBILITY_PRIVATE;
-    }
-
-    /**
-     * @param $query
-     * @param $visibility
-     * @return mixed
-     */
-    public function scopeVisibility($query, $visibility)
-    {
-        return $query->where('visibility', $visibility);
-    }
-
-    /**
-     * Admin crud datagrid
-     * @param $query
-     * @return mixed
-     */
-    public function scopeAdmin($query)
-    {
-        return $query->visibility(Campaign::VISIBILITY_REVIEW);
     }
 
     /**

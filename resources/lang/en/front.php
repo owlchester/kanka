@@ -5,6 +5,18 @@ return [
         'description'   => 'Kanka was born out of the desire of two passionnate RPG players to build and manage a world together in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way we wanted, we set out to build our own tool during the fall of 2017.',
         'title'         => 'About',
     ],
+    'campaigns'     => [
+        'description_full' => 'Many campaigns in Kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
+        'title' => 'Public Campaigns',
+        'featured' => [
+            'description' => 'Our community builds amazing things that we love to showcase as Featured Campaigns. We change this list fairly frequently so be sure to come back every now and then for more campaigns to check out.',
+            'title' => 'Featured Campaigns',
+        ],
+        'public' => [
+            'description' => '',
+            'title' => 'Public Campaigns',
+        ]
+    ],
     'contact'       => [
         'title' => 'We :icon new friends!',
     ],
@@ -84,6 +96,7 @@ return [
     ],
     'menu'          => [
         'about'         => 'About',
+        'campaigns'     => 'Public Campaigns',
         'contact'       => 'Contact',
         'contact_us'    => 'Contact Us',
         'dashboard'     => 'Dashboard',

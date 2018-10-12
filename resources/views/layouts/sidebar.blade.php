@@ -127,6 +127,7 @@
                     <li class="{{ $sidebar->active('releases') }}">
                         <a href="{{ route('releases.index') }}"><i class="fa fa-ticket"></i> {{ trans('sidebar.releases') }}</a>
                     </li>
+                    <li><a href="{{ route('public_campaigns') }}"><i class="fa fa-globe"></i> {{ trans('front.menu.campaigns') }}</a></li>
                     <li><a href="{{ route('about') }}"><i class="fa fa-info-circle"></i> {{ trans('front.menu.about') }}</a></li>
                     <li><a href="{{ route('help') }}"><i class="fa fa-exclamation-circle"></i> {{ trans('front.menu.help') }}</a></li>
                     <li><a href="{{ route('faq') }}"><i class="fa fa-question-circle"></i>{{ trans('front.menu.faq') }}</a></li>
