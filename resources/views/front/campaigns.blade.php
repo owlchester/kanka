@@ -31,7 +31,7 @@
                     @foreach ($featured as $camp)
                     <div class="col-lg-4 col-md-6">
                         <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}">
-                                <div class="image-wrapper" @if ($camp->image) style="background-color: none; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
+                                <div class="image-wrapper" @if ($camp->image) style="background-color: none !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
                                 </div>
                             <h4 class="campaign-title">{{ $camp->name }}</h4>
                         </a>
@@ -54,7 +54,7 @@
                         @foreach ($campaigns as $camp)
                             <div class="col-lg-3 col-md-4">
                                 <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}" >
-                                    <div class="image-wrapper small-campaign" @if ($camp->image) style="background-color: none; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
+                                    <div class="image-wrapper small-campaign" @if ($camp->image) style="background-color: none !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
                                     </div>
                                     <h4 class="campaign-title">{{ $camp->name }}</h4>
                                 </a>
