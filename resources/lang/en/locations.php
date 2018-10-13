@@ -92,6 +92,10 @@ return [
         ],
         'success'   => 'Map Points saved.',
     ],
+    'organisations'     => [
+        'description'   => 'Organisations situated in the location.',
+        'title'         => 'Location :name Organisations',
+    ],
     'placeholders'  => [
         'location'  => 'Choose a parent location',
         'name'      => 'Name of the location',
@@ -107,6 +111,7 @@ return [
             'locations'     => 'Locations',
             'map'           => 'Map',
             'menu'          => 'Menu',
+            'organisations' => 'Organisations',
         ],
         'title'         => 'Location :name',
     ],

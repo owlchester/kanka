@@ -104,6 +104,7 @@ Route::group([
         Route::get('/locations/{location}/characters', 'LocationController@characters')->name('locations.characters');
         Route::get('/locations/{location}/items', 'LocationController@items')->name('locations.items');
         Route::get('/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
+        Route::get('/locations/{location}/organisations', 'LocationController@organisations')->name('locations.organisations');
 
 
         Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
