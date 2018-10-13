@@ -69,6 +69,8 @@ footer {
 .campaign {
   overflow: hidden;
   display: block;
+  margin-bottom: 20px;
+
   .image-wrapper {
     max-width: 100%;
     display: block;
@@ -98,6 +100,10 @@ footer {
 
 .featured-campaigns {
   padding-bottom: 50px;
+}
+
+.campaigns {
+  padding-top: 50px;
 }
 
 ul.pagination {

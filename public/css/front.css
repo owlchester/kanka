@@ -4099,6 +4099,7 @@ footer li > a {
 .campaign {
   overflow: hidden;
   display: block;
+  margin-bottom: 20px;
 }
 
 .campaign .image-wrapper {
@@ -4132,6 +4133,10 @@ footer li > a {
 
 .featured-campaigns {
   padding-bottom: 50px;
+}
+
+.campaigns {
+  padding-top: 50px;
 }
 
 ul.pagination li a {
