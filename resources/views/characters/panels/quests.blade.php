@@ -15,6 +15,7 @@
                     <th>{{ trans('quests.fields.locations') }}</th>
                 @endif
                 <th>{{ trans('quests.fields.characters') }}</th>
+                <th>{{ trans('quests.fields.is_completed') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $quest)
@@ -38,6 +39,9 @@
                     @endif
                     <td>
                         {{ $quest->characters()->count() }}
+                    </td>
+                    <td>
+                        @if ($quest->is_completed) <i class="fa fa-check-circle"></i> @endif
                     </td>
                     <td class="text-right">
                         <a href="{{ route('quests.show', ['id' => $quest->id]) }}" class="btn btn-xs btn-primary">
