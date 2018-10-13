@@ -353,14 +353,14 @@ function mapTogglePoints(show) {
         mapToggleHide.show();
         mapToggleShow.hide();
 
-        $.each($('#map .point'), function () {
+        $.each($('.map .point'), function () {
             $(this).show();
         });
     } else {
         mapToggleHide.hide();
         mapToggleShow.show();
 
-        $.each($('#map .point'), function () {
+        $.each($('.map .point'), function () {
             $(this).hide();
         });
     }
