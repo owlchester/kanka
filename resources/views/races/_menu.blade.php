@@ -18,7 +18,7 @@
                 </li>
             @endif
             @if ($model->type)
-                <li class="list-group-race">
+                <li class="list-group-item">
                     <b>{{ trans('races.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
                     <br class="clear" />
                 </li>
