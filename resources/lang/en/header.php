@@ -3,7 +3,7 @@
 return [
     'avatar'            => 'User Image',
     'logout'            => 'Logout',
-    'member_since'      => 'Member since :date',
+    'member_since'      => 'Joined :date',
     'notifications'     => [
         'header'    => 'Notifications',
         'read_all'  => 'Read All',

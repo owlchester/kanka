@@ -32,8 +32,9 @@ class BulkService
 
         $count = 0;
         foreach ($ids as $id) {
-            $entity = $model->findOrFail($id);
+            $entity = $model->find($id);
             if (Auth::user()->can('delete', $entity)) {
+                //dd($entity->descendants);
                 $entity->delete();
                 $count++;
             }

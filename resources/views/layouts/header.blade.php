@@ -162,7 +162,7 @@
                             </a>
                             <p>
                                 {{ Auth::user()->name }}
-                                <small>{{ trans('header.member_since', ['date' => Auth::user()->created_at->diffForHumans()]) }}</small>
+                                <small title="{{ auth()->user()->created_at }}">{{ trans('header.member_since', ['date' => Auth::user()->created_at->diffForHumans()]) }}</small>
                             </p>
                         </li>
                         <li class="user-footer">
