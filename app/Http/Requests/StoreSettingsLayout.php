@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreSettingsLayout extends FormRequest
 {
+    /**
+     * @var PaginationService
+     */
     protected $pagination;
 
+    /**
+     * StoreSettingsLayout constructor.
+     * @param PaginationService $paginationService
+     */
     public function __construct(PaginationService $paginationService)
     {
         $this->pagination = $paginationService;
