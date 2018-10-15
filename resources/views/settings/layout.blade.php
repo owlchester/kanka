@@ -4,6 +4,8 @@
     'breadcrumbs' => false
 ])
 
+@inject('pagination', App\Services\PaginationService)
+
 @section('content')
     @include('partials.errors')
     <div class="row">
@@ -30,11 +32,7 @@
 
                     <div class="form-group">
                         <label>{{ trans('profiles.settings.fields.pagination') }}</label>
-                        {!! Form::select('default_pagination', [
-                            15 => 15,
-                            25 => 25,
-                            45 => 45
-                        ], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('default_pagination', $pagination->options(), null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">

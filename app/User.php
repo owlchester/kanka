@@ -315,4 +315,13 @@ class User extends \TCG\Voyager\Models\User
         }
         return $readable ? '2MB' : 2048;
     }
+
+    /**
+     * Determine if a user is a patron
+     * @return bool
+     */
+    public function isPatron()
+    {
+        return $this->hasRole('patreon');
+    }
 }

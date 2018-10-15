@@ -2,11 +2,18 @@
 
 namespace App\Http\Requests;
 
+use App\Services\PaginationService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class StoreSettingsLayout extends FormRequest
 {
+    protected $pagination;
+
+    public function __construct(PaginationService $paginationService)
+    {
+        $this->pagination = $paginationService;
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +33,7 @@ class StoreSettingsLayout extends FormRequest
     {
         return [
             'date_format' => '',
-            'default_pagination' => 'required|numeric',
+            'default_pagination' => 'required|numeric|max:' . $this->pagination->max(),
             'theme' => '',
         ];
     }
