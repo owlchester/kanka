@@ -23,6 +23,8 @@ abstract class MiscModel extends Model
 {
     use Paginatable;
 
+    public static $SKIP_SAVING_OBSERVER = false;
+
     /**
      * Eloquence trait for easy search
      */

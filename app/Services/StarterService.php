@@ -32,6 +32,8 @@ class StarterService
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
+        // Make sure we skip observers to be able to save parent_location_id properly.
+        $city::$SKIP_SAVING_OBSERVER = true;
         $city->save();
 
         $james = new Character([
@@ -46,6 +48,8 @@ class StarterService
             'traits' => trans('starter.character1.traits'),
             'is_private' => false,
         ]);
+        // Make sure we skip observers to be able to save foreign ids properly.
+        $james::$SKIP_SAVING_OBSERVER = true;
         $james->save();
 
         $irwie = new Character([
@@ -60,6 +64,8 @@ class StarterService
             'traits' => trans('starter.character2.traits'),
             'is_private' => false,
         ]);
+        // Make sure we skip observers to be able to save foreign ids properly.
+        $irwie::$SKIP_SAVING_OBSERVER = true;
         $irwie->save();
 
         $item = new Item([
@@ -71,6 +77,8 @@ class StarterService
             'location_id' => $kingdom->id,
             'is_private' => false,
         ]);
+        // Make sure we skip observers to be able to save foreign ids properly.
+        $item::$SKIP_SAVING_OBSERVER = true;
         $item->save();
     }
 }
