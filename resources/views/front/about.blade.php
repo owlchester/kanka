@@ -41,13 +41,13 @@
                     <div class="col-lg-4 my-auto">
                         <h4>{{ trans('teams.index.translations') }}</h4>
                         <p>
-                            <strong>{{ trans('languages.codes.de') }}</strong>: TheFurya
+                            <strong>{{ trans('languages.codes.de') }}</strong>: TheFurya, Yanila
                         </p>
                         <p>
                             <strong>{{ trans('languages.codes.en-US') }}</strong>: Oriek
                         </p>
                         <p>
-                            <strong>{{ trans('languages.codes.es') }}</strong>: Raigho, Helionking
+                            <strong>{{ trans('languages.codes.es') }}</strong>: Helionking, Raigho
                         </p>
                         <p>
                             <strong>{{ trans('languages.codes.pt-BR') }}</strong>: Republik
