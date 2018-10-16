@@ -16,6 +16,7 @@ return [
         'new_password_confirmation' => 'Neues Passwort bestätigen',
         'newsletter'                => 'Ich würde gern manchmal per Email kontaktiert werden.',
         'password'                  => 'Aktuelles Passwort',
+        'settings'                  => 'Einstellungen',
         'theme'                     => 'Theme',
     ],
     'password'      => [
@@ -38,11 +39,20 @@ return [
             'title' => 'Ändere dein Passwort',
         ],
     ],
+    'settings'      => [
+        'fields'    => [
+            'date_format'   => 'Datenformatierung',
+            'pagination'    => 'Seitennummerierung (Objekte pro Seite)',
+        ],
+        'success'   => 'Einstellungen geändert.',
+    ],
     'theme'         => [
         'success'   => 'Theme geändert.',
         'themes'    => [
+            'dark'      => 'Dunkel',
             'default'   => 'Standard',
             'future'    => 'Zukunft',
+            'midnight'  => 'Mitternacht Blau',
         ],
     ],
     'title'         => 'Aktualisiere dein Profil',

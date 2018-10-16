@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'back'      => 'Zurück',
         'copy'      => 'Kopieren',
         'export'    => 'Exportieren',
@@ -11,8 +11,8 @@ return [
         'private'   => 'Privat',
         'public'    => 'Öffentlich',
     ],
-    'add'           => 'Hinzufügen',
-    'attributes'    => [
+    'add'               => 'Hinzufügen',
+    'attributes'        => [
         'actions'       => [
             'add'               => 'Attribut hinzufügen',
             'apply_template'    => 'Eine Attributvorlage anwenden',
@@ -50,7 +50,7 @@ return [
             'title'     => 'Wende eine Attributvorlage auf :name an',
         ],
     ],
-    'bulk'          => [
+    'bulk'              => [
         'errors'    => [
             'admin' => 'Nur Kampagnenadmins können den "Privat" Status eines Objektes ändern.',
         ],
@@ -59,63 +59,80 @@ return [
             'public'    => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
         ],
     ],
-    'cancel'        => 'Abbrechen',
-    'click_modal'   => [
+    'cancel'            => 'Abbrechen',
+    'click_modal'       => [
         'close'     => 'Schließen',
         'confirm'   => 'Bestätigen',
         'title'     => 'Bestätige deine Aktion',
     ],
-    'create'        => 'Erstellen',
-    'delete_modal'  => [
+    'create'            => 'Erstellen',
+    'delete_modal'      => [
         'close'         => 'Schließen',
         'delete'        => 'Löschen',
         'description'   => 'Bist du sicher das du :tag entfernen möchtest?',
         'title'         => 'Löschen bestätigen',
     ],
-    'destroy_many'  => [
+    'destroy_many'      => [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
     ],
-    'edit'          => 'Bearbeiten',
-    'errors'        => [
+    'edit'              => 'Bearbeiten',
+    'errors'            => [
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
     ],
-    'events'        => [
+    'events'            => [
         'hint'  => 'Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt.',
     ],
-    'export'        => 'Exportieren',
-    'fields'        => [
-        'character'     => 'Charakter',
-        'description'   => 'Beschreibung',
-        'entity'        => 'Objekt',
-        'entry'         => 'Eintrag',
-        'event'         => 'Ereignis',
-        'family'        => 'Familie',
-        'history'       => 'Geschichte',
-        'image'         => 'Bild',
-        'is_private'    => 'Privat',
-        'location'      => 'Ort',
-        'name'          => 'Name',
-        'organisation'  => 'Organisation',
-        'section'       => 'Kategorie',
+    'export'            => 'Exportieren',
+    'fields'            => [
+        'attribute_template'    => 'Attributsvorlage',
+        'calendar'              => 'Kalender',
+        'calendar_date'         => 'Datum',
+        'character'             => 'Charakter',
+        'creator'               => 'Ersteller',
+        'dice_roll'             => 'Würfelwürf',
+        'entity'                => 'Objekt',
+        'entry'                 => 'Eintrag',
+        'event'                 => 'Ereignis',
+        'family'                => 'Familie',
+        'image'                 => 'Bild',
+        'is_private'            => 'Privat',
+        'location'              => 'Ort',
+        'name'                  => 'Name',
+        'organisation'          => 'Organisation',
+        'race'                  => 'Rasse',
+        'section'               => 'Kategorie',
     ],
-    'filter'        => 'Filter',
-    'filters'       => [
+    'filter'            => 'Filter',
+    'filters'           => [
         'clear' => 'Filter zurücksetzen',
         'hide'  => 'Verstecken',
         'show'  => 'Zeigen',
         'title' => 'Filter',
     ],
-    'hidden'        => 'Versteckt',
-    'hints'         => [
-        'is_private'    => 'Vor \'Zuschauern\' verbergen',
+    'forms'             => [
+        'actions'   => [
+            'calendar'  => 'Füge Datum hinzu',
+        ],
     ],
-    'image'         => [
+    'hidden'            => 'Versteckt',
+    'hints'             => [
+        'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
+        'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
+        'image_limitations'     => 'Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: :size.',
+        'is_private'            => 'Vor \'Zuschauern\' verbergen',
+    ],
+    'history'           => [
+        'created'   => 'Erstellt von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'   => 'Unbekannt',
+        'updated'   => 'Zuletzt aktualisiert von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+    ],
+    'image'             => [
         'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
     ],
-    'is_private'    => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
-    'linking_help'  => 'Wie kann ich zu anderen Objekten verlinken?',
-    'manage'        => 'Verwalten',
-    'move'          => [
+    'is_private'        => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
+    'linking_help'      => 'Wie kann ich zu anderen Objekten verlinken?',
+    'manage'            => 'Verwalten',
+    'move'              => [
         'description'   => 'Verschiebe diese Objekt an einen anderen Ort',
         'errors'        => [
             'permission'        => 'Du hast keine Berechtigung, Objekte diesen Typs in dieser Kampagne zu erstellen.',
@@ -133,14 +150,14 @@ return [
         'success'       => 'Objekt :name verschoben',
         'title'         => 'Verschiebe :name an einen anderen Ort',
     ],
-    'new_entity'    => [
+    'new_entity'        => [
         'error' => 'Bitte überprüfe deine Eingabe.',
         'fields'=> [
             'name'  => 'Name',
         ],
         'title' => 'Neues Objekt',
     ],
-    'notes'         => [
+    'notes'             => [
         'actions'       => [
             'add'   => 'Notiz hinzufügen',
         ],
@@ -170,15 +187,17 @@ return [
             'name'  => 'Name der Notiz, Beobachtung oder Anmerkung',
         ],
     ],
-    'or_cancel'     => 'oder <a href=":url">abbrechen</a>',
-    'panels'        => [
+    'or_cancel'         => 'oder <a href=":url">abbrechen</a>',
+    'panels'            => [
         'appearance'            => 'Aussehen',
-        'description'           => 'Beschreibung',
+        'attribute_template'    => 'Attributsvorlage',
+        'calendar_date'         => 'Datum',
+        'entry'                 => 'Eintrag',
         'general_information'   => 'Allgemeine Informationen',
-        'history'               => 'Geschichte',
         'move'                  => 'Verschieben',
+        'system'                => 'System',
     ],
-    'permissions'   => [
+    'permissions'       => [
         'action'    => 'Aktion',
         'actions'   => [
             'delete'    => 'Löschen',
@@ -194,7 +213,8 @@ return [
         'success'   => 'Berechtigungen gespeichert.',
         'title'     => 'Berechtigungen',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
+        'calendar'      => 'Wähle einen Kalender',
         'character'     => 'Wähle einen Character',
         'entity'        => 'Objekt',
         'event'         => 'Wähle ein Ereignis',
@@ -202,9 +222,10 @@ return [
         'image_url'     => 'Du kannst ein Bild auch von einer URL hochladen',
         'location'      => 'Wähle einen Ort',
         'organisation'  => 'Wähle eine Organisation',
+        'race'          => 'Wähle eine Rasse',
         'section'       => 'Wähle eine Kategorie',
     ],
-    'relations'     => [
+    'relations'         => [
         'actions'   => [
             'add'   => 'Füge eine Beziehung hinzu',
         ],
@@ -215,19 +236,26 @@ return [
         ],
         'hint'      => 'Beziehungen zwischen Objekten können erstellt werden, um deren Verbindung darzustellen.',
     ],
-    'remove'        => 'Löschen',
-    'save'          => 'Speichern',
-    'save_and_new'  => 'Speichern und neu',
-    'search'        => 'Suchen',
-    'select'        => 'Auswählen',
-    'tabs'          => [
+    'remove'            => 'Löschen',
+    'save'              => 'Speichern',
+    'save_and_close'    => 'Speichern und schließen',
+    'save_and_new'      => 'Speichern und neu',
+    'save_and_update'   => 'Speichern und aktualisieren',
+    'save_and_view'     => 'Speichern und ansehen',
+    'search'            => 'Suchen',
+    'select'            => 'Auswählen',
+    'tabs'              => [
         'attributes'    => 'Attribute',
         'calendars'     => 'Kalender',
         'events'        => 'Ereignisse',
+        'menu'          => 'Menü',
         'notes'         => 'Notizen',
         'permissions'   => 'Berechtigungen',
         'relations'     => 'Beziehungen',
     ],
-    'update'        => 'Aktualisieren',
-    'view'          => 'Ansehen',
+    'update'            => 'Aktualisieren',
+    'users'             => [
+        'unknown'   => 'Unbekannt',
+    ],
+    'view'              => 'Ansehen',
 ];

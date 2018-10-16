@@ -5,6 +5,7 @@ return [
         'add_month'     => 'Monat hinzufügen',
         'add_weekday'   => 'Wochentag hinzufügen',
         'add_year'      => 'Jahr hinzufügen',
+        'today'         => 'Heute',
     ],
     'create'        => [
         'description'   => 'Einen neuen Kalender erstellen',
@@ -15,10 +16,16 @@ return [
         'success'   => 'Kalender \':name\' gelöscht',
     ],
     'edit'          => [
-        'success'   => 'Kalender \':name\' aktualisiert',
-        'title'     => 'Kalender :name bearbeiten',
+        'description'   => 'Kalender aktualisieren',
+        'success'       => 'Kalender \':name\' aktualisiert',
+        'title'         => 'Kalender :name bearbeiten',
     ],
     'event'         => [
+        'actions'   => [
+            'existing'  => 'Bestehendes Objekt',
+            'new'       => 'Neues Ereignis',
+            'switch'    => 'Auswahl ändern',
+        ],
         'destroy'   => 'Ereignis aus Kalender :name entfernt',
         'helpers'   => [
             'add'   => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
@@ -41,9 +48,12 @@ return [
         'leap_year_month'   => 'Monat',
         'leap_year_offset'  => 'Jedes',
         'leap_year_start'   => 'Schaltjahr',
+        'length'            => 'Länge des Ereignisses',
+        'length_days'       => ':count Tag|:count Tage',
         'months'            => 'Monate',
         'name'              => 'Name',
         'parameters'        => 'Parameter',
+        'recurring_until'   => 'Wiederholt sich bis zum Jahr',
         'seasons'           => 'Jahreszeiten',
         'suffix'            => 'Suffix',
         'type'              => 'Typ',
@@ -57,6 +67,10 @@ return [
         'description'   => 'Verwalte die Kalender von :name',
         'header'        => 'Kalender von :name',
         'title'         => 'Kalender',
+    ],
+    'layouts'       => [
+        'month' => 'Monat',
+        'year'  => 'Jahr',
     ],
     'panels'        => [
         'leap_year' => 'Schaltjahr',
@@ -79,8 +93,10 @@ return [
         'leap_year_month'   => 'Monat, in dem die Tage hinzugefügt werden',
         'leap_year_offset'  => 'Alle wieviele Jahre ist Schaltjahr',
         'leap_year_start'   => 'Erstes Jahr, das ein Schaltjahr ist',
+        'length'            => 'Ereignislänge in Tagen',
         'months'            => 'Anzahl der Monate in einem Jahr',
         'name'              => 'Name des Kalenders',
+        'recurring_until'   => 'Letztes Jahr der Wiederholung (leer lassen für für immer wiederholend)',
         'seasons'           => 'Anzahl der Jahrezeiten',
         'suffix'            => 'Aktueller Suffix der Ära (v. Chr., n. Chr.)',
         'type'              => 'Art des Kalenders',

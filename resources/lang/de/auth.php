@@ -2,6 +2,9 @@
 
 return [
     'failed'    => 'Wir kennen diese Logindaten nicht.',
+    'helpers'   => [
+        'password'  => 'Passwort anzeigen / verbergen',
+    ],
     'login'     => [
         'fields'                => [
             'email'     => 'Email',
@@ -29,11 +32,10 @@ return [
             'general_error'         => 'Beim erstellen des Accounts ist ein Fehler aufgetreten. Bitte erneut versuchen.',
         ],
         'fields'                    => [
-            'email'                 => 'Email',
-            'name'                  => 'Nutzername',
-            'password'              => 'Passwort',
-            'password_confirmation' => 'Passwort bestätigen',
-            'tos'                   => 'Ich stimme der <a href=":privacyUrl" target="_blank">Privacy Policy</a> zu.',
+            'email'     => 'Email',
+            'name'      => 'Nutzername',
+            'password'  => 'Passwort',
+            'tos'       => 'Ich stimme der <a href=":privacyUrl" target="_blank">Privacy Policy</a> zu.',
         ],
         'register_with_facebook'    => 'Mit Facebook registrieren',
         'register_with_google'      => 'Mit Google registrieren',

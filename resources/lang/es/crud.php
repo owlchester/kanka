@@ -101,6 +101,7 @@ return [
         'location'              => 'Localización',
         'name'                  => 'Nombre',
         'organisation'          => 'Organización',
+        'race'                  => 'Raza',
         'section'               => 'Categoría',
     ],
     'filter'            => 'Filtrar',
@@ -225,6 +226,7 @@ return [
         'image_url'     => 'Puedes subir una imagen desde una URL',
         'location'      => 'Escoge una localización',
         'organisation'  => 'Elige una organización',
+        'race'          => 'Elige una raza',
         'section'       => 'Elige una categoría',
     ],
     'relations'         => [
@@ -250,6 +252,7 @@ return [
         'attributes'    => 'Atributos',
         'calendars'     => 'Calendarios',
         'events'        => 'Eventos',
+        'menu'          => 'Menú',
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
         'relations'     => 'Vínculos',

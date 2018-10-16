@@ -10,8 +10,9 @@ return [
         'success'   => 'Enlace de menú \':name\' eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Enlace de menú \':name\' actualizado.',
-        'title'     => 'Enlace de menú :name',
+        'description'   => 'Editar ítem de menú',
+        'success'       => 'Enlace de menú \':name\' actualizado.',
+        'title'         => 'Enlace de menú :name',
     ],
     'fields'        => [
         'entity'    => 'Entidad',

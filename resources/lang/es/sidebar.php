@@ -24,6 +24,7 @@ return [
     'other'                 => 'Otros',
     'patreon'               => 'Patreon',
     'quests'                => 'Misiones',
+    'races'                 => 'Razas',
     'releases'              => 'Notas de la versión',
     'search'                => 'Buscar...',
     'sections'              => 'Categorías',

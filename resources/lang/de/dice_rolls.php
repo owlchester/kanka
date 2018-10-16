@@ -16,22 +16,29 @@ return [
         'title'         => 'Bearbeite Würfelwurf \':name\'',
     ],
     'fields'        => [
+        'created_at'    => 'Gewürfelt am',
         'name'          => 'Name',
         'parameters'    => 'Parameter',
         'results'       => 'Ergebnisse',
+        'rolls'         => 'Würfe',
     ],
     'hints'         => [
         'parameters'    => 'Was sind meine Würfeloptionen?',
     ],
     'index'         => [
+        'actions'       => [
+            'dice'      => 'Würfelwürfe',
+            'results'   => 'Ergebnisse',
+        ],
         'add'           => 'Neuer Würfelwurf',
         'description'   => 'Verwalte die Würfelwürfe von :name',
         'header'        => 'Würfelwürfe von :name',
         'title'         => 'Würfelwürfe',
     ],
     'placeholders'  => [
-        'name'          => 'Name des Würfelwurfs',
-        'parameters'    => '4d6+3',
+        'dice_roll' => 'Würfelwurf',
+        'name'      => 'Name des Würfelwurfs',
+        'parameters'=> '4d6+3',
     ],
     'results'       => [
         'actions'   => [

@@ -34,12 +34,18 @@ return [
         'title'         => 'Bearbeite Quest :name',
     ],
     'fields'        => [
+        'character'     => 'Auslöser',
         'characters'    => 'Charaktere',
         'description'   => 'Beschreibung',
         'image'         => 'Bild',
+        'is_completed'  => 'Abgeschlossen',
         'locations'     => 'Orte',
         'name'          => 'Name',
+        'quest'         => 'Elternquest',
         'type'          => 'Typ',
+    ],
+    'hints'         => [
+        'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',
     ],
     'index'         => [
         'add'           => 'Neuer Quest',
@@ -68,6 +74,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Name des Quests',
+        'quest' => 'Elternquest',
         'type'  => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],
     'show'          => [
@@ -80,6 +87,7 @@ return [
             'characters'    => 'Charaktere',
             'information'   => 'Informationen',
             'locations'     => 'Orte',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Quest :name',
     ],

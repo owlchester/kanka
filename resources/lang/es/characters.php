@@ -5,6 +5,10 @@ return [
         'add_appearance'    => 'Añadir apariencia',
         'add_personality'   => 'Añadir personalidad',
     ],
+    'conversations' => [
+        'description'   => 'Conversaciones en las que el personaje está participando.',
+        'title'         => 'Conversaciones de :name',
+    ],
     'create'        => [
         'description'   => 'Crear nuevo personaje',
         'success'       => 'Se ha creado el personaje \':name\'.',
@@ -14,7 +18,9 @@ return [
         'success'   => 'Personaje \':name\' borrado.',
     ],
     'dice_rolls'    => [
-        'hint'  => 'Se pueden asignar tiradas de dados a un personaje para usarlas en el juego.',
+        'description'   => 'Tiradas de dados asignadas al personaje.',
+        'hint'          => 'Se pueden asignar tiradas de dados a un personaje para usarlas en el juego.',
+        'title'         => 'Tiradas de dados de :name',
     ],
     'edit'          => [
         'description'   => 'Editar personaje',
@@ -66,7 +72,17 @@ return [
         'title'         => 'Personajes',
     ],
     'items'         => [
-        'hint'  => 'A los personajes se les puede asignar objetos, que se mostrarán aquí.',
+        'description'   => 'Los objetos que tiene el personaje.',
+        'hint'          => 'A los personajes se les puede asignar objetos, que se mostrarán aquí.',
+        'title'         => 'Objetos de :name',
+    ],
+    'journals'      => [
+        'description'   => 'Diarios cuyo autor es el personaje.',
+        'title'         => 'Diarios de :name',
+    ],
+    'maps'          => [
+        'description'   => 'Mapa de relaciones de un personaje.',
+        'title'         => 'Mapa de relaciones de :name',
     ],
     'organisations' => [
         'actions'       => [
@@ -77,6 +93,7 @@ return [
             'success'       => 'Personaje añadido a la organización.',
             'title'         => 'Nueva organización para :name',
         ],
+        'description'   => 'Organizaciones de las que el personaje forma parte.',
         'destroy'       => [
             'success'   => 'Personaje borrado de la organización.',
         ],
@@ -93,6 +110,7 @@ return [
         'placeholders'  => [
             'organisation'  => 'Elegir una organización',
         ],
+        'title'         => 'Organizaciones de :name',
     ],
     'placeholders'  => [
         'age'               => 'Edad',
@@ -122,6 +140,10 @@ return [
         'type'              => 'PNJ, Personaje Jugador, Divinidad...',
         'weight'            => 'Peso',
     ],
+    'quests'        => [
+        'description'   => 'Las misiones de las que el personaje forma parte.',
+        'title'         => 'Misiones de :name',
+    ],
     'sections'      => [
         'appearance'    => 'Apariencia',
         'general'       => 'Información general',
@@ -137,6 +159,7 @@ return [
             'history'       => 'Biografía',
             'items'         => 'Objetos',
             'journals'      => 'Diarios',
+            'map'           => 'Mapa de relaciones',
             'organisations' => 'Organizaciones',
             'personality'   => 'Personalidad',
             'quests'        => 'Misiones',

@@ -30,6 +30,8 @@ return [
     'organisations'         => 'Organizaciones',
     'quest'                 => 'Misión',
     'quests'                => 'Misiones',
+    'race'                  => 'Raza',
+    'races'                 => 'Razas',
     'section'               => 'Categoría',
     'sections'              => 'Categorías',
 ];

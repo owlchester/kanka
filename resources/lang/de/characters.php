@@ -5,6 +5,10 @@ return [
         'add_appearance'    => 'Füge ein Aussehen hinzu',
         'add_personality'   => 'Füge eine Persönlichkeit hinzu',
     ],
+    'conversations' => [
+        'description'   => 'Unterhaltungen, in denen der Charakter teilnimmt.',
+        'title'         => 'Charakter :name Unterhaltungen',
+    ],
     'create'        => [
         'description'   => 'Erstelle einen neuen Charakter',
         'success'       => 'Charakter \':name\' erstellt.',
@@ -12,6 +16,11 @@ return [
     ],
     'destroy'       => [
         'success'   => 'Charakter \':name\' entfernt.',
+    ],
+    'dice_rolls'    => [
+        'description'   => 'Würfelwürfe, die dem Charakter zugewiesen sind.',
+        'hint'          => 'Würfelwürfe können einem Charakter zugewiesen werden, um in einem Spiel verwendet zu werden.',
+        'title'         => 'Charakter :name Würfelwürfe',
     ],
     'edit'          => [
         'description'   => 'Bearbeite einen Charakter',
@@ -63,7 +72,17 @@ return [
         'title'         => 'Charaktere',
     ],
     'items'         => [
-        'hint'  => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',
+        'description'   => 'Gegenstände, die vom Charakter getragen oder in dessem Besitz sind.',
+        'hint'          => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',
+        'title'         => 'Charakter :name Gegenstände',
+    ],
+    'journals'      => [
+        'description'   => 'Logbücher, die der Charakter geschrieben hat.',
+        'title'         => 'Charakter :name Logbücher',
+    ],
+    'maps'          => [
+        'description'   => 'Beziehungskarte des Charakters.',
+        'title'         => 'Charakter :name Beziehungskarte',
     ],
     'organisations' => [
         'actions'       => [
@@ -74,6 +93,7 @@ return [
             'success'       => 'Charakter wurde der Organisation hinzugefügt.',
             'title'         => 'Neue Organisation für :name',
         ],
+        'description'   => 'Organisationen, denen der Charakter angehört.',
         'destroy'       => [
             'success'   => 'Character aus Organisation entfernt.',
         ],
@@ -90,6 +110,7 @@ return [
         'placeholders'  => [
             'organisation'  => 'Wähle eine Organisation...',
         ],
+        'title'         => 'Charakter :name Organisationen',
     ],
     'placeholders'  => [
         'age'               => 'Alter',
@@ -119,6 +140,10 @@ return [
         'type'              => 'NPC, Spieler Charakter, Gottheit',
         'weight'            => 'Gewicht',
     ],
+    'quests'        => [
+        'description'   => 'Quests des Charakters.',
+        'title'         => 'Charakter :name Quests',
+    ],
     'sections'      => [
         'appearance'    => 'Aussehen',
         'general'       => 'Allgemeine Informationen',
@@ -128,11 +153,16 @@ return [
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Charakters',
         'tabs'          => [
+            'conversations' => 'Unterhaltungen',
+            'dice_rolls'    => 'Würfelwürfe',
             'free'          => 'Freitext',
             'history'       => 'Geschichte',
             'items'         => 'Items',
+            'journals'      => 'Logbücher',
+            'map'           => 'Beziehungskarte',
             'organisations' => 'Organisationen',
             'personality'   => 'Persönlichkeit',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Charakter :name',
     ],

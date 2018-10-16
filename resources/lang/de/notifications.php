@@ -2,8 +2,13 @@
 
 return [
     'campaign'          => [
-        'join'  => ':user ist der Kampagne :campaign beigetreten.',
-        'leave' => ':user hat die Kampagne :campaign verlassen.',
+        'export'    => 'Ein Export der Kampagne steht zur Verfügung. Du kannst ihn herunterladen, indem du <a href=":link">hier</a> klickst. Der Link ist 30 Minuten gültig.',
+        'join'      => ':user ist der Kampagne :campaign beigetreten.',
+        'leave'     => ':user hat die Kampagne :campaign verlassen.',
+        'role'      => [
+            'add'       => 'Du wurdest zur Rolle :role in der Kampagne :campaign hinzugefügt.',
+            'remove'    => 'Du wurdest aus der Rolle :role in der Kampagne :campaign entfernt.',
+        ],
     ],
     'header'            => 'Du hast :count Benachrichtigungen.',
     'index'             => [

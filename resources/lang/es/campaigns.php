@@ -236,6 +236,7 @@ return [
             'notes'         => 'Tradiciones, religiones, historia, magia, razas...',
             'organisations' => 'Sectas, unidades militares, facciones, gremios...',
             'quests'        => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
+            'races'         => 'Si tu campaña tiene más de una raza, de esta forma no las perderás de vista.',
         ],
         'title'         => 'Módulos de la campaña :name',
     ],
