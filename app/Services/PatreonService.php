@@ -7,6 +7,7 @@ use Patreon\API;
 use Patreon\OAuth;
 use Exception;
 use TCG\Voyager\Facades\Voyager;
+use TCG\Voyager\Models\Role;
 
 /**
  * Class PatreonService
@@ -19,6 +20,9 @@ class PatreonService
      */
     protected $user;
 
+    /**
+     * @var string
+     */
     protected $patreonRoleName = 'patreon';
 
     /**
@@ -100,5 +104,29 @@ class PatreonService
             $this->user->update(['settings']);
         }
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function patrons()
+    {
+        $patrons = [
+            'Elemental' => [],
+            'Owlbear' =>  [],
+            'Goblin' => [],
+            'Kobold' => []
+        ];
+
+        // We need to do this workaround since role->users() returns the TCG\User group, which doesn't have
+        // our accessors for the patreon data.
+        $role = Role::where(['name' => 'patreon'])->first();
+        $ids = $role->users()->pluck('id');
+        $users = User::whereIn('id', $ids)->orderBy('name', 'ASC')->get();
+        foreach ($users as $user) {
+            $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user;
+        }
+
+        return $patrons;
     }
 }

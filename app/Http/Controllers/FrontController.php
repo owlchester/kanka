@@ -4,22 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Faq;
-use App\User;
-use TCG\Voyager\Models\Role;
+use App\Services\PatreonService;
 
 class FrontController extends Controller
 {
+    /**
+     * @var PatreonService
+     */
+    protected $patreon;
+
+    /**
+     * FrontController constructor.
+     * @param PatreonService $patreonService
+     */
+    public function __construct(PatreonService $patreonService)
+    {
+        $this->patreon = $patreonService;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function about()
     {
-        // We need to do this workaround since role->users() returns the TCG\User group, which doesn't have
-        // our accessors for the patreon data.
-        $role = Role::where(['name' => 'patreon'])->first();
-        $ids = $role->users()->pluck('id');
-        $users = User::whereIn('id', $ids)->get();
-        return view('front.about', compact('users'));
+        $patrons = $this->patreon->patrons();
+        return view('front.about', compact('patrons'));
     }
 
     /**

@@ -16,6 +16,11 @@
                     {{ trans('settings.menu.account') }}
                 </a>
             </li>
+            <li class="@if(!empty($active) && $active == 'patreon')active @endif">
+                <a href="{{ route('settings.patreon') }}">
+                    {{ trans('settings.menu.patreon') }}
+                </a>
+            </li>
             <li class="@if(!empty($active) && $active == 'layout')active @endif">
                 <a href="{{ route('settings.layout') }}">
                     {{ trans('settings.menu.layout') }}

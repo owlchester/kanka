@@ -307,7 +307,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function maxUploadSize($readable = false, $what = 'image')
     {
-        if ($this->hasRole('patreon')) {
+        if ($this->isPatron()) {
             if ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
@@ -322,6 +322,6 @@ class User extends \TCG\Voyager\Models\User
      */
     public function isPatron()
     {
-        return $this->hasRole('patreon');
+        return $this->hasRole('patreon') || $this->hasRole('admin');
     }
 }

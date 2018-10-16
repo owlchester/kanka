@@ -76,9 +76,15 @@
                     <a href="https://patreon.com/kankaio" class="" target="_blank">{{ __('footer.patreon') }}</a>
                 </p>
 
-                <div class="row">
-                    @foreach ($users as $user)
-                        <div class="col-md-3 col-sm-4 col-xs-6">{{ $user->patreon_fullname }}</div>
+                    @foreach ($patrons as $pledge => $users)
+                        @if (!empty($users))
+                            <h4>{{ $pledge }}</h4>
+                            <div class="row patreon-pledge">
+                            @foreach ($users as $user)
+                            <div class="col-md-3 col-sm-4 col-xs-6">{{ $user->patreon_fullname }}</div>
+                            @endforeach
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

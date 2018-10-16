@@ -18,7 +18,11 @@
                     </h2>
 
                     @if(auth()->user()->hasRole('patreon'))
-                    <p class="text-muted">{{ __('settings.patreon.linked') }}</p>
+                        <p class="text-muted">{{ __('settings.patreon.linked') }}</p>
+
+                        @if (auth()->user()->patreon_pledge)
+                        <p>{{ trans('settings.patreon.pledge', ['pledge' => auth()->user()->patreon_pledge]) }}</p>
+                        @endif
                     @else
                     <p class="text-muted">{{ __('settings.patreon.link') }}</p>
 
