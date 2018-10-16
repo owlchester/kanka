@@ -12,9 +12,9 @@ return [
     '500'       => [
         'body'  => [
             '1' => 'Oups, quelque chose s\'est mal passé.',
-            '2' => 'Un rapport avec l\'erreur rencontrée nous a été envoyée, mais quelques fois ça aide si nous avons plus de détails.',
+            '2' => 'Un rapport avec l\'erreur rencontrée nous a été envoyé, mais quelques fois ça aide si nous avons plus de détails.',
         ],
-        'title' => 'Erreure',
+        'title' => 'Erreur',
     ],
     '503'       => [
         'body'  => [

@@ -31,6 +31,9 @@ return [
         'relation'      => 'Relation',
         'type'          => 'Type',
     ],
+    'helpers'       => [
+        'nested'    => 'Ce mode de naviguation permet d\'afficher tes lieux de manière imbriquée. Les lieux sans lieu parent seront affichés par défaut. Les lieux possédant des sous-lieux peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+    ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Mode Exploration',
@@ -89,6 +92,10 @@ return [
         ],
         'success'   => 'Points sauvegardés.',
     ],
+    'organisations' => [
+        'description'   => 'Organisations se situant à ce lieu.',
+        'title'         => 'Organisations du lieu :name',
+    ],
     'placeholders'  => [
         'location'  => 'Choix d\'un lieu parent',
         'name'      => 'Nom du lieu',
@@ -104,6 +111,7 @@ return [
             'locations'     => 'Lieux',
             'map'           => 'Carte',
             'menu'          => 'Menu',
+            'organisations' => 'Organisations',
         ],
         'title'         => 'Lieu :name',
     ],

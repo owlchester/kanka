@@ -119,7 +119,7 @@ return [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
-        'image_patreon' => 'Increase the limit by supporting us on Patreon',
+        'image_patreon'         => 'Increase the limit by supporting us on Patreon',
         'is_private'            => 'Hide from non "Admin" users.',
     ],
     'history'           => [

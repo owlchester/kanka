@@ -32,6 +32,21 @@ return [
         'personal_settings' => 'Paramètres Personnels',
         'profile'           => 'Profil',
     ],
+    'patreon'   => [
+        'actions'       => [
+            'link'  => 'Lier le compte',
+        ],
+        'description'   => 'Synchronisation avec Patreon',
+        'errors'        => [
+            'invalid_token' => 'Token invalid! Patreon n\'a pas validé la requête.',
+            'missing_code'  => 'Code manquant! Patreon n\'a pas envoyé de code d\'authentification pour ton compte.',
+            'no_pledge'     => 'Pas de pledge! Patreon a identifié ton compte, mais ne croit pas que tu nous supportes.',
+        ],
+        'link'          => 'Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!',
+        'linked'        => 'Merci pour ton support sur Patreon! Ton comptes est d\'orénavant lié.',
+        'success'       => 'Merci pour ton support sur Patreon!',
+        'title'         => 'Patreon',
+    ],
     'profile'   => [
         'actions'       => [
             'update_profile'    => 'Mettre à jour le profil',

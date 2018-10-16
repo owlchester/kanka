@@ -22,6 +22,9 @@ return [
         'sections'      => 'Sous-catégories',
         'type'          => 'Type',
     ],
+    'helpers'       => [
+        'nested'    => 'Ce mode de naviguation permet d\'afficher tes catégories de manière imbriquée. Les catégories sans catégorie parent seront affichés par défaut. Les catégories possédant des sous-catégories peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+    ],
     'hints'         => [
         'children'  => 'Cette liste contient toutes les entités directement dans cette catégorie et toutes les catégories enfants.',
         'section'   => 'Affiché ci-dessous sont toutes les catégories enfants de cette catégorie.',

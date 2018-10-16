@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'index' => [
+    'index'     => [
         'core'          => 'Core',
         'description'   => 'These people make Kanka possible',
         'other'         => 'Other',
@@ -9,8 +9,8 @@ return [
         'title'         => 'Team',
         'translations'  => 'Translations',
     ],
-    'patreon' => [
-        'title' => 'Patreon',
-        'description' => 'These amazing people help and support Kanka on Patreon.',
-    ]
+    'patreon'   => [
+        'description'   => 'These amazing people help and support Kanka on Patreon.',
+        'title'         => 'Patreon',
+    ],
 ];

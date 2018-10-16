@@ -21,8 +21,8 @@ return [
         'sections'      => 'Subcategories',
         'type'          => 'Type',
     ],
-    'helpers' => [
-        'nested' => 'When in Nested View, you can view your categories in a nested manner. Categories with no parent category will be shown by default. Categories with children categories can be clicked to view those children. You can keep clicking until there are no more children to view.'
+    'helpers'       => [
+        'nested'    => 'When in Nested View, you can view your categories in a nested manner. Categories with no parent category will be shown by default. Categories with children categories can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'hints'         => [
         'children'  => 'This list contains all the entities directly in this category and in all nested categories.',
