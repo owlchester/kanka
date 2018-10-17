@@ -84,7 +84,7 @@
                                     <div class="feature-item">
                                         <i class="icon-lock text-primary"></i>
                                         <h3>{{ trans('front.features.public.title') }}</h3>
-                                        <p class="text-muted">{{ trans('front.features.public.description') }}</p>
+                                        <p class="text-muted">{!! trans('front.features.public.description', ['link' => route('public_campaigns')]) !!}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">

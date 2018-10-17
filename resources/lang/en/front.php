@@ -61,7 +61,7 @@ return [
             'title'         => 'Journals',
         ],
         'public'            => [
-            'description'   => 'Permissions can be set for modules, or on each single entity. Campaigns can also be public for the whole world to see.',
+            'description'   => 'Permissions can be set for modules, or on each single entity. Campaigns can also be public for the <a href=":url">whole world to see</a>.',
             'title'         => 'Permissions',
         ],
         'relations'         => [

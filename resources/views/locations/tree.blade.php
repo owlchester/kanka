@@ -34,7 +34,7 @@
             <p class="help-block">{{ __('locations.helpers.nested') }}</p>
         </div>
 
-        <dib class="box-body no-padding">
+        <div class="box-body no-padding">
             @include('cruds._filters', ['route' => route($name . '.tree'), 'filters' => $filters])
 
             {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
