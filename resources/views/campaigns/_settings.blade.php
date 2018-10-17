@@ -103,7 +103,7 @@
                     <label>{!! Form::checkbox('tags') !!}
                         {{ trans('entities.tags') }}
                     </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.categories') }}</p>
+                    <p class="help-block">{{ trans('campaigns.settings.helpers.tags') }}</p>
                 </div>
                 <div class="form-group">
                     {!! Form::hidden('dice_rolls', 0) !!}
