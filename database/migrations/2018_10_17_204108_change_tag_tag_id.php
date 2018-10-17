@@ -13,11 +13,11 @@ class ChangeTagTagId extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::table('tags', function (Blueprint $table) {
+            $table->dropForeign('sections_section_id_foreign');
             $table->renameColumn('section_id', 'tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('set null');
         });
-        Schema::enableForeignKeyConstraints();
 
     }
 
