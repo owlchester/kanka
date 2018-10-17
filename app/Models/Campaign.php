@@ -166,7 +166,7 @@ class Campaign extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany$
      */
-    public function sections()
+    public function tags()
     {
         return $this->hasMany('App\Models\Tag');
     }

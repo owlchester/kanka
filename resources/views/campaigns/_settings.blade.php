@@ -99,9 +99,9 @@
                     <p class="help-block">{{ trans('campaigns.settings.helpers.quests') }}</p>
                 </div>
                 <div class="form-group">
-                    {!! Form::hidden('sections', 0) !!}
-                    <label>{!! Form::checkbox('sections') !!}
-                        {{ trans('entities.sections') }}
+                    {!! Form::hidden('tags', 0) !!}
+                    <label>{!! Form::checkbox('tags') !!}
+                        {{ trans('entities.tags') }}
                     </label>
                     <p class="help-block">{{ trans('campaigns.settings.helpers.categories') }}</p>
                 </div>
