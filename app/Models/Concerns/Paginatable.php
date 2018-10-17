@@ -2,6 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use App\Services\PaginationService;
+
 trait Paginatable
 {
     /**
@@ -23,6 +25,7 @@ trait Paginatable
 
         if (auth()->check()) {
             $pageSize = auth()->user()->default_pagination;
+            $this->pageSizeLimit = PaginationService::$MAX;
         }
 
         // Currently exporting single or bulk? Rise limit to 100.
