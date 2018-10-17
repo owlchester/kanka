@@ -15,6 +15,7 @@ class ChangeSectionToTag extends Migration
     {
         Schema::rename('sections', 'tags');
 
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->renameColumn('sections', 'tags');
         });
@@ -63,6 +64,7 @@ class ChangeSectionToTag extends Migration
                 'race'
             ])->notNull()->change();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
