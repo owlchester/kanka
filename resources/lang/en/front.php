@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'title' => 'Public Campaigns',
+            'description' => 'Take a look at the Public Campaigns for inspiration.',
         ],
         'title'             => 'Public Campaigns',
     ],
