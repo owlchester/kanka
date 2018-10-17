@@ -21,7 +21,6 @@ class Item extends MiscModel
         'character_id',
         'location_id',
         'is_private',
-        'section_id',
     ];
 
     /**
@@ -45,7 +44,6 @@ class Item extends MiscModel
         'type',
         'location_id',
         'character_id',
-        'section_id',
         'is_private',
     ];
 

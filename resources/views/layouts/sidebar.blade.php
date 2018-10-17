@@ -95,9 +95,9 @@
                 <a href="{{ route('journals.index') }}"><i class="ra ra-scroll-unfurled"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
-            @if ($campaign->enabled('sections'))
-                <li class="{{ $sidebar->active('sections') }}">
-                    <a href="{{ route('sections.index') }}"><i class="fa fa-folder-open"></i> <span>{{ trans('sidebar.sections') }}</span></a>
+            @if ($campaign->enabled('tags'))
+                <li class="{{ $sidebar->active('tags') }}">
+                    <a href="{{ route('tags.index') }}"><i class="fa fa-folder-open"></i> <span>{{ trans('sidebar.tags') }}</span></a>
                 </li>
             @endif
             @if ($campaign->enabled('dice_rolls'))

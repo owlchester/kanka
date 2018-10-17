@@ -15,7 +15,6 @@ class DiceRoll extends MiscModel
         'slug',
         'campaign_id',
         'character_id',
-        'section_id',
         'system',
         'parameters',
         'is_private',

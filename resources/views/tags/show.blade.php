@@ -13,18 +13,18 @@
                 <ul class="list-group list-group-unbordered">
                     @if (!empty($model->type))
                     <li class="list-group-item">
-                        <b>{{ trans('sections.fields.type') }}</b> <span class="pull-right clear">{{ $model->type }}</span>
+                        <b>{{ trans('tags.fields.type') }}</b> <span class="pull-right clear">{{ $model->type }}</span>
                         <br class="clear" />
                     </li>
                     @endif
-                    @if (!empty($model->section))
+                    @if (!empty($model->tag))
                         <li class="list-group-item">
-                            <b>{{ trans('crud.fields.section') }}</b>
+                            <b>{{ trans('crud.fields.tag') }}</b>
 
                             <span class="pull-right">
-                            <a href="{{ route('sections.show', $model->section->id) }}" data-toggle="tooltip" title="{{ $model->section->tooltip() }}">{{ $model->section->name }}</a>
-                                @if ($model->section->section)
-                                    , <a href="{{ route('sections.show', $model->section->section->id) }}" data-toggle="tooltip" title="{{ $model->section->section->tooltip() }}">{{ $model->section->section->name }}</a>
+                            <a href="{{ route('tags.show', $model->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tooltip() }}">{{ $model->tag->name }}</a>
+                                @if ($model->tag->tag)
+                                    , <a href="{{ route('tags.show', $model->tag->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tag->tooltip() }}">{{ $model->tag->tag->name }}</a>
                                 @endif
                             </span>
                             <br class="clear" />
@@ -46,10 +46,10 @@
                             {{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
-                <li class="{{ (request()->get('tab') == 'sections' ? ' active' : '') }}">
-                    <a href="#sections" data-toggle="tooltip" title="{{ trans('sections.show.tabs.sections') }}">
+                <li class="{{ (request()->get('tab') == 'tags' ? ' active' : '') }}">
+                    <a href="#tags" data-toggle="tooltip" title="{{ trans('tags.show.tabs.tags') }}">
                         <i class="fa fa-folder-open"></i> <span class="hidden-sm hidden-xs">
-                            {{ trans('sections.show.tabs.sections') }}</span>
+                            {{ trans('tags.show.tabs.tags') }}</span>
                     </a>
                 </li>
                 @include('cruds._tabs', ['calendars' => false])
@@ -61,8 +61,8 @@
                         <p>{!! $model->entry !!}</p>
                     </div>
                 </div>
-                <div class="tab-pane" id="sections">
-                    @include('sections._sections')
+                <div class="tab-pane" id="tags">
+                    @include('tags._tags')
                 </div>
                 @include('cruds._panes')
             </div>
@@ -71,9 +71,9 @@
         <div class="box box-flat">
             <div class="box-body">
                 <h2 class="page-header with-border">
-                    {{ trans('sections.show.tabs.children') }}
+                    {{ trans('tags.show.tabs.children') }}
                 </h2>
-                @include('sections._children')
+                @include('tags._children')
             </div>
         </div>
 

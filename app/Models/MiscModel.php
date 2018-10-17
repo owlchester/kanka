@@ -17,7 +17,6 @@ use Sofa\Eloquence\Eloquence;
  * @property integer $campaign_id
  * @property string $name
  * @property boolean $is_private
- * @property integer $section_id
  */
 abstract class MiscModel extends Model
 {
@@ -95,8 +94,11 @@ abstract class MiscModel extends Model
     {
         $pureHistory = strip_tags($this->{$this->tooltipField});
         if ($stripSpecial) {
-            $pureHistory = htmlentities(htmlspecialchars($pureHistory));
+            $pureHistory = str_replace('"', '\'', $pureHistory);
+            //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
         }
+
+        $pureHistory = preg_replace("/\s/ui",' ', $pureHistory);
         $pureHistory = trim($pureHistory);
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
@@ -345,15 +347,6 @@ abstract class MiscModel extends Model
     public function entity()
     {
         return $this->hasOne('App\Models\Entity', 'entity_id', 'id')->where('type', $this->entityType);
-    }
-
-    /**
-     * Entity's section
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function section()
-    {
-        return $this->belongsTo('App\Models\Section', 'section_id', 'id');
     }
 
     /**

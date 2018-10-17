@@ -12,27 +12,27 @@
         'name',
         'type',
         [
-            'label' => trans('crud.fields.section'),
-            'field' => 'section.name',
+            'label' => trans('crud.fields.tag'),
+            'field' => 'tag.name',
             'render' => function($model) {
-                if ($model->section) {
-                    return '<a href="' . route('sections.show', $model->section->id) . '">' . $model->section->name . '</a>';
+                if ($model->tag) {
+                    return '<a href="' . route('tags.show', $model->tag->id) . '">' . $model->tag->name . '</a>';
                 }
             }
         ],
         [
-            'label' => trans('sections.fields.sections'),
+            'label' => trans('tags.fields.tags'),
             'render' => function($model) {
-                $total = $model->sections->count();
-                foreach ($model->descendants()->with('sections')->get() as $child) {
-                    $total += $child->sections->count();
+                $total = $model->tags->count();
+                foreach ($model->descendants()->with('tags')->get() as $child) {
+                    $total += $child->tags->count();
                 }
                 return $total;
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('sections.fields.children'),
+            'label' => trans('tags.fields.children'),
             'render' => function($model) {
                 $total = $model->allChildren()->count();
                 return $total;
@@ -47,8 +47,8 @@
     $models,
     // Options
     [
-        'route' => 'sections.index',
-        'baseRoute' => 'sections',
-        'trans' => 'sections.fields.',
+        'route' => 'tags.index',
+        'baseRoute' => 'tags',
+        'trans' => 'tags.fields.',
     ]
 ) !!}

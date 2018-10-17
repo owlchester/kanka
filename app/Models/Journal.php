@@ -22,7 +22,6 @@ class Journal extends MiscModel
         'date',
         'character_id',
         'is_private',
-        'section_id',
     ];
 
     /**
@@ -46,7 +45,6 @@ class Journal extends MiscModel
         'type',
         'date',
         'character_id',
-        'section_id',
         'is_private',
     ];
 

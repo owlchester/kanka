@@ -24,7 +24,6 @@ class Character extends MiscModel
         'is_private',
         'is_personality_visible',
         'type',
-        'section_id',
         'is_dead',
         'race_id',
     ];
@@ -42,7 +41,6 @@ class Character extends MiscModel
         'location_id',
         'family_id',
         'type',
-        'section_id',
         'is_dead',
         'is_private',
         'race_id',

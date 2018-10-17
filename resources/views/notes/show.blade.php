@@ -23,7 +23,7 @@
                             <br class="clear" />
                         </li>
                     @endif
-                    @include('cruds.layouts.section')
+                    @include('cruds.layouts.tags')
                 </ul>
                 @include('.cruds._actions')
             </div>

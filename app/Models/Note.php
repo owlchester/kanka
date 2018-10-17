@@ -18,7 +18,6 @@ class Note extends MiscModel
         'image',
         'type',
         'is_private',
-        'section_id',
         'is_pinned',
     ];
 
@@ -36,7 +35,6 @@ class Note extends MiscModel
         'name',
         'type',
         'is_pinned',
-        'section_id',
         'is_private',
     ];
 

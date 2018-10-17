@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DiceRoll;
-use App\Models\Section;
+use App\Models\Tag;
 use App\Models\Relation;
 use App\Http\Requests\StoreRelation;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class DiceRollRelationController extends CrudRelationController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Tag  $section
      * @return \Illuminate\Http\Response
      */
     public function edit(DiceRoll $diceRoll, Relation $relation)
@@ -63,7 +63,7 @@ class DiceRollRelationController extends CrudRelationController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Tag  $section
      * @return \Illuminate\Http\Response
      */
     public function update(StoreRelation $request, DiceRoll $diceRoll, Relation $relation)

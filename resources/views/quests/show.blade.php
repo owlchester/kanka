@@ -47,7 +47,7 @@
                     @endif
 
                     @include('cruds.layouts.calendar')
-                    @include('cruds.layouts.section')
+                    @include('cruds.layouts.tags')
                 </ul>
 
                 @include('.cruds._actions', ['disableMove' => true])

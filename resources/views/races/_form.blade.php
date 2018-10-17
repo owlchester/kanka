@@ -17,7 +17,7 @@
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('races.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 @include('cruds.fields.race')
-                @include('cruds.fields.section')
+                @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())

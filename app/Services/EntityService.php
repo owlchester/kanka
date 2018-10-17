@@ -37,7 +37,7 @@ class EntityService
             'notes' => 'App\Models\Note',
             'organisations' => 'App\Models\Organisation',
             'quests' => 'App\Models\Quest',
-            'sections' => 'App\Models\Section',
+            'tags' => 'App\Models\Tag',
             'attribute_templates' => 'App\Models\AttributeTemplate',
             'dice_rolls' => 'App\Models\DiceRoll',
             'menu_links' => 'App\Models\MenuLink',

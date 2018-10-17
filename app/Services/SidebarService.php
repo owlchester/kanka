@@ -66,8 +66,8 @@ class SidebarService
         'attribute_templates' => [
             'attribute_templates',
         ],
-        'sections' => [
-            'sections'
+        'tags' => [
+            'tags'
         ],
         'dice_rolls' => [
             'dice_rolls',

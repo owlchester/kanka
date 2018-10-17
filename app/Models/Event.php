@@ -21,14 +21,13 @@ class Event extends MiscModel
         'entry',
         'is_private',
         'location_id',
-        'section_id',
     ];
 
     /**
      * Fields that can be filtered on
      * @var array
      */
-    protected $filterableColumns = ['name', 'type', 'date', 'location_id', 'section_id',
+    protected $filterableColumns = ['name', 'type', 'date', 'location_id',
         'is_private',
     ];
 

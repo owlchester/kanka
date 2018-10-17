@@ -19,7 +19,6 @@ class Organisation extends MiscModel
         'location_id',
         'type',
         'is_private',
-        'section_id',
     ];
 
     /**
@@ -42,7 +41,6 @@ class Organisation extends MiscModel
         'name',
         'type',
         'location_id',
-        'section_id',
         'is_private',
     ];
 

@@ -28,7 +28,6 @@ class StoreJournal extends FormRequest
             'date' => 'nullable|date',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
-            'section_id' => 'nullable|integer|exists:sections,id',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
     }

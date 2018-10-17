@@ -65,7 +65,7 @@ class GenerateMentions extends Command
             'App\Models\Note',
             'App\Models\Organisation',
             'App\Models\Quest',
-            'App\Models\Section',
+            'App\Models\Tag',
         ];
 
         $this->url = "https://kanka.io"; // console doesn't properly read ENV on cloudways

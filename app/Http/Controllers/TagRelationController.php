@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Section;
+use App\Models\Tag;
 use App\Models\Relation;
 use App\Http\Requests\StoreRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class SectionRelationController extends CrudRelationController
+class TagRelationController extends CrudRelationController
 {
     /**
      * @var string
      */
-    protected $view = 'sections.relations';
+    protected $view = 'tags.relations';
 
     /**
      * @var string
      */
-    protected $route = 'sections.relations';
+    protected $route = 'tags.relations';
 
     /**
      * @var string
@@ -30,9 +30,9 @@ class SectionRelationController extends CrudRelationController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Section $section)
+    public function create(Tag $tag)
     {
-        return $this->crudCreate($section);
+        return $this->crudCreate($tag);
     }
 
     /**
@@ -41,43 +41,43 @@ class SectionRelationController extends CrudRelationController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRelation $request, Section $section)
+    public function store(StoreRelation $request, Tag $tag)
     {
-        return $this->crudStore($request, $section);
+        return $this->crudStore($request, $tag);
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Section $section, Relation $relation)
+    public function edit(Tag $tag, Relation $relation)
     {
-        return $this->crudEdit($section, $relation);
+        return $this->crudEdit($tag, $relation);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRelation $request, Section $section, Relation $relation)
+    public function update(StoreRelation $request, Tag $tag, Relation $relation)
     {
-        return $this->crudUpdate($request, $section, $relation);
+        return $this->crudUpdate($request, $tag, $relation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Relation  $sectionRelation
+     * @param  \App\Models\Relation  $tagRelation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section, Relation $relation)
+    public function destroy(Tag $tag, Relation $relation)
     {
-        return $this->crudDestroy($section, $relation);
+        return $this->crudDestroy($tag, $relation);
     }
 }

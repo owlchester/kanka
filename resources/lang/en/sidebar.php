@@ -27,7 +27,7 @@ return [
     'races'                 => 'Races',
     'releases'              => 'Release notes',
     'search'                => 'Search...',
-    'sections'              => 'Categories',
+    'tags'                  => 'Tags',
     'support'               => 'Support / Community',
     'team'                  => 'Team',
     'translations'          => 'Translations',

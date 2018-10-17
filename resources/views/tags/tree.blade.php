@@ -31,7 +31,7 @@
         </div>
 
         <div class="box-body">
-            <p class="help-block">{{ __('sections.helpers.nested') }}</p>
+            <p class="help-block">{{ __('tags.helpers.nested') }}</p>
         </div>
 
         <div class="box-body no-padding">
@@ -60,5 +60,5 @@
         {!! Form::close() !!}
     </div>
 
-    <input type="hidden" id="sections-treeview" value="1" data-url="{{ route('sections.tree') }}">
+    <input type="hidden" id="tags-treeview" value="1" data-url="{{ route('tags.tree') }}">
 @endsection

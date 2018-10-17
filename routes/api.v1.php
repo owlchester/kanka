@@ -31,7 +31,7 @@ Route::apiResources([
     'campaigns.quests.quest_characters' => 'QuestCharacterApiController',
     'campaigns.quests.quest_locations' => 'QuestLocationApiController',
     'campaigns.races' => 'RaceApiController',
-    'campaigns.section' => 'SectionApiController',
+    'campaigns.tags' => 'TagApiController',
     //'campaigns.' => 'ApiController',
 
     // Entity elements
@@ -39,6 +39,7 @@ Route::apiResources([
     'campaigns.entities.entity_notes' => 'EntityNoteApiController',
     'campaigns.entities.entity_events' => 'EntityEventApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
+    'campaigns.entities.tags' => 'EntityTagApiController',
 ]);
 
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');

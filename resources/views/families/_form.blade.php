@@ -14,7 +14,7 @@
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 @include('cruds.fields.location')
-                @include('cruds.fields.section')
+                @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())

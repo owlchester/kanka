@@ -23,7 +23,6 @@ class Location extends MiscModel
         'name',
         'type',
         'parent_location_id',
-        'section_id',
         'is_private',
     ];
 
@@ -40,7 +39,6 @@ class Location extends MiscModel
         'parent_location_id',
         'campaign_id',
         'is_private',
-        'section_id',
     ];
 
     /**

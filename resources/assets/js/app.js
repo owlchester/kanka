@@ -129,9 +129,9 @@ $(document).ready(function() {
     }
 
     // Treeview for sections
-    var sectionViewLoader = $('#sections-treeview');
+    var sectionViewLoader = $('#tags-treeview');
     if (sectionViewLoader.length > 0) {
-        treeViewInit('sections');
+        treeViewInit('tags');
     }
 
     manageTabs();
@@ -194,10 +194,12 @@ function initSelect2() {
     if ($('.select2').length > 0) {
         $.each($('.select2'), function (index) {
 
+            console.log('adding for', $(this), $(this).is('[data-tags]'));
             $(this).select2({
 //            data: newOptions,
                 placeholder: $(this).attr('data-placeholder'),
                 allowClear: true,
+                tags: $(this).is('[data-tags]'),
                 minimumInputLength: 0,
                 ajax: {
                     quietMillis: 200,
@@ -326,3 +328,4 @@ require('./crud.js');
 require('./calendar.js');
 require('./conversation.js');
 require('./search.js');
+require('./tags.js');

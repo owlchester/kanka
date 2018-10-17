@@ -12,7 +12,7 @@
 
                 <ul class="list-group list-group-unbordered">
                     @include('cruds.lists.location')
-                    @include('cruds.layouts.section')
+                    @include('cruds.layouts.tags')
 
                     @if (!empty($model->type))
                         <li class="list-group-item">

@@ -7,7 +7,7 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Section extends MiscModel
+class Tag extends MiscModel
 {
     /**
      * Searchable fields
@@ -19,7 +19,7 @@ class Section extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'section';
+    protected $entityType = 'tag';
 
     /**
      * Fields that can be filtered on
@@ -28,7 +28,7 @@ class Section extends MiscModel
     protected $filterableColumns = [
         'name',
         'type',
-        'section_id',
+        'tag_id',
         'is_private',
     ];
 
@@ -41,7 +41,7 @@ class Section extends MiscModel
         'type',
         'image',
         'entry',
-        'section_id',
+        'tag_id',
         'campaign_id',
         'is_private',
     ];
@@ -61,23 +61,23 @@ class Section extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'section', 'section.entity']);
+        return $query->with(['entity', 'tag', 'tag.entity']);
     }
 
     /**
      * Parent
      */
-    public function section()
+    public function tag()
     {
-        return $this->belongsTo('App\Models\Section', 'section_id', 'id');
+        return $this->belongsTo('App\Models\Tag', 'tag_id', 'id');
     }
 
     /**
      * Children
      */
-    public function sections()
+    public function tags()
     {
-        return $this->hasMany('App\Models\Section', 'section_id', 'id');
+        return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
     }
 
     /**
@@ -85,14 +85,14 @@ class Section extends MiscModel
      */
     public function getParentIdName()
     {
-        return 'section_id';
+        return 'tag_id';
     }
 
     /**
      * Specify parent id attribute mutator
      * @param $value
      */
-    public function setSectionIdAttribute($value)
+    public function setTagIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
     }
@@ -103,10 +103,11 @@ class Section extends MiscModel
     public function detach()
     {
         foreach ($this->allChildren(true)->get() as $child) {
-            if (!empty($child->child)) {
-                $child->child->section_id = null;
-                $child->child->save();
-            }
+            $child->tags()->detach($this->id);
+//            if (!empty($child->child)) {
+//                $child->child->tag_id = null;
+//                $child->child->save();
+//            }
         }
         return parent::detach();
     }
@@ -115,15 +116,36 @@ class Section extends MiscModel
      * Get all the children
      * @return array
      */
-    public function allChildren($withSections = false)
+    public function allChildren($withTags = false)
     {
-        $sectionIds = [$this->id];
+        $children = [];
+        foreach ($this->entities()->pluck('entities.id')->toArray() as $entity) {
+            $children[] = $entity;
+        }
         foreach ($this->descendants as $desc) {
-            $sectionIds[] = $desc->id;
+            foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
+                $children[] = $entity;
+            }
         }
-        if ($withSections) {
-            return Entity::whereIn('section_id', $sectionIds);
+
+        if ($withTags) {
+            return Entity::whereIn('id', $children);
         }
-        return Entity::whereIn('section_id', $sectionIds)->whereNotIn('type', ['section']);
+        return Entity::whereIn('id', $children)->whereNotIn('type', ['tag']);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function entities()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Entity',
+            'App\Models\EntityTag',
+            'tag_id',
+            'id',
+            'id',
+            'entity_id'
+        );
     }
 }

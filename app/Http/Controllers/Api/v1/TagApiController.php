@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Section;
-use App\Http\Requests\StoreSection as Request;
-use App\Http\Resources\Section as Resource;
-use App\Http\Resources\SectionCollection as Collection;
+use App\Models\Tag;
+use App\Http\Requests\StoreTag as Request;
+use App\Http\Resources\Tag as Resource;
+use App\Http\Resources\TagCollection as Collection;
 
-class SectionApiController extends ApiController
+class TagApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -18,19 +18,19 @@ class SectionApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->sections);
+        return new Collection($campaign->tags);
     }
 
     /**
      * @param Campaign $campaign
-     * @param Section $section
+     * @param Tag $tag
      * @return Resource
      */
-    public function show(Campaign $campaign, Section $section)
+    public function show(Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $section);
-        return new Resource($section);
+        $this->authorize('view', $tag);
+        return new Resource($tag);
     }
 
     /**
@@ -42,38 +42,38 @@ class SectionApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Section::class);
-        $model = Section::create($request->all());
+        $this->authorize('create', Tag::class);
+        $model = Tag::create($request->all());
         return new Resource($model);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Section $section
+     * @param Tag $tag
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Section $section)
+    public function update(Request $request, Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $section);
-        $section->update($request->all());
+        $this->authorize('update', $tag);
+        $tag->update($request->all());
 
-        return new Resource($section);
+        return new Resource($tag);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Section $section
+     * @param Tag $tag
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Section $section)
+    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $section);
-        $section->delete();
+        $this->authorize('delete', $tag);
+        $tag->delete();
 
         return response()->json(null, 204);
     }

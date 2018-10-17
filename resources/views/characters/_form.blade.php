@@ -37,7 +37,7 @@ if (request()->route()->getName() == 'characters.random') {
                 @endif
                 @include('cruds.fields.race')
                 @include('cruds.fields.location')
-                @include('cruds.fields.section')
+                @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
                 <div class="form-group">
                     <label>{{ trans('characters.fields.type') }}</label>

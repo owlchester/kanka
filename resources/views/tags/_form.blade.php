@@ -9,14 +9,14 @@
             </div>
             <div class="panel-body">
                 <div class="form-group required">
-                    <label>{{ trans('sections.fields.name') }}</label>
-                    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('sections.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    <label>{{ trans('tags.fields.name') }}</label>
+                    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('tags.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 <div class="form-group">
-                    <label>{{ trans('sections.fields.type') }}</label>
-                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('sections.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                    <label>{{ trans('tags.fields.type') }}</label>
+                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('tags.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
-                @include('cruds.fields.section')
+                @include('cruds.fields.tag')
                 @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())

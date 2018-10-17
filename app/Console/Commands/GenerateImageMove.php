@@ -13,7 +13,7 @@ use App\Models\Location;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Quest;
-use App\Models\Section;
+use App\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
@@ -120,7 +120,7 @@ class GenerateImageMove extends Command
             $thumb = str_replace('.', '_thumb.', $model->image);
             $this->move($thumb);
         }
-        foreach (Section::whereNotNull('image')->get() as $model) {
+        foreach (Tag::whereNotNull('image')->get() as $model) {
             $count++;
             $this->move($model->image);
             $thumb = str_replace('.', '_thumb.', $model->image);

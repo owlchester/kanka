@@ -31,8 +31,8 @@ class EntityResource extends JsonResource
 
         // Foreign elements
         $attributes = $this->getAttributes();
-        if (array_key_exists('section_id', $attributes)) {
-            $merged['section_id'] = $this->section_id;
+        if (method_exists('tags', $this)) {
+            $merged['tags'] = $this->tags;
         }
         if (array_key_exists('location_id', $attributes)) {
             $merged['location_id'] = $this->location_id;

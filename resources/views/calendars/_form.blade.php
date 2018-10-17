@@ -20,7 +20,7 @@
                     <label>{{ trans('calendars.fields.suffix') }}</label>
                     {!! Form::text('suffix', $formService->prefill('suffix', $source), ['placeholder' => trans('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                @include('cruds.fields.section')
+                @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())

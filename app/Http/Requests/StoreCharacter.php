@@ -29,7 +29,6 @@ class StoreCharacter extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'family_id' => 'integer|exists:families,id',
             'location_id' => 'integer|exists:locations,id',
-            'section_id' => 'nullable|integer|exists:sections,id',
             'race_id' => 'nullable|integer|exists:races,id',
             'age' => 'nullable|max:25',
             'sex' => 'nullable|max:45',

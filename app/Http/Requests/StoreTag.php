@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSection extends FormRequest
+class StoreTag extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreSection extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'type' => 'max:45',
-            'section_id', 'nullable|integer|exists:sections,id',
+            'tag_id', 'nullable|integer|exists:tags,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
@@ -34,7 +34,7 @@ class StoreSection extends FormRequest
 
         $self = request()->segment(3);
         if (!empty($self)) {
-            $rules['section_id'] = 'integer|not_in:' . ((int) $self) . '|exists:sections,id';
+            $rules['tag_id'] = 'integer|not_in:' . ((int) $self) . '|exists:tags,id';
         }
 
         return $rules;

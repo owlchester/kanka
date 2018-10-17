@@ -62,7 +62,7 @@ abstract class MiscObserver
         // Default foreign ids that can be set to null. This should probably be in each individual observer instead
         $nullable = [
             'parent_location_id', 'location_id', 'character_id', 'family_id',
-            'section_id', 'quest_id', 'calendar_id', 'race_id'
+            'quest_id', 'calendar_id', 'race_id'
         ];
         foreach ($nullable as $attr) {
             if (array_key_exists($attr, $attributes)) {
@@ -110,7 +110,6 @@ abstract class MiscObserver
         }
         $entity->is_private = $model->is_private;
         $entity->name = $model->name;
-        $entity->section_id = $model->section_id;
         $entity->type = $model->getEntityType();
 
         // Once saved, refresh the model so that we can call $model->entity

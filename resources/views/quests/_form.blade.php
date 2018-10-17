@@ -37,7 +37,7 @@
                         ) !!}
                     </div>
                 @endif
-                @include('cruds.fields.section')
+                @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
 
                 <div class="form-group">

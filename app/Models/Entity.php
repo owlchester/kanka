@@ -16,7 +16,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string $name
  * @property string $type
  * @property boolean $is_private
- * @property integer $section_id
+ * @property Tag[] $tags
  */
 class Entity extends Model
 {
@@ -30,7 +30,6 @@ class Entity extends Model
         'name',
         'type',
         'is_private',
-        'section_id',
     ];
 
     /**
@@ -163,9 +162,24 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    public function section()
+    public function tag()
     {
-        return $this->hasOne('App\Models\Section', 'id', 'entity_id');
+        return $this->hasOne('App\Models\Tag', 'id', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(
+            'App\Models\Tag',
+            'entity_tags',
+            'entity_id',
+            'tag_id',
+            'id',
+            'id'
+        );
     }
 
     /**
@@ -182,15 +196,6 @@ class Entity extends Model
     public function race()
     {
         return $this->hasOne('App\Models\Race', 'id', 'entity_id');
-    }
-
-    /**
-     * Not to be confused with the "section" which is the child entity, category is the section
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function category()
-    {
-        return $this->hasOne('App\Models\Section', 'id', 'section_id');
     }
 
     /**

@@ -1,4 +1,4 @@
-<p>{{ trans('sections.hints.children') }}</p>
+<p>{{ trans('tags.hints.children') }}</p>
 <table id="section-children" class="table table-hover">
     <tbody><tr>
         <th class="avatar"><br /></th>

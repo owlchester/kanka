@@ -20,7 +20,6 @@ class Race extends MiscModel
         'entry',
         'is_private',
         'race_id',
-        'section_id',
     ];
 
     /**
@@ -43,7 +42,6 @@ class Race extends MiscModel
         'name',
         'type',
         'race_id',
-        'section_id',
         'is_private',
     ];
 

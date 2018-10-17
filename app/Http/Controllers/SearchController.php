@@ -13,7 +13,7 @@ use App\Models\MiscModel;
 use App\Models\Quest;
 use App\Models\Note;
 use App\Models\Organisation;
-use App\Models\Section;
+use App\Models\Tag;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\LinkerService;
@@ -290,10 +290,10 @@ class SearchController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function sections(Request $request)
+    public function tags(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Section::class);
+        return $this->buildSearchResults($term, \App\Models\Tag::class);
     }
 
     /**

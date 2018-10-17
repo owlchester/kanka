@@ -168,7 +168,7 @@ class Campaign extends MiscModel
      */
     public function sections()
     {
-        return $this->hasMany('App\Models\Section');
+        return $this->hasMany('App\Models\Tag');
     }
 
     /**

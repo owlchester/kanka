@@ -27,7 +27,7 @@
                         'locations.placeholders.location'
                     ) !!}
                 </div>
-                @include('cruds.fields.section')
+                @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())

@@ -17,7 +17,6 @@ class Conversation extends MiscModel
         'type',
         'campaign_id',
         'target',
-        'section_id',
         'is_private',
     ];
 

@@ -3,9 +3,9 @@
 namespace App\Observers;
 
 use App\Models\MiscModel;
-use App\Models\Section;
+use App\Models\Tag;
 
-class SectionObserver extends MiscObserver
+class TagObserver extends MiscObserver
 {
     /**
      * @param MiscModel $model
@@ -13,6 +13,29 @@ class SectionObserver extends MiscObserver
     public function saving(MiscModel $model)
     {
         parent::saving($model);
+
+        // Removed tag id
+        if (request()->getRealMethod() == 'POST' && !request()->has('tag_id')) {
+            $model->tag_id = null;
+        }
+    }
+
+    /**
+     * After saving the tag, let's check if the parent tag_id was removed.
+     * If so, we need to make this tag a "root" to clear up the previous
+     * tree. We also need to stop this from looping ad infinitum.
+     * @param MiscModel $model
+     */
+    public function saved(MiscModel $model)
+    {
+        parent::saved($model);
+
+        if ($model->isDirty('tag_id') && empty($model->tag_id)) {
+            if (!defined('MISCELLANY_REBUILDING_TREE')) {
+                define('MISCELLANY_REBUILDING_TREE', true);
+                $model->makeRoot()->save();
+            }
+        }
     }
 
 //    public function saved(MiscModel $model)
@@ -33,7 +56,7 @@ class SectionObserver extends MiscObserver
 //    }
 
     /**
-     * @param Section $section
+     * @param Tag $section
      */
     public function deleting(MiscModel $section)
     {
@@ -44,13 +67,13 @@ class SectionObserver extends MiscObserver
          */
         // Set all children to no longer have this section
         foreach ($section->allChildren() as $child) {
-            $child->child->section_id = null;
+            $child->child->tag_id = null;
             $child->child->save();
         }
 
         // Update sub sections to clean them  up
-        foreach ($section->sections as $child) {
-            $child->section_id = null;
+        foreach ($section->tags as $child) {
+            $child->tag_id = null;
             $child->save();
         }
 

@@ -12,20 +12,20 @@
         'name',
         'type',
         [
-            'label' => trans('sections.fields.sections'),
+            'label' => trans('tags.fields.tags'),
             'render' => function($model) {
-                return $model->sections()->count();
+                return $model->tags()->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('sections.fields.section'),
+            'label' => trans('tags.fields.tag'),
             'render' => function($model) {
-                if ($model->section) {
-                    return '<a href="' . route('sections.show', $model->section->id) . '">' . $model->section->name . '</a>';
+                if ($model->tag) {
+                    return '<a href="' . route('tags.show', $model->tag->id) . '">' . $model->tag->name . '</a>';
                 }
             },
-            'field' => 'section.name',
+            'field' => 'tag.name',
         ],
         [
             'type' => 'is_private',
@@ -35,13 +35,13 @@
     $models,
     // Options
     [
-        'route' => 'sections.tree',
-        'baseRoute' => 'sections',
-        'trans' => 'sections.fields.',
+        'route' => 'tags.tree',
+        'baseRoute' => 'tags',
+        'trans' => 'tags.fields.',
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->sections()->count();
+                    return $model->tags()->count();
                 }
             ]
         ]

@@ -29,7 +29,6 @@ class StoreQuest extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'quest_id', 'nullable|integer|exists:quests,id',
-            'section_id' => 'nullable|integer|exists:sections,id',
             'character_id' => 'nullable|integer|exists:characters,id',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];

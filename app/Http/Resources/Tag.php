@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Section extends EntityResource
+class Tag extends EntityResource
 {
     /**
      * Transform the resource into an array.
@@ -16,6 +16,7 @@ class Section extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'tag_id' => $this->tag_id
         ]);
     }
 }

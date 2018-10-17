@@ -17,16 +17,25 @@ class LocationObserver extends MiscObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable(), 60, 'map');
+    }
 
-//        // Need to update the parent tree
-//        $newParentId = $model->parent_location_id;
-//        $originalParentId = $model->getOriginal('parent_location_id');
-//        if (!empty($originalParentId) && $originalParentId != $model->parent_location_id) {
-//            $model->parent_location_id = $originalParentId;
-//            dd($model->parent->name);
-//            $model->refreshNode();
-//            $model->parent_location_id = $newParentId;
-//        }
+
+    /**
+     * After saving the location, let's check if the parent location_id was removed.
+     * If so, we need to make this location a "root" to clear up the previous
+     * tree. We also need to stop this from looping ad infinitum.
+     * @param MiscModel $model
+     */
+    public function saved(MiscModel $model)
+    {
+        parent::saved($model);
+
+        if ($model->isDirty('location_id') && empty($model->location_id)) {
+            if (!defined('MISCELLANY_REBUILDING_TREE')) {
+                define('MISCELLANY_REBUILDING_TREE', true);
+                $model->makeRoot()->save();
+            }
+        }
     }
 
     /**

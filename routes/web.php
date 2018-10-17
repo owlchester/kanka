@@ -94,7 +94,7 @@ Route::group([
         Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
 
         // Locations
-        Route::get('/sections/tree', 'SectionController@tree')->name('sections.tree');
+        Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
         Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
         Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
         Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
@@ -163,8 +163,9 @@ Route::group([
             'quests.quest_locations' => 'QuestLocationController',
             'quests.quest_characters' => 'QuestCharacterController',
             'quests.relations' => 'QuestRelationController',
+            'tags' => 'TagController',
             'sections' => 'SectionController',
-            'sections.relations' => 'SectionRelationController',
+            'tags.relations' => 'TagRelationController',
             'campaign_invites' => 'CampaignInviteController',
             'races' => 'RaceController',
             'races.relations' => 'RaceRelationController',
@@ -195,7 +196,7 @@ Route::group([
         Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
         Route::get('/search/notes', 'SearchController@notes')->name('notes.find');
         Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
-        Route::get('/search/sections', 'SearchController@sections')->name('sections.find');
+        Route::get('/search/tags', 'SearchController@tags')->name('tags.find');
         Route::get('/search/dice_rolls', 'SearchController@diceRolls')->name('dice_rolls.find');
         Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
         Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');

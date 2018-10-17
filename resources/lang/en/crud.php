@@ -100,7 +100,8 @@ return [
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
         'race'                  => 'Race',
-        'section'               => 'Category',
+        'tag'                   => 'Tag',
+        'tags'                  => 'Tags',
     ],
     'filter'            => 'Filter',
     'filters'           => [
@@ -224,7 +225,7 @@ return [
         'location'      => 'Choose a location',
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
-        'section'       => 'Choose a category',
+        'tag'           => 'Choose a tag',
     ],
     'relations'         => [
         'actions'   => [

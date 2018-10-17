@@ -31,7 +31,6 @@ class StoreCalendar extends FormRequest
             'month_name' => 'required|array|min:2',
             'weekday' => 'required|array|min:2',
             'year_name' => 'required|array',
-            'section_id' => 'nullable|integer|exists:sections,id',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
 

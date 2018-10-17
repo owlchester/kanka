@@ -21,7 +21,6 @@ class Quest extends MiscModel
         'type',
         'entry',
         'is_private',
-        'section_id',
         'character_id',
         'is_completed',
     ];
@@ -40,7 +39,6 @@ class Quest extends MiscModel
         'name',
         'type',
         'quest_id',
-        'section_id',
         'character_id',
         'is_completed',
         'is_private',
