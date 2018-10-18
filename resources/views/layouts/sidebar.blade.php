@@ -97,7 +97,7 @@
             @endif
             @if ($campaign->enabled('tags'))
                 <li class="{{ $sidebar->active('tags') }}">
-                    <a href="{{ route('tags.index') }}"><i class="fa fa-folder-open"></i> <span>{{ trans('sidebar.tags') }}</span></a>
+                    <a href="{{ route('tags.index') }}"><i class="fa fa-tags"></i> <span>{{ trans('sidebar.tags') }}</span></a>
                 </li>
             @endif
             @if ($campaign->enabled('dice_rolls'))
