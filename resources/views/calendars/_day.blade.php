@@ -15,12 +15,12 @@
             @if (!empty($day['events']))
                 @foreach ($day['events'] as $event)
                     <?php /** @var \App\Models\EntityEvent $event */?>
-                    <a href="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}" class="label calendar-event-block {{ $event->getLabelColour() }}" data-toggle="ajax-modal"
+                    <div class="label calendar-event-block {{ $event->getLabelColour() }}" data-toggle="ajax-modal"
                        data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}">
-                        <span class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');"></span>
+                        <a href="{{ $event->entity->url() }}" class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');"></a>
                         <span data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</span>
                         {!! $event->getLabel() !!}
-                    </a>
+                    </div>
                 @endforeach
             @endif
         </p>

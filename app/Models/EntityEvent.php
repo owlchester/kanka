@@ -95,7 +95,7 @@ class EntityEvent extends MiscModel
     public function getLabelColour()
     {
         if (empty($this->colour)) {
-            return 'label-default';
+            return 'colour-pallet bg-gray';
         }
         return 'colour-pallet bg-' . $this->colour;
     }

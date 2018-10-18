@@ -29,12 +29,14 @@
         margin-bottom: 5px;
         font-weight: 400;
         overflow: hidden;
+        cursor: pointer;
 
         .entity-image {
           float: left !important;
           height: 30px;
           width: 30px;
           margin-right: 5px;
+          display: inline-block;
         }
 
         .calendar-event-comment {
@@ -42,9 +44,20 @@
           font-size: 9pt;
           padding-top: 5px;
           max-height: 20px;
-          color: rgba(0, 0, 0, 0.6);
+          color: rgba(255, 255, 255, 0.9);
         }
+
       }
+
+      .colour-pallet {
+        color: white;
+      }
+      //.bg-black, .bg-blue, .bg-green, .bg-maroon, .bg-navy {
+      //  color: white;
+      //  .calendar-event-comment {
+      //    color: rgba(255, 255, 255, 0.8);
+      //  }
+      //}
     }
 
     td.today {
