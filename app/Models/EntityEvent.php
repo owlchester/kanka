@@ -15,6 +15,7 @@ use App\Traits\VisibleTrait;
  * @property string $date
  * @property integer $length
  * @property string $comment
+ * @property string $colour
  * @property boolean $is_recurring
  * @property boolean $is_private
  */
@@ -47,7 +48,8 @@ class EntityEvent extends MiscModel
         'length',
         'comment',
         'is_recurring',
-        'recurring_until'
+        'recurring_until',
+        'colour',
     ];
 
     /**
@@ -66,6 +68,9 @@ class EntityEvent extends MiscModel
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
+    /**
+     * @return string
+     */
     public function getDate()
     {
         $date = explode('-', $this->date);
@@ -82,5 +87,69 @@ class EntityEvent extends MiscModel
         } catch(\Exception $e) {
             return $this->date;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabelColour()
+    {
+        if (empty($this->colour)) {
+            return 'label-default';
+        }
+        return 'colour-pallet bg-' . $this->colour;
+    }
+
+    /**
+     * Generate the Entity Event label for the calendar
+     * @return string
+     */
+    public function getLabel()
+    {
+        $label = '';
+
+        if ($this->is_recurring) {
+            $label .= '<i class="fa fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="' . trans('calendars.fields.is_recurring') . '"></i>';
+        }
+        if ($this->comment) {
+            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" title="' . e($this->comment) . '">' . e($this->comment) . '</span>';
+        }
+
+        return $label;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getYearAttribute()
+    {
+        $segments = explode('-', $this->date);
+        return array_get($segments, 0, 1);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMonthAttribute()
+    {
+        $segments = explode('-', $this->date);
+        return array_get($segments, 1, 1);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDayAttribute()
+    {
+        $segments = explode('-', $this->date);
+        return array_get($segments, 2, 1);
+    }
+
+    /**
+     * @param $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date['year'] . '-' . $date['month'] . '-' . $date['day'];
     }
 }

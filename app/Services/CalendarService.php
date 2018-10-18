@@ -26,10 +26,11 @@ class CalendarService
             $link = new EntityEvent();
             $link->calendar_id = $calendar->id;
             $link->entity_id = $entity->id;
-            $link->date = $data['date'];
+            $link->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
             $link->length = $data['length'];
             $link->comment = Purify::clean($data['comment']);
             $link->is_recurring = array_get($data, 'is_recurring', false);
+            $link->colour = array_get($data, 'colour', null);
             $link->recurring_until = array_get($data, 'recurring_until', null);
             if ($link->save()) {
                 return $link;
@@ -49,7 +50,7 @@ class CalendarService
             // Create an event
             $event = new Event();
             $event->name = $data['name'];
-            $event->date = $data['date'];
+            $event->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
             if ($event->save()) {
                 return $event->entity;
             }

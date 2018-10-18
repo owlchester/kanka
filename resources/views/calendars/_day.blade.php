@@ -2,7 +2,9 @@
     @if ($day['day'])
         <h5 class="pull-left{{ $day['isToday'] ? "label label-primary" : null}}">{{ $day['day'] }}</h5>
         @if (Auth::check() && Auth::user()->can('update', $model))
-            <a href="#" class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
+            <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
+               data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
+               class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
                 <i class="fa fa-plus"></i>
             </a>
         @endif
@@ -12,14 +14,13 @@
         <p class="text-left">
             @if (!empty($day['events']))
                 @foreach ($day['events'] as $event)
-                    <a href="{{ route($event->entity->pluralType() . '.show', $event->entity->entity_id) }}" data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</a>
-                    @if ($event->is_recurring)
-                        &nbsp;<i class="fa fa-refresh pull-right" data-toggle="tooltip" title="{{ trans('calendars.fields.is_recurring') }}"></i>
-                    @endif
-                    @if ($event->comment)
-                        &nbsp;<i class="fa fa-comment pull-right margin-r-5" data-toggle="tooltip" title="{{ $event->comment }}"></i>
-                    @endif
-                    <br />
+                    <?php /** @var \App\Models\EntityEvent $event */?>
+                    <a href="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}" class="label calendar-event-block {{ $event->getLabelColour() }}" data-toggle="ajax-modal"
+                       data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}">
+                        <span class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');"></span>
+                        <span data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</span>
+                        {!! $event->getLabel() !!}
+                    </a>
                 @endforeach
             @endif
         </p>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
@@ -36,6 +37,60 @@ class EntityEventController extends CrudController
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Character  $character
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Entity $entity, EntityEvent $entityEvent)
+    {
+        $this->authorize('update', $entityEvent->calendar);
+
+        $name = $this->view;
+        $route = $this->route;
+        $parent = explode('.', $this->view)[0];
+        $calendar = $entityEvent->calendar;
+        $ajax = request()->ajax();
+
+        return view('calendars.events.' . ($ajax ? '_' : null) . 'edit', compact(
+            'entity',
+            'entityEvent',
+            'calendar',
+            'name',
+            'route',
+            'parent',
+            'ajax'
+        ));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Character  $character
+     * @return \Illuminate\Http\Response
+     */
+    public function update(AddCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
+    {
+        $this->authorize('update', $entityEvent->calendar);
+
+        $routeOptions = [$entityEvent->calendar->id, 'year' => request()->post('year')];
+
+        $entityEvent->setDate($request->only(['year', 'month', 'day']));
+        $entityEvent->update($request->all());
+
+        if (request()->has('layout')) {
+            $routeOptions['layout'] = 'year';
+        } else {
+            $routeOptions['month'] = request()->post('month');
+        }
+
+
+        return redirect()->route('calendars.show', $routeOptions)
+            ->with('success', trans('calendars.event.edit.success'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Character  $character
@@ -45,6 +100,13 @@ class EntityEventController extends CrudController
     {
         $this->authorize('attribute', $entity->child);
         $entityEvent->delete();
+
+        // Redirect to the calendar if that's where we came frome
+        $previous = url()->previous();
+        if (strpos($previous, '/calendars/') !== false) {
+            return redirect()->route('calendars.show', [$entityEvent->calendar_id])
+                ->with('success', trans('calendars.event.destroy', ['name' => $entityEvent->calendar->name]));
+        }
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'calendars'])
             ->with('success', trans('calendars.event.destroy', ['name' => $entityEvent->calendar->name]));

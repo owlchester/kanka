@@ -114,7 +114,8 @@ Route::group([
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 
 
-        Route::post('/calendars/{calendar}/addEvent', 'CalendarController@addEvent')->name('calendars.event.add');
+        Route::get('/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
+        Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
 
         // Attribute multi-save

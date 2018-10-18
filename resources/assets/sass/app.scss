@@ -300,3 +300,30 @@ table label {
   float: left;
   padding: 6px 15px;
 }
+
+.crud-field-entity {
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+  font-size: 1.8em;
+  max-height: 90px;
+  margin-bottom: 5px;
+  border: 1px solid #eee;
+
+  .entity-image {
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  .entity-name {
+    vertical-align: top;
+  }
+
+  // A touch lighter on hover
+  &:hover {
+    background-color: #eee;
+    transition: all 0.5s ease;
+  }
+}

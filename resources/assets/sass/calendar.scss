@@ -19,6 +19,32 @@
       p {
         clear: both;
       }
+
+      .calendar-event-block {
+        display: block;
+        margin: 2px 0;
+        padding-left: 0.2em;
+        text-align: left;
+        font-size: 10pt;
+        margin-bottom: 5px;
+        font-weight: 400;
+        overflow: hidden;
+
+        .entity-image {
+          float: left !important;
+          height: 30px;
+          width: 30px;
+          margin-right: 5px;
+        }
+
+        .calendar-event-comment {
+          display: block;
+          font-size: 9pt;
+          padding-top: 5px;
+          max-height: 20px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
     }
 
     td.today {

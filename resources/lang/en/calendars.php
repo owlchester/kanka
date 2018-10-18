@@ -7,6 +7,19 @@ return [
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
     ],
+    'colours'       => [
+        'none' => 'None',
+        'black' => 'Black',
+        'grey' => 'Grey',
+        'red' => 'Red',
+        'green' => 'Green',
+        'blue' => 'Blue',
+        'navy' => 'Navy',
+        'teal' => 'Teal',
+        'orange' => 'Orange',
+        'purple' => 'Purple',
+        'maroon' => 'Maroon',
+    ],
     'create'        => [
         'description'   => 'Create a new calendar',
         'success'       => 'Calendar \':name\' created.',
@@ -26,7 +39,17 @@ return [
             'new'       => 'New Event',
             'switch'    => 'Change choice',
         ],
+        'create' => [
+            'title' => 'Add a Calendar Event to :name',
+            'description' => 'Create a calendar event',
+            'success' => 'Calendar event created'
+        ],
         'destroy'   => 'Event removed from calendar \':name\'.',
+        'edit' => [
+            'title' => 'Update Calendar Event for :name',
+            'description' => 'Update a calendar event',
+            'success' => 'Calendar event updated'
+        ],
         'helpers'   => [
             'add'   => 'Add an existing event to this calendar.',
             'new'   => 'Or create a new event by simply providing a name.',
@@ -37,6 +60,7 @@ return [
         'success'   => 'Event \':event\' added to the calendar.',
     ],
     'fields'        => [
+        'colour'            => 'Colour',
         'comment'           => 'Comment',
         'current_day'       => 'Current Day',
         'current_month'     => 'Current Month',
@@ -87,6 +111,7 @@ return [
         ],
     ],
     'placeholders'  => [
+        'colour'            => 'Colour',
         'comment'           => 'Birthday, festival, solstice',
         'date'              => 'The current date',
         'leap_year_amount'  => 'Number of days added on a leap year',

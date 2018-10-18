@@ -25,12 +25,15 @@ class AddCalendarEvent extends FormRequest
     {
         return [
             'entity_id' => 'exists:entities,id',
-            'name' => '',
-            'date' => 'required',
+            'name' => 'nullable',
+            'day' => 'required',
+            'month' => 'required',
+            'year' => 'required',
             'length' => 'required|integer|min:1',
-            'is_recurring' => '',
-            'recurring_until' => '',
-            'comment' => '',
+            'is_recurring' => 'nullable',
+            'recurring_until' => 'nullable',
+            'colour' => 'nullable|string',
+            'comment' => 'nullable',
         ];
     }
 }

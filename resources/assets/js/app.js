@@ -185,6 +185,13 @@ $(document).ready(function() {
             $(this).siblings('select').select2('open');
         }
     });
+
+    /**
+     * Whenever a modal is shown, we'll need to re-bind various helpers we have.
+     */
+    $(document).on('shown.bs.modal', function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
 });
 
 /**

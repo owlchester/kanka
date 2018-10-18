@@ -96,29 +96,38 @@ class CalendarController extends CrudController
         return $this->crudDestroy($calendar);
     }
 
+
+    public function event(Calendar $calendar)
+    {
+        $this->authorize('update', $calendar);
+
+        $ajax = request()->ajax();
+        list($year, $month, $day) = explode('-', request()->get('date'));
+
+        return view('calendars.events.' . ($ajax ? '_' : null) . 'create', compact(
+            'calendar',
+            'day',
+            'month',
+            'year',
+            'ajax'
+        ));
+    }
+
     /**
      * @param Request $request
      * @param Calendar $calendar
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addEvent(AddCalendarEvent $request, Calendar $calendar)
+    public function eventStore(AddCalendarEvent $request, Calendar $calendar)
     {
         // We need to handle negative year dates (start with -)
-        $fullDate = request()->post('date');
-        $date = explode('-', request()->post('date'));
-        if (count($date) == 4 && substr($fullDate, 0, 1) === '-') {
-            $date[0] = '-' . $date[1];
-            $date[1] = $date[2];
-            $date[2] = $date[3];
-            unset($date[4]);
-        }
         $link = $this->calendarService->addEvent($calendar, $request->all());
 
-        $routeOptions = [$calendar->id, 'year' => $date[0]];
+        $routeOptions = [$calendar->id, 'year' => request()->post('year')];
         if (request()->has('layout')) {
             $routeOptions['layout'] = 'year';
         } else {
-            $routeOptions['month'] = $date[1];
+            $routeOptions['month'] = request()->post('month');
         }
 
         if ($link !== false) {
@@ -126,9 +135,14 @@ class CalendarController extends CrudController
                 ->with('success', trans('calendars.event.success', ['event' => $link->entity->name]));
         }
 
-        return redirect()->route($this->route . '.show', $routeOptions);
+        return redirect()->route($this->route . '.show', $routeOptions)
+            ->with('success', trans('calendars.event.create.success'));
     }
 
+    /**
+     * @param Calendar $calendar
+     * @return mixed
+     */
     public function monthList(Calendar $calendar)
     {
         return Response::json($calendar->months());

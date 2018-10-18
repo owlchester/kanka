@@ -25,8 +25,10 @@ class Calendar extends MiscModel
         'weekdays',
         'years',
         'seasons',
+        'moons',
         'date',
         'suffix',
+        'epochs',
 
         // Leap year
         'has_leap_year',

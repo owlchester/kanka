@@ -27,10 +27,12 @@ $(document).ready(function() {
         calendarEventModal = $('#add-calendar-event');
 
         initCalendarYearSwitcher();
-        initCalendarEventModal();
     }
 
 
+    $(document).on('shown.bs.modal', function() {
+        initCalendarEventModal();
+    });
 });
 
 /**
@@ -115,16 +117,6 @@ function initCalendarYearSwitcher() {
 }
 
 function initCalendarEventModal() {
-    $.each($('.add'), function() {
-        $(this).on('click', function(e) {
-            e.preventDefault();
-            calendarEventModal.modal();
-
-            // Prepare date field
-            $('#date').val($(this).attr('data-date'));
-        });
-    });
-
     $('input[name="is_recurring"]').on('click', function(e) {
         $('#add_event_recurring_until').toggle();
     });
@@ -133,14 +125,14 @@ function initCalendarEventModal() {
         $('#calendar-event-first').hide();
         $('.calendar-new-event-field').hide();
         $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').removeAttr('disabled');
+        $('#calendar-event-submit').toggle();
     });
 
     $('#calendar-action-new').on('click', function() {
         $('#calendar-event-first').hide();
         $('.calendar-existing-event-field').hide();
         $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').removeAttr('disabled');
+        $('#calendar-event-submit').toggle();
     });
 
     $('#calendar-event-switch').on('click', function(e) {
@@ -150,7 +142,7 @@ function initCalendarEventModal() {
         $('.calendar-existing-event-field').show();
         $('.calendar-new-event-field').show();
 
-        $('#calendar-event-submit').attr('disabled', 'disabled');
+        $('#calendar-event-submit').toggle();
 
     });
 }
