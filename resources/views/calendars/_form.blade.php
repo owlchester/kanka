@@ -155,6 +155,93 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{ trans('calendars.fields.moons') }}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">{{ trans('calendars.parameters.moon.name') }}</div>
+                        <div class="col-md-6">{{ trans('calendars.parameters.moon.fullmoon') }}</div>
+                    </div>
+                </div>
+                <?php
+                $moons = [];
+                $names = old('moon_name');
+                $fullmoons = old('moon_fullmoon');
+                if (!empty($names)) {
+                    $cpt = 0;
+                    foreach ($names as $name) {
+                        if (!empty($name) || !empty($fullmoons[$cpt])) {
+                            $moons[] = [
+                                'name' => $name,
+                                'length' => $fullmoons[$cpt]
+                            ];
+                        }
+                        $cpt++;
+                    }
+                } elseif (isset($model)) {
+                    $moons = $model->moons();
+                } elseif (isset($source)) {
+                    $moons = $source->moons();
+                }?>
+                <div class="calendar-moons">
+                    @foreach ($moons as $fullmoon => $moon)
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-arrows-v"></span>
+                                    </span>
+                                        {!! Form::text('moon_name[]', $moon, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        {!! Form::text('moon_fullmoon[]', $fullmoon, ['class' => 'form-control']) !!}
+                                        <span class="input-group-btn">
+                                        <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <a class="btn btn-default" id="add_moon" href="#" title="{{ trans('calendars.actions.add_moon') }}">
+                    <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_moon') }}
+                </a>
+
+                <div class="form-group" id="template_moon" style="display: none">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-arrows-v"></span>
+                                </span>
+                                {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                {!! Form::text('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
+                                <span class="input-group-btn">
+                                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

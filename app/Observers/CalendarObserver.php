@@ -64,6 +64,23 @@ class CalendarObserver extends MiscObserver
         }
         $model->years = json_encode($years);
 
+        // Handle moons
+        $moons = [];
+        $moonCount = 0;
+        $moonValues = request()->post('moon_fullmoon');
+        $moonNames = request()->post('moon_name');
+        if ($moonValues) {
+            foreach ($moonValues as $moon) {
+                if (empty($moon)) {
+                    continue;
+                }
+                // Save the leap moon
+                $moons[$moon] = $moonNames[$moonCount];
+                $moonCount++;
+            }
+        }
+        $model->moons = json_encode($moons);
+
         // Calculate date
         $year = request()->post('current_year', 1);
         $month = request()->post('current_month', 1);

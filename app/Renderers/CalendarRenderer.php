@@ -34,6 +34,12 @@ class CalendarRenderer
     protected $year;
 
     /**
+     * Full moons
+     * @var array
+     */
+    protected $moons = [];
+
+    /**
      * Layout option
      * @var string
      */
@@ -195,6 +201,10 @@ class CalendarRenderer
                 if ($exact == $this->calendar->date) {
                     $dayData['isToday'] = true;
                 }
+
+                if (isset($this->moons[$day])) {
+                    $dayData['moons'] = $this->moons[$day];
+                }
                 $week[] = $dayData;
             }
 
@@ -238,6 +248,7 @@ class CalendarRenderer
         }
 
         $monthNumber = 1;
+        $totalDay = 1;
         foreach ($months as $month) {
             $month = $months[$monthNumber-1];
             $this->month = $monthNumber;
@@ -276,7 +287,13 @@ class CalendarRenderer
                 if ($exact == $this->calendar->date) {
                     $dayData['isToday'] = true;
                 }
+
+                if (isset($this->moons[$totalDay])) {
+                    $dayData['moons'] = $this->moons[$totalDay];
+                }
                 $data[] = $dayData;
+
+                $totalDay++;
             }
 
             // Fill in the last week?
@@ -360,6 +377,8 @@ class CalendarRenderer
             if ($this->isYearlyLayout()) {
                 $this->setMonth(1);
             }
+
+            $this->buildFullmoons();
         }
     }
 
@@ -369,41 +388,7 @@ class CalendarRenderer
      */
     protected function weekStartOffset()
     {
-        // We assume that the 01 01 01 is a monday.
-        // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
-
-        $daysInAYear = $days = $leapDays = 0;
-        foreach ($this->calendar->months() as $count => $month) {
-            $length = $month['length'];
-            $daysInAYear += $length;
-
-            // If the month has already passed, add it to the days for this year
-            if ($count < $this->getMonth()-1) {
-                $days += $length;
-            }
-        }
-
-        if ($this->calendar->has_leap_year && $this->getYear() >= $this->calendar->leap_year_start) {
-            // Calc the number of years that were leap years
-            $amountOfYears = floor(($this->getYear() - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
-            if ($amountOfYears < 0) {
-                $amountOfYears = 0;
-            }
-
-            $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
-
-
-            // But if we are a leap year, we need to do the math
-            if ($this->getYear() % $this->calendar->leap_year_start == 0) {
-                if ($this->getMonth() > $this->calendar->leap_year_month) {
-                    // We've passed the leap month of the year
-                    $leapDays += $this->calendar->leap_year_amount;
-                }
-            }
-        }
-
-        // Amount of days since the beginning of the year
-        $totalDays = ($daysInAYear * $this->getYear()) + $days + $leapDays;
+        $totalDays = $this->daysToDate();
         $weekLength = count($this->calendar->weekdays());
         if ($weekLength == 0) {
             $weekLength = 1;
@@ -581,5 +566,97 @@ class CalendarRenderer
     public function currentYear()
     {
         return $this->year;
+    }
+
+    protected function buildFullmoons()
+    {
+        // Calculate the number of days since the 1.1.1
+        $totalDays = $this->daysToDate();
+
+        // We'll need this later to know how many full moons to add
+        $daysInAYear = 0;
+        foreach ($this->calendar->months() as $count => $month) {
+            $length = $month['length'];
+            $daysInAYear += $length;
+        }
+
+//        dump('first day of this page is: ' . $totalDays);
+        foreach ($this->calendar->moons() as $fullmoon => $name) {
+            // Let's figure out how many full moons occurred until now
+            $numberOfFullMoons = $totalDays / $fullmoon;
+
+            // When was the last full moon?
+            $lastFullMoon = floor($numberOfFullMoons) * $fullmoon;
+
+            // Use that to see how many days it's been
+            $daysSinceLastFullMoon = $totalDays - $lastFullMoon;
+
+            // Next full moon? If it's 0, we want it today.
+            $nextFullMoon = 1 + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
+
+            $this->addFullMoon($nextFullMoon, $name);
+
+            // Now the full moon will appear several times on this month/year.
+            $fullMoonsPerYear = ceil($daysInAYear / $fullmoon);
+            for ( $i = 0; $i < $fullMoonsPerYear; $i++) {
+                $nextFullMoon += $fullmoon;
+                $this->addFullMoon($nextFullMoon, $name);
+            }
+        }
+    }
+
+    /**
+     * Get the total amount of days since the beginning
+     * @return float|int|mixed
+     */
+    protected function daysToDate()
+    {
+        // We assume that the 01 01 01 is a monday.
+        // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
+
+        $daysInAYear = $days = $leapDays = 0;
+        foreach ($this->calendar->months() as $count => $month) {
+            $length = $month['length'];
+            $daysInAYear += $length;
+
+            // If the month has already passed, add it to the days for this year
+            if ($count < $this->getMonth()-1) {
+                $days += $length;
+            }
+        }
+
+        if ($this->calendar->has_leap_year && $this->getYear() >= $this->calendar->leap_year_start) {
+            // Calc the number of years that were leap years
+            $amountOfYears = floor(($this->getYear() - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
+            if ($amountOfYears < 0) {
+                $amountOfYears = 0;
+            }
+
+            $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
+
+
+            // But if we are a leap year, we need to do the math
+            if ($this->getYear() % $this->calendar->leap_year_start == 0) {
+                if ($this->getMonth() > $this->calendar->leap_year_month) {
+                    // We've passed the leap month of the year
+                    $leapDays += $this->calendar->leap_year_amount;
+                }
+            }
+        }
+
+        // Amount of days since the beginning of the year
+        return ($daysInAYear * $this->getYear()) + $days + $leapDays;
+    }
+
+    /**
+     * @param $nextFullMoon
+     * @param $name
+     */
+    protected function addFullMoon($nextFullMoon, $name)
+    {
+        if (!isset($this->moons[$nextFullMoon])) {
+            $this->moons[$nextFullMoon] = [];
+        }
+        $this->moons[$nextFullMoon][] = $name;
     }
 }

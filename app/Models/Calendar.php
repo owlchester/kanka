@@ -65,6 +65,11 @@ class Calendar extends MiscModel
     protected $loadedSeasons = false;
 
     /**
+     * @var bool
+     */
+    protected $loadedMoons = false;
+
+    /**
      * Fields that can be filtered on
      * @var array
      */
@@ -151,6 +156,19 @@ class Calendar extends MiscModel
             $this->loadedYears = json_decode($this->years, true);
         }
         return $this->loadedYears;
+    }
+
+
+    /**
+     * Get the moons
+     * @return null
+     */
+    public function moons()
+    {
+        if ($this->loadedMoons === false) {
+            $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : $this->moons, true);
+        }
+        return $this->loadedMoons;
     }
 
     /**

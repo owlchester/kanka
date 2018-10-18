@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_month'     => 'Add a month',
+        'add_moon'      => 'Add a moon',
         'add_weekday'   => 'Add a week day',
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
@@ -77,6 +78,7 @@ return [
         'length'            => 'Event Length',
         'length_days'       => ':count day|:count days',
         'months'            => 'Months',
+        'moons'             => 'Moons',
         'name'              => 'Name',
         'parameters'        => 'Parameters',
         'recurring_until'   => 'Recurring Until Year',
@@ -108,8 +110,12 @@ return [
             'name'      => 'Month Name',
         ],
         'year'  => [
-            'name'      => 'Name',
+            'name'      => 'Year Name',
             'number'    => 'Year',
+        ],
+        'moon'  => [
+            'name'      => 'Moon Name',
+            'fullmoon'    => 'Full moon every (days)',
         ],
     ],
     'placeholders'  => [

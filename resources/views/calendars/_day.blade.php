@@ -11,6 +11,11 @@
         @if ($day['day'] == 1 && !empty($showMonth))
             <span class="hidden-xs hidden-sm">{{ $day['month'] }}</span>
         @endif
+        @if (!empty($day['moons']))
+            @foreach ($day['moons'] as $moon)
+                <i class="ra ra-moon-sun" title="{{ $moon }}" data-toggle="tooltip"></i>
+            @endforeach
+        @endif
         <p class="text-left">
             @if (!empty($day['events']))
                 @foreach ($day['events'] as $event)
