@@ -15,6 +15,7 @@ var ajaxModalTarget;
 
 // Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
+var entityCalendarCancel, entityCalendarLoading;
 
 $(document).ready(function() {
     // Filters
@@ -360,16 +361,26 @@ function registerFormSubmitAnimation() {
 function registerEntityCalendarForm() {
     entityCalendarAdd = $('#entity-calendar-form-add');
     if (entityCalendarAdd.length === 1) {
+        entityCalendarCancel = $('#entity-calendar-form-cancel');
         entityCalendarForm = $('.entity-calendar-form');
         entityCalendarSubForm = $('.entity-calendar-subform');
         entityCalendarField = $('#calendar_id');
         entityCalendarMonthField = $('select[name="calendar_month"]');
-        var entityCalendarLoading = $('.entity-calendar-loading');
+        entityCalendarLoading = $('.entity-calendar-loading');
 
         entityCalendarAdd.on('click', function(e) {
             e.preventDefault();
-            entityCalendarForm.show();
+
             entityCalendarAdd.hide();
+            entityCalendarForm.show();
+
+            var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+            if (defaultCalendarId) {
+                entityCalendarField.val(defaultCalendarId);
+                entityCalendarCancel.show();
+                entityCalendarSubForm.fadeIn();
+                loadCalendarDates(defaultCalendarId);
+            }
             return false;
         });
 
@@ -377,25 +388,52 @@ function registerEntityCalendarForm() {
             entityCalendarSubForm.hide();
             // No new calendar selected? hide everything again
             if (!entityCalendarField.val()) {
-                entityCalendarForm.hide();
-                entityCalendarAdd.show();
+                calendarHideSubform();
                 return;
             }
             entityCalendarLoading.show();
             // Load month list
-            var url = entityCalendarAdd.data('url').replace('/0/', '/' + entityCalendarField.val() + '/');
-            $.ajax(url)
-                .done(function(data) {
-                    entityCalendarMonthField.html('');
-                    var id = 1;
-                    $.each(data, function() {
-                        entityCalendarMonthField.append('<option value="' + id + '">' + this.name + '</option>');
-                        id++;
-                    });
-                    entityCalendarLoading.hide();
-                    entityCalendarSubForm.show();
-                }
-            );
+            loadCalendarDates(entityCalendarField.val());
+        });
+
+        entityCalendarCancel.on('click', function(e) {
+            e.preventDefault();
+            entityCalendarField.val(null);
+            entityCalendarCancel.hide();
+            calendarHideSubform();
         });
     }
+}
+
+function loadCalendarDates(calendarID) {
+    calendarID = parseInt(calendarID);
+    var url = entityCalendarAdd.data('url').replace('/0/', '/' + calendarID + '/');
+    $.ajax(url)
+        .done(function(data) {
+                entityCalendarMonthField.html('');
+                var id = 1;
+                $.each(data, function() {
+                    entityCalendarMonthField.append('<option value="' + id + '">' + this.name + '</option>');
+                    id++;
+                });
+                entityCalendarLoading.hide();
+                entityCalendarSubForm.show();
+
+                // However, if there is only one result, select id.
+                if (data.length === 1) {
+                    entityCalendarMonthField.val(data[0].id);
+                }
+            }
+        );
+}
+
+/**
+ *
+ */
+function calendarHideSubform() {
+    entityCalendarForm.hide();
+    entityCalendarAdd.show();
+    $('input[name="calendar_day"]').val(null);
+    $('input[name="calendar_month"]').val(null);
+    $('input[name="calendar_year"]').val(null);
 }

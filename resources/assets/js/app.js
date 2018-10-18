@@ -200,8 +200,6 @@ $(document).ready(function() {
 function initSelect2() {
     if ($('.select2').length > 0) {
         $.each($('.select2'), function (index) {
-
-            console.log('adding for', $(this), $(this).is('[data-tags]'));
             $(this).select2({
 //            data: newOptions,
                 placeholder: $(this).attr('data-placeholder'),
