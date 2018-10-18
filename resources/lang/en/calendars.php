@@ -7,6 +7,9 @@ return [
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
     ],
+    'checkboxes' => [
+        'is_recurring' => 'Takes place every year',
+    ],
     'colours'       => [
         '' => 'Default',
         'black' => 'Black',

@@ -47,7 +47,7 @@ return [
         'physical'                  => 'Physique',
         'race'                      => 'Race',
         'relation'                  => 'Relation',
-        'sex'                       => 'Sexe',
+        'sex'                       => 'Genre',
         'skin'                      => 'Peau',
         'title'                     => 'Titre',
         'traits'                    => 'Traits',

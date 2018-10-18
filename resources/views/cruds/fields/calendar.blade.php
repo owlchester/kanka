@@ -50,6 +50,27 @@ $onlyOneCalendar = count($calendars) == 1;
                             {!! Form::number('calendar_day', $formService->prefill('calendar_day', $source), ['class' => 'form-control']) !!}
                         </div>
                     </div>
+                    @if (!isset($model) || !$model->hasCalendar())
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{ trans('calendars.fields.length') }}</label>
+                                {!! Form::number('length', $formService->prefill('length', $source), ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    {{ trans('calendars.fields.is_recurring') }}
+                                </label>
+                                <div class="checkbox no-margin">
+                                    <label>
+                                        {!! Form::checkbox('is_recurring') !!}
+                                        {{ trans('calendars.checkboxes.is_recurring') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="entity-calendar-loading" style="display: none">
                     <p class="text-center">
