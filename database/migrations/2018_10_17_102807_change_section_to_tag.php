@@ -41,7 +41,7 @@ class ChangeSectionToTag extends Migration
             ])->notNull()->change();
         });
 
-        DB::raw("UPDATE entities SET type = 'tag' where type = 'section'");
+        DB::statement("UPDATE entities SET type = 'tag' where type = 'section'");
 
 
         Schema::table('entities', function (Blueprint $table) {
@@ -94,7 +94,7 @@ class ChangeSectionToTag extends Migration
         });
 
 
-        DB::raw("UPDATE entities SET type = 'section' where type = 'tag'");
+        DB::statement("UPDATE entities SET type = 'section' where type = 'tag'");
 
         // Update entities
         Schema::table('entities', function (Blueprint $table) {

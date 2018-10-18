@@ -62,6 +62,8 @@ class GenerateTags extends Command
             }
         });
 
+        DB::statement("UPDATE campaign_permissions set `key` = REPLACE(`key`, 'section_', 'tag_'), table_name = 'tags' where table_name = 'sections'");
+
         $this->info('Created ' . $this->cpt . ' entity_tags.');
     }
 }
