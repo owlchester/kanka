@@ -106,8 +106,10 @@ Same as calendars but with `quests` instead of `calendars`.
 #### Quest Locations
 * GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_locations
 
-### Sections
-Same as calendars but with `sections` instead of `calendars`.
+### Tags
+Same as calendars but with `tags` instead of `calendars`. Was previously `sections`.
+
+All characters, locations etc can have multiple tags, described by the `tags` key. To update/add tags to an entity, provide a `tags[]` field when creating or updating a character, containing a list of `tag ids`.
 
 ### Entity
 Entities are a global concept in the app. Every character, location etc has an `entity_id` attribute that indicates the parent entity. This attribute is used to get the entity's attributes, relations etc.

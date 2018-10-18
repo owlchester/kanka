@@ -22,6 +22,7 @@ class EntityResource extends JsonResource
 
             'is_private' => (bool) $this->is_private,
             'entity_id' => $this->entity->id,
+            'tags' => $this->entity->tags()->pluck('tags.id')->toArray(),
 
             'created_at' => $this->created_at,
             'created_by' => $this->entity->created_by,
@@ -31,9 +32,6 @@ class EntityResource extends JsonResource
 
         // Foreign elements
         $attributes = $this->getAttributes();
-        if (method_exists('tags', $this)) {
-            $merged['tags'] = $this->tags;
-        }
         if (array_key_exists('location_id', $attributes)) {
             $merged['location_id'] = $this->location_id;
         }
