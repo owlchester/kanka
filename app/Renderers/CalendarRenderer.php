@@ -40,6 +40,12 @@ class CalendarRenderer
     protected $moons = [];
 
     /**
+     * Season Changes
+     * @var array
+     */
+    protected $seasons = [];
+
+    /**
      * Layout option
      * @var string
      */
@@ -109,8 +115,8 @@ class CalendarRenderer
 
         $monthName = $months[$this->getMonth(-1)]['name']
             . ($hasYearName ? ', ' : ' ');
-        return ($this->isYearlyLayout() ? null : $monthName)
-            . '<a href="#" id="calendar-year-switcher">' . (isset($names[$year]) ? $names[$year] : $year) . '</a>';
+        return ($this->isYearlyLayout() ? null : e($monthName))
+            . '<a href="#" id="calendar-year-switcher">' . e(isset($names[$year]) ? $names[$year] : $year) . '</a>';
     }
 
     /**
@@ -205,6 +211,11 @@ class CalendarRenderer
                 if (isset($this->moons[$day])) {
                     $dayData['moons'] = $this->moons[$day];
                 }
+
+                $monthday = $this->getMonth() . '-' . $day;
+                if (isset($this->seasons[$monthday])) {
+                    $dayData['season'] = $this->seasons[$monthday];
+                }
                 $week[] = $dayData;
             }
 
@@ -290,6 +301,11 @@ class CalendarRenderer
 
                 if (isset($this->moons[$totalDay])) {
                     $dayData['moons'] = $this->moons[$totalDay];
+                }
+
+                $monthday = $monthNumber . '-' . $day;
+                if (isset($this->seasons[$monthday])) {
+                    $dayData['season'] = $this->seasons[$monthday];
                 }
                 $data[] = $dayData;
 
@@ -379,6 +395,7 @@ class CalendarRenderer
             }
 
             $this->buildFullmoons();
+            $this->buildSeasons();
         }
     }
 
@@ -664,5 +681,16 @@ class CalendarRenderer
             $this->moons[$nextFullMoon] = [];
         }
         $this->moons[$nextFullMoon][] = $name;
+    }
+
+    /**
+     *
+     */
+    protected function buildSeasons()
+    {
+        foreach ($this->calendar->seasons() as $season) {
+            $date = $season['month'] . '-' . $season['day'];
+            $this->seasons[$date] = $season['name'];
+        }
     }
 }

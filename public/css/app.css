@@ -78,6 +78,11 @@
   clear: both;
 }
 
+.calendar tbody td .calendar-season {
+  width: 100%;
+  display: block;
+}
+
 .calendar tbody td .calendar-event-block {
   display: block;
   margin: 2px 0;

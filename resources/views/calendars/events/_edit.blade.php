@@ -5,7 +5,7 @@
     @include('calendars.events._form')
 
     <div class="row">
-        <div class="col-md-6 pull-right text-right">
+        <div class="col-md-6 pull-right text-right ">
             <div class="form-group text-right">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
                 @if (!$ajax)
