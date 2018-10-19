@@ -16,6 +16,12 @@ class Location extends MiscModel
     protected $searchableColumns  = ['name', 'entry', 'entry', 'type'];
 
     /**
+     * Used by the Observer to know if the tree needs rebuilding on this model.
+     * @var bool
+     */
+    public $rebuildTree = false;
+
+    /**
      * Fields that can be filtered on
      * @var array
      */

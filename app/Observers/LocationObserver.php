@@ -17,6 +17,12 @@ class LocationObserver extends MiscObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable(), 60, 'map');
+
+        // Removed parent_location_id id
+        if (request()->getRealMethod() == 'POST' && !request()->has('parent_location_id')) {
+            $model->parent_location_id = null;
+            $model->rebuildTree = true;
+        }
     }
 
 
@@ -30,11 +36,21 @@ class LocationObserver extends MiscObserver
     {
         parent::saved($model);
 
-        if ($model->isDirty('location_id') && empty($model->location_id)) {
-            if (!defined('MISCELLANY_REBUILDING_TREE')) {
-                define('MISCELLANY_REBUILDING_TREE', true);
-                $model->makeRoot()->save();
-            }
+        // After the modal has been saved, we might want to rebuild the tree.
+        // Sadly, ->isDirty doesn't work here, as the model is refreshed at the end of the saving event.
+        if ($model->rebuildTree) {
+            $this->rebuildTree($model);
+        }
+    }
+
+    /**
+     * @param Location $location
+     */
+    private function rebuildTree(Location $location)
+    {
+        if (!defined('MISCELLANY_REBUILDING_TREE')) {
+            define('MISCELLANY_REBUILDING_TREE', true);
+            $location->makeRoot()->save();
         }
     }
 
