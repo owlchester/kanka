@@ -30,3 +30,8 @@
         </div>
     </div>
 @endsection
+
+
+@section('scripts')
+    <script src="{{ mix('js/api.js') }}"></script>
+@endsection
