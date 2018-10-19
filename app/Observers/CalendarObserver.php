@@ -81,6 +81,29 @@ class CalendarObserver extends MiscObserver
         }
         $model->moons = json_encode($moons);
 
+        // Handle moons
+        $seasons = [];
+        $seasonCount = 0;
+        $seasonNames = request()->post('season_name');
+        $seasonMonths = request()->post('season_month');
+        $seasonDays = request()->post('season_day');
+        foreach ($seasonNames as $name) {
+            if (empty($name)) {
+                continue;
+            }
+
+            // We want a season length of at least 1 day
+            $month = (int) $seasonMonths[$seasonCount];
+            $day = (int) $seasonDays[$seasonCount];
+            $seasons[] = [
+                'name' => $name,
+                'month' => $month < 1 ? 1 : $month,
+                'day' => $day,
+            ];
+            $seasonCount++;
+        }
+        $model->seasons = json_encode($seasons);
+
         // Calculate date
         $year = request()->post('current_year', 1);
         $month = request()->post('current_month', 1);

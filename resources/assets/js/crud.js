@@ -17,6 +17,8 @@ var ajaxModalTarget;
 var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
 var entityCalendarCancel, entityCalendarLoading;
 
+var toggablePanels;
+
 $(document).ready(function() {
     // Filters
     var filters = $('#crud-filters');
@@ -101,8 +103,8 @@ $(document).ready(function() {
     }
 
     registerFormSubmitAnimation();
-
     registerEntityCalendarForm();
+    registerToggablePanels();
 });
 
 
@@ -436,4 +438,23 @@ function calendarHideSubform() {
     $('input[name="calendar_day"]').val(null);
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
+}
+
+/**
+ * Some panels can have their body toggled
+ */
+function registerToggablePanels() {
+    toggablePanels = $('.panel-toggable');
+    $.each(toggablePanels, function (i) {
+        $(this).on('click', function(e) {
+            $(this).parent().children('.panel-body').fadeToggle();
+            var i = $(this).find('i.fa');
+            if (i.hasClass('fa-caret-down')) {
+                i.removeClass('fa-caret-down').addClass('fa-caret-left');
+            } else {
+                i.removeClass('fa-caret-left').addClass('fa-caret-down');
+            }
+        });
+
+    });
 }

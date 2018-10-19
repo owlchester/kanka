@@ -2672,6 +2672,10 @@ table label {
   overflow: hidden;
 }
 
+.panel-toggable {
+  cursor: pointer;
+}
+
 .tt-cursor {
   background-color: #f5f5f5;
 }

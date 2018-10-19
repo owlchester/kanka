@@ -172,6 +172,18 @@ class Calendar extends MiscModel
     }
 
     /**
+     * Get the moons
+     * @return null
+     */
+    public function seasons()
+    {
+        if ($this->loadedSeasons === false) {
+            $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : $this->seasons, true);
+        }
+        return $this->loadedSeasons;
+    }
+
+    /**
      * Get the value of a parameter
      * @param $field
      * @return null

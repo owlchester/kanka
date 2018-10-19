@@ -65355,8 +65355,10 @@ $(function () {
 
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
 var calendarAddMoon, calendarTemplateMoon;
+var calendarAddSeason, calendarTemplateSeason;
+var calendarAddEpoch, calendarTemplateEpoch;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
-var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons;
+var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
 
 $(document).ready(function () {
     // Form
@@ -65365,16 +65367,22 @@ $(document).ready(function () {
         calendarAddWeekday = $('#add_weekday');
         calendarAddYear = $('#add_year');
         calendarAddMoon = $('#add_moon');
+        calendarAddSeason = $('#add_season');
+        calendarAddEpoch = $('#add_epoch');
         calendarTemplateMonth = $('#template_month');
         calendarTemplateWeekday = $('#template_weekday');
         calendarTemplateYear = $('#template_year');
         calendarTemplateMoon = $('#template_moon');
+        calendarTemplateSeason = $('#template_season');
+        calendarTemplateEpoch = $('#template_epoch');
         calendarLeapYear = $('input[name="has_leap_year"]');
 
         calendarSortMonths = $(".calendar-months");
         calendarSortWeekdays = $(".calendar-weekdays");
         calendarSortYears = $(".calendar-years");
         calendarSortMoons = $(".calendar-moons");
+        calendarSortSeasons = $(".calendar-seasons");
+        calendarSortEpochs = $(".calendar-epochs");
 
         initCalendarForm();
     }
@@ -65445,6 +65453,17 @@ function initCalendarForm() {
         return false;
     });
 
+    calendarAddSeason.on('click', function (e) {
+        e.preventDefault();
+
+        $(this).before('<div class="form-group">' + calendarTemplateSeason.html() + '</div>');
+
+        // Handle deleting already loaded blocks
+        calendarDeleteRowHandler();
+
+        return false;
+    });
+
     // Handle deleting already loaded points
     calendarDeleteRowHandler();
 }
@@ -65467,6 +65486,7 @@ function calendarDeleteRowHandler() {
     calendarSortWeekdays.sortable();
     calendarSortYears.sortable();
     calendarSortMoons.sortable();
+    calendarSortSeasons.sortable();
 }
 
 function initCalendarYearSwitcher() {
@@ -65814,6 +65834,8 @@ var ajaxModalTarget;
 var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
 var entityCalendarCancel, entityCalendarLoading;
 
+var toggablePanels;
+
 $(document).ready(function () {
     // Filters
     var filters = $('#crud-filters');
@@ -65898,8 +65920,8 @@ $(document).ready(function () {
     }
 
     registerFormSubmitAnimation();
-
     registerEntityCalendarForm();
+    registerToggablePanels();
 });
 
 /**
@@ -66220,6 +66242,24 @@ function calendarHideSubform() {
     $('input[name="calendar_day"]').val(null);
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
+}
+
+/**
+ * Some panels can have their body toggled
+ */
+function registerToggablePanels() {
+    toggablePanels = $('.panel-toggable');
+    $.each(toggablePanels, function (i) {
+        $(this).on('click', function (e) {
+            $(this).parent().children('.panel-body').fadeToggle();
+            var i = $(this).find('i.fa');
+            if (i.hasClass('fa-caret-down')) {
+                i.removeClass('fa-caret-down').addClass('fa-caret-left');
+            } else {
+                i.removeClass('fa-caret-left').addClass('fa-caret-down');
+            }
+        });
+    });
 }
 
 /***/ }),

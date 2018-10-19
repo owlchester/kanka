@@ -1,7 +1,9 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
 var calendarAddMoon, calendarTemplateMoon;
+var calendarAddSeason, calendarTemplateSeason;
+var calendarAddEpoch, calendarTemplateEpoch;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
-var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons;
+var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
 
 $(document).ready(function() {
     // Form
@@ -10,16 +12,22 @@ $(document).ready(function() {
         calendarAddWeekday = $('#add_weekday');
         calendarAddYear = $('#add_year');
         calendarAddMoon = $('#add_moon');
+        calendarAddSeason = $('#add_season');
+        calendarAddEpoch = $('#add_epoch');
         calendarTemplateMonth = $('#template_month');
         calendarTemplateWeekday = $('#template_weekday');
         calendarTemplateYear = $('#template_year');
         calendarTemplateMoon = $('#template_moon');
+        calendarTemplateSeason = $('#template_season');
+        calendarTemplateEpoch = $('#template_epoch');
         calendarLeapYear = $('input[name="has_leap_year"]');
 
         calendarSortMonths = $(".calendar-months");
         calendarSortWeekdays = $(".calendar-weekdays");
         calendarSortYears = $(".calendar-years");
         calendarSortMoons = $(".calendar-moons");
+        calendarSortSeasons = $(".calendar-seasons");
+        calendarSortEpochs = $(".calendar-epochs");
 
         initCalendarForm();
     }
@@ -102,6 +110,20 @@ function initCalendarForm() {
     });
 
 
+    calendarAddSeason.on('click', function(e) {
+        e.preventDefault();
+
+        $(this).before('<div class="form-group">' +
+            calendarTemplateSeason.html() +
+            '</div>');
+
+        // Handle deleting already loaded blocks
+        calendarDeleteRowHandler();
+
+        return false;
+    });
+
+
     // Handle deleting already loaded points
     calendarDeleteRowHandler();
 }
@@ -124,6 +146,7 @@ function calendarDeleteRowHandler() {
     calendarSortWeekdays.sortable();
     calendarSortYears.sortable();
     calendarSortMoons.sortable();
+    calendarSortSeasons.sortable();
 }
 
 function initCalendarYearSwitcher() {

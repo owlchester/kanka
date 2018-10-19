@@ -40,8 +40,8 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{ trans('calendars.fields.date') }}</h4>
+            <div class="panel-heading panel-toggable">
+                <h4>{{ trans('calendars.fields.date') }} <i class="fa fa-caret-down pull-right"></i></h4>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -71,10 +71,11 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{ trans('calendars.fields.months') }}</h4>
+            <div class="panel-heading panel-toggable">
+                <h4>{{ trans('calendars.fields.months') }} <i class="fa fa-caret-down pull-right"></i></h4>
             </div>
             <div class="panel-body">
+                <p class="help-block">{{ __('calendars.hints.months') }}</p>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">{{ trans('calendars.parameters.month.name') }}</div>
@@ -158,10 +159,11 @@
 
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{ trans('calendars.fields.moons') }}</h4>
+            <div class="panel-heading panel-toggable">
+                <h4>{{ trans('calendars.fields.moons') }} <i class="fa fa-caret-down pull-right"></i></h4>
             </div>
             <div class="panel-body">
+                <p class="help-block">{{ __('calendars.hints.moons') }}</p>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">{{ trans('calendars.parameters.moon.name') }}</div>
@@ -262,10 +264,11 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{ trans('calendars.fields.weekdays') }}</h4>
+            <div class="panel-heading  panel-toggable">
+                <h4>{{ trans('calendars.fields.weekdays') }} <i class="fa fa-caret-down pull-right"></i></h4>
             </div>
             <div class="panel-body">
+                <p class="help-block">{{ __('calendars.hints.weekdays') }}</p>
                 <?php
                 $weekdays = [];
                 $names = old('weekday');
@@ -318,10 +321,11 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{ trans('calendars.panels.years') }}</h4>
+            <div class="panel-heading panel-toggable">
+                <h4>{{ trans('calendars.panels.years') }} <i class="fa fa-caret-down pull-right"></i></h4>
             </div>
             <div class="panel-body">
+                <p class="help-block">{{ __('calendars.hints.years') }}</p>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">{{ trans('calendars.parameters.year.number') }}</div>
@@ -401,11 +405,11 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{ trans('calendars.panels.leap_year') }}</h4>
+            <div class="panel-heading panel-toggable">
+                <h4>{{ trans('calendars.panels.leap_year') }} <i class="fa fa-caret-down pull-right"></i></h4>
             </div>
             <div class="panel-body">
-                <div class="form-group">
+                <div class="form-group checkbox">
                     {!! Form::hidden('has_leap_year', 0) !!}
                     <label>{!! Form::checkbox('has_leap_year', 1, $formService->prefill('has_leap_year', $source)) !!}
                         {{ trans('calendars.fields.has_leap_year') }}
@@ -427,6 +431,103 @@
                     <div class="form-group">
                         <label>{{ trans('calendars.fields.leap_year_start') }}</label>
                         {!! Form::number('leap_year_start', $formService->prefill('leap_year_start', $source), ['placeholder' => trans('calendars.placeholders.leap_year_start'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading panel-toggable">
+                <h4>{{ trans('calendars.fields.seasons') }} <i class="fa fa-caret-down pull-right"></i></h4>
+            </div>
+            <div class="panel-body">
+                <p class="help-block">{{ __('calendars.hints.seasons') }}</p>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">{{ trans('calendars.parameters.seasons.name') }}</div>
+                        <div class="col-md-4">{{ trans('calendars.parameters.seasons.month') }}</div>
+                        <div class="col-md-4">{{ trans('calendars.parameters.seasons.day') }}</div>
+                    </div>
+                </div>
+                <?php
+                $seasons = [];
+                $seasonNames = old('season_name');
+                $seasonMonths = old('season_month');
+                $seasonDays = old('season_day');
+                if (!empty($seasonNames)) {
+                    $cpt = 0;
+                    foreach ($seasonNames as $name) {
+                        if (!empty($name) || !empty($seasonMonths[$cpt])) {
+                            $seasons[] = [
+                                'name' => $name,
+                                'month' => $seasonMonths[$cpt],
+                                'day' => $seasonDays[$cpt]
+                            ];
+                        }
+                        $cpt++;
+                    }
+                } elseif (isset($model)) {
+                    $seasons = $model->seasons();
+                } elseif (isset($source)) {
+                    $seasons = $source->seasons();
+                }?>
+                <div class="calendar-seasons">
+                    @foreach ($seasons as $season)
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-arrows-v"></span>
+                                        </span>
+                                        {!! Form::text('season_name[]', $season['name'], ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    {!! Form::number('season_month[]', $season['month'], ['class' => 'form-control']) !!}
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
+                                        <span class="input-group-btn">
+                                        <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <a class="btn btn-default" id="add_season" href="#" title="{{ trans('calendars.actions.add_season') }}">
+                    <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_season') }}
+                </a>
+
+                <div class="form-group" id="template_season" style="display: none">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-arrows-v"></span>
+                                </span>
+                                {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            {!! Form::number('season_month[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.month')]) !!}
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                {!! Form::number('season_day[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.day')]) !!}
+                                <span class="input-group-btn">
+                                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

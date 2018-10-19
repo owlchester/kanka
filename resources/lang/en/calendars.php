@@ -2,8 +2,10 @@
 
 return [
     'actions'       => [
+        'add_epoch'      => 'Add an epoch',
         'add_month'     => 'Add a month',
         'add_moon'      => 'Add a moon',
+        'add_season'      => 'Add a season',
         'add_weekday'   => 'Add a week day',
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
@@ -89,6 +91,11 @@ return [
     ],
     'hints'         => [
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
+        'months' => 'Your calendar should have at least 2 months.',
+        'moons' => 'Adding moons will make them show up in the calendar on every full moon.',
+        'seasons' => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
+        'weekdays' => 'Set your weekday names. At least 2 weekdays are required.',
+        'years' => 'Some years are so important that they have their own name.'
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -116,6 +123,11 @@ return [
         'moon'  => [
             'name'      => 'Moon Name',
             'fullmoon'    => 'Full moon every (days)',
+        ],
+        'seasons'  => [
+            'name'      => 'Season Name',
+            'month'    => 'Month start',
+            'day'    => 'Day start',
         ],
     ],
     'placeholders'  => [
