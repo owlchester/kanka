@@ -186,8 +186,8 @@ abstract class MiscObserver
                         'date' => $model->calendar_year . '-'
                             . $model->calendar_month . '-'
                             . $model->calendar_day,
-                        'length' => request()->post('length'),
-                        'is_recurring' => request()->post('is_recurring'),
+                        'length' => request()->post('length', 1),
+                        'is_recurring' => request()->post('is_recurring', false),
                     ]);
                 }
             }
