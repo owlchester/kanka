@@ -23,6 +23,7 @@
                         </span>
                         <br class="clear" />
                     </li>
+                    @include('cruds.layouts.tags')
                 </ul>
 
                 @include('.cruds._actions')

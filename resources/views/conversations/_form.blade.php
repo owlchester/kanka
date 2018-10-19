@@ -18,8 +18,10 @@
 
         <div class="form-group required">
             <label>{{ trans('conversations.fields.target') }}</label>
-            {!! Form::select('target', trans('conversations.targets'), $formService->prefill('target', $source), ['class' => 'form-control']) !!}</div>
+            {!! Form::select('target', trans('conversations.targets'), $formService->prefill('target', $source), ['class' => 'form-control']) !!}
+        </div>
 
+        @include('cruds.fields.tags')
         @include('cruds.fields.private')
     </div>
 </div>
