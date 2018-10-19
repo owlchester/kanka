@@ -570,7 +570,7 @@ class CalendarRenderer
 
     protected function buildFullmoons()
     {
-        // Calculate the number of days since the 1.1.1
+        // Calculate the number of days since the 1.1.0
         $totalDays = $this->daysToDate();
 
         // We'll need this later to know how many full moons to add
@@ -579,8 +579,6 @@ class CalendarRenderer
             $length = $month['length'];
             $daysInAYear += $length;
         }
-
-//        dump('first day of this page is: ' . $totalDays);
         foreach ($this->calendar->moons() as $fullmoon => $name) {
             // Let's figure out how many full moons occurred until now
             $numberOfFullMoons = $totalDays / $fullmoon;
@@ -593,6 +591,14 @@ class CalendarRenderer
 
             // Next full moon? If it's 0, we want it today.
             $nextFullMoon = 1 + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
+
+//            if (true) {
+//                dump("$name");
+//                dump("number of full moons: $numberOfFullMoons");
+//                dump("last full moon: $lastFullMoon");
+//                dump("days since last full moon: $daysSinceLastFullMoon");
+//                dump("next full moon: $nextFullMoon");
+//            }
 
             $this->addFullMoon($nextFullMoon, $name);
 
@@ -611,7 +617,7 @@ class CalendarRenderer
      */
     protected function daysToDate()
     {
-        // We assume that the 01 01 01 is a monday.
+        // We assume that the 01 01 00 is a monday.
         // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
 
         $daysInAYear = $days = $leapDays = 0;

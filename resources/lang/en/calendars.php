@@ -141,5 +141,6 @@ return [
             'information'   => 'Information',
         ],
         'title'         => 'Calendar :name',
+        'moon_full_moon' => ':moon Full Moon',
     ],
 ];

@@ -1,7 +1,7 @@
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
 var calendarAddMoon, calendarTemplateMoon;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
-var calendarSortMonths, calendarSortWeekdays, calendarSortYears;
+var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons;
 
 $(document).ready(function() {
     // Form

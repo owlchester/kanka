@@ -13,7 +13,7 @@
         @endif
         @if (!empty($day['moons']))
             @foreach ($day['moons'] as $moon)
-                <i class="ra ra-moon-sun" title="{{ $moon }}" data-toggle="tooltip"></i>
+                <i class="ra ra-moon-sun" title="{{ __('calendars.show.moon_full_moon', ['moon' => $moon]) }}" data-toggle="tooltip"></i>
             @endforeach
         @endif
         <p class="text-left">
