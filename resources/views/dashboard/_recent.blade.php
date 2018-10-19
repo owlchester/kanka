@@ -15,12 +15,12 @@
                 @foreach ($models as $model)
                     <li class="item entity">
                         <div class="product-img">
-                            <a style="background-image: url('{{ $model->getImageUrl(true) }}');" data-toggle="tooltip" title="{!! $model->tooltipWithName() !!}" data-html="true" class="entity-image" href="{{ route($route . '.show', $model->id) }}"></a>
+                            <a style="background-image: url('{{ $model->getImageUrl(true) }}');" data-toggle="tooltip" title="{{ $model->tooltipWithName() }}" data-html="true" class="entity-image" href="{{ route($route . '.show', $model->id) }}"></a>
                         </div>
                         <div class="product-info">
-                            <a href="{{ route($route . '.show', $model->id) }}" class="product-title" data-toggle="tooltip" title="{!! $model->tooltipWithName() !!}" data-html="true" >{{ $model->name }}</a>
+                            <a href="{{ route($route . '.show', $model->id) }}" class="product-title" data-toggle="tooltip" title="{{ $model->tooltipWithName() }}" data-html="true" >{{ $model->name }}</a>
                             @if ($model->family)
-                                <a href="{{ route('families.show', $model->family_id) }}" data-toggle="tooltip" data-html="true" title="{!! $model->family->tooltipWithName() !!}">{{ $model->family->name }}</a>
+                                <a href="{{ route('families.show', $model->family_id) }}" data-toggle="tooltip" data-html="true" title="{{ $model->family->tooltipWithName() }}">{{ $model->family->name }}</a>
                             @endif
                             <span class="pull-right product-description">{{ $model->updated_at->diffForHumans() }}</span>
                             <p class="text-justify entity-short">
