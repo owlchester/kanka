@@ -17,6 +17,7 @@ class TagObserver extends MiscObserver
         // Removed tag id
         if (request()->getRealMethod() == 'POST' && !request()->has('tag_id')) {
             $model->tag_id = null;
+            $model->rebuildTree = true;
         }
     }
 
@@ -30,11 +31,21 @@ class TagObserver extends MiscObserver
     {
         parent::saved($model);
 
-        if ($model->isDirty('tag_id') && empty($model->tag_id)) {
-            if (!defined('MISCELLANY_REBUILDING_TREE')) {
-                define('MISCELLANY_REBUILDING_TREE', true);
-                $model->makeRoot()->save();
-            }
+        // After the modal has been saved, we might want to rebuild the tree.
+        // Sadly, ->isDirty doesn't work here, as the model is refreshed at the end of the saving event.
+        if ($model->rebuildTree) {
+            $this->rebuildTree($model);
+        }
+    }
+
+    /**
+     * @param Tag $tag
+     */
+    private function rebuildTree(Tag $tag)
+    {
+        if (!defined('MISCELLANY_REBUILDING_TREE')) {
+            define('MISCELLANY_REBUILDING_TREE', true);
+            $tag->makeRoot()->save();
         }
     }
 

@@ -16,6 +16,12 @@ class Tag extends MiscModel
     protected $searchableColumns  = ['name', 'type', 'entry'];
 
     /**
+     * Used by the Observer to know if the tree needs rebuilding on this model.
+     * @var bool
+     */
+    public $rebuildTree = false;
+
+    /**
      * Entity type
      * @var string
      */
