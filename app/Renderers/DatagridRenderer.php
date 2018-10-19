@@ -264,13 +264,13 @@ class DatagridRenderer
             // Just for name, a link to the view
             if ($column == 'name') {
                 $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
-                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltipWithName() . '" data-html="true">' . $model->{$column} . '</a>';
+                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltipWithName() . '" data-html="true">' . e($model->{$column}) . '</a>';
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
                     $content = $model->{$column} ? '<i class="fa fa-check-circle"></i>' : '';
                 } else {
-                    $content = $model->{$column};
+                    $content = e($model->{$column});
                 }
                 $class = 'hidden-xs hidden-sm';
             }

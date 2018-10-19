@@ -17,15 +17,21 @@ class EntityObserver
      */
     public function saved(Entity $entity)
     {
-        $this->saveSections($entity);
+        $this->saveTags($entity);
     }
 
     /**
      * Save the sections/categories
      */
-    protected function saveSections(Entity $entity)
+    protected function saveTags(Entity $entity)
     {
         if (request()->has('tags')) {
+            // Don't want to run this twice. When creating a tag, it will call this function again.
+            // Todo: better options?
+            if (defined('MISCELLANY_DYNAMIC_TAG_CREATION')) {
+                return;
+            }
+            define('MISCELLANY_DYNAMIC_TAG_CREATION', true);
             $ids = request()->post('tags');
             $existing = $entity->tags->pluck('name', 'id')->toArray();
             $new = [];
@@ -34,7 +40,13 @@ class EntityObserver
                 if (!empty($existing[$id])) {
                     unset($existing[$id]);
                 } else {
-                    $section = Tag::findOrFail($id);
+                    $section = Tag::find($id);
+                    if (empty($section)) {
+                        // Create it, the id contains the name
+                        $section = Tag::create([
+                            'name' => $id
+                        ]);
+                    }
                     $new[] = $section->id;
                 }
             }

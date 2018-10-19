@@ -66481,6 +66481,7 @@ $(document).ready(function () {
 
             $(this).select2({
                 tags: true,
+                allowClear: true,
                 minimumInputLength: 0,
                 ajax: {
                     quietMillis: 200,
@@ -66497,6 +66498,25 @@ $(document).ready(function () {
                         };
                     },
                     cache: true
+                },
+                createTag: function createTag(params) {
+                    var term = $.trim(params.term);
+
+                    if (term === '') {
+                        return null;
+                    }
+
+                    return {
+                        id: term,
+                        text: term,
+                        newTag: true // add additional parameters
+                    };
+                },
+                templateSelection: function templateSelection(state) {
+                    if (state.newTag) {
+                        return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+                    }
+                    return state.text;
                 }
             });
         });

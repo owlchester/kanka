@@ -37,6 +37,7 @@ return [
         'header'        => 'Tags in :name',
         'title'         => 'Tags',
     ],
+    'new_tag' => 'New Tag',
     'placeholders'  => [
         'name'      => 'Name of the tag',
         'tag'   => 'Choose a parent tag',

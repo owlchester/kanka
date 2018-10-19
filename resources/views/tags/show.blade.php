@@ -48,7 +48,7 @@
                 </li>
                 <li class="{{ (request()->get('tab') == 'tags' ? ' active' : '') }}">
                     <a href="#tags" data-toggle="tooltip" title="{{ trans('tags.show.tabs.tags') }}">
-                        <i class="fa fa-folder-open"></i> <span class="hidden-sm hidden-xs">
+                        <i class="fa fa-tags"></i> <span class="hidden-sm hidden-xs">
                             {{ trans('tags.show.tabs.tags') }}</span>
                     </a>
                 </li>

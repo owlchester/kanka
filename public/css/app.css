@@ -2712,3 +2712,7 @@ table label {
   transition: all 0.5s ease;
 }
 
+.new-tag {
+  color: rgba(0, 0, 0, 0.8);
+}
+
