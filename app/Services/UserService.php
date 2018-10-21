@@ -7,6 +7,10 @@ use App\User;
 
 class UserService
 {
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function authenticated(User $user)
     {
         // If a user has a last campaign id, we need to make sure the
@@ -21,6 +25,9 @@ class UserService
                 // The user is no longer part of the campaign, so let's get ride of it.
                 $user->last_campaign_id = null;
                 $user->save();
+            } else {
+                // redirect
+                return redirect()->route('home');
             }
         }
 

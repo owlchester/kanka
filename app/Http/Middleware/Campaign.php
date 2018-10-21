@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Session;
  */
 class Campaign
 {
+    /**
+     * @param $request
+     * @param Closure $next
+     * @return mixed
+     */
     public function handle($request, Closure $next)
     {
         // If the campaign has not been passed through the function
