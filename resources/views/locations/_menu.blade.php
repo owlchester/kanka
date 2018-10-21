@@ -51,7 +51,7 @@
                 </a>
             </li>
 
-            @if (($count = $model->locations()->acl(auth()->user())->count()) > 0)
+            @if (($count = $model->descendants()->acl(auth()->user())->count()) > 0)
             <li class="@if(!empty($active) && $active == 'locations')active @endif">
                 <a href="{{ route('locations.locations', $model) }}">
                     {{ __('locations.show.tabs.locations') }}
