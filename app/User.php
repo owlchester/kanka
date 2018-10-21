@@ -46,6 +46,7 @@ class User extends \TCG\Voyager\Models\User
         'theme',
         'date_format',
         'default_pagination',
+        'locale' // Keep this for the LocaleChange middleware
     ];
 
     /**
