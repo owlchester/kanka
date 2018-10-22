@@ -148,7 +148,7 @@ return [
         'weekdays'          => 'Number of days in a week',
     ],
     'show'          => [
-        'description'       => 'A detailed view of an calendar',
+        'description'       => 'A detailed view of a calendar',
         'moon_full_moon'    => ':moon Full Moon',
         'tabs'              => [
             'information'   => 'Information',
