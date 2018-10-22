@@ -223,7 +223,7 @@ return [
         'helper'        => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
         'helpers'       => [
             'calendars'     => 'El sitio para definir los calendarios de tu mundo.',
-            'categories'    => 'Cada entidad puede tener una categoría. Las categorías pueden pertenecer a otras categorías, y las entradas pueden filtrarse por categoría.',
+            'tags'    => 'Cada entidad puede tener una categoría. Las categorías pueden pertenecer a otras categorías, y las entradas pueden filtrarse por categoría.',
             'characters'    => 'Las personas que viven en tu mundo.',
             'conversations' => 'Conversaciones ficticias entre personajes o entre usuarios de la campaña.',
             'dice_rolls'    => 'Una manera de manejar las tiradas de dados para aquellos que usan Kanka para campañas de rol.',

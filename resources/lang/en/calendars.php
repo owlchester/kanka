@@ -14,7 +14,7 @@ return [
         'is_recurring' => 'Takes place every year',
     ],
     'colours'       => [
-        '' => 'Default',
+        'default' => 'Default',
         'black' => 'Black',
         'blue' => 'Blue',
         'green' => 'Green',
