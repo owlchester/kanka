@@ -77,7 +77,7 @@ return [
     ],
     'edit'              => 'Modifier',
     'errors'            => [
-        'node_must_not_be_a_descendant' => 'Node invalide (catégorie, lieu parent): l\'entité serait un descendant de lui-même.',
+        'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
     ],
     'events'            => [
         'hint'  => 'Les événements de calendrier peuvent être associé à cette entité et être affiché ici.',
@@ -100,6 +100,8 @@ return [
         'name'                  => 'Nom',
         'organisation'          => 'Organisation',
         'race'                  => 'Race',
+        'tag'                   => 'Etiquette',
+        'tags'                  => 'Etiquettes',
     ],
     'filter'            => 'Filtre',
     'filters'           => [

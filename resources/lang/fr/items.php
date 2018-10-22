@@ -14,12 +14,12 @@ return [
         'title'     => 'Modifier Objet :name',
     ],
     'fields'        => [
-        'character'     => 'Personnage',
-        'image'         => 'Image',
-        'location'      => 'Lieu',
-        'name'          => 'Nom',
-        'relation'      => 'Relation',
-        'type'          => 'Type',
+        'character' => 'Personnage',
+        'image'     => 'Image',
+        'location'  => 'Lieu',
+        'name'      => 'Nom',
+        'relation'  => 'Relation',
+        'type'      => 'Type',
     ],
     'index'         => [
         'add'           => 'Nouvel Objet',

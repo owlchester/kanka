@@ -32,8 +32,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
-        'descendants' => 'This list contains all locations which are descendants of this locations, not only those directly under it.'
+        'descendants'   => 'This list contains all locations which are descendants of this locations, not only those directly under it.',
+        'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'index'         => [
         'actions'       => [

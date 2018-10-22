@@ -26,7 +26,7 @@ return [
     ],
     'hints'         => [
         'children'  => 'This list contains all the entities directly in this tag and in all nested tags.',
-        'tag'   => 'Displayed below are all the tags that are directly under this tag.',
+        'tag'       => 'Displayed below are all the tags that are directly under this tag.',
     ],
     'index'         => [
         'actions'       => [
@@ -37,11 +37,11 @@ return [
         'header'        => 'Tags in :name',
         'title'         => 'Tags',
     ],
-    'new_tag' => 'New Tag',
+    'new_tag'       => 'New Tag',
     'placeholders'  => [
-        'name'      => 'Name of the tag',
+        'name'  => 'Name of the tag',
         'tag'   => 'Choose a parent tag',
-        'type'      => 'Lore, Wars, History, Religion, Vexology',
+        'type'  => 'Lore, Wars, History, Religion, Vexology',
     ],
     'show'          => [
         'description'   => 'A detailed view of a tag',

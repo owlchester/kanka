@@ -77,7 +77,7 @@ return [
     ],
     'edit'              => 'Edit',
     'errors'            => [
-        'node_must_not_be_a_descendant' => 'Invalid node (category, parent location): it would be a descendant of itself.',
+        'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
     'events'            => [
         'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',
@@ -225,7 +225,6 @@ return [
         'location'      => 'Choose a location',
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
-        'tag'           => 'Choose a tag',
     ],
     'relations'         => [
         'actions'   => [

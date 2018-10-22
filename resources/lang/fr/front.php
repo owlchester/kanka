@@ -12,7 +12,8 @@ return [
             'title'         => 'Campagnes Promues',
         ],
         'public'            => [
-            'title' => 'Campagnes Publiques',
+            'description'   => 'Laisse toi inspirer par les campagns publiques.',
+            'title'         => 'Campagnes Publiques',
         ],
         'title'             => 'Campagnes Publiques',
     ],

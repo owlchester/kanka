@@ -2,28 +2,28 @@
 
 return [
     'actions'       => [
-        'add_epoch'      => 'Add an epoch',
+        'add_epoch'     => 'Add an epoch',
         'add_month'     => 'Add a month',
         'add_moon'      => 'Add a moon',
-        'add_season'      => 'Add a season',
+        'add_season'    => 'Add a season',
         'add_weekday'   => 'Add a week day',
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
     ],
-    'checkboxes' => [
-        'is_recurring' => 'Takes place every year',
+    'checkboxes'    => [
+        'is_recurring'  => 'Takes place every year',
     ],
     'colours'       => [
-        'default' => 'Default',
-        'black' => 'Black',
-        'blue' => 'Blue',
-        'green' => 'Green',
-        'maroon' => 'Maroon',
-        'navy' => 'Navy',
-        'orange' => 'Orange',
-        'purple' => 'Purple',
-        'red' => 'Red',
-        'teal' => 'Teal',
+        'black'     => 'Black',
+        'blue'      => 'Blue',
+        'default'   => 'Default',
+        'green'     => 'Green',
+        'maroon'    => 'Maroon',
+        'navy'      => 'Navy',
+        'orange'    => 'Orange',
+        'purple'    => 'Purple',
+        'red'       => 'Red',
+        'teal'      => 'Teal',
     ],
     'create'        => [
         'description'   => 'Create a new calendar',
@@ -44,16 +44,16 @@ return [
             'new'       => 'New Event',
             'switch'    => 'Change choice',
         ],
-        'create' => [
-            'title' => 'Add a Calendar Event to :name',
-            'description' => 'Create a calendar event',
-            'success' => 'Calendar event created'
+        'create'    => [
+            'description'   => 'Create a calendar event',
+            'success'       => 'Calendar event created',
+            'title'         => 'Add a Calendar Event to :name',
         ],
         'destroy'   => 'Event removed from calendar \':name\'.',
-        'edit' => [
-            'title' => 'Update Calendar Event for :name',
-            'description' => 'Update a calendar event',
-            'success' => 'Calendar event updated'
+        'edit'      => [
+            'description'   => 'Update a calendar event',
+            'success'       => 'Calendar event updated',
+            'title'         => 'Update Calendar Event for :name',
         ],
         'helpers'   => [
             'add'   => 'Add an existing event to this calendar.',
@@ -91,11 +91,11 @@ return [
     ],
     'hints'         => [
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
-        'months' => 'Your calendar should have at least 2 months.',
-        'moons' => 'Adding moons will make them show up in the calendar on every full moon.',
-        'seasons' => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
-        'weekdays' => 'Set your weekday names. At least 2 weekdays are required.',
-        'years' => 'Some years are so important that they have their own name.'
+        'months'        => 'Your calendar should have at least 2 months.',
+        'moons'         => 'Adding moons will make them show up in the calendar on every full moon.',
+        'seasons'       => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
+        'weekdays'      => 'Set your weekday names. At least 2 weekdays are required.',
+        'years'         => 'Some years are so important that they have their own name.',
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -112,22 +112,22 @@ return [
         'years'     => 'Named Years',
     ],
     'parameters'    => [
-        'month' => [
+        'month'     => [
             'length'    => 'Number of days',
             'name'      => 'Month Name',
         ],
-        'year'  => [
+        'moon'      => [
+            'fullmoon'  => 'Full moon every (days)',
+            'name'      => 'Moon Name',
+        ],
+        'seasons'   => [
+            'day'   => 'Day start',
+            'month' => 'Month start',
+            'name'  => 'Season Name',
+        ],
+        'year'      => [
             'name'      => 'Year Name',
             'number'    => 'Year',
-        ],
-        'moon'  => [
-            'name'      => 'Moon Name',
-            'fullmoon'    => 'Full moon every (days)',
-        ],
-        'seasons'  => [
-            'name'      => 'Season Name',
-            'month'    => 'Month start',
-            'day'    => 'Day start',
         ],
     ],
     'placeholders'  => [
@@ -148,11 +148,11 @@ return [
         'weekdays'          => 'Number of days in a week',
     ],
     'show'          => [
-        'description'   => 'A detailed view of an calendar',
-        'tabs'          => [
+        'description'       => 'A detailed view of an calendar',
+        'moon_full_moon'    => ':moon Full Moon',
+        'tabs'              => [
             'information'   => 'Information',
         ],
-        'title'         => 'Calendar :name',
-        'moon_full_moon' => ':moon Full Moon',
+        'title'             => 'Calendar :name',
     ],
 ];

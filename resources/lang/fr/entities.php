@@ -32,6 +32,6 @@ return [
     'quests'                => 'Quêtes',
     'race'                  => 'Race',
     'races'                 => 'Races',
-    'section'               => 'Catégorie',
-    'sections'              => 'Catégories',
+    'tag'                   => 'Etiquette',
+    'tags'                  => 'Etiquettes',
 ];

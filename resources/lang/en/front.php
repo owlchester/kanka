@@ -12,8 +12,8 @@ return [
             'title'         => 'Featured Campaigns',
         ],
         'public'            => [
-            'title' => 'Public Campaigns',
-            'description' => 'Take a look at the Public Campaigns for inspiration.',
+            'description'   => 'Take a look at the Public Campaigns for inspiration.',
+            'title'         => 'Public Campaigns',
         ],
         'title'             => 'Public Campaigns',
     ],

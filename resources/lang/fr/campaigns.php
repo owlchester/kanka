@@ -223,7 +223,6 @@ return [
         'helper'        => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
         'helpers'       => [
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
-            'categories'    => 'Chaque entité peut être attribuée à une catégorie. Les catégories peuvent appartenir à d\'autres catégories.',
             'characters'    => 'Les peuples de ton monde.',
             'conversations' => 'Conversations fictives entre des personnages ou entre membres de la campagne.',
             'dice_rolls'    => 'Pour ceux qui utilisent Kanka pour une campagne JdR, un système pour des jets de dés.',
@@ -237,6 +236,7 @@ return [
             'organisations' => 'Cultes, unités militaires, factions, guildes.',
             'quests'        => 'Gestionnaire de quêtes avec personnages et lieux.',
             'races'         => 'Si la campagne a plus d\'une race, ce module permet de facilement organiser celles-ci.',
+            'tags'          => 'Chaque entité peut avoir plusieurs étiquettes. Les étiquettes peuvent appartenir à d\'autres étiquettes.',
         ],
         'title'         => 'Modules de la campagne :name',
     ],

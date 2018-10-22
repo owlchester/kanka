@@ -27,7 +27,6 @@ return [
     'races'                 => 'Razas',
     'releases'              => 'Notas de la versión',
     'search'                => 'Buscar...',
-    'sections'              => 'Categorías',
     'support'               => 'Soporte / Comunidad',
     'team'                  => 'Equipo',
     'translations'          => 'Traducciones',

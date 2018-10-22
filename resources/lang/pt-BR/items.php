@@ -14,12 +14,12 @@ return [
         'title'     => 'Editar Item :name',
     ],
     'fields'        => [
-        'character'     => 'Personagem',
-        'image'         => 'Imagem',
-        'location'      => 'Local',
-        'name'          => 'Nome',
-        'relation'      => 'Relação',
-        'type'          => 'Tipo',
+        'character' => 'Personagem',
+        'image'     => 'Imagem',
+        'location'  => 'Local',
+        'name'      => 'Nome',
+        'relation'  => 'Relação',
+        'type'      => 'Tipo',
     ],
     'index'         => [
         'add'           => 'Novo Item',

@@ -2,54 +2,54 @@
 
 return [
     'create'        => [
-        'description'   => 'Ajouter une nouvelle catégorie',
-        'success'       => 'Nouvelle catégorie \':name\' ajoutée.',
-        'title'         => 'Nouvelle Catégorie',
+        'description'   => 'Ajouter une nouvelle étiquette',
+        'success'       => 'Nouvelle étiquette \':name\' ajoutée.',
+        'title'         => 'Nouvelle Etiquette',
     ],
     'destroy'       => [
-        'success'   => 'La catégorie \':name\' a été retirée.',
+        'success'   => 'L\'étiquette \':name\' a été retirée.',
     ],
     'edit'          => [
-        'description'   => 'Modification d\'une catégorie',
-        'success'       => 'La catégorie \':name\' a été mise à jour.',
-        'title'         => 'Modifier la catégorie :name',
+        'description'   => 'Modification d\'une étiquette',
+        'success'       => 'L\'étiquette \':name\' a été mise à jour.',
+        'title'         => 'Modifier l\'étiquette :name',
     ],
     'fields'        => [
         'characters'    => 'Personnages',
         'children'      => 'Enfants',
         'name'          => 'Nom',
-        'section'       => 'Catégorie',
-        'sections'      => 'Sous-catégories',
+        'tag'           => 'Etiquette',
+        'tags'          => 'Etiquettes',
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'Ce mode de naviguation permet d\'afficher tes catégories de manière imbriquée. Les catégories sans catégorie parent seront affichés par défaut. Les catégories possédant des sous-catégories peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested'    => 'Ce mode de naviguation permet d\'afficher les étiquettes de manière imbriquée. Les étiquettes sans étiquette parent seront affichés par défaut. Les étiquettes possédant des sous-étiquettes peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'hints'         => [
-        'children'  => 'Cette liste contient toutes les entités directement dans cette catégorie et toutes les catégories enfants.',
-        'section'   => 'Affiché ci-dessous sont toutes les catégories enfants de cette catégorie.',
+        'children'  => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
+        'section'   => 'Affiché ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Mode Exploration',
         ],
-        'add'           => 'Nouvelle Catégorie',
-        'description'   => 'Gérer les catégories pour :name.',
-        'header'        => 'Les catégories dans :name',
-        'title'         => 'Catégories',
+        'add'           => 'Nouvelle Etiquette',
+        'description'   => 'Gérer les étiquettes pour :name.',
+        'header'        => 'Les étiquettes dans :name',
+        'title'         => 'Etiquettes',
     ],
     'placeholders'  => [
-        'name'      => 'Nom de la catégorie',
-        'section'   => 'Choix de la catégorie parent',
+        'name'      => 'Nom de l\étiquette',
+        'section'   => 'Choix de l\étiquette parent',
         'type'      => 'Légende, Guerres, Histoire, Religion',
     ],
     'show'          => [
-        'description'   => 'Vue détaillée de la catégorie',
+        'description'   => 'Vue détaillée de l\étiquette',
         'tabs'          => [
             'children'      => 'Enfants',
             'information'   => 'Information',
-            'sections'      => 'Catégories',
+            'sections'      => 'Etiquettes',
         ],
-        'title'         => 'Catégorie :name',
+        'title'         => 'Etiquette :name',
     ],
 ];
