@@ -38,6 +38,7 @@ return [
         'header'        => 'Les étiquettes dans :name',
         'title'         => 'Etiquettes',
     ],
+    'new_tag' => 'Nouvelle Etiquette',
     'placeholders'  => [
         'name'      => 'Nom de l\'étiquette',
         'tag'   => 'Choix de l\'étiquette parent',
