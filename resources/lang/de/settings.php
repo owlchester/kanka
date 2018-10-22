@@ -29,8 +29,25 @@ return [
         'account'           => 'Account',
         'api'               => 'API',
         'layout'            => 'Layout',
+        'patreon'           => 'Patreon',
         'personal_settings' => 'Persönliche Einstellungen',
         'profile'           => 'Profil',
+    ],
+    'patreon'   => [
+        'actions'       => [
+            'link'  => 'Account verlinken',
+        ],
+        'description'   => 'Synchronisierung mit Patreon',
+        'errors'        => [
+            'invalid_token' => 'Ungültiger Token! Patreon konnte die Anfrage nicht validieren.',
+            'missing_code'  => 'Fehlender Code! Patreon hat keinen Code zurück geschickt, um deinen Account zu verifizieren.',
+            'no_pledge'     => 'Kein Pledge! Patreon hat deinen Account verifiziert, aber konnte keinen aktiven Pledge feststellen.',
+        ],
+        'link'          => 'Benutze diesen Button, wenn du aktuell Kanka auf Patreon unterstützt. Das gibt dir Zugriff auf einige tolle Extras.',
+        'linked'        => 'Danke, dass du Kanka auf Patreon unterstützt! Dein Account wurde verlinkt.',
+        'pledge'        => 'Pledge :name',
+        'success'       => 'Danke, dass du Kanka auf Patreon unterstützt.',
+        'title'         => 'Patreon',
     ],
     'profile'   => [
         'actions'       => [

@@ -24,12 +24,12 @@ return [
             'title'         => 'Nuevo atributo para :name',
         ],
         'destroy'       => [
-            'success'   => 'Atributo :name para :entity eliminado.',
+            'success'   => 'Atributo :name de :entity eliminado.',
         ],
         'edit'          => [
             'description'   => 'Actualizar un atributo existente',
-            'success'       => 'Atributo :name para :entity actualizado.',
-            'title'         => 'Actualizar atributo para :name',
+            'success'       => 'Atributo :name de :entity actualizado.',
+            'title'         => 'Actualizar atributo a :name',
         ],
         'fields'        => [
             'attribute' => 'Atributo',
@@ -37,8 +37,8 @@ return [
             'value'     => 'Valor',
         ],
         'index'         => [
-            'success'   => 'Atributos para :entity actualizados.',
-            'title'     => 'Atributos para :name',
+            'success'   => 'Atributos de :entity actualizados.',
+            'title'     => 'Atributos de :name',
         ],
         'placeholders'  => [
             'attribute' => 'Número de conquistas, Iniciativa, Población',
@@ -47,7 +47,7 @@ return [
         ],
         'template'      => [
             'success'   => 'Plantilla de atributos :name aplicada en :entity',
-            'title'     => 'Aplicar plantilla de atributos para :name',
+            'title'     => 'Aplicar plantilla de atributos a :name',
         ],
     ],
     'bulk'              => [
@@ -119,6 +119,7 @@ return [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
         'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
         'image_limitations'     => 'Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: :size.',
+        'image_patreon'         => 'Aumenta el límite apoyándonos en Patreon',
         'is_private'            => 'Ocultar a los "Invitados"',
     ],
     'history'           => [
@@ -164,15 +165,15 @@ return [
         'create'        => [
             'description'   => 'Crear nueva nota',
             'success'       => 'Nota \':name\' añadida a :entity.',
-            'title'         => 'Nueva nota para :name',
+            'title'         => 'Nueva nota en :name',
         ],
         'destroy'       => [
-            'success'   => 'Nota \':name\' para :entidad eliminada.',
+            'success'   => 'Nota \':name\' de :entidad eliminada.',
         ],
         'edit'          => [
             'description'   => 'Actualizar nota existente',
-            'success'       => 'Nota \':name\' para :entity actualizada.',
-            'title'         => 'Actualizar nota para :name',
+            'success'       => 'Nota \':name\' de :entity actualizada.',
+            'title'         => 'Actualizar nota de :name',
         ],
         'fields'        => [
             'creator'   => 'Creador',
@@ -181,7 +182,7 @@ return [
         ],
         'hint'          => 'La información que no encaja en los campos por defecto de una entidad o que han de mantenerse en privado pueden ser añadidos como Notas.',
         'index'         => [
-            'title' => 'Notas para :name',
+            'title' => 'Notas de :name',
         ],
         'placeholders'  => [
             'name'  => 'Nombre de la nota, observación o comentario.',

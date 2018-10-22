@@ -4,7 +4,7 @@ return [
     'actions'       => [
         'add_month'     => 'Añadir mes',
         'add_weekday'   => 'Añadir día de la semana',
-        'add_year'      => 'Añadir nombre del año',
+        'add_year'      => 'Añadir año con nombre',
         'today'         => 'Hoy',
     ],
     'create'        => [

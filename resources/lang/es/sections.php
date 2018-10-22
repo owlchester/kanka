@@ -15,11 +15,14 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personajes',
-        'children'      => 'Categorías anidadas',
+        'children'      => 'Entidades anidadas',
         'name'          => 'Nombre',
         'section'       => 'Categoría',
         'sections'      => 'Subcategorías',
         'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested'    => 'En la Vista de Exploración puedes ver tus categorías de forma anidada. Las categorías que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan subcategorías anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más categorías anidadas que ver.',
     ],
     'hints'         => [
         'children'  => 'Esta lista contiene todas las entidades que pertenecen directamente a esta categoría y a todas las categorías anidadas.',
@@ -42,7 +45,7 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la categoría',
         'tabs'          => [
-            'children'      => 'Categorías anidadas',
+            'children'      => 'Entidades anidadas',
             'information'   => 'Información',
             'sections'      => 'Categorías',
         ],

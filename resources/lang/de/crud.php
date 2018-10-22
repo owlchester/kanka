@@ -119,6 +119,7 @@ return [
         'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
         'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
         'image_limitations'     => 'Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: :size.',
+        'image_patreon'         => 'Erhöhe das Limit indem du uns bei Patreon unterstützt.',
         'is_private'            => 'Vor \'Zuschauern\' verbergen',
     ],
     'history'           => [

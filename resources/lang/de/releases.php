@@ -6,7 +6,7 @@ return [
         'title'         => 'Versionen',
     ],
     'post'  => [
-        'footer'    => 'Nach :name am :date',
+        'footer'    => 'Von :name :date',
     ],
     'show'  => [
         'return'    => 'Zurück zu den Versionen',

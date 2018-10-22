@@ -31,6 +31,9 @@ return [
         'relation'      => 'Vínculo',
         'type'          => 'Tipo',
     ],
+    'helpers'       => [
+        'nested'    => 'En la Vista de Exploración puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
+    ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Vista de exploración',
@@ -85,9 +88,13 @@ return [
                 'delete'    => 'Punto de localización eliminado del mapa.',
                 'update'    => 'Punto de localización actualizado en el mapa.',
             ],
-            'title'         => 'Puntos del mapa de la localización :name',
+            'title'         => 'Puntos del mapa de :name',
         ],
         'success'   => 'Puntos del mapa guardados.',
+    ],
+    'organisations' => [
+        'description'   => 'Organizaciones situadas en la localización.',
+        'title'         => 'Organizaciones de :name',
     ],
     'placeholders'  => [
         'location'  => 'Elige un lugar vinculado',
@@ -104,6 +111,7 @@ return [
             'locations'     => 'Lugares',
             'map'           => 'Mapa',
             'menu'          => 'Menú',
+            'organisations' => 'Organizaciones',
         ],
         'title'         => 'Lugar :name',
     ],

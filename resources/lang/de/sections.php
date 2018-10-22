@@ -21,6 +21,9 @@ return [
         'sections'      => 'Unterkategorie',
         'type'          => 'Typ',
     ],
+    'helpers'       => [
+        'nested'    => 'Du kannst deine Kategorien in einer verschachtelten Ansicht ansehen. Kategorien ohne einen übergeordneten Kategorie werden direkt angezeigt. Kategorien, die untergeordnete Kategorien haben, können angeklickt werden um die untergeordneten Kategorien anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Kategorien mehr gibt.',
+    ],
     'hints'         => [
         'children'  => 'Diese Liste enthält alle Objekte, die direkt in dieser Kategorie und allen Unterkategorien sind.',
         'section'   => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',

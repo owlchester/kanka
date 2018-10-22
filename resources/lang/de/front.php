@@ -5,51 +5,71 @@ return [
         'description'   => 'Kanka wurde im Sommer 2017 aus dem Wunsch zweier leidenschaftlicher RPG Spieler geboren eine gemeinsame Welt aufzubauen und zu verwalten. Nach dem wir ein paar der zu der Zeit verfügbaren Optionen ausprobierten, mussten wir feststellten dass keine Lösung das bot was wir suchten. Also machten wir uns im Herbst 2017 auf, unser eigenes Tool zu bauen.',
         'title'         => 'Über Kanka',
     ],
+    'campaigns'     => [
+        'description_full'  => 'Viele Kampagnen auf Kanka sind öffentlich für jeden. Diese Seite enthält eine Liste aller öffentlichen Kampagnen sowie einige von der Community hervorgehobene Kampagnen.',
+        'featured'          => [
+            'description'   => 'Unsere Community erstellt erstaunliche Dinge, die wir als hervorgehobene Kampagnen zur Schau stellen. Wir ändern die Liste regelmäßig, also schau immer mal wieder vorbei, um mehr Kampagnen zu entdecken.',
+            'title'         => 'Hervorgehobene Kampagnen',
+        ],
+        'public'            => [
+            'title' => 'Öffentliche Kampagnen',
+        ],
+        'title'             => 'Öffentliche Kampagnen',
+    ],
     'contact'       => [
         'title' => 'Wir :icon neue Freunde!',
     ],
     'cookie'        => [
         'dismiss'   => 'Verstanden!',
         'link'      => 'Mehr erfahren',
+        'message'   => 'Diese Webseite benutzt Cookies um sicherzustellen, dass du die bestmögliche Erfahrung mit der Seite machst.',
     ],
     'faq'           => [
-        'title' => 'FAQ',
+        'description'   => 'Wir haben die häufigsten Fragen gesammelt und so genau wie möglich beantwortet.',
+        'title'         => 'FAQ',
     ],
     'features'      => [
-        'calendars'     => [
-            'title' => 'Kalender',
+        'calendars'         => [
+            'description'   => 'Erstelle eigene Kalender und organisiere deine Kampagne damit.',
+            'title'         => 'Kalender',
         ],
-        'collaborative' => [
+        'collaborative'     => [
             'description'   => 'Nicht allein? Wir haben die Lösung für dich! Du kannst deine Freunde und Co-Dungeonmaster einladen, mit dir zusammen deine Kampagne aufzubauen!',
             'title'         => 'Gemeinsam',
         ],
-        'description'   => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
-        'free'          => [
+        'description'       => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
+        'description_full'  => 'Hier einige unserer besten und beliebtesten Features.',
+        'free'              => [
             'description'   => 'Die besten Dinge im leben sind kostenlos.',
             'title'         => 'Kostenlos',
         ],
-        'layers'        => [
+        'layers'            => [
             'description'   => 'Behalte deine Charaktere, deren Familien, ihren Aufenthaltsort und vieles mehr im Überblick.',
             'title'         => 'Charaktere, Familien, Orte',
         ],
-        'learn_more'    => 'Erfahre mehr über Kankas Features',
-        'maps'          => [
+        'learn_more'        => 'Erfahre mehr über Kankas Features',
+        'maps'              => [
             'description'   => 'Lade Karten deiner Welten, Städte und Höhlen hoch und füge praktische Marker und Links ein.',
             'title'         => 'Karten',
         ],
-        'notebook'      => [
+        'modular'           => [
+            'description'   => 'Jedes Modul (Charaktere, Orte) kann jederzeit aktiviert oder deaktiviert werden, damit du deine Kampagne einfach nach deinen Wünschen gestalten kannst.',
+            'title'         => 'Modular',
+        ],
+        'notebook'          => [
             'description'   => 'Bereite deine nächste Session vor oder protokoliere was passiert ist mit unserem Rich Text Logbuch Feature!',
             'title'         => 'Logbücher',
         ],
-        'public'        => [
-            'title' => 'Berechtigungen',
+        'public'            => [
+            'description'   => 'Berechtigungen können für Module oder jedes einzelne Objekt gesetzt werden. Kampagnen können auch für die <a href=":url">ganze Welt</a> öffentlich gemacht werden.',
+            'title'         => 'Berechtigungen',
         ],
-        'relations'     => [
+        'relations'         => [
             'description'   => 'Jedes Objekt kann ein komplexes Netz an Beziehungen mit anderen Objekten haben. Inklusive geheimer Beziehungen, die für deine Spieler unsichtbar sind.',
             'title'         => 'Beziehungen',
         ],
-        'title'         => 'Unbegrenzte Features, unbegrenzter Spaß',
-        'updates'       => [
+        'title'             => 'Unbegrenzte Features, unbegrenzter Spaß',
+        'updates'           => [
             'description'   => 'Kanka erhält regelmäßige Update, die von der Community mitgestaltet werden.',
             'title'         => 'Regelmäßige Updates',
         ],
@@ -75,7 +95,9 @@ return [
     ],
     'menu'          => [
         'about'     => 'Über Kanka',
+        'campaigns' => 'Öffentliche Kampagnen',
         'contact'   => 'Kontakt',
+        'contact_us'=> 'Kontaktiere uns',
         'dashboard' => 'Dashboard',
         'faq'       => 'FAQ',
         'features'  => 'Features',
@@ -85,15 +107,29 @@ return [
             'fr'    => 'Französisch',
         ],
         'login'     => 'Login',
+        'privacy'   => 'Datenschutz-Bestimmung',
         'register'  => 'Registrieren',
+        'releases'  => 'Versionen',
         'title'     => 'Menü',
+        'tos'       => 'Nutzungsbedingungen',
     ],
     'meta'          => [
         'description'   => 'Kanka ist ein flexibles digitales Tool zum weltenbauen und verwalten deiner Rollenspielkampagnen',
         'title'         => 'Kanka - Online Rollenspielkampagnen Verwalter und Weltenbautool',
     ],
+    'privacy'       => [
+        'description'   => 'Datum des Inkrafttretens: 25. Mai 2018',
+        'title'         => 'Datenschutz-Bestimmung',
+    ],
+    'release'       => [
+        'description'   => 'Kanka wächst und verändert sich ständig und wir wollen der Welt zeigen, welche tollen Dinge wir hinzufügen.',
+        'title'         => 'Versionen',
+    ],
     'second_block'  => [
         'call_to_action'    => 'Lass uns anfangen!',
         'title'             => 'Warte nicht.<br />Beginne zu erstellen.',
+    ],
+    'team'          => [
+        'coffee'    => 'Kauf mir einen Kaffee!',
     ],
 ];

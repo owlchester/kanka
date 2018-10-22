@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'characters'    => [
+        'description'   => 'Charakter an diesem Ort.',
+        'title'         => 'Ort :name Charaktere',
+    ],
     'create'        => [
         'description'   => 'Erstelle einen neuen Ort',
         'success'       => 'Ort \':name\' erstellt.',
@@ -13,6 +17,10 @@ return [
         'success'   => 'Ort \':name\' aktualisiert.',
         'title'     => 'Bearbeite Ort :name',
     ],
+    'events'        => [
+        'description'   => 'Ereignisse, die an diesem Ort stattgefunden haben.',
+        'title'         => 'Ort :name Ereignisse',
+    ],
     'fields'        => [
         'characters'    => 'Charaktere',
         'image'         => 'Bild',
@@ -23,6 +31,9 @@ return [
         'relation'      => 'Beziehung',
         'type'          => 'Typ',
     ],
+    'helpers'       => [
+        'nested'    => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
+    ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Erkundungsansicht',
@@ -32,8 +43,17 @@ return [
         'header'        => 'Orte in :name',
         'title'         => 'Orte',
     ],
+    'items'         => [
+        'description'   => 'Gegenstände an oder von diesem Ort.',
+        'title'         => 'Ort :name Gegenstände',
+    ],
+    'locations'     => [
+        'description'   => 'Orte, die sich an diesem Ort befinden.',
+        'title'         => 'Ort :name Orte',
+    ],
     'map'           => [
         'actions'   => [
+            'big'           => 'Vollansicht',
             'download'      => 'Herunterladen',
             'points'        => 'Punkte bearbeiten',
             'toggle_hide'   => 'Punkte verstecken',
@@ -52,10 +72,15 @@ return [
                 'axis_x'    => 'X-Achse',
                 'axis_y'    => 'Y-Achse',
                 'colour'    => 'Farbe',
+                'name'      => 'Markierung',
+            ],
+            'helpers'       => [
+                'location_or_name'  => 'Eine Karte kann zu einem bestehenden Ort verlinken oder einfach nur eine Markierung haben.',
             ],
             'placeholders'  => [
                 'axis_x'    => 'Linke Position',
                 'axis_y'    => 'Obere Position',
+                'name'      => 'Markierung des Punktes, wenn kein Ort angegeben ist.',
             ],
             'return'        => 'Zurück zu :name',
             'success'       => [
@@ -67,6 +92,10 @@ return [
         ],
         'success'   => 'Kartenpunkte gespeichert.',
     ],
+    'organisations' => [
+        'description'   => 'Organisationen in diesem Ort.',
+        'title'         => 'Ort :name Organisationen',
+    ],
     'placeholders'  => [
         'location'  => 'Wähle einen übergeordneten Ort',
         'name'      => 'Name des Ortes',
@@ -76,9 +105,13 @@ return [
         'description'   => 'Eine detaillierte Ansicht eines Ortes',
         'tabs'          => [
             'characters'    => 'Charaktere',
+            'events'        => 'Ereignisse',
             'information'   => 'Informationen',
+            'items'         => 'Gegenstände',
             'locations'     => 'Orte',
             'map'           => 'Karte',
+            'menu'          => 'Menü',
+            'organisations' => 'Organisationen',
         ],
         'title'         => 'Ort :name',
     ],
