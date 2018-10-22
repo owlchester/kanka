@@ -100,7 +100,6 @@ return [
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
         'race'                  => 'Rasse',
-        'section'               => 'Kategorie',
     ],
     'filter'            => 'Filter',
     'filters'           => [
@@ -224,7 +223,6 @@ return [
         'location'      => 'Wähle einen Ort',
         'organisation'  => 'Wähle eine Organisation',
         'race'          => 'Wähle eine Rasse',
-        'section'       => 'Wähle eine Kategorie',
     ],
     'relations'         => [
         'actions'   => [
