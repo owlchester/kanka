@@ -23,7 +23,7 @@ class StoreQuest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|max:45',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
@@ -32,5 +32,13 @@ class StoreQuest extends FormRequest
             'character_id' => 'nullable|integer|exists:characters,id',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
+
+        if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {
+            $rules['length'] = 'required_with:calendar_id|min:1';
+            $rules['calendar_day'] = 'required_with:calendar_id|min:1';
+            $rules['calendar_year'] = 'required_with:calendar_id';
+        }
+
+        return $rules;
     }
 }
