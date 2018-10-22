@@ -17,8 +17,6 @@ return [
         'characters'    => 'Personajes',
         'children'      => 'Entidades anidadas',
         'name'          => 'Nombre',
-        'section'       => 'Categoría',
-        'sections'      => 'Subcategorías',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
@@ -26,7 +24,7 @@ return [
     ],
     'hints'         => [
         'children'  => 'Esta lista contiene todas las entidades que pertenecen directamente a esta categoría y a todas las categorías anidadas.',
-        'section'   => 'A continuación se muestran todas las categorías que están directamente bajo esta categoría.',
+        'tag'   => 'A continuación se muestran todas las categorías que están directamente bajo esta categoría.',
     ],
     'index'         => [
         'actions'       => [
@@ -39,7 +37,7 @@ return [
     ],
     'placeholders'  => [
         'name'      => 'Nombre de la categoría',
-        'section'   => 'Elige una categoría superior',
+        'tag'   => 'Elige una categoría superior',
         'type'      => 'Tradiciones, Guerras, Historia, Religión...',
     ],
     'show'          => [
@@ -47,7 +45,7 @@ return [
         'tabs'          => [
             'children'      => 'Entidades anidadas',
             'information'   => 'Información',
-            'sections'      => 'Categorías',
+            'tags'      => 'Categorías',
         ],
         'title'         => 'Categoría :name',
     ],
