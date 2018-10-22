@@ -14,7 +14,6 @@ return [
         'title'     => 'Edit Organisation :name',
     ],
     'fields'        => [
-        'history'   => 'History',
         'image'     => 'Image',
         'location'  => 'Location',
         'members'   => 'Members',
@@ -62,7 +61,6 @@ return [
     'show'          => [
         'description'   => 'A detailed view of an organisation',
         'tabs'          => [
-            'history'   => 'History',
             'members'   => 'Members',
             'relations' => 'Relations',
         ],

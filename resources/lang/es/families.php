@@ -14,7 +14,6 @@ return [
         'title'     => 'Editar familia \':name\'',
     ],
     'fields'        => [
-        'history'   => 'Biografia',
         'image'     => 'Imagen',
         'location'  => 'Procedencia',
         'members'   => 'Miembros',
@@ -37,7 +36,6 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la familia',
         'tabs'          => [
-            'history'   => 'Biografía',
             'member'    => 'Miembros',
             'relation'  => 'Vínculos',
         ],

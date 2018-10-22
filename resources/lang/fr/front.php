@@ -123,7 +123,7 @@ return [
     ],
     'release'       => [
         'description'   => 'Kanka ne cesse de croître et de s\'améliorer, et nous voulons que le monde sache toutes les choses impressionnantes que nous ajoutons à l\'application.',
-        'title'         => 'Mises à jour',
+        'title'         => 'Mises à jours',
     ],
     'second_block'  => [
         'call_to_action'    => 'Commençons!',

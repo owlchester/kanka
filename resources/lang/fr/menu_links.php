@@ -28,7 +28,7 @@ return [
     'placeholders'  => [
         'entity'    => 'Choix d\'une entité',
         'name'      => 'Nom du lien de menu',
-        'tab'       => 'history, relations, notes, map',
+        'tab'       => 'entry, relations, notes, map',
     ],
     'show'          => [
         'description'   => 'Détails d\'un lien de menu',

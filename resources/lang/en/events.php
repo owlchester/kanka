@@ -15,7 +15,6 @@ return [
     ],
     'fields'        => [
         'date'      => 'Date',
-        'history'   => 'History',
         'image'     => 'Image',
         'location'  => 'Location',
         'name'      => 'Name',

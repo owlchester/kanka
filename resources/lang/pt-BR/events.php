@@ -15,7 +15,6 @@ return [
     ],
     'fields'        => [
         'date'      => 'Data',
-        'history'   => 'História',
         'image'     => 'Imagem',
         'location'  => 'Local',
         'name'      => 'Nome',

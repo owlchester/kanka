@@ -14,7 +14,6 @@ return [
         'title'     => 'Editar organización \':name\'',
     ],
     'fields'        => [
-        'history'   => 'Historia',
         'image'     => 'Imagen',
         'location'  => 'Lugar',
         'members'   => 'Miembros',
@@ -62,7 +61,6 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la organización',
         'tabs'          => [
-            'history'   => 'Historia',
             'members'   => 'Miembros',
             'relations' => 'Vínculos',
         ],

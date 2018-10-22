@@ -16,7 +16,6 @@ return [
     'fields'        => [
         'author'    => 'Author',
         'date'      => 'Date',
-        'history'   => 'History',
         'image'     => 'Image',
         'name'      => 'Name',
         'relation'  => 'Relation',

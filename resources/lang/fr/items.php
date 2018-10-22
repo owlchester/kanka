@@ -15,8 +15,6 @@ return [
     ],
     'fields'        => [
         'character'     => 'Personnage',
-        'description'   => 'Description',
-        'history'       => 'Histoire',
         'image'         => 'Image',
         'location'      => 'Lieu',
         'name'          => 'Nom',

@@ -14,7 +14,6 @@ return [
         'title'     => 'Modifier la famille :name',
     ],
     'fields'        => [
-        'history'   => 'Histoire',
         'image'     => 'Image',
         'location'  => 'Lieu',
         'members'   => 'Members',
@@ -37,7 +36,6 @@ return [
     'show'          => [
         'description'   => 'Détail d\'une famille',
         'tabs'          => [
-            'history'   => 'Histoire',
             'member'    => 'Membres',
             'relation'  => 'Relations',
         ],
