@@ -27,7 +27,7 @@
             'field' => 'quest.name',
             'render' => function($model) {
                 if ($model->quest) {
-                    return '<a href="' . route('quests.show', $model->quest->id) . '">' . $model->quest->name . '</a>';
+                    return '<a href="' . route('quests.show', $model->quest->id) . '">' . e($model->quest->name) . '</a>';
                 }
             }
         ],

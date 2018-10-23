@@ -14,7 +14,7 @@
             'label' => trans('crud.fields.dice_roll'),
             'field' => 'diceRoll.name',
             'render' => function($model) {
-                return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . $model->diceRoll->name . '</a>';
+                return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . e($model->diceRoll->name) . '</a>';
             }
         ],
         [
@@ -29,7 +29,7 @@
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {
-                    return '<a href="' . route('characters.show', $model->diceRoll->character->id) . '" data-toggle="tooltip" title="' . $model->diceRoll->character->tooltip() . '">' . $model->diceRoll->character->name . '</a>';
+                    return '<a href="' . route('characters.show', $model->diceRoll->character->id) . '" data-toggle="tooltip" title="' . $model->diceRoll->character->tooltip() . '">' . e($model->diceRoll->character->name) . '</a>';
                 }
             }
         ],
@@ -38,7 +38,7 @@
             'field' => 'user.name',
             'render' => function($model) {
                 if ($model->user) {
-                    return $model->user->name;
+                    return e($model->user->name);
                 }
             }
         ],
