@@ -11,3 +11,11 @@
 @section('content')
     @include($name . '.show')
 @endsection
+
+
+@section('scripts')
+    <script src="{{ mix('js/entity.js') }}"></script>
+    <script src="{{ mix('js/jquery.fileupload.js') }}"></script>
+    <script src="{{ mix('js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ mix('js/vendor/jquery.ui.widget.js') }}"></script>
+@endsection

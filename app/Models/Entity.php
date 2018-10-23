@@ -298,6 +298,14 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function files()
+    {
+        return $this->hasMany('App\Models\EntityFile', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function events()
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');

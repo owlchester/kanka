@@ -211,6 +211,11 @@ Route::group([
         Route::get('/search/live', 'SearchController@live')->name('search.live');
         Route::get('/redirect', 'RedirectController@index')->name('redirect');
 
+        // Entity Files
+        Route::get('/entities/{entity}/entity_files', 'EntityFileController@index')->name('entities.entity_files.index');
+        Route::post('/entities/{entity}/entity_files', 'EntityFileController@store')->name('entities.entity_files.store');
+        Route::get('/entities/{entity}/entity_files/{entity_file}', 'EntityFileController@destroy')->name('entities.entity_files.destroy');
+
         // Move
         Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
         Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');

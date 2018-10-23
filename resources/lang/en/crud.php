@@ -94,6 +94,7 @@ return [
         'entry'                 => 'Entry',
         'event'                 => 'Event',
         'family'                => 'Family',
+        'files'                 => 'Files',
         'image'                 => 'Image',
         'is_private'            => 'Private',
         'location'              => 'Location',
@@ -102,6 +103,21 @@ return [
         'race'                  => 'Race',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+    ],
+    'files'             => [
+        'title' => 'Entity Files for :name',
+        'actions'       => [
+            'drop'      => 'Click to Add or Drop a file',
+            'manage'    => 'Manage Entity Files',
+        ],
+        'hints' => [
+            'limit' => ':count/:max files uploaded to this entity.',
+            'limitations' => 'Supported formats: jpg, png, gif, and pdf. Max file size: :size'
+        ],
+        'files' => 'Uploaded Files',
+        'errors' => [
+            'max' => 'You have reach the maximum number (:max) of files for this entity.',
+        ]
     ],
     'filter'            => 'Filter',
     'filters'           => [

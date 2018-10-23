@@ -40,6 +40,7 @@
             @endif
 
             @include('cruds.layouts.tags')
+            @include('cruds.layouts.files')
         </ul>
 
         @include('.cruds._actions')

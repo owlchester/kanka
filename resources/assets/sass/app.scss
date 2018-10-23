@@ -335,3 +335,31 @@ table label {
 .new-tag {
   color: rgba(0, 0, 0, 0.8);
 }
+
+
+.panel-entity-files {
+  .well {
+    padding: 30px 0;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 7px;
+  }
+
+  .entity-files-drop {
+    cursor: pointer;
+  }
+
+  .entity-file-remove {
+    cursor: pointer;
+  }
+
+  .entity-file-ui {
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+.entity-file {
+  display: block;
+  padding: 3px 6px;
+}

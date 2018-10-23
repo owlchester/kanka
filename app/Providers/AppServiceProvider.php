@@ -12,6 +12,7 @@ use App\Models\Conversation;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
+use App\Models\EntityFile;
 use App\Models\EntityNote;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
@@ -83,6 +84,7 @@ class AppServiceProvider extends ServiceProvider
             Event::observe(EventObserver::class);
             Entity::observe('App\Observers\EntityObserver');
             EntityNote::observe('App\Observers\EntityNoteObserver');
+            EntityFile::observe('App\Observers\EntityFileObserver');
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
             Item::observe(ItemObserver::class);
