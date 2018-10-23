@@ -27,7 +27,7 @@ class CampaignSetting extends Model
         'organisations',
         'quests',
         'calendars',
-        'sections',
+        'tags',
         'dice_rolls',
         'menu_links',
         'conversations',

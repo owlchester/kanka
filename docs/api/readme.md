@@ -106,6 +106,9 @@ Same as calendars but with `quests` instead of `calendars`.
 #### Quest Locations
 * GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_locations
 
+### Races
+Same as calendars but with `races` instead of `calendars`.
+
 ### Tags
 Same as calendars but with `tags` instead of `calendars`. Was previously `sections`.
 
