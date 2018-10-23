@@ -100,6 +100,8 @@ return [
         'name'                  => 'Nombre',
         'organisation'          => 'Organización',
         'race'                  => 'Raza',
+        'tag'                   => 'Etiqueta',
+        'tags'                  => 'Etiquetas',
     ],
     'filter'            => 'Filtrar',
     'filters'           => [

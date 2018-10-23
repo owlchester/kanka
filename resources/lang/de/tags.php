@@ -24,7 +24,7 @@ return [
     ],
     'hints'         => [
         'children'  => 'Diese Liste enthält alle Objekte, die direkt in dieser Kategorie und allen Unterkategorien sind.',
-        'tag'   => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',
+        'tag'       => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',
     ],
     'index'         => [
         'actions'       => [
@@ -36,16 +36,16 @@ return [
         'title'         => 'Kategorien',
     ],
     'placeholders'  => [
-        'name'      => 'Name der Kategorie',
+        'name'  => 'Name der Kategorie',
         'tag'   => 'Wähle eine Elternkategorie',
-        'type'      => 'Überlieferung, Geschichte, Kriege, Religion, Flaggenkunde',
+        'type'  => 'Überlieferung, Geschichte, Kriege, Religion, Flaggenkunde',
     ],
     'show'          => [
         'description'   => 'Eine Detailansicht einer Kategorie',
         'tabs'          => [
             'children'      => 'Kinder',
             'information'   => 'Informationen',
-            'tags'      => 'Kategorien',
+            'tags'          => 'Kategorien',
         ],
         'title'         => 'Kategorie :name',
     ],

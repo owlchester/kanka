@@ -2,10 +2,28 @@
 
 return [
     'actions'       => [
+        'add_epoch'     => 'Añadir época',
         'add_month'     => 'Añadir mes',
+        'add_moon'      => 'Añadir luna',
+        'add_season'    => 'Añadir estación',
         'add_weekday'   => 'Añadir día de la semana',
         'add_year'      => 'Añadir año con nombre',
         'today'         => 'Hoy',
+    ],
+    'checkboxes'    => [
+        'is_recurring'  => 'Ocurre cada año',
+    ],
+    'colours'       => [
+        'black'     => 'Negro',
+        'blue'      => 'Azul',
+        'default'   => 'Por defecto',
+        'green'     => 'Verde',
+        'maroon'    => 'Granate',
+        'navy'      => 'Azul marino',
+        'orange'    => 'Naranja',
+        'purple'    => 'Morado',
+        'red'       => 'Rojo',
+        'teal'      => 'Turquesa',
     ],
     'create'        => [
         'description'   => 'Crear nuevo calendario',
@@ -26,7 +44,17 @@ return [
             'new'       => 'Nuevo evento',
             'switch'    => 'Cambiar elección',
         ],
+        'create'    => [
+            'description'   => 'Crear un evento en el calendario',
+            'success'       => 'Evento creado en el calendario',
+            'title'         => 'Añadir evento del calendario a :name',
+        ],
         'destroy'   => 'Evento eliminado del calendario \':name\'',
+        'edit'      => [
+            'description'   => 'Actualizar evento del calendario',
+            'success'       => 'Evento del calendario actualizado',
+            'title'         => 'Actualizar evento del calendario de :name',
+        ],
         'helpers'   => [
             'add'   => 'Añade un evento existente a este calendario.',
             'new'   => 'O crea un nuevo evento simplemente proporcionando un nombre.',
@@ -37,6 +65,7 @@ return [
         'success'   => 'Evento \':event\' añadido al calendario.',
     ],
     'fields'        => [
+        'colour'            => 'Color',
         'comment'           => 'Comentario',
         'current_day'       => 'Día actual',
         'current_month'     => 'Mes actual',
@@ -51,6 +80,7 @@ return [
         'length'            => 'Duración del evento',
         'length_days'       => ':count day|:count days',
         'months'            => 'Meses',
+        'moons'             => 'Lunas',
         'name'              => 'Nombre',
         'parameters'        => 'Parámetros',
         'recurring_until'   => 'Recurrente hasta el año',
@@ -61,6 +91,11 @@ return [
     ],
     'hints'         => [
         'is_recurring'  => 'Si un evento es recurrente, reaparecerá cada año en la misma fecha.',
+        'months'        => 'Tu calendario debe tener al menos 2 meses.',
+        'moons'         => 'Si añades lunas, aparecerán en el calendario cada luna llena.',
+        'seasons'       => 'Crea estaciones en tu calendario estableciendo cuándo empieza cada una. Kanka se encargará del resto.',
+        'weekdays'      => 'Escribe los nombres de los días de la semana. Se requiere un mínimo de 2 días.',
+        'years'         => 'Algunos años son tan importantes que tienen su propio nombre.',
     ],
     'index'         => [
         'add'           => 'Nuevo Calendario',
@@ -77,16 +112,26 @@ return [
         'years'     => 'Años con nombre',
     ],
     'parameters'    => [
-        'month' => [
+        'month'     => [
             'length'    => 'Número de días',
             'name'      => 'Nombre del mes',
         ],
-        'year'  => [
-            'name'      => 'Nombre',
+        'moon'      => [
+            'fullmoon'  => 'Luna llena cada... días',
+            'name'      => 'Nombre de la luna',
+        ],
+        'seasons'   => [
+            'day'   => 'Día inicial',
+            'month' => 'Mes inicial',
+            'name'  => 'Nombre de la estación',
+        ],
+        'year'      => [
+            'name'      => 'Nombre del año',
             'number'    => 'Año',
         ],
     ],
     'placeholders'  => [
+        'colour'            => 'Color',
         'comment'           => 'Cumpleaños, Festival, Solsticio',
         'date'              => 'Fecha actual',
         'leap_year_amount'  => 'Número de días añadidos en un año bisiesto',
@@ -103,10 +148,11 @@ return [
         'weekdays'          => 'Número de días de la semana',
     ],
     'show'          => [
-        'description'   => 'Vista detallada del calendario',
-        'tabs'          => [
+        'description'       => 'Vista detallada del calendario',
+        'moon_full_moon'    => ':moon en luna llena',
+        'tabs'              => [
             'information'   => 'Información',
         ],
-        'title'         => 'Calendario :name',
+        'title'             => 'Calendario :name',
     ],
 ];

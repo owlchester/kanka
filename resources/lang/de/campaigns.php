@@ -223,7 +223,6 @@ return [
         'helper'        => 'Du kannst einfach Elemente von deiner Kampagne abschalten, die dann versteckt werden. Wenn du bereits Objekte in dieser Kategorie angelegt hast, werden diese nicht gelöscht, nur versteckt.',
         'helpers'       => [
             'calendars'     => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
-            'tags'    => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
             'characters'    => 'Die Leute, die deine Welt bevölkern.',
             'conversations' => 'Fiktive Gespräche zwischen Charakteren oder zwischen Kampagnennutzern.',
             'dice_rolls'    => 'Für die, die Kanka für RPG Kampagnen benutzen, eine Möglichkeit Würfelwürfe zu verwalten.',
@@ -237,6 +236,7 @@ return [
             'organisations' => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',
             'quests'        => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
             'races'         => 'Wenn deine Kampagne mehr als eine Rasse hat, hier kannst du den Überblick behalten.',
+            'tags'          => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
         ],
         'title'         => 'Kampagne :name Module',
     ],
