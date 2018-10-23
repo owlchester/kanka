@@ -92,7 +92,10 @@ abstract class MiscModel extends Model
      */
     public function tooltip($limit = 250, $stripSpecial = true)
     {
+        // Always remove tags. ALWAYS.
         $pureHistory = strip_tags($this->{$this->tooltipField});
+
+
         if ($stripSpecial) {
             $pureHistory = str_replace('"', '\'', $pureHistory);
             //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
@@ -100,6 +103,7 @@ abstract class MiscModel extends Model
 
         $pureHistory = preg_replace("/\s/ui",' ', $pureHistory);
         $pureHistory = trim($pureHistory);
+
         if (!empty($pureHistory)) {
             if (strlen($pureHistory) > $limit) {
                 return mb_substr($pureHistory, 0, $limit) . '...';
@@ -115,10 +119,14 @@ abstract class MiscModel extends Model
     public function tooltipWithName($limit = 250)
     {
         $text = $this->tooltip($limit);
+
+        // e() isn't enough, remove tags too to avoid ><script injections.
+        $name = e(strip_tags($this->name));
+
         if (empty($text)) {
-            return $this->name;
+            return $name;
         }
-        return '<h4>' . e($this->name) . '</h4>' . $text;
+        return '<h4>' . $name . '</h4>' . $text;
     }
 
     /**

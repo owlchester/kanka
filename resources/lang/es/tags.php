@@ -2,51 +2,54 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva categoría',
-        'success'       => 'Categoría \':name\' creada.',
-        'title'         => 'Nueva Categoría',
+        'description'   => 'Crear nueva etiqueta',
+        'success'       => 'Etiqueta \':name\' creada.',
+        'title'         => 'Nueva Etiqueta',
     ],
     'destroy'       => [
-        'success'   => 'Categoría \':name\' eliminada.',
+        'success'   => 'Etiqueta \':name\' eliminada.',
     ],
     'edit'          => [
-        'success'   => 'Categoría \':name\' actualizada.',
-        'title'     => 'Editar categoría \':name',
+        'success'   => 'Etiqueta \':name\' actualizada.',
+        'title'     => 'Editar Etiqueta \':name',
     ],
     'fields'        => [
         'characters'    => 'Personajes',
         'children'      => 'Entidades anidadas',
         'name'          => 'Nombre',
+        'tag'           => 'Etiqueta',
+        'tags'          => 'Subetiquetas',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'En la Vista de Exploración puedes ver tus categorías de forma anidada. Las categorías que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan subcategorías anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más categorías anidadas que ver.',
+        'nested'    => 'En la Vista de Exploración puedes ver tus etiquetas de forma anidada. Las etiquetas que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan subetiquetas anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más etiquetas anidadas que ver.',
     ],
     'hints'         => [
-        'children'  => 'Esta lista contiene todas las entidades que pertenecen directamente a esta categoría y a todas las categorías anidadas.',
-        'tag'   => 'A continuación se muestran todas las categorías que están directamente bajo esta categoría.',
+        'children'  => 'Esta lista contiene todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',
+        'tag'       => 'A continuación se muestran todas las etiquetas que están directamente bajo esta etiqueta.',
     ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Vista de exploración',
         ],
-        'add'           => 'Nueva Categoría',
-        'description'   => 'Administrar categoría de :name.',
-        'header'        => 'Categorías en :name',
-        'title'         => 'Categorías',
+        'add'           => 'Nueva Etiqueta',
+        'description'   => 'Administrar etiqueta de :name.',
+        'header'        => 'Etiquetas en :name',
+        'title'         => 'Etiquetas',
     ],
+    'new_tag'       => 'Nueva Etiqueta',
     'placeholders'  => [
-        'name'      => 'Nombre de la categoría',
-        'tag'   => 'Elige una categoría superior',
-        'type'      => 'Tradiciones, Guerras, Historia, Religión...',
+        'name'  => 'Nombre de la etiqueta',
+        'tag'   => 'Elige una etiqueta superior',
+        'type'  => 'Tradiciones, Guerras, Historia, Religión...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la categoría',
+        'description'   => 'Vista detallada de la etiqueta',
         'tabs'          => [
             'children'      => 'Entidades anidadas',
             'information'   => 'Información',
-            'tags'      => 'Categorías',
+            'tags'          => 'Etiquetas',
         ],
-        'title'         => 'Categoría :name',
+        'title'         => 'Etiqueta :name',
     ],
 ];

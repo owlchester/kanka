@@ -32,7 +32,8 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'En la Vista de Exploración puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
+        'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estas localizaciones, además de las que están directamente por debajo.',
+        'nested'        => 'En la Vista de Exploración puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
     ],
     'index'         => [
         'actions'       => [

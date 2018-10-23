@@ -12,7 +12,8 @@ return [
             'title'         => 'Campañas Destacadas',
         ],
         'public'            => [
-            'title' => 'Campañas Públicas',
+            'description'   => 'Échale un vistazo a las Campañas Públicas para inspirarte.',
+            'title'         => 'Campañas Públicas',
         ],
         'title'             => 'Campañas Públicas',
     ],

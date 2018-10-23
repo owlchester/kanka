@@ -14,12 +14,12 @@ return [
         'title'     => 'Bearbeite Gegenstand :name',
     ],
     'fields'        => [
-        'character'     => 'Charakter',
-        'image'         => 'Bild',
-        'location'      => 'Ort',
-        'name'          => 'Name',
-        'relation'      => 'Beziehung',
-        'type'          => 'Typ',
+        'character' => 'Charakter',
+        'image'     => 'Bild',
+        'location'  => 'Ort',
+        'name'      => 'Name',
+        'relation'  => 'Beziehung',
+        'type'      => 'Typ',
     ],
     'index'         => [
         'add'           => 'Neuer Gegenstand',

@@ -121,6 +121,12 @@ class PatreonService
         // We need to do this workaround since role->users() returns the TCG\User group, which doesn't have
         // our accessors for the patreon data.
         $role = Role::where(['name' => 'patreon'])->first();
+
+        // No patreon role? Local instance or not properly set up. Let's just avoid throwing an error.
+        if (empty($role)) {
+            return $patrons;
+        }
+
         $ids = $role->users()->pluck('id');
         $users = User::whereIn('id', $ids)->orderBy('name', 'ASC')->get();
         foreach ($users as $user) {

@@ -27,7 +27,7 @@ return [
     ],
     'hints'         => [
         'children'  => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
-        'tag'   => 'Affiché ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
+        'tag'       => 'Affiché ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [
         'actions'       => [
@@ -38,18 +38,18 @@ return [
         'header'        => 'Les étiquettes dans :name',
         'title'         => 'Etiquettes',
     ],
-    'new_tag' => 'Nouvelle Etiquette',
+    'new_tag'       => 'Nouvelle Etiquette',
     'placeholders'  => [
-        'name'      => 'Nom de l\'étiquette',
+        'name'  => 'Nom de l\'étiquette',
         'tag'   => 'Choix de l\'étiquette parent',
-        'type'      => 'Légende, Guerres, Histoire, Religion',
+        'type'  => 'Légende, Guerres, Histoire, Religion',
     ],
     'show'          => [
         'description'   => 'Vue détaillée de l\'étiquette',
         'tabs'          => [
             'children'      => 'Enfants',
             'information'   => 'Information',
-            'tags'      => 'Etiquettes',
+            'tags'          => 'Etiquettes',
         ],
         'title'         => 'Etiquette :name',
     ],

@@ -225,6 +225,7 @@ return [
         'location'      => 'Choose a location',
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
+        'tag'          => 'Choose a tag',
     ],
     'relations'         => [
         'actions'   => [

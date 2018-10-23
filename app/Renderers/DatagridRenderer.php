@@ -316,7 +316,7 @@ class DatagridRenderer
                 $class = 'hidden-xs hidden-sm';
                 if ($model->entity) {
                     $content = '<a href="' . route($model->entity->pluralType() . '.show', $model->entity->child->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->entity->child->tooltipWithName() . '">' .
-                        $model->entity->child->name . '</a>';
+                        e($model->entity->child->name) . '</a>';
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private

@@ -22,6 +22,7 @@ class Calendar extends EntityResource
             'weekdays' => json_decode($this->weekdays),
             'years' => json_decode($this->years),
             'seasons' => json_decode($this->seasons),
+            'moons' => json_decode($this->moons),
             'suffix' => $this->suffix,
             'has_leap_year' => $this->has_leap_year,
             'leap_year_amount' => $this->leap_year_amount, // Add X number of days
