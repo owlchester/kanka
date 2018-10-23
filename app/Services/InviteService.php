@@ -103,7 +103,10 @@ class InviteService
                 'campaign.join',
                 'user',
                 'green',
-                ['user' => Auth::user()->name, 'campaign' => $invite->campaign->name]
+                [
+                    'user' => e(Auth::user()->name),
+                    'campaign' => e($invite->campaign->name)
+                ]
             ));
         }
 

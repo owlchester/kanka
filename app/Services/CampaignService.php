@@ -121,7 +121,10 @@ class CampaignService
             'leave',
             'user',
             'yellow',
-            ['user' => Auth::user()->name, 'campaign' => $campaign->name]
+            [
+                'user' => e(Auth::user()->name),
+                'campaign' => e($campaign->name)
+            ]
         );
 
         self::switchToNext();

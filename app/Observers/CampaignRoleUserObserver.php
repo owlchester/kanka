@@ -32,8 +32,8 @@ class CampaignRoleUserObserver
             'user',
             'green',
             [
-                'role' => $campaignRoleUser->campaignRole->name,
-                'campaign' => $campaignRoleUser->campaignRole->campaign->name
+                'role' => e($campaignRoleUser->campaignRole->name),
+                'campaign' => e($campaignRoleUser->campaignRole->campaign->name)
             ]
         );
         $campaignRoleUser->user->notify($notification);
