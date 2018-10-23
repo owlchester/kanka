@@ -46,8 +46,8 @@ class PatreonService
             throw new Exception('missing_code');
         }
 
-        $clientId = env('PATREON_CLIENT_ID');
-        $clientSecret = env('PATREON_CLIENT_SECRET');
+        $clientId = config('patreon.client_id');
+        $clientSecret = config('patreon.client_secret');
         $redirectUri = url('/settings/patreon-callback');
 
         $oauth = new OAuth($clientId, $clientSecret);

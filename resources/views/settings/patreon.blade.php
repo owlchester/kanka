@@ -24,7 +24,7 @@
                     @else
                     <p class="text-muted">{{ __('settings.patreon.link') }}</p>
 
-                        <a href="//www.patreon.com/oauth2/authorize?response_type=code&client_id={{ env('PATREON_CLIENT_ID') }}&redirect_uri={{ url('/settings/patreon-callback') }}" class="btn btn-primary">{{ __('settings.patreon.actions.link') }}</a>
+                        <a href="//www.patreon.com/oauth2/authorize?response_type=code&client_id={{ config('patreon.client_id') }}&redirect_uri={{ url('/settings/patreon-callback') }}" class="btn btn-primary">{{ __('settings.patreon.actions.link') }}</a>
                     @endif
                 </div>
             </div>
