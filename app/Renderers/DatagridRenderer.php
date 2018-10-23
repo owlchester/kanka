@@ -301,16 +301,16 @@ class DatagridRenderer
                 $class = 'hidden-xs hidden-sm';
                 if ($model->location) {
                     $content = '<a href="' . route('locations.show', $model->location->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->location->tooltipWithName() . '">' .
-                        $model->location->name . '</a>';
+                        e($model->location->name) . '</a>';
                 } elseif ($model->parentLocation) {
                     $content = '<a href="' . route('locations.show', $model->parentLocation->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->parentLocation->tooltipWithName() . '">' .
-                        $model->parentLocation->name . '</a>';
+                        e($model->parentLocation->name) . '</a>';
                 }
             } elseif ($type == 'character') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->character) {
                     $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->character->tooltipWithName() . '">' .
-                        $model->character->name . '</a>';
+                        e($model->character->name) . '</a>';
                 }
             } elseif ($type == 'entity') {
                 $class = 'hidden-xs hidden-sm';
