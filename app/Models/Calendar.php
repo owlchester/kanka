@@ -129,7 +129,7 @@ class Calendar extends MiscModel
     public function months()
     {
         if ($this->loadedMonths === false) {
-            $this->loadedMonths = json_decode($this->months, true);
+            $this->loadedMonths = json_decode(strip_tags($this->months), true);
         }
         return $this->loadedMonths;
     }
@@ -141,7 +141,7 @@ class Calendar extends MiscModel
     public function weekdays()
     {
         if ($this->loadedWeekdays === false) {
-            $this->loadedWeekdays = json_decode($this->weekdays, true);
+            $this->loadedWeekdays = json_decode(strip_tags($this->weekdays), true);
         }
         return $this->loadedWeekdays;
     }
@@ -153,7 +153,7 @@ class Calendar extends MiscModel
     public function years()
     {
         if ($this->loadedYears === false) {
-            $this->loadedYears = json_decode($this->years, true);
+            $this->loadedYears = json_decode(strip_tags($this->years), true);
         }
         return $this->loadedYears;
     }
@@ -166,7 +166,7 @@ class Calendar extends MiscModel
     public function moons()
     {
         if ($this->loadedMoons === false) {
-            $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : $this->moons, true);
+            $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : strip_tags($this->moons), true);
         }
         return $this->loadedMoons;
     }
@@ -178,7 +178,7 @@ class Calendar extends MiscModel
     public function seasons()
     {
         if ($this->loadedSeasons === false) {
-            $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : $this->seasons, true);
+            $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
         }
         return $this->loadedSeasons;
     }
@@ -191,7 +191,7 @@ class Calendar extends MiscModel
     private function param($field)
     {
         if ($this->params === false) {
-            $this->params = json_decode($this->parameters, true);
+            $this->params = json_decode(strip_tags($this->parameters), true);
         }
 
         if (isset($this->params[$field])) {

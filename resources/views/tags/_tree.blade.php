@@ -22,7 +22,7 @@
             'label' => trans('tags.fields.tag'),
             'render' => function($model) {
                 if ($model->tag) {
-                    return '<a href="' . route('tags.show', $model->tag->id) . '">' . $model->tag->name . '</a>';
+                    return '<a href="' . route('tags.show', $model->tag->id) . '">' . e($model->tag->name) . '</a>';
                 }
             },
             'field' => 'tag.name',
