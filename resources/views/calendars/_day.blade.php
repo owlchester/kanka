@@ -25,7 +25,9 @@
                     <?php /** @var \App\Models\EntityEvent $event */?>
                     <div class="label calendar-event-block {{ $event->getLabelColour() }}" data-toggle="ajax-modal"
                        data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}">
+                        @if (!empty($event->entity->child->image))
                         <a href="{{ $event->entity->url() }}" class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');"></a>
+                        @endif
                         <span data-toggle="tooltip" title="{{ $event->entity->tooltip() }}">{{ $event->entity->name }}</span>
                         {!! $event->getLabel() !!}
                     </div>

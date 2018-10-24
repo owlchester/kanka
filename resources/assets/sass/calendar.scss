@@ -57,6 +57,13 @@
       .colour-pallet {
         color: white;
       }
+
+      .bg-gray {
+        color: #333 !important;
+        .calendar-event-comment {
+          color: #333 !important;
+        }
+      }
       //.bg-black, .bg-blue, .bg-green, .bg-maroon, .bg-navy {
       //  color: white;
       //  .calendar-event-comment {
