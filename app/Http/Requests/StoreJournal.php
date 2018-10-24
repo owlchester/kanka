@@ -32,9 +32,12 @@ class StoreJournal extends FormRequest
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {
-            $rules['length'] = 'required_with:calendar_id|min:1';
             $rules['calendar_day'] = 'required_with:calendar_id|min:1';
             $rules['calendar_year'] = 'required_with:calendar_id';
+
+            if (request()->has('length')) {
+                $rules['length'] = 'required_with:calendar_id|min:1';
+            }
         }
 
         return $rules;
