@@ -81,12 +81,17 @@ $(document).ready(function () {
             openingEntityFileModal = true;
             entityFileModal.on('shown.bs.modal', function (e) {
                 initEntityFileModal();
-                registerDelete();
+                registerDeleteBtn();
+                registerRenameBtn();
+                registerRenameField();
             });
         });
     }
 });
 
+/**
+ *
+ */
 function initEntityFileModal() {
     if (!openingEntityFileModal) {
         return;
@@ -104,6 +109,13 @@ function initEntityFileModal() {
     }).on('click', function (e) {
         console.log('clicked');
         $('#entity-file-upload').trigger('click');
+    });
+
+    // Allow ajax requests
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
 
     $('#entity-file-upload').fileupload({
@@ -143,18 +155,22 @@ function initEntityFileModal() {
     });
 }
 
-function registerDelete() {
+/**
+ * When clicking on the trash, delete an object
+ */
+function registerDeleteBtn() {
     $('.entity-file-remove').each(function () {
         $(this).unbind('click');
         $(this).on('click', function (e) {
             $(this).removeClass('fa-trash').addClass('fa-spinner').addClass('fa-spin');
-            $.ajax({
-                type: 'GET',
+            $.post({
                 url: $(this).data('url'),
+                data: {
+                    '_method': 'DELETE'
+                },
                 context: this
             }).done(function (result, textStatus, xhr) {
                 // Hide this
-                console.log('removed', $(this), $(this).parent());
                 $(this).parent().fadeOut();
                 toggleUpload(result.enabled);
             });
@@ -162,12 +178,93 @@ function registerDelete() {
     });
 }
 
+/**
+ * When clicking on rename, show a special form
+ */
+function registerRenameBtn() {
+    $('.entity-file-rename').each(function (i) {
+        $(this).unbind('click').on('click', function (e) {
+            console.log('rename click');
+            $(this).parent().children('a').hide();
+            $(this).parent().children('input').val($(this).data('default')).show().focus();
+            $(this).hide();
+        });
+    });
+}
+
+/**
+ * Renaming an entity can be submitted hitting enter, or canceled by losing focus
+ */
+function registerRenameField() {
+    $('.entity-file-name').each(function () {
+        $(this).unbind('keypress').unbind('focusout').keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+            var link;
+
+            // Submit
+            if (keyCode === 13) {
+                e.preventDefault();
+                link = $(this).parent().children('a');
+
+                // Ajax rename.
+                $.post({
+                    url: $(this).data('url'),
+                    data: {
+                        '_method': 'PATCH',
+                        'name': $(this).val(),
+                        'csrf-token': $('.csrf-token').val()
+                    },
+                    datatype: 'JSON',
+                    context: this
+                }).done(function (data) {
+                    var newVal = $(this).val();
+                    $(this).val(newVal).hide();
+
+                    // Change link text, data-default and show it
+                    link.data('default', newVal).html(newVal).show();
+
+                    // Enable editing again
+                    $(this).parent().children('.entity-file-rename').data('default', newVal).show();
+                    $('.entity-file-error').hide();
+                }).fail(function (data) {
+                    var errors = '';
+                    for (var key in data.responseJSON.errors) {
+                        // skip loop if the property is from prototype
+                        if (!data.responseJSON.errors.hasOwnProperty(key)) continue;
+
+                        errors += data.responseJSON.errors[key] + "\n";
+                    }
+                    $(this).parent().children('.entity-file-error').text(errors).show();
+                });
+            }
+        }).focusout(function (e) {
+            // Show the normal field, hide the rest. Reset the value.
+            link = $(this).parent().children('a');
+            $(this).val($(this).data('default'));
+            link.show();
+            $(this).hide();
+            $(this).parent().children('.entity-file-rename').show();
+            $('.entity-file-error').hide();
+        });
+    });
+}
+
+/**
+ *
+ * @param data
+ */
 function replaceFileList(data) {
     $('.entity-files').html(data.html);
 
-    registerDelete();
+    registerDeleteBtn();
+    registerRenameBtn();
+    registerRenameField();
 }
 
+/**
+ *
+ * @param enabled
+ */
 function toggleUpload(enabled) {
     if (enabled) {
         entityFileDrop.fadeIn();

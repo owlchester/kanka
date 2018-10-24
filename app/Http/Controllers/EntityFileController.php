@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\EntityFileException;
 use App\Http\Requests\ApplyAttributeTemplate;
+use App\Http\Requests\RenameEntityFile;
 use App\Http\Requests\StoreEntityFile;
 use App\Models\AttributeTemplate;
 use App\Models\Character;
@@ -88,10 +89,28 @@ class EntityFileController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param Request $request
+     * @param Entity $entity
+     * @param EntityFile $entityFile
+     * @throws \RenameEntityFile\Auth\Access\AuthorizationException
+     */
+    public function update(RenameEntityFile $request, Entity $entity, EntityFile $entityFile)
+    {
+        $this->authorize('update', $entity->child);
+
+        $entityFile->name = $request->post('name');
+        $entityFile->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * Remove the EntityFile
      *
-     * @param  \App\Models\CharacterAttribute  $characterAttribute
-     * @return \Illuminate\Http\Response
+     * @param Entity $entity
+     * @param EntityFile $entityFile
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Entity $entity, EntityFile $entityFile)
     {

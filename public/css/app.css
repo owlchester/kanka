@@ -115,6 +115,14 @@
   color: white;
 }
 
+.calendar tbody td .bg-gray {
+  color: #333 !important;
+}
+
+.calendar tbody td .bg-gray .calendar-event-comment {
+  color: #333 !important;
+}
+
 .calendar tbody td.today {
   background-color: #FFFDE2;
 }
@@ -2736,7 +2744,19 @@ table label {
   cursor: pointer;
 }
 
-.panel-entity-files .entity-file-ui {
+.panel-entity-files .entity-file-name {
+  border: none;
+  background: none;
+  display: inline-block;
+  width: 95%;
+  margin-right: -20px;
+}
+
+.panel-entity-files .entity-file-rename {
+  cursor: pointer;
+}
+
+.entity-file-ui {
   padding: 5px;
   cursor: pointer;
 }
@@ -2744,5 +2764,13 @@ table label {
 .entity-file {
   display: block;
   padding: 3px 6px;
+}
+
+.list-group-item {
+  word-break: break-all;
+}
+
+.input-error {
+  border: 1px inset red;
 }
 

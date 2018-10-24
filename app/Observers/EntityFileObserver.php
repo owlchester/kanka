@@ -16,9 +16,14 @@ class EntityFileObserver
     /**
      * @param EntityFile $EntityFile
      */
-    public function creating(EntityFile $EntityFile)
+    public function creating(EntityFile $entityFile)
     {
-        $EntityFile->created_by = auth()->user()->id;
+        $entityFile->created_by = auth()->user()->id;
+    }
+
+    public function deleted(EntityFile $entityFile)
+    {
+        ImageService::cleanup($entityFile, 'path');
     }
 
     /**

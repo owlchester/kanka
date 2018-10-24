@@ -353,13 +353,33 @@ table label {
     cursor: pointer;
   }
 
-  .entity-file-ui {
-    padding: 5px;
+  .entity-file-name {
+    border: none;
+    background: none;
+    display: inline-block;
+    width: 95%;
+    margin-right: -20px;
+  }
+
+  .entity-file-rename {
     cursor: pointer;
   }
+}
+.entity-file-ui {
+  padding: 5px;
+  cursor: pointer;
 }
 
 .entity-file {
   display: block;
   padding: 3px 6px;
+}
+
+
+.list-group-item {
+  word-break: break-all;
+}
+
+.input-error {
+  border: 1px inset red;
 }

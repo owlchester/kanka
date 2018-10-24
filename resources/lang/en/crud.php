@@ -111,7 +111,7 @@ return [
             'manage'    => 'Manage Entity Files',
         ],
         'hints' => [
-            'limit' => ':count/:max files uploaded to this entity.',
+            'limit' => 'Each entity can have a maximum of :max files uploaded to it.',
             'limitations' => 'Supported formats: jpg, png, gif, and pdf. Max file size: :size'
         ],
         'files' => 'Uploaded Files',

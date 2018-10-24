@@ -175,6 +175,7 @@ Route::group([
             'entities.attributes' => 'AttributeController',
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
+            'entities.entity_files' => 'EntityFileController',
 
             'attribute_templates' => 'AttributeTemplateController',
 
@@ -212,9 +213,10 @@ Route::group([
         Route::get('/redirect', 'RedirectController@index')->name('redirect');
 
         // Entity Files
-        Route::get('/entities/{entity}/entity_files', 'EntityFileController@index')->name('entities.entity_files.index');
-        Route::post('/entities/{entity}/entity_files', 'EntityFileController@store')->name('entities.entity_files.store');
-        Route::get('/entities/{entity}/entity_files/{entity_file}', 'EntityFileController@destroy')->name('entities.entity_files.destroy');
+//        Route::get('/entities/{entity}/entity_files', 'EntityFileController@index')->name('entities.entity_files.index');
+//        Route::post('/entities/{entity}/entity_files', 'EntityFileController@store')->name('entities.entity_files.store');
+//        Route::get('/entities/{entity}/entity_files/{entity_file}', 'EntityFileController@destroy')->name('entities.entity_files.destroy');
+//        Route::post('/entities/{entity}/entity_files/{entity_file}/rename', 'EntityFileController@rename')->name('entities.entity_files.rename');
 
         // Move
         Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
