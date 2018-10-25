@@ -34,7 +34,6 @@ return [
         'is_dead'                   => 'Muerto',
         'is_personality_visible'    => 'Personalidad visible',
         'location'                  => 'Procedencia',
-        'mannerisms'                => 'Manías',
         'name'                      => 'Nombre',
         'physical'                  => 'Físico',
         'race'                      => 'Raza',
@@ -133,7 +132,6 @@ return [
         'tabs'          => [
             'conversations' => 'Conversaciones',
             'dice_rolls'    => 'Tiradas de dados',
-            'free'          => 'Observaciones',
             'items'         => 'Objetos',
             'journals'      => 'Diarios',
             'map'           => 'Mapa de relaciones',

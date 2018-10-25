@@ -94,6 +94,7 @@ return [
         'entry'                 => 'Entrada',
         'event'                 => 'Evento',
         'family'                => 'Familia',
+        'files'                 => 'Archivos',
         'image'                 => 'Imagen',
         'is_private'            => 'Privado',
         'location'              => 'Localización',
@@ -102,6 +103,15 @@ return [
         'race'                  => 'Raza',
         'tag'                   => 'Etiqueta',
         'tags'                  => 'Etiquetas',
+    ],
+    'files'             => [
+        'actions'   => [
+            'drop' => 'Haz clic para añadir o arrastra un archivo',
+            'manage' => 'Administrar archivos de la entidad',
+        ],
+        'errors' => [
+            'max' => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+        ]
     ],
     'filter'            => 'Filtrar',
     'filters'           => [
