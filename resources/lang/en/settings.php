@@ -36,18 +36,21 @@ return [
     'patreon'   => [
         'actions'       => [
             'link'  => 'Link Account',
+            'view' => 'Visit Kanka on Patreon'
         ],
+        'benefits' => 'Supporting us on Patreon allows you to upload bigger images, helps us cover the server bills, and helps us dedicate more time working on Kanka.',
         'description'   => 'Syncing with Patreon',
         'errors'        => [
             'invalid_token' => 'Invalid token! Patreon couldn\'t validate your request.',
             'missing_code'  => 'Missing code! Patreon didn\'t send back a code identifying your account.',
             'no_pledge'     => 'No pledge! Patreon identified your account, but doesn\'t know of any active pledge.',
         ],
-        'link'          => 'Use the following button if you are currently supporting Kanka on Patreon. This will give you access to some cool extra stuff!',
+        'link'          => 'Use the following button if you are currently supporting Kanka on :patreon. This will unlock the bonuses',
         'linked'        => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
         'pledge'        => 'Pledge: :name',
         'success'       => 'Thank you for supporting Kanka on Patreon!',
         'title'         => 'Patreon',
+        'wrong_pledge'  => 'Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us.'
     ],
     'profile'   => [
         'actions'       => [

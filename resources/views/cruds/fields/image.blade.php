@@ -13,7 +13,7 @@
     <p class="text-muted">
         {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
         @if (!auth()->user()->hasRole('patreon'))
-            <a href="https://patreon.com/kankaio" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
+            <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
         @endif
     </p>
 

@@ -17,10 +17,21 @@
                         {{ trans('settings.patreon.title') }}
                     </h2>
 
+                    <p>
+                        {{ __('settings.patreon.benefits') }}
+                    </p>
+                    <p>
+                        <a href="//www.patreon.com/kankaio" target="_blank">{{ __('settings.patreon.actions.view') }} <i class="fa fa-external-link"></i></a>
+                    </p>
+
+                    <hr />
+
                     @if(auth()->user()->hasRole('patreon'))
-                        <p class="text-muted">{{ __('settings.patreon.linked') }}</p>
+                        <p>{{ __('settings.patreon.linked') }}</p>
 
                         <p>{{ trans('settings.patreon.pledge', ['name' => auth()->user()->patreon_pledge ?: 'Kobold']) }}</p>
+
+                        <p class="help-block">{{ __('settings.patreon.wrong_pledge') }}</p>
                     @else
                     <p class="text-muted">{{ __('settings.patreon.link') }}</p>
 
