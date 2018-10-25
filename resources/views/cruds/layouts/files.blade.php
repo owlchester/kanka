@@ -1,3 +1,4 @@
+@if (config('entities.file_upload'))
 <li class="list-group-item">
     <p class="text-muted">
         <b>{{ trans('crud.fields.files') }}
@@ -13,3 +14,4 @@
         @endforeach
     </p>
 </li>
+@endif

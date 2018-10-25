@@ -120,7 +120,7 @@ return [
         'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
-        'image_patreon'         => 'Augmenter la limite en nous supportant sur Patreon',
+        'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
     ],
     'history'           => [

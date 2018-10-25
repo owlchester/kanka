@@ -136,7 +136,7 @@ return [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
-        'image_patreon'         => 'Increase the limit by supporting us on Patreon',
+        'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'Hide from non "Admin" users.',
     ],
     'history'           => [
@@ -255,6 +255,7 @@ return [
         'hint'      => 'Relations between entities can be set up to represent their connections.',
     ],
     'remove'            => 'Remove',
+    'rename'            => 'Rename',
     'save'              => 'Save',
     'save_and_close'    => 'Save and Close',
     'save_and_new'      => 'Save and New',
