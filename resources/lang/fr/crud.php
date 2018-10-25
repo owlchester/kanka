@@ -94,6 +94,7 @@ return [
         'entry'                 => 'Entrée',
         'event'                 => 'Evénement',
         'family'                => 'Famille',
+        'files'                 => 'Fichiers',
         'image'                 => 'Image',
         'is_private'            => 'Privé',
         'location'              => 'Lieu',
@@ -102,6 +103,21 @@ return [
         'race'                  => 'Race',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
+    ],
+    'files'             => [
+        'actions'   => [
+            'drop'      => 'Ajouter un fichier en cliquant ou en glissant déposant',
+            'manage'    => 'Gérer les fichiers d\'entité',
+        ],
+        'errors'    => [
+            'max'   => 'Nombre maximal de fichier (:max) atteint pour cette entité.',
+        ],
+        'files'     => 'Fichiers uploadé',
+        'hints'     => [
+            'limit'         => 'Chaque entité peut avoir un nombre maximal de :max fichiers uploadé.',
+            'limitations'   => 'Formats supportés: jpg, png, gif et pdf. Taille maximale: :size',
+        ],
+        'title'     => 'Fichiers d\'entité pour :name',
     ],
     'filter'            => 'Filtre',
     'filters'           => [
@@ -225,6 +241,7 @@ return [
         'location'      => 'Choix du lieu',
         'organisation'  => 'Choix d\'une organisation',
         'race'          => 'Choix d\'une race',
+        'tag'           => 'Choix d\'une étiquette',
     ],
     'relations'         => [
         'actions'   => [
@@ -238,6 +255,7 @@ return [
         'hint'      => 'Des relations entre les entités peuvent être définies pour représenter leur connexion.',
     ],
     'remove'            => 'Supprimer',
+    'rename'            => 'Renommer',
     'save'              => 'Enregistrer',
     'save_and_close'    => 'Enregistrer et Fermer',
     'save_and_new'      => 'Enregistrer et Nouveau',
