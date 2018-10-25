@@ -9,7 +9,7 @@
     </p>
 
     <div class="entity-file-list" data-url="{{ route('entities.files', [$model->entity]) }}">
-        @include('entities.panels.files', ['entity' => $model->entity])
+        @include('entities.components._files', ['entity' => $model->entity])
     </div>
 </li>
 @endif

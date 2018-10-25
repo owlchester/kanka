@@ -11,8 +11,8 @@
                 </h3>
 
                 <ul class="list-group list-group-unbordered">
-                    @include('cruds.lists.location')
-                    @include('cruds.layouts.tags')
+                    @include('entities.components.tags')
+                    @include('entities.components.files')
                 </ul>
 
                 @include('.cruds._actions')

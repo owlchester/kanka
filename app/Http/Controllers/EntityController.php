@@ -92,6 +92,6 @@ class EntityController extends Controller
     {
         $this->authorize('view', $entity->child);
 
-        return view('entities.panels.files', compact('entity'));
+        return view('entities.components._files', compact('entity'));
     }
 }

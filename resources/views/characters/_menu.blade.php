@@ -39,8 +39,8 @@
                 </li>
             @endif
 
-            @include('cruds.layouts.tags')
-            @include('cruds.layouts.files')
+            @include('entities.components.tags')
+            @include('entities.components.files')
         </ul>
 
         @include('.cruds._actions')
