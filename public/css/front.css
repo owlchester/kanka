@@ -4160,3 +4160,21 @@ ul.pagination li span {
   margin-bottom: 30px;
 }
 
+.label {
+  display: inline;
+  padding: .2em .5em .3em;
+  font-size: 50%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.label-default {
+  background-color: #dce0e8;
+  color: #444;
+}
+
