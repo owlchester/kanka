@@ -87,4 +87,11 @@ class EntityController extends Controller
             'name' => $entity->name
         ]);
     }
+
+    public function files(Entity $entity)
+    {
+        $this->authorize('view', $entity->child);
+
+        return view('entities.panels.files', compact('entity'));
+    }
 }

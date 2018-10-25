@@ -351,6 +351,9 @@ table label {
 
   .entity-file-remove {
     cursor: pointer;
+    &:hover {
+      color: #b31830;
+    }
   }
 
   .entity-file-name {
@@ -360,14 +363,15 @@ table label {
     width: 95%;
     margin-right: -20px;
   }
-
-  .entity-file-rename {
-    cursor: pointer;
+}
+.entity-file-rename, .entity-file-ui {
+  cursor: pointer;
+  &:hover {
+    color: rgba(0, 0, 0, 0.7);
   }
 }
 .entity-file-ui {
   padding: 5px;
-  cursor: pointer;
 }
 
 .entity-file {

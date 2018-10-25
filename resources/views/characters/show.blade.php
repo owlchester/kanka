@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-2 col-md-3">
         @include('characters._menu')
     </div>
 
-    <div class="col-md-7">
+    <div class="col-lg-8 col-md-6">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
@@ -42,7 +42,7 @@
         @include('cruds.boxes.history')
     </div>
 
-    <div class="col-md-2">
+    <div class="col-lg-2 col-md-3">
         <!-- About Me Box -->
         <div class="box">
             <div class="box-header with-border">

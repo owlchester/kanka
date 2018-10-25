@@ -54,7 +54,7 @@ function initEntityFileModal() {
         dataType: 'json',
         add: function (e, data) {
             entityFileDrop.hide();
-            console.log('data', data);
+            $('.entity-file-upload-error').hide();
             data.submit();
         },
         progressall: function (e, data) {
@@ -75,16 +75,22 @@ function initEntityFileModal() {
                 replaceFileList(data.result);
                 toggleUpload(data.result.enabled);
                 $('.entity-file-upload-error').hide();
+
+                refreshEntityFileList();
             } else {
-                $('.entity-file-upload-error').text(data.result.error).fadeToggle();
+                $('.entity-file-upload-error').text(data.result.error).fadeIn();
                 console.log('no success');
             }
+        },
+        fail: function(e, data) {
+            toggleUpload(true);
+            $('.progress').hide();
+            $('.entity-file-upload-error').text(buildErrors(data.jqXHR.responseJSON.errors)).fadeToggle();
         }
     });
 
     // When dropped, start uploading pronto
     entityFileDrop.bind('drop', function(e) {
-        console.log('file dropped');
         entityFileProgress.show();
     });
 
@@ -108,6 +114,7 @@ function registerDeleteBtn() {
                 // Hide this
                 $(this).parent().fadeOut();
                 toggleUpload(result.enabled);
+                refreshEntityFileList();
             });
         });
     })
@@ -163,15 +170,10 @@ function registerRenameField() {
                         $(this).parent().children('.entity-file-rename').data('default', newVal).show();
                         $('.entity-file-error').hide();
 
-                    }).fail(function(data) {
-                        var errors = '';
-                        for (var key in data.responseJSON.errors) {
-                            // skip loop if the property is from prototype
-                            if (!data.responseJSON.errors.hasOwnProperty(key)) continue;
+                        refreshEntityFileList();
 
-                            errors += data.responseJSON.errors[key] + "\n";
-                        }
-                        $(this).parent().children('.entity-file-error').text(errors).show();
+                    }).fail(function(data) {
+                        $(this).parent().children('.entity-file-error').text(buildErrors(data.responseJSON.errors)).show();
                     });
                 }
             })
@@ -185,6 +187,22 @@ function registerRenameField() {
                 $('.entity-file-error').hide();
             })
     });
+}
+
+/**
+ *
+ * @param data
+ * @returns {string}
+ */
+function buildErrors(data) {
+    var errors = '';
+    for (var key in data) {
+        // skip loop if the property is from prototype
+        if (!data.hasOwnProperty(key)) continue;
+
+        errors += data[key] + "\n";
+    }
+    return errors;
 }
 
 /**
@@ -211,4 +229,21 @@ function toggleUpload(enabled) {
         entityFileDrop.hide();
         entityFileMax.fadeIn();
     }
+}
+
+/**
+ * Refresh the file list behind the modal
+ */
+function refreshEntityFileList() {
+    $('.entity-file-list').each(function() {
+        // Get the new list with ajax, as someone else might also be changing the file list.
+        $.ajax({
+            url: $(this).data('url'),
+            context: this
+        }).done(function(data) {
+            if (data) {
+                $(this).html(data);
+            }
+        });
+    });
 }

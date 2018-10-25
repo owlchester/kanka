@@ -222,6 +222,9 @@ Route::group([
         Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
         Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 
+        // Entity files
+        Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
+
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
 
