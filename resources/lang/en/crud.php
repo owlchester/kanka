@@ -138,6 +138,7 @@ return [
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'Hide from non "Admin" users.',
+        'unsaved_changes'       => 'You have unsaved changes to this form. Are you sure you want to ignore them?',
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',

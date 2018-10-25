@@ -14,10 +14,10 @@
             <th><a href="{{ route($name . '.show', [$model, 'order' => 'notes/is_private', '#notes']) }}">{{ trans('crud.fields.is_private') }}@if (request()->get('order') == 'notes/is_private') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         @endif
         <th class="text-right">@can('attribute', [$model, 'add'])
-                <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus"></i> <span class="visible-lg">{{ trans('crud.notes.actions.add') }}</span>
-                </a>
-            @endcan
+            <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus"></i> <span class="visible-lg">{{ trans('crud.notes.actions.add') }}</span>
+            </a>
+        @endcan
         </th>
     </tr>
     @foreach ($r as $note)
