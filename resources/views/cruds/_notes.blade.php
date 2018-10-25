@@ -7,7 +7,7 @@
         <th>
             <a href="{{ route($name . '.show', [$model, 'order' => 'notes/name', '#notes']) }}">{{ trans('crud.notes.fields.name') }}@if (request()->get('order') == 'notes/name') <i class="fa fa-long-arrow-down"></i>@endif</a>
         </th>
-        <th class="visible-md visible-lg">
+        <th class="visible-lg">
             <a href="{{ route($name . '.show', [$model, 'order' => 'notes/creator.name', '#notes']) }}">{{ trans('crud.notes.fields.creator') }}@if (request()->get('order') == 'notes/creator.name') <i class="fa fa-long-arrow-down"></i>@endif</a>
         </th>
         @if (Auth::check() && Auth::user()->isAdmin())
@@ -15,7 +15,7 @@
         @endif
         <th class="text-right">@can('attribute', [$model, 'add'])
                 <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus"></i> <span class="visible-md visible-lg">{{ trans('crud.notes.actions.add') }}</span>
+                    <i class="fa fa-plus"></i> <span class="visible-lg">{{ trans('crud.notes.actions.add') }}</span>
                 </a>
             @endcan
         </th>
