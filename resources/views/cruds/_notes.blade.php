@@ -25,7 +25,7 @@
             <td>
                 <a href="#" data-toggle="entity-note" data-target="#entity-note" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a>
             </td>
-            <td class="visible-md visible-lg">
+            <td class="visible-lg">
                 @if ($note->creator)
                     {{ $note->creator->name }}
                 @endif
@@ -40,13 +40,13 @@
             <td class="text-right">
                 @can('attribute', [$model, 'edit'])
                     <a href="{{ route('entities.entity_notes.edit', ['entity' => $model->entity, 'entity_note' => $note]) }}" class="btn btn-xs btn-primary">
-                        <i class="fa fa-pencil"></i> <span class="visible-md visible-lg">{{ trans('crud.edit') }}</span>
+                        <i class="fa fa-pencil"></i> <span class="visible-lg">{{ trans('crud.edit') }}</span>
                     </a>
                 @endcan
                 @can('attribute', [$model, 'delete'])
                     {!! Form::open(['method' => 'DELETE','route' => ['entities.entity_notes.destroy', 'entity' => $model->entity, 'entity_note' => $note],'style'=>'display:inline']) !!}
                     <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-trash" aria-hidden="true"></i> <span class="visible-md visible-lg">{{ trans('crud.remove') }}</span>
+                        <i class="fa fa-trash" aria-hidden="true"></i> <span class="visible-lg">{{ trans('crud.remove') }}</span>
                     </button>
                     {!! Form::close() !!}
                 @endcan
