@@ -106,7 +106,7 @@ return [
         'appearance_entry'  => 'Beschreibung',
         'appearance_name'   => 'Haare, Augen, Haut, Größe',
         'family'            => 'Bitte wähle einen Charakter',
-        'languages'         => 'Sprachen',
+        'image'             => 'Bild',
         'location'          => 'Bitte wähle einen Aufenthaltsort',
         'name'              => 'Name',
         'personality_entry' => 'Details',

@@ -103,10 +103,6 @@ return [
         'faq'       => 'Preguntas Frecuentes',
         'features'  => 'Caracteristicas',
         'help'      => 'Ayuda',
-        'languages' => [
-            'en'    => 'Inglés',
-            'fr'    => 'Francés',
-        ],
         'login'     => 'Iniciar sesión',
         'privacy'   => 'Política de Privacidad',
         'register'  => 'Registrarse',

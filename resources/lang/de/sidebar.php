@@ -28,6 +28,7 @@ return [
     'releases'              => 'Versionshinweise',
     'search'                => 'Suche...',
     'support'               => 'Support / Community',
+    'tags'                  => 'Tags',
     'team'                  => 'Team',
     'translations'          => 'Übersetzungen',
     'trello'                => 'Trello',

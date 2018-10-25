@@ -32,7 +32,8 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
+        'descendants'   => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
+        'nested'        => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
     ],
     'index'         => [
         'actions'       => [

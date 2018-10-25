@@ -12,7 +12,8 @@ return [
             'title'         => 'Hervorgehobene Kampagnen',
         ],
         'public'            => [
-            'title' => 'Öffentliche Kampagnen',
+            'description'   => 'Schau dir zur Inspiration die öffentliche Kampagne an.',
+            'title'         => 'Öffentliche Kampagnen',
         ],
         'title'             => 'Öffentliche Kampagnen',
     ],

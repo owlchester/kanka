@@ -17,6 +17,7 @@ return [
         'characters'    => 'Charaktere',
         'children'      => 'Kinder',
         'name'          => 'Name',
+        'tag'           => 'Tag',
         'type'          => 'Typ',
     ],
     'helpers'       => [
@@ -35,6 +36,7 @@ return [
         'header'        => 'Kategorien von :name',
         'title'         => 'Kategorien',
     ],
+    'new_tag'       => 'Neues Tag',
     'placeholders'  => [
         'name'  => 'Name der Kategorie',
         'tag'   => 'Wähle eine Elternkategorie',

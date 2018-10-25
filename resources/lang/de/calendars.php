@@ -2,10 +2,28 @@
 
 return [
     'actions'       => [
+        'add_epoch'     => 'Epoche hinzufügen',
         'add_month'     => 'Monat hinzufügen',
+        'add_moon'      => 'Mond hinzufügen',
+        'add_season'    => 'Jahreszeit hinzufügen',
         'add_weekday'   => 'Wochentag hinzufügen',
         'add_year'      => 'Jahr hinzufügen',
         'today'         => 'Heute',
+    ],
+    'checkboxes'    => [
+        'is_recurring'  => 'Wiederholt sich jedes Jahr',
+    ],
+    'colours'       => [
+        'black'     => 'Schwarz',
+        'blue'      => 'Blau',
+        'default'   => 'Standard',
+        'green'     => 'Grün',
+        'maroon'    => 'Kastanie',
+        'navy'      => 'Marineblau',
+        'orange'    => 'Orange',
+        'purple'    => 'Lila',
+        'red'       => 'Rot',
+        'teal'      => 'Grünblau',
     ],
     'create'        => [
         'description'   => 'Einen neuen Kalender erstellen',
@@ -26,7 +44,17 @@ return [
             'new'       => 'Neues Ereignis',
             'switch'    => 'Auswahl ändern',
         ],
+        'create'    => [
+            'description'   => 'Erstelle ein Kalender Ereignis',
+            'success'       => 'Kalender Ereignis wurde erstellt',
+            'title'         => 'Kalender Ereignis zu :name hinzufügen',
+        ],
         'destroy'   => 'Ereignis aus Kalender :name entfernt',
+        'edit'      => [
+            'description'   => 'Aktualisiere ein Kalender Ereignis',
+            'success'       => 'Kalender Ereignis wurde aktualisiert',
+            'title'         => 'Aktualisiere das Kalender Ereignis in :name',
+        ],
         'helpers'   => [
             'add'   => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
             'new'   => 'Oder gebe einfach einen Namen für ein neues EVent ein.',
@@ -37,6 +65,7 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'fields'        => [
+        'colour'            => 'Farbe',
         'comment'           => 'Kommentar',
         'current_day'       => 'Aktueller Tag',
         'current_month'     => 'Aktueller Monat',
@@ -51,6 +80,7 @@ return [
         'length'            => 'Länge des Ereignisses',
         'length_days'       => ':count Tag|:count Tage',
         'months'            => 'Monate',
+        'moons'             => 'Monde',
         'name'              => 'Name',
         'parameters'        => 'Parameter',
         'recurring_until'   => 'Wiederholt sich bis zum Jahr',
@@ -61,6 +91,11 @@ return [
     ],
     'hints'         => [
         'is_recurring'  => 'Ein Event kann wiederkehrend sein. Es wird dann jedes Jahr am gleichen Tag erscheinen.',
+        'months'        => 'Dein Kalender sollte mindestens 2 Monate haben.',
+        'moons'         => 'Hinzugefügte Monde werden bei jedem Vollmond im Kalender angezeigt.',
+        'seasons'       => 'Erstelle Jahreszeiten in dem du den jeweiligen Start festlegst. Kanka übernimmt den Rest.',
+        'weekdays'      => 'Lege die Namen deiner Wochentage fest. Es werden mindestens 2 Wochentage benötigt.',
+        'years'         => 'Manche Jahre sind so wichtig, dass sie ihren eigenen Namen haben.',
     ],
     'index'         => [
         'add'           => 'Neuer Kalender',
@@ -77,16 +112,26 @@ return [
         'years'     => 'Benamte Jahre',
     ],
     'parameters'    => [
-        'month' => [
+        'month'     => [
             'length'    => 'Anzahl der Tage',
             'name'      => 'Monatsname',
         ],
-        'year'  => [
+        'moon'      => [
+            'fullmoon'  => 'Vollmond alle (Tage)',
+            'name'      => 'Mond Name',
+        ],
+        'seasons'   => [
+            'day'   => 'Starttag',
+            'month' => 'Startmonat',
+            'name'  => 'Jahreszeitname',
+        ],
+        'year'      => [
             'name'      => 'Name',
             'number'    => 'Jahr',
         ],
     ],
     'placeholders'  => [
+        'colour'            => 'Farbe',
         'comment'           => 'Geburtstag, Volksfest, Sonnenwende',
         'date'              => 'Das aktuelle Datum',
         'leap_year_amount'  => 'Anzahl der Tage, die bei einem Schaltjahr hinzugefügt werden',
@@ -103,10 +148,11 @@ return [
         'weekdays'          => 'Anzahl der Tage in einer Woche',
     ],
     'show'          => [
-        'description'   => 'Eine Detailansicht eines Kalenders',
-        'tabs'          => [
+        'description'       => 'Eine Detailansicht eines Kalenders',
+        'moon_full_moon'    => ':moon Vollmond',
+        'tabs'              => [
             'information'   => 'Information',
         ],
-        'title'         => 'Kalender :name',
+        'title'             => 'Kalender :name',
     ],
 ];

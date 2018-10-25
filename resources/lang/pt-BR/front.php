@@ -59,10 +59,6 @@ return [
         'faq'           => 'FAQ',
         'features'      => 'Recursos',
         'help'          => 'Ajuda',
-        'languages'     => [
-            'en'    => 'Inglês',
-            'fr'    => 'Francês',
-        ],
         'login'         => 'Login',
         'register'      => 'Registrar',
         'releases'      => 'Atualizações',

@@ -149,7 +149,7 @@ return [
     ],
     'show'          => [
         'description'       => 'Vista detallada del calendario',
-        'moon_full_moon'    => ':moon en luna llena',
+        'moon_full_moon'    => 'Luna llena',
         'tabs'              => [
             'information'   => 'Información',
         ],

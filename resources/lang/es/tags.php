@@ -33,7 +33,7 @@ return [
             'explore_view'  => 'Vista de exploración',
         ],
         'add'           => 'Nueva Etiqueta',
-        'description'   => 'Administrar etiqueta de :name.',
+        'description'   => 'Administrar etiquetas de :name.',
         'header'        => 'Etiquetas en :name',
         'title'         => 'Etiquetas',
     ],
