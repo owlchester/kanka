@@ -18,7 +18,7 @@ class RaceApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->races);
+        return new Collection($campaign->races()->acl()->paginate());
     }
 
     /**

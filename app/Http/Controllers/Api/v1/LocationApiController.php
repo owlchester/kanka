@@ -18,7 +18,7 @@ class LocationApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->locations);
+        return new Collection($campaign->locations()->acl()->paginate());
     }
 
     /**

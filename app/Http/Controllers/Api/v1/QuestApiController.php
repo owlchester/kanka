@@ -18,7 +18,7 @@ class QuestApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->quests);
+        return new Collection($campaign->quests()->acl()->paginate());
     }
 
     /**

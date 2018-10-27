@@ -18,7 +18,7 @@ class ItemApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->items);
+        return new Collection($campaign->items()->acl()->paginate());
     }
 
     /**

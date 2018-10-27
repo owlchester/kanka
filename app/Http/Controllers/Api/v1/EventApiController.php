@@ -18,7 +18,7 @@ class EventApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->events);
+        return new Collection($campaign->events()->acl()->paginate());
     }
 
     /**

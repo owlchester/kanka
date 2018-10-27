@@ -209,12 +209,20 @@ abstract class MiscModel extends Model
      * @param mixed $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAcl($query, $user)
+    public function scopeAcl($query, $user = null)
     {
+        if (empty($user)) {
+            if (auth()->check()) {
+                $user = auth()->user();
+            } else {
+                // No user, no roles?
+            }
+        }
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
 
-        if (Auth::check()) {
+        // Have a user? Get their roles in this campaign.
+        if (!empty($user)) {
             foreach ($user->campaignRoles as $role) {
                 if ($role->is_admin) {
                     return $query;
@@ -223,17 +231,21 @@ abstract class MiscModel extends Model
             }
         }
 
-        // if there are no roles, we might be in Public mode. Just load public anyway!
+        // If the user has no roles in this campaign, we might be in Public mode
+        // Load the public campaign
         if (empty($roleIds)) {
-            // Go and get the "public" role.
+            // Get the campaign based on what's in the url
             $campaign = CampaignLocalization::getCampaign();
+
+            // Go and get the Public role
             $publicRole = $campaign->roles()->where('is_public', true)->first();
             if ($publicRole) {
                 $roleIds[] = $publicRole->id;
             }
         }
 
-        // Check for a permission related to this action.
+        // If one of our roles has an explicit read permission on this entity type (rather than on an individual
+        // entity), we can skip the rest.
         $key = $this->entityType . '_read';
         $inRole = CampaignPermission::where(['key' => $key])
                 ->whereIn('campaign_role_id', $roleIds)

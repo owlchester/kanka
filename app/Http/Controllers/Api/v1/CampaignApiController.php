@@ -27,6 +27,7 @@ class CampaignApiController extends ApiController
 
     public function update(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
         $campaign->update($request->all());
 
         return new Resource($campaign);
@@ -34,6 +35,7 @@ class CampaignApiController extends ApiController
 
     public function delete(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
         $campaign->delete();
 
         return response()->json(null, 204);

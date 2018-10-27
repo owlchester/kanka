@@ -253,16 +253,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * List of owners
-     * @return mixed
-     */
-    public function owners()
-    {
-        die("deprecated call to Campaign:owners");
-        return $this->members()->where('is_admin', '1');
-    }
-
-    /**
      * Get a list of users who are admins of the campaign
      * @return array
      */
@@ -277,18 +267,6 @@ class Campaign extends MiscModel
             }
         }
         return $users;
-    }
-
-    /**
-     * @return bool
-     */
-    public function member()
-    {
-        die("deprecated call to campaign:member");
-        return $this->members()
-                ->where('role', 'member')
-                ->where('user_id', Auth::user()->id)
-                ->count() == 1;
     }
 
     /**
