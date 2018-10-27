@@ -6,7 +6,7 @@
         <th>{{ trans('quests.fields.type') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->quests()->acl(auth()->user())->orderBy('name', 'ASC')->paginate() as $model)
+    @foreach ($r = $model->quests()->acl()->orderBy('name', 'ASC')->paginate() as $model)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('quests.show', $model->id) }}"></a>

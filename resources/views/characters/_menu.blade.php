@@ -66,62 +66,62 @@
                     {{--{{ __('characters.show.tabs.map') }}--}}
                 {{--</a>--}}
             {{--</li>--}}
-            @if ($campaign->enabled('items') && $model->items()->acl(auth()->user())->count() > 0)
+            @if ($campaign->enabled('items') && $model->items()->acl()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'items')active @endif">
                     <a href="{{ route('characters.items', $model) }}">
                         {{ __('characters.show.tabs.items') }}
                         <span class="label label-default pull-right">
-                        <?=$model->items()->acl(auth()->user())->count()?>
+                        <?=$model->items()->acl()->count()?>
                     </span>
                     </a>
                 </li>
             @endif
-            @if ($campaign->enabled('organisations') && $model->organisations()->acl(auth()->user())->count() > 0)
+            @if ($campaign->enabled('organisations') && $model->organisations()->acl()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'organisations')active @endif">
                     <a href="{{ route('characters.organisations', $model) }}">
                         {{ __('characters.show.tabs.organisations') }}
                         <span class="label label-default pull-right">
-                        <?=$model->organisations()->acl(auth()->user())->count()?>
+                        <?=$model->organisations()->acl()->count()?>
                     </span>
                     </a>
                 </li>
             @endif
-            @if ($campaign->enabled('journals') && $model->journals()->acl(auth()->user())->count() > 0)
+            @if ($campaign->enabled('journals') && $model->journals()->acl()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'journals')active @endif">
                     <a href="{{ route('characters.journals', $model) }}">
                         {{ __('characters.show.tabs.journals') }}
                         <span class="label label-default pull-right">
-                        <?=$model->journals()->acl(auth()->user())->count()?>
+                        <?=$model->journals()->acl()->count()?>
                     </span>
                     </a>
                 </li>
             @endif
-            @if ($campaign->enabled('quests') && $model->quests()->acl(auth()->user())->count() > 0)
+            @if ($campaign->enabled('quests') && $model->quests()->acl()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'quests')active @endif">
                     <a href="{{ route('characters.quests', $model) }}">
                         {{ __('characters.show.tabs.quests') }}
                         <span class="label label-default pull-right">
-                        <?=$model->quests()->acl(auth()->user())->count()?>
+                        <?=$model->quests()->acl()->count()?>
                     </span>
                     </a>
                 </li>
             @endif
-            @if ($campaign->enabled('dice_rolls') && $model->diceRolls()->acl(auth()->user())->count() > 0)
+            @if ($campaign->enabled('dice_rolls') && $model->diceRolls()->acl()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'dice_rolls')active @endif">
                     <a href="{{ route('characters.dice_rolls', $model) }}">
                         {{ __('characters.show.tabs.dice_rolls') }}
                         <span class="label label-default pull-right">
-                        <?=$model->diceRolls()->acl(auth()->user())->count()?>
+                        <?=$model->diceRolls()->acl()->count()?>
                     </span>
                     </a>
                 </li>
             @endif
-            @if ($campaign->enabled('conversations') && $model->conversations()->acl(auth()->user())->count() > 0)
+            @if ($campaign->enabled('conversations') && $model->conversations()->acl()->count() > 0)
                 <li class="@if(!empty($active) && $active == 'conversations')active @endif">
                     <a href="{{ route('characters.conversations', $model) }}">
                         {{ __('characters.show.tabs.conversations') }}
                         <span class="label label-default pull-right">
-                        <?=$model->conversations()->acl(auth()->user())->count()?>
+                        <?=$model->conversations()->acl()->count()?>
                     </span>
                     </a>
                 </li>

@@ -1,4 +1,4 @@
-@if ($campaign->enabled('tags') && $model->entity->tags()->acl(auth()->user())->count() > 0)
+@if ($campaign->enabled('tags') && $model->entity->tags()->acl()->count() > 0)
     <li class="list-group-item">
         <b>{{ trans('crud.fields.tags') }}</b>
         <p>

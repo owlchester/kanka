@@ -80,7 +80,7 @@ class LocationController extends CrudController
         ]];
 
         $search = $model
-            ->acl(Auth::user())
+            ->acl()
             ->filter($this->filterService->filters())
             ->search(request()->get('search'))
             ->order($this->filterService->order());

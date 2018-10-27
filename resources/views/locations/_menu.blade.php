@@ -52,7 +52,7 @@
                 </a>
             </li>
 
-            @if (($count = $model->descendants()->acl(auth()->user())->count()) > 0)
+            @if (($count = $model->descendants()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'locations')active @endif">
                 <a href="{{ route('locations.locations', $model) }}">
                     {{ __('locations.show.tabs.locations') }}
@@ -63,7 +63,7 @@
             </li>
             @endif
 
-            @if ($campaign->enabled('characters') && ($count = $model->characters()->acl(auth()->user())->count()) > 0)
+            @if ($campaign->enabled('characters') && ($count = $model->characters()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'characters')active @endif">
                 <a href="{{ route('locations.characters', $model) }}">
                     {{ __('locations.show.tabs.characters') }}
@@ -74,7 +74,7 @@
             </li>
             @endif
 
-            @if ($campaign->enabled('events') && ($count = $model->events()->acl(auth()->user())->count()) > 0)
+            @if ($campaign->enabled('events') && ($count = $model->events()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'events')active @endif">
                 <a href="{{ route('locations.events', $model) }}">
                     {{ __('locations.show.tabs.events') }}
@@ -85,7 +85,7 @@
             </li>
             @endif
 
-            @if ($campaign->enabled('items') && ($count = $model->items()->acl(auth()->user())->count()) > 0)
+            @if ($campaign->enabled('items') && ($count = $model->items()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'items')active @endif">
                 <a href="{{ route('locations.items', $model) }}">
                     {{ __('locations.show.tabs.items') }}
@@ -96,7 +96,7 @@
             </li>
             @endif
 
-            @if ($campaign->enabled('organisations') && ($count = $model->organisations()->acl(auth()->user())->count()) > 0)
+            @if ($campaign->enabled('organisations') && ($count = $model->organisations()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'organisations')active @endif">
                 <a href="{{ route('locations.organisations', $model) }}">
                     {{ __('locations.show.tabs.organisations') }}

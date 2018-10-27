@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
+use App\Facades\EntityPermission;
 use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Entity;
@@ -73,7 +75,7 @@ class SearchController extends Controller
         foreach ($this->entity->entities(['menu_links']) as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
-                $results[$element] = $model->acl(Auth::user())->search($term)->limit(5)->get();
+                $results[$element] = $model->acl()->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
                 $resultCount += count($results[$element]);
 
@@ -155,10 +157,18 @@ class SearchController extends Controller
      */
     public function mentions(Request $request)
     {
+        return $this->live($request);
+    }
+
+    /**
+     * Live Search
+     */
+    public function live(Request $request)
+    {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
 
         // Figure out what kind of entities we want.
-
         if (empty($term)) {
             $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
@@ -169,46 +179,26 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force having a child for "ghost" entities.
             if ($model->child) {
-                $formatted[] = [
-                    'id' => $model->id,
-                    'fullname' => $model->name,
-                    'name' => (!empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : null) . $model->name . ' (' . trans('entities.' . $model->type) . ')',
-                    'tooltip' => $model->tooltipWithName(),
-                    'url' => route($model->pluralType() . '.show', $model->entity_id)
-                ];
-            }
-        }
+                // Make sure we can see the entity we're trying to show the user. We do it this way because we
+                // looping through entities which doesn't allow using the acl trait before hand.
+                $canSee = false;
+                if (auth()->check()) {
+                    $canSee = auth()->user()->can('view', $model->child);
+                } else {
+                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
+                }
 
-        return Response::json($formatted);
-    }
-
-    /**
-     * Mentions
-     */
-    public function live(Request $request)
-    {
-        $term = trim($request->q);
-
-        // Figure out what kind of entities we want.
-        if (empty($term)) {
-            $models = Entity::whereIn('type', $this->enabledEntityTypes())->acl()->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Entity::whereIn('type', $this->enabledEntityTypes())->acl()->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            // Force having a child for "ghost" entities.
-            if ($model->child) {
-                $formatted[] = [
-                    'id' => $model->id,
-                    'fullname' => $model->name,
-                    'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
-                    'name' => $model->name,
-                    'type' => trans('entities.' . $model->type),
-                    'tooltip' => $model->tooltip(),
-                    'url' => route($model->pluralType() . '.show', $model->entity_id)
-                ];
+                if ($canSee) {
+                    $formatted[] = [
+                        'id' => $model->id,
+                        'fullname' => $model->name,
+                        'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
+                        'name' => $model->name,
+                        'type' => trans('entities.' . $model->type),
+                        'tooltip' => $model->tooltip(),
+                        'url' => route($model->pluralType() . '.show', $model->entity_id)
+                    ];
+                }
             }
         }
 
@@ -383,9 +373,9 @@ class SearchController extends Controller
     {
         $modelClass = new $class;
         if (empty($term)) {
-            $models = $modelClass->acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = $modelClass->acl()->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = $modelClass->acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = $modelClass->acl()->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

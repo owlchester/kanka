@@ -7,7 +7,7 @@
         <th>{{ trans('crud.fields.tag') }}</th>
         <th>&nbsp;</th>
     </tr>
-    @foreach ($r = $model->descendants()->with('tag')->acl(auth()->user())->orderBy('name', 'ASC')->paginate() as $model)
+    @foreach ($r = $model->descendants()->with('tag')->acl()->orderBy('name', 'ASC')->paginate() as $model)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>

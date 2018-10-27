@@ -80,7 +80,7 @@ class DiceRollResultController extends CrudController
         $models = $model
             ->search(request()->get('search'))
             ->filter($this->filterService->filters())
-            ->acl(Auth::user())
+            ->acl()
             ->order($this->filterService->order())
             ->paginate();
         return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));

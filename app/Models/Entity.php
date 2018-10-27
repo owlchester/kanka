@@ -35,8 +35,7 @@ class Entity extends Model
     /**
      * Traits
      */
-    use CampaignTrait;
-    use BlameableTrait;
+    use CampaignTrait, BlameableTrait;
 
     /**
      * Searchable fields

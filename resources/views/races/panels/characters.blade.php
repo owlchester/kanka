@@ -4,7 +4,7 @@
             {{ trans('races.show.tabs.characters') }}
         </h2>
 
-        <?php  $r = $model->characters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['family'])->paginate(); ?>
+        <?php  $r = $model->characters()->acl()->orderBy('name', 'ASC')->with(['family'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('races.show.tabs.characters') }}</p>
         <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

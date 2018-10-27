@@ -11,7 +11,7 @@
                     $value = $filterService->single($field['field']);
                     if (!empty($value) && $field['type'] == 'select2') {
                         $modelclass = new $field['model'];
-                        $model = $modelclass->acl(auth()->user())->find($value);
+                        $model = $modelclass->acl()->find($value);
                     }?>
                     <label class="field" for="{{ $field['field'] }}">{{ $field['label'] }}</label>
                     <div class="value">{{ (!empty($model) ? $model->name : (!empty($value) ? trans($field['valueKey'] . $value) : null)) }}</div>

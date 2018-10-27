@@ -4,7 +4,7 @@
             {{ trans('locations.show.tabs.characters') }}
         </h2>
 
-        <?php  $r = $model->allCharacters()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
+        <?php  $r = $model->allCharacters()->acl()->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
         <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
