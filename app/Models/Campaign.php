@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\MiscModel;
 use App\Models\Scopes\CampaignScopes;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +44,16 @@ class Campaign extends MiscModel
      * @var array
      */
     protected $searchableColumns  = ['name'];
+
+    /**
+     * Created today
+     * @param $query
+     * @return mixed
+     */
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', Carbon::today());
+    }
 
     /**
      * @return mixed

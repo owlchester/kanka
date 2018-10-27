@@ -254,7 +254,8 @@ Route::group([
     });
 
     // Admin/Moderation tools
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', ['middleware' => ['moderator']]], function () {
+        Route::get('/home', 'Admin\HomeController@index')->name('admin.home');
         Route::get('/campaigns', 'Admin\CampaignController@index')->name('admin.campaigns.index');
     });
 });
