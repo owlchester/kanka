@@ -5,11 +5,9 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Paginatable;
 use App\Scopes\RecentScope;
+use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Sofa\Eloquence\Eloquence;
 
 /**
  * Class MiscModel
@@ -21,7 +19,7 @@ use Sofa\Eloquence\Eloquence;
  */
 abstract class MiscModel extends Model
 {
-    use Paginatable;
+    use Paginatable, AclTrait;
 
     public static $SKIP_SAVING_OBSERVER = false;
 
@@ -200,77 +198,6 @@ abstract class MiscModel extends Model
             }
         }
         return $query;
-    }
-
-    /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $user = null)
-    {
-        if (empty($user)) {
-            if (auth()->check()) {
-                $user = auth()->user();
-            } else {
-                // No user, no roles?
-            }
-        }
-        // Loop through the roles to build a list of ids, and check if one of our roles is an admin
-        $roleIds = [];
-
-        // Have a user? Get their roles in this campaign.
-        if (!empty($user)) {
-            foreach ($user->campaignRoles as $role) {
-                if ($role->is_admin) {
-                    return $query;
-                }
-                $roleIds[] = $role->id;
-            }
-        }
-
-        // If the user has no roles in this campaign, we might be in Public mode
-        // Load the public campaign
-        if (empty($roleIds)) {
-            // Get the campaign based on what's in the url
-            $campaign = CampaignLocalization::getCampaign();
-
-            // Go and get the Public role
-            $publicRole = $campaign->roles()->where('is_public', true)->first();
-            if ($publicRole) {
-                $roleIds[] = $publicRole->id;
-            }
-        }
-
-        // If one of our roles has an explicit read permission on this entity type (rather than on an individual
-        // entity), we can skip the rest.
-        $key = $this->entityType . '_read';
-        $inRole = CampaignPermission::where(['key' => $key])
-                ->whereIn('campaign_role_id', $roleIds)
-                ->count() > 0;
-        if ($inRole) {
-            return $query;
-        }
-
-
-        // Specific access view to an entity for role or user
-        $key = $this->entityType . '_read_';
-        $entityIds = [];
-        foreach (CampaignPermission::where('key', 'like', "%$key%")
-                     ->where(function ($query) use ($user, $roleIds) {
-                         if (!$user) {
-                             return $query->whereIn('campaign_role_id', $roleIds);
-                         }
-                         return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
-                     })
-                     ->get() as $permission) {
-            // One of the permissions is a role, so we have access to all
-            $entityIds[] = $permission->entityId();
-        }
-
-        return $query->whereIn($this->getTable() . '.id', $entityIds);
     }
 
     /**

@@ -7,7 +7,7 @@
 @endcan
 
 <div class="row">
-    @foreach ($model->characters()->with('character')->get() as $character)
+    @foreach ($model->characters()->acl()->with('character')->get() as $character)
         @if ($character->character)
         <div class="col-md-6">
             <div class="box box-widget widget-user-2">

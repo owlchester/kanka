@@ -191,9 +191,9 @@ class SearchController extends Controller
 
         // Figure out what kind of entities we want.
         if (empty($term)) {
-            $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->acl()->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Entity::whereIn('type', $this->enabledEntityTypes())->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Entity::whereIn('type', $this->enabledEntityTypes())->acl()->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

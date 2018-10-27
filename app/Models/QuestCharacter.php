@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\MiscModel;
+use App\Traits\AclTrait;
 use App\Traits\VisibleTrait;
 
 class QuestCharacter extends MiscModel
@@ -11,6 +12,13 @@ class QuestCharacter extends MiscModel
      * Traits
      */
     use VisibleTrait;
+
+    /**
+     * ACL Trait config
+     * Tell the ACL trait that we aren't looking on this model but on locations.
+     */
+    public $entityType = 'character';
+    public $aclFieldName = 'character_id';
 
     /**
      * @var string

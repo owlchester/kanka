@@ -23,22 +23,40 @@ trait AclTrait
      * @param mixed $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAcl($query, $user)
+    public function scopeAcl($query, $user = null)
     {
+        // If we don't have a user passed, assume we want the current logged in user.
+        if (empty($user)) {
+            // If the user is logged in, good. We'll use their roles.
+            if (auth()->check()) {
+                $user = auth()->user();
+            }
+        }
+
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = [];
 
-        if ($user) {
+        // Have a user? Get their roles in this campaign.
+        if (!empty($user)) {
             foreach ($user->campaignRoles as $role) {
                 if ($role->is_admin) {
                     return $query;
                 }
                 $roleIds[] = $role->id;
             }
-        } else {
-            // Campaign public role
+        }
+
+        // If the user has no roles in this campaign, we might be in Public mode
+        // Load the public campaign
+        if (empty($roleIds)) {
+            // Get the campaign based on what's in the url
             $campaign = CampaignLocalization::getCampaign();
-            $roleIds = $campaign->roles()->public()->pluck('id')->toArray();
+
+            // Go and get the Public role
+            $publicRole = $campaign->roles()->where('is_public', true)->first();
+            if ($publicRole) {
+                $roleIds[] = $publicRole->id;
+            }
         }
 
         // Check for a permission related to this action.
@@ -55,6 +73,9 @@ trait AclTrait
         $entityIds = [];
         foreach (CampaignPermission::where('key', 'like', "%$key%")
                      ->where(function ($query) use ($user, $roleIds) {
+                         if (!$user) {
+                             return $query->whereIn('campaign_role_id', $roleIds);
+                         }
                          return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
                      })
                      ->get() as $permission) {
@@ -62,6 +83,12 @@ trait AclTrait
             $entityIds[] = $permission->entityId();
         }
 
-        return $query->whereIn($this->aclFieldName, $entityIds);
+        // Primary key used for the ID lookup. If one is provided by the model (for example in n-to-n
+        // relations), use that one instead.
+        $primaryKey = $this->getTable() . '.id';
+        if (!empty($this->aclFieldName)) {
+            $primaryKey = $this->aclFieldName;
+        }
+        return $query->whereIn($primaryKey, $entityIds);
     }
 }
