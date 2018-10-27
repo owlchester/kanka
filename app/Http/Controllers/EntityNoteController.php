@@ -90,6 +90,24 @@ class EntityNoteController extends Controller
     }
 
     /**
+     * @param Entity $entity
+     * @param EntityNote $entityNote
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function show(Entity $entity, EntityNote $entityNote)
+    {
+        $this->authorize('attribute', [$entity->child, 'view']);
+        $ajax = request()->ajax();
+
+        return view('cruds.notes.' . ($ajax ? '_' : null) . 'show', compact(
+            'entityNote',
+            'entity',
+            'ajax'
+        ));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

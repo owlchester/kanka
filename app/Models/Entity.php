@@ -237,6 +237,9 @@ class Entity extends Model
      */
     public function url($action = 'show')
     {
+        if ($action == 'index') {
+            return route($this->pluralType() . '.index');
+        }
         return route($this->pluralType() . '.' . $action, $this->child->id);
     }
 

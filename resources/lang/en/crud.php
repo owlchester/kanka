@@ -205,6 +205,9 @@ return [
         'placeholders'  => [
             'name'  => 'Name of the note, observation or remark.',
         ],
+        'show' => [
+            'title' => 'Entity Note :name on :entity'
+        ]
     ],
     'or_cancel'         => 'or <a href=":url">cancel</a>',
     'panels'            => [
