@@ -10,12 +10,12 @@
         {!! $entityNote->entry !!}
     </div>
     @if (!$ajax)
+        @can('attribute', [$entity->child, 'edit'])
         <div class="panel-footer text-right">
-            @can('attribute', [$entity->child, 'edit'])
                 <a href="{{ route('entities.entity_notes.edit', ['entity' => $entity, 'entity_note' => $entityNote]) }}" class="btn btn-primary">
                     <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                 </a>
-            @endcan
         </div>
+        @endcan
     @endif
 </div>
