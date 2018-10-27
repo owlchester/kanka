@@ -15,8 +15,7 @@ class Translator
      */
     public function handle($request, Closure $next)
     {
-        $user = \Illuminate\Support\Facades\Auth::user();
-        if (empty($user->is_translator) || $user->is_translator == false) {
+        if (!auth()->user()->hasRole('translator')) {
             return redirect()->route('home');
         }
         return $next($request);
