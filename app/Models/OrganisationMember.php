@@ -37,4 +37,15 @@ class OrganisationMember extends Model
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeOrganisationAcl($query)
+    {
+        $this->entityType = 'organisation';
+        $this->aclFieldName = 'organisation_id';
+        return $query->acl();
+    }
 }
