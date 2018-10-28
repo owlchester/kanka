@@ -15,7 +15,7 @@
         @endif
         <th class="text-right">@can('attribute', [$model, 'add'])
             <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm">
-                <i class="fa fa-plus"></i> <span class="visible-lg">{{ trans('crud.notes.actions.add') }}</span>
+                <i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ trans('crud.notes.actions.add') }}</span>
             </a>
         @endcan
         </th>
@@ -40,13 +40,13 @@
             <td class="text-right">
                 @can('attribute', [$model, 'edit'])
                     <a href="{{ route('entities.entity_notes.edit', ['entity' => $model->entity, 'entity_note' => $note]) }}" class="btn btn-xs btn-primary">
-                        <i class="fa fa-pencil"></i> <span class="visible-lg">{{ trans('crud.edit') }}</span>
+                        <i class="fa fa-pencil"></i> <span class="visible-lg-inline">{{ trans('crud.edit') }}</span>
                     </a>
                 @endcan
                 @can('attribute', [$model, 'delete'])
                     {!! Form::open(['method' => 'DELETE','route' => ['entities.entity_notes.destroy', 'entity' => $model->entity, 'entity_note' => $note],'style'=>'display:inline']) !!}
                     <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-trash" aria-hidden="true"></i> <span class="visible-lg">{{ trans('crud.remove') }}</span>
+                        <i class="fa fa-trash" aria-hidden="true"></i> <span class="visible-lg-inline">{{ trans('crud.remove') }}</span>
                     </button>
                     {!! Form::close() !!}
                 @endcan
