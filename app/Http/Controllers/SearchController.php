@@ -344,19 +344,30 @@ class SearchController extends Controller
     public function months(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
         $formatted = [];
 
         // Load up the calendars of a campaign to get the month names
         $calendars = Calendar::all();
         foreach ($calendars as $calendar) {
-            $months = $calendar->months();
+            // Make sure we can see the entity we're trying to show the user. We do it this way because we
+            // looping through entities which doesn't allow using the acl trait before hand.
+            if (auth()->check()) {
+                $canSee = auth()->user()->can('view', $calendar);
+            } else {
+                $canSee = EntityPermission::hasPermission($calendar->getEntityType(), 'view', null, $calendar->entity, $campaign);
+            }
 
-            foreach ($months as $month) {
-                if ((!empty($term) && strpos($month['name'], $term) !== false) || empty($term)) {
-                    $formatted[] = [
-                        'fullname' => $month['name'],
-                        'name' => $month['name'] . ' (' . $calendar->name . ')',
-                    ];
+            if ($canSee) {
+                $months = $calendar->months();
+
+                foreach ($months as $month) {
+                    if ((!empty($term) && strpos($month['name'], $term) !== false) || empty($term)) {
+                        $formatted[] = [
+                            'fullname' => $month['name'],
+                            'name' => $month['name'] . ' (' . $calendar->name . ')',
+                        ];
+                    }
                 }
             }
         }
