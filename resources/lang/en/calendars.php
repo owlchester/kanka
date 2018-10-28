@@ -19,7 +19,7 @@ return [
         'default'   => 'Default',
         'green'     => 'Green',
         'maroon'    => 'Maroon',
-        'navy'      => 'Navy',
+        'navy'      => 'Navy Blue',
         'orange'    => 'Orange',
         'purple'    => 'Purple',
         'red'       => 'Red',

@@ -55,7 +55,6 @@ class SearchController extends Controller
         $this->entity = $entityService;
         $this->campaign = $campaignService;
 
-
         $this->filterService = new FilterService();
     }
 
@@ -109,6 +108,7 @@ class SearchController extends Controller
     public function entities(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
 
         if (empty($term)) {
             $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
@@ -120,7 +120,17 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force there to be a child! There seems to be a bug where deleted entities still have a row in the "entities" table.
             if ($model->child) {
-                $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                // Make sure we can see the entity we're trying to show the user. We do it this way because we
+                // looping through entities which doesn't allow using the acl trait before hand.
+                if (auth()->check()) {
+                    $canSee = auth()->user()->can('view', $model->child);
+                } else {
+                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
+                }
+
+                if ($canSee) {
+                    $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                }
             }
         }
 
@@ -134,6 +144,7 @@ class SearchController extends Controller
     public function calendarEvent(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
 
         if (empty($term)) {
             $models = Entity::whereIn('type', $this->enabledEntityTypes(['calendars', 'categories']))->limit(10)->orderBy('updated_at', 'DESC')->get();
@@ -145,7 +156,17 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force having a child for "ghost" entities.
             if ($model->child) {
-                $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                // Make sure we can see the entity we're trying to show the user. We do it this way because we
+                // looping through entities which doesn't allow using the acl trait before hand.
+                if (auth()->check()) {
+                    $canSee = auth()->user()->can('view', $model->child);
+                } else {
+                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
+                }
+
+                if ($canSee) {
+                    $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                }
             }
         }
 
@@ -181,7 +202,6 @@ class SearchController extends Controller
             if ($model->child) {
                 // Make sure we can see the entity we're trying to show the user. We do it this way because we
                 // looping through entities which doesn't allow using the acl trait before hand.
-                $canSee = false;
                 if (auth()->check()) {
                     $canSee = auth()->user()->can('view', $model->child);
                 } else {
