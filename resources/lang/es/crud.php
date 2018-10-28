@@ -106,12 +106,18 @@ return [
     ],
     'files'             => [
         'actions'   => [
-            'drop' => 'Haz clic para añadir o arrastra un archivo',
-            'manage' => 'Administrar archivos de la entidad',
+            'drop'      => 'Haz clic para añadir o arrastra un archivo',
+            'manage'    => 'Administrar archivos de la entidad',
         ],
-        'errors' => [
-            'max' => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
-        ]
+        'errors'    => [
+            'max'   => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+        ],
+        'files'     => 'Archivos subidos',
+        'hints'     => [
+            'limit'         => 'Cada entidad puede tener un máximo de :max archivos.',
+            'limitations'   => 'Formatos soportados: jpg, png, gif y pdf. Tamaño máximo de archivo: :size',
+        ],
+        'title'     => 'Archivos de :name',
     ],
     'filter'            => 'Filtrar',
     'filters'           => [
@@ -235,6 +241,7 @@ return [
         'location'      => 'Escoge una localización',
         'organisation'  => 'Elige una organización',
         'race'          => 'Elige una raza',
+        'tag'           => 'Elige una etiqueta',
     ],
     'relations'         => [
         'actions'   => [
@@ -248,6 +255,7 @@ return [
         'hint'      => 'Se pueden vincular entidades para representar sus conexiones.',
     ],
     'remove'            => 'Eliminar',
+    'rename'            => 'Renombrar',
     'save'              => 'Guardar',
     'save_and_close'    => 'Guardar y Cerrar',
     'save_and_new'      => 'Guardar y Crear',

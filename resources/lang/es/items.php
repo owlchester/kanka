@@ -14,12 +14,12 @@ return [
         'title'     => 'Editar objeto :name',
     ],
     'fields'        => [
-        'character'     => 'Personaje',
-        'image'         => 'Imagen',
-        'location'      => 'Localización',
-        'name'          => 'Nombre',
-        'relation'      => 'Relación',
-        'type'          => 'Tipo',
+        'character' => 'Personaje',
+        'image'     => 'Imagen',
+        'location'  => 'Localización',
+        'name'      => 'Nombre',
+        'relation'  => 'Relación',
+        'type'      => 'Tipo',
     ],
     'index'         => [
         'add'           => 'Nuevo Objeto',

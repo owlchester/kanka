@@ -36,7 +36,9 @@ return [
     'patreon'   => [
         'actions'       => [
             'link'  => 'Enlazar cuenta',
+            'view'  => 'Visita la página de Patreon de Kanka',
         ],
+        'benefits'      => 'Si nos ayudas en Patreon podrás subir imágenes más pesadas, y así nos ayudarás a cubrir los costes del servidor y a dedicarle más tiempo a trabajar en Kanka.',
         'description'   => 'Sincronizando con Patreon',
         'errors'        => [
             'invalid_token' => '¡Token no válido! Patreon no ha podido validar tu petición.',
@@ -48,6 +50,7 @@ return [
         'pledge'        => 'Pledge :name',
         'success'       => '¡Gracias por apoyar a Kanka en Patreon!',
         'title'         => 'Patreon',
+        'wrong_pledge'  => 'Añadimos manualmente tu nivel de "pledge", así que ten en cuenta que podemos tardar unos pocos días. Si al cabo de un tiempo sigue sin estar bien, contáctanos por favor.',
     ],
     'profile'   => [
         'actions'       => [
