@@ -40,8 +40,10 @@ Route::apiResources([
     'campaigns.entities.entity_events' => 'EntityEventApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.tags' => 'EntityTagApiController',
+
 ]);
 
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
+Route::get('profile', 'ProfileApiController@index');
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');
