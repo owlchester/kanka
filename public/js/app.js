@@ -52231,7 +52231,6 @@ function scrollToBottom(element) {
 /**
  * Crud
  */
-var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 
 // Character
 var characterAddPersonality, characterTemplatePersonality;
@@ -52276,22 +52275,6 @@ $(document).ready(function () {
     $.each($("input[name='model[]']"), function (index) {
         $(this).change(function (e) {
             toggleCrudMultiDelete();
-        });
-    });
-
-    // Notes modal
-    entityNoteModal = $('#entity-note');
-    entityNoteModalTitle = $('#entity-note-title');
-    entityNoteModalBody = $('#entity-note-body');
-    $.each($('[data-toggle="entity-note"]'), function () {
-        $(this).click(function (e) {
-            e.preventDefault();
-            entityNoteModalTitle.html($(this).attr('data-title'));
-            entityNoteModalBody.html($(this).attr('data-entry'));
-            entityNoteModal.modal();
-
-            // Add tooltips in modal!
-            $('[data-toggle="tooltip"]').tooltip();
         });
     });
 

@@ -137,12 +137,6 @@ a:hover {
   color: #42FFFF !important;
 }
 
-@media (min-width: 1200px) {
-  a span.visible-lg {
-    display: none !important;
-  }
-}
-
 input,
 textarea,
 .select2,

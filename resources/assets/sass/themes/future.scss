@@ -127,14 +127,6 @@ a {
   }
 }
 
-@media (min-width: 1200px) {
-  a {
-    span.visible-lg {
-      display: none !important;
-    }
-  }
-}
-
 input, textarea, .select2, select  {
   border: 1px solid $Hard !important;
   border-radius: 0 !important;
