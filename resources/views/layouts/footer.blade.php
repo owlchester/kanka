@@ -11,16 +11,16 @@
             <a href="mailto:#">hello@kanka.io</a>
         </div>
         <div class="col-xs-4 text-right footer-social">
-            <a href="//twitter.com/kankaio" title="Twitter">
+            <a href="//twitter.com/kankaio" title="Twitter"  rel="noreferrer">
                 <i class="fa fa-twitter"></i>
             </a>
-            <a href="//www.facebook.com/kanka.io.ch/" title="Facebook">
+            <a href="//www.facebook.com/kanka.io.ch/" title="Facebook"  rel="noreferrer">
                 <i class="fa fa-facebook"></i>
             </a>
-            <a href="//www.reddit.com/r/kanka/" title="Reddit">
+            <a href="//www.reddit.com/r/kanka/" title="Reddit"  rel="noreferrer">
                 <i class="fa fa-reddit"></i>
             </a>
-            <a href="//www.patreon.com/kankaio" title="Patreon" class="footer-patreon">
+            <a href="//www.patreon.com/kankaio" title="Patreon" class="footer-patreon"  rel="noreferrer">
                 <img src="/images/thirdparty/patreon-logo-colour.png" alt="Patreon" /> {{ trans('footer.patreon') }}
             </a>
         </div>

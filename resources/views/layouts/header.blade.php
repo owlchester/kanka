@@ -22,7 +22,7 @@
                        placeholder="{{ trans('sidebar.search') }}" data-url="{{ route('search.live') }}"
                        data-empty="{{ trans('search.no_results') }}">
 
-                    <a href="#" class="live-search-close visible-xs visible-sm pull-right">
+                    <a href="#" class="live-search-close visible-xs visible-sm pull-right" name="search-close">
                         <i class="fa fa-close"></i>
                     </a>
             {!! Form::close() !!}
@@ -41,7 +41,7 @@
                 <!-- Only logged in users can have this dropdown, Also only show this if the user has campaigns -->
                 @if (Auth::check() && Auth::user()->hasCampaigns())
                     <li class="dropdown notifications-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
                             <i class="fa fa-bell-o"></i>
                             @if (count($notifications) > 0) <span class="label label-warning">{{ count($notifications) }}</span> @endif
                         </a>
@@ -68,7 +68,7 @@
                 <!-- If there is a current campaign and (the user has at least one other campaign or the user isn't part of the current campaign) -->
                 @if(Auth::check() && $currentCampaign)
                     <li class="dropdown messages-menu campaign-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-current-campaigns">
                             @if ($currentCampaign->image)
                                 <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                             @else
@@ -122,7 +122,7 @@
                     </li>
                 @endif
                 <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-languages">
                         <i class="fa fa-caret-down"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
                     </a>
                     <ul class="dropdown-menu">
@@ -150,7 +150,7 @@
                 <? /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions">
                         <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
 
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
