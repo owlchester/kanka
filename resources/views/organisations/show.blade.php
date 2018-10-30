@@ -12,14 +12,15 @@
 
                 <ul class="list-group list-group-unbordered">
                     @include('cruds.lists.location')
-                    @include('cruds.layouts.tags')
-
                     @if (!empty($model->type))
                         <li class="list-group-item">
                             <b>{{ trans('organisations.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
                             <br class="clear" />
                         </li>
                     @endif
+
+                    @include('entities.components.tags')
+                    @include('entities.components.files')
                 </ul>
                 @include('.cruds._actions')
             </div>

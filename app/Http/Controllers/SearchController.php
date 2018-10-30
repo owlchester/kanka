@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
+use App\Facades\EntityPermission;
 use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Entity;
@@ -53,7 +55,6 @@ class SearchController extends Controller
         $this->entity = $entityService;
         $this->campaign = $campaignService;
 
-
         $this->filterService = new FilterService();
     }
 
@@ -73,7 +74,7 @@ class SearchController extends Controller
         foreach ($this->entity->entities(['menu_links']) as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
-                $results[$element] = $model->acl(Auth::user())->search($term)->limit(5)->get();
+                $results[$element] = $model->acl()->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
                 $resultCount += count($results[$element]);
 
@@ -107,6 +108,7 @@ class SearchController extends Controller
     public function entities(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
 
         if (empty($term)) {
             $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
@@ -118,7 +120,17 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force there to be a child! There seems to be a bug where deleted entities still have a row in the "entities" table.
             if ($model->child) {
-                $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                // Make sure we can see the entity we're trying to show the user. We do it this way because we
+                // looping through entities which doesn't allow using the acl trait before hand.
+                if (auth()->check()) {
+                    $canSee = auth()->user()->can('view', $model->child);
+                } else {
+                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
+                }
+
+                if ($canSee) {
+                    $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                }
             }
         }
 
@@ -132,6 +144,7 @@ class SearchController extends Controller
     public function calendarEvent(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
 
         if (empty($term)) {
             $models = Entity::whereIn('type', $this->enabledEntityTypes(['calendars', 'categories']))->limit(10)->orderBy('updated_at', 'DESC')->get();
@@ -143,7 +156,17 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force having a child for "ghost" entities.
             if ($model->child) {
-                $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                // Make sure we can see the entity we're trying to show the user. We do it this way because we
+                // looping through entities which doesn't allow using the acl trait before hand.
+                if (auth()->check()) {
+                    $canSee = auth()->user()->can('view', $model->child);
+                } else {
+                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
+                }
+
+                if ($canSee) {
+                    $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                }
             }
         }
 
@@ -155,39 +178,16 @@ class SearchController extends Controller
      */
     public function mentions(Request $request)
     {
-        $term = trim($request->q);
-
-        // Figure out what kind of entities we want.
-
-        if (empty($term)) {
-            $models = Entity::whereIn('type', $this->enabledEntityTypes())->limit(10)->orderBy('updated_at', 'DESC')->get();
-        } else {
-            $models = Entity::whereIn('type', $this->enabledEntityTypes())->where('name', 'like', "%$term%")->limit(10)->get();
-        }
-        $formatted = [];
-
-        foreach ($models as $model) {
-            // Force having a child for "ghost" entities.
-            if ($model->child) {
-                $formatted[] = [
-                    'id' => $model->id,
-                    'fullname' => $model->name,
-                    'name' => (!empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : null) . $model->name . ' (' . trans('entities.' . $model->type) . ')',
-                    'tooltip' => $model->tooltipWithName(),
-                    'url' => route($model->pluralType() . '.show', $model->entity_id)
-                ];
-            }
-        }
-
-        return Response::json($formatted);
+        return $this->live($request);
     }
 
     /**
-     * Mentions
+     * Live Search
      */
     public function live(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
 
         // Figure out what kind of entities we want.
         if (empty($term)) {
@@ -200,15 +200,25 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force having a child for "ghost" entities.
             if ($model->child) {
-                $formatted[] = [
-                    'id' => $model->id,
-                    'fullname' => $model->name,
-                    'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
-                    'name' => $model->name,
-                    'type' => trans('entities.' . $model->type),
-                    'tooltip' => $model->tooltip(),
-                    'url' => route($model->pluralType() . '.show', $model->entity_id)
-                ];
+                // Make sure we can see the entity we're trying to show the user. We do it this way because we
+                // looping through entities which doesn't allow using the acl trait before hand.
+                if (auth()->check()) {
+                    $canSee = auth()->user()->can('view', $model->child);
+                } else {
+                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
+                }
+
+                if ($canSee) {
+                    $formatted[] = [
+                        'id' => $model->id,
+                        'fullname' => $model->name,
+                        'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
+                        'name' => $model->name,
+                        'type' => trans('entities.' . $model->type),
+                        'tooltip' => $model->tooltip(),
+                        'url' => route($model->pluralType() . '.show', $model->entity_id)
+                    ];
+                }
             }
         }
 
@@ -334,19 +344,30 @@ class SearchController extends Controller
     public function months(Request $request)
     {
         $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
         $formatted = [];
 
         // Load up the calendars of a campaign to get the month names
         $calendars = Calendar::all();
         foreach ($calendars as $calendar) {
-            $months = $calendar->months();
+            // Make sure we can see the entity we're trying to show the user. We do it this way because we
+            // looping through entities which doesn't allow using the acl trait before hand.
+            if (auth()->check()) {
+                $canSee = auth()->user()->can('view', $calendar);
+            } else {
+                $canSee = EntityPermission::hasPermission($calendar->getEntityType(), 'view', null, $calendar->entity, $campaign);
+            }
 
-            foreach ($months as $month) {
-                if ((!empty($term) && strpos($month['name'], $term) !== false) || empty($term)) {
-                    $formatted[] = [
-                        'fullname' => $month['name'],
-                        'name' => $month['name'] . ' (' . $calendar->name . ')',
-                    ];
+            if ($canSee) {
+                $months = $calendar->months();
+
+                foreach ($months as $month) {
+                    if ((!empty($term) && strpos($month['name'], $term) !== false) || empty($term)) {
+                        $formatted[] = [
+                            'fullname' => $month['name'],
+                            'name' => $month['name'] . ' (' . $calendar->name . ')',
+                        ];
+                    }
                 }
             }
         }
@@ -383,9 +404,9 @@ class SearchController extends Controller
     {
         $modelClass = new $class;
         if (empty($term)) {
-            $models = $modelClass->acl(Auth::user())->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = $modelClass->acl()->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = $modelClass->acl(Auth::user())->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = $modelClass->acl()->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

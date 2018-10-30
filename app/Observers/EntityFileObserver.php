@@ -21,15 +21,11 @@ class EntityFileObserver
         $entityFile->created_by = auth()->user()->id;
     }
 
+    /**
+     * @param EntityFile $entityFile
+     */
     public function deleted(EntityFile $entityFile)
     {
         ImageService::cleanup($entityFile, 'path');
     }
-
-    /**
-     * @param EntityFile $EntityFile
-     */
-//    public function saving(EntityFile $EntityFile)
-//    {
-//    }
 }

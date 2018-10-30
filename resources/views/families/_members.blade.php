@@ -9,7 +9,7 @@
         <th>{{ trans('characters.fields.race') }}</th>
         <th>{{ trans('characters.fields.sex') }}</th>
     </tr>
-    @foreach ($r = $model->members()->acl(auth()->user())->with('location')->paginate() as $relation)
+    @foreach ($r = $model->members()->acl()->with('location')->paginate() as $relation)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->getImageUrl(true) }}');" title="{{ $relation->name }}" href="{{ route('characters.show', $relation->id) }}"></a>

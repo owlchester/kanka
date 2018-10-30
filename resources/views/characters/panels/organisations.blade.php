@@ -4,7 +4,7 @@
             {{ trans('characters.show.tabs.organisations') }}
         </h2>
 
-        <?php  $r = $model->organisations()->acl(auth()->user())->orderBy('role', 'ASC')->has('organisation')->with(['organisation', 'organisation.location'])->paginate(); ?>
+        <?php  $r = $model->organisations()->organisationAcl()->orderBy('role', 'ASC')->has('organisation')->with(['organisation', 'organisation.location'])->paginate(); ?>
         <table id="character-organisations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

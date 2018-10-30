@@ -16,7 +16,7 @@ return [
     'families'              => 'Familias',
     'items'                 => 'Objetos',
     'journals'              => 'Diarios',
-    'locations'             => 'Localizaciones',
+    'locations'             => 'Lugares',
     'manage_links'          => 'Administrar enlaces',
     'navigation'            => 'Menú',
     'notes'                 => 'Notas',

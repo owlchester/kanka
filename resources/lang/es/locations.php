@@ -6,16 +6,16 @@ return [
         'title'         => 'Personajes en :name',
     ],
     'create'        => [
-        'description'   => 'Crear nueva localización',
+        'description'   => 'Crear nuevo lugar',
         'success'       => 'Lugar \':name\' creado.',
-        'title'         => 'Nueva localización',
+        'title'         => 'Nuevo lugar',
     ],
     'destroy'       => [
-        'success'   => 'Localización \':name\' borrada.',
+        'success'   => 'Lugar \':name\' borrado.',
     ],
     'edit'          => [
         'success'   => 'Lugar \':name\' actualizado.',
-        'title'     => 'Editar localización :name',
+        'title'     => 'Editar lugar :name',
     ],
     'events'        => [
         'description'   => 'Eventos que ocurren en este lugar.',
@@ -24,7 +24,7 @@ return [
     'fields'        => [
         'characters'    => 'Personajes',
         'image'         => 'Imagen',
-        'location'      => 'Localización',
+        'location'      => 'Lugar',
         'locations'     => 'Lugares',
         'map'           => 'Mapa',
         'name'          => 'Nombre',
@@ -32,15 +32,15 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estas localizaciones, además de las que están directamente por debajo.',
+        'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
         'nested'        => 'En la Vista de Exploración puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
     ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Vista de exploración',
         ],
-        'add'           => 'Nueva Localización',
-        'description'   => 'Gestionar la localización de :name.',
+        'add'           => 'Nuevo Lugar',
+        'description'   => 'Gestiona los lugares de :name.',
         'header'        => 'Lugares en :name',
         'title'         => 'Lugares',
     ],

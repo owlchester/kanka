@@ -18,7 +18,7 @@ class TagApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->tags);
+        return new Collection($campaign->tags()->acl()->paginate());
     }
 
     /**

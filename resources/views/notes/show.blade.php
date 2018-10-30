@@ -23,7 +23,8 @@
                             <br class="clear" />
                         </li>
                     @endif
-                    @include('cruds.layouts.tags')
+                    @include('entities.components.tags')
+                    @include('entities.components.files')
                 </ul>
                 @include('.cruds._actions')
             </div>

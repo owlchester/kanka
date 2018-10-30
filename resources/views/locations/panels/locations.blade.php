@@ -6,7 +6,7 @@
 
         <p class="help-block">{{ trans('locations.helpers.descendants') }}</p>
 
-        <?php $r = $model->descendants()->with('parent')->acl(auth()->user())->orderBy('name', 'ASC')->paginate(); ?>
+        <?php $r = $model->descendants()->with('parent')->acl()->orderBy('name', 'ASC')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>
         <table id="locations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

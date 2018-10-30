@@ -4,7 +4,7 @@
             {{ trans('characters.show.tabs.items') }}
         </h2>
 
-        <?php  $r = $model->items()->acl(auth()->user())->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
+        <?php  $r = $model->items()->acl()->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
         <table id="character-items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

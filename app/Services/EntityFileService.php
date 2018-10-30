@@ -26,7 +26,7 @@ class EntityFileService
     /**
      * @param string $file
      */
-    public function upload($field = 'file', $folder = 'entities/files/')
+    public function upload($field = 'file', $folder = 'entities/files')
     {
         // Already above max capacity?
         if ($this->entity->files->count() >= config('entities.max_entity_files')) {

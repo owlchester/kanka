@@ -7,7 +7,7 @@
 @endcan
 
 <div class="row">
-    @foreach ($model->locations()->with('location')->get() as $location)
+    @foreach ($model->locations()->acl()->with('location')->get() as $location)
         @if ($location->location)
         <div class="col-md-6">
             <div class="box box-widget widget-user-2">

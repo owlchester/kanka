@@ -33,7 +33,10 @@
                         <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}">
                                 <div class="image-wrapper" @if ($camp->image) style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
                                 </div>
-                            <h4 class="campaign-title">{{ $camp->name }}</h4>
+                            <h4 class="campaign-title">
+                                <span class="label label-default pull-right" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                {{ $camp->name }}
+                            </h4>
                         </a>
                     </div>
                     @endforeach
@@ -56,7 +59,11 @@
                                 <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}" >
                                     <div class="image-wrapper small-campaign" @if ($camp->image) style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
                                     </div>
-                                    <h4 class="campaign-title">{{ $camp->name }}</h4>
+                                    <h4 class="campaign-title">
+                                        <span class="label label-default pull-right" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                        {{ $camp->name }}
+
+                                    </h4>
                                 </a>
                             </div>
                         @endforeach

@@ -37,13 +37,13 @@ class DashboardController extends Controller
             $recentCount = $user->dashboardSetting->recent_count;
         }
 
-        $notes = Note::acl($user)->dashboard()->get();
-        $characters = Character::acl($user)->recent()->with('family')->take($recentCount)->get();
-        $families = Family::acl($user)->recent()->take($recentCount)->get();
-        $locations = Location::acl($user)->recent()->take($recentCount)->get();
-        $items = Item::acl($user)->recent()->take($recentCount)->get();
-        $organisations = Organisation::acl($user)->recent()->take($recentCount)->get();
-        $journals = Journal::acl($user)->recent()->take($recentCount)->get();
+        $notes = Note::acl()->dashboard()->get();
+        $characters = Character::acl()->recent()->with('family')->take($recentCount)->get();
+        $families = Family::acl()->recent()->take($recentCount)->get();
+        $locations = Location::acl()->recent()->take($recentCount)->get();
+        $items = Item::acl()->recent()->take($recentCount)->get();
+        $organisations = Organisation::acl()->recent()->take($recentCount)->get();
+        $journals = Journal::acl()->recent()->take($recentCount)->get();
 
         //$characters = Character::
 

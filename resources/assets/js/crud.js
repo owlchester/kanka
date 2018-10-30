@@ -1,7 +1,6 @@
 /**
  * Crud
  */
-var entityNoteModal, entityNoteModalTitle, entityNoteModalBody;
 
 // Character
 var characterAddPersonality, characterTemplatePersonality;
@@ -12,6 +11,7 @@ var entityFormActions, entityFormDefaultAction;
 var filtersActionsShow, filtersActionHide;
 
 var ajaxModalTarget;
+var entityFormHasUnsavedChanges = false;
 
 // Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
@@ -45,22 +45,6 @@ $(document).ready(function() {
     $.each($("input[name='model[]']"), function (index) {
         $(this).change(function (e) {
             toggleCrudMultiDelete();
-        });
-    });
-
-    // Notes modal
-    entityNoteModal = $('#entity-note');
-    entityNoteModalTitle = $('#entity-note-title');
-    entityNoteModalBody = $('#entity-note-body');
-    $.each($('[data-toggle="entity-note"]'), function () {
-        $(this).click(function (e) {
-            e.preventDefault();
-           entityNoteModalTitle.html($(this).attr('data-title'));
-           entityNoteModalBody.html($(this).attr('data-entry'));
-           entityNoteModal.modal();
-
-           // Add tooltips in modal!
-           $('[data-toggle="tooltip"]').tooltip();
         });
     });
 
@@ -100,6 +84,7 @@ $(document).ready(function() {
     entityFormActions = $('.form-submit-actions');
     if (entityFormActions.length > 0) {
         registerEntityFormActions();
+        registerUnsavedChanges();
     }
 
     registerFormSubmitAnimation();
@@ -338,6 +323,9 @@ function registerEntityFormActions() {
 function registerFormSubmitAnimation() {
     $.each($('form'), function(ele) {
         $(this).on('submit', function(e) {
+            // Saving, skip alert.
+            entityFormHasUnsavedChanges = false;
+
             // Find the main button
             submit = $(this).find('.btn-success');
             if (submit.length > 0) {
@@ -457,4 +445,27 @@ function registerToggablePanels() {
         });
 
     });
+}
+
+/**
+ * If we change something on a form, avoid losing data when going away.
+ */
+function registerUnsavedChanges() {
+    var save = $('#form-submit-main');
+
+    // Save every input change
+    $(document).on('change', ':input', function(){
+        entityFormHasUnsavedChanges = true;
+    });
+
+    if (save.length === 1) {
+        // Another way to bind the event
+        $(window).bind('beforeunload', function (e) {
+            if (entityFormHasUnsavedChanges) {
+                var message = save.data('unsaved');
+                e.returnValue = message;
+                return message;
+            }
+        });
+    }
 }

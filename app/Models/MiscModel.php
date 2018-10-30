@@ -5,10 +5,9 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Paginatable;
 use App\Scopes\RecentScope;
+use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Sofa\Eloquence\Eloquence;
 
 /**
  * Class MiscModel
@@ -20,7 +19,7 @@ use Sofa\Eloquence\Eloquence;
  */
 abstract class MiscModel extends Model
 {
-    use Paginatable;
+    use Paginatable, AclTrait;
 
     public static $SKIP_SAVING_OBSERVER = false;
 
@@ -202,65 +201,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Scope a query to only include elements that are visible
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeAcl($query, $user)
-    {
-        // Loop through the roles to build a list of ids, and check if one of our roles is an admin
-        $roleIds = [];
-
-        if (Auth::check()) {
-            foreach ($user->campaignRoles as $role) {
-                if ($role->is_admin) {
-                    return $query;
-                }
-                $roleIds[] = $role->id;
-            }
-        }
-
-        // if there are no roles, we might be in Public mode. Just load public anyway!
-        if (empty($roleIds)) {
-            // Go and get the "public" role.
-            $campaign = CampaignLocalization::getCampaign();
-            $publicRole = $campaign->roles()->where('is_public', true)->first();
-            if ($publicRole) {
-                $roleIds[] = $publicRole->id;
-            }
-        }
-
-        // Check for a permission related to this action.
-        $key = $this->entityType . '_read';
-        $inRole = CampaignPermission::where(['key' => $key])
-                ->whereIn('campaign_role_id', $roleIds)
-                ->count() > 0;
-        if ($inRole) {
-            return $query;
-        }
-
-
-        // Specific access view to an entity for role or user
-        $key = $this->entityType . '_read_';
-        $entityIds = [];
-        foreach (CampaignPermission::where('key', 'like', "%$key%")
-                     ->where(function ($query) use ($user, $roleIds) {
-                         if (!$user) {
-                             return $query->whereIn('campaign_role_id', $roleIds);
-                         }
-                         return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
-                     })
-                     ->get() as $permission) {
-            // One of the permissions is a role, so we have access to all
-            $entityIds[] = $permission->entityId();
-        }
-
-        return $query->whereIn($this->getTable() . '.id', $entityIds);
-    }
-
-    /**
      * @return mixed
      */
     public function permissions()
@@ -326,6 +266,18 @@ abstract class MiscModel extends Model
                     ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
                     ->orderBy(str_replace($relationName, 'f', $field), $direction);
             } else {
+                // Order by related table? Yeah that's fun.
+                // While this would be possible, this would mean injecting the acl/permission system just for an order by, which seems quite overkill.
+                // A better solution might present itself during a future rewrite of the acl engine.
+//                if (substr($field, 0, 6) == 'count(') {
+//                    $relationName = preg_replace('/count\((.*)\)/si', '$1', $field);
+//                    $relation = $this->{$relationName}();
+//                    $foreignName = $relation->getQuery()->getQuery()->from;
+//
+//                    return $query
+//                        ->orderByRaw('(select count(*) from ' . $foreignName . ' where ' . $relation->getForeignKeyName() . ' = ' . $this->getTable() . '.' . $this->primaryKey . ') ' . $direction);
+//                }
+
                 // If the field has a casting
                 if (!empty($this->orderCasting[$field])) {
                     return $query->orderByRaw('cast(' . $this->getTable() . '.' . $field . ' as ' . $this->orderCasting[$field] . ')', $direction);

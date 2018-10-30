@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Services\FilterService;
-use App\Services\PermissionService;
-use Arrilot\Widgets\ServiceProvider;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +13,8 @@ use LogicException;
 
 class CrudController extends Controller
 {
+    use GuestAuthTrait;
+
     /**
      * The view where to find the resources
      *
@@ -92,7 +93,7 @@ class CrudController extends Controller
             ->preparedWith()
             ->search(request()->get('search'))
             ->filter($this->filterService->filters())
-            ->acl(Auth::user())
+            ->acl()
             ->order($this->filterService->order())
             ->paginate();
         return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
@@ -292,22 +293,11 @@ class CrudController extends Controller
     }
 
     /**
-     * Secondary Authentication for Guest users
-     * @param $action
      * @param $model
+     * @param $view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function authorizeForGuest($action, $model)
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $mainModel = new $this->model;
-        $permission = EntityPermission::hasPermission($mainModel->getEntityType(), $action, null, $model, $campaign);
-
-        if ($campaign->id != $model->campaign_id || !$permission) {
-            // Raise an error
-            abort('403');
-        }
-    }
-
     protected function menuView($model, $view)
     {
 

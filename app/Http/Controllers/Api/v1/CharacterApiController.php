@@ -18,7 +18,7 @@ class CharacterApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->characters);
+        return new Collection($campaign->characters()->acl()->paginate());
     }
 
     /**

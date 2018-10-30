@@ -18,7 +18,7 @@ class OrganisationApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->organisations);
+        return new Collection($campaign->organisations()->acl()->paginate());
     }
 
     /**

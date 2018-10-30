@@ -18,7 +18,7 @@ class DiceRollApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->diceRolls);
+        return new Collection($campaign->diceRolls()->acl()->paginate());
     }
 
     /**

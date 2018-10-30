@@ -18,8 +18,6 @@ class User extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'avatar' => $this->avatar,
-            'locale' => $this->locale,
-            'timezone' => $this->timezone,
         ];
     }
 }

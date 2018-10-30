@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ApplyAttributeTemplate;
 use App\Http\Requests\StoreEntityNote;
-use App\Models\AttributeTemplate;
-use App\Models\Character;
-use App\Models\Attribute;
-use App\Http\Requests\StoreAttribute;
 use App\Models\EntityNote;
-use App\Services\AttributeService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use App\Traits\GuestAuthTrait;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Entity;
 
 class EntityNoteController extends Controller
 {
+    use GuestAuthTrait;
+
     /**
      * @var string
      */
@@ -85,6 +81,30 @@ class EntityNoteController extends Controller
             'route',
             'entity',
             'parentRoute',
+            'ajax'
+        ));
+    }
+
+    /**
+     * @param Entity $entity
+     * @param EntityNote $entityNote
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function show(Entity $entity, EntityNote $entityNote)
+    {
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest('read', $entity->child);
+        }
+
+        $ajax = request()->ajax();
+
+        return view('cruds.notes.' . ($ajax ? '_' : null) . 'show', compact(
+            'entityNote',
+            'entity',
             'ajax'
         ));
     }

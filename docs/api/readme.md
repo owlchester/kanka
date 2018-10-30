@@ -142,5 +142,9 @@ Same as entity attributes but with `entity_events` instead of `attributes`.
 #### Entity Relations
 Same as entity attributes but with `relations` instead of `attributes`.
 
+## Profile
+
+* GET /api/v1/profile returns information about the authenticated user.
+
 ## Search
 * [Search API](search.md)

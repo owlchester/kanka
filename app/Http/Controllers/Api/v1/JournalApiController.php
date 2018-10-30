@@ -18,7 +18,7 @@ class JournalApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->journals);
+        return new Collection($campaign->journals()->acl()->paginate());
     }
 
     /**

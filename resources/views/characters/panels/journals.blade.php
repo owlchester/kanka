@@ -4,7 +4,7 @@
             {{ trans('characters.show.tabs.journals') }}
         </h2>
 
-        <?php  $r = $model->journals()->acl(auth()->user())->orderBy('name', 'ASC')->with([])->paginate(); ?>
+        <?php  $r = $model->journals()->acl()->orderBy('name', 'ASC')->with([])->paginate(); ?>
         <table id="character-journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

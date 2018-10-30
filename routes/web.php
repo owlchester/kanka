@@ -222,6 +222,9 @@ Route::group([
         Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
         Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 
+        // Entity files
+        Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
+
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
 
@@ -251,7 +254,8 @@ Route::group([
     });
 
     // Admin/Moderation tools
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', ['middleware' => ['moderator']]], function () {
+        Route::get('/home', 'Admin\HomeController@index')->name('admin.home');
         Route::get('/campaigns', 'Admin\CampaignController@index')->name('admin.campaigns.index');
     });
 });

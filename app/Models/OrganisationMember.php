@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrganisationMember extends Model
 {
+    use Paginatable;
+
     /**
      * ACL Trait config
+     * We want to get permissions on the character to know if we can see them
      */
     use AclTrait;
-    use Paginatable;
-    
     public $entityType = 'character';
     public $aclFieldName = 'character_id';
 
@@ -35,5 +36,16 @@ class OrganisationMember extends Model
     public function organisation()
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeOrganisationAcl($query)
+    {
+        $this->entityType = 'organisation';
+        $this->aclFieldName = 'organisation_id';
+        return $query->acl();
     }
 }

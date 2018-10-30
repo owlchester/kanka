@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
@@ -324,5 +325,15 @@ class User extends \TCG\Voyager\Models\User
     public function isPatron()
     {
         return $this->hasRole('patreon') || $this->hasRole('admin');
+    }
+
+    /**
+     * Created today
+     * @param $query
+     * @return mixed
+     */
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', Carbon::today());
     }
 }
