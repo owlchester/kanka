@@ -20,6 +20,8 @@ class Campaign extends JsonResource
             'locale' => $this->locale,
             'entry' => $this->entry,
             'image' => $this->image,
+            'image_full' => $this->getImageUrl(),
+            'image_thumb' => $this->getImageUrl(true),
             'visibility' => $this->visibility,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

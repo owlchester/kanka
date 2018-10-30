@@ -103,23 +103,23 @@
             <h2>{!! trans('front.contact.title', ['icon' => '<i class="fa fa-heart"></i>']) !!}</h2>
             <ul class="list-inline list-social">
                 <li class="list-inline-item social-google-plus">
-                    <a href="https://reddit.com/r/kanka" title="Reddit">
+                    <a href="https://reddit.com/r/kanka" title="Reddit" rel="noreferrer" target="_blank">
                         <i class="fa fa-reddit"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-twitter">
-                    <a href="https://twitter.com/kankaio" title="Twitter">
+                    <a href="https://twitter.com/kankaio" title="Twitter" rel="noreferrer" target="_blank">
                         <i class="fa fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-facebook">
-                    <a href="https://www.facebook.com/kanka.io.ch/" title="Facebook">
+                    <a href="https://www.facebook.com/kanka.io.ch/" title="Facebook" rel="noreferrer" target="_blank">
                         <i class="fa fa-facebook"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-discord">
                     <a href="https://discord.gg/rhsyZJ4" title="Discord">
-                        <img src="/images/thirdparty/discord-logo-white.png" alt="Discord">
+                        <img src="/images/thirdparty/discord-logo-white.png" alt="Discord" rel="noreferrer" target="_blank">
                     </a>
                 </li>
             </ul>
