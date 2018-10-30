@@ -2,6 +2,11 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
+@font-face {
+  font-family: Verdana, sans-serif;
+  font-display: fallback;
+}
+
 // Variables
 @import "variables";
 @import "map";
@@ -111,6 +116,7 @@ table tbody td {
   img {
     max-height: 200px;
     max-width: 200px;
+    width: 100%;
   }
   a.img-delete {
     color: white;

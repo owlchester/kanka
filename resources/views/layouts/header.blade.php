@@ -151,14 +151,14 @@
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
+                        <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
 
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <a href="{{ route('settings.profile') }}">
-                                <img src="{{ Auth::user()->getAvatarUrl() }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
+                                <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
                             </a>
                             <p>
                                 {{ Auth::user()->name }}

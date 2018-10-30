@@ -20,7 +20,7 @@
     @if (!empty($model->image))
         <div class="preview">
             <div class="image">
-                <img src="{{ Storage::url($model->image) }}"/>
+                <img src="{{ $model->getImageUrl(true) }}" alt="{{ $model->name }}"/>
                 <a href="#" class="img-delete" data-target="remove-image" title="{{ trans('crud.remove') }}">
                     <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                 </a>

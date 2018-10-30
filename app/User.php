@@ -132,10 +132,10 @@ class User extends \TCG\Voyager\Models\User
     /**
      * @return string
      */
-    public function getAvatarUrl()
+    public function getAvatarUrl($thumb = false)
     {
         if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
-            return Storage::url($this->avatar);
+            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->avatar) : $this->avatar));
         } else {
             return '/images/defaults/user.svg';
         }
