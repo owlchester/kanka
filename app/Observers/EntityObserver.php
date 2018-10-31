@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\EntityPermission;
 use App\Models\Entity;
 use App\Models\Tag;
 use App\Services\ImageService;
@@ -33,7 +34,15 @@ class EntityObserver
             }
             define('MISCELLANY_DYNAMIC_TAG_CREATION', true);
             $ids = request()->post('tags');
-            $existing = $entity->tags->pluck('name', 'id')->toArray();
+
+            // Only use tags the user can actually view. This way admins can
+            // have tags on entities that the user doesn't know about.
+            $existing = [];
+            foreach ($entity->tags()->with('entity')->get() as $tag) {
+                if (EntityPermission::canView($tag->entity)) {
+                    $existing[$tag->id] = $tag->name;
+                }
+            }
             $new = [];
 
             foreach ($ids as $id) {

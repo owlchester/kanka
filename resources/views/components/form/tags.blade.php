@@ -9,12 +9,14 @@ $model = array_get($options, 'model', null);
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
 if (!empty($previous)) {
-    dd($previous);
+    //dd($previous);
 }
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
     foreach ($model->entity->tags as $tag) {
-        $selectedOption[$tag->id] = $tag->name;
+        if (\App\Facades\EntityPermission::canView($tag->entity)) {
+            $selectedOption[$tag->id] = $tag->name;
+        }
     }
 }
 ?>
