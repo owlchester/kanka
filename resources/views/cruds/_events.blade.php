@@ -27,7 +27,7 @@
                   <i class="fa fa-check"></i>
             @endif</td>
             <td class="text-right">
-                @can('update', $model)
+                @can('update', $model->calendar)
                 <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id]) }}" class="btn btn-xs btn-primary">
                     <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                 </a>

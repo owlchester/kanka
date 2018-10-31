@@ -1,7 +1,7 @@
 <td class="{{ $day['isToday'] ? 'today' : null}} text-center">
     @if ($day['day'])
         <h5 class="pull-left{{ $day['isToday'] ? " label label-primary" : null}}">{{ $day['day'] }}</h5>
-        @if (Auth::check() && Auth::user()->can('update', $model))
+        @if ($canEdit)
         <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
            data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
            class="add btn btn-xs btn-default pull-right" data-date="{{ $day['date'] }}">
@@ -23,8 +23,13 @@
             @if (!empty($day['events']))
                 @foreach ($day['events'] as $event)
                     <?php /** @var \App\Models\EntityEvent $event */?>
-                    <div class="label calendar-event-block {{ $event->getLabelColour() }}" data-toggle="ajax-modal"
-                       data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}">
+                    <div class="label calendar-event-block {{ $event->getLabelColour() }}"
+                        @if ($canEdit)
+                            data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}"
+                        @else
+                            data-url="{{ $event->entity->url() }}"
+                        @endif
+                        >
                         @if (!empty($event->entity->child->image))
                         <a href="{{ $event->entity->url() }}" class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');"></a>
                         @endif

@@ -39,6 +39,7 @@ $(document).ready(function() {
         calendarEventModal = $('#add-calendar-event');
 
         initCalendarYearSwitcher();
+        initCalendarEventBlock();
     }
 
 
@@ -154,6 +155,16 @@ function initCalendarYearSwitcher() {
         $(this).hide();
         year = calendarYearSwitcherField.val();
         calendarYearSwitcherField.show().focus().val('').val(year);
+    });
+}
+
+function initCalendarEventBlock() {
+    $('.calendar-event-block').each(function() {
+        if ($(this).data('url')) {
+            $(this).click(function (e) {
+                window.location = $(this).data('url');
+            });
+        }
     });
 }
 

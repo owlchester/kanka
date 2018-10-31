@@ -1,4 +1,5 @@
 @inject('renderer', 'App\Renderers\CalendarRenderer')
+<?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->setCalendar($model) }}
 
 {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
