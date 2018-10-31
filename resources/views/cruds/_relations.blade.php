@@ -8,7 +8,7 @@
         <th class="avatar"><br></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/target.name', '#relations']) }}">{{ trans('crud.relations.fields.name') }}@if (request()->get('order') == 'relations/target.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         @if ($campaign->enabled('locations'))<th>{{ trans('crud.relations.fields.location') }}</th>@endif
-        @if (Auth::user()->isAdmin())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <th><a href="{{ route($name . '.show', [$model, 'order' => 'relations/is_private', '#relations']) }}">{{ trans('crud.fields.is_private') }}@if (request()->get('order') == 'relations/is_private') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         @endif
         <th class="text-right">
@@ -19,7 +19,7 @@
         </th>
     </tr>
     @foreach ($r as $relation)
-        @can('view', $relation->target->child)
+        @viewentity($relation->target->child->entity)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
@@ -36,7 +36,7 @@
                 @endif
             </td>
             @endif
-            @if (Auth::user()->isAdmin())
+            @if (Auth::check() && Auth::user()->isAdmin())
                 <td>
                     @if ($relation->is_private == true)
                         <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
@@ -60,7 +60,7 @@
         <tr class="entity-hidden">
             <td colspan="{{ ($campaign->enabled('locations') ? 5 : 4) }}">{{ trans('crud.hidden') }}</td>
         </tr>
-        @endcan
+        @endviewentity
     @endforeach
     </tbody></table>
 

@@ -1,21 +1,17 @@
 @if (!isset($relations))
-@can('relation', $model)
     <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
         <a href="#relations" title="{{ trans('crud.tabs.relations') }}" data-toggle="tooltip">
             <i class="fa fa-users"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.relations') }}</span>
         </a>
     </li>
-@endcan
 @endif
 
 @if (!isset($calendars) && $campaign->enabled('calendars'))
-    @can('attribute', $model)
-        <li class="{{ (request()->get('tab') == 'calendars' ? ' active' : '') }}">
-            <a href="#calendars" title="{{ trans('crud.tabs.calendars') }}" data-toggle="tooltip">
-                <i class="ra ra-moon-sun"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.calendars') }}</span>
-            </a>
-        </li>
-    @endcan
+    <li class="{{ (request()->get('tab') == 'calendars' ? ' active' : '') }}">
+        <a href="#calendars" title="{{ trans('crud.tabs.calendars') }}" data-toggle="tooltip">
+            <i class="ra ra-moon-sun"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.calendars') }}</span>
+        </a>
+    </li>
 @endif
 
 <li class="{{ (request()->get('tab') == 'notes' ? ' active' : '') }}">

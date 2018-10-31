@@ -12,7 +12,7 @@
         <th>&nbsp;</th>
     </tr>
     @foreach ($r as $relation)
-        @can('view', $relation->calendar)
+        @viewentity($relation->calendar->entity)
         <tr>
             <td>
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(true) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
@@ -43,7 +43,7 @@
             <tr class="entity-hidden">
                 <td colspan="7">{{ trans('crud.hidden') }}</td>
             </tr>
-        @endcan
+        @endviewentity
     @endforeach
     </tbody></table>
 

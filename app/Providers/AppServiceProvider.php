@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
@@ -142,6 +143,11 @@ class AppServiceProvider extends ServiceProvider
         // API directive for users in the API role
         Blade::if('api', function () {
             return auth()->check() && auth()->user()->hasRole('api');
+        });
+
+        // Permission to view an entity
+        Blade::if('viewentity', function(Entity $entity) {
+           return EntityPermission::canView($entity);
         });
 
 //        Blade::if('campaigns', function () {

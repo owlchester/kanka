@@ -1,10 +1,8 @@
 
 @if (!isset($relations))
-@can('relation', $model)
     <div class="tab-pane {{ (request()->get('tab') == 'relations' ? ' active' : '') }}" id="relations">
         @include('cruds._relations')
     </div>
-@endcan
 @endif
 @if (!isset($calendars) && $campaign->enabled('calendars'))
     <div class="tab-pane {{ (request()->get('tab') == 'calendars' ? ' active' : '') }}" id="calendars">

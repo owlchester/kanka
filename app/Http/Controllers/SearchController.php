@@ -5,24 +5,13 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Models\Calendar;
-use App\Models\Character;
 use App\Models\Entity;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Location;
-use App\Models\Event;
 use App\Models\MiscModel;
-use App\Models\Quest;
-use App\Models\Note;
-use App\Models\Organisation;
-use App\Models\Tag;
 use App\Services\CampaignService;
 use App\Services\EntityService;
-use App\Services\LinkerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\FilterService;
-use Illuminate\Support\Facades\Storage;
 use Response;
 
 class SearchController extends Controller
@@ -120,15 +109,7 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force there to be a child! There seems to be a bug where deleted entities still have a row in the "entities" table.
             if ($model->child) {
-                // Make sure we can see the entity we're trying to show the user. We do it this way because we
-                // looping through entities which doesn't allow using the acl trait before hand.
-                if (auth()->check()) {
-                    $canSee = auth()->user()->can('view', $model->child);
-                } else {
-                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
-                }
-
-                if ($canSee) {
+                if (EntityPermission::canView($model, $campaign)) {
                     $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
                 }
             }
@@ -156,15 +137,7 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force having a child for "ghost" entities.
             if ($model->child) {
-                // Make sure we can see the entity we're trying to show the user. We do it this way because we
-                // looping through entities which doesn't allow using the acl trait before hand.
-                if (auth()->check()) {
-                    $canSee = auth()->user()->can('view', $model->child);
-                } else {
-                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
-                }
-
-                if ($canSee) {
+                if (EntityPermission::canView($model, $campaign)) {
                     $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
                 }
             }
@@ -200,15 +173,7 @@ class SearchController extends Controller
         foreach ($models as $model) {
             // Force having a child for "ghost" entities.
             if ($model->child) {
-                // Make sure we can see the entity we're trying to show the user. We do it this way because we
-                // looping through entities which doesn't allow using the acl trait before hand.
-                if (auth()->check()) {
-                    $canSee = auth()->user()->can('view', $model->child);
-                } else {
-                    $canSee = EntityPermission::hasPermission($model->child->getEntityType(), 'view', null, $model, $campaign);
-                }
-
-                if ($canSee) {
+                if (EntityPermission::canView($model, $campaign)) {
                     $formatted[] = [
                         'id' => $model->id,
                         'fullname' => $model->name,
@@ -350,15 +315,7 @@ class SearchController extends Controller
         // Load up the calendars of a campaign to get the month names
         $calendars = Calendar::all();
         foreach ($calendars as $calendar) {
-            // Make sure we can see the entity we're trying to show the user. We do it this way because we
-            // looping through entities which doesn't allow using the acl trait before hand.
-            if (auth()->check()) {
-                $canSee = auth()->user()->can('view', $calendar);
-            } else {
-                $canSee = EntityPermission::hasPermission($calendar->getEntityType(), 'view', null, $calendar->entity, $campaign);
-            }
-
-            if ($canSee) {
+            if (EntityPermission::canView($calendar->entity, $campaign)) {
                 $months = $calendar->months();
 
                 foreach ($months as $month) {
