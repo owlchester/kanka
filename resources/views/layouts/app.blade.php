@@ -19,12 +19,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <noscript>
-        <!-- Font Awesome Icons -->
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Ionicons -->
-        <link href="//code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    </noscript>
+    <!-- Font Awesome Icons -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Ionicons -->
+    <link href="//code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
@@ -181,24 +179,5 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     @yield('scripts')
-
-    <!-- Load defered css -->
-    <script type="text/javascript">
-        /* First CSS File */
-        var giftofspeed = document.createElement('link');
-        giftofspeed.rel = 'stylesheet';
-        giftofspeed.href = '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-        giftofspeed.type = 'text/css';
-        var godefer = document.getElementsByTagName('link')[0];
-        godefer.parentNode.insertBefore(giftofspeed, godefer);
-
-        /* Second CSS File */
-        var giftofspeed2 = document.createElement('link');
-        giftofspeed2.rel = 'stylesheet';
-        giftofspeed2.href = '//code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css';
-        giftofspeed2.type = 'text/css';
-        var godefer2 = document.getElementsByTagName('link')[0];
-        godefer2.parentNode.insertBefore(giftofspeed2, godefer2);
-    </script>
 </body>
 </html>
