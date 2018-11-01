@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
             Passport::routes(null, [
                 'prefix' => LaravelLocalization::setLocale() . '/oauth',
             ]);
+            Passport::enableImplicitGrant();
         }
     }
 
