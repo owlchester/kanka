@@ -160,7 +160,7 @@ function initCalendarYearSwitcher() {
 
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function() {
-        if ($(this).data('url')) {
+        if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
             $(this).click(function (e) {
                 window.location = $(this).data('url');
             });

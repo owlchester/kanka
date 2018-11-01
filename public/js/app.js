@@ -51945,7 +51945,7 @@ function initCalendarYearSwitcher() {
 
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function () {
-        if ($(this).data('url')) {
+        if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
             $(this).click(function (e) {
                 window.location = $(this).data('url');
             });
@@ -52432,7 +52432,6 @@ function registerFormSubmitAnimation() {
     $.each($('form'), function (ele) {
         $(this).on('submit', function (e) {
             // Saving, skip alert.
-            console.log('submitting form');
             window.entityFormHasUnsavedChanges = false;
 
             // Find the main button
@@ -52655,7 +52654,7 @@ function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function (e) {
         if ((e.ctrlKey || e.metaKey) && e.which === 83) {
             window.entityFormHasUnsavedChanges = false;
-            $(form).submit();
+            $('form').find("[data-shortcut='1']").submit();
             return false;
         }
     });
