@@ -23,7 +23,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuevo Diario',
-        'description'   => 'Gestionar los diarios de :name',
+        'description'   => 'Gestiona los diarios de :name',
         'header'        => 'Diarios de :name',
         'title'         => 'Diarios',
     ],

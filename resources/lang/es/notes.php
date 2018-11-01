@@ -25,7 +25,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nueva Nota',
-        'description'   => 'Administrar las notas de :name.',
+        'description'   => 'Gestiona las notas de :name.',
         'header'        => 'Notas de :name',
         'title'         => 'Notas',
     ],

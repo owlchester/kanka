@@ -31,7 +31,7 @@ return [
             'results'   => 'Resultados',
         ],
         'add'           => 'Nueva tirada de dados',
-        'description'   => 'Administrar las tiradas de dados de :name.',
+        'description'   => 'Gestiona las tiradas de dados de :name.',
         'header'        => 'Tirada de dados de :name',
         'title'         => 'Tiradas de dados',
     ],

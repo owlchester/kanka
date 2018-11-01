@@ -99,7 +99,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuevo Calendario',
-        'description'   => 'Administrar calendarios de :name.',
+        'description'   => 'Gestiona los calendarios de :name.',
         'header'        => 'Calendarios de :name',
         'title'         => 'Calendarios',
     ],

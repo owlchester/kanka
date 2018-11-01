@@ -23,7 +23,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nueva Organización',
-        'description'   => 'Administrar las organizaciones de :name.',
+        'description'   => 'Gestiona las organizaciones de :name.',
         'header'        => 'Organizaciones de :name',
         'title'         => 'Organizaciones',
     ],

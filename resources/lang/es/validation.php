@@ -100,10 +100,13 @@ return [
     */
 
     'custom'    => [
-        'email'     => [
+        'attribute-name'    => [
+            'rule-name' => 'custom-message',
+        ],
+        'email'             => [
             'unique'    => 'El :attribute ya ha sido registrado.',
         ],
-        'password'  => [
+        'password'          => [
             'min'   => 'La :attribute debe contener más de :min caracteres',
         ],
     ],

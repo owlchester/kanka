@@ -105,19 +105,19 @@ return [
         'tags'                  => 'Tags',
     ],
     'files'             => [
-        'title' => 'Entity Files for :name',
-        'actions'       => [
+        'actions'   => [
             'drop'      => 'Click to Add or Drop a file',
             'manage'    => 'Manage Entity Files',
         ],
-        'hints' => [
-            'limit' => 'Each entity can have a maximum of :max files uploaded to it.',
-            'limitations' => 'Supported formats: jpg, png, gif, and pdf. Max file size: :size'
+        'errors'    => [
+            'max'   => 'You have reach the maximum number (:max) of files for this entity.',
         ],
-        'files' => 'Uploaded Files',
-        'errors' => [
-            'max' => 'You have reach the maximum number (:max) of files for this entity.',
-        ]
+        'files'     => 'Uploaded Files',
+        'hints'     => [
+            'limit'         => 'Each entity can have a maximum of :max files uploaded to it.',
+            'limitations'   => 'Supported formats: jpg, png, gif, and pdf. Max file size: :size',
+        ],
+        'title'     => 'Entity Files for :name',
     ],
     'filter'            => 'Filter',
     'filters'           => [
@@ -138,7 +138,6 @@ return [
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'Hide from non "Admin" users.',
-        'unsaved_changes'       => 'You have unsaved changes to this form. Are you sure you want to ignore them?',
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -205,9 +204,6 @@ return [
         'placeholders'  => [
             'name'  => 'Name of the note, observation or remark.',
         ],
-        'show' => [
-            'title' => 'Entity Note :name on :entity'
-        ]
     ],
     'or_cancel'         => 'or <a href=":url">cancel</a>',
     'panels'            => [
@@ -245,7 +241,7 @@ return [
         'location'      => 'Choose a location',
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
-        'tag'          => 'Choose a tag',
+        'tag'           => 'Choose a tag',
     ],
     'relations'         => [
         'actions'   => [

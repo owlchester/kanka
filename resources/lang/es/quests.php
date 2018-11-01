@@ -49,7 +49,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nueva Misión',
-        'description'   => 'Administrar las misiones de :name.',
+        'description'   => 'Gestiona las misiones de :name.',
         'header'        => 'Misiones de :name',
         'title'         => 'Misiones',
     ],

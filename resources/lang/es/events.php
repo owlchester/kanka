@@ -22,7 +22,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuevo evento',
-        'description'   => 'Gestionar los eventos de :name.',
+        'description'   => 'Gestiona los eventos de :name.',
         'header'        => 'Eventos de :name',
         'title'         => 'Eventos',
     ],

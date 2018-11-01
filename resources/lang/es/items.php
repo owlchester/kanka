@@ -23,7 +23,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nuevo Objeto',
-        'description'   => 'Gestionar los objetos de :name.',
+        'description'   => 'Gestiona los objetos de :name.',
         'header'        => 'Objetos de :name',
         'title'         => 'Objetos',
     ],

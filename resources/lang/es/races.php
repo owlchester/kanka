@@ -24,7 +24,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nueva raza',
-        'description'   => 'Configurar las razas de :name.',
+        'description'   => 'Gestiona las razas de :name.',
         'header'        => 'Razas de :name',
         'title'         => 'Razas',
     ],

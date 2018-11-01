@@ -127,6 +127,6 @@ return [
         'title'             => 'Stop waiting.<br />Start building.',
     ],
     'team'          => [
-        'coffee'    => 'By me a coffee!',
+        'coffee'    => 'Buy me a coffee!',
     ],
 ];

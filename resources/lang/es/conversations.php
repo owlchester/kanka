@@ -26,7 +26,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nueva Conversación',
-        'description'   => 'Configurar la categoría de :name.',
+        'description'   => 'Gestiona las conversaciones de :name.',
         'header'        => 'Conversaciones en :name',
         'title'         => 'Conversaciones',
     ],

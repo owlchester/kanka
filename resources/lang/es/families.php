@@ -25,7 +25,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nueva Familia',
-        'description'   => 'Administrar las familias de :name.',
+        'description'   => 'Gestiona las familias de :name.',
         'header'        => 'Familias de :name',
         'title'         => 'Familias',
     ],
