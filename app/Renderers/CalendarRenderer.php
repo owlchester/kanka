@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use App\Facades\EntityPermission;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
 use App\Models\Event;
@@ -463,7 +464,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (Auth()->check() && Auth::user()->can('view', $event->entity->child)) {
+            if (EntityPermission::canView($event->entity, $this->calendar->campaign)) {
                 $events[$date][] = $event;
 
                 // Does the day go over a few days?
