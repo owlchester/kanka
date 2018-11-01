@@ -14,8 +14,8 @@
 
 
 @section('scripts')
-    <script src="{{ mix('js/entity.js') }}"></script>
-    <script src="{{ mix('js/jquery.fileupload.js') }}"></script>
-    <script src="{{ mix('js/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ mix('js/vendor/jquery.ui.widget.js') }}"></script>
+    <script src="{{ mix('js/entity.js') }}" defer></script>
+    <script src="{{ mix('js/jquery.fileupload.js') }}" defer></script>
+    <script src="{{ mix('js/jquery.iframe-transport.js') }}" defer></script>
+    <script src="{{ mix('js/vendor/jquery.ui.widget.js') }}" defer></script>
 @endsection

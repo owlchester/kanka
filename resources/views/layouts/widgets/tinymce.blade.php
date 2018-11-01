@@ -5,7 +5,7 @@
             language: '{{ App::getLocale() == 'en-US' ? 'en' : App::getLocale() }}',
             selector: "textarea.html-editor",
             plugins: [
-                "save advlist autolink lists link image charmap hr anchor pagebreak",
+                "save autosave advlist autolink lists link image charmap hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars code fullscreen",
                 "insertdatetime media nonbreaking table contextmenu directionality",
                 "emoticons paste textcolor colorpicker textpattern",
@@ -41,6 +41,12 @@
                     }
                     return item.fullname;
                 }
+            },
+            save_onsavecallback: function () {
+                // Set the global dirty check off
+                window.entityFormHasUnsavedChanges = false;
+                tinymce.activeEditor.setDirty(false);
+                $("form[data-shortcut='1']").submit();
             }
         };
 
@@ -49,6 +55,6 @@
 @endsection
 
 @section('styles')
-    <script src="{{ asset('js/tinymce/jquery.tinymce.min.js') }}"></script>
+    {{--<script src="{{ asset('js/tinymce/jquery.tinymce.min.js') }}"></script>--}}
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 @endsection

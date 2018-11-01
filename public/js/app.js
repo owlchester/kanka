@@ -52432,7 +52432,8 @@ function registerFormSubmitAnimation() {
     $.each($('form'), function (ele) {
         $(this).on('submit', function (e) {
             // Saving, skip alert.
-            entityFormHasUnsavedChanges = false;
+            console.log('submitting form');
+            window.entityFormHasUnsavedChanges = false;
 
             // Find the main button
             submit = $(this).find('.btn-success');
@@ -52558,13 +52559,13 @@ function registerUnsavedChanges() {
 
     // Save every input change
     $(document).on('change', ':input', function () {
-        entityFormHasUnsavedChanges = true;
+        window.entityFormHasUnsavedChanges = true;
     });
 
     if (save.length === 1) {
         // Another way to bind the event
         $(window).bind('beforeunload', function (e) {
-            if (entityFormHasUnsavedChanges) {
+            if (window.entityFormHasUnsavedChanges) {
                 var message = save.data('unsaved');
                 e.returnValue = message;
                 return message;
@@ -52653,6 +52654,7 @@ $(document).ready(function () {
 function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function (e) {
         if ((e.ctrlKey || e.metaKey) && e.which === 83) {
+            window.entityFormHasUnsavedChanges = false;
             $(form).submit();
             return false;
         }

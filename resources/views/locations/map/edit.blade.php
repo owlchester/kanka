@@ -59,5 +59,5 @@
 
 
 @section('scripts')
-    <script src="{{ mix('js/location/map.js') }}"></script>
+    <script src="{{ mix('js/location/map.js') }}" defer></script>
 @endsection
