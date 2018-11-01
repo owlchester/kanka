@@ -91,6 +91,9 @@ Same as calendars but with `locations` instead of `calendars`.
 #### Location Map Points
 * GET /api/v1/campaigns/`campaign_id`/locations/`location_id`/map_points
 
+### Notes
+Same as calendars but with `notes` instead of `calendars`.
+
 ### Organisations 
 Same as calendars but with `organisations` instead of `calendars`.
 
