@@ -464,7 +464,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (EntityPermission::canView($event->entity, $this->calendar->campaign)) {
+            if ($event->entity->child && EntityPermission::canView($event->entity, $this->calendar->campaign)) {
                 $events[$date][] = $event;
 
                 // Does the day go over a few days?
