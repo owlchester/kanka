@@ -25,6 +25,7 @@ Route::apiResources([
     'campaigns.journals' => 'JournalApiController',
     'campaigns.locations' => 'LocationApiController',
     'campaigns.locations.map_points' => 'LocationMapPointApiController',
+    'campaigns.notes' => 'NoteApiController',
     'campaigns.organisations' => 'OrganisationApiController',
     'campaigns.organisations.organisation_members' => 'OrganisationMemberApiController',
     'campaigns.quests' => 'QuestApiController',
