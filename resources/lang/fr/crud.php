@@ -138,6 +138,7 @@ return [
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
+        'unsaved_changes'       => 'Cette page contient des modifications qui n\'ont pas été sauvegardées. Les ignorer?',
     ],
     'history'           => [
         'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -203,6 +204,9 @@ return [
         ],
         'placeholders'  => [
             'name'  => 'Nom de la note, observation ou remarque',
+        ],
+        'show'          => [
+            'title' => 'Note d\'entité :name pour :entity',
         ],
     ],
     'or_cancel'         => 'ou <a href=":url">annuler</a>',
