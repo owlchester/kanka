@@ -11,7 +11,8 @@
                 App\Models\Entity::class,
                 false,
                 'crud.fields.entity',
-                'search.calendar_event'
+                'search.calendar_event',
+                'crud.placeholders.entity'
             ) !!}
         </div>
     </div>

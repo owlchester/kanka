@@ -23,13 +23,18 @@
 .map .point {
   cursor: pointer;
   position: absolute;
-  opacity: 0.6;
+  opacity: 0.7;
   display: block;
   text-align: center;
   font-size: 26px;
   color: white;
   width: 50px;
   height: 50px;
+  border-width: medium;
+  border-style: solid;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 .map .point i {
@@ -63,7 +68,61 @@
 }
 
 .map .point:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+}
+
+.map .red {
+  background-color: red;
+  border-color: rgba(255, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 10px red;
+          box-shadow: 0 0 10px red;
+}
+
+.map .blue {
+  background-color: blue;
+  border-color: rgba(0, 0, 255, 0.5);
+  -webkit-box-shadow: 0 0 10px blue;
+          box-shadow: 0 0 10px blue;
+}
+
+.map .yellow {
+  background-color: yellow;
+  border-color: rgba(255, 255, 0, 0.5);
+  -webkit-box-shadow: 0 0 10px yellow;
+          box-shadow: 0 0 10px yellow;
+}
+
+.map .green {
+  background-color: green;
+  border-color: rgba(0, 128, 0, 0.5);
+  -webkit-box-shadow: 0 0 10px green;
+          box-shadow: 0 0 10px green;
+}
+
+.map .white {
+  background-color: white;
+  border-color: rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: 0 0 10px white;
+          box-shadow: 0 0 10px white;
+}
+
+.map .black {
+  background-color: black;
+  border-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 10px black;
+          box-shadow: 0 0 10px black;
+}
+
+.map .grey {
+  background-color: grey;
+  border-color: rgba(128, 128, 128, 0.7);
+  -webkit-box-shadow: 0 0 10px grey;
+          box-shadow: 0 0 10px grey;
+}
+
+.map .yellow i,
+.map .white i {
+  color: black;
 }
 
 .map-admin {

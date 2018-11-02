@@ -25,7 +25,7 @@ class StoreMapPoint extends FormRequest
     {
         return [
             'target_entity_id' => 'integer|exists:entities,id|required_without_all:name',
-            'name' => 'nullable|string|required_without_all:target_id',
+            'name' => 'nullable|string|required_without_all:target_entity_id',
             'axis_x' => 'required|integer',
             'axis_y' => 'required|integer',
             'colour' => 'required',

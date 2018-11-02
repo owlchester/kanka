@@ -59,21 +59,27 @@ class MapPoint extends Model
      */
     public function makePin()
     {
-        $marker = $market = '<i class="fa fa-map-marker"' . ($this->colour == 'white' ? ' style="color: black;" ' : null) . '></i>';
+        $marker = $market = '<i class="fa fa-map-marker"></i>';
         $dataUrl = route('locations.map_points.show', [$this->location, $this->id]);
         $dataUpdateUrl = route('locations.map_points.edit', [$this->location, $this->id]);
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
         $url = $this->hasTarget() ? $this->targetEntity->child->getLink() : '#';
-        $style = 'top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour;
+        $style = 'top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px;';
         $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : $this->name;
         $size = $this->size == 'large' ? 100 : ($this->size == 'small' ? 25 : 50);
 
-        return '<a id="map-point-' . $this->id . '" class="point ' . $this->size . ' ' . $this->shape . '" '
+        if ($this->hasTarget()) {
+            //$style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
+            //$marker = '';
+        }
+
+        return '<a id="map-point-' . $this->id . '" class="point ' . $this->size . ' ' . $this->shape . ' ' . $this->colour . '" '
             . 'style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
             . 'data-url-modal="' . $dataUpdateUrl . '" title="' . $title . '" '
             . 'data-url-move="' . $dataMoveUrl . '" '
             . 'data-toggle="tooltip" data-html="true" data-top="' . $this->axis_y . '" '
-            . 'data-left="' . $this->axis_x . '" data-size="' . $size . '">' . $marker . '</a>';
+            . 'data-left="' . $this->axis_x . '" data-size="' . $size . '"'
+            . '>' . $marker . '</a>';
     }
 
     /**

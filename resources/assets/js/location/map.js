@@ -383,8 +383,20 @@ function addPointMove(point) {
             var location = $(event.target);
 
             var offset = mapImage.offset();
-            mapPositionX = event.pageX - offset.left - 25;
-            mapPositionY = event.pageY - offset.top - 25;
+            var pointOffset = parseInt($(this).data('size') / 2);
+            console.log('point offset', pointOffset);
+
+            // Determine the offset between the mouse and the object's top left
+            console.log('mouse x y', event.pageX, event.pageY);
+            console.log('block x y', ui);
+
+            mapPositionX = ui.position.left;
+            mapPositionY = ui.position.top;
+
+            // Recalculate position based on zoom
+            magnifier = (mapZoomValue / 100);
+            mapPositionX = mapPositionX / magnifier;
+            mapPositionY = mapPositionY / magnifier;
 
             console.log('stop moving');
 
