@@ -52,6 +52,9 @@
                         <div class="col-md-5">
                             {!! Form::file('map', array('class' => 'image form-control')) !!}
                         </div>
+                        <div class="col-md-7">
+                            {!! Form::text('map_url', null, ['placeholder' => trans('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                        </div>
                     </div>
 
                     <p class="text-muted">
