@@ -10,6 +10,7 @@ return [
         'new'       => 'New',
         'private'   => 'Private',
         'public'    => 'Public',
+        'go_to'     => 'Go to :name',
     ],
     'add'               => 'Add',
     'attributes'        => [

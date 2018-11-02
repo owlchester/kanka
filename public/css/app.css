@@ -2589,6 +2589,20 @@ tr.entity-hidden td {
   display: inline-block;
 }
 
+.entity-title {
+  margin: 0px;
+}
+
+.entity-title .entity-image {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.entity-title .entity-name {
+  vertical-align: top;
+  padding-top: 8px;
+}
+
 /**
  * vendor layout fix for ckeditor full screen mode
  */

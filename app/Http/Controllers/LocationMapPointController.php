@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMapPoint;
 use App\Models\Location;
 use App\Models\MapPoint;
 use App\Services\LocationService;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,8 @@ use Symfony\Component\Console\Exception\LogicException;
 
 class LocationMapPointController extends Controller
 {
+    use GuestAuthTrait;
+
     /**
      * @var string
      */
@@ -62,6 +65,7 @@ class LocationMapPointController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $location);
         } else {
+            $this->model = Location::class;
             $this->authorizeForGuest('read', $location);
         }
 
@@ -89,8 +93,6 @@ class LocationMapPointController extends Controller
                     'id' => 'map-point-' . $mapPoint->id
                 ]);
             }
-
-            dd('no');
 
             return redirect()->route('locations.map', $location)
                 ->with('success', trans('locations.map.points.success.create'));
@@ -136,8 +138,6 @@ class LocationMapPointController extends Controller
                     'id' => 'map-point-' . $mapPoint->id
                 ]);
             }
-
-            dd('no');
 
             return redirect()->route('locations.map', $location)
                 ->with('success', trans('locations.map.points.success.update'));

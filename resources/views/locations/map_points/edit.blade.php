@@ -8,8 +8,8 @@
 ])
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-body">
+    {{--<div class="panel panel-default">--}}
+        {{--<div class="panel-body">--}}
             @include('partials.errors')
 
             {!! Form::model($model, ['route' => ['locations.map_points.update', $location, $model], 'method'=>'PATCH', 'data-shortcut' => '1', 'class' => 'map-point-form']) !!}
@@ -27,6 +27,6 @@
             </div>
 
             {!! Form::close() !!}
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection

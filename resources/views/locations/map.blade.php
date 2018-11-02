@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-8 col-md-9">
         <div class="map-zoom">
             <button id="map-zoom-in" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa fa-plus"></i></button>
             <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa fa-minus"></i></button>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4 col-md-3">
         <div class="panel panel-default">
             <div class="panel-body">
                 @can('update', $location)
@@ -46,7 +46,6 @@
                 @else
                     <p class="help-block">{{ __('locations.map.helpers.view') }}</p>
                 @endcan
-
             </div>
         </div>
 
@@ -54,9 +53,7 @@
             <h1><i class="fa fa-spinner fa-spin"></i></h1>
         </div>
 
-        <div id="location-map-panel">
-
-        </div>
+        <div id="location-map-panel"></div>
 
         <a href="{{ route('locations.show', $location) }}" class="btn btn-default">
             <i class="fa fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}

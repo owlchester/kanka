@@ -54,7 +54,7 @@ return [
     ],
     'map'           => [
         'actions'   => [
-            'admin_mode'    => 'Enable Admin Mode',
+            'admin_mode'    => 'Enable Edit Mode',
             'view_mode'     => 'Back to View Mode',
             'big'           => 'Full View',
             'download'      => 'Download',
@@ -67,7 +67,8 @@ return [
         'helper'    => 'Click on the map to add a new point to a location, or click on an existing point to change or delete it.',
         'helpers' => [
             'admin' => 'Use the :button button on the top-right of the map to enable clicking anywhere on the map to add new points, clicking on points to edit them, or moving them around.',
-            'view' => 'Click on any map point to view details about it.'
+            'view' => 'Click on any map point to view details about it.',
+            'label' => 'This point is a label. Nothing more, nothing less.'
         ],
         'modal'     => [
             'submit'    => 'Add',

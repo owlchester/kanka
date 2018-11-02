@@ -249,6 +249,17 @@ tr.entity-hidden {
   overflow: hidden;
   display: inline-block;
 }
+.entity-title {
+  margin: 0px;
+  .entity-image {
+    display: inline-block;
+    margin-right: 5px;
+  }
+  .entity-name {
+    vertical-align: top;
+    padding-top: 8px
+  }
+}
 
 /**
  * vendor layout fix for ckeditor full screen mode
@@ -325,10 +336,10 @@ table label {
     margin-right: 10px;
     display: inline-block;
   }
-
   .entity-name {
     vertical-align: top;
   }
+
 
   // A touch lighter on hover
   &:hover {

@@ -482,20 +482,19 @@ function initModalForm() {
             mapModal.modal('hide');
             if (data.point) {
                 // Remove existing one?
-                console.log('id', data.id);
-                if (data.id) {
-                    var existing = $('#' + data.id);
-                    console.log('existing', existing);
-                    if (existing.length === 1) {
-                        existing.remove();
-                    }
+                console.log('data id', data.id);
+                var existing = $('#' + data.id);
+                if (existing.length === 1) {
+                    existing.remove();
                 }
 
                 $('.map-container').append(data.point);
                 initPointClick();
 
-                // Make the new point movable
-                addPointMove($('#' + data.id));
+                // Make the new point movable and add tooltip
+                newPoint = $('#' + data.id);
+                addPointMove(newPoint);
+                newPoint.tooltip();
             }
         }).fail(function (data) {
             console.log('fail', data);
