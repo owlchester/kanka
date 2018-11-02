@@ -6,13 +6,12 @@
     <div class="col-sm-6">
         <div class="form-group required">
             {!! Form::select2(
-                'target_id',
-                (isset($model) && $model->target ? $model->target : null),
-                App\Models\Location::class,
+                'target_entity_id',
+                (isset($model) && $model->targetEntity ? $model->targetEntity : null),
+                App\Models\Entity::class,
                 false,
-                'locations.fields.location',
-                'locations.find',
-                'locations.placeholders.location'
+                'crud.fields.entity',
+                'search.calendar_event'
             ) !!}
         </div>
     </div>
@@ -35,6 +34,27 @@
                 'yellow' => trans('colours.yellow'),
                 'black' => trans('colours.black'),
                 'white' => trans('colours.white')
+            ], null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ trans('locations.map.points.fields.shape') }}</label>
+            {!! Form::select('shape', [
+                'circle' => trans('locations.map.points.shapes.circle'),
+                'square' => trans('locations.map.points.shapes.square'),
+            ], null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ trans('locations.map.points.fields.size') }}</label>
+            {!! Form::select('size', [
+                'standard' => trans('locations.map.points.sizes.standard'),
+                'small' => trans('locations.map.points.sizes.small'),
+                'large' => trans('locations.map.points.sizes.large')
             ], null, ['class' => 'form-control']) !!}
         </div>
     </div>

@@ -26,6 +26,8 @@ class MapPoint extends Model
         'axis_y',
         'colour',
         'name',
+        'shape',
+        'size',
     ];
 
     /**
@@ -45,6 +47,14 @@ class MapPoint extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function targetEntity()
+    {
+        return $this->belongsTo('App\Models\Entity', 'target_entity_id');
+    }
+
+    /**
      * @return string
      */
     public function makePin()
@@ -53,26 +63,17 @@ class MapPoint extends Model
         $dataUrl = route('locations.map_points.show', [$this->location, $this->id]);
         $dataUpdateUrl = route('locations.map_points.edit', [$this->location, $this->id]);
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
-        $url = $this->hasTarget() ? $this->target->getLink() : '#';
+        $url = $this->hasTarget() ? $this->targetEntity->child->getLink() : '#';
         $style = 'top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour;
-        $title = $this->hasTarget() ? $this->target->tooltipWithName() : $this->name;
+        $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : $this->name;
+        $size = $this->size == 'large' ? 100 : ($this->size == 'small' ? 25 : 50);
 
-        return '<a id="map-point-' . $this->id . '" class="point" style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
+        return '<a id="map-point-' . $this->id . '" class="point ' . $this->size . ' ' . $this->shape . '" '
+            . 'style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
             . 'data-url-modal="' . $dataUpdateUrl . '" title="' . $title . '" '
             . 'data-url-move="' . $dataMoveUrl . '" '
-            . 'data-toggle="tooltip" data-html="true">' . $marker . '</a>';
-
-
-        if (!$this->hasTarget()) {
-            return '<a class="point" style="top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour . ';" data-top="' . $this->axis_y . '" data-left="' . $this->axis_x . '" ' .
-                'title="' . $this->name . '" data-toggle="tooltip">' . $market . '                    
-            </a>';
-        } else {
-            $route = route('locations.show', [$this->target, (!empty($this->target->map) ? '#tab_map' : null)]);
-            return '<a class="point" style="top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour . ';" data-top="' . $this->axis_y . '" data-left="' . $this->axis_x . '" href="' .
-                $route . '" title="' . $this->target->tooltipWithName() . '" data-toggle="tooltip" data-html="true">' . $market . '
-            </a>';
-        }
+            . 'data-toggle="tooltip" data-html="true" data-top="' . $this->axis_y . '" '
+            . 'data-left="' . $this->axis_x . '" data-size="' . $size . '">' . $marker . '</a>';
     }
 
     /**
@@ -80,6 +81,6 @@ class MapPoint extends Model
      */
     public function hasTarget()
     {
-        return !empty($this->target_id);
+        return !empty($this->target_entity_id);
     }
 }

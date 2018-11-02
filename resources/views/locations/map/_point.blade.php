@@ -1,12 +1,6 @@
 @if ($point->hasTarget())
-    @if (Auth::check())
-        @can('view', $point->target)
-            {!! $point->makePin() !!}
-        @endcan
-    @else
-        @if (!empty($point->target()->acl(null)->first()))
-            {!! $point->makePin() !!}
-        @endif
+    @if ($point->targetEntity->child && EntityPermission::canView($point->targetEntity, $point->location->campaign))
+         {!! $point->makePin() !!}
     @endif
 @else
     {!! $point->makePin() !!}

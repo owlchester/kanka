@@ -21,21 +21,45 @@
 }
 
 .map .point {
-  width: 50px;
-  height: 50px;
   cursor: pointer;
   position: absolute;
   opacity: 0.6;
   display: block;
-  border-radius: 25px;
   text-align: center;
   font-size: 26px;
   color: white;
+  width: 50px;
+  height: 50px;
 }
 
 .map .point i {
   padding-top: 25%;
   color: white;
+}
+
+.map .square {
+  border-radius: 0px;
+}
+
+.map .circle {
+  border-radius: 50%;
+}
+
+.map .standard {
+  width: 50px;
+  height: 50px;
+}
+
+.map .small {
+  width: 25px;
+  height: 25px;
+  font-size: 13px;
+}
+
+.map .large {
+  width: 100px;
+  height: 100px;
+  font-size: 52px;
 }
 
 .map .point:hover {

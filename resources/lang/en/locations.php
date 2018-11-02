@@ -63,6 +63,7 @@ return [
             'toggle_show'   => 'Show Points',
             'zoom_in'       => 'Zoom In',
             'zoom_out'      => 'Zoom Out',
+            'zoom_reset'    => 'Zoom Reset',
         ],
         'helper'    => 'Click on the map to add a new point to a location, or click on an existing point to change or delete it.',
         'helpers' => [
@@ -74,13 +75,15 @@ return [
             'submit'    => 'Add',
             'title'     => 'Target of new point',
         ],
-        'no_map'    => 'Please upload a map to the location first.',
+        'no_map'    => 'You can upload a map to this location when editing it. Once a map has been provided, it will appear here.',
         'points'    => [
             'fields'        => [
                 'axis_x'    => 'X Axis',
                 'axis_y'    => 'Y Axis',
                 'colour'    => 'Colour',
                 'name'      => 'Label',
+                'shape'     => 'Shape',
+                'size'      => 'Size',
             ],
             'helpers'       => [
                 'location_or_name'  => 'A map point can either point to an existing location, or just have a label.',
@@ -95,6 +98,15 @@ return [
                 'create'    => 'Location Map Point created.',
                 'delete'    => 'Location Map Point removed.',
                 'update'    => 'Location Map Point updated.',
+            ],
+            'shapes' => [
+                'circle' => 'Circle',
+                'square' => 'Square',
+            ],
+            'sizes' => [
+                'small' => 'Small',
+                'standard' => 'Standard',
+                'large' => 'Large',
             ],
             'title'         => 'Location :name Map Points',
         ],

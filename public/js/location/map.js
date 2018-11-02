@@ -73,7 +73,7 @@
  */
 var mapModal, mapAdmin, locationInput, mapImage, mapImageOriginalWidth;
 var mapPositionX, mapPositionY;
-var mapZoomIn, mapZoomOut;
+var mapZoomIn, mapZoomOut, mapZoomReset;
 var mapToggleShow, mapToggleHide;
 var mapZoomValue = 100,
     mapZoomIncrements = 0;
@@ -99,6 +99,7 @@ $(document).ready(function () {
     mapImage = $('#location-map-image');
     mapZoomIn = $('#map-zoom-in');
     mapZoomOut = $('#map-zoom-out');
+    mapZoomReset = $('#map-zoom-reset');
     mapToggleHide = $('#map-toggle-hide');
     mapToggleShow = $('#map-toggle-show');
 
@@ -119,6 +120,7 @@ $(document).ready(function () {
     initMovePoints();
     disableMovePoints();
     initAddPoints();
+    initMapScroll();
 });
 
 /**
@@ -165,6 +167,11 @@ function initMapControls() {
             e.preventDefault();
             mapZoom(-25);
         });
+        mapZoomReset.on('click', function (e) {
+            e.preventDefault();
+            mapZoomValue = 100;
+            mapZoom(0);
+        });
         mapToggleHide.on('click', function (e) {
             e.preventDefault();
             mapTogglePoints(false);
@@ -184,8 +191,8 @@ function initMapControls() {
 function mapZoom(change) {
     // Don't have the size yet? Calculate it. We don't calc on page load because if it's on a hidden tab,
     // it evaluates to 0
-    var min = 25;
-    var max = 175;
+    var min = 10;
+    var max = 300;
 
     if (!mapImageOriginalWidth) {
         mapImageOriginalWidth = mapImage.width();
@@ -210,12 +217,7 @@ function mapZoom(change) {
     }
 
     $.each($('.point'), function () {
-        $(this).css('top', $(this).attr('data-top') * magnifier + 'px');
-        $(this).css('left', $(this).attr('data-left') * magnifier + 'px');
-        $(this).css('width', 50 * magnifier + 'px');
-        $(this).css('height', 50 * magnifier + 'px');
-        $(this).css('border-radius', 25 * magnifier + 'px');
-        $(this).css('font-size', 24 * magnifier + 'px');
+        repositionPoint($(this), magnifier);
     });
 
     if (mapZoomValue <= min) {
@@ -359,6 +361,9 @@ function initMapModeSwitch() {
     });
 }
 
+/**
+ * Open the modal to add a map point
+ */
 function initAddPoints() {
     mapImage.click(function (e) {
         if (mapAdminModeActivated === false) {
@@ -381,6 +386,11 @@ function initAddPoints() {
         if (mapPositionY < 0) {
             mapPositionY = 0;
         }
+
+        // Need to adapt the map position to the magnifier to know where we really are.
+        magnifier = mapZoomValue / 100;
+        mapPositionY = parseInt(mapPositionY) / magnifier;
+        mapPositionX = parseInt(mapPositionX) / magnifier;
 
         $.ajax({
             url: $(this).data('url') + '?axis_y=' + parseInt(mapPositionY) + '&axis_x=' + parseInt(mapPositionX)
@@ -464,7 +474,7 @@ function addPointMove(point) {
 }
 
 /**
- *
+ * Modal form submit catcher
  */
 function initModalForm() {
     initSelect2();
@@ -494,6 +504,10 @@ function initModalForm() {
                 // Make the new point movable and add tooltip
                 newPoint = $('#' + data.id);
                 addPointMove(newPoint);
+
+                magnifier = mapZoomValue / 100;
+                repositionPoint(newPoint, magnifier);
+
                 newPoint.tooltip();
             }
         }).fail(function (data) {
@@ -559,6 +573,43 @@ function buildErrors(data) {
         errors += data[key] + "<br>";
     }
     return errors;
+}
+
+/**
+ * Handle scroll
+ */
+function initMapScroll() {
+    $(window).bind('mousewheel DOMMouseScroll', function (event) {
+        if (event.ctrlKey == true) {
+            event.preventDefault();
+            if (event.originalEvent.wheelDelta < 0) {
+                mapZoom(-10);
+            } else {
+                mapZoom(10);
+            }
+        }
+    });
+}
+
+/**
+ * Reposition a point on the map
+ * @param point
+ * @param magnifier
+ */
+function repositionPoint(point, magnifier) {
+    point.css('top', point.data('top') * magnifier + 'px');
+    point.css('left', point.data('left') * magnifier + 'px');
+    point.css('width', point.data('size') * magnifier + 'px');
+    point.css('height', point.data('size') * magnifier + 'px');
+    //$(this).css('border-radius', (25 * magnifier)+ 'px');
+
+    fontSize = 24;
+    if (point.data('size') === 25) {
+        fontSize = 12;
+    } else if (point.data('size') === 100) {
+        fontSize = 56;
+    }
+    point.css('font-size', fontSize * magnifier + 'px');
 }
 
 /***/ }),
