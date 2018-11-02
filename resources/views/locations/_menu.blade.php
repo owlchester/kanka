@@ -51,7 +51,11 @@
                     {{ __('crud.panels.entry') }}
                 </a>
             </li>
-
+            <li class="@if(!empty($active) && $active == 'map')active @endif">
+                <a href="{{ route('locations.map', $model) }}">
+                    {{ __('locations.show.tabs.map') }}
+                </a>
+            </li>
             @if (($count = $model->descendants()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'locations')active @endif">
                 <a href="{{ route('locations.locations', $model) }}">

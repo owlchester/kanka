@@ -10,7 +10,7 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::open(array('route' => ['locations.map_points.store', $location], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+    {!! Form::open(['route' => ['locations.map_points.store', $location], 'method'=>'POST', 'data-shortcut' => "1", 'class' => 'map-point-form']) !!}
     @include('locations.map_points._form')
 
     <div class="form-group">

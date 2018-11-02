@@ -11,20 +11,12 @@
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
-                <li class="{{ (request()->get('tab') == 'map' ? ' active' : '') }}">
-                    <a href="#map" data-toggle="tooltip" title="{{ trans('locations.show.tabs.map') }}">
-                        <i class="fa fa-map"></i> <span class="hidden-sm hidden-xs">{{ trans('locations.show.tabs.map') }}</span>
-                    </a>
-                </li>
                 @include('cruds._tabs')
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                         <p>{!! $model->entry !!}</p>
-                </div>
-                <div class="tab-pane" id="map">
-                    @include('locations._map')
                 </div>
                 @include('cruds._panes')
             </div>

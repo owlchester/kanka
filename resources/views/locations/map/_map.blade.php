@@ -5,6 +5,13 @@
     <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa fa-eye"></i></button>
     <a href="{{ Storage::url($model->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}"><i class="fa fa-download"></i></a>
 </div>
+@can('update', $location)
+    <div class="map-admin">
+        <button id="map-add" class="btn btn-primary" title="{{ __('locations.map.actions.add') }}">
+            <i class="fa fa-map-pin"></i> {{ __('locations.map.actions.add') }}
+        </button>
+    </div>
+@endcan
 <div class="map">
     <div id="draggable-map">
         <div class="map-container">

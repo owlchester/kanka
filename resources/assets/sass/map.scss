@@ -10,7 +10,13 @@
 
   width: 100%;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
+  height: 100vh;
+  transition: all 0.5s ease;
+
+  #location-map-image {
+    height: 100%;
+  }
 
   .point {
     width: 50px;
@@ -37,7 +43,7 @@
 .map-admin {
   margin-bottom: 15px;
 }
-.map-zoom {
+.map-zoom, .map-admin {
   position: absolute;
   z-index: 1000;
   padding: 5px;
@@ -49,4 +55,20 @@
     width: 100%;
     margin-bottom: 3px;
   }
+}
+
+.map-admin {
+  right: 0;
+  margin-right: 15px;
+  button {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.map-admin-mode {
+  outline: none;
+  border-color: #913730;
+  box-shadow: 0 0 20px #913730;
+  transition: all 0.5s ease;
 }

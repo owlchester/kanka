@@ -49,7 +49,20 @@ class MapPoint extends Model
      */
     public function makePin()
     {
-        $market = '<i class="fa fa-map-marker"' . ($this->colour == 'white' ? ' style="color: black;" ' : null) . '></i>';
+        $marker = $market = '<i class="fa fa-map-marker"' . ($this->colour == 'white' ? ' style="color: black;" ' : null) . '></i>';
+        $dataUrl = route('locations.map_points.show', [$this->location, $this->id]);
+        $dataUpdateUrl = route('locations.map_points.edit', [$this->location, $this->id]);
+        $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
+        $url = $this->hasTarget() ? $this->target->getLink() : '#';
+        $style = 'top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour;
+        $title = $this->hasTarget() ? $this->target->tooltipWithName() : $this->name;
+
+        return '<a id="map-point-' . $this->id . '" class="point" style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
+            . 'data-url-modal="' . $dataUpdateUrl . '" title="' . $title . '" '
+            . 'data-url-move="' . $dataMoveUrl . '" '
+            . 'data-toggle="tooltip" data-html="true">' . $marker . '</a>';
+
+
         if (!$this->hasTarget()) {
             return '<a class="point" style="top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px; background-color: ' . $this->colour . ';" data-top="' . $this->axis_y . '" data-left="' . $this->axis_x . '" ' .
                 'title="' . $this->name . '" data-toggle="tooltip">' . $market . '                    

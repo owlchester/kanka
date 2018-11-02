@@ -50,9 +50,23 @@ class LocationMapPointController extends Controller
         return view('locations.map_points.create', compact('location', 'ajax'));
     }
 
+    /**
+     * @param Location $location
+     * @param MapPoint $mapPoint
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function show(Location $location, MapPoint $mapPoint)
     {
-        $this->authorize('break', $location);
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $location);
+        } else {
+            $this->authorizeForGuest('read', $location);
+        }
+
+        $ajax = request()->ajax();
+        return view('locations.map_points.' . ($ajax ? '_' : null) . 'show', compact('location', 'mapPoint', 'ajax'));
     }
 
     /**
@@ -67,8 +81,18 @@ class LocationMapPointController extends Controller
 
         try {
             $model = new MapPoint();
-            $new = $model->create($request->all());
-            return redirect()->route('locations.map.admin', $location)
+            $mapPoint = $model->create($request->all());
+
+            if ($request->ajax()) {
+                return response()->json([
+                    'point' => view('locations.map_points._point', ['point' => $mapPoint])->render(),
+                    'id' => 'map-point-' . $mapPoint->id
+                ]);
+            }
+
+            dd('no');
+
+            return redirect()->route('locations.map', $location)
                 ->with('success', trans('locations.map.points.success.create'));
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
@@ -104,13 +128,18 @@ class LocationMapPointController extends Controller
         $this->authorize('update', $location);
 
         try {
-            if ($request->has('remove')) {
-                $mapPoint->delete();
-                return redirect()->route('locations.map.admin', $location)
-                    ->with('success', trans('locations.map.points.success.delete'));
-            }
             $mapPoint->update($request->all());
-            return redirect()->route('locations.map_points.index', $location)
+
+            if ($request->ajax()) {
+                return response()->json([
+                    'point' => view('locations.map_points._point', ['point' => $mapPoint])->render(),
+                    'id' => 'map-point-' . $mapPoint->id
+                ]);
+            }
+
+            dd('no');
+
+            return redirect()->route('locations.map', $location)
                 ->with('success', trans('locations.map.points.success.update'));
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
@@ -151,6 +180,13 @@ class LocationMapPointController extends Controller
         $this->authorize('update', $location);
 
         $mapPoint->delete();
+
+        if (request()->ajax()) {
+            return response()->json([
+                'id' => 'map-point-' . $mapPoint->id
+            ]);
+        }
+
         return redirect()->route($this->route . '.show', [$location, '#map'])
             ->with('success', trans($this->view . '.destroy.success', ['name' => $mapPoint->location->name]));
     }
