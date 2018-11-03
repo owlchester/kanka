@@ -22,6 +22,7 @@ class MapPoint extends Model
     protected $fillable = [
         'location_id',
         'target_id',
+        'target_entity_id',
         'axis_x',
         'axis_y',
         'colour',
