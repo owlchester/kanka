@@ -591,10 +591,11 @@ function buildErrors(data) {
  * Handle scroll
  */
 function initMapScroll() {
-    $(window).bind('mousewheel DOMMouseScroll', function (event) {
+    $(window).bind('wheel', function (event) {
         if (event.ctrlKey == true) {
             event.preventDefault();
-            if (event.originalEvent.wheelDelta < 0) {
+            console.log('wheel', event.originalEvent.deltaY);
+            if (event.originalEvent.deltaY > 0) {
                 mapZoom(-10);
             } else {
                 mapZoom(10);
