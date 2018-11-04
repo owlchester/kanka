@@ -375,20 +375,16 @@ function addPointMove(point) {
     point.draggable({
         revert: false,
         start: function(event, ui) {
-            console.log('start moving point');
+            //console.log('start moving point');
             mapPointIsMoving = true;
+
+            target = $(event.target);
+            target.addClass('point-moving');
         },
         stop: function (event, ui) {
             // event.preventDefault();
             var location = $(event.target);
-
-            var offset = mapImage.offset();
-            var pointOffset = parseInt($(this).data('size') / 2);
-            console.log('point offset', pointOffset);
-
-            // Determine the offset between the mouse and the object's top left
-            console.log('mouse x y', event.pageX, event.pageY);
-            console.log('block x y', ui);
+            location.removeClass('point-moving');
 
             mapPositionX = ui.position.left;
             mapPositionY = ui.position.top;
@@ -397,8 +393,6 @@ function addPointMove(point) {
             magnifier = (mapZoomValue / 100);
             mapPositionX = mapPositionX / magnifier;
             mapPositionY = mapPositionY / magnifier;
-
-            console.log('stop moving');
 
             $.ajax({
                 url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
@@ -438,7 +432,6 @@ function initModalForm() {
             mapModal.modal('hide');
             if (data.point) {
                 // Remove existing one?
-                console.log('data id', data.id);
                 var existing = $('#' + data.id);
                 if (existing.length === 1) {
                     existing.remove();
@@ -464,7 +457,7 @@ function initModalForm() {
             }
         });
 
-        event.preventDefault();
+        e.preventDefault();
     });
 }
 
@@ -475,7 +468,6 @@ function initDeleteMapPoint() {
     $('.map-point-delete').each(function() {
         $(this).click(function(e) {
             url = $(this).data('url');
-            console.log('delete', url);
             e.preventDefault();
 
             // Allow ajax requests to use the X_CSRF_TOKEN for deletes
@@ -493,7 +485,6 @@ function initDeleteMapPoint() {
                 },
                 context: this
             }).done(function (result, textStatus, xhr) {
-                console.log('finished destroying');
                 // Hide this
                 if (result.id) {
                     $('#' + result.id).remove();
@@ -529,7 +520,7 @@ function initMapScroll() {
     $(window).bind('wheel', function(event) {
         if (event.ctrlKey == true) {
             event.preventDefault();
-            console.log('wheel', event.originalEvent.deltaY);
+            //console.log('wheel', event.originalEvent.deltaY);
             if (event.originalEvent.deltaY > 0) {
                 mapZoom(-10);
             } else {

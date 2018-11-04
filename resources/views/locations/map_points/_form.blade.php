@@ -25,7 +25,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.colour') }}</label>
             {!! Form::select('colour', [
                 'grey' => trans('colours.grey'),
@@ -39,8 +39,26 @@
         </div>
     </div>
 
+<?php
+$iconOptions = trans('locations.map.points.icons');
+unset($iconOptions['pin']);
+unset($iconOptions['entity']);
+$iconOptions = array_merge([
+    'pin' => trans('locations.map.points.icons.pin'),
+    'entity' => trans('locations.map.points.icons.entity'),
+], $iconOptions);
+?>
     <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group required">
+            <label>{{ trans('locations.map.points.fields.icon') }}</label>
+            {!! Form::select('icon',
+                $iconOptions
+            , null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.shape') }}</label>
             {!! Form::select('shape', [
                 'circle' => trans('locations.map.points.shapes.circle'),
@@ -50,7 +68,7 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.size') }}</label>
             {!! Form::select('size', [
                 'standard' => trans('locations.map.points.sizes.standard'),

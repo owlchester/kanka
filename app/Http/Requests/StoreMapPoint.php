@@ -31,6 +31,7 @@ class StoreMapPoint extends FormRequest
             'colour' => 'required',
             'size' => 'required',
             'shape' => 'required',
+            'icon' => 'required',
         ];
     }
 }

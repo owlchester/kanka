@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MapPoint extends Model
 {
+    public const ICON_ENTITY = 'entity';
+
     public $table = 'location_map_points';
 
     protected $fillable = [
@@ -29,6 +31,7 @@ class MapPoint extends Model
         'name',
         'shape',
         'size',
+        'icon',
     ];
 
     /**
@@ -60,7 +63,7 @@ class MapPoint extends Model
      */
     public function makePin()
     {
-        $marker = $market = '<i class="fa fa-map-marker"></i>';
+        $marker = '<i class="' . $this->icon() . '"></i>';
         $dataUrl = route('locations.map_points.show', [$this->location, $this->id]);
         $dataUpdateUrl = route('locations.map_points.edit', [$this->location, $this->id]);
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
@@ -69,9 +72,9 @@ class MapPoint extends Model
         $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : $this->name;
         $size = $this->size == 'large' ? 100 : ($this->size == 'small' ? 25 : 50);
 
-        if ($this->hasTarget()) {
-            //$style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
-            //$marker = '';
+        if ($this->hasTarget() && $this->icon == 'entity') {
+            $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
+            $marker = '';
         }
 
         return '<a id="map-point-' . $this->id . '" class="point ' . $this->size . ' ' . $this->shape . ' ' . $this->colour . '" '
@@ -89,5 +92,45 @@ class MapPoint extends Model
     public function hasTarget()
     {
         return !empty($this->target_entity_id);
+    }
+
+    /**
+     * @return string
+     */
+    public function icon()
+    {
+        $icon = $this->icon;
+        if ($icon == 'pin' || ($icon == self::ICON_ENTITY && !$this->hasTarget())) {
+            return 'fa fa-map-marker';
+        } else {
+            $icons = [
+//                'skull' => 'skull',
+//                'book' => 'book',
+//                'aura' => 'aura',
+//                'tower' => 'tower',
+//                'fire' => 'fire',
+//                'beer' => 'beer',
+//                'dragon' => 'dragon',
+//                'tentacle' => 'tentacle',
+//                'spades-card' => 'spades-card',
+//                'anvil' => 'anvil',
+//                'axe' => 'axe',
+//                'shield' => 'shield',
+//                'bridge' => 'bridge',
+//                'campfire' => 'campfire',
+                'quest' => 'wooden-sign',
+                'character' => 'player',
+                'sprout' => 'sprout-emblem',
+            ];
+
+            $icon = 'ra ra-';
+            if (!empty($icons[$this->icon])) {
+                $icon .= $icons[e($this->icon)];
+            } else {
+                $icon .= e($this->icon);
+            }
+        }
+
+        return $icon;
     }
 }

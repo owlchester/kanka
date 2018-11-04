@@ -42,6 +42,14 @@
   color: white;
 }
 
+.map .point-moving {
+  opacity: 0.5  !important;
+}
+
+.map .point-moving:hover {
+  opacity: 0.5 !important;
+}
+
 .map .square {
   border-radius: 0px;
 }
@@ -160,8 +168,11 @@
   border-color: #913730;
   -webkit-box-shadow: 0 0 20px #913730;
           box-shadow: 0 0 20px #913730;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: border 0.5s linear, box-shadow 0.5s linear;
+  -webkit-transition: border 0.5s linear, -webkit-box-shadow 0.5s linear;
+  transition: border 0.5s linear, -webkit-box-shadow 0.5s linear;
+  transition: border 0.5s linear, box-shadow 0.5s linear;
+  transition: border 0.5s linear, box-shadow 0.5s linear, -webkit-box-shadow 0.5s linear;
 }
 
 .entity-entry {

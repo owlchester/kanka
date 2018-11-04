@@ -41,6 +41,14 @@
     }
   }
 
+  .point-moving {
+    opacity: 0.5  !important;
+
+    &:hover {
+      opacity: 0.5 !important;
+    }
+  }
+
   .square {
     border-radius: 0px;
   }
@@ -140,7 +148,12 @@
   outline: none;
   border-color: #913730;
   box-shadow: 0 0 20px #913730;
-  transition: all 0.5s ease;
+  //transition: all 0.5s ease;
+
+  //-webkit-animation: glow 1.0s infinite alternate;
+  -webkit-transition: border 0.5s linear, box-shadow 0.5s linear;
+  -moz-transition: border 0.5s linear, box-shadow 0.5s linear;
+  transition: border 0.5s linear, box-shadow 0.5s linear;
 }
 
 .entity-entry {
