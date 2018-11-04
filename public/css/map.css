@@ -42,6 +42,11 @@
   color: white;
 }
 
+.map .point i.ra {
+  display: inline-block;
+  padding-top: 18%;
+}
+
 .map .point-moving {
   opacity: 0.5  !important;
 }
