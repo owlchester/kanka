@@ -29,7 +29,7 @@ class StoreLocation extends FormRequest
             'parent_location_id', 'nullable|integer|exists:locations,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
-            'map' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(false, 'map'),
+            'map' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'map_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];

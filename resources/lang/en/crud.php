@@ -139,6 +139,7 @@ return [
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'Hide from non "Admin" users.',
+        'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',

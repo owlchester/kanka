@@ -58,7 +58,7 @@
                     </div>
 
                     <p class="text-muted">
-                        {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true, 'map')]) }}
+                        {{ trans('crud.hints.map_limitations', ['size' => auth()->user()->maxUploadSize(true, 'map')]) }}
                         @if (!auth()->user()->hasRole('patreon'))
                             <a href="https://patreon.com/kankaio" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
                         @endif

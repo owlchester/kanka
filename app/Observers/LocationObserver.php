@@ -15,8 +15,8 @@ class LocationObserver extends MiscObserver
     {
         parent::saving($model);
 
-        // Handle image. Let's use a service for this.
-        ImageService::handle($model, $model->getTable(), 60, 'map');
+        // Handle map. Let's use a service for this.
+        ImageService::handle($model, $model->getTable(), false, 'map');
 
         // Removed parent_location_id id
         if (request()->getRealMethod() == 'POST' && !request()->has('parent_location_id')) {
