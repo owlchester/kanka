@@ -32,7 +32,7 @@
                 <div class="map">
                     <div id="draggable-map">
                         <div class="map-container">
-                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}"/>
+                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: 100%;" @endif />
                             @foreach ($location->mapPoints()->with(['targetEntity', 'location'])->get() as $point)
                                 @include('locations.map._point')
                             @endforeach

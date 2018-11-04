@@ -210,4 +210,13 @@ class Location extends MiscModel
 
         return parent::detach();
     }
+
+    /**
+     * Quick check to see if the image might be an svg
+     * @return bool
+     */
+    public function isMapSvg()
+    {
+        return (substr(strtolower($this->map), -4) == '.svg');
+    }
 }
