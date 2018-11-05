@@ -56,7 +56,7 @@
 
 @if (!isset($exporting))
 <div class="box box-solid">
-    <div class="box-header with-border hidden-xs">
+    <div class="box-header with-border visible-xs">
         <h3 class="box-title">
             {{ __('crud.tabs.menu') }}
         </h3>

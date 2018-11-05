@@ -26,7 +26,7 @@ if (empty($selectedOption) && !empty($prefill)) {
 }
 
 // Assume placeholder key
-$singularFieldName = trim($fieldId, '_id');
+$singularFieldName = str_replace('_id', '', $fieldId);
 $pluralField = ($singularFieldName == 'family' ? 'families' : $singularFieldName . 's');
 if ($pluralField == 'parent_locations') {
     $pluralField = 'locations';

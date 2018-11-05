@@ -105,4 +105,14 @@ class ItemController extends CrudController
     {
         return $this->crudDestroy($item);
     }
+
+    /**
+     * @param Item $item
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function quests(Item $item)
+    {
+        return $this->menuView($item, 'quests');
+    }
 }

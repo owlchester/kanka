@@ -31,6 +31,8 @@ Route::apiResources([
     'campaigns.quests' => 'QuestApiController',
     'campaigns.quests.quest_characters' => 'QuestCharacterApiController',
     'campaigns.quests.quest_locations' => 'QuestLocationApiController',
+    'campaigns.quests.quest_items' => 'QuestItemApiController',
+    'campaigns.quests.quest_organisations' => 'QuestOrganisationApiController',
     'campaigns.races' => 'RaceApiController',
     'campaigns.tags' => 'TagApiController',
     //'campaigns.' => 'ApiController',

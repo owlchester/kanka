@@ -256,4 +256,14 @@ class LocationController extends CrudController
     {
         return $this->menuView($location, 'organisations');
     }
+
+    /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function quests(Location $location)
+    {
+        return $this->menuView($location, 'quests');
+    }
 }

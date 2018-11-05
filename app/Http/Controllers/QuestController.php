@@ -105,4 +105,45 @@ class QuestController extends CrudController
     {
         return $this->crudDestroy($quest);
     }
+
+
+    /**
+     * @param Quest $quest
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function characters(Quest $quest)
+    {
+        return $this->menuView($quest, 'characters');
+    }
+
+    /**
+     * @param Quest $quest
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function locations(Quest $quest)
+    {
+        return $this->menuView($quest, 'locations');
+    }
+
+    /**
+     * @param Quest $quest
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function items(Quest $quest)
+    {
+        return $this->menuView($quest, 'items');
+    }
+
+    /**
+     * @param Quest $quest
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function organisations(Quest $quest)
+    {
+        return $this->menuView($quest, 'organisations');
+    }
 }

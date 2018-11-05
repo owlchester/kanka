@@ -164,6 +164,21 @@ class Location extends MiscModel
         return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function quests()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Quest',
+            'App\Models\QuestLocation',
+            'location_id',
+            'id',
+            'id',
+            'quest_id');
+    }
+
     /**
      * Specify parent id attribute mutator
      * @param $value

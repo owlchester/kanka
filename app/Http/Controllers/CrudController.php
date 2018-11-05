@@ -303,7 +303,7 @@ class CrudController extends Controller
 
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
-            $this->authorize('view', $model);
+            //$this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);
         }

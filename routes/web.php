@@ -105,7 +105,19 @@ Route::group([
         Route::get('/locations/{location}/items', 'LocationController@items')->name('locations.items');
         Route::get('/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
         Route::get('/locations/{location}/organisations', 'LocationController@organisations')->name('locations.organisations');
+        Route::get('/locations/{location}/quests', 'LocationController@quests')->name('locations.quests');
 
+        // Organisation menu
+        Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
+
+        // Items menu
+        Route::get('/items/{item}/quests', 'ItemController@quests')->name('items.quests');
+
+        // Quest menus
+        Route::get('/quests/{quest}/characters', 'QuestController@characters')->name('quests.characters');
+        Route::get('/quests/{quest}/locations', 'QuestController@locations')->name('quests.locations');
+        Route::get('/quests/{quest}/items', 'QuestController@items')->name('quests.items');
+        Route::get('/quests/{quest}/organisations', 'QuestController@organisations')->name('quests.organisations');
 
         Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
         Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
@@ -163,6 +175,8 @@ Route::group([
             'quests' => 'QuestController',
             'quests.quest_locations' => 'QuestLocationController',
             'quests.quest_characters' => 'QuestCharacterController',
+            'quests.quest_items' => 'QuestItemController',
+            'quests.quest_organisations' => 'QuestOrganisationController',
             'quests.relations' => 'QuestRelationController',
             'tags' => 'TagController',
             'sections' => 'SectionController',

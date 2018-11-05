@@ -99,4 +99,14 @@ class OrganisationController extends CrudController
     {
         return $this->crudDestroy($organisation);
     }
+
+    /**
+     * @param Organisation $organisation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function quests(Organisation $organisation)
+    {
+        return $this->menuView($organisation, 'quests');
+    }
 }

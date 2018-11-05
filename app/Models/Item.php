@@ -47,6 +47,15 @@ class Item extends MiscModel
         'is_private',
     ];
 
+
+    /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'quests',
+    ];
+
     /**
      * Traits
      */
@@ -78,5 +87,19 @@ class Item extends MiscModel
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function quests()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Quest',
+            'App\Models\QuestItem',
+            'item_id',
+            'id',
+            'id',
+            'quest_id');
     }
 }

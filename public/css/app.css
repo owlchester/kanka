@@ -2748,10 +2748,10 @@ table label {
   border: 1px inset red;
 }
 
-/*@media (min-width: $screen-sm-min) {
+@media (min-width: 600px) {
   .nav-stacked > li {
     display: block;
     width: auto;
   }
-}*/
+}
 

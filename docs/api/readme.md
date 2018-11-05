@@ -104,10 +104,16 @@ Same as calendars but with `organisations` instead of `calendars`.
 Same as calendars but with `quests` instead of `calendars`.
 
 #### Quest Characters
-* GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_characters_
+* GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_characters
 
 #### Quest Locations
 * GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_locations
+
+#### Quest Items
+* GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_items
+
+#### Quest Organisations
+* GET /api/v1/campaigns`campaign_id`/quest/`quest_id`/quest_organisations
 
 ### Races
 Same as calendars but with `races` instead of `calendars`.

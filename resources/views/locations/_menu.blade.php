@@ -110,6 +110,17 @@
                 </a>
             </li>
             @endif
+
+            @if ($campaign->enabled('quests') && ($count = $model->quests()->acl()->count()) > 0)
+                <li class="@if(!empty($active) && $active == 'quests')active @endif">
+                    <a href="{{ route('locations.quests', $model) }}">
+                        {{ __('locations.show.tabs.quests') }}
+                        <span class="label label-default pull-right">
+                        <?=$count?>
+                    </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>

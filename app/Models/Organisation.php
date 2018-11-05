@@ -49,7 +49,8 @@ class Organisation extends MiscModel
      * @var array
      */
     protected $foreignExport = [
-        'members'
+        'members',
+        'quests'
     ];
 
     /**
@@ -83,6 +84,20 @@ class Organisation extends MiscModel
     public function members()
     {
         return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function quests()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Quest',
+            'App\Models\QuestOrganisation',
+            'organisation_id',
+            'id',
+            'id',
+            'quest_id');
     }
 
     /**

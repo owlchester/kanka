@@ -19,6 +19,7 @@ return [
             'character'     => 'Character',
             'description'   => 'Description',
         ],
+        'title' => 'Characters in :name'
     ],
     'create'        => [
         'description'   => 'Create a new quest',
@@ -40,6 +41,8 @@ return [
         'image'         => 'Image',
         'is_completed'  => 'Completed',
         'locations'     => 'Locations',
+        'items'         => 'Items',
+        'organisations' => 'Organisations',
         'name'          => 'Name',
         'quest'         => 'Parent Quest',
         'type'          => 'Type',
@@ -52,6 +55,26 @@ return [
         'description'   => 'Manage the quests of :name.',
         'header'        => 'Quests of :name',
         'title'         => 'Quests',
+    ],
+    'items'     => [
+        'create'    => [
+            'description'   => 'Set an item to a Quest',
+            'success'       => 'Item added to :name.',
+            'title'         => 'New Item for :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest item for :name removed.',
+        ],
+        'edit'      => [
+            'description'   => 'Update a quest\'s item',
+            'success'       => 'Quest item for :name updated.',
+            'title'         => 'Update item for :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'item'      => 'Item',
+        ],
+        'title' => 'Items in :name'
     ],
     'locations'     => [
         'create'    => [
@@ -71,6 +94,27 @@ return [
             'description'   => 'Description',
             'location'      => 'Location',
         ],
+        'title' => 'Locations in :name'
+    ],
+    'organisations'     => [
+        'create'    => [
+            'description'   => 'Set an organisation to a Quest',
+            'success'       => 'Organisation added to :name.',
+            'title'         => 'New Organisation for :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest organisation for :name removed.',
+        ],
+        'edit'      => [
+            'description'   => 'Update a quest\'s organisation',
+            'success'       => 'Quest organisation for :name updated.',
+            'title'         => 'Update organisation for :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'organisation'      => 'Organisation',
+        ],
+        'title' => 'Organisations in :name'
     ],
     'placeholders'  => [
         'name'  => 'Name of the quest',
@@ -81,12 +125,16 @@ return [
         'actions'       => [
             'add_character' => 'Add a character',
             'add_location'  => 'Add a location',
+            'add_item' => 'Add an item',
+            'add_organisation' => 'Add an organisation',
         ],
         'description'   => 'A detailed view of a quest',
         'tabs'          => [
             'characters'    => 'Characters',
             'information'   => 'Information',
             'locations'     => 'Locations',
+            'items'         => 'Items',
+            'organisations' => 'Organisations',
             'quests'        => 'Quests',
         ],
         'title'         => 'Quest :name',

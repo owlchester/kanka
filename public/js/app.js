@@ -52811,7 +52811,7 @@ $(document).ready(function () {
 /***/ "./resources/assets/sass/app.scss":
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n@media (min-width: $screen-sm-min) {\r\n                  ^\r\n      Undefined variable: \"$screen-sm-min\".\r\n      in C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\resources\\assets\\sass\\app.scss (line 408, column 20)\n    at runLoaders (C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\sass-loader\\lib\\loader.js:55:13)\n    at Object.<anonymous> (C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\async\\dist\\async.js:2244:31)\n    at Object.callback (C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\async\\dist\\async.js:906:16)\n    at options.error (C:\\Users\\Jeremy\\Projects\\Php\\miscellany\\node_modules\\node-sass\\lib\\index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 

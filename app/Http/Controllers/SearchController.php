@@ -225,6 +225,16 @@ class SearchController extends Controller
      * @param Request $request
      * @return mixed
      */
+    public function items(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Item::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function organisations(Request $request)
     {
         $term = trim($request->q);

@@ -47,6 +47,14 @@
             },
             'disableSort' => true,
         ],
+        [
+            'label' => trans('quests.fields.organisations'),
+            'visible' => $campaign->enabled('organisations'),
+            'render' => function($model) {
+                return $model->organisations()->count();
+            },
+            'disableSort' => true,
+        ],
         'is_completed',
         [
             'type' => 'calendar_date',

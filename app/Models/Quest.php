@@ -62,6 +62,8 @@ class Quest extends MiscModel
     protected $foreignExport = [
         'locations',
         'characters',
+        'items',
+        'organisations',
     ];
 
     /**
@@ -107,6 +109,22 @@ class Quest extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function items()
+    {
+        return $this->hasMany('App\Models\QuestItem', 'quest_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function organisations()
+    {
+        return $this->hasMany('App\Models\QuestOrganisation', 'quest_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function quests()
     {
         return $this->hasMany('App\Models\Quest', 'quest_id', 'id');
@@ -129,6 +147,12 @@ class Quest extends MiscModel
             $child->delete();
         }
         foreach ($this->characters as $child) {
+            $child->delete();
+        }
+        foreach ($this->items as $child) {
+            $child->delete();
+        }
+        foreach ($this->organisations as $child) {
             $child->delete();
         }
         foreach ($this->quests as $quest) {

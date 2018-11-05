@@ -405,7 +405,7 @@ table label {
 }
 
 // Menu nav points to show next to one another on mobile
-@media (min-width: $screen-sm-min) {
+@media (min-width: 600px) {
   .nav-stacked > li {
     display: block;
     width: auto;

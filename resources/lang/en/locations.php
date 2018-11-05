@@ -155,6 +155,7 @@ return [
             'map'           => 'Map',
             'menu'          => 'Menu',
             'organisations' => 'Organisations',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Location :name',
     ],

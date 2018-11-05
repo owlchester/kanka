@@ -63,6 +63,7 @@ return [
         'tabs'          => [
             'members'   => 'Members',
             'relations' => 'Relations',
+            'quests'    => 'Quests',
         ],
         'title'         => 'Organisation :name',
     ],

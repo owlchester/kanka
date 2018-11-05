@@ -37,6 +37,7 @@ return [
         'description'   => 'A detailed view of an item',
         'tabs'          => [
             'information'   => 'Information',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Item :name',
     ],
