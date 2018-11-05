@@ -67,4 +67,8 @@ return [
         ],
         'title'         => 'Organisation :name',
     ],
+    'quests' => [
+        'title' => 'Organisation :name Quests',
+        'description' => 'Quests the organisation is a part of.',
+    ]
 ];

@@ -35,7 +35,7 @@
                             <p>{!! $location->description !!}</p>
                         </div>
                         <div class="box-footer text-right">
-                            @can('location', $model)
+                            @can('update', $model)
                                 <a href="{{ route('quests.quest_locations.edit', ['quest' => $model, 'questLocation' => $location]) }}" class="btn btn-xs btn-primary">
                                     <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
                                 </a>

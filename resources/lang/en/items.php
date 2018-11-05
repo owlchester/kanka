@@ -41,4 +41,8 @@ return [
         ],
         'title'         => 'Item :name',
     ],
+    'quests' => [
+        'title' => 'Item :name Quests',
+        'description' => 'Quests the item is a part of.',
+    ]
 ];

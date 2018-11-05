@@ -159,4 +159,8 @@ return [
         ],
         'title'         => 'Location :name',
     ],
+    'quests' => [
+        'title' => 'Location :name Quests',
+        'description' => 'Quests the location is a part of.',
+    ]
 ];
