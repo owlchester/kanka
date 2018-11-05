@@ -403,3 +403,11 @@ table label {
 .input-error {
   border: 1px inset red;
 }
+
+// Menu nav points to show next to one another on mobile
+@media (min-width: $screen-sm-min) {
+  .nav-stacked > li {
+    display: block;
+    width: auto;
+  }
+}

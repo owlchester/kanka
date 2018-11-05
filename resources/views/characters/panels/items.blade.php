@@ -9,9 +9,9 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('items.fields.name') }}</th>
-                <th>{{ trans('items.fields.type') }}</th>
+                <th class="visible-sm">{{ trans('items.fields.type') }}</th>
                 @if ($campaign->enabled('locations'))
-                    <th>{{ trans('crud.fields.location') }}</th>
+                    <th class="visible-sm">{{ trans('crud.fields.location') }}</th>
                 @endif
                 <th>&nbsp;</th>
             </tr>
@@ -23,9 +23,9 @@
                     <td>
                         <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltip() }}">{{ $item->name }}</a>
                     </td>
-                    <td>{{ $item->type }}</td>
+                    <td class="visible-sm">{{ $item->type }}</td>
                     @if ($campaign->enabled('locations'))
-                        <td>
+                        <td class="visible-sm">
                             @if ($item->location)
                                 <a href="{{ route('locations.show', $item->location_id) }}" data-toggle="tooltip" title="{{ $item->location->tooltip() }}">{{ $item->location->name }}</a>
                             @endif

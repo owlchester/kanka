@@ -9,7 +9,7 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('conversations.fields.name') }}</th>
-                <th>{{ trans('conversations.fields.type') }}</th>
+                <th class="visible-sm">{{ trans('conversations.fields.type') }}</th>
                 <th>{{ trans('conversations.fields.participants') }}</th>
                 <th>&nbsp;</th>
             </tr>
@@ -21,13 +21,13 @@
                     <td>
                         <a href="{{ route('conversations.show', $conversation->id) }}" data-toggle="tooltip" title="{{ $conversation->tooltip() }}">{{ $conversation->name }}</a>
                     </td>
-                    <td>{{ $conversation->type }}</td>
+                    <td class="visible-sm">{{ $conversation->type }}</td>
                     <td>
                         {{ $conversation->participants()->count() }}
                     </td>
                     <td class="text-right">
                         <a href="{{ route('conversations.show', ['id' => $conversation->id]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>

@@ -9,15 +9,15 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('organisations.fields.name') }}</th>
-                <th>{{ trans('organisations.fields.type') }}</th>
+                <th class="visible-sm">{{ trans('organisations.fields.type') }}</th>
                 <th>{{ trans('organisations.members.fields.role') }}</th>
                 @if ($campaign->enabled('locations'))
-                    <th>{{ trans('crud.fields.location') }}</th>
+                    <th class="visible-sm">{{ trans('crud.fields.location') }}</th>
                 @endif
                 <th class="text-right">
                     @can('organisation', [$model, 'add'])
                         <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> {{ trans('characters.organisations.actions.add') }}
+                            <i class="fa fa-plus"></i> <span class="visible-sm">{{ trans('characters.organisations.actions.add') }}</span>
                         </a>
                     @endcan
                 </th>
@@ -30,10 +30,10 @@
                     <td>
                         <a href="{{ route('organisations.show', $organisation->organisation_id) }}" data-toggle="tooltip" title="{{ $organisation->organisation->tooltip() }}">{{ $organisation->organisation->name }}</a>
                     </td>
-                    <td>{{ $organisation->organisation->type }}</td>
+                    <td class="visible-sm">{{ $organisation->organisation->type }}</td>
                     <td>{{ $organisation->role }}</td>
                     @if ($campaign->enabled('locations'))
-                        <td>
+                        <td class="visible-sm">
                             @if ($organisation->organisation->location)
                                 <a href="{{ route('locations.show', $organisation->organisation->location_id) }}" data-toggle="tooltip" title="{{ $organisation->organisation->location->tooltip() }}">{{ $organisation->organisation->location->name }}</a>
                             @endif
@@ -43,13 +43,13 @@
                         @can('organisation', [$model, 'edit'])
                             <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $organisation]) }}" class="btn btn-xs btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $organisation]) }}">
-                                <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
+                                <i class="fa fa-pencil"></i> <span class="visible-sm">{{ trans('crud.edit') }}</span>
                             </a>
                         @endcan
                         @can('organisation', [$model, 'delete'])
                             {!! Form::open(['method' => 'DELETE','route' => ['characters.character_organisations.destroy', $model->id, $organisation->id],'style'=>'display:inline']) !!}
                             <button class="btn btn-xs btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                                <i class="fa fa-trash" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.remove') }}</span>
                             </button>
                             {!! Form::close() !!}
                         @endcan

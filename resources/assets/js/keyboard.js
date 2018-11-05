@@ -15,7 +15,8 @@ function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function(e) {
         if ((e.ctrlKey || e.metaKey) && e.which === 83) {
             window.entityFormHasUnsavedChanges = false;
-            $('form').find("[data-shortcut='1']").submit();
+            console.log('sform', $(form));
+            $(form).submit();
             return false;
         }
     });

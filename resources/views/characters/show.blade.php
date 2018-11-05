@@ -38,8 +38,6 @@
             </div>
         </div>
         @endif
-
-        @include('cruds.boxes.history')
     </div>
 
     <div class="col-lg-2 col-md-3">
@@ -73,6 +71,12 @@
                 </ul>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        @include('cruds.boxes.history')
     </div>
 </div>
 

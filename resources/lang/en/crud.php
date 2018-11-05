@@ -11,6 +11,7 @@ return [
         'private'   => 'Private',
         'public'    => 'Public',
         'go_to'     => 'Go to :name',
+        'find_out_more' => 'Find out more',
     ],
     'add'               => 'Add',
     'attributes'        => [

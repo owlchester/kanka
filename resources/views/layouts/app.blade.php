@@ -59,7 +59,7 @@
                 @if (!isset($breadcrumbs) || $breadcrumbs !== false)
                 <ol class="breadcrumb">
                     @if ($campaign)
-                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ e($campaign->name) }}</a></li>
                     @else
                         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @endif
@@ -86,7 +86,7 @@
                     @endif
                 </ol>
                 @endif
-                <h1>
+                <h1 class="hidden-xs">
                     {{ $title or "Page Title" }}
                     <small>{{ $description or null }}</small>
                     @if (!empty($headerExtra))

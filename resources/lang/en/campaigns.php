@@ -173,6 +173,7 @@ return [
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
         ],
         'hints'         => [
+            'public'            => 'The Public role is used when someone browses your public campaign. :more',
             'role_permissions'  => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
         'members'       => 'Members',

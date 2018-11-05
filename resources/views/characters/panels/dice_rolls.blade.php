@@ -9,7 +9,7 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('dice_rolls.fields.name') }}</th>
-                <th>{{ trans('dice_rolls.fields.parameters') }}</th>
+                <th class="visible-sm">{{ trans('dice_rolls.fields.parameters') }}</th>
                 <th>{{ trans('dice_rolls.fields.rolls') }}</th>
                 <th>&nbsp;</th>
             </tr>
@@ -21,11 +21,11 @@
                     <td>
                         <a href="{{ route('dice_rolls.show', $dice_roll->id) }}" data-toggle="tooltip" title="{{ $dice_roll->tooltip() }}">{{ $dice_roll->name }}</a>
                     </td>
-                    <td>{{ $dice_roll->parameters }}</td>
+                    <td class="visible-sm">{{ $dice_roll->parameters }}</td>
                     <td>{{ $dice_roll->diceRollResults()->count() }}</td>
                     <td class="text-right">
                         <a href="{{ route('dice_rolls.show', ['id' => $dice_roll->id]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>
