@@ -47,6 +47,10 @@
   padding-top: 18%;
 }
 
+.map .point:hover {
+  opacity: 0.9;
+}
+
 .map .point-moving {
   opacity: 0.5  !important;
 }
@@ -78,10 +82,6 @@
   width: 100px;
   height: 100px;
   font-size: 52px;
-}
-
-.map .point:hover {
-  opacity: 0.9;
 }
 
 .map .red {
@@ -131,6 +131,11 @@
   border-color: rgba(128, 128, 128, 0.7);
   -webkit-box-shadow: 0 0 10px grey;
           box-shadow: 0 0 10px grey;
+}
+
+.map .none {
+  background: none;
+  border: none;
 }
 
 .map .yellow i,

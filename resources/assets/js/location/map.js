@@ -175,40 +175,6 @@ function initPointClick() {
     });
 }
 
-
-/**
- * This is re-defined (copy-paste) from app.js, since the minify changes the original name
- */
-function initSelect2() {
-    if ($('.select2').length > 0) {
-        $.each($('.select2'), function (index) {
-
-            $(this).select2({
-//            data: newOptions,
-                placeholder: $(this).attr('data-placeholder'),
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
-}
-
 /**
  * Toggle showing or hiding of points on the map
  * @param show
@@ -354,7 +320,9 @@ function initMovePoints() {
  */
 function activateMovePoints() {
     $.each($('.point'), function(index) {
-        $(this).draggable({disabled: false});
+        $(this)
+            .draggable({disabled: false})
+            .tooltip("enable");
     });
 }
 
@@ -363,7 +331,9 @@ function activateMovePoints() {
  */
 function disableMovePoints() {
     $.each($('.point'), function(index) {
-        $(this).draggable({disabled: true});
+        $(this)
+            .draggable({disabled: true})
+            .tooltip("disable");
     });
 }
 

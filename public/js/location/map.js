@@ -420,7 +420,7 @@ function initMovePoints() {
  */
 function activateMovePoints() {
     $.each($('.point'), function (index) {
-        $(this).draggable({ disabled: false });
+        $(this).draggable({ disabled: false }).tooltip({ disabled: false });
     });
 }
 
@@ -429,7 +429,7 @@ function activateMovePoints() {
  */
 function disableMovePoints() {
     $.each($('.point'), function (index) {
-        $(this).draggable({ disabled: true });
+        $(this).draggable({ disabled: true }).tooltip({ disabled: true });
     });
 }
 

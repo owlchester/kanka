@@ -70,9 +70,6 @@ $(document).ready(function() {
                 if (result) {
                     $(ajaxModalTarget).find('.modal-content').html(result);
                     $(ajaxModalTarget).modal();
-
-                    // Reset select2
-                    initSelect2();
                 }
             }).fail(function (result, textStatus, xhr) {
                 //console.log('modal ajax error', result);
@@ -264,39 +261,6 @@ function characterDeleteRowHandler() {
     // Always re-calc the sortable traits
     characterSortPersonality.sortable();
     characterSortAppearance.sortable();
-}
-
-/**
- * This is re-defined (copy-paste) from app.js, since the minify changes the original name
- */
-function initSelect2() {
-    if ($('.select2').length > 0) {
-        $.each($('.select2'), function (index) {
-
-            $(this).select2({
-//            data: newOptions,
-                placeholder: $(this).attr('data-placeholder'),
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
 }
 
 /**

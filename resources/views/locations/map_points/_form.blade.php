@@ -28,6 +28,7 @@
         <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.colour') }}</label>
             {!! Form::select('colour', [
+                'none' => trans('colours.none'),
                 'grey' => trans('colours.grey'),
                 'red' => trans('colours.red'),
                 'blue' => trans('colours.blue'),

@@ -67,8 +67,8 @@ return [
         ],
         'helper'    => 'Click on the map to add a new point to a location, or click on an existing point to change or delete it.',
         'helpers' => [
-            'admin' => 'Use the :button button on the top-right of the map to enable clicking anywhere on the map to add new points, clicking on points to edit them, or moving them around.',
-            'view' => 'Click on any map point to view details about it.',
+            'admin' => 'Activate to enable clicking anywhere on the map to add new points, clicking on points to edit them, or moving them around.',
+            'view' => 'Click on any map point to view details about it. Use Ctrl+Zoom to zoom in an out of the map.',
             'label' => 'This point is a label. Nothing more, nothing less.'
         ],
         'modal'     => [
@@ -80,7 +80,7 @@ return [
             'fields'        => [
                 'axis_x'    => 'X Axis',
                 'axis_y'    => 'Y Axis',
-                'colour'    => 'Colour',
+                'colour'    => 'Background colour',
                 'name'      => 'Label',
                 'shape'     => 'Shape',
                 'size'      => 'Size',
@@ -110,6 +110,7 @@ return [
                 'character' => 'Character',
                 'sprout' => 'Sprout',
             ],
+            'modal'         => 'Create or edit a map point',
             'placeholders'  => [
                 'axis_x'    => 'Left position',
                 'axis_y'    => 'Top position',

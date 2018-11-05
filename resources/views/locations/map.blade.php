@@ -21,10 +21,10 @@
                 </div>
                 @can('update', $location)
                     <div class="map-admin">
-                        <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.actions.admin_mode') }}">
+                        <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
                             <i class="fa fa-pencil"></i> {{ __('locations.map.actions.admin_mode') }}
                         </button>
-                        <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" style="display: none">
+                        <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
                             <i class="fa fa-eye"></i> {{ __('locations.map.actions.view_mode') }}
                         </button>
                     </div>
@@ -43,11 +43,7 @@
             <div class="col-sm-4 col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        @can('update', $location)
-                            <p class="help-block">{!! __('locations.map.helpers.admin', ['button' => '<strong>' . __('locations.map.actions.admin_mode') . '</strong>']) !!}</p>
-                        @else
-                            <p class="help-block">{{ __('locations.map.helpers.view') }}</p>
-                        @endcan
+                        <p class="help-block">{{ __('locations.map.helpers.view') }}</p>
                     </div>
                 </div>
 
@@ -69,8 +65,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{ trans('locations.map.modal.title') }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}" title="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ trans('locations.map.points.modal') }}</h4>
                     </div>
                     <div class="modal-body" id="map-point-body">
 

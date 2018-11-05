@@ -16,6 +16,15 @@ $(document).ready(function() {
 
     initSelect2();
 
+    // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
+    // binded once.
+    $(document).on('focus', '.select2.select2-container', function (e) {
+        // only open on original attempt - close focus event should not fire open
+        if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
+            $(this).siblings('select').select2('open');
+        }
+    });
+
     if ($('.date-picker').length > 0) {
         $.each($('.date-picker'), function (index) {
             // instance, using default configuration.
@@ -146,24 +155,19 @@ $(document).ready(function() {
 
     initTogglePasswordFields();
 
-    // Open select2 dropdowns on focus
-    $(document).on('focus', '.select2.select2-container', function (e) {
-        // only open on original attempt - close focus event should not fire open
-        if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
-            $(this).siblings('select').select2('open');
-        }
-    });
-
     /**
      * Whenever a modal is shown, we'll need to re-bind various helpers we have.
      */
     $(document).on('shown.bs.modal', function() {
         $('[data-toggle="tooltip"]').tooltip();
+
+        // Also re-bind select2 elements on modal show
+        initSelect2();
     })
 });
 
 /**
- *
+ * Select2 is used for all the fancy dropdowns
  */
 function initSelect2() {
     if ($('.select2').length > 0) {

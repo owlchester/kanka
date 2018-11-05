@@ -35,6 +35,8 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
 
+    //transition: all .2s ease-in-out;
+
     i {
       padding-top: 25%;
       color: white;
@@ -42,6 +44,11 @@
     i.ra {
       display: inline-block;
       padding-top: 18%;
+    }
+
+    &:hover {
+      opacity: 0.9;
+      //transform: scale(1.1);
     }
   }
 
@@ -78,10 +85,6 @@
     font-size: 52px;
   }
 
-  .point:hover {
-    opacity: 0.9;
-  }
-
   .red {
     background-color: red;
     border-color: rgba(255, 0, 0, 0.5);
@@ -116,6 +119,10 @@
     background-color: grey;
     border-color: rgba(128, 128, 128, 0.7);
     box-shadow: 0 0 10px grey;
+  }
+  .none {
+    background: none;
+    border: none;
   }
 
   .yellow i, .white i {

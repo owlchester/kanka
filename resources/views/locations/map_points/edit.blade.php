@@ -8,25 +8,21 @@
 ])
 
 @section('content')
-    {{--<div class="panel panel-default">--}}
-        {{--<div class="panel-body">--}}
-            @include('partials.errors')
+    @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['locations.map_points.update', $location, $model], 'method'=>'PATCH', 'data-shortcut' => '1', 'class' => 'map-point-form']) !!}
-            @include('locations.map_points._form')
+    {!! Form::model($model, ['route' => ['locations.map_points.update', $location, $model], 'method'=>'PATCH', 'data-shortcut' => '1', 'class' => 'map-point-form']) !!}
+    @include('locations.map_points._form')
 
-            <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @if(!isset($ajax))
-                {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
-                @else
-                <button name="remove" class="pull-right btn btn-danger map-point-delete" data-url="{{ route('locations.map_points.destroy', [$location, $model]) }}">
-                    <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
-                </button>
-                @endif
-            </div>
+    <div class="form-group">
+        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+        @if(!isset($ajax))
+        {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
+        @else
+        <button name="remove" class="pull-right btn btn-danger map-point-delete" data-url="{{ route('locations.map_points.destroy', [$location, $model]) }}">
+            <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+        </button>
+        @endif
+    </div>
 
-            {!! Form::close() !!}
-        {{--</div>--}}
-    {{--</div>--}}
+    {!! Form::close() !!}
 @endsection
