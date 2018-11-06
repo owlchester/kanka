@@ -20,14 +20,6 @@
                 @endif
                 <th>{{ trans('characters.fields.sex') }}</th>
                 <th>{{ trans('characters.fields.is_dead') }}</th>
-                <th class="pull-right">
-                    @can('member', $model)
-                        <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
-                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> {{ trans('organisations.members.actions.add') }}
-                        </a>
-                    @endcan
-                </th>
             </tr>
             <?php $r = $model->allMembers()->acl()->has('character')->with('character', 'character.location')->paginate();?>
             @foreach ($r->sortBy('character.name') as $relation)
@@ -56,19 +48,6 @@
                     @endif
                     <td>{{ $relation->character->sex }}</td>
                     <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
-                    <td class="text-right">
-                        @can('member', $model)
-                            <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}">
-                                <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
-                            </a>
-                            {!! Form::open(['method' => 'DELETE','route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style'=>'display:inline']) !!}
-                            <button class="btn btn-xs btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                            </button>
-                            {!! Form::close() !!}
-                        @endcan
-                    </td>
                 </tr>
             @endforeach
             </tbody>

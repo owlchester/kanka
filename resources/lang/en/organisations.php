@@ -59,6 +59,10 @@ return [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
         ],
+        'title' => 'Organisation :name Members',
+    ],
+    'organisations' => [
+        'title' => 'Organisation :name Organisations',
     ],
     'placeholders'  => [
         'location'  => 'Choose a location',

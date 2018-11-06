@@ -16,6 +16,7 @@ class Organisation extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'organisation_id' => $this->organisation_id,
             'members' => $this->members->count()
         ]);
     }

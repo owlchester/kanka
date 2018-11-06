@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => trans('organisations.members.title', ['name' => $model->name]),
-    'description' => trans('organisations.members.description'),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route('organisations.show', $model), 'label' => $model->name],
         trans('organisations.show.tabs.members')
