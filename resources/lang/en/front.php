@@ -21,7 +21,7 @@ return [
         'description' => 'Kanka isn\'t only an app, it\'t also a thriving community of world builders, dungeon masters, role players and creative enthusiasts.',
         'title' => 'Community',
         'discord' => 'The Kanka Discord is the most active place for talking about the app, bugs, features, asking for help and helping out.',
-        'reddit' => 'The Kanka subreddit is a quieter place where things can be discussed at a slower space.',
+        'reddit' => 'The Kanka subreddit is a quieter place where things can be discussed during a longer period of time.',
         'join' => 'Join us!',
     ],
     'contact'       => [
