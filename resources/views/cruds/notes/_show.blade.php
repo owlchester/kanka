@@ -1,5 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
         <h4>{{ $entityNote->name }}
         @if ($entityNote->is_private)
             <i class="fa fa-lock" title="{{ __('crud.is_private') }}"></i>
