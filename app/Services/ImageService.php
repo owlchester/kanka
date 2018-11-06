@@ -4,10 +4,12 @@ namespace App\Services;
 
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Facades\Image;
+use enshrined\svgSanitize\Sanitizer;
 use Exception;
 
 class ImageService
@@ -40,12 +42,21 @@ class ImageService
                         unlink($tempImage);
                         throw new \Exception('image_url target too big');
                     }
+                    $file = new UploadedFile($tempImage, basename($externalUrl));
                 } else {
                     $file = request()->file($field);
                     $path = $file->hashName($folder);
                 }
 
                 $thumb = str_replace('.', '_thumb.', $path);
+
+                // Sanitize SVGs to avoid any XSS attacks
+                if ($file->getMimeType() == 'image/svg+xml') {
+                    $sanitizer = new Sanitizer();
+                    $dirtySVG = file_get_contents($file);
+                    $cleanSVG = $sanitizer->sanitize($dirtySVG);
+                    file_put_contents($file, $cleanSVG);
+                }
 
                 if (!empty($path)) {
                     // Remove old
@@ -61,14 +72,20 @@ class ImageService
 
                     // Save new image
                     if ($url) {
-                        $image = Image::make($file);
-                        Storage::put($path, (string) $image->encode(), 'public');
+                        if ($file->getMimeType() == 'image/svg+xml') {
+                            // GD can't handle svgs, so we need to move them directly
+                            Storage::put($path, $cleanSVG, 'public');
+                        } else {
+                            $image = Image::make($file);
+                            Storage::put($path, (string)$image->encode(), 'public');
+                        }
                     } else {
                         $path = request()->file($field)->storePublicly($folder);
                     }
                     $model->$field = $path;
                 }
             } catch (Exception $e) {
+                dd($e);
                 // There was an error getting the image. Could be the url, could be the request.
                 session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
             }
