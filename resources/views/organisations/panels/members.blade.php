@@ -20,6 +20,7 @@
                 @endif
                 <th>{{ trans('characters.fields.sex') }}</th>
                 <th>{{ trans('characters.fields.is_dead') }}</th>
+                <th><br /></th>
                 <th class="pull-right">
                     @can('member', $model)
                         <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
@@ -56,6 +57,13 @@
                     @endif
                     <td>{{ $relation->character->sex }}</td>
                     <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
+                    <td>
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            @if ($relation->is_private == true)
+                                <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                            @endif
+                        @endif
+                    </td>
                     <td class="text-right">
                         @can('member', $model)
                             <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary"

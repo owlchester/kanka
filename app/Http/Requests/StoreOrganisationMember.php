@@ -26,7 +26,8 @@ class StoreOrganisationMember extends FormRequest
         return [
             'organisation_id' => 'required|exists:organisations,id',
             'character_id' => 'required|exists:characters,id',
-            'role' => 'required',
+            'role' => 'nullable',
+            'is_private' => 'nullable',
         ];
     }
 }

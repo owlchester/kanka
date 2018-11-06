@@ -26,7 +26,7 @@ class ModelResource extends JsonResource
 
         // Foreign elements
         $attributes = $this->getAttributes();
-        if (method_exists('tags', $this)) {
+        if (method_exists($this, 'tags')) {
             $merged['tags'] = new TagCollection($this->tags);
         }
         if (array_key_exists('location_id', $attributes)) {

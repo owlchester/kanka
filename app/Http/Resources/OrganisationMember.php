@@ -15,7 +15,8 @@ class OrganisationMember extends ModelResource
     public function toArray($request)
     {
         return $this->entity([
-
+            'role' => $this->role,
+            'organisation_id' => $this->organisation_id,
         ]);
     }
 }

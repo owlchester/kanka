@@ -62,7 +62,7 @@
                         <a href="{{ route('organisations.members', $model) }}" title="{{ __('organisations.show.tabs.members') }}">
                             {{ __('organisations.show.tabs.members') }}
                             <span class="label label-default pull-right">
-                                <?=$model->members()->acl()->count()?>
+                                <?=$model->members()->acl()->has('character')->count()?>
                             </span>
                         </a>
                     </li>
@@ -70,7 +70,7 @@
                         <a href="{{ route('organisations.all-members', $model) }}" title="{{ __('organisations.show.tabs.all_members') }}">
                             {{ __('organisations.show.tabs.all_members') }}
                             <span class="label label-default pull-right">
-                                <?=$model->allMembers()->acl()->count()?>
+                                <?=$model->allMembers()->acl()->has('character')->count()?>
                             </span>
                         </a>
                     </li>

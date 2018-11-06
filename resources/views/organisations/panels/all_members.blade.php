@@ -4,7 +4,7 @@
             {{ trans('organisations.show.tabs.all_members') }}
         </h2>
 
-        <p class="help-block">{{ trans('organisations.members.helpers.direct_members') }}</p>
+        <p class="help-block">{{ trans('organisations.members.helpers.all_members') }}</p>
 
         <table id="organisation-characters" class="table table-hover">
             <tbody><tr>
@@ -20,6 +20,7 @@
                 @endif
                 <th>{{ trans('characters.fields.sex') }}</th>
                 <th>{{ trans('characters.fields.is_dead') }}</th>
+                <th><br /></th>
             </tr>
             <?php $r = $model->allMembers()->acl()->has('character')->with('character', 'character.location')->paginate();?>
             @foreach ($r->sortBy('character.name') as $relation)
@@ -48,6 +49,13 @@
                     @endif
                     <td>{{ $relation->character->sex }}</td>
                     <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
+                    <td>
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            @if ($relation->is_private == true)
+                                <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                            @endif
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>
