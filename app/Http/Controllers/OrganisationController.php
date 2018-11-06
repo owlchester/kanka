@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
-use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreOrganisation;
-use App\Http\Requests\StoreLocation;
 use App\Models\Location;
 use App\Models\Organisation;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class OrganisationController extends CrudController
 {

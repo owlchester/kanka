@@ -16,7 +16,6 @@
                     <label>{{ trans('organisations.fields.type') }}</label>
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('organisations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                @include('cruds.fields.location')
                 <div class="form-group">
                     {!! Form::select2(
                         'organisation_id',
@@ -26,7 +25,23 @@
                         'organisations.fields.organisation'
                     ) !!}
                 </div>
+
+                @include('cruds.fields.location')
+
+                @if ($campaign->enabled('characters'))
+                    <div class="form-group">
+                        {!! Form::members(
+                            'id',
+                            [
+                                'model' => isset($model) ? $model : null
+                            ]
+                        ) !!}
+                    </div>
+                @endif
+
                 @include('cruds.fields.tags')
+
+
                 @include('cruds.fields.attribute_template')
 
                 @if (Auth::user()->isAdmin())
@@ -64,3 +79,7 @@
 </div>
 
 @include('cruds.fields.save')
+
+@section('scripts')
+    <script src="{{ mix('js/organisation.js') }}" defer></script>
+@endsection
