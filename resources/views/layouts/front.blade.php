@@ -87,7 +87,7 @@
 </nav>
 @yield('content')
 
-<footer>
+<footer id="footer">
     <div class="container">
         <div class="row h-100 footer-links">
             <div class="col-md-3 col-sm-4 col-xs-6">
