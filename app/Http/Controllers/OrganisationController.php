@@ -41,6 +41,14 @@ class OrganisationController extends CrudController
                 'placeholder' =>  trans('crud.placeholders.location'),
                 'model' => Location::class,
             ],
+            [
+                'field' => 'organisation_id',
+                'label' => trans('crud.fields.organisation'),
+                'type' => 'select2',
+                'route' => route('organisations.find'),
+                'placeholder' =>  trans('crud.placeholders.organisation'),
+                'model' => Organisation::class,
+            ],
         ];
     }
 
@@ -108,5 +116,15 @@ class OrganisationController extends CrudController
     public function quests(Organisation $organisation)
     {
         return $this->menuView($organisation, 'quests');
+    }
+
+    /**
+     * @param Organisation $organisation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function organisations(Organisation $organisation)
+    {
+        return $this->menuView($organisation, 'organisations');
     }
 }

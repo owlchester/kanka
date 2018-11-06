@@ -22,6 +22,14 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
+            'type' => 'avatar',
+            'parent' => 'organisation',
+            'parent_route' => 'organisations',
+        ],
+        [
+            'type' => 'organisation',
+        ],
+        [
             'label' => trans('organisations.fields.members'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {

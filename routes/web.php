@@ -111,6 +111,7 @@ Route::group([
 
         // Organisation menu
         Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
+        Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
 
         // Items menu
         Route::get('/items/{item}/quests', 'ItemController@quests')->name('items.quests');

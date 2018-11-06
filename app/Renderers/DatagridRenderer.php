@@ -128,6 +128,9 @@ class DatagridRenderer
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('location.name', trans('crud.fields.location'));
+            } elseif ($type == 'organisation') {
+                $class .= '  hidden-xs hidden-sm';
+                $html = $this->route('organisation.name', trans('crud.fields.organisation'));
             } elseif ($type == 'character') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('character.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.character'));
@@ -311,6 +314,12 @@ class DatagridRenderer
                 if ($model->character) {
                     $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->character->tooltipWithName() . '">' .
                         e($model->character->name) . '</a>';
+                }
+            } elseif ($type == 'organisation') {
+                $class = 'hidden-xs hidden-sm';
+                if ($model->organisation) {
+                    $content = '<a href="' . route('organisations.show', $model->organisation->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->organisation->tooltipWithName() . '">' .
+                        e($model->organisation->name) . '</a>';
                 }
             } elseif ($type == 'entity') {
                 $class = 'hidden-xs hidden-sm';

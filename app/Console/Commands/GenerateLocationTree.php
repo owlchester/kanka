@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Location;
 use App\Models\MapPoint;
+use App\Models\Organisation;
 use App\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +41,7 @@ class GenerateLocationTree extends Command
     public function handle()
     {
         Location::fixTree();
+        Organisation::fixTree();
         Tag::fixTree();
         $this->info("Fixed tree.");
     }

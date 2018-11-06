@@ -17,6 +17,16 @@
                 </li>
             @endif
 
+            @if (!empty($model->organisation))
+                <li class="list-group-item">
+                    <b>{{ trans('crud.fields.organisation') }}</b>
+                    <span class="pull-right">
+                        <a href="{{ $model->organisation->getLink() }}" data-toggle="tooltip" title="{{ $model->organisation->tooltip() }}">{{ $model->organisation->name }}</a>
+                    </span>
+                    <br class="clear" />
+                </li>
+            @endif
+
             @include('entities.components.tags')
             @include('entities.components.files')
         </ul>
@@ -49,6 +59,14 @@
                         </a>
                     </li>
                 @endif
+                <li class="@if(!empty($active) && $active == 'organisations')active @endif">
+                    <a href="{{ route('organisations.organisations', $model) }}" title="{{ __('organisations.show.tabs.organisations') }}">
+                        {{ __('organisations.show.tabs.organisations') }}
+                        <span class="label label-default pull-right">
+                                <?=$model->descendants()->acl()->count()?>
+                            </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

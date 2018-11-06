@@ -19,7 +19,11 @@ return [
         'members'   => 'Members',
         'name'      => 'Name',
         'relation'  => 'Relation',
+        'organisation' => 'Parent Organisation',
         'type'      => 'Type',
+    ],
+    'helpers' => [
+        'descendants'   => 'This list contains all organisations which are descendants of this organisation, not only those directly under it.',
     ],
     'index'         => [
         'add'           => 'New Organisation',
@@ -64,6 +68,7 @@ return [
             'members'   => 'Members',
             'relations' => 'Relations',
             'quests'    => 'Quests',
+            'organisations' => 'Organisations',
         ],
         'title'         => 'Organisation :name',
     ],

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Organisation extends MiscModel
 {
@@ -17,6 +18,7 @@ class Organisation extends MiscModel
         'entry',
         'image',
         'location_id',
+        'organisation_id',
         'type',
         'is_private',
     ];
@@ -41,6 +43,7 @@ class Organisation extends MiscModel
         'name',
         'type',
         'location_id',
+        'organisation_id',
         'is_private',
     ];
 
@@ -54,11 +57,15 @@ class Organisation extends MiscModel
     ];
 
     /**
+     * Used by the Observer to know if the tree needs rebuilding on this model.
+     * @var bool
+     */
+    public $rebuildTree = false;
+
+    /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait;
 
     /**
      * Performance with for datagrids
@@ -67,7 +74,41 @@ class Organisation extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity']);
+        return $query->with(['entity', 'location', 'location.entity', 'organisation']);
+    }
+
+    /**
+     * Parent
+     */
+    public function organisation()
+    {
+        return $this->belongsTo('App\Models\Organisation', 'organisation_id', 'id');
+    }
+
+    /**
+     * Children
+     */
+    public function organisations()
+    {
+        return $this->hasMany('App\Models\Organisation', 'organisation_id', 'id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'organisation_id';
+    }
+
+
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     */
+    public function setOrganisationIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -105,6 +146,9 @@ class Organisation extends MiscModel
      */
     public function detach()
     {
+        foreach ($this->children(true)->get() as $child) {
+            $child->organisations()->detatch($this->id);
+        }
         foreach ($this->members as $child) {
             $child->delete();
         }
