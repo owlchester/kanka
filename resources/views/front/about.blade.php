@@ -50,7 +50,7 @@
                             <strong>{{ trans('languages.codes.es') }}</strong>: Helionking, Raigho
                         </p>
                         <p>
-                            <strong>{{ trans('languages.codes.it') }}</strong>: Dreadino, Aroagantes
+                            <strong>{{ trans('languages.codes.it') }}</strong>: Dreadino, Arroagantes
                         </p>
                         <p>
                             <strong>{{ trans('languages.codes.pt-BR') }}</strong>: Republik
