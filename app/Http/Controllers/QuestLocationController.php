@@ -24,7 +24,7 @@ class QuestLocationController extends QuestForeignController
      * Redirect tab after manipulating
      * @var string
      */
-    protected $tab = 'location';
+    protected $menu = 'locations';
 
     /**
      * Crud view path

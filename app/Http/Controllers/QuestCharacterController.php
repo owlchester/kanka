@@ -24,7 +24,7 @@ class QuestCharacterController extends QuestForeignController
      * Redirect tab after manipulating
      * @var string
      */
-    protected $tab = 'character';
+    protected $menu = 'characters';
 
     /**
      * Crud view path

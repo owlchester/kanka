@@ -23,10 +23,10 @@ class QuestForeignController extends Controller
     protected $model = null;
 
     /**
-     * Redirect tab after manipulating
+     * Redirect menu after manipulating
      * @var string
      */
-    protected $tab = '';
+    protected $menu = '';
 
     /**
      * Crud view path
@@ -70,7 +70,7 @@ class QuestForeignController extends Controller
 
         $name = $this->view;
         $route = $this->route;
-        $tab = $this->tab;
+        $tab = $this->menu;
         $parentRoute = explode('.', $this->view)[0];
 
         return view('quests.foreign.create', compact(
@@ -98,7 +98,7 @@ class QuestForeignController extends Controller
         $parentRoute = explode('.', $this->view)[0];
 
         return redirect()
-            ->route('quests.show', [$parent->id, '#' . $this->tab])
+            ->route('quests.' . $this->menu, $parent->id)
             ->with('success', trans($this->view . '.create.success', ['name' => $parent->name]));
     }
 
@@ -114,7 +114,7 @@ class QuestForeignController extends Controller
 
         $name = $this->view;
         $route = $this->route;
-        $tab = $this->tab;
+        $tab = $this->menu;
         $parentRoute = explode('.', $this->view)[0];
 
         return view('quests.foreign.edit', compact(
@@ -140,7 +140,7 @@ class QuestForeignController extends Controller
         $model->update($request->all());
         $parentRoute = explode('.', $this->view)[0];
 
-        return redirect()->route($parentRoute . '.show', [$parent->id, '#' . $this->tab])
+        return redirect()->route('quests.' . $this->menu, $parent->id)
             ->with('success', trans($this->view . '.edit.success', ['name' => $parent->name]));
     }
 
@@ -157,7 +157,7 @@ class QuestForeignController extends Controller
         $parentRoute = explode('.', $this->view)[0];
 
         return redirect()
-            ->route($parentRoute . '.show', [$parent->id, '#' . $this->tab])
+            ->route('quests.' . $this->menu, $parent->id)
             ->with('success', trans($this->view . '.destroy.success', ['name' => $parent->name]));
     }
 }

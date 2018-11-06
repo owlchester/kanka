@@ -24,7 +24,7 @@ class QuestItemController extends QuestForeignController
      * Redirect tab after manipulating
      * @var string
      */
-    protected $tab = 'item';
+    protected $menu = 'items';
 
     /**
      * Crud view path

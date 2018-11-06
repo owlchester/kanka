@@ -24,7 +24,7 @@ class QuestOrganisationController extends QuestForeignController
      * Redirect tab after manipulating
      * @var string
      */
-    protected $tab = 'organisation';
+    protected $menu = 'organisations';
 
     /**
      * Crud view path
