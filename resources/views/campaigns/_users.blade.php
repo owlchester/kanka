@@ -17,7 +17,11 @@
                 <tr>
                     <td>{{ $relation->user->name }}</td>
                     <td>{{ $relation->user->rolesList($campaign->id) }}</td>
-                    <td class="hidden-xs hidden-md">{{ $relation->created_at }}</td>
+                    <td class="hidden-xs hidden-md">
+                        @if (!empty($relation->created_at))
+                            <span title="{{ $relation->created_at }}+00:00">{{ $relation->created_at->diffForHumans() }}</span>
+                        @endif
+                    </td>
 
                     <td class="text-right">
                         @if (Auth::user()->can('delete', $relation))
@@ -71,7 +75,7 @@
                         <td class="hidden-xs hidden-md">@if($relation->type == 'email'){{ $relation->email }}@else<a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">{{ substr($relation->token, 0, 12) . '...' }}</a>@endif</td>
                         <td>{{ $relation->validity }}</td>
                         <td>{{ $relation->role ? $relation->role->name : null }}</td>
-                        <td class="hidden-xs hidden-md">{{ $relation->created_at->diffForHumans() }}</td>
+                        <td class="hidden-xs hidden-md"><span title="{{ $relation->created_at }}+00:00">{{ $relation->created_at->diffForHumans() }}</span></td>
 
                         <td class="text-right">
                             {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
