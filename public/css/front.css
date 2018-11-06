@@ -4085,15 +4085,47 @@ hr {
 }
 
 footer {
-  padding-bottom: 60px;
+  padding-top: 90px;
+  padding-bottom: 10px;
 }
 
-footer p {
-  padding-top: 20px;
+footer p,
+footer a {
+  padding: 5px 15px;
+  margin: 5px 0;
 }
 
 footer li > a {
   font-size: 16px !important;
+}
+
+footer h4 {
+  margin: 0 15px 20px;
+}
+
+footer p.copyright {
+  margin-top: 30px;
+}
+
+footer .email {
+  padding: 15px 25px;
+  margin-top: -15px;
+}
+
+footer .email:hover {
+  color: #eee;
+}
+
+footer .email,
+footer a {
+  border-radius: 15px;
+}
+
+footer .email:hover,
+footer a:hover {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .campaign {
@@ -4176,5 +4208,13 @@ ul.pagination li span {
 .label-default {
   background-color: #dce0e8;
   color: #444;
+}
+
+.footer-links {
+  text-align: left;
+}
+
+.footer-links a {
+  display: block;
 }
 

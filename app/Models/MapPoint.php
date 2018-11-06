@@ -68,7 +68,7 @@ class MapPoint extends Model
         $dataUpdateUrl = route('locations.map_points.edit', [$this->location, $this->id]);
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
         $url = $this->hasTarget() ? $this->targetEntity->child->getLink() : '#';
-        $style = 'top: ' . $this->axis_y . 'px; left: ' . $this->axis_x . 'px;';
+        $style = 'top: ' . e($this->axis_y) . 'px; left: ' . e($this->axis_x) . 'px;';
         $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : $this->name;
         $size = $this->size == 'large' ? 100 : ($this->size == 'small' ? 25 : 50);
 
@@ -77,7 +77,7 @@ class MapPoint extends Model
             $marker = '';
         }
 
-        return '<a id="map-point-' . $this->id . '" class="point ' . $this->size . ' ' . $this->shape . ' ' . $this->colour . '" '
+        return '<a id="map-point-' . $this->id . '" class="point ' . e($this->size) . ' ' . e($this->shape) . ' ' . e($this->colour) . '" '
             . 'style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
             . 'data-url-modal="' . $dataUpdateUrl . '" title="' . $title . '" '
             . 'data-url-move="' . $dataMoveUrl . '" '

@@ -89,27 +89,33 @@
 
 <footer>
     <div class="container">
-        <ul class="list-inline">
-            <li class="list-inline-item">
-                <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
-            </li>
-            <li class="list-inline-item">
+        <div class="row h-100 footer-links">
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="email">
+                    <i class="fa fa-envelope"></i> hello@kanka.io
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <h4>{{ __('front.footer.navigation') }}</h4>
+                <a href="{{ route('home') }}">{{ trans('front.menu.home') }}</a>
                 <a href="{{ route('public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
-            </li>
-            <li class="list-inline-item">
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <h4>{{ __('front.footer.resources') }}</h4>
+                <a href="{{ route('community') }}">{{ trans('front.menu.community') }}</a>
                 <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
-            </li>
-            <li class="list-inline-item">
+                <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
                 <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
-            </li>
-            <li class="list-inline-item">
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <h4>{{ __('front.footer.app') }}</h4>
+                <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
                 <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
-            </li>
-        </ul>
-        <p>{{ trans('front.footer.copyright', ['current' => date('Y')]) }}</p>
+                <a href="{{ route('roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
+            </div>
+        </div>
+
+        <p class="copyright">{!! trans('front.footer.copyright', ['current' => date('Y')]) !!}</p>
     </div>
 </footer>
 

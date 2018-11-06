@@ -66,6 +66,22 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function community()
+    {
+        return view('front.community');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function roadmap()
+    {
+        return view('front.roadmap');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function faq()
     {
         $faqs = Faq::locale(app()->getLocale())->visible()->ordered()->get();

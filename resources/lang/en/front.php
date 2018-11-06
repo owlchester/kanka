@@ -17,6 +17,13 @@ return [
         ],
         'title'             => 'Public Campaigns',
     ],
+    'community'     => [
+        'description' => 'Kanka isn\'t only an app, it\'t also a thriving community of world builders, dungeon masters, role players and creative enthusiasts.',
+        'title' => 'Community',
+        'discord' => 'The Kanka Discord is the most active place for talking about the app, bugs, features, asking for help and helping out.',
+        'reddit' => 'The Kanka subreddit is a quieter place where things can be discussed at a slower space.',
+        'join' => 'Join us!',
+    ],
     'contact'       => [
         'title' => 'We :icon new friends!',
     ],
@@ -81,6 +88,9 @@ return [
     ],
     'footer'        => [
         'copyright' => '&copy; 2017 - :current kanka.io. All Rights Reserved.',
+        'navigation' => 'Navigation',
+        'resources' => 'Resources',
+        'app' => 'App',
     ],
     'help'          => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
@@ -97,16 +107,19 @@ return [
     'menu'          => [
         'about'     => 'About',
         'campaigns' => 'Public Campaigns',
+        'community' => 'Community',
         'contact'   => 'Contact',
         'contact_us'=> 'Contact Us',
         'dashboard' => 'Dashboard',
         'faq'       => 'FAQ',
         'features'  => 'Features',
         'help'      => 'Help',
+        'home'      => 'Home',
         'login'     => 'Login',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Register',
         'releases'  => 'Releases',
+        'roadmap'   => 'Roadmap',
         'title'     => 'Menu',
         'tos'       => 'Terms of Service',
     ],
@@ -121,6 +134,18 @@ return [
     'release'       => [
         'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',
         'title'         => 'Releases',
+    ],
+    'roadmap' => [
+        'description' => 'Our amazing Patrons vote once a month on what features will be worked on, so while we don\'t have a multi-month roadmap, it is easy to follow what has been requested and what is being currently worked on.',
+        'title' => 'Roadmap',
+        'next' => [
+            'title' => 'Next',
+            'description' => 'This Trello board contains all the features and improvements that are currently being worked on.',
+        ],
+        'backlog' => [
+            'title' => 'Backlog',
+            'description' => 'This Trello board contains all the requested features that have been submitted by the community, as well as all the planned features and improvements that will one day make it to the app.',
+        ]
     ],
     'second_block'  => [
         'call_to_action'    => 'Let\'s Get Started!',

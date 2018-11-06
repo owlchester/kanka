@@ -57,12 +57,37 @@ hr {
 }
 
 footer {
-  padding-bottom: 60px;
-  p {
-    padding-top: 20px;
+  padding-top: 90px;
+  padding-bottom: 10px;
+  p, a {
+    padding: 5px 15px;
+    margin: 5px 0;
   }
   li > a {
     font-size: 16px !important;
+  }
+  h4 {
+    margin: 0 15px 20px;
+  }
+
+  p.copyright {
+    margin-top: 30px;
+  }
+
+  .email {
+    padding: 15px 25px;
+    margin-top: -15px;
+    &:hover {
+      color: #eee;
+    }
+  }
+
+  .email, a {
+    border-radius: 15px;
+    &:hover {
+      transition: all 0.5s ease;
+      background: rgba(255, 255, 255, 0.4);
+    }
   }
 }
 
@@ -143,4 +168,11 @@ ul.pagination {
 .label-default {
   background-color: #dce0e8;
   color: #444;
+}
+
+.footer-links {
+  text-align: left;
+  a {
+    display: block;
+  }
 }
