@@ -85,7 +85,6 @@ class ImageService
                     $model->$field = $path;
                 }
             } catch (Exception $e) {
-                dd($e);
                 // There was an error getting the image. Could be the url, could be the request.
                 session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
             }
