@@ -88,7 +88,7 @@
                     <a href="{{ route('characters.organisations', $model) }}" title="{{ __('characters.show.tabs.organisations') }}">
                         {{ __('characters.show.tabs.organisations') }}
                         <span class="label label-default pull-right">
-                        <?=$model->organisations()->acl()->count()?>
+                        <?=$model->organisations()->acl()->organisationAcl()->has('organisation')->count()?>
                     </span>
                     </a>
                 </li>

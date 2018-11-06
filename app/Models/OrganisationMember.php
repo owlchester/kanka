@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\Traits\AclTrait;
+use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class OrganisationMember extends Model
 {
-    use Paginatable;
+    use Paginatable, VisibleTrait;
 
     /**
      * ACL Trait config
