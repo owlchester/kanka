@@ -142,6 +142,19 @@ class Organisation extends MiscModel
     }
 
     /**
+     * Get all characters in the location and descendants
+     */
+    public function allMembers()
+    {
+        $organisationId = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $organisationId[] = $descendant->id;
+        };
+
+        return OrganisationMember::whereIn('organisation_id', $organisationId)->with('character');
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()

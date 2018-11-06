@@ -51,7 +51,10 @@ return [
             'character' => 'Character',
             'role'      => 'Role',
         ],
-        'hint'          => 'Most organisations require members to run successfully.',
+        'helpers' => [
+            'direct_members'       => 'Most organisations require members to run successfully. The following list are characters that are directly in this organisation.',
+            'all_members'   => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations.'
+        ],
         'placeholders'  => [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
@@ -65,7 +68,8 @@ return [
     'show'          => [
         'description'   => 'A detailed view of an organisation',
         'tabs'          => [
-            'members'   => 'Members',
+            'all_members' => 'All Members',
+            'members'   => 'Direct Members',
             'relations' => 'Relations',
             'quests'    => 'Quests',
             'organisations' => 'Organisations',

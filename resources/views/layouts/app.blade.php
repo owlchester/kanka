@@ -169,8 +169,15 @@
         </div>
     </div>
 
-    <!-- Permissions Modal -->
+    <!-- Standard Sized Modal -->
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Large Sized Modal -->
+    <div class="modal fade" id="large-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content"></div>
         </div>

@@ -12,19 +12,8 @@
         'name',
         'type',
         [
-            'type' => 'avatar',
-            'parent' => 'location',
-            'parent_route' => 'locations',
-            'visible' => $campaign->enabled('locations'),
-        ],
-        [
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),
-        ],
-        [
-            'type' => 'avatar',
-            'parent' => 'organisation',
-            'parent_route' => 'organisations',
         ],
         [
             'type' => 'organisation',

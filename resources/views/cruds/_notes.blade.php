@@ -23,7 +23,7 @@
     @foreach ($r as $note)
         <tr>
             <td>
-                <a href="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a>
+                <a href="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}" data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a>
             </td>
             <td class="visible-lg">
                 @if ($note->creator)

@@ -1,4 +1,4 @@
-<p>{{ trans('organisations.members.hint') }}</p>
+<p class="help-block">{{ trans('organisations.members.helpers.direct_members') }}</p>
 
 <table id="organisation-characters" class="table table-hover">
     <tbody><tr>

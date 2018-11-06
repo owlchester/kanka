@@ -49,6 +49,33 @@
                         {{ __('crud.panels.entry') }}
                     </a>
                 </li>
+                <li class="@if(!empty($active) && $active == 'organisations')active @endif">
+                    <a href="{{ route('organisations.organisations', $model) }}" title="{{ __('organisations.show.tabs.organisations') }}">
+                        {{ __('organisations.show.tabs.organisations') }}
+                        <span class="label label-default pull-right">
+                                <?=$model->descendants()->acl()->count()?>
+                            </span>
+                    </a>
+                </li>
+                @if ($campaign->enabled('characters'))
+                    <li class="@if(!empty($active) && $active == 'members')active @endif">
+                        <a href="{{ route('organisations.members', $model) }}" title="{{ __('organisations.show.tabs.members') }}">
+                            {{ __('organisations.show.tabs.members') }}
+                            <span class="label label-default pull-right">
+                                <?=$model->members()->acl()->count()?>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="@if(!empty($active) && $active == 'all_members')active @endif">
+                        <a href="{{ route('organisations.all-members', $model) }}" title="{{ __('organisations.show.tabs.all_members') }}">
+                            {{ __('organisations.show.tabs.all_members') }}
+                            <span class="label label-default pull-right">
+                                <?=$model->allMembers()->acl()->count()?>
+                            </span>
+                        </a>
+                    </li>
+                @endif
+
                 @if ($campaign->enabled('quests') && $model->quests()->acl()->count() > 0)
                     <li class="@if(!empty($active) && $active == 'quests')active @endif">
                         <a href="{{ route('organisations.quests', $model) }}" title="{{ __('organisations.show.tabs.quests') }}">
@@ -59,14 +86,6 @@
                         </a>
                     </li>
                 @endif
-                <li class="@if(!empty($active) && $active == 'organisations')active @endif">
-                    <a href="{{ route('organisations.organisations', $model) }}" title="{{ __('organisations.show.tabs.organisations') }}">
-                        {{ __('organisations.show.tabs.organisations') }}
-                        <span class="label label-default pull-right">
-                                <?=$model->descendants()->acl()->count()?>
-                            </span>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>

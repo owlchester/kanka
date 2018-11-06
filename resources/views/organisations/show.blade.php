@@ -11,13 +11,6 @@
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
-                @if ($campaign->enabled('characters'))
-                    <li class="{{ (request()->get('tab') == 'member' ? ' active' : '') }}">
-                        <a href="#member" data-toggle="tooltip" title="{{ trans('organisations.show.tabs.members') }}">
-                            <i class="fa fa-user"></i> <span class="hidden-sm hidden-xs">{{ trans('organisations.show.tabs.members') }}</span>
-                        </a>
-                    </li>
-                @endif
                 @include('cruds._tabs')
             </ul>
 
@@ -27,11 +20,6 @@
                         <p>{!! $model->entry !!}</p>
                     </div>
                 </div>
-                @if ($campaign->enabled('characters'))
-                <div class="tab-pane {{ (request()->get('tab') == 'member' ? ' active' : '') }}" id="member">
-                    @include('organisations._members')
-                </div>
-                @endif
                 @include('cruds._panes')
             </div>
         </div>

@@ -127,4 +127,24 @@ class OrganisationController extends CrudController
     {
         return $this->menuView($organisation, 'organisations');
     }
+
+    /**
+     * @param Organisation $organisation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function members(Organisation $organisation)
+    {
+        return $this->menuView($organisation, 'members');
+    }
+
+    /**
+     * @param Organisation $organisation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function allMembers(Organisation $organisation)
+    {
+        return $this->menuView($organisation, 'all_members');
+    }
 }

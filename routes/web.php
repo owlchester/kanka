@@ -110,6 +110,8 @@ Route::group([
         Route::get('/locations/{location}/quests', 'LocationController@quests')->name('locations.quests');
 
         // Organisation menu
+        Route::get('/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
+        Route::get('/organisations/{organisation}/all-members', 'OrganisationController@allMembers')->name('organisations.all-members');
         Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
         Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
 
