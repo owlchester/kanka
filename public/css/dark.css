@@ -301,20 +301,31 @@ blockquote {
 }
 
 /**
- * Modal
+ * Modal, Popover
  */
 
-.modal-content {
+.modal-content,
+.popover-content {
   background: #222;
 }
 
-.modal-content .modal-header {
+.modal-content .modal-header,
+.modal-content .popover-header,
+.popover-content .modal-header,
+.popover-content .popover-header {
   border-color: #fff !important;
   border: none !important;
 }
 
-.modal-content .modal-footer {
+.modal-content .modal-footer,
+.modal-content .popover-footer,
+.popover-content .modal-footer,
+.popover-content .popover-footer {
   border: none !important;
+}
+
+.popover-title {
+  background: #222;
 }
 
 /**
@@ -430,5 +441,9 @@ blockquote {
 
 .tt-cursor {
   color: #fff !important;
+}
+
+.table-filters {
+  background-color: #333 !important;
 }
 

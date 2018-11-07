@@ -318,20 +318,31 @@ blockquote {
 }
 
 /**
- * Modal
+ * Modal, Popover
  */
 
-.modal-content {
+.modal-content,
+.popover-content {
   background: #0B1F20;
 }
 
-.modal-content .modal-header {
+.modal-content .modal-header,
+.modal-content .popover-header,
+.popover-content .modal-header,
+.popover-content .popover-header {
   border-color: #42FFFF !important;
   border: none !important;
 }
 
-.modal-content .modal-footer {
+.modal-content .modal-footer,
+.modal-content .popover-footer,
+.popover-content .modal-footer,
+.popover-content .popover-footer {
   border: none !important;
+}
+
+.popover-title {
+  background: #0B1F20;
 }
 
 /**
@@ -447,5 +458,9 @@ blockquote {
 
 .tt-cursor {
   color: #42FFFF !important;
+}
+
+.table-filters {
+  background-color: #0C1416 !important;
 }
 

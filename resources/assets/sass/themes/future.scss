@@ -281,17 +281,20 @@ pre, blockquote {
 }
 
 /**
- * Modal
+ * Modal, Popover
  */
-.modal-content {
+.modal-content, .popover-content {
   background: $Detail;
-  .modal-header {
+  .modal-header, .popover-header {
     border-color: $Hard !important;
     border: none !important;
   }
-  .modal-footer {
+  .modal-footer, .popover-footer {
     border: none !important;
   }
+}
+.popover-title {
+  background: $Detail;
 }
 
 /**
@@ -388,4 +391,9 @@ pre, blockquote {
 }
 .tt-cursor {
   color: $Hard !important;
+}
+
+// Filters
+.table-filters {
+  background-color: $Soft !important;
 }

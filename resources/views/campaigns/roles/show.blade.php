@@ -73,12 +73,14 @@
                             <th>{{ trans('crud.permissions.allowed') }}</th>
                             <th><br /></th>
                         </tr>
+                        <?php $previous = null; ?>
                         @foreach ($permission->permissions($role) as $permission)
                             <tr {{ ($permission['action'] == 'permission' ? 'class="danger"' : null)  }}>
-                                <td>{{ trans('entities.' . $permission['entity']) }}</td>
+                                <td>@if ($previous != $permission['entity']){{ trans('entities.' . $permission['entity']) }}@endif</td>
                                 <td>{{ trans('campaigns.roles.permissions.actions.' . $permission['action']) }}</td>
                                 <td>{!! Form::checkbox('permissions[' . $permission['key'] . ']', $permission['entity'], $permission['enabled']) !!}</td>
                             </tr>
+                            <?php $previous = $permission['entity']; ?>
                         @endforeach
                         </tbody>
                     </table>
