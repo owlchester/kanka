@@ -40,6 +40,8 @@ class DatagridRenderer
      */
     protected $filterService = null;
 
+    protected $filters = null;
+
     protected $dateRenderer;
 
     public function __construct(DateRenderer $dateRenderer)
@@ -92,7 +94,7 @@ class DatagridRenderer
         }
         // Admin column
 
-        $html .= '<th><br /></th>';
+        $html .= '<th class="text-right">' . $this->renderFilters() . '</th>';
         return $html;
     }
 
@@ -143,8 +145,7 @@ class DatagridRenderer
                     return null;
                 }
                 $html = $this->route('is_private',
-                    '<i class="fa fa-lock visible-xs visible-xm"></i> ' .
-                    '<span class="visible-md visible-lg">' . trans('crud.fields.is_private') . '</span>'
+                    '<i class="fa fa-lock" title="' . trans('crud.fields.is_private') . '"></i>'
                 );
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
@@ -195,14 +196,14 @@ class DatagridRenderer
 
         // Order by
         $order = $this->filterService->order();
-        $orderImg = '';
+        $orderImg = ' <i class="fa fa-sort"></i>';
         if (!empty($order) && isset($order[$field])) {
-            $direction = 'down';
+            $direction = 'desc';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
-                $direction = 'up';
+                $direction = 'asc';
             }
-            $orderImg = ' <i class="fa fa-long-arrow-' . $direction . '"></i>';
+            $orderImg = ' <i class="fa fa-sort-' . $direction . '"></i>';
         }
 
         return "<a href='" .
@@ -389,17 +390,17 @@ class DatagridRenderer
     {
         $content = '
         <a href="' . route($this->getOption('baseRoute') . '.show', ['id' => $model->id]) .
-            '" class="btn btn-xs btn-default">
-            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-lg">' . trans('crud.view') . '</span>
+            '" title="' . trans('crud.view') . '">
+            <i class="fa fa-eye" aria-hidden="true"></i>
         </a>';
 
         if ($this->user && $this->user->can('update', $model)) {
-            $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" class="btn btn-xs btn-primary">
-                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="visible-lg">' . trans('crud.edit') . '</span>
+            $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" title="' . trans('crud.edit') . '">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>';
         }
 
-        return '<td class="text-right">' . $content . '</td>';
+        return '<td class="text-right table-actions">' . $content . '</td>';
     }
 
     /**
@@ -410,5 +411,42 @@ class DatagridRenderer
     private function isBoolean($column)
     {
         return substr($column, 0, 3) == 'is_' || substr($column, 0, 4) == 'has_';
+    }
+
+    /**
+     * Set the filters
+     */
+    public function filters($filters)
+    {
+        $this->filters = $filters;
+        return $this;
+    }
+
+    /**
+     * Render the filter
+     * @return string
+     */
+    protected function renderFilters()
+    {
+        if (empty($this->filters)) {
+            return '';
+        }
+
+        $filtersHtml = view('cruds._filters2')->with([
+            'filters' => $this->filters,
+            'filterService' => $this->filterService,
+            'route' => $this->getOption('route'),
+            'name' => $this->getOption('trans')
+        ]);
+
+        $filtersHtml = str_replace('"', '\'', $filtersHtml);
+
+        $html = '
+        <div class="table-filters" title="' . __('crud.filters.title') . '" data-toggle="popover" data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
+            <i class="fa fa-filter"></i>
+            <i class="fa fa-caret-down"></i>
+        </div>';
+
+        return $html;
     }
 }

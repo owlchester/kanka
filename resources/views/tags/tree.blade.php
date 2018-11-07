@@ -9,34 +9,33 @@
 
 
 @section('content')
-    <div class="box">
-        <div class="box-header with-border">
-            @if (auth()->check() && auth()->user()->can('create', $model))
-            <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-sm">
-                <i class="fa fa-plus"></i> {{ trans($name . '.index.add') }}
-            </a>
-            @endif
+    <div class="row margin-bottom">
+        <div class="col-md-12">
+            @include('layouts.datagrid.search', ['route' => route($name . '.index')])
+
+            @can('create', $model)
+                <a href="{{ route($name . '.create') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+                </a>
+            @endcan
             @foreach ($actions as $action)
-                @if (empty($action['policy']) || Auth::user()->can($action['policy'], $model))
-                    <a href="{{ $action['route'] }}" class="btn btn-sm btn-{{ $action['class'] }}">
+                @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
+                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
                         {!! $action['label'] !!}
                     </a>
                 @endif
             @endforeach
-            <br>
-
-            <div class="box-tools">
-                @include('layouts.datagrid.search', ['route' => route($name . '.index')])
-            </div>
         </div>
+    </div>
 
+    @include('partials.errors')
+
+    <div class="box no-border">
         <div class="box-body">
             <p class="help-block">{{ __('tags.helpers.nested') }}</p>
         </div>
 
         <div class="box-body no-padding">
-            @include('cruds._filters', ['route' => route($name . '.tree'), 'filters' => $filters])
-
             {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
             @include($name . '._tree')
         </div>

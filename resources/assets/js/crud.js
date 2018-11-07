@@ -23,7 +23,7 @@ $(document).ready(function() {
     // Filters
     var filters = $('#crud-filters');
     if (filters.length === 1) {
-        initCrudFilters();
+        //initCrudFilters();
     }
 
     // Multi-delete

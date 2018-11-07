@@ -1,6 +1,6 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->render(
+{!! $datagrid->filters($filters)->render(
     $filterService,
     // Columns
     [

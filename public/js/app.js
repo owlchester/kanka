@@ -51357,6 +51357,8 @@ $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     }
 
+    $('[data-toggle="popover"]').popover();
+
     initSelect2();
 
     // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
@@ -51495,9 +51497,9 @@ $(document).ready(function () {
     initTogglePasswordFields();
 
     /**
-     * Whenever a modal is shown, we'll need to re-bind various helpers we have.
+     * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
      */
-    $(document).on('shown.bs.modal', function () {
+    $(document).on('shown.bs.modal shown.bs.popover', function () {
         $('[data-toggle="tooltip"]').tooltip();
 
         // Also re-bind select2 elements on modal show
@@ -52143,9 +52145,9 @@ var toggablePanels;
 $(document).ready(function () {
     // Filters
     var filters = $('#crud-filters');
-    if (filters.length === 1) {
-        initCrudFilters();
-    }
+    if (filters.length === 1) {}
+    //initCrudFilters();
+
 
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');

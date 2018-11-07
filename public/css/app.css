@@ -2415,11 +2415,45 @@ div.required label:after {
 
 table th.avatar,
 table td.avatar {
-  width: 60px;
+  width: 40px;
+}
+
+table th i {
+  padding-left: 5px;
+}
+
+table th .table-filters {
+  background-color: #eee;
+  padding: 5px 15px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+table th .table-filters i {
+  padding: 0px;
+}
+
+table th .table-filters i.fa-filter {
+  font-size: 16px;
+  padding-right: 5px;
+}
+
+table th .table-filters:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 table tbody td {
   vertical-align: middle !important;
+}
+
+table tbody .table-actions a {
+  font-size: 16px;
+  padding: 10px 5px;
+}
+
+table label {
+  font-weight: normal;
 }
 
 .clear {
@@ -2510,8 +2544,8 @@ tr.entity-hidden td {
  */
 
 .filters {
-  background-color: #eee;
-  margin: 15px 15px;
+  background-color: #fff;
+  margin: 15px 0px;
   border-radius: 5px;
 }
 
@@ -2613,10 +2647,6 @@ div.mce-fullscreen {
 
 .export-visible {
   display: none;
-}
-
-table label {
-  font-weight: normal;
 }
 
 /**
@@ -2753,5 +2783,17 @@ table label {
     display: block;
     width: auto;
   }
+}
+
+.datagrid-search {
+  display: inline-block;
+}
+
+.datagrid-search .input-group-addon {
+  border-right: 0px;
+}
+
+.select2-container {
+  z-index: 1200;
 }
 

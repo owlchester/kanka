@@ -5,7 +5,6 @@
 <aside class="main-sidebar">
     <section class="sidebar">
         <ul class="sidebar-menu tree" data-widget="tree">
-            <li class="header">{{ trans('sidebar.navigation') }}</li>
             <li class="{{ $sidebar->active('dashboard') }}">
                 <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
             </li>
