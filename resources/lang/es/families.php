@@ -18,7 +18,7 @@ return [
         'location'  => 'Procedencia',
         'members'   => 'Miembros',
         'name'      => 'Nombre',
-        'relation'  => 'Vínculos',
+        'relation'  => 'Relación',
     ],
     'hints'         => [
         'members'   => 'Aquí se enumeran los miembros de una familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
@@ -37,7 +37,7 @@ return [
         'description'   => 'Vista detallada de la familia',
         'tabs'          => [
             'member'    => 'Miembros',
-            'relation'  => 'Vínculos',
+            'relation'  => 'Relaciones',
         ],
         'title'         => 'Familia :name',
     ],

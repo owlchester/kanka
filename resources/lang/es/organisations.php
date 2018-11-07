@@ -18,7 +18,7 @@ return [
         'location'  => 'Lugar',
         'members'   => 'Miembros',
         'name'      => 'Nombre',
-        'relation'  => 'Vínculo',
+        'relation'  => 'Relación',
         'type'      => 'Tipo',
     ],
     'index'         => [
@@ -62,7 +62,7 @@ return [
         'description'   => 'Vista detallada de la organización',
         'tabs'          => [
             'members'   => 'Miembros',
-            'relations' => 'Vínculos',
+            'relations' => 'Relaciones',
         ],
         'title'         => 'Organización :name',
     ],

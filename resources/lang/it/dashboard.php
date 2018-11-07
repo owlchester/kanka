@@ -15,8 +15,8 @@ return [
     'recent'            => [
         'add'           => 'Crea :name',
         'no_entries'    => 'Attualmente non ci sono elementi di questo tipo.',
-        'title'         => ':name modificati di recente',
-        'view'          => 'Vedi tutti :name',
+        'title'         => ':name con modifiche recenti',
+        'view'          => ':name, visualizzali tutti',
     ],
     'settings'          => [
         'description'   => 'Personalizza quello che vedi nella tua dashboard',

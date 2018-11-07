@@ -2,27 +2,27 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nuevo vínculo',
-        'success'       => 'Vínculo añadido para :name.',
-        'title'         => 'Crear Vínculo',
+        'description'   => 'Crear nueva relación',
+        'success'       => 'Relación de :name añadida.',
+        'title'         => 'Crear Relación',
     ],
     'destroy'       => [
-        'success'   => 'Vínculo eliminado para :name.',
+        'success'   => 'Relación de :name eliminada.',
     ],
     'edit'          => [
-        'success'   => 'Vínculo actualizado para :name.',
-        'title'     => 'Actualizar vínculos',
+        'success'   => 'Relación de :name actualizada.',
+        'title'     => 'Actualizar relaciones',
     ],
     'fields'        => [
-        'relation'  => 'Vínculo',
-        'target'    => 'Selección',
-        'two_way'   => 'Reflejar vínculo creado',
+        'relation'  => 'Relación',
+        'target'    => 'Objetivo',
+        'two_way'   => 'Reflejar relación creada',
     ],
     'hints'         => [
-        'two_way'   => 'Si eliges crear un reflejo, el mismo vínculo será reflejado en el objeto seleccionado. Sin embargo, si editas uno, el otro no se verá afectado.',
+        'two_way'   => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
     ],
     'placeholders'  => [
-        'relation'  => 'Naturaleza del vínculo',
+        'relation'  => 'Naturaleza de la relación',
         'target'    => 'Elige una entidad',
     ],
 ];

@@ -24,11 +24,11 @@ return [
     'fields'        => [
         'characters'    => 'Personajes',
         'image'         => 'Imagen',
-        'location'      => 'Lugar',
+        'location'      => 'Localización',
         'locations'     => 'Lugares',
         'map'           => 'Mapa',
         'name'          => 'Nombre',
-        'relation'      => 'Vínculo',
+        'relation'      => 'Relación',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
@@ -98,7 +98,7 @@ return [
         'title'         => 'Organizaciones de :name',
     ],
     'placeholders'  => [
-        'location'  => 'Elige un lugar vinculado',
+        'location'  => 'Elige el lugar al que está vinculado',
         'name'      => 'Nombre del lugar',
         'type'      => 'Ciudad, Reino, Ruinas',
     ],

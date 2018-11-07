@@ -6,7 +6,7 @@ return [
         'title'         => 'Novedades',
     ],
     'post'  => [
-        'footer'    => 'Por :name en :date',
+        'footer'    => 'Por :name el :date',
     ],
     'show'  => [
         'return'    => 'Volver a novedades',

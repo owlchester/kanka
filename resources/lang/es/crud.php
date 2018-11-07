@@ -245,14 +245,14 @@ return [
     ],
     'relations'         => [
         'actions'   => [
-            'add'   => 'Añadir un vínculo',
+            'add'   => 'Añadir una relación',
         ],
         'fields'    => [
             'location'  => 'Localización',
             'name'      => 'Nombre',
-            'relation'  => 'Vínculo',
+            'relation'  => 'Relación',
         ],
-        'hint'      => 'Se pueden vincular entidades para representar sus conexiones.',
+        'hint'      => 'Se pueden relacionar entidades para representar sus conexiones.',
     ],
     'remove'            => 'Eliminar',
     'rename'            => 'Renombrar',
@@ -270,7 +270,7 @@ return [
         'menu'          => 'Menú',
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
-        'relations'     => 'Vínculos',
+        'relations'     => 'Relaciones',
     ],
     'update'            => 'Actualizar',
     'users'             => [

@@ -37,7 +37,7 @@ return [
         'name'                      => 'Nombre',
         'physical'                  => 'Apariencia',
         'race'                      => 'Raza',
-        'relation'                  => 'Vínculo',
+        'relation'                  => 'Relación',
         'sex'                       => 'Género',
         'title'                     => 'Título',
         'traits'                    => 'Personalidad',

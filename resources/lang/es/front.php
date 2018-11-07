@@ -67,7 +67,7 @@ return [
         ],
         'relations'         => [
             'description'   => 'Cada entidad puede tener una complicada red de relaciones con otras entidades, incluyendo relaciones secretas, invisibles para tus jugadores.',
-            'title'         => 'Vínculos',
+            'title'         => 'Relaciones',
         ],
         'title'             => 'Funciones ilimitadas, diversión ilimitada',
         'updates'           => [

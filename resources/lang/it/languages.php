@@ -7,6 +7,8 @@ return [
         'en-US' => 'Inglese Americano',
         'es'    => 'Spagnolo',
         'fr'    => 'Francese',
+        'it'    => 'Italiano',
+        'nl'    => 'Olandese',
         'pt-BR' => 'Portoghese-Brasiliano',
     ],
     'header'=> 'Lingue',

@@ -3,6 +3,7 @@
 return [
     'about'         => [
         'description'   => 'Kanka è nato dal desiderio di due appassionati giocatori di RPG per costruire e gestire un mondo assieme nell\'estate del 2017. Dopo aver provato qualcosa di già disponibile a quel tempo, ed aver concluso che nessuna di esse soddisfacesse le nostre aspettative, abbiamo iniziato a costruire il nostro sistema nell\'autunno del 2017.',
+        'title'         => 'Su di noi',
     ],
     'campaigns'     => [
         'featured'  => [
@@ -20,39 +21,46 @@ return [
     'cookie'        => [
         'dismiss'   => 'Capito!',
         'link'      => 'Scopri di più',
+        'message'   => 'Questo sito utilizza dei cookies per assicurarsi di fornirti la miglior esperienza possibile.',
     ],
     'faq'           => [
         'title' => 'FAQ',
     ],
     'features'      => [
-        'calendars' => [
+        'calendars'         => [
             'title' => 'Calendari',
         ],
-        'free'      => [
+        'collaborative'     => [
+            'title' => 'Collaborativo',
+        ],
+        'description_full'  => 'Una vetrina di alcune delle nostre migliori e più amate caratteristiche.',
+        'free'              => [
             'title' => 'Utilizzo Gratuito',
         ],
-        'layers'    => [
+        'layers'            => [
             'title' => 'Personaggi, Famiglie, Luoghi',
         ],
-        'learn_more'=> 'Scopri di più sulle caratteristiche di Kanka.',
-        'maps'      => [
+        'learn_more'        => 'Scopri di più sulle caratteristiche di Kanka.',
+        'maps'              => [
             'title' => 'Mappe',
         ],
-        'modular'   => [
-            'title' => 'Modulare',
+        'modular'           => [
+            'description'   => 'Ogni modulo (personaggi, luoghi) può essere abilitato o disabilitato in qualsiasi momento, rendendo più facile per te personalizzarela tua campagna.',
+            'title'         => 'Modulare',
         ],
-        'notebook'  => [
+        'notebook'          => [
             'description'   => 'Prepara la tua prossimo sessione o tieni traccia di quello che è successo con il nostro diario!',
             'title'         => 'Pagine del Diario',
         ],
-        'public'    => [
-            'title' => 'Permessi',
+        'public'            => [
+            'description'   => 'I permessi possono essere impostati per moduli o per ogni singola entità. Le campagne possono anche essere impostate come pubbliche per <a href=":url">mondo intero</a>.',
+            'title'         => 'Permessi',
         ],
-        'relations' => [
+        'relations'         => [
             'title' => 'Relazioni',
         ],
-        'title'     => 'Caratteristiche Infinite, Divertimento Infinito',
-        'updates'   => [
+        'title'             => 'Caratteristiche Infinite, Divertimento Infinito',
+        'updates'           => [
             'title' => 'Aggiornamenti Frequenti',
         ],
     ],
@@ -73,6 +81,7 @@ return [
         'title'             => 'Kanka',
     ],
     'menu'          => [
+        'about'     => 'Su di noi',
         'campaigns' => 'Campagne Pubbliche',
         'contact'   => 'Contatti',
         'contact_us'=> 'Contattaci',
@@ -88,7 +97,8 @@ return [
         'tos'       => 'Termini di Servizio',
     ],
     'meta'          => [
-        'title' => 'Kanka - Gestore di campagne Online per RPG e strumento per la creazione di mondi',
+        'description'   => 'Kanka è un flessibile costruttore di mondi digitali e gestore on-line di campagne RPG',
+        'title'         => 'Kanka - Gestore di campagne Online per RPG e strumento per la creazione di mondi',
     ],
     'privacy'       => [
         'description'   => 'Data di entrata in vigore: 25 Maggio 2018',

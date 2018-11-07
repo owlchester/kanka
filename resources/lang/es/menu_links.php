@@ -28,7 +28,7 @@ return [
     'placeholders'  => [
         'entity'    => 'Elige una entidad',
         'name'      => 'Nombre del enlace de menú',
-        'tab'       => 'Historia, Vínculos, Notas',
+        'tab'       => 'Historia, Relaciones, Notas',
     ],
     'show'          => [
         'description'   => 'Vista detallada del enlace de menú',
