@@ -81,5 +81,6 @@
 @include('cruds.fields.save')
 
 @section('scripts')
+    @parent
     <script src="{{ mix('js/organisation.js') }}" defer></script>
 @endsection
