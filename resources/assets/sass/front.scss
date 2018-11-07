@@ -176,3 +176,25 @@ ul.pagination {
     display: block;
   }
 }
+
+// Login / Register
+.login-page, .register-page {
+  background-color: #eef1f4;
+
+  h1 {
+    img {
+      display: inline-block;
+      width: 40px;
+      margin-top: -8px;
+    }
+  }
+
+  .login-box, .register-box {
+    width: 420px;
+
+    .login-box-body, .register-box-body {
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+      border-radius: 10px;
+    }
+  }
+}

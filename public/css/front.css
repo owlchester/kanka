@@ -4218,3 +4218,35 @@ ul.pagination li span {
   display: block;
 }
 
+.login-page,
+.register-page {
+  background-color: #eef1f4;
+}
+
+.login-page h1 img,
+.register-page h1 img {
+  display: inline-block;
+  width: 40px;
+  margin-top: -8px;
+}
+
+.login-page .login-box,
+.login-page .register-box,
+.register-page .login-box,
+.register-page .register-box {
+  width: 420px;
+}
+
+.login-page .login-box .login-box-body,
+.login-page .login-box .register-box-body,
+.login-page .register-box .login-box-body,
+.login-page .register-box .register-box-body,
+.register-page .login-box .login-box-body,
+.register-page .login-box .register-box-body,
+.register-page .register-box .login-box-body,
+.register-page .register-box .register-box-body {
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+

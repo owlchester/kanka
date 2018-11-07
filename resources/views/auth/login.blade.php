@@ -79,14 +79,16 @@
                     Twitter
                 </a>
             </div>
-
+        </div>
+        <div class="col-md-6 text-center">
             <a class="btn btn-link" href="{{ route('password.request') }}">
                 {{ trans('auth.login.password_forgotten') }}
             </a>
+        </div>
+        <div class="col-md-6 text-center">
             <a class="btn btn-link" href="{{ route('register') }}">
                 {{ trans('auth.login.new_account') }}
             </a>
-
         </div>
     </div>
 @endsection

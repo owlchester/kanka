@@ -33,13 +33,15 @@
     <!-- Styles -->
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/front.css') }}" rel="stylesheet">
 </head>
 <body  class="hold-transition register-page">
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a>
+            <h1>
+                <a href="{{ route('home') }}"><img src="/images/logo_solo.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/> {{ config('app.name') }}</a>
+            </h1>
         </div>
 
         <!-- Content Header (Page header) -->
