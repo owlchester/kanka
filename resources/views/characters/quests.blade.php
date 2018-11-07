@@ -2,6 +2,7 @@
     'title' => trans('characters.quests.title', ['name' => $model->name]),
     'description' => trans('characters.quests.description'),
     'breadcrumbs' => [
+        ['url' => route('characters.index'), 'label' => __('characters.index.title')],
         ['url' => route('characters.show', $model), 'label' => $model->name],
         trans('characters.show.tabs.quests')
     ]

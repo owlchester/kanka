@@ -2,6 +2,7 @@
     'title' => trans('locations.locations.title', ['name' => $model->name]),
     'description' => trans('locations.locations.description'),
     'breadcrumbs' => [
+        ['url' => route('locations.index'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $model), 'label' => $model->name],
         trans('locations.show.tabs.locations')
     ]

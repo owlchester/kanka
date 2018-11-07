@@ -2,6 +2,7 @@
     'title' => trans('characters.journals.title', ['name' => $model->name]),
     'description' => trans('characters.journals.description'),
     'breadcrumbs' => [
+        ['url' => route('characters.index'), 'label' => __('characters.index.title')],
         ['url' => route('characters.show', $model), 'label' => $model->name],
         trans('characters.show.tabs.journals')
     ]

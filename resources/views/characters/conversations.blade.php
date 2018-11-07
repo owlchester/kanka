@@ -2,6 +2,7 @@
     'title' => trans('characters.conversations.title', ['name' => $model->name]),
     'description' => trans('characters.conversations.description'),
     'breadcrumbs' => [
+        ['url' => route('characters.index'), 'label' => __('characters.index.title')],
         ['url' => route('characters.show', $model), 'label' => $model->name],
         trans('characters.show.tabs.conversations')
     ]
