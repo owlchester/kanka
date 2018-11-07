@@ -139,10 +139,15 @@
   display: inline-block;
   overflow: visible;
 
-  button {
+  button, a {
     display: block;
     width: 100%;
     margin-bottom: 3px;
+  }
+}
+.map-zoom {
+  button, a {
+    background-color: rgba(244, 244, 244, 0.9);
   }
 }
 

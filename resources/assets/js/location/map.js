@@ -8,6 +8,7 @@ var mapToggleShow, mapToggleHide;
 var mapZoomValue = 100, mapZoomIncrements = 0;
 var mapDraggable, mapIsMoving = false, mapPointIsMoving = false;
 var mapPointModalBody;
+var mapMouseX, mapMouseY;
 
 // V2
 var mapElement, mapPanel, mapPanelLoader;
@@ -46,6 +47,7 @@ $(document).ready(function() {
     disableMovePoints();
     initAddPoints();
     initMapScroll();
+    resizeMapToPage();
 });
 
 /**
@@ -86,6 +88,12 @@ function initMapControls() {
                     mapIsMoving = false;
                 }, 200);
             }
+        });
+
+        mapDraggable.mousemove(function (event) {
+            var offset = mapElement.offset();
+            mapMouseX = event.pageX - offset.left;
+            mapMouseY = event.pageY - offset.top;
         });
     }
 
@@ -155,6 +163,24 @@ function mapZoom(change) {
         mapZoomOut.attr('disabled', 'disabled');
     } else if (newZoom >= max) {
         mapZoomIn.attr('disabled', 'disabled');
+    }
+
+    // Move the map towards the position of the mouse
+    var pos = mapDraggable.position();
+    if (change > 0) {
+        // Zoom In, move the map to the top and left as an amount based on the mouse position
+        // new_map_x = map_x - (cursor_x / screen_max_width * (new_map_width - map_width))
+        mapDraggable
+            .css('left', pos.left - (mapMouseX / mapElement.width() * 100))
+            .css('top', pos.top - (mapMouseY / mapElement.height() * 100))
+            //.css('top', pos.top - (mapMouseY * 0.1))
+        ;
+    } else if (change < 0) {
+        mapDraggable
+            .css('left', pos.left + (mapMouseX / mapElement.width() * 100))
+            .css('top', pos.top + (mapMouseY / mapElement.height() * 100))
+            //.css('top', pos.top + (mapMouseY * 0.1))
+        ;
     }
 }
 
@@ -519,4 +545,30 @@ function repositionPoint(point, magnifier) {
         fontSize = 56;
     }
     point.css('font-size', (fontSize * magnifier) + 'px');
+}
+
+/**
+ * Resize the map to the map div on page load
+ */
+function resizeMapToPage() {
+    // Reset the zoom to the biggest value
+    var imgWidth = mapImage.width();
+    var imgHeight = mapImage.height();
+    console.log('img width, height', imgWidth, imgHeight);
+
+    // Get the view box width and height
+    var mapWidth = mapElement.width();
+    var mapHeight = mapElement.height();
+    console.log('div width, height', mapWidth, mapHeight);
+
+    // Resize zoom
+    var ratio = 1;
+    if (imgWidth >= imgHeight) {
+        ratio = mapWidth / imgWidth;
+    } else {
+        ratio = mapHeight / imgHeight;
+    }
+
+    mapZoomValue = Math.floor(100 * ratio);
+    mapZoom(0);
 }
