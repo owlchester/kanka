@@ -17,6 +17,13 @@ return [
         ],
         'title'             => 'Campagnes Publiques',
     ],
+    'community'     => [
+        'description'   => 'Kanka n\'est pas seulement une application, c\'est aussi une riche communauté de constructeurs de monde, maître de jeu, joueur et créateur enthousiaste.',
+        'discord'       => 'Le Discord de Kanka est l\'endroit le plus actif pour parler de l\'application, des bugs, nouvelles fonctionnalités, demander de l\'aide et aider les autres.',
+        'join'          => 'Rejoins nous!',
+        'reddit'        => 'Le subreddit Kanka est un endroit plus calme où les sujets peuvent être discuté pendant de longues périodes.',
+        'title'         => 'Communauté',
+    ],
     'contact'       => [
         'title' => 'Nous :icon de nouveaux amis!',
     ],
@@ -80,7 +87,10 @@ return [
         'title'         => 'Une nouvelle manière d\'organiser vos campagnes.',
     ],
     'footer'        => [
+        'app'       => 'App',
         'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
+        'navigation'=> 'Naviguation',
+        'resources' => 'Ressources',
     ],
     'help'          => [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacteront aussi rapidement que possible.',
@@ -97,16 +107,19 @@ return [
     'menu'          => [
         'about'     => 'A propos',
         'campaigns' => 'Campagnes Publiques',
+        'community' => 'Communauté',
         'contact'   => 'Contact',
         'contact_us'=> 'Nous contacter',
         'dashboard' => 'Accueil',
         'faq'       => 'FAQ',
         'features'  => 'Fonctionnalités',
         'help'      => 'Aide',
+        'home'      => 'Accueil',
         'login'     => 'Login',
         'privacy'   => 'Politique de confidentialité',
         'register'  => 'Inscription',
         'releases'  => 'Mises à jour',
+        'roadmap'   => 'Roadmap',
         'title'     => 'Menu',
         'tos'       => 'Conditions d\'utilisation',
     ],
@@ -121,6 +134,18 @@ return [
     'release'       => [
         'description'   => 'Kanka ne cesse de croître et de s\'améliorer, et nous voulons que le monde sache toutes les choses impressionnantes que nous ajoutons à l\'application.',
         'title'         => 'Mises à jours',
+    ],
+    'roadmap'       => [
+        'backlog'       => [
+            'description'   => 'Ce Trello continent toutes les requêtes de la communauté, ainsi que les améliorations planifiées et nouvelles fonctionnalités qui seront un jour ajouté à l\'application.',
+            'title'         => 'Backlog',
+        ],
+        'description'   => 'Nos incroyables Patrons votent une fois par mois sur les nouvelles fonctionnalités à prioritiser, significant que nous n\'avons pas de roadmap sur plusieurs mois, mais il est facile de suivre les requêtes qui sont en cours d\'être implémentées.',
+        'next'          => [
+            'description'   => 'Ce Trello contient toutes les améliorations et nouvelles fonctionnalités qui sont en cours de développement.',
+            'title'         => 'Prochain',
+        ],
+        'title'         => 'Roadmap',
     ],
     'second_block'  => [
         'call_to_action'    => 'Commençons!',

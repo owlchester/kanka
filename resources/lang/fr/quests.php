@@ -19,6 +19,7 @@ return [
             'character'     => 'Personnage',
             'description'   => 'Description',
         ],
+        'title'     => 'Personnages dans :name',
     ],
     'create'        => [
         'description'   => 'Créer une nouvelle quête',
@@ -39,8 +40,10 @@ return [
         'description'   => 'Description',
         'image'         => 'Image',
         'is_completed'  => 'Completée',
+        'items'         => 'Objets',
         'locations'     => 'Lieux',
         'name'          => 'Nom',
+        'organisations' => 'Organisations',
         'quest'         => 'Quête Parentale',
         'type'          => 'Type',
     ],
@@ -52,6 +55,26 @@ return [
         'description'   => 'Gérer les quêtes de :name.',
         'header'        => 'Quêtes de :name',
         'title'         => 'Quêtes',
+    ],
+    'items'         => [
+        'create'    => [
+            'description'   => 'Ajouter un objet à la quête',
+            'success'       => 'Objet ajouté à la quête :name.',
+            'title'         => 'Nouvel objet pour :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Objet :name retiré de la quête.',
+        ],
+        'edit'      => [
+            'description'   => 'Modifier un objet de quête',
+            'success'       => 'Objet modifier pour la quête :name.',
+            'title'         => 'Modifier l\'objet pour :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'item'          => 'Objet',
+        ],
+        'title'     => 'Objets dans :name',
     ],
     'locations'     => [
         'create'    => [
@@ -71,6 +94,27 @@ return [
             'description'   => 'Description',
             'location'      => 'Lieu',
         ],
+        'title'     => 'Lieux dans :name',
+    ],
+    'organisations' => [
+        'create'    => [
+            'description'   => 'Ajouter une organisation à la quête',
+            'success'       => 'Organisation ajoutée à :name.',
+            'title'         => 'Nouvelle organisation pour :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Organisation retirée pour la quête :name.',
+        ],
+        'edit'      => [
+            'description'   => 'Modifier l\'organisation d\'une quête',
+            'success'       => 'Organisation modifiée pour la quête :name.',
+            'title'         => 'Modifier l\'organisation pour :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'organisation'  => 'Organisation',
+        ],
+        'title'     => 'Organisations dans :name',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la quête',
@@ -79,14 +123,18 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character' => 'Ajouter un personnage',
-            'add_location'  => 'Ajouter un lieu',
+            'add_character'     => 'Ajouter un personnage',
+            'add_item'          => 'Ajouter un objet',
+            'add_location'      => 'Ajouter un lieu',
+            'add_organisation'  => 'Ajouter une organisation',
         ],
         'description'   => 'Détail de la quête',
         'tabs'          => [
             'characters'    => 'Personnages',
             'information'   => 'Information',
+            'items'         => 'Objets',
             'locations'     => 'Lieux',
+            'organisations' => 'Organisations',
             'quests'        => 'Quêtes',
         ],
         'title'         => 'Quête :name',

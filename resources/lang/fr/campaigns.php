@@ -173,6 +173,7 @@ return [
             '3' => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
         ],
         'hints'         => [
+            'public'            => 'Si la campagne est en mode publique, ce rôle est utilisé pour les visiteurs qui ne font pas partie de la campagne. :more',
             'role_permissions'  => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',

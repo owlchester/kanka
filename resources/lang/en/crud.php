@@ -2,16 +2,16 @@
 
 return [
     'actions'           => [
-        'back'      => 'Back',
-        'copy'      => 'Copy',
-        'export'    => 'Export',
-        'more'      => 'More Actions',
-        'move'      => 'Move',
-        'new'       => 'New',
-        'private'   => 'Private',
-        'public'    => 'Public',
-        'go_to'     => 'Go to :name',
+        'back'          => 'Back',
+        'copy'          => 'Copy',
+        'export'        => 'Export',
         'find_out_more' => 'Find out more',
+        'go_to'         => 'Go to :name',
+        'more'          => 'More Actions',
+        'move'          => 'Move',
+        'new'           => 'New',
+        'private'       => 'Private',
+        'public'        => 'Public',
     ],
     'add'               => 'Add',
     'attributes'        => [
@@ -98,8 +98,8 @@ return [
         'family'                => 'Family',
         'files'                 => 'Files',
         'image'                 => 'Image',
-        'item'                  => 'Item',
         'is_private'            => 'Private',
+        'item'                  => 'Item',
         'location'              => 'Location',
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
@@ -208,9 +208,9 @@ return [
         'placeholders'  => [
             'name'  => 'Name of the note, observation or remark.',
         ],
-        'show' => [
+        'show'          => [
             'title' => 'Entity Note :name for :entity',
-        ]
+        ],
     ],
     'or_cancel'         => 'or <a href=":url">cancel</a>',
     'panels'            => [

@@ -14,12 +14,16 @@ return [
         'title'     => 'Modifier Organisation :name',
     ],
     'fields'        => [
-        'image'     => 'Image',
-        'location'  => 'Lieu',
-        'members'   => 'Membres',
-        'name'      => 'Nom',
-        'relation'  => 'Relation',
-        'type'      => 'Type',
+        'image'         => 'Image',
+        'location'      => 'Lieu',
+        'members'       => 'Membres',
+        'name'          => 'Nom',
+        'organisation'  => 'Organisation Parent',
+        'relation'      => 'Relation',
+        'type'          => 'Type',
+    ],
+    'helpers'       => [
+        'descendants'   => 'Cette liste contient toutes les organisations qui appartiennent directement ou indirectement à cette organisation.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Organisation',
@@ -47,22 +51,36 @@ return [
             'character' => 'Personnage',
             'role'      => 'Rôle',
         ],
-        'hint'          => 'Les organisations ont généralement besoin de membre pour fonctionner correctement.',
+        'helpers'       => [
+            'all_members'       => 'Cette liste contient tous les personnages qui font partie de cette organisation et toutes les organisations descendantes.',
+            'direct_members'    => 'Les organisations ont généralement besoin de membres pour fonctionner correctement. Cette liste contient tous les membres directement membre de cette organisation.',
+        ],
         'placeholders'  => [
             'character' => 'Choix du personnage',
             'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
         ],
+        'title'         => 'Organisation :name Membres',
+    ],
+    'organisations' => [
+        'title' => 'Organisation :name Organisations',
     ],
     'placeholders'  => [
         'location'  => 'Choix du lieu',
         'name'      => 'Nom de l\'organisation',
         'type'      => 'Culte, Bande, Rebellion',
     ],
+    'quests'        => [
+        'description'   => 'Quêtes dont l\'organisation fait partie.',
+        'title'         => 'Organisation :name Quêtes',
+    ],
     'show'          => [
         'description'   => 'Détail de l\'organisation',
         'tabs'          => [
-            'members'   => 'Membres',
-            'relations' => 'Relations',
+            'all_members'   => 'Tous les membres',
+            'members'       => 'Membres',
+            'organisations' => 'Organisations',
+            'quests'        => 'Quêtes',
+            'relations'     => 'Relations',
         ],
         'title'         => 'Organisation :name',
     ],

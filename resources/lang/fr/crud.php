@@ -2,14 +2,16 @@
 
 return [
     'actions'           => [
-        'back'      => 'Retour',
-        'copy'      => 'Copier',
-        'export'    => 'Export',
-        'more'      => 'Autres Actions',
-        'move'      => 'Déplacer',
-        'new'       => 'Nouveau',
-        'private'   => 'Privé',
-        'public'    => 'Publique',
+        'back'          => 'Retour',
+        'copy'          => 'Copier',
+        'export'        => 'Export',
+        'find_out_more' => 'En savoir plus',
+        'go_to'         => 'Aller à :name',
+        'more'          => 'Autres Actions',
+        'move'          => 'Déplacer',
+        'new'           => 'Nouveau',
+        'private'       => 'Privé',
+        'public'        => 'Publique',
     ],
     'add'               => 'Ajouter',
     'attributes'        => [
@@ -97,6 +99,7 @@ return [
         'files'                 => 'Fichiers',
         'image'                 => 'Image',
         'is_private'            => 'Privé',
+        'item'                  => 'Objet',
         'location'              => 'Lieu',
         'name'                  => 'Nom',
         'organisation'          => 'Organisation',
@@ -138,6 +141,7 @@ return [
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
+        'map_limitations'       => 'Formats supportés: jpg, png, gif et svg. Taille maximale: :size.',
         'unsaved_changes'       => 'Cette page contient des modifications qui n\'ont pas été sauvegardées. Les ignorer?',
     ],
     'history'           => [
@@ -242,6 +246,7 @@ return [
         'event'         => 'Choix de l\'événement',
         'family'        => 'Choix de la famille',
         'image_url'     => 'Ou depuis une URL',
+        'item'          => 'Choix d\'un objet',
         'location'      => 'Choix du lieu',
         'organisation'  => 'Choix d\'une organisation',
         'race'          => 'Choix d\'une race',

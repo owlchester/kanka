@@ -19,7 +19,7 @@ return [
             'character'     => 'Character',
             'description'   => 'Description',
         ],
-        'title' => 'Characters in :name'
+        'title'     => 'Characters in :name',
     ],
     'create'        => [
         'description'   => 'Create a new quest',
@@ -40,10 +40,10 @@ return [
         'description'   => 'Description',
         'image'         => 'Image',
         'is_completed'  => 'Completed',
-        'locations'     => 'Locations',
         'items'         => 'Items',
-        'organisations' => 'Organisations',
+        'locations'     => 'Locations',
         'name'          => 'Name',
+        'organisations' => 'Organisations',
         'quest'         => 'Parent Quest',
         'type'          => 'Type',
     ],
@@ -56,7 +56,7 @@ return [
         'header'        => 'Quests of :name',
         'title'         => 'Quests',
     ],
-    'items'     => [
+    'items'         => [
         'create'    => [
             'description'   => 'Set an item to a Quest',
             'success'       => 'Item added to :name.',
@@ -72,9 +72,9 @@ return [
         ],
         'fields'    => [
             'description'   => 'Description',
-            'item'      => 'Item',
+            'item'          => 'Item',
         ],
-        'title' => 'Items in :name'
+        'title'     => 'Items in :name',
     ],
     'locations'     => [
         'create'    => [
@@ -94,9 +94,9 @@ return [
             'description'   => 'Description',
             'location'      => 'Location',
         ],
-        'title' => 'Locations in :name'
+        'title'     => 'Locations in :name',
     ],
-    'organisations'     => [
+    'organisations' => [
         'create'    => [
             'description'   => 'Set an organisation to a Quest',
             'success'       => 'Organisation added to :name.',
@@ -112,9 +112,9 @@ return [
         ],
         'fields'    => [
             'description'   => 'Description',
-            'organisation'      => 'Organisation',
+            'organisation'  => 'Organisation',
         ],
-        'title' => 'Organisations in :name'
+        'title'     => 'Organisations in :name',
     ],
     'placeholders'  => [
         'name'  => 'Name of the quest',
@@ -123,17 +123,17 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character' => 'Add a character',
-            'add_location'  => 'Add a location',
-            'add_item' => 'Add an item',
-            'add_organisation' => 'Add an organisation',
+            'add_character'     => 'Add a character',
+            'add_item'          => 'Add an item',
+            'add_location'      => 'Add a location',
+            'add_organisation'  => 'Add an organisation',
         ],
         'description'   => 'A detailed view of a quest',
         'tabs'          => [
             'characters'    => 'Characters',
             'information'   => 'Information',
-            'locations'     => 'Locations',
             'items'         => 'Items',
+            'locations'     => 'Locations',
             'organisations' => 'Organisations',
             'quests'        => 'Quests',
         ],

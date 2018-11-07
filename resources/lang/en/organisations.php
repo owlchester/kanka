@@ -14,15 +14,15 @@ return [
         'title'     => 'Edit Organisation :name',
     ],
     'fields'        => [
-        'image'     => 'Image',
-        'location'  => 'Location',
-        'members'   => 'Members',
-        'name'      => 'Name',
-        'relation'  => 'Relation',
-        'organisation' => 'Parent Organisation',
-        'type'      => 'Type',
+        'image'         => 'Image',
+        'location'      => 'Location',
+        'members'       => 'Members',
+        'name'          => 'Name',
+        'organisation'  => 'Parent Organisation',
+        'relation'      => 'Relation',
+        'type'          => 'Type',
     ],
-    'helpers' => [
+    'helpers'       => [
         'descendants'   => 'This list contains all organisations which are descendants of this organisation, not only those directly under it.',
     ],
     'index'         => [
@@ -51,15 +51,15 @@ return [
             'character' => 'Character',
             'role'      => 'Role',
         ],
-        'helpers' => [
-            'direct_members'       => 'Most organisations require members to run successfully. The following list are characters that are directly in this organisation.',
-            'all_members'   => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations.'
+        'helpers'       => [
+            'all_members'       => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations.',
+            'direct_members'    => 'Most organisations require members to run successfully. The following list are characters that are directly in this organisation.',
         ],
         'placeholders'  => [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
         ],
-        'title' => 'Organisation :name Members',
+        'title'         => 'Organisation :name Members',
     ],
     'organisations' => [
         'title' => 'Organisation :name Organisations',
@@ -69,19 +69,19 @@ return [
         'name'      => 'Name of the organisation',
         'type'      => 'Cult, Gang, Rebellion, Fandom',
     ],
+    'quests'        => [
+        'description'   => 'Quests the organisation is a part of.',
+        'title'         => 'Organisation :name Quests',
+    ],
     'show'          => [
         'description'   => 'A detailed view of an organisation',
         'tabs'          => [
-            'all_members' => 'All Members',
-            'members'   => 'Direct Members',
-            'relations' => 'Relations',
-            'quests'    => 'Quests',
+            'all_members'   => 'All Members',
+            'members'       => 'Direct Members',
             'organisations' => 'Organisations',
+            'quests'        => 'Quests',
+            'relations'     => 'Relations',
         ],
         'title'         => 'Organisation :name',
     ],
-    'quests' => [
-        'title' => 'Organisation :name Quests',
-        'description' => 'Quests the organisation is a part of.',
-    ]
 ];

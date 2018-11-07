@@ -33,6 +33,10 @@ return [
         'name'      => 'Name of the item',
         'type'      => 'Weapon, Potion, Artefact',
     ],
+    'quests'        => [
+        'description'   => 'Quests the item is a part of.',
+        'title'         => 'Item :name Quests',
+    ],
     'show'          => [
         'description'   => 'A detailed view of an item',
         'tabs'          => [
@@ -41,8 +45,4 @@ return [
         ],
         'title'         => 'Item :name',
     ],
-    'quests' => [
-        'title' => 'Item :name Quests',
-        'description' => 'Quests the item is a part of.',
-    ]
 ];

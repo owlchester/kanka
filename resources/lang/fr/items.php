@@ -33,10 +33,15 @@ return [
         'name'      => 'Nom de l\'objet',
         'type'      => 'Arme, Potion, Coffre',
     ],
+    'quests'        => [
+        'description'   => 'Quêtes dont l\'objet fait partie.',
+        'title'         => 'Quêtes de l\'objet :name',
+    ],
     'show'          => [
         'description'   => 'Détail d\'un objet',
         'tabs'          => [
             'information'   => 'Information',
+            'quests'        => 'Quêtes',
         ],
         'title'         => 'Objet :name',
     ],
