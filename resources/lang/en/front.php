@@ -61,7 +61,7 @@ return [
             'title'         => 'Maps',
         ],
         'modular'           => [
-            'description'   => 'Every module (characters, locations) can be enabled or disabled at any time, making it easy for you to customise your campaign.',
+            'description'   => 'Every module such as characters or locations can be enabled or disabled at any time, making it easy for you to customise your campaign.',
             'title'         => 'Modular',
         ],
         'notebook'          => [
