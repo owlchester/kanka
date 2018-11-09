@@ -70,6 +70,7 @@ abstract class MiscObserver
             }
         }
 
+
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;

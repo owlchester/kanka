@@ -98,8 +98,10 @@ class BulkService
         $model = $this->getEntity($entityName);
         $count = 0;
         foreach ($ids as $id) {
+            /** @var MiscModel $entity */
             $entity = $model->findOrFail($id);
             if (Auth::user()->can('update', $entity) && $entity->is_private != $private) {
+                $entity::$SKIP_SAVING_OBSERVER = true;
                 $entity->is_private = $private;
                 $entity->save();
                 $count++;

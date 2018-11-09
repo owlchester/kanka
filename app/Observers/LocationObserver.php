@@ -15,6 +15,11 @@ class LocationObserver extends MiscObserver
     {
         parent::saving($model);
 
+        // Skipping observer (for example when BULK or COPY)
+        if ($model::$SKIP_SAVING_OBSERVER === true) {
+            return;
+        }
+
         // Handle map. Let's use a service for this.
         ImageService::handle($model, $model->getTable(), false, 'map');
 

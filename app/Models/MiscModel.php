@@ -21,6 +21,9 @@ abstract class MiscModel extends Model
 {
     use Paginatable, AclTrait;
 
+    /**
+     * @var bool Skip using the model's saving observer
+     */
     public static $SKIP_SAVING_OBSERVER = false;
 
     /**
