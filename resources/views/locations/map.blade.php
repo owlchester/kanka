@@ -10,7 +10,7 @@
 @section('content')
     @if ($location->map)
         <div class="row">
-            <div class="col-sm-8 col-md-9">
+            <div class="col-md-12" id="location-map-main">
                 <div class="map-zoom">
                     <button id="map-zoom-in" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_in') }}"><i class="fa fa-plus"></i></button>
                     <button id="map-zoom-out" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_out') }}"><i class="fa fa-minus"></i></button>
@@ -19,16 +19,22 @@
                     <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa fa-eye"></i></button>
                     <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa fa-download"></i></a>
                 </div>
+                <div class="map-admin">
                 @can('update', $location)
-                    <div class="map-admin">
-                        <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
-                            <i class="fa fa-pencil"></i> {{ __('locations.map.actions.admin_mode') }}
-                        </button>
-                        <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
-                            <i class="fa fa-eye"></i> {{ __('locations.map.actions.view_mode') }}
-                        </button>
-                    </div>
+                    <a href="{{ $location->getLink() }}" class="btn btn-default">
+                        <i class="fa fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
+                    </a>
+                    <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
+                        <i class="fa fa-pencil"></i> {{ __('locations.map.actions.admin_mode') }}
+                    </button>
+                    <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
+                        <i class="fa fa-eye"></i> {{ __('locations.map.actions.view_mode') }}
+                    </button>
                 @endcan
+                </div>
+                <div class="map-helper">
+                    <p>{{ __('locations.map.helpers.view') }}</p>
+                </div>
                 <div class="map">
                     <div id="draggable-map">
                         <div class="map-container">
@@ -40,22 +46,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p class="help-block">{{ __('locations.map.helpers.view') }}</p>
-                    </div>
-                </div>
-
+            <div class="hidden col-md-3 col-sm-4" id="location-map-panel">
                 <div id="location-map-panel-loading" class="text-center" style="display: none">
                     <h1><i class="fa fa-spinner fa-spin"></i></h1>
                 </div>
 
-                <div id="location-map-panel"></div>
-
-                <a href="{{ route('locations.show', $location) }}" class="btn btn-default">
-                    <i class="fa fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
-                </a>
+                <div id="location-map-panel-target"></div>
             </div>
         </div>
 

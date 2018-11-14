@@ -131,6 +131,10 @@
 }
 .map-admin {
   margin-bottom: 15px;
+
+  button, a {
+    display: inline-block;
+  }
 }
 .map-zoom, .map-admin {
   position: absolute;
@@ -138,15 +142,12 @@
   padding: 5px;
   display: inline-block;
   overflow: visible;
-
+}
+.map-zoom {
   button, a {
     display: block;
     width: 100%;
     margin-bottom: 3px;
-  }
-}
-.map-zoom {
-  button, a {
     background-color: rgba(244, 244, 244, 0.9);
   }
 }
@@ -154,9 +155,23 @@
 .map-admin {
   right: 0;
   margin-right: 15px;
-  button {
+}
+
+.map-helper {
+  bottom: 30px;
+  position: absolute;
+  z-index: 700;
+  text-align: center;
+  width: 100%;
+
+  p {
     display: inline-block;
-    width: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 30px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: default;
   }
 }
 
@@ -174,16 +189,16 @@
 
 .entity-entry {
   position: relative;
-  max-height: 230px;
+  max-height: 430px;
   overflow: hidden;
 
   &:before {
     content:'';
     width:100%;
-    height:100%;
+    height:120px;
     position:absolute;
     left:0;
-    top:100px;
+    top:310px;
     background:linear-gradient(transparent 20px, white);
   }
 }

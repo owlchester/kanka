@@ -69,7 +69,7 @@ class MapPoint extends Model
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
         $url = $this->hasTarget() ? $this->targetEntity->child->getLink() : '#';
         $style = 'top: ' . e($this->axis_y) . 'px; left: ' . e($this->axis_x) . 'px;';
-        $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : $this->name;
+        $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : e($this->name);
         $size = $this->size == 'large' ? 100 : ($this->size == 'small' ? 25 : 50);
 
         if ($this->hasTarget() && $this->icon == 'entity') {
@@ -79,7 +79,7 @@ class MapPoint extends Model
 
         return '<a id="map-point-' . $this->id . '" class="point ' . e($this->size) . ' ' . e($this->shape) . ' ' . e($this->colour) . '" '
             . 'style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
-            . 'data-url-modal="' . $dataUpdateUrl . '" title="' . $title . '" '
+            . 'data-url-modal="' . $dataUpdateUrl . '" title="' . e($title) . '" '
             . 'data-url-move="' . $dataMoveUrl . '" '
             . 'data-toggle="tooltip" data-html="true" data-top="' . $this->axis_y . '" '
             . 'data-left="' . $this->axis_x . '" data-size="' . $size . '"'

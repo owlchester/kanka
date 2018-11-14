@@ -11,13 +11,16 @@ var mapPointModalBody;
 var mapMouseX, mapMouseY;
 
 // V2
-var mapElement, mapPanel, mapPanelLoader;
+var mapElement, mapPanel, mapPanelTarget, mapPanelLoader;
 var mapAdminMode, mapViewMode, mapAdminModeActivated = false;
+var mapHelper;
+var mapEventFirstClick = true;
 
 $(document).ready(function() {
     // Look for a form to save
     mapAdmin = $('#location-map-admin');
     mapPanel = $('#location-map-panel');
+    mapPanelTarget = $('#location-map-panel-target');
     mapPanelLoader = $('#location-map-panel-loading');
     mapModal = $('#point-location');
     locationInput = $('#location_id');
@@ -35,6 +38,7 @@ $(document).ready(function() {
     mapAdminMode = $('#map-admin-mode');
     mapViewMode = $('#map-view-mode');
     mapElement = $('.map');
+    mapHelper = $('.map-helper');
 
     if (mapAdmin.length === 1) {
         initMapAdmin();
@@ -191,11 +195,12 @@ function initPointClick() {
     $.each($('.point'), function (index) {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function(e) {
+            // Need this first, so that if we are still moving, it doesn't move to location
+            e.preventDefault();
+
             if (mapPointIsMoving === true) {
                 return;
             }
-
-            e.preventDefault();
             loadMapPoint($(this));
         });
     });
@@ -236,6 +241,12 @@ function loadMapPoint(element) {
         return;
     }
 
+    // First things first, resize the map area to show the panel on the first click.
+    if (mapEventFirstClick) {
+        mapHelper.fadeOut();
+        mapEventFirstClick = false;
+    }
+
     // Admin mode? Load the form modal
     if (mapAdminModeActivated) {
         $.ajax({
@@ -253,14 +264,20 @@ function loadMapPoint(element) {
         return;
     }
 
+    // Want to load the side panel with the content.
+    if (mapPanel.hasClass('hidden')) {
+        mapPanel.removeClass('hidden');
+        $('#location-map-main').removeClass('col-md-12').addClass('col-md-9 col-sm-8');
+    }
+
     mapPanelLoader.show();
-    mapPanel.html('');
+    mapPanelTarget.html('');
 
     $.ajax(
         element.data('url')
     ).done(function(data) {
         mapPanelLoader.hide();
-        mapPanel.html(data);
+        mapPanelTarget.html(data);
     });
 }
 
@@ -345,22 +362,22 @@ function initMovePoints() {
  * Enable dragging map points
  */
 function activateMovePoints() {
-    $.each($('.point'), function(index) {
-        $(this)
-            .draggable({disabled: false})
-            .tooltip("enable");
-    });
+    // $.each($('.point'), function(index) {
+    //     $(this)
+    //         .draggable({disabled: false})
+    //         .tooltip("disable");
+    // });
 }
 
 /**
  * Disable draggin map points
  */
 function disableMovePoints() {
-    $.each($('.point'), function(index) {
-        $(this)
-            .draggable({disabled: true})
-            .tooltip("disable");
-    });
+    // $.each($('.point'), function(index) {
+    //     $(this)
+    //         .draggable({disabled: true})
+    //         .tooltip("enable");
+    // });
 }
 
 /**
@@ -390,16 +407,18 @@ function addPointMove(point) {
             mapPositionX = mapPositionX / magnifier;
             mapPositionY = mapPositionY / magnifier;
 
+
+            // We can wait for the ajax request to finish, as the user doesn't need to know that
+            // the event was done properly. This also allows directly clicking on a point
+            // after it was moved to view the form modal
+            mapPointIsMoving = false;
+
             $.ajax({
                 url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
             }).done(function (result, textStatus, xhr) {
                 //event.preventDefault();
-
-                // console.log('finished moving point');
-                mapPointIsMoving = false;
             }).fail(function (result, textStatus, xhr) {
                 // console.log('map point error', result);
-                mapPointIsMoving = false;
             });
 
             //$(this).removeClass('ui-draggable-dragging');
@@ -554,20 +573,15 @@ function resizeMapToPage() {
     // Reset the zoom to the biggest value
     var imgWidth = mapImage.width();
     var imgHeight = mapImage.height();
-    console.log('img width, height', imgWidth, imgHeight);
+    //console.log('img width, height', imgWidth, imgHeight);
 
     // Get the view box width and height
     var mapWidth = mapElement.width();
     var mapHeight = mapElement.height();
-    console.log('div width, height', mapWidth, mapHeight);
+    //console.log('div width, height', mapWidth, mapHeight);
 
-    // Resize zoom
-    var ratio = 1;
-    if (imgWidth >= imgHeight) {
-        ratio = mapWidth / imgWidth;
-    } else {
-        ratio = mapHeight / imgHeight;
-    }
+    // Resize zoom. Always use the width.
+    var ratio = mapWidth / imgWidth;
 
     mapZoomValue = Math.floor(100 * ratio);
     mapZoom(0);

@@ -26,7 +26,7 @@ class StoreSettingsProfile extends FormRequest
     {
         $user = Auth::user();
         $rules = [
-            'name' => 'required|min:4',
+            'name' => 'required|string|min:2',
             'newsletter' => 'boolean',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
         ];

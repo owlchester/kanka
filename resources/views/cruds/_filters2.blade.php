@@ -1,7 +1,9 @@
 @if (!empty($filters))
-{!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
-
-        @foreach ($filters as $field)
+<?php $filterColWidth = count($filters) > 8 ? 6 : 12; ?>
+    {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
+    <div class="row">
+    @foreach ($filters as $field)
+        <div class="col-md-{{ is_array($field) ? 12 : $filterColWidth }}">
             <div class="form-group">
             @if (is_array($field))
                 <?php $model = null;
@@ -41,16 +43,16 @@
                     @else
                         <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" placeholder="{{ trans(($field == 'is_private' ? 'crud.fields' : $name) . $field) }}" />
                     @endif
-                </div>
             @endif
             </div>
-        @endforeach
-
-<button class="btn btn-primary">{{ __('crud.filter') }}</button>
-        <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="pull-right">
-            <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
-        </a>
-
+        </div>
+    @endforeach
 </div>
+<button class="btn btn-primary">{{ __('crud.filter') }}</button>
+
+<a href="{{ route($route, ['reset-filter' => 'true']) }}" class="pull-right">
+    <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
+</a>
+
 {!! Form::close() !!}
 @endif

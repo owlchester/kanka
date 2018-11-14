@@ -105,6 +105,7 @@ table {
       display: inline-block;
       cursor: pointer;
       border-radius: 5px;
+      min-width: 60px;
 
       i {
         padding: 0px;
@@ -457,5 +458,11 @@ div.mce-fullscreen {
 
 // Need the select2 container above popovers and tooltips
 .select2-container {
-  z-index: 1200;
+  z-index: 1061;
+}
+.datepicker {
+  z-index: 1062 !important;
+}
+.popover {
+  max-width: 296px;
 }

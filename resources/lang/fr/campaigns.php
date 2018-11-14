@@ -198,7 +198,7 @@ return [
         'types'         => [
             'owner'     => 'Propriétaire',
             'public'    => 'Publique',
-            'standard'  => 'Strandard',
+            'standard'  => 'Standard',
         ],
         'users'         => [
             'actions'   => [
