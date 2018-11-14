@@ -5,6 +5,7 @@ return [
     'blue'  => 'Azul',
     'green' => 'Verde',
     'grey'  => 'Gris',
+    'none'  => 'Ninguno',
     'red'   => 'Rojo',
     'white' => 'Blanco',
     'yellow'=> 'Amarillo',

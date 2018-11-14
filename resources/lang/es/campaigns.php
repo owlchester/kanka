@@ -173,6 +173,7 @@ return [
             '3' => 'Se puede usar un sistema de "exclusión", donde los roles tienen acceso a todas las entidades, y usar la casilla de "Privado" en las entidades que se quieran ocultar. O bien, pueden darse pocos permisos a los roles, y configurar cada entidad para que sea visible individualmente.',
         ],
         'hints'         => [
+            'public'            => 'El rol "Público" se usa para los que visitan tu campaña pública.',
             'role_permissions'  => 'Habilitar el rol \':name\' para realizar las siguientes acciones en todas las entidades.',
         ],
         'members'       => 'Miembros',
@@ -236,7 +237,7 @@ return [
             'organisations' => 'Sectas, unidades militares, facciones, gremios...',
             'quests'        => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
             'races'         => 'Si tu campaña tiene más de una raza, de esta forma no las perderás de vista.',
-            'tags'          => 'Cada entidad puede tener una categoría. Las categorías pueden pertenecer a otras categorías, y las entradas pueden filtrarse por categoría.',
+            'tags'          => 'Cada entidad puede tener varias etiquetas. Éstas pueden pertenecer a otras etiquetas, y las entradas pueden filtrarse por etiqueta.',
         ],
         'title'         => 'Módulos de la campaña :name',
     ],

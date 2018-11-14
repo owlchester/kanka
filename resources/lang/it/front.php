@@ -15,6 +15,10 @@ return [
         ],
         'title'     => 'Campagne Pubbliche',
     ],
+    'community'     => [
+        'join'  => 'Unisciti a noi!',
+        'title' => 'Comunità',
+    ],
     'contact'       => [
         'title' => 'Noi :icon i nuovi amici!',
     ],
@@ -28,7 +32,8 @@ return [
     ],
     'features'      => [
         'calendars'         => [
-            'title' => 'Calendari',
+            'description'   => 'Crea dei calendari personalizzati ed organizza la tua campagna attorno ad essi.',
+            'title'         => 'Calendari',
         ],
         'collaborative'     => [
             'title' => 'Collaborativo',
@@ -68,7 +73,10 @@ return [
         'title' => 'Un nuovo modo per tener traccia delle tue campagne.',
     ],
     'footer'        => [
+        'app'       => 'App',
         'copyright' => '© 2017 - :current kanka.io. All Rights Reserved.',
+        'navigation'=> 'Navigazione',
+        'resources' => 'Risorse',
     ],
     'help'          => [
         'discord'   => 'Unisciti alla comunità su Discord',
@@ -83,16 +91,19 @@ return [
     'menu'          => [
         'about'     => 'Su di noi',
         'campaigns' => 'Campagne Pubbliche',
+        'community' => 'Comunità',
         'contact'   => 'Contatti',
         'contact_us'=> 'Contattaci',
         'dashboard' => 'Dashboard',
         'faq'       => 'FAQ',
         'features'  => 'Caratteristiche',
         'help'      => 'Aiuto',
+        'home'      => 'Home',
         'login'     => 'Entra',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Registrati',
         'releases'  => 'Rilasci',
+        'roadmap'   => 'Roadmap',
         'title'     => 'Menù',
         'tos'       => 'Termini di Servizio',
     ],
@@ -106,6 +117,16 @@ return [
     ],
     'release'       => [
         'title' => 'Rilasci',
+    ],
+    'roadmap'       => [
+        'backlog'   => [
+            'title' => 'Backlog',
+        ],
+        'next'      => [
+            'description'   => 'Questa board di Trello contiene tutte le caratteristiche ed i miglioramenti su cui attualmente si sta lavorando.',
+            'title'         => 'Prossimo',
+        ],
+        'title'     => 'Roadmap',
     ],
     'second_block'  => [
         'call_to_action'    => 'Allora Iniziamo!',

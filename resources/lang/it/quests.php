@@ -19,6 +19,7 @@ return [
             'character'     => 'Personaggio',
             'description'   => 'Descrizione',
         ],
+        'title'     => 'Personaggi per :name',
     ],
     'create'        => [
         'description'   => 'Crea una nuova missione',
@@ -39,8 +40,10 @@ return [
         'description'   => 'Descrizione',
         'image'         => 'Immagine',
         'is_completed'  => 'Completata',
+        'items'         => 'Oggetti',
         'locations'     => 'Luoghi',
         'name'          => 'Nome',
+        'organisations' => 'Organizzazioni',
         'quest'         => 'Missione Padre',
         'type'          => 'Tipo',
     ],
@@ -52,6 +55,26 @@ return [
         'description'   => 'Gestisci le missioni per :name',
         'header'        => 'Missioni di :name',
         'title'         => 'Missioni',
+    ],
+    'items'         => [
+        'create'    => [
+            'description'   => 'Associa un oggetto ad una missione',
+            'success'       => 'Oggetto aggiunto a :name',
+            'title'         => 'Nuovo oggetto per :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Oggetto della missione per :name rimosso.',
+        ],
+        'edit'      => [
+            'description'   => 'Aggiorna un oggetto della missione',
+            'success'       => 'Oggetto della missione per :name aggiornato.',
+            'title'         => 'Aggiorna un oggetto per :name',
+        ],
+        'fields'    => [
+            'description'   => 'Descrizione',
+            'item'          => 'Oggetto',
+        ],
+        'title'     => 'Oggetti per :name',
     ],
     'locations'     => [
         'create'    => [
@@ -71,6 +94,27 @@ return [
             'description'   => 'Descrizione',
             'location'      => 'Luogo',
         ],
+        'title'     => 'Luoghi per :name',
+    ],
+    'organisations' => [
+        'create'    => [
+            'description'   => 'Associa un\'organizzazione ad una missione',
+            'success'       => 'Organizzazione aggiunta a :name',
+            'title'         => 'Nuova Organizzazione per :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Organizzazione della missione per :name rimossa.',
+        ],
+        'edit'      => [
+            'description'   => 'Aggiorna un\'organizzazione di una quest',
+            'success'       => 'Organizzazione della missione per :name aggiornata.',
+            'title'         => 'Aggiorna un\'organizzazione per :name',
+        ],
+        'fields'    => [
+            'description'   => 'Descrizione',
+            'organisation'  => 'Organizzazione',
+        ],
+        'title'     => 'Organizzazioni per :name',
     ],
     'placeholders'  => [
         'name'  => 'Nome della missione',
@@ -79,14 +123,18 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character' => 'Aggiungi un personaggio',
-            'add_location'  => 'Aggiungi un luogo',
+            'add_character'     => 'Aggiungi un personaggio',
+            'add_item'          => 'Aggiungi un\'oggetto',
+            'add_location'      => 'Aggiungi un luogo',
+            'add_organisation'  => 'Aggiungi un\'organizzazione',
         ],
         'description'   => 'Una visualizzazione dettagliata di una missione',
         'tabs'          => [
             'characters'    => 'Personaggi',
             'information'   => 'Informazioni',
+            'items'         => 'Oggetti',
             'locations'     => 'Luoghi',
+            'organisations' => 'Organizzazioni',
             'quests'        => 'Missioni',
         ],
         'title'         => 'Missione :name',

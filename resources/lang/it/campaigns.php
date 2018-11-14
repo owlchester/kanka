@@ -173,6 +173,7 @@ return [
             '3' => 'Puoi usare un sistema "opt-out", dove ai ruoli è dato il permesso di vedere tutte le entità, e usare la spunta "Privato" sull\'entità per nasconderla. Oppure puoi dare ai ruoli pochi permessi, ma impostare ogni entità come visibile.',
         ],
         'hints'         => [
+            'public'            => 'Il ruolo Pubblico è utilizzato quando qualcuno naviga la tua campagna pubblica. :more',
             'role_permissions'  => 'Abilita il ruolo \':name\' per le seguenti funzioni su tutte le entità.',
         ],
         'members'       => 'Membri',

@@ -2,14 +2,16 @@
 
 return [
     'actions'           => [
-        'back'      => 'Indietro',
-        'copy'      => 'Copia',
-        'export'    => 'Esporta',
-        'more'      => 'Più Azioni',
-        'move'      => 'Muovi',
-        'new'       => 'Nuovo',
-        'private'   => 'Privato',
-        'public'    => 'Pubblico',
+        'back'          => 'Indietro',
+        'copy'          => 'Copia',
+        'export'        => 'Esporta',
+        'find_out_more' => 'Scopri di più',
+        'go_to'         => 'Vai a :name',
+        'more'          => 'Più Azioni',
+        'move'          => 'Muovi',
+        'new'           => 'Nuovo',
+        'private'       => 'Privato',
+        'public'        => 'Pubblico',
     ],
     'add'               => 'Aggiungi',
     'attributes'        => [
@@ -97,6 +99,7 @@ return [
         'files'                 => 'Files',
         'image'                 => 'Immagine',
         'is_private'            => 'Privato',
+        'item'                  => 'Oggetto',
         'location'              => 'Luogo',
         'name'                  => 'Nome',
         'organisation'          => 'Organizzazione',
@@ -138,6 +141,7 @@ return [
         'image_limitations'     => 'Formati supportati: jpg, png and gif. Dimensione massima del file: :size.',
         'image_patreon'         => 'Aumentare la dimensione massima dei file?',
         'is_private'            => 'Nascondi dalle utenze non "Admin".',
+        'map_limitations'       => 'Formati supportati:jpg, png, gif e svg. Dimensione massima del file: :size.',
     ],
     'history'           => [
         'created'   => 'Creato da <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -204,6 +208,9 @@ return [
         'placeholders'  => [
             'name'  => 'Nome della nota, dell\'osservazione o del commento.',
         ],
+        'show'          => [
+            'title' => 'Nota dell\'entità :name per :entity',
+        ],
     ],
     'or_cancel'         => 'o <a href=":url">annulla</a>',
     'panels'            => [
@@ -238,6 +245,7 @@ return [
         'event'         => 'Seleziona un evento',
         'family'        => 'Seleziona una famiglia',
         'image_url'     => 'Altrimenti puoi caricare un\'immagine da un URL',
+        'item'          => 'Seleziona un\'oggetto',
         'location'      => 'Seleziona un luogo',
         'organisation'  => 'Seleziona un\'organizzazione',
         'race'          => 'Seleziona una razza',

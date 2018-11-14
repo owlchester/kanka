@@ -39,8 +39,10 @@ return [
         'description'   => 'Beschreibung',
         'image'         => 'Bild',
         'is_completed'  => 'Abgeschlossen',
+        'items'         => 'Gegenstände',
         'locations'     => 'Orte',
         'name'          => 'Name',
+        'organisations' => 'Organisationen',
         'quest'         => 'Elternquest',
         'type'          => 'Typ',
     ],
@@ -52,6 +54,26 @@ return [
         'description'   => 'Verwalte die Quests von :name.',
         'header'        => 'Quests von :name',
         'title'         => 'Quests',
+    ],
+    'items'         => [
+        'create'    => [
+            'description'   => 'Erstelle einen Quest Gegenstand',
+            'success'       => 'Gegenstand zu :name hinzugefügt.',
+            'title'         => 'Neuer Gegenstand für :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest Gegenstand für :name entfernt.',
+        ],
+        'edit'      => [
+            'description'   => 'Aktualisier einen Quest Gegenstand',
+            'success'       => 'Quest Gegenstand für :name aktualisiert.',
+            'title'         => 'Aktualisiere Gegenstand für :name',
+        ],
+        'fields'    => [
+            'description'   => 'Beschreibung',
+            'item'          => 'Gegenstand',
+        ],
+        'title'     => 'Gegenstände in :name',
     ],
     'locations'     => [
         'create'    => [
@@ -71,6 +93,27 @@ return [
             'description'   => 'Beschreibung',
             'location'      => 'Ort',
         ],
+        'title'     => 'Orte in :name',
+    ],
+    'organisations' => [
+        'create'    => [
+            'description'   => 'Erstelle eine Quest Organisation',
+            'success'       => 'Organisation zu :name hinzugefügt.',
+            'title'         => 'Neue Organisation für :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest Organisation für :name entfernt.',
+        ],
+        'edit'      => [
+            'description'   => 'Aktualisiere eine Quest Organisation',
+            'success'       => 'Quest Organisation für :name aktualisiert.',
+            'title'         => 'Aktualisiere Organisation für :name',
+        ],
+        'fields'    => [
+            'description'   => 'Beschreibung',
+            'organisation'  => 'Organisation',
+        ],
+        'title'     => 'Organisationen in :name',
     ],
     'placeholders'  => [
         'name'  => 'Name des Quests',

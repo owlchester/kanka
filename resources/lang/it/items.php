@@ -33,10 +33,15 @@ return [
         'name'      => 'Nome dell\'oggetto',
         'type'      => 'Arma, Pozione, Artefatto',
     ],
+    'quests'        => [
+        'description'   => 'Missioni delle quali l\'oggetto fa parte',
+        'title'         => 'Missioni per l\'oggetto :name',
+    ],
     'show'          => [
         'description'   => 'Una vista dettagliata dell\'oggetto',
         'tabs'          => [
             'information'   => 'Informazioni',
+            'quests'        => 'Missione',
         ],
         'title'         => 'Oggetto :name',
     ],
