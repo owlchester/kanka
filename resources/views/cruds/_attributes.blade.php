@@ -1,10 +1,8 @@
 @can('attribute', [$model, 'add'])
     <p class="text-right">
-        @if ($model->getEntityType() != 'attribute_template' && Auth::user()->isAdmin())
-            <a class="btn btn-primary" href="{{ route('entities.attributes.template', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $model->entity) }}">
-                <i class="fa fa-copy"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.attributes.actions.apply_template') }}</span>
-            </a>
-        @endif
+        <a class="btn btn-primary" href="{{ route('entities.attributes.template', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $model->entity) }}">
+            <i class="fa fa-copy"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.attributes.actions.apply_template') }}</span>
+        </a>
 
         <a href="{{ route('entities.attributes.index', ['entity' => $model->entity]) }}" class="btn btn-primary">
             <i class="fa fa-list"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.attributes.actions.manage') }}</span>

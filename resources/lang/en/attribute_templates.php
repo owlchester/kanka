@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'attribute_templates' => [
+        'title' => ':name attribute templates',
+    ],
     'create'        => [
         'description'   => 'Create a new attribute template',
         'success'       => 'Attribute Template \':name\' created.',
@@ -16,6 +19,7 @@ return [
     ],
     'fields'        => [
         'attributes'    => 'Attributes',
+        'attribute_template'    => 'Parent Attribute Template',
         'name'          => 'Name',
     ],
     'index'         => [
@@ -25,12 +29,14 @@ return [
         'title'         => 'Attribute Templates',
     ],
     'placeholders'  => [
+        'attribute_template' => 'Choose an attribute template',
         'name'  => 'Name of the Attribute Template',
     ],
     'show'          => [
         'description'   => 'A detailed view of an Attribute Template',
         'tabs'          => [
             'attributes'    => 'Attributes',
+            'attribute_templates' => 'Attribute Templates',
         ],
         'title'         => 'Attribute Template :name',
     ],

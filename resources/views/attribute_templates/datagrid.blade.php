@@ -1,11 +1,21 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->render(
+{!! $datagrid->filters($filters)
+    ->render(
     $filterService,
     // Columns
     [
         // Name
         'name',
+        [
+            'label' => trans('attribute_templates.fields.attribute_template'),
+            'field' => 'attribute_templates.name',
+            'render' => function($model) {
+                if ($model->attributeTemplate) {
+                    return '<a href="' . route('tags.show', $model->attributeTemplate->id) . '">' . e($model->attributeTemplate->name) . '</a>';
+                }
+            }
+        ],
        [
             'label' => trans('attribute_templates.fields.attributes'),
             'render' => function($model) {
@@ -13,6 +23,9 @@
             },
             'disableSort' => true,
         ],
+        [
+            'type' => 'is_private',
+        ]
     ],
     // Data
     $models,

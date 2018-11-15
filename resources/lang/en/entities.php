@@ -2,6 +2,7 @@
 
 return [
     'attribute_template'    => 'Attribute Template',
+    'attribute_templates'   => 'Attribute Templates',
     'calendar'              => 'Calendar',
     'calendars'             => 'Calendars',
     'campaign'              => 'Campaign',

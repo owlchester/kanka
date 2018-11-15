@@ -1,3 +1,5 @@
+@inject('formService', 'App\Services\FormService')
+
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
@@ -10,6 +12,22 @@
                     <label>{{ trans('attribute_templates.fields.name') }}</label>
                     {!! Form::text('name', null, ['placeholder' => trans('attribute_templates.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
+                <div class="form-group">
+                    {!! Form::select2(
+                        'attribute_template_id',
+                        (isset($model) && $model->attributeTemplate ? $model->attributeTemplate : $formService->prefillSelect('attributeTemplate', $source)),
+                        App\Models\AttributeTemplate::class,
+                        true,
+                        __('attribute_templates.fields.attribute_template'),
+                        null,
+                        __('attribute_templates.placeholders.attribute_template')
+                    ) !!}
+                </div>
+
+                @if (Auth::user()->isAdmin())
+                    <hr>
+                    @include('cruds.fields.private')
+                @endif
             </div>
         </div>
     </div>

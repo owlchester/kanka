@@ -130,6 +130,9 @@ Route::group([
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 
+        // Attribute Templates Menu
+        Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
+
 
         Route::get('/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
         Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
@@ -222,6 +225,7 @@ Route::group([
         Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
         Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');
         Route::get('/search/races', 'SearchController@races')->name('races.find');
+        Route::get('/search/attribute_templates', 'SearchController@attributeTemplates')->name('attribute_templates.find');
 
         Route::get('/search', 'SearchController@search')->name('search');
         Route::get('/search/entities', 'SearchController@entities')->name('search.relations');

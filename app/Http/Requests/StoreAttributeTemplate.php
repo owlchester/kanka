@@ -23,8 +23,18 @@ class StoreAttributeTemplate extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|max:191',
+            'attribute_template_id', 'nullable|integer|exists:attribute_templates,id',
+            //'is_private' => 'boolean',
         ];
+
+        // Editing an attribute template? Don't allow selecting oneself.
+        $self = request()->segment(3);
+        if (!empty($self)) {
+            $rules['attribute_template_id'] = 'integer|not_in:' . ((int) $self) . '|exists:attribute_templates,id';
+        }
+
+        return $rules;
     }
 }

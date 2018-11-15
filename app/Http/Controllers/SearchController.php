@@ -312,6 +312,16 @@ class SearchController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function attributeTemplates(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\AttributeTemplate::class);
+    }
+
+    /**
      * Search for month names
      * @param Request $request
      * @return mixed
