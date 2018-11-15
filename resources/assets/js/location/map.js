@@ -362,22 +362,20 @@ function initMovePoints() {
  * Enable dragging map points
  */
 function activateMovePoints() {
-    // $.each($('.point'), function(index) {
-    //     $(this)
-    //         .draggable({disabled: false})
-    //         .tooltip("disable");
-    // });
+    $.each($('.point'), function(index) {
+        $(this)
+            .draggable({disabled: false});
+    });
 }
 
 /**
  * Disable draggin map points
  */
 function disableMovePoints() {
-    // $.each($('.point'), function(index) {
-    //     $(this)
-    //         .draggable({disabled: true})
-    //         .tooltip("enable");
-    // });
+    $.each($('.point'), function(index) {
+        $(this)
+            .draggable({disabled: true});
+    });
 }
 
 /**
@@ -408,11 +406,6 @@ function addPointMove(point) {
             mapPositionY = mapPositionY / magnifier;
 
 
-            // We can wait for the ajax request to finish, as the user doesn't need to know that
-            // the event was done properly. This also allows directly clicking on a point
-            // after it was moved to view the form modal
-            mapPointIsMoving = false;
-
             $.ajax({
                 url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
             }).done(function (result, textStatus, xhr) {
@@ -420,6 +413,14 @@ function addPointMove(point) {
             }).fail(function (result, textStatus, xhr) {
                 // console.log('map point error', result);
             });
+
+            // We can wait for the ajax request to finish, as the user doesn't need to know that
+            // the event was done properly. This also allows directly clicking on a point
+            // after it was moved to view the form modal
+            setTimeout(() => {
+                mapPointIsMoving = false;
+            }, 50);
+
 
             //$(this).removeClass('ui-draggable-dragging');
 

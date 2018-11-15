@@ -31,9 +31,9 @@
     border-width: medium;
     border-style: solid;
 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50% !important;
 
     //transition: all .2s ease-in-out;
 
