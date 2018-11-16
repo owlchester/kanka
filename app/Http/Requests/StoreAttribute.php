@@ -27,6 +27,7 @@ class StoreAttribute extends FormRequest
             'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
             'value' => 'max:191',
+            'type' => 'nullable|string',
         ];
     }
 }

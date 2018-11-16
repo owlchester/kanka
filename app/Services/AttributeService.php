@@ -22,17 +22,20 @@ class AttributeService
 
         $order = 0;
         foreach ($data['name'] as $id => $name) {
-            $value = $data['value'][$id];
-            $isPrivate = !empty($data['is_private'][$id]);
-
+            // Skip empties, which are probably the templates
             if (empty($name)) {
                 continue;
             }
+
+            $value = $data['value'][$id];
+            $type = $data['type'][$id];
+            $isPrivate = !empty($data['is_private'][$id]);
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
                 /** @var \App\Models\Attribute $attribute */
                 $attribute = $existing[$id];
+                $attribute->type = $type;
                 $attribute->name = $name;
                 $attribute->value = $value;
                 $attribute->is_private = $isPrivate;
@@ -44,6 +47,7 @@ class AttributeService
             } else {
                 $attribute = Attribute::create([
                     'entity_id' => $entity->id,
+                    'type' => $type,
                     'name' => $name,
                     'value' => $value,
                     'is_private' => $isPrivate,

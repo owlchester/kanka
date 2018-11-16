@@ -10,7 +10,7 @@
             <div class="panel-body">
                 <div class="form-group required">
                     <label>{{ trans('attribute_templates.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => trans('attribute_templates.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('attribute_templates.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::select2(
@@ -30,6 +30,7 @@
                 @endif
             </div>
         </div>
+        @include('cruds.fields.copy')
     </div>
 </div>
 

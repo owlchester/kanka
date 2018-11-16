@@ -466,3 +466,20 @@ div.mce-fullscreen {
 .popover {
   max-width: 296px;
 }
+
+// Private/Public
+.entity-attributes {
+  .fa-unlock-alt {
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    &:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+  .fa-lock {
+    cursor: pointer;
+    &:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}

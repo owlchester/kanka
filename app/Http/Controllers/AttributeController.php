@@ -137,7 +137,7 @@ class AttributeController extends CrudAttributeController
         $template->apply($entity);
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
+            ->route($entity->pluralType() . '.show', [$entity->child->id, '#tab_attribute'])
             ->with('success', trans('crud.attributes.template.success', ['name' => $template->name, 'entity' => $entity->child->name]));
     }
 }

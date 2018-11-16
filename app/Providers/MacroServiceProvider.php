@@ -40,6 +40,11 @@ class MacroServiceProvider extends HtmlServiceProvider
             'options' => []
         ]);
 
+        // Not used yet.
+        Form::component('private', 'components.form.private', [
+            'fieldId',
+        ]);
+
         /*Form::function($fieldId, $searchRouteName, $prefill = null, $placeholderKey = null) {
 
             $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . trim($fieldId) : $placeholderKey;

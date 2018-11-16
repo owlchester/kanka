@@ -60,50 +60,97 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/organisation.js":
+/***/ "./resources/assets/js/attributes.js":
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-    $.each($('.form-members'), function (index) {
+    if ($('#add_attribute_target').length > 0) {
+        initAttributeUI();
+    }
+});
 
-        $(this).select2({
-            tags: true,
-            allowClear: true,
-            minimumInputLength: 0,
-            ajax: {
-                quietMillis: 200,
-                url: $(this).attr('data-url'),
-                dataType: 'json',
-                data: function data(params) {
-                    return {
-                        q: $.trim(params.term)
-                    };
-                },
-                processResults: function processResults(data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
-            },
-            createTag: function createTag(params) {
-                return undefined;
+/**
+ * Initiate on click handles for attribute interface
+ */
+function initAttributeUI() {
+    var target = $('#add_attribute_target');
+
+    initAttributeHandlers();
+
+    $('#attribute_add').on('click', function (e) {
+        e.preventDefault();
+
+        $('#attribute_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+        initAttributeHandlers();
+
+        return false;
+    });
+
+    $('#block_add').click(function (e) {
+        e.preventDefault();
+        $('#block_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+        initAttributeHandlers();
+        return false;
+    });
+
+    $('#checkbox_add').click(function (e) {
+        e.preventDefault();
+        $('#checkbox_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+        initAttributeHandlers();
+        return false;
+    });
+
+    $.each($('[data-toggle="private"]'), function () {
+        // Add the title first
+        if ($(this).hasClass('fa-lock')) {
+            $(this).prop('title', $(this).data('private'));
+        } else {
+            $(this).prop('title', $(this).data('public'));
+        }
+    });
+}
+
+/**
+ * This function rebinds the delete on all buttons
+ */
+function initAttributeHandlers() {
+
+    $('.entity-attributes').sortable();
+
+    $.each($('.attribute_delete'), function () {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function () {
+            $(this).parent().parent().parent().remove();
+        });
+    });
+
+    $.each($('[data-toggle="private"]'), function () {
+        // On click toggle
+        $(this).click(function (e) {
+            if ($(this).hasClass('fa-lock')) {
+                // Unlock
+                $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
+                $(this).parent().find('input:hidden').val("0");
+            } else {
+                // Lock
+                $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
+                $(this).parent().find('input:hidden').val("1");
             }
         });
     });
-});
+}
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/organisation.js");
+module.exports = __webpack_require__("./resources/assets/js/attributes.js");
 
 
 /***/ })

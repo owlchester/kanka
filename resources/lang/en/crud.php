@@ -17,6 +17,8 @@ return [
     'attributes'        => [
         'actions'       => [
             'add'               => 'Add an attribute',
+            'add_block'         => 'Add a block',
+            'add_checkbox'      => 'Add a checkbox',
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
         ],
@@ -44,6 +46,8 @@ return [
         ],
         'placeholders'  => [
             'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
+            'block' => 'Block name',
+            'checkbox' => 'Checkbox name',
             'template'  => 'Select a template',
             'value'     => 'Value of the attribute',
         ],
@@ -51,6 +55,15 @@ return [
             'success'   => 'Attribute Template :name applies on :entity',
             'title'     => 'Apply an Attribute Template for :name',
         ],
+        'types' => [
+            'attribute' => 'Attribute',
+            'block' => 'Block',
+            'checkbox' => 'Checkbox'
+        ],
+        'visibility' => [
+            'public' => 'Attribute visible to all members.',
+            'private' => 'Attribute only visible to members of the "Admin" role.'
+        ]
     ],
     'bulk'              => [
         'errors'    => [
@@ -90,6 +103,7 @@ return [
         'calendar'              => 'Calendar',
         'calendar_date'         => 'Calendar Date',
         'character'             => 'Character',
+        'copy_attributes'       => 'Copy Attributes',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
         'entity'                => 'Entity',
@@ -133,6 +147,7 @@ return [
         'actions'   => [
             'calendar'  => 'Add a calendar date',
         ],
+        'copy_options' => 'Copy Options',
     ],
     'hidden'            => 'Hidden',
     'hints'             => [

@@ -98,6 +98,7 @@ class AttributeTemplate extends MiscModel
                 'value' => $attribute->value,
                 'default_order' => $attribute->default_order,
                 'is_private' => $attribute->is_private,
+                'type' => $attribute->type,
             ]);
             $order++;
         }
@@ -115,6 +116,7 @@ class AttributeTemplate extends MiscModel
                     'value' => $attribute->value,
                     'default_order' => $order + $attribute->default_order,
                     'is_private' => $attribute->is_private,
+                    'type' => $attribute->type,
                 ]);
                 $order++;
             }

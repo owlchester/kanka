@@ -42,3 +42,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="{{ mix('js/conversation.js') }}" defer></script>
+@endsection

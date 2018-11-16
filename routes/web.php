@@ -133,13 +133,12 @@ Route::group([
         // Attribute Templates Menu
         Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
 
-
         Route::get('/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
         Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
 
         // Attribute multi-save
-        Route::post('/entities/{entity}/attributes/saveMany', 'AttributeController@saveMany')->name('entities.attributes.saveMany');
+        Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
 
         // Permission save
         Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');

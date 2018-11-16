@@ -44,6 +44,7 @@
                 @include('cruds.fields.image')
             </div>
         </div>
+        @include('cruds.fields.copy')
     </div>
 </div>
 

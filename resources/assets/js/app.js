@@ -301,10 +301,8 @@ function resetSubmitButton(id) {
 // Helpers are injected directly in the window functions.
 require('./helpers.js');
 
-require('./attributes.js');
 require('./keyboard.js');
 require('./crud.js');
 require('./calendar.js');
-require('./conversation.js');
 require('./search.js');
 require('./tags.js');
