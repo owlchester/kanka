@@ -53,10 +53,13 @@ class MenuLink extends MiscModel
      */
     public function getRouteParams()
     {
+        $prefix = 'tab_';
         if (!empty($this->tab)) {
             return [
                 $this->entity->child->id,
-                '#tab_' . ltrim($this->tab, 'tab_')
+                // remove tab_ from the beginning of the string, if it's present
+                '#tab_' . (substr($this->tab, 0, strlen($prefix)) == $prefix ?
+                    substr($this->tab, strlen($prefix)) : $this->tab)
             ];
         }
 

@@ -24,6 +24,7 @@
                 </a>
                 <ul class="treeview-menu" style="{{ ($sidebar->open('menu_links') == 'menu-open' ? 'display:block' : 'display:none') }}">
                     @foreach ($campaign->campaign()->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
+                        <?php /** @var \App\Models\MenuLink $menuLink */ ?>
                         @if ($menuLink->entity && $menuLink->entity->child)
                         <li>
                             <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->getRouteParams()) }}">
