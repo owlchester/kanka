@@ -12,7 +12,7 @@
             'field' => 'attribute_templates.name',
             'render' => function($model) {
                 if ($model->attributeTemplate) {
-                    return '<a href="' . route('tags.show', $model->attributeTemplate->id) . '">' . e($model->attributeTemplate->name) . '</a>';
+                    return '<a href="' . route('attribute_templates.show', $model->attributeTemplate->id) . '">' . e($model->attributeTemplate->name) . '</a>';
                 }
             }
         ],

@@ -155,7 +155,7 @@ return [
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
-        'is_private'            => 'Hide from non "Admin" users.',
+        'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
         'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
     ],
     'history'           => [

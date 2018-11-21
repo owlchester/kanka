@@ -110,11 +110,9 @@
                     <a href="{{ route('conversations.index') }}"><i class="ra ra-speech-bubbles"></i> <span>{{ trans('sidebar.conversations') }}</span></a>
                 </li>
             @endif
-            @can('create', 'App\Models\AttributeTemplate')
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>
             </li>
-            @endif
 
             <li class="treeview {{ $sidebar->active('other', 'menu-open') }}">
                 <a href="#">

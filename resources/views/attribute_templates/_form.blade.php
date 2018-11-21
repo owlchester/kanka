@@ -22,6 +22,7 @@
                         null,
                         __('attribute_templates.placeholders.attribute_template')
                     ) !!}
+                    <p class="help-block">{{ __('attribute_templates.hints.parent_attribute_template') }}</p>
                 </div>
 
                 @if (Auth::user()->isAdmin())
