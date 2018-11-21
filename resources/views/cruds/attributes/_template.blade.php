@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="form-group required">
                     <label>{{ trans('crud.attributes.fields.template') }}</label>
-                    {!! Form::select('template_id', \App\Models\AttributeTemplate::pluck('name', 'id'), null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+                    {!! Form::select('template_id', \App\Models\AttributeTemplate::acl()->pluck('name', 'id'), null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
                 </div>
             </div>
         </div>

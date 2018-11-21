@@ -104,7 +104,7 @@ class AttributeTemplate extends MiscModel
         }
 
         // Loop through descendants
-        foreach ($this->descendants()->with('entity')->get() as $children) {
+        foreach ($this->descendants()->with('entity')->acl()->get() as $children) {
             foreach ($children->entity->attributes()->get() as $attribute) {
                 // Don't re-create existing attributes.
                 if (in_array($attribute->name, $existing)) {
