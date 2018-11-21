@@ -69,9 +69,9 @@ return [
 
         'HTML.Allowed' =>
             'big,small,h1[style],h2[style],h3[style],h4[style],h5[style],h6[style],div[style],ins,del,pre,blockquote,sup,sub,hr,caption,'
-            . 'strong,em,b,ul,ol,li,p,i,br,'
+            . 'strong,em,b,ul[style],ol[style],li[style],p,i,br,'
             . 'img[src|style|alt|width|height],'
-            . 'a[href|target|rel|title|data-toggle|data-html],'
+            . 'a[href|target|rel|title|data-toggle|data-html|id],'
             . 'p[style],span[style],'
             . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr]',
 
@@ -105,7 +105,8 @@ return [
         */
 
         'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
-            'color,background-color,text-align,width,border,border-collapse,max-width,max-height',
+            'color,background-color,text-align,width,border,border-collapse,max-width,max-height,' .
+            'list-style-type',
 
         /*
         |--------------------------------------------------------------------------
@@ -142,7 +143,10 @@ return [
         'CSS.MaxImgLength'   => NULL,
 
         // Allow links that target blank
-        'Attr.AllowedFrameTargets' => ['_blank']
+        'Attr.AllowedFrameTargets' => ['_blank'],
+
+        // Allow setting IDs for anchors
+        'Attr.EnableID' => true
     ],
 
 ];

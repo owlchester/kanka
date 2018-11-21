@@ -19,7 +19,7 @@
         </th>
     </tr>
     @foreach ($r as $relation)
-        @viewentity($relation->target->child->entity)
+        @viewentity($relation->target)
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
