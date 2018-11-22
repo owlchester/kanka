@@ -137,7 +137,6 @@ abstract class MiscObserver
             }
         }
     }
-
     /**
      * @param MiscModel $model
      */

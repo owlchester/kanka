@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
-                {!! Form::hidden('copy_source_attributes', 0) !!}
+                {!! Form::hidden('copy_source_attributes', null) !!}
                 <label>{!! Form::checkbox('copy_source_attributes', 1, false) !!}
                     {{ trans('crud.fields.copy_attributes') }}
                 </label>
