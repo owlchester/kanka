@@ -1,3 +1,4 @@
+@inject('dateRenderer', App\Renderers\DateRenderer)
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
