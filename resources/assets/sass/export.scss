@@ -70,3 +70,9 @@ td {
     margin-bottom: -1px;
     background-color: #fff;
 }
+
+.fa-check, .fa-lock {
+  &:before {
+    content: "x";
+  }
+}

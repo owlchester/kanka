@@ -80,3 +80,8 @@ td {
   background-color: #fff;
 }
 
+.fa-check:before,
+.fa-lock:before {
+  content: "x";
+}
+
