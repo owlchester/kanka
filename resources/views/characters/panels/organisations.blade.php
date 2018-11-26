@@ -16,8 +16,9 @@
                 @endif
                 <th class="text-right">
                     @can('organisation', [$model, 'add'])
-                        <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> <span class="visible-sm">{{ trans('characters.organisations.actions.add') }}</span>
+                        <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal"
+                           data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
+                            <i class="fa fa-plus"></i>
                         </a>
                     @endcan
                 </th>
