@@ -17,6 +17,8 @@ return [
     'attributes'        => [
         'actions'       => [
             'add'               => 'Ajouter un attribut',
+            'add_block'         => 'Ajouter un block',
+            'add_checkbox'      => 'Ajouter une case à docher',
             'apply_template'    => 'Appliquer un modèle d\'attribut',
             'manage'            => 'Gérer',
         ],
@@ -44,12 +46,23 @@ return [
         ],
         'placeholders'  => [
             'attribute' => 'Nombre de quêtes, niveau de difficulté, initiative, population',
+            'block'     => 'Nom du bloque',
+            'checkbox'  => 'Nom de la case à cocher',
             'template'  => 'Sélectionner un modèle',
             'value'     => 'Valeur de l\'attribut',
         ],
         'template'      => [
             'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
             'title'     => 'Appliquer un modèle d\'attribut pour :name',
+        ],
+        'types'         => [
+            'attribute' => 'Attribut',
+            'block'     => 'Block',
+            'checkbox'  => 'Case à cocher',
+        ],
+        'visibility'    => [
+            'private'   => 'Attribut seulement visible aux membres du rôle "Admin".',
+            'public'    => 'Attribut visible par tous les membres.',
         ],
     ],
     'bulk'              => [
@@ -90,6 +103,7 @@ return [
         'calendar'              => 'Calendrier',
         'calendar_date'         => 'Date calendrier',
         'character'             => 'Personnage',
+        'copy_attributes'       => 'Copier les attributs',
         'creator'               => 'Créateur',
         'dice_roll'             => 'Jet de dés',
         'entity'                => 'Entité',
@@ -130,9 +144,10 @@ return [
         'title' => 'Filtres',
     ],
     'forms'             => [
-        'actions'   => [
+        'actions'       => [
             'calendar'  => 'Ajouter une date de calendrier',
         ],
+        'copy_options'  => 'Option de copie',
     ],
     'hidden'            => 'Caché',
     'hints'             => [

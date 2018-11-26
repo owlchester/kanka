@@ -46,8 +46,8 @@ return [
         ],
         'placeholders'  => [
             'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
-            'block' => 'Block name',
-            'checkbox' => 'Checkbox name',
+            'block'     => 'Block name',
+            'checkbox'  => 'Checkbox name',
             'template'  => 'Select a template',
             'value'     => 'Value of the attribute',
         ],
@@ -55,15 +55,15 @@ return [
             'success'   => 'Attribute Template :name applies on :entity',
             'title'     => 'Apply an Attribute Template for :name',
         ],
-        'types' => [
+        'types'         => [
             'attribute' => 'Attribute',
-            'block' => 'Block',
-            'checkbox' => 'Checkbox'
+            'block'     => 'Block',
+            'checkbox'  => 'Checkbox',
         ],
-        'visibility' => [
-            'public' => 'Attribute visible to all members.',
-            'private' => 'Attribute only visible to members of the "Admin" role.'
-        ]
+        'visibility'    => [
+            'private'   => 'Attribute only visible to members of the "Admin" role.',
+            'public'    => 'Attribute visible to all members.',
+        ],
     ],
     'bulk'              => [
         'errors'    => [
@@ -144,10 +144,10 @@ return [
         'title' => 'Filters',
     ],
     'forms'             => [
-        'actions'   => [
+        'actions'       => [
             'calendar'  => 'Add a calendar date',
         ],
-        'copy_options' => 'Copy Options',
+        'copy_options'  => 'Copy Options',
     ],
     'hidden'            => 'Hidden',
     'hints'             => [

@@ -1,45 +1,45 @@
 <?php
 
 return [
-    'attribute_templates' => [
+    'attribute_templates'   => [
         'title' => ':name attribute templates',
     ],
-    'create'        => [
+    'create'                => [
         'description'   => 'Create a new attribute template',
         'success'       => 'Attribute Template \':name\' created.',
         'title'         => 'New Attribute Template',
     ],
-    'destroy'       => [
+    'destroy'               => [
         'success'   => 'Attribute Template \':name\' removed.',
     ],
-    'edit'          => [
+    'edit'                  => [
         'description'   => 'Edit an attribute template',
         'success'       => 'Attribute Template \':name\' updated.',
         'title'         => 'Edit Attribute Template :name',
     ],
-    'fields'        => [
-        'attributes'    => 'Attributes',
+    'fields'                => [
         'attribute_template'    => 'Parent Attribute Template',
-        'name'          => 'Name',
+        'attributes'            => 'Attributes',
+        'name'                  => 'Name',
     ],
-    'hints' => [
-        'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying an attribute template, it and all of its children will be applied.'
+    'hints'                 => [
+        'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying an attribute template, it and all of its children will be applied.',
     ],
-    'index'         => [
+    'index'                 => [
         'add'           => 'New Attribute Template',
         'description'   => 'Manage the attribute Templates of :name.',
         'header'        => 'Attribute Templates of :name',
         'title'         => 'Attribute Templates',
     ],
-    'placeholders'  => [
-        'attribute_template' => 'Choose an attribute template',
-        'name'  => 'Name of the Attribute Template',
+    'placeholders'          => [
+        'attribute_template'    => 'Choose an attribute template',
+        'name'                  => 'Name of the Attribute Template',
     ],
-    'show'          => [
+    'show'                  => [
         'description'   => 'A detailed view of an Attribute Template',
         'tabs'          => [
-            'attributes'    => 'Attributes',
-            'attribute_templates' => 'Attribute Templates',
+            'attribute_templates'   => 'Attribute Templates',
+            'attributes'            => 'Attributes',
         ],
         'title'         => 'Attribute Template :name',
     ],
