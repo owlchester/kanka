@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="feature-item">
-                            <i class="fa fa-commenting-o"></i>
+                            <i class="fab fa-discord"></i>
                             <h3>Discord</h3>
                             <p class="text-muted">{{ trans('front.community.discord') }}</p>
                             <p class="text-muted"><a href="https://discord.gg/rhsyZJ4">{{ trans('front.community.join') }}</a></p>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="feature-item">
-                            <i class="fa fa-reddit"></i>
+                            <i class="fab fa-reddit"></i>
                             <h3>Reddit</h3>
                             <p class="text-muted">{{ trans('front.community.reddit') }}</p>
                             <p class="text-muted"><a href="https://reddit.com/r/kanka">{{ trans('front.community.join') }}</a></p>

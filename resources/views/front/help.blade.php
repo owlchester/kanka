@@ -27,14 +27,14 @@
                 <div class="row">
                     <div class="col-lg-4 my-auto">
                         <div class="feature-item">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fab fa-twitter"></i>
                             <h3>{{ trans('front.help.twitter') }}</h3>
                             <p class="text-muted"><a href="//twitter.com/kankaio">@kankaio</a></p>
                         </div>
                     </div>
                     <div class="col-lg-4 my-auto">
                         <div class="feature-item">
-                            <i class="fa fa-commenting-o"></i>
+                            <i class="fab fa-discord"></i>
                             <h3>{{ trans('front.help.discord') }}</h3>
                             <p class="text-muted"><a href="https://discord.gg/rhsyZJ4">Discord</a></p>
                         </div>

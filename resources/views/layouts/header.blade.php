@@ -42,7 +42,7 @@
                 @if (Auth::check() && Auth::user()->hasCampaigns())
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
-                            <i class="fa fa-bell-o"></i>
+                            <i class="far fa-bell"></i>
                             @if (count($notifications) > 0) <span class="label label-warning">{{ count($notifications) }}</span> @endif
                         </a>
                         <ul class="dropdown-menu">

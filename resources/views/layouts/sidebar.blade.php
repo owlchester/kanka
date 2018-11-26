@@ -72,7 +72,7 @@
             @endif
             @if ($campaign->enabled('events'))
             <li class="{{ $sidebar->active('events') }}">
-                <a href="{{ route('events.index') }}"><i class="fa fa-calendar-o"></i> <span>{{ trans('sidebar.events') }}</span></a>
+                <a href="{{ route('events.index') }}"><i class="fa fa-calendar"></i> <span>{{ trans('sidebar.events') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('calendars'))
@@ -112,30 +112,6 @@
             @endif
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>
-            </li>
-
-            <li class="treeview {{ $sidebar->active('other', 'menu-open') }}">
-                <a href="#">
-                    <i class="fa fa-share"></i> <span>{{ trans('sidebar.other') }}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: {{ ($sidebar->active('other', true) ? 'block' : 'hidden' )}};">
-                    <li class="{{ $sidebar->active('releases') }}">
-                        <a href="{{ route('releases.index') }}"><i class="fa fa-ticket"></i> {{ trans('sidebar.releases') }}</a>
-                    </li>
-                    <li><a href="{{ route('public_campaigns') }}"><i class="fa fa-globe"></i> {{ trans('front.menu.campaigns') }}</a></li>
-                    <li><a href="{{ route('about') }}"><i class="fa fa-info-circle"></i> {{ trans('front.menu.about') }}</a></li>
-                    <li><a href="{{ route('help') }}"><i class="fa fa-exclamation-circle"></i> {{ trans('front.menu.help') }}</a></li>
-                    <li><a href="{{ route('faq') }}"><i class="fa fa-question-circle"></i>{{ trans('front.menu.faq') }}</a></li>
-
-
-                    <li><a href="https://www.reddit.com/r/kanka" target="_blank" rel="noreferrer"><i class="fa fa-reddit"></i> {{ trans('sidebar.support') }}</a></li>
-                    <li><a href="https://discord.gg/rhsyZJ4" target="_blank" rel="noreferrer"><i class="fa fa-commenting-o"></i> {{ trans('sidebar.discord') }}</a></li>
-                    <li><a href="https://www.patreon.com/kankaio" target="_blank" rel="noreferrer"><i class="fa fa-gratipay"></i> {{ trans('sidebar.patreon') }}</a></li>
-                    <li><a href="https://trello.com/b/62aOwCHU/kanka" target="_blank" rel="noreferrer"><i class="fa fa-trello"></i> {{ trans('sidebar.trello') }}</a></li>
-                </ul>
             </li>
 
             @auth

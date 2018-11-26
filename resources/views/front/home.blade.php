@@ -104,17 +104,17 @@
             <ul class="list-inline list-social">
                 <li class="list-inline-item social-google-plus">
                     <a href="https://reddit.com/r/kanka" title="Reddit" rel="noreferrer" target="_blank">
-                        <i class="fa fa-reddit"></i>
+                        <i class="fab fa-reddit"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-twitter">
                     <a href="https://twitter.com/kankaio" title="Twitter" rel="noreferrer" target="_blank">
-                        <i class="fa fa-twitter"></i>
+                        <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-facebook">
                     <a href="https://www.facebook.com/kanka.io.ch/" title="Facebook" rel="noreferrer" target="_blank">
-                        <i class="fa fa-facebook"></i>
+                        <i class="fab fa-facebook"></i>
                     </a>
                 </li>
                 <li class="list-inline-item social-discord">

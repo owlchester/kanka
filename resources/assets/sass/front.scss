@@ -1,7 +1,6 @@
 // This is kind of a mess, since the plugin uses bootstrap 4.0.0, but adminlte still uses the previous bootstrap.
 // will have to reevaluate when adminlte supports b-4.0.0
 
-@import "~font-awesome/scss/font-awesome";
 @import "~simple-line-icons/scss/simple-line-icons";
 body {
   background-color: #222;
@@ -58,35 +57,57 @@ hr {
 
 footer {
   padding-top: 90px;
-  padding-bottom: 10px;
-  p, a {
-    padding: 5px 15px;
-    margin: 5px 0;
-  }
-  li > a {
-    font-size: 16px !important;
+  padding-bottom: 30px;
+  text-align: left;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 0;
+      display: block;
+      margin: 12px 0;
+      a {
+        padding: 5px 15px;
+        font-size: 16px !important;
+      }
+    }
   }
   h4 {
-    margin: 0 15px 20px;
+    margin: 0 15px 10px;
+    font-size: 20px;
+    font-weight: 700;
   }
 
-  p.copyright {
-    margin-top: 30px;
-  }
 
-  .email {
+  p {
     padding: 15px 25px;
-    margin-top: -15px;
+    font-size: 16px !important;
     &:hover {
       color: #eee;
     }
   }
+  p.first {
+    margin-top: -15px;
+  }
 
-  .email, a {
-    border-radius: 15px;
+  p, a {
+    border-radius: 4px;
     &:hover {
-      transition: all 0.5s ease;
+      transition: all 0.2s ease;
       background: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+    }
+  }
+
+  .footer-social {
+    a {
+      font-size: 20px !important;
+      &:hover {
+        background: none;
+        color: #c09853;
+      }
     }
   }
 }
@@ -168,13 +189,6 @@ ul.pagination {
 .label-default {
   background-color: #dce0e8;
   color: #444;
-}
-
-.footer-links {
-  text-align: left;
-  a {
-    display: block;
-  }
 }
 
 // Login / Register

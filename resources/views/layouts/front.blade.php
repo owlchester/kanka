@@ -91,42 +91,76 @@
     <div class="container">
         <div class="row h-100 footer-links">
             <div class="col-md-3 col-sm-4 col-xs-6">
-                <div class="email">
+                <p class="first">
                     <i class="fa fa-envelope"></i> hello@kanka.io
-                </div>
+                </p>
+                <p>{!! __('footer.copyright', ['year' => date('Y')]) !!}</p>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <h4>{{ __('front.footer.navigation') }}</h4>
-                <a href="{{ route('home') }}">{{ trans('front.menu.home') }}</a>
-                <a href="{{ route('public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('home') }}">{{ trans('front.menu.home') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
+                    </li>
+                </ul>
             </div>
             <div class="col-md-3 col-sm-2 col-xs-6">
                 <h4>{{ __('front.footer.resources') }}</h4>
-                <a href="{{ route('community') }}">{{ trans('front.menu.community') }}</a>
-                <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
-                <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
-                <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('community') }}">{{ trans('front.menu.community') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
+                    </li>
+                </ul>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6">
                 <h4>{{ __('front.footer.app') }}</h4>
-                <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
-                <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
-                <a href="{{ route('roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-1 col-sm-1 col-xs-12">
+            <div class="col-md-1 col-sm-1 col-xs-12 footer-social">
                 <h4>{{ __('front.footer.social') }}</h4>
-                <a href="//www.patreon.com/kankaio" target="patreon" title="Patreon" rel="noreferrer">
-                    <img src="/images/thirdparty/patreon-logo-colour.png" title="Patreon">
-                </a>
-
-                <a href="//reddit.com/r/kanka" target="discord" title="Discord" rel="noreferrer"><i class="fa fa-discord"></i></a>
-                <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fa fa-reddit"></i></a>
-                <a href="//www.facebook.com/kanka.io.ch" target="facebook" title="Facebook" rel="noreferrer"><i class="fa fa-facebook"></i></a>
-                <a href="//twitter.com/kankaio" target="twitter" title="Twitter" rel="noreferrer"><i class="fa fa-twitter"></i></a>
+                <ul>
+                    <li>
+                        <a href="//www.patreon.com/kankaio" target="patreon" title="Patreon" rel="noreferrer">
+                            <i class="fab fa-patreon"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="//discord.gg/rhsyZJ4" target="discord" title="Discord" rel="noreferrer"><i class="fab fa-discord"></i></a>
+                    </li>
+                    <li>
+                        <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
+                    </li>
+                    <li>
+                        <a href="//www.facebook.com/kanka.io.ch" target="facebook" title="Facebook" rel="noreferrer"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="//twitter.com/kankaio" target="twitter" title="Twitter" rel="noreferrer"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
             </div>
         </div>
-
-        <p class="copyright">{!! trans('front.footer.copyright', ['current' => date('Y')]) !!}</p>
     </div>
 </footer>
 
@@ -161,6 +195,7 @@
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
     window.addEventListener("load", function(){
