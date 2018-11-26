@@ -33,10 +33,15 @@ return [
         'name'      => 'Name des Gegenstands',
         'type'      => 'Waffe, Trank, Artefakt',
     ],
+    'quests'        => [
+        'description'   => 'Quests des Gegenstands.',
+        'title'         => 'Gegenstand :name Quests',
+    ],
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Gegenstands',
         'tabs'          => [
             'information'   => 'Informationen',
+            'quests'        => 'Quests',
         ],
         'title'         => 'Gegenstand :name',
     ],

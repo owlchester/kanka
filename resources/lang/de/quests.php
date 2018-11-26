@@ -19,6 +19,7 @@ return [
             'character'     => 'Charakter',
             'description'   => 'Beschreibung',
         ],
+        'title'     => 'Charaktere in :name',
     ],
     'create'        => [
         'description'   => 'Erstelle einen neuen Quest',
@@ -122,14 +123,18 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character' => 'Füge einen Charakter hinzu',
-            'add_location'  => 'Füge einen Ort hinzu',
+            'add_character'     => 'Füge einen Charakter hinzu',
+            'add_item'          => 'Füge einen Gegenstand hinzu',
+            'add_location'      => 'Füge einen Ort hinzu',
+            'add_organisation'  => 'Füge eine Organisation hinzu',
         ],
         'description'   => 'Eine detaillierte Ansicht eines Quests',
         'tabs'          => [
             'characters'    => 'Charaktere',
             'information'   => 'Informationen',
+            'items'         => 'Gegenstände',
             'locations'     => 'Orte',
+            'organisations' => 'Organisationen',
             'quests'        => 'Quests',
         ],
         'title'         => 'Quest :name',

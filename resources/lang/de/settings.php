@@ -36,7 +36,9 @@ return [
     'patreon'   => [
         'actions'       => [
             'link'  => 'Account verlinken',
+            'view'  => 'Besuche Kanka auf Patreon',
         ],
+        'benefits'      => 'Eure Unterstützung auf Patreon erlaubt es euch größere Bilder hochzuladen, hilft uns die Serverkosten zu begleichen und mehr Arbeitszeit in Kanka zu stecken.',
         'description'   => 'Synchronisierung mit Patreon',
         'errors'        => [
             'invalid_token' => 'Ungültiger Token! Patreon konnte die Anfrage nicht validieren.',
@@ -48,6 +50,7 @@ return [
         'pledge'        => 'Pledge :name',
         'success'       => 'Danke, dass du Kanka auf Patreon unterstützt.',
         'title'         => 'Patreon',
+        'wrong_pledge'  => 'Euer Patreon Tier wird manuell von uns gesetzt. Daher kann es sein, dass es bis zu ein paar Tagen dauert bis es korrekt hinterlegt wird. Wenn es länger falsch ist, kontaktiert uns bitte.',
     ],
     'profile'   => [
         'actions'       => [

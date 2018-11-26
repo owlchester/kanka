@@ -18,6 +18,7 @@ return [
         'children'      => 'Kinder',
         'name'          => 'Name',
         'tag'           => 'Tag',
+        'tags'          => 'Subtags',
         'type'          => 'Typ',
     ],
     'helpers'       => [

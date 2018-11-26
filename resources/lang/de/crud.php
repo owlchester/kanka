@@ -2,14 +2,16 @@
 
 return [
     'actions'           => [
-        'back'      => 'Zurück',
-        'copy'      => 'Kopieren',
-        'export'    => 'Exportieren',
-        'more'      => 'Mehr Aktionen',
-        'move'      => 'Verschieben',
-        'new'       => 'Neu',
-        'private'   => 'Privat',
-        'public'    => 'Öffentlich',
+        'back'          => 'Zurück',
+        'copy'          => 'Kopieren',
+        'export'        => 'Exportieren',
+        'find_out_more' => 'Mehr erfahren',
+        'go_to'         => 'Gehe zu :name',
+        'more'          => 'Mehr Aktionen',
+        'move'          => 'Verschieben',
+        'new'           => 'Neu',
+        'private'       => 'Privat',
+        'public'        => 'Öffentlich',
     ],
     'add'               => 'Hinzufügen',
     'attributes'        => [
@@ -94,14 +96,31 @@ return [
         'entry'                 => 'Eintrag',
         'event'                 => 'Ereignis',
         'family'                => 'Familie',
+        'files'                 => 'Dateien',
         'image'                 => 'Bild',
         'is_private'            => 'Privat',
+        'item'                  => 'Gegenstand',
         'location'              => 'Ort',
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
         'race'                  => 'Rasse',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+    ],
+    'files'             => [
+        'actions'   => [
+            'drop'      => 'Klicken zum Hinzufügen oder Datei hierher ziehen (Drag & Drop).',
+            'manage'    => 'Verwalte Objektdateien',
+        ],
+        'errors'    => [
+            'max'   => 'Du hast die maximale Anzahl (:max) von Dateien in diesem Objekt erreicht.',
+        ],
+        'files'     => 'Hochgeladene Dateien',
+        'hints'     => [
+            'limit'         => 'In jedem Objekt kann eine maximale Anzahl von :max Dateien hochgeladen werden.',
+            'limitations'   => 'Unterstütze Formate: jpg, png, gif, und pdf. Max. Dateigröße: :size',
+        ],
+        'title'     => 'Objektdateien für :name',
     ],
     'filter'            => 'Filter',
     'filters'           => [
@@ -122,6 +141,7 @@ return [
         'image_limitations'     => 'Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: :size.',
         'image_patreon'         => 'Erhöhe das Limit indem du uns bei Patreon unterstützt.',
         'is_private'            => 'Vor \'Zuschauern\' verbergen',
+        'map_limitations'       => 'Unterstützte Formate: jpg, png, gif und svg. Max Dateigröße: :size.',
     ],
     'history'           => [
         'created'   => 'Erstellt von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -188,6 +208,9 @@ return [
         'placeholders'  => [
             'name'  => 'Name der Notiz, Beobachtung oder Anmerkung',
         ],
+        'show'          => [
+            'title' => 'Objektnotiz :name für :entity',
+        ],
     ],
     'or_cancel'         => 'oder <a href=":url">abbrechen</a>',
     'panels'            => [
@@ -222,6 +245,7 @@ return [
         'event'         => 'Wähle ein Ereignis',
         'family'        => 'Wähle eine Familie',
         'image_url'     => 'Du kannst ein Bild auch von einer URL hochladen',
+        'item'          => 'Wähle einen Gegenstand',
         'location'      => 'Wähle einen Ort',
         'organisation'  => 'Wähle eine Organisation',
         'race'          => 'Wähle eine Rasse',
@@ -239,6 +263,7 @@ return [
         'hint'      => 'Beziehungen zwischen Objekten können erstellt werden, um deren Verbindung darzustellen.',
     ],
     'remove'            => 'Löschen',
+    'rename'            => 'Umbenennen',
     'save'              => 'Speichern',
     'save_and_close'    => 'Speichern und schließen',
     'save_and_new'      => 'Speichern und neu',

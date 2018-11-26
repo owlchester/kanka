@@ -7,7 +7,9 @@ return [
         'en-US' => 'amerikanisches Englisch',
         'es'    => 'Spanisch',
         'fr'    => 'Französisch',
-        'pt-BR' => 'brasilianisches Portugisiesch',
+        'it'    => 'Italienisch',
+        'nl'    => 'Holländisch',
+        'pt-BR' => 'Brasilianisches Portugisiesch',
     ],
     'header'=> 'Sprachen',
 ];

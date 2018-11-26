@@ -14,12 +14,16 @@ return [
         'title'     => 'Bearbeite Organisation :name',
     ],
     'fields'        => [
-        'image'     => 'Bild',
-        'location'  => 'Ort',
-        'members'   => 'Mitglieder',
-        'name'      => 'Name',
-        'relation'  => 'Beziehung',
-        'type'      => 'Typ',
+        'image'         => 'Bild',
+        'location'      => 'Ort',
+        'members'       => 'Mitglieder',
+        'name'          => 'Name',
+        'organisation'  => 'Eltern Organisation',
+        'relation'      => 'Beziehung',
+        'type'          => 'Typ',
+    ],
+    'helpers'       => [
+        'descendants'   => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
     ],
     'index'         => [
         'add'           => 'Neue Organisation',
@@ -47,22 +51,37 @@ return [
             'character' => 'Charakter',
             'role'      => 'Rolle',
         ],
+        'helpers'       => [
+            'all_members'       => 'Diese Liste enthält alle Charaktere, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
+            'direct_members'    => 'Diese Liste enthält alle Charaktere, die direkt in dieser Organisation sind und keiner Unterorganisation.',
+        ],
         'hint'          => 'Die meisten Organisationen brauchen Mitglieder um erfolgreich zu sein.',
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',
             'role'      => 'Anführer, Mitglied, Hoher Septon, Meisterspion',
         ],
+        'title'         => 'Organisationen :name Mitglieder',
+    ],
+    'organisations' => [
+        'title' => 'Organisation :name Organisationen',
     ],
     'placeholders'  => [
         'location'  => 'Wähle einen Ort',
         'name'      => 'Name der Organisation',
         'type'      => 'Kult, Gang, Rebellion, Anhängerschaft',
     ],
+    'quests'        => [
+        'description'   => 'Quests der Organisation',
+        'title'         => 'Organisation :name Quests',
+    ],
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht einer Organisation',
         'tabs'          => [
-            'members'   => 'Mitglieder',
-            'relations' => 'Beziehungen',
+            'all_members'   => 'Alle Mitglieder',
+            'members'       => 'Direkte Mitglieder',
+            'organisations' => 'Organisationen',
+            'quests'        => 'Quests',
+            'relations'     => 'Beziehungen',
         ],
         'title'         => 'Organisation :name',
     ],

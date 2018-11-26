@@ -135,6 +135,7 @@ return [
         'roles'         => [
             'member'    => 'Membro',
             'owner'     => 'Proprietario',
+            'public'    => 'Pubblico',
             'viewer'    => 'Visualizzatore',
         ],
         'title'         => 'Membri della Campagna :name',

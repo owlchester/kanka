@@ -135,6 +135,7 @@ return [
         'roles'         => [
             'member'    => 'Mitglied',
             'owner'     => 'Besitzer',
+            'public'    => 'Öffentlich',
             'viewer'    => 'Zuschauer',
         ],
         'title'         => 'Kampagne :name Mitglieder',
@@ -173,6 +174,7 @@ return [
             '3' => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
         ],
         'hints'         => [
+            'public'            => 'Die Rolle "Öffentlich" wird benutzt, wenn jemand eure öffentliche Kampagne ansieht. :more',
             'role_permissions'  => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',

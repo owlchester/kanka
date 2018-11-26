@@ -6,14 +6,15 @@ return [
         'title'         => 'Su di noi',
     ],
     'campaigns'     => [
-        'featured'  => [
+        'description_full'  => 'Molte campagne su Kanka sono pubbliche per essere guardate da tutti. Questa pagina contiene una lista di tutte le campagne pubbliche ed alcune campagne in primo piano dalla comunità.',
+        'featured'          => [
             'title' => 'Campagne in Primo Piano',
         ],
-        'public'    => [
+        'public'            => [
             'description'   => 'Dai uno sguardo alle Campagne Pubbliche per l\'ispirazione.',
             'title'         => 'Campagne Pubbliche',
         ],
-        'title'     => 'Campagne Pubbliche',
+        'title'             => 'Campagne Pubbliche',
     ],
     'community'     => [
         'join'  => 'Unisciti a noi!',
@@ -38,12 +39,15 @@ return [
         'collaborative'     => [
             'title' => 'Collaborativo',
         ],
+        'description'       => 'Qui ci sono alcune delle cose che noi pensiamo tu adorerai della nostra app!',
         'description_full'  => 'Una vetrina di alcune delle nostre migliori e più amate caratteristiche.',
         'free'              => [
-            'title' => 'Utilizzo Gratuito',
+            'description'   => 'Le migliori cose nella vita sono quelle gratuite. Niente pubblicità, nessun costo nascosto, nessun paywall.',
+            'title'         => 'Utilizzo Gratuito',
         ],
         'layers'            => [
-            'title' => 'Personaggi, Famiglie, Luoghi',
+            'description'   => 'Tieni traccia dei personaggi, delle loro famiglie, dei luoghi visitati e molto altro in qualsiasi momento.',
+            'title'         => 'Personaggi, Famiglie, Luoghi',
         ],
         'learn_more'        => 'Scopri di più sulle caratteristiche di Kanka.',
         'maps'              => [
