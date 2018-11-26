@@ -95,23 +95,34 @@
                     <i class="fa fa-envelope"></i> hello@kanka.io
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="col-md-3 col-sm-3 col-xs-6">
                 <h4>{{ __('front.footer.navigation') }}</h4>
                 <a href="{{ route('home') }}">{{ trans('front.menu.home') }}</a>
                 <a href="{{ route('public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="col-md-3 col-sm-2 col-xs-6">
                 <h4>{{ __('front.footer.resources') }}</h4>
                 <a href="{{ route('community') }}">{{ trans('front.menu.community') }}</a>
                 <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
                 <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
                 <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="col-md-2 col-sm-2 col-xs-6">
                 <h4>{{ __('front.footer.app') }}</h4>
                 <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
                 <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
                 <a href="{{ route('roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <h4>{{ __('front.footer.social') }}</h4>
+                <a href="//www.patreon.com/kankaio" target="patreon" title="Patreon" rel="noreferrer">
+                    <img src="/images/thirdparty/patreon-logo-colour.png" title="Patreon">
+                </a>
+
+                <a href="//reddit.com/r/kanka" target="discord" title="Discord" rel="noreferrer"><i class="fa fa-discord"></i></a>
+                <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fa fa-reddit"></i></a>
+                <a href="//www.facebook.com/kanka.io.ch" target="facebook" title="Facebook" rel="noreferrer"><i class="fa fa-facebook"></i></a>
+                <a href="//twitter.com/kankaio" target="twitter" title="Twitter" rel="noreferrer"><i class="fa fa-twitter"></i></a>
             </div>
         </div>
 
