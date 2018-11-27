@@ -35,7 +35,7 @@
         </a>
         @can('update', $character)
         <a href="{{ route('characters.edit', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
-            <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('crud.edit') }}
+            <i class="fa fa-edit" aria-hidden="true"></i> {{ trans('crud.edit') }}
         </a>
         @endcan
     </td>

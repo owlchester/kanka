@@ -38,7 +38,7 @@
                 </a>
                 @if (Auth::user()->can('update', $relation))
                     <a href="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}" class="btn btn-xs btn-primary">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <i class="fa fa-edit" aria-hidden="true"></i>
                         {{ trans('crud.edit') }}
                     </a>
                 @endif

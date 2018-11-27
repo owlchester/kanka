@@ -40,7 +40,7 @@
             <td class="text-right">
                 @can('attribute', [$model, 'edit'])
                     <a href="{{ route('entities.entity_notes.edit', ['entity' => $model->entity, 'entity_note' => $note]) }}" class="btn btn-xs btn-primary">
-                        <i class="fa fa-pencil"></i> <span class="visible-lg-inline">{{ trans('crud.edit') }}</span>
+                        <i class="fa fa-edit"></i> <span class="visible-lg-inline">{{ trans('crud.edit') }}</span>
                     </a>
                 @endcan
                 @can('attribute', [$model, 'delete'])

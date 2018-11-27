@@ -44,7 +44,7 @@
                         @can('organisation', [$model, 'edit'])
                             <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $organisation]) }}" class="btn btn-xs btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $organisation]) }}">
-                                <i class="fa fa-pencil"></i> <span class="visible-sm">{{ trans('crud.edit') }}</span>
+                                <i class="fa fa-edit"></i> <span class="visible-sm">{{ trans('crud.edit') }}</span>
                             </a>
                         @endcan
                         @can('organisation', [$model, 'delete'])

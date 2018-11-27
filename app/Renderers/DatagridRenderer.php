@@ -396,7 +396,7 @@ class DatagridRenderer
 
         if ($this->user && $this->user->can('update', $model)) {
             $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" title="' . trans('crud.edit') . '">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i class="fa fa-edit" aria-hidden="true"></i>
             </a>';
         }
 

@@ -37,7 +37,7 @@
                         <div class="box-footer text-right">
                             @can('update', $model)
                                 <a href="{{ route('quests.quest_items.edit', ['quest' => $model, 'questItem' => $item]) }}" class="btn btn-xs btn-primary">
-                                    <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
+                                    <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
                                 </a>
                                 {!! Form::open(['method' => 'DELETE','route' => ['quests.quest_items.destroy', 'quest' => $model, 'questItem' => $item],'style'=>'display:inline']) !!}                <button class="btn btn-xs btn-danger">
                                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}

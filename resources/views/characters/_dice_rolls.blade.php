@@ -26,7 +26,7 @@
                 </a>
                 @can('update', $item)
                     <a href="{{ route('dice_rolls.edit', $item) }}" class="btn btn-xs btn-primary">
-                        <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
+                        <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
                     </a>
                 @endcan
             </td>

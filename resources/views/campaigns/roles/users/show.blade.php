@@ -35,7 +35,7 @@
                                 <td class="text-right">
                                     @if (Auth::user()->can('user', $role))
                                         <a href="{{ route('campaign_roles.campaign_role_users.edit', ['campaign_role' => $role, 'campaign_role_user' => $relation]) }}" class="btn btn-xs btn-primary">
-                                            <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
+                                            <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
                                         </a>
 
                                         {!! Form::open(['method' => 'DELETE', 'route' => 'campaign_roles.campaign_role_users.destroy', ['campaign_role' => $role, 'campaign_role_user' => $relation], 'style'=>'display:inline']) !!}

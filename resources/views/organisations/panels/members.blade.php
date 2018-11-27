@@ -68,7 +68,7 @@
                         @can('member', $model)
                             <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}">
-                                <i class="fa fa-pencil"></i> {{ trans('crud.edit') }}
+                                <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
                             </a>
                             {!! Form::open(['method' => 'DELETE','route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style'=>'display:inline']) !!}
                             <button class="btn btn-xs btn-danger">

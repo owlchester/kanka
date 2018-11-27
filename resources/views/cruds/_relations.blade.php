@@ -45,7 +45,7 @@
             @endif
             <td class="text-right">
                 @can('relation', [$model, 'edit'])
-                    <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> {{ trans('crud.edit') }}</a>
+                    <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {{ trans('crud.edit') }}</a>
                 @endcan
                 @can('relation', [$model, 'delete'])
                 {!! Form::open(['method' => 'DELETE', 'route' => [$name . '.relations.destroy', $name => $model, 'relation' => $relation], 'style'=>'display:inline']) !!}

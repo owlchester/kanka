@@ -25,7 +25,7 @@
                         <i class="fa fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
                     </a>
                     <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
-                        <i class="fa fa-pencil"></i> {{ __('locations.map.actions.admin_mode') }}
+                        <i class="fa fa-edit"></i> {{ __('locations.map.actions.admin_mode') }}
                     </button>
                     <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
                         <i class="fa fa-eye"></i> {{ __('locations.map.actions.view_mode') }}
