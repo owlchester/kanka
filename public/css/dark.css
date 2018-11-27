@@ -447,3 +447,11 @@ blockquote {
   background-color: #333 !important;
 }
 
+/**
+ * Footer
+ */
+
+footer .footer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+

@@ -175,7 +175,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .main-footer {
-  background-color: #0a121b !important;
+  background: none !important;
   color: #999fac !important;
 }
 
@@ -472,5 +472,13 @@ blockquote {
 
 .table-filters {
   background-color: #333 !important;
+}
+
+/**
+ * Footer
+ */
+
+footer .footer {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 

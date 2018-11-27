@@ -1207,3 +1207,9 @@ ul.pagination li span {
   border-radius: 10px;
 }
 
+.login-page .btn-app .fab,
+.register-page .btn-app .fab {
+  font-size: 20px;
+  display: block;
+}
+

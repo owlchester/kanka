@@ -463,3 +463,11 @@ blockquote {
   background-color: #0C1416 !important;
 }
 
+/**
+ * Footer
+ */
+
+footer .footer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+

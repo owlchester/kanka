@@ -186,7 +186,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .main-footer {
-  background-color: $Detail !important;
+  background: none !important;
   color: #999fac !important;
 }
 
@@ -437,4 +437,13 @@ pre, blockquote {
 // Filters
 .table-filters {
   background-color: $Soft !important;
+}
+
+/**
+ * Footer
+ */
+footer {
+  .footer {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }

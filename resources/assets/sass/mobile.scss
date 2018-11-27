@@ -1,0 +1,21 @@
+@media (max-width: 787px) {
+  // Menu nav points to show next to one another on mobile
+  .nav-stacked > li {
+    display: block;
+    width: auto;
+  }
+
+  footer {
+    ul {
+      li {
+        a {
+          padding-left: 0;
+        }
+      }
+    }
+    h4, span, a {
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+}

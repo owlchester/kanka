@@ -7,10 +7,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2 col-sm-4 col-xs-4">
             @include('settings.menu', ['active' => 'account'])
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-6 col-sm-8 col-xs-8">
             <div class="box box-solid">
                 <div class="box-body">
 
