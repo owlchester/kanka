@@ -336,4 +336,14 @@ class User extends \TCG\Voyager\Models\User
     {
         return $query->whereDate('created_at', Carbon::today());
     }
+
+    /**
+     * Created today
+     * @param $query
+     * @return mixed
+     */
+    public function scopeStartOfMonth($query)
+    {
+        return $query->whereDate('created_at', '>=', Carbon::now()->startOfMonth());
+    }
 }

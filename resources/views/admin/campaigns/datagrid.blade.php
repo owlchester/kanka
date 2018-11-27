@@ -1,8 +1,10 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th style="width: 40px;">{{ trans('campaigns.fields.image') }}</th>
+        <th class="avatar"></th>
         <th>{{ trans('campaigns.fields.name') }}</th>
+        <th>{{ trans('campaigns.fields.visibility') }}</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -11,6 +13,9 @@
             <td><a class="entity-image" style="background-image: url('{{ $campaign->getImageUrl(true) }}');" href="{{ app()->getLocale() . '/' . $campaign->getMiddlewareLink() }}"></a></td>
             <td>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</td>
             <td>{{ trans('campaigns.visibilities.' . $campaign->visibility) }}</td>
+            <td>
+
+            </td>
         </tr>
     @endforeach
     </tbody>

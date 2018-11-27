@@ -13,7 +13,7 @@
                 <a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
             </li>
             <li class="{{ $sidebar->active('campaigns') }}">
-                <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.admin_campaigns') }}</span></a>
+                <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>
             </li>
         </ul><!-- /.sidebar-menu -->
 

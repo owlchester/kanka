@@ -9,37 +9,31 @@
 
 
 @section('content')
-    <div class="row">
+    <div class="row margin-bottom">
         <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    @foreach ($actions as $action)
-                        @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
-                            <a href="{{ $action['route'] }}" class="btn btn-sm btn-{{ $action['class'] }}">
-                                {!! $action['label'] !!}
-                            </a>
-                        @endif
-                    @endforeach
-                    <br>
+            @include('layouts.datagrid.search', ['route' => route($name . '.index')])
 
-                    <div class="box-tools">
-                        @include('layouts.datagrid.search', ['route' => route($name . '.index')])
-                    </div>
-                </div>
+            @foreach ($actions as $action)
+                @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
+                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
+                        {!! $action['label'] !!}
+                    </a>
+                @endif
+            @endforeach
+        </div>
+    </div>
 
-                @include('partials.errors')
-                @include('cruds._filters', ['route' => route($name . '.index'), 'filters' => $filters, 'filterService' => $filterService, 'name' => $name])
+    @include('partials.errors')
 
-                <div class="box-body no-padding">
-                    @include($name . '.datagrid')
-                </div>
-                <div class="box-footer">
-                    <div class="pull-right">
-                        {{ $models->links() }}
-                    </div>
-                    {!! Form::hidden('entity', $name) !!}
-                </div>
+    <div class="box no-border">
+        <div class="box-body no-padding">
+            @include($name . '.datagrid')
+        </div>
+        <div class="box-footer">
+            <div class="pull-right">
+                {{ $models->links() }}
             </div>
+            {!! Form::hidden('entity', $name) !!}
         </div>
     </div>
 @endsection

@@ -1,8 +1,8 @@
 @extends('layouts.admin', [
-    'title' => trans('admin.home.title'),
-    'description' => trans('admin.home.description'),
+    'title' => __('admin/home.title'),
+    'description' => '',
     'breadcrumbs' => [
-        ['url' => route('admin.home'), 'label' => trans('admin.home.title')]
+        ['url' => route('admin.home'), 'label' => __('admin/home.title')]
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
@@ -17,7 +17,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Accounts</span>
                     <span class="info-box-number"><?=\App\User::count()?></span>
-                    <span class="progress-description"><?=\App\User::today()->count()?> created today</span>
+                    <span class="progress-description"><?=\App\User::today()->count()?> created today, <?=\App\User::startOfMonth()->count()?> created this month</span>
                 </div>
             </div>
         </div>
