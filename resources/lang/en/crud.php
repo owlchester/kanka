@@ -52,7 +52,7 @@ return [
             'value'     => 'Value of the attribute',
         ],
         'template'      => [
-            'success'   => 'Attribute Template :name applies on :entity',
+            'success'   => 'Attribute Template :name applied to :entity',
             'title'     => 'Apply an Attribute Template for :name',
         ],
         'types'         => [
