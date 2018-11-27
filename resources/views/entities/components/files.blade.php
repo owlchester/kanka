@@ -2,7 +2,7 @@
 <li class="list-group-item">
         <b>{{ trans('crud.fields.files') }}
         @can('update', $model)
-            <i class="fa fa-cloud-upload pull-right entity-file-ui" data-url="{{ route('entities.entity_files.index', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('crud.files.actions.manage') }}"></i>
+            <i class="fa fa-cloud-upload-alt pull-right entity-file-ui" data-url="{{ route('entities.entity_files.index', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('crud.files.actions.manage') }}"></i>
         @endif
         </b>
 
