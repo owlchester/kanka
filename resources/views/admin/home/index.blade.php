@@ -63,7 +63,7 @@
                         <dl class="dl-horizontal">
                             @foreach (\App\Models\Campaign::top()->limit(5)->get() as $campaign)
                                 <dt>{{ $campaign->cpt }}</dt>
-                                <dd>{{ $campaign->name }}</dd>
+                                <dd>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</dd>
                             @endforeach
                         </dl>
                     </div>
@@ -79,7 +79,7 @@
                         <dl class="dl-horizontal">
                             @foreach (\App\Models\Campaign::topMembers()->limit(5)->get() as $campaign)
                                 <dt>{{ $campaign->cpt }}</dt>
-                                <dd>{{ $campaign->name }}</dd>
+                                <dd>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</dd>
                             @endforeach
                         </dl>
                     </div>
