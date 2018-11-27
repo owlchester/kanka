@@ -23,7 +23,7 @@ return [
         'name'                  => 'Name',
     ],
     'hints'                 => [
-        'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying an attribute template, it and all of its children will be applied.',
+        'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying this attribute template, it and all of its parents will be applied.',
     ],
     'index'                 => [
         'add'           => 'New Attribute Template',
