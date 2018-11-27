@@ -10,7 +10,7 @@
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="header">{{ trans('sidebar.navigation') }}</li>
             <li class="{{ $sidebar->active('dashboard') }}">
-                <a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
+                <a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
             </li>
             <li class="{{ $sidebar->active('campaigns') }}">
                 <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.campaigns') }}</span></a>

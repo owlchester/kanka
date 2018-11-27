@@ -7,6 +7,7 @@ use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Campaign
@@ -332,5 +333,38 @@ class Campaign extends MiscModel
     public function getMiddlewareLink()
     {
         return 'campaign/' . $this->id;
+    }
+
+    /**
+     * Campaigns with the most entities
+     * @param $query
+     * @return mixed
+     */
+    public function scopeTop($query)
+    {
+        return $query
+            ->select([
+                $this->getTable() . '.*',
+                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id) as cpt")
+            ])
+            ->orderBy('cpt', 'desc')
+            ;
+    }
+
+
+    /**
+     * Campaigns with the most entities
+     * @param $query
+     * @return mixed
+     */
+    public function scopeTopMembers($query)
+    {
+        return $query
+            ->select([
+                $this->getTable() . '.*',
+                DB::raw("(select count(*) from campaign_user where campaign_id = " . $this->getTable() . ".id) as cpt")
+            ])
+            ->orderBy('cpt', 'desc')
+            ;
     }
 }

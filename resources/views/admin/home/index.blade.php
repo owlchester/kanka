@@ -35,16 +35,59 @@
         </div>
     </div>
 
-    <div class="box">
-        <div class="box-header with-border">
 
+    @include('partials.errors')
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Top Users (Logins)</h4>
+                </div>
+                <div class="box-body no-padding">
+                    <dl class="dl-horizontal">
+                    @foreach (\App\User::top()->limit(5)->get() as $user)
+                        <dt>{{ $user->cpt }}</dt>
+                        <dd>{{ $user->name }}</dd>
+                    @endforeach
+                    </dl>
+                </div>
+            </div>
         </div>
 
-        @include('partials.errors')
+        <div class="col-md-4">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Top Campaigns (Entities)</h4>
+                    <div class="box-body no-padding">
+                        <dl class="dl-horizontal">
+                            @foreach (\App\Models\Campaign::top()->limit(5)->get() as $campaign)
+                                <dt>{{ $campaign->cpt }}</dt>
+                                <dd>{{ $campaign->name }}</dd>
+                            @endforeach
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="box-body no-padding">
+        <div class="col-md-4">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Top Campaigns (Users)</h4>
+                    <div class="box-body no-padding">
+                        <dl class="dl-horizontal">
+                            @foreach (\App\Models\Campaign::topMembers()->limit(5)->get() as $campaign)
+                                <dt>{{ $campaign->cpt }}</dt>
+                                <dd>{{ $campaign->name }}</dd>
+                            @endforeach
+                        </dl>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box-footer">
-        </div>
+    </div>
+
+
     </div>
 @endsection

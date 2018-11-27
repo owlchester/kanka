@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
@@ -345,5 +346,21 @@ class User extends \TCG\Voyager\Models\User
     public function scopeStartOfMonth($query)
     {
         return $query->whereDate('created_at', '>=', Carbon::now()->startOfMonth());
+    }
+
+    /**
+     * Users who most log in
+     * @param $query
+     * @return mixed
+     */
+    public function scopeTop($query)
+    {
+        return $query
+            ->select([
+                $this->getTable() . '.*',
+                DB::raw("(select count(*) from user_logs where user_id = " . $this->getTable() . ".id and action = 'login') as cpt")
+            ])
+            ->orderBy('cpt', 'desc')
+            ;
     }
 }
