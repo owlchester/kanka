@@ -44,13 +44,17 @@
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Users (Logins)</h4>
                 </div>
-                <div class="box-body no-padding">
-                    <dl class="dl-horizontal">
+                <div class="box-body">
+                    <div class="row">
                     @foreach (\App\User::top()->limit(5)->get() as $user)
-                        <dt>{{ $user->cpt }}</dt>
-                        <dd>{{ $user->name }}</dd>
+                        <div class="col-xs-8 text-right">
+                            {{ $user->name }}
+                        </div>
+                        <div class="col-xs-4 text-bold">
+                            {{ $user->cpt }}
+                        </div>
                     @endforeach
-                    </dl>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,35 +63,57 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Campaigns (Entities)</h4>
-                    <div class="box-body no-padding">
-                        <dl class="dl-horizontal">
-                            @foreach (\App\Models\Campaign::top()->limit(5)->get() as $campaign)
-                                <dt>{{ $campaign->cpt }}</dt>
-                                <dd>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</dd>
-                            @endforeach
-                        </dl>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        @foreach (\App\Models\Campaign::top()->limit(5)->get() as $campaign)
+                            <div class="col-xs-8 text-right">
+                                {{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}
+                            </div>
+                            <div class="col-xs-4 text-bold">
+                                {{ $campaign->cpt }}
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
             <div class="box">
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Campaigns (Users)</h4>
-                    <div class="box-body no-padding">
-                        <dl class="dl-horizontal">
-                            @foreach (\App\Models\Campaign::topMembers()->limit(5)->get() as $campaign)
-                                <dt>{{ $campaign->cpt }}</dt>
-                                <dd>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</dd>
-                            @endforeach
-                        </dl>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        @foreach (\App\Models\Campaign::topMembers()->limit(5)->get() as $campaign)
+                            <div class="col-xs-8 text-right">
+                                {{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}
+                            </div>
+                            <div class="col-xs-4 text-bold">
+                                {{ $campaign->cpt }}
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
+        <div class="col-md-4">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Total Entities</h4>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        @foreach (\App\Models\Entity::top()->get() as $entity)
+                            <div class="col-xs-8 text-right">
+                                {{ $entity->type }}
+                            </div>
+                            <div class="col-xs-4 text-bold">
+                                {{ $entity->cpt }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

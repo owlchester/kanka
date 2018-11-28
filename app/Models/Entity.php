@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -311,5 +312,17 @@ class Entity extends Model
     public function events()
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeTop($query)
+    {
+        return $query
+            ->select('*', DB::raw('count(id) as cpt'))
+            ->groupBy('type')
+            ->orderBy('cpt', 'desc');
     }
 }
