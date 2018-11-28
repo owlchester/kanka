@@ -51,7 +51,7 @@
                             {{ $user->name }}
                         </div>
                         <div class="col-xs-4 text-bold">
-                            {{ $user->cpt }}
+                            {{ number_format($user->cpt, 0, '.', '\'') }}
                         </div>
                     @endforeach
                     </div>
@@ -108,7 +108,7 @@
                                 {{ $entity->type }}
                             </div>
                             <div class="col-xs-4 text-bold">
-                                {{ $entity->cpt }}
+                                {{ number_format($entity->cpt, 0, '.', '\'') }}
                             </div>
                         @endforeach
                     </div>
