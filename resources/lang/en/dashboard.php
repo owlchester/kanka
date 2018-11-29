@@ -3,6 +3,11 @@
 return [
     'campaigns'         => [
         'manage'    => 'Manage campaign',
+        'tabs' => [
+            'roles' => ':count Roles',
+            'users' => ':count Users',
+            'modules' => ':count Modules',
+        ]
     ],
     'description'       => 'The home for your creativity',
     'latest_release'    => 'Latest Release',
@@ -17,6 +22,11 @@ return [
         'no_entries'    => 'There are currently no entries of this type.',
         'title'         => 'Recently modified :name',
         'view'          => 'View All :name',
+    ],
+    'setup' => [
+        'actions' => [
+            'add' => 'Add a widget',
+        ]
     ],
     'settings'          => [
         'description'   => 'Customise what you see on your dashboard',

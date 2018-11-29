@@ -39,9 +39,11 @@ return [
     'fields'                => [
         'description'       => 'Description',
         'entity_visibility' => 'Entity Visibility',
+        'header_image'      => 'Header Image',
         'image'             => 'Image',
         'locale'            => 'Locale',
         'name'              => 'Name',
+        'system'            => 'System',
         'visibility'        => 'Visibility',
     ],
     'helpers'               => [
@@ -145,6 +147,7 @@ return [
         'description'   => 'A short summary of your campaign',
         'locale'        => 'Language code',
         'name'          => 'Your campaign name',
+        'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
     'roles'                 => [
         'actions'       => [

@@ -109,6 +109,7 @@ return [
         'entity'                => 'Entity',
         'entry'                 => 'Entry',
         'event'                 => 'Event',
+        'excerpt'               => 'Excerpt',
         'family'                => 'Family',
         'files'                 => 'Files',
         'image'                 => 'Image',

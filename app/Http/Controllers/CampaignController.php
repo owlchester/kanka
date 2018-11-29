@@ -59,6 +59,9 @@ class CampaignController extends Controller
      */
     public function create()
     {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('dashboard', $campaign);
+
         return view($this->view . '.create');
     }
 
@@ -70,7 +73,8 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaign $request)
     {
-        $this->authorize('create', 'App\Models\Campaign');
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('dashboard', $campaign);
 
         $first = !Session::has('campaign_id');
         Campaign::create($request->all());

@@ -1,6 +1,9 @@
+<?php /** @var \App\Models\Campaign $campaign */ ?>
+
 @extends('layouts.app', [
     'title' => trans('dashboard.title'),
     'description' => trans('dashboard.description'),
+    'breadcrumbs' => false,
     'headerExtra' => $settings ? '<a href="' . route('dashboard.settings') .'" class="btn btn-default btn-xl" title="'. trans('dashboard.settings.title') .'"><i class="fa fa-cog"></i></a>' : null
 ])
 
@@ -8,19 +11,53 @@
 
     @include('partials.errors')
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3 class="campaign-name">{{ $campaign->name }}</h3>
-                </div>
-                @if (Auth::check())
-                <a class="small-box-footer" href="{{ route('campaign') }}">
-                    <i class="fa fa-arrow-circle-right"></i> {{ trans('dashboard.campaigns.manage') }}
+    <div class="campaign @if(!empty($campaign->header_image))" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
+        <div class="content">
+            @if (!empty($campaign->image))
+                <a class="image" href="{{ Storage::url($campaign->image) }}" title="{{ $campaign->name }}" target="_blank">
+                    <img class="img-circle" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
                 </a>
-                @endif
+            @endif
+            <div class="title">
+                <h1>
+                    <a href="{{ route('campaigns.show', $campaign) }}">{{ $campaign->name }}</a>
+                </h1>
             </div>
+            @if (!empty(strip_tags($campaign->entry)))
+                <div class="preview">
+                    {!! $campaign->entry !!}
+                </div>
+                <div class="more">
+                    <a href="{{ route('campaigns.show', $campaign) }}">{{ __('crud.actions.find_out_more') }}</a>
+                </div>
+            @endif
+
+            @can('update', $campaign)
+            <ul class="campaign-links">
+                <li>
+                    <a href="{{ route('campaign_users.index') }}">
+                        <i class="fa fa-users"></i>
+                        {{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'roles')active @endif">
+                    <a href="{{ route('campaign_roles.index') }}">
+                        <i class="fa fa-layer-group"></i>
+                        {{ __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'settings')active @endif">
+                    <a href="{{ route('campaign_settings') }}">
+                        <i class="fa fa-cogs"></i>
+                        {{ __('dashboard.campaigns.tabs.modules', ['count' => $campaign->setting->countEnabledModules()]) }}
+                    </a>
+                </li>
+            </ul>
+            @endcan
         </div>
+    </div>
+
+    <div class="row">
         @if ($settings && $settings->has('release') && !empty($release))
         <div class="col-md-4 col-md-offset-4">
             <div class="info-box">
@@ -43,11 +80,11 @@
             @foreach ($notes as $note)
                 <div class="col-md-{{ (12 / (count($notes))) }}">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4><a href="{{ route('notes.show', $note->id) }}">{{ $note->name }}</a></h4>
-                        </div>
                         <div class="panel-body">
+                            <h4><a href="{{ route('notes.show', $note->id) }}">{{ $note->name }}</a></h4>
+                            <div class="pinned-entity preview" data-toggle="preview">
                             {!! $note->entry !!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,4 +125,13 @@
         <?php $cpt++; ?>
         @endif
     </div>
+@endsection
+
+
+@section('scripts')
+    <script src="{{ mix('js/dashboard.js') }}" defer></script>
+@endsection
+
+@section('styles')
+    <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
 @endsection

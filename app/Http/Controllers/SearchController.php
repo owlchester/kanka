@@ -118,6 +118,35 @@ class SearchController extends Controller
         return Response::json($formatted);
     }
 
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function entityCalendars(Request $request)
+    {
+        $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
+
+        if (empty($term)) {
+            $models = Entity::whereIn('type', 'calendar')->limit(10)->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $models = Entity::whereIn('type', 'calendar')->where('name', 'like', "%$term%")->limit(10)->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            // Force there to be a child! There seems to be a bug where deleted entities still have a row in the "entities" table.
+            if ($model->child) {
+                if (EntityPermission::canView($model, $campaign)) {
+                    $formatted[] = ['id' => $model->id, 'text' => $model->name . ' (' . trans('entities.' . $model->type) . ')'];
+                }
+            }
+        }
+
+        return Response::json($formatted);
+    }
+
     /**
      * @param Request $request
      * @return mixed

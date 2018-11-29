@@ -42,8 +42,10 @@ class CampaignObserver
         } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
             $campaign->visibility = Campaign::VISIBILITY_PRIVATE;
         }
-            // Handle image. Let's use a service for this.
+
+        // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
+        ImageService::handle($campaign, 'campaigns', true, 'header_image');
     }
 
     /**
@@ -117,5 +119,7 @@ class CampaignObserver
 
         // Delete the campaign setting
         $campaign->setting->delete();
+
+        ImageService::cleanup($campaign, 'header_image');
     }
 }

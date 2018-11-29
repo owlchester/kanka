@@ -97,6 +97,16 @@ class CampaignPolicy
     }
 
     /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function dashboard(User $user, Campaign $campaign)
+    {
+        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+    }
+
+    /**
      * Determine whether the user can leave the campaign
      *
      * @param User $user

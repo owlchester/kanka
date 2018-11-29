@@ -13,17 +13,26 @@
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.visibility') }}</b>
                 <span  class="pull-right">
-                            {{ trans('campaigns.visibilities.' . $campaign->visibility) }}
-                        </span>
+                    {{ trans('campaigns.visibilities.' . $campaign->visibility) }}
+                </span>
                 <br class="clear" />
             </li>
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.locale') }}</b>
                 <span  class="pull-right">
-                            {{ trans('languages.codes.' . $campaign->locale) }}
-                        </span>
+                    {{ trans('languages.codes.' . $campaign->locale) }}
+                </span>
                 <br class="clear" />
             </li>
+            @if (!empty($campaign->system))
+            <li class="list-group-item">
+                <b>{{ trans('campaigns.fields.system') }}</b>
+                <span  class="pull-right">
+                    {{ $campaign->system }}
+                </span>
+                <br class="clear" />
+            </li>
+            @endif
         </ul>
 
         @can('update', $campaign)
@@ -78,19 +87,19 @@
                     </span>
                 </a>
             </li>
-                <li class="@if(!empty($active) && $active == 'settings')active @endif">
-                    <a href="{{ route('campaign_settings') }}">
-                        {{ __('campaigns.show.tabs.settings') }}
-                        <span class="label label-default pull-right">
-                            <?=$campaign->setting->countEnabledModules()?>
-                        </span>
-                    </a>
-                </li>
-                <li class="@if(!empty($active) && $active == 'export')active @endif">
-                    <a href="{{ route('campaign_export') }}">
-                        {{ __('campaigns.show.tabs.export') }}
-                    </a>
-                </li>
+            <li class="@if(!empty($active) && $active == 'settings')active @endif">
+                <a href="{{ route('campaign_settings') }}">
+                    {{ __('campaigns.show.tabs.settings') }}
+                    <span class="label label-default pull-right">
+                        <?=$campaign->setting->countEnabledModules()?>
+                    </span>
+                </a>
+            </li>
+            <li class="@if(!empty($active) && $active == 'export')active @endif">
+                <a href="{{ route('campaign_export') }}">
+                    {{ __('campaigns.show.tabs.export') }}
+                </a>
+            </li>
             @endcan
         </ul>
     </div>

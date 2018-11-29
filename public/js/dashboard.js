@@ -60,50 +60,103 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/organisation.js":
+/***/ "./resources/assets/js/dashboard.js":
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-    $.each($('.form-members'), function (index) {
+/**
+ * Dashboard
+ */
+var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
+var btnWidgetPreview, btnWidgetCalendar, btnWidgetRecent;
 
-        $(this).select2({
-            tags: true,
-            allowClear: true,
-            minimumInputLength: 0,
-            ajax: {
-                quietMillis: 200,
-                url: $(this).attr('data-url'),
-                dataType: 'json',
-                data: function data(params) {
-                    return {
-                        q: $.trim(params.term)
-                    };
-                },
-                processResults: function processResults(data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
-            },
-            createTag: function createTag(params) {
-                return undefined;
-            }
-        });
+var btnAddWidget;
+var modalContentButtons, modalContentTarget, modalContentSpinner;
+
+$(document).ready(function () {
+
+    $.each($('[data-toggle="preview"]'), function (i) {
+        // If we are exactly the height of 200, some content is hidden
+        if ($(this).height() === 200) {
+            $('[data-toggle="preview"]').click(function (e) {
+                if ($(this).hasClass('preview')) {
+                    $(this).removeClass('preview').addClass('full');
+                } else {
+                    $(this).removeClass('full').addClass('preview');
+                }
+            });
+        } else {
+            $(this).removeClass('pinned-entity preview');
+        }
     });
+
+    if ($('.campaign-dashboard-widgets').length === 1) {
+        initDashboardAdminUI();
+    }
 });
+
+function initDashboardAdminUI() {
+    console.log('init dashboard admin ui');
+
+    newWidget = $('#new-widget');
+    newWidgetPreview = $('#new-widget-preview');
+    newWidgetCalendar = $('#new-widget-calendar');
+    newWidgetRecent = $('#new-widget-recent');
+
+    btnWidgetPreview = $('#btn-widget-preview');
+    btnWidgetCalendar = $('#btn-widget-calendar');
+    btnWidgetRecent = $('#btn-widget-recent');
+
+    btnAddWidget = $('#add-widget');
+    modalContentButtons = $('#modal-content-buttons');
+    modalContentTarget = $('#modal-content-target');
+    modalContentSpinner = $('#modal-content-spinner');
+
+    btnWidgetPreview.click(function (e) {
+        console.log('click widget preview');
+        loadModalForm($(this).data('url'));
+    });
+
+    btnWidgetCalendar.click(function (e) {
+        console.log('click widget calendar');
+        loadModalForm($(this).data('url'));
+    });
+
+    // Reset the modal
+    btnAddWidget.click(function (e) {
+        modalContentSpinner.hide();
+        modalContentTarget.html('');
+        modalContentButtons.show();
+    });
+}
+
+/**
+ * Load widget subform in modal
+ * @param url
+ */
+function loadModalForm(url) {
+    modalContentButtons.fadeOut(400, function () {
+        modalContentSpinner.fadeIn();
+    });
+
+    $.ajax(url).done(function (data) {
+        modalContentSpinner.hide();
+        modalContentTarget.html(data);
+
+        window.initSelect2();
+    });
+}
 
 /***/ }),
 
-/***/ 6:
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/organisation.js");
+module.exports = __webpack_require__("./resources/assets/js/dashboard.js");
 
 
 /***/ })

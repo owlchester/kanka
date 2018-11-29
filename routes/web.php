@@ -72,7 +72,6 @@ Route::group([
     // Invitation's campaign comes from the token.
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 
-
     Route::group([
         'prefix' => CampaignLocalization::setCampaign(),
         'middleware' => ['campaign']
@@ -205,6 +204,7 @@ Route::group([
             'campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
             //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
+            'campaign_dashboard_widgets' => 'CampaignDashboardWidgetController',
         ]);
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
@@ -224,6 +224,7 @@ Route::group([
         Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
         Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');
         Route::get('/search/races', 'SearchController@races')->name('races.find');
+        Route::get('/search/entity-calendars', 'SearchController@entity-calendars')->name('entity-calendars.find');
         Route::get('/search/attribute_templates', 'SearchController@attributeTemplates')->name('attribute_templates.find');
 
         Route::get('/search', 'SearchController@search')->name('search');
@@ -233,6 +234,12 @@ Route::group([
         Route::get('/search/months', 'SearchController@months')->name('search.months');
         Route::get('/search/live', 'SearchController@live')->name('search.live');
         Route::get('/redirect', 'RedirectController@index')->name('redirect');
+
+        // Campaign Dashboard Widgets
+        Route::get('/dashboard-setup', 'DashboardSetupController@index')->name('dashboard.setup');
+        Route::post('/dashboard-setup', 'DashboardSetupController@save')->name('dashboard.setup');
+
+        // Dashboard Widget Forms
 
         // Entity Files
 //        Route::get('/entities/{entity}/entity_files', 'EntityFileController@index')->name('entities.entity_files.index');

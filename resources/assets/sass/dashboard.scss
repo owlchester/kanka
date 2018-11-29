@@ -1,0 +1,131 @@
+.campaign {
+  padding: 40px;
+  border-radius: 3px;
+
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin-bottom: 15px;
+
+  .content {
+    margin-top: 90px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px 80px;
+    border-radius: 5px;
+    min-height: 0;
+
+    a.image {
+      img {
+        width: 40px;
+        height: 40px;
+        margin-left: -60px;
+        float: left;
+
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+      }
+    }
+
+    h1 {
+      font-size: 20pt;
+      margin: 0;
+      padding: 0;
+    }
+    .preview {
+      max-height: 150px;
+      overflow: hidden;
+      position: relative;
+
+      &:before {
+        content:'';
+        width:100%;
+        height:100%;
+        position:absolute;
+        left:0;
+        top:0;
+        //background:linear-gradient(transparent 50px, white);
+      }
+    }
+
+    .more {
+      a {
+        padding: 5px 0;
+        display: inline-block;
+      }
+    }
+
+    ul.campaign-links {
+      bottom: 0;
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
+      display: block;
+      width: 100%;
+
+      li {
+        display: inline-block;
+        text-align: left;
+        margin-right: 8px;
+        a {
+          padding: 10px 20px;
+          background: rgba(255, 255, 255, 0.85);
+          &:hover {
+            background: rgba(255, 255, 255, 0.95);
+          }
+        }
+      }
+    }
+  }
+}
+.no-header {
+  padding: 0;
+
+  .content {
+    margin-top: 0;
+  }
+}
+
+.panel-body {
+  .pinned-entity {
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .preview {
+    max-height: 200px;
+    position: relative;
+    overflow: hidden;
+    padding-top: 0;
+
+    &:before {
+      content:'';
+      width:100%;
+      height:30%;
+      position:absolute;
+      left:0;
+      bottom:0;
+      background:linear-gradient(transparent 0px, white);
+    }
+  }
+  .full {
+  }
+}
+
+.campaign-dashboard-widgets {
+  .widget {
+    padding: 40px 20px;
+    border-radius: 3px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.4);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  .add {
+    border: 2px dashed #ccc;
+  }
+}

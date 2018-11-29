@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\DB;
 /**
  * Class Campaign
  * @package App
+ *
+ * @property string $name
+ * @property string $locale
+ * @property string $entry
+ * @property string $image
+ * @property string $join_token
+ * @property string $export_path
+ * @property string $export_date
+ * @property string $visibility
+ * @property bool $entity_visibility
+ * @property string $header_image
+ * @property string $system
  */
 class Campaign extends MiscModel
 {
@@ -36,6 +48,8 @@ class Campaign extends MiscModel
         'export_date',
         'visibility',
         'entity_visibility',
+        'header_image',
+        'system'
     ];
 
     use CampaignScopes;

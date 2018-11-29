@@ -295,12 +295,12 @@ abstract class MiscModel extends Model
      * @param bool $thumb
      * @return string
      */
-    public function getImageUrl($thumb = false)
+    public function getImageUrl($thumb = false, $field = 'image')
     {
-        if (empty($this->image)) {
+        if (empty($this->$field)) {
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
         } else {
-            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->image) : $this->image));
+            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
         }
     }
 

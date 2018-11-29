@@ -71,7 +71,7 @@
                                 {{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}
                             </div>
                             <div class="col-xs-4 text-bold">
-                                {{ $campaign->cpt }}
+                                {{ number_format($campaign->cpt, 0, '.', '\'') }}
                             </div>
                         @endforeach
                     </div>

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
@@ -77,6 +78,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignUser::observe(CampaignUserObserver::class);
             CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
+            CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             Conversation::observe('App\Observers\ConversationObserver');

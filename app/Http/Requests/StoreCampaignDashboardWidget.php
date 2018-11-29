@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class StoreCampaign extends FormRequest
+class StoreCampaignDashboardWidget extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +25,8 @@ class StoreCampaign extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:4',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
-            'header_image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
-            'locale' => 'string',
-            'system' => 'nullable|string',
+            'widget' => 'required|',
+            'entity_id' => 'required|exists:entities,id',
         ];
     }
 }
