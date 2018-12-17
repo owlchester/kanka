@@ -102,5 +102,10 @@
                 @include('cruds._panes', ['relations' => false])
             </div>
         </div>
+        </div>
     </div>
 </div>
+
+@section('scripts')
+    <script src="{{ mix('js/conversation.js') }}" defer></script>
+@endsection
