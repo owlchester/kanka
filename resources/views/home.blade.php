@@ -72,6 +72,8 @@
     @foreach ($widgets as $widget)
         <?php if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_RECENT && (empty($widget->entity) || empty($widget->entity->child))):
             continue;
+        elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !EntityPermission::canView($widget->entity)):
+            continue;
         endif; ?>
         @if ($position + $widget->colSize() > 12)
             </div><div class="row">

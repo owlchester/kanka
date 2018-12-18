@@ -59,7 +59,7 @@ trait EntityAclTrait
             // Go and get the Public role
             $publicRole = $campaign->roles()->where('is_public', true)->first();
             if ($publicRole) {
-                $roles = $publicRole;
+                $roles[] = $publicRole;
             }
         }
 
