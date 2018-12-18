@@ -6,7 +6,9 @@
     <section class="sidebar">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->active('dashboard') }}">
-                <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('sidebar.dashboard') }}</span></a>
+                <a href="{{ route('dashboard') }}">
+                    <i class="fas fa-th-large"></i> <span>{{ trans('sidebar.dashboard') }}</span>
+                </a>
             </li>
             @if (Auth::check())
             <li class="{{ $sidebar->active('campaigns') }}">

@@ -27,10 +27,30 @@ class DashboardSetupController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
-        $widgets = CampaignDashboardWidget::orderBy('position', 'asc')->get();
+        $widgets = CampaignDashboardWidget::positioned()->get();
 
         return view('dashboard.setup')
             ->with('campaign', $campaign)
             ->with('widgets', $widgets);
+    }
+
+    /**
+     * Reorder the dashboard widgets
+     */
+    public function reorder()
+    {
+        $position = 0;
+        $widgets = request()->post('widgets');
+        foreach ($widgets as $i =>  $widget) {
+            $wi = CampaignDashboardWidget::findOrFail($widget);
+            $wi->update([
+                'position' => $position
+            ]);
+            $position++;
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

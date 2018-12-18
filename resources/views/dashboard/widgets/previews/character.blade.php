@@ -1,12 +1,7 @@
 <?php
-/** @var \App\Models\MiscModel $model */
+/** @var \App\Models\Character $model */
 $model = $widget->entity->child;
-
-$specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
 ?>
-@if(view()->exists($specificPreview))
-    @include($specificPreview)
-@else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">
         <h3 class="panel-title">
@@ -15,10 +10,19 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
                     <div class="entity-image" style="background-image: url({{ $model->getImageUrl(true) }})"></div>
                 @endif
                 {{ $widget->entity->name }}
+
             </a>
+            @if ($campaign->enabled('families') && !empty($model->family))
+                <a href="{{ route('families.show', $model->family->id) }}" data-toggle="tooltip" title="{{ $model->family->tooltip() }}">
+                    {{ $model->family->name }}
+                </a>
+            @endif
 
             @if ($model->is_private)
                 <i class="fa fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+            @endif
+            @if ($model->is_dead)
+                <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
             @endif
         </h3>
     </div>
@@ -31,15 +35,4 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
             <i class="fa fa-chevron-down"></i>
         </a>
     </div>
-
-    @if ($widget->entity->type == \App\Models\Entity::TYPE_LOCATION)
-        @if (!empty($widget->entity->child->map))
-            <div class="panel-footer text-right">
-                <a href="{{ $widget->entity->child->getLink('map') }}">
-                    <i class="fa fa-map"></i> {{ __('locations.show.tabs.map') }}
-                </a>
-            </div>
-        @endif
-    @endif
 </div>
-@endif

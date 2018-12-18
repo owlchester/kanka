@@ -46,6 +46,10 @@
         top:0;
         //background:linear-gradient(transparent 50px, white);
       }
+
+      .preview-action {
+        text-align: center;
+      }
     }
 
     .more {
@@ -88,7 +92,6 @@
 
 .panel-body {
   .pinned-entity {
-    cursor: pointer;
     transition: all 0.5s ease;
   }
   .preview {
@@ -109,23 +112,126 @@
   }
   .full {
   }
+
+  .preview-switch {
+    width: 100%;
+    padding-left: auto;
+    padding-right: auto;
+    display: block;
+    text-align: center;
+  }
 }
 
 .campaign-dashboard-widgets {
   .widget {
-    padding: 40px 20px;
     border-radius: 3px;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
     text-align: center;
     border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+    height: 160px;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.8);
     }
+
+    .widget-overlay {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 40px 20px;
+      height: 160px;
+    }
+
+    .widget-type {
+      display: block;
+    }
+
+    .widget-entity {
+      margin-top: 8px;
+    }
   }
   .add {
     border: 2px dashed #ccc;
+  }
+}
+
+.widget-calendar {
+  .current-date {
+    text-align: center;
+    font-size: 22px;
+
+    i {
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+      }
+    }
+  }
+}
+
+.widget-recent {
+  .entity {
+    padding: 5px;
+
+    .elapsed {
+      font-size: 11px;
+      color: #888;
+    }
+
+    .entity-image {
+      display: inline-block;
+      margin-right: 4px;
+      width: 25px;
+      height: 25px;
+    }
+    .name {
+      display: inline-block;
+      vertical-align: top;
+      padding-top: 2px;
+    }
+  }
+}
+
+.widget-recent-body {
+  overflow: auto;
+  max-height: 400px;
+}
+
+.widget-user-header {
+  padding: 0 !important;
+  height: auto !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  .widget-user-overlay {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    height: 120px;
+  }
+
+  .widget-user-username {
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.widget-preview {
+  .panel-title {
+    vertical-align: middle;
+    a {
+      font-size: 18px;
+    }
+    .entity-image {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
   }
 }

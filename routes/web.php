@@ -35,6 +35,8 @@ Route::group([
     Route::get('/settings/profile', 'Settings\ProfileController@index')->name('settings.profile');
     Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
+    Route::post('/settings/release/{release}', 'Settings\ReleaseController@read')->name('settings.release');
+
     Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account');
     Route::patch('/settings/account/password', 'Settings\AccountController@password')->name('settings.account.password');
     Route::patch('/settings/account/email', 'Settings\AccountController@email')->name('settings.account.email');
@@ -224,7 +226,7 @@ Route::group([
         Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
         Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');
         Route::get('/search/races', 'SearchController@races')->name('races.find');
-        Route::get('/search/entity-calendars', 'SearchController@entity-calendars')->name('entity-calendars.find');
+        Route::get('/search/entity-calendars', 'SearchController@entityCalendars')->name('entity-calendars.find');
         Route::get('/search/attribute_templates', 'SearchController@attributeTemplates')->name('attribute_templates.find');
 
         Route::get('/search', 'SearchController@search')->name('search');
@@ -238,6 +240,10 @@ Route::group([
         // Campaign Dashboard Widgets
         Route::get('/dashboard-setup', 'DashboardSetupController@index')->name('dashboard.setup');
         Route::post('/dashboard-setup', 'DashboardSetupController@save')->name('dashboard.setup');
+        Route::post('/dashboard-setup/reorder', [\App\Http\Controllers\DashboardSetupController::class, 'reorder'])->name('dashboard.reorder');
+        Route::get('/dashboard/widgets/recent/{id}', 'DashboardController@recent')->name('dashboard.recent');
+        Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
+        Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
 
         // Dashboard Widget Forms
 

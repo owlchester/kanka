@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CampaignTrait;
+use App\Traits\EntityAclTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  */
 class Entity extends Model
 {
+    const TYPE_LOCATION = 'location';
 
     /**
      * @var array
@@ -36,7 +38,7 @@ class Entity extends Model
     /**
      * Traits
      */
-    use CampaignTrait, BlameableTrait;
+    use CampaignTrait, BlameableTrait, EntityAclTrait;
 
     /**
      * Searchable fields
@@ -324,5 +326,15 @@ class Entity extends Model
             ->select('*', DB::raw('count(id) as cpt'))
             ->groupBy('type')
             ->orderBy('cpt', 'desc');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeRecentlyModified($query)
+    {
+        return $query
+            ->orderBy('updated_at', 'desc');
     }
 }

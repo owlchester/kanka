@@ -10,6 +10,7 @@ return [
         'more'          => 'More Actions',
         'move'          => 'Move',
         'new'           => 'New',
+        'next'          => 'Next',
         'private'       => 'Private',
         'public'        => 'Public',
     ],

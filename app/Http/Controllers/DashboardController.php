@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreUserDashboardSetting;
+use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Character;
@@ -31,19 +32,9 @@ class DashboardController extends Controller
         $recentCount = 5;
         $user = null;
         $settings = null;
-        if (Auth::check()) {
-            $user = Auth::user();
-            $settings = $user->dashboardSetting;
-            $recentCount = $user->dashboardSetting->recent_count;
+        if (Auth::check() && Auth::user()->can('update', $campaign)) {
+            $settings = true;
         }
-
-        $notes = Note::acl()->dashboard()->get();
-        $characters = Character::acl()->recent()->with('family')->take($recentCount)->get();
-        $families = Family::acl()->recent()->take($recentCount)->get();
-        $locations = Location::acl()->recent()->take($recentCount)->get();
-        $items = Item::acl()->recent()->take($recentCount)->get();
-        $organisations = Organisation::acl()->recent()->take($recentCount)->get();
-        $journals = Journal::acl()->recent()->take($recentCount)->get();
 
         //$characters = Character::
 
@@ -52,17 +43,15 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'DESC')
             ->first();
 
+
+        $widgets = CampaignDashboardWidget::positioned()->get();
+
         return view('home', compact(
             'campaign',
             'notes',
-            'characters',
-            'families',
-            'locations',
-            'items',
-            'journals',
-            'organisations',
             'settings',
-            'release'
+            'release',
+            'widgets'
         ));
     }
 
@@ -86,5 +75,28 @@ class DashboardController extends Controller
         $setting = Auth::user()->dashboardSetting;
         $setting->update($request->all());
         return redirect()->route('home')->with('success', trans('dashboard.settings.edit.success'));
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function recent($id)
+    {
+        $widget = CampaignDashboardWidget::findOrFail($id);
+        if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        $offset = request()->get('offset', 0);
+
+        $entities = \App\Models\Entity::recentlyModified()->type($widget->conf('entity'))->acl()->take(10)->offset($offset)->get();
+
+        return view('dashboard.widgets._recent_list')
+            ->with('entities', $entities)
+            ->with('widget', $widget)
+            ->with('offset', $offset);
     }
 }

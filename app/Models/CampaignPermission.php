@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use DateTime;
 
 /**
- * Class Attribute
+ * Class CampaignPermission
  * @package App\Models
  *
  * @property integer $entity_id
- * @property string $name
- * @property string $value
- * @property boolean $is_private
+ * @property integer $campaign_role_id
+ * @property integer $user_id
+ * @property string $key
+ * @property string $table_name
  */
 class CampaignPermission extends Model
 {
@@ -25,6 +26,7 @@ class CampaignPermission extends Model
         'key',
         'table_name',
         'user_id',
+        'entity_id',
     ];
 
     /**
@@ -42,7 +44,16 @@ class CampaignPermission extends Model
      */
     public function user()
     {
-        return $this->belongsTi('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    /**
+     * Optional entity
+     * @return mixed
+     */
+    public function entity()
+    {
+        return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
     /**
@@ -61,6 +72,16 @@ class CampaignPermission extends Model
     public function action()
     {
         $segments = explode('_', $this->key);
-        return $segments[count($segments)-2];
+        return $segments[count($segments)-(empty($this->entity_id) ? 1 : 2)];
+    }
+
+    /**
+     * Determine if a permission targets an entity by checking the last part of the segment
+     * @return bool
+     */
+    public function targetsEntity()
+    {
+        $segments = explode('_', $this->key);
+        return is_numeric($segments[count($segments)-1]);
     }
 }

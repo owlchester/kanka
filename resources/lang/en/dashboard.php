@@ -26,6 +26,13 @@ return [
     'setup' => [
         'actions' => [
             'add' => 'Add a widget',
+            'edit' => 'Edit a widget',
+        ],
+        'title' => 'Campaign Dashboard Setup',
+        'widgets' => [
+            'preview' => 'Entity Preview',
+            'calendar' => 'Calendar',
+            'recent' => 'Recent',
         ]
     ],
     'settings'          => [
@@ -40,4 +47,27 @@ return [
         'title'         => 'Dashboard Settings',
     ],
     'title'             => 'Dashboard',
+    'widgets' => [
+        'calendar' => [
+            'events_today' => 'Today',
+            'previous_events' => 'Previous',
+            'upcoming_events' => 'Upcoming',
+            'actions' => [
+                'next' => 'Change date to next day',
+                'previous' => 'Change date to previous day',
+            ]
+        ],
+        'create' => [
+            'success' => 'Widget added to the dashboard.',
+        ],
+        'delete' => [
+            'success' => 'Widget removed from the dashboard.',
+        ],
+        'update' => [
+            'success' => 'Widget modified.',
+        ],
+        'recent' => [
+            'title' => 'Recently modified',
+        ]
+    ]
 ];

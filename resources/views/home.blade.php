@@ -1,15 +1,26 @@
 <?php /** @var \App\Models\Campaign $campaign */ ?>
+<?php $position = 0; ?>
 
 @extends('layouts.app', [
     'title' => trans('dashboard.title'),
     'description' => trans('dashboard.description'),
     'breadcrumbs' => false,
-    'headerExtra' => $settings ? '<a href="' . route('dashboard.settings') .'" class="btn btn-default btn-xl" title="'. trans('dashboard.settings.title') .'"><i class="fa fa-cog"></i></a>' : null
+    'headerExtra' => $settings ? '<a href="' . route('dashboard.setup') .'" class="btn btn-default btn-xl pull-right" title="'. trans('dashboard.settings.title') .'"><i class="fa fa-cog"></i></a>' : null
 ])
 
 @section('content')
 
     @include('partials.errors')
+
+    @if ($release && (!auth()->check() || auth()->user()->release != $release->id))
+        <div class="alert alert-info alert-dismissible">
+            @auth
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.release', $release) }}">×</button>
+            @endauth
+            <h4><i class="icon fa fa-info"></i> <a href="{{ route('releases.show', $release->getSlug()) }}">{{ $release->title }}</a></h4>
+            {{ $release->excerpt }}
+        </div>
+    @endif
 
     <div class="campaign @if(!empty($campaign->header_image))" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
@@ -58,72 +69,22 @@
     </div>
 
     <div class="row">
-        @if ($settings && $settings->has('release') && !empty($release))
-        <div class="col-md-4 col-md-offset-4">
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-lightbulb-o"></i></span>
-                <div class="info-box-content">
-                    <div class="info-box-text">{{ trans('dashboard.latest_release' )}}</div>
-                    <div class="info-box-number">
-                        <a href="{{ route('releases.show', $release->getSlug()) }}">
-                            {{ $release->title }}
-                        </a>
-                    </div>
+    @foreach ($widgets as $widget)
+        <?php if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_RECENT && (empty($widget->entity) || empty($widget->entity->child))):
+            continue;
+        endif; ?>
+        @if ($position + $widget->colSize() > 12)
+            </div><div class="row">
+        <?php $position = 0; ?>
+        @endif
+            <div class="col-md-{{ $widget->colSize() }}">
+                <div class="widget widget-{{ $widget->widget }}">
+                    @include('dashboard.widgets._' . $widget->widget)
                 </div>
             </div>
-        </div>
-        @endif
-    </div>
 
-    @if (!empty($notes))
-        <div class="row">
-            @foreach ($notes as $note)
-                <div class="col-md-{{ (12 / (count($notes))) }}">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4><a href="{{ route('notes.show', $note->id) }}">{{ $note->name }}</a></h4>
-                            <div class="pinned-entity preview" data-toggle="preview">
-                            {!! $note->entry !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    <?php $cpt = 0; ?>
-    <div class="row">
-        @if ($campaign->enabled('characters') && (!$settings || $settings->has('characters')))
-            @if ($cpt == 3) </div><div class="row"> @endif
-            @include('dashboard._recent', ['title' => trans('entities.characters'), 'route' => 'characters', 'models' => $characters, 'perm' => 'App\Models\Character'])
-            <?php $cpt++; ?>
-        @endif
-        @if ($campaign->enabled('families') && (!$settings || $settings->has('families')))
-            @if ($cpt == 3) </div><div class="row"> @endif
-            @include('dashboard._recent', ['title' => trans('entities.families'), 'route' => 'families', 'models' => $families, 'perm' => 'App\Models\Family'])
-        <?php $cpt++; ?>
-        @endif
-        @if ($campaign->enabled('locations') && (!$settings || $settings->has('locations')))
-            @if ($cpt == 3) </div><div class="row"> @endif
-            @include('dashboard._recent', ['title' => trans('entities.locations'), 'route' => 'locations', 'models' => $locations, 'perm' => 'App\Models\Location'])
-        <?php $cpt++; ?>
-        @endif
-        @if ($campaign->enabled('organisations') && (!$settings || $settings->has('organisations')))
-            @if ($cpt == 3) </div><div class="row"> @endif
-            @include('dashboard._recent', ['title' => trans('entities.organisations'), 'route' => 'organisations', 'models' => $organisations, 'perm' => 'App\Models\Organisation'])
-        <?php $cpt++; ?>
-        @endif
-        @if ($campaign->enabled('items') && (!$settings || $settings->has('items')))
-            @if ($cpt == 3) </div><div class="row"> @endif
-            @include('dashboard._recent', ['title' => trans('entities.items'), 'route' => 'items', 'models' => $items, 'perm' => 'App\Models\Item'])
-        <?php $cpt++; ?>
-        @endif
-        @if ($campaign->enabled('journals') && (!$settings || $settings->has('journals')))
-            @if ($cpt == 3) </div><div class="row"> @endif
-            @include('dashboard._recent', ['title' => trans('entities.journals'), 'route' => 'journals', 'models' => $journals, 'perm' => 'App\Models\Journal'])
-        <?php $cpt++; ?>
-        @endif
+        <?php $position += $widget->colSize(); ?>
+    @endforeach
     </div>
 @endsection
 

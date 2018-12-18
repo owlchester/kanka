@@ -471,3 +471,39 @@ footer .footer {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+/**
+ * Dashboard
+ */
+
+.campaign .content {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.campaign .content ul.campaign-links li a {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.campaign .content ul.campaign-links li a:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.campaign .preview {
+  background: none;
+}
+
+.panel-body .preview {
+  background: none;
+}
+
+.panel-body .preview:before {
+  background: linear-gradient(transparent 0px, #0B1F20);
+}
+
+.campaign-dashboard-widgets .widget .widget-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.campaign-dashboard-widgets .widget:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+

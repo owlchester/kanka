@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\AclTrait;
 use App\Traits\CampaignTrait;
+use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -57,8 +59,31 @@ class CampaignDashboardWidget extends Model
         return $this->belongsTo(\App\Models\Entity::class);
     }
 
+    /**
+     * Get the column size
+     * @return int
+     */
     public function colSize()
     {
-        return 4;
+        return $this->widget == self::WIDGET_PREVIEW ? 4 : 6;
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePositioned($query)
+    {
+        return $query->with('entity')->orderBy('position', 'asc');
+    }
+
+    /**
+     * @param $value
+     */
+    public function conf($value)
+    {
+        $data = json_decode($this->config, true);
+//        dd($data);
+        return array_get($data, $value, null);
     }
 }

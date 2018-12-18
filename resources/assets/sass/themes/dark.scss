@@ -416,3 +416,46 @@ footer {
     background-color: rgba(0, 0, 0, 0.2);
   }
 }
+
+/**
+ * Dashboard
+ */
+.campaign {
+  .content {
+    background: rgba(0, 0, 0, 0.5);
+
+    ul.campaign-links {
+      li {
+        a {
+          background: rgba(0, 0, 0, 0.7);
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.9);
+          }
+        }
+      }
+    }
+  }
+  .preview {
+    background: none;
+  }
+}
+.panel-body {
+  .preview {
+    background: none;
+    &:before {
+      background: linear-gradient(transparent 0px, $Soft);
+    }
+  }
+}
+.campaign-dashboard-widgets {
+  .widget {
+    .widget-overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

@@ -15,6 +15,10 @@ class CalendarObserver extends MiscObserver
     {
         parent::saving($model);
 
+        if (!request()->has('name')) {
+            return;
+        }
+
         // Handle months
         $months = [];
         $monthCount = 0;

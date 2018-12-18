@@ -280,6 +280,15 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Last read release
+     * @param $value
+     */
+    public function setReleaseAttribute($value)
+    {
+        $this->attributes['settings'] = collect($this->settings)->merge(['release' => $value]);
+    }
+
+    /**
      * @param $value
      */
     public function setPatreonEmailAttribute($value)
@@ -301,6 +310,14 @@ class User extends \TCG\Voyager\Models\User
     public function getPatreonFullnameAttribute()
     {
         return $this->settings['patreon_fullname'];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReleaseAttribute()
+    {
+        return $this->settings['release'];
     }
 
     /**

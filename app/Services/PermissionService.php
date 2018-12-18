@@ -101,7 +101,8 @@ class PermissionService
                         $permObject = CampaignPermission::create([
                             'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
                             'campaign_role_id' => $roleId,
-                            'table_name' => $entity->pluralType()
+                            'table_name' => $entity->pluralType(),
+                            'entity_id' => $entity->id,
                         ]);
                     } else {
                         unset($permissions['role'][$roleId][$perm]);
@@ -117,7 +118,8 @@ class PermissionService
                         $permObject = CampaignPermission::create([
                             'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
                             'user_id' => $userId,
-                            'table_name' => $entity->pluralType()
+                            'table_name' => $entity->pluralType(),
+                            'entity_id' => $entity->id,
                         ]);
                     } else {
                         unset($permissions['user'][$userId][$perm]);

@@ -37,11 +37,10 @@
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @if (auth()->check() && !empty(auth()->user()->theme))
-    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
-    @endif
-
     @yield('styles')
+    @if (auth()->check() && !empty(auth()->user()->theme))
+        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+    @endif
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns())) @else layout-top-nav @endif">

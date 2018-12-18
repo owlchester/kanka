@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.dashboard.title'),
+    'title' => trans('dashboard.setup.title'),
     'description' => '',
     'breadcrumbs' => [
-        trans('campaigns.dashboard.title')
+        trans('dashboard.setup.title')
     ]
 ])
 
@@ -11,20 +11,40 @@
     @include('partials.errors')
 
     <div class="campaign-dashboard-widgets">
-        <div class="row" id="widgets">
-
+        <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @foreach ($widgets as $widget)
                 <?php /** @var \App\Models\CampaignDashboardWidget $widget */ ?>
-                <div class="col-md-{{ $widget->colSize() }}">
-                    <div class="widget widget-{{ $widget->widget }}" data-toggle="ajax-modal" data-target="#edit-widget" data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}">
-                        {{ $widget->widget }}
+                <div class="col-md-{{ $widget->colSize() }} widget-draggable">
+                    <div class="widget widget-{{ $widget->widget }}"
+                         data-toggle="ajax-modal"
+                         data-target="#edit-widget"
+                         data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"
+                        @if ($widget->entity && !empty($widget->entity->child->image))
+                        style="background-image: url({{ $widget->entity->child->getImageUrl() }})"
+                        @endif
+                    >
+                        <div class="widget-overlay">
+                            <span class="widget-type">{{ __('dashboard.setup.widgets.' . $widget->widget) }}</span>
+                            @if ($widget->entity)
+                                <div class="widget-entity">
+                                    {{ link_to($widget->entity->child->getLink(), $widget->entity->name) }}
+                                </div>
+                            @endif
+
+                            @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_RECENT && !empty($widget->conf('entity')))
+                                <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
+                            @endif
+                        </div>
+                        <input type="hidden" name="widgets[]" value="{{ $widget->id }}" />
                     </div>
                 </div>
             @endforeach
 
             <div class="col-md-4">
                 <div class="widget add" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
+                    <div class="widget-overlay">
                     <i class="fa fa-plus"></i> {{ __('dashboard.setup.actions.add') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,7 +68,7 @@
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar']) }}">
                             <i class="ra ra-moon-sun"></i> {{ __('dashboard.setup.widgets.calendar') }}
                         </div>
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent">
+                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent']) }}">
                             <i class="fa fa-history"></i> {{ __('dashboard.setup.widgets.recent') }}
                         </div>
                     </div>
@@ -71,6 +91,8 @@
             </div>
         </div>
     </div>
+
+    {{ csrf_field() }}
 @endsection
 
 @section('scripts')

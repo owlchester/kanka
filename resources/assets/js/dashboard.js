@@ -9,34 +9,63 @@ var modalContentButtons, modalContentTarget, modalContentSpinner;
 
 $(document).ready(function() {
 
+    $('.preview-switch').click(function(e) {
+        e.preventDefault();
+
+        var preview = $('#widget-preview-body-' + $(this).data('widget'));
+        if (preview.hasClass('preview')) {
+            preview.removeClass('preview').addClass('full');
+            $(this).html('<i class="fa fa-chevron-up"></i>');
+        } else {
+            preview.removeClass('full').addClass('preview');
+            $(this).html('<i class="fa fa-chevron-down"></i>');
+        }
+
+    });
     $.each($('[data-toggle="preview"]'), function(i) {
        // If we are exactly the height of 200, some content is hidden
        if ($(this).height() === 200) {
-           $('[data-toggle="preview"]').click(function(e) {
-               if ($(this).hasClass('preview')) {
-                   $(this).removeClass('preview').addClass('full');
-               } else {
-                   $(this).removeClass('full').addClass('preview');
-               }
-           });
+           $(this).next().removeClass('hidden')
        } else {
            $(this).removeClass('pinned-entity preview');
        }
     });
-    
+
+    $.each($('[data-dismiss="alert"]'), function(i) {
+        $(this).click(function(e) {
+            $.post({
+                url: $(this).data('url'),
+                method: 'POST'
+            }).done(function(data) {
+                console.log('dismiss release news');
+            });
+        });
+    });
+
+    // Ajax requests
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     if ($('.campaign-dashboard-widgets').length === 1) {
         initDashboardAdminUI();
     }
+
+    initDashboardRecent();
+    initDashboardCalendars();
 });
 
+/**
+ *
+ */
 function initDashboardAdminUI() {
-    console.log('init dashboard admin ui');
-
     newWidget = $('#new-widget');
     newWidgetPreview = $('#new-widget-preview');
     newWidgetCalendar = $('#new-widget-calendar');
     newWidgetRecent = $('#new-widget-recent');
-    
+
     btnWidgetPreview = $('#btn-widget-preview');
     btnWidgetCalendar = $('#btn-widget-calendar');
     btnWidgetRecent = $('#btn-widget-recent');
@@ -46,13 +75,7 @@ function initDashboardAdminUI() {
     modalContentTarget = $('#modal-content-target');
     modalContentSpinner = $('#modal-content-spinner');
 
-    btnWidgetPreview.click(function(e) {
-        console.log('click widget preview');
-        loadModalForm($(this).data('url'));
-    });
-
-    btnWidgetCalendar.click(function(e) {
-        console.log('click widget calendar');
+    $('.btn-lg').click(function(e) {
         loadModalForm($(this).data('url'));
     });
 
@@ -62,6 +85,21 @@ function initDashboardAdminUI() {
         modalContentTarget.html('');
         modalContentButtons.show();
     });
+
+    $('#widgets').sortable({
+        items: '.widget-draggable',
+        stop: function(event, ui) {
+            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+            $.post({
+                url: $('#widgets').data('url'),
+                dataType: 'json',
+                data: $('input[name="widgets[]"]').serialize()
+            }).done(function(data) {
+
+            });
+        }
+    });
+    //$('#widgets').disableSelection();
 }
 
 /**
@@ -78,5 +116,59 @@ function loadModalForm(url) {
         modalContentTarget.html(data);
 
         window.initSelect2();
+    });
+}
+
+/**
+ *
+ */
+function initDashboardRecent()
+{
+    $('.widget-recent-more').click(function(e) {
+        e.preventDefault();
+        $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+
+        $.ajax({
+            url: $(this).data('url'),
+            context: this
+        }).done(function(data) {
+            $(this).closest('.widget-recent-body').append(data);
+            $(this).remove();
+            initDashboardRecent();
+        });
+    });
+}
+
+/**
+ *
+ */
+function initDashboardCalendars()
+{
+    $('.widget-calendar-switch').click(function(e) {
+        console.log('click calendar switch');
+        var url = $(this).data('url'),
+            widget = $(this).data('widget');
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#widget-date-' + widget).addClass('hidden');
+        $('#widget-loading-' + widget).removeClass('hidden').siblings('.row').addClass('hidden');
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            context: this
+        }).done(function(data) {
+            if (data) {
+                // Redirect page
+                var widget = $(this).data('widget');
+                $('#widget-body-' + widget).html(data);
+                initDashboardCalendars();
+            }
+        });
     });
 }

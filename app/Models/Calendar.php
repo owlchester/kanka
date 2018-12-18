@@ -123,6 +123,20 @@ class Calendar extends MiscModel
     }
 
     /**
+     * @param int $take
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+     */
+    public function dashboardEvents($operator = '=', $take = 5)
+    {
+        return $this->calendarEvents()
+            ->with('entity')
+            ->where('date', $operator, $this->date)
+            ->take($take)
+            ->orderBy('date', $operator == '<' ? 'desc' : 'asc')
+            ->get();
+    }
+
+    /**
      * Get the months
      * @return null
      */
@@ -219,6 +233,31 @@ class Calendar extends MiscModel
     }
 
     /**
+     * Get the calendar's nice date
+     * @return mixed|string
+     */
+    public function niceDate($date = null)
+    {
+        if (empty($date)) {
+            $date = $this->date;
+        }
+        $date = explode('-', $date);
+
+        // Replace month with real month, and year maybe
+        $months = $this->months();
+        $years = $this->years();
+
+        try {
+            return $date[2] . ' ' .
+                (isset($months[$date[1] - 1]) ? $months[$date[1] - 1]['name'] : $date[1]) . ', ' .
+                (isset($years[$date[0]]) ? $years[$date[0]] : $date[0]) . ' ' .
+                $this->suffix;
+        } catch(\Exception $e) {
+            return $this->date;
+        }
+    }
+
+    /**
      * Get a list of months for select fields
      * @return array
      */
@@ -243,5 +282,52 @@ class Calendar extends MiscModel
         }
 
         return parent::detach();
+    }
+
+    /**
+     * Add a day to the calendar's current date
+     * @return bool
+     */
+    public function addDay()
+    {
+        list($year, $month, $day) = explode('-', $this->date);
+
+        $day++;
+        // Day is longer than month max length?
+        $months = $this->months();
+        if ($day > $months[$month-1]['length']) {
+            $day = 1;
+            $month++;
+            if ($month > count($months)) {
+                $month = 1;
+                $year++;
+            }
+        }
+
+        $this->date = $year . '-' . $month . '-' . $day;
+        return $this->save();
+    }
+
+    /**
+     * Substract one day from the calendar's current date
+     * @return bool
+     */
+    public function subDay()
+    {
+        list($year, $month, $day) = explode('-', $this->date);
+
+        $day--;
+        $months = $this->months();
+        if ($day < 1) {
+            $month--;
+            if ($month < 1) {
+                $month = count($months);
+                $year--;
+            }
+            $day = $months[$month-1]['length'];
+        }
+
+        $this->date = $year . '-' . $month . '-' . $day;
+        return $this->save();
     }
 }

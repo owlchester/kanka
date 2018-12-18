@@ -129,9 +129,9 @@ class SearchController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         if (empty($term)) {
-            $models = Entity::whereIn('type', 'calendar')->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = Entity::whereIn('type', ['calendar'])->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = Entity::whereIn('type', 'calendar')->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = Entity::whereIn('type', ['calendar'])->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

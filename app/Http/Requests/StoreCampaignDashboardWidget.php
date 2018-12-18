@@ -25,8 +25,8 @@ class StoreCampaignDashboardWidget extends FormRequest
     public function rules()
     {
         return [
-            'widget' => 'required|',
-            'entity_id' => 'required|exists:entities,id',
+            'widget' => 'required',
+            'entity_id' => 'nullable|exists:entities,id',
         ];
     }
 }

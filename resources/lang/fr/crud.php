@@ -217,7 +217,7 @@ return [
             'entry'     => 'Entrée',
             'name'      => 'Nom',
         ],
-        'hint'          => 'Des informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privés peuvent être ajoutée en tant que Note.',
+        'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant que Note.',
         'index'         => [
             'title' => 'Notes pour :name',
         ],

@@ -11,6 +11,8 @@ class CampaignDashboardWidgetObserver
     {
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
 
+        $model->config = json_encode(empty($model->config) ? [] : $model->config, JSON_UNESCAPED_SLASHES);
+
         if ($model->widget == CampaignDashboardWidget::WIDGET_RECENT) {
 
         }
