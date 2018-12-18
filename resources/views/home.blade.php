@@ -86,6 +86,16 @@
         <?php $position += $widget->colSize(); ?>
     @endforeach
     </div>
+
+    @if (count($widgets) == 0)
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="{{ route('dashboard.setup') }}">
+                <h3>{{ __('dashboard.helpers.setup') }}</h3>
+            </a>
+        </div>
+    </div>
+    @endif
 @endsection
 
 

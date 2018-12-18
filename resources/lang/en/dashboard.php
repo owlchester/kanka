@@ -10,6 +10,9 @@ return [
         ]
     ],
     'description'       => 'The home for your creativity',
+    'helpers' => [
+        'setup' => 'Setup your campaign\'s dashboard.'
+    ],
     'latest_release'    => 'Latest Release',
     'notifications'     => [
         'modal' => [
