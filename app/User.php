@@ -317,7 +317,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function getReleaseAttribute()
     {
-        return $this->settings['release'];
+        return array_get($this->settings, 'release', null);
     }
 
     /**
