@@ -12,7 +12,7 @@
 
     @include('partials.errors')
 
-    @if ($release && (!auth()->check() || auth()->user()->release != $release->id))
+    @if (!empty($release) && (!auth()->check() || auth()->user()->release != $release->id))
         <div class="alert alert-info alert-dismissible">
             @auth
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.release', $release) }}">×</button>
