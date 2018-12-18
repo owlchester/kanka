@@ -34,7 +34,12 @@
                                 <div class="image-wrapper" @if ($camp->image) style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
                                 </div>
                             <h4 class="campaign-title">
-                                <span class="label label-default pull-right" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                <span class="pull-right text-right">
+                                    <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                    @if (!empty($camp->system))
+                                        <span class="label label-default">{{ $camp->system }}</span>
+                                    @endif
+                                </span>
                                 {{ $camp->name }}
                             </h4>
                         </a>
@@ -60,8 +65,14 @@
                                     <div class="image-wrapper small-campaign" @if ($camp->image) style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
                                     </div>
                                     <h4 class="campaign-title">
-                                        <span class="label label-default pull-right" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                        <span class="pull-right text-right">
+                                            <span class="label label-default " title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                            @if (!empty($camp->system))
+                                                <span class="label label-default margin-r-5">{{ $camp->system }}</span>
+                                            @endif
+                                        </span>
                                         {{ $camp->name }}
+
 
                                     </h4>
                                 </a>
