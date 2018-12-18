@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrganisation;
 use App\Models\Location;
 use App\Models\Organisation;
+use App\Models\Tag;
 
 class OrganisationController extends CrudController
 {
@@ -43,6 +44,14 @@ class OrganisationController extends CrudController
                 'route' => route('organisations.find'),
                 'placeholder' =>  trans('crud.placeholders.organisation'),
                 'model' => Organisation::class,
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
         ];
     }

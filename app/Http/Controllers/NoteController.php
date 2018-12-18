@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNote;
 use App\Models\Note;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Session;
 
 class NoteController extends CrudController
@@ -28,7 +29,14 @@ class NoteController extends CrudController
         $this->filters = [
             'name',
             'type',
-            'is_pinned',
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
+            ],
         ];
     }
 

@@ -21,14 +21,6 @@
 
                 @if (Auth::user()->isAdmin())
                     <hr>
-                    <div class="form-group">
-                        {!! Form::hidden('is_pinned', 0) !!}
-                        <label>{!! Form::checkbox('is_pinned') !!}
-                            {{ trans('notes.fields.is_pinned') }}
-                        </label>
-                        <p class="help-block">{{ trans('notes.hints.is_pinned') }}</p>
-                    </div>
-
                     @include('cruds.fields.private')
                 @endif
             </div>

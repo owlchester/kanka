@@ -42,6 +42,7 @@ class Race extends MiscModel
         'name',
         'type',
         'race_id',
+        'tag_id',
         'is_private',
     ];
 

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCharacter;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Race;
+use App\Models\Tag;
 use App\Services\RandomCharacterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -70,6 +71,14 @@ class CharacterController extends CrudController
                 'route' => route('races.find'),
                 'placeholder' =>  trans('crud.placeholders.race'),
                 'model' => Race::class,
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
             'type',
             'age',

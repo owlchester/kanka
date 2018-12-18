@@ -184,8 +184,30 @@ class FilterService
         return $this->order;
     }
 
+    /**
+     * @param $field
+     * @return bool
+     */
     public function isCheckbox($field)
     {
         return strpos($field, 'is_') !== false;
+    }
+
+    /**
+     * @return int
+     */
+    public function activeFilters()
+    {
+        if (empty($this->filters)) {
+            return 0;
+        }
+
+        $count = 0;
+        foreach($this->filters as $key => $val) {
+            if ($val !== null) {
+                $count++;
+            }
+        }
+        return $count;
     }
 }

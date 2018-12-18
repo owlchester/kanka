@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConversation;
 use App\Models\Conversation;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,14 @@ class ConversationController extends CrudController
                 'type' => 'select',
                 'placeholder' =>  trans('conversations.placeholders.target'),
                 'data' => trans('conversations.targets')
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
         ];
     }

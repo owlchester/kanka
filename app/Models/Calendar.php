@@ -76,6 +76,7 @@ class Calendar extends MiscModel
     protected $filterableColumns = [
         'name',
         'type',
+        'tag_id',
         'is_private',
     ];
 

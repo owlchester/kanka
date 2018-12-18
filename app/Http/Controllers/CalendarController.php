@@ -6,6 +6,7 @@ use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
+use App\Models\Tag;
 use App\Services\CalendarService;
 use Illuminate\Http\Request;
 use Response;
@@ -35,6 +36,14 @@ class CalendarController extends CrudController
         $this->filters = [
             'name',
             'type',
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
+            ],
         ];
 
         $this->calendarService = $calendarService;

@@ -44,6 +44,7 @@ class Character extends MiscModel
         'is_dead',
         'is_private',
         'race_id',
+        'tag_id',
     ];
 
     /**

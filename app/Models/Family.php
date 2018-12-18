@@ -34,6 +34,7 @@ class Family extends MiscModel
     protected $filterableColumns = [
         'name',
         'location_id',
+        'tag_id',
         'is_private',
     ];
 

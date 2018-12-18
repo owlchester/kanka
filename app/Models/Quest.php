@@ -39,6 +39,7 @@ class Quest extends MiscModel
         'name',
         'type',
         'quest_id',
+        'tag_id',
         'character_id',
         'is_completed',
         'is_private',

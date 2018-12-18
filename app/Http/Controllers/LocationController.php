@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
+use App\Models\Tag;
 use App\Services\LocationService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -56,6 +57,14 @@ class LocationController extends CrudController
                 'route' => route('locations.find'),
                 'placeholder' =>  trans('crud.placeholders.location'),
                 'model' => Location::class,
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
         ];
     }

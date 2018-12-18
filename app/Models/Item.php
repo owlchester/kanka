@@ -44,6 +44,7 @@ class Item extends MiscModel
         'type',
         'location_id',
         'character_id',
+        'tag_id',
         'is_private',
     ];
 

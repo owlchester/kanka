@@ -34,7 +34,7 @@ class Note extends MiscModel
     protected $filterableColumns = [
         'name',
         'type',
-        'is_pinned',
+        'tag_id',
         'is_private',
     ];
 

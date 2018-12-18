@@ -33,6 +33,7 @@ class DiceRoll extends MiscModel
     protected $filterableColumns = [
         'name',
         'character_id',
+        'tag_id',
         'is_private',
     ];
 

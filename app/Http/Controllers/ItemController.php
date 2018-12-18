@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Http\Requests\StoreItem;
 use App\Models\Item;
 use App\Models\Location;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -46,6 +47,14 @@ class ItemController extends CrudController
                 'route' => route('characters.find'),
                 'placeholder' =>  trans('crud.placeholders.character'),
                 'model' => Character::class,
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
         ];
     }

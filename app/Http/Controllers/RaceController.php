@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
 use App\Http\Requests\StoreRace;
 use App\Models\Race;
-use App\Models\Location;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use App\Models\Tag;
 
 class RaceController extends CrudController
 {
@@ -38,6 +35,14 @@ class RaceController extends CrudController
                 'route' => route('races.find'),
                 'placeholder' =>  trans('crud.placeholders.race'),
                 'model' => Race::class,
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
         ];
     }

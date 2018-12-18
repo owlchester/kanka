@@ -44,6 +44,7 @@ class Location extends MiscModel
         'entry',
         'parent_location_id',
         'campaign_id',
+        'tag_id',
         'is_private',
     ];
 

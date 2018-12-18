@@ -45,6 +45,7 @@ class Journal extends MiscModel
         'type',
         'date',
         'character_id',
+        'tag_id',
         'is_private',
     ];
 

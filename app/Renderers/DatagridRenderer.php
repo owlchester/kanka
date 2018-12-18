@@ -440,10 +440,12 @@ class DatagridRenderer
         ]);
 
         $filtersHtml = str_replace('"', '\'', $filtersHtml);
+        $activeFilters = $this->filterService->activeFilters();
 
         $html = '
         <div class="table-filters" title="' . __('crud.filters.title') . '" data-toggle="popover" data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
             <i class="fa fa-filter"></i>
+            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . $activeFilters . '</span>' : null) . '
             <i class="fa fa-caret-down"></i>
         </div>';
 

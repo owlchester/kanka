@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreQuest;
 use App\Models\Character;
 use App\Models\Quest;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -45,6 +46,14 @@ class QuestController extends CrudController
                 'route' => route('quests.find'),
                 'placeholder' =>  trans('quests.placeholders.quest'),
                 'model' => Quest::class,
+            ],
+            [
+                'field' => 'tag_id',
+                'label' => trans('crud.fields.tag'),
+                'type' => 'select2',
+                'route' => route('tags.find'),
+                'placeholder' =>  trans('crud.placeholders.tag'),
+                'model' => Tag::class,
             ],
             'is_completed',
         ];
