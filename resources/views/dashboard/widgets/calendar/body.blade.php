@@ -31,7 +31,7 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
                     @viewentity ($event->entity)
                     <li>
                         {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
-                        <span class="label label-default pull-right">{{ $event->getDate() }}</span>
+                        <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                     </li>
                     @endviewentity
                 @endforeach
@@ -47,13 +47,13 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
                     @viewentity($event->entity)
                     <li>
                         {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
-                        <span class="label label-default pull-right">
                         @if ($event->date == $calendar->date)
+                            <span class="label label-default pull-right" title="{{ $event->getDate() }}">
                             {{ __('calendars.actions.today') }}
+                            </span>
                         @else
-                            {{ $event->getDate() }}
+                            <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                         @endif
-                        </span>
                     </li>
                     @endviewentity
                 @endforeach
