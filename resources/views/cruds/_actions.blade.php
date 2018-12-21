@@ -26,7 +26,7 @@
             @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
             <li>
                 <a href="{{ route('entities.move', $model->entity->id) }}">
-                    <i class="fa fa-exchange" aria-hidden="true"></i> {{ trans('crud.actions.move') }}
+                    <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ trans('crud.actions.move') }}
                 </a>
             </li>
             @endif

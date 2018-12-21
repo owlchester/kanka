@@ -109,7 +109,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                     <span class="input-group-addon">
-                                        <span class="fa fa-arrows-v"></span>
+                                        <span class="fa fa-arrows-alt-v"></span>
                                     </span>
                                         {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
                                     </div>
@@ -137,7 +137,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <span class="fa fa-arrows-v"></span>
+                                    <span class="fa fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('month_name[]', null, ['class' => 'form-control']) !!}
                             </div>
@@ -197,7 +197,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                     <span class="input-group-addon">
-                                        <span class="fa fa-arrows-v"></span>
+                                        <span class="fa fa-arrows-alt-v"></span>
                                     </span>
                                         {!! Form::text('moon_name[]', $moon, ['class' => 'form-control']) !!}
                                     </div>
@@ -225,7 +225,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <span class="fa fa-arrows-v"></span>
+                                    <span class="fa fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
                             </div>
@@ -288,7 +288,7 @@
                         <div class="form-group">
                             <div class="input-group">
                             <span class="input-group-addon">
-                                <span class="fa fa-arrows-v"></span>
+                                <span class="fa fa-arrows-alt-v"></span>
                             </span>
                                 {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
                                 <span class="input-group-btn">
@@ -307,7 +307,7 @@
                 <div class="form-group" id="template_weekday" style="display: none">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <span class="fa fa-arrows-v"></span>
+                            <span class="fa fa-arrows-alt-v"></span>
                         </span>
                         {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
@@ -356,7 +356,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                     <span class="input-group-addon">
-                                        <span class="fa fa-arrows-v"></span>
+                                        <span class="fa fa-arrows-alt-v"></span>
                                     </span>
                                         {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
                                     </div>
@@ -384,7 +384,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <span class="fa fa-arrows-v"></span>
+                                    <span class="fa fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::number('year_number[]', null, ['class' => 'form-control']) !!}
                             </div>
@@ -479,7 +479,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <span class="fa fa-arrows-v"></span>
+                                            <span class="fa fa-arrows-alt-v"></span>
                                         </span>
                                         {!! Form::text('season_name[]', $season['name'], ['class' => 'form-control']) !!}
                                     </div>
@@ -510,7 +510,7 @@
                         <div class="col-md-4">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <span class="fa fa-arrows-v"></span>
+                                    <span class="fa fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
                             </div>

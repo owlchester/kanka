@@ -24,7 +24,7 @@
                         <div class="col-sm-5">
                             <div class="input-group">
                                 <span class="input-group-addon hidden-xs hidden-sm">
-                                    <span class="fa fa-arrows-v"></span>
+                                    <span class="fa fa-arrows-alt-v"></span>
                                 </span>
                                 {!! Form::text('name[' . $attribute->id . ']', $attribute->name, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                             </div>
@@ -62,7 +62,7 @@
                     <div class="col-sm-5">
                         <div class="input-group">
                             <span class="input-group-addon hidden-xs hidden-sm">
-                                <span class="fa fa-arrows-v"></span>
+                                <span class="fa fa-arrows-alt-v"></span>
                             </span>
                             {!! Form::text('name[]', null, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                         </div>
@@ -87,7 +87,7 @@
                     <div class="col-sm-5">
                         <div class="input-group">
                             <span class="input-group-addon hidden-xs hidden-sm">
-                                <span class="fa fa-arrows-v"></span>
+                                <span class="fa fa-arrows-alt-v"></span>
                             </span>
                             {!! Form::text('name[]', null, ['placeholder' => trans('crud.attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                         </div>
@@ -114,7 +114,7 @@
                     <div class="col-sm-5">
                         <div class="input-group">
                             <span class="input-group-addon hidden-xs hidden-sm">
-                                <span class="fa fa-arrows-v"></span>
+                                <span class="fa fa-arrows-alt-v"></span>
                             </span>
                             {!! Form::text('name[]', null, ['placeholder' => trans('crud.attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                         </div>
