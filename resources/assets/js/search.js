@@ -70,6 +70,7 @@ function initLiveSearch() {
         e.preventDefault();
         liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
         $('.navbar-custom-menu').hide();
+        $('#live-search').focus();
     });
 
     liveSearchClose.on('click', function(e) {
