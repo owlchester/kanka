@@ -10,15 +10,15 @@
   .content {
     margin-top: 90px;
     background: rgba(255, 255, 255, 0.8);
-    padding: 30px 80px;
+    padding: 30px 100px;
     border-radius: 5px;
     min-height: 0;
 
     a.image {
       img {
-        width: 40px;
-        height: 40px;
-        margin-left: -60px;
+        width: 60px;
+        height: 60px;
+        margin-left: -80px;
         float: left;
 
         background-repeat: no-repeat;
@@ -71,9 +71,11 @@
         display: inline-block;
         text-align: left;
         margin-right: 8px;
+        margin-bottom: 5px;
         a {
           padding: 10px 20px;
           background: rgba(255, 255, 255, 0.85);
+          display: inline-block;
           &:hover {
             background: rgba(255, 255, 255, 0.95);
           }

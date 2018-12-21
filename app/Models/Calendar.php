@@ -132,9 +132,9 @@ class Calendar extends MiscModel
         return $this->calendarEvents()
             ->with('entity')
             ->acl()
-            ->where('date', $operator, $this->date)
+            ->whereRaw("date(`date`) $operator '" . $this->date . "'")
             ->take($take)
-            ->orderBy('date', $operator == '<' ? 'desc' : 'asc')
+            ->orderByRaw('date(`date`) ' . ($operator == '<' ? 'desc' : 'asc'))
             ->get();
     }
 

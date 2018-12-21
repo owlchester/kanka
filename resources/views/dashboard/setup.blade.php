@@ -3,7 +3,9 @@
     'description' => '',
     'breadcrumbs' => [
         trans('dashboard.setup.title')
-    ]
+    ],
+    'headerExtra' => '<a href="' . route('home') .'" class="pull-right text-md" title="'. trans('dashboard.setup.actions.back_to_dashboard') .'"><i class="fa fa-arrow-left"></i> ' . trans('dashboard.setup.actions.back_to_dashboard') . '</a>'
+
 ])
 
 @section('content')

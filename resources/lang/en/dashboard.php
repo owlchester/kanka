@@ -30,6 +30,7 @@ return [
         'actions' => [
             'add' => 'Add a widget',
             'edit' => 'Edit a widget',
+            'back_to_dashboard' => 'Back to dashboard',
         ],
         'title' => 'Campaign Dashboard Setup',
         'widgets' => [

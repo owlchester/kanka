@@ -253,6 +253,9 @@ class Entity extends Model
      */
     public function scopeType($query, $type)
     {
+        if (empty($type)) {
+            return $query;
+        }
         return $query->where('type', $type);
     }
 
