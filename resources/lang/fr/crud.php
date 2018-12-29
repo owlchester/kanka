@@ -10,6 +10,7 @@ return [
         'more'          => 'Autres Actions',
         'move'          => 'Déplacer',
         'new'           => 'Nouveau',
+        'next'          => 'Prochain',
         'private'       => 'Privé',
         'public'        => 'Publique',
     ],
@@ -109,6 +110,7 @@ return [
         'entity'                => 'Entité',
         'entry'                 => 'Entrée',
         'event'                 => 'Evénement',
+        'excerpt'               => 'Extrait',
         'family'                => 'Famille',
         'files'                 => 'Fichiers',
         'image'                 => 'Image',
@@ -157,7 +159,6 @@ return [
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
         'map_limitations'       => 'Formats supportés: jpg, png, gif et svg. Taille maximale: :size.',
-        'unsaved_changes'       => 'Cette page contient des modifications qui n\'ont pas été sauvegardées. Les ignorer?',
     ],
     'history'           => [
         'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',

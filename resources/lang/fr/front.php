@@ -91,6 +91,7 @@ return [
         'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
         'navigation'=> 'Naviguation',
         'resources' => 'Ressources',
+        'social'    => 'Social',
     ],
     'help'          => [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacteront aussi rapidement que possible.',

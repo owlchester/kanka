@@ -91,7 +91,7 @@ return [
         'copyright' => '&copy; 2017 - :current kanka.io. All Rights Reserved.',
         'navigation'=> 'Navigation',
         'resources' => 'Resources',
-        'social' => 'Social',
+        'social'    => 'Social',
     ],
     'help'          => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',

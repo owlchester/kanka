@@ -10,7 +10,6 @@ return [
         'success'   => 'L\'étiquette \':name\' a été retirée.',
     ],
     'edit'          => [
-        'description'   => 'Modification d\'une étiquette',
         'success'       => 'L\'étiquette \':name\' a été mise à jour.',
         'title'         => 'Modifier l\'étiquette :name',
     ],

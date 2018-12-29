@@ -3,15 +3,15 @@
 return [
     'campaigns'         => [
         'manage'    => 'Manage campaign',
-        'tabs' => [
-            'roles' => ':count Roles',
-            'users' => ':count Users',
-            'modules' => ':count Modules',
-        ]
+        'tabs'      => [
+            'modules'   => ':count Modules',
+            'roles'     => ':count Roles',
+            'users'     => ':count Users',
+        ],
     ],
     'description'       => 'The home for your creativity',
-    'helpers' => [
-        'setup' => 'Setup your campaign\'s dashboard.'
+    'helpers'           => [
+        'setup' => 'Setup your campaign\'s dashboard.',
     ],
     'latest_release'    => 'Latest Release',
     'notifications'     => [
@@ -26,19 +26,6 @@ return [
         'title'         => 'Recently modified :name',
         'view'          => 'View All :name',
     ],
-    'setup' => [
-        'actions' => [
-            'add' => 'Add a widget',
-            'edit' => 'Edit a widget',
-            'back_to_dashboard' => 'Back to dashboard',
-        ],
-        'title' => 'Campaign Dashboard Setup',
-        'widgets' => [
-            'preview' => 'Entity Preview',
-            'calendar' => 'Calendar',
-            'recent' => 'Recent',
-        ]
-    ],
     'settings'          => [
         'description'   => 'Customise what you see on your dashboard',
         'edit'          => [
@@ -50,28 +37,41 @@ return [
         ],
         'title'         => 'Dashboard Settings',
     ],
+    'setup'             => [
+        'actions'   => [
+            'add'               => 'Add a widget',
+            'back_to_dashboard' => 'Back to dashboard',
+            'edit'              => 'Edit a widget',
+        ],
+        'title'     => 'Campaign Dashboard Setup',
+        'widgets'   => [
+            'calendar'  => 'Calendar',
+            'preview'   => 'Entity Preview',
+            'recent'    => 'Recent',
+        ],
+    ],
     'title'             => 'Dashboard',
-    'widgets' => [
-        'calendar' => [
-            'events_today' => 'Today',
-            'previous_events' => 'Previous',
-            'upcoming_events' => 'Upcoming',
-            'actions' => [
-                'next' => 'Change date to next day',
-                'previous' => 'Change date to previous day',
-            ]
+    'widgets'           => [
+        'calendar'  => [
+            'actions'           => [
+                'next'      => 'Change date to next day',
+                'previous'  => 'Change date to previous day',
+            ],
+            'events_today'      => 'Today',
+            'previous_events'   => 'Previous',
+            'upcoming_events'   => 'Upcoming',
         ],
-        'create' => [
-            'success' => 'Widget added to the dashboard.',
+        'create'    => [
+            'success'   => 'Widget added to the dashboard.',
         ],
-        'delete' => [
-            'success' => 'Widget removed from the dashboard.',
+        'delete'    => [
+            'success'   => 'Widget removed from the dashboard.',
         ],
-        'update' => [
-            'success' => 'Widget modified.',
-        ],
-        'recent' => [
+        'recent'    => [
             'title' => 'Recently modified',
-        ]
-    ]
+        ],
+        'update'    => [
+            'success'   => 'Widget modified.',
+        ],
+    ],
 ];

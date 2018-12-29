@@ -39,9 +39,11 @@ return [
     'fields'                => [
         'description'       => 'Description',
         'entity_visibility' => 'Visibilité d\'entité',
+        'header_image'      => 'Image de fond pour le tableau de bord',
         'image'             => 'Image',
         'locale'            => 'Langue',
         'name'              => 'Nom',
+        'system'            => 'Système',
         'visibility'        => 'Visibilité',
     ],
     'helpers'               => [
@@ -145,6 +147,7 @@ return [
         'description'   => 'Une petite description de la campagne',
         'locale'        => 'La langue utilisée',
         'name'          => 'Le nom de la campagne',
+        'system'        => 'D&D 5e, 3.5, Pathfinder, Tigres Volants, Grups',
     ],
     'roles'                 => [
         'actions'       => [
