@@ -17,6 +17,8 @@ return [
     'attributes'        => [
         'actions'       => [
             'add'               => 'Añadir atributo',
+            'add_block'         => 'Añadir un bloque',
+            'add_checkbox'      => 'Añadir una casilla',
             'apply_template'    => 'Aplicar una plantilla de atributos',
             'manage'            => 'Administrar',
         ],
@@ -44,12 +46,23 @@ return [
         ],
         'placeholders'  => [
             'attribute' => 'Número de conquistas, Iniciativa, Población',
+            'block'     => 'Nombre del bloque',
+            'checkbox'  => 'Nombre de la casilla',
             'template'  => 'Seleccionar plantilla',
             'value'     => 'Valor del atributo',
         ],
         'template'      => [
             'success'   => 'Plantilla de atributos :name aplicada en :entity',
             'title'     => 'Aplicar plantilla de atributos a :name',
+        ],
+        'types'         => [
+            'attribute' => 'Atributo',
+            'block'     => 'Bloque',
+            'checkbox'  => 'Casilla',
+        ],
+        'visibility'    => [
+            'private'   => 'Atributo visible solo para miembros con el rol "Admin".',
+            'public'    => 'Atributo visible por todos los miembros.',
         ],
     ],
     'bulk'              => [
@@ -90,6 +103,7 @@ return [
         'calendar'              => 'Calendario',
         'calendar_date'         => 'Fecha del calendario',
         'character'             => 'Personaje',
+        'copy_attributes'       => 'Copiar atributos',
         'creator'               => 'Creador',
         'dice_roll'             => 'Tirada de dados',
         'entity'                => 'Entidad',
@@ -130,9 +144,10 @@ return [
         'title' => 'Filtros',
     ],
     'forms'             => [
-        'actions'   => [
+        'actions'       => [
             'calendar'  => 'Añadir fecha de calendario',
         ],
+        'copy_options'  => 'Opciones de copia',
     ],
     'hidden'            => 'Oculto',
     'hints'             => [

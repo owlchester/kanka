@@ -2,6 +2,7 @@
 
 return [
     'attribute_template'    => 'Plantilla de atributo',
+    'attribute_templates'   => 'Plantillas de atributos',
     'calendar'              => 'Calendario',
     'calendars'             => 'Calendarios',
     'campaign'              => 'Campaña',
