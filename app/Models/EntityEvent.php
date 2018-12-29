@@ -39,6 +39,18 @@ class EntityEvent extends MiscModel
     public $table = 'entity_events';
 
     /**
+     * Key used for the scopeAcl trait
+     * @var string
+     */
+    public $aclFieldName = 'entity_events.entity_id';
+
+    /**
+     * If the ACL engine should use the "real" entity id (entities.id) or the
+     * @var bool
+     */
+    public $aclUseEntityID = true;
+
+    /**
      * @var array
      */
     protected $fillable = [

@@ -59,7 +59,8 @@ trait AclTrait
             }
         }
 
-        // Check for a permission related to this action.
+        // If one of the user's roles can read all entities of this type, there
+        // is no need to check further.
         $key = $this->entityType . '_read';
         $inRole = CampaignPermission::where(['key' => $key])
                 ->whereIn('campaign_role_id', $roleIds)
@@ -79,8 +80,13 @@ trait AclTrait
                          return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
                      })
                      ->get() as $permission) {
+            /** @var $permission CampaignPermission */
             // One of the permissions is a role, so we have access to all
-            $entityIds[] = $permission->entityId();
+            if (!empty($this->aclUseEntityID)) {
+                $entityIds[] = $permission->entity_id;
+            } else {
+                $entityIds[] = $permission->entityId();
+            }
         }
 
         // Primary key used for the ID lookup. If one is provided by the model (for example in n-to-n

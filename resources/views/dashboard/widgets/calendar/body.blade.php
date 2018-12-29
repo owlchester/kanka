@@ -9,6 +9,7 @@ $entity = $widget->entity;
 $calendar = $entity->child;
 $previousEvents = $calendar->dashboardEvents('<');
 $upcomingEvents = $calendar->dashboardEvents('>=');
+
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
@@ -28,12 +29,10 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
             <h4>{{ __('dashboard.widgets.calendar.previous_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($previousEvents as $event)
-                    @viewentity ($event->entity)
                     <li>
                         {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
                         <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                     </li>
-                    @endviewentity
                 @endforeach
             </ul>
         </div>
@@ -44,7 +43,6 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
             <h4>{{ __('dashboard.widgets.calendar.upcoming_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($upcomingEvents as $event)
-                    @viewentity($event->entity)
                     <li>
                         {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
                         @if ($event->date == $calendar->date)
@@ -55,7 +53,6 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
                             <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                         @endif
                     </li>
-                    @endviewentity
                 @endforeach
             </ul>
         </div>
