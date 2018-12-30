@@ -91,6 +91,7 @@ $(document).ready(function () {
             $(this).html('<i class="fa fa-chevron-down"></i>');
         }
     });
+
     $.each($('[data-toggle="preview"]'), function (i) {
         // If we are exactly the height of 200, some content is hidden
         if ($(this).height() === 200) {
@@ -201,6 +202,14 @@ function initDashboardRecent() {
             $(this).closest('.widget-recent-body').append(data);
             $(this).remove();
             initDashboardRecent();
+
+            // Reload tooltips
+            // Inject the isMobile variable into the window. We don't want ALL of the javascript
+            // for mobiles, namely the tooltip tool.
+            window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
+            if (!window.kankaIsMobile.matches) {
+                $('[data-toggle="tooltip"]').tooltip();
+            }
         });
     });
 }
