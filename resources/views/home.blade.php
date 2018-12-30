@@ -51,13 +51,13 @@
                         {{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}
                     </a>
                 </li>
-                <li class="@if(!empty($active) && $active == 'roles')active @endif">
+                <li>
                     <a href="{{ route('campaign_roles.index') }}">
                         <i class="fa fa-layer-group"></i>
                         {{ __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}
                     </a>
                 </li>
-                <li class="@if(!empty($active) && $active == 'settings')active @endif">
+                <li>
                     <a href="{{ route('campaign_settings') }}">
                         <i class="fa fa-cogs"></i>
                         {{ __('dashboard.campaigns.tabs.modules', ['count' => $campaign->setting->countEnabledModules()]) }}
@@ -89,7 +89,7 @@
     @endforeach
     </div>
 
-    @if (count($widgets) == 0)
+    @if (count($widgets) == 0 && $settings)
     <div class="row">
         <div class="col-md-12 text-center">
             <a href="{{ route('dashboard.setup') }}">
@@ -99,7 +99,6 @@
     </div>
     @endif
 @endsection
-
 
 @section('scripts')
     <script src="{{ mix('js/dashboard.js') }}" defer></script>

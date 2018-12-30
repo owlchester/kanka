@@ -3,7 +3,7 @@
     <div class="box-body box-profile">
         @if ($campaign->image)
             <a href="{{ Storage::url($campaign->image) }}" title="{{ $campaign->name }}" target="_blank">
-                <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
+                <img class="profile-user-img img-responsive" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
             </a>
         @endif
 
@@ -57,6 +57,7 @@
     </div>
 </div>
 
+@if (!auth()->guest() and $campaign->user())
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -104,3 +105,4 @@
         </ul>
     </div>
 </div>
+@endif
