@@ -1,1 +1,203 @@
-!function(n){var t={};function e(o){if(t[o])return t[o].exports;var r=t[o]={i:o,l:!1,exports:{}};return n[o].call(r.exports,r,r.exports,e),r.l=!0,r.exports}e.m=n,e.c=t,e.d=function(n,t,o){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:o})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,"a",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p="",e(e.s=8)}({8:function(n,t,e){n.exports=e("gD7r")},gD7r:function(n,t){var e,o,r,a,i,c,s,l;function u(){e=$("#conversation_body"),o=$("#conversation_send"),a=$("input[name='context']"),r=$("input[name='message']"),f(e),function n(){i=$("#conversation_load_previous");1===i.length&&i.on("click",function(t){i.html('<i class="fa fa-spinner fa-spin"></i>'),$.ajax($(this).data("url")).done(function(t){i.remove(),e.prepend(t),n()})})}(),o.on("submit",function(n){n.preventDefault();var t=a.val();return!(!t||0===t.length||!t.trim())&&(newest=$(".box-comment").last().data("id"),r.val(t),a.prop("disabled",!0),$.ajax({type:"POST",url:$(this).attr("action")+"?newest="+newest,data:$(this).serialize()}).done(function(n){e.append(n),a.val(""),r.val(""),a.prop("disabled",!1),a.focus(),f(e)}).fail(function(n){console.error("Failed Post",n)}),!1)})}function f(n){n.scrollTop(n.prop("scrollHeight"))}$(document).ready(function(){e=$("#conversation_body"),(c=$('[data-toggle="conversation"]')).length>0&&(s=$("#conversation_box"),c.each(function(n){$(this).on("click",function(n){return n.preventDefault(),l!=$(this).attr("href")&&(l=$(this).attr("href"),s.html('<i class="fa fa-spinner fa-spin"></i>'),$(this).parent().addClass("active"),$.ajax($(this).attr("href")).done(function(n){s.html(n),u(),window.crudInitAjaxModal()}),!1)})})),1===e.length&&u()})}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/conversation.js":
+/***/ (function(module, exports) {
+
+var conversationBody, conversationSend, conversationMessage, conversationContext;
+var conversationLoadPrevious;
+var conversationToggles, conversationBox;
+var conversationCurrentConversation;
+
+$(document).ready(function () {
+    conversationBody = $('#conversation_body');
+    conversationToggles = $('[data-toggle="conversation"]');
+
+    if (conversationToggles.length > 0) {
+        initConversations();
+    }
+
+    if (conversationBody.length === 1) {
+        initConversation();
+    }
+});
+
+/**
+ *
+ */
+function initConversations() {
+    conversationBox = $('#conversation_box');
+
+    conversationToggles.each(function (i) {
+        $(this).on('click', function (e) {
+            e.preventDefault();
+
+            // Don't re-load if already viewing
+            if (conversationCurrentConversation == $(this).attr('href')) {
+                return false;
+            }
+            conversationCurrentConversation = $(this).attr('href');
+
+            conversationBox.html('<i class="fa fa-spinner fa-spin"></i>');
+            $(this).parent().addClass('active');
+
+            $.ajax($(this).attr('href')).done(function (data) {
+                conversationBox.html(data);
+                initConversation();
+                window.crudInitAjaxModal();
+            });
+
+            return false;
+        });
+    });
+}
+
+/**
+ *
+ */
+function initConversation() {
+    // Save references
+    conversationBody = $('#conversation_body');
+    conversationSend = $('#conversation_send');
+    conversationContext = $("input[name='context']");
+    conversationMessage = $("input[name='message']");
+
+    // Load the first messages
+    // $.ajax(
+    //     conversationBody.data('url')
+    // ).done(function(data) {
+    //     conversationBody.html(data);
+    //     scrollToBottom(conversationBody);
+    //     initLoadPrevious();
+    // });
+    scrollToBottom(conversationBody);
+    initLoadPrevious();
+
+    conversationSend.on('submit', function (e) {
+        e.preventDefault();
+        var text = conversationContext.val();
+        if (!text || text.length === 0 || !text.trim()) {
+            return false;
+        }
+
+        newest = $('.box-comment').last().data('id');
+        conversationMessage.val(text);
+        conversationContext.prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: $(this).attr('action') + '?newest=' + newest,
+            data: $(this).serialize()
+        }).done(function (data) {
+            // Add new messages
+            conversationBody.append(data);
+            conversationContext.val('');
+            conversationMessage.val('');
+            conversationContext.prop('disabled', false);
+            conversationContext.focus();
+
+            // Scroll to bottom
+            scrollToBottom(conversationBody);
+        }).fail(function (data) {
+            console.error("Failed Post", data);
+        });
+        return false;
+    });
+}
+
+function initLoadPrevious() {
+    conversationLoadPrevious = $('#conversation_load_previous');
+    if (conversationLoadPrevious.length === 1) {
+        conversationLoadPrevious.on('click', function (e) {
+            //console.log('load previous url', $(this).data('url'));
+            conversationLoadPrevious.html('<i class="fa fa-spinner fa-spin"></i>');
+            $.ajax($(this).data('url')).done(function (data) {
+                conversationLoadPrevious.remove();
+                conversationBody.prepend(data);
+                initLoadPrevious();
+            });
+        });
+    }
+}
+/**
+ * Scroll to the bottom of an element.
+ * @param element
+ */
+function scrollToBottom(element) {
+    element.scrollTop(element.prop('scrollHeight'));
+}
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/assets/js/conversation.js");
+
+
+/***/ })
+
+/******/ });

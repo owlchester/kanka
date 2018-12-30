@@ -46,9 +46,10 @@ class EntityPermission
         // are looping through entities which doesn't allow using the acl trait before hand.
         if (auth()->check()) {
             return auth()->user()->can('view', $entity->child);
-        } else {
+        } elseif (!empty($entity->child)) {
             return self::hasPermission($entity->child->getEntityType(), 'read', null, $entity->child, $campaign);
         }
+        return false;
     }
 
     /**

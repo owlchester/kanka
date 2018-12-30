@@ -380,4 +380,22 @@ class User extends \TCG\Voyager\Models\User
             ->orderBy('cpt', 'desc')
             ;
     }
+
+
+    /**
+     * Users grouped by themes
+     * @param $query
+     * @return mixed
+     */
+    public function scopeThemes($query)
+    {
+        return $query
+            ->select([
+                $this->getTable() . '.theme',
+                DB::raw("count(*) as cpt")
+            ])
+            ->groupBy('theme')
+            ->orderBy('cpt', 'desc')
+            ;
+    }
 }
