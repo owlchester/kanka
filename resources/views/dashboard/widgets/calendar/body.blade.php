@@ -29,10 +29,12 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
             <h4>{{ __('dashboard.widgets.calendar.previous_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($previousEvents as $event)
+                    @if (!empty($event->entity->child))
                     <li>
                         {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
                         <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
@@ -43,6 +45,7 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
             <h4>{{ __('dashboard.widgets.calendar.upcoming_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($upcomingEvents as $event)
+                    @if (!empty($event->entity->child))
                     <li>
                         {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
                         @if ($event->date == $calendar->date)
@@ -53,6 +56,7 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
                             <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
