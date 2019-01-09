@@ -131,7 +131,7 @@ class Calendar extends MiscModel
     {
         return $this->calendarEvents()
             ->with('entity')
-            ->acl()
+            ->entityAcl()
             ->where(function ($sub) use ($operator, $recurring) {
                 // Recurring events
                 if ($recurring) {

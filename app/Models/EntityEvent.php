@@ -51,6 +51,7 @@ class EntityEvent extends MiscModel
      */
     public $aclUseEntityID = true;
 
+
     /**
      * @var array
      */
