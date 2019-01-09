@@ -130,7 +130,7 @@ class Calendar extends MiscModel
     public function dashboardEvents($operator = '=', $take = 5, $recurring = false)
     {
         return $this->calendarEvents()
-            ->with('entity')
+            ->with(['entity', 'calendar'])
             ->entityAcl()
             ->where(function ($sub) use ($operator, $recurring) {
                 // Recurring events

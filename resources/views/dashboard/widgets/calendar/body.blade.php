@@ -11,6 +11,7 @@ $currentYear = $calendar->currentDate('year');
 $currentMonth = $calendar->currentDate('month');
 $currentDay = $calendar->currentDate('date');
 
+// Todo: refactor this into just one query? Gets tricky with taking just 5 in each direction
 $previousEvents = $calendar->dashboardEvents('<');
 $upcomingSingleEvents = $calendar->dashboardEvents('>=');
 
@@ -58,7 +59,7 @@ $shownUpcomingEvents = 0;
                 @foreach ($previousEvents as $event)
                     @if (!empty($event->entity->child))
                     <li>
-                        {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
+                        {{ link_to($event->entity->url(), $event->entity->name) }}
                         <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                     </li>
                     @endif
@@ -77,7 +78,7 @@ $shownUpcomingEvents = 0;
                             @foreach ($day as $event)
                                 @if ($shownUpcomingEvents <= 5 && !empty($event->entity->child))
                                     <li>
-                                        {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
+                                        {{ link_to($event->entity->url(), $event->entity->name) }}
                                         @if ($event->date == $calendar->date)
                                             <span class="label label-default pull-right" title="{{ $event->getDate() }}">
                                         {{ __('calendars.actions.today') }}
