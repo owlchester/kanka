@@ -136,9 +136,14 @@ class Calendar extends MiscModel
                 // Recurring events
                 if ($recurring) {
                     $sub->orWhere(function ($subsub) {
-                        $subsub->where('is_recurring', true)
-                            ->whereRaw("date(`date`) < '" . $this->date . "'");
-                    });
+                        $subsub
+                            ->where('is_recurring', true)
+                            ->whereRaw("date(`date`) < '" . $this->date . "'")
+                            ->where(function ($datesub) {
+                                $datesub->whereNull('recurring_until')
+                                    ->orWhereRaw("recurring_until >= '" . $this->currentDate('year') . "'");
+                            });
+                        });
                 } else {
                     $sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
                 }

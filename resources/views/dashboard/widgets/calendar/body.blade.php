@@ -24,10 +24,10 @@ foreach ($upcomingSingleEvents as $event) {
     $upcomingEvents[$date[0]][$date[1]][$date[2]][] = $event;
 }
 foreach ($upcomingRecurringEvents as $event) {
-    $until = $event->recurring_until ?: 5;
+    $until = $event->recurring_until ?: ($currentYear + 5);
     for ($y = $currentYear; $y < $until; $y++) {
         $date = explode('-', $event->date);
-        if ($y <= $currentYear && $date[1] <= $currentMonth && $date[2] < $currentDay) {
+        if ($y <= $currentYear && ($date[1] < $currentMonth || ($date[1] == $currentMonth && $date[2] < $currentDay))) {
             continue;
         }
         // Make a copy to change the date
@@ -36,7 +36,7 @@ foreach ($upcomingRecurringEvents as $event) {
         $upcomingEvents[$y][$date[1]][$date[2]][] = $e;
     }
 }
-ksort($upcomingEvents);
+$upcomingEvents = array_sort_recursive($upcomingEvents);
 $shownUpcomingEvents = 0;
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
@@ -76,7 +76,7 @@ $shownUpcomingEvents = 0;
                     @foreach ($year as $month)
                         @foreach ($month as $day)
                             @foreach ($day as $event)
-                                @if ($shownUpcomingEvents <= 5 && !empty($event->entity->child))
+                                @if ($shownUpcomingEvents < 5 && !empty($event->entity->child))
                                     <li>
                                         {{ link_to($event->entity->url(), $event->entity->name) }}
                                         @if ($event->date == $calendar->date)
