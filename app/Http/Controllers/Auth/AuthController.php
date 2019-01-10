@@ -47,7 +47,12 @@ class AuthController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver($provider)->stateless()->user();
+        // Twitter uses Oauth1 and doesn't support stateless
+        if ($provider == 'twitter') {
+            $user = Socialite::driver($provider)->user();
+        } else {
+            $user = Socialite::driver($provider)->stateless()->user();
+        }
         try {
             $authUser = $this->findOrCreateUser($user, $provider);
             Auth::login($authUser, true);
