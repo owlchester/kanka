@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\UserPermission;
 use App\Models\CampaignPermission;
 use App\Scopes\VisibleScope;
 
@@ -89,6 +90,9 @@ trait AclTrait
             }
         }
 
+        // If the entityType is empty, we're trying to get all potential entities, so we need a way to load
+        // all "journals" is one of our roles has the "journal_read" permission. This
+
         // Primary key used for the ID lookup. If one is provided by the model (for example in n-to-n
         // relations), use that one instead.
         $primaryKey = $this->getTable() . '.id';
@@ -96,5 +100,39 @@ trait AclTrait
             $primaryKey = $this->aclFieldName;
         }
         return $query->whereIn($primaryKey, $entityIds);
+    }
+
+    /**
+     * This is used when filtering on the entities table directly rather than the sub entity.
+     * @param $query
+     * @param null $user
+     * @return mixed
+     */
+    public function scopeEntityAcl($query, $user = null)
+    {
+        // Use the User Permission Service to handle all of this easily.
+        /** @var \App\Services\UserPermission $service */
+        $service = UserPermission::user($user);
+
+        if ($service->isCampaignOwner()) {
+            return $query;
+        }
+
+        // Primary key used for the ID lookup. If one is provided by the model (for example in n-to-n
+        // relations), use that one instead.
+        $primaryKey = $this->getTable() . '.id';
+        if (!empty($this->aclFieldName)) {
+            $primaryKey = $this->aclFieldName;
+        }
+
+        //dd($service->entityIds());
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin('entities', 'entities.id', $this->getTable() . '.entity_id')
+            ->where(function($subquery) use ($service, $primaryKey) {
+            return $subquery
+                ->whereIn('entities.id', $service->entityIds())
+                ->orWhereIn('entities.type', $service->entityTypes());
+        });
     }
 }

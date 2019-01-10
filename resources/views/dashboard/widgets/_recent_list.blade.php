@@ -5,7 +5,7 @@
            title="{{ $entity->name }}"
            href="{{ $entity->child->getLink() }}"></a>
 
-        <div class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}">
+        <div class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true">
             {{ link_to($entity->child->getLink(), $entity->name)  }}
         </div>
         <span class="pull-right elapsed" title="{{ $entity->child->updated_at }}">

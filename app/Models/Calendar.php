@@ -127,12 +127,27 @@ class Calendar extends MiscModel
      * @param int $take
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public function dashboardEvents($operator = '=', $take = 5)
+    public function dashboardEvents($operator = '=', $take = 5, $recurring = false)
     {
         return $this->calendarEvents()
-            ->with('entity')
-            ->acl()
-            ->whereRaw("date(`date`) $operator '" . $this->date . "'")
+            ->with(['entity', 'calendar'])
+            ->entityAcl()
+            ->where(function ($sub) use ($operator, $recurring) {
+                // Recurring events
+                if ($recurring) {
+                    $sub->orWhere(function ($subsub) {
+                        $subsub
+                            ->where('is_recurring', true)
+                            ->whereRaw("date(`date`) < '" . $this->date . "'")
+                            ->where(function ($datesub) {
+                                $datesub->whereNull('recurring_until')
+                                    ->orWhereRaw("recurring_until >= '" . $this->currentDate('year') . "'");
+                            });
+                        });
+                } else {
+                    $sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
+                }
+            })
             ->take($take)
             ->orderByRaw('date(`date`) ' . ($operator == '<' ? 'desc' : 'asc'))
             ->get();

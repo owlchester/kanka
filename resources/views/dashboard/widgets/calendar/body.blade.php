@@ -7,9 +7,37 @@
  */
 $entity = $widget->entity;
 $calendar = $entity->child;
-$previousEvents = $calendar->dashboardEvents('<');
-$upcomingEvents = $calendar->dashboardEvents('>=');
+$currentYear = $calendar->currentDate('year');
+$currentMonth = $calendar->currentDate('month');
+$currentDay = $calendar->currentDate('date');
 
+// Todo: refactor this into just one query? Gets tricky with taking just 5 in each direction
+$previousEvents = $calendar->dashboardEvents('<');
+$upcomingSingleEvents = $calendar->dashboardEvents('>=');
+
+// Get the recurring events separately to make sure we always have 5 real "upcoming" events that mix recurring and single
+$upcomingRecurringEvents = $calendar->dashboardEvents('>=', 5, true);
+
+$upcomingEvents = [];
+foreach ($upcomingSingleEvents as $event) {
+    $date = explode('-', $event->date);
+    $upcomingEvents[$date[0]][$date[1]][$date[2]][] = $event;
+}
+foreach ($upcomingRecurringEvents as $event) {
+    $until = $event->recurring_until ?: ($currentYear + 5);
+    for ($y = $currentYear; $y < $until; $y++) {
+        $date = explode('-', $event->date);
+        if ($y <= $currentYear && ($date[1] < $currentMonth || ($date[1] == $currentMonth && $date[2] < $currentDay))) {
+            continue;
+        }
+        // Make a copy to change the date
+        $e = clone($event);
+        $e->date = $y . '-'. $date[1] . '-' . $date[2];
+        $upcomingEvents[$y][$date[1]][$date[2]][] = $e;
+    }
+}
+$upcomingEvents = array_sort_recursive($upcomingEvents);
+$shownUpcomingEvents = 0;
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
@@ -29,30 +57,41 @@ $upcomingEvents = $calendar->dashboardEvents('>=');
             <h4>{{ __('dashboard.widgets.calendar.previous_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($previousEvents as $event)
+                    @if (!empty($event->entity->child))
                     <li>
-                        {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
+                        {{ link_to($event->entity->url(), $event->entity->name) }}
                         <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
     @endif
 
-    @if ($upcomingEvents->count() > 0)
+    @if (!empty($upcomingEvents))
         <div class="col-md-6 col-sm-12">
             <h4>{{ __('dashboard.widgets.calendar.upcoming_events') }}</h4>
             <ul class="list-unstyled">
-                @foreach ($upcomingEvents as $event)
-                    <li>
-                        {{ link_to($event->entity->child->getLink(), $event->entity->name) }}
-                        @if ($event->date == $calendar->date)
-                            <span class="label label-default pull-right" title="{{ $event->getDate() }}">
-                            {{ __('calendars.actions.today') }}
-                            </span>
-                        @else
-                            <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
-                        @endif
-                    </li>
+                @foreach ($upcomingEvents as $y => $year)
+                    @foreach ($year as $month)
+                        @foreach ($month as $day)
+                            @foreach ($day as $event)
+                                @if ($shownUpcomingEvents < 5 && !empty($event->entity->child))
+                                    <li>
+                                        {{ link_to($event->entity->url(), $event->entity->name) }}
+                                        @if ($event->date == $calendar->date)
+                                            <span class="label label-default pull-right" title="{{ $event->getDate() }}">
+                                        {{ __('calendars.actions.today') }}
+                                        </span>
+                                        @else
+                                            <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
+                                        @endif
+                                    </li>
+                                    <?php $shownUpcomingEvents++; ?>
+                                @endif
+                            @endforeach
+                        @endforeach
+                    @endforeach
                 @endforeach
             </ul>
         </div>

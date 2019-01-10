@@ -40,15 +40,21 @@ class EntityPermission
         $this->app = app();
     }
 
+    /**
+     * @param Entity $entity
+     * @param Campaign|null $campaign
+     * @return bool|string
+     */
     public function canView(Entity $entity, Campaign $campaign = null)
     {
         // Make sure we can see the entity we're trying to show the user. We do it this way because we
         // are looping through entities which doesn't allow using the acl trait before hand.
         if (auth()->check()) {
             return auth()->user()->can('view', $entity->child);
-        } else {
+        } elseif (!empty($entity->child)) {
             return self::hasPermission($entity->child->getEntityType(), 'read', null, $entity->child, $campaign);
         }
+        return false;
     }
 
     /**

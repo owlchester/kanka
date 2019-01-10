@@ -439,7 +439,7 @@ class CalendarRenderer
                             })
                             // Events from previous month that spill over
                             ->orWhere(function ($sub) {
-                                $sub->where('date', 'like', $this->subMonth($this->getYear(), $this->getMonth()) . '%')
+                                $sub->where('date', 'like', $this->subMonth($this->getYear(), $this->getMonth()) . '-%')
                                     ->where('length', '>', 1);
                             });
                     })
@@ -497,7 +497,7 @@ class CalendarRenderer
         }
 
         // Month longer than max year?
-        if ($month >= count($months)) {
+        if ($month > count($months)) {
             $month = 1;
             $year++;
         }

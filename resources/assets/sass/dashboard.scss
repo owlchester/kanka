@@ -237,3 +237,25 @@
 
   }
 }
+
+@media (max-width: 787px) {
+  .campaign {
+    .content {
+      padding: 10px;
+
+      a.image {
+        position: absolute;
+
+        .img-circle {
+          margin-left: 0;
+          height: 30px;
+          width: 30px;
+        }
+      }
+
+      .title {
+        margin-left: 40px;
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@ use App\Traits\VisibleTrait;
  * @property string $comment
  * @property string $colour
  * @property boolean $is_recurring
+ * @property integer $recurring_until
  * @property boolean $is_private
  */
 class EntityEvent extends MiscModel
@@ -49,6 +50,7 @@ class EntityEvent extends MiscModel
      * @var bool
      */
     public $aclUseEntityID = true;
+
 
     /**
      * @var array
@@ -83,9 +85,13 @@ class EntityEvent extends MiscModel
     /**
      * @return string
      */
-    public function getDate()
+    public function getDate($date = null)
     {
-        $date = explode('-', $this->date);
+        if (empty($date)) {
+            $date = explode('-', $this->date);
+        } elseif (is_string($date)) {
+            $date = explode('-', $date);
+        }
 
         // Replace month with real month, and year maybe
         $months = $this->calendar->months();
@@ -99,6 +105,18 @@ class EntityEvent extends MiscModel
         } catch(\Exception $e) {
             return $this->date;
         }
+    }
+
+    /**
+     * @param $year
+     * @return string
+     */
+    public function getDateWithYear($year)
+    {
+        $date = explode('-', $this->date);
+        $date[0] = $year;
+
+        return $this->getDate($date);
     }
 
     /**

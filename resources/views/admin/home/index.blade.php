@@ -57,6 +57,24 @@
                     </div>
                 </div>
             </div>
+
+            <div class="box">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Themes</h4>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        @foreach (\App\User::themes()->get() as $theme)
+                            <div class="col-xs-8 text-right">
+                                {{ $theme->theme ?: 'Default' }}
+                            </div>
+                            <div class="col-xs-4 text-bold">
+                                {{ number_format($theme->cpt, 0, '.', '\'') }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4">
