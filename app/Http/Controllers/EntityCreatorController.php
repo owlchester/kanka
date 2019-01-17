@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Http\Requests\StoreNote;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Services\EntityService;
@@ -49,6 +50,11 @@ class EntityCreatorController extends Controller
         ]);
     }
 
+    /**
+     * @param $type
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function form($type)
     {
         // Make sure the user is allowed to create this kind of entity
@@ -62,15 +68,28 @@ class EntityCreatorController extends Controller
         ]);
     }
 
+    /**
+     * @param $type
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function store($type)
     {
         // Make sure the user is allowed to create this kind of entity
         $class = $this->entityService->getClass($type);
         $this->authorize('create', $class);
 
+        /** @var StoreNote $request */
+        $request = app(StoreNote::class);
+        $values = $request->all();
+
+        if (!empty($values['entry'])) {
+            $values['entry'] = nl2br($values['entry']);
+        }
+
         /** @var MiscModel $model */
         $model = new $class;
-        $new = $model->create(request()->all());
+        $new = $model->create($values);
 
         return response()->json([
             'success' => true,
