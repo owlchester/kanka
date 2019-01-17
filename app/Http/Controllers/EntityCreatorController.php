@@ -7,6 +7,7 @@ use App\Http\Requests\StoreNote;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Services\EntityService;
+use Illuminate\Foundation\Http\FormRequest;
 
 class EntityCreatorController extends Controller
 {
@@ -79,8 +80,10 @@ class EntityCreatorController extends Controller
         $class = $this->entityService->getClass($type);
         $this->authorize('create', $class);
 
-        /** @var StoreNote $request */
-        $request = app(StoreNote::class);
+        /** @var FormRequest $request */
+        // This is dirty. Todo: change? We really need a entity -> icon, name, class, validator service somewhere
+        $requestValidator = '\App\Http\Requests\Store' . ucfirst(str_singular($type));
+        $request = app($requestValidator);
         $values = $request->all();
 
         if (!empty($values['entry'])) {
