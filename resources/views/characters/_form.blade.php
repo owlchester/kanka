@@ -1,4 +1,3 @@
-@inject('location', 'App\Services\LocationService')
 @inject('random', 'App\Services\RandomCharacterService')
 @inject('formService', 'App\Services\FormService')
 
@@ -25,16 +24,7 @@ if (request()->route()->getName() == 'characters.random') {
                     <label>{{ trans('characters.fields.title') }}</label>
                     {!! Form::text('title', ($isRandom ? $random->generate('title') : $formService->prefill('title', $source)), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                @if ($campaign->enabled('families'))
-                <div class="form-group">
-                    {!! Form::select2(
-                        'family_id',
-                        (isset($model) && $model->family ? $model->family : $formService->prefillSelect('family', $source)),
-                        App\Models\Family::class,
-                        true
-                    ) !!}
-                </div>
-                @endif
+                @include('cruds.fields.family')
                 @include('cruds.fields.race')
                 @include('cruds.fields.location')
                 @include('cruds.fields.tags')

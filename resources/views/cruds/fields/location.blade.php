@@ -4,7 +4,7 @@
             'location_id',
             (isset($model) && $model->location ? $model->location : $formService->prefillSelect('location', $source)),
             App\Models\Location::class,
-            true
+            isset($enableNew) ? $enableNew : true
         ) !!}
     </div>
 @endif

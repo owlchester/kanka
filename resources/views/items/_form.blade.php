@@ -17,16 +17,7 @@
                     {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('items.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 @include('cruds.fields.location')
-                @if ($campaign->enabled('characters'))
-                <div class="form-group">
-                    {!! Form::select2(
-                        'character_id',
-                        (isset($model) && $model->character ? $model->character : $formService->prefillSelect('character', $source)),
-                        App\Models\Character::class,
-                        true
-                    ) !!}
-                </div>
-                @endif
+                @include('cruds.fields.character')
                 @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
 

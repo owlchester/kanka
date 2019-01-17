@@ -165,7 +165,11 @@ $(document).ready(function() {
 
         // Also re-bind select2 elements on modal show
         initSelect2();
-    })
+
+        // Handle when opening the entity-creator ui
+        entityCreatorUI();
+    });
+
 });
 
 /**
@@ -298,6 +302,54 @@ function resetSubmitButton(id) {
     var newEntitySaveButton = $(id);
     newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
 }
+
+function entityCreatorUI() {
+    $('[data-toggle="entity-creator"]').on('click', function(e) {
+        e.preventDefault();
+
+        var selection = $('#entity-creator-selection');
+        var loader = $('.entity-creator-loader');
+
+        selection.addClass('hidden');
+        loader.removeClass('hidden');
+
+        $.ajax($(this).data('url')).done(function (data) {
+            loader.addClass('hidden');
+            selection.html(data).removeClass('hidden');
+            initSelect2();
+
+            $('#entity-creator-form').on('submit', function(e) {
+                e.preventDefault();
+
+                // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.post({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    context: this
+                }).done(function (result, textStatus, xhr) {
+                    // New entity was created, let's follow that redirect
+                    console.log(result);
+
+                    $('#entity-creator-form').hide();
+
+                    $('.entity-creator-success').html(result.message).show();
+
+                }).fail(function (data) {
+                    $('.entity-creator-error').show();
+                });
+            });
+        });
+
+        return false;
+    });
+}
+
 // Helpers are injected directly in the window functions.
 require('./helpers.js');
 

@@ -1,0 +1,1 @@
+@include('cruds.fields.location')

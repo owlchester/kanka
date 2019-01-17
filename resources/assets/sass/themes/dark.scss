@@ -198,6 +198,11 @@ input[type="checkbox"]:checked:after {
   background-color: $Detail !important;
 }
 
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
+  background-color: $Soft !important;
+  color: $Hard !important;
+}
+
 .post {
   color: $White;
 }

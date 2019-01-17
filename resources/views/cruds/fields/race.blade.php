@@ -4,7 +4,7 @@
             'race_id',
             (isset($model) && $model->race ? $model->race : $formService->prefillSelect('race', $source)),
             App\Models\Race::class,
-            true
+            isset($enableNew) ? $enableNew : true
         ) !!}
     </div>
 @endif

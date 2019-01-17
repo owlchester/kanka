@@ -1,5 +1,5 @@
-<?php $campaign = CampaignLocalization::getCampaign(); ?>
-@if (!empty($campaign))
+<?php $currentCampaign = CampaignLocalization::getCampaign(); ?>
+@if (!empty($currentCampaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
 <aside class="main-sidebar">
@@ -25,7 +25,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu" style="{{ ($sidebar->open('menu_links') == 'menu-open' ? 'display:block' : 'display:none') }}">
-                    @foreach ($campaign->campaign()->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
+                    @foreach ($currentCampaign->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
                         @if ($menuLink->entity && $menuLink->entity->child)
                         <li>
@@ -40,6 +40,11 @@
                     @endif
                 </ul>
             </li>
+            @endif
+            @if (Auth::check() && $currentCampaign->user())
+                <li>
+                    <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal"><i class="fa fa-plus"></i> <span>{{ trans('sidebar.entity-creator') }}</span></a>
+                </li>
             @endif
 
             @if ($campaign->enabled('characters'))
@@ -127,8 +132,6 @@
                     <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
                 @endmoderator
             @endauth
-
-
         </ul>
     </section>
 </aside>

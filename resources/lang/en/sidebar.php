@@ -32,4 +32,6 @@ return [
     'team'                  => 'Team',
     'translations'          => 'Translations',
     'trello'                => 'Trello',
+
+    'entity-creator' => 'Quick Creator',
 ];

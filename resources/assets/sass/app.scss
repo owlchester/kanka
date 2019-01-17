@@ -547,5 +547,32 @@ div.mce-fullscreen {
   }
 }
 
+.entity-creator {
+  a {
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    border-radius: 2px;
+    color: #222;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      transition: all 0.5s ease;
+    }
+  }
+
+  i {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+#new-entity-modal {
+  z-index: 9900;
+}
+
 
 @import "mobile";

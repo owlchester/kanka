@@ -35,4 +35,11 @@ return [
     'races'                 => 'Races',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
+
+    'creator' => [
+        'title' => 'New Entity',
+        'helper' => 'Select an entity type to create. If no entities appear, it means that your don\'t have the permission to create any kind of entity in this campaign.',
+        'success' => 'New entity \':link\' created.',
+        'error' => 'There was an error with your values. Please check them again.',
+    ]
 ];
