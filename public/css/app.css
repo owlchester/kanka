@@ -2876,8 +2876,8 @@ div.mce-fullscreen {
   border-right: 0px;
 }
 
-.select2-container {
-  z-index: 1061;
+.select2-container--open {
+  z-index: 9961;
 }
 
 .datepicker {
@@ -2927,7 +2927,8 @@ div.mce-fullscreen {
   margin-bottom: 10px;
 }
 
-#new-entity-modal {
+#new-entity-modal,
+#entity-modal {
   z-index: 9900;
 }
 

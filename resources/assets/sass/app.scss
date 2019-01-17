@@ -520,8 +520,8 @@ div.mce-fullscreen {
 }
 
 // Need the select2 container above popovers and tooltips
-.select2-container {
-  z-index: 1061;
+.select2-container--open {
+  z-index: 9961;
 }
 .datepicker {
   z-index: 1062 !important;
@@ -570,7 +570,7 @@ div.mce-fullscreen {
   }
 }
 
-#new-entity-modal {
+#new-entity-modal, #entity-modal {
   z-index: 9900;
 }
 
