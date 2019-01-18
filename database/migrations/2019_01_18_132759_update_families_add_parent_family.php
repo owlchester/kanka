@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrganisationParentOrg extends Migration
+class UpdateFamiliesAddParentFamily extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class AddOrganisationParentOrg extends Migration
      */
     public function up()
     {
-        Schema::table('organisations', function (Blueprint $table) {
-            $table->unsignedInteger('organisation_id')->nullable();
+        Schema::table('families', function (Blueprint $table) {
+            $table->integer('family_id')->unsigned()->nullable();
             $table->unsignedInteger('_lft')->default(0);
             $table->unsignedInteger('_rgt')->default(0);
-            $table->index(['_lft', '_rgt', 'organisation_id']);
+            $table->index(['_lft', '_rgt', 'family_id']);
 
-            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('set null');
+            $table->foreign('family_id')->references('id')->on('families')->onDelete('set null');
         });
     }
 
@@ -30,11 +30,13 @@ class AddOrganisationParentOrg extends Migration
      */
     public function down()
     {
-        Schema::table('locations', function (Blueprint $table) {
-            $table->dropIndex(['_lft', '_rgt', 'organisation_id']);
+        Schema::table('families', function (Blueprint $table) {
+            $table->dropIndex(['_lft', '_rgt', 'family_id']);
             $table->dropColumn('_lft');
             $table->dropColumn('_rgt');
-            $table->dropColumn('organisation_id');
+
+            $table->dropForeign('families_family_id_foreign');
+            $table->dropColumn('family_id');
         });
     }
 }

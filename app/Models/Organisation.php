@@ -143,7 +143,7 @@ class Organisation extends MiscModel
     }
 
     /**
-     * Get all characters in the location and descendants
+     * Get all characters in the organisation and descendants
      */
     public function allMembers()
     {

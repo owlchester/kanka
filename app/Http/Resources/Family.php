@@ -15,6 +15,7 @@ class Family extends EntityResource
     public function toArray($request)
     {
         return $this->entity([
+            'family_id' => $this->family_id,
         ]);
     }
 }

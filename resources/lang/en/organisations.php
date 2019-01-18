@@ -23,7 +23,7 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'descendants'   => 'This list contains all organisations which are descendants of this organisation, not only those directly under it.',
+        'descendants'   => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
     ],
     'index'         => [
         'add'           => 'New Organisation',

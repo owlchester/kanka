@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\AttributeTemplate;
+use App\Models\Family;
 use App\Models\Location;
 use App\Models\MapPoint;
 use App\Models\Organisation;
@@ -44,7 +45,8 @@ class GenerateTrees extends Command
 //        Location::fixTree();
 //        Organisation::fixTree();
 //        Tag::fixTree();
-        AttributeTemplate::fixTree();
+//        AttributeTemplate::fixTree();
+        Family::fixTree();
         $this->info("Fixed tree.");
     }
 }

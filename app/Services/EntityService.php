@@ -277,10 +277,14 @@ class EntityService
                 $character->save();
             }
         } else {
-            // But remove old members none the less
+            // Remove members when they aren't characters
             if (isset($old->members)) {
                 foreach ($old->members as $member) {
-                    $member->delete();
+                    // We make sure this isn't a character, because a family has members which are directly characters
+                    // while orgs have members which are an in between entity.
+                    if (!$member instanceof Character) {
+                        $member->delete();
+                    }
                 }
             }
         }

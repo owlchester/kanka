@@ -34,6 +34,14 @@ class FamilyController extends CrudController
         $this->filters = [
             'name',
             [
+                'field' => 'family_id',
+                'label' => trans('crud.fields.family'),
+                'type' => 'select2',
+                'route' => route('families.find'),
+                'placeholder' =>  trans('crud.placeholders.family'),
+                'model' => Family::class,
+            ],
+            [
                 'field' => 'location_id',
                 'label' => trans('crud.fields.location'),
                 'type' => 'select2',
@@ -106,5 +114,35 @@ class FamilyController extends CrudController
     public function destroy(Family $family)
     {
         return $this->crudDestroy($family);
+    }
+
+    /**
+     * @param Family $family
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function families(Family $family)
+    {
+        return $this->menuView($family, 'families');
+    }
+
+    /**
+     * @param Family $family
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function members(Family $family)
+    {
+        return $this->menuView($family, 'members');
+    }
+
+    /**
+     * @param Family $family
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function allMembers(Family $family)
+    {
+        return $this->menuView($family, 'all_members');
     }
 }

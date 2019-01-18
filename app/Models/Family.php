@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Family extends MiscModel
 {
@@ -17,6 +18,7 @@ class Family extends MiscModel
         'entry',
         'image',
         'location_id',
+        'family_id',
         'is_private',
         //'type',
     ];
@@ -34,6 +36,7 @@ class Family extends MiscModel
     protected $filterableColumns = [
         'name',
         'location_id',
+        'family_id',
         'tag_id',
         'is_private',
     ];
@@ -43,21 +46,43 @@ class Family extends MiscModel
      * @var array
      */
     protected $foreignExport = [
-        'members'
+        'members',
     ];
+
+    /**
+     * Used by the Observer to know if the tree needs rebuilding on this model.
+     * @var bool
+     */
+    public $rebuildTree = false;
 
     /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait;
 
     /**
      * Entity type
      * @var string
      */
     protected $entityType = 'family';
+
+    /**
+     * Parent ID used for the Node Trait
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'family_id';
+    }
+
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     */
+    public function setFamilyIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
+    }
 
     /**
      * Performance with for datagrids
@@ -86,6 +111,37 @@ class Family extends MiscModel
     }
 
     /**
+     * Parent
+     */
+    public function family()
+    {
+        return $this->belongsTo('App\Models\Family', 'family_id', 'id');
+    }
+
+    /**
+     * Children
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function families()
+    {
+        return $this->hasMany('App\Models\Family', 'family_id', 'id');
+    }
+
+    /**
+     * All members of a family and descendants
+     * @return mixed
+     */
+    public function allMembers()
+    {
+        $familyId = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $familyId[] = $descendant->id;
+        };
+
+        return Character::whereIn('family_id', $familyId)->with(['family', 'location']);
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
@@ -93,6 +149,11 @@ class Family extends MiscModel
         foreach ($this->members as $child) {
             $child->family_id = null;
             $child->save();
+        }
+
+        foreach ($this->families as $family) {
+            $family->family_id = null;
+            $family->save();
         }
 
         return parent::detach();

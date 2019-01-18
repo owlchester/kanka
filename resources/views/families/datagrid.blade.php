@@ -11,6 +11,16 @@
         ],
         // Name
         'name',
+        [
+            'label' => trans('families.fields.family'),
+            'field' => 'family.name',
+            'visible' => $campaign->enabled('families'),
+            'render' => function($model) {
+                if ($model->family) {
+                    return '<a href="' . route('families.show', $model->family->id) . '" data-toggle="tooltip" title="' . $model->family->tooltip() . '">' . e($model->family->name) . '</a>';
+                }
+            }
+        ],
         // Location
         [
             'type' => 'avatar',

@@ -26,6 +26,7 @@ class StoreFamily extends FormRequest
         return [
             'name' => 'required',
             'location_id' => 'nullable|integer|exists:locations,id',
+            'family_id' => 'nullable|exists:families,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
