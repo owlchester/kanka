@@ -165,6 +165,15 @@ class Character extends MiscModel
     }
 
     /**
+     * Query to get quests where the character is the "quest giver"
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function questGiver()
+    {
+        return $this->hasMany('App\Models\Quest', 'character_id', 'id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()

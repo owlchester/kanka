@@ -121,6 +121,10 @@ return [
     'quests'        => [
         'description'   => 'Quests a character are part of.',
         'title'         => 'Character :name Quests',
+        'helpers' => [
+            'quest_giver' => 'Quests that the character is a quest giver of.',
+            'quest_member' => 'Quests that the character is a member of.'
+        ]
     ],
     'sections'      => [
         'appearance'    => 'Appearance',

@@ -1,4 +1,4 @@
-<?php /** @var App\Models\character $character */ ?>
+<?php /** @var App\Models\character $model */ ?>
 <div class="box box-solid">
     <div class="box-body box-profile">
         <div class="row">
@@ -103,12 +103,12 @@
                     </a>
                 </li>
             @endif
-            @if ($campaign->enabled('quests') && $model->quests()->acl()->count() > 0)
+            @if ($campaign->enabled('quests') && ($model->quests()->acl()->count() > 0 || $model->questGiver()->acl()->count() > 0))
                 <li class="@if(!empty($active) && $active == 'quests')active @endif">
                     <a href="{{ route('characters.quests', $model) }}" title="{{ __('characters.show.tabs.quests') }}">
                         {{ __('characters.show.tabs.quests') }}
                         <span class="label label-default pull-right">
-                        <?=$model->quests()->acl()->count()?>
+                        <?=$model->quests()->acl()->count() + $model->questGiver()->acl()->count()?>
                     </span>
                     </a>
                 </li>
