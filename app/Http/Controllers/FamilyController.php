@@ -9,11 +9,14 @@ use App\Http\Requests\StoreLocation;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Tag;
+use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class FamilyController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */

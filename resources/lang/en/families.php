@@ -15,6 +15,7 @@ return [
     ],
     'fields'        => [
         'family' => 'Parent Family',
+        'families' => 'Sub Families',
         'image'     => 'Image',
         'location'  => 'Location',
         'members'   => 'Members',
@@ -26,6 +27,7 @@ return [
     ],
     'helpers' => [
         'descendants' => 'This list contains all families which are descendants of this family, and not only those directly under it.',
+        'nested'    => 'When in Nested View, you can view your Families in a nested manner. Families with no parent family will be shown by default. Families with sub families can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'index'         => [
         'add'           => 'New Family',
