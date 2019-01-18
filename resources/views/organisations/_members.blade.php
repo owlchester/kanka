@@ -49,7 +49,7 @@
                 </td>
             @endif
             <td>{{ $relation->character->sex }}</td>
-            <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
+            <td>@if ($relation->character->is_dead)<span class="ra ra-skull"></span>@endif</td>
             <td class="text-right">
                 @can('member', $model)
                     <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary"

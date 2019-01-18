@@ -272,7 +272,8 @@ class DatagridRenderer
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
-                    $content = $model->{$column} ? '<i class="fa fa-check-circle"></i>' : '';
+                    $icon = $column == 'is_dead' ? 'ra ra-skull' : 'fa fa-check-circle';
+                    $content = $model->{$column} ? '<i class="' . $icon . '"></i>' : '';
                 } else {
                     $content = e($model->{$column});
                 }

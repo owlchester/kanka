@@ -48,7 +48,7 @@
                         </td>
                     @endif
                     <td>{{ $relation->character->sex }}</td>
-                    <td>@if ($relation->character->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
+                    <td>@if ($relation->character->is_dead)<span class="ra ra-skull"></span>@endif</td>
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
                             @if ($relation->is_private == true)

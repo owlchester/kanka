@@ -46,7 +46,7 @@
                         </td>
                     @endif
                     <td>{{ $member->sex }}</td>
-                    <td>@if ($member->is_dead)<span class="fa fa-check-circle"></span>@endif</td>
+                    <td>@if ($member->is_dead)<span class="ra ra-skull"></span>@endif</td>
                 </tr>
             @endforeach
             </tbody>
