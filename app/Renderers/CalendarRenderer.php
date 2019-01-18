@@ -428,7 +428,9 @@ class CalendarRenderer
                      ->with('entity')
                     ->where(function ($query) {
                         $query
+                            // Where it's the current year , or current year and current month
                             ->where('date', 'like', $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%')
+                            // Or where the event is recurring, or recurring on this month
                             ->orWhere(function ($sub) {
                                 if ($this->isYearlyLayout()) {
                                     $sub->where('is_recurring', true);
@@ -437,7 +439,7 @@ class CalendarRenderer
                                         ->where('is_recurring', true);
                                 }
                             })
-                            // Events from previous month that spill over
+                            // Events from previous month that spills over
                             ->orWhere(function ($sub) {
                                 $sub->where('date', 'like', $this->subMonth($this->getYear(), $this->getMonth()) . '-%')
                                     ->where('length', '>', 1);
@@ -514,7 +516,8 @@ class CalendarRenderer
     {
         $months = $this->calendar->months();
         $month--;
-        if ($month < 0) {
+
+        if ($month <= 0) {
             $month = count($months);
             $year--;
         }
