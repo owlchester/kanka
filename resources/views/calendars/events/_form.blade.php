@@ -69,7 +69,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>{{ trans('calendars.fields.comment') }}</label>
-                {!! Form::text('comment', null, ['placeholder' => trans('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+                {!! Form::text('comment', null, ['placeholder' => trans('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>
         <div class="col-md-4">
