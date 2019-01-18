@@ -97,7 +97,6 @@ Route::group([
         Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
 
         // Locations
-        Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
         Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
         Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
         Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
@@ -115,11 +114,13 @@ Route::group([
         Route::get('/organisations/{organisation}/all-members', 'OrganisationController@allMembers')->name('organisations.all-members');
         Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
         Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
+        Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
 
         // Families menu
         Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
         Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
+        Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
 
         // Items menu
         Route::get('/items/{item}/quests', 'ItemController@quests')->name('items.quests');
@@ -129,9 +130,15 @@ Route::group([
         Route::get('/quests/{quest}/locations', 'QuestController@locations')->name('quests.locations');
         Route::get('/quests/{quest}/items', 'QuestController@items')->name('quests.items');
         Route::get('/quests/{quest}/organisations', 'QuestController@organisations')->name('quests.organisations');
+        Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
 
+        // Races
         Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
         Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
+        Route::get('/races/tree', 'RaceController@tree')->name('races.tree');
+
+        // Tag menus
+        Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');

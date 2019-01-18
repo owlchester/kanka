@@ -19,11 +19,13 @@ return [
         'members'       => 'Members',
         'name'          => 'Name',
         'organisation'  => 'Parent Organisation',
+        'organisations'  => 'Sub Organisations',
         'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
+        'nested'    => 'When in Nested View, you can view your Organisations in a nested manner. Organisations with no parent organisation will be shown by default. Organisations with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'index'         => [
         'add'           => 'New Organisation',

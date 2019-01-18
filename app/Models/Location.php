@@ -89,6 +89,14 @@ class Location extends MiscModel
     }
 
     /**
+     * Parent Location
+     */
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location', 'parent_location_id', 'id');
+    }
+
+    /**
      *
      */
     public function characters()

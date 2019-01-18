@@ -6,9 +6,12 @@ use App\Http\Requests\StoreOrganisation;
 use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\Tag;
+use App\Traits\TreeControllerTrait;
 
 class OrganisationController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */

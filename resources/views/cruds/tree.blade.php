@@ -32,7 +32,7 @@
 
     <div class="box no-border">
         <div class="box-body">
-            <p class="help-block">{{ __('locations.helpers.nested') }}</p>
+            <p class="help-block">{{ __($view . '.helpers.nested') }}</p>
         </div>
 
         <div class="box-body no-padding">
@@ -42,13 +42,13 @@
         <div class="box-footer">
 
             @if(auth()->check())
-            @can('delete', $model)
-                {!! Form::button('<i class="fa fa-trash"></i> ' . trans('crud.remove'), ['type' => 'submit', 'name' => 'delete', 'class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
-            @endcan
-            @if (Auth::user()->isAdmin())
-                {!! Form::button('<i class="fa fa-lock"></i> ' . trans('crud.actions.private'), ['type' => 'submit', 'name' => 'private', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-private']) !!}
-                {!! Form::button('<i class="fa fa-unlock"></i> ' . trans('crud.actions.public'), ['type' => 'submit', 'name' => 'public', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-public']) !!}
-            @endif
+                @can('delete', $model)
+                    {!! Form::button('<i class="fa fa-trash"></i> ' . trans('crud.remove'), ['type' => 'submit', 'name' => 'delete', 'class' => 'btn btn-danger', 'style' => 'display:none', 'id' => 'crud-multi-delete']) !!}
+                @endcan
+                @if (Auth::user()->isAdmin())
+                    {!! Form::button('<i class="fa fa-lock"></i> ' . trans('crud.actions.private'), ['type' => 'submit', 'name' => 'private', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-private']) !!}
+                    {!! Form::button('<i class="fa fa-unlock"></i> ' . trans('crud.actions.public'), ['type' => 'submit', 'name' => 'public', 'class' => 'btn btn-primary', 'style' => 'display:none', 'id' => 'crud-multi-public']) !!}
+                @endif
             @endif
 
             <div class="pull-right">
@@ -59,5 +59,5 @@
         {!! Form::close() !!}
     </div>
 
-    <input type="hidden" id="locations-treeview" value="1" data-url="{{ route('locations.tree') }}">
+    <input type="hidden" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
 @endsection

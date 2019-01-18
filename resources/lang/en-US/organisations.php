@@ -14,6 +14,7 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all organizations which are descendants of this organization, and not only those directly under it.',
+        'nested'    => 'When in Nested View, you can view your Organizations in a nested manner. Organizations with no parent organization will be shown by default. Organizations with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'index'         => [
         'add'           => 'New Organization',

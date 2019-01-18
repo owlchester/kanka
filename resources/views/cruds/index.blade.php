@@ -26,6 +26,12 @@
                     </a>
                 @endif
             @endforeach
+
+            @if (!empty($nestedView) && $nestedView)
+                <a href="{{ route($route . '.tree') }}" class="btn pull-right btn-default margin-r-5">
+                    <i class="fa fa-tree"></i> {{ trans('crud.actions.explore_view') }}
+                </a>
+            @endif
         </div>
     </div>
 

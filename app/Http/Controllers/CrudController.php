@@ -88,6 +88,8 @@ class CrudController extends Controller
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
+        $nestedView = method_exists($this, 'tree');
+        $route = $this->route;
 
         $models = $model
             ->preparedWith()
@@ -96,7 +98,16 @@ class CrudController extends Controller
             ->acl()
             ->order($this->filterService->order())
             ->paginate();
-        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
+        return view('cruds.index', compact(
+            'models',
+            'name',
+            'model',
+            'actions',
+            'filters',
+            'filterService',
+            'nestedView',
+            'route'
+        ));
     }
 
     /**

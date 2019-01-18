@@ -107,10 +107,21 @@ $(document).ready(function() {
         treeViewInit('locations');
     }
 
-    // Treeview for sections
-    var sectionViewLoader = $('#tags-treeview');
-    if (sectionViewLoader.length > 0) {
+    // Treeview for tags
+    if ($('#tags-treeview').length > 0) {
         treeViewInit('tags');
+    }
+    if ($('#quests-treeview').length > 0) {
+        treeViewInit('quests');
+    }
+    if ($('#organisations-treeview').length > 0) {
+        treeViewInit('organisations');
+    }
+    if ($('#families-treeview').length > 0) {
+        treeViewInit('families');
+    }
+    if ($('#races').length > 0) {
+        treeViewInit('races');
     }
 
     manageTabs();

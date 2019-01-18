@@ -8,6 +8,7 @@ use App\Http\Requests\StoreLocation;
 use App\Models\Location;
 use App\Models\Tag;
 use App\Services\LocationService;
+use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Session;
 
 class LocationController extends CrudController
 {
+    /**
+     * Tree / Nested Mode
+     */
+    use TreeControllerTrait;
+    protected $treeControllerParentKey = 'parent_location_id';
+
     /**
      * @var string
      */
@@ -41,12 +48,6 @@ class LocationController extends CrudController
 
         $this->locationService = $locationService;
 
-        $this->indexActions[] = [
-            'route' => route('locations.tree'),
-            'class' => 'default',
-            'label' => '<i class="fa fa-tree"></i> ' . trans('locations.index.actions.explore_view')
-        ];
-
         $this->filters = [
             'name',
             'type',
@@ -67,58 +68,6 @@ class LocationController extends CrudController
                 'model' => Tag::class,
             ],
         ];
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function tree(Request $request)
-    {
-        $model = new $this->model;
-        $this->filterService->prepare($this->view . 'tree', request()->all(), $model->filterableColumns());
-        $name = $this->view;
-        $actions = $this->indexActions;
-        $filters = $this->filters;
-        $filterService = $this->filterService;
-
-        $actions = [[
-            'route' => route('locations.index'),
-            'class' => 'default',
-            'label' => '<i class="fa fa-list"></i> ' . trans('locations.index.title')
-        ]];
-
-        $search = $model
-            ->acl()
-            ->filter($this->filterService->filters())
-            ->search(request()->get('search'))
-            ->order($this->filterService->order());
-
-        if (request()->has('parent_id')) {
-            $search = $search->where(['parent_location_id' => request()->get('parent_id')]);
-
-            $parent = $model->with('parentLocation')->where('id', request()->get('parent_id'))->first();
-            if (!empty($parent) && !empty($parent->parentLocation)) {
-                // Go back to parent
-                $actions[] = [
-                    'route' => route('locations.tree', ['parent_id' => $parent->parentLocation->id]),
-                    'class' => 'default',
-                    'label' => '<i class="fa fa-arrow-left"></i> ' . $parent->parentLocation->name
-                ];
-            } else {
-                // Go back to first level
-                $actions[] = [
-                    'route' => route('locations.tree'),
-                    'class' => 'default',
-                    'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
-                ];
-            }
-        } else {
-            $search = $search->whereNull('parent_location_id');
-        }
-        $models = $search
-            ->paginate();
-        return view('locations.tree', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
     }
 
     /**
