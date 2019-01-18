@@ -278,6 +278,13 @@ function loadMapPoint(element) {
     ).done(function(data) {
         mapPanelLoader.hide();
         mapPanelTarget.html(data);
+
+        // Closing the modal
+        $('.entity-close').on('click', function(e) {
+            console.log('clicky');
+            mapPanel.addClass('hidden');
+            $('#location-map-main').removeClass('col-md-9 col-sm-8').addClass('col-md-12');
+        });
     });
 }
 

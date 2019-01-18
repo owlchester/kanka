@@ -16,6 +16,7 @@
                     </span>
                 @endif
             @endif
+            <i class="fa fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
         </h3>
     </div>
     <div class="panel-body">
