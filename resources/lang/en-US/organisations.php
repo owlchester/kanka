@@ -12,11 +12,17 @@ return [
         'success'   => 'Organization \':name\' updated.',
         'title'     => 'Edit Organization :name',
     ],
+    'helpers'       => [
+        'descendants'   => 'This list contains all organizations which are descendants of this organization, and not only those directly under it.',
+    ],
     'index'         => [
         'add'           => 'New Organization',
         'description'   => 'Manage the organizations of :name.',
         'header'        => 'Organizations of :name',
         'title'         => 'Organizations',
+    ],
+    'fields' => [
+        'organisation'  => 'Parent Organization',
     ],
     'members'       => [
         'create'    => [
@@ -30,12 +36,23 @@ return [
         'edit'      => [
             'success'   => 'Organization member updated.',
         ],
+        'helpers'       => [
+            'all_members'       => 'The following list are all characters that are in this organization and all of the organization\'s descendant organizations.',
+            'direct_members'    => 'Most organizations require members to run successfully. The following list are characters that are directly in this organization.',
+        ],
+        'title'         => 'Organization :name Members',
+    ],
+    'organisations' => [
+        'title' => 'Organization :name Organizations',
     ],
     'placeholders'  => [
         'name'  => 'Name of the organization',
     ],
     'show'          => [
         'description'   => 'A detailed view of an organization',
+        'tabs'          => [
+            'organisations' => 'Organizations',
+        ],
         'title'         => 'Organization :name',
     ],
 ];

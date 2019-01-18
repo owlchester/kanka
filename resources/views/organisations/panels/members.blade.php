@@ -21,7 +21,7 @@
                 <th>{{ trans('characters.fields.sex') }}</th>
                 <th>{{ trans('characters.fields.is_dead') }}</th>
                 <th><br /></th>
-                <th class="pull-right">
+                <th class="text-right">
                     @can('member', $model)
                         <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
