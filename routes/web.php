@@ -146,9 +146,11 @@ Route::group([
         // Attribute Templates Menu
         Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
 
+        // Calendar
         Route::get('/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
         Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
+        Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
 
         // Attribute multi-save
         Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');

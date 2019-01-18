@@ -156,4 +156,9 @@ class CalendarController extends CrudController
     {
         return Response::json($calendar->months());
     }
+
+    public function events(Calendar $calendar)
+    {
+        return $this->menuView($calendar, 'events');
+    }
 }

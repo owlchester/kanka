@@ -151,6 +151,7 @@ return [
         'description'       => 'A detailed view of a calendar',
         'moon_full_moon'    => ':moon Full Moon',
         'tabs'              => [
+            'events'        => 'Calendar Events',
             'information'   => 'Information',
         ],
         'title'             => 'Calendar :name',
