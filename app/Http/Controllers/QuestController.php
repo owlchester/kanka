@@ -6,11 +6,14 @@ use App\Http\Requests\StoreQuest;
 use App\Models\Character;
 use App\Models\Quest;
 use App\Models\Tag;
+use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class QuestController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */

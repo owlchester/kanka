@@ -45,7 +45,11 @@ return [
         'name'          => 'Name',
         'organisations' => 'Organisations',
         'quest'         => 'Parent Quest',
+        'quests'        => 'Sub Quests',
         'type'          => 'Type',
+    ],
+    'helpers' => [
+        'nested'    => 'When in Nested View, you can view your Quests in a nested manner. Quests with no parent quest will be shown by default. Quests with sub quests can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'hints'         => [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',

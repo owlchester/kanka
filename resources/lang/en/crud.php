@@ -5,6 +5,7 @@ return [
         'back'          => 'Back',
         'copy'          => 'Copy',
         'export'        => 'Export',
+        'explore_view'  => 'Nested View',
         'find_out_more' => 'Find out more',
         'go_to'         => 'Go to :name',
         'more'          => 'More Actions',
