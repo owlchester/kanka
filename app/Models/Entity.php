@@ -320,6 +320,14 @@ class Entity extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions()
+    {
+        return $this->hasMany('App\Models\CampaignPermission', 'entity_id', 'id');
+    }
+
+    /**
      * @param $query
      * @return mixed
      */

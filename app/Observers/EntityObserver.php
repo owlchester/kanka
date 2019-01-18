@@ -67,4 +67,13 @@ class EntityObserver
             }
         //}
     }
+
+    /**
+     * @param Entity $entity
+     */
+    public function deleting(Entity $entity)
+    {
+        // Delete permissions related to this entity
+        $entity->permissions()->delete();
+    }
 }
