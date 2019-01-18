@@ -114,7 +114,7 @@
                         <a href="{{ route('community') }}">{{ trans('front.menu.community') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
+                        <a href="{{ route('faq.index') }}">{{ trans('front.menu.faq') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>

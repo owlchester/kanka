@@ -80,15 +80,6 @@ class FrontController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function faq()
-    {
-        $faqs = Faq::locale(app()->getLocale())->visible()->ordered()->get();
-        return view('front.faq')->with('faqs', $faqs);
-    }
-
-    /**
      * Public Campaigns
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

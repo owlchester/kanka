@@ -116,7 +116,7 @@
                 <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
             </li>
             <li class="list-inline-item">
-                <a href="{{ route('faq') }}">{{ trans('front.menu.faq') }}</a>
+                <a href="{{ route('faq.index') }}">{{ trans('front.menu.faq') }}</a>
             </li>
             <li class="list-inline-item">
                 <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>

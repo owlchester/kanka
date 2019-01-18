@@ -24,7 +24,8 @@ Route::group([
     //Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
     Route::get('/privacy-policy', 'FrontController@privacy')->name('privacy');
     Route::get('/help', 'FrontController@help')->name('help');
-    Route::get('/faq', 'FrontController@faq')->name('faq');
+    Route::get('/faq', 'FaqController@index')->name('faq.index');
+    Route::get('/faq/{id}-{slug?}', 'FaqController@show')->name('faq.show');
     Route::get('/features', 'FrontController@features')->name('features');
     Route::get('/roadmap', 'FrontController@roadmap')->name('roadmap');
     Route::get('/community', 'FrontController@community')->name('community');

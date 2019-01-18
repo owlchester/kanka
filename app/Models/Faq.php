@@ -45,4 +45,12 @@ class Faq extends Model
     {
         return $this->belongsTo('App\Models\FaqCategory', 'faq_category_id', 'id');
     }
+
+    /**
+     * @return string
+     */
+    public function slug()
+    {
+        return str_slug($this->question);
+    }
 }

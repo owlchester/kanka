@@ -4,6 +4,7 @@
         'faq',
     ],
 ])
+<?php /** @var \App\Models\Faq $faq */ ?>
 @section('content')
     <header class="masthead reduced-masthead">
         <div class="container h-100">
@@ -25,7 +26,9 @@
                     <div class="col-md-5">
                         <?php $count = 0 ?>
                         @foreach ($faqs as $faq)
-                            <h4>{{ $faq->question }}</h4>
+                            <h4>
+                                <a href="{{ route('faq.show', ['id' => $faq->id, 'slug' => $faq->slug()]) }}">{{ e($faq->question) }}</a>
+                            </h4>
                             <p class="text-muted">{!! nl2br($faq->answer) !!}</p>
                             <hr>
                             <?php $count++; ?>
