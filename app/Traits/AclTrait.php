@@ -129,6 +129,7 @@ trait AclTrait
         return $query
             ->select($this->getTable() . '.*')
             ->leftJoin('entities', 'entities.id', $this->getTable() . '.entity_id')
+            ->where('is_private', false)
             ->where(function($subquery) use ($service, $primaryKey) {
             return $subquery
                 ->whereIn('entities.id', $service->entityIds())

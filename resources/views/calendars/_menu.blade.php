@@ -57,7 +57,7 @@
                     <a href="{{ route('calendars.events', $model) }}" title="{{ __('calendars.show.tabs.events') }}">
                         {{ __('calendars.show.tabs.events') }}
                         <span class="label label-default pull-right">
-                            <?=$model->calendarEvents->count()?>
+                            <?=$model->calendarEvents()->entityAcl()->count()?>
                         </span>
                     </a>
                 </li>
