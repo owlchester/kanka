@@ -259,6 +259,11 @@ class Entity extends Model
         return $query->where('type', $type);
     }
 
+    /**
+     * @param $query
+     * @param $term
+     * @return mixed
+     */
     public function scopeSearch($query, $term)
     {
         return $query->where(function ($q) use ($term) {

@@ -157,6 +157,11 @@ class CalendarController extends CrudController
         return Response::json($calendar->months());
     }
 
+    /**
+     * @param Calendar $calendar
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function events(Calendar $calendar)
     {
         return $this->menuView($calendar, 'events');
