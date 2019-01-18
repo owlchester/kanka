@@ -631,6 +631,15 @@ function repositionPoint(point, magnifier) {
 function resizeMapToPage() {
     // Reset the zoom to the biggest value
     var imgWidth = mapImage.width();
+
+    // If the image hasn't finished loading, let's try again in half a second
+    if (!imgWidth || imgWidth === 0) {
+        console.log('map', 'waiting another 500 ms for the map to properly load');
+        setTimeout('resizeMapToPage', 500);
+        return false;
+    }
+    console.log('map fully loaded', imgWidth);
+
     var imgHeight = mapImage.height();
     //console.log('img width, height', imgWidth, imgHeight);
 
