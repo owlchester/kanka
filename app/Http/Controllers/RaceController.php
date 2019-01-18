@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRace;
 use App\Models\Race;
 use App\Models\Tag;
+use App\Traits\TreeControllerTrait;
 
 class RaceController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */
