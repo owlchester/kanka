@@ -3,8 +3,16 @@
 return [
     'campaigns'         => [
         'manage'    => 'Gestisci la campagna',
+        'tabs'      => [
+            'modules'   => ':count Moduli',
+            'roles'     => ':count Ruoli',
+            'users'     => ':count Utenti',
+        ],
     ],
     'description'       => 'La dimora della tua creatività',
+    'helpers'           => [
+        'setup' => 'Imposta la dashboard della tua campagna.',
+    ],
     'latest_release'    => 'Ultima Versione',
     'notifications'     => [
         'modal' => [
@@ -29,5 +37,41 @@ return [
         ],
         'title'         => 'Impostazioni della Dashboard',
     ],
+    'setup'             => [
+        'actions'   => [
+            'add'               => 'Aggiungi un widget',
+            'back_to_dashboard' => 'Torna alla dashboard',
+            'edit'              => 'Modifica un widget',
+        ],
+        'title'     => 'Impostazioni della Dashboard della Campagna',
+        'widgets'   => [
+            'calendar'  => 'Calendario',
+            'preview'   => 'Anteprima Entità',
+            'recent'    => 'Recente',
+        ],
+    ],
     'title'             => 'Dashboard',
+    'widgets'           => [
+        'calendar'  => [
+            'actions'           => [
+                'next'      => 'Cambia la data al giorno successivo',
+                'previous'  => 'Cambia la data al giorno precedente',
+            ],
+            'events_today'      => 'Oggi',
+            'previous_events'   => 'Precedente',
+            'upcoming_events'   => 'Successivo',
+        ],
+        'create'    => [
+            'success'   => 'Widget aggiunto alla dashboard',
+        ],
+        'delete'    => [
+            'success'   => 'Widget rimosso dalla dashboard',
+        ],
+        'recent'    => [
+            'title' => 'Modificati di recente',
+        ],
+        'update'    => [
+            'success'   => 'Widget modificato.',
+        ],
+    ],
 ];
