@@ -111,7 +111,12 @@ class CalendarController extends CrudController
         $this->authorize('update', $calendar);
 
         $ajax = request()->ajax();
-        list($year, $month, $day) = explode('-', request()->get('date'));
+        $date = request()->get('date');
+        list($year, $month, $day) = explode('-', $date);
+        if (substr($date, 0, 1) == '-') {
+            list($year, $month, $day) = explode('-', trim($date, '-'));
+            $year = -$year;
+        }
 
         return view('calendars.events.' . ($ajax ? '_' : null) . 'create', compact(
             'calendar',

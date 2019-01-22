@@ -88,9 +88,13 @@ class EntityEvent extends MiscModel
     public function getDate($date = null)
     {
         if (empty($date)) {
-            $date = explode('-', $this->date);
-        } elseif (is_string($date)) {
-            $date = explode('-', $date);
+            $date = $this->date;
+        }
+
+        $dates = explode('-', $date);
+        if (substr($date, 0, 1) === '-') {
+            $dates = explode('-', trim($date, '-'));
+            $dates[0] = -$dates[0];
         }
 
         // Replace month with real month, and year maybe
@@ -98,9 +102,9 @@ class EntityEvent extends MiscModel
         $years = $this->calendar->years();
 
         try {
-            return $date[2] . ' ' .
-                (isset($months[$date[1] - 1]) ? $months[$date[1] - 1]['name'] : $date[1]) . ', ' .
-                (isset($years[$date[0]]) ? $years[$date[0]] : $date[0]) . ' ' .
+            return $dates[2] . ' ' .
+                (isset($months[$dates[1] - 1]) ? $months[$dates[1] - 1]['name'] : $dates[1]) . ', ' .
+                (isset($years[$dates[0]]) ? $years[$dates[0]] : $dates[0]) . ' ' .
                 $this->calendar->suffix;
         } catch(\Exception $e) {
             return $this->date;
