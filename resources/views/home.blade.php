@@ -97,6 +97,12 @@
             </a>
         </div>
     </div>
+    @elseif ($settings)
+        <div class="row">
+            <div class="col-md-12 text-center visible-xs">
+                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-block" title="{{ trans('dashboard.settings.title') }}"><i class="fa fa-cog"></i> {{ trans('dashboard.settings.title') }}</a>
+            </div>
+        </div>
     @endif
 @endsection
 
