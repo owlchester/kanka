@@ -11,6 +11,12 @@ return [
     'characters'            => 'Personnages',
     'conversation'          => 'Conversation',
     'conversations'         => 'Conversations',
+    'creator'               => [
+        'error'     => 'Erreure lors de la saisie, prière de vérifier les données.',
+        'helper'    => 'Sélection d\'un type d\'entité. Si aucun type n\'apparait, cela signifie que tu n\'as pas les permissions nécessaires pour créer des entités dans cette campagne.',
+        'success'   => 'Nouvelle entité \':link\' créée.',
+        'title'     => 'Nouvelle Entité',
+    ],
     'dice_roll'             => 'Jet de dés',
     'dice_rolls'            => 'Jets de dés',
     'event'                 => 'Evénement',

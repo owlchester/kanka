@@ -120,6 +120,10 @@ return [
     ],
     'quests'        => [
         'description'   => 'Quêtes auxquelles le personnage est lié.',
+        'helpers'       => [
+            'quest_giver'   => 'Quêtes dont le personnage est le donneur.',
+            'quest_member'  => 'Quêtes dont le personne est membre.',
+        ],
         'title'         => 'Quêtes de :name',
     ],
     'sections'      => [

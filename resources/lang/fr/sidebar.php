@@ -12,6 +12,7 @@ return [
     'dashboard'             => 'Tableau de bord',
     'dice_rolls'            => 'Jets de dés',
     'discord'               => 'Discord',
+    'entity-creator'        => 'Créateur Rapide',
     'events'                => 'Evénements',
     'families'              => 'Familles',
     'items'                 => 'Objets',

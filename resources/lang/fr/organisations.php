@@ -19,11 +19,13 @@ return [
         'members'       => 'Membres',
         'name'          => 'Nom',
         'organisation'  => 'Organisation Parent',
+        'organisations' => 'Sous-organisations',
         'relation'      => 'Relation',
         'type'          => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'Cette liste contient toutes les organisations qui appartiennent directement ou indirectement à cette organisation.',
+        'nested'        => 'Ce mode de naviguation permet d\'afficher les organisations de manière imbriquée. Les organisations sans organisation parent seront affichés par défaut. Les organisations possédant des sous-organisations peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Organisation',

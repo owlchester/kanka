@@ -10,8 +10,8 @@ return [
         'success'   => 'L\'étiquette \':name\' a été retirée.',
     ],
     'edit'          => [
-        'success'       => 'L\'étiquette \':name\' a été mise à jour.',
-        'title'         => 'Modifier l\'étiquette :name',
+        'success'   => 'L\'étiquette \':name\' a été mise à jour.',
+        'title'     => 'Modifier l\'étiquette :name',
     ],
     'fields'        => [
         'characters'    => 'Personnages',

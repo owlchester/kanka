@@ -64,6 +64,10 @@ return [
         ],
         'success'   => 'Evénement \':event\' ajouté au calendrier.',
     ],
+    'events'        => [
+        'description'   => 'Evénements dans ce calendrier',
+        'title'         => 'Evénements du calendrier :name',
+    ],
     'fields'        => [
         'colour'            => 'Couleur',
         'comment'           => 'Commentaire',
@@ -151,6 +155,7 @@ return [
         'description'       => 'Vue détaillée d\'un calendrier',
         'moon_full_moon'    => 'Pleine lune de :moon',
         'tabs'              => [
+            'events'        => 'Evénements',
             'information'   => 'Information',
         ],
         'title'             => 'Calendrier :name',

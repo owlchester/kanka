@@ -13,12 +13,21 @@ return [
         'success'   => 'Famille \':name\' modifiée.',
         'title'     => 'Modifier la famille :name',
     ],
+    'families'      => [
+        'title' => 'Familles de la famille :name',
+    ],
     'fields'        => [
+        'families'  => 'Sous-familles',
+        'family'    => 'Famille Parent',
         'image'     => 'Image',
         'location'  => 'Lieu',
         'members'   => 'Members',
         'name'      => 'Nom',
         'relation'  => 'Relation',
+    ],
+    'helpers'       => [
+        'descendants'   => 'Cette liste contient toutes les familles qui sont des descendants de cette famille, et pas seulement celles directement sous celle-ci.',
+        'nested'        => 'Ce mode de naviguation permet d\'afficher les familles de manière imbriquée. Les familles sans famille parent seront affichés par défaut. Les familles possédant des sous-familles peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'hints'         => [
         'members'   => 'Les membres d\'une famille sont affichés ici. Un personnage peut être ajouté à une famille lors de l\'édition du personnage en utilisant le champ "Famille".',
@@ -29,6 +38,13 @@ return [
         'header'        => 'Familles de :name',
         'title'         => 'Familles',
     ],
+    'members'       => [
+        'helpers'   => [
+            'all_members'       => 'Cette liste contient tous les personnages qui sont dans cette famille et toutes ses sous-familles.',
+            'direct_members'    => 'Cette liste contient tous les membres directement dans cette famille.',
+        ],
+        'title'     => 'Membres de la famille :name',
+    ],
     'placeholders'  => [
         'location'  => 'Choix d\'un lieu',
         'name'      => 'Nom de la famille',
@@ -36,8 +52,10 @@ return [
     'show'          => [
         'description'   => 'Détail d\'une famille',
         'tabs'          => [
-            'member'    => 'Membres',
-            'relation'  => 'Relations',
+            'all_members'   => 'Tous les membres',
+            'families'      => 'Familles',
+            'members'       => 'Membres',
+            'relation'      => 'Relations',
         ],
         'title'         => 'Famille :name',
     ],

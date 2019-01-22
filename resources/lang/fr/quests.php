@@ -45,7 +45,11 @@ return [
         'name'          => 'Nom',
         'organisations' => 'Organisations',
         'quest'         => 'Quête Parentale',
+        'quests'        => 'Sous-quêtes',
         'type'          => 'Type',
+    ],
+    'helpers'       => [
+        'nested'    => 'Ce mode de naviguation permet d\'afficher les quêtes de manière imbriquée. Les quêtes sans quête parent seront affichées par défaut. Les quêtes possédant des sous-quêtes peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'hints'         => [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',

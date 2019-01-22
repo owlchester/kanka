@@ -20,7 +20,11 @@ return [
     'fields'        => [
         'characters'    => 'Personnages',
         'name'          => 'Nom',
+        'races'         => 'Sous-races',
         'type'          => 'Type',
+    ],
+    'helpers'       => [
+        'nested'    => 'Ce mode de naviguation permet d\'afficher les races de manière imbriquée. Les races sans race parent seront affichées par défaut. Les races possédant des sous-races peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Race',
