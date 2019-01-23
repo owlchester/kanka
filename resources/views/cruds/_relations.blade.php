@@ -23,16 +23,16 @@
         <tr>
             <td>{{ $relation->relation }}</td>
             <td>
-                <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ route($relation->target->pluralType() . '.show', $relation->target->child->id) }}"></a>
+                <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
             </td>
             <td>
-                <a href="{{ route($relation->target->pluralType() . '.show', $relation->target->child->id) }}" data-toggle="tooltip" title="{{ $relation->target->child->tooltip() }}">
+                <a href="{{ $relation->target->url() }}" data-toggle="tooltip" title="{{ $relation->target->child->tooltip() }}">
                     {{ $relation->target->child->name }}
                 </a>
             </td>
             @if ($campaign->enabled('locations'))<td>
                 @if ($relation->target->child->location)
-                    <a href="{{ route('locations.show', $relation->target->child->location_id) }}" data-toggle="tooltip" title="{{ $relation->target->child->location->tooltip() }}">{{ $relation->target->child->location->name }}</a>
+                    <a href="{{ $relation->target->child->location->getLink() }}" data-toggle="tooltip" title="{{ $relation->target->child->location->tooltip() }}">{{ $relation->target->child->location->name }}</a>
                 @endif
             </td>
             @endif
