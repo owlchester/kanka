@@ -77,7 +77,17 @@ class SidebarService
         ],
         'races' => [
             'races',
-        ]
+        ],
+    ];
+
+    /**
+     * Admin menu
+     * @var array
+     */
+    protected $adminRules = [
+        'faqs' => [
+            'faqs'
+        ],
     ];
 
     /**
@@ -122,6 +132,26 @@ class SidebarService
                 return $css;
             }
         }
+        return null;
+    }
+
+    /**
+     * @param $menu
+     * @param string $class
+     * @return string|null
+     */
+    public function admin($menu, $class = 'active')
+    {
+        if (empty($this->adminRules[$menu])) {
+            return null;
+        }
+
+        foreach ($this->adminRules[$menu] as $rule) {
+            if (request()->segment(3) == $rule) {
+                return " $class";
+            }
+        }
+
         return null;
     }
 }

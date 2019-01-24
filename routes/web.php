@@ -312,6 +312,11 @@ Route::group([
     Route::group(['prefix' => 'admin', ['middleware' => ['moderator']]], function () {
         Route::get('/home', 'Admin\HomeController@index')->name('admin.home');
         Route::get('/campaigns', 'Admin\CampaignController@index')->name('admin.campaigns.index');
+        //Route::resourc('/faqs', 'Admin\FaqController@index')->name('admin.faqs.index');
+
+        Route::resources([
+            'faqs' => 'Admin\FaqController',
+        ]);
     });
 });
 

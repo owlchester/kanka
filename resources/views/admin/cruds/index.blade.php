@@ -2,7 +2,7 @@
     'title' => trans($name . '.index.title'),
     'description' => trans($name . '.index.description'),
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
+        ['url' => route($route . '.index'), 'label' => trans($name . '.index.title')]
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
@@ -11,15 +11,11 @@
 @section('content')
     <div class="row margin-bottom">
         <div class="col-md-12">
-            @include('layouts.datagrid.search', ['route' => route($name . '.index')])
+            @include('layouts.datagrid.search', ['route' => route($route . '.index')])
 
-            @foreach ($actions as $action)
-                @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
-                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} margin-r-5">
-                        {!! $action['label'] !!}
-                    </a>
-                @endif
-            @endforeach
+            <a href="{{ route($route . '.create') }}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+            </a>
         </div>
     </div>
 

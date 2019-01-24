@@ -73,6 +73,7 @@ class AdminCrudController extends Controller
     {
         return $this->crudIndex($request);
     }
+
     public function crudIndex(Request $request)
     {
         $model = new $this->model;
@@ -81,6 +82,7 @@ class AdminCrudController extends Controller
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
+        $route = $this->route;
 
         $models = $model
             ->preparedWith()
@@ -89,7 +91,99 @@ class AdminCrudController extends Controller
             ->order($this->filterService->order())
             ->admin()
             ->paginate();
-        return view('admin.cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
+        return view('admin.cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService', 'route'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return $this->crudCreate();
+    }
+    public function crudCreate($params = [])
+    {
+        $params['ajax'] = request()->ajax();
+        $params['route'] = $this->route;
+
+        return view('admin.cruds.create', array_merge(['name' => $this->view], $params));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @param bool $redirectToCreated
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function crudStore(Request $request, $redirectToCreated = false)
+    {
+        try {
+            $model = new $this->model;
+            $new = $model->create($request->all());
+
+            $success = trans($this->view . '.create.success', [
+                'name' => link_to_route(
+                    $this->route . '.index',
+                    e($new->name),
+                    $new
+                )
+            ]);
+
+            if ($redirectToCreated) {
+                return redirect()->route($this->route . '.show', $new)
+                    ->with('success_raw', $success);
+            }
+            return redirect()->route($this->route . '.index')
+                ->with('success_raw', $success);
+        } catch (LogicException $exception) {
+            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
+            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Character  $character
+     * @return \Illuminate\Http\Response
+     */
+    public function crudEdit(Model $model)
+    {
+        $name = $this->view;
+        $ajax = request()->ajax();
+        $route = $this->route;
+
+        return view('admin.cruds.edit', compact('model', 'name', 'ajax', 'route'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Character  $character
+     * @return \Illuminate\Http\Response
+     */
+    public function crudUpdate(Request $request, Model $model)
+    {
+        try {
+            $model->update($request->all());
+            $success = trans($this->view . '.edit.success', [
+                'name' => link_to_route(
+                    $this->route . '.index',
+                    e($model->name),
+                    $model
+                )
+            ]);
+
+            return redirect()->route($this->route . '.index', $model->id)
+                ->with('success_raw', $success);
+        } catch (LogicException $exception) {
+            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
+            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
+        }
     }
 
     /**
