@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 ##
 # Display the text for the given step
