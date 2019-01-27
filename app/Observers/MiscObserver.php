@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
+use App\Jobs\EntityMentionJob;
 use App\Models\AttributeTemplate;
 use App\Models\CalendarEvent;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\MiscModel;
+use App\Services\EntityMappingService;
 use App\Services\ImageService;
-use App\Services\LinkerService;
 use Illuminate\Support\Facades\Session;
 
 abstract class MiscObserver
@@ -20,17 +21,18 @@ abstract class MiscObserver
     use PurifiableTrait;
 
     /**
-     * @var LinkerService
+     * Service used to build the map of the entity
+     * @var EntityMappingService
      */
-    protected $linkerService;
+    protected $entityMappingService;
 
     /**
      * CharacterObserver constructor.
-     * @param LinkerService $linkerService
+     * @param EntityMappingService $entityMappingService
      */
-    public function __construct(LinkerService $linkerService)
+    public function __construct(EntityMappingService $entityMappingService)
     {
-        $this->linkerService = $linkerService;
+        $this->entityMappingService = $entityMappingService;
     }
 
     /**
@@ -53,7 +55,6 @@ abstract class MiscObserver
         $attributes = $model->getAttributes();
         if (array_key_exists('entry', $attributes)) {
             $model->entry = $this->purify($model->entry);
-            $model->entry = $this->linkerService->parse($model->entry);
         }
 
         // Handle image. Let's use a service for this.
@@ -69,7 +70,6 @@ abstract class MiscObserver
                 $model->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
             }
         }
-
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
@@ -118,6 +118,7 @@ abstract class MiscObserver
             // Before we refresh the model, check if the model has a calendar date, and
             // if those values are dirty.
             $this->syncEntityEvent($model, $entity);
+            $this->syncMentions($model, $entity);
             $model->refresh();
         }
 
@@ -136,6 +137,7 @@ abstract class MiscObserver
                 $attribute->copyTo($model->entity);
             }
         }
+
     }
 
     /**
@@ -216,6 +218,27 @@ abstract class MiscObserver
                         'is_recurring' => request()->post('is_recurring', false),
                     ]);
                 }
+            }
+        }
+    }
+
+    /**
+     * When saving an entity, we can to update our mentions if they have been changed
+     * @param Entity $entity
+     */
+    protected function syncMentions(MiscModel $model, Entity $entity)
+    {
+        //$this->entityMappingService->verbose = true;
+        // If the entity's entry has changed, we need to re-build it's map.
+        if ($model->isDirty('entry')) {
+            $this->entityMappingService->mapEntity($entity);
+        }
+
+        // If we changed the name or entry of this object, we need to update the entry of objects mentioning us
+        if ($model->isDirty('name') || $model->isDirty('entry')) {
+            // If the entity is targeted by mentions, queue a job to update texts
+            if ($entity->targetMentions()->count() > 0) {
+                EntityMentionJob::dispatch($entity);
             }
         }
     }

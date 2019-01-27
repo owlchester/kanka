@@ -13,12 +13,16 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * Class Entity
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $entity_id
  * @property integer $campaign_id
  * @property string $name
  * @property string $type
  * @property boolean $is_private
  * @property Tag[] $tags
+ * @property EntityMention[] $mentions
+ * @property EntityMention[] $targetMentions
+ * @property MiscModel $child
  */
 class Entity extends Model
 {
@@ -330,6 +334,24 @@ class Entity extends Model
     public function permissions()
     {
         return $this->hasMany('App\Models\CampaignPermission', 'entity_id', 'id');
+    }
+
+    /**
+     * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mentions()
+    {
+        return $this->hasMany('App\Models\EntityMention', 'entity_id', 'id');
+    }
+
+    /**
+     * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function targetMentions()
+    {
+        return $this->hasMany('App\Models\EntityMention', 'target_id', 'id');
     }
 
     /**

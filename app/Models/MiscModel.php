@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
  *
  * @property integer $campaign_id
  * @property string $name
+ * @property Entity $entity
+ * @property string $entry
  * @property boolean $is_private
  */
 abstract class MiscModel extends Model
