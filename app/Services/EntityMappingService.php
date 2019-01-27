@@ -152,13 +152,13 @@ class EntityMappingService
         // Replace the link's locale to avoid issues when people use several languages
         $entityLinkSegments = explode('/', $entityLink);
         $entityLinkSegments[3] = '(.){2,5}';
-        $entityLink = implode('/', $entityLinkSegments);
+        $entityLinkSearch = implode('/', $entityLinkSegments);
         //$entityLink = str_replace('.', '\.', $entityLink);
 
         // Just text, no tooltip
-        $patternNoTooltip = '<a href=\"' . $entityLink . '\">(.*?)</a>';
+        $patternNoTooltip = '<a href=\"' . $entityLinkSearch . '\">(.*?)</a>';
         // We need to go 0.300 as the text is encoded, so some html entities will make it longer. It's not great
-        $patternTooltip = '<a title="(.){0,300}" href="' . $entityLink . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
+        $patternTooltip = '<a title="(.){0,300}" href="' . $entityLinkSearch . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
 
         $replace = '<a href=\"' . $entityLink . '\">' . $name . '</a>';
         if (!empty($tooltip)) {
