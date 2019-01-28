@@ -12,6 +12,7 @@ return [
     'dashboard'             => 'Tablero',
     'dice_rolls'            => 'Tiradas de dados',
     'discord'               => 'Discord',
+    'entity-creator'        => 'Creador rápido',
     'events'                => 'Eventos',
     'families'              => 'Familias',
     'items'                 => 'Objetos',

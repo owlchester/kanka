@@ -20,7 +20,11 @@ return [
     'fields'        => [
         'characters'    => 'Personajes',
         'name'          => 'Nombre',
+        'races'         => 'Subrazas',
         'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested'    => 'Con la vista anidada, puedes ver tus razas de forma anidada. Las razas que no tengan raza superior se mostrarán por defecto. A las razas con subrazas se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
     ],
     'index'         => [
         'add'           => 'Nueva raza',

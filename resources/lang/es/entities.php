@@ -11,6 +11,12 @@ return [
     'characters'            => 'Personajes',
     'conversation'          => 'Conversación',
     'conversations'         => 'Conversaciones',
+    'creator'               => [
+        'error'     => 'Ha habido un error con los valores que has introducido. Por favor, revísalos.',
+        'helper'    => 'Selecciona el tipo de entidad que quieres crear. Si no aparece ninguna, quiere decir que no tienes permiso para crear entidades en esta campaña.',
+        'success'   => 'Nueva entidad \':link\' creada.',
+        'title'     => 'Nueva entidad',
+    ],
     'dice_roll'             => 'Tirada de dados',
     'dice_rolls'            => 'Tiradas de dados',
     'event'                 => 'Evento',

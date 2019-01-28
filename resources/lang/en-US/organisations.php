@@ -12,18 +12,18 @@ return [
         'success'   => 'Organization \':name\' updated.',
         'title'     => 'Edit Organization :name',
     ],
+    'fields'        => [
+        'organisation'  => 'Parent Organization',
+    ],
     'helpers'       => [
         'descendants'   => 'This list contains all organizations which are descendants of this organization, and not only those directly under it.',
-        'nested'    => 'When in Nested View, you can view your Organizations in a nested manner. Organizations with no parent organization will be shown by default. Organizations with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested'        => 'When in Nested View, you can view your Organizations in a nested manner. Organizations with no parent organization will be shown by default. Organizations with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'index'         => [
         'add'           => 'New Organization',
         'description'   => 'Manage the organizations of :name.',
         'header'        => 'Organizations of :name',
         'title'         => 'Organizations',
-    ],
-    'fields' => [
-        'organisation'  => 'Parent Organization',
     ],
     'members'       => [
         'create'    => [
@@ -37,11 +37,11 @@ return [
         'edit'      => [
             'success'   => 'Organization member updated.',
         ],
-        'helpers'       => [
+        'helpers'   => [
             'all_members'       => 'The following list are all characters that are in this organization and all of the organization\'s descendant organizations.',
             'direct_members'    => 'Most organizations require members to run successfully. The following list are characters that are directly in this organization.',
         ],
-        'title'         => 'Organization :name Members',
+        'title'     => 'Organization :name Members',
     ],
     'organisations' => [
         'title' => 'Organization :name Organizations',
