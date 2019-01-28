@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityMention;
+use App\Models\EntityNote;
 use App\Models\MiscModel;
 
 use Exception;
@@ -84,14 +86,43 @@ class EntityMappingService
      */
     public function mapEntity(Entity $entity)
     {
+        return $this->map($entity);
+    }
+
+    /**
+     * @param EntityNote $entityNote
+     * @return $this
+     * @throws Exception
+     */
+    public function mapEntityNote(EntityNote $entityNote)
+    {
+        return $this->map($entityNote);
+    }
+
+    public function mapCampaign(Campaign $campaign)
+    {
+        return $this->map($campaign);
+    }
+
+    /**
+     * @param $model
+     * @return int
+     * @throws Exception
+     */
+    protected function map($model)
+    {
         $existingTargets = [];
-        foreach ($entity->mentions as $map) {
+        foreach ($model->mentions as $map) {
             $existingTargets[$map->target_id] = $map;
         }
         $createdMappings = 0;
         $existingMappings = 0;
 
-        $mentions = $this->extract($entity->child->entry);
+        if ($model instanceof Entity) {
+            $mentions = $this->extract($model->child->entry);
+        } else {
+            $mentions = $this->extract($model->entry);
+        }
         foreach ($mentions as $data) {
             $type = $data['type'];
             $id = $data['id'];
@@ -104,7 +135,7 @@ class EntityMappingService
             /** @var Entity $entity */
             $target = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
             if ($target) {
-                $this->log("- Mentions " . $entity->id);
+                $this->log("- Mentions " . $model->id);
 
                 // Do we already have this mention mapped?
                 if (!empty($existingTargets[$target->id])) {
@@ -112,10 +143,14 @@ class EntityMappingService
                     unset($existingTargets[$target->id]);
                     $existingMappings++;
                 } else {
-                    $this->log("- new");
-
                     $mention = new EntityMention();
-                    $mention->entity_id = $entity->id;
+                    if ($model instanceof Campaign) {
+                        $mention->campaign_id = $model->id;
+                    } elseif ($model instanceof EntityNote) {
+                        $mention->entity_note_id = $model->id;
+                    } else {
+                        $mention->entity_id = $model->id;
+                    }
                     $mention->target_id = $target->id;
                     $mention->save();
 
@@ -132,9 +167,8 @@ class EntityMappingService
             $map->delete();
             $deletedMappings++;
         }
-        $this->log(" - Deleted $deletedMappings mappings");
 
-        return $this;
+        return $createdMappings;
     }
 
     /**
@@ -158,7 +192,7 @@ class EntityMappingService
         // Just text, no tooltip
         $patternNoTooltip = '<a href=\"' . $entityLinkSearch . '\">(.*?)</a>';
         // We need to go 0.300 as the text is encoded, so some html entities will make it longer. It's not great
-        $patternTooltip = '<a title="(.){0,300}" href="' . $entityLinkSearch . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
+        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
 
         $replace = '<a href=\"' . $entityLink . '\">' . $name . '</a>';
         if (!empty($tooltip)) {
@@ -169,18 +203,19 @@ class EntityMappingService
 //        dump($patternTooltip);
 //        dump($replace);
 
-        /** @var Entity $target */
-        foreach ($entity->targetMentions()->with('entity')->get() as $target) {
+        /** @var EntityMention $target */
+        foreach ($entity->targetMentions()->with(['entity', 'campaign', 'entityNote'])->get() as $target) {
             // We've got a target, we need to update its entry field
-            $text = $target->entity->child->entry;
+            $realTarget = $target->isEntityNote() ? $target->entityNote : ($target->isCampaign() ? $target->campaign : $target->entity->child);
+            $text = $realTarget->entry;
 //            dump($text);
             $text = preg_replace("`$patternNoTooltip`i", $replace, $text);
             $text = preg_replace("`$patternTooltip`i", $replace, $text);
 //            dump($text);
 
-            $target->entity->child->entry = $text;
-            $target->entity->child->timestamps = false; // We don't want to trigger the updated_at to change.
-            $target->entity->child->save();
+            $realTarget->entry = $text;
+            $realTarget->timestamps = false; // We don't want to trigger the updated_at to change.
+            $realTarget->save();
         }
     }
 

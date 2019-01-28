@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
  * @property bool $entity_visibility
  * @property string $header_image
  * @property string $system
+ * @property EntityMention[] $mentions
  */
 class Campaign extends MiscModel
 {
@@ -227,6 +228,15 @@ class Campaign extends MiscModel
     public function races()
     {
         return $this->hasMany('App\Models\Race');
+    }
+
+    /**
+     * List of entities that are mentionned in the campaign's description
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mentions()
+    {
+        return $this->hasMany('App\Models\EntityMention', 'campaign_id', 'id');
     }
 
     /**

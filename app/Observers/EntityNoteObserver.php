@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\EntityNote;
 use App\Models\Event;
 use App\Models\MiscModel;
+use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,21 @@ class EntityNoteObserver
      * Purify trait
      */
     use PurifiableTrait;
+
+    /**
+     * Service used to build the map of the entity
+     * @var EntityMappingService
+     */
+    protected $entityMappingService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param EntityMappingService $entityMappingService
+     */
+    public function __construct(EntityMappingService $entityMappingService)
+    {
+        $this->entityMappingService = $entityMappingService;
+    }
 
     /**
      * @param EntityNote $entityNote
@@ -47,6 +63,11 @@ class EntityNoteObserver
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $entityNote->entity->child->touch();
+
+        // If the entity note's entry has changed, we need to re-build it's map.
+        if ($entityNote->isDirty('entry')) {
+            $this->entityMappingService->mapEntityNote($entityNote);
+        }
     }
 
     /**

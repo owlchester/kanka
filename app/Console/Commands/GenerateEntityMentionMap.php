@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityMention;
+use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\EntityService;
@@ -83,6 +85,26 @@ class GenerateEntityMentionMap extends Command
                 }
             });
         }
+
+        // Entity Notes
+        EntityNote::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) use ($entity) {
+            foreach ($models as $model) {
+                $this->entityCount++;
+                /** @var EntityNote $model */
+                $this->info("Checking entity_note:" . $model->id);
+                $this->mapCount += $this->entityMapping->mapEntityNote($model);
+            }
+        });
+
+        // Entity Notes
+        Campaign::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) use ($entity) {
+            foreach ($models as $model) {
+                $this->entityCount++;
+                /** @var EntityNote $model */
+                $this->info("Checking campaign:" . $model->id);
+                $this->mapCount += $this->entityMapping->mapCampaign($model);
+            }
+        });
 
         $this->info("Updated {$this->entityCount} entities and created {$this->mapCount} maps.");
 

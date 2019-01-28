@@ -8,6 +8,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
+use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,21 @@ class CampaignObserver
      * Purify trait
      */
     use PurifiableTrait;
+
+    /**
+     * Service used to build the map of the entity
+     * @var EntityMappingService
+     */
+    protected $entityMappingService;
+
+    /**
+     * CharacterObserver constructor.
+     * @param EntityMappingService $entityMappingService
+     */
+    public function __construct(EntityMappingService $entityMappingService)
+    {
+        $this->entityMappingService = $entityMappingService;
+    }
 
     /**
      * @param Campaign $campaign
@@ -95,6 +111,14 @@ class CampaignObserver
 
         if ($first) {
             StarterService::generateBoilerplate($campaign);
+        }
+    }
+
+    public function saved(Campaign $campaign)
+    {
+        // If the entity note's entry has changed, we need to re-build it's map.
+        if ($campaign->isDirty('entry')) {
+            $this->entityMappingService->mapCampaign($campaign);
         }
     }
 

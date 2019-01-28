@@ -18,6 +18,7 @@ use DateTime;
  * @property string $entry
  * @property integer $created_by
  * @property boolean $is_private
+ * @property EntityMention[] $mentions
  */
 class EntityNote extends Model
 {
@@ -68,5 +69,14 @@ class EntityNote extends Model
     public function creator()
     {
         return $this->belongsTo('App\User', 'created_by');
+    }
+
+    /**
+     * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mentions()
+    {
+        return $this->hasMany('App\Models\EntityMention', 'entity_note_id', 'id');
     }
 }
