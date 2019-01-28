@@ -45,7 +45,11 @@ return [
         'name'          => 'Nombre',
         'organisations' => 'Organizaciones',
         'quest'         => 'Misión superior',
+        'quests'        => 'Submisiones',
         'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested'    => 'Con la vista anidada, puedes ver tus misiones de forma anidada. Las misiones que no tengan misión superior se mostrarán por defecto. A las misiones con submisiones se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
     ],
     'hints'         => [
         'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',

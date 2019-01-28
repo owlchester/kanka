@@ -4,6 +4,7 @@ return [
     'actions'           => [
         'back'          => 'Atrás',
         'copy'          => 'Copiar',
+        'explore_view'  => 'Vista anidada',
         'export'        => 'Exportar',
         'find_out_more' => 'Saber más',
         'go_to'         => 'Ir a :name',

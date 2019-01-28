@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'fields' => [
+    'fields'        => [
         'organisation'  => 'Organization',
     ],
-    'placeholders'      => [
-        'organisation' => 'Choose an organization',
-    ]
+    'placeholders'  => [
+        'organisation'  => 'Choose an organization',
+    ],
 ];
