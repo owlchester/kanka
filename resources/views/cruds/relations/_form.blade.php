@@ -15,7 +15,7 @@
 
         <div class="form-group required">
             <label>{{ trans('relations.fields.relation') }}</label>
-            {!! Form::text('relation', null, ['placeholder' => trans('relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+            {!! Form::text('relation', null, ['placeholder' => trans('relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
         @if (Auth::user()->isAdmin())
