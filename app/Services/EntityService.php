@@ -239,15 +239,15 @@ class EntityService
         if (!empty($new->image)) {
             $newPath = str_replace($old->getTable(), $new->getTable(), $old->image);
             $new->image = $newPath;
-            if (!Storage::disk('public')->exists($newPath)) {
-                Storage::disk('public')->copy($old->image, $newPath);
+            if (!Storage::exists($newPath)) {
+                Storage::copy($old->image, $newPath);
             }
 
             // Copy thumb
             $oldThumb = str_replace('.', '_thumb.', $old->image);
             $newThumb = str_replace($old->getTable(), $new->getTable(), $oldThumb);
-            if (!Storage::disk('public')->exists($newThumb)) {
-                Storage::disk('public')->copy($oldThumb, $newThumb);
+            if (!Storage::exists($newThumb)) {
+                Storage::copy($oldThumb, $newThumb);
             }
         }
 
