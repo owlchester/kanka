@@ -12,7 +12,7 @@ return [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
         'name'                      => 'Nom',
-        'new_password'              => 'Nouveau mot de passe (optional)',
+        'new_password'              => 'Nouveau mot de passe',
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'newsletter'                => 'Je souhaite être contacté par email de temps en temps.',
         'password'                  => 'Mot de passe actuel',

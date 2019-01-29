@@ -42,6 +42,7 @@ Route::group([
     Route::patch('/settings/account/password', 'Settings\AccountController@password')->name('settings.account.password');
     Route::patch('/settings/account/email', 'Settings\AccountController@email')->name('settings.account.email');
     Route::patch('/settings/account/destroy', 'Settings\AccountController@destroy')->name('settings.account.destroy');
+    Route::patch('/settings/account/social', 'Settings\AccountController@social')->name('settings.account.social');
 
     Route::get('/settings/patreon', 'Settings\PatreonController@index')->name('settings.patreon');
     Route::get('/settings/patreon-callback', 'Settings\PatreonController@callback')->name('settings.patreon.callback');

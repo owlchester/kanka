@@ -12,7 +12,7 @@ return [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
         'name'                      => 'Name',
-        'new_password'              => 'New Password (optional)',
+        'new_password'              => 'New Password',
         'new_password_confirmation' => 'New Password Confirmation',
         'newsletter'                => 'I wish to sometimes be contacted by email.',
         'password'                  => 'Current password',

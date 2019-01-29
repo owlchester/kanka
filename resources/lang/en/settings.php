@@ -5,6 +5,7 @@ return [
         'actions'           => [
             'update_email'      => 'Update email',
             'update_password'   => 'Update password',
+            'social'            => 'Switch to Kanka Login'
         ],
         'description'       => 'Update your account',
         'email'             => 'Change email',
@@ -12,6 +13,12 @@ return [
         'password'          => 'Change password',
         'password_success'  => 'Password updated.',
         'title'             => 'Account',
+        'social'            => [
+            'title' => 'Social to Kanka',
+            'helper' => 'Your account is currently managed by :provider. You can stop using it and switch to the standard Kanka login by setting up a password.',
+            'success' => 'Your account now uses the Kanka login.',
+            'error' => 'You are already using the Kanka login for this account.'
+        ]
     ],
     'api'       => [
         'description'           => 'Update your API settings',

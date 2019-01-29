@@ -7,6 +7,7 @@ use App\Http\Requests\DeleteSettingsAccount;
 use App\Http\Requests\StoreProfile;
 use App\Http\Requests\StoreSettingsAccount;
 use App\Http\Requests\StoreSettingsAccountEmail;
+use App\Http\Requests\StoreSettingsAccountSocial;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -53,6 +54,28 @@ class AccountController extends Controller
         return redirect()
             ->route('settings.account')
             ->with('success', trans('settings.account.email_success'));
+    }
+
+    /**
+     * @param StoreSettingsAccountSocial $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function social(StoreSettingsAccountSocial $request)
+    {
+        if (empty(Auth()->user()->provider)) {
+            return redirect()
+                ->route('settings.account')
+                ->with('error', trans('settings.account.social.error'));
+        }
+
+        $data['provider'] = null;
+        $data['provider_id'] = null;
+
+        Auth::user()->update($data);
+
+        return redirect()
+            ->route('settings.account')
+            ->with('success', trans('settings.account.social.success'));
     }
 
     /**
