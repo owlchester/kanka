@@ -9,7 +9,7 @@
         'name',
         [
             'label' => trans('attribute_templates.fields.attribute_template'),
-            'field' => 'attribute_templates.name',
+            'field' => 'attributeTemplate.name',
             'render' => function($model) {
                 if ($model->attributeTemplate) {
                     return '<a href="' . route('attribute_templates.show', $model->attributeTemplate->id) . '">' . e($model->attributeTemplate->name) . '</a>';

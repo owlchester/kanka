@@ -198,10 +198,10 @@ class DatagridRenderer
         $order = $this->filterService->order();
         $orderImg = ' <i class="fa fa-sort"></i>';
         if (!empty($order) && isset($order[$field])) {
-            $direction = 'desc';
+            $direction = 'down';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
-                $direction = 'asc';
+                $direction = 'up';
             }
             $orderImg = ' <i class="fa fa-sort-' . $direction . '"></i>';
         }
