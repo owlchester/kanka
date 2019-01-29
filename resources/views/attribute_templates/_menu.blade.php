@@ -34,7 +34,7 @@
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <li class="@if(empty($active))active @endif">
-                    <a href="{{ route('locations.show', $model) }}">
+                    <a href="{{ route('attribute_templates.show', $model) }}">
                         {{ __('crud.panels.entry') }}
                     </a>
                 </li>
