@@ -23,6 +23,27 @@ php artisan migrate
 
 That should cover you. You can now create an account. If you have errors on the dashboard, check that your `roles` table has entries, and that your user has a valid `role_id` value.
 
+## Using Docker
+follow the step given above for creating the .env file, then modify it by deleting the following:
+```bash
+DB_HOST=mysql
+```
+Now add the following lines to your .env file:
+```bash
+# Docker
+DOCKER_WEB_PORT=8000
+DOCKER_MYSQL_PORT=3306
+```
+Start he containers by issuing the following command:
+```bash
+> docker-compose up -d --build
+```
+Note that the output stops before the web container is finished with everything that it needs to do so it may appear that everything is ready before you'll get a response from localhost in your browser. You can check the logs to see the status of the scripts that are run once the container is up.
+```bash
+docker-container logs -t
+```
+
+
 ## Concepts
 
 The app revolves around the concept of `Entities`. This are for example:
