@@ -187,10 +187,10 @@ $(document).ready(function() {
  * Select2 is used for all the fancy dropdowns
  */
 function initSelect2() {
-    if ($('.select2').length > 0) {
-        $.each($('.select2'), function (index) {
+    if ($('select.select2').length > 0) {
+        $.each($('select.select2'), function (index) {
             $(this).select2({
-//            data: newOptions,
+                //data: newOptions,
                 placeholder: $(this).attr('data-placeholder'),
                 allowClear: true,
                 tags: $(this).is('[data-tags]'),
