@@ -675,13 +675,11 @@ function formatState(state) {
         return state.text;
     }
 
-    console.log('what is state?', state);
     var element = $(state.element);
     if (!element) {
         return state.text;
     }
     var icon = element.data('icon');
-    console.log('element?', icon);
     // If there is no icon, use the id
     if (!icon) {
         icon = 'ra ra-' + state.id;
@@ -702,7 +700,8 @@ function formatState(state) {
  */
 function initIconSelect() {
     $(".select2-icon").select2({
-        templateResult: formatState
+        templateResult: formatState,
+        templateSelection: formatState
     });
 }
 
