@@ -16,6 +16,7 @@
     <meta name="description" content="{{ trans('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
+@yield('og')
     <title>{{ $title or trans('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
@@ -26,7 +27,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">

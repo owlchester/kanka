@@ -10,6 +10,9 @@ class Release extends Post
 
     public $table = 'posts';
 
+    /**
+     * @return string
+     */
     public function getSlug()
     {
         return $this->id . '-' . str_slug($this->title);
