@@ -68,12 +68,14 @@ return [
         */
 
         'HTML.Allowed' =>
-            'big,small,h1[style],h2[style],h3[style],h4[style],h5[style],h6[style],div[style],ins,del,pre,blockquote,sup,sub,hr,caption,'
+            'big,small,h1[style],h2[style],h3[style],h4[style],h5[style],h6[style],div[style],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
             . 'strong,em,b,ul[style],ol[style],li[style],p,i,br,'
-            . 'img[src|style|alt|width|height],'
+            . 'img[src|style|alt|width|height|class|title],'
             . 'a[href|target|rel|title|data-toggle|data-html|id],'
             . 'p[style],span[style],'
-            . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr]',
+            . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr],'
+            . 'acronym[title],abbr[title],'
+            . 'iframe[src|width|height]', // only use this with HTML.SafeIframe
 
         /*
         |--------------------------------------------------------------------------
@@ -137,6 +139,7 @@ return [
         */
 
         'AutoFormat.RemoveEmpty' => false,
+        //'AutoFormat.RemoveEmpty.Predicate' => ['iframe' => false],
 
         // To allow max-width and max-height on images. This might cause imageattacks?
         'HTML.MaxImgLength'   => NULL,
@@ -146,7 +149,15 @@ return [
         'Attr.AllowedFrameTargets' => ['_blank'],
 
         // Allow setting IDs for anchors
-        'Attr.EnableID' => true
+        'Attr.EnableID' => true,
+
+        // Iframes to vimeo and youtube
+        //'HTML.SafeIframe' => true,
+        //'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+        'Filter.YouTube' => true,
+
+        "HTML.SafeIframe" => true,
+        "URI.SafeIframeRegexp" => "%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%",
     ],
 
 ];

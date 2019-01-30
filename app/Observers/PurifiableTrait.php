@@ -8,6 +8,7 @@ trait PurifiableTrait
 {
     public function purify($text = '')
     {
+//        dump($text);
         $purified = Purify::clean($text);
 
         // If it's really empty, zap it
