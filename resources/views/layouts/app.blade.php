@@ -14,11 +14,13 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title or "Page Titel" }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{{ $title or '' }} - {{ config('app.name', 'Kanka') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
+    <meta property="og:title" content="{{ $title or '' }} - {{ config('app.name') }}" />
+    <meta property="og:site_name" content="{{ config('app.site_name') }}" />
+@yield('og')
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- Ionicons -->

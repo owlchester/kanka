@@ -9,10 +9,8 @@
 ])
 
 @section('og')
-    <meta property="og:title" content="{{ $model->title }} - {{ config('app.name') }}" />
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('releases.show', $model->getSlug()) }}" />
-    <meta property="og:site_name" content="{{ config('app.url') }}" />
 @endsection
 
 @section('content')

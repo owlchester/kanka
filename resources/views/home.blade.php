@@ -2,11 +2,19 @@
 <?php $position = 0; ?>
 
 @extends('layouts.app', [
-    'title' => trans('dashboard.title'),
+    'title' => trans('dashboard.title') . ' ' . $campaign->name,
     'description' => trans('dashboard.description'),
     'breadcrumbs' => false,
     'headerExtra' => $settings ? '<a href="' . route('dashboard.setup') .'" class="btn btn-default btn-xl pull-right" title="'. trans('dashboard.settings.title') .'"><i class="fa fa-cog"></i></a>' : null
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ $campaign->tooltip() }}" />
+    @if ($campaign->image)
+        <meta property="og:image" content="{{ Storage::url($campaign->image)  }}" />
+    @endif
+    <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
+@endsection
 
 @section('content')
 
