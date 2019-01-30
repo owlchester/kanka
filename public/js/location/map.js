@@ -501,6 +501,8 @@ function addPointMove(point) {
 function initModalForm() {
     initSelect2();
     initDeleteMapPoint();
+    initIconSelect();
+
     $('.map-point-form').submit(function (e) {
         var formData = $(this).serialize();
 
@@ -660,6 +662,48 @@ function resizeMapToPage() {
 
     mapZoomValue = Math.floor(100 * ratio);
     mapZoom(0);
+}
+
+/**
+ *
+ * @param state
+ * @returns {*}
+ */
+function formatState(state) {
+    // Searching...
+    if (!state.id) {
+        return state.text;
+    }
+
+    console.log('what is state?', state);
+    var element = $(state.element);
+    if (!element) {
+        return state.text;
+    }
+    var icon = element.data('icon');
+    console.log('element?', icon);
+    // If there is no icon, use the id
+    if (!icon) {
+        icon = 'ra ra-' + state.id;
+    } else if (icon === 'entity') {
+        return state.text;
+    }
+    // If the icon has no space, it's probably not rpg-awesome
+    else if (!icon.includes(' ')) {
+            icon = 'ra ra-' + icon;
+        }
+
+    var $state = $('<span><i class="' + icon + '"></i> ' + state.text + '</span>');
+    return $state;
+};
+
+/**
+ *
+ */
+function initIconSelect() {
+    $(".select2-icon").select2({
+        templateResult: formatState
+    });
 }
 
 /***/ }),
