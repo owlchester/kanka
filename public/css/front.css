@@ -1192,6 +1192,7 @@ ul.pagination li span {
 .register-page .login-box,
 .register-page .register-box {
   width: 420px;
+  max-width: 90%;
 }
 
 .login-page .login-box .login-box-body,
