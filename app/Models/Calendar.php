@@ -203,7 +203,7 @@ class Calendar extends MiscModel
     }
 
     /**
-     * Get the moons
+     * Get the seasons
      * @return null
      */
     public function seasons()
