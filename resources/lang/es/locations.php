@@ -33,7 +33,7 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
-        'nested'        => 'En la Vista de Exploración puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
+        'nested'        => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
     ],
     'index'         => [
         'actions'       => [
@@ -97,12 +97,12 @@ return [
                 'book'          => 'Libro',
                 'bridge'        => 'Puente',
                 'campfire'      => 'Hoguera',
-                'character'     => 'Personaje',
+                'player'        => 'Personaje',
                 'dragon'        => 'Dragón',
                 'entity'        => 'Imagen de la entidad',
                 'fire'          => 'Fuego',
                 'pin'           => 'Pin',
-                'quest'         => 'Cartel de madera',
+                'wooden-sign'   => 'Cartel de madera',
                 'shield'        => 'Escudo',
                 'skull'         => 'Calavera',
                 'spades-card'   => 'Carta de póker',
