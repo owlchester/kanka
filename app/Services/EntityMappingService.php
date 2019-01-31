@@ -77,7 +77,7 @@ class EntityMappingService
 
                 $createdMappings++;
             } else {
-                $this->log("- Unknown entity of type $singularType and id $id");
+                //$this->log("- Unknown entity of type $singularType and id $id");
             }
         }
 
@@ -140,7 +140,6 @@ class EntityMappingService
 
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
-
                 dump($data);
                 throw new Exception("Unknown type $type");
             }
@@ -170,7 +169,7 @@ class EntityMappingService
                     $createdMappings++;
                 }
             } else {
-                $this->log("- Unknown entity of type $singularType and id $id");
+                //$this->log("- Unknown entity of type $singularType and id $id");
             }
         }
 

@@ -85,7 +85,6 @@ class GenerateEntityMentionMap extends Command
             $model = new $entity;
             $model->with('entity')->where('entry', 'like', '%redirect?what=%')->chunk(1000, function ($models) use ($entity) {
                 foreach ($models as $model) {
-
                     /** @var MiscModel $model */
                     $pattern = '<a href="([^"]*)">(.*?)&lt;(.*?)&gt;';
                     $model->entry = preg_replace("`$pattern`i", '<a href="$1">$2</a>', $model->entry);
@@ -99,15 +98,20 @@ class GenerateEntityMentionMap extends Command
             $this->info("- Fixed {$this->redirectFixed} redirects.");
             $this->mapTotalCount += $this->mapCount;
 
+            // Mapping
             $this->mapCount = 0;
             $model = new $entity;
             $model->with('entity')->where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) use ($entity) {
+                $bar = $this->output->createProgressBar(count($models));
+                $bar->start();
                 foreach ($models as $model) {
                     $this->entityCount++;
                     /** @var MiscModel $model */
-                    $this->info("Checking " . $model->getTable() . ":" . $model->id);
+                    //$this->info("Checking " . $model->getTable() . ":" . $model->id);
                     $this->mapCount += $this->entityMapping->mapModel($model);
+                    $bar->advance();
                 }
+                $bar->finish();
             });
             $this->info("- Created {$this->mapCount} maps.\n");
             $this->mapTotalCount += $this->mapCount;
@@ -117,12 +121,16 @@ class GenerateEntityMentionMap extends Command
         $this->info("Entity Notes");
         $this->mapCount = 0;
         EntityNote::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) {
+            $bar = $this->output->createProgressBar(count($models));
+            $bar->start();
             foreach ($models as $model) {
                 $this->entityCount++;
                 /** @var EntityNote $model */
-                $this->info("Checking entity_note:" . $model->id);
+                //$this->info("Checking entity_note:" . $model->id);
                 $this->mapCount += $this->entityMapping->mapEntityNote($model);
+                $bar->advance();
             }
+            $bar->finish();
         });
         $this->info("- Created {$this->mapCount} maps.\n");
         $this->mapTotalCount += $this->mapCount;
@@ -131,12 +139,16 @@ class GenerateEntityMentionMap extends Command
         $this->info("Campaigns");
         $this->mapCount = 0;
         Campaign::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) {
+            $bar = $this->output->createProgressBar(count($models));
+            $bar->start();
             foreach ($models as $model) {
                 $this->entityCount++;
                 /** @var Campaign $model */
-                $this->info("Checking campaign:" . $model->id);
+                //$this->info("Checking campaign:" . $model->id);
                 $this->mapCount += $this->entityMapping->mapCampaign($model);
+                $bar->advance();
             }
+            $bar->finish();
         });
         $this->info("- Created {$this->mapCount} maps.\n");
         $this->mapTotalCount += $this->mapCount;
