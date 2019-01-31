@@ -195,6 +195,8 @@ class EntityMappingService
         $name = $entity->name;
 
         $entityLink = !empty($url) ? $url : $entity->url();
+
+        //$entityLink = str_replace('http://kanka.loc', 'https://kanka.io', $entityLink);
         // Replace the link's locale to avoid issues when people use several languages
         $entityLinkSegments = explode('/', $entityLink);
         $entityLinkSegments[3] = '(.){2,5}';
@@ -204,7 +206,7 @@ class EntityMappingService
         // Just text, no tooltip
         $patternNoTooltip = '<a href=\"' . $entityLinkSearch . '\">(.*?)</a>';
         // We need to go 0.300 as the text is encoded, so some html entities will make it longer. It's not great
-        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
+        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch . '" data-toggle="tooltip"( data-html="true")?>(.*?)</a>';
 
         $replace = '<a href=\"' . $entityLink . '\">' . $name . '</a>';
         if (!empty($tooltip)) {
@@ -214,12 +216,12 @@ class EntityMappingService
 //        dump($patternNoTooltip);
 //        dump($patternTooltip);
 //        dump($replace);
-
         /** @var EntityMention $target */
         foreach ($entity->targetMentions()->with(['entity', 'campaign', 'entityNote'])->get() as $target) {
             // We've got a target, we need to update its entry field
             $realTarget = $target->isEntityNote() ? $target->entityNote : ($target->isCampaign() ? $target->campaign : $target->entity->child);
             $text = $realTarget->entry;
+
 //            dump($text);
             $text = preg_replace("`$patternNoTooltip`i", $replace, $text);
             $text = preg_replace("`$patternTooltip`i", $replace, $text);
