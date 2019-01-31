@@ -64,9 +64,9 @@ return [
         ],
         'success'   => 'Event \':event\' added to the calendar.',
     ],
-    'events' => [
-        'title' => 'Calendar :name Events',
-        'description' => 'Events in this calendar.'
+    'events'        => [
+        'description'   => 'Events in this calendar.',
+        'title'         => 'Calendar :name Events',
     ],
     'fields'        => [
         'colour'            => 'Colour',

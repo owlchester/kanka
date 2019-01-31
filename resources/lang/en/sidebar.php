@@ -12,6 +12,7 @@ return [
     'dashboard'             => 'Dashboard',
     'dice_rolls'            => 'Dice Rolls',
     'discord'               => 'Discord',
+    'entity-creator'        => 'Quick Creator',
     'events'                => 'Events',
     'families'              => 'Families',
     'items'                 => 'Items',
@@ -32,6 +33,4 @@ return [
     'team'                  => 'Team',
     'translations'          => 'Translations',
     'trello'                => 'Trello',
-
-    'entity-creator' => 'Quick Creator',
 ];

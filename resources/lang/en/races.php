@@ -20,10 +20,10 @@ return [
     'fields'        => [
         'characters'    => 'Characters',
         'name'          => 'Name',
-        'type'          => 'Type',
         'races'         => 'Sub Races',
+        'type'          => 'Type',
     ],
-    'helpers' => [
+    'helpers'       => [
         'nested'    => 'When in Nested View, you can view your Races in a nested manner. Races with no parent race will be shown by default. Races with sub races can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'index'         => [

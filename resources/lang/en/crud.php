@@ -4,8 +4,8 @@ return [
     'actions'           => [
         'back'          => 'Back',
         'copy'          => 'Copy',
-        'export'        => 'Export',
         'explore_view'  => 'Nested View',
+        'export'        => 'Export',
         'find_out_more' => 'Find out more',
         'go_to'         => 'Go to :name',
         'more'          => 'More Actions',
