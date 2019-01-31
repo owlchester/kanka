@@ -66,7 +66,7 @@ if (request()->route()->getName() == 'characters.random') {
                 @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : $formService->prefillCharacterAppearance($source)) as $trait)
                     <div class="form-group parent-delete-row">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-xs-4">
                                 <div class="input-group">
                                     <span class="input-group-addon hidden-xs hidden-sm">
                                         <span class="fa fa-arrows-alt-v"></span>
@@ -78,7 +78,7 @@ if (request()->route()->getName() == 'characters.random') {
                                     ]) !!}
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-xs-8">
                                 <div class="input-group">
                                     {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
                                         'class' => 'form-control',
@@ -95,13 +95,13 @@ if (request()->route()->getName() == 'characters.random') {
                     </div>
                 @endforeach
                 </div>
-                <a class="btn btn-default" id="add_appearance" href="#" title="{{ trans('characters.actions.add_appearance') }}">
+                <a class="btn btn-default btn-block" id="add_appearance" href="#" title="{{ trans('characters.actions.add_appearance') }}">
                     <i class="fa fa-plus"></i> {{ trans('characters.actions.add_appearance') }}
                 </a>
                 <div id="template_appearance" style="display: none">
                     <div class="form-group parent-delete-row">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-xs-4">
                                 <div class="input-group">
                                     <span class="input-group-addon hidden-xs hidden-sm">
                                         <span class="fa fa-arrows-alt-v"></span>
@@ -112,7 +112,7 @@ if (request()->route()->getName() == 'characters.random') {
                                     ]) !!}
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-xs-8">
                                 <div class="input-group">
                                     {!! Form::text('appearance_entry[]', null, [
                                         'class' => 'form-control',
@@ -174,7 +174,7 @@ if (request()->route()->getName() == 'characters.random') {
                     </div>
                 @endforeach
                 </div>
-                <a class="btn btn-default" id="add_personality" href="#" title="{{ trans('characters.actions.add_personality') }}">
+                <a class="btn btn-default btn-block" id="add_personality" href="#" title="{{ trans('characters.actions.add_personality') }}">
                     <i class="fa fa-plus"></i> {{ trans('characters.actions.add_personality') }}
                 </a>
                 <div id="template_personality" style="display: none">

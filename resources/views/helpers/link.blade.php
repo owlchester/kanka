@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
                     <h4>{{ trans('helpers.link.title') }}</h4>
@@ -17,6 +17,9 @@
                 <div class="box-body">
                     <p>
                         {{ trans('helpers.link.description') }}
+                    </p>
+                    <p>
+                        {{ trans('helpers.link.auto_update') }}
                     </p>
                 </div>
             </div>
