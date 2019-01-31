@@ -54,15 +54,21 @@ class EntityMappingService
             $type = $data['type'];
             $id = $data['id'];
 
+            // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
+            if ($id == 'redirect' || empty($data['name'])) {
+                continue;
+            }
+
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
+                dump($mentions);
                 throw new Exception("Unknown type $type");
             }
 
             /** @var Entity $entity */
             $entity = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
             if ($entity) {
-                $this->log("- Mentions " . $entity->id);
+                //$this->log("- Mentions " . $entity->id);
 
                 $mention = new EntityMention();
                 $mention->entity_id = $model->entity->id;
@@ -127,19 +133,26 @@ class EntityMappingService
             $type = $data['type'];
             $id = $data['id'];
 
+            // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
+            if ($id == 'redirect' || empty($data['name'])) {
+                continue;
+            }
+
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
+
+                dump($data);
                 throw new Exception("Unknown type $type");
             }
 
             /** @var Entity $entity */
             $target = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
             if ($target) {
-                $this->log("- Mentions " . $model->id);
+                //$this->log("- Mentions " . $model->id);
 
                 // Do we already have this mention mapped?
                 if (!empty($existingTargets[$target->id])) {
-                    $this->log("- already have mapping");
+                    //$this->log("- already have mapping");
                     unset($existingTargets[$target->id]);
                     $existingMappings++;
                 } else {

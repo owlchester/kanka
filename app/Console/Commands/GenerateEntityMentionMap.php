@@ -32,6 +32,8 @@ class GenerateEntityMentionMap extends Command
      */
     protected $entityCount = 0;
     protected $mapCount = 0;
+    protected $mapTotalCount = 0;
+    protected $redirectFixed = 0;
 
     /**
      * @var EntityMappingService
@@ -55,6 +57,8 @@ class GenerateEntityMentionMap extends Command
      */
     public function handle()
     {
+        $start = date('H:i:s');
+        $this->info("START " . $start);
         $entities = [
             //'App\Models\Campaign',
             'App\Models\Character',
@@ -75,6 +79,27 @@ class GenerateEntityMentionMap extends Command
         EntityMention::truncate();
 
         foreach ($entities as $entity) {
+            $this->info("Entity $entity");
+            // Let's first fix those awful redirects
+            $this->redirectFixed = 0;
+            $model = new $entity;
+            $model->with('entity')->where('entry', 'like', '%redirect?what=%')->chunk(1000, function ($models) use ($entity) {
+                foreach ($models as $model) {
+
+                    /** @var MiscModel $model */
+                    $pattern = '<a href="([^"]*)">(.*?)&lt;(.*?)&gt;';
+                    $model->entry = preg_replace("`$pattern`i", '<a href="$1">$2</a>', $model->entry);
+                    if ($model->isDirty('entry')) {
+                        $this->redirectFixed++;
+                        $model->timestamps = false;
+                        $model->save();
+                    }
+                }
+            });
+            $this->info("- Fixed {$this->redirectFixed} redirects.");
+            $this->mapTotalCount += $this->mapCount;
+
+            $this->mapCount = 0;
             $model = new $entity;
             $model->with('entity')->where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) use ($entity) {
                 foreach ($models as $model) {
@@ -84,10 +109,14 @@ class GenerateEntityMentionMap extends Command
                     $this->mapCount += $this->entityMapping->mapModel($model);
                 }
             });
+            $this->info("- Created {$this->mapCount} maps.\n");
+            $this->mapTotalCount += $this->mapCount;
         }
 
         // Entity Notes
-        EntityNote::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) use ($entity) {
+        $this->info("Entity Notes");
+        $this->mapCount = 0;
+        EntityNote::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) {
             foreach ($models as $model) {
                 $this->entityCount++;
                 /** @var EntityNote $model */
@@ -95,18 +124,25 @@ class GenerateEntityMentionMap extends Command
                 $this->mapCount += $this->entityMapping->mapEntityNote($model);
             }
         });
+        $this->info("- Created {$this->mapCount} maps.\n");
+        $this->mapTotalCount += $this->mapCount;
 
-        // Entity Notes
-        Campaign::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) use ($entity) {
+        // Campaigns
+        $this->info("Campaigns");
+        $this->mapCount = 0;
+        Campaign::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) {
             foreach ($models as $model) {
                 $this->entityCount++;
-                /** @var EntityNote $model */
+                /** @var Campaign $model */
                 $this->info("Checking campaign:" . $model->id);
                 $this->mapCount += $this->entityMapping->mapCampaign($model);
             }
         });
+        $this->info("- Created {$this->mapCount} maps.\n");
+        $this->mapTotalCount += $this->mapCount;
 
-        $this->info("Updated {$this->entityCount} entities and created {$this->mapCount} maps.");
+        $this->info("Updated {$this->entityCount} entities and created {$this->mapTotalCount} maps.");
+        $this->info("END " . date('H:i:s') . " ($start)");
 
         return true;
     }
