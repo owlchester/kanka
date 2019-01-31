@@ -44,20 +44,21 @@
 $iconOptions = trans('locations.map.points.icons');
 unset($iconOptions['pin']);
 unset($iconOptions['entity']);
-$iconOptions = array_merge([
-    'pin' => trans('locations.map.points.icons.pin'),
-    'entity' => trans('locations.map.points.icons.entity'),
-], $iconOptions);
 ?>
     <div class="col-sm-6">
         <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.icon') }}</label>
-            {!! Form::select('icon',
-                $iconOptions
-            , null, ['class' => 'form-control']) !!}
+            <select name="icon" class="form-control select2-icon" style="width: 100%">
+                <option value="pin" data-icon="fa fa-map-marker">{{ __('locations.map.points.icons.pin') }}</option>
+                <option value="entity">{{ __('locations.map.points.icons.entity') }}</option>
+                @foreach ($iconOptions as $icon => $text)
+                <option value="{{ $icon }}" @if (isset($model) && $model->icon == $icon) selected="selected" @endif>{{ $text }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
-
+</div>
+<div class="row">
     <div class="col-sm-6">
         <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.shape') }}</label>
@@ -83,3 +84,4 @@ $iconOptions = array_merge([
 {!! Form::hidden('location_id', $location->id) !!}
 {!! Form::hidden('axis_x', (!isset($model) ? request()->get('axis_x', null) : null)) !!}
 {!! Form::hidden('axis_y', (!isset($model) ? request()->get('axis_y', null) : null)) !!}
+

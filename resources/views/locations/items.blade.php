@@ -8,8 +8,6 @@
     ]
 ])
 
-@inject('campaign', 'App\Services\CampaignService')
-
 @section('content')
     @include('partials.errors')
     <div class="row">

@@ -189,6 +189,7 @@ $(document).ready(function() {
 function initSelect2() {
     if ($('select.select2').length > 0) {
         $.each($('select.select2'), function (index) {
+            // Check it isn't the select2-icon
             $(this).select2({
                 //data: newOptions,
                 placeholder: $(this).attr('data-placeholder'),

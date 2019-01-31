@@ -103,32 +103,7 @@ class MapPoint extends Model
         if ($icon == 'pin' || ($icon == self::ICON_ENTITY && !$this->hasTarget())) {
             return 'fa fa-map-marker';
         } else {
-            $icons = [
-//                'skull' => 'skull',
-//                'book' => 'book',
-//                'aura' => 'aura',
-//                'tower' => 'tower',
-//                'fire' => 'fire',
-//                'beer' => 'beer',
-//                'dragon' => 'dragon',
-//                'tentacle' => 'tentacle',
-//                'spades-card' => 'spades-card',
-//                'anvil' => 'anvil',
-//                'axe' => 'axe',
-//                'shield' => 'shield',
-//                'bridge' => 'bridge',
-//                'campfire' => 'campfire',
-                'quest' => 'wooden-sign',
-                'character' => 'player',
-                'sprout' => 'sprout-emblem',
-            ];
-
-            $icon = 'ra ra-';
-            if (!empty($icons[$this->icon])) {
-                $icon .= $icons[e($this->icon)];
-            } else {
-                $icon .= e($this->icon);
-            }
+            $icon = 'ra ra-' . e($this->icon);
         }
 
         return $icon;
