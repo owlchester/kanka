@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => trans('relations.create.title', ['name' => $model->name]),
     'description' => trans('relations.create.description'),
     'breadcrumbs' => [
@@ -9,25 +9,21 @@
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @include('partials.errors')
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @include('partials.errors')
 
-                    {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
-                    @include('cruds.relations._form')
+            {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+            @include('cruds.relations._form')
 
-                    {!! Form::hidden('owner_id', $model->entity->id) !!}
+            {!! Form::hidden('owner_id', $model->entity->id) !!}
 
-                    <div class="form-group">
-                        <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#relation') === false ? '#relation' : null))]) !!}
-                    </div>
-
-                    {!! Form::close() !!}
-                </div>
+            <div class="form-group">
+                <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#relation') === false ? '#relation' : null))]) !!}
             </div>
+
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection
