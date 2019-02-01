@@ -180,7 +180,7 @@ class EntityMappingService
     {
         // Let's figure out the new text we're going to inject
         $tooltip = $entity->tooltipWithName();
-        $name = $entity->name;
+        $name = e($entity->name);
 
         $entityLink = !empty($url) ? $url : $entity->url();
         // Replace the link's locale to avoid issues when people use several languages

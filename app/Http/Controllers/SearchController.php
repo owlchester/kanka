@@ -207,7 +207,7 @@ class SearchController extends Controller
                         'id' => $model->id,
                         'fullname' => $model->name,
                         'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
-                        'name' => $model->name,
+                        'name' => e($model->name),
                         'type' => trans('entities.' . $model->type),
                         'tooltip' => $model->tooltip(),
                         'url' => route($model->pluralType() . '.show', $model->entity_id)
