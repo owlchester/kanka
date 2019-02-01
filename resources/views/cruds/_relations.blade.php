@@ -14,7 +14,7 @@
             @endif
             <th class="text-right">
                 @can('relation', [$model, 'add'])
-                    <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($name . '.relations.create', [$name => $model->id]) }}">
                         <i class="fa fa-plus"></i> {{ trans('crud.relations.actions.add') }}    </a>
                 @endcan
             </th>
@@ -48,7 +48,9 @@
             @endif
             <td class="text-right">
                 @can('relation', [$model, 'edit'])
-                    <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {{ trans('crud.edit') }}</a>
+                    <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"
+                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}"
+                    ><i class="fa fa-edit"></i> {{ trans('crud.edit') }}</a>
                 @endcan
                 @can('relation', [$model, 'delete'])
                 {!! Form::open(['method' => 'DELETE', 'route' => [$name . '.relations.destroy', $name => $model, 'relation' => $relation], 'style'=>'display:inline']) !!}

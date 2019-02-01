@@ -28,13 +28,14 @@ trait ExportableTrait
         }
 
         // Entity values
-        $foreigns = ['notes', 'attributes', 'relationships'];
-        foreach ($foreigns as $foreign) {
-            // Have to do the ()->get because of attributes being otherwise something else
-            foreach ($this->entity->$foreign()->get() as $model) {
-                $json[$foreign][] = $model->toArray();
+        if (!empty($this->entity)) {
+            $foreigns = ['notes', 'attributes', 'relationships'];
+            foreach ($foreigns as $foreign) {
+                // Have to do the ()->get because of attributes being otherwise something else
+                foreach ($this->entity->$foreign()->get() as $model) {
+                    $json[$foreign][] = $model->toArray();
+                }
             }
-
         }
 
         return json_encode($json);
