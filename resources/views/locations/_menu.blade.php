@@ -1,4 +1,5 @@
 <?php /** @var App\Models\location $location */ ?>
+@inject('campaign', 'App\Services\CampaignService')
 <div class="box box-solid">
     <div class="box-body box-profile">
         @include ('cruds._image')

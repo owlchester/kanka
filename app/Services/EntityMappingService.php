@@ -54,15 +54,21 @@ class EntityMappingService
             $type = $data['type'];
             $id = $data['id'];
 
+            // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
+            if ($id == 'redirect' || empty($data['name'])) {
+                continue;
+            }
+
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
+                dump($mentions);
                 throw new Exception("Unknown type $type");
             }
 
             /** @var Entity $entity */
             $entity = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
             if ($entity) {
-                $this->log("- Mentions " . $entity->id);
+                //$this->log("- Mentions " . $entity->id);
 
                 $mention = new EntityMention();
                 $mention->entity_id = $model->entity->id;
@@ -71,7 +77,7 @@ class EntityMappingService
 
                 $createdMappings++;
             } else {
-                $this->log("- Unknown entity of type $singularType and id $id");
+                //$this->log("- Unknown entity of type $singularType and id $id");
             }
         }
 
@@ -127,19 +133,25 @@ class EntityMappingService
             $type = $data['type'];
             $id = $data['id'];
 
+            // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
+            if ($id == 'redirect' || empty($data['name'])) {
+                continue;
+            }
+
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
+                dump($data);
                 throw new Exception("Unknown type $type");
             }
 
             /** @var Entity $entity */
             $target = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
             if ($target) {
-                $this->log("- Mentions " . $model->id);
+                //$this->log("- Mentions " . $model->id);
 
                 // Do we already have this mention mapped?
                 if (!empty($existingTargets[$target->id])) {
-                    $this->log("- already have mapping");
+                    //$this->log("- already have mapping");
                     unset($existingTargets[$target->id]);
                     $existingMappings++;
                 } else {
@@ -157,7 +169,7 @@ class EntityMappingService
                     $createdMappings++;
                 }
             } else {
-                $this->log("- Unknown entity of type $singularType and id $id");
+                //$this->log("- Unknown entity of type $singularType and id $id");
             }
         }
 
@@ -183,6 +195,8 @@ class EntityMappingService
         $name = $entity->name;
 
         $entityLink = !empty($url) ? $url : $entity->url();
+
+        //$entityLink = str_replace('http://kanka.loc', 'https://kanka.io', $entityLink);
         // Replace the link's locale to avoid issues when people use several languages
         $entityLinkSegments = explode('/', $entityLink);
         $entityLinkSegments[3] = '(.){2,5}';
@@ -192,7 +206,7 @@ class EntityMappingService
         // Just text, no tooltip
         $patternNoTooltip = '<a href=\"' . $entityLinkSearch . '\">(.*?)</a>';
         // We need to go 0.300 as the text is encoded, so some html entities will make it longer. It's not great
-        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
+        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch . '" data-toggle="tooltip"( data-html="true")?>(.*?)</a>';
 
         $replace = '<a href=\"' . $entityLink . '\">' . $name . '</a>';
         if (!empty($tooltip)) {
@@ -202,12 +216,12 @@ class EntityMappingService
 //        dump($patternNoTooltip);
 //        dump($patternTooltip);
 //        dump($replace);
-
         /** @var EntityMention $target */
         foreach ($entity->targetMentions()->with(['entity', 'campaign', 'entityNote'])->get() as $target) {
             // We've got a target, we need to update its entry field
             $realTarget = $target->isEntityNote() ? $target->entityNote : ($target->isCampaign() ? $target->campaign : $target->entity->child);
             $text = $realTarget->entry;
+
 //            dump($text);
             $text = preg_replace("`$patternNoTooltip`i", $replace, $text);
             $text = preg_replace("`$patternTooltip`i", $replace, $text);

@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'site_name' => env('APP_SITE_NAME', 'kanka.io'),
 
     /*
     |--------------------------------------------------------------------------

@@ -271,6 +271,7 @@
                 this.$dropdown.html(result.join('')).show();
             } else {
                 this.$dropdown.hide();
+                this.$dropdown.find('li').removeClass('active');
             }
         },
 

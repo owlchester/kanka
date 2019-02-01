@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'show' => [
-        'title' => 'FAQ :name',
-        'return' => 'Return to the FAQ',
-        'timestamp' => 'Last updated :date',
+    'fields'    => [
+        'answer'    => 'Answer',
+        'category'  => 'Category',
+        'locale'    => 'Locale',
+        'order'     => 'Order',
+        'question'  => 'Question',
     ],
-    'fields' => [
-        'locale' => 'Locale',
-        'question' => 'Question',
-        'answer' => 'Answer',
-        'order' => 'Order',
-        'category' => 'Category',
+    'show'      => [
+        'return'    => 'Return to the FAQ',
+        'timestamp' => 'Last updated :date',
+        'title'     => 'FAQ :name',
     ],
 ];

@@ -48,7 +48,7 @@ return [
         'quests'        => 'Sub Quests',
         'type'          => 'Type',
     ],
-    'helpers' => [
+    'helpers'       => [
         'nested'    => 'When in Nested View, you can view your Quests in a nested manner. Quests with no parent quest will be shown by default. Quests with sub quests can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
     'hints'         => [

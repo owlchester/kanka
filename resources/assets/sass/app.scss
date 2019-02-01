@@ -574,5 +574,10 @@ div.mce-fullscreen {
   z-index: 9900;
 }
 
+/** break lines that get too long **/
+td.breakable {
+  word-break: break-word;
+}
+
 
 @import "mobile";

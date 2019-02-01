@@ -9,6 +9,7 @@ return [
         'title'                     => 'Jets de dés',
     ],
     'link'          => [
+        'auto_update'   => 'Les liens vers d\'autres entités seront automatiquement mis à jour lorsque le nom ou la description de l\'entitée cible est modifié.',
         'description'   => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',
         'title'         => 'Liens vers d\'autres éléments et raccourcis',
     ],

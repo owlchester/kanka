@@ -1,0 +1,26 @@
+{
+  "name": "tinyMCE-mention-webpack",
+  "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CogniStreamer/tinyMCE-mention.git"
+  },
+  "description": "Mention/Autocomplete plugin for tinyMCE WYSIWYG editor",
+  "author": "Steven Devooght",
+  "bugs": {
+    "url": "https://github.com/CogniStreamer/tinyMCE-mention/issues"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=0.10.26"
+  },
+  "dependencies": {
+    "tinymce": "^4.3.13",
+    "tinymce-mention": "^4.0.1"
+  },
+  "devDependencies": {
+    "exports-loader": "^0.6.3",
+    "imports-loader": "^0.6.5",
+    "webpack": "^1.13.1"
+  }
+}

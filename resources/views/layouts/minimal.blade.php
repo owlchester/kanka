@@ -3,10 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title or trans('default.page_title') }} - {{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title or trans('default.page_title') }} - {{ config('app.name') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta property="og:title" content="{{ $title or __('default.page_title') }} - {{ config('app.name') }}" />
+    <meta property="og:site_name" content="{{ config('app.site_name') }}" />
+@yield('og')
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->

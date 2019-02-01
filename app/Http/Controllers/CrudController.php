@@ -319,7 +319,9 @@ class CrudController extends Controller
             $this->authorizeForGuest('read', $model);
         }
         $name = $this->view;
-        return view($this->view . '.' . $view, compact(
+        $fullview = $this->view . '.' . $view;
+        return view('cruds.subview', compact(
+            'fullview',
             'model',
             'name'
         ));

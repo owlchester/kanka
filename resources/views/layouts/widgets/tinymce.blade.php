@@ -9,14 +9,15 @@
                 "searchreplace wordcount visualblocks visualchars code fullscreen",
                 "insertdatetime media nonbreaking table contextmenu directionality",
                 "emoticons paste textcolor colorpicker textpattern",
-                "fullpage help mention"
+                "fullpage help mention media"
             ],
-            toolbar: "save undo redo | styleselect | bold italic strikethrough | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent removeformat formatselect| link image | emoticons charmap | | forecolor backcolor",
+            toolbar: "save undo redo | styleselect | bold italic strikethrough | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent removeformat formatselect| link image media | emoticons charmap | | forecolor backcolor",
             nanospell_server:"php",
             browser_spellcheck: true,
             relative_urls: false,
             remove_script_host: false,
             branding: false,
+            media_live_embeds: true,
             mentions: {
                 delimiter: ['@', '#'],
                 source: function(query, process, delimiter) {
@@ -40,6 +41,11 @@
                         return '<a href="' + item.url + '">' + item.fullname + '</a>';
                     }
                     return item.fullname;
+                },
+                render: function(item) {
+                    return '<li>' +
+                        '<a href="javascript:;"><span>' + (item.image ? item.image : '') + item.fullname + ' (' + item.type + ')</span></a>' +
+                        '</li>';
                 }
             },
             save_onsavecallback: function () {

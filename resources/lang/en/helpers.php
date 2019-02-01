@@ -9,6 +9,7 @@ return [
         'title'                     => 'Dice Rolls',
     ],
     'link'          => [
+        'auto_update'   => 'Links to other entities will automatically be updated when the target\'s name or description is changed.',
         'description'   => 'You can easily link to other entities by simply typing \'@\'. You can also type \'#\' to get a list of months from your calendars.',
         'title'         => 'Linking to other entries and shortcuts',
     ],

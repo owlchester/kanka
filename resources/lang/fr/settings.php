@@ -3,6 +3,7 @@
 return [
     'account'   => [
         'actions'           => [
+            'social'            => 'Changer au login Kanka',
             'update_email'      => 'Modifier l\'email',
             'update_password'   => 'Modifier le mot de passe',
         ],
@@ -11,6 +12,12 @@ return [
         'email_success'     => 'Email modifié.',
         'password'          => 'Modification du mot de passe',
         'password_success'  => 'Mot de passe modifié.',
+        'social'            => [
+            'error'     => 'Tu utilises déjà le login Kanka pour ce compte.',
+            'helper'    => 'Ton compte est géré par :provider. Tu peux changer au login Kanka en fournissant un login et un mot de passe.',
+            'success'   => 'Ton compte utilise d\'orénavant le login Kanka.',
+            'title'     => 'Social à Kanka',
+        ],
         'title'             => 'Compte',
     ],
     'api'       => [

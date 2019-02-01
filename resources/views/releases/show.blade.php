@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Release $model */?>
 @extends('layouts.front', [
     'title' => trans('releases.show.title', ['name' => $model->title]),
     'description' => '',
@@ -6,6 +7,11 @@
     ],
     'menu_js' => false,
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ $model->excerpt }}" />
+    <meta property="og:url" content="{{ route('releases.show', $model->getSlug()) }}" />
+@endsection
 
 @section('content')
     <header class="masthead reduced-masthead">
