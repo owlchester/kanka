@@ -16,6 +16,9 @@
     <meta name="description" content="{{ trans('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
+    <meta property="og:title" content="{{ $title or __('front.meta.title') }} - {{ config('app.name') }}" />
+    <meta property="og:site_name" content="{{ config('app.site_name') }}" />
+
     <title>{{ $error }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
@@ -26,7 +29,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -106,28 +108,7 @@
 </header>
 @yield('content')
 
-<footer>
-    <div class="container">
-        <ul class="list-inline">
-            <li class="list-inline-item">
-                <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="{{ route('faq.index') }}">{{ trans('front.menu.faq') }}</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
-            </li>
-        </ul>
-        <p>{{ trans('front.footer.copyright', ['current' => date('Y')]) }}</p>
-    </div>
-</footer>
+@include('front.footer')
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -160,6 +141,7 @@
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
     window.addEventListener("load", function(){
