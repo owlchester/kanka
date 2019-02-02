@@ -95,19 +95,20 @@ class EntityMappingService
             // If we're mentioning a campaign
             if ($singularType == 'campaign') {
                 // Can't handle this with this version, because target_id is ment for entities.
-            } else {
-                /** @var Entity $entity */
-                $entity = Entity::where(['type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id])->first();
-                if ($entity) {
-                    //$this->log("- Mentions " . $entity->id);
+                continue;
+            }
 
-                    $mention = new EntityMention();
-                    $mention->entity_id = $model->entity->id;
-                    $mention->target_id = $entity->id;
-                    $mention->save();
+            /** @var Entity $entity */
+            $entity = Entity::where(['type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id])->first();
+            if ($entity) {
+                //$this->log("- Mentions " . $entity->id);
 
-                    $createdMappings++;
-                }
+                $mention = new EntityMention();
+                $mention->entity_id = $model->entity->id;
+                $mention->target_id = $entity->id;
+                $mention->save();
+
+                $createdMappings++;
             }
 
 //             else {
@@ -189,10 +190,9 @@ class EntityMappingService
             }
 
             /** @var Entity $entity */
-            $target = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
+            $target = Entity::where(['type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id])->first();
             if ($target) {
                 //$this->log("- Mentions " . $model->id);
-
                 // Do we already have this mention mapped?
                 if (!empty($existingTargets[$target->id])) {
                     //$this->log("- already have mapping");
