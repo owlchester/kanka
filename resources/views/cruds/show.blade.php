@@ -18,6 +18,22 @@
 
 @section('content')
     @include($name . '.show')
+
+    @admin
+    <div class="panel panel-default hidden">
+        <div class="panel-heading">
+            <h4>Admin</h4>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Entity ID</dt>
+                <dd>{{ $model->entity->id }}</dd>
+                <dt>Entity Type</dt>
+                <dd>{{ $model->entity->type }}</dd>
+            </dl>
+        </div>
+    </div>
+    @endadmin
 @endsection
 
 

@@ -12,6 +12,17 @@ use Exception;
 
 class EntityMappingService
 {
+    /**
+     * If exceptions should be thrown. Probably not.
+     * @var bool
+     */
+    protected $throwExceptions = true;
+
+    /**
+     * If the app is verbose
+     * @var bool
+     */
+    public $verbose = false;
 
     /**
      * Map of urls to actual entity
@@ -38,7 +49,16 @@ class EntityMappingService
         'races' => 'race',
     ];
 
-    public $verbose = false;
+    /**
+     * Set errors and verbose to silent
+     * @return $this
+     */
+    public function silent()
+    {
+        $this->throwExceptions = false;
+        $this->verbose = false;
+        return $this;
+    }
 
     /**
      * @param MiscModel $model
@@ -55,14 +75,18 @@ class EntityMappingService
             $id = $data['id'];
 
             // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
-            if ($id == 'redirect' || empty($data['name'])) {
+            if ($id == 'redirect') {
                 continue;
             }
 
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
-                dump($mentions);
-                throw new Exception("Unknown type $type");
+                if ($this->throwExceptions) {
+                    dump($mentions);
+                    throw new Exception("Unknown type $type");
+                } else {
+                    continue;
+                }
             }
 
             /** @var Entity $entity */
@@ -134,14 +158,19 @@ class EntityMappingService
             $id = $data['id'];
 
             // Old redirects or mapping to something else (like the map of a location) that doesn't have a tooltip
-            if ($id == 'redirect' || empty($data['name'])) {
+            // But a link to a mention without a title will also break here.
+            if ($id == 'redirect') {
                 continue;
             }
 
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
-                dump($data);
-                throw new Exception("Unknown type $type");
+                if ($this->throwExceptions) {
+                    dump($mentions);
+                    throw new Exception("Unknown type $type");
+                } else {
+                    continue;
+                }
             }
 
             /** @var Entity $entity */
@@ -257,8 +286,15 @@ class EntityMappingService
             $urlCount = count($urlSegments);
             $type = $urlSegments[$urlCount - 2];
             $id = $urlSegments[$urlCount - 1];
-            $name = $segments[2][$key];
 
+            // If the type is an integer, we've probably got a link going to a subpage like map, so
+            // we need to fiddle a bit with the values.
+            if (is_numeric($type)) {
+                $type = $urlSegments[$urlCount - 3];
+                $id = $urlSegments[$urlCount - 2];
+            }
+
+            $name = $segments[2][$key];
             $key = $type.'.' . $id;
 
             $data[$key] = [

@@ -231,7 +231,7 @@ abstract class MiscObserver
         //$this->entityMappingService->verbose = true;
         // If the entity's entry has changed, we need to re-build it's map.
         if ($model->isDirty('entry')) {
-            $this->entityMappingService->mapEntity($entity);
+            $this->entityMappingService->silent()->mapEntity($entity);
         }
 
         // If we changed the name or entry of this object, we need to update the entry of objects mentioning us
