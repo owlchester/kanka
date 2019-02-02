@@ -30,6 +30,7 @@ class EntityMappingService
      * @var array
      */
     protected $typeMapping = [
+        'campaign' => 'campaign',
         'characters' => 'character',
         'calendars' => 'calendar',
         'conversations' => 'conversation',
@@ -61,6 +62,8 @@ class EntityMappingService
     }
 
     /**
+     * Mapping a misc model
+     *
      * @param MiscModel $model
      * @return int
      * @throws Exception
@@ -89,20 +92,27 @@ class EntityMappingService
                 }
             }
 
-            /** @var Entity $entity */
-            $entity = Entity::where(['type' => $singularType, 'entity_id' => $id])->first();
-            if ($entity) {
-                //$this->log("- Mentions " . $entity->id);
-
-                $mention = new EntityMention();
-                $mention->entity_id = $model->entity->id;
-                $mention->target_id = $entity->id;
-                $mention->save();
-
-                $createdMappings++;
+            // If we're mentioning a campaign
+            if ($singularType == 'campaign') {
+                // Can't handle this with this version, because target_id is ment for entities.
             } else {
-                //$this->log("- Unknown entity of type $singularType and id $id");
+                /** @var Entity $entity */
+                $entity = Entity::where(['type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id])->first();
+                if ($entity) {
+                    //$this->log("- Mentions " . $entity->id);
+
+                    $mention = new EntityMention();
+                    $mention->entity_id = $model->entity->id;
+                    $mention->target_id = $entity->id;
+                    $mention->save();
+
+                    $createdMappings++;
+                }
             }
+
+//             else {
+//                //$this->log("- Unknown entity of type $singularType and id $id");
+//            }
         }
 
         return $createdMappings;
@@ -171,6 +181,11 @@ class EntityMappingService
                 } else {
                     continue;
                 }
+            }
+
+            // If we're targeting a campaign, no support for auto-updates
+            if ($singularType == 'campaign') {
+                continue;
             }
 
             /** @var Entity $entity */
