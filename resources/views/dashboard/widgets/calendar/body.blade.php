@@ -38,6 +38,8 @@ foreach ($upcomingRecurringEvents as $event) {
 }
 $upcomingEvents = array_sort_recursive($upcomingEvents);
 $shownUpcomingEvents = 0;
+
+/** @var \App\Models\EntityEvent $event */
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
@@ -53,14 +55,19 @@ $shownUpcomingEvents = 0;
 </div>
 <div class="row">
     @if ($previousEvents->count() > 0)
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-12 col-lg-6">
             <h4>{{ __('dashboard.widgets.calendar.previous_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($previousEvents as $event)
                     @if (!empty($event->entity->child))
                     <li>
+                        <div class="pull-right">
+                            @if (!empty($event->comment))
+                                <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            @endif
+                            <i class="fa fa-calendar" title="{{ $event->getDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                        </div>
                         {{ link_to($event->entity->url(), $event->entity->name) }}
-                        <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
                     </li>
                     @endif
                 @endforeach
@@ -69,7 +76,7 @@ $shownUpcomingEvents = 0;
     @endif
 
     @if (!empty($upcomingEvents))
-        <div class="col-md-6 col-sm-12">
+        <div class="col-lg-6 col-md-12">
             <h4>{{ __('dashboard.widgets.calendar.upcoming_events') }}</h4>
             <ul class="list-unstyled">
                 @foreach ($upcomingEvents as $y => $year)
@@ -78,14 +85,19 @@ $shownUpcomingEvents = 0;
                             @foreach ($day as $event)
                                 @if ($shownUpcomingEvents < 5 && !empty($event->entity->child))
                                     <li>
-                                        {{ link_to($event->entity->url(), $event->entity->name) }}
-                                        @if ($event->date == $calendar->date)
-                                            <span class="label label-default pull-right" title="{{ $event->getDate() }}">
-                                        {{ __('calendars.actions.today') }}
-                                        </span>
-                                        @else
-                                            <i class="fa fa-calendar pull-right" title="{{ $event->getDate() }}"></i>
-                                        @endif
+                                        <div class="pull-right">
+                                            @if (!empty($event->comment))
+                                                <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @endif
+                                            @if ($event->date == $calendar->date)
+                                                <span class="label label-default" title="{{ $event->getDate() }}">
+                                            {{ __('calendars.actions.today') }}
+                                            </span>
+                                            @else
+                                                <i class="fa fa-calendar" title="{{ $event->getDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @endif
+                                        </div>
+                                        {{ link_to($event->entity->url(), $event->entity->name, ['title' => $event->comment, 'data-toggle' => 'tooltip']) }}
                                     </li>
                                     <?php $shownUpcomingEvents++; ?>
                                 @endif
