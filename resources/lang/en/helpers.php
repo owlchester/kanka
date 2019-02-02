@@ -14,4 +14,5 @@ return [
         'title'         => 'Linking to other entries and shortcuts',
     ],
     'title'         => 'Helpers',
+    'public' => 'Watch a tutorial video on Youtube explaining public campaigns.',
 ];

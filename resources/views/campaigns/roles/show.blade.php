@@ -61,7 +61,10 @@
                 <div class="box-body">
                     <p class="help-block">{{ trans('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
                     @if ($role->is_public)
-                        <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}</p>
+                        <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}<br />
+
+                            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
+                        </p>
                     @endif
 
                     @can('permission', $role)
