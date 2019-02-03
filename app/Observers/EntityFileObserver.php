@@ -28,6 +28,7 @@ class EntityFileObserver
     {
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
+        $entityFile->entity->child->savingObserver = false;
         $entityFile->entity->child->touch();
     }
 

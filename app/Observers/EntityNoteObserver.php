@@ -62,6 +62,7 @@ class EntityNoteObserver
     {
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
+        $entityNote->entity->child->savingObserver = false;
         $entityNote->entity->child->touch();
 
         // If the entity note's entry has changed, we need to re-build it's map.

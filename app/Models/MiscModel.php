@@ -27,6 +27,7 @@ abstract class MiscModel extends Model
      * @var bool Skip using the model's saving observer
      */
     public static $SKIP_SAVING_OBSERVER = false;
+    public $savingObserver = true;
 
     /**
      * Eloquence trait for easy search
