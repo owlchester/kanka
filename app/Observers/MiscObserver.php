@@ -98,7 +98,7 @@ abstract class MiscObserver
      */
     public function saved(MiscModel $model)
     {
-        if (defined('MISCELLANY_CENTITY_CREATION')) {
+        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
             return;
         }
 
