@@ -378,10 +378,30 @@ tr.entity-hidden {
 div.mce-fullscreen {
   z-index: 1400;
 }
+.mce-btn-group:not(:first-child) {
+  border-left: none !important;
+}
 
 .export-visible {
   display: none;
 }
+
+/**
+ * Tinymce entry
+ */
+.panel-entry {
+  padding: 5px;
+
+  .form-group {
+    margin-bottom: 0;
+
+    .mce-container {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
 
 /**
  * Search

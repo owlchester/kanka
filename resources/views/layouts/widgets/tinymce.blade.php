@@ -5,22 +5,29 @@
             language: '{{ App::getLocale() == 'en-US' ? 'en' : App::getLocale() }}',
             selector: "textarea.html-editor",
             plugins: [
-                "save autosave advlist autolink lists link image charmap hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "save autosave advlist autolink lists link image hr anchor pagebreak",
+                "searchreplace code fullscreen",
                 "insertdatetime media nonbreaking table contextmenu directionality",
                 "emoticons paste textcolor colorpicker textpattern",
-                "fullpage help mention media"
+                "fullpage mention media"
             ],
-            toolbar: "save undo redo | styleselect | bold italic strikethrough | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent removeformat formatselect| link image media | emoticons charmap | | forecolor backcolor",
+            toolbar: "styleselect | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table media",
+            // mobile: {
+            //     theme: 'mobile',
+            //     plugins: [ 'save', 'lists', 'autolink', 'mention']
+            // },
             nanospell_server:"php",
             browser_spellcheck: true,
             relative_urls: false,
             remove_script_host: false,
             branding: false,
             media_live_embeds: true,
+            menubar: false,
+            themes: "modern",
             mentions: {
                 delimiter: ['@', '#'],
                 source: function(query, process, delimiter) {
+                    console.log('yo');
                     if (delimiter === '@') {
                         $.getJSON('{{ route('search.mentions') }}?q='+ query, function(data) {
                             process(data)

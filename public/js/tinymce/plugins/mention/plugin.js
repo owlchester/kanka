@@ -94,17 +94,18 @@
         },
 
         rteKeyUp: function (e) {
+            console.log('rte keyup', e.)
             switch (e.which || e.keyCode) {
             //DOWN ARROW
-            case 40:
+            case 'ArrowDown':
             //UP ARROW
-            case 38:
+            case 'ArrowUp':
             //SHIFT
-            case 16:
+            case 'Shift':
             //CTRL
-            case 17:
+            case 'Ctrl':
             //ALT
-            case 18:
+            case 'Alt':
                 break;
 
             //BACKSPACE
@@ -140,7 +141,7 @@
         },
 
         rteKeyDown: function (e) {
-            switch (e.which || e.keyCode) {
+            switch (e.code) {
              //TAB
             case 9:
             //ENTER
@@ -158,7 +159,7 @@
                 }
                 break;
             //DOWN ARROW
-            case 40:
+            case 'ArrowDown':
                 e.preventDefault();
                 if (this.$dropdown !== undefined) {
                     this.highlightNextResult();
