@@ -15,7 +15,7 @@ class CalendarObserver extends MiscObserver
     {
         parent::saving($model);
 
-        if (!request()->has('name')) {
+        if (!request()->has('name') || $model->savingObserver === false) {
             return;
         }
 
