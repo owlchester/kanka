@@ -94,7 +94,6 @@
         },
 
         rteKeyUp: function (e) {
-            console.log('rte keyup', e.)
             switch (e.which || e.keyCode) {
             //DOWN ARROW
             case 'ArrowDown':
