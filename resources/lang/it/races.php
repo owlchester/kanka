@@ -20,7 +20,11 @@ return [
     'fields'        => [
         'characters'    => 'Personaggi',
         'name'          => 'Nome',
+        'races'         => 'Sotto-Razze',
         'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested'    => 'Quando ci si trova nella vista annidata puoi vedere le tue Razze in maniera annidata. Razze senza genitori saranno mostrate in maniera predefinita. Razze con discendenti potranno essere premute per vederne i figli. Potrai continuare ad espandere le razze fino a quando non ci saranno più figli da mostrare.',
     ],
     'index'         => [
         'add'           => 'Nuova Razza',

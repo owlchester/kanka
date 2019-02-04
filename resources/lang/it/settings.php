@@ -3,6 +3,7 @@
 return [
     'account'   => [
         'actions'           => [
+            'social'            => 'Vai al Login Kanka',
             'update_email'      => 'Aggiorna e-mail',
             'update_password'   => 'Aggiorna password',
         ],
@@ -11,6 +12,12 @@ return [
         'email_success'     => 'E-Mail aggiornata.',
         'password'          => 'Cambia password',
         'password_success'  => 'Password aggiornata.',
+        'social'            => [
+            'error'     => 'Stai già utilizzando il login Kanka per questo account.',
+            'helper'    => 'Il tuo account è attualmente gestito da :provider. Puoi smettere di utilizzarlo e passare al login standard di Kanka impostando una password.',
+            'success'   => 'Il tuo account ora utilizza il login Kanka.',
+            'title'     => 'Social a Kanka',
+        ],
         'title'             => 'Account',
     ],
     'api'       => [

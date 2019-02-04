@@ -12,6 +12,7 @@ return [
     'dashboard'             => 'Dashboard',
     'dice_rolls'            => 'Tiri di Dado',
     'discord'               => 'Discord',
+    'entity-creator'        => 'Creazione Rapida',
     'events'                => 'Eventi',
     'families'              => 'Famiglie',
     'items'                 => 'Oggetti',

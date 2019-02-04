@@ -45,7 +45,11 @@ return [
         'name'          => 'Nome',
         'organisations' => 'Organizzazioni',
         'quest'         => 'Missione Padre',
+        'quests'        => 'Sotto-Missioni',
         'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested'    => 'Quando ci si trova nella vista annidata puoi vedere le tue Missioni in maniera annidata. Missioni senza genitori saranno mostrate in maniera predefinita. Missioni con discendenti potranno essere premute per vederne i figli. Potrai continuare ad espandere le missioni fino a quando non ci saranno più figli da mostrare.',
     ],
     'hints'         => [
         'quests'    => 'Una ragnatela di missioni interconnesse può essere costruita utilizzando il campo "Missione Padre".',

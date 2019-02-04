@@ -9,6 +9,7 @@ return [
         'title'                     => 'Tiri di Dado',
     ],
     'link'          => [
+        'auto_update'   => 'I collecamenti alle altre entità saranno aggiornati automaticamente quando il nome o la descrizione dell\'entità collegata saranno aggiornate.',
         'description'   => 'Puoi facilmente linkare altre entità scrivendo \'@\'. Puoi anche scrivere \'#\' per avere una lista di mesi del tuo calendario.',
         'title'         => 'Linkando ad altre entità e scorciatoie',
     ],

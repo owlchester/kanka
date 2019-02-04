@@ -36,7 +36,7 @@ return [
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht der Familie',
         'tabs'          => [
-            'member'    => 'Mitglieder',
+            'members'   => 'Mitglieder',
             'relation'  => 'Beziehungen',
         ],
         'title'         => 'Familie :name',

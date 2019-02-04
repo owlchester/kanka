@@ -120,6 +120,10 @@ return [
     ],
     'quests'        => [
         'description'   => 'Missioni intraprese da un personaggio',
+        'helpers'       => [
+            'quest_giver'   => 'Missioni per cui il personaggio è il committente.',
+            'quest_member'  => 'Missioni di cui il personaggio fa parte.',
+        ],
         'title'         => 'Missioni del Personaggio :name',
     ],
     'sections'      => [

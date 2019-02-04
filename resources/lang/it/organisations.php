@@ -19,11 +19,13 @@ return [
         'members'       => 'Membri',
         'name'          => 'Nome',
         'organisation'  => 'Organizzazione Padre',
+        'organisations' => 'Sotto-Organizzazioni',
         'relation'      => 'Relazione',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
         'descendants'   => 'Questa lista contiene tutte le organizzazione che sono discendenti di questa organizzazione, non solo quelle direttamente sotto di essa.',
+        'nested'        => 'Quando ci si trova nella vista annidata puoi vedere le tue Organizzazioni in maniera annidata. Organizzazioni senza genitori saranno mostrate in maniera predefinita. Organizzazioni con discendenti potranno essere premute per vederne i figli. Potrai continuare ad espandere le organizzazioni fino a quando non ci saranno più figli da mostrare.',
     ],
     'index'         => [
         'add'           => 'Nuova Organizzazione',

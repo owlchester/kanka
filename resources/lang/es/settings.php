@@ -3,6 +3,7 @@
 return [
     'account'   => [
         'actions'           => [
+            'social'            => 'Cambiar a inicio de sesión en Kanka',
             'update_email'      => 'Actualizar email',
             'update_password'   => 'Actualizar contraseña',
         ],
@@ -11,6 +12,12 @@ return [
         'email_success'     => 'Email actualizado.',
         'password'          => 'Cambiar contraseña',
         'password_success'  => 'Contraseña actualizada.',
+        'social'            => [
+            'error'     => 'Ya estás utilizando el inicio de sesión de Kanka con esta cuenta.',
+            'helper'    => 'Tu cuenta está vinculada con :provider. Puedes dejar de usarla y cambiar al inicio de sesión estándar de Kanka escribiendo una contraseña.',
+            'success'   => 'Tu cuenta ahora usa el inicio de sesión de Kanka.',
+            'title'     => 'De social a Kanka',
+        ],
         'title'             => 'Cuenta',
     ],
     'api'       => [
