@@ -205,7 +205,7 @@ class SearchController extends Controller
                 if (EntityPermission::canView($model, $campaign)) {
                     $formatted[] = [
                         'id' => $model->id,
-                        'fullname' => $model->name,
+                        'fullname' => e($model->name),
                         'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
                         'name' => e($model->name),
                         'type' => trans('entities.' . $model->type),
