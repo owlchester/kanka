@@ -1,7 +1,6 @@
-
-
 $(document).ready(function() {
     $('.summernote').summernote({
+        height: 180,
         hint: [{
             match: /\B@(\w*)$/,
             mentions: function(keyword, callback) {
@@ -49,5 +48,3 @@ $(document).ready(function() {
 
     });
 });
-
-

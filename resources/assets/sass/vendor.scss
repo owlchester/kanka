@@ -9,3 +9,29 @@
 // Select 2
 @import "~select2/dist/css/select2.css";
 @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.css";
+
+.note-hint-group {
+  .note-hint-item {
+    min-width: 200px;
+    min-height: 30px;
+    display: block;
+    padding: 5px;
+
+    &:hover {
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .active {
+    border-radius: 5px;
+    background: #3c8dbc;
+    color: white;
+  }
+}
+@media (max-width: 787px) {
+  .note-popover {
+    left: 0 !important;
+    width: 100% !important;
+  }
+}
