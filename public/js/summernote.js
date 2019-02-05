@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
     $('.summernote').summernote({
-        hint: {
+        hint: [{
             match: /\B@(\w*)$/,
             mentions: function(keyword, callback) {
                 $.ajax({
@@ -27,7 +27,26 @@ $(document).ready(function() {
             template: function (item) {
                 return '' + (item.image ? item.image : '') + item.fullname + ' (' + item.type + ')';
             }
-        }
+        },{
+            match: /\B#(\w*)$/,
+            mentions: function(keyword, callback) {
+                $.ajax({
+                    url: $('#mention-route-months').val() + '?q=' + keyword,
+                    type: 'get',
+                    async: true
+                }).done(callback);
+            },
+            search: function (keyword, callback) {
+                this.mentions(keyword, callback);
+            },
+            content: function (item) {
+                return item.fullname;
+            },
+            template: function (item) {
+                return item.fullname;
+            }
+        }],
+
     });
 });
 
