@@ -25,7 +25,7 @@ $(document).ready(function() {
                 return item.fullname;
             },
             template: function (item) {
-                return '' + (item.image ? item.image : '') + item.fullname + ' (' + item.type + ')';
+                return '<div class="summernote-hint-option">' + (item.image ? item.image : '') + item.fullname + ' (' + item.type + ')</div>';
             }
         },{
             match: /\B#(\w*)$/,

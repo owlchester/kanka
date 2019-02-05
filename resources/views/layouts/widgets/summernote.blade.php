@@ -8,4 +8,12 @@
 
 @section('styles')
     <link href="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+
+    <style>
+        .summernote-hint-option {
+            min-width: 200px;
+            min-height: 30px;
+            display: block;
+        }
+    </style>
 @endsection
