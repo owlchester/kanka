@@ -123,7 +123,7 @@ return [
         //'lg'          => ['name' => 'Ganda',                  'script' => 'Latn', 'native' => 'Luganda', 'regional' => 'lg_UG'],
         //'luy'         => ['name' => 'Oluluyia',               'script' => 'Latn', 'native' => 'Luluhia', 'regional' => ''],
         //'lb'          => ['name' => 'Luxembourgish',          'script' => 'Latn', 'native' => 'Lëtzebuergesch', 'regional' => 'lb_LU'],
-        //'hu'          => ['name' => 'Hungarian',              'script' => 'Latn', 'native' => 'magyar', 'regional' => 'hu_HU'],
+        'hu'          => ['name' => 'Hungarian',              'script' => 'Latn', 'native' => 'Magyar', 'regional' => 'hu_HU'],
         //'mgh'         => ['name' => 'Makhuwa-Meetto',         'script' => 'Latn', 'native' => 'Makua', 'regional' => ''],
         //'mg'          => ['name' => 'Malagasy',               'script' => 'Latn', 'native' => 'Malagasy', 'regional' => 'mg_MG'],
         //'mt'          => ['name' => 'Maltese',                'script' => 'Latn', 'native' => 'Malti', 'regional' => 'mt_MT'],

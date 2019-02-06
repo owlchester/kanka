@@ -13,5 +13,6 @@ return [
         'description'   => 'Puoi facilmente linkare altre entità scrivendo \'@\'. Puoi anche scrivere \'#\' per avere una lista di mesi del tuo calendario.',
         'title'         => 'Linkando ad altre entità e scorciatoie',
     ],
+    'public'        => 'Guarda un tutorial su Youtube sulle campagne pubbliche.',
     'title'         => 'Aiuti',
 ];
