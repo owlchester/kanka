@@ -6,7 +6,7 @@ return [
         'title'         => 'Verziók',
     ],
     'post'  => [
-        'footer'    => ':name :date szerint',
+        'footer'    => ':name :date',
     ],
     'show'  => [
         'return'    => 'Vissza a verziókhoz',
