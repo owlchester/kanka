@@ -16,7 +16,7 @@ return [
     ],
     'fields'        => [
         'messages'      => 'Üzenetek',
-        'name'          => 'Név',
+        'name'          => 'Megnevezés',
         'participants'  => 'Résztvevők',
         'target'        => 'Célpont',
         'type'          => 'Típus',

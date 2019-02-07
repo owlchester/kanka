@@ -42,7 +42,7 @@ return [
         'is_completed'  => 'Teljesítve',
         'items'         => 'Tárgyak',
         'locations'     => 'Helyszínek',
-        'name'          => 'Név',
+        'name'          => 'Megnevezés',
         'organisations' => 'Szervezetek',
         'quest'         => 'Főküldetés',
         'quests'        => 'Alküldetések',

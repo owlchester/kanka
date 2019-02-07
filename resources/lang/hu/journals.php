@@ -17,7 +17,7 @@ return [
         'author'    => 'Szerző',
         'date'      => 'Dátum',
         'image'     => 'Kép',
-        'name'      => 'Név',
+        'name'      => 'Megnevezés',
         'relation'  => 'Kapcsolat',
         'type'      => 'Típus',
     ],

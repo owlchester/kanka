@@ -174,7 +174,7 @@ return [
         'title'         => ':name helyszín szervezetei',
     ],
     'placeholders'  => [
-        'location'  => 'Válassz ki egy szülő helyszínt',
+        'location'  => 'Válassz ki egy szülő helyszínt!',
         'name'      => 'A helyszín neve',
         'type'      => 'Város, királyság, rom, táncklub',
     ],

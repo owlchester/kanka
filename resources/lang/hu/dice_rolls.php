@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'created_at'    => 'Dobott',
-        'name'          => 'Név',
+        'name'          => 'Megnevezés',
         'parameters'    => 'Paraméterek',
         'results'       => 'Eredmények',
         'rolls'         => 'Dobások',

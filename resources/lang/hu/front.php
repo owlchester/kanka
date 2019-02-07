@@ -101,7 +101,7 @@ return [
         'twitter'       => 'Küldj nekünk tweetet Twitteren!',
     ],
     'master'        => [
-        'call_to_action'    => 'Regisztrálj most, ingyen van!',
+        'call_to_action'    => 'Regisztrálj most, nem kerül semmibe!',
         'description'       => 'A Kanka egy könnyű és rugalmas eszköz online világépítésre és a szerepjátékos kampányaid kezelésére. Hozz létre és kezelj szereplőket, helyszíneket, szervezeteket, eseményeket és még sok minden mást.',
         'title'             => 'Kanka',
     ],

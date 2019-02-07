@@ -17,7 +17,7 @@ return [
         'date'      => 'Dátum',
         'image'     => 'Kép',
         'location'  => 'Helyszín',
-        'name'      => 'Név',
+        'name'      => 'Megnevezés',
         'type'      => 'Típus',
     ],
     'index'         => [
@@ -28,7 +28,7 @@ return [
     ],
     'placeholders'  => [
         'date'      => 'Az eseményed dátuma',
-        'location'  => 'Válassz ki egy helyszínt',
+        'location'  => 'Válassz ki egy helyszínt!',
         'name'      => 'Az esemény neve',
         'type'      => 'Szertartás, ünnepség, katasztrófa, csata, születés',
     ],

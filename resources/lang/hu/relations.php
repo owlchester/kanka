@@ -23,6 +23,6 @@ return [
     ],
     'placeholders'  => [
         'relation'  => 'A kapcsolat jellege',
-        'target'    => 'Válassz ki egy entitást',
+        'target'    => 'Válassz ki egy entitást!',
     ],
 ];

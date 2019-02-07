@@ -6,7 +6,7 @@ return [
         'tabs'      => [
             'modules'   => ':count modul',
             'roles'     => ':count szerep',
-            'users'     => '.count felhasználó',
+            'users'     => ':count felhasználó',
         ],
     ],
     'description'       => 'Otthon a kreativitásod számára',

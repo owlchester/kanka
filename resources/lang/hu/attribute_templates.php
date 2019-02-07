@@ -32,7 +32,7 @@ return [
         'title'         => 'Tulajdonságsablonok',
     ],
     'placeholders'          => [
-        'attribute_template'    => 'Válassz egy tulajdonságsablont',
+        'attribute_template'    => 'Válassz egy tulajdonságsablont!',
         'name'                  => 'A tulajdonságsablon neve',
     ],
     'show'                  => [

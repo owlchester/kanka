@@ -16,7 +16,7 @@ return [
     'fields'        => [
         'characters'    => 'Karakterek',
         'children'      => 'Almezők',
-        'name'          => 'Név',
+        'name'          => 'Megnevezés',
         'tag'           => 'Címke',
         'tags'          => 'Alcímkék',
         'type'          => 'Típus',
