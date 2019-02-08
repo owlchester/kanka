@@ -2960,6 +2960,10 @@ td.breakable {
   word-break: break-word;
 }
 
+.btn-group .dropdown-toggle {
+  height: 36px;
+}
+
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;

@@ -7,7 +7,7 @@
             plugins: [
                 "save autosave advlist autolink lists link image hr anchor pagebreak",
                 "searchreplace code fullscreen",
-                "insertdatetime media nonbreaking table contextmenu directionality",
+                "insertdatetime media nonbreaking table directionality",
                 "emoticons paste textcolor colorpicker textpattern",
                 "fullpage mention media"
             ],
@@ -51,7 +51,7 @@
                 },
                 render: function(item) {
                     return '<li>' +
-                        '<a href="javascript:;"><span>' + (item.image ? item.image : '') + item.fullname + ' (' + item.type + ')</span></a>' +
+                        '<a href="javascript:;"><span>' + (item.image ? item.image : '') + item.fullname + (item.type ? ' (' + item.type + ')' : '') + '</span></a>' +
                         '</li>';
                 }
             },

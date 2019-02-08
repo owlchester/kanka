@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body panel-entry">
         <div class="form-group">
-            {!! Form::textarea('entry', $formService->prefill('history', $source), ['class' => 'form-control summernote', 'id' => 'entry']) !!}
+            {!! Form::textarea('entry', $formService->prefill('entry', $source), ['class' => 'form-control html-editor', 'id' => 'entry']) !!}
         </div>
     </div>
     <div class="panel-footer">

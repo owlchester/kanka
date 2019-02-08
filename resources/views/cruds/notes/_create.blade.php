@@ -21,4 +21,4 @@
     </div>
 </div>
 
-@include('layouts.widgets.tinymce')
+@include('layouts.widgets.editor')

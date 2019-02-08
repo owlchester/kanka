@@ -3,7 +3,7 @@
 
 @section('scripts')
     <script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js" defer></script>
-    <script src="{{ asset('js/summernote.js') }}" defer></script>
+    <script src="{{ mix('js/summernote.js') }}" defer></script>
 @endsection
 
 @section('styles')

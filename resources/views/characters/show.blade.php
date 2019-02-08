@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Character $model */?>
 <div class="row">
     <div class="col-lg-2 col-md-3">
         @include('characters._menu')
@@ -24,7 +25,7 @@
             </div>
         </div>
 
-        @if (Auth::check() && Auth::user()->can('personality', $model))
+        @if (($model->is_personality_visible || (!$model->is_personality_visible && Auth::check() && Auth::user()->can('personality', $model))) && $model->characterTraits()->personality()->count() > 0)
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('characters.show.tabs.personality') }}</h3>
@@ -34,7 +35,10 @@
                 @foreach ($model->characterTraits()->personality()->orderBy('default_order')->get() as $trait)
                     <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
                 @endforeach
+
+                @if (Auth::check() && Auth::user()->can('personality', $model))
                 <p class="help-block export-hidden">{{ trans('characters.hints.hide_personality') }}</p>
+                @endif
             </div>
         </div>
         @endif

@@ -20,5 +20,4 @@
     </div>
 @endsection
 
-{{--@include('layouts.widgets.tinymce')--}}
-@include('layouts.widgets.summernote')
+@include('layouts.widgets.editor')
