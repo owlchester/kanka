@@ -73,7 +73,7 @@ return [
             . 'img[src|style|alt|width|height|class|title],'
             . 'a[href|target|rel|title|data-toggle|data-html|id],'
             . 'p[style],span[style],'
-            . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr],'
+            . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr|colspan],th[style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
             . 'iframe[src|width|height]', // only use this with HTML.SafeIframe
 
