@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityResource extends JsonResource
@@ -40,6 +41,13 @@ class EntityResource extends JsonResource
         if (array_key_exists('character_id', $attributes)) {
             $merged['character_id'] = $this->character_id;
         }
+
+        /** @var MiscModel $this */
+        $merged['attributes'] = new AttributeCollection($this->entity->attributes);
+        $merged['entity_notes'] = new AttributeCollection($this->entity->notes);
+        $merged['entity_events'] = new AttributeCollection($this->entity->events);
+        $merged['entity_files'] = new EntityFileCollection($this->entity->files);
+        $merged['relations'] = new RelationCollection($this->entity->relationships);
 
         $final = array_merge($merged, $prepared);
         //ksort($final);
