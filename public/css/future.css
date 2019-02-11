@@ -29,8 +29,7 @@ body {
 .btn {
   background-color: #157778 !important;
   color: white !important;
-  border: none !important;
-  border-radius: 2px !important;
+  border: 1px solid #157778 !important;
 }
 
 .btn:hover {
@@ -44,10 +43,8 @@ body {
   color: white !important;
 }
 
-.input-group-btn .btn,
 .input-group-btn .new-entity-selector {
   height: 38px !important;
-  padding-top: 15px !important;
 }
 
 .box,
@@ -141,7 +138,7 @@ input,
 textarea,
 .select2,
 select {
-  border: 1px solid #42FFFF !important;
+  border: 1px solid #157778 !important;
   border-radius: 0 !important;
   background-color: #0B1F20 !important;
   color: white;
@@ -314,6 +311,29 @@ blockquote {
 .mce-menubtn button span,
 .mce-ico {
   color: #eee !important;
+}
+
+.mce-tabs,
+.mce-tabs + .mce-container-body,
+.mce-tab {
+  background: none !important;
+}
+
+.mce-widget,
+.mce-label,
+.mce-tab {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75) !important;
+}
+
+.mce-menu-item.mce-disabled,
+.mce-menu-item.mce-disabled:hover {
+  background: #157778 !important;
+}
+
+.input-group .input-group-addon {
+  color: #eee;
+  background-color: #0C1416;
+  border: 1px solid #157778;
 }
 
 /**

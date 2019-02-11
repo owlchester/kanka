@@ -7658,5 +7658,28 @@ table.text-center th {
   border: 1px solid #ccc;
   margin-left: -5px;
   margin-right: -5px;
+}.note-hint-group .note-hint-item {
+  min-width: 200px;
+  min-height: 30px;
+  display: block;
+  padding: 5px;
+}
+
+.note-hint-group .note-hint-item:hover {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.note-hint-group .active {
+  border-radius: 5px;
+  background: #3c8dbc;
+  color: white;
+}
+
+@media (max-width: 787px) {
+  .note-popover {
+    left: 0 !important;
+    width: 100% !important;
+  }
 }
 

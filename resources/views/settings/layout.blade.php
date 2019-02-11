@@ -46,13 +46,6 @@
                         ], null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <div class="form-group">
-                        <label>{{ trans('profiles.settings.fields.editor') }}</label>
-                        {!! Form::select('editor', [
-                            '' => __('profiles.settings.editors.default'),
-                            'summernote' => __('profiles.settings.editors.summernote'),
-                        ], null, ['class' => 'form-control']) !!}
-                    </div>
                     <button class="btn btn-primary">
                         {{ trans('crud.save') }}
                     </button>
