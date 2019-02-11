@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Calendar $model */ ?>
 @inject('formService', 'App\Services\FormService')
 
 {{ csrf_field() }}
@@ -233,6 +234,103 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 {!! Form::text('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
+                                <span class="input-group-btn">
+                                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading  panel-toggable">
+                <h4>{{ trans('calendars.panels.intercalary') }} <i class="fa fa-caret-down pull-right"></i></h4>
+            </div>
+            <div class="panel-body">
+                <p class="help-block">{{ __('calendars.hints.intercalary') }}</p>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">{{ trans('calendars.parameters.intercalary.name') }}</div>
+                        <div class="col-md-4">{{ trans('calendars.parameters.intercalary.month') }}</div>
+                        {{--<div class="col-md-4">{{ trans('calendars.parameters.intercalary.length') }}</div>--}}
+                    </div>
+                </div>
+                <?php
+                $intercalaries = [];
+                $intercalaryNames = old('intercalary_name');
+                $intercalaryMonths = old('intercalary_month');
+//                $intercalaryLengths = old('intercalary_length');
+                if (!empty($intercalaryNames)) {
+                    $cpt = 0;
+                    foreach ($intercalaryNames as $name) {
+                        if (!empty($name) || !empty($intercalaryMonths[$cpt])) {
+                            $intercalaries[] = [
+                                'name' => $name,
+                                'month' => $seasonMonths[$cpt],
+//                                'length' => $intercalaryLengths[$cpt]
+                            ];
+                        }
+                        $cpt++;
+                    }
+                } elseif (isset($model)) {
+                    $intercalaries = $model->intercalaries();
+                } elseif (isset($source)) {
+                    $intercalaries = $source->intercalaries();
+                }?>
+                <div class="calendar-intercalaries">
+                    @foreach ($intercalaries as $intercalary)
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-arrows-alt-v"></span>
+                                        </span>
+                                        {!! Form::text('intercalary_name[]', $intercalary['name'], ['class' => 'form-control', 'maxlength' => 45]) !!}
+                                    </div>
+                                </div>
+                                {{--<div class="col-md-4">--}}
+                                {{--{!! Form::number('intercalary_length[]', $intercalary['length'], ['class' => 'form-control', 'maxlength' => 3]) !!}--}}
+                                {{--</div>--}}
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        {!! Form::number('intercalary_month[]', $intercalary['month'], ['class' => 'form-control', 'maxlength' => 2]) !!}
+                                        <span class="input-group-btn">
+                                        <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <a class="btn btn-default" id="add_intercalary" href="#" title="{{ trans('calendars.actions.add_intercalary') }}">
+                    <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_intercalary') }}
+                </a>
+
+                <div class="form-group" id="template_intercalary" style="display: none">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-arrows-alt-v"></span>
+                                </span>
+                                {!! Form::text('intercalary_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.intercalary.name'), 'maxlength' => 45]) !!}
+                            </div>
+                        </div>
+                        {{--<div class="col-md-4">--}}
+                            {{--{!! Form::number('intercalary_length[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.intercalary.length'), 'maxlength' => 3]) !!}--}}
+                        {{--</div>--}}
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                {!! Form::number('intercalary_month[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.intercalary.month'), 'maxlength' => 2]) !!}
                                 <span class="input-group-btn">
                                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                         <i class="fa fa-trash"></i>

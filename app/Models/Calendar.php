@@ -8,6 +8,11 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Collective\Html\HtmlFacade;
 
+/**
+ * Class Calendar
+ * @package App\Models
+ * @var integer $campaign_id
+ */
 class Calendar extends MiscModel
 {
     /**
@@ -29,6 +34,7 @@ class Calendar extends MiscModel
         'date',
         'suffix',
         'epochs',
+        'intercalaries',
 
         // Leap year
         'has_leap_year',
@@ -68,6 +74,11 @@ class Calendar extends MiscModel
      * @var bool
      */
     protected $loadedMoons = false;
+
+    /**
+     * @var bool
+     */
+    protected $loadedIntercalaries = false;
 
     /**
      * Fields that can be filtered on
@@ -212,6 +223,18 @@ class Calendar extends MiscModel
             $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
         }
         return $this->loadedSeasons;
+    }
+
+    /**
+     * Get the intercalary days
+     * @return null
+     */
+    public function intercalaries()
+    {
+        if ($this->loadedIntercalaries === false) {
+            $this->loadedIntercalaries = json_decode(empty($this->intercalaries) ? '[]' : strip_tags($this->intercalaries), true);
+        }
+        return $this->loadedIntercalaries;
     }
 
     /**

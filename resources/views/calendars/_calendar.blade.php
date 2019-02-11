@@ -1,3 +1,4 @@
+<?php /** @var \App\Renderers\CalendarRenderer $renderer */?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->setCalendar($model) }}
@@ -33,6 +34,11 @@
 @endif
 {!! Form::close() !!}
 
+
+@foreach ($renderer->intercalaryDays(false) as $day)
+    @include('calendars._intercalary')
+@endforeach
+
 <table class="calendar table table-bordered table-striped">
     <thead>
     <tr>
@@ -62,6 +68,10 @@
     @endif
     </tbody>
 </table>
+
+@foreach ($renderer->intercalaryDays() as $day)
+    @include('calendars._intercalary')
+@endforeach
 
 {!! Form::hidden('date', '', ['id' => 'date']) !!}
 @if($renderer->isYearlyLayout())

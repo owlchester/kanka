@@ -593,10 +593,43 @@ class CalendarRenderer
         return $this->year;
     }
 
+    /**
+     * Determine if the current month has intercalary days at the end of it
+     */
+    public function hasIntercalaryDays()
+    {
+        foreach ($this->calendar->intercalaries() as $day) {
+            if ($day['month'] == $this->currentMonthId()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function intercalaryDays($upcoming = true)
+    {
+        $intercalaryDays = [];
+        $compareTo = $this->currentMonthId();
+        if (!$upcoming) {
+            $compareTo--;
+            if ($compareTo == 0) {
+                $compareTo = count($this->calendar->months());
+            }
+        }
+        foreach ($this->calendar->intercalaries() as $day) {
+            if ($day['month'] == $compareTo) {
+                $intercalaryDays[] = $day;
+            }
+        }
+
+        return $intercalaryDays;
+    }
+
     protected function buildFullmoons()
     {
         // Calculate the number of days since the 1.1.0
-        $totalDays = $this->daysToDate();
+        $totalDays = $this->daysToDate(true);
 
         // We'll need this later to know how many full moons to add
         $daysInAYear = 0;
@@ -640,7 +673,7 @@ class CalendarRenderer
      * Get the total amount of days since the beginning
      * @return float|int|mixed
      */
-    protected function daysToDate()
+    protected function daysToDate($includeIntercalary = false)
     {
         // We assume that the 01 01 00 is a monday.
         // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
@@ -653,6 +686,18 @@ class CalendarRenderer
             // If the month has already passed, add it to the days for this year
             if ($count < $this->getMonth()-1) {
                 $days += $length;
+            }
+        }
+
+        if ($includeIntercalary) {
+            foreach ($this->calendar->intercalaries() as $day) {
+                $length = 1;
+                $daysInAYear += $length;
+
+                // If the month has already passed, add it to the days for this year
+                if ($day['month'] <= $this->getMonth() - 1) {
+                    $days += $length;
+                }
             }
         }
 

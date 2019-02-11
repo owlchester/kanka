@@ -51950,6 +51950,7 @@ var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth
 var calendarAddMoon, calendarTemplateMoon;
 var calendarAddSeason, calendarTemplateSeason;
 var calendarAddEpoch, calendarTemplateEpoch;
+var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
 
@@ -51962,12 +51963,14 @@ $(document).ready(function () {
         calendarAddMoon = $('#add_moon');
         calendarAddSeason = $('#add_season');
         calendarAddEpoch = $('#add_epoch');
+        calendarAddIntercalary = $('#add_intercalary');
         calendarTemplateMonth = $('#template_month');
         calendarTemplateWeekday = $('#template_weekday');
         calendarTemplateYear = $('#template_year');
         calendarTemplateMoon = $('#template_moon');
         calendarTemplateSeason = $('#template_season');
         calendarTemplateEpoch = $('#template_epoch');
+        calendarTemplateIntercalary = $('#template_intercalary');
         calendarLeapYear = $('input[name="has_leap_year"]');
 
         calendarSortMonths = $(".calendar-months");
@@ -51976,6 +51979,7 @@ $(document).ready(function () {
         calendarSortMoons = $(".calendar-moons");
         calendarSortSeasons = $(".calendar-seasons");
         calendarSortEpochs = $(".calendar-epochs");
+        calendarSortIntercalary = $(".calendar-intercalaries");
 
         initCalendarForm();
     }
@@ -52058,6 +52062,17 @@ function initCalendarForm() {
         return false;
     });
 
+    calendarAddIntercalary.on('click', function (e) {
+        e.preventDefault();
+
+        $(this).before('<div class="form-group">' + calendarTemplateIntercalary.html() + '</div>');
+
+        // Handle deleting already loaded blocks
+        calendarDeleteRowHandler();
+
+        return false;
+    });
+
     // Handle deleting already loaded points
     calendarDeleteRowHandler();
 }
@@ -52081,6 +52096,7 @@ function calendarDeleteRowHandler() {
     calendarSortYears.sortable();
     calendarSortMoons.sortable();
     calendarSortSeasons.sortable();
+    calendarSortIntercalary.sortable();
 }
 
 function initCalendarYearSwitcher() {

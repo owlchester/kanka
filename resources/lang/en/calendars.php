@@ -6,6 +6,7 @@ return [
         'add_month'     => 'Add a month',
         'add_moon'      => 'Add a moon',
         'add_season'    => 'Add a season',
+        'add_intercalary'    => 'Add intercalary days',
         'add_weekday'   => 'Add a week day',
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
@@ -92,6 +93,7 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
+        'intercalary'       => 'Intercalary Days',
     ],
     'hints'         => [
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
@@ -100,6 +102,7 @@ return [
         'seasons'       => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'      => 'Set your weekday names. At least 2 weekdays are required.',
         'years'         => 'Some years are so important that they have their own name.',
+        'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.'
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -114,8 +117,14 @@ return [
     'panels'        => [
         'leap_year' => 'Leap Year',
         'years'     => 'Named Years',
+        'intercalary'   => 'Intercalary Days',
     ],
     'parameters'    => [
+        'intercalary' => [
+            'length' => 'Duration in days',
+            'name' => 'Name of intercalation',
+            'month' => 'At the end of which month',
+        ],
         'month'     => [
             'length'    => 'Number of days',
             'name'      => 'Month Name',
