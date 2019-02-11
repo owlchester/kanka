@@ -9,18 +9,19 @@ if (request()->has('parent_location_id')) {
             {{ trans('locations.show.tabs.locations') }}
         </h2>
 
-        <p class="help-block">{{ trans('locations.helpers.descendants') }}</p>
-
-        <p class="export-hidden">@if (request()->has('parent_location_id'))
-            <a href="{{ route('locations.locations', $model) }}" class="btn btn-default">
-                <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
-            </a>
-        @else
-            <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id]) }}" class="btn btn-default">
-                <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->locations()->count() }})
-            </a>
-        @endif
+        <p class="help-block export-hidden">
+            @if (request()->has('parent_location_id'))
+                <a href="{{ route('locations.locations', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+                </a>
+            @else
+                <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->locations()->count() }})
+                </a>
+            @endif
+            {{ trans('locations.helpers.descendants') }}
         </p>
+
 
         <?php $r = $model->descendants()->filter($filters)->with('parent')->acl()->orderBy('name', 'ASC')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>

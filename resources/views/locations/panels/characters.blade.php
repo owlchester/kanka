@@ -10,15 +10,18 @@ if (request()->has('location_id')) {
             {{ trans('locations.show.tabs.characters') }}
         </h2>
 
-        <p class="export-hidden">@if (request()->has('location_id'))
-                <a href="{{ route('locations.characters', $model) }}" class="btn btn-default">
+
+        <p class="help-block export-hidden">
+            @if (request()->has('location_id'))
+                <a href="{{ route('locations.characters', $model) }}" class="btn btn-default btn-sm pull-right">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
                 </a>
             @else
-                <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default">
+                <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
                 </a>
             @endif
+            {{ trans('locations.helpers.characters') }}
         </p>
 
         <?php  $r = $model->allCharacters()->acl()->filter($filters)->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>

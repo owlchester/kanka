@@ -32,6 +32,7 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
+        'characters'    => 'View all characters in this location and its children locations, or just those directly located here.',
         'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
         'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
     ],
