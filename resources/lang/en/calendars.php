@@ -104,6 +104,9 @@ return [
         'years'         => 'Some years are so important that they have their own name.',
         'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.'
     ],
+    'helpers' => [
+        'month_type' => 'Intercalary months don\'t use week days, but still influence moons and seasons.'
+    ],
     'index'         => [
         'add'           => 'New Calendar',
         'description'   => 'Manage the calendars of :name.',
@@ -113,6 +116,10 @@ return [
     'layouts'       => [
         'month' => 'Month',
         'year'  => 'Year',
+    ],
+    'month_types' => [
+        'standard' => 'Standard',
+        'intercalary' => 'Intercalary',
     ],
     'panels'        => [
         'leap_year' => 'Leap Year',
@@ -126,8 +133,9 @@ return [
             'month' => 'At the end of which month',
         ],
         'month'     => [
-            'length'    => 'Number of days',
+            'length'    => 'Days',
             'name'      => 'Month Name',
+            'type'      => 'Type',
         ],
         'moon'      => [
             'fullmoon'  => 'Full moon every (days)',
