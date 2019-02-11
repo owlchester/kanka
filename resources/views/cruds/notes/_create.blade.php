@@ -21,4 +21,4 @@
     </div>
 </div>
 
-@include('layouts.widgets.editor')
+@include('editors.editor')

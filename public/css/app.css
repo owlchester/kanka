@@ -2739,26 +2739,22 @@ div.mce-fullscreen {
   border-left: none !important;
 }
 
-.export-visible {
-  display: none;
-}
-
-/**
- * Tinymce entry
- */
-
-.panel-entry {
+.editor-panel {
   padding: 5px;
 }
 
-.panel-entry .form-group {
+.editor-panel .form-group {
   margin-bottom: 0;
 }
 
-.panel-entry .form-group .mce-container {
+.editor-panel .form-group .mce-container {
   border: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.export-visible {
+  display: none;
 }
 
 /**
@@ -2958,10 +2954,6 @@ div.mce-fullscreen {
 
 td.breakable {
   word-break: break-word;
-}
-
-.btn-group .dropdown-toggle {
-  height: 36px;
 }
 
 @media (max-width: 787px) {

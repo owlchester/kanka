@@ -12,4 +12,4 @@
     @include('cruds.notes._create')
 @endsection
 
-@include('layouts.widgets.editor')
+@include('editors.editor')

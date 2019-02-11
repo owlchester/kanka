@@ -237,6 +237,11 @@
 
             $('body').append(this.$dropdown);
 
+            // Out of bounds?
+            if (this.$dropdown.width() + offset.left > $(document).width()) {
+                this.$dropdown.css({'right':0, 'left': 'auto'});
+            }
+
             this.$dropdown.on('click', $.proxy(this.autoCompleteClick, this));
         },
 

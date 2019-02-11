@@ -24,4 +24,4 @@
     </div>
 @endsection
 
-@include('layouts.widgets.editor')
+@include('editors.editor')
