@@ -17,6 +17,7 @@ class DiceRoll extends EntityResource
         return $this->entity([
             'system' => $this->system,
             'parameters' => $this->parameters,
+            'rolls' => $this->diceRollResults()->pluck('results')->toArray()
         ]);
     }
 }

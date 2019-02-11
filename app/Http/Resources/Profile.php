@@ -17,7 +17,8 @@ class Profile extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'avatar' => $this->avatar,
+            'avatar' => $this->getAvatarUrl(),
+            'avatar_thumb' => $this->getAvatarUrl(true),
             'locale' => $this->locale,
             'timezone' => $this->timezone,
             'date_format' => $this->date_format,

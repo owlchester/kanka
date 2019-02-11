@@ -20,3 +20,11 @@ Route::group([
 ], function() {
     require base_path('routes/api.v1.php');
 });
+
+Route::group([
+    'middleware' => ['auth:api', 'throttle:60,1'],
+    'namespace'  => 'Api\v1',
+    'prefix'     => '1.0',
+], function() {
+    require base_path('routes/api.v1.php');
+});

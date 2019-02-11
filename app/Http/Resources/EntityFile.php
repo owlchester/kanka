@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
-class Attribute extends EntityChild
+class EntityFile extends EntityChild
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +17,9 @@ class Attribute extends EntityChild
     {
         return $this->entity([
             'name' => $this->name,
-            'value' => $this->value,
             'type' => $this->type,
-            'default_order' => $this->default_order,
+            'path' => Storage::url($this->path),
+            'size' => $this->size,
         ]);
     }
 }
