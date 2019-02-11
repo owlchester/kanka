@@ -51,6 +51,10 @@ return [
     'locations'     => [
         'description'   => 'Locations located in the location.',
         'title'         => 'Location :name Locations',
+        'actions'       => [
+            'all' => 'Filter to all descendants',
+            'direct' => 'Filter to direct descendants',
+        ],
     ],
     'map'           => [
         'actions'   => [
