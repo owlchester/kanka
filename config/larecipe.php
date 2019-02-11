@@ -141,7 +141,7 @@ return [
 
     'ui'                 => [
         'show_app_name'  => true,
-        'logo'           => '', // e.g.: /images/logo.svg
+        'logo'           => '/images/kanka_transparent.png', // e.g.: /images/logo.svg
         'fav'            => '/favicon.ico', // e.g.: /fav.png
         'theme'          => 'light',
         'code'           => 'dark',
@@ -181,7 +181,7 @@ return [
             'type'        => 'article',
             'url'         => 'kanka.io',
             'image'       => '',
-            'description' => '',
+            'description' => 'Kanka\'s API documentation',
         ]
     ],
 

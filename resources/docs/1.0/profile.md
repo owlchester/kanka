@@ -27,3 +27,6 @@ The following endpoint provides simple data about the current user.
     }
 }
 ```
+
+---
+Next up: [Campaigns](/docs/{{version}}/campaigns)

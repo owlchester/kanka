@@ -32,4 +32,5 @@ When calling the API, add the following headers:
 
 > {warning} Please note that all endpoints documented here need to be prefixed with `api/{{version}}/`. For example, if an endpoint is listed as `campaigns`, you should use `kanka.io/api/{{version}}/campaigns`.
 
-#### [Go to Campaigns](/docs/{{version}}/campaigns)
+--- 
+Next up: [Profile](/docs/{{version}}/profile)

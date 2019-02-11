@@ -9,7 +9,7 @@
 - ## Campaigns
     - [Campaigns](/docs/{{version}}/campaigns)
     
-- ## Objects
+- ## Core Objects
     - [Entities](/docs/{{version}}/entities)
     - [Characters](/docs/{{version}}/characters)
     - [Locations](/docs/{{version}}/locations)
