@@ -33,7 +33,7 @@
                         {!! Form::members(
                             'id',
                             [
-                                'model' => isset($model) ? $model : null
+                                'model' => isset($model) ? $model : $formService->prefillModel($source)
                             ]
                         ) !!}
                     </div>
