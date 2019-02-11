@@ -632,28 +632,8 @@ class CalendarRenderer
     }
 
     /**
-     * @param bool $upcoming
-     * @return array
+     *
      */
-    public function intercalaryDays($upcoming = true)
-    {
-        $intercalaryDays = [];
-        $compareTo = $this->currentMonthId();
-        if (!$upcoming) {
-            $compareTo--;
-            if ($compareTo == 0) {
-                $compareTo = count($this->calendar->months());
-            }
-        }
-        foreach ($this->calendar->intercalaries() as $day) {
-            if ($day['month'] == $compareTo) {
-                $intercalaryDays[] = $day;
-            }
-        }
-
-        return $intercalaryDays;
-    }
-
     protected function buildFullmoons()
     {
         // Calculate the number of days since the 1.1.0

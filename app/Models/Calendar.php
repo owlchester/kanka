@@ -34,7 +34,6 @@ class Calendar extends MiscModel
         'date',
         'suffix',
         'epochs',
-        'intercalaries',
 
         // Leap year
         'has_leap_year',
@@ -223,18 +222,6 @@ class Calendar extends MiscModel
             $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
         }
         return $this->loadedSeasons;
-    }
-
-    /**
-     * Get the intercalary days
-     * @return null
-     */
-    public function intercalaries()
-    {
-        if ($this->loadedIntercalaries === false) {
-            $this->loadedIntercalaries = json_decode(empty($this->intercalaries) ? '[]' : strip_tags($this->intercalaries), true);
-        }
-        return $this->loadedIntercalaries;
     }
 
     /**
