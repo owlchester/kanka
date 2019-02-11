@@ -110,29 +110,6 @@ class CalendarObserver extends MiscObserver
         }
         $model->seasons = json_encode($seasons);
 
-        // Handle intercalary days
-        $intercalaries = [];
-        $intercalaryCount = 0;
-        $intercalaryNames = request()->post('intercalary_name');
-        $intercalaryMonths = request()->post('intercalary_month');
-//        $intercalaryLength = request()->post('intercalary_length');
-        foreach ($intercalaryNames as $name) {
-            if (empty($name)) {
-                continue;
-            }
-
-            // We want an intercalary length of at least 1 day
-            $month = (int) $intercalaryMonths[$intercalaryCount];
-//            $day = (int) $intercalaryLength[$intercalaryCount];
-            $intercalaries[] = [
-                'name' => $name,
-                'month' => $month < 1 ? 1 : $month,
-//                'length' => $day,
-            ];
-            $intercalaryCount++;
-        }
-        $model->intercalaries = json_encode($intercalaries);
-
         // Calculate date
         $year = request()->post('current_year', 1);
         $month = request()->post('current_month', 1);
