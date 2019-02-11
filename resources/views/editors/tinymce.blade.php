@@ -1,23 +1,25 @@
 @section('scripts')
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script>
         var editor_config = {
             path_absolute : "/",
             language: '{{ App::getLocale() == 'en-US' ? 'en' : App::getLocale() }}',
             selector: "textarea.html-editor",
             plugins: [
-                "save autosave advlist autolink lists link image charmap hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "save autosave advlist autolink lists link image hr anchor pagebreak",
+                "searchreplace code fullscreen",
                 "insertdatetime media nonbreaking table contextmenu directionality",
                 "emoticons paste textcolor colorpicker textpattern",
-                "fullpage help mention media"
+                "fullpage mention media"
             ],
-            toolbar: "save undo redo | styleselect | bold italic strikethrough | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent removeformat formatselect| link image media | emoticons charmap | | forecolor backcolor",
+            toolbar: "undo redo | styleselect | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table media",
             nanospell_server:"php",
             browser_spellcheck: true,
             relative_urls: false,
             remove_script_host: false,
             branding: false,
             media_live_embeds: true,
+            menubar: false,
             mentions: {
                 delimiter: ['@', '#'],
                 source: function(query, process, delimiter) {
@@ -44,7 +46,7 @@
                 },
                 render: function(item) {
                     return '<li>' +
-                        '<a href="javascript:;"><span>' + (item.image ? item.image : '') + item.fullname + ' (' + item.type + ')</span></a>' +
+                        '<a href="javascript:;"><span>' + (item.image ? item.image : '') + item.fullname + (item.type ? ' (' + item.type + ')' : '') + '</span></a>' +
                         '</li>';
                 }
             },
@@ -61,5 +63,4 @@
 @endsection
 
 @section('styles')
-    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 @endsection

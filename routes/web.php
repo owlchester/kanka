@@ -305,7 +305,7 @@ Route::group([
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
 
     // 3rd party
-    Route::group(['middleware' => ['translator'], 'prefix' => 'translations'], function () {
+    Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {
         Translator::routes();
     });
 

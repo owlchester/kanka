@@ -379,6 +379,23 @@ div.mce-fullscreen {
   z-index: 1400;
 }
 
+.mce-btn-group:not(:first-child) {
+  border-left: none !important;
+}
+
+.editor-panel {
+  padding: 5px;
+
+  .form-group {
+    margin-bottom: 0;
+
+    .mce-container {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
 .export-visible {
   display: none;
 }
