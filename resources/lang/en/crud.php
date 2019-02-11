@@ -145,6 +145,8 @@ return [
         'hide'  => 'Hide Filters',
         'show'  => 'Show Filters',
         'title' => 'Filters',
+        'all' => 'Filter to all descendants',
+        'direct' => 'Filter to direct descendants',
     ],
     'forms'             => [
         'actions'       => [

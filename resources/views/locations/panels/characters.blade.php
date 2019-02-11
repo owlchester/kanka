@@ -1,10 +1,27 @@
+<?php
+$filters = [];
+if (request()->has('location_id')) {
+    $filters['location_id'] = request()->get('location_id');
+}
+?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('locations.show.tabs.characters') }}
         </h2>
 
-        <?php  $r = $model->allCharacters()->acl()->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
+        <p class="export-hidden">@if (request()->has('location_id'))
+                <a href="{{ route('locations.characters', $model) }}" class="btn btn-default">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                </a>
+            @else
+                <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                </a>
+            @endif
+        </p>
+
+        <?php  $r = $model->allCharacters()->acl()->filter($filters)->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
         <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -56,6 +73,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->appends($filters)->links() }}
     </div>
 </div>
