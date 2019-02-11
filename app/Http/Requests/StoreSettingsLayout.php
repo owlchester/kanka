@@ -42,7 +42,7 @@ class StoreSettingsLayout extends FormRequest
             'date_format' => '',
             'default_pagination' => 'required|numeric|max:' . $this->pagination->max(),
             'theme' => '',
-            'editor' => 'in:,summernote,markdown',
+//            'editor' => 'in:,summernote,markdown',
         ];
     }
 }

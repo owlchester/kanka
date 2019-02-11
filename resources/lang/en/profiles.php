@@ -43,14 +43,8 @@ return [
         'fields'    => [
             'date_format'   => 'Date Formatting',
             'pagination'    => 'Pagination (elements per page)',
-            'editor'                    => 'Text Editor',
         ],
         'success'   => 'Settings changed.',
-        'editors' => [
-            'default' => 'Default (recommended, \'Mentions\' don\'t work on mobile devices',
-            'summernote' => 'Summernote (experimental, better mobile support)',
-            'markdown' => 'Markdown (expert mode)'
-        ]
     ],
     'theme'         => [
         'success'   => 'Theme changed.',
