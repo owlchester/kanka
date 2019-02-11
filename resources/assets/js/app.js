@@ -40,7 +40,7 @@ $(document).ready(function() {
 
     $.each($('.img-delete'), function (index) {
         $(this).click(function (e) {
-            $('input[name=' + $(this).attr('data-target') + ']')[0].value = 1;
+            $('input[name=' + $(this).data('target') + ']')[0].value = 1;
             $('.preview').hide();
         });
     });
@@ -58,15 +58,15 @@ $(document).ready(function() {
 
     $.each($('.new-entity-selector'), function (index) {
         $(this).on('click', function (e) {
-            $('#new-entity-type').val($(this).attr('data-entity'));
-            $('#new-entity-form').attr('data-parent', $(this).attr('data-parent'));
+            $('#new-entity-type').val($(this).data('entity'));
+            $('#new-entity-form').data('parent', $(this).data('parent'));
         });
     });
 
     if ($('#new-entity-form').length > 0) {
         $('#new-entity-form').on('submit', function (e) {
             $('#new-entity-errors').hide();
-            var target = $(this).attr('data-parent');
+            var target = $(this).data('parent');
             $.ajax({
                 type: "POST",
                 url: $(this).attr('action'),
@@ -140,8 +140,8 @@ $(document).ready(function() {
     // Delete confirm dialog
     $.each($('.delete-confirm'), function (index) {
         $(this).click(function (e) {
-            var name = $(this).attr('data-name');
-            var text = $(this).attr('data-text');
+            var name = $(this).data('name');
+            var text = $(this).data('text');
             if (text) {
                 $('#delete-confirm-text').text(text);
             } else {
@@ -160,9 +160,9 @@ $(document).ready(function() {
     // Delete confirm dialog
     $.each($('.click-confirm'), function (index) {
         $(this).click(function (e) {
-            var name = $(this).attr('data-message');
+            var name = $(this).data('message');
             $('#click-confirm-text').text(name);
-            $('#click-confirm-url').attr('href', $(this).attr('data-url'));
+            $('#click-confirm-url').attr('href', $(this).data('url'));
         });
     });
 
@@ -192,13 +192,14 @@ function initSelect2() {
             // Check it isn't the select2-icon
             $(this).select2({
                 //data: newOptions,
-                placeholder: $(this).attr('data-placeholder'),
+                placeholder: $(this).data('placeholder'),
                 allowClear: true,
                 tags: $(this).is('[data-tags]'),
+                language: $(this).data('language'),
                 minimumInputLength: 0,
                 ajax: {
                     quietMillis: 200,
-                    url: $(this).attr('data-url'),
+                    url: $(this).data('url'),
                     dataType: 'json',
                     data: function (params) {
                         return {
@@ -222,13 +223,13 @@ function initSelect2() {
  */
 function treeViewInit(element) {
     var treeViewLoader = $('#' + element + '-treeview');
-    var link = treeViewLoader.attr('data-url');
+    var link = treeViewLoader.data('url');
     $.each($('#' + element + ' > tbody > tr'), function(index) {
-        children = $(this).attr('data-children');
+        children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {
-                window.location = link + '?parent_id=' + $(this).attr('data-id');
+                window.location = link + '?parent_id=' + $(this).data('id');
             });
         }
     });
@@ -278,12 +279,12 @@ function manageDashboardNotifications() {
     $.each($('.notification-delete'), function(index) {
         $(this).on('click', function() {
             $.ajax({
-                url: $(this).attr('data-url'),
+                url: $(this).data('url'),
                 dataType: 'json'
             });
 
             // Had this in the done, but it never fired?
-            var parent = $(this).attr('data-parent');
+            var parent = $(this).data('parent');
             $('#' + parent).modal('toggle');
         });
 
