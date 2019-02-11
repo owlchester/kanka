@@ -8,7 +8,7 @@
             plugins: [
                 "save autosave advlist autolink lists link image hr anchor pagebreak",
                 "searchreplace code fullscreen",
-                "insertdatetime media nonbreaking table contextmenu directionality",
+                "insertdatetime media nonbreaking table directionality",
                 "emoticons paste textcolor colorpicker textpattern",
                 "fullpage mention media"
             ],
