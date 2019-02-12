@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class FaqController extends Controller
 {
@@ -24,9 +25,12 @@ class FaqController extends Controller
      * @param  \App\Models\Faq  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $slug = '')
+    public function show($key, $slug = '')
     {
-        $post = Faq::where('id', $id)->firstOrFail();
-        return view('faqs.show', ['model' => $post]);
+        if (!Lang::has('faq.' . $key)) {
+            return redirect()->route('faq.index');
+        }
+
+        return view('faqs.show', ['key' => $key]);
     }
 }

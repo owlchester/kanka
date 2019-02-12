@@ -23,19 +23,44 @@
         <div class="container">
             <div class="section-body">
                 <div class="row">
-                    <div class="col-md-5">
-                        <?php $count = 0 ?>
-                        @foreach ($faqs as $faq)
-                            <h4>
-                                <a href="{{ route('faq.show', ['id' => $faq->id, 'slug' => $faq->slug()]) }}">{{ e($faq->question) }}</a>
-                            </h4>
-                            <p class="text-muted">{!! nl2br($faq->answer) !!}</p>
-                            <hr>
-                            <?php $count++; ?>
-                            @if($count == ceil(count($faqs) / 2))
-                    </div><div class="col-md-5 offset-md-2">
-                            @endif
-                        @endforeach
+                    <div class="col-md-6">
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'free', 'slug' => str_slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.free.answer')) !!}</p>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => str_slug(__('faq.multiworld.question'))]) }}">{{ __('faq.multiworld.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.multiworld.answer')) !!}</p>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => str_slug(__('faq.visibility.question'))]) }}">{{ __('faq.visibility.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.visibility.answer')) !!}</p>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'help', 'slug' => str_slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.help.answer')) !!}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => str_slug(__('faq.permissions.question'))]) }}">{{ __('faq.permissions.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.permissions.answer')) !!}</p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ikNPzNgjYmg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => str_slug(__('faq.attribute-templates.question'))]) }}">{{ __('faq.attribute-templates.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.attribute-templates.answer')) !!}</p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/qKnTpuePqUA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
                     </div>
                 </div>
             </div>
