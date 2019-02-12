@@ -330,6 +330,7 @@ function entityCreatorUI() {
             loader.addClass('hidden');
             selection.html(data).removeClass('hidden');
             initSelect2();
+            window.initCategories();
 
             $('#entity-creator-form').on('submit', function(e) {
                 e.preventDefault();
