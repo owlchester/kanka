@@ -2,6 +2,10 @@
 @inject('formService', 'App\Services\FormService')
 
 <?php // Dirty hack to know if we need the prefill or the random generator
+/**
+ * @var \App\Services\RandomCharacterService $random
+ * @var \App\Services\FormService $formService
+ */
 $isRandom = false;
 if (request()->route()->getName() == 'characters.random') {
     $isRandom = true;
@@ -36,7 +40,7 @@ if (request()->route()->getName() == 'characters.random') {
 
                 <div class="form-group">
                     {!! Form::hidden('is_dead', 0) !!}
-                    <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? $formService->prefill('is_dead', $source) : 0))) !!}
+                    <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : ($isRandom ? $random->generateBool(10) : (!empty($source) ? $formService->prefill('is_dead', $source) : 0)))) !!}
                         {{ trans('characters.fields.is_dead') }}
                     </label>
                     <p class="help-block">{{ trans('characters.hints.is_dead') }}</p>
@@ -63,7 +67,7 @@ if (request()->route()->getName() == 'characters.random') {
                     {!! Form::text('sex', ($isRandom ? $random->generate('sex') : $formService->prefill('sex', $source)), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
                 <div class="character-appearance">
-                @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : $formService->prefillCharacterAppearance($source)) as $trait)
+                @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits() : $formService->prefillCharacterAppearance($source))) as $trait)
                     <div class="form-group parent-delete-row">
                         <div class="row">
                             <div class="col-md-4 col-xs-4">
@@ -146,7 +150,7 @@ if (request()->route()->getName() == 'characters.random') {
             </div>
             <div class="panel-body">
                 <div class="character-personality">
-                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : $formService->prefillCharacterPersonality($source)) as $trait)
+                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits(false) : $formService->prefillCharacterPersonality($source))) as $trait)
                     <div class="parent-delete-row margin-bottom">
                         <div class="form-group">
                             <div class="input-group">

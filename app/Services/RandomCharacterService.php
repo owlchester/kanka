@@ -86,6 +86,17 @@ class RandomCharacterService
     }
 
     /**
+     * Generate a boolean with a 50/50% chance of being true or false
+     *
+     * @param int $threshold
+     * @return bool
+     */
+    public function generateBool($threshold = 50)
+    {
+        return mt_rand(1, 100) <= intval($threshold);
+    }
+
+    /**
      * Generate a random number between min and max
      *
      * @param int $min
@@ -116,5 +127,30 @@ class RandomCharacterService
             return [$first->id => $first->name];
         }
         return [];
+    }
+
+    public function generateTraits($physical = true)
+    {
+        $availableTraits = [
+            'skin', 'hair', 'eye', 'height', 'weight'
+        ];
+        if (!$physical) {
+            $availableTraits = [
+                'fear', 'goal', 'mannerism', 'trait'
+            ];
+        }
+        $traits = [];
+        for($i = 0; $i <= count($availableTraits) - 1; $i++) {
+            $traitKey = $availableTraits[$i];
+            $randomNumber = in_array($traitKey, ['height', 'weight']);
+            $trait = new \stdClass();
+            $trait->id = null;
+            $trait->name = __('randomisers/characters.traits.' . $traitKey);
+            $trait->entry = $randomNumber ? $this->generateNumber(45, 220) : $this->generate($traitKey);
+
+            $traits[] = $trait;
+        }
+
+        return $traits;
     }
 }
