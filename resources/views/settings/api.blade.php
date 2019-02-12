@@ -17,14 +17,14 @@
                         {{ trans('settings.api.title') }}
                     </h2>
 
-                    @if(auth()->user()->hasRole('api'))
-                    <p class="text-muted">{{ __('settings.api.experimental') }}</p>
+                    <p class="text-muted">
+                        {{ __('settings.api.experimental') }}
+                        <a href="/docs/1.0" target="_blank"><i class="fa fa-external-link-alt"></i> {{ __('settings.api.link') }}</a>
+                    </p>
                     <passport-clients></passport-clients>
                     <passport-authorized-clients></passport-authorized-clients>
                     <passport-personal-access-tokens></passport-personal-access-tokens>
-                    @else
-                    <p class="text-muted">{{ __('settings.api.request_permission') }}</p>
-                    @endif
+
                 </div>
             </div>
         </div>
