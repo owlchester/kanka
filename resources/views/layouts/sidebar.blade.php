@@ -25,14 +25,20 @@
                     </span>
                 </a>
                 <ul class="treeview-menu" style="{{ ($sidebar->open('menu_links') == 'menu-open' ? 'display:block' : 'display:none') }}">
-                    @foreach ($currentCampaign->menuLinks()->with(['entity'])->orderBy('name', 'ASC')->get() as $menuLink)
+                    @foreach ($currentCampaign->menuLinks()->with(['target'])->orderBy('name', 'ASC')->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
-                        @if ($menuLink->entity && $menuLink->entity->child)
+                        @if ($menuLink->target && $menuLink->target->child)
                         <li>
-                            <a href="{{ route($menuLink->entity->pluralType() . '.show', $menuLink->getRouteParams()) }}">
-                                <i class="fa fa-circle-o"></i> {{ $menuLink->name }}
+                            <a href="{{ $menuLink->getRoute() }}">
+                                <i class="fa fa-arrow-circle-right"></i> {{ $menuLink->name }}
                             </a>
                         </li>
+                        @elseif ($menuLink->type)
+                            <li>
+                                <a href="{{ $menuLink->getRoute() }}">
+                                    <i class="fa fa-th-list"></i> {{ $menuLink->name }}
+                                </a>
+                            </li>
                         @endif
                     @endforeach
                     @if(Auth::check() && Auth::user()->isAdmin())
