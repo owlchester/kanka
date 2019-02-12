@@ -11,20 +11,48 @@
                 </h3>
 
                 <ul class="list-group list-group-unbordered">
+                    @if (!empty($model->target))
                     <li class="list-group-item">
                         <b>{{ trans('menu_links.fields.entity') }}</b>
                         <span  class="pull-right">
-                        <a href="{{ route($model->entity->pluralType() . '.show', $model->entity_id) }}" data-toggle="tooltip" title="{{ $model->entity->tooltip() }}">{{ $model->entity->name }}</a>
+                        <a href="{{ route($model->target->pluralType() . '.show', $model->entity_id) }}" data-toggle="tooltip" title="{{ $model->target->tooltip() }}">{{ $model->target->name }}</a>
                         </span>
                         <br class="clear" />
                     </li>
+                    @endif
                     @if ($model->tab)
-
                         <li class="list-group-item">
                             <b>{{ trans('menu_links.fields.tab') }}</b>
                             <span  class="pull-right">
                                 {{ $model->tab }}
                             </span>
+                            <br class="clear" />
+                        </li>
+                    @endif
+                    @if ($model->menu)
+                        <li class="list-group-item">
+                            <b>{{ trans('menu_links.fields.menu') }}</b>
+                            <span  class="pull-right">
+                            {{ $model->menu }}
+                        </span>
+                            <br class="clear" />
+                        </li>
+                    @endif
+                    @if ($model->type)
+                        <li class="list-group-item">
+                            <b>{{ trans('menu_links.fields.type') }}</b>
+                            <span  class="pull-right">
+                            {{ __('entities.' . str_plural($model->type)) }}
+                        </span>
+                            <br class="clear" />
+                        </li>
+                    @endif
+                    @if ($model->filters)
+                        <li class="list-group-item">
+                            <b>{{ trans('menu_links.fields.filters') }}</b>
+                            <span  class="pull-right">
+                            {{ $model->filters }}
+                        </span>
                             <br class="clear" />
                         </li>
                     @endif

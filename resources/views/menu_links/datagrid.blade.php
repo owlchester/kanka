@@ -10,14 +10,24 @@
         // Entity
         [
             'type' => 'avatar',
-            'parent' => 'entity',
+            'parent' => 'target',
             'parent_route' => function($model) {
-                return $model->entity->pluralType();
+                return $model->target->pluralType();
             },
         ],
         [
-            'type' => 'entity',
+            'label' => __('menu_links.fields.entity'),
+            'render' => function($model) {
+                if ($model->target) {
+                    return '<a href="' . $model->target->url('show') . '" data-toggle="tooltip" data-html="true" title="' . $model->target->tooltipWithName() . '">' . e($model->target->name) . '</a>';
+                }
+                return __('entities.' . str_plural($model->type));
+            },
+            'disableSort' => true,
         ],
+        'type',
+        'menu',
+        'tab',
         [
             'type' => 'is_private',
         ]
@@ -29,6 +39,7 @@
         'route' => 'menu_links.index',
         'baseRoute' => 'menu_links',
         'trans' => 'menu_links.fields.',
-        'campaign' => $campaign
+        'campaign' => $campaign,
+        'disableEntity' => true,
     ]
 ) !!}

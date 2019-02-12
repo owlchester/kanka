@@ -299,6 +299,7 @@ return [
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
+        'default'       => 'Default',
     ],
     'update'            => 'Update',
     'users'             => [

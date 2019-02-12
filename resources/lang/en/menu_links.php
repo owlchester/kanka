@@ -18,6 +18,9 @@ return [
         'entity'    => 'Entity',
         'name'      => 'Name',
         'tab'       => 'Tab',
+        'menu'      => 'Menu',
+        'type'     => 'Entity Type',
+        'filters'    => 'Filters',
     ],
     'index'         => [
         'add'           => 'New Menu Link',
@@ -28,7 +31,9 @@ return [
     'placeholders'  => [
         'entity'    => 'Choose an entity',
         'name'      => 'Name of the menu link',
+        'menu'      => 'Menu subpage (use the last text of the url)',
         'tab'       => 'entry, relations, notes',
+        'filters'   => 'location_id=15&type=city'
     ],
     'show'          => [
         'description'   => 'A detailed view of a menu link',
