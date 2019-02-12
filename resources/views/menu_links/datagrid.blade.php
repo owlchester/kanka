@@ -25,7 +25,6 @@
             },
             'disableSort' => true,
         ],
-        'type',
         'menu',
         'tab',
         [
