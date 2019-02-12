@@ -31,7 +31,7 @@
                     <br class="clear" />
                 </li>
             @endif
-
+            @include('entities.components.files')
         </ul>
         @include('.cruds._actions')
     </div>
