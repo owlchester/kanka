@@ -18,7 +18,7 @@ if (request()->has('location_id')) {
                 </a>
             @else
                 <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->acl()->count() }})
                 </a>
             @endif
             {{ trans('locations.helpers.characters') }}

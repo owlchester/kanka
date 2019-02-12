@@ -141,6 +141,8 @@ Route::group([
 
         // Tag menus
         Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
+        Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
+        Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');

@@ -27,6 +27,8 @@ class Tag extends MiscModel
      */
     protected $entityType = 'tag';
 
+    protected $explicitFilters = ['tag_id'];
+
     /**
      * Fields that can be filtered on
      * @var array

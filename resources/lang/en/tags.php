@@ -52,4 +52,12 @@ return [
         ],
         'title'         => 'Tag :name',
     ],
+    'tags' => [
+        'description' => 'Children Tags',
+        'title' => 'Tag :name Children',
+    ],
+    'children' => [
+        'description' => 'Entities belonging to the tag',
+        'title' => 'Tag :name Children',
+    ]
 ];
