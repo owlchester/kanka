@@ -50,3 +50,88 @@ There are several models in Kanka which represent objects attached to `entities`
 * [Entity Notes](/docs/{{version}}/entity-notes)
 * [Entity Tags](/docs/{{version}}/entity-tags)
 * [Entity Relations](/docs/{{version}}/entity-relations)
+
+With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
+
+
+| Parameter | Type | Description
+| :- | :- | :- |
+| `related` | `integer` | Set to `1` if you want the entity's related objects |
+
+### Examples
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `characters?related=1` | Default |
+| GET/HEAD | `characters/1?related=1` | Default |
+
+### Result
+
+
+```json
+{
+    "data": [
+        {
+            "id": 44,
+            "name": "Frejya",
+            "entry": "Lorem Ipsum",
+            "image": null,
+            "image_full": "{url}",
+            "image_thumb": "{url}",
+            "is_private": false,
+            "entity_id": 76,
+            "tags": [],
+            "created_at": {
+                "date": "2017-12-01 09:07:38.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "created_by": null,
+            "updated_at": {
+                "date": "2017-12-03 12:06:23.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_by": null,
+            "location_id": 2,
+            "attributes": [],
+            "entity_notes": [],
+            "entity_events": [
+                {
+                    "created_at": {
+                        "date": "2018-05-04 05:16:04.000000",
+                        "timezone_type": 3,
+                        "timezone": "UTC"
+                    },
+                    "created_by": null,
+                    "default_order": null,
+                    "entity_id": 76,
+                    "id": 22,
+                    "is_private": false,
+                    "name": null,
+                    "type": null,
+                    "updated_at": {
+                        "date": "2018-12-21 09:25:08.000000",
+                        "timezone_type": 3,
+                        "timezone": "UTC"
+                    },
+                    "updated_by": null,
+                    "value": null
+                }
+            ],
+            "entity_files": [],
+            "relations": [],
+            "title": null,
+            "age": null,
+            "sex": null,
+            "race_id": null,
+            "type": null,
+            "family_id": null,
+            "is_dead": false,
+            "traits": []
+        }
+    ]
+}
+```
+
+Notice the new array objects `attributes`, `entity_files`, `entity_events`, `entity_notes` and `relations`.

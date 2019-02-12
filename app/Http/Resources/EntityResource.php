@@ -43,11 +43,13 @@ class EntityResource extends JsonResource
         }
 
         /** @var MiscModel $this */
-        $merged['attributes'] = new AttributeCollection($this->entity->attributes);
-        $merged['entity_notes'] = new AttributeCollection($this->entity->notes);
-        $merged['entity_events'] = new AttributeCollection($this->entity->events);
-        $merged['entity_files'] = new EntityFileCollection($this->entity->files);
-        $merged['relations'] = new RelationCollection($this->entity->relationships);
+        if (request()->get('related', false)) {
+            $merged['attributes'] = new AttributeCollection($this->entity->attributes);
+            $merged['entity_notes'] = new AttributeCollection($this->entity->notes);
+            $merged['entity_events'] = new AttributeCollection($this->entity->events);
+            $merged['entity_files'] = new EntityFileCollection($this->entity->files);
+            $merged['relations'] = new RelationCollection($this->entity->relationships);
+        }
 
         $final = array_merge($merged, $prepared);
         //ksort($final);
