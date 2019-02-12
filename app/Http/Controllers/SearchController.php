@@ -58,6 +58,7 @@ class SearchController extends Controller
         $resultCount = 0;
         $active = '';
         $filterService = $this->filterService;
+        $filters = null;
         $found = null;
 
         foreach ($this->entity->entities(['menu_links']) as $element => $class) {
@@ -83,6 +84,7 @@ class SearchController extends Controller
         }
 
         return view('search.index', compact(
+            'filters',
             'term',
             'results',
             'active',
