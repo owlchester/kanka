@@ -33,11 +33,11 @@ trait EntityAclTrait
         }
 
         return $query
-            ->where('is_private', false)
+            ->where('entities.is_private', false)
             ->where(function($subquery) use ($service) {
                 return $subquery
-                    ->whereIn('id', $service->entityIds())
-                    ->orWhereIn('type', $service->entityTypes());
+                    ->whereIn('entities.id', $service->entityIds())
+                    ->orWhereIn('entities.type', $service->entityTypes());
             });
     }
 }

@@ -1,4 +1,5 @@
 <?php
+/** @var \App\Models\Tag $model*/
 $filters = [];
 $r = null;
 if (request()->has('tag_id')) {
