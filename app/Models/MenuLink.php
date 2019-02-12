@@ -33,6 +33,12 @@ class MenuLink extends MiscModel
     use CampaignTrait;
 
     /**
+     * Searchable fields
+     * @var array
+     */
+    protected $searchableColumns  = ['name'];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()

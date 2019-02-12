@@ -170,6 +170,7 @@ return [
     ],
     'show'          => [
         'description'       => 'A detailed view of a calendar',
+        'missing_details'   => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
         'moon_full_moon'    => ':moon Full Moon',
         'tabs'              => [
             'events'        => 'Calendar Events',

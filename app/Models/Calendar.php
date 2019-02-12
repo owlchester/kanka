@@ -357,4 +357,9 @@ class Calendar extends MiscModel
         $this->date = $year . '-' . $month . '-' . $day;
         return $this->save();
     }
+
+    public function missingDetails()
+    {
+        return count($this->months()) < 2 || count($this->weekdays()) < 2;
+    }
 }

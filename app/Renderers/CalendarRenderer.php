@@ -572,7 +572,7 @@ class CalendarRenderer
      */
     protected function getYear($add = 0)
     {
-        return $this->year + $add;
+        return (int) $this->year + (int) $add;
     }
 
     /**
@@ -646,6 +646,7 @@ class CalendarRenderer
             $daysInAYear += $length;
         }
         foreach ($this->calendar->moons() as $fullmoon => $name) {
+            $fullmoon = (int) $fullmoon;
             // Let's figure out how many full moons occurred until now
             $numberOfFullMoons = $totalDays / $fullmoon;
 
