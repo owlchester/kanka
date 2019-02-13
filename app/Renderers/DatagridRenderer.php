@@ -216,8 +216,15 @@ class DatagridRenderer
     private function renderRows()
     {
         $html = '';
+        $rows = 0;
         foreach ($this->data as $model) {
+            $rows++;
             $html .= $this->renderRow($model);
+        }
+
+        // Render an empty row
+        if ($rows == 0) {
+            $html .= '<tr><td colspan="' . (count($this->columns)+2) . '"><i>' . __('crud.datagrid.empty') . '</i></td>';
         }
         return $html;
     }

@@ -20,12 +20,26 @@
     @include('partials.errors')
 
     @if (!empty($release) && (!auth()->check() || auth()->user()->release != $release->id))
-        <div class="alert alert-info alert-dismissible">
+        <div class="alert alert-info alert-dismissible fade in">
             @auth
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.release', $release) }}">×</button>
             @endauth
             <h4><i class="icon fa fa-info"></i> <a href="{{ route('releases.show', $release->getSlug()) }}">{{ $release->title }}</a></h4>
             {{ $release->excerpt }}
+        </div>
+    @endif
+
+    @if (auth()->check() && !empty(auth()->user()->welcome_campaign_id) && auth()->user()->welcome_campaign_id == $campaign->id)
+        <div class="alert alert-info alert-dismissible fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.welcome') }}">×</button>
+            <h4>{{ __('dashboard.welcome.header') }}</h4>
+            <p>
+                {!! nl2br(__('dashboard.welcome.body', [
+                    'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
+                    'faq' => link_to_route('faq.index', __('front.faq.title')),
+                    'discord' => link_to('https://discord.gg/rhsyZJ4', 'Discord'),
+                ])) !!}
+            </p>
         </div>
     @endif
 

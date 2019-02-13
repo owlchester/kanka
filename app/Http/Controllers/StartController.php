@@ -53,8 +53,16 @@ class StartController extends Controller
     {
         $this->authorize('create', 'App\Models\Campaign');
 
-        $first = Auth::user()->hasCampaigns();
-        Campaign::create($request->all());
+        $first = !Auth::user()->hasCampaigns();
+        $campaign = Campaign::create($request->all());
+        $user = auth()->user();
+        $user->welcome_campaign_id = $campaign->id;
+        $user->save();
+
+        if ($first) {
+            return redirect()->route('home');
+        }
+
         return redirect()->route('home')
             ->with('success', trans($this->view . '.create.' . ($first ? 'success_first_time' : 'success')));
     }

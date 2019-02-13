@@ -76,10 +76,15 @@ class CampaignController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('create', $campaign);
 
-        $first = !Session::has('campaign_id');
-        Campaign::create($request->all());
-        return redirect()->to('/')
-            ->with('success', trans($this->view . '.create.' . ($first ? 'success_first_time' : 'success')));
+        $first = !Auth::user()->hasCampaigns();
+        $campaign = Campaign::create($request->all());
+        if ($first) {
+            $user = auth()->user();
+            $user->welcome_campaign_id = $campaign->id;
+            $user->save();
+            return redirect()->route('home');
+        }
+        return redirect()->route('home')->with('success', trans($this->view . '.create.success'));
     }
 
     /**

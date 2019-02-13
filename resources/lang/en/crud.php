@@ -83,6 +83,9 @@ return [
         'title'     => 'Confirm your action',
     ],
     'create'            => 'Create',
+    'datagrid'          => [
+        'empty' => 'Nothing to show yet.',
+    ],
     'delete_modal'      => [
         'close'         => 'Close',
         'delete'        => 'Delete',

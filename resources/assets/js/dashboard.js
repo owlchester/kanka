@@ -36,9 +36,8 @@ $(document).ready(function() {
         $(this).click(function(e) {
             $.post({
                 url: $(this).data('url'),
-                method: 'POST'
+                method: 'POST',
             }).done(function(data) {
-                console.log('dismiss release news');
             });
         });
     });

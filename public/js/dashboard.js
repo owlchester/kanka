@@ -106,9 +106,7 @@ $(document).ready(function () {
             $.post({
                 url: $(this).data('url'),
                 method: 'POST'
-            }).done(function (data) {
-                console.log('dismiss release news');
-            });
+            }).done(function (data) {});
         });
     });
 

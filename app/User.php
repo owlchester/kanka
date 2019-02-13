@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 
+/**
+ * Class User
+ * @package App
+ *
+ * @var string $name
+ * @var integer $welcome_campaign_id
+ */
 class User extends \TCG\Voyager\Models\User
 {
     /**

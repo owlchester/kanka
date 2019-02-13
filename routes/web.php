@@ -37,6 +37,7 @@ Route::group([
     Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
     Route::post('/settings/release/{release}', 'Settings\ReleaseController@read')->name('settings.release');
+    Route::post('/settings/welcome', 'Settings\WelcomeController@read')->name('settings.welcome');
 
     Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account');
     Route::patch('/settings/account/password', 'Settings\AccountController@password')->name('settings.account.password');

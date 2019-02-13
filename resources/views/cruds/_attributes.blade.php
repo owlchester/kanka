@@ -13,6 +13,13 @@
         {{--</a>--}}
     </p>
 @endcan
+<?php
+$layout = $model->entity->attributes()->where(['name' => '_layout'])->first();
+?>
+
+@if ($layout && view()->exists('cruds.attributes.layouts.' . $layout->value))
+    @include('cruds.attributes.layouts.' . $layout->value)
+@else
 <?php $r = $model->entity->attributes()->order(request()->get('order'), 'default_order')->paginate(); ?>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.attributes') }}</p>
 <table id="crud_attributes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
@@ -62,3 +69,4 @@
     </tbody></table>
 
 {{ $r->fragment('tab_attribute')->links() }}
+@endif

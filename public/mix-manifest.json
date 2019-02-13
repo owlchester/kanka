@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js?id=050ce6e4af9e3b73194b",
+    "/js/app.js": "/js/app.js?id=e2dd2f23d8251c8d9ef4",
     "/css/bootstrap.css": "/css/bootstrap.css?id=717ed4b7e98f26a1644f",
     "/css/vendor.css": "/css/vendor.css?id=eba591a36a997e2225cd",
     "/css/app.css": "/css/app.css?id=b49bceecfb27020a60c4",
@@ -7,6 +7,7 @@
     "/css/map.css": "/css/map.css?id=397c821dce34a0da4905",
     "/css/front.css": "/css/front.css?id=8506ac0bc72415c1b0fb",
     "/css/dashboard.css": "/css/dashboard.css?id=5f18c32388da24417355",
+    "/css/attributes/dnd5e.css": "/css/attributes/dnd5e.css?id=f90317e4b67d5e63017b",
     "/css/future.css": "/css/future.css?id=2406bc9f4758b30d2dd4",
     "/css/dark.css": "/css/dark.css?id=87c374491b9e7486786c",
     "/css/midnight.css": "/css/midnight.css?id=2e3a21356bd602d5d8cc",
@@ -14,7 +15,7 @@
     "/js/organisation.js": "/js/organisation.js?id=32c20e56efcbdb233df5",
     "/js/location/map.js": "/js/location/map.js?id=5f1c4156f05a3a4cd518",
     "/js/entity.js": "/js/entity.js?id=3ea7d40363e331dce04f",
-    "/js/dashboard.js": "/js/dashboard.js?id=ae8ceac596741a85c2a1",
+    "/js/dashboard.js": "/js/dashboard.js?id=682b54a5c9915c984476",
     "/js/conversation.js": "/js/conversation.js?id=0529d2cdb019df221968",
     "/js/summernote.js": "/js/summernote.js?id=2251111ee6128d41faeb",
     "/js/character-map.js": "/js/character-map.js?id=fd95da6bc2032561db4b",

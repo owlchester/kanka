@@ -52850,6 +52850,13 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/attributes/dnd5e.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/bootstrap.scss":
 /***/ (function(module, exports) {
 
@@ -52924,6 +52931,7 @@ __webpack_require__("./resources/assets/sass/export.scss");
 __webpack_require__("./resources/assets/sass/map.scss");
 __webpack_require__("./resources/assets/sass/front.scss");
 __webpack_require__("./resources/assets/sass/dashboard.scss");
+__webpack_require__("./resources/assets/sass/attributes/dnd5e.scss");
 __webpack_require__("./resources/assets/sass/themes/future.scss");
 __webpack_require__("./resources/assets/sass/themes/dark.scss");
 module.exports = __webpack_require__("./resources/assets/sass/themes/midnight.scss");
