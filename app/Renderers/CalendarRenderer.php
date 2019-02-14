@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\CalendarEvent;
 use App\Models\Event;
 use Collective\Html\HtmlFacade;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class CalendarRenderer
@@ -173,7 +174,7 @@ class CalendarRenderer
         $offset = $this->weekStartoffset();
         $events = $this->events();
 
-        if ($month['type'] == 'intercalary') {
+        if (Arr::get($month, 'type') == 'intercalary') {
             $offset = 0;
         }
 
@@ -285,7 +286,7 @@ class CalendarRenderer
             $week = [];
 
             // If the month is intercalary, we need to offset to the "beginning" of the week
-            if ($month['type'] == 'intercalary') {
+            if (Arr::get($month, 'type') == 'intercalary') {
                 $totalDays = count($data);
                 $resetPosition = count($weekdays) - ($totalDays % count($weekdays));
                 for ($d = 0; $d < $resetPosition; $d++) {
@@ -328,7 +329,7 @@ class CalendarRenderer
 
 
             // If the month is intercalary, we need to fill out the rest of the "week" until where it starts again
-            if ($month['type'] == 'intercalary') {
+            if (Arr::get($month, 'type') == 'intercalary') {
                 $totalDays = count($data);
                 $add = count($weekdays) - ($totalDays % count($weekdays));
                 for ($d = 0; $d < $resetPosition; $d++) {
@@ -391,7 +392,7 @@ class CalendarRenderer
     {
         $month = $this->currentMonthId()-1;
         foreach ($this->calendar->months() as $k => $m) {
-            if ($k == $month && $m['type'] == 'intercalary') {
+            if ($k == $month && Arr::get($m, 'type') == 'intercalary') {
                 return true;
             }
         }
@@ -689,7 +690,7 @@ class CalendarRenderer
 
         $daysInAYear = $days = $leapDays = 0;
         foreach ($this->calendar->months() as $count => $month) {
-            if (!$includeIntercalary && $month['type'] == 'intercalary') {
+            if (!$includeIntercalary && Arr::get($month, 'type') == 'intercalary') {
                 continue;
             }
             $length = $month['length'];
