@@ -25,9 +25,13 @@ class StoreMenuLink extends FormRequest
     {
         return [
             'name' => 'required',
-            'entity_id' => 'required|exists:entities,id',
+            'entity_id' => 'required_without:type|exists:entities,id',
+            'type' => 'required_without:entity_id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
-            'icon' => '',
+            'icon' => 'nullable',
+            'tab' => 'nullable',
+            'filters' => 'nullable|string|max:191',
+            'menu' => 'nullable|string|max:45',
         ];
     }
 }

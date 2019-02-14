@@ -85,4 +85,18 @@ class FormService
 
         return null;
     }
+
+    /**
+     * Prefill model for custom blade directives
+     * @param null $entity
+     * @return null
+     */
+    public function prefillModel($entity = null)
+    {
+        // Only copy on MiscModel (entity) models
+        if ($entity instanceof MiscModel) {
+            return $entity;
+        }
+        return null;
+    }
 }

@@ -296,6 +296,21 @@ pre, blockquote {
   color: $White !important;
 }
 
+.mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
+  background: none !important;
+}
+.mce-widget, .mce-label, .mce-tab {
+  text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
+}
+.mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
+  background: $Unfocused !important;
+}
+
+.input-group .input-group-addon {
+  color: $Hard;
+  background-color: $Soft;
+}
+
 /**
  * Modal, Popover
  */

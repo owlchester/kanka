@@ -17,6 +17,7 @@ class Attribute extends EntityChild
         return $this->entity([
             'name' => $this->name,
             'value' => $this->value,
+            'type' => $this->type,
             'default_order' => $this->default_order,
         ]);
     }

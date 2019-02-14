@@ -25,6 +25,7 @@ class StoreItem extends FormRequest
     {
         return [
             'name' => 'required',
+            'type' => '',
             'location_id', 'nullable|integer|exists:locations,id',
             'character_id', 'nullable|integer|exists:character,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),

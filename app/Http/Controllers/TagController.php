@@ -104,4 +104,24 @@ class TagController extends CrudController
     {
         return $this->crudDestroy($tag);
     }
+    
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function tags(Tag $tag)
+    {
+        return $this->menuView($tag, 'tags');
+    }
+
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function children(Tag $tag)
+    {
+        return $this->menuView($tag, 'children');
+    }
 }

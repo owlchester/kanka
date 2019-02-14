@@ -29,8 +29,8 @@ body {
 .btn {
   background-color: $Unfocused !important;
   color: white !important;
-  border: none !important;
-  border-radius: 2px !important;
+  border: 1px solid $Unfocused !important;
+  //border-radius: 2px !important;
 
   &:hover {
     color: $Detail !important;
@@ -45,9 +45,9 @@ body {
   }
 }
 .input-group-btn {
-  .btn, .new-entity-selector {
+  .new-entity-selector {
     height: 38px !important;
-    padding-top: 15px !important;
+    //padding-top: 15px !important;
   }
 }
 
@@ -128,7 +128,7 @@ a {
 }
 
 input, textarea, .select2, select  {
-  border: 1px solid $Hard !important;
+  border: 1px solid $Unfocused !important;
   border-radius: 0 !important;
   background-color: $Detail !important;
   color: white;
@@ -277,6 +277,22 @@ pre, blockquote {
 }
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
   color: $White !important;
+}
+
+.mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
+  background: none !important;
+}
+.mce-widget, .mce-label, .mce-tab {
+  text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
+}
+.mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
+  background: $Unfocused !important;
+}
+
+.input-group .input-group-addon {
+  color: $White;
+  background-color: $Soft;
+  border: 1px solid $Unfocused;
 }
 
 /**

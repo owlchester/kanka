@@ -8,6 +8,7 @@ return [
         'en-US' => 'Anglais Américain',
         'es'    => 'Espagnol',
         'fr'    => 'Français',
+        'hu'    => 'Hongrois',
         'it'    => 'Italien',
         'nl'    => 'Hollandais',
         'pt-BR' => 'Portugais Brésilien',

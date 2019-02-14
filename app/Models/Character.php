@@ -22,7 +22,7 @@ class Character extends MiscModel
         'sex',
         'image',
         'is_private',
-        'is_personality_visible',
+        'http://kanka.loc/en/campaign/1/characters/63',
         'type',
         'is_dead',
         'race_id',

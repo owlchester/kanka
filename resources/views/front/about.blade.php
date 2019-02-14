@@ -32,11 +32,14 @@
 
                 <div class="row">
                     <div class="col-lg-4 ">
-                            <h4>{{ trans('teams.index.core') }}</h4>
+                        <h4>{{ trans('teams.index.core') }}</h4>
 
-                            <p>
-                                <strong>Lead</strong>: Ilestis <a href="https://ko-fi.com/kankaio" target="_blank" title="{{ trans('front.team.coffee') }}" data-toggle="tooltip"><i class="fa fa-coffee"></i></a>
-                            </p>
+                        <p>
+                            <strong>Lead</strong>: Ilestis <a href="https://ko-fi.com/kankaio" target="_blank" title="{{ trans('front.team.coffee') }}" data-toggle="tooltip"><i class="fa fa-coffee"></i></a>
+                        </p>
+                        <p>
+                            <strong>QA Lead</strong>: ArcOnyx
+                        </p>
                     </div>
                     <div class="col-lg-4 my-auto">
                         <h4>{{ trans('teams.index.translations') }}</h4>
@@ -53,6 +56,9 @@
                             <strong>{{ trans('languages.codes.it') }}</strong>: Dreadino, Arroagantes
                         </p>
                         <p>
+                            <strong>{{ trans('languages.codes.hu') }}</strong>: Kildar, Orkogo
+                        </p>
+                        <p>
                             <strong>{{ trans('languages.codes.pt-BR') }}</strong>: Republik
                         </p>
                         <p>
@@ -63,7 +69,7 @@
                     <div class="col-lg-4">
                         <h4>{{ trans('teams.index.other') }}</h4>
                         <p>
-                            <strong>{{ trans('teams.index.qa') }}</strong>: ArcOnyx, ArcaneXS
+                            <strong>{{ trans('teams.index.qa') }}</strong>: MostExcellentPromise
                         </p>
                     </div>
                 </div>

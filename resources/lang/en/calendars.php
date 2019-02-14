@@ -6,6 +6,7 @@ return [
         'add_month'     => 'Add a month',
         'add_moon'      => 'Add a moon',
         'add_season'    => 'Add a season',
+        'add_intercalary'    => 'Add intercalary days',
         'add_weekday'   => 'Add a week day',
         'add_year'      => 'Add a year name',
         'today'         => 'Today',
@@ -92,6 +93,7 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
+        'intercalary'       => 'Intercalary Days',
     ],
     'hints'         => [
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
@@ -100,6 +102,10 @@ return [
         'seasons'       => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'      => 'Set your weekday names. At least 2 weekdays are required.',
         'years'         => 'Some years are so important that they have their own name.',
+        'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.'
+    ],
+    'helpers' => [
+        'month_type' => 'Intercalary months don\'t use week days, but still influence moons and seasons.'
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -111,14 +117,25 @@ return [
         'month' => 'Month',
         'year'  => 'Year',
     ],
+    'month_types' => [
+        'standard' => 'Standard',
+        'intercalary' => 'Intercalary',
+    ],
     'panels'        => [
         'leap_year' => 'Leap Year',
         'years'     => 'Named Years',
+        'intercalary'   => 'Intercalary Days',
     ],
     'parameters'    => [
+        'intercalary' => [
+            'length' => 'Duration in days',
+            'name' => 'Name of intercalation',
+            'month' => 'At the end of which month',
+        ],
         'month'     => [
-            'length'    => 'Number of days',
+            'length'    => 'Days',
             'name'      => 'Month Name',
+            'type'      => 'Type',
         ],
         'moon'      => [
             'fullmoon'  => 'Full moon every (days)',
@@ -153,6 +170,7 @@ return [
     ],
     'show'          => [
         'description'       => 'A detailed view of a calendar',
+        'missing_details'   => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
         'moon_full_moon'    => ':moon Full Moon',
         'tabs'              => [
             'events'        => 'Calendar Events',

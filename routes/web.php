@@ -25,7 +25,7 @@ Route::group([
     Route::get('/privacy-policy', 'FrontController@privacy')->name('privacy');
     Route::get('/help', 'FrontController@help')->name('help');
     Route::get('/faq', 'FaqController@index')->name('faq.index');
-    Route::get('/faq/{id}-{slug?}', 'FaqController@show')->name('faq.show');
+    Route::get('/faq/{key}/{slug?}', 'FaqController@show')->name('faq.show');
     Route::get('/features', 'FrontController@features')->name('features');
     Route::get('/roadmap', 'FrontController@roadmap')->name('roadmap');
     Route::get('/community', 'FrontController@community')->name('community');
@@ -141,6 +141,8 @@ Route::group([
 
         // Tag menus
         Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
+        Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
+        Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
@@ -305,7 +307,7 @@ Route::group([
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
 
     // 3rd party
-    Route::group(['middleware' => ['translator'], 'prefix' => 'translations'], function () {
+    Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {
         Translator::routes();
     });
 

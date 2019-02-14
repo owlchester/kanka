@@ -24,6 +24,13 @@
                 </span>
                 <br class="clear" />
             </li>
+            <li class="list-group-item">
+                <b>{{ trans('campaigns.fields.entity_count') }}</b>
+                <span  class="pull-right">
+                    {{ number_format($campaign->entities()->count()) }}
+                </span>
+                <br class="clear" />
+            </li>
             @if (!empty($campaign->system))
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.system') }}</b>

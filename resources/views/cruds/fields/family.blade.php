@@ -1,8 +1,17 @@
 @if ($campaign->enabled('families'))
+    <?php
+    $preset = null;
+    if (isset($model) && $model->family) {
+        $preset = $model->family;
+    } elseif (isset($isRandom) && $isRandom) {
+        $preset = $random->generateForeign(\App\Models\Family::class);
+    } else {
+        $preset = $formService->prefillSelect('family', $source);
+    }?>
     <div class="form-group">
         {!! Form::select2(
             'family_id',
-            (isset($model) && $model->family ? $model->family : $formService->prefillSelect('family', $source)),
+            $preset,
             App\Models\Family::class,
             isset($enableNew) ? $enableNew : true
         ) !!}

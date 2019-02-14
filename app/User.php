@@ -48,7 +48,7 @@ class User extends \TCG\Voyager\Models\User
         'theme',
         'date_format',
         'default_pagination',
-        'locale' // Keep this for the LocaleChange middleware
+        'locale', // Keep this for the LocaleChange middleware
     ];
 
     /**
@@ -276,7 +276,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function setPledgeAttribute($value)
     {
-        $this->attributes['settings'] = collect($this->settings)->merge(['pledge' => $value]);
+        $this->setSettingsOption('pledge', $value);
     }
 
     /**
@@ -285,7 +285,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function setReleaseAttribute($value)
     {
-        $this->attributes['settings'] = collect($this->settings)->merge(['release' => $value]);
+        $this->setSettingsOption('release', $value);
     }
 
     /**
@@ -293,7 +293,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function setPatreonEmailAttribute($value)
     {
-        $this->attributes['settings'] = collect($this->settings)->merge(['patreon_email' => $value]);
+        $this->setSettingsOption('patreon_email', $value);
     }
 
     /**
@@ -301,7 +301,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function setPatreonFullnameAttribute($value)
     {
-        $this->attributes['settings'] = collect($this->settings)->merge(['patreon_fullname' => $value]);
+        $this->setSettingsOption('patreon_fullname', $value);
     }
 
     /**
@@ -318,6 +318,44 @@ class User extends \TCG\Voyager\Models\User
     public function getReleaseAttribute()
     {
         return array_get($this->settings, 'release', null);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setEditorAttribute($value)
+    {
+        $this->setSettingsOption('editor', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEditorAttribute()
+    {
+        return array_get($this->settings, 'editor', null);
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    protected function setSettingsOption($key, $value)
+    {
+        $this->attributes['settings'] = collect($this->settings)->merge([$key => $value]);
+    }
+
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function saveSettings($data)
+    {
+        $this->editor = array_get($data, 'editor', null);
+        if (empty($this->editor)) {
+            unset($this->attributes['settings']['editor']);
+        }
+        return $this;
     }
 
     /**

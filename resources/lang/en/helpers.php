@@ -13,6 +13,6 @@ return [
         'description'   => 'You can easily link to other entities by simply typing \'@\'. You can also type \'#\' to get a list of months from your calendars.',
         'title'         => 'Linking to other entries and shortcuts',
     ],
+    'public'        => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'title'         => 'Helpers',
-    'public' => 'Watch a tutorial video on Youtube explaining public campaigns.',
 ];

@@ -8,6 +8,11 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Collective\Html\HtmlFacade;
 
+/**
+ * Class Calendar
+ * @package App\Models
+ * @var integer $campaign_id
+ */
 class Calendar extends MiscModel
 {
     /**
@@ -68,6 +73,11 @@ class Calendar extends MiscModel
      * @var bool
      */
     protected $loadedMoons = false;
+
+    /**
+     * @var bool
+     */
+    protected $loadedIntercalaries = false;
 
     /**
      * Fields that can be filtered on
@@ -346,5 +356,10 @@ class Calendar extends MiscModel
 
         $this->date = $year . '-' . $month . '-' . $day;
         return $this->save();
+    }
+
+    public function missingDetails()
+    {
+        return count($this->months()) < 2 || count($this->weekdays()) < 2;
     }
 }

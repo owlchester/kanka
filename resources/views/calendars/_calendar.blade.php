@@ -1,3 +1,14 @@
+<?php
+/** @var \App\Renderers\CalendarRenderer $renderer
+ * @var \App\Models\Calendar $model
+ */
+if ($model->missingDetails()): ?>
+    <div class="alert alert-warning">
+        {{ __('calendars.show.missing_details') }}
+    </div>
+<?php return;
+endif;
+?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->setCalendar($model) }}
@@ -33,11 +44,12 @@
 @endif
 {!! Form::close() !!}
 
+@php $intercalary = $renderer->isIntercalaryMonth() @endphp
 <table class="calendar table table-bordered table-striped">
     <thead>
     <tr>
         @foreach ($model->weekdays() as $weekday)
-            <th>{{ $weekday }}</th>
+            <th>{{ $intercalary ? '' : $weekday }}</th>
         @endforeach
     </tr>
     </thead>

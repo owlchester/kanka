@@ -240,6 +240,15 @@ class Campaign extends MiscModel
     }
 
     /**
+     * List of entities that are mentionned in the campaign's description
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entities()
+    {
+        return $this->hasMany('App\Models\Entity', 'campaign_id', 'id');
+    }
+
+    /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool
      */

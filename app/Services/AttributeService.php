@@ -21,15 +21,20 @@ class AttributeService
         }
 
         $order = 0;
-        foreach ($data['name'] as $id => $name) {
+        $names = array_get($data, 'name', []);
+        $values = array_get($data, 'value', []);
+        $types = array_get($data, 'type', []);
+        $privates = array_get($data, 'is_private', []);
+
+        foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
             if (empty($name)) {
                 continue;
             }
 
-            $value = $data['value'][$id];
-            $type = $data['type'][$id];
-            $isPrivate = !empty($data['is_private'][$id]);
+            $value = $values[$id];
+            $type = $types[$id];
+            $isPrivate = !empty($privates[$id]);
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute

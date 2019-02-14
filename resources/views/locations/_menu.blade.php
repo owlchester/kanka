@@ -70,7 +70,7 @@
             </li>
             @endif
 
-            @if ($campaign->enabled('characters') && ($count = $model->characters()->acl()->count()) > 0)
+            @if ($campaign->enabled('characters') && ($count = $model->allCharacters()->acl()->count()) > 0)
             <li class="@if(!empty($active) && $active == 'characters')active @endif">
                 <a href="{{ route('locations.characters', $model) }}">
                     {{ __('locations.show.tabs.characters') }}

@@ -18,7 +18,11 @@ class FamilyApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->families()->acl()->paginate());
+        return new Collection($campaign
+            ->families()
+            ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events', 'entity.relationships', 'entity.attributes'])
+            ->acl()
+            ->paginate());
     }
 
     /**

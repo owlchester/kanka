@@ -49,6 +49,7 @@ $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRou
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName),
         'data-placeholder' => trans($placeholderKey),
+        'data-language' => LaravelLocalization::getCurrentLocale()
     ]
 ) !!}
 

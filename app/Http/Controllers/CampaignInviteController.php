@@ -18,6 +18,13 @@ class CampaignInviteController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function index()
+    {
+        return redirect()->route('home');
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Calendar $model */ ?>
 @inject('formService', 'App\Services\FormService')
 
 {{ csrf_field() }}
@@ -79,20 +80,23 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">{{ trans('calendars.parameters.month.name') }}</div>
-                        <div class="col-md-6">{{ trans('calendars.parameters.month.length') }}</div>
+                        <div class="col-md-2">{{ trans('calendars.parameters.month.length') }}</div>
+                        <div class="col-md-4">{{ trans('calendars.parameters.month.type') }} <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('calendars.helpers.month_type') }}"></i></div>
                     </div>
                 </div>
                 <?php
                 $months = [];
                 $names = old('month_name');
                 $lengths = old('month_length');
+                $types = old('month_type');
                 if (!empty($names)) {
                     $cpt = 0;
                     foreach ($names as $name) {
                         if (!empty($name) || !empty($lengths[$cpt])) {
                             $months[] = [
                                 'name' => $name,
-                                'length' => $lengths[$cpt]
+                                'length' => $lengths[$cpt],
+                                'type' => $types[$cpt],
                             ];
                         }
                         $cpt++;
@@ -114,9 +118,12 @@
                                         {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-2">
+                                    {!! Form::number('month_length[]', $month['length'], ['class' => 'form-control', 'maxlength' => 4]) !!}
+                                </div>
+                                <div class="col-md-4">
                                     <div class="input-group">
-                                        {!! Form::text('month_length[]', $month['length'], ['class' => 'form-control']) !!}
+                                        {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), ['class' => 'form-control']) !!}
                                         <span class="input-group-btn">
                                         <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                             <i class="fa fa-trash"></i>
@@ -139,12 +146,15 @@
                                 <span class="input-group-addon">
                                     <span class="fa fa-arrows-alt-v"></span>
                                 </span>
-                                {!! Form::text('month_name[]', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('month_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.name')]) !!}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-2">
+                            {!! Form::number('month_length[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.length')]) !!}
+                        </div>
+                        <div class="col-md-4">
                             <div class="input-group">
-                                {!! Form::text('month_length[]', null, ['class' => 'form-control']) !!}
+                                {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'form-control']) !!}
                                 <span class="input-group-btn">
                                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                         <i class="fa fa-trash"></i>
@@ -166,8 +176,8 @@
                 <p class="help-block">{{ __('calendars.hints.moons') }}</p>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-6">{{ trans('calendars.parameters.moon.name') }}</div>
-                        <div class="col-md-6">{{ trans('calendars.parameters.moon.fullmoon') }}</div>
+                        <div class="col-md-9">{{ trans('calendars.parameters.moon.name') }}</div>
+                        <div class="col-md-3">{{ trans('calendars.parameters.moon.fullmoon') }}</div>
                     </div>
                 </div>
                 <?php
@@ -194,7 +204,7 @@
                     @foreach ($moons as $fullmoon => $moon)
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                     <div class="input-group">
                                     <span class="input-group-addon">
                                         <span class="fa fa-arrows-alt-v"></span>
@@ -202,9 +212,9 @@
                                         {!! Form::text('moon_name[]', $moon, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="input-group">
-                                        {!! Form::text('moon_fullmoon[]', $fullmoon, ['class' => 'form-control']) !!}
+                                        {!! Form::number('moon_fullmoon[]', $fullmoon, ['class' => 'form-control']) !!}
                                         <span class="input-group-btn">
                                         <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                             <i class="fa fa-trash"></i>
@@ -222,7 +232,7 @@
 
                 <div class="form-group" id="template_moon" style="display: none">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="fa fa-arrows-alt-v"></span>
@@ -230,9 +240,9 @@
                                 {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="input-group">
-                                {!! Form::text('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
+                                {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
                                 <span class="input-group-btn">
                                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                         <i class="fa fa-trash"></i>
@@ -245,7 +255,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -328,8 +337,8 @@
                 <p class="help-block">{{ __('calendars.hints.years') }}</p>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-6">{{ trans('calendars.parameters.year.number') }}</div>
-                        <div class="col-md-6">{{ trans('calendars.parameters.year.name') }}</div>
+                        <div class="col-md-4">{{ trans('calendars.parameters.year.number') }}</div>
+                        <div class="col-md-8">{{ trans('calendars.parameters.year.name') }}</div>
                     </div>
                 </div>
                 <?php
@@ -353,7 +362,7 @@
                     @foreach ($years as $year => $name)
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="input-group">
                                     <span class="input-group-addon">
                                         <span class="fa fa-arrows-alt-v"></span>
@@ -361,7 +370,7 @@
                                         {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <div class="input-group">
                                         {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
                                         <span class="input-group-btn">
@@ -381,17 +390,17 @@
 
                 <div class="form-group" id="template_year" style="display: none">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="fa fa-arrows-alt-v"></span>
                                 </span>
-                                {!! Form::number('year_number[]', null, ['class' => 'form-control']) !!}
+                                {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="input-group">
-                                {!! Form::text('year_name[]', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
                                 <span class="input-group-btn">
                                     <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                         <i class="fa fa-trash"></i>
@@ -445,9 +454,9 @@
                 <p class="help-block">{{ __('calendars.hints.seasons') }}</p>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-4">{{ trans('calendars.parameters.seasons.name') }}</div>
-                        <div class="col-md-4">{{ trans('calendars.parameters.seasons.month') }}</div>
-                        <div class="col-md-4">{{ trans('calendars.parameters.seasons.day') }}</div>
+                        <div class="col-md-6">{{ trans('calendars.parameters.seasons.name') }}</div>
+                        <div class="col-md-3">{{ trans('calendars.parameters.seasons.month') }}</div>
+                        <div class="col-md-3">{{ trans('calendars.parameters.seasons.day') }}</div>
                     </div>
                 </div>
                 <?php
@@ -476,7 +485,7 @@
                     @foreach ($seasons as $season)
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <span class="fa fa-arrows-alt-v"></span>
@@ -484,10 +493,10 @@
                                         {!! Form::text('season_name[]', $season['name'], ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     {!! Form::number('season_month[]', $season['month'], ['class' => 'form-control']) !!}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="input-group">
                                         {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
                                         <span class="input-group-btn">
@@ -507,7 +516,7 @@
 
                 <div class="form-group" id="template_season" style="display: none">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="fa fa-arrows-alt-v"></span>
@@ -515,10 +524,10 @@
                                 {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             {!! Form::number('season_month[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.month')]) !!}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="input-group">
                                 {!! Form::number('season_day[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.day')]) !!}
                                 <span class="input-group-btn">

@@ -24,6 +24,7 @@ class CalendarObserver extends MiscObserver
         $monthCount = 0;
         $monthNames = request()->post('month_name');
         $monthLengths = request()->post('month_length');
+        $monthTypes = request()->post('month_type');
         foreach ($monthNames as $name) {
             if (empty($name)) {
                 continue;
@@ -33,7 +34,8 @@ class CalendarObserver extends MiscObserver
             $length = (int) $monthLengths[$monthCount];
             $months[] = [
                 'name' => $name,
-                'length' => $length < 1 ? 1 : $length
+                'length' => $length < 1 ? 1 : $length,
+                'type' => $monthTypes[$monthCount],
             ];
             $monthCount++;
         }
@@ -85,7 +87,7 @@ class CalendarObserver extends MiscObserver
         }
         $model->moons = json_encode($moons);
 
-        // Handle moons
+        // Handle seasons
         $seasons = [];
         $seasonCount = 0;
         $seasonNames = request()->post('season_name');

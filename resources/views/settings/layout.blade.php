@@ -45,6 +45,7 @@
 
                         ], null, ['class' => 'form-control']) !!}
                     </div>
+
                     <button class="btn btn-primary">
                         {{ trans('crud.save') }}
                     </button>

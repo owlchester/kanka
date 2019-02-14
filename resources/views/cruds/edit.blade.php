@@ -21,4 +21,4 @@
     </div>
 @endsection
 
-@include('layouts.widgets.tinymce')
+@include('editors.editor')

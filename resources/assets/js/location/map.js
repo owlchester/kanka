@@ -646,7 +646,8 @@ function formatState (state) {
 function initIconSelect() {
     $(".select2-icon").select2({
         templateResult: formatState,
-        templateSelection: formatState
+        templateSelection: formatState,
+        language: $(this).data('language')
     });
 }
 

@@ -15,6 +15,8 @@
 
         @include('entities.creator.forms.' . $singularType)
 
+        @include('cruds.fields.tags')
+
         @if (Auth::user()->isAdmin())
             <hr>
             @include('cruds.fields.private')

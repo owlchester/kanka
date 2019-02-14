@@ -18,7 +18,11 @@ class CalendarApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->calendars()->acl()->paginate());
+        return new Collection($campaign
+            ->calendars()
+            ->acl()
+            ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events', 'entity.relationships', 'entity.attributes'])
+            ->paginate());
     }
 
     /**

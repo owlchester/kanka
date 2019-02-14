@@ -173,6 +173,10 @@ class CalendarRenderer
         $offset = $this->weekStartoffset();
         $events = $this->events();
 
+        if ($month['type'] == 'intercalary') {
+            $offset = 0;
+        }
+
         // Check if this month is a leap month
         if ($this->calendar->has_leap_year) {
             if ($this->calendar->leap_year_month == $this->getMonth()) {
@@ -280,6 +284,15 @@ class CalendarRenderer
             $weekLength = 0;
             $week = [];
 
+            // If the month is intercalary, we need to offset to the "beginning" of the week
+            if ($month['type'] == 'intercalary') {
+                $totalDays = count($data);
+                $resetPosition = count($weekdays) - ($totalDays % count($weekdays));
+                for ($d = 0; $d < $resetPosition; $d++) {
+                    $data[] = [];
+                }
+            }
+
             // Add each day of the month to the day thing
             for ($day = 1; $day <= $monthLength; $day++) {
 
@@ -311,6 +324,16 @@ class CalendarRenderer
                 $data[] = $dayData;
 
                 $totalDay++;
+            }
+
+
+            // If the month is intercalary, we need to fill out the rest of the "week" until where it starts again
+            if ($month['type'] == 'intercalary') {
+                $totalDays = count($data);
+                $add = count($weekdays) - ($totalDays % count($weekdays));
+                for ($d = 0; $d < $resetPosition; $d++) {
+                    $data[] = [];
+                }
             }
 
             // Fill in the last week?
@@ -362,6 +385,21 @@ class CalendarRenderer
     }
 
     /**
+     * @return bool
+     */
+    public function isIntercalaryMonth()
+    {
+        $month = $this->currentMonthId()-1;
+        foreach ($this->calendar->months() as $k => $m) {
+            if ($k == $month && $m['type'] == 'intercalary') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Build the current month and year segments
      */
     protected function buildCurrentSegments()
@@ -406,7 +444,7 @@ class CalendarRenderer
      */
     protected function weekStartOffset()
     {
-        $totalDays = $this->daysToDate();
+        $totalDays = $this->daysToDate(false);
         $negativeYear = $totalDays < 0;
         $weekLength = count($this->calendar->weekdays());
         if ($weekLength == 0) {
@@ -534,7 +572,7 @@ class CalendarRenderer
      */
     protected function getYear($add = 0)
     {
-        return $this->year + $add;
+        return (int) $this->year + (int) $add;
     }
 
     /**
@@ -593,6 +631,9 @@ class CalendarRenderer
         return $this->year;
     }
 
+    /**
+     *
+     */
     protected function buildFullmoons()
     {
         // Calculate the number of days since the 1.1.0
@@ -605,6 +646,7 @@ class CalendarRenderer
             $daysInAYear += $length;
         }
         foreach ($this->calendar->moons() as $fullmoon => $name) {
+            $fullmoon = (int) $fullmoon;
             // Let's figure out how many full moons occurred until now
             $numberOfFullMoons = $totalDays / $fullmoon;
 
@@ -640,13 +682,16 @@ class CalendarRenderer
      * Get the total amount of days since the beginning
      * @return float|int|mixed
      */
-    protected function daysToDate()
+    protected function daysToDate($includeIntercalary = true)
     {
         // We assume that the 01 01 00 is a monday.
         // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
 
         $daysInAYear = $days = $leapDays = 0;
         foreach ($this->calendar->months() as $count => $month) {
+            if (!$includeIntercalary && $month['type'] == 'intercalary') {
+                continue;
+            }
             $length = $month['length'];
             $daysInAYear += $length;
 

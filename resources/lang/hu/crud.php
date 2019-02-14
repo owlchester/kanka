@@ -1,7 +1,306 @@
 <?php
 
 return [
-    'actions'   => [
-        'back'  => 'Back',
+    'actions'           => [
+        'back'          => 'Vissza',
+        'copy'          => 'Másolás',
+        'explore_view'  => 'Hierarchikus nézet',
+        'export'        => 'Export',
+        'find_out_more' => 'Tudj meg többet!',
+        'go_to'         => 'Ugrás :name entitáshoz',
+        'more'          => 'Több művelet',
+        'move'          => 'Mozgatás',
+        'new'           => 'Új',
+        'next'          => 'Következő',
+        'private'       => 'Privát',
+        'public'        => 'Nyilvános',
     ],
+    'add'               => 'Hozzáadás',
+    'attributes'        => [
+        'actions'       => [
+            'add'               => 'Tulajdonság hozzáadása',
+            'add_block'         => 'Blokk hozzáadása',
+            'add_checkbox'      => 'Jelölőnégyzet hozzáadása',
+            'apply_template'    => 'Tulajdonságsablon alkalmazása',
+            'manage'            => 'Kezelés',
+        ],
+        'create'        => [
+            'description'   => 'Új tulajdonság létrehozása',
+            'success'       => ':name tulajdonságot hozzáadtuk :entity entitáshoz.',
+            'title'         => ':name entitáshoz új tulajdonság hozzáadása',
+        ],
+        'destroy'       => [
+            'success'   => ':entity :name tulajdonságát eltávolítottuk.',
+        ],
+        'edit'          => [
+            'description'   => 'Létező entitás frissítése',
+            'success'       => ':entity :name tulajdonságát frissítettük.',
+            'title'         => ':name tulajdonságnak frissítése',
+        ],
+        'fields'        => [
+            'attribute' => 'Tulajdonság',
+            'template'  => 'Sablon',
+            'value'     => 'Érték',
+        ],
+        'index'         => [
+            'success'   => ':entity számára frissítettük a tulajdonságokat.',
+            'title'     => 'Tulajdonságok :name számára',
+        ],
+        'placeholders'  => [
+            'attribute' => 'Hódítások száma, Kihívási érték, kezdeményezés, népesség',
+            'block'     => 'Blokk megnevezése',
+            'checkbox'  => 'Jelölőnégyzet megnevezése',
+            'template'  => 'Válassz ki egy sablont!',
+            'value'     => 'A tulajdonság értéke',
+        ],
+        'template'      => [
+            'success'   => ':name tulajdonságsablont alkalmaztuk :entity entátáshoz.',
+            'title'     => ':name számára tulajdonságsablon alkalmazása',
+        ],
+        'types'         => [
+            'attribute' => 'Tulajdonság',
+            'block'     => 'Blokk',
+            'checkbox'  => 'Jelölőnégyzet',
+        ],
+        'visibility'    => [
+            'private'   => 'A tulajdonság csak az "Admin" szerepű tagok számára látható.',
+            'public'    => 'A tulajdonság minden tag számára látható.',
+        ],
+    ],
+    'bulk'              => [
+        'errors'    => [
+            'admin' => 'Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát.',
+        ],
+        'success'   => [
+            'private'   => ':count entitás most már privát|:count entitás most már privát.',
+            'public'    => ':count entitás most már látható|:count entitás most már látható.',
+        ],
+    ],
+    'cancel'            => 'Mégse',
+    'click_modal'       => [
+        'close'     => 'Bezárás',
+        'confirm'   => 'Megerősítés',
+        'title'     => 'Igazold vissza az akciódat!',
+    ],
+    'create'            => 'Létrehozás',
+    'delete_modal'      => [
+        'close'         => 'Bezárás',
+        'delete'        => 'Törlés',
+        'description'   => 'Biztos, hogy eltávolítod?',
+        'title'         => 'Törlés megerősítése',
+    ],
+    'destroy_many'      => [
+        'success'   => ':count entitást töröltünk|:count entitást töröltünk.',
+    ],
+    'edit'              => 'Szerkesztés',
+    'errors'            => [
+        'node_must_not_be_a_descendant' => 'Érvénytelen csomópont (címke, előd helyszín): saját maga leszármazottja lehet.',
+    ],
+    'events'            => [
+        'hint'  => 'Ez egy lista minden naptárról, amihez ezt az entitást hozzáadták az "Esemény hozzáadása a naptárhoz" felületen.',
+    ],
+    'export'            => 'Export',
+    'fields'            => [
+        'attribute_template'    => 'Tulajdonságsablon',
+        'calendar'              => 'Naptár',
+        'calendar_date'         => 'Naptári dátum',
+        'character'             => 'Karakter',
+        'copy_attributes'       => 'Tulajdonság másolása',
+        'creator'               => 'Létrehozó',
+        'dice_roll'             => 'Dobás',
+        'entity'                => 'Entitás',
+        'entry'                 => 'Bejegyzés',
+        'event'                 => 'Esemény',
+        'excerpt'               => 'Kivonat',
+        'family'                => 'Család',
+        'files'                 => 'Állományok',
+        'image'                 => 'Kép',
+        'is_private'            => 'Privát',
+        'item'                  => 'Tárgy',
+        'location'              => 'Helyszín',
+        'name'                  => 'Név',
+        'organisation'          => 'Szervezet',
+        'race'                  => 'Faj',
+        'tag'                   => 'Címke',
+        'tags'                  => 'Címkék',
+    ],
+    'files'             => [
+        'actions'   => [
+            'drop'      => 'Klikkelj ide egy állomány hozzáadásához vagy kidobásához',
+            'manage'    => 'Az entitás állományainak kezelése',
+        ],
+        'errors'    => [
+            'max'   => 'Elérted az entitáshoz rendelhető állományok maximális számát (:max).',
+        ],
+        'files'     => 'Feltöltött állomány',
+        'hints'     => [
+            'limit'         => 'Minden entitáshoz maximum :max állomány tölthető fel.',
+            'limitations'   => 'Támogatott formátumok: jpg, png, gif és pdf. Maximális méret: :size',
+        ],
+        'title'     => ':name állományai',
+    ],
+    'filter'            => 'Szűrő',
+    'filters'           => [
+        'clear' => 'Szűrők törlése',
+        'hide'  => 'Szűrők elrejtése',
+        'show'  => 'Szűrők megmutatása',
+        'title' => 'Szűrők',
+    ],
+    'forms'             => [
+        'actions'       => [
+            'calendar'  => 'Naptári dátum hozzáadása',
+        ],
+        'copy_options'  => 'Másolási lehetőségek',
+    ],
+    'hidden'            => 'Rejtett',
+    'hints'             => [
+        'attribute_template'    => 'Közvetlenül is alkalmazhatsz egy tulajdonságsablont, amikor létrehozod ezt az entitást.',
+        'calendar_date'         => 'Egy naptári dátum könnyű szűrést tesz lehetővé a listákban, és fenntart egy naptári eseményt is a választott naptárban.',
+        'image_limitations'     => 'Támogatott formátumok: jpg, png és gif. Maximális állományméret: :size.',
+        'image_patreon'         => 'Megnöveled az állományméret korlátját?',
+        'is_private'            => 'Ha privátnak állítod be, ezt az entitást csak a kampány "Admin" szereplői fogják látni.',
+        'map_limitations'       => 'Támogatott formátumok: jpg, png, gif és svg. Maximális állományméret: :size.',
+    ],
+    'history'           => [
+        'created'   => 'Létrehozás: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'   => 'Ismeretlen',
+        'updated'   => 'Utolsó módosítás: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+    ],
+    'image'             => [
+        'error' => 'Nem érjük el a kívánt képet. Lehet, hogy a honlap nem engedi, hogy letöltsük a képet (ilyen a Squarespace és a DeviantArt), vagy a link nem érvényes már. Kérjük, arról is bizonyosodj meg, hogy a kép nem nagyobb, mint :size.',
+    ],
+    'is_private'        => 'Ez az entitás privát, így nem látható a nem-admin felhasználók számára.',
+    'linking_help'      => 'Hogyan hozhatok létre linket más entitásokhoz?',
+    'manage'            => 'Kezelés',
+    'move'              => [
+        'description'   => 'Az entitás más helyre mozgatása',
+        'errors'        => [
+            'permission'        => 'Nincs engedélyed ilyen tipusú entitás létrehozására ebben a kampányban.',
+            'same_campaign'     => 'Ki kell választanod egy másik kampányt, ahová az entitás szeretnéd mozgatni.',
+            'unknown_campaign'  => 'Ismeretlen kampány.',
+        ],
+        'fields'        => [
+            'campaign'  => 'Új kampány',
+            'target'    => 'Új típus',
+        ],
+        'hints'         => [
+            'campaign'  => 'Megpróbálhatod egy másik kampányba mozgatni ezt az entitást.',
+            'target'    => 'Kérjük, ne felejtsd el, hogy néhány adat elveszhet, amikor egy elemet az egyik típusból egy másikban mozgatod.',
+        ],
+        'success'       => '\':name\' entitást átmozgattuk.',
+        'title'         => ':name mozgatása',
+    ],
+    'new_entity'        => [
+        'error' => 'Kérjük, nézd meg jól az értékeket!',
+        'fields'=> [
+            'name'  => 'Név',
+        ],
+        'title' => 'Új entitás',
+    ],
+    'notes'             => [
+        'actions'       => [
+            'add'   => 'Jegyzet hozzáadása',
+        ],
+        'create'        => [
+            'description'   => 'Új jegyzet létrehozása',
+            'success'       => '\':name\' jegyzetet hozzáadtuk :entity entitáshoz.',
+            'title'         => 'Új jegyzet :name számára',
+        ],
+        'destroy'       => [
+            'success'   => '\':name\' jegyeztet eltávolítottuk :entity entitásból.',
+        ],
+        'edit'          => [
+            'description'   => 'Létező jegyzet frissítése',
+            'success'       => '\':name\' jegyzetet frissítettük :entity entitás számára.',
+            'title'         => 'Jegyzet frissítése :name számára',
+        ],
+        'fields'        => [
+            'creator'   => 'Létrehozó',
+            'entry'     => 'Bejegyzés',
+            'name'      => 'Név',
+        ],
+        'hint'          => 'Olyan információkat, amelyek nem passzolnak bele a sztenderd mezőkbe, vagy amit privátként szeretnél megjeleníteni, jegyzetként lehet létrehozni.',
+        'index'         => [
+            'title' => 'Jegyzetek :name számára',
+        ],
+        'placeholders'  => [
+            'name'  => 'A jegyzet megnevezése.',
+        ],
+        'show'          => [
+            'title' => ':name jegyzet :entity számára',
+        ],
+    ],
+    'or_cancel'         => 'vagy <a href=":url">mégse</a>',
+    'panels'            => [
+        'appearance'            => 'Megjelenés',
+        'attribute_template'    => 'Tulajdonságsablon',
+        'calendar_date'         => 'Naptári dátum',
+        'entry'                 => 'Bejegyzés',
+        'general_information'   => 'Általános információ',
+        'move'                  => 'Mozgatás',
+        'system'                => 'Rendszer',
+    ],
+    'permissions'       => [
+        'action'    => 'Akció',
+        'actions'   => [
+            'delete'    => 'Törlés',
+            'edit'      => 'Szerkesztés',
+            'read'      => 'Olvasás',
+        ],
+        'allowed'   => 'Engedélyezett',
+        'fields'    => [
+            'member'    => 'Tag',
+            'role'      => 'Szerep',
+        ],
+        'helper'    => 'Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.',
+        'success'   => 'Engedélyeket elmentettük.',
+        'title'     => 'Engedélyek',
+    ],
+    'placeholders'      => [
+        'calendar'      => 'Válassz egy naptárat!',
+        'character'     => 'Válassz egy karaktert!',
+        'entity'        => 'Entitás',
+        'event'         => 'Válassz egy eseményt!',
+        'family'        => 'Válassz egy családot!',
+        'image_url'     => 'Egy URL-címről is feltölthetsz képet',
+        'item'          => 'Válassz egy tárgyat!',
+        'location'      => 'Válassz egy helyszínt!',
+        'organisation'  => 'Válassz egy szervezetet!',
+        'race'          => 'Válassz egy fajt!',
+        'tag'           => 'Válassz egy címkét!',
+    ],
+    'relations'         => [
+        'actions'   => [
+            'add'   => 'Hozz létre egy kapcsolatot',
+        ],
+        'fields'    => [
+            'location'  => 'Helyszín',
+            'name'      => 'Név',
+            'relation'  => 'Kapcsolat',
+        ],
+        'hint'      => 'Az entitások közötti kapcsolatok segítenek meghatározni a viszonyukat.',
+    ],
+    'remove'            => 'Eltávolítás',
+    'rename'            => 'Átnevezés',
+    'save'              => 'Mentés',
+    'save_and_close'    => 'Mentés és bezárás',
+    'save_and_new'      => 'Mentés és új',
+    'save_and_update'   => 'Mentés és frissítés',
+    'save_and_view'     => 'Mentés és megtekintés',
+    'search'            => 'Keresés',
+    'select'            => 'Kiválasztás',
+    'tabs'              => [
+        'attributes'    => 'Tulajdonságok',
+        'calendars'     => 'Naptárak',
+        'events'        => 'Események',
+        'menu'          => 'Menü',
+        'notes'         => 'Jegyzetek',
+        'permissions'   => 'Engedélyek',
+        'relations'     => 'Kapcsolatok',
+    ],
+    'update'            => 'Frissítés',
+    'users'             => [
+        'unknown'   => 'Ismeretlen',
+    ],
+    'view'              => 'Megtekintés',
 ];

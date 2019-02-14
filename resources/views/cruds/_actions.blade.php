@@ -31,11 +31,13 @@
             </li>
             @endif
 
+            @if ($model->entity)
             <li class="margin-bottom">
                 <a href="{{ route('entities.export', $model->entity) }}">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ trans('crud.actions.export') }}
                 </a>
             </li>
+            @endif
             @can('delete', $model)
             <li>
                 <button class="btn btn-danger btn-flat delete-confirm btn-block" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">

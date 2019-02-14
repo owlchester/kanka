@@ -19,6 +19,7 @@
 @section('content')
     @include($name . '.show')
 
+    @if ($model->entity)
     @admin
     <div class="panel panel-default hidden">
         <div class="panel-heading">
@@ -34,6 +35,7 @@
         </div>
     </div>
     @endadmin
+    @endif
 @endsection
 
 

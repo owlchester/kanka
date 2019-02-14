@@ -48,7 +48,7 @@ unset($iconOptions['entity']);
     <div class="col-sm-6">
         <div class="form-group required">
             <label>{{ trans('locations.map.points.fields.icon') }}</label>
-            <select name="icon" class="form-control select2-icon" style="width: 100%">
+            <select name="icon" class="form-control select2-icon" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                 <option value="pin" data-icon="fa fa-map-marker">{{ __('locations.map.points.icons.pin') }}</option>
                 <option value="entity">{{ __('locations.map.points.icons.entity') }}</option>
                 @foreach ($iconOptions as $icon => $text)
