@@ -703,24 +703,31 @@ class CalendarRenderer
         }
 
         if ($this->calendar->has_leap_year && $this->getYear() >= $this->calendar->leap_year_start) {
-            // Calc the number of years that were leap years
+            // If the leap month is intercalary, we don't need to offset anything.
+            $months = $this->calendar->months();
+            $leapMonth = Arr::get($months, $this->calendar->leap_year_month-1, false);
+            if ($leapMonth && Arr::get($leapMonth, 'type') == 'intercalary') {
+                // Nothing
+            } else {
+                // Calc the number of years that were leap years
 //            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts (" . $this->calendar->leap_year_start . ")");
-            $amountOfYears = ceil(($this->getYear() - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
+                $amountOfYears = ceil(($this->getYear() - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
 //            dump ("the amount of leap years that has elapsed since the beginning is the following: $amountOfYears");
 //            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ") / " . $this->calendar->leap_year_offset . ")");
-            if ($amountOfYears < 0) {
-                $amountOfYears = 0;
-            }
+                if ($amountOfYears < 0) {
+                    $amountOfYears = 0;
+                }
 
-            $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
+                $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
 
 //            dump ("total leap days elapsed: $leapDays");
 
-            // But if we are a leap year, we need to do the math
-            if (($this->getYear() - $this->calendar->leap_year_start) % $this->calendar->leap_year_offset == 0) {
-                if ($this->getMonth() > $this->calendar->leap_year_month) {
-                    // We've passed the leap month of the year
-                    $leapDays += $this->calendar->leap_year_amount;
+                // But if we are a leap year, we need to do the math
+                if (($this->getYear() - $this->calendar->leap_year_start) % $this->calendar->leap_year_offset == 0) {
+                    if ($this->getMonth() > $this->calendar->leap_year_month) {
+                        // We've passed the leap month of the year
+                        $leapDays += $this->calendar->leap_year_amount;
+                    }
                 }
             }
         }
