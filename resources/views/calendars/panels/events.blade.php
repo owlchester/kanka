@@ -16,9 +16,11 @@
                     <th>{{ __('crud.fields.entity') }}</th>
                     <th>{{ __('events.fields.date') }}</th>
                     <th>{{ __('calendars.fields.length') }}</th>
-                    <th>{{ __('calendars.fields.comment') }}</th>
+                    <th>
+                        <i class="fa fa-comment" title="{{ __('calendars.fields.comment') }}" data-toggle="tooltip"></i>
+                    </th>
                     <th>{{ __('calendars.fields.is_recurring') }}</th>
-                    <th>&nbsp;</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,10 +34,24 @@
                     </td>
                     <td>{{ $event->getDate() }}</td>
                     <td>{{ trans_choice('calendars.fields.length_days', $event->length, ['count' => $event->length]) }}</td>
-                    <td>{{ $event->comment }}</td>
+                    <td>@if ($event->comment)
+                        <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip"></i>
+                    @endif</td>
                     <td>@if ($event->is_recurring)
                         <i class="fa fa-check"></i>
                     @endif</td>
+                    <td>
+                        @can('update', $model)
+                            <a href="{{ route('entities.entity_events.edit', [$event->entity, $event->id]) }}" class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id, 'next' => 'calendars.events']) }}">
+                                <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
+                            </a>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $event->entity, $event->id], 'style'=>'display:inline']) !!}
+                            <button class="btn btn-xs btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                            </button>
+                            {!! Form::close() !!}
+                        @endcan
+                    </td>
                 </tr>
             @endforeach
             </tbody>

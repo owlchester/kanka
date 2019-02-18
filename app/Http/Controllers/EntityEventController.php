@@ -51,6 +51,7 @@ class EntityEventController extends CrudController
         $parent = explode('.', $this->view)[0];
         $calendar = $entityEvent->calendar;
         $ajax = request()->ajax();
+        $next = request()->get('next', null);
 
         return view('calendars.events.' . ($ajax ? '_' : null) . 'edit', compact(
             'entity',
@@ -59,7 +60,8 @@ class EntityEventController extends CrudController
             'name',
             'route',
             'parent',
-            'ajax'
+            'ajax',
+            'next'
         ));
     }
 
@@ -85,6 +87,13 @@ class EntityEventController extends CrudController
             $routeOptions['month'] = request()->post('month');
         }
 
+        $next = request()->post('next', false);
+        if ($next == 'calendars.events') {
+            return redirect()
+                ->route('calendars.events', $entityEvent->calendar)
+                ->with('success', trans('calendars.event.edit.success'));
+        }
+        dd($next);
 
         return redirect()->route('calendars.show', $routeOptions)
             ->with('success', trans('calendars.event.edit.success'));

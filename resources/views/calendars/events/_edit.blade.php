@@ -12,6 +12,10 @@
                 {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
                 @endif
             </div>
+
+            @if (!empty($next))
+                <input type="hidden" name="next" value="{{ $next }}" />
+            @endif
             {!! Form::close() !!}
         </div>
         <div class="col-md-6">
