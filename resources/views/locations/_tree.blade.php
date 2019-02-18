@@ -1,6 +1,9 @@
+<?php /** @var \App\Renderers\DatagridRenderer $datagrid */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
+{!! $datagrid
+    ->filters($filters)
+    ->nested()
     ->render(
     $filterService,
     // Columns

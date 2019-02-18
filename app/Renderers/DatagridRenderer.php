@@ -44,6 +44,11 @@ class DatagridRenderer
 
     protected $dateRenderer;
 
+    /**
+     * @var null
+     */
+    protected $nestedFilter = null;
+
     public function __construct(DateRenderer $dateRenderer)
     {
         $this->user = Auth::user();
@@ -81,7 +86,7 @@ class DatagridRenderer
     }
 
     /**
-     *
+     * Render the header columns
      */
     private function renderColumns()
     {
@@ -193,6 +198,13 @@ class DatagridRenderer
             'order' => $field,
             'page' => request()->get('page')
         ];
+
+        if (!empty($this->nestedFilter)) {
+            $val = request()->get($this->nestedFilter, null);
+            if (!empty($val)) {
+                $routeOptions[$this->nestedFilter] = $val;
+            }
+        }
 
         // Order by
         $order = $this->filterService->order();
@@ -458,5 +470,16 @@ class DatagridRenderer
         </div>';
 
         return $html;
+    }
+
+    /**
+     * Tell the rendered that this is a nested view
+     * @param string $key
+     * @return $this
+     */
+    public function nested($key = 'parent_id')
+    {
+        $this->nestedFilter = $key;
+        return $this;
     }
 }

@@ -1,6 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)->render(
+{!! $datagrid
+    ->filters($filters)
+    ->nested()
+    ->render(
     $filterService,
     // Columns
     [
@@ -44,7 +47,7 @@
     $models,
     // Options
     [
-        'route' => 'races.index',
+        'route' => 'races.tree',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',
         'campaign' => $campaign,
