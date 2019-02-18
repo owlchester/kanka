@@ -93,7 +93,6 @@ class EntityEventController extends CrudController
                 ->route('calendars.events', $entityEvent->calendar)
                 ->with('success', trans('calendars.event.edit.success'));
         }
-        dd($next);
 
         return redirect()->route('calendars.show', $routeOptions)
             ->with('success', trans('calendars.event.edit.success'));
