@@ -264,6 +264,7 @@ class CalendarRenderer
             $data[] = null;
         }
 
+        $weekLength = count($weekdays);
         $monthNumber = 1;
         $totalDay = 1;
         foreach ($months as $month) {
@@ -277,19 +278,23 @@ class CalendarRenderer
                     $handle = $this->getYear() - $this->calendar->leap_year_start;
                     if ($handle % $this->calendar->leap_year_offset === 0) {
                         $month['length'] += $this->calendar->leap_year_amount;
+
+                        // If it also happens to add days on an intercalary day, we need to influence the number of days
+                        // added at the end of the month.
                     }
                 }
             }
 
             $monthLength = $month['length'];
-            $weekLength = 0;
             $week = [];
 
             // If the month is intercalary, we need to offset to the "beginning" of the week
             if (Arr::get($month, 'type') == 'intercalary') {
                 $totalDays = count($data);
-                $resetPosition = count($weekdays) - ($totalDays % count($weekdays));
-                for ($d = 0; $d < $resetPosition; $d++) {
+                $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
+                $currentPosition = $weekLength - $emptyDaysToFill; // On which week day we currently are
+                dump("resetPosition $emptyDaysToFill = " . count($weekdays) . " - ($totalDays % " . count($weekdays) . " {" . ($totalDays % count($weekdays)) . "})");
+                for ($d = 0; $d < $emptyDaysToFill; $d++) {
                     $data[] = [];
                 }
             }
@@ -331,8 +336,12 @@ class CalendarRenderer
             // If the month is intercalary, we need to fill out the rest of the "week" until where it starts again
             if (Arr::get($month, 'type') == 'intercalary') {
                 $totalDays = count($data);
-                $add = count($weekdays) - ($totalDays % count($weekdays));
-                for ($d = 0; $d < $resetPosition; $d++) {
+                $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
+                for ($d = 0; $d < $emptyDaysToFill; $d++) {
+                    $data[] = [];
+                }
+                // Fill out the next month beginning if needed
+                for ($d = 0; $d < $currentPosition; $d++) {
                     $data[] = [];
                 }
             }
