@@ -33,6 +33,7 @@
                             <br class="clear" />
                         </li>
                     @endif
+                    @include('cruds.lists.location')
                     @include('entities.components.calendar')
                     @include('entities.components.tags')
                     @include('entities.components.files')

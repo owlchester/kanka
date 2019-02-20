@@ -21,6 +21,7 @@ class Journal extends MiscModel
         'entry',
         'date',
         'character_id',
+        'location_id',
         'is_private',
     ];
 
@@ -45,6 +46,7 @@ class Journal extends MiscModel
         'type',
         'date',
         'character_id',
+        'location_id',
         'tag_id',
         'is_private',
     ];
@@ -61,7 +63,7 @@ class Journal extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'character', 'character.entity']);
+        return $query->with(['entity', 'character', 'character.entity', 'location', 'location.entity']);
     }
 
     /**
@@ -70,5 +72,13 @@ class Journal extends MiscModel
     public function character()
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location', 'location_id');
     }
 }

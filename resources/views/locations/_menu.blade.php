@@ -124,6 +124,16 @@
                     </a>
                 </li>
             @endif
+            @if ($campaign->enabled('journals') && ($count = $model->journals()->acl()->count()) > 0)
+                <li class="@if(!empty($active) && $active == 'journals')active @endif">
+                    <a href="{{ route('locations.journals', $model) }}">
+                        {{ __('locations.show.tabs.journals') }}
+                        <span class="label label-default pull-right">
+                        <?=$count?>
+                    </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>

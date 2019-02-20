@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
+use App\Models\Location;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -39,6 +40,14 @@ class JournalController extends CrudController
                 'route' => route('characters.find'),
                 'placeholder' =>  trans('crud.placeholders.character'),
                 'model' => Character::class,
+            ],
+            [
+                'field' => 'location_id',
+                'label' => trans('crud.fields.location'),
+                'type' => 'select2',
+                'route' => route('locations.find'),
+                'placeholder' =>  trans('crud.placeholders.location'),
+                'model' => Location::class,
             ],
             [
                 'field' => 'tag_id',

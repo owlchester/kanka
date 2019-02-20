@@ -160,6 +160,14 @@ class Location extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function journals()
+    {
+        return $this->hasMany('App\Models\Journal', 'location_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function organisations()
     {
         return $this->hasMany('App\Models\Organisation', 'location_id', 'id');

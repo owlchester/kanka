@@ -183,6 +183,10 @@ return [
         'description'   => 'Quests the location is a part of.',
         'title'         => 'Location :name Quests',
     ],
+    'journals'        => [
+        'description'   => 'Journals that were written in the location.',
+        'title'         => 'Location :name Journals',
+    ],
     'show'          => [
         'description'   => 'A detailed view of a location',
         'tabs'          => [
@@ -191,6 +195,7 @@ return [
             'information'   => 'Information',
             'items'         => 'Items',
             'locations'     => 'Locations',
+            'journals'      => 'Journals',
             'map'           => 'Map',
             'menu'          => 'Menu',
             'organisations' => 'Organisations',
