@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -117,7 +118,8 @@ class MenuLink extends MiscModel
      */
     protected function getIndexRoute()
     {
-        return route(str_plural($this->type) . '.index', $this->filters);
+        $filters = $this->filters . '&_clean=true';
+        return route(str_plural($this->type) . '.index', $filters);
     }
 
     /**

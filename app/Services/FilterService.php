@@ -75,6 +75,11 @@ class FilterService
         $sessionKey = 'filterService-filter-' . $crud;
         $this->filters = session()->get($sessionKey);
 
+        // If the request has _clean, we only want filters that are set in the url
+        if (request()->get('_clean', false)) {
+            $this->filters = [];
+        }
+
         foreach ($this->data as $key => $value) {
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.
