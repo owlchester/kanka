@@ -8,11 +8,12 @@
   margin-bottom: 15px;
 
   .content {
-    margin-top: 90px;
+    margin-top: 40px;
     background: rgba(255, 255, 255, 0.8);
-    padding: 30px 100px;
+    padding: 20px 40px 10px 100px;
     border-radius: 5px;
     min-height: 0;
+    text-align: justify;
 
     a.image {
       img {
@@ -37,16 +38,6 @@
       overflow: hidden;
       position: relative;
 
-      &:before {
-        content:'';
-        width:100%;
-        height:100%;
-        position:absolute;
-        left:0;
-        top:0;
-        //background:linear-gradient(transparent 50px, white);
-      }
-
       .preview-action {
         text-align: center;
       }
@@ -61,7 +52,7 @@
 
     ul.campaign-links {
       bottom: 0;
-      margin-top: 20px;
+      margin-top: 10px;
       list-style-type: none;
       padding: 0;
       display: block;
@@ -73,7 +64,7 @@
         margin-right: 8px;
         margin-bottom: 5px;
         a {
-          padding: 10px 20px;
+          padding: 8px 12px;
           background: rgba(255, 255, 255, 0.85);
           display: inline-block;
           &:hover {
@@ -240,8 +231,10 @@
 
 @media (max-width: 787px) {
   .campaign {
+    padding: 10px;
     .content {
       padding: 10px;
+      margin-top: 20px;
 
       a.image {
         position: absolute;
@@ -255,6 +248,17 @@
 
       .title {
         margin-left: 40px;
+      }
+
+      ul.campaign-links {
+        li {
+          display: block !important;
+          width: 100%;
+          a {
+            text-align: center;
+            width: 100%;
+          }
+        }
       }
     }
   }

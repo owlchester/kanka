@@ -103,6 +103,8 @@ abstract class MiscModel extends Model
 
         if ($stripSpecial) {
             $pureHistory = str_replace('"', '\'', $pureHistory);
+//            $pureHistory = str_replace('&gt;', null, $pureHistory);
+//            $pureHistory = str_replace('&lt;', null, $pureHistory);
             //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
         }
 

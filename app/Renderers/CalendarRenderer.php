@@ -293,7 +293,7 @@ class CalendarRenderer
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
                 $currentPosition = $weekLength - $emptyDaysToFill; // On which week day we currently are
-                dump("resetPosition $emptyDaysToFill = " . count($weekdays) . " - ($totalDays % " . count($weekdays) . " {" . ($totalDays % count($weekdays)) . "})");
+                //dump("resetPosition $emptyDaysToFill = " . count($weekdays) . " - ($totalDays % " . count($weekdays) . " {" . ($totalDays % count($weekdays)) . "})");
                 for ($d = 0; $d < $emptyDaysToFill; $d++) {
                     $data[] = [];
                 }
