@@ -70,7 +70,7 @@ function initDashboardAdminUI() {
     btnWidgetCalendar = $('#btn-widget-calendar');
     btnWidgetRecent = $('#btn-widget-recent');
 
-    btnAddWidget = $('#add-widget');
+    btnAddWidget = $('#btn-add-widget');
     modalContentButtons = $('#modal-content-buttons');
     modalContentTarget = $('#modal-content-target');
     modalContentSpinner = $('#modal-content-spinner');
