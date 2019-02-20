@@ -36,7 +36,7 @@
                         <div class="feature-item">
                             <i class="fab fa-discord"></i>
                             <h3>{{ trans('front.help.discord') }}</h3>
-                            <p class="text-muted"><a href="https://discord.gg/rhsyZJ4">Discord</a></p>
+                            <p class="text-muted"><a href="{{ config('discord.url') }}">Discord</a></p>
                         </div>
                     </div>
                     <div class="col-lg-4 my-auto">

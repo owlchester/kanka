@@ -60,7 +60,7 @@
                     <p class="text-muted">
                         {{ trans('crud.hints.map_limitations', ['size' => auth()->user()->maxUploadSize(true, 'map')]) }}
                         @if (!auth()->user()->hasRole('patreon'))
-                            <a href="https://patreon.com/kankaio" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
+                            <a href="{{ config('patreon.url') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
                         @endif
                     </p>
 

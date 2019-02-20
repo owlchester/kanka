@@ -100,7 +100,7 @@
                     <p class="mb-5">{{ trans('errors.' . $error . '.body') }}</p>
                     @endif
 
-                    <p>{!! trans('errors.footer', ['discord' => link_to("https://discord.gg/rhsyZJ4", 'Discord')]) !!}</p>
+                    <p>{!! trans('errors.footer', ['discord' => link_to(config('discord.url'), 'Discord')]) !!}</p>
                 </div>
             </div>
         </div>

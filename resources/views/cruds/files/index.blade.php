@@ -13,7 +13,7 @@
             <b>{{ __('crud.files.actions.drop') }}</b><br />
             {{ trans('crud.files.hints.limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
             @if (!auth()->user()->hasRole('patreon'))
-                <a href="https://patreon.com/kankaio" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
+                <a href="{{ config('patreon.url') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
             @endif
         </div>
         <div class="progress" style="display: none">

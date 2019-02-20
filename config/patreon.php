@@ -12,5 +12,10 @@ return [
     /**
      * The Patreon Client Secret
      */
-    'client_secret' => env('PATREON_CLIENT_SECRET', null)
+    'client_secret' => env('PATREON_CLIENT_SECRET', null),
+
+    /**
+     * The Patreon URL for Kanka
+     */
+    'url' => 'https://patreon.com/kankaio',
 ];

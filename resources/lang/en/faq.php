@@ -15,7 +15,7 @@ return [
     ],
     'free' => [
         'question' => 'Will the app stay free?',
-        'answer' => 'Yes! We believe that your financial situation shouldn\'t impact your enjoyment of role playing games or world building, and such will always keep the app free. Thanks to our generous Patrons on Patreon, we are able to cover the monthly server costs and keep the app ad free!
+        'answer' => 'Yes! We believe that your financial situation shouldn\'t impact your enjoyment of role playing games or world building, and such will always keep the app free. Thanks to our generous Patrons on :patreon, we are able to cover the monthly server costs and keep the app ad free!
         
 Supporting us on Patreon however allows you to increase file size upload limits, adds your name to the Patreon wall of fame, have nicer default icons, vote on prioritising what gets works on and more!'
     ],
@@ -41,6 +41,6 @@ You can create an Attribute Template with those attributes (Population, Climate,
     ],
     'help' => [
         'question' => 'I want to help! What can I do?',
-        'answer' => 'Firstly, thank you for wanting to help out! We are always interested in people who can help out with translations, testing new features, or who can help out new users. We also love when people promote Kanka to reach new users in places we hadn\'t thought of. Your best course of action is to join us on the Discord where a channel is dedicated to helping out. We also love our patrons on Patreon if you wish to support us and get access to some perks!',
+        'answer' => 'Firstly, thank you for wanting to help out! We are always interested in people who can help out with translations, testing new features, or who can help out new users. We also love when people promote Kanka to reach new users in places we hadn\'t thought of. Your best course of action is to join us on the :discord where a channel is dedicated to helping out. We also love our patrons on Patreon if you wish to support us and get access to some perks!',
     ]
 ];

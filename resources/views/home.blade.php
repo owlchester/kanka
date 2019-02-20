@@ -37,7 +37,7 @@
                 {!! nl2br(__('dashboard.welcome.body', [
                     'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
                     'faq' => link_to_route('faq.index', __('front.faq.title')),
-                    'discord' => link_to('https://discord.gg/rhsyZJ4', 'Discord'),
+                    'discord' => link_to(config('discord.url'), 'Discord'),
                 ])) !!}
             </p>
         </div>

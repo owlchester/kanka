@@ -118,7 +118,7 @@
                     </a>
                 </li>
                 <li class="list-inline-item social-discord">
-                    <a href="https://discord.gg/rhsyZJ4" title="Discord">
+                    <a href="{{ config('discord.url') }}" title="Discord">
                         <img src="/images/thirdparty/discord-logo-white.png" alt="Discord" rel="noreferrer" target="_blank">
                     </a>
                 </li>

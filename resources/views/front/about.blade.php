@@ -82,7 +82,7 @@
             <div class="section-body">
                 <h1>{{ trans('teams.patreon.title') }}</h1>
                 <p class="text-muted">{{ trans('teams.patreon.description') }}
-                    <a href="https://patreon.com/kankaio" class="" target="_blank">{{ __('footer.patreon') }}</a>
+                    <a href="{{ config('patreon.url') }}" class="" target="_blank">{{ __('footer.patreon') }}</a>
                 </p>
 
                     @foreach ($patrons as $pledge => $users)

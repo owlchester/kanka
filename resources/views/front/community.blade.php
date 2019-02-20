@@ -29,7 +29,7 @@
                             <i class="fab fa-discord"></i>
                             <h3>Discord</h3>
                             <p class="text-muted">{{ trans('front.community.discord') }}</p>
-                            <p class="text-muted"><a href="https://discord.gg/rhsyZJ4">{{ trans('front.community.join') }}</a></p>
+                            <p class="text-muted"><a href="{{ config('discord.url') }}">{{ trans('front.community.join') }}</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6">

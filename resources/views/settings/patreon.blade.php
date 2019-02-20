@@ -21,7 +21,7 @@
                         {{ __('settings.patreon.benefits') }}
                     </p>
                     <p>
-                        <a href="//www.patreon.com/kankaio" target="_blank">{{ __('settings.patreon.actions.view') }} <i class="fa fa-external-link"></i></a>
+                        <a href="{{ config('patreon.url') }}" target="_blank">{{ __('settings.patreon.actions.view') }} <i class="fa fa-external-link"></i></a>
                     </p>
 
                     <hr />
@@ -33,7 +33,9 @@
 
                         <p class="help-block">{{ __('settings.patreon.wrong_pledge') }}</p>
                     @else
-                        <p class="text-muted">{!! __('settings.patreon.link', ['patreon' => '<a href="//www.patreon.com/kankaio" target="_blank">Patreon</a>']) !!}</p>
+                        <p class="text-muted">
+                            {!! __('settings.patreon.link', ['patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank'])]) !!}
+                        </p>
 
                         <a href="//www.patreon.com/oauth2/authorize?response_type=code&client_id={{ config('patreon.client_id') }}&redirect_uri={{ url('/settings/patreon-callback') }}" class="btn btn-primary">{{ __('settings.patreon.actions.link') }}</a>
                     @endif

@@ -27,7 +27,9 @@
                         <h4>
                             <a href="{{ route('faq.show', ['key' => 'free', 'slug' => str_slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
                         </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.free.answer')) !!}</p>
+                        <p class="text-muted">{!! nl2br(__('faq.free.answer', [
+                            'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
+                        ])) !!}</p>
                         <hr>
 
                         <h4>
@@ -45,7 +47,9 @@
                         <h4>
                             <a href="{{ route('faq.show', ['key' => 'help', 'slug' => str_slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
                         </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.help.answer')) !!}</p>
+                        <p class="text-muted">{!! nl2br(__('faq.help.answer', [
+                            'discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])
+                        ])) !!}</p>
                     </div>
                     <div class="col-md-6">
                         <h4>

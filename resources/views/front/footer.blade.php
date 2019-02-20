@@ -53,12 +53,12 @@
                 <h4>{{ __('front.footer.social') }}</h4>
                 <ul>
                     <li>
-                        <a href="//www.patreon.com/kankaio" target="patreon" title="Patreon" rel="noreferrer">
+                        <a href="{{ config('patreon.url') }}" target="patreon" title="Patreon" rel="noreferrer">
                             <i class="fab fa-patreon"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="//discord.gg/rhsyZJ4" target="discord" title="Discord" rel="noreferrer"><i class="fab fa-discord"></i></a>
+                        <a href="{{ config('discord.url') }}" target="discord" title="Discord" rel="noreferrer"><i class="fab fa-discord"></i></a>
                     </li>
                     <li>
                         <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
