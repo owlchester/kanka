@@ -8,6 +8,7 @@ use App\Scopes\RecentScope;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * Class MiscModel
@@ -182,8 +183,16 @@ abstract class MiscModel extends Model
         foreach ($params as $key => $value) {
             if (isset($value) && in_array($key, $this->filterableColumns)) {
                 // It's possible to request "not" values
-                $like = (isset($value[0]) && $value[0] == '!' ? 'not like' : 'like');
-                $filterValue = (isset($value[0]) && $value[0] == '!') ? ltrim($value, '!') : $value;
+
+                $operator = 'like';
+                $filterValue = $value;
+                if (Str::startsWith($value, '!')) {
+                    $operator = 'not like';
+                    $filterValue = ltrim($value, '!');
+                } elseif (Str::endsWith($value, '!')) {
+                    $operator = '=';
+                    $filterValue = rtrim($value, '!');
+                }
 
                 $segments = explode('-', $key);
                 if (count($segments) > 1) {
@@ -195,10 +204,10 @@ abstract class MiscModel extends Model
                         ->select($this->getTable() . '.*')
                         ->with($relationName)
                         ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
-                        ->where(str_replace($relationName, 'f', str_replace('-', '.', $key)), $like, "%$filterValue%");
+                        ->where(str_replace($relationName, 'f', str_replace('-', '.', $key)), $operator, ($operator == '=' ? $filterValue : "%$filterValue%"));
                 } else {
                     if (in_array($key, $this->explicitFilters)) {
-                        $query->where($this->getTable() . '.' . $key, $like, "$filterValue");
+                        $query->where($this->getTable() . '.' . $key, $operator, "$filterValue");
                     } elseif ($key == 'tag_id') {
                         $query
                             ->select($this->getTable() . '.*')
@@ -206,7 +215,7 @@ abstract class MiscModel extends Model
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
                     } else {
-                        $query->where($this->getTable() . '.' . $key, $like, "%$filterValue%");
+                        $query->where($this->getTable() . '.' . $key, $operator, ($operator == '=' ? $filterValue : "%$filterValue%"));
                     }
                 }
             }
