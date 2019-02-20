@@ -29,6 +29,13 @@ function initAttributeUI()
         return false;
     });
 
+    $('#text_add').click(function(e) {
+        e.preventDefault();
+        $('#text_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+        initAttributeHandlers();
+        return false;
+    });
+
     $('#checkbox_add').click(function(e) {
         e.preventDefault();
         $('#checkbox_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);

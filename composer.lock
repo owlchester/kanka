@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29969e04964f8c989024b806a1030135",
+    "content-hash": "4a6ea58a590bad1a5cd6a721a795a5f1",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2074,6 +2074,57 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "ilestis/kanka-dnd5e-monster",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
+                "reference": "298d4fd6ab19a8920c45078dd5943689ceeef615"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/298d4fd6ab19a8920c45078dd5943689ceeef615",
+                "reference": "298d4fd6ab19a8920c45078dd5943689ceeef615",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kanka\\Dnd5eMonster\\AttributeTemplateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kanka\\Dnd5eMonster\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EUPL-1.1"
+            ],
+            "authors": [
+                {
+                    "name": "Ilestis",
+                    "email": "hello@kanka.io",
+                    "homepage": "https://kanka.io"
+                }
+            ],
+            "description": "A attribute template for D&D 5th edition monsters",
+            "homepage": "https://github.com/ilestis/kanka-dnd5e-monster",
+            "keywords": [
+                "5e",
+                "dnd",
+                "kanka",
+                "monsters"
+            ],
+            "time": "2019-02-20T21:10:51+00:00"
         },
         {
             "name": "intervention/image",

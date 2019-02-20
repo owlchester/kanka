@@ -9,6 +9,7 @@ use App\Models\Attribute;
 use App\Http\Requests\StoreAttribute;
 use App\Services\AttributeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use App\Models\Entity;
 
@@ -118,8 +119,15 @@ class AttributeController extends CrudAttributeController
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
         $ajax = request()->ajax();
+        $communityTemplates = [];
+        foreach (config('attribute-templates.templates') as $code => $class) {
+            $template = new $class;
+            $communityTemplates[$code] = $template->name();
+        }
+
         return view('cruds.attributes.' . ($ajax ? '_' : null) . 'template', compact(
             'attribute',
+            'communityTemplates',
             'name',
             'route',
             'entity',
@@ -131,13 +139,14 @@ class AttributeController extends CrudAttributeController
     public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $templateName = $this->attributeService->apply($entity, $request->only(['template_id', 'template']));
 
-        // This is dirty
-        $template = AttributeTemplate::findOrFail($request->get('template_id'));
-        $template->apply($entity);
+        if (!$templateName) {
+            return redirect()->back()->with('error', trans('crud.attributes.template.error'));
+        }
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, '#tab_attribute'])
-            ->with('success', trans('crud.attributes.template.success', ['name' => $template->name, 'entity' => $entity->child->name]));
+            ->with('success', trans('crud.attributes.template.success', ['name' => $templateName, 'entity' => $entity->child->name]));
     }
 }

@@ -24,6 +24,7 @@ class Attribute extends Model
 {
     const TYPE_BLOCK = 'block';
     const TYPE_CHECKBOX = 'checkbox';
+    const TYPE_TEXT = 'text';
 
     /**
      * @var array
@@ -89,6 +90,14 @@ class Attribute extends Model
     public function isCheckbox()
     {
         return $this->type == self::TYPE_CHECKBOX;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isText()
+    {
+        return $this->type == self::TYPE_TEXT;
     }
 
     /**

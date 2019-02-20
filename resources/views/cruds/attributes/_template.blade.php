@@ -9,19 +9,20 @@
     <div class="panel-body">
         {!! Form::open(['route' => ['entities.attributes.template', $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
         {{ csrf_field() }}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group required">
-                    <label>{{ trans('crud.attributes.fields.template') }}</label>
-                    {!! Form::select('template_id', \App\Models\AttributeTemplate::acl()->pluck('name', 'id'), null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
-                </div>
-            </div>
+        <div class="form-group required">
+            <label>{{ trans('crud.attributes.fields.template') }}</label>
+            {!! Form::select('template_id', \App\Models\AttributeTemplate::acl()->pluck('name', 'id'), null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            <label>{{ trans('crud.attributes.fields.community_templates') }}</label>
+            {!! Form::select('template', $communityTemplates, null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
         </div>
 
         {!! Form::hidden('entity_id', $entity->id) !!}
 
         <div class="form-group">
-            <button class="btn btn-success">{{ trans('crud.save') }}</button>
+            <button class="btn btn-success">{{ trans('crud.actions.apply') }}</button>
             @if (!$ajax)
             {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
             @endif

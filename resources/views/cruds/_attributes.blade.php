@@ -1,3 +1,15 @@
+@inject('attributeService', 'App\Services\AttributeService')
+<?php
+/**
+ * @var \App\Services\AttributeService $attributeService
+ * @var \App\Models\MiscModel $model
+ */
+$layout = $model->entity->attributes()->where(['name' => '_layout'])->first();
+if ($layout) {
+    $template = $attributeService->communityTemplate($layout->value);
+}
+?>
+
 @can('attribute', [$model, 'add'])
     <p class="text-right">
         <a class="btn btn-primary" href="{{ route('entities.attributes.template', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $model->entity) }}">
@@ -13,12 +25,9 @@
         {{--</a>--}}
     </p>
 @endcan
-<?php
-$layout = $model->entity->attributes()->where(['name' => '_layout'])->first();
-?>
 
-@if ($layout && view()->exists('cruds.attributes.layouts.' . $layout->value))
-    @include('cruds.attributes.layouts.' . $layout->value)
+@if (!empty($template))
+    @include($template->view())
 @else
 <?php $r = $model->entity->attributes()->order(request()->get('order'), 'default_order')->paginate(); ?>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.attributes') }}</p>

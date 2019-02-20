@@ -3,7 +3,10 @@
 namespace App\Services;
 
 use App\Models\Attribute;
+use App\Models\AttributeTemplate;
 use App\Models\Entity;
+use Illuminate\Support\Arr;
+use Kanka\Dnd5eMonster\Template;
 
 class AttributeService
 {
@@ -66,5 +69,101 @@ class AttributeService
         foreach ($existing as $id => $attribute) {
             $attribute->delete();
         }
+    }
+
+    /**
+     * @param Entity $entity
+     * @param $request
+     * @return string
+     */
+    public function apply(Entity $entity, $request)
+    {
+        // Are we using a local template?
+        $templateId = Arr::get($request, 'template_id');
+        $communityTemplate = Arr::get($request, 'template');
+
+        if ($templateId) {
+            /** @var AttributeTemplate $template */
+            $template = AttributeTemplate::findOrFail($request['template_id']);
+            $template->apply($entity);
+            return $template->name;
+        } elseif ($communityTemplate) {
+            // Oh uh
+            $templates = config('attribute-templates.templates');
+            if (Arr::exists($templates, $communityTemplate)) {
+                /** @var Template $template */
+                $template = new $templates[$communityTemplate];
+                $order = $entity->attributes()->count();
+
+                $existing = array_values($entity->attributes()->pluck('name')->toArray());
+                foreach ($template->attributes() as $name => $attribute) {
+                    // If the config is simply a name, we default to a small varchar
+                    if (!is_array($attribute)) {
+                        $name = $attribute;
+                        $attribute = [];
+                    }
+
+                    // Don't re-create existing attributes.
+                    if (in_array($name, $existing)) {
+                        continue;
+                    }
+
+                    $type = Arr::get($attribute, 'type', null);
+                    $private = Arr::get($attribute, 'is_private', false);
+
+                    // Value is based on the translation. This can get confusing
+                    $translationKey = $template->alias() . '::template.values.' . $name;
+                    $value = __($translationKey);
+                    if ($value == $translationKey) {
+                        $value = '';
+                    }
+
+                    $order++;
+
+                    Attribute::create([
+                        'entity_id' => $entity->id,
+                        'name' => $name,
+                        'value' => $value,
+                        'default_order' => $order,
+                        'is_private' => $private,
+                        'type' => $type,
+                    ]);
+                }
+
+                // Layout attribute for rendering
+                $layout = '_layout';
+                if (!in_array($layout, $existing)) {
+                    $order++;
+
+                    Attribute::create([
+                        'entity_id' => $entity->id,
+                        'name' => '_layout',
+                        'value' => $communityTemplate,
+                        'default_order' => $order,
+                        'is_private' => false,
+                        'type' => null,
+                    ]);
+                }
+
+
+                return $template->name();
+            }
+
+            return false;
+        }
+    }
+
+    /**
+     * @param $template
+     * @return bool
+     */
+    public function communityTemplate($template)
+    {
+        $templates = config('attribute-templates.templates');
+        if (Arr::exists($templates, $template)) {
+            /** @var Template $template */
+            return new $templates[$template];
+        }
+        return false;
     }
 }

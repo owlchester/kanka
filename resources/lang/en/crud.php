@@ -2,6 +2,7 @@
 
 return [
     'actions'           => [
+        'apply'         => 'Apply',
         'back'          => 'Back',
         'copy'          => 'Copy',
         'explore_view'  => 'Nested View',
@@ -21,6 +22,7 @@ return [
             'add'               => 'Add an attribute',
             'add_block'         => 'Add a block',
             'add_checkbox'      => 'Add a checkbox',
+            'add_text'          => 'Add a text',
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
         ],
@@ -39,6 +41,7 @@ return [
         ],
         'fields'        => [
             'attribute' => 'Attribute',
+            'community_templates' => 'Community Templates',
             'template'  => 'Template',
             'value'     => 'Value',
         ],
@@ -61,6 +64,7 @@ return [
             'attribute' => 'Attribute',
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
+            'text'      => 'Multiline Text',
         ],
         'visibility'    => [
             'private'   => 'Attribute only visible to members of the "Admin" role.',

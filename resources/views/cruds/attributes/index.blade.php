@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Models\Attribute $attribute
+ * @var \App\Models\Entity $entity
+ */
+?>
 @extends('layouts.app', [
     'title' => trans('crud.attributes.index.title', ['name' => $entity->name]),
     'description' => '',
@@ -35,6 +41,8 @@
                             {!! Form::checkbox('value[' . $attribute->id . ']', 1, $attribute->value) !!}
                         @elseif ($attribute->isBlock())
                             {!! Form::hidden('value[' . $attribute->id . ']', $attribute->value) !!}
+                        @elseif ($attribute->isText())
+                            {!! Form::textarea('value[' . $attribute->id . ']', $attribute->value, ['placeholder' => __('crud.attributes.placeholders.value'), 'class' => 'form-control', 'rows' => 4]) !!}
                         @else
                             {!! Form::text('value[' . $attribute->id . ']', $attribute->value, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                         @endif
@@ -109,6 +117,31 @@
                     {!! Form::hidden('type[]', 'block') !!}
                 </div>
             </div>
+            <div class="form-group hidden" id="text_template">
+                <div class="row attribute_row">
+                    <div class="col-sm-5">
+                        <div class="input-group">
+                            <span class="input-group-addon hidden-xs hidden-sm">
+                                <span class="fa fa-arrows-alt-v"></span>
+                            </span>
+                            {!! Form::text('name[]', null, ['placeholder' => trans('crud.attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        {!! Form::textarea('value[]', null, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'rows' => 3]) !!}
+                    </div>
+                    @if (Auth::user()->isAdmin())
+                        <div class="col-sm-1 text-center">
+                            {!! Form::hidden('is_private[]', false) !!}
+                            <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('crud.attributes.visibility.private') }}" data-public="{{ __('crud.attributes.visibility.public') }}"></i>
+                        </div>
+                    @endif
+                    <div class="col-sm-1 text-right">
+                        <button class="btn btn-danger attribute_delete" title="{{ __('crud.remove') }}"><i class="fa fa-trash"></i></button>
+                    </div>
+                    {!! Form::hidden('type[]', 'text') !!}
+                </div>
+            </div>
             <div class="form-group hidden" id="checkbox_template">
                 <div class="row attribute_row">
                     <div class="col-sm-5">
@@ -141,6 +174,7 @@
             <div class="btn-group margin-r-5">
                 <button class="btn btn-default" id="attribute_add"><i class="fa fa-plus"></i> {{ trans('crud.attributes.types.attribute') }}</button>
                 <button class="btn btn-default" id="checkbox_add"><i class="fa fa-check"></i> {{ trans('crud.attributes.types.checkbox') }}</button>
+                <button class="btn btn-default" id="text_add"><i class="fas fa-align-justify"></i> {{ trans('crud.attributes.types.text') }}</button>
 
                 {{--<button class="btn btn-default hidden" id="block_add"><i class="fa fa-folder"></i> {{ trans('crud.attributes.types.block') }}</button>--}}
             </div>
