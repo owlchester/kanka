@@ -9,9 +9,12 @@ class LanguageService
     /**
      * @return array
      */
-    public function getSupportedLanguagesList()
+    public function getSupportedLanguagesList($emptyOption = false)
     {
         $languages = [];
+        if ($emptyOption) {
+            $languages = [null => ''];
+        }
         foreach (LaravelLocalization::getSupportedLocales() as $langKey => $langData) {
             $languages[$langKey] = trans('languages.codes.' . $langKey);
         }

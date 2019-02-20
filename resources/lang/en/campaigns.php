@@ -51,6 +51,7 @@ return [
         'entity_visibility' => 'When creating a new entity, the "Private" option will automatically be selected.',
         'locale'            => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'              => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
+        'system'             => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'visibility'        => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
     'index'                 => [
@@ -143,6 +144,9 @@ return [
         ],
         'title'         => 'Campaign :name Members',
         'your_role'     => 'Your role: <i>:role</i>',
+    ],
+    'panels' => [
+        'sharing' => 'Sharing',
     ],
     'placeholders'          => [
         'description'   => 'A short summary of your campaign',

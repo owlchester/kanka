@@ -9,24 +9,18 @@
 
 @section('content')
     <div class="row">
-        <div class="{{ isset($start) ? "col-lg-8 col-md-10 col-sm-12" : "col-md-12" }}">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @if (isset($start))
-                        <div class="callout callout-info">
-                            <h4>{{ trans('campaigns.create.helper.title', ['name' => config('app.name')]) }}</h4>
+        <div class="{{ $start ? "col-lg-8 col-md-10 col-sm-12" : "col-md-12" }}">
+            @include('partials.errors')
 
-                            <p>{!! trans('campaigns.create.helper.first') !!}</p>
-                            <p>{{ trans('campaigns.create.helper.second') }}</p>
-                        </div>
-                    @endif
-                    @include('partials.errors')
+            {!! Form::open([
+                'route' => ($start ? 'start' : 'campaigns.store'),
+                'enctype' => 'multipart/form-data',
+                'method' => 'POST',
+                'data-shortcut' => '1'
+            ]) !!}
+                @include('campaigns._form')
+            {!! Form::close() !!}
 
-                    {!! Form::open(array('route' => (isset($start) ? 'start' : 'campaigns.store'), 'enctype' => 'multipart/form-data', 'method'=>'POST')) !!}
-                        @include('campaigns._form')
-                    {!! Form::close() !!}
-                </div>
-            </div>
         </div>
     </div>
 @endsection

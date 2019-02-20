@@ -35,7 +35,9 @@
                                 </div>
                             <h4 class="campaign-title">
                                 <span class="pull-right text-right">
+                                    @if ($camp->locale)
                                     <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                    @endif
                                     @if (!empty($camp->system))
                                         <span class="label label-default">{{ $camp->system }}</span>
                                     @endif
@@ -66,7 +68,10 @@
                                     </div>
                                     <h4 class="campaign-title">
                                         <span class="pull-right text-right">
-                                            <span class="label label-default " title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                            @if ($camp->locale)
+                                                <span class="label label-default " title="{{ __('languages.codes.' . $camp->locale) }}">{{
+                                                 $camp->locale }}</span>
+                                            @endif
                                             @if (!empty($camp->system))
                                                 <span class="label label-default margin-r-5">{{ $camp->system }}</span>
                                             @endif

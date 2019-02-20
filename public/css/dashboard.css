@@ -1,1 +1,253 @@
-.campaign{padding:40px;border-radius:3px;background-repeat:no-repeat;background-position:50% 50%;background-size:cover;margin-bottom:15px}.campaign .content{margin-top:40px;background:hsla(0,0%,100%,.8);padding:20px 40px 10px 100px;border-radius:5px;min-height:0;text-align:justify}.campaign .content a.image img{width:60px;height:60px;margin-left:-80px;float:left;background-repeat:no-repeat;background-position:50% 50%;background-size:cover}.campaign .content h1{font-size:20pt;margin:0;padding:0}.campaign .content .preview{max-height:150px;overflow:hidden;position:relative}.campaign .content .preview .preview-action{text-align:center}.campaign .content .more a{padding:5px 0;display:inline-block}.campaign .content ul.campaign-links{bottom:0;margin-top:10px;list-style-type:none;padding:0;display:block;width:100%}.campaign .content ul.campaign-links li{display:inline-block;text-align:left;margin-right:8px;margin-bottom:5px}.campaign .content ul.campaign-links li a{padding:8px 12px;background:hsla(0,0%,100%,.85);display:inline-block}.campaign .content ul.campaign-links li a:hover{background:hsla(0,0%,100%,.95)}.no-header{padding:0}.no-header .content{margin-top:0}.panel-body .pinned-entity{-webkit-transition:all .5s ease;transition:all .5s ease}.panel-body .preview{max-height:200px;position:relative;overflow:hidden;padding-top:0}.panel-body .preview:before{content:"";width:100%;height:30%;position:absolute;left:0;bottom:0;background:linear-gradient(transparent,#fff)}.panel-body .preview-switch{width:100%;padding-left:auto;padding-right:auto;display:block;text-align:center}.campaign-dashboard-widgets .widget{border-radius:3px;font-size:24px;cursor:pointer;text-align:center;border:1px solid #ccc;margin-bottom:20px;height:160px;overflow:hidden;background-size:cover;background-repeat:no-repeat;background-position:50% 50%}.campaign-dashboard-widgets .widget:hover{background-color:hsla(0,0%,100%,.8)}.campaign-dashboard-widgets .widget .widget-overlay{background-color:hsla(0,0%,100%,.7);padding:40px 20px;height:160px}.campaign-dashboard-widgets .widget .widget-type{display:block}.campaign-dashboard-widgets .widget .widget-entity{margin-top:8px}.campaign-dashboard-widgets .add{border:2px dashed #ccc}.widget-calendar .current-date{text-align:center;font-size:22px}.widget-calendar .current-date i{font-size:14px;cursor:pointer}.widget-recent .entity{padding:5px}.widget-recent .entity .elapsed{font-size:11px;color:#888}.widget-recent .entity .entity-image{display:inline-block;margin-right:4px;width:25px;height:25px}.widget-recent .entity .name{display:inline-block;vertical-align:top;padding-top:2px}.widget-recent-body{overflow:auto;max-height:400px}.widget-user-header{padding:0!important;height:auto!important;background-size:cover;background-repeat:no-repeat;background-position:50% 50%}.widget-user-header .widget-user-overlay{background-color:hsla(0,0%,100%,.8);padding:20px;height:120px}.widget-user-header .widget-user-username i{font-size:16px}.widget-preview .panel-title{vertical-align:middle}.widget-preview .panel-title a{font-size:18px}.widget-preview .panel-title .entity-image{display:inline-block;vertical-align:middle;margin-right:6px}@media (max-width:787px){.campaign{padding:10px}.campaign .content{padding:10px;margin-top:20px}.campaign .content a.image{position:absolute}.campaign .content a.image .img-circle{margin-left:0;height:30px;width:30px}.campaign .content .title{margin-left:40px}.campaign .content ul.campaign-links li{display:block!important;width:100%}.campaign .content ul.campaign-links li a{text-align:center;width:100%}}
+.campaign {
+  padding: 40px;
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin-bottom: 15px;
+}
+
+.campaign .content {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px 40px 10px 100px;
+  border-radius: 5px;
+  min-height: 0;
+  text-align: justify;
+}
+
+.campaign .content a.image img {
+  width: 60px;
+  height: 60px;
+  margin-left: -80px;
+  float: left;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.campaign .content h1 {
+  font-size: 20pt;
+  margin: 0;
+  padding: 0;
+}
+
+.campaign .content .preview {
+  max-height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.campaign .content .preview .preview-action {
+  text-align: center;
+}
+
+.campaign .content .more a {
+  padding: 5px 0;
+  display: inline-block;
+}
+
+.campaign .content ul.campaign-links {
+  bottom: 0;
+  margin-top: 10px;
+  list-style-type: none;
+  padding: 0;
+  display: block;
+  width: 100%;
+}
+
+.campaign .content ul.campaign-links li {
+  display: inline-block;
+  text-align: left;
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.campaign .content ul.campaign-links li a {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.85);
+  display: inline-block;
+}
+
+.campaign .content ul.campaign-links li a:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.no-header {
+  padding: 0;
+}
+
+.no-header .content {
+  margin-top: 0;
+}
+
+.panel-body .pinned-entity {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.panel-body .preview {
+  max-height: 200px;
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.panel-body .preview:before {
+  content: '';
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 0px, white);
+}
+
+.panel-body .preview-switch {
+  width: 100%;
+  padding-left: auto;
+  padding-right: auto;
+  display: block;
+  text-align: center;
+}
+
+.campaign-dashboard-widgets .widget {
+  border-radius: 3px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  height: 160px;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.campaign-dashboard-widgets .widget:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.campaign-dashboard-widgets .widget .widget-overlay {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 40px 20px;
+  height: 160px;
+}
+
+.campaign-dashboard-widgets .widget .widget-type {
+  display: block;
+}
+
+.campaign-dashboard-widgets .widget .widget-entity {
+  margin-top: 8px;
+}
+
+.campaign-dashboard-widgets .add {
+  border: 2px dashed #ccc;
+}
+
+.widget-calendar .current-date {
+  text-align: center;
+  font-size: 22px;
+}
+
+.widget-calendar .current-date i {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.widget-recent .entity {
+  padding: 5px;
+}
+
+.widget-recent .entity .elapsed {
+  font-size: 11px;
+  color: #888;
+}
+
+.widget-recent .entity .entity-image {
+  display: inline-block;
+  margin-right: 4px;
+  width: 25px;
+  height: 25px;
+}
+
+.widget-recent .entity .name {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 2px;
+}
+
+.widget-recent-body {
+  overflow: auto;
+  max-height: 400px;
+}
+
+.widget-user-header {
+  padding: 0 !important;
+  height: auto !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.widget-user-header .widget-user-overlay {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  height: 120px;
+}
+
+.widget-user-header .widget-user-username i {
+  font-size: 16px;
+}
+
+.widget-preview .panel-title {
+  vertical-align: middle;
+}
+
+.widget-preview .panel-title a {
+  font-size: 18px;
+}
+
+.widget-preview .panel-title .entity-image {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@media (max-width: 787px) {
+  .campaign {
+    padding: 10px;
+  }
+
+  .campaign .content {
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .campaign .content a.image {
+    position: absolute;
+  }
+
+  .campaign .content a.image .img-circle {
+    margin-left: 0;
+    height: 30px;
+    width: 30px;
+  }
+
+  .campaign .content .title {
+    margin-left: 40px;
+  }
+
+  .campaign .content ul.campaign-links li {
+    display: block !important;
+    width: 100%;
+  }
+
+  .campaign .content ul.campaign-links li a {
+    text-align: center;
+    width: 100%;
+  }
+}
+

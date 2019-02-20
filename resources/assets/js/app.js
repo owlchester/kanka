@@ -40,8 +40,9 @@ $(document).ready(function() {
 
     $.each($('.img-delete'), function (index) {
         $(this).click(function (e) {
+            e.preventDefault();
             $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-            $('.preview').hide();
+            $(this).parent().parent().hide();
         });
     });
 

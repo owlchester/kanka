@@ -25,7 +25,7 @@
             'label' => trans('tags.fields.tags'),
             'render' => function($model) {
                 $total = $model->tags->count();
-                foreach ($model->descendants()->with('tags')->get() as $child) {
+                foreach ($model->descendants()->acl()->with('tags')->get() as $child) {
                     $total += $child->tags->count();
                 }
                 return $total;
@@ -35,7 +35,7 @@
         [
             'label' => trans('tags.fields.children'),
             'render' => function($model) {
-                $total = $model->allChildren()->count();
+                $total = $model->allChildren()->acl()->count();
                 return $total;
             },
             'disableSort' => true,

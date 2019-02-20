@@ -17,6 +17,7 @@
                 </span>
                 <br class="clear" />
             </li>
+            @if ($campaign->locale)
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.locale') }}</b>
                 <span  class="pull-right">
@@ -24,6 +25,7 @@
                 </span>
                 <br class="clear" />
             </li>
+            @endif
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.entity_count') }}</b>
                 <span  class="pull-right">

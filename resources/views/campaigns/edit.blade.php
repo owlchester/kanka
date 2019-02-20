@@ -9,19 +9,16 @@
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12 col-md-offset">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @include('partials.errors')
+    @include('partials.errors')
 
-                    {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['campaigns.update', $model->id]]) !!}
-                        @include('campaigns._form')
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
+    {!! Form::model($model, [
+        'method' => 'PATCH',
+        'enctype' => 'multipart/form-data',
+        'route' => ['campaigns.update', $model->id],
+        'data-shortcut' => '1'
+    ]) !!}
+        @include('campaigns._form')
+    {!! Form::close() !!}
 @endsection
 
 @include('editors.editor')

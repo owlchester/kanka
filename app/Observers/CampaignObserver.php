@@ -42,10 +42,6 @@ class CampaignObserver
     {
         $campaign->slug = str_slug($campaign->name, '');
 
-        if (empty($campaign->locale)) {
-            $campaign->locale = 'en';
-        }
-
         // Purity text
         $campaign->entry = $this->purify($campaign->entry);
 

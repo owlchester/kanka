@@ -62,7 +62,7 @@ class CampaignController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('create', $campaign);
 
-        return view($this->view . '.create');
+        return view($this->view . '.create', ['start' => false]);
     }
 
     /**
@@ -108,7 +108,7 @@ class CampaignController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        return view($this->view . '.edit', ['model' => $campaign]);
+        return view($this->view . '.edit', ['model' => $campaign, 'start' => false]);
     }
 
     /**

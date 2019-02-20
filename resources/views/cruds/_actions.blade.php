@@ -32,7 +32,7 @@
             @endif
 
             @if ($model->entity)
-            <li class="margin-bottom">
+            <li>
                 <a href="{{ route('entities.export', $model->entity) }}">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ trans('crud.actions.export') }}
                 </a>
@@ -40,6 +40,7 @@
             @endif
             @can('delete', $model)
             <li>
+                <br />
                 <button class="btn btn-danger btn-flat delete-confirm btn-block" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </button>

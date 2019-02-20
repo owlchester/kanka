@@ -167,7 +167,37 @@ table {
     background: none;
     margin-top: -30px;
     position: relative;
-    background-color: rgba(11, 31, 31, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      background-color: rgba(31, 0, 4, 0.7);
+    }
+  }
+}
+.preview-v2 {
+  .image {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  a.img-delete {
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    background: none;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      background-color: rgba(31, 0, 4, 0.7);
+    }
   }
 }
 

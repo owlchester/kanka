@@ -57,6 +57,7 @@ Route::group([
 
     Route::get('/helper/link', 'HelperController@link')->name('helpers.link');
     Route::get('/helper/dice', 'HelperController@dice')->name('helpers.dice');
+    Route::get('/helper/public', 'HelperController@public')->name('helpers.public');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
