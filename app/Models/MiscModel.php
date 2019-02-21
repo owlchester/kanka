@@ -318,6 +318,10 @@ abstract class MiscModel extends Model
     public function getImageUrl($thumb = false, $field = 'image')
     {
         if (empty($this->$field)) {
+            // Patreons have nicer icons
+            if (auth()->check() && auth()->user()->isPatron()) {
+                return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');
+            }
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
         } else {
             return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
