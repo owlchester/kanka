@@ -43,6 +43,10 @@ return [
         'fields'    => [
             'date_format'   => 'Date Formatting',
             'pagination'    => 'Pagination (elements per page)',
+            'default_nested' => 'Nested Views as Default',
+        ],
+        'hints' => [
+            'default_nested' => 'Activate this option if you wish for the default lists to be Nested by default (when available).'
         ],
         'success'   => 'Settings changed.',
     ],

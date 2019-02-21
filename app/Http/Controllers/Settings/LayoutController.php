@@ -33,7 +33,7 @@ class LayoutController extends Controller
     public function update(StoreSettingsLayout $request)
     {
         Auth::user()
-            ->saveSettings($request->only(['editor']))
+            ->saveSettings($request->only(['editor', 'default_nested']))
             ->update($request->only(['theme', 'default_pagination', 'date_format']));
 
         return redirect()

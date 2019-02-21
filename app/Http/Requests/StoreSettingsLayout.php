@@ -39,9 +39,10 @@ class StoreSettingsLayout extends FormRequest
     public function rules()
     {
         return [
-            'date_format' => '',
+            'date_format' => 'required',
             'default_pagination' => 'required|numeric|max:' . $this->pagination->max(),
-            'theme' => '',
+            'theme' => 'nullable',
+            'default_nested' => 'nullable',
 //            'editor' => 'in:,summernote,markdown',
         ];
     }

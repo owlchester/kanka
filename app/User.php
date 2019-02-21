@@ -344,6 +344,22 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * @param $value
+     */
+    public function setDefaultNestedAttribute($value)
+    {
+        $this->setSettingsOption('default_nested', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultNestedAttribute()
+    {
+        return array_get($this->settings, 'default_nested', null);
+    }
+
+    /**
      * @param $key
      * @param $value
      */
@@ -361,6 +377,10 @@ class User extends \TCG\Voyager\Models\User
         $this->editor = array_get($data, 'editor', null);
         if (empty($this->editor)) {
             unset($this->attributes['settings']['editor']);
+        }
+        $this->default_nested = array_get($data, 'default_nested', null);
+        if (empty($this->default_nested)) {
+            unset($this->attributes['settings']['default_nested']);
         }
         return $this;
     }

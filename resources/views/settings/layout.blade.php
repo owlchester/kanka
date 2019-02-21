@@ -46,6 +46,15 @@
                         ], null, ['class' => 'form-control']) !!}
                     </div>
 
+                    <div class="form-group">
+                        <div class="form-group">
+                        {!! Form::hidden('default_nested', 0) !!}
+                        <label>
+                            {!! Form::checkbox('default_nested', 1, auth()->user()->defaultNested) !!}
+                            {{ trans('profiles.settings.fields.default_nested') }}</label>
+                        <p class="help-block">{{ trans('profiles.settings.hints.default_nested') }}</p>
+                    </div>
+
                     <button class="btn btn-primary">
                         {{ trans('crud.save') }}
                     </button>

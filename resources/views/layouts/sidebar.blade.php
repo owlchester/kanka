@@ -1,4 +1,6 @@
-<?php $currentCampaign = CampaignLocalization::getCampaign(); ?>
+<?php $currentCampaign = CampaignLocalization::getCampaign();
+$defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+?>
 @if (!empty($currentCampaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
@@ -60,17 +62,17 @@
             @endif
             @if ($campaign->enabled('families'))
             <li class="{{ $sidebar->active('families') }}">
-                <a href="{{ route('families.index') }}"><i class="ra ra-double-team"></i> <span>{{ trans('sidebar.families') }}</span></a>
+                <a href="{{ route('families.' . $defaultIndex) }}"><i class="ra ra-double-team"></i> <span>{{ trans('sidebar.families') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('locations'))
             <li class="{{ $sidebar->active('locations') }}">
-                <a href="{{ route('locations.index') }}"><i class="ra ra-tower"></i> <span>{{ trans('sidebar.locations') }}</span></a>
+                <a href="{{ route('locations.' . $defaultIndex) }}"><i class="ra ra-tower"></i> <span>{{ trans('sidebar.locations') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('organisations'))
             <li class="{{ $sidebar->active('organisations') }}">
-                <a href="{{ route('organisations.index') }}"><i class="ra ra-hood"></i> <span>{{ trans('sidebar.organisations') }}</span></a>
+                <a href="{{ route('organisations.' . $defaultIndex) }}"><i class="ra ra-hood"></i> <span>{{ trans('sidebar.organisations') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('items'))
@@ -95,12 +97,12 @@
             @endif
             @if ($campaign->enabled('races'))
                 <li class="{{ $sidebar->active('races') }}">
-                    <a href="{{ route('races.index') }}"><i class="ra ra-wyvern"></i> <span>{{ trans('sidebar.races') }}</span></a>
+                    <a href="{{ route('races.' . $defaultIndex) }}"><i class="ra ra-wyvern"></i> <span>{{ trans('sidebar.races') }}</span></a>
                 </li>
             @endif
             @if ($campaign->enabled('quests'))
             <li class="{{ $sidebar->active('quests') }}">
-                <a href="{{ route('quests.index') }}"><i class="ra ra-wooden-sign"></i> <span>{{ trans('sidebar.quests') }}</span></a>
+                <a href="{{ route('quests.' . $defaultIndex) }}"><i class="ra ra-wooden-sign"></i> <span>{{ trans('sidebar.quests') }}</span></a>
             </li>
             @endif
             @if ($campaign->enabled('journals'))
@@ -110,7 +112,7 @@
             @endif
             @if ($campaign->enabled('tags'))
                 <li class="{{ $sidebar->active('tags') }}">
-                    <a href="{{ route('tags.index') }}"><i class="fa fa-tags"></i> <span>{{ trans('sidebar.tags') }}</span></a>
+                    <a href="{{ route('tags.' . $defaultIndex) }}"><i class="fa fa-tags"></i> <span>{{ trans('sidebar.tags') }}</span></a>
                 </li>
             @endif
             @if ($campaign->enabled('dice_rolls'))
