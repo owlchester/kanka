@@ -87,15 +87,6 @@ class FilterService
             }
         }
 
-        // Checkbox? If no request but it's post, we don't have it anymore
-        if (request()->isMethod('get') && !empty($this->filters)) {
-            foreach ($this->filters as $key => $value) {
-                if (strpos($key, 'is_') !== false && !isset($this->data[$key])) {
-                    unset($this->filters[$key]);
-                }
-            }
-        }
-
         // Reset the filters if requested, before saving it to the session.
         if (array_has($this->data, 'reset-filter')) {
             $this->filters = [];
