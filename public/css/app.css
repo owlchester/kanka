@@ -2355,6 +2355,11 @@ ul.campaigns li.add {
   background-color: red;
 }
 
+ul,
+ol {
+  padding-left: 20px;
+}
+
 img.profile-user-img {
   width: 200px;
 }
