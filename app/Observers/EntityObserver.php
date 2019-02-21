@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\EntityPermission;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Tag;
 use App\Services\ImageService;
@@ -66,6 +67,28 @@ class EntityObserver
                 $entity->tags()->detach(array_keys($existing));
             }
         //}
+    }
+
+    public function created(Entity $entity)
+    {
+        // If the user has created a new entity but doesn't have the permission to read or edit it,
+        // automatically create said permission.
+        if (!auth()->user()->can('view', $entity->child)) {
+            $permission = new CampaignPermission();
+            $permission->entity_id = $entity->id;
+            $permission->user_id = auth()->user()->id;
+            $permission->key = $entity->type . '_read_' . $entity->child->id;
+            $permission->table_name = $entity->pluralType();
+            $permission->save();
+        }
+        if (!auth()->user()->can('update', $entity->child)) {
+            $permission = new CampaignPermission();
+            $permission->entity_id = $entity->id;
+            $permission->user_id = auth()->user()->id;
+            $permission->key = $entity->type . '_edit_' . $entity->child->id;
+            $permission->table_name = $entity->pluralType();
+            $permission->save();
+        }
     }
 
     /**
