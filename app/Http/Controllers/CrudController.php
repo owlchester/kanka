@@ -174,7 +174,12 @@ class CrudController extends Controller
                 return redirect()->route($this->route . '.show', $new)
                     ->with('success_raw', $success);
             }
-            return redirect()->route($this->route . '.index')
+
+            $subroute = 'index';
+            if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+                $subroute = 'tree';
+            }
+            return redirect()->route($this->route . '.' . $subroute)
                 ->with('success_raw', $success);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
@@ -254,7 +259,11 @@ class CrudController extends Controller
                 return redirect()->route($this->route . '.edit', $model->id)
                     ->with('success_raw', $success);
             } elseif ($request->has('submit-close')) {
-                return redirect()->route($this->route . '.index')
+                $subroute = 'index';
+                if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+                    $subroute = 'tree';
+                }
+                return redirect()->route($this->route . '.' . $subroute)
                     ->with('success_raw', $success);
             }
             return redirect()->route($this->route . '.show', $model->id)
