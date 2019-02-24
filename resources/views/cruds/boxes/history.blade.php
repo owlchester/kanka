@@ -10,6 +10,7 @@
         'date' => $model->updated_at->diffForHumans(),
         'realdate' => $model->updated_at . 'UTC',
     ]) !!}
+{{--      @can('')--}}
     @else
         {!! trans('crud.history.created', [
         'name' => ($model->creator ? e($model->creator->name) : trans('crud.history.unknown')),

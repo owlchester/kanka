@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
+use App\Models\EntityLog;
 use App\Models\Tag;
 use App\Services\ImageService;
 use App\Services\LinkerService;
@@ -89,6 +90,26 @@ class EntityObserver
             $permission->table_name = $entity->pluralType();
             $permission->save();
         }
+
+        // Creation log
+        $log = new EntityLog();
+        $log->entity_id = $entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->action = EntityLog::ACTION_CREATE;
+        $log->save();
+    }
+
+    /**
+     * @param Entity $entity
+     */
+    public function updated(Entity $entity)
+    {
+        // Creation log
+        $log = new EntityLog();
+        $log->entity_id = $entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->action = EntityLog::ACTION_UPDATE;
+        $log->save();
     }
 
     /**
