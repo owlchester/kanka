@@ -36,6 +36,10 @@
                     <p>{{ __('locations.map.helpers.view') }}</p>
                 </div>
                 <div class="map">
+                    <div class="loading-map text-center">
+                        <i class="fa fa-spin fa-spinner fa-4x"></i>
+                    </div>
+
                     <div id="draggable-map">
                         <div class="map-container">
                             <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: 100%;" @endif />

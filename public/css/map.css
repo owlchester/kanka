@@ -7,6 +7,16 @@
   transition: all 0.5s ease;
 }
 
+.map .loading-map {
+  z-index: 200;
+  position: absolute;
+  height: 100%;
+  padding-top: 50px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
 .map #draggable-map {
   cursor: move;
 }

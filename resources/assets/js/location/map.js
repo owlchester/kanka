@@ -40,6 +40,20 @@ $(document).ready(function() {
     mapElement = $('.map');
     mapHelper = $('.map-helper');
 
+    initLocationMap();
+});
+
+function initLocationMap() {
+    // Reset the zoom to the biggest value
+    var imgWidth = mapImage.width();
+
+    // If the image hasn't finished loading, let's try again in half a second
+    if (!imgWidth || imgWidth === 0) {
+        console.log('map', 'waiting another 500 ms for the map to properly load');
+        setTimeout('initLocationMap', 500);
+        return false;
+    }
+
     if (mapAdmin.length === 1) {
         initMapAdmin();
     }
@@ -52,7 +66,8 @@ $(document).ready(function() {
     initAddPoints();
     initMapScroll();
     resizeMapToPage();
-});
+}
+
 
 /**
  * Init Clicking on the Map
@@ -583,13 +598,7 @@ function resizeMapToPage() {
     // Reset the zoom to the biggest value
     var imgWidth = mapImage.width();
 
-    // If the image hasn't finished loading, let's try again in half a second
-    if (!imgWidth || imgWidth === 0) {
-        console.log('map', 'waiting another 500 ms for the map to properly load');
-        setTimeout('resizeMapToPage', 500);
-        return false;
-    }
-    console.log('map fully loaded', imgWidth);
+    $('.loading-map').hide();
 
     var imgHeight = mapImage.height();
     //console.log('img width, height', imgWidth, imgHeight);
