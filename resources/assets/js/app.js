@@ -168,6 +168,7 @@ $(document).ready(function() {
     });
 
     initTogglePasswordFields();
+    initAjaxPagination();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -177,11 +178,12 @@ $(document).ready(function() {
 
         // Also re-bind select2 elements on modal show
         initSelect2();
+        initAjaxPagination();
 
         // Handle when opening the entity-creator ui
         entityCreatorUI();
-    });
 
+    });
 });
 
 /**
@@ -363,6 +365,23 @@ function entityCreatorUI() {
 
         return false;
     });
+}
+
+function initAjaxPagination() {
+    $('.pagination-ajax-links a').on('click', function(e) {
+        e.preventDefault();
+        var paginationAjaxBody = $('.pagination-ajax-body');
+        paginationAjaxBody.find('.loading').show();
+        paginationAjaxBody.find('.pagination-ajax-content').hide();
+
+        $.ajax(
+            $(this).attr('href')
+        ).done(function (res) {
+            paginationAjaxBody.parent().html(res);
+            initAjaxPagination();
+        });
+        return false;
+    })
 }
 
 // Helpers are injected directly in the window functions.

@@ -18,10 +18,12 @@ class LogController extends Controller
         $this->authorize('update', $entity->child);
 
         $ajax = request()->ajax();
+        $logs = $entity->logs()->recent()->paginate(3);
 
-        return view('entities.pages.logs', compact(
+        return view('entities.pages.logs.logs', compact(
             'ajax',
-            'entity'
+            'entity',
+            'logs'
         ));
     }
 }

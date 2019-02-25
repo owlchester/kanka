@@ -280,7 +280,8 @@ Route::group([
 
         // Entity files
         Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
-        Route::get('/entities/{entity}/logs', 'Entity/LogController@index')->name('entities.logs');
+        Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
+        //Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');

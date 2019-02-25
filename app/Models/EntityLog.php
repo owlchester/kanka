@@ -53,4 +53,28 @@ class EntityLog extends Model
     {
         return $this->belongsTo('App\User', 'created_by');
     }
+
+    /**
+     * @return string
+     */
+    public function actionCode()
+    {
+        if ($this->action == self::ACTION_CREATE) {
+            return 'create';
+        } elseif ($this->action == self::ACTION_UPDATE) {
+            return 'update';
+        } elseif ($this->action == self::ACTION_DELETE) {
+            return 'delete';
+        }
+        return 'unknown';
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeRecent($query)
+    {
+        return $query->orderBy('created_at', 'DESC');
+    }
 }

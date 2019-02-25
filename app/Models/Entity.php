@@ -332,6 +332,14 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function logs()
+    {
+        return $this->hasMany('App\Models\EntityLog', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function permissions()
     {
         return $this->hasMany('App\Models\CampaignPermission', 'entity_id', 'id');
