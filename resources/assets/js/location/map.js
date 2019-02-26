@@ -49,8 +49,8 @@ function initLocationMap() {
 
     // If the image hasn't finished loading, let's try again in half a second
     if (!imgWidth || imgWidth === 0) {
-        console.log('map', 'waiting another 500 ms for the map to properly load');
-        setTimeout('initLocationMap', 500);
+        //console.log('map', 'waiting another 500 ms for the map to properly load');
+        setTimeout(initLocationMap, 500);
         return false;
     }
 
@@ -296,7 +296,7 @@ function loadMapPoint(element) {
 
         // Closing the modal
         $('.entity-close').on('click', function(e) {
-            console.log('clicky');
+            //console.log('clicky');
             mapPanel.addClass('hidden');
             $('#location-map-main').removeClass('col-md-9 col-sm-8').addClass('col-md-12');
         });
