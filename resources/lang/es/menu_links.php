@@ -16,8 +16,11 @@ return [
     ],
     'fields'        => [
         'entity'    => 'Entidad',
+        'filters'   => 'Filtros',
+        'menu'      => 'Menú',
         'name'      => 'Nombre',
         'tab'       => 'Pestaña',
+        'type'      => 'Tipo de entidad',
     ],
     'index'         => [
         'add'           => 'Nuevo enlace de menú',
@@ -27,6 +30,8 @@ return [
     ],
     'placeholders'  => [
         'entity'    => 'Elige una entidad',
+        'filters'   => 'location_id=15&type=ciudad',
+        'menu'      => 'Subpágina del menú (usa la última parte de la url)',
         'name'      => 'Nombre del enlace de menú',
         'tab'       => 'Historia, Relaciones, Notas',
     ],

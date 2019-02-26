@@ -38,6 +38,7 @@ return [
     ],
     'fields'                => [
         'description'       => 'Descripción',
+        'entity_count'      => 'Número de entidades',
         'entity_visibility' => 'Visibilidad de la entidad',
         'header_image'      => 'Imagen de cabecera',
         'image'             => 'Imagen',

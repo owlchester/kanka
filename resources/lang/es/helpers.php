@@ -13,5 +13,6 @@ return [
         'description'   => 'Puedes enlazar fácilmente otras entidades cuando creas o editas personajes, localizaciones, etc. Simplemente escribe \'@\' con el nombre de la entidad que quieras enlazar. También puedes escribir \'#\' para obtener una lista de meses de tus calendarios.',
         'title'         => 'Enlazar a otras entidades y atajos',
     ],
+    'public'        => 'Mira el vídeo tutorial en Youtube acerca de las campañas públicas.',
     'title'         => 'Consejos',
 ];

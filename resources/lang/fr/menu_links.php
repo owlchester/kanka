@@ -16,8 +16,11 @@ return [
     ],
     'fields'        => [
         'entity'    => 'Entité',
+        'filters'   => 'Filtres',
+        'menu'      => 'Menu',
         'name'      => 'Nom',
         'tab'       => 'Onglet',
+        'type'      => 'Entité Type',
     ],
     'index'         => [
         'add'           => 'Nouveau lien de menu',
@@ -27,6 +30,8 @@ return [
     ],
     'placeholders'  => [
         'entity'    => 'Choix d\'une entité',
+        'filters'   => 'location_id=15&type=city',
+        'menu'      => 'Sous-page (dernière partie de l\'url)',
         'name'      => 'Nom du lien de menu',
         'tab'       => 'entry, relations, notes, map',
     ],

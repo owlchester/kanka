@@ -472,4 +472,15 @@ return [
         '8' => 'Guiado',
         '9' => 'Conformista',
     ],
+    'traits'    => [
+        'eye'       => 'Ojos',
+        'fear'      => 'Miedos',
+        'goal'      => 'Objetivos',
+        'hair'      => 'Pelo',
+        'height'    => 'Altura',
+        'mannerism' => 'Peculiaridades',
+        'skin'      => 'Piel',
+        'trait'     => 'Rasgos',
+        'weight'    => 'Peso',
+    ],
 ];

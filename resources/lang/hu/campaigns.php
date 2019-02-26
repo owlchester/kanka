@@ -38,6 +38,7 @@ return [
     ],
     'fields'                => [
         'description'       => 'Leírás',
+        'entity_count'      => 'Entitások száma',
         'entity_visibility' => 'Entitás láthatósága',
         'header_image'      => 'Fejléc képe',
         'image'             => 'Kép',

@@ -83,6 +83,9 @@ return [
         'title'     => 'Igazold vissza az akciódat!',
     ],
     'create'            => 'Létrehozás',
+    'datagrid'          => [
+        'empty' => 'Nincs megjeleníthető adat',
+    ],
     'delete_modal'      => [
         'close'         => 'Bezárás',
         'delete'        => 'Törlés',
@@ -141,7 +144,9 @@ return [
     ],
     'filter'            => 'Szűrő',
     'filters'           => [
+        'all'   => 'Szűrés minden leszármazottra',
         'clear' => 'Szűrők törlése',
+        'direct'=> 'Szűrés közvetlen leszármazottakra',
         'hide'  => 'Szűrők elrejtése',
         'show'  => 'Szűrők megmutatása',
         'title' => 'Szűrők',
@@ -292,6 +297,7 @@ return [
     'tabs'              => [
         'attributes'    => 'Tulajdonságok',
         'calendars'     => 'Naptárak',
+        'default'       => 'Alapértelmezett',
         'events'        => 'Események',
         'menu'          => 'Menü',
         'notes'         => 'Jegyzetek',

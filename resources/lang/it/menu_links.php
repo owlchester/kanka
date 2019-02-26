@@ -16,8 +16,11 @@ return [
     ],
     'fields'        => [
         'entity'    => 'Entità',
+        'filters'   => 'Filtri',
+        'menu'      => 'Menù',
         'name'      => 'Nome',
         'tab'       => 'Tab',
+        'type'      => 'Tipo di entità',
     ],
     'index'         => [
         'add'           => 'Nuovo Elemento del Menù',
@@ -27,6 +30,7 @@ return [
     ],
     'placeholders'  => [
         'entity'    => 'Seleziona un\'entità',
+        'menu'      => 'Sottopagina del menù (utilizza l\'ultimo pezzo di testo dell\'url)',
         'name'      => 'Titolo dell\'elemento del menù',
         'tab'       => 'entità, relazioni, note',
     ],

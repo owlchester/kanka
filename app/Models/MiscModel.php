@@ -319,7 +319,7 @@ abstract class MiscModel extends Model
     {
         if (empty($this->$field)) {
             // Patreons have nicer icons
-            if (auth()->check() && auth()->user()->isPatron()) {
+            if (auth()->check() && auth()->user()->isGoblinPatron()) {
                 return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');
             }
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');

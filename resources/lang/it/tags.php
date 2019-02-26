@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'children'      => [
+        'description'   => 'Entità associate al tag',
+        'title'         => 'Discendente del tag :name',
+    ],
     'create'        => [
         'description'   => 'Crea un nuovo tag',
         'success'       => 'Tag \':name\' creato.',
@@ -51,5 +55,9 @@ return [
             'tags'          => 'Tags',
         ],
         'title'         => 'Tag :name',
+    ],
+    'tags'          => [
+        'description'   => 'Tag Discendenti',
+        'title'         => 'Discendente del tag :name',
     ],
 ];

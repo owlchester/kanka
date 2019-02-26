@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'children'      => [
+        'description'   => 'A címkéhez tartozó entitások',
+        'title'         => ':name címke entitásai',
+    ],
     'create'        => [
         'description'   => 'Új címke létrehozása',
         'success'       => 'A \':name\' címkét létrehoztuk',
@@ -51,5 +55,9 @@ return [
             'tags'          => 'Címkék',
         ],
         'title'         => ':name címke',
+    ],
+    'tags'          => [
+        'description'   => 'Alcímkék',
+        'title'         => ':name címke alcímkéi',
     ],
 ];

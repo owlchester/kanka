@@ -472,4 +472,15 @@ return [
         '8' => 'Céltudatos',
         '9' => 'Alkalmazkodó',
     ],
+    'traits'    => [
+        'eye'       => 'Szem',
+        'fear'      => 'Félelmek',
+        'goal'      => 'Célok',
+        'hair'      => 'Haj',
+        'height'    => 'Magasság',
+        'mannerism' => 'Modor',
+        'skin'      => 'Bőr',
+        'trait'     => 'Jellemzők',
+        'weight'    => 'Súly',
+    ],
 ];

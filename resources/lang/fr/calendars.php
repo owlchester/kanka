@@ -2,13 +2,14 @@
 
 return [
     'actions'       => [
-        'add_epoch'     => 'Ajouter une époque',
-        'add_month'     => 'Ajouter un mois',
-        'add_moon'      => 'Ajouter une lune',
-        'add_season'    => 'Ajouter une saison',
-        'add_weekday'   => 'Ajouter un jour de semaine',
-        'add_year'      => 'Ajouter un nom d\'année',
-        'today'         => 'Aujourd\'hui',
+        'add_epoch'         => 'Ajouter une époque',
+        'add_intercalary'   => 'Ajouter des jours intercalaires',
+        'add_month'         => 'Ajouter un mois',
+        'add_moon'          => 'Ajouter une lune',
+        'add_season'        => 'Ajouter une saison',
+        'add_weekday'       => 'Ajouter un jour de semaine',
+        'add_year'          => 'Ajouter un nom d\'année',
+        'today'             => 'Aujourd\'hui',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'A lieu chaque année',
@@ -76,6 +77,7 @@ return [
         'current_year'      => 'Année actuelle',
         'date'              => 'Date actuelle',
         'has_leap_year'     => 'Année bissextile',
+        'intercalary'       => 'Jours Intercalaires',
         'is_recurring'      => 'Récurrent',
         'leap_year_amount'  => 'Jours à ajouter',
         'leap_year_month'   => 'Mois',
@@ -93,7 +95,11 @@ return [
         'type'              => 'Type',
         'weekdays'          => 'Jours de la semaine',
     ],
+    'helpers'       => [
+        'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
+    ],
     'hints'         => [
+        'intercalary'   => 'Les jours tombants hors des mois et semaines standards. Ils n\'influenceronts pas le jour de semaine.',
         'is_recurring'  => 'Un événement peut être récurrent. Il réapparaitera chaque année à la même date.',
         'months'        => 'Le calendrier doit avoir au moins 2 mois.',
         'moons'         => 'Chaque lune sera affichée dans le calendrier lors de la pleine lune.',
@@ -111,25 +117,36 @@ return [
         'month' => 'Mois',
         'year'  => 'Année',
     ],
+    'month_types'   => [
+        'intercalary'   => 'Intercalaire',
+        'standard'      => 'Standard',
+    ],
     'panels'        => [
-        'leap_year' => 'Année bissextile',
-        'years'     => 'Nom d\'années',
+        'intercalary'   => 'Jours Intercalaires',
+        'leap_year'     => 'Année bissextile',
+        'years'         => 'Nom d\'années',
     ],
     'parameters'    => [
-        'month'     => [
+        'intercalary'   => [
+            'length'    => 'Durée en jour',
+            'month'     => 'A la fin de quel mois',
+            'name'      => 'Nom de l\'intercalaire',
+        ],
+        'month'         => [
             'length'    => 'Nombre de jours',
             'name'      => 'Nom du mois',
+            'type'      => 'Type',
         ],
-        'moon'      => [
+        'moon'          => [
             'fullmoon'  => 'Pleine lune chaque (jours)',
             'name'      => 'Nom de la lune',
         ],
-        'seasons'   => [
+        'seasons'       => [
             'day'   => 'Jour de départ',
             'month' => 'Mois de départ',
             'name'  => 'Nom de la saison',
         ],
-        'year'      => [
+        'year'          => [
             'name'      => 'Nom',
             'number'    => 'Année',
         ],
@@ -153,6 +170,7 @@ return [
     ],
     'show'          => [
         'description'       => 'Vue détaillée d\'un calendrier',
+        'missing_details'   => 'Le calendrier ne peut pas être affiché. Un calendrier a besoin d\'au moins 2 mois et de 2 jours de la semaine pour être affiché correctement.',
         'moon_full_moon'    => 'Pleine lune de :moon',
         'tabs'              => [
             'events'        => 'Evénements',

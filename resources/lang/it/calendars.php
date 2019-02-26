@@ -2,13 +2,14 @@
 
 return [
     'actions'       => [
-        'add_epoch'     => 'Aggiungi un\'epoca',
-        'add_month'     => 'Aggiungi un mese',
-        'add_moon'      => 'Aggiungi una luna',
-        'add_season'    => 'Aggiungi una stagione',
-        'add_weekday'   => 'Aggiungi un giorno della settimana',
-        'add_year'      => 'Aggiungi un nome dell\'anno',
-        'today'         => 'Oggi',
+        'add_epoch'         => 'Aggiungi un\'epoca',
+        'add_intercalary'   => 'Aggiungi giorni intercalari',
+        'add_month'         => 'Aggiungi un mese',
+        'add_moon'          => 'Aggiungi una luna',
+        'add_season'        => 'Aggiungi una stagione',
+        'add_weekday'       => 'Aggiungi un giorno della settimana',
+        'add_year'          => 'Aggiungi un nome dell\'anno',
+        'today'             => 'Oggi',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Accade ogni anno',
@@ -76,6 +77,7 @@ return [
         'current_year'      => 'Anno corrente',
         'date'              => 'Data corrente',
         'has_leap_year'     => 'Ha anni bisestili',
+        'intercalary'       => 'Giorni intercalari',
         'is_recurring'      => 'Ricorrente',
         'leap_year_amount'  => 'Aggiungi Giorni',
         'leap_year_month'   => 'Mese',
@@ -93,7 +95,11 @@ return [
         'type'              => 'Tipo',
         'weekdays'          => 'Giorni della Settimana',
     ],
+    'helpers'       => [
+        'month_type'    => 'I mesi intercalari non utilizzano i giorni della settimana ma influenzano comunque le fasi lunari e le stagioni.',
+    ],
     'hints'         => [
+        'intercalary'   => 'Giorni che cadono al difuori dei nomali mesi e dettimane. Non influenzano i giorni della settimana ma influenzano le fasi lunari.',
         'is_recurring'  => 'Un evento può essere ricorrente. Apparirà ogni anno alla stessa data.',
         'months'        => 'Il tuo calendario deve avere almeno 2 mesi.',
         'moons'         => 'Aggiungere lune le farà apparire sul calendario ad ogni luna piena.',
@@ -111,25 +117,36 @@ return [
         'month' => 'Mese',
         'year'  => 'Anno',
     ],
+    'month_types'   => [
+        'intercalary'   => 'Intercalari',
+        'standard'      => 'Normali',
+    ],
     'panels'        => [
-        'leap_year' => 'Anno Bisestile',
-        'years'     => 'Anni Nominati',
+        'intercalary'   => 'Giorni di intercalazione',
+        'leap_year'     => 'Anno Bisestile',
+        'years'         => 'Anni Nominati',
     ],
     'parameters'    => [
-        'month'     => [
+        'intercalary'   => [
+            'length'    => 'Durata in giorni',
+            'month'     => 'Alla fine di quale mese',
+            'name'      => 'Nome dell\'intercalazione',
+        ],
+        'month'         => [
             'length'    => 'Numero di Giorni',
             'name'      => 'Nome del Mese',
+            'type'      => 'Tipo',
         ],
-        'moon'      => [
+        'moon'          => [
             'fullmoon'  => 'Luna piena ogni (giorni)',
             'name'      => 'Nome della Luna',
         ],
-        'seasons'   => [
+        'seasons'       => [
             'day'   => 'Giorno iniziale',
             'month' => 'Mese iniziale',
             'name'  => 'Nome della Stagione',
         ],
-        'year'      => [
+        'year'          => [
             'name'      => 'Nome dell\'Anno',
             'number'    => 'Anno',
         ],
@@ -153,6 +170,7 @@ return [
     ],
     'show'          => [
         'description'       => 'Una vista dettagliata del calendario',
+        'missing_details'   => 'Questo calendario non può essere visualizzato. I Calendari necessitano almeno di 2 mesi e 2 giorni della settimana per essere visualizzati correttamente.',
         'moon_full_moon'    => ':moon Luna Piena',
         'tabs'              => [
             'events'        => 'Eventi del Calendario',

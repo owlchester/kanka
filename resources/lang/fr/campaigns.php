@@ -38,6 +38,7 @@ return [
     ],
     'fields'                => [
         'description'       => 'Description',
+        'entity_count'      => 'Nombre d\'entités',
         'entity_visibility' => 'Visibilité d\'entité',
         'header_image'      => 'Image de fond pour le tableau de bord',
         'image'             => 'Image',

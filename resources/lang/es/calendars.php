@@ -2,13 +2,14 @@
 
 return [
     'actions'       => [
-        'add_epoch'     => 'Añadir época',
-        'add_month'     => 'Añadir mes',
-        'add_moon'      => 'Añadir luna',
-        'add_season'    => 'Añadir estación',
-        'add_weekday'   => 'Añadir día de la semana',
-        'add_year'      => 'Añadir año con nombre',
-        'today'         => 'Hoy',
+        'add_epoch'         => 'Añadir época',
+        'add_intercalary'   => 'Añadir días intercalares',
+        'add_month'         => 'Añadir mes',
+        'add_moon'          => 'Añadir luna',
+        'add_season'        => 'Añadir estación',
+        'add_weekday'       => 'Añadir día de la semana',
+        'add_year'          => 'Añadir año con nombre',
+        'today'             => 'Hoy',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Ocurre cada año',
@@ -76,6 +77,7 @@ return [
         'current_year'      => 'Año actual',
         'date'              => 'Fecha actual',
         'has_leap_year'     => 'Tiene años bisiestos',
+        'intercalary'       => 'Días intercalares',
         'is_recurring'      => 'Recurrente',
         'leap_year_amount'  => 'Añadir días',
         'leap_year_month'   => 'Mes',
@@ -93,7 +95,11 @@ return [
         'type'              => 'Tipo',
         'weekdays'          => 'Días de la semana',
     ],
+    'helpers'       => [
+        'month_type'    => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
+    ],
     'hints'         => [
+        'intercalary'   => 'Días que están fuera de los meses y semanas estándar. No influyen en los días de la semana, pero afectan a los ciclos lunares.',
         'is_recurring'  => 'Si un evento es recurrente, reaparecerá cada año en la misma fecha.',
         'months'        => 'Tu calendario debe tener al menos 2 meses.',
         'moons'         => 'Si añades lunas, aparecerán en el calendario cada luna llena.',
@@ -111,25 +117,36 @@ return [
         'month' => 'Mes',
         'year'  => 'Año',
     ],
+    'month_types'   => [
+        'intercalary'   => 'Intercalar',
+        'standard'      => 'Estándar',
+    ],
     'panels'        => [
-        'leap_year' => 'Año bisiesto',
-        'years'     => 'Años con nombre',
+        'intercalary'   => 'Días intercalares',
+        'leap_year'     => 'Año bisiesto',
+        'years'         => 'Años con nombre',
     ],
     'parameters'    => [
-        'month'     => [
+        'intercalary'   => [
+            'length'    => 'Días de duración',
+            'month'     => 'Al final de qué mes',
+            'name'      => 'Nombre de la intercalación',
+        ],
+        'month'         => [
             'length'    => 'Número de días',
             'name'      => 'Nombre del mes',
+            'type'      => 'Tipo',
         ],
-        'moon'      => [
+        'moon'          => [
             'fullmoon'  => 'Luna llena cada... días',
             'name'      => 'Nombre de la luna',
         ],
-        'seasons'   => [
+        'seasons'       => [
             'day'   => 'Día inicial',
             'month' => 'Mes inicial',
             'name'  => 'Nombre de la estación',
         ],
-        'year'      => [
+        'year'          => [
             'name'      => 'Nombre del año',
             'number'    => 'Año',
         ],
@@ -153,6 +170,7 @@ return [
     ],
     'show'          => [
         'description'       => 'Vista detallada del calendario',
+        'missing_details'   => 'Este calendario no se puede mostrar. Los calendarios necesitan un mínimo de 2 meses y 2 días semanales para renderizarse correctamente.',
         'moon_full_moon'    => 'Luna llena',
         'tabs'              => [
             'events'        => 'Eventos del calendario',

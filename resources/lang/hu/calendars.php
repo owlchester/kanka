@@ -2,13 +2,14 @@
 
 return [
     'actions'       => [
-        'add_epoch'     => 'Korszak hozzáadása',
-        'add_month'     => 'Hónap hozzáadása',
-        'add_moon'      => 'Hold hozzáadása',
-        'add_season'    => 'Évszak hozzáadása',
-        'add_weekday'   => 'Hétköznap hozzáadása',
-        'add_year'      => 'Egy év nevének hozzáadása',
-        'today'         => 'Ma',
+        'add_epoch'         => 'Korszak hozzáadása',
+        'add_intercalary'   => 'Naptárközi napok hozzáadása',
+        'add_month'         => 'Hónap hozzáadása',
+        'add_moon'          => 'Hold hozzáadása',
+        'add_season'        => 'Évszak hozzáadása',
+        'add_weekday'       => 'Hétköznap hozzáadása',
+        'add_year'          => 'Egy év nevének hozzáadása',
+        'today'             => 'Ma',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Minden évben megtörténik',
@@ -76,6 +77,7 @@ return [
         'current_year'      => 'Jelenlegi év',
         'date'              => 'Jelenlegi dátum',
         'has_leap_year'     => 'Van szökőév',
+        'intercalary'       => 'Naptárközi napok',
         'is_recurring'      => 'Ismétlődő',
         'leap_year_amount'  => 'Napok hozzáadása',
         'leap_year_month'   => 'Hónap',
@@ -93,7 +95,11 @@ return [
         'type'              => 'Típus',
         'weekdays'          => 'Hétköznapok',
     ],
+    'helpers'       => [
+        'month_type'    => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
+    ],
     'hints'         => [
+        'intercalary'   => 'Napok, melyek a standard hónapokon és heteken kívül esnek. Nincsenek hatással a hét napjaira, de a holdfázisokra igen.',
         'is_recurring'  => 'Ismétlődővé tehetsz egy eseményt, ami minden évben ugyanakkor jelenik meg.',
         'months'        => 'A naptáradnak legalább két hónapból kell állnia.',
         'moons'         => 'Ha hozzáadsz egy holdat, az minden teliholdkor megjelenik a naptárban.',
@@ -111,25 +117,36 @@ return [
         'month' => 'Hónap',
         'year'  => 'Év',
     ],
+    'month_types'   => [
+        'intercalary'   => 'Naptárközi',
+        'standard'      => 'Standard',
+    ],
     'panels'        => [
-        'leap_year' => 'Szököév',
-        'years'     => 'Nevesített évek',
+        'intercalary'   => 'Naptárközi napok',
+        'leap_year'     => 'Szököév',
+        'years'         => 'Nevesített évek',
     ],
     'parameters'    => [
-        'month'     => [
+        'intercalary'   => [
+            'length'    => 'Időtartam napokban',
+            'month'     => 'Melyik hónap végén?',
+            'name'      => 'Naptárközi időszak neve',
+        ],
+        'month'         => [
             'length'    => 'Napok száma',
             'name'      => 'Hónap neve',
+            'type'      => 'Típus',
         ],
-        'moon'      => [
+        'moon'          => [
             'fullmoon'  => 'Telihold ennyi naponta',
             'name'      => 'Hold neve',
         ],
-        'seasons'   => [
+        'seasons'       => [
             'day'   => 'Nappal kezdete',
             'month' => 'Hónap kezdete',
             'name'  => 'Évszak neve',
         ],
-        'year'      => [
+        'year'          => [
             'name'      => 'Év neve',
             'number'    => 'Év',
         ],
@@ -153,6 +170,7 @@ return [
     ],
     'show'          => [
         'description'       => 'Egy naptár részletes megjelenítése',
+        'missing_details'   => 'A naptár nem jeleníthető meg - legalább két hónapot és kétnapos heteket kell tartalmazzon.',
         'moon_full_moon'    => ':moon telihold',
         'tabs'              => [
             'events'        => 'Naptári események',

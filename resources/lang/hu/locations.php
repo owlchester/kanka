@@ -32,6 +32,7 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
+        'characters'    => 'Minden, a helyszínen és annak alhelyszínein, vagy közvetlenül csak a helyszínen tartózkodó karakter listázása.',
         'descendants'   => 'Ez a lista a helyszín összes leszármazott helyszínét tartalmazza, nemcsak a közvetlen alhelyszíneit.',
         'nested'        => 'Hierarchikus nézetben a helyszíneidet alá-fölérendeltségi viszonyukban tekintheted meg. Alapesetben a szülő helyszín nélküli helyszínek látszanak, rájuk kattintva megtekintheted azok alhelyszíneit.',
     ],

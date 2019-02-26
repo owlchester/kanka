@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'children'      => [
+        'description'   => 'Entidades etiquetadas',
+        'title'         => 'Descendientes de la etiqueta :name',
+    ],
     'create'        => [
         'description'   => 'Crear nueva etiqueta',
         'success'       => 'Etiqueta \':name\' creada.',
@@ -51,5 +55,9 @@ return [
             'tags'          => 'Etiquetas',
         ],
         'title'         => 'Etiqueta :name',
+    ],
+    'tags'          => [
+        'description'   => 'Subetiquetas',
+        'title'         => 'Descendientes de la etiqueta :name',
     ],
 ];

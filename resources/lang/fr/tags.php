@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'children'      => [
+        'description'   => 'Entités appartenant à l\'étiquette',
+        'title'         => 'Enfants de l\'étiquette :name',
+    ],
     'create'        => [
         'description'   => 'Ajouter une nouvelle étiquette',
         'success'       => 'Nouvelle étiquette \':name\' ajoutée.',
@@ -50,6 +54,10 @@ return [
             'information'   => 'Information',
             'tags'          => 'Etiquettes',
         ],
+        'title'         => 'Etiquette :name',
+    ],
+    'tags'          => [
+        'description'   => 'Enfants d\'étiquette',
         'title'         => 'Etiquette :name',
     ],
 ];

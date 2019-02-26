@@ -51,6 +51,21 @@ return [
         ],
     ],
     'title'             => 'Tableau de bord',
+    'welcome'           => [
+        'body'      => <<<'TEXT'
+Bienvenue sur Kanka! Ta première campagne a été créée et nous avons inclus quelques examples d'entités pour t'inspirer (tu peux les supprimer à tout moment).
+
+Tu voudras probablement commencer par ajouter tes propres entités. Choisi une catégorie sur le menu à gauche pour commencer. Les catégories dont tu n'as pas besoin peuvent être disactivées dans la configuration de la campagne. Désactiver une catégorie la retire du menu.
+
+Voici quelques conseils pour t'aider à commencer:
+- Tu peux écrire @nom dans la description d'une entité pour lier vers d'autres entités. Le lien sera automatiquement mis à jour en cas de modifications de l'entité mentionnée.
+- Tu peux configurer ton profile pour changer de thème ou le nombre d'entité affiché par page. L'accès à la configuration du profile se fait en cliquant en haut à droite. 
+- Il y a des tutoriaux sur :youtube. Les tutoriaux couvrent la thématique des attributs ou comment partager la campagne avec tes amis. La :faq peut aussi t'être utile.
+- Si tu as des questions, suggestions ou simplement envie de discuter, rejoins-nous sur :discord
+TEXT
+,
+        'header'    => 'Bienvenue',
+    ],
     'widgets'           => [
         'calendar'  => [
             'actions'           => [

@@ -32,6 +32,7 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
+        'characters'    => 'Muestra todos los personajes en este lugar y sus lugares anidados, o solo los que están aquí.',
         'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
         'nested'        => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
     ],

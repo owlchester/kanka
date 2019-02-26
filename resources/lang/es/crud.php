@@ -83,6 +83,9 @@ return [
         'title'     => 'Confirmar acción',
     ],
     'create'            => 'Crear',
+    'datagrid'          => [
+        'empty' => 'Aún no hay nada que mostrar.',
+    ],
     'delete_modal'      => [
         'close'         => 'Cerrar',
         'delete'        => 'Eliminar',
@@ -141,7 +144,9 @@ return [
     ],
     'filter'            => 'Filtrar',
     'filters'           => [
+        'all'   => 'Mostrar todos los descendientes',
         'clear' => 'Quitar filtros',
+        'direct'=> 'Filtrar solo los descendientes directos',
         'hide'  => 'Ocultar filtros',
         'show'  => 'Mostrar filtros',
         'title' => 'Filtros',
@@ -292,6 +297,7 @@ return [
     'tabs'              => [
         'attributes'    => 'Atributos',
         'calendars'     => 'Calendarios',
+        'default'       => 'Por defecto',
         'events'        => 'Eventos',
         'menu'          => 'Menú',
         'notes'         => 'Notas',

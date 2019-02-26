@@ -7,6 +7,7 @@ return [
         'en-US' => 'Inglés (EEUU)',
         'es'    => 'Español',
         'fr'    => 'Francés',
+        'hu'    => 'Húngaro',
         'it'    => 'Italiano',
         'nl'    => 'Holandés',
         'pt-BR' => 'Portugués (Brasil)',
