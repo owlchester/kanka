@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\MiscModel;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;

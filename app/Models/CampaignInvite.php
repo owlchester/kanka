@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\MiscModel;
 
 class CampaignInvite extends MiscModel
 {

@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\MiscModel;
 use App\Traits\OrderableTrait;
-use App\Traits\VisibleTrait;
 
 /**
  * Class EntityEvent

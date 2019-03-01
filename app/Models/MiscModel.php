@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Filterable;
+use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Searchable;
 use App\Scopes\RecentScope;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +25,11 @@ use Illuminate\Support\Str;
  */
 abstract class MiscModel extends Model
 {
-    use Paginatable, AclTrait;
+    use Paginatable,
+        AclTrait,
+        Searchable,
+        Orderable,
+        Filterable;
 
     /**
      * @var bool Skip using the model's saving observer
@@ -138,27 +145,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Scope a query to only include users of a given type.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeSearch($query, $term)
-    {
-        $searchFields = $this->searchableColumns;
-        if (empty($term)) {
-            return $query;
-        }
-
-        return $query->where(function ($q) use ($term, $searchFields) {
-            foreach ($searchFields as $field) {
-                $q->orWhere($this->getTable() . '.' . $field, 'like', "%$term%");
-            }
-        });
-    }
-
-    /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
      * @param $query
@@ -167,60 +153,6 @@ abstract class MiscModel extends Model
     public function scopePreparedWith($query)
     {
         return $query->with('entity');
-    }
-
-    /**
-     * @param $query
-     * @param $params
-     * @return mixed
-     */
-    public function scopeFilter($query, $params)
-    {
-        if (!is_array($params) or empty($params) or empty($this->filterableColumns)) {
-            return $query;
-        }
-
-        foreach ($params as $key => $value) {
-            if (isset($value) && in_array($key, $this->filterableColumns)) {
-                // It's possible to request "not" values
-
-                $operator = 'like';
-                $filterValue = $value;
-                if (Str::startsWith($value, '!')) {
-                    $operator = 'not like';
-                    $filterValue = ltrim($value, '!');
-                } elseif (Str::endsWith($value, '!')) {
-                    $operator = '=';
-                    $filterValue = rtrim($value, '!');
-                }
-
-                $segments = explode('-', $key);
-                if (count($segments) > 1) {
-                    $relationName = $segments[0];
-
-                    $relation = $this->{$relationName}();
-                    $foreignName = $relation->getQuery()->getQuery()->from;
-                    return $query
-                        ->select($this->getTable() . '.*')
-                        ->with($relationName)
-                        ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
-                        ->where(str_replace($relationName, 'f', str_replace('-', '.', $key)), $operator, ($operator == '=' ? $filterValue : "%$filterValue%"));
-                } else {
-                    if (in_array($key, $this->explicitFilters)) {
-                        $query->where($this->getTable() . '.' . $key, $operator, "$filterValue");
-                    } elseif ($key == 'tag_id') {
-                        $query
-                            ->select($this->getTable() . '.*')
-                            ->leftJoin('entities as e', 'e.entity_id', $this->getTable() . '.id')
-                            ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
-                            ->where('et.tag_id', $value);
-                    } else {
-                        $query->where($this->getTable() . '.' . $key, $operator, ($operator == '=' ? $filterValue : "%$filterValue%"));
-                    }
-                }
-            }
-        }
-        return $query;
     }
 
     /**
@@ -248,66 +180,6 @@ abstract class MiscModel extends Model
     public function scopeRecent($query)
     {
         return $query->orderBy('updated_at', 'desc');
-    }
-
-    /**
-     * @param $query
-     * @param $field
-     * @return mixed
-     */
-    public function scopeOrder($query, $data)
-    {
-        // Default
-        $field = $this->defaultOrderField;
-        $direction = $this->defaultOrderDirection;
-        if (!empty($data)) {
-            foreach ($data as $key => $value) {
-                $field = $key;
-                $direction = $value;
-            }
-        }
-
-        // Calendar dates are handled differently since we have free fields
-        if ($field == 'calendar_date') {
-            return $query
-                ->orderBy( $this->getTable() . '.calendar_year', $direction)
-                ->orderBy( $this->getTable() . '.calendar_month', $direction)
-                ->orderBy( $this->getTable() . '.calendar_day', $direction);
-        }
-
-
-        if (!empty($field)) {
-            $segments = explode('.', $field);
-            if (count($segments) > 1) {
-                $relationName = $segments[0];
-
-                $relation = $this->{$relationName}();
-                $foreignName = $relation->getQuery()->getQuery()->from;
-                return $query
-                    ->select($this->getTable() . '.*')
-                    ->with($relationName)
-                    ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
-                    ->orderBy(str_replace($relationName, 'f', $field), $direction);
-            } else {
-                // Order by related table? Yeah that's fun.
-                // While this would be possible, this would mean injecting the acl/permission system just for an order by, which seems quite overkill.
-                // A better solution might present itself during a future rewrite of the acl engine.
-//                if (substr($field, 0, 6) == 'count(') {
-//                    $relationName = preg_replace('/count\((.*)\)/si', '$1', $field);
-//                    $relation = $this->{$relationName}();
-//                    $foreignName = $relation->getQuery()->getQuery()->from;
-//
-//                    return $query
-//                        ->orderByRaw('(select count(*) from ' . $foreignName . ' where ' . $relation->getForeignKeyName() . ' = ' . $this->getTable() . '.' . $this->primaryKey . ') ' . $direction);
-//                }
-
-                // If the field has a casting
-                if (!empty($this->orderCasting[$field])) {
-                    return $query->orderByRaw('cast(' . $this->getTable() . '.' . $field . ' as ' . $this->orderCasting[$field] . ')', $direction);
-                }
-                return $query->orderBy($this->getTable() . '.' . $field, $direction);
-            }
-        }
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Searchable;
+use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\EntityAclTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -42,7 +44,11 @@ class Entity extends Model
     /**
      * Traits
      */
-    use CampaignTrait, BlameableTrait, EntityAclTrait;
+    use CampaignTrait,
+        BlameableTrait,
+        EntityAclTrait,
+        EntityScopes,
+        Searchable;
 
     /**
      * Searchable fields
@@ -249,33 +255,6 @@ class Entity extends Model
             return route($this->pluralType() . '.index');
         }
         return route($this->pluralType() . '.' . $action, $this->child->id);
-    }
-
-    /**
-     * @param $query
-     * @param $type
-     * @return mixed
-     */
-    public function scopeType($query, $type)
-    {
-        if (empty($type)) {
-            return $query;
-        }
-        return $query->where('type', $type);
-    }
-
-    /**
-     * @param $query
-     * @param $term
-     * @return mixed
-     */
-    public function scopeSearch($query, $term)
-    {
-        return $query->where(function ($q) use ($term) {
-            foreach ($this->searchableColumns as $col) {
-                $q->orWhere($col, 'like', '%$term%');
-            }
-        });
     }
 
     /**

@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\MiscModel;
 use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 

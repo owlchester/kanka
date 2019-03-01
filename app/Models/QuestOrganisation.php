@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\MiscModel;
-use App\Traits\AclTrait;
 use App\Traits\VisibleTrait;
 
 class QuestOrganisation extends MiscModel
