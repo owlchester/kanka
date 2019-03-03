@@ -1,7 +1,4 @@
-<div class="form-group">
-    <label>{{ trans('organisations.fields.type') }}</label>
-    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('organisations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-</div>
+@include('cruds.fields.type', ['base' => \App\Models\Organisation::class, 'trans' => 'organisations'])
 <div class="form-group">
     {!! Form::select2(
         'organisation_id',
