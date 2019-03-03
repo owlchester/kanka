@@ -51,6 +51,7 @@ return [
         ],
         'fields'        => [
             'character' => 'Character',
+            'organisation' => 'Organisation',
             'role'      => 'Role',
         ],
         'helpers'       => [

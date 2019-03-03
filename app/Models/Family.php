@@ -59,12 +59,6 @@ class Family extends MiscModel
     ];
 
     /**
-     * Used by the Observer to know if the tree needs rebuilding on this model.
-     * @var bool
-     */
-    public $rebuildTree = false;
-
-    /**
      * Traits
      */
     use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait;

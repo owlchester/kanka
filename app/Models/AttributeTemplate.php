@@ -38,10 +38,12 @@ class AttributeTemplate extends MiscModel
     protected $searchableColumns  = ['name'];
 
     /**
-     * Used by the Observer to know if the tree needs rebuilding on this model.
-     * @var bool
+     * Fields that can be set to null (foreign keys)
+     * @var array
      */
-    public $rebuildTree = false;
+    public $nullableForeignKeys = [
+        'attribute_template_id',
+    ];
 
     /**
      * Parent

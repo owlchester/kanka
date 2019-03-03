@@ -79,7 +79,7 @@ abstract class MiscModel extends Model
      * Fields that can be set to null (foreign keys)
      * @var array
      */
-    protected $nullableForeignKeys = [];
+    public $nullableForeignKeys = [];
 
     /**
      * Field used for tooltips

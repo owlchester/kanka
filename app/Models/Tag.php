@@ -16,12 +16,6 @@ class Tag extends MiscModel
     protected $searchableColumns  = ['name', 'type', 'entry'];
 
     /**
-     * Used by the Observer to know if the tree needs rebuilding on this model.
-     * @var bool
-     */
-    public $rebuildTree = false;
-
-    /**
      * Entity type
      * @var string
      */
@@ -52,6 +46,14 @@ class Tag extends MiscModel
         'tag_id',
         'campaign_id',
         'is_private',
+    ];
+
+    /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'tag_id',
     ];
 
     /**
