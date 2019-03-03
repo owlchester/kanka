@@ -33,10 +33,7 @@ if (request()->route()->getName() == 'characters.random') {
                 @include('cruds.fields.location')
                 @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')
-                <div class="form-group">
-                    <label>{{ trans('characters.fields.type') }}</label>
-                    {!! Form::text('type', ($isRandom ? $random->generate('type') : $formService->prefill('type', $source)), ['placeholder' => trans('characters.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
 
                 <div class="form-group">
                     {!! Form::hidden('is_dead', 0) !!}

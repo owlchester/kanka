@@ -12,10 +12,7 @@
                     <label>{{ trans('races.fields.name') }}</label>
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('races.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                <div class="form-group">
-                    <label>{{ trans('races.fields.type') }}</label>
-                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('races.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                @include('cruds.fields.type', ['base' => \App\Models\Race::class, 'trans' => 'races'])
                 @include('cruds.fields.race')
                 @include('cruds.fields.tags')
                 @include('cruds.fields.attribute_template')

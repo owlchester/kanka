@@ -277,4 +277,19 @@ abstract class MiscModel extends Model
 
         return $items;
     }
+
+    /**
+     * List of types as suggestions for the type field
+     * @return mixed
+     */
+    public function entityTypeList()
+    {
+        return $this->acl()
+            ->groupBy('type')
+            ->whereNotNull('type')
+            ->orderBy('type', 'ASC')
+            ->limit(20)
+            ->pluck('type')
+            ->all();
+    }
 }

@@ -12,10 +12,7 @@
                     <label>{{ trans('locations.fields.name') }}</label>
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('locations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                <div class="form-group">
-                    <label>{{ trans('locations.fields.type') }}</label>
-                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('locations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-                </div>
+                @include('cruds.fields.type', ['base' => \App\Models\Location::class, 'trans' => 'locations'])
                 <div class="form-group">
                     {!! Form::select2(
                         'parent_location_id',

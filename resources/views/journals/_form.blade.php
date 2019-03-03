@@ -12,10 +12,7 @@
                     <label>{{ trans('journals.fields.name') }}</label>
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('journals.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                <div class="form-group">
-                    <label>{{ trans('journals.fields.type') }}</label>
-                    {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('journals.placeholders.type'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                @include('cruds.fields.type', ['base' => \App\Models\Journal::class, 'trans' => 'journals'])
                 @if ($campaign->enabled('characters'))
                     <div class="form-group">
                         {!! Form::select2(

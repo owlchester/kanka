@@ -11,10 +11,7 @@
             {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('conversations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
-        <div class="form-group">
-            <label>{{ trans('conversations.fields.type') }}</label>
-            {!! Form::text('type', $formService->prefill('type', $source), ['placeholder' => trans('conversations.placeholders.type'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-        </div>
+        @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
         <div class="form-group required">
             <label>{{ trans('conversations.fields.target') }}</label>
