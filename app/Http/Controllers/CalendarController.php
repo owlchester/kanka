@@ -159,7 +159,14 @@ class CalendarController extends CrudController
      */
     public function monthList(Calendar $calendar)
     {
-        return Response::json($calendar->months());
+        return Response::json([
+            'months' => $calendar->months(),
+            'current' => [
+                'year' => $calendar->currentDate('year'),
+                'month' => $calendar->currentDate('month'),
+                'day' => $calendar->currentDate('date')
+            ]
+        ]);
     }
 
     /**

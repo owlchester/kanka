@@ -10,6 +10,8 @@ use App\Traits\VisibleTrait;
  * Class Calendar
  * @package App\Models
  * @var integer $campaign_id
+ * @var string $date
+ * @var string $name
  */
 class Calendar extends MiscModel
 {

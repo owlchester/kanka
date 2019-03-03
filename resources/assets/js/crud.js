@@ -362,12 +362,17 @@ function loadCalendarDates(calendarID) {
         .done(function(data) {
                 entityCalendarMonthField.html('');
                 var id = 1;
-                $.each(data, function() {
-                    entityCalendarMonthField.append('<option value="' + id + '">' + this.name + '</option>');
+                $.each(data.months, function() {
+                    var selected = id == data.current.month ? ' selected="selected"' : '';
+                    entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
                     id++;
                 });
                 entityCalendarLoading.hide();
                 entityCalendarSubForm.show();
+
+                $('input[name="calendar_day"]').val(data.current.day);
+                $('input[name="calendar_year"]').val(data.current.year);
+                $('input[name="length"]').val(1);
 
                 // However, if there is only one result, select id.
                 if (data.length === 1) {
