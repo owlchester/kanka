@@ -17,7 +17,7 @@
             @include('organisations._menu', ['active' => 'all_members'])
         </div>
         <div class="col-md-9">
-            @include('organisations.panels.all_members')
+            @include('organisations.panels.all_members', ['showOrg' => true])
         </div>
     </div>
 @endsection

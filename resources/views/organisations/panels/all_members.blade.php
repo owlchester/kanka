@@ -13,6 +13,9 @@
                 @if ($campaign->enabled('locations'))
                 <th>{{ trans('characters.fields.location') }}</th>
                 @endif
+                @if (isset($showOrg) && $showOrg)
+                    <th>{{ trans('organisations.members.fields.organisation') }}</th>
+                @endif
                 <th>{{ trans('organisations.members.fields.role') }}</th>
                 <th>{{ trans('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
@@ -22,8 +25,12 @@
                 <th>{{ trans('characters.fields.is_dead') }}</th>
                 <th><br /></th>
             </tr>
-            <?php $r = $model->allMembers()->acl()->has('character')->with('character', 'character.location')->paginate();?>
-            @foreach ($r->sortBy('character.name') as $relation)
+            <?php $r = $model->allMembers()->acl()->has('character')
+                ->with('character', 'character.location')
+                ->join('characters', 'characters.id', '=', 'character_id')
+                ->orderBy('characters.name', 'asc')
+                ->paginate();?>
+            @foreach ($r as $relation)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
@@ -37,6 +44,9 @@
                             <a href="{{ route('locations.show', $relation->character->location_id) }}" data-toggle="tooltip" title="{{ $relation->character->location->tooltip() }}">{{ $relation->character->location->name }}</a>
                         @endif
                     </td>
+                    @endif
+                    @if (isset($showOrg) && $showOrg)
+                    <td>{{ $relation->organisation->name }}</td>
                     @endif
                     <td>{{ $relation->role }}</td>
                     <td>{{ $relation->character->age }}</td>
