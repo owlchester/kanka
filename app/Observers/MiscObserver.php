@@ -95,6 +95,18 @@ abstract class MiscObserver
             $this->syncMentions($model, $entity);
             $model->refresh();
         }
+    }
+
+    public function created(MiscModel $model)
+    {
+        // Created a new sub entity? Create the parent entity.
+        $entity = Entity::create([
+            'entity_id' => $model->id,
+            'campaign_id' => $model->campaign_id,
+            'is_private' => $model->is_private,
+            'name' => $model->name,
+            'type' => $model->getEntityType()
+        ]);
 
         // Attribute templates
         if (request()->has('template_id') && request()->filled('template_id')) {
@@ -111,7 +123,15 @@ abstract class MiscObserver
                 $attribute->copyTo($model->entity);
             }
         }
-
+        // Copy attributes from source?
+        if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
+            $sourceId = request()->post('copy_source_id');
+            /** @var Entity $source */
+            $source = $source ?? Entity::findOrFail($sourceId);
+            foreach ($source->notes as $note) {
+                $note->copyTo($model->entity);
+            }
+        }
     }
 
     /**

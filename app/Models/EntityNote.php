@@ -79,4 +79,15 @@ class EntityNote extends Model
     {
         return $this->hasMany('App\Models\EntityMention', 'entity_note_id', 'id');
     }
+
+    /**
+     * Copy an entity note to another target
+     * @param Entity $target
+     */
+    public function copyTo(Entity $target)
+    {
+        $new = $this->replicate(['entity_id']);
+        $new->entity_id = $target->id;
+        return $new->save();
+    }
 }

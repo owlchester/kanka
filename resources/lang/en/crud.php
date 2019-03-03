@@ -113,6 +113,7 @@ return [
         'calendar_date'         => 'Calendar Date',
         'character'             => 'Character',
         'copy_attributes'       => 'Copy Attributes',
+        'copy_notes'            => 'Copy Entity Notes',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
         'entity'                => 'Entity',
