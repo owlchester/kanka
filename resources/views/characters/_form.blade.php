@@ -212,7 +212,7 @@ if (request()->route()->getName() == 'characters.random') {
             <div class="panel-footer">
                 <div class="form-group">
                     {!! Form::hidden('is_personality_visible', 0) !!}
-                    <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? $formService->prefill('is_personality_visible', $source) : 1))) !!}
+                    <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? $formService->prefill('is_personality_visible', $source) : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
                         {{ trans('characters.fields.is_personality_visible') }}
                     </label>
                     <p class="help-block">{{ trans('characters.hints.is_personality_visible') }}</p>

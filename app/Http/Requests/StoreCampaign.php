@@ -29,6 +29,8 @@ class StoreCampaign extends FormRequest
             'header_image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'locale' => 'nullable|string',
             'system' => 'nullable|string',
+            'entity_visibility' => 'nullable',
+            'entity_personality_visibility' => 'nullable',
         ];
     }
 }

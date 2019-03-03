@@ -23,6 +23,9 @@ return [
     'entity_visibilities'   => [
         'private'   => 'New entities are private',
     ],
+    'entity_personality_visibilities'   => [
+        'private'   => 'New characters have their personality private by default.',
+    ],
     'errors'                => [
         'access'        => 'You don\'t have access to this campaign.',
         'unknown_id'    => 'Unknown Campaign.',
@@ -40,6 +43,7 @@ return [
         'description'       => 'Description',
         'entity_count'      => 'Entity Count',
         'entity_visibility' => 'Entity Visibility',
+        'entity_personality_visibility' => 'Character Personality Visibility',
         'header_image'      => 'Header Image',
         'image'             => 'Image',
         'locale'            => 'Locale',
@@ -49,6 +53,7 @@ return [
     ],
     'helpers'               => [
         'entity_visibility' => 'When creating a new entity, the "Private" option will automatically be selected.',
+        'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'locale'            => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'              => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'system'             => 'If your campaign is publicly visible, the system is shown in the :link page.',
@@ -146,6 +151,7 @@ return [
         'your_role'     => 'Your role: <i>:role</i>',
     ],
     'panels' => [
+        'permission' => 'Permission',
         'sharing' => 'Sharing',
     ],
     'placeholders'          => [

@@ -52,22 +52,44 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            {!! Form::hidden('entity_visibility', 0) !!}
-            <label>{{ trans('campaigns.fields.entity_visibility') }}</label>
-            <div class="checkbox">
-                <label>{!! Form::checkbox('entity_visibility') !!}
-                    {{ trans('campaigns.entity_visibilities.private') }}
-                </label>
-            </div>
-            <p class="help-block">{{ trans('campaigns.helpers.entity_visibility') }}</p>
-        </div>
         @endif
     </div>
 </div>
 
 @if (!$start)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>{{ trans('campaigns.panels.permission') }}</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::hidden('entity_visibility', 0) !!}
+                    <label>{{ trans('campaigns.fields.entity_visibility') }}</label>
+                    <div class="checkbox">
+                        <label>{!! Form::checkbox('entity_visibility') !!}
+                            {{ trans('campaigns.entity_visibilities.private') }}
+                        </label>
+                    </div>
+                    <p class="help-block">{{ trans('campaigns.helpers.entity_visibility') }}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::hidden('entity_personality_visibility', 0) !!}
+                    <label>{{ trans('campaigns.fields.entity_personality_visibility') }}</label>
+                    <div class="checkbox">
+                        <label>{!! Form::checkbox('entity_personality_visibility') !!}
+                            {{ trans('campaigns.entity_personality_visibilities.private') }}
+                        </label>
+                    </div>
+                    <p class="help-block">{{ trans('campaigns.helpers.entity_personality_visibility') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>{{ trans('crud.panels.appearance') }}</h4>

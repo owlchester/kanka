@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
  * @property string $export_date
  * @property string $visibility
  * @property bool $entity_visibility
+ * @property bool $entity_personality_visibility
  * @property string $header_image
  * @property string $system
  * @property EntityMention[] $mentions
@@ -47,6 +48,7 @@ class Campaign extends MiscModel
         'export_date',
         'visibility',
         'entity_visibility',
+        'entity_personality_visibility',
         'header_image',
         'system'
     ];
