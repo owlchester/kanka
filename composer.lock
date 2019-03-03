@@ -2077,16 +2077,16 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "1.0.1",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
-                "reference": "298d4fd6ab19a8920c45078dd5943689ceeef615"
+                "reference": "140c754b7a2bafa60e777e4d0a0eaae716589865"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/298d4fd6ab19a8920c45078dd5943689ceeef615",
-                "reference": "298d4fd6ab19a8920c45078dd5943689ceeef615",
+                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/140c754b7a2bafa60e777e4d0a0eaae716589865",
+                "reference": "140c754b7a2bafa60e777e4d0a0eaae716589865",
                 "shasum": ""
             },
             "require": {
@@ -2124,7 +2124,7 @@
                 "kanka",
                 "monsters"
             ],
-            "time": "2019-02-20T21:10:51+00:00"
+            "time": "2019-02-26T11:49:29+00:00"
         },
         {
             "name": "intervention/image",
@@ -3373,25 +3373,25 @@
         },
         {
             "name": "mcamara/laravel-localization",
-            "version": "1.3.11",
+            "version": "1.3.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mcamara/laravel-localization.git",
-                "reference": "c661954ad9a01a3f47b9f39373de3b523b7fe4a8"
+                "reference": "73d55caf294654ef133115d47ec2ca6733d33c61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mcamara/laravel-localization/zipball/c661954ad9a01a3f47b9f39373de3b523b7fe4a8",
-                "reference": "c661954ad9a01a3f47b9f39373de3b523b7fe4a8",
+                "url": "https://api.github.com/repos/mcamara/laravel-localization/zipball/73d55caf294654ef133115d47ec2ca6733d33c61",
+                "reference": "73d55caf294654ef133115d47ec2ca6733d33c61",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.2||~5.3||~5.4||~5.5||~5.6",
+                "laravel/framework": "~5.2.0||~5.3.0||~5.4.0||~5.5.0||~5.6.0||~5.7.0||~5.8.0",
                 "php": ">=7.0.0"
             },
             "require-dev": {
-                "orchestra/testbench-browser-kit": "~3.4",
-                "phpunit/phpunit": "6.0.*"
+                "orchestra/testbench-browser-kit": "~3.4|~3.8",
+                "phpunit/phpunit": "6.0.*|8.0.*"
             },
             "suggest": {
                 "ext-intl": "*"
@@ -3431,7 +3431,7 @@
                 "localization",
                 "php"
             ],
-            "time": "2018-09-04T10:30:36+00:00"
+            "time": "2019-02-28T13:27:56+00:00"
         },
         {
             "name": "monolog/monolog",

@@ -313,5 +313,4 @@ return [
     //CAUTION: Please consider using the appropriate locale code otherwise it will not work
     //Example: 'localesOrder' => ['es','en'],
     'localesOrder' => [],
-
 ];
