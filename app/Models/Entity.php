@@ -20,6 +20,8 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer $campaign_id
  * @property string $name
  * @property string $type
+ * @property integer $created_by
+ * @property integer $updated_by
  * @property boolean $is_private
  * @property Tag[] $tags
  * @property EntityMention[] $mentions

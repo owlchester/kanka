@@ -5,9 +5,24 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Models\EntityLog;
+use App\Services\Entity\LogService;
 
 class LogController extends Controller
 {
+    /**
+     * @var LogService
+     */
+    protected $logService;
+
+    /**
+     * LogController constructor.
+     * @param LogService $logService
+     */
+    public function __construct(LogService $logService)
+    {
+        $this->logService = $logService;
+    }
+
     /**
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -18,6 +33,8 @@ class LogController extends Controller
         $this->authorize('update', $entity->child);
 
         $ajax = request()->ajax();
+
+        $entity = $this->logService->createMissingLogs($entity);
         $logs = $entity->logs()->recent()->paginate();
 
         return view('entities.pages.logs.logs', compact(

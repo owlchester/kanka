@@ -10,11 +10,11 @@
             'date' => $model->updated_at->diffForHumans(),
             'realdate' => $model->updated_at . 'UTC',
         ]) !!}
-      {{--@can('update', $model)--}}
-          {{--<a href="{{ route('entities.logs', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.logs', $model->entity) }}">--}}
-              {{--<i class="fas fa-list"></i>--}}
-          {{--</a>--}}
-      {{--@endcan--}}
+      @can('update', $model)
+          <a href="{{ route('entities.logs', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.logs', $model->entity) }}" title="{{ __('crud.history.view') }}">
+              <i class="fas fa-history"></i>
+          </a>
+      @endcan
     @else
         {!! trans('crud.history.created', [
             'name' => ($model->creator ? e($model->creator->name) : trans('crud.history.unknown')),

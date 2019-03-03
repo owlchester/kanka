@@ -77,4 +77,14 @@ class EntityLog extends Model
     {
         return $query->orderBy('created_at', 'DESC');
     }
+
+    /**
+     * @param $query
+     * @param $action
+     * @return mixed
+     */
+    public function scopeAction($query, $action)
+    {
+        return $query->where(['action' => $action]);
+    }
 }
