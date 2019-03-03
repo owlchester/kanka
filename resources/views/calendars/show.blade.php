@@ -22,6 +22,7 @@
                     @endif
 
                     @include('calendars._calendar')
+                    @include('cruds.partials.mentions')
                 </div>
                 @include('cruds._panes', ['calendars' => false])
             </div>

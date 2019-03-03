@@ -38,9 +38,8 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
-                    <div class="post">
-                        <p>{!! $model->entry !!}</p>
-                    </div>
+                    <p>{!! $model->entry !!}</p>
+                    @include('cruds.partials.mentions')
                 </div>
                 @include('cruds._panes')
             </div>

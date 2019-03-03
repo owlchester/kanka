@@ -52,12 +52,10 @@
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
-
                     @if (!empty($model->entry))
-                    <div class="post">
                         <p>{!! $model->entry !!}</p>
-                    </div>
                     @endif
+                    @include('cruds.partials.mentions')
                 </div>
 
                 @include('cruds._panes')
