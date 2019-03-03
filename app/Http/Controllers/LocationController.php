@@ -234,4 +234,15 @@ class LocationController extends CrudController
     {
         return $this->menuView($location, 'journals');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Location $location)
+    {
+        return $this->menuView($location, 'map-points', true);
+    }
 }

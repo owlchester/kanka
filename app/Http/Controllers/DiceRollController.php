@@ -203,4 +203,15 @@ class DiceRollController extends CrudController
             ->paginate();
         return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(DiceRoll $diceRoll)
+    {
+        return $this->menuView($diceRoll, 'map-points', true);
+    }
 }

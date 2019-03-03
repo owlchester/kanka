@@ -105,4 +105,15 @@ class ConversationController extends CrudController
     {
         return $this->crudDestroy($conversation);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Conversation $conversation)
+    {
+        return $this->menuView($conversation, 'map-points', true);
+    }
 }

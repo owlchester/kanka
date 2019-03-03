@@ -181,6 +181,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Model present on maps
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function locationMaps()
+    {
+        return $this->hasMany('App\Models\MapPoint', 'target_id');
+    }
+
+    /**
      * @param $query
      * @return mixed
      */
@@ -264,18 +273,20 @@ abstract class MiscModel extends Model
         return strlen($this->entry) > 2;
     }
 
+    /**
+     * @param array $items
+     * @return array
+     */
     public function menuItems($items = [])
     {
-//        $mentionCount = $this->entity->targetMentions()->count();
-//        if ($mentionCount > 0) {
-//            $items['mentions'] = [
-//                'name' => 'crud.tabs.mentions',
-//                'route' => $this->entity->pluralType() . '.mentions',
-//                'count' => $mentionCount
-//            ];
-//        }
-
-        $mapPoints = 0;
+        $mapPoints = $this->entity->targetMapPoints()->acl()->count();
+        if ($mapPoints > 0) {
+            $items['map-points'] = [
+                'name' => 'crud.tabs.map-points',
+                'route' => $this->entity->pluralType() . '.map-points',
+                'count' => $mapPoints
+            ];
+        }
 
         return $items;
     }

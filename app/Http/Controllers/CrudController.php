@@ -331,20 +331,33 @@ class CrudController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function menuView($model, $view)
+    protected function menuView($model, $view, $directView = false)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
-            //$this->authorize('view', $model);
+            $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);
         }
         $name = $this->view;
         $fullview = $this->view . '.' . $view;
+        if ($directView) {
+            $fullview = 'cruds.subpage.' . $view;
+        }
+
+        $data = $model
+            ->entity
+            ->targetMapPoints()
+            ->acl()
+            ->orderBy('name', 'ASC')
+            ->with(['location'])
+            ->paginate();
+
         return view('cruds.subview', compact(
             'fullview',
             'model',
-            'name'
+            'name',
+            'data'
         ));
     }
 

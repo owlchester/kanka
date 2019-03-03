@@ -154,4 +154,15 @@ class OrganisationController extends CrudController
     {
         return $this->menuView($organisation, 'all_members');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Organisation $organisation)
+    {
+        return $this->menuView($organisation, 'map-points', true);
+    }
 }

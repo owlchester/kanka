@@ -348,6 +348,14 @@ class Entity extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function targetMapPoints()
+    {
+        return $this->hasMany('App\Models\MapPoint', 'target_entity_id', 'id');
+    }
+
+    /**
      * @param $query
      * @return mixed
      */

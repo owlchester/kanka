@@ -305,6 +305,7 @@ return [
         'calendars'     => 'Calendars',
         'default'       => 'Default',
         'events'        => 'Events',
+        'map-points'    => 'Map Points',
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',
         'notes'         => 'Notes',

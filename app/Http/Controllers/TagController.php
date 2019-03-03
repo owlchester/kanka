@@ -124,4 +124,15 @@ class TagController extends CrudController
     {
         return $this->menuView($tag, 'children');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Tag $tag)
+    {
+        return $this->menuView($tag, 'map-points', true);
+    }
 }

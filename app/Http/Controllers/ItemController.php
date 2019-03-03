@@ -124,4 +124,15 @@ class ItemController extends CrudController
     {
         return $this->menuView($item, 'quests');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Item $item)
+    {
+        return $this->menuView($item, 'map-points', true);
+    }
 }

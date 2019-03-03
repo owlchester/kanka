@@ -97,4 +97,16 @@ class EventController extends CrudController
     {
         return $this->crudDestroy($event);
     }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Event $event)
+    {
+        return $this->menuView($event, 'map-points', true);
+    }
 }

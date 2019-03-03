@@ -123,4 +123,15 @@ class RaceController extends CrudController
     {
         return $this->menuView($race, 'races');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Race $race)
+    {
+        return $this->menuView($race, 'map-points', true);
+    }
 }
