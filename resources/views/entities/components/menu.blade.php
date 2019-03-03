@@ -8,7 +8,7 @@
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <li class="@if(empty($active))active @endif">
-                    <a href="{{ route('items.show', $model) }}">
+                    <a href="{{ route($name . '.show', $model) }}">
                         {{ __('crud.panels.entry') }}
                     </a>
                 </li>

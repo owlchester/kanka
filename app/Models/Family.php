@@ -161,4 +161,36 @@ class Family extends MiscModel
 
         return parent::detach();
     }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $items['families'] = [
+            'name' => 'families.show.tabs.families',
+            'route' => 'families.families',
+            'count' => $this->descendants()->acl()->count()
+        ];
+
+        $count = $this->members()->acl()->count();
+        if ($campaign->enabled('characters') && $count > 0) {
+            $items['members'] = [
+                'name' => 'families.show.tabs.members',
+                'route' => 'families.members',
+                'count' => $count
+            ];
+        }
+        $count = $this->allMembers()->acl()->count();
+        if ($campaign->enabled('characters') && $count > 0) {
+            $items['all_members'] = [
+                'name' => 'families.show.tabs.all_members',
+                'route' => 'families.all-members',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
+    }
 }

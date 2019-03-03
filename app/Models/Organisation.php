@@ -172,4 +172,44 @@ class Organisation extends MiscModel
 
         return parent::detach();
     }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $items['organisations'] = [
+            'name' => 'organisations.show.tabs.organisations',
+            'route' => 'organisations.organisations',
+            'count' => $this->descendants()->acl()->count()
+        ];
+
+        $count = $this->members()->acl()->has('character')->count();
+        if ($campaign->enabled('characters') && $count > 0) {
+            $items['members'] = [
+                'name' => 'organisations.show.tabs.members',
+                'route' => 'organisations.members',
+                'count' => $count
+            ];
+        }
+        $count = $this->allMembers()->acl()->has('character')->count();
+        if ($campaign->enabled('characters') && $count > 0) {
+            $items['all_members'] = [
+                'name' => 'organisations.show.tabs.all_members',
+                'route' => 'organisations.all-members',
+                'count' => $count
+            ];
+        }
+        $count = $this->quests()->acl()->count();
+        if ($campaign->enabled('quests') && $count > 0) {
+            $items['quests'] = [
+                'name' => 'organisations.show.tabs.quests',
+                'route' => 'organisations.quests',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
+    }
 }

@@ -30,7 +30,7 @@ if (auth()->check() && auth()->user()->defaultNested) {
 
     @if ($model->entity)
     @admin
-    <div class="panel panel-default ">
+    <div class="panel panel-default hidden">
         <div class="panel-heading">
             <h4>Admin</h4>
         </div>

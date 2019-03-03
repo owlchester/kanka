@@ -97,4 +97,30 @@ class Race extends MiscModel
     {
         return $this->hasMany('App\Models\Race', 'race_id', 'id');
     }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $count = $this->characters()->acl()->count();
+        if ($campaign->enabled('characters') && $count > 0) {
+            $items['characters'] = [
+                'name' => 'races.show.tabs.characters',
+                'route' => 'races.characters',
+                'count' => $count
+            ];
+        }
+        $count = $this->races()->acl()->count();
+        if ($campaign->enabled('races') && $count > 0) {
+            $items['races'] = [
+                'name' => 'races.show.tabs.races',
+                'route' => 'races.races',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
+    }
 }

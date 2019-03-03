@@ -30,6 +30,7 @@
                 @include('.cruds._actions')
             </div>
         </div>
+        @include('entities.components.menu')
     </div>
     <div class="col-md-9">
         <div class="nav-tabs-custom">

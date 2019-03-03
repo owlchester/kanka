@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -245,5 +246,64 @@ class Character extends MiscModel
         }
 
         return parent::detach();
+    }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $count = $this->items()->acl()->count();
+        if ($campaign->enabled('items') && $count > 0) {
+            $items['items'] = [
+                'name' => 'characters.show.tabs.items',
+                'route' => 'characters.items',
+                'count' => $count
+            ];
+        }
+
+        $count = $this->organisations()->acl()->organisationAcl()->has('organisation')->count();
+        if ($campaign->enabled('organisations') && $count > 0) {
+            $items['organisations'] = [
+                'name' => 'characters.show.tabs.organisations',
+                'route' => 'characters.organisations',
+                'count' => $count
+            ];
+        }
+        $count = $this->journals()->acl()->count();
+        if ($campaign->enabled('journals') && $count > 0) {
+            $items['journals'] = [
+                'name' => 'characters.show.tabs.journals',
+                'route' => 'characters.journals',
+                'count' => $count
+            ];
+        }
+        $questCount = $this->quests()->acl()->count() + $this->questGiver()->acl()->count();
+        if ($campaign->enabled('quests') && $questCount > 0) {
+            $items['quests'] = [
+                'name' => 'characters.show.tabs.quests',
+                'route' => 'characters.quests',
+                'count' => $questCount
+            ];
+        }
+        $diceRollCount = $this->diceRolls()->acl()->count();
+        if ($campaign->enabled('dice_rolls') && $diceRollCount > 0) {
+            $items['dice_rolls'] = [
+                'name' => 'characters.show.tabs.dice_rolls',
+                'route' => 'characters.dice_rolls',
+                'count' => $diceRollCount
+            ];
+        }
+        $conversationCount = $this->conversations()->acl()->count();
+        if ($campaign->enabled('conversations') && $conversationCount > 0) {
+            $items['conversations'] = [
+                'name' => 'characters.show.tabs.conversations',
+                'route' => 'characters.conversations',
+                'count' => $conversationCount
+            ];
+        }
+        return parent::menuItems($items);
     }
 }

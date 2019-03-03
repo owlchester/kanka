@@ -358,8 +358,29 @@ class Calendar extends MiscModel
         return $this->save();
     }
 
+    /**
+     * @return bool
+     */
     public function missingDetails()
     {
         return count($this->months()) < 2 || count($this->weekdays()) < 2;
+    }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $count = $this->calendarEvents()->entityAcl()->count();
+        if ($count > 0) {
+            $items['events'] = [
+                'name' => 'calendars.show.tabs.events',
+                'route' => 'calendars.events',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
     }
 }

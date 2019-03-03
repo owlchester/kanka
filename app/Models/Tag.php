@@ -158,4 +158,30 @@ class Tag extends MiscModel
             'entity_id'
         );
     }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $count = $this->descendants()->acl()->count();
+        if ($count > 0) {
+            $items['tags'] = [
+                'name' => 'tags.show.tabs.tags',
+                'route' => 'tags.tags',
+                'count' => $count
+            ];
+        }
+        $count = $this->allChildren()->acl()->count();
+        if ($campaign->enabled('characters')) {
+            $items['children'] = [
+                'name' => 'tags.show.tabs.children',
+                'route' => 'tags.children',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
+    }
 }

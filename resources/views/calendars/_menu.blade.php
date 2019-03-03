@@ -38,30 +38,4 @@
     </div>
 </div>
 
-
-@if (!isset($exporting))
-    <div class="box box-solid">
-        <div class="box-header with-border visible-xs">
-            <h3 class="box-title">
-                {{ __('crud.tabs.menu') }}
-            </h3>
-        </div>
-        <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="@if(empty($active))active @endif">
-                    <a href="{{ route('calendars.show', $model) }}">
-                        {{ __('crud.panels.entry') }}
-                    </a>
-                </li>
-                <li class="@if(!empty($active) && $active == 'events')active @endif">
-                    <a href="{{ route('calendars.events', $model) }}" title="{{ __('calendars.show.tabs.events') }}">
-                        {{ __('calendars.show.tabs.events') }}
-                        <span class="label label-default pull-right">
-                            <?=$model->calendarEvents()->entityAcl()->count()?>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-@endif
+@include('entities.components.menu')

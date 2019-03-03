@@ -31,39 +31,4 @@
     </div>
 </div>
 
-@if (!isset($exporting))
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            {{ __('races.show.tabs.menu') }}
-        </h3>
-    </div>
-    <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="@if(empty($active))active @endif">
-                <a href="{{ route('races.show', $model) }}">
-                    {{ __('crud.panels.entry') }}
-                </a>
-            </li>
-            @if ($campaign->enabled('characters'))
-            <li class="@if(!empty($active) && $active == 'characters')active @endif">
-                <a href="{{ route('races.characters', $model) }}">
-                    {{ __('races.show.tabs.characters') }}
-                    <span class="label label-default pull-right">
-                        <?=$model->characters()->count()?>
-                    </span>
-                </a>
-            </li>
-            @endif
-            <li class="@if(!empty($active) && $active == 'races')active @endif">
-                <a href="{{ route('races.races', $model) }}">
-                    {{ __('races.show.tabs.races') }}
-                    <span class="label label-default pull-right">
-                        <?=$model->races()->count()?>
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-@endif
+@include('entities.components.menu')

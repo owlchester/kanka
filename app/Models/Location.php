@@ -262,4 +262,77 @@ class Location extends MiscModel
     {
         return (substr(strtolower($this->map), -4) == '.svg');
     }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        if (!empty($this->map)) {
+            $items['map'] = [
+                'name' => 'locations.show.tabs.map',
+                'route' => 'locations.map'
+            ];
+        }
+
+        $count = $this->descendants()->acl()->count();
+        if ($count > 0) {
+            $items['locations'] = [
+                'name' => 'locations.show.tabs.locations',
+                'route' => 'locations.locations',
+                'count' => $count
+            ];
+        }
+        $count = $this->allCharacters()->acl()->count();
+        if ($campaign->enabled('characters') && $count > 0) {
+            $items['characters'] = [
+                'name' => 'locations.show.tabs.characters',
+                'route' => 'locations.characters',
+                'count' => $count
+            ];
+        }
+        $count = $this->events()->acl()->count();
+        if ($campaign->enabled('events') && $count > 0) {
+            $items['events'] = [
+                'name' => 'locations.show.tabs.events',
+                'route' => 'locations.events',
+                'count' => $count
+            ];
+        }
+        $count = $this->items()->acl()->count();
+        if ($campaign->enabled('items') && $count > 0) {
+            $items['items'] = [
+                'name' => 'locations.show.tabs.items',
+                'route' => 'locations.items',
+                'count' => $count
+            ];
+        }
+        $count = $this->organisations()->acl()->count();
+        if ($campaign->enabled('organisations') && $count > 0) {
+            $items['organisations'] = [
+                'name' => 'locations.show.tabs.organisations',
+                'route' => 'locations.organisations',
+                'count' => $count
+            ];
+        }
+        $count = $this->quests()->acl()->count();
+        if ($campaign->enabled('quests') && $count > 0) {
+            $items['quests'] = [
+                'name' => 'locations.show.tabs.quests',
+                'route' => 'locations.quests',
+                'count' => $count
+            ];
+        }
+        $count = $this->journals()->acl()->count();
+        if ($campaign->enabled('journals') && $count > 0) {
+            $items['journals'] = [
+                'name' => 'locations.show.tabs.journals',
+                'route' => 'locations.journals',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
+    }
 }

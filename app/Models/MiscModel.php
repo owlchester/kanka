@@ -275,6 +275,8 @@ abstract class MiscModel extends Model
 //            ];
 //        }
 
+        $mapPoints = 0;
+
         return $items;
     }
 

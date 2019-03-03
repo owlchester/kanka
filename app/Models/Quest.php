@@ -170,4 +170,46 @@ class Quest extends MiscModel
         }
         return parent::detach();
     }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = $this->campaign;
+
+        $count = $this->characters()->acl()->count();
+        if ($campaign->enabled('characters')) {
+            $items['characters'] = [
+                'name' => 'quests.show.tabs.characters',
+                'route' => 'quests.characters',
+                'count' => $count
+            ];
+        }
+        $count = $this->locations()->acl()->count();
+        if ($campaign->enabled('locations')) {
+            $items['locations'] = [
+                'name' => 'quests.show.tabs.locations',
+                'route' => 'quests.locations',
+                'count' => $count
+            ];
+        }
+        $count = $this->items()->acl()->count();
+        if ($campaign->enabled('items')) {
+            $items['items'] = [
+                'name' => 'quests.show.tabs.items',
+                'route' => 'quests.items',
+                'count' => $count
+            ];
+        }
+        $count = $this->organisations()->acl()->count();
+        if ($campaign->enabled('organisations')) {
+            $items['organisations'] = [
+                'name' => 'quests.show.tabs.organisations',
+                'route' => 'quests.organisations',
+                'count' => $count
+            ];
+        }
+        return parent::menuItems($items);
+    }
 }

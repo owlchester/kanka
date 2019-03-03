@@ -119,7 +119,7 @@ class Item extends MiscModel
      */
     public function menuItems($items = [])
     {
-        $campaign = CampaignLocalization::getCampaign();
+        $campaign = $this->campaign;
 
         $questCount = $this->quests()->acl()->count();
         if ($campaign->enabled('quests') && $questCount > 0) {

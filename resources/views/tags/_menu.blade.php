@@ -37,42 +37,4 @@
     </div>
 </div>
 
-@if (!isset($exporting))
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('crud.tabs.menu') }}
-            </h3>
-        </div>
-        <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="@if(empty($active))active @endif">
-                    <a href="{{ route('tags.show', $model) }}">
-                        {{ __('crud.panels.entry') }}
-                    </a>
-                </li>
-                @if (($count = $model->descendants()->acl()->count()) > 0)
-                    <li class="@if(!empty($active) && $active == 'tags')active @endif">
-                        <a href="{{ route('tags.tags', $model) }}">
-                            {{ __('tags.show.tabs.tags') }}
-                            <span class="label label-default pull-right">
-                        <?=$count?>
-                    </span>
-                        </a>
-                    </li>
-                @endif
-
-                @if (($count = $model->allChildren()->acl()->count()) > 0)
-                    <li class="@if(!empty($active) && $active == 'children')active @endif">
-                        <a href="{{ route('tags.children', $model) }}">
-                            {{ __('tags.show.tabs.children') }}
-                            <span class="label label-default pull-right">
-                        <?=$count?>
-                    </span>
-                        </a>
-                    </li>
-                @endif
-            </ul>
-        </div>
-    </div>
-@endif
+@include('entities.components.menu')
