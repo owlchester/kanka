@@ -29,9 +29,14 @@ class BulkController extends Controller
     {
         $entity = $request->get('entity');
         $models = $request->get('model');
+        $subroute = 'index';
+        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($entity . '.tree')) {
+            $subroute = 'tree';
+        }
+
         if ($request->has('delete')) {
             $count = $this->bulkService->delete($entity, $models);
-            return redirect()->route($entity . '.index')
+            return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
         } elseif ($request->has('export')) {
             $pdf = \App::make('dompdf.wrapper');
@@ -40,14 +45,14 @@ class BulkController extends Controller
             return $pdf->loadView('cruds.export', compact('entity', 'entities', 'name'))->download('kanka ' . $entity . ' export.pdf');
         } elseif ($request->has('private')) {
             $count = $this->bulkService->makePrivate($entity, $models);
-            return redirect()->route($entity . '.index')
+            return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.private', $count, ['count' => $count]));
         } elseif ($request->has('public')) {
             $count = $this->bulkService->makePublic($entity, $models);
-            return redirect()->route($entity . '.index')
+            return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.public', $count, ['count' => $count]));
         }
 
-        return redirect()->route($entity . '.index');
+        return redirect()->route($entity . '.' . $subroute);
     }
 }
