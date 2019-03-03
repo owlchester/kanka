@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MoveLocationMapPoint;
 use App\Http\Requests\StoreLocation;
 use App\Http\Requests\StoreMapPoint;
 use App\Models\Location;
@@ -155,12 +156,13 @@ class LocationMapPointController extends Controller
      * @param  \App\Models\MapPoint  $mapPoint
      * @return \Illuminate\Http\Response
      */
-    public function move(Request $request, Location $location, MapPoint $mapPoint)
+    public function move(MoveLocationMapPoint $request, Location $location, MapPoint $mapPoint)
     {
         $this->authorize('update', $location);
 
-        $mapPoint->axis_x = $request->get('axis_x');
-        $mapPoint->axis_y = $request->get('axis_y');
+
+        $mapPoint->axis_x = $request->post('axis_x', 1);
+        $mapPoint->axis_y = $request->post('axis_y', 1);
         $mapPoint->save();
 
         return response()->json([

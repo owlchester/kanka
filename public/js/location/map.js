@@ -133,6 +133,13 @@ function initLocationMap() {
         initMapAdmin();
     }
 
+    // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     initMapControls();
     initPointClick();
     initMapModeSwitch();
@@ -487,9 +494,13 @@ function addPointMove(point) {
             mapPositionX = mapPositionX / magnifier;
             mapPositionY = mapPositionY / magnifier;
 
-            $.ajax({
-                url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
-            }).done(function (result, textStatus, xhr) {
+            data = {
+                axis_x: mapPositionX,
+                axis_y: mapPositionY
+            };
+
+            console.log('url move', location.data('url-move'));
+            $.post(location.data('url-move'), data).done(function (result, textStatus, xhr) {
                 //event.preventDefault();
             }).fail(function (result, textStatus, xhr) {
                 // console.log('map point error', result);
@@ -566,13 +577,6 @@ function initDeleteMapPoint() {
         $(this).click(function (e) {
             url = $(this).data('url');
             e.preventDefault();
-
-            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
             $.post({
                 url: url,

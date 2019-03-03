@@ -104,7 +104,7 @@ Route::group([
         Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
         Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
         Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
-        Route::get('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
+        Route::post('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
 
         Route::get('/locations/{location}/events', 'LocationController@events')->name('locations.events');
         Route::get('/locations/{location}/characters', 'LocationController@characters')->name('locations.characters');
