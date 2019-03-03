@@ -50,6 +50,15 @@ class Family extends MiscModel
     ];
 
     /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'location_id',
+        'family_id',
+    ];
+
+    /**
      * Used by the Observer to know if the tree needs rebuilding on this model.
      * @var bool
      */

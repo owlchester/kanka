@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -243,7 +244,8 @@ class CrudController extends Controller
         $this->authorize('update', $model);
 
         try {
-            $model->update($request->all());
+            $data = $this->prepareData($request, $model);
+            $model->update($data);
             $success = trans($this->view . '.edit.success', [
                 'name' => link_to_route(
                     $this->route . '.show',
@@ -320,7 +322,6 @@ class CrudController extends Controller
      */
     protected function menuView($model, $view)
     {
-
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
             //$this->authorize('view', $model);
@@ -334,5 +335,21 @@ class CrudController extends Controller
             'model',
             'name'
         ));
+    }
+
+    /**
+     * @param Request $request
+     * @param MiscModel $model
+     * @return array
+     */
+    protected function prepareData(Request $request, MiscModel $model)
+    {
+        $data = $request->all();
+        foreach ($model->nullableForeignKeys as $field) {
+            if (!request()->has($field) && !isset($data[$field])) {
+                $data[$field] = null;
+            }
+        }
+        return $data;
     }
 }

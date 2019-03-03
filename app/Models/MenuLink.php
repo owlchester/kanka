@@ -56,6 +56,14 @@ class MenuLink extends MiscModel
     protected $searchableColumns  = ['name'];
 
     /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'entity_id'
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()

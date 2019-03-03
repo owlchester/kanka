@@ -48,6 +48,15 @@ class Item extends MiscModel
         'is_private',
     ];
 
+    /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'location_id',
+        'character_id',
+    ];
+
 
     /**
      * Foreign relations to add to export

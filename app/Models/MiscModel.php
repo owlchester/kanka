@@ -22,6 +22,7 @@ use Illuminate\Support\Str;
  * @property Entity $entity
  * @property string $entry
  * @property boolean $is_private
+ * @property [] $nullableForeignKeys
  */
 abstract class MiscModel extends Model
 {
@@ -32,9 +33,9 @@ abstract class MiscModel extends Model
         Filterable;
 
     /**
-     * @var bool Skip using the model's saving observer
+     * If set to false, the saving observer in MiscObserver will be skipped
+     * @var bool
      */
-    public static $SKIP_SAVING_OBSERVER = false;
     public $savingObserver = true;
 
     /**
@@ -73,6 +74,12 @@ abstract class MiscModel extends Model
      * @var array
      */
     protected $explicitFilters = [];
+
+    /**
+     * Fields that can be set to null (foreign keys)
+     * @var array
+     */
+    protected $nullableForeignKeys = [];
 
     /**
      * Field used for tooltips

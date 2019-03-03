@@ -18,7 +18,6 @@ class Note extends MiscModel
         'image',
         'type',
         'is_private',
-        'is_pinned',
     ];
 
     /**

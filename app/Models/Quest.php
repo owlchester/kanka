@@ -22,6 +22,12 @@ class Quest extends MiscModel
         'is_private',
         'character_id',
         'is_completed',
+
+        // calendar date
+        'calendar_id',
+        'calendar_year',
+        'calendar_month',
+        'calendar_day',
     ];
 
     /**
@@ -42,6 +48,16 @@ class Quest extends MiscModel
         'character_id',
         'is_completed',
         'is_private',
+    ];
+
+    /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'character_id',
+        'quest_id',
+        'calendar_id'
     ];
 
     /**

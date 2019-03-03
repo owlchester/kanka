@@ -22,7 +22,6 @@ class Character extends MiscModel
         'sex',
         'image',
         'is_private',
-        'http://kanka.loc/en/campaign/1/characters/63',
         'type',
         'is_dead',
         'race_id',
@@ -44,7 +43,6 @@ class Character extends MiscModel
         'is_dead',
         'is_private',
         'race_id',
-        'tag_id',
     ];
 
     /**
@@ -106,6 +104,16 @@ class Character extends MiscModel
      */
     protected $foreignExport = [
         'characterTraits', 'items', 'quests',
+    ];
+
+    /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'location_id',
+        'family_id',
+        'race_id',
     ];
 
     /**

@@ -48,7 +48,6 @@ abstract class MiscObserver
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
         if (defined('MISCELLANY_SKIP_ENTITY_CREATION') ||
             request()->isMethod('delete') === true ||
-            $model::$SKIP_SAVING_OBSERVER === true ||
             $model->savingObserver === false) {
             return;
         }
@@ -61,35 +60,9 @@ abstract class MiscObserver
         // Handle image. Let's use a service for this.
         ImageService::handle($model, $model->getTable());
 
-        // Default foreign ids that can be set to null. This should probably be in each individual observer instead
-        $nullable = [
-            'location_id', 'character_id', 'family_id',
-            'quest_id', 'calendar_id', 'race_id'
-        ];
-        foreach ($nullable as $attr) {
-            if (array_key_exists($attr, $attributes)) {
-                $model->setAttribute($attr, (request()->has($attr) ? request()->post($attr) : null));
-            }
-        }
-
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;
-        }
-
-        // Calendar trait hook
-        if (method_exists($model, 'hasCalendarDateTrait')) {
-            if (request()->has(['calendar_id', 'calendar_day', 'calendar_month', 'calendar_year'])) {
-                $model->calendar_id = request()->post('calendar_id');
-                $model->calendar_year = request()->post('calendar_year');
-                $model->calendar_month = request()->post('calendar_month');
-                $model->calendar_day = request()->post('calendar_day');
-            } else {
-                $model->calendar_id = null;
-                $model->calendar_year = null;
-                $model->calendar_month = null;
-                $model->calendar_day = null;
-            }
         }
     }
 
@@ -118,7 +91,7 @@ abstract class MiscObserver
         if ($entity->save()) {
             // Before we refresh the model, check if the model has a calendar date, and
             // if those values are dirty.
-            $this->syncEntityEvent($model, $entity);
+            //$entity->syncEntityEventOnSaved($model);
             $this->syncMentions($model, $entity);
             $model->refresh();
         }
@@ -172,54 +145,6 @@ abstract class MiscObserver
         // Delete the entity
         if ($model->entity) {
             $model->entity->delete();
-        }
-    }
-
-    /**
-     * Sync the entity event if the model has the calendar date trait
-     * @param $model
-     */
-    protected function syncEntityEvent($model, Entity $entity)
-    {
-        if (method_exists($model, 'hasCalendarDateTrait')) {
-            $previousCalendarId = $model->getOriginal('calendar_id');
-            $previousDate = $model->getOriginal('calendar_year') . '-'
-                . $model->getOriginal('calendar_month') . '-'
-                . $model->getOriginal('calendar_day');
-
-            // Changed?
-            if ($model->isDirty(['calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'])) {
-                // We already had this event linked
-                $event = EntityEvent::where([
-                    'calendar_id' => $previousCalendarId,
-                    'entity_id' => $entity->id,
-                    'date' => $previousDate
-                ])->first();
-                if ($event) {
-                    // We no longer have a calendar attached to this model
-                    if (empty($model->calendar_id)) {
-                        $event->delete();
-                    } else {
-                        // Update the existing one
-                        $event->calendar_id = $model->calendar_id;
-                        $event->date = $model->calendar_year . '-'
-                            . $model->calendar_month . '-'
-                            . $model->calendar_day;
-                        $event->save();
-                    }
-                } elseif ($model->hasCalendar()) {
-                    // We need to create something
-                    $event = EntityEvent::create([
-                        'calendar_id' => $model->calendar_id,
-                        'entity_id' => $entity->id,
-                        'date' => $model->calendar_year . '-'
-                            . $model->calendar_month . '-'
-                            . $model->calendar_day,
-                        'length' => request()->post('length', 1),
-                        'is_recurring' => request()->post('is_recurring', false),
-                    ]);
-                }
-            }
         }
     }
 

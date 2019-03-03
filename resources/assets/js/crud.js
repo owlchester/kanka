@@ -20,12 +20,6 @@ var entityCalendarCancel, entityCalendarLoading;
 var toggablePanels;
 
 $(document).ready(function() {
-    // Filters
-    var filters = $('#crud-filters');
-    if (filters.length === 1) {
-        //initCrudFilters();
-    }
-
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
@@ -45,6 +39,7 @@ $(document).ready(function() {
     $.each($("input[name='model[]']"), function (index) {
         $(this).change(function (e) {
             toggleCrudMultiDelete();
+            e.preventDefault();
         });
     });
 
@@ -102,10 +97,11 @@ function toggleCrudMultiDelete() {
         }
     });
 
+    console.log('hide?', hide);
     if (hide) {
-        $('.btn-crud-multi').hide();
+        $('.datagrid-bulk-actions').hide();
     } else {
-        $('.btn-crud-multi').show();
+        $('.datagrid-bulk-actions').show();
     }
 }
 

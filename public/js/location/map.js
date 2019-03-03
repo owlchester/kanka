@@ -1,1 +1,727 @@
-!function(t){var n={};function e(i){if(n[i])return n[i].exports;var o=n[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,e),o.l=!0,o.exports}e.m=t,e.c=n,e.d=function(t,n,i){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:i})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,n){return Object.prototype.hasOwnProperty.call(t,n)},e.p="",e(e.s=3)}({3:function(t,n,e){t.exports=e("8UmA")},"8UmA":function(t,n){var e,i,o,a,r,l,c,s,d,p,f,u,m,h,g,v,x,w,b,y,k,z,C,j=100,D=!1,S=!1,_=!1,O=!0;function P(t){r||(r=a.width());var n=j+t;if(n>300||n<10)return!1;d.removeAttr("disabled"),s.removeAttr("disabled"),j=n,magnifier=j/100,a.width(r*magnifier),t>0?0:0,$.each($(".point"),function(){N($(this),magnifier)}),j<=10?d.attr("disabled","disabled"):n>=300&&s.attr("disabled","disabled");var e=m.position();t>0?m.css("left",e.left-g/x.width()*100).css("top",e.top-v/x.height()*100):t<0&&m.css("left",e.left+g/x.width()*100).css("top",e.top+v/x.height()*100)}function T(){$.each($(".point"),function(t){$(this).unbind("click"),$(this).on("click",function(t){t.preventDefault(),!0!==S&&function(t){if(!0===D||!0===S)return;O&&(C.fadeOut(),O=!1);if(_)return void $.ajax({url:t.data("url-modal")}).done(function(t,n,i){t&&(h.html(t),M(),e.modal())}).fail(function(t,n,e){console.log("map point error",t)});w.hasClass("hidden")&&(w.removeClass("hidden"),$("#location-map-main").removeClass("col-md-12").addClass("col-md-9 col-sm-8"));y.show(),b.html(""),$.ajax(t.data("url")).done(function(t){y.hide(),b.html(t),$(".entity-close").on("click",function(t){console.log("clicky"),w.addClass("hidden"),$("#location-map-main").removeClass("col-md-9 col-sm-8").addClass("col-md-12")})})}($(this))})})}function E(t){t?(u.show(),f.hide(),$.each($(".map .point"),function(){$(this).show()})):(u.hide(),f.show(),$.each($(".map .point"),function(){$(this).hide()}))}function I(){$.each($(".point"),function(t){$(this).draggable({disabled:!0})})}function A(t){t.draggable({revert:!1,start:function(t,n){S=!0,target=$(t.target),target.addClass("point-moving")},stop:function(t,n){var e=$(t.target);return e.removeClass("point-moving"),l=n.position.left,c=n.position.top,magnifier=j/100,l/=magnifier,c/=magnifier,$.ajax({url:e.attr("data-url-move")+"?axis_x="+l+"&axis_y="+c}).done(function(t,n,e){}).fail(function(t,n,e){}),setTimeout(function(){S=!1},50),!0}})}function M(){initSelect2(),$(".map-point-delete").each(function(){$(this).click(function(t){return url=$(this).data("url"),t.preventDefault(),$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),$.post({url:url,dataType:"json",data:{_method:"DELETE"},context:this}).done(function(t,n,i){t.id&&$("#"+t.id).remove(),e.modal("hide")}),!1})}),function(){$(".select2-icon").select2({templateResult:X,templateSelection:X,language:$(this).data("language")})}(),$(".map-point-form").submit(function(t){var n=$(this).serialize();$.ajax({type:$(this).attr("method"),url:$(this).attr("action"),data:n,dataType:"json",encode:!0}).done(function(t){if(e.modal("hide"),t.point){var n=$("#"+t.id);1===n.length&&n.remove(),$(".map-container").append(t.point),T(),newPoint=$("#"+t.id),A(newPoint),magnifier=j/100,N(newPoint,magnifier),newPoint.tooltip()}}).fail(function(t){console.log("fail",t),t.responseJSON.errors&&$(".location-map-errors").html(function(t){var n="";for(var e in t)t.hasOwnProperty(e)&&(n+=t[e]+"<br>");return n}(t.responseJSON.errors)).fadeIn()}),t.preventDefault()})}function N(t,n){t.css("top",t.data("top")*n+"px"),t.css("left",t.data("left")*n+"px"),t.css("width",t.data("size")*n+"px"),t.css("height",t.data("size")*n+"px"),fontSize=24,25===t.data("size")?fontSize=12:100===t.data("size")&&(fontSize=56),t.css("font-size",fontSize*n+"px")}function X(t){if(!t.id)return t.text;var n=$(t.element);if(!n)return t.text;var e=n.data("icon");if(e){if("entity"===e)return t.text;e.includes(" ")||(e="ra ra-"+e)}else e="ra ra-"+t.id;return $('<span><i class="'+e+'"></i> '+t.text+"</span>")}$(document).ready(function(){i=$("#location-map-admin"),w=$("#location-map-panel"),b=$("#location-map-panel-target"),y=$("#location-map-panel-loading"),e=$("#point-location"),o=$("#location_id"),a=$("#location-map-image"),s=$("#map-zoom-in"),d=$("#map-zoom-out"),p=$("#map-zoom-reset"),u=$("#map-toggle-hide"),f=$("#map-toggle-show"),h=$("#map-point-body"),m=$("#draggable-map"),k=$("#map-admin-mode"),z=$("#map-view-mode"),x=$(".map"),C=$(".map-helper"),function(){var t=a.width();if(!t||0===t)return console.log("map","waiting another 500 ms for the map to properly load"),setTimeout("initLocationMap",500),!1;1===i.length&&($("#point-location-submit").on("click",function(t){o.val()&&(i.append('<div class="point admin" style="top:'+c+"px;left:"+l+'px"><input type="hidden" name="map_point[]" value="'+l+"-"+c+"-"+o.val()+'" /></div>'),e.modal("toggle"))}),T());(function(){1===m.length&&($("#draggable-map").draggable({drag:function(){D=!0},stop:function(){setTimeout(function(){D=!1},200)}}),m.mousemove(function(t){var n=x.offset();g=t.pageX-n.left,v=t.pageY-n.top}));1===s.length&&(s.on("click",function(t){t.preventDefault(),P(25)}),d.on("click",function(t){t.preventDefault(),P(-25)}),p.on("click",function(t){t.preventDefault(),j=100,P(0)}),u.on("click",function(t){t.preventDefault(),E(!1)}),f.on("click",function(t){t.preventDefault(),E(!0)}))})(),T(),k.click(function(t){$(this).hide(),_=!0,z.show(),x.addClass("map-admin-mode"),$.each($(".point"),function(t){$(this).draggable({disabled:!1})})}),z.click(function(t){$(this).hide(),_=!1,k.show(),x.removeClass("map-admin-mode"),I()}),$.each($(".point"),function(t){A($(this))}),I(),a.click(function(t){if(!1!==_&&!0!==S&&!0!==D){var n=$(this).offset();l=t.pageX-n.left-25,c=t.pageY-n.top-25,l<0&&(l=0),c<0&&(c=0),magnifier=j/100,c=parseInt(c)/magnifier,l=parseInt(l)/magnifier,$.ajax({url:$(this).data("url")+"?axis_y="+parseInt(c)+"&axis_x="+parseInt(l)}).done(function(t,n,i){t&&(h.html(t),M(),e.modal())}).fail(function(t,n,e){console.log("map point error",t)})}}),$(window).bind("wheel",function(t){1==t.ctrlKey&&(t.preventDefault(),t.originalEvent.deltaY>0?P(-10):P(10))}),function(){var t=a.width();$(".loading-map").hide();a.height();var n=x.width(),e=(x.height(),n/t);j=Math.floor(100*e),P(0)}()}()})}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/location/map.js":
+/***/ (function(module, exports) {
+
+/**
+ * Map
+ */
+var mapModal, mapAdmin, locationInput, mapImage, mapImageOriginalWidth;
+var mapPositionX, mapPositionY;
+var mapZoomIn, mapZoomOut, mapZoomReset;
+var mapToggleShow, mapToggleHide;
+var mapZoomValue = 100,
+    mapZoomIncrements = 0;
+var mapDraggable,
+    mapIsMoving = false,
+    mapPointIsMoving = false;
+var mapPointModalBody;
+var mapMouseX, mapMouseY;
+
+// V2
+var mapElement, mapPanel, mapPanelTarget, mapPanelLoader;
+var mapAdminMode,
+    mapViewMode,
+    mapAdminModeActivated = false;
+var mapHelper;
+var mapEventFirstClick = true;
+
+$(document).ready(function () {
+    // Look for a form to save
+    mapAdmin = $('#location-map-admin');
+    mapPanel = $('#location-map-panel');
+    mapPanelTarget = $('#location-map-panel-target');
+    mapPanelLoader = $('#location-map-panel-loading');
+    mapModal = $('#point-location');
+    locationInput = $('#location_id');
+
+    mapImage = $('#location-map-image');
+    mapZoomIn = $('#map-zoom-in');
+    mapZoomOut = $('#map-zoom-out');
+    mapZoomReset = $('#map-zoom-reset');
+    mapToggleHide = $('#map-toggle-hide');
+    mapToggleShow = $('#map-toggle-show');
+
+    mapPointModalBody = $('#map-point-body');
+    mapDraggable = $('#draggable-map');
+
+    mapAdminMode = $('#map-admin-mode');
+    mapViewMode = $('#map-view-mode');
+    mapElement = $('.map');
+    mapHelper = $('.map-helper');
+
+    initLocationMap();
+});
+
+function initLocationMap() {
+    // Reset the zoom to the biggest value
+    var imgWidth = mapImage.width();
+
+    // If the image hasn't finished loading, let's try again in half a second
+    if (!imgWidth || imgWidth === 0) {
+        console.log('map', 'waiting another 500 ms for the map to properly load');
+        setTimeout('initLocationMap', 500);
+        return false;
+    }
+
+    if (mapAdmin.length === 1) {
+        initMapAdmin();
+    }
+
+    initMapControls();
+    initPointClick();
+    initMapModeSwitch();
+    initMovePoints();
+    disableMovePoints();
+    initAddPoints();
+    initMapScroll();
+    resizeMapToPage();
+}
+
+/**
+ * Init Clicking on the Map
+ */
+function initMapAdmin() {
+    var mapModalSubmit = $('#point-location-submit');
+    mapModalSubmit.on('click', function (e) {
+        // Check that a location was selected
+        if (locationInput.val()) {
+            mapAdmin.append('<div class="point admin" style="top:' + mapPositionY + 'px;left:' + mapPositionX + 'px">' + '<input type="hidden" name="map_point[]" value="' + mapPositionX + '-' + mapPositionY + '-' + locationInput.val() + '" />' + '</div>');
+            mapModal.modal('toggle');
+        } else {}
+    });
+
+    // Handle deleting already loaded points
+    initPointClick();
+}
+
+/**
+ * Register click on the map zoom controls
+ */
+function initMapControls() {
+    if (mapDraggable.length === 1) {
+        $('#draggable-map').draggable({
+            drag: function drag() {
+                mapIsMoving = true;
+            },
+            stop: function stop() {
+                // Don't update right away, this is a small hack to make sure we're not loading map points when moving
+                setTimeout(function () {
+                    mapIsMoving = false;
+                }, 200);
+            }
+        });
+
+        mapDraggable.mousemove(function (event) {
+            var offset = mapElement.offset();
+            mapMouseX = event.pageX - offset.left;
+            mapMouseY = event.pageY - offset.top;
+        });
+    }
+
+    if (mapZoomIn.length === 1) {
+        mapZoomIn.on('click', function (e) {
+            e.preventDefault();
+            mapZoom(25);
+        });
+        mapZoomOut.on('click', function (e) {
+            e.preventDefault();
+            mapZoom(-25);
+        });
+        mapZoomReset.on('click', function (e) {
+            e.preventDefault();
+            mapZoomValue = 100;
+            mapZoom(0);
+        });
+        mapToggleHide.on('click', function (e) {
+            e.preventDefault();
+            mapTogglePoints(false);
+        });
+        mapToggleShow.on('click', function (e) {
+            e.preventDefault();
+            mapTogglePoints(true);
+        });
+    }
+}
+
+/**
+ * Zoom on the map
+ * @param change
+ * @returns {boolean}
+ */
+function mapZoom(change) {
+    // Don't have the size yet? Calculate it. We don't calc on page load because if it's on a hidden tab,
+    // it evaluates to 0
+    var min = 10;
+    var max = 300;
+
+    if (!mapImageOriginalWidth) {
+        mapImageOriginalWidth = mapImage.width();
+    }
+    // Min/Max
+    var newZoom = mapZoomValue + change;
+    if (newZoom > max || newZoom < min) {
+        return false;
+    }
+
+    mapZoomOut.removeAttr('disabled');
+    mapZoomIn.removeAttr('disabled');
+    mapZoomValue = newZoom;
+
+    magnifier = mapZoomValue / 100;
+    mapImage.width(mapImageOriginalWidth * magnifier);
+
+    if (change > 0) {
+        mapZoomIncrements++;
+    } else {
+        mapZoomIncrements--;
+    }
+
+    $.each($('.point'), function () {
+        repositionPoint($(this), magnifier);
+    });
+
+    if (mapZoomValue <= min) {
+        mapZoomOut.attr('disabled', 'disabled');
+    } else if (newZoom >= max) {
+        mapZoomIn.attr('disabled', 'disabled');
+    }
+
+    // Move the map towards the position of the mouse
+    var pos = mapDraggable.position();
+    if (change > 0) {
+        // Zoom In, move the map to the top and left as an amount based on the mouse position
+        // new_map_x = map_x - (cursor_x / screen_max_width * (new_map_width - map_width))
+        mapDraggable.css('left', pos.left - mapMouseX / mapElement.width() * 100).css('top', pos.top - mapMouseY / mapElement.height() * 100)
+        //.css('top', pos.top - (mapMouseY * 0.1))
+        ;
+    } else if (change < 0) {
+        mapDraggable.css('left', pos.left + mapMouseX / mapElement.width() * 100).css('top', pos.top + mapMouseY / mapElement.height() * 100)
+        //.css('top', pos.top + (mapMouseY * 0.1))
+        ;
+    }
+}
+
+/**
+ * Add update click on all points
+ */
+function initPointClick() {
+    $.each($('.point'), function (index) {
+        $(this).unbind('click'); // remove previous bindings
+        $(this).on('click', function (e) {
+            // Need this first, so that if we are still moving, it doesn't move to location
+            e.preventDefault();
+
+            if (mapPointIsMoving === true) {
+                return;
+            }
+            loadMapPoint($(this));
+        });
+    });
+}
+
+/**
+ * Toggle showing or hiding of points on the map
+ * @param show
+ */
+function mapTogglePoints(show) {
+    if (show) {
+        mapToggleHide.show();
+        mapToggleShow.hide();
+
+        $.each($('.map .point'), function () {
+            $(this).show();
+        });
+    } else {
+        mapToggleHide.hide();
+        mapToggleShow.show();
+
+        $.each($('.map .point'), function () {
+            $(this).hide();
+        });
+    }
+}
+
+/**
+ * V2
+ */
+
+/**
+ * Load a map point into the side panel
+ * @param element
+ */
+function loadMapPoint(element) {
+    if (mapIsMoving === true || mapPointIsMoving === true) {
+        return;
+    }
+
+    // First things first, resize the map area to show the panel on the first click.
+    if (mapEventFirstClick) {
+        mapHelper.fadeOut();
+        mapEventFirstClick = false;
+    }
+
+    // Admin mode? Load the form modal
+    if (mapAdminModeActivated) {
+        $.ajax({
+            url: element.data('url-modal')
+        }).done(function (result, textStatus, xhr) {
+            if (result) {
+                mapPointModalBody.html(result);
+                initModalForm();
+                mapModal.modal();
+            }
+        }).fail(function (result, textStatus, xhr) {
+            console.log('map point error', result);
+        });
+
+        return;
+    }
+
+    // Want to load the side panel with the content.
+    if (mapPanel.hasClass('hidden')) {
+        mapPanel.removeClass('hidden');
+        $('#location-map-main').removeClass('col-md-12').addClass('col-md-9 col-sm-8');
+    }
+
+    mapPanelLoader.show();
+    mapPanelTarget.html('');
+
+    $.ajax(element.data('url')).done(function (data) {
+        mapPanelLoader.hide();
+        mapPanelTarget.html(data);
+
+        // Closing the modal
+        $('.entity-close').on('click', function (e) {
+            console.log('clicky');
+            mapPanel.addClass('hidden');
+            $('#location-map-main').removeClass('col-md-9 col-sm-8').addClass('col-md-12');
+        });
+    });
+}
+
+/**
+ * Switch between Admin and View Mode
+ */
+function initMapModeSwitch() {
+    mapAdminMode.click(function (e) {
+        $(this).hide();
+        mapAdminModeActivated = true;
+        mapViewMode.show();
+        mapElement.addClass('map-admin-mode');
+
+        activateMovePoints();
+    });
+
+    mapViewMode.click(function (e) {
+        $(this).hide();
+        mapAdminModeActivated = false;
+        mapAdminMode.show();
+        mapElement.removeClass('map-admin-mode');
+
+        disableMovePoints();
+    });
+}
+
+/**
+ * Open the modal to add a map point
+ */
+function initAddPoints() {
+    mapImage.click(function (e) {
+        if (mapAdminModeActivated === false) {
+            return;
+        }
+
+        // Don't click if moving
+        if (mapPointIsMoving === true || mapIsMoving === true) {
+            return;
+        }
+
+        var offset = $(this).offset();
+        mapPositionX = e.pageX - offset.left - 25;
+        mapPositionY = e.pageY - offset.top - 25;
+
+        // Don't allow negative positions
+        if (mapPositionX < 0) {
+            mapPositionX = 0;
+        }
+        if (mapPositionY < 0) {
+            mapPositionY = 0;
+        }
+
+        // Need to adapt the map position to the magnifier to know where we really are.
+        magnifier = mapZoomValue / 100;
+        mapPositionY = parseInt(mapPositionY) / magnifier;
+        mapPositionX = parseInt(mapPositionX) / magnifier;
+
+        $.ajax({
+            url: $(this).data('url') + '?axis_y=' + parseInt(mapPositionY) + '&axis_x=' + parseInt(mapPositionX)
+        }).done(function (result, textStatus, xhr) {
+            if (result) {
+                mapPointModalBody.html(result);
+                initModalForm();
+                mapModal.modal();
+            }
+        }).fail(function (result, textStatus, xhr) {
+            console.log('map point error', result);
+        });
+    });
+}
+
+/**
+ *
+ */
+function initMovePoints() {
+    $.each($('.point'), function (index) {
+        addPointMove($(this));
+    });
+}
+
+/**
+ * Enable dragging map points
+ */
+function activateMovePoints() {
+    $.each($('.point'), function (index) {
+        $(this).draggable({ disabled: false });
+    });
+}
+
+/**
+ * Disable draggin map points
+ */
+function disableMovePoints() {
+    $.each($('.point'), function (index) {
+        $(this).draggable({ disabled: true });
+    });
+}
+
+/**
+ * Add movable points
+ * @param point
+ */
+function addPointMove(point) {
+    point.draggable({
+        revert: false,
+        start: function start(event, ui) {
+            //console.log('start moving point');
+            mapPointIsMoving = true;
+
+            target = $(event.target);
+            target.addClass('point-moving');
+        },
+        stop: function stop(event, ui) {
+            // event.preventDefault();
+            var location = $(event.target);
+            location.removeClass('point-moving');
+
+            mapPositionX = ui.position.left;
+            mapPositionY = ui.position.top;
+
+            // Recalculate position based on zoom
+            magnifier = mapZoomValue / 100;
+            mapPositionX = mapPositionX / magnifier;
+            mapPositionY = mapPositionY / magnifier;
+
+            $.ajax({
+                url: location.attr('data-url-move') + '?axis_x=' + mapPositionX + '&axis_y=' + mapPositionY
+            }).done(function (result, textStatus, xhr) {
+                //event.preventDefault();
+            }).fail(function (result, textStatus, xhr) {
+                // console.log('map point error', result);
+            });
+
+            // We can wait for the ajax request to finish, as the user doesn't need to know that
+            // the event was done properly. This also allows directly clicking on a point
+            // after it was moved to view the form modal
+            setTimeout(function () {
+                mapPointIsMoving = false;
+            }, 50);
+
+            //$(this).removeClass('ui-draggable-dragging');
+
+            return true;
+        }
+    });
+}
+
+/**
+ * Modal form submit catcher
+ */
+function initModalForm() {
+    initSelect2();
+    initDeleteMapPoint();
+    initIconSelect();
+
+    $('.map-point-form').submit(function (e) {
+        var formData = $(this).serialize();
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: 'json',
+            encode: true
+        }).done(function (data) {
+            mapModal.modal('hide');
+            if (data.point) {
+                // Remove existing one?
+                var existing = $('#' + data.id);
+                if (existing.length === 1) {
+                    existing.remove();
+                }
+
+                $('.map-container').append(data.point);
+                initPointClick();
+
+                // Make the new point movable and add tooltip
+                newPoint = $('#' + data.id);
+                addPointMove(newPoint);
+
+                magnifier = mapZoomValue / 100;
+                repositionPoint(newPoint, magnifier);
+
+                newPoint.tooltip();
+            }
+        }).fail(function (data) {
+            console.log('fail', data);
+            if (data.responseJSON.errors) {
+                $('.location-map-errors').html(buildErrors(data.responseJSON.errors)).fadeIn();
+            }
+        });
+
+        e.preventDefault();
+    });
+}
+
+/**
+ *
+ */
+function initDeleteMapPoint() {
+    $('.map-point-delete').each(function () {
+        $(this).click(function (e) {
+            url = $(this).data('url');
+            e.preventDefault();
+
+            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post({
+                url: url,
+                dataType: 'json',
+                data: {
+                    '_method': 'DELETE'
+                },
+                context: this
+            }).done(function (result, textStatus, xhr) {
+                // Hide this
+                if (result.id) {
+                    $('#' + result.id).remove();
+                }
+                mapModal.modal('hide');
+            });
+
+            return false;
+        });
+    });
+}
+
+/**
+ *
+ * @param data
+ * @returns {string}
+ */
+function buildErrors(data) {
+    var errors = '';
+    for (var key in data) {
+        // skip loop if the property is from prototype
+        if (!data.hasOwnProperty(key)) continue;
+
+        errors += data[key] + "<br>";
+    }
+    return errors;
+}
+
+/**
+ * Handle scroll
+ */
+function initMapScroll() {
+    $(window).bind('wheel', function (event) {
+        if (event.ctrlKey == true) {
+            event.preventDefault();
+            //console.log('wheel', event.originalEvent.deltaY);
+            if (event.originalEvent.deltaY > 0) {
+                mapZoom(-10);
+            } else {
+                mapZoom(10);
+            }
+        }
+    });
+}
+
+/**
+ * Reposition a point on the map
+ * @param point
+ * @param magnifier
+ */
+function repositionPoint(point, magnifier) {
+    point.css('top', point.data('top') * magnifier + 'px');
+    point.css('left', point.data('left') * magnifier + 'px');
+    point.css('width', point.data('size') * magnifier + 'px');
+    point.css('height', point.data('size') * magnifier + 'px');
+    //$(this).css('border-radius', (25 * magnifier)+ 'px');
+
+    fontSize = 24;
+    if (point.data('size') === 25) {
+        fontSize = 12;
+    } else if (point.data('size') === 100) {
+        fontSize = 56;
+    }
+    point.css('font-size', fontSize * magnifier + 'px');
+}
+
+/**
+ * Resize the map to the map div on page load
+ */
+function resizeMapToPage() {
+    // Reset the zoom to the biggest value
+    var imgWidth = mapImage.width();
+
+    $('.loading-map').hide();
+
+    var imgHeight = mapImage.height();
+    //console.log('img width, height', imgWidth, imgHeight);
+
+    // Get the view box width and height
+    var mapWidth = mapElement.width();
+    var mapHeight = mapElement.height();
+    //console.log('div width, height', mapWidth, mapHeight);
+
+    // Resize zoom. Always use the width.
+    var ratio = mapWidth / imgWidth;
+
+    mapZoomValue = Math.floor(100 * ratio);
+    mapZoom(0);
+}
+
+/**
+ *
+ * @param state
+ * @returns {*}
+ */
+function formatState(state) {
+    // Searching...
+    if (!state.id) {
+        return state.text;
+    }
+
+    var element = $(state.element);
+    if (!element) {
+        return state.text;
+    }
+    var icon = element.data('icon');
+    // If there is no icon, use the id
+    if (!icon) {
+        icon = 'ra ra-' + state.id;
+    } else if (icon === 'entity') {
+        return state.text;
+    }
+    // If the icon has no space, it's probably not rpg-awesome
+    else if (!icon.includes(' ')) {
+            icon = 'ra ra-' + icon;
+        }
+
+    var $state = $('<span><i class="' + icon + '"></i> ' + state.text + '</span>');
+    return $state;
+};
+
+/**
+ *
+ */
+function initIconSelect() {
+    $(".select2-icon").select2({
+        templateResult: formatState,
+        templateSelection: formatState,
+        language: $(this).data('language')
+    });
+}
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/assets/js/location/map.js");
+
+
+/***/ })
+
+/******/ });

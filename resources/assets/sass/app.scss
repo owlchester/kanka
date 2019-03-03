@@ -589,6 +589,9 @@ div.mce-fullscreen {
     border-right: 0px;
   }
 }
+.datagrid-bulk-actions {
+  display: inline-block;
+}
 
 // Need the select2 container above popovers and tooltips
 .select2-container--open {

@@ -47,6 +47,14 @@ class Race extends MiscModel
     ];
 
     /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'race_id',
+    ];
+
+    /**
      * Traits
      */
     use CampaignTrait;

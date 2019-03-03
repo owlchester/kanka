@@ -16,7 +16,7 @@ class LocationObserver extends MiscObserver
         parent::saving($model);
 
         // Skipping observer (for example when BULK or COPY)
-        if ($model::$SKIP_SAVING_OBSERVER === true) {
+        if ($model->savingObserver === true) {
             return;
         }
 
@@ -24,8 +24,7 @@ class LocationObserver extends MiscObserver
         ImageService::handle($model, $model->getTable(), false, 'map');
 
         // Removed parent_location_id id
-        if (request()->getRealMethod() == 'POST' && !request()->has('parent_location_id')) {
-            $model->parent_location_id = null;
+        if ($model->isDirty('parent_location_id') && empty($model->parent_location_id)) {
             $model->rebuildTree = true;
         }
     }

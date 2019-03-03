@@ -232,7 +232,10 @@ function treeViewInit(element) {
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {
-                window.location = link + '?parent_id=' + $(this).data('id');
+                // Don't trigger the click on the checkbox (used for bulk actions)
+                if (e.target.type !== 'checkbox') {
+                    window.location = link + '?parent_id=' + $(this).data('id');
+                }
             });
         }
     });

@@ -7,13 +7,23 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Location
+ * @package App\Models
+ * @var string $name
+ * @var string $type
+ * @var string $entry
+ * @var string $image
+ * @var string $map
+ * @var integer $parent_location_id
+ */
 class Location extends MiscModel
 {
     /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'entry', 'entry', 'type'];
+    protected $searchableColumns  = ['name', 'entry', 'type'];
 
     /**
      * Used by the Observer to know if the tree needs rebuilding on this model.
@@ -44,7 +54,6 @@ class Location extends MiscModel
         'entry',
         'parent_location_id',
         'campaign_id',
-        'tag_id',
         'is_private',
     ];
 
@@ -53,6 +62,14 @@ class Location extends MiscModel
      * @var string
      */
     protected $entityType = 'location';
+
+    /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'parent_location_id',
+    ];
 
     /**
      * Traits

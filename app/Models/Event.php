@@ -36,6 +36,14 @@ class Event extends MiscModel
     ];
 
     /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'location_id',
+    ];
+
+    /**
      * Traits
      */
     use CampaignTrait;

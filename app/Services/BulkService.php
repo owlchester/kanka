@@ -101,7 +101,8 @@ class BulkService
             /** @var MiscModel $entity */
             $entity = $model->findOrFail($id);
             if (Auth::user()->can('update', $entity) && $entity->is_private != $private) {
-                $entity::$SKIP_SAVING_OBSERVER = true;
+                // Todo: still needed?
+                //$entity->savingObserver = false;
                 $entity->is_private = $private;
                 $entity->save();
                 $count++;

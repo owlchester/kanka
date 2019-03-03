@@ -23,6 +23,12 @@ class Journal extends MiscModel
         'character_id',
         'location_id',
         'is_private',
+
+        // calendar date
+        'calendar_id',
+        'calendar_year',
+        'calendar_month',
+        'calendar_day',
     ];
 
     /**
@@ -49,6 +55,16 @@ class Journal extends MiscModel
         'location_id',
         'tag_id',
         'is_private',
+    ];
+
+    /**
+     * Nullable values (foreign keys)
+     * @var array
+     */
+    public $nullableForeignKeys = [
+        'location_id',
+        'character_id',
+        'calendar_id',
     ];
 
     /**
