@@ -251,10 +251,13 @@ class Entity extends Model
      * @param string $action
      * @return string
      */
-    public function url($action = 'show')
+    public function url($action = 'show', $tab = null)
     {
         if ($action == 'index') {
             return route($this->pluralType() . '.index');
+        }
+        if (!empty($tab)) {
+            return route($this->pluralType() . '.' . $action, [$this->child->id, '#' . $tab]);
         }
         return route($this->pluralType() . '.' . $action, $this->child->id);
     }

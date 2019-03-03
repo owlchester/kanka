@@ -302,12 +302,13 @@ return [
     'tabs'              => [
         'attributes'    => 'Attributes',
         'calendars'     => 'Calendars',
+        'default'       => 'Default',
         'events'        => 'Events',
+        'mentions'      => 'Mentions',
         'menu'          => 'Menu',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
-        'default'       => 'Default',
     ],
     'update'            => 'Update',
     'users'             => [

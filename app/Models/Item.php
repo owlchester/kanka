@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -111,5 +112,23 @@ class Item extends MiscModel
             'id',
             'id',
             'quest_id');
+    }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $campaign = CampaignLocalization::getCampaign();
+
+        $questCount = $this->quests()->acl()->count();
+        if ($campaign->enabled('quests') && $questCount > 0) {
+            $items['quests'] = [
+                'name' => 'items.show.tabs.quests',
+                'route' => 'items.quests',
+                'count' => $questCount
+            ];
+        }
+        return parent::menuItems($items);
     }
 }

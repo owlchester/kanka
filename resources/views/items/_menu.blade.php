@@ -33,32 +33,4 @@
     </div>
 </div>
 
-
-@if (!isset($exporting))
-    <div class="box box-solid">
-        <div class="box-header with-border visible-xs">
-            <h3 class="box-title">
-                {{ __('crud.tabs.menu') }}
-            </h3>
-        </div>
-        <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="@if(empty($active))active @endif">
-                    <a href="{{ route('items.show', $model) }}">
-                        {{ __('crud.panels.entry') }}
-                    </a>
-                </li>
-                @if ($campaign->enabled('quests') && $model->quests()->acl()->count() > 0)
-                    <li class="@if(!empty($active) && $active == 'quests')active @endif">
-                        <a href="{{ route('items.quests', $model) }}" title="{{ __('items.show.tabs.quests') }}">
-                            {{ __('items.show.tabs.quests') }}
-                            <span class="label label-default pull-right">
-                                <?=$model->quests()->acl()->count()?>
-                            </span>
-                        </a>
-                    </li>
-                @endif
-            </ul>
-        </div>
-    </div>
-@endif
+@include('entities.components.menu')

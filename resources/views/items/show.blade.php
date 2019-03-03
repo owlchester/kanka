@@ -21,6 +21,8 @@
                         <p>{!! $model->entry !!}</p>
                     </div>
                     @endif
+
+                    @include('cruds.partials.mentions')
                 </div>
                 @include('cruds._panes')
             </div>

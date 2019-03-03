@@ -263,4 +263,18 @@ abstract class MiscModel extends Model
         // If all that's in the entry is two \n, then there is no real content
         return strlen($this->entry) > 2;
     }
+
+    public function menuItems($items = [])
+    {
+//        $mentionCount = $this->entity->targetMentions()->count();
+//        if ($mentionCount > 0) {
+//            $items['mentions'] = [
+//                'name' => 'crud.tabs.mentions',
+//                'route' => $this->entity->pluralType() . '.mentions',
+//                'count' => $mentionCount
+//            ];
+//        }
+
+        return $items;
+    }
 }
