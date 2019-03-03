@@ -287,7 +287,13 @@ class CrudController extends Controller
         $this->authorize('delete', $model);
 
         $model->delete();
-        return redirect()->route($this->route . '.index')
+
+        $subroute = 'index';
+        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+            $subroute = 'tree';
+        }
+
+        return redirect()->route($this->route . '.' . $subroute)
             ->with('success', trans($this->view . '.destroy.success', ['name' => $model->name]));
     }
 
@@ -310,7 +316,12 @@ class CrudController extends Controller
             }
         }
 
-        return redirect()->route($this->route . '.index')
+        $subroute = 'index';
+        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+            $subroute = 'tree';
+        }
+
+        return redirect()->route($this->route . '.' . $subroute)
             ->with('success', trans_choice('crud.destroy_many.success', $count,['count' => $count]));
     }
 
