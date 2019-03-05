@@ -14,11 +14,11 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title or '' }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{{ $title ?? '' }} - {{ config('app.name', 'Kanka') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <meta property="og:title" content="{{ $title or '' }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{{ $title ?? '' }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @yield('og')
     <!-- Font Awesome Icons -->
@@ -88,8 +88,8 @@
                 </ol>
                 @endif
                 <h1 class="hidden-xs">
-                    {{ $title or "Page Title" }}
-                    <small>{{ $description or null }}</small>
+                    {{ $title ?? "Page Title" }}
+                    <small>{{ $description ?? null }}</small>
                     @if (!empty($headerExtra))
                         {!! $headerExtra !!}
                     @endif

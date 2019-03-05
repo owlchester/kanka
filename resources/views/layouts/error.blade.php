@@ -16,7 +16,7 @@
     <meta name="description" content="{{ trans('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
-    <meta property="og:title" content="{{ $title or __('front.meta.title') }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 
     <title>{{ $error }} - {{ config('app.name', 'Kanka') }}</title>

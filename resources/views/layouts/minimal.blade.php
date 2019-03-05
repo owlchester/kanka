@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title or trans('default.page_title') }} - {{ config('app.name') }}</title>
+    <title>{{ $title ?? trans('default.page_title') }} - {{ config('app.name') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <meta property="og:title" content="{{ $title or __('default.page_title') }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{{ $title ?? __('default.page_title') }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @yield('og')
     <!-- Font Awesome Icons -->
@@ -34,8 +34,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                {{ $title or "Page Title" }}
-                <small>{{ $description or null }}</small>
+                {{ $title ?? "Page Title" }}
+                <small>{{ $description ?? null }}</small>
             </h1>
         </section>
 

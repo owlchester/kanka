@@ -13,7 +13,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title or "" }} - {{ config('app.name') }}</title>
+    <title>{{ $title ?? "" }} - {{ config('app.name') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -52,8 +52,8 @@
                 <div class="row">
                     <div class="col-md-12 content-header">
                         <h1>
-                            {{ $title or "Page Title" }}
-                            <small>{{ $description or null }}</small>
+                            {{ $title ?? "Page Title" }}
+                            <small>{{ $description ?? null }}</small>
                             @if (!empty($headerExtra))
                                 {!! $headerExtra !!}
                             @endif
