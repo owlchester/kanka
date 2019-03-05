@@ -75,5 +75,4 @@ class GeneratePermissionEntity extends Command
 
         return true;
     }
-
 }

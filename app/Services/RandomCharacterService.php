@@ -13,6 +13,9 @@ class RandomCharacterService
      */
     protected $character;
 
+    /**
+     * @var array
+     */
     protected $translations = [];
 
     /**
@@ -27,7 +30,6 @@ class RandomCharacterService
         // we only translate a few words and lose the original translations.
         $this->translations = trans('randomisers/characters', [], 'en');
         $this->translations = array_replace_recursive($this->translations, trans('randomisers/characters'));
-
     }
 
     /**
@@ -140,7 +142,7 @@ class RandomCharacterService
             ];
         }
         $traits = [];
-        for($i = 0; $i <= count($availableTraits) - 1; $i++) {
+        for ($i = 0; $i <= count($availableTraits) - 1; $i++) {
             $traitKey = $availableTraits[$i];
             $randomNumber = in_array($traitKey, ['height', 'weight']);
             $trait = new \stdClass();

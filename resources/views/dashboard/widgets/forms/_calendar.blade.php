@@ -5,6 +5,6 @@
         App\Models\Entity::class,
         false,
         'crud.fields.calendar',
-        'entity-calendars.find'
+        'search.calendars'
     ) !!}
 </div>

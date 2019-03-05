@@ -38,7 +38,9 @@ class EntityCreatorController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
-        foreach ($this->entityService->entities(['calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links']) as $name => $class) {
+        foreach ($this->entityService->entities([
+            'calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links'
+        ]) as $name => $class) {
             if ($campaign->enabled($name)) {
                 if (auth()->user()->can('create', $class)) {
                     $entities[$name] = $class;

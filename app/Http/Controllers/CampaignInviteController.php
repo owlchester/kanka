@@ -59,7 +59,8 @@ class CampaignInviteController extends Controller
         $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type', 'validity'));
 
         return redirect()->route('campaigns.index', ['#member'])
-            ->with('success_raw',
+            ->with(
+                'success_raw',
                 trans(
                     'campaigns.invites.create.' . ($invitation->type == 'email' ? 'success' : 'link'),
                     ['url' => route('campaigns.join', $invitation->token)]

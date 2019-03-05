@@ -53,7 +53,7 @@ $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type
                                     App\Models\Entity::class,
                                     false,
                                     'menu_links.fields.entity',
-                                    'search.relations',
+                                    'search.live',
                                     'menu_links.placeholders.entity'
                                 ) !!}
                             </div>

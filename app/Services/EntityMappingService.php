@@ -99,7 +99,9 @@ class EntityMappingService
             }
 
             /** @var Entity $entity */
-            $entity = Entity::where(['type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id])->first();
+            $entity = Entity::where([
+                'type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id
+            ])->first();
             if ($entity) {
                 //$this->log("- Mentions " . $entity->id);
 
@@ -121,9 +123,9 @@ class EntityMappingService
 
 
     /**
-     *
      * @param Entity $entity
-     * @return $this
+     * @return int
+     * @throws Exception
      */
     public function mapEntity(Entity $entity)
     {
@@ -132,7 +134,7 @@ class EntityMappingService
 
     /**
      * @param EntityNote $entityNote
-     * @return $this
+     * @return int
      * @throws Exception
      */
     public function mapEntityNote(EntityNote $entityNote)
@@ -190,7 +192,9 @@ class EntityMappingService
             }
 
             /** @var Entity $entity */
-            $target = Entity::where(['type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id])->first();
+            $target = Entity::where([
+                'type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id
+            ])->first();
             if ($target) {
                 //$this->log("- Mentions " . $model->id);
                 // Do we already have this mention mapped?
@@ -212,8 +216,6 @@ class EntityMappingService
 
                     $createdMappings++;
                 }
-            } else {
-                //$this->log("- Unknown entity of type $singularType and id $id");
             }
         }
 
@@ -250,11 +252,13 @@ class EntityMappingService
         // Just text, no tooltip
         $patternNoTooltip = '<a href=\"' . $entityLinkSearch . '\">(.*?)</a>';
         // We need to go 0.300 as the text is encoded, so some html entities will make it longer. It's not great
-        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch . '" data-toggle="tooltip"( data-html="true")?>(.*?)</a>';
+        $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch
+            . '" data-toggle="tooltip"( data-html="true")?>(.*?)</a>';
 
         $replace = '<a href=\"' . $entityLink . '\">' . $name . '</a>';
         if (!empty($tooltip)) {
-            $replace = '<a title="' . $tooltip . '" href="' . $entityLink . '" data-toggle="tooltip" data-html="true">' . $name . '</a>';
+            $replace = '<a title="' . $tooltip . '" href="' . $entityLink
+                . '" data-toggle="tooltip" data-html="true">' . $name . '</a>';
         }
 
 //        dump($patternNoTooltip);
@@ -263,7 +267,8 @@ class EntityMappingService
         /** @var EntityMention $target */
         foreach ($entity->targetMentions()->with(['entity', 'campaign', 'entityNote'])->get() as $target) {
             // We've got a target, we need to update its entry field
-            $realTarget = $target->isEntityNote() ? $target->entityNote : ($target->isCampaign() ? $target->campaign : $target->entity->child);
+            $realTarget = $target->isEntityNote() ? $target->entityNote
+                : ($target->isCampaign() ? $target->campaign : $target->entity->child);
             $text = $realTarget->entry;
 
 //            dump($text);
@@ -289,7 +294,6 @@ class EntityMappingService
         preg_match_all('`href="([^"]*)"(.*?)>(.*?)</a>`i', $text, $segments);
 
         foreach ($segments[1] as $key => $url) {
-
             // If it's an internal link, we want to "map" id
             $domain = parse_url($url, PHP_URL_HOST);
             if (!in_array($domain, ['kanka.io', 'kanka.loc', 'dev.kanka.io'])) {

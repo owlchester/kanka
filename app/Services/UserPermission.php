@@ -174,6 +174,8 @@ class UserPermission
                 $this->parseRole($publicRole);
             }
         }
+
+        return true;
     }
 
     /**
@@ -196,8 +198,7 @@ class UserPermission
                 if (!in_array($type, $this->entityTypes)) {
                     $this->entityTypes[] = $type;
                 }
-            }
-            elseif (!in_array($permission->entity_id, $this->entityIds)) {
+            } elseif (!in_array($permission->entity_id, $this->entityIds)) {
                 // This permission targets an entity directly
                 $this->entityIds[] = $permission->entity_id;
             }

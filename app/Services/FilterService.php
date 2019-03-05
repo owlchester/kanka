@@ -199,7 +199,7 @@ class FilterService
         }
 
         $count = 0;
-        foreach($this->filters as $key => $val) {
+        foreach ($this->filters as $key => $val) {
             if ($val !== null) {
                 $count++;
             }

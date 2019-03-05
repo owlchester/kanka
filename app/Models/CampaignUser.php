@@ -38,11 +38,18 @@ class CampaignUser extends Model
 
     /**
      * Get the user's roles
-     * @return $this
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function roles()
     {
-        return $this->hasManyThrough('App\Models\CampaignRole', 'App\Models\CampaignRoleUser', 'user_id', 'id', 'user_id', 'campaign_role_id')
+        return $this->hasManyThrough(
+            'App\Models\CampaignRole',
+            'App\Models\CampaignRoleUser',
+            'user_id',
+            'id',
+            'user_id',
+            'campaign_role_id'
+        )
             ->where('campaign_id', $this->campaign_id);
     }
 

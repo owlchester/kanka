@@ -12,7 +12,6 @@ class CampaignRoleUserObserver
      */
     public function saving(CampaignRoleUser $campaignRoleUser)
     {
-        
     }
 
     /**

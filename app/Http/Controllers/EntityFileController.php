@@ -43,7 +43,8 @@ class EntityFileController extends Controller
 
         $enabled = $entity->files->count() < config('entities.max_entity_files');
         return view('cruds.files.index', compact(
-            'entity', 'enabled'
+            'entity',
+            'enabled'
         ));
     }
 

@@ -56,7 +56,8 @@ class CampaignRolePolicy
      */
     public function delete(User $user, CampaignRole $campaignRole)
     {
-        return !$campaignRole->is_admin && !$campaignRole->is_public && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
+        return !$campaignRole->is_admin && !$campaignRole->is_public
+            && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -77,7 +78,8 @@ class CampaignRolePolicy
      */
     public function removeUser(User $user, CampaignRole $campaignRole)
     {
-        return $this->user($user, $campaignRole) && ($campaignRole->is_admin ? $campaignRole->users()->count() > 1 : true);
+        return $this->user($user, $campaignRole)
+            && ($campaignRole->is_admin ? $campaignRole->users()->count() > 1 : true);
     }
 
 

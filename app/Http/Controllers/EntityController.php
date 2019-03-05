@@ -69,14 +69,13 @@ class EntityController extends Controller
             $entity = $this->entityService->move($entity, $request->only('target', 'campaign'));
 
             if ($entity->child->campaign_id != Auth::user()->campaign->id) {
-
-                return redirect()->route($entity->pluralType() . '.index') // can't use child->id, not new
+                return redirect()->route($entity->pluralType() . '.index')
                 ->with('success', trans('crud.move.success', ['name' => $entity->name]));
             }
-            return redirect()->route($entity->pluralType() . '.show', $entity->entity_id) // can't use child->id, not new
+            return redirect()->route($entity->pluralType() . '.show', $entity->entity_id)
             ->with('success', trans('crud.move.success', ['name' => $entity->name]));
         } catch (TranslatableException $ex) {
-            return redirect()->route($entity->pluralType() . '.show', $entity->entity_id) // can't use child->id, not new
+            return redirect()->route($entity->pluralType() . '.show', $entity->entity_id)
             ->with('error', trans($ex->getMessage(), ['name' => $entity->name]));
         }
     }

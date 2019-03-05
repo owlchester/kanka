@@ -349,6 +349,10 @@ class Campaign extends MiscModel
         if ($this->setting->$entity) {
             return $this->setting->$entity;
         }
+        // Can't disable attribute templates
+        if ($entity == 'attribute_templates') {
+            return true;
+        }
         return false;
     }
 

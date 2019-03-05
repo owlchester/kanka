@@ -45,7 +45,8 @@
         "fzaninotto/faker": "~1.4",
         "laravel/homestead": "^7.0",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
         "classmap": [
@@ -67,6 +68,7 @@
         }
     },
     "scripts": {
+        "phpcs": "phpcs --standard=phpcs.xml",
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],

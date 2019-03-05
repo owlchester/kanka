@@ -85,7 +85,8 @@ class MapPoint extends Model
             $marker = '';
         }
 
-        return '<a id="map-point-' . $this->id . '" class="point ' . e($this->size) . ' ' . e($this->shape) . ' ' . e($this->colour) . '" '
+        return '<a id="map-point-' . $this->id . '" class="point ' . e($this->size) . ' ' . e($this->shape) . ' '
+            . e($this->colour) . '" '
             . 'style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
             . 'data-url-modal="' . $dataUpdateUrl . '" title="' . e($title) . '" '
             . 'data-url-move="' . $dataMoveUrl . '" '

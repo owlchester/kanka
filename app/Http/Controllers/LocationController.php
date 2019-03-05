@@ -97,8 +97,6 @@ class LocationController extends CrudController
         $this->authorize('update', $location);
 
         if ($request->isMethod('post')) {
-
-            //dd($request->all());
             $this->locationService->managePoints($location, $request->only('map_point'));
 
             return redirect()->route('locations.show', [$location, '#map'])

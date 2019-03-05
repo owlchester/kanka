@@ -194,7 +194,7 @@ class Location extends MiscModel
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function quests()
     {
@@ -204,7 +204,8 @@ class Location extends MiscModel
             'location_id',
             'id',
             'id',
-            'quest_id');
+            'quest_id'
+        );
     }
 
     /**

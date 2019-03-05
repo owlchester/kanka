@@ -91,14 +91,18 @@ class CampaignExport implements ShouldQueue
                         }
 
                         // Locations have maps
-                        if ($model->getEntityType() == 'location' && !empty($model->map) && Storage::exists($model->map)) {
+                        if ($model->getEntityType() == 'location' && !empty($model->map)
+                            && Storage::exists($model->map)) {
                             $zipper->addString($model->map, Storage::get($model->map));
                         }
                     }
-                } catch(Exception $e) {
+                } catch (Exception $e) {
                     $zipper->close();
                     unlink($pathName);
-                    throw new Exception('Missing campaign entity relation: ' . $entity . '-' . $class . '? ' . $e->getMessage());
+                    throw new Exception(
+                        'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
+                        . $e->getMessage()
+                    );
                 }
             }
         }

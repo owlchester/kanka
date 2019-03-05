@@ -55,8 +55,12 @@ class OrganisationMemberApiController extends ApiController
      * @param OrganisationMember $organisationMember
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
-    {
+    public function update(
+        Request $request,
+        Campaign $campaign,
+        Organisation $organisation,
+        OrganisationMember $organisationMember
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation);
         $organisationMember->update($request->all());
@@ -65,14 +69,18 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param ReorganisationMember $reorganisationMember
+     * @param Request
      * @param Campaign $campaign
-     * @param StoreOrganisationMember $organisationMember
+     * @param OrganisationMember $organisationMember
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
-    {
+    public function destroy(
+        \Illuminate\Http\Request $request,
+        Campaign $campaign,
+        Organisation $organisation,
+        OrganisationMember $organisationMember
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation);
         $organisationMember->delete();

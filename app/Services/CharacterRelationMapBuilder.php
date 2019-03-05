@@ -105,7 +105,6 @@ class CharacterRelationMapBuilder
 
     protected function buildLinks()
     {
-
     }
 
     /**

@@ -55,8 +55,12 @@ class QuestOrganisationApiController extends ApiController
      * @param QuestOrganisation $questOrganisation
      * @return Resource
      */
-    public function update(RequestOrganisation $requestOrganisation, Campaign $campaign, Quest $quest, QuestOrganisation $questOrganisation)
-    {
+    public function update(
+        RequestOrganisation $requestOrganisation,
+        Campaign $campaign,
+        Quest $quest,
+        QuestOrganisation $questOrganisation
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest);
         $questOrganisation->update($requestOrganisation->all());
@@ -71,8 +75,12 @@ class QuestOrganisationApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\RequestOrganisation $requestOrganisation, Campaign $campaign, Quest $quest, QuestOrganisation $questOrganisation)
-    {
+    public function destroy(
+        \Illuminate\Http\RequestOrganisation $requestOrganisation,
+        Campaign $campaign,
+        Quest $quest,
+        QuestOrganisation $questOrganisation
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest);
         $questOrganisation->delete();

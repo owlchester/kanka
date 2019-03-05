@@ -5,7 +5,6 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
 
-
 class Kernel extends HttpKernel
 {
     /**
@@ -62,7 +61,6 @@ class Kernel extends HttpKernel
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'localizeDatetime' => \App\Http\Middleware\LocalizeDatetime::class,
         'client' => CheckClientCredentials::class, // Laravel Passport
-		// REDIRECTION MIDDLEWARE
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

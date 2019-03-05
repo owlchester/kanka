@@ -11,7 +11,6 @@ class CampaignUserObserver
      */
     public function saving(CampaignUser $campaignUser)
     {
-        
     }
 
     /**
@@ -26,7 +25,6 @@ class CampaignUserObserver
      */
     public function created(CampaignUser $campaignUser)
     {
-
     }
 
     /**

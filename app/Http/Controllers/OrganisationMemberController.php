@@ -100,8 +100,11 @@ class OrganisationMemberController extends Controller
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOrganisationMember $request, Organisation $organisation, OrganisationMember $organisationMember)
-    {
+    public function update(
+        StoreOrganisationMember $request,
+        Organisation $organisation,
+        OrganisationMember $organisationMember
+    ) {
         $this->authorize('member', $organisation);
 
         $organisationMember->update($request->all());

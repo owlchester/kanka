@@ -92,7 +92,12 @@ class DashboardController extends Controller
 
         $offset = request()->get('offset', 0);
 
-        $entities = \App\Models\Entity::recentlyModified()->type($widget->conf('entity'))->acl()->take(10)->offset($offset)->get();
+        $entities = \App\Models\Entity::recentlyModified()
+            ->type($widget->conf('entity'))
+            ->acl()
+            ->take(10)
+            ->offset($offset)
+            ->get();
 
         return view('dashboard.widgets._recent_list')
             ->with('entities', $entities)

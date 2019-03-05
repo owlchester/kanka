@@ -28,7 +28,7 @@ trait TreeControllerTrait
         $actions = [[
             'route' => route($this->route . '.index'),
             'class' => 'default',
-            'label' => '<i class="fa fa-list"></i> ' . trans( $this->view . '.index.title')
+            'label' => '<i class="fa fa-list"></i> ' . trans($this->view . '.index.title')
         ]];
 
         $search = $model
@@ -67,6 +67,15 @@ trait TreeControllerTrait
         $view = $this->view;
         $route = $this->route;
 
-        return view('cruds.tree', compact('models', 'name', 'model', 'actions', 'filters', 'filterService', 'view', 'route'));
+        return view('cruds.tree', compact(
+            'models',
+            'name',
+            'model',
+            'actions',
+            'filters',
+            'filterService',
+            'view',
+            'route'
+        ));
     }
 }

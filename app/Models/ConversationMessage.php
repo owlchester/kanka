@@ -94,7 +94,7 @@ class ConversationMessage extends MiscModel
     public function scopeDefault($query, $oldestId = null, $newestId = null)
     {
         $query->with(['user', 'character'])
-            ->latest ()
+            ->latest()
             ->take(20);
 
         if (!empty($oldestId)) {

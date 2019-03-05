@@ -9,7 +9,6 @@ trait RelationTrait
     public function createRelation(Model $model)
     {
         if (request()->has('two_way')) {
-
             // Make sure we're not creating an infinite loop
             // Create reverse
             $reverse = new $model;

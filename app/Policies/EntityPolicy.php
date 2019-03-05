@@ -68,7 +68,8 @@ class EntityPolicy
      */
     public function update(User $user, $entity)
     {
-        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('edit', $user, $entity);
+        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
+            && $this->checkPermission('edit', $user, $entity);
     }
 
     /**
@@ -80,7 +81,8 @@ class EntityPolicy
      */
     public function delete(User $user, $entity)
     {
-        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true) && $this->checkPermission('delete', $user, $entity);
+        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
+            && $this->checkPermission('delete', $user, $entity);
     }
 
     /**

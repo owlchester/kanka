@@ -44,7 +44,6 @@ class GenerateLocationPoint extends Command
         $model = new MapPoint();
         $model->with('location', 'location.entity')->chunk(500, function ($mapPoints) {
             foreach ($mapPoints as $mapPoint) {
-
                 if (!empty($mapPoint->target)) {
                     $this->points++;
                     $mapPoint->target_entity_id = $mapPoint->target->entity->id;

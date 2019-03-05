@@ -293,7 +293,6 @@ class CalendarRenderer
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
                 $currentPosition = $weekLength - $emptyDaysToFill; // On which week day we currently are
-                //dump("resetPosition $emptyDaysToFill = " . count($weekdays) . " - ($totalDays % " . count($weekdays) . " {" . ($totalDays % count($weekdays)) . "})");
                 for ($d = 0; $d < $emptyDaysToFill; $d++) {
                     $data[] = [];
                 }
@@ -301,7 +300,6 @@ class CalendarRenderer
 
             // Add each day of the month to the day thing
             for ($day = 1; $day <= $monthLength; $day++) {
-
                 $exact = $this->getYear() . '-' . $monthNumber . '-' . $day;
                 $dayData = [
                     'day' => $day,
@@ -371,6 +369,7 @@ class CalendarRenderer
 
     /**
      * Show a button for today if the current view isn't the current year-month.
+     * @return string
      */
     public function todayButton()
     {
@@ -388,10 +387,6 @@ class CalendarRenderer
             [$this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
             $options
         );
-
-
-
-        return '';
     }
 
     /**
@@ -475,13 +470,14 @@ class CalendarRenderer
     protected function events()
     {
         $events = [];
+        $datePattern = $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%';
         foreach ($this->calendar->calendarEvents()
                      ->has('entity')
                      ->with('entity')
-                    ->where(function ($query) {
+                    ->where(function ($query) use ($datePattern) {
                         $query
                             // Where it's the current year , or current year and current month
-                            ->where('date', 'like', $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%')
+                            ->where('date', 'like', $datePattern)
                             // Or where the event is recurring, or recurring on this month
                             ->orWhere(function ($sub) {
                                 if ($this->isYearlyLayout()) {
@@ -681,7 +677,7 @@ class CalendarRenderer
 
             // Now the full moon will appear several times on this month/year.
             $fullMoonsPerYear = ceil($daysInAYear / $fullmoon);
-            for ( $i = 0; $i < $fullMoonsPerYear; $i++) {
+            for ($i = 0; $i < $fullMoonsPerYear; $i++) {
                 $nextFullMoon += $fullmoon;
                 $this->addFullMoon($nextFullMoon, $name);
             }
@@ -719,10 +715,13 @@ class CalendarRenderer
                 // Nothing
             } else {
                 // Calc the number of years that were leap years
-//            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts (" . $this->calendar->leap_year_start . ")");
-                $amountOfYears = ceil(($this->getYear() - $this->calendar->leap_year_start) / $this->calendar->leap_year_offset);
+//            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts
+//               (" . $this->calendar->leap_year_start . ")");
+                $yearDiffWithLeapStart = $this->getYear() - $this->calendar->leap_year_start;
+                $amountOfYears = ceil($yearDiffWithLeapStart / $this->calendar->leap_year_offset);
 //            dump ("the amount of leap years that has elapsed since the beginning is the following: $amountOfYears");
-//            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ") / " . $this->calendar->leap_year_offset . ")");
+//            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ")
+//               / " . $this->calendar->leap_year_offset . ")");
                 if ($amountOfYears < 0) {
                     $amountOfYears = 0;
                 }

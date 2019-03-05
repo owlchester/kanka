@@ -101,12 +101,10 @@ class GenerateMentions extends Command
                                     ],
                                     $model->$field
                                 );
-                                //$model->$field = preg_replace_callback("`" . $this->url . '\/(.*?)\/(.*?)\/(.*?)`i', [$this, 'fixUrls'], $model->$field);
 
                                 if ($model->isDirty($field)) {
                                     $updated = true;
                                 }
-
                             }
                         }
                     }

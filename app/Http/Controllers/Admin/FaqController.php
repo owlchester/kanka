@@ -49,7 +49,12 @@ class FaqController extends AdminCrudController
             ->order($this->filterService->order(), 'question')
             ->paginate();
         return view('admin.cruds.index', compact(
-            'models', 'name', 'model', 'actions', 'filters', 'filterService',
+            'models',
+            'name',
+            'model',
+            'actions',
+            'filters',
+            'filterService',
             'route'
         ));
     }

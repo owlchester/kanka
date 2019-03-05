@@ -118,11 +118,16 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function events()
     {
-        return $this->hasManyThrough('App\Models\Event', 'App\Models\EntityEvent', 'calendar_id', 'entity_id');
+        return $this->hasManyThrough(
+            'App\Models\Event',
+            'App\Models\EntityEvent',
+            'calendar_id',
+            'entity_id'
+        );
     }
 
     /**
@@ -153,7 +158,7 @@ class Calendar extends MiscModel
                                 $datesub->whereNull('recurring_until')
                                     ->orWhereRaw("recurring_until >= '" . $this->currentDate('year') . "'");
                             });
-                        });
+                    });
                 } else {
                     $sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
                 }
@@ -279,7 +284,7 @@ class Calendar extends MiscModel
                 (isset($months[$date[1] - 1]) ? $months[$date[1] - 1]['name'] : $date[1]) . ', ' .
                 (isset($years[$date[0]]) ? $years[$date[0]] : $date[0]) . ' ' .
                 $this->suffix;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->date;
         }
     }

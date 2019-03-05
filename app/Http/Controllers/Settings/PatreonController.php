@@ -43,9 +43,13 @@ class PatreonController extends Controller
     {
         try {
             $this->patreon->user(auth()->user())->link($request->get('code', false));
-            return redirect()->route('settings.patreon')->with('success', trans('settings.patreon.success'));
+            return redirect()->route('settings.patreon')
+                ->with('success', trans('settings.patreon.success'));
         } catch (\Exception $e) {
-            return redirect()->route('settings.patreon')->withErrors(trans('settings.patreon.errors.' . $e->getMessage()));
+            return redirect()->route('settings.patreon')
+                ->withErrors(
+                    trans('settings.patreon.errors.' . $e->getMessage())
+                );
         }
     }
 }

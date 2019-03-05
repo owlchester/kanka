@@ -7,15 +7,18 @@ use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardWidgetObserver
 {
+    /**
+     * @param CampaignDashboardWidget $model
+     */
     public function saving(CampaignDashboardWidget $model)
     {
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
 
         $model->config = json_encode(empty($model->config) ? [] : $model->config, JSON_UNESCAPED_SLASHES);
 
-        if ($model->widget == CampaignDashboardWidget::WIDGET_RECENT) {
-
-        }
+//        if ($model->widget == CampaignDashboardWidget::WIDGET_RECENT) {
+//            // do something else?
+//        }
     }
 
     public function creating(CampaignDashboardWidget $model)

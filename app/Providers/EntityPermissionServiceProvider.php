@@ -21,7 +21,6 @@ class EntityPermissionServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**

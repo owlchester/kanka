@@ -322,7 +322,7 @@ class CrudController extends Controller
         }
 
         return redirect()->route($this->route . '.' . $subroute)
-            ->with('success', trans_choice('crud.destroy_many.success', $count,['count' => $count]));
+            ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
     }
 
     /**

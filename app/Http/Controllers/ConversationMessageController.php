@@ -47,7 +47,9 @@ class ConversationMessageController extends Controller
 
         return redirect()
             ->route('conversations.show', $conversation)
-            ->with('success', trans('conversations.messages.create.success', ['name' => $conversation->name, 'entity' => $participant->author()]));
+            ->with('success', trans('conversations.messages.create.success', [
+                'name' => $conversation->name, 'entity' => $participant->author()
+            ]));
     }
 
     /**

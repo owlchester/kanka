@@ -160,7 +160,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function quests()
     {
@@ -170,7 +170,8 @@ class Character extends MiscModel
             'character_id',
             'id',
             'id',
-            'quest_id');
+            'quest_id'
+        );
     }
 
     /**
@@ -207,11 +208,18 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function conversations()
     {
-        return $this->hasManyThrough('App\Models\Conversation', 'App\Models\ConversationParticipant', 'character_id', 'id', 'id', 'conversation_id');
+        return $this->hasManyThrough(
+            'App\Models\Conversation',
+            'App\Models\ConversationParticipant',
+            'character_id',
+            'id',
+            'id',
+            'conversation_id'
+        );
     }
 
     /**

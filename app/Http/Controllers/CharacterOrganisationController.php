@@ -97,8 +97,11 @@ class CharacterOrganisationController extends Controller
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOrganisationMember $request, Character $character, CharacterOrganisation $characterOrganisation)
-    {
+    public function update(
+        StoreOrganisationMember $request,
+        Character $character,
+        CharacterOrganisation $characterOrganisation
+    ) {
         $this->authorize('organisation', [$character, 'edit']);
 
         $characterOrganisation->update($request->all());

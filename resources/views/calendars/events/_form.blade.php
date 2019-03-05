@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-6">
             <span class="calendar-event-action" id="calendar-action-new">
-                <i class="fa fa-calendar-o"></i> {{ __('calendars.event.actions.new') }}
+                <i class="far fa-calendar"></i> {{ __('calendars.event.actions.new') }}
             </span>
         </div>
     </div>
@@ -26,7 +26,7 @@
                     App\Models\Entity::class,
                     false,
                     'crud.fields.entity',
-                    'search.calendar_event'
+                    'search.entities-with-reminders'
                 ) !!}
             </div>
             <div class="col-md-8 calendar-new-event-field">

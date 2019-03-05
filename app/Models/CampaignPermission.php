@@ -31,7 +31,7 @@ class CampaignPermission extends Model
 
     /**
      * Optional campaign role
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaignRole()
     {

@@ -72,14 +72,19 @@ class ConversationParticipantController extends Controller
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreConversationParticipant $request, Conversation $conversation, ConversationParticipant $conversationParticipant)
-    {
+    public function update(
+        StoreConversationParticipant $request,
+        Conversation $conversation,
+        ConversationParticipant $conversationParticipant
+    ) {
         $this->authorize('update', $conversation);
 
         $conversationParticipant->update($request->all());
 
         return redirect()->route($conversation->pluralType() . '.show', [$conversation->child->id, $this->tab])
-            ->with('success', trans('crud.notes.edit.success', ['name' => $conversationParticipant->name, 'entity' => $conversation->name]));
+            ->with('success', trans('crud.notes.edit.success', [
+                'name' => $conversationParticipant->name, 'entity' => $conversation->name
+            ]));
     }
 
     /**

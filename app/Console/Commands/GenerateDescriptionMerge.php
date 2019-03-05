@@ -51,7 +51,6 @@ class GenerateDescriptionMerge extends Command
             $model = new $entity;
             $model->with('campaign')->chunk(500, function ($models) use ($entity) {
                 foreach ($models as $model) {
-
                     $updated = false;
                     /** @var $model \App\Models\Item */
                     if (!empty(strip_tags($model->history))) {

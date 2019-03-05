@@ -8,6 +8,10 @@ use App\Models\CampaignDashboardWidget;
 
 class CalendarWidgetController extends Controller
 {
+    /**
+     * @param CampaignDashboardWidget $campaignDashboardWidget
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function add(CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
@@ -24,7 +28,10 @@ class CalendarWidgetController extends Controller
             ->with('widget', $campaignDashboardWidget);
     }
 
-
+    /**
+     * @param CampaignDashboardWidget $campaignDashboardWidget
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function sub(CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {

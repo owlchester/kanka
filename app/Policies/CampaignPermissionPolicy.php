@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-
 use App\Models\Campaign;
 use App\Traits\AdminPolicyTrait;
 use App\User;
@@ -23,7 +22,7 @@ class CampaignPermissionPolicy
      */
     public function view(User $user, CampaignPermission $campaignPermission)
     {
-        //
+        return false;
     }
 
     /**

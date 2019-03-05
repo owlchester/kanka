@@ -104,7 +104,7 @@ class EntityEvent extends MiscModel
                 (isset($months[$dates[1] - 1]) ? $months[$dates[1] - 1]['name'] : $dates[1]) . ', ' .
                 (isset($years[$dates[0]]) ? $years[$dates[0]] : $dates[0]) . ' ' .
                 $this->calendar->suffix;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->date;
         }
     }
@@ -141,10 +141,12 @@ class EntityEvent extends MiscModel
         $label = '';
 
         if ($this->is_recurring) {
-            $label .= '<i class="fa fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="' . trans('calendars.fields.is_recurring') . '"></i>';
+            $label .= '<i class="fa fa-refresh pull-right margin-l-5" data-toggle="tooltip" title="'
+                . trans('calendars.fields.is_recurring') . '"></i>';
         }
         if ($this->comment) {
-            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" title="' . e($this->comment) . '">' . e($this->comment) . '</span>';
+            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" title="'
+                . e($this->comment) . '">' . e($this->comment) . '</span>';
         }
 
         return $label;

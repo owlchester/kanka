@@ -5,6 +5,6 @@
         App\Models\Entity::class,
         false,
         'crud.fields.entity',
-        'search.relations'
+        'search.entities-with-relations'
     ) !!}
 </div>

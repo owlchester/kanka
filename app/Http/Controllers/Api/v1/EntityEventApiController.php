@@ -74,8 +74,12 @@ class EntityEventApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
-    {
+    public function destroy(
+        \Illuminate\Http\Request $request,
+        Campaign $campaign,
+        Entity $entity,
+        EntityEvent $entityEvent
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
         $entityEvent->delete();

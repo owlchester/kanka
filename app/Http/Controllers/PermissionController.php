@@ -50,6 +50,5 @@ class PermissionController extends Controller
 
         return redirect()->route($entity->pluralType() . '.show', $entity->child->id)
             ->with('success_raw', trans('crud.permissions.success'));
-
     }
 }

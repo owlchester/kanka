@@ -54,7 +54,11 @@ trait Filterable
                         ->select($this->getTable() . '.*')
                         ->with($relationName)
                         ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
-                        ->where(str_replace($relationName, 'f', str_replace('-', '.', $key)), $operator, ($operator == '=' ? $filterValue : "%$filterValue%"));
+                        ->where(
+                            str_replace($relationName, 'f', str_replace('-', '.', $key)),
+                            $operator,
+                            ($operator == '=' ? $filterValue : "%$filterValue%")
+                        );
                 } else {
                     if (in_array($key, $this->explicitFilters)) {
                         $query->where($this->getTable() . '.' . $key, $operator, "$filterValue");
@@ -65,7 +69,11 @@ trait Filterable
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
                     } else {
-                        $query->where($this->getTable() . '.' . $key, $operator, ($operator == '=' ? $filterValue : "%$filterValue%"));
+                        $query->where(
+                            $this->getTable() . '.' . $key,
+                            $operator,
+                            ($operator == '=' ? $filterValue : "%$filterValue%")
+                        );
                     }
                 }
             }

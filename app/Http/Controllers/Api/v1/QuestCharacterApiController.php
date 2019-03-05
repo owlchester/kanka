@@ -55,8 +55,12 @@ class QuestCharacterApiController extends ApiController
      * @param QuestCharacter $questCharacter
      * @return Resource
      */
-    public function update(RequestCharacter $requestCharacter, Campaign $campaign, Quest $quest, QuestCharacter $questCharacter)
-    {
+    public function update(
+        RequestCharacter $requestCharacter,
+        Campaign $campaign,
+        Quest $quest,
+        QuestCharacter $questCharacter
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest);
         $questCharacter->update($requestCharacter->all());
@@ -71,8 +75,12 @@ class QuestCharacterApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\RequestCharacter $requestCharacter, Campaign $campaign, Quest $quest, QuestCharacter $questCharacter)
-    {
+    public function destroy(
+        \Illuminate\Http\RequestCharacter $requestCharacter,
+        Campaign $campaign,
+        Quest $quest,
+        QuestCharacter $questCharacter
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest);
         $questCharacter->delete();

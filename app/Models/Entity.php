@@ -61,11 +61,17 @@ class Entity extends Model
     ];
 
     /**
-     * Get the child location
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Get the child entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function child()
     {
+        if ($this->type == 'attribute_template') {
+            return $this->attributeTemplate();
+        } elseif ($this->type == 'attribute_template') {
+            return $this->diceRoll();
+        }
+
         return $this->{$this->type}();
     }
 
@@ -80,7 +86,7 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function attribute_template()
+    public function attributeTemplate()
     {
         return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
     }
@@ -96,7 +102,7 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function dice_roll()
+    public function diceRoll()
     {
         return $this->hasOne('App\Models\DiceRoll', 'id', 'entity_id');
     }
@@ -182,7 +188,7 @@ class Entity extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags()
     {

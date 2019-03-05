@@ -20,7 +20,8 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         return new Collection($campaign
             ->quests()
-            ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events', 'entity.relationships', 'entity.attributes'])
+            ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
+                'entity.relationships', 'entity.attributes'])
             ->acl()
             ->paginate());
     }

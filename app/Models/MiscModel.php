@@ -123,7 +123,7 @@ abstract class MiscModel extends Model
             //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
         }
 
-        $pureHistory = preg_replace("/\s/ui",' ', $pureHistory);
+        $pureHistory = preg_replace("/\s/ui", ' ', $pureHistory);
         $pureHistory = trim($pureHistory);
 
         if (!empty($pureHistory)) {
@@ -217,11 +217,13 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return $this
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function entity()
     {
-        return $this->hasOne('App\Models\Entity', 'entity_id', 'id')->where('type', $this->entityType);
+        return $this
+            ->hasOne('App\Models\Entity', 'entity_id', 'id')
+            ->where('type', $this->entityType);
     }
 
     /**

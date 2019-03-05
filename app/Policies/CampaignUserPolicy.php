@@ -21,7 +21,6 @@ class CampaignUserPolicy
      */
     public function view(User $user, CampaignUser $campaignUser)
     {
-        //
     }
 
     /**
@@ -32,7 +31,6 @@ class CampaignUserPolicy
      */
     public function create(User $user)
     {
-        //
     }
 
     /**
@@ -44,7 +42,8 @@ class CampaignUserPolicy
      */
     public function update(User $user, CampaignUser $campaignUser)
     {
-        return $user->campaign->id == $campaignUser->campaign->id && $this->isAdmin($user) && $campaignUser->role != 'owner';
+        return $user->campaign->id == $campaignUser->campaign->id
+            && $this->isAdmin($user) && $campaignUser->role != 'owner';
     }
 
     /**
@@ -56,6 +55,7 @@ class CampaignUserPolicy
      */
     public function delete(User $user, CampaignUser $campaignUser)
     {
-        return $user->campaign->id == $campaignUser->campaign->id && $this->isAdmin($user) && $campaignUser->role != 'owner';
+        return $user->campaign->id == $campaignUser->campaign->id
+            && $this->isAdmin($user) && $campaignUser->role != 'owner';
     }
 }

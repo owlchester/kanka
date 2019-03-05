@@ -74,8 +74,12 @@ class EntityFileApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Entity $entity, EntityFile $entityFile)
-    {
+    public function destroy(
+        \Illuminate\Http\Request $request,
+        Campaign $campaign,
+        Entity $entity,
+        EntityFile $entityFile
+    ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
         $entityFile->delete();

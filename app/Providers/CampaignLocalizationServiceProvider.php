@@ -21,7 +21,6 @@ class CampaignLocalizationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**

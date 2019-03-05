@@ -155,7 +155,9 @@ class PermissionService
 
         $permissions = ['user' => [], 'role' => []];
         foreach (CampaignPermission::whereIn('key', $keys)->get() as $perm) {
-            $permissions[(!empty($perm->user_id) ? 'user' : 'role')][(!empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id)][$perm->action()] = $perm;
+            $key = (!empty($perm->user_id) ? 'user' : 'role');
+            $subkey = (!empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);
+            $permissions[$key][$subkey][$perm->action()] = $perm;
         }
 
         return $permissions;

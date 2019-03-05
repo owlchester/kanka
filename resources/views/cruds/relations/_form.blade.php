@@ -8,7 +8,7 @@
                 App\Models\Entity::class,
                 false,
                 'relations.fields.target',
-                'search.relations',
+                'search.entities-with-relations',
                 'relations.placeholders.target'
             ) !!}
         </div>

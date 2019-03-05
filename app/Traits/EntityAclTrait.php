@@ -34,7 +34,7 @@ trait EntityAclTrait
 
         return $query
             ->where('entities.is_private', false)
-            ->where(function($subquery) use ($service) {
+            ->where(function ($subquery) use ($service) {
                 return $subquery
                     ->whereIn('entities.id', $service->entityIds())
                     ->orWhereIn('entities.type', $service->entityTypes());

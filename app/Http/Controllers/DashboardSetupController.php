@@ -41,7 +41,7 @@ class DashboardSetupController extends Controller
     {
         $position = 0;
         $widgets = request()->post('widgets');
-        foreach ($widgets as $i =>  $widget) {
+        foreach ($widgets as $i => $widget) {
             $wi = CampaignDashboardWidget::findOrFail($widget);
             $wi->update([
                 'position' => $position

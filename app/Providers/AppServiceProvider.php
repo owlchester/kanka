@@ -148,8 +148,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Permission to view an entity
-        Blade::if('viewentity', function(Entity $entity) {
-           return EntityPermission::canView($entity);
+        Blade::if('viewentity', function (Entity $entity) {
+            return EntityPermission::canView($entity);
         });
 
 //        Blade::if('campaigns', function () {

@@ -1,5 +1,5 @@
-<input type="hidden" id="mention-route-entities" value="{{ route('search.mentions') }}"/>
-<input type="hidden" id="mention-route-months" value="{{ route('search.months') }}"/>
+<input type="hidden" id="mention-route-entities" value="{{ route('search.live') }}"/>
+<input type="hidden" id="mention-route-months" value="{{ route('search.calendar-months') }}"/>
 
 @section('scripts')
     <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>

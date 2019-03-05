@@ -132,7 +132,7 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function quests()
     {
@@ -142,7 +142,8 @@ class Organisation extends MiscModel
             'organisation_id',
             'id',
             'id',
-            'quest_id');
+            'quest_id'
+        );
     }
 
     /**

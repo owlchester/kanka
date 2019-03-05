@@ -24,12 +24,12 @@
                 delimiter: ['@', '#'],
                 source: function(query, process, delimiter) {
                     if (delimiter === '@') {
-                        $.getJSON('{{ route('search.mentions') }}?q='+ query, function(data) {
+                        $.getJSON('{{ route('search.live') }}?q='+ query, function(data) {
                             process(data)
                         })
                     }
                     if (delimiter === '#') {
-                        $.getJSON('{{ route('search.months') }}?q='+ query, function(data) {
+                        $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
                             process(data)
                         })
                     }

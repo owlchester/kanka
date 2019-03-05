@@ -254,29 +254,34 @@ Route::group([
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
         // Search
-        Route::get('/search/calendars', 'SearchController@calendars')->name('calendars.find');
-        Route::get('/search/characters', 'SearchController@characters')->name('characters.find');
-        Route::get('/search/campaigns', 'SearchController@campaigns')->name('campaigns.find');
-        Route::get('/search/events', 'SearchController@events')->name('events.find');
-        Route::get('/search/families', 'SearchController@families')->name('families.find');
-        Route::get('/search/item', 'SearchController@items')->name('items.find');
-        Route::get('/search/locations', 'SearchController@locations')->name('locations.find');
-        Route::get('/search/notes', 'SearchController@notes')->name('notes.find');
-        Route::get('/search/organisations', 'SearchController@organisations')->name('organisations.find');
-        Route::get('/search/tags', 'SearchController@tags')->name('tags.find');
-        Route::get('/search/dice_rolls', 'SearchController@diceRolls')->name('dice_rolls.find');
-        Route::get('/search/quests', 'SearchController@quests')->name('quests.find');
-        Route::get('/search/conversations', 'SearchController@conversations')->name('conversations.find');
-        Route::get('/search/races', 'SearchController@races')->name('races.find');
-        Route::get('/search/entity-calendars', 'SearchController@entityCalendars')->name('entity-calendars.find');
-        Route::get('/search/attribute_templates', 'SearchController@attributeTemplates')->name('attribute_templates.find');
-
         Route::get('/search', 'SearchController@search')->name('search');
-        Route::get('/search/entities', 'SearchController@entities')->name('search.relations');
-        Route::get('/search/calendar_event', 'SearchController@calendarEvent')->name('search.calendar_event');
-        Route::get('/search/mentions', 'SearchController@mentions')->name('search.mentions');
-        Route::get('/search/months', 'SearchController@months')->name('search.months');
-        Route::get('/search/live', 'SearchController@live')->name('search.live');
+
+        // Misc Model Search
+        Route::get('/search/calendars', 'Search\MiscController@calendars')->name('calendars.find');
+        Route::get('/search/characters', 'Search\MiscController@characters')->name('characters.find');
+        Route::get('/search/campaigns', 'Search\MiscController@campaigns')->name('campaigns.find');
+        Route::get('/search/events', 'Search\MiscController@events')->name('events.find');
+        Route::get('/search/families', 'Search\MiscController@families')->name('families.find');
+        Route::get('/search/item', 'Search\MiscController@items')->name('items.find');
+        Route::get('/search/locations', 'Search\MiscController@locations')->name('locations.find');
+        Route::get('/search/notes', 'Search\MiscController@notes')->name('notes.find');
+        Route::get('/search/organisations', 'Search\MiscController@organisations')->name('organisations.find');
+        Route::get('/search/tags', 'Search\MiscController@tags')->name('tags.find');
+        Route::get('/search/dice-rolls', 'Search\MiscController@diceRolls')->name('dice_rolls.find');
+        Route::get('/search/quests', 'Search\MiscController@quests')->name('quests.find');
+        Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
+        Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
+        Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
+
+        // Entity Search
+        Route::get('/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');
+
+        // Global Entity Search
+        Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
+        Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
+        Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
+        Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
+
         Route::get('/redirect', 'RedirectController@index')->name('redirect');
 
         // Campaign Dashboard Widgets

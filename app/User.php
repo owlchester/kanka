@@ -168,20 +168,6 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * Determine if the user is currently viewer a campaign as a member or owner
-     * @param bool $strict
-     * @return bool
-     */
-    public function member($strict = false)
-    {
-        die("don't use member anymore");
-        if ($strict) {
-            return $this->campaign_role == 'member';
-        }
-        return in_array($this->campaign_role, ['member', 'owner']);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function logs()
@@ -223,8 +209,8 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * @param $campaignId
-     * @return $this
+     * @param null $campaignId
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function campaignRoles($campaignId = null)
     {
@@ -414,9 +400,13 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasRole('patreon') || $this->hasRole('admin');
     }
 
+    /**
+     * @return bool
+     */
     public function isGoblinPatron()
     {
-        return ($this->hasRole('patreon') && !empty($this->patreon_pledge) && $this->patreon_pledge != self::PLEDGE_KOBOLD)
+        return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
+                && $this->patreon_pledge != self::PLEDGE_KOBOLD)
            || $this->hasRole('admin')
         ;
     }
@@ -451,7 +441,8 @@ class User extends \TCG\Voyager\Models\User
         return $query
             ->select([
                 $this->getTable() . '.*',
-                DB::raw("(select count(*) from user_logs where user_id = " . $this->getTable() . ".id and action = 'login') as cpt")
+                DB::raw("(select count(*) from user_logs where user_id = " . $this->getTable()
+                    . ".id and action = 'login') as cpt")
             ])
             ->orderBy('cpt', 'desc')
             ;

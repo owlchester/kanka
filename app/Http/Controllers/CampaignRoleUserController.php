@@ -98,8 +98,11 @@ class CampaignRoleUserController extends Controller
      * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCampaignRoleUser $request, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
-    {
+    public function update(
+        StoreCampaignRoleUser $request,
+        CampaignRole $campaignRole,
+        CampaignRoleUser $campaignRoleUser
+    ) {
         $this->authorize('user', $campaignRole);
         $campaign = CampaignLocalization::getCampaign();
 

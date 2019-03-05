@@ -74,13 +74,13 @@ trait AclTrait
         $key = $this->entityType . '_read_';
         $entityIds = [];
         foreach (CampaignPermission::where('key', 'like', "%$key%")
-                     ->where(function ($query) use ($user, $roleIds) {
-                         if (!$user) {
-                             return $query->whereIn('campaign_role_id', $roleIds);
-                         }
-                         return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
-                     })
-                     ->get() as $permission) {
+            ->where(function ($query) use ($user, $roleIds) {
+                if (!$user) {
+                    return $query->whereIn('campaign_role_id', $roleIds);
+                }
+                return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
+            })
+             ->get() as $permission) {
             /** @var $permission CampaignPermission */
             // One of the permissions is a role, so we have access to all
             if (!empty($this->aclUseEntityID)) {
@@ -130,10 +130,10 @@ trait AclTrait
             ->select($this->getTable() . '.*')
             ->leftJoin('entities', 'entities.id', $this->getTable() . '.entity_id')
             ->where('is_private', false)
-            ->where(function($subquery) use ($service, $primaryKey) {
-            return $subquery
-                ->whereIn('entities.id', $service->entityIds())
-                ->orWhereIn('entities.type', $service->entityTypes());
-        });
+            ->where(function ($subquery) use ($service, $primaryKey) {
+                return $subquery
+                    ->whereIn('entities.id', $service->entityIds())
+                    ->orWhereIn('entities.type', $service->entityTypes());
+            });
     }
 }

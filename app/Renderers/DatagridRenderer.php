@@ -140,16 +140,23 @@ class DatagridRenderer
                 $html = $this->route('organisation.name', trans('crud.fields.organisation'));
             } elseif ($type == 'character') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('character.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.character'));
+                $html = $this->route(
+                    'character.name',
+                    !empty($column['label']) ? $column['label'] : trans('crud.fields.character')
+                );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('entity.name', !empty($column['label']) ? $column['label'] : trans('crud.fields.entity'));
+                $html = $this->route(
+                    'entity.name',
+                    !empty($column['label']) ? $column['label'] : trans('crud.fields.entity')
+                );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user || !$this->user->isAdmin()) {
                     return null;
                 }
-                $html = $this->route('is_private',
+                $html = $this->route(
+                    'is_private',
                     '<i class="fa fa-lock" title="' . trans('crud.fields.is_private') . '"></i>'
                 );
             } elseif ($type == 'calendar_date') {
@@ -236,7 +243,8 @@ class DatagridRenderer
 
         // Render an empty row
         if ($rows == 0) {
-            $html .= '<tr><td colspan="' . (count($this->columns)+2) . '"><i>' . __('crud.datagrid.empty') . '</i></td>';
+            $html .= '<tr><td colspan="' . (count($this->columns)+2) . '"><i>'
+                . __('crud.datagrid.empty') . '</i></td>';
         }
         return $html;
     }
@@ -253,7 +261,8 @@ class DatagridRenderer
             $model->refresh();
         }
 
-        $html = '<tr data-id="' . $model->id . '" ' . ($useEntity ? 'data-entity-id="' . $model->entity->id . '"' : null);
+        $html = '<tr data-id="' . $model->id . '" '
+            . ($useEntity ? 'data-entity-id="' . $model->entity->id . '"' : null);
         if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {
                 $html .= ' ' . $name . '="' . $data($model) . '"';
@@ -287,7 +296,8 @@ class DatagridRenderer
             // Just for name, a link to the view
             if ($column == 'name') {
                 $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
-                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltipWithName() . '" data-html="true">' . e($model->{$column}) . '</a>';
+                $content = '<a href="' . $route . '" data-toggle="tooltip" title="' . $model->tooltipWithName()
+                    . '" data-html="true">' . e($model->{$column}) . '</a>';
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
@@ -316,7 +326,11 @@ class DatagridRenderer
                 }
                 $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class;
                 if (!empty($who)) {
-                    $whoRoute = !empty($column['parent_route']) ? (is_string($column['parent_route']) ? $column['parent_route'] : $column['parent_route']($model)) : $this->getOption('baseRoute');
+                    $whoRoute = !empty($column['parent_route'])
+                        ? (is_string($column['parent_route'])
+                            ? $column['parent_route']
+                            : $column['parent_route']($model))
+                        : $this->getOption('baseRoute');
                     $route = route($whoRoute . '.show', ['id' => $who->id]);
                     $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(true) .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
@@ -324,28 +338,38 @@ class DatagridRenderer
             } elseif ($type == 'location') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->location) {
-                    $content = '<a href="' . route('locations.show', $model->location->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->location->tooltipWithName() . '">' .
+                    $content = '<a href="' . route('locations.show', $model->location->id)
+                        . '" data-toggle="tooltip" data-html="true" title="'
+                        . $model->location->tooltipWithName() . '">' .
                         e($model->location->name) . '</a>';
                 } elseif ($model->parentLocation) {
-                    $content = '<a href="' . route('locations.show', $model->parentLocation->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->parentLocation->tooltipWithName() . '">' .
+                    $content = '<a href="' . route('locations.show', $model->parentLocation->id)
+                        . '" data-toggle="tooltip" data-html="true" title="'
+                        . $model->parentLocation->tooltipWithName() . '">' .
                         e($model->parentLocation->name) . '</a>';
                 }
             } elseif ($type == 'character') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->character) {
-                    $content = '<a href="' . route('characters.show', $model->character->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->character->tooltipWithName() . '">' .
+                    $content = '<a href="' . route('characters.show', $model->character->id)
+                        . '" data-toggle="tooltip" data-html="true" title="'
+                        . $model->character->tooltipWithName() . '">' .
                         e($model->character->name) . '</a>';
                 }
             } elseif ($type == 'organisation') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->organisation) {
-                    $content = '<a href="' . route('organisations.show', $model->organisation->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->organisation->tooltipWithName() . '">' .
+                    $content = '<a href="' . route('organisations.show', $model->organisation->id)
+                        . '" data-toggle="tooltip" data-html="true" title="'
+                        . $model->organisation->tooltipWithName() . '">' .
                         e($model->organisation->name) . '</a>';
                 }
             } elseif ($type == 'entity') {
                 $class = 'hidden-xs hidden-sm';
                 if ($model->entity) {
-                    $content = '<a href="' . route($model->entity->pluralType() . '.show', $model->entity->child->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->entity->child->tooltipWithName() . '">' .
+                    $content = '<a href="' . route($model->entity->pluralType()
+                            . '.show', $model->entity->child->id) . '" data-toggle="tooltip" data-html="true" title="'
+                        . $model->entity->child->tooltipWithName() . '">' .
                         e($model->entity->child->name) . '</a>';
                 }
             } elseif ($type == 'is_private') {
@@ -415,7 +439,9 @@ class DatagridRenderer
         </a>';
 
         if ($this->user && $this->user->can('update', $model)) {
-            $content .= ' <a href="' . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id]) . '" title="' . trans('crud.edit') . '">
+            $content .= ' <a href="'
+                . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id])
+                . '" title="' . trans('crud.edit') . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>';
         }
@@ -463,7 +489,8 @@ class DatagridRenderer
         $activeFilters = $this->filterService->activeFilters();
 
         $html = '
-        <div class="table-filters" title="' . __('crud.filters.title') . '" data-toggle="popover" data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
+        <div class="table-filters" title="' . __('crud.filters.title') . '" data-toggle="popover" '
+            . 'data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
             <i class="fa fa-filter"></i>
             ' . (!empty($activeFilters) ? '<span class="label label-danger">' . $activeFilters . '</span>' : null) . '
             <i class="fa fa-caret-down"></i>

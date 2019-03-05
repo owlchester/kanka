@@ -48,5 +48,4 @@ class Relation extends Model
     {
         return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
-
 }

@@ -101,7 +101,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function quests()
     {
@@ -111,7 +111,8 @@ class Item extends MiscModel
             'item_id',
             'id',
             'id',
-            'quest_id');
+            'quest_id'
+        );
     }
 
     /**
