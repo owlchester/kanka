@@ -7,6 +7,7 @@
 /storage/*.key
 /storage
 /vendor
+/.scannerwork
 /.idea
 /.vagrant
 Homestead.json

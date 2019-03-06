@@ -7,6 +7,11 @@ use Illuminate\Console\Command;
 class GenerateMentions extends Command
 {
     /**
+     * Redirect string for old links
+     */
+    const REDIRECT_WHAT = '/redirect?what';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -34,16 +39,6 @@ class GenerateMentions extends Command
      * @var string
      */
     protected $campaignLink = '';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.
@@ -74,45 +69,7 @@ class GenerateMentions extends Command
             $model = new $entity;
             $model->with('campaign')->chunk(500, function ($models) use ($entity) {
                 foreach ($models as $model) {
-                    $attributes = $model->getAttributes();
-                    $campaignId = $model->campaign_id;
-                    $updated = false;
-                    /** @var $model \App\Models\Character */
-
-                    if ($entity == 'App\Models\Campaign') {
-                        $this->campaignLink = $model->getMiddlewareLink();
-                    } else {
-                        $this->campaignLink = $model->campaign->getMiddlewareLink();
-                    }
-
-                    $fields = ['entry'];
-                    foreach ($fields as $field) {
-                        if (array_has($attributes, $field)) {
-                            if (strpos($model->$field, '/redirect?what') !== false) {
-                                // Fix http to https & www to direct
-                                $model->$field = str_replace(
-                                    [
-                                        '"/redirect?what',
-                                        'https://kanka.io/redirect?what'
-                                    ],
-                                    [
-                                        '"https://kanka.io/en/' . $this->campaignLink . '/redirect?what',
-                                        'https://kanka.io/en/' . $this->campaignLink . '/redirect?what',
-                                    ],
-                                    $model->$field
-                                );
-
-                                if ($model->isDirty($field)) {
-                                    $updated = true;
-                                }
-                            }
-                        }
-                    }
-
-                    if ($updated) {
-                        $this->count++;
-                        $model->save();
-                    }
+                    $this->mapModelMentions($model, $entity);
                 }
             });
         }
@@ -122,17 +79,49 @@ class GenerateMentions extends Command
         return true;
     }
 
-    private function fixUrls($segments)
+    /**
+     * @param $model
+     * @param $entity
+     */
+    private function mapModelMentions($model, $entity)
     {
-        if ($segments[2] === 'campaign') {
-            return $segments[0]; // Good
+        $attributes = $model->getAttributes();
+        $updated = false;
+        /** @var $model \App\Models\Character */
+
+        if ($entity == 'App\Models\Campaign') {
+            $this->campaignLink = $model->getMiddlewareLink();
+        } else {
+            $this->campaignLink = $model->campaign->getMiddlewareLink();
         }
 
-        // Redirect?
-        if (empty($segments[1])) {
-            dd($segments);
+        $fields = ['entry'];
+        foreach ($fields as $field) {
+            if (array_has($attributes, $field)) {
+                if (strpos($model->$field, self::REDIRECT_WHAT) !== false) {
+                    // Fix http to https & www to direct
+                    $model->$field = str_replace(
+                        [
+                            '"/redirect?what',
+                            'https://kanka.io' . self::REDIRECT_WHAT
+                        ],
+                        [
+                            '"https://kanka.io/en/' . $this->campaignLink . self::REDIRECT_WHAT,
+                            'https://kanka.io/en/' . $this->campaignLink . self::REDIRECT_WHAT,
+                        ],
+                        $model->$field
+                    );
+
+                    if ($model->isDirty($field)) {
+                        $updated = true;
+                    }
+                }
+            }
         }
 
-        return $this->url . "/" . $segments[1] . "/" . $this->campaignLink . "/" . $segments[2] . "/";
+        if ($updated) {
+            $this->count++;
+            $model->save();
+        }
     }
 }

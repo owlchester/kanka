@@ -189,7 +189,7 @@ class SearchService
             $months = $calendar->months();
 
             foreach ($months as $month) {
-                if ((!empty($term) && strpos($month['name'], $term) !== false) || empty($term)) {
+                if ((!empty($this->term) && strpos($month['name'], $this->term) !== false) || empty($this->term)) {
                     $searchResults[] = [
                         'fullname' => $month['name'],
                         'name' => $month['name'] . ' (' . $calendar->name . ')',

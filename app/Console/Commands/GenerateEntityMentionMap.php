@@ -13,6 +13,8 @@ use Illuminate\Console\Command;
 
 class GenerateEntityMentionMap extends Command
 {
+    const ENTRY_FIELD = 'entry';
+
     /**
      * The name and signature of the console command.
      *
@@ -75,6 +77,8 @@ class GenerateEntityMentionMap extends Command
         ];
         $this->entityMapping->verbose = true;
 
+        $tooltip = 'data-toggle="tooltip"';
+
         // Cleanup any existing mentions
         EntityMention::truncate();
 
@@ -85,13 +89,13 @@ class GenerateEntityMentionMap extends Command
             $model = new $entity;
             $model
                 ->with('entity')
-                ->where('entry', 'like', '%redirect?what=%')
-                ->chunk(1000, function ($models) use ($entity) {
+                ->where(self::ENTRY_FIELD, 'like', '%redirect?what=%')
+                ->chunk(1000, function ($models) {
                     /** @var MiscModel $model */
                     foreach ($models as $model) {
                         $pattern = '<a href="([^"]*)">(.*?)&lt;(.*?)&gt;';
                         $model->entry = preg_replace("`$pattern`i", '<a href="$1">$2</a>', $model->entry);
-                        if ($model->isDirty('entry')) {
+                        if ($model->isDirty(self::ENTRY_FIELD)) {
                             $this->redirectFixed++;
                             $model->timestamps = false;
                             $model->save();
@@ -106,14 +110,13 @@ class GenerateEntityMentionMap extends Command
             $model = new $entity;
             $model
                 ->with('entity')
-                ->where('entry', 'like', '%data-toggle="tooltip"%')
+                ->where(self::ENTRY_FIELD, 'like', '%' . $tooltip . '%')
                 ->chunk(5000, function ($models) use ($entity) {
                     $bar = $this->output->createProgressBar(count($models));
                     $bar->start();
                     foreach ($models as $model) {
                         $this->entityCount++;
                         /** @var MiscModel $model */
-                        //$this->info("Checking " . $model->getTable() . ":" . $model->id);
                         $this->mapCount += $this->entityMapping->mapModel($model);
                         $bar->advance();
                     }
@@ -126,13 +129,12 @@ class GenerateEntityMentionMap extends Command
         // Entity Notes
         $this->info("Entity Notes");
         $this->mapCount = 0;
-        EntityNote::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) {
+        EntityNote::where(self::ENTRY_FIELD, 'like', '%' . $tooltip . '%')->chunk(5000, function ($models) {
             $bar = $this->output->createProgressBar(count($models));
             $bar->start();
             foreach ($models as $model) {
                 $this->entityCount++;
                 /** @var EntityNote $model */
-                //$this->info("Checking entity_note:" . $model->id);
                 $this->mapCount += $this->entityMapping->mapEntityNote($model);
                 $bar->advance();
             }
@@ -144,13 +146,12 @@ class GenerateEntityMentionMap extends Command
         // Campaigns
         $this->info("Campaigns");
         $this->mapCount = 0;
-        Campaign::where('entry', 'like', '%data-toggle="tooltip"%')->chunk(5000, function ($models) {
+        Campaign::where(self::ENTRY_FIELD, 'like', '%' . $tooltip . '%')->chunk(5000, function ($models) {
             $bar = $this->output->createProgressBar(count($models));
             $bar->start();
             foreach ($models as $model) {
                 $this->entityCount++;
                 /** @var Campaign $model */
-                //$this->info("Checking campaign:" . $model->id);
                 $this->mapCount += $this->entityMapping->mapCampaign($model);
                 $bar->advance();
             }

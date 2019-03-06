@@ -68,7 +68,7 @@ class Entity extends Model
     {
         if ($this->type == 'attribute_template') {
             return $this->attributeTemplate();
-        } elseif ($this->type == 'attribute_template') {
+        } elseif ($this->type == 'dice_roll') {
             return $this->diceRoll();
         }
 

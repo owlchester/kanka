@@ -28,24 +28,10 @@ class GenerateTrees extends Command
     protected $description = 'Create the trees';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle()
     {
-//        Location::fixTree();
-//        Organisation::fixTree();
-//        Tag::fixTree();
-//        AttributeTemplate::fixTree();
         Family::fixTree();
         $this->info("Fixed tree.");
     }

@@ -34,16 +34,6 @@ class GenerateImageMove extends Command
     protected $description = 'Move local images to s3';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -51,79 +41,81 @@ class GenerateImageMove extends Command
     public function handle()
     {
         $count = 0;
+        $imageField = 'image';
+        $thumbName = '_thumb';
 
-        foreach (Calendar::whereNotNull('image')->get() as $model) {
+        foreach (Calendar::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Campaign::whereNotNull('image')->get() as $model) {
+        foreach (Campaign::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Character::whereNotNull('image')->get() as $model) {
+        foreach (Character::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Event::whereNotNull('image')->get() as $model) {
+        foreach (Event::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Family::whereNotNull('image')->get() as $model) {
+        foreach (Family::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Item::whereNotNull('image')->get() as $model) {
+        foreach (Item::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Journal::whereNotNull('image')->get() as $model) {
+        foreach (Journal::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Location::whereNotNull('image')->get() as $model) {
+        foreach (Location::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
             $this->move($model->map);
 
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Note::whereNotNull('image')->get() as $model) {
+        foreach (Note::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Organisation::whereNotNull('image')->get() as $model) {
+        foreach (Organisation::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Quest::whereNotNull('image')->get() as $model) {
+        foreach (Quest::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
-        foreach (Tag::whereNotNull('image')->get() as $model) {
+        foreach (Tag::whereNotNull($imageField)->get() as $model) {
             $count++;
             $this->move($model->image);
-            $thumb = str_replace('.', '_thumb.', $model->image);
+            $thumb = str_replace('.', $thumbName, $model->image);
             $this->move($thumb);
         }
 
@@ -137,9 +129,10 @@ class GenerateImageMove extends Command
      */
     protected function move($file)
     {
-        if (Storage::disk('public')->exists($file)) {
-            $content = Storage::disk('public')->get($file);
-            Storage::disk('s3')->put($file, $content, 'public');
+        $disk = 'public';
+        if (Storage::disk($disk)->exists($file)) {
+            $content = Storage::disk($disk)->get($file);
+            Storage::disk('s3')->put($file, $content, $disk);
             unset($content);
         }
     }

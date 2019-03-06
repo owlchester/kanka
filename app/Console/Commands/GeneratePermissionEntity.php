@@ -28,29 +28,19 @@ class GeneratePermissionEntity extends Command
     protected $count = 0;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-
+        $operator = 'NOT LIKE';
         CampaignPermission::where([
-            ['key', 'NOT LIKE', '%read'],
-            ['key', 'NOT LIKE', '%edit'],
-            ['key', 'NOT LIKE', '%add'],
-            ['key', 'NOT LIKE', '%delete'],
-            ['key', 'NOT LIKE', '%permission'],
+            ['key', $operator, '%read'],
+            ['key', $operator, '%edit'],
+            ['key', $operator, '%add'],
+            ['key', $operator, '%delete'],
+            ['key', $operator, '%permission'],
         ])->chunk(2000, function ($models) {
             /** @var CampaignPermission $permission */
             foreach ($models as $permission) {

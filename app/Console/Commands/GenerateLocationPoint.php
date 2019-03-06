@@ -27,16 +27,6 @@ class GenerateLocationPoint extends Command
     protected $points = 0;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle()
