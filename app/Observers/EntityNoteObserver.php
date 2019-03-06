@@ -3,14 +3,8 @@
 namespace App\Observers;
 
 use App\Models\EntityNote;
-use App\Models\Event;
-use App\Models\MiscModel;
 use App\Services\EntityMappingService;
-use App\Services\ImageService;
-use App\Services\LinkerService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Stevebauman\Purify\Purify;
 
 class EntityNoteObserver
 {

@@ -7,9 +7,6 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Tag;
-use App\Services\ImageService;
-use App\Services\LinkerService;
-use Illuminate\Support\Facades\Session;
 
 class EntityObserver
 {
