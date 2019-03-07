@@ -153,6 +153,10 @@ class CrudController extends Controller
             $model = new $this->model;
             $new = $model->create($request->all());
 
+            // Fire an event for the Entity Observer
+            $model->crudSaved();
+            $model->entity->crudSaved();
+
             $success = trans($this->view . '.create.success', [
                 'name' => link_to_route(
                     $this->view . '.show',
@@ -246,6 +250,11 @@ class CrudController extends Controller
         try {
             $data = $this->prepareData($request, $model);
             $model->update($data);
+
+            // Fire an event for the Entity Observer
+            $model->crudSaved();
+            $model->entity->crudSaved();
+
             $success = trans($this->view . '.edit.success', [
                 'name' => link_to_route(
                     $this->route . '.show',

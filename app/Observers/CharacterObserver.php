@@ -9,20 +9,13 @@ use App\Models\MiscModel;
 class CharacterObserver extends MiscObserver
 {
     /**
-     * After a character model has been saved to the db
      * @param MiscModel $model
      */
-    public function saved(MiscModel $model)
+    public function crudSaved(MiscModel $model)
     {
-        parent::saved($model);
-
-        // Handle character traits
-        if (request()->has('personality_name')) {
-            $this->saveTraits($model, 'personality');
-        }
-        if (request()->has('appearance_name')) {
-            $this->saveTraits($model, 'appearance');
-        }
+        parent::crudSaved($model);
+        $this->saveTraits($model, 'personality');
+        $this->saveTraits($model, 'appearance');
     }
 
     /**

@@ -67,14 +67,11 @@ abstract class MiscObserver
     }
 
     /**
+     * Event fired when the model is created from the crud controller
      * @param MiscModel $model
      */
-    public function saved(MiscModel $model)
+    public function crudSaved(MiscModel $model)
     {
-        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
-            return;
-        }
-
         // Handle entity
         $entity = $model->entity;
         if (empty($entity)) {
@@ -94,6 +91,16 @@ abstract class MiscObserver
             //$entity->syncEntityEventOnSaved($model);
             $this->syncMentions($model, $entity);
             $model->refresh();
+        }
+    }
+
+    /**
+     * @param MiscModel $model
+     */
+    public function saved(MiscModel $model)
+    {
+        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
+            return;
         }
     }
 

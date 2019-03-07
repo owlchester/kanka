@@ -95,6 +95,22 @@ abstract class MiscModel extends Model
     protected $defaultOrderDirection = 'asc';
 
     /**
+     * Array of our custom model events declared under model property $observables
+     * @var array
+     */
+    protected $observables = [
+        'crudSaved',
+    ];
+
+    /**
+     * Fire an event to the observer to know that the sub entity was saved from the crud
+     */
+    public function crudSaved()
+    {
+        $this->fireModelEvent('crudSaved', false);
+    }
+
+    /**
      * Create a short name for the interface
      * @return mixed|string
      */
@@ -114,7 +130,6 @@ abstract class MiscModel extends Model
     {
         // Always remove tags. ALWAYS.
         $pureHistory = strip_tags($this->{$this->tooltipField});
-
 
         if ($stripSpecial) {
             $pureHistory = str_replace('"', '\'', $pureHistory);

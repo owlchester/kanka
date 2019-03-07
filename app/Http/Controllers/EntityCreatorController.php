@@ -95,6 +95,8 @@ class EntityCreatorController extends Controller
         /** @var MiscModel $model */
         $model = new $class;
         $new = $model->create($values);
+        $new->crudSaved();
+        $new->entity->crudSaved();
 
         return response()->json([
             'success' => true,

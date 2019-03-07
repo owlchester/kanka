@@ -13,9 +13,9 @@ class EntityObserver
     // not used
 
     /**
-     * An entity has been saved.
+     * An entity has been saved from the crud
      */
-    public function saved(Entity $entity)
+    public function crudSaved(Entity $entity)
     {
         $this->saveTags($entity);
     }
@@ -25,10 +25,7 @@ class EntityObserver
      */
     protected function saveTags(Entity $entity)
     {
-        if (defined('MISCELLANY_DYNAMIC_TAG_CREATION')) {
-            return;
-        }
-        define('MISCELLANY_DYNAMIC_TAG_CREATION', true);
+        // Only save tags if we are in a form. But we should probably move this?
         $ids = request()->post('tags', []);
 
         // Only use tags the user can actually view. This way admins can

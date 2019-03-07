@@ -28,8 +28,6 @@ class UserObserver
             $user->password = Hash::make(request()->post('password_new'));
         }
 
-        // Uploading an avatar
-
         // Handle image. Let's use a service for this.
         ImageService::handle($user, $user->getTable(), 60, 'avatar');
     }
