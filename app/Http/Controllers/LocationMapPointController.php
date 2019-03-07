@@ -131,7 +131,8 @@ class LocationMapPointController extends Controller
         $this->authorize('update', $location);
 
         try {
-            $mapPoint->update($request->all());
+            $data = $this->prepareData($request, $mapPoint);
+            $mapPoint->update($data);
 
             if ($request->ajax()) {
                 return response()->json([
@@ -191,5 +192,21 @@ class LocationMapPointController extends Controller
 
         return redirect()->route($this->route . '.show', [$location, '#map'])
             ->with('success', trans($this->view . '.destroy.success', ['name' => $mapPoint->location->name]));
+    }
+
+    /**
+     * @param Request $request
+     * @param MiscModel $model
+     * @return array
+     */
+    protected function prepareData(Request $request, MapPoint $model)
+    {
+        $data = $request->all();
+        foreach ($model->nullableForeignKeys as $field) {
+            if (!request()->has($field) && !isset($data[$field])) {
+                $data[$field] = null;
+            }
+        }
+        return $data;
     }
 }
