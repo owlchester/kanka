@@ -8,6 +8,6 @@
         </div>
     </div>
     <div class="panel-footer">
-        <a href="{{ route('helpers.link') }}" data-toggle="tooltip" title="{{ trans('helpers.link.description') }}" target="_blank">{{ trans('crud.linking_help') }} <i class="fa fa-external-link-alt"></i></a>
+        <a href="{{ route('helpers.link') }}" data-toggle="tooltip" title="{{ trans('helpers.link.description') }}" target="_blank">{{ trans('crud.linking_help') }}</a>
     </div>
 </div>
