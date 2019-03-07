@@ -15,6 +15,7 @@ class CalendarObserver extends MiscObserver
     {
         parent::saving($model);
 
+        // Only go further if we have a name field (coming from the calendar's form)
         if (!request()->has('name') || $model->savingObserver === false) {
             return;
         }

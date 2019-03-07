@@ -26,6 +26,7 @@
                 @include('cruds.fields.location')
 
                 @if ($campaign->enabled('characters'))
+                    <input type="hidden" name="sync_org_members" value="1">
                     <div class="form-group">
                         {!! Form::members(
                             'id',

@@ -115,6 +115,7 @@ class Character extends MiscModel
         'location_id',
         'family_id',
         'race_id',
+        'is_personality_visible', // checkbox
     ];
 
     /**

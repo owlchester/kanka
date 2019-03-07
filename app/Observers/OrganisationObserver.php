@@ -45,13 +45,11 @@ class OrganisationObserver extends MiscObserver
      */
     protected function saveMembers(Organisation $organisation)
     {
-        //if (request()->has('tags')) {
-        // Don't want to run this twice. When creating a tag, it will call this function again.
-        // Todo: better options?
-        if (defined('MISCELLANY_DYNAMIC_MEMBER_CREATION')) {
+        // Only execute this if a proper post attribute is in the body
+        if (!request()->has('sync_org_members')) {
             return;
         }
-        define('MISCELLANY_DYNAMIC_MEMBER_CREATION', true);
+
         $ids = request()->post('members', []);
 
         // Only use tags the user can actually view. This way admins can
@@ -79,7 +77,7 @@ class OrganisationObserver extends MiscObserver
             }
         }
 
-        // Detatch the remaining
+        // Detach the remaining
         foreach ($existing as $k) {
             $k->delete();
         }
