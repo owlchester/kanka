@@ -507,15 +507,18 @@ div.mce-fullscreen {
   max-height: 90px;
   margin-bottom: 5px;
   border: 1px solid #eee;
+  overflow: hidden;
 
   .entity-image {
     height: 80px;
     width: 80px;
     margin-right: 10px;
-    display: inline-block;
+    float: left;
   }
   .entity-name {
     vertical-align: top;
+    display: block;
+    max-height: 80px;
   }
 
 

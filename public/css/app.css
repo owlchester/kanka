@@ -33,6 +33,10 @@
   display: block;
 }
 
+.calendar tbody td .reminder-entity {
+  display: block;
+}
+
 .calendar tbody td .calendar-event-block {
   display: block;
   margin: 2px 0;
@@ -2866,17 +2870,20 @@ div.mce-fullscreen {
   max-height: 90px;
   margin-bottom: 5px;
   border: 1px solid #eee;
+  overflow: hidden;
 }
 
 .crud-field-entity .entity-image {
   height: 80px;
   width: 80px;
   margin-right: 10px;
-  display: inline-block;
+  float: left;
 }
 
 .crud-field-entity .entity-name {
   vertical-align: top;
+  display: block;
+  max-height: 80px;
 }
 
 .crud-field-entity:hover {
