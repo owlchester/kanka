@@ -69,14 +69,14 @@ class QuestLocationApiController extends ApiController
     }
 
     /**
-     * @param RequestLocation $requestLocation
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
      * @param QuestLocation $questLocation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(
-        \Illuminate\Http\RequestLocation $requestLocation,
+        \Illuminate\Http\Request $request,
         Campaign $campaign,
         Quest $quest,
         QuestLocation $questLocation

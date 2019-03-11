@@ -1,0 +1,239 @@
+# Conversations
+
+---
+
+- [All Conversations](#all-conversations)
+- [Single Conversation](#conversation)
+- [Conversation Participants](#conversation-participants)
+- [Conversation Messages](#conversation-messages)
+- [Create a Conversation](#create-conversation)
+- [Update a Conversation](#update-conversation)
+- [Delete a Conversation](#delete-conversation)
+
+<a name="all-conversations"></a>
+## All Conversations
+
+You can get a list of all the conversations of a campaign by using the following endpoint.
+
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaign/{campaign.id}/`.
+
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `conversations` | Default |
+
+### Results
+```json
+{
+    "data": [
+         {
+                "id": 1,
+                "name": "Bob's Tavern",
+                "entry": null,
+                "image": "conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
+                "image_full": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
+                "image_thumb": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef_thumb.jpeg",
+                "is_private": false,
+                "entity_id": 335,
+                "tags": [],
+                "created_at": {
+                    "date": "2018-08-22 12:35:21.000000",
+                    "timezone_type": 3,
+                    "timezone": "UTC"
+                },
+                "created_by": 1,
+                "updated_at": {
+                    "date": "2018-08-23 07:18:25.000000",
+                    "timezone_type": 3,
+                    "timezone": "UTC"
+                },
+                "updated_by": 1,
+                "type": "In Game",
+                "target": "members",
+                "participants": 3,
+                "messages": 6
+            },
+    ]
+}
+```
+
+
+<a name="conversation"></a>
+## Conversation
+
+To get the details of a single conversation, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `conversations/{conversation.id}` | Default |
+
+### Results
+```json
+{
+    "data": {
+        "id": 1,
+        "name": "Bob's Tavern",
+        "entry": null,
+        "image": "conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
+        "image_full": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
+        "image_thumb": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef_thumb.jpeg",
+        "is_private": false,
+        "entity_id": 335,
+        "tags": [],
+        "created_at": {
+            "date": "2018-08-22 12:35:21.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "created_by": 1,
+        "updated_at": {
+            "date": "2018-08-23 07:18:25.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "updated_by": 1,
+        "type": "In Game",
+        "target": "members",
+        "participants": 3,
+        "messages": 6
+    },
+
+}
+```
+
+
+<a name="conversation-participants"></a>
+## Conversation Participants
+
+To get the participants of an conversation, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `conversations/{conversation.id}/conversation_participants` | Default |
+
+### Results
+```json
+{
+    "data": [
+        {
+            "conversation_id": 1,
+            "created_by": null,
+            "character_id": null,
+            "user_id": 1
+        },
+        {
+            "conversation_id": 1,
+            "created_by": null,
+            "character_id": null,
+            "user_id": 31
+        },
+        {
+            "conversation_id": 1,
+            "created_by": null,
+            "character_id": null,
+            "user_id": 2
+        }
+    ]
+}
+```
+
+> {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) a participant from an conversation can also be done using the same patterns as for other endpoints.
+
+
+<a name="conversation-messages"></a>
+## Conversation Messages
+
+To get the messages of an conversation, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `conversations/{conversation.id}/conversation_messages` | Default |
+
+### Results
+```json
+{
+    "data": [
+        {
+            "conversation_id": 1,
+            "created_by": null,
+            "character_id": 63,
+            "user_id": null,
+            "message": "Hey! I'm thirsty."
+        },
+        {
+            "conversation_id": 1,
+            "created_by": null,
+            "character_id": null,
+            "user_id": null,
+            "message": "Wadayawant?"
+        },
+        {
+            "conversation_id": 1,
+            "created_by": null,
+            "character_id": 70,
+            "user_id": null,
+            "message": "Cookies!"
+        },
+    ]
+}
+```
+
+> {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) a messages from an conversation can also be done using the same patterns as for other endpoints.
+
+
+<a name="create-conversation"></a>
+## Create a Conversation
+
+To create a conversation, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| POST | `conversations/` | Default |
+
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `name` | `string` (Required) | Name of the conversation |
+| `type` | `string` | Type of conversation |
+| `target` | `string` | Available options: `users` and `characters`  |
+| `tags` | `array` | Array of tag ids |
+| `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
+| `image` | `stream` | Stream to file uploaded to the conversation |
+| `image_url` | `string` | URL to a picture to be used for the conversation |
+
+### Results
+
+> {success} Code 200 with JSON body of the new conversation.
+
+
+<a name="update-conversation"></a>
+## Update a Conversation
+
+To update a conversation, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| PUT/PATCH | `conversations/{conversation.id}` | Default |
+
+### Body
+
+The same body parameters are available as for when creating a conversation.
+
+### Results
+
+> {success} Code 200 with JSON body of the updated conversation.
+
+
+<a name="delete-conversation"></a>
+## Delete a Conversation
+
+To delete a conversation, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| DELETE | `conversations/{conversation.id}` | Default |
+
+### Results
+
+> {success} Code 200 with JSON.

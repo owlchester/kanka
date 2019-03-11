@@ -65,14 +65,14 @@ class QuestItemApiController extends ApiController
     }
 
     /**
-     * @param RequestItem $requestItem
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
      * @param QuestItem $questItem
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(
-        \Illuminate\Http\RequestItem $requestItem,
+        \Illuminate\Http\Request $request,
         Campaign $campaign,
         Quest $quest,
         QuestItem $questItem

@@ -22,6 +22,7 @@
             menubar: false,
             mentions: {
                 delimiter: ['@', '#'],
+                delay: 250,
                 source: function(query, process, delimiter) {
                     if (delimiter === '@') {
                         $.getJSON('{{ route('search.live') }}?q='+ query, function(data) {

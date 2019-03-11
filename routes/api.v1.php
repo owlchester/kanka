@@ -35,6 +35,9 @@ Route::apiResources([
     'campaigns.quests.quest_organisations' => 'QuestOrganisationApiController',
     'campaigns.races' => 'RaceApiController',
     'campaigns.tags' => 'TagApiController',
+    'campaigns.conversations' => 'ConversationApiController',
+    'campaigns.conversations.conversation_participants' => 'ConversationParticipantApiController',
+    'campaigns.conversations.conversation_messages' => 'ConversationMessageApiController',
     //'campaigns.' => 'ApiController',
 
     // Entity elements

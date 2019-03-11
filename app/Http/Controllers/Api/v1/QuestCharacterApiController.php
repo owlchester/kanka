@@ -69,14 +69,14 @@ class QuestCharacterApiController extends ApiController
     }
 
     /**
-     * @param RequestCharacter $requestCharacter
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
      * @param QuestCharacter $questCharacter
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(
-        \Illuminate\Http\RequestCharacter $requestCharacter,
+        \Illuminate\Http\Request $request,
         Campaign $campaign,
         Quest $quest,
         QuestCharacter $questCharacter

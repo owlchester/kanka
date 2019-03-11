@@ -69,14 +69,14 @@ class QuestOrganisationApiController extends ApiController
     }
 
     /**
-     * @param RequestOrganisation $requestOrganisation
+     * @param \Illuminate\Http\Request $request
      * @param Campaign $campaign
      * @param QuestOrganisation $questOrganisation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(
-        \Illuminate\Http\RequestOrganisation $requestOrganisation,
+        \Illuminate\Http\Request $request,
         Campaign $campaign,
         Quest $quest,
         QuestOrganisation $questOrganisation
