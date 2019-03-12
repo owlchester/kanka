@@ -154,8 +154,8 @@ class CrudController extends Controller
             $new = $model->create($request->all());
 
             // Fire an event for the Entity Observer
-            $model->crudSaved();
-            $model->entity->crudSaved();
+            $new->crudSaved();
+            $new->entity->crudSaved();
 
             $success = trans($this->view . '.create.success', [
                 'name' => link_to_route(
