@@ -60,6 +60,9 @@ class EntityObserver
         }
     }
 
+    /**
+     * @param Entity $entity
+     */
     public function created(Entity $entity)
     {
         // If the user has created a new entity but doesn't have the permission to read or edit it,

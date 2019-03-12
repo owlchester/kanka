@@ -43,7 +43,6 @@ abstract class MiscObserver
         $model->slug = str_slug($model->name, '');
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
 
-
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
         if (defined('MISCELLANY_SKIP_ENTITY_CREATION') ||
@@ -72,7 +71,16 @@ abstract class MiscObserver
      */
     public function crudSaved(MiscModel $model)
     {
-        // Handle entity
+        // Characters use this for personality traits
+    }
+
+    /**
+     * @param MiscModel $model
+     */
+    public function saved(MiscModel $model)
+    {
+        // Whenever an misc model is saved, we need to make sure it has an associated entity with it.
+        // If none exists, we need to create one. Otherwise, we need to update it.
         $entity = $model->entity;
         if (empty($entity)) {
             $entity = new Entity([
@@ -86,21 +94,9 @@ abstract class MiscObserver
 
         // Once saved, refresh the model so that we can call $model->entity
         if ($entity->save()) {
-            // Before we refresh the model, check if the model has a calendar date, and
-            // if those values are dirty.
-            //$entity->syncEntityEventOnSaved($model);
+            // Take care of mentions for the entity.
             $this->syncMentions($model, $entity);
             $model->refresh();
-        }
-    }
-
-    /**
-     * @param MiscModel $model
-     */
-    public function saved(MiscModel $model)
-    {
-        if (defined('MISCELLANY_SKIP_ENTITY_CREATION')) {
-            return;
         }
     }
 
