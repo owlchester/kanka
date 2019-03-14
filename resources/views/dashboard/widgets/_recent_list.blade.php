@@ -5,12 +5,12 @@
            title="{{ $entity->name }}"
            href="{{ $entity->child->getLink() }}"></a>
 
-        <div class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true">
-            {{ link_to($entity->child->getLink(), $entity->name)  }}
-        </div>
         <span class="pull-right elapsed" title="{{ $entity->child->updated_at }}">
-                <i class="far fa-clock"></i> {{ $entity->child->updated_at->diffForHumans() }}
-            </span>
+            <i class="far fa-clock"></i> {{ $entity->child->updated_at->diffForHumans() }}
+        </span>
+        <a class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true" href="{{ $entity->child->getLink() }}">
+            {{ $entity->name }}
+        </a>
     </div>
 @endforeach
 <div class="text-center">
