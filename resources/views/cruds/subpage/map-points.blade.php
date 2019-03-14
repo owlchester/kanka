@@ -24,7 +24,7 @@
 
                     <p class="help-block">{{ __('entities/map-points.helper') }}</p>
 
-                    <table id="location-quests" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
+                    <table id="entity-map-points" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
                         <tbody><tr>
                             <th class="avatar"><br /></th>
                             <th>{{ trans('locations.fields.name') }}</th>
@@ -33,10 +33,10 @@
                         @foreach ($data as $location)
                             <tr>
                                 <td>
-                                    <a class="entity-image" style="background-image: url('{{ $location->location->getImageUrl(true) }}');" title="{{ $location->location->name }}" href="{{ route('quests.show', $location->location_id) }}"></a>
+                                    <a class="entity-image" style="background-image: url('{{ $location->location->getImageUrl(true) }}');" title="{{ $location->location->name }}" href="{{ route('locations.show', $location->location_id) }}"></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('quests.show', $location->location_id) }}" data-toggle="tooltip" title="{{ $location->location->tooltip() }}">{{ $location->location->name }}</a>
+                                    <a href="{{ route('locations.show', $location->location_id) }}" data-toggle="tooltip" title="{{ $location->location->tooltip() }}">{{ $location->location->name }}</a>
                                 </td>
                                 <td>
                                     @if (!empty($location->location->map))
