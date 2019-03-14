@@ -2,6 +2,7 @@
 
 return [
     'actions'           => [
+        'apply'         => 'Applica',
         'back'          => 'Indietro',
         'copy'          => 'Copia',
         'explore_view'  => 'Vista annidata',
@@ -21,6 +22,7 @@ return [
             'add'               => 'Aggiungi un attributo',
             'add_block'         => 'Aggiungi un blocco',
             'add_checkbox'      => 'Aggiungi un checkbox',
+            'add_text'          => 'Aggiungi un testo',
             'apply_template'    => 'Applica un Template per gli Attributi',
             'manage'            => 'Gestisci',
         ],
@@ -38,9 +40,10 @@ return [
             'title'         => 'Aggiorna l\'attributo per :name',
         ],
         'fields'        => [
-            'attribute' => 'Attributo',
-            'template'  => 'Template',
-            'value'     => 'Valore',
+            'attribute'             => 'Attributo',
+            'community_templates'   => 'Templates della Community',
+            'template'              => 'Template',
+            'value'                 => 'Valore',
         ],
         'index'         => [
             'success'   => 'Attributo aggiornato per :entity.',
@@ -61,6 +64,7 @@ return [
             'attribute' => 'Attributo',
             'block'     => 'Blocco',
             'checkbox'  => 'Checkbox',
+            'text'      => 'Testo multilinea',
         ],
         'visibility'    => [
             'private'   => 'Attributo visibile solamente ai membri del ruolo "Admin".',

@@ -1,36 +1,45 @@
 <?php
 
 return [
-    'create'        => [
+    'attribute_templates'   => [
+        'title' => ':name Attributsvorlagen',
+    ],
+    'create'                => [
         'description'   => 'Erstelle eine neue Attributvorlage',
         'success'       => 'Attributvorlage \':name\' erstellt.',
         'title'         => 'Erstelle eine neue Attributvorlage',
     ],
-    'destroy'       => [
+    'destroy'               => [
         'success'   => 'Attributvorlage \':name\' entfernt.',
     ],
-    'edit'          => [
+    'edit'                  => [
         'description'   => 'Bearbeite eine Attributvorlage',
         'success'       => 'Attributvorlage \':name\' aktualisiert.',
         'title'         => 'Attributvorlage :name bearbeiten',
     ],
-    'fields'        => [
-        'attributes'    => 'Attribute',
-        'name'          => 'Name',
+    'fields'                => [
+        'attribute_template'    => 'Übergeordnete Attributvorlage',
+        'attributes'            => 'Attribute',
+        'name'                  => 'Name',
     ],
-    'index'         => [
+    'hints'                 => [
+        'parent_attribute_template' => 'Diese Attributvorlage kann eine übergeordnete Attributvorlage haben. Wenn man diese Vorlage anwendet, werden sie und alle übergeordneten Vorlagen angewendet.',
+    ],
+    'index'                 => [
         'add'           => 'Neue Attributvorlage',
         'description'   => 'Verwalte die Attributvorlagen von :name',
         'header'        => 'Attributvorlagen von :name',
         'title'         => 'Attributvorlagen',
     ],
-    'placeholders'  => [
-        'name'  => 'Name der Attributvorlage',
+    'placeholders'          => [
+        'attribute_template'    => 'Wähle eine Attributvorlage',
+        'name'                  => 'Name der Attributvorlage',
     ],
-    'show'          => [
+    'show'                  => [
         'description'   => 'Eine Detailansicht einer Attributvorlage',
         'tabs'          => [
-            'attributes'    => 'Attribute',
+            'attribute_templates'   => 'Attributsvorlagen',
+            'attributes'            => 'Attribute',
         ],
         'title'         => 'Attributvorlage :name',
     ],

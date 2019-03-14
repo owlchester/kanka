@@ -18,12 +18,14 @@ return [
         'location'      => 'Ort',
         'members'       => 'Mitglieder',
         'name'          => 'Name',
-        'organisation'  => 'Eltern Organisation',
+        'organisation'  => 'Oberorganisation',
+        'organisations' => 'Unterorganisation',
         'relation'      => 'Beziehung',
         'type'          => 'Typ',
     ],
     'helpers'       => [
         'descendants'   => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
+        'nested'        => 'In der verschachtelten Ansicht, siehst du alle Organisationen verschachtelt. Organisationen ohne Oberorganisation werden im Standard angezeigt. Organisationen mit Unterorganisationen, können per Klick geöffnet werden, um die Unterorganisationen zu sehen. Das geht so tief, bis es keine Unterorganisation mehr gibt.',
     ],
     'index'         => [
         'add'           => 'Neue Organisation',

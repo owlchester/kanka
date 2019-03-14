@@ -51,6 +51,7 @@ return [
         'entity_visibility' => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
         'locale'            => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'              => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
+        'system'            => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
         'visibility'        => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'                 => [
@@ -143,6 +144,9 @@ return [
         ],
         'title'         => 'Miembros de la campaña :name',
         'your_role'     => 'Tu eres un <i>:role</i>',
+    ],
+    'panels'                => [
+        'sharing'   => 'Compartir',
     ],
     'placeholders'          => [
         'description'   => 'Corto resumen de tu campaña',

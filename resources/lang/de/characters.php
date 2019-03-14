@@ -120,6 +120,10 @@ return [
     ],
     'quests'        => [
         'description'   => 'Quests des Charakters.',
+        'helpers'       => [
+            'quest_giver'   => 'Quests bei denen der Charakter Auftraggeber war.',
+            'quest_member'  => 'Quests an denen der Charakter teilgenommen hat.',
+        ],
         'title'         => 'Charakter :name Quests',
     ],
     'sections'      => [

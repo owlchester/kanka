@@ -2,6 +2,7 @@
 
 return [
     'actions'           => [
+        'apply'         => 'Alkalmaz',
         'back'          => 'Vissza',
         'copy'          => 'Másolás',
         'explore_view'  => 'Hierarchikus nézet',
@@ -21,6 +22,7 @@ return [
             'add'               => 'Tulajdonság hozzáadása',
             'add_block'         => 'Blokk hozzáadása',
             'add_checkbox'      => 'Jelölőnégyzet hozzáadása',
+            'add_text'          => 'Szöveg hozzáadása',
             'apply_template'    => 'Tulajdonságsablon alkalmazása',
             'manage'            => 'Kezelés',
         ],
@@ -38,9 +40,10 @@ return [
             'title'         => ':name tulajdonságnak frissítése',
         ],
         'fields'        => [
-            'attribute' => 'Tulajdonság',
-            'template'  => 'Sablon',
-            'value'     => 'Érték',
+            'attribute'             => 'Tulajdonság',
+            'community_templates'   => 'Közösségi sablonok',
+            'template'              => 'Sablon',
+            'value'                 => 'Érték',
         ],
         'index'         => [
             'success'   => ':entity számára frissítettük a tulajdonságokat.',
@@ -61,6 +64,7 @@ return [
             'attribute' => 'Tulajdonság',
             'block'     => 'Blokk',
             'checkbox'  => 'Jelölőnégyzet',
+            'text'      => 'Többsoros szöveg',
         ],
         'visibility'    => [
             'private'   => 'A tulajdonság csak az "Admin" szerepű tagok számára látható.',

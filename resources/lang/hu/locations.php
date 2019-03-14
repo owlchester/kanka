@@ -49,6 +49,10 @@ return [
         'description'   => 'Tárgyak ezen a helyszínen vagy erről a helyszínről',
         'title'         => ':name helyszín tárgyai',
     ],
+    'journals'      => [
+        'description'   => 'Naplóbejegyzések a helyszínről',
+        'title'         => ':name helyszín naplóbejegyzései',
+    ],
     'locations'     => [
         'description'   => 'A helyszín alhelyszínei',
         'title'         => ':name helyszín alhelyszínei',
@@ -190,6 +194,7 @@ return [
             'events'        => 'Események',
             'information'   => 'Információ',
             'items'         => 'Tárgyak',
+            'journals'      => 'Naplóbejegyzések',
             'locations'     => 'Helyszínek',
             'map'           => 'Térkép',
             'menu'          => 'Menü',

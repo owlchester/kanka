@@ -91,6 +91,7 @@ return [
         'copyright' => '© 2017 - :current kanka.io. Alle Rechte vorbehalten.',
         'navigation'=> 'Navigation',
         'resources' => 'Ressourcen',
+        'social'    => 'Social',
     ],
     'help'          => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',
@@ -138,10 +139,12 @@ return [
     'roadmap'       => [
         'backlog'       => [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
+            'title'         => 'Backlog',
         ],
         'description'   => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
         'next'          => [
             'description'   => 'Dieses Trello Board enthält alle Features und Verbesserungen an denen momentan gearbeitet wird.',
+            'title'         => 'Als Nächstes',
         ],
         'title'         => 'Roadmap',
     ],

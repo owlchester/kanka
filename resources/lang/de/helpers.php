@@ -9,8 +9,10 @@ return [
         'title'                     => 'Würfelwürfe',
     ],
     'link'          => [
+        'auto_update'   => 'Links zu ändern Objekten werden automatisch aktualisiert, wenn der Name des Ziels oder die Beschreibung sich geändert hat.',
         'description'   => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',
         'title'         => 'Andere Objekte verlinken',
     ],
+    'public'        => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
     'title'         => 'Hilfe',
 ];

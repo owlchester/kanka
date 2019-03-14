@@ -51,6 +51,7 @@ return [
         'entity_visibility' => 'Quando creerai una nuova entità, l\'opzione "Privato" sarà selezionato automaticamente.',
         'locale'            => 'La lingua in cui la tua campagna è scritta. Viene usato per generare contenuti e raggruppare le campagne pubbliche.',
         'name'              => 'Il tuo mondo/campagna può avere qualsiasi nome, basta che contenga almeno 4 lettere o numeri.',
+        'system'            => 'Se la tua campagna è visibile pubblicamente il sistema sarà visualizzato nella pagina :link.',
         'visibility'        => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                 => [
@@ -143,6 +144,9 @@ return [
         ],
         'title'         => 'Membri della Campagna :name',
         'your_role'     => 'Il tuo ruolo: <i>:role</i>',
+    ],
+    'panels'                => [
+        'sharing'   => 'Condividi',
     ],
     'placeholders'          => [
         'description'   => 'Un piccolo riassunto della tua campagna',

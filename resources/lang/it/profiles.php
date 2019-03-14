@@ -41,8 +41,12 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'date_format'   => 'Formato della data',
-            'pagination'    => 'Paginazione (elementi per pagina)',
+            'date_format'       => 'Formato della data',
+            'default_nested'    => 'Vista Nidificata come Predefinita',
+            'pagination'        => 'Paginazione (elementi per pagina)',
+        ],
+        'hints'     => [
+            'default_nested'    => 'Attiva questa opzione se desideri che la vista nidificzata sia utilizzata come vista di default (quando disponibile).',
         ],
         'success'   => 'Impostazioni aggiornate.',
     ],

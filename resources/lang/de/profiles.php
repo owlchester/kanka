@@ -41,8 +41,12 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'date_format'   => 'Datenformatierung',
-            'pagination'    => 'Seitennummerierung (Objekte pro Seite)',
+            'date_format'       => 'Datenformatierung',
+            'default_nested'    => 'Verschachtelte Ansicht als Standard',
+            'pagination'        => 'Seitennummerierung (Objekte pro Seite)',
+        ],
+        'hints'     => [
+            'default_nested'    => 'Aktivier diese Option, wenn du Listen im Standard in der verschachtelten Ansicht sehen möchtest (soweit verfügbar).',
         ],
         'success'   => 'Einstellungen geändert.',
     ],

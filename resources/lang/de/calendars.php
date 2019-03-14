@@ -2,13 +2,14 @@
 
 return [
     'actions'       => [
-        'add_epoch'     => 'Epoche hinzufügen',
-        'add_month'     => 'Monat hinzufügen',
-        'add_moon'      => 'Mond hinzufügen',
-        'add_season'    => 'Jahreszeit hinzufügen',
-        'add_weekday'   => 'Wochentag hinzufügen',
-        'add_year'      => 'Jahr hinzufügen',
-        'today'         => 'Heute',
+        'add_epoch'         => 'Epoche hinzufügen',
+        'add_intercalary'   => 'Schalttage hinzufügen',
+        'add_month'         => 'Monat hinzufügen',
+        'add_moon'          => 'Mond hinzufügen',
+        'add_season'        => 'Jahreszeit hinzufügen',
+        'add_weekday'       => 'Wochentag hinzufügen',
+        'add_year'          => 'Jahr hinzufügen',
+        'today'             => 'Heute',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
@@ -64,6 +65,10 @@ return [
         ],
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
+    'events'        => [
+        'description'   => 'Events in diesem Kalender.',
+        'title'         => 'Kalender :name Events',
+    ],
     'fields'        => [
         'colour'            => 'Farbe',
         'comment'           => 'Kommentar',
@@ -72,6 +77,7 @@ return [
         'current_year'      => 'Aktuelles Jahr',
         'date'              => 'Aktuelles Datum',
         'has_leap_year'     => 'Hat Schaltjahre',
+        'intercalary'       => 'Schalttage',
         'is_recurring'      => 'Wiederkehrend',
         'leap_year_amount'  => 'Tage hinzufügen',
         'leap_year_month'   => 'Monat',
@@ -89,7 +95,11 @@ return [
         'type'              => 'Typ',
         'weekdays'          => 'Wochentage',
     ],
+    'helpers'       => [
+        'month_type'    => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
+    ],
     'hints'         => [
+        'intercalary'   => 'Tage die außerhalb der Standard Monate und Wochen liegen. Sie beeinflussen keine Wochentage aber beeinflussen Mondzyklen.',
         'is_recurring'  => 'Ein Event kann wiederkehrend sein. Es wird dann jedes Jahr am gleichen Tag erscheinen.',
         'months'        => 'Dein Kalender sollte mindestens 2 Monate haben.',
         'moons'         => 'Hinzugefügte Monde werden bei jedem Vollmond im Kalender angezeigt.',
@@ -107,25 +117,36 @@ return [
         'month' => 'Monat',
         'year'  => 'Jahr',
     ],
+    'month_types'   => [
+        'intercalary'   => 'Schaltmonat',
+        'standard'      => 'Standard',
+    ],
     'panels'        => [
-        'leap_year' => 'Schaltjahr',
-        'years'     => 'Benamte Jahre',
+        'intercalary'   => 'Schalttage',
+        'leap_year'     => 'Schaltjahr',
+        'years'         => 'Benamte Jahre',
     ],
     'parameters'    => [
-        'month'     => [
+        'intercalary'   => [
+            'length'    => 'Dauer in Tagen',
+            'month'     => 'Am ende welchen Monats',
+            'name'      => 'Name des Schaltmonats',
+        ],
+        'month'         => [
             'length'    => 'Anzahl der Tage',
             'name'      => 'Monatsname',
+            'type'      => 'Typ',
         ],
-        'moon'      => [
+        'moon'          => [
             'fullmoon'  => 'Vollmond alle (Tage)',
             'name'      => 'Mond Name',
         ],
-        'seasons'   => [
+        'seasons'       => [
             'day'   => 'Starttag',
             'month' => 'Startmonat',
             'name'  => 'Jahreszeitname',
         ],
-        'year'      => [
+        'year'          => [
             'name'      => 'Name',
             'number'    => 'Jahr',
         ],
@@ -149,8 +170,10 @@ return [
     ],
     'show'          => [
         'description'       => 'Eine Detailansicht eines Kalenders',
+        'missing_details'   => 'Dieser Kalender konnte nicht angezeigt werden. Kalender brauchen mindestens 2 Monate und 2 Wochentage um korrekt generiert zu werden.',
         'moon_full_moon'    => ':moon Vollmond',
         'tabs'              => [
+            'events'        => 'Kalender Events',
             'information'   => 'Information',
         ],
         'title'             => 'Kalender :name',

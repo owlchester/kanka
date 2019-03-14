@@ -2,6 +2,7 @@
 
 return [
     'actions'           => [
+        'apply'         => 'Aplicar',
         'back'          => 'Atrás',
         'copy'          => 'Copiar',
         'explore_view'  => 'Vista anidada',
@@ -21,6 +22,7 @@ return [
             'add'               => 'Añadir atributo',
             'add_block'         => 'Añadir un bloque',
             'add_checkbox'      => 'Añadir una casilla',
+            'add_text'          => 'Añadir texto',
             'apply_template'    => 'Aplicar una plantilla de atributos',
             'manage'            => 'Administrar',
         ],
@@ -38,9 +40,10 @@ return [
             'title'         => 'Actualizar atributo a :name',
         ],
         'fields'        => [
-            'attribute' => 'Atributo',
-            'template'  => 'Plantilla',
-            'value'     => 'Valor',
+            'attribute'             => 'Atributo',
+            'community_templates'   => 'Plantillas de la comunidad',
+            'template'              => 'Plantilla',
+            'value'                 => 'Valor',
         ],
         'index'         => [
             'success'   => 'Atributos de :entity actualizados.',
@@ -61,6 +64,7 @@ return [
             'attribute' => 'Atributo',
             'block'     => 'Bloque',
             'checkbox'  => 'Casilla',
+            'text'      => 'Texto multilínea',
         ],
         'visibility'    => [
             'private'   => 'Atributo visible solo para miembros con el rol "Admin".',

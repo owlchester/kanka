@@ -41,8 +41,12 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'date_format'   => 'Dátumformátum',
-            'pagination'    => 'Lapméret (elemek száma egy lapon)',
+            'date_format'       => 'Dátumformátum',
+            'default_nested'    => 'Alapértelmezetten hierarchikus nézet',
+            'pagination'        => 'Lapméret (elemek száma egy lapon)',
+        ],
+        'hints'     => [
+            'default_nested'    => 'Kapcsold be, ha alapértelmezetten Hierarchikus Nézetben szeretnéd látni az entitásaidat (amikor lehetséges)',
         ],
         'success'   => 'A beállításokat megváltoztattuk.',
     ],

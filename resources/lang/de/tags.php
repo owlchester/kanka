@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'children'      => [
+        'description'   => 'Objekte mit diesem Tag',
+        'title'         => 'Tag :name Subtags',
+    ],
     'create'        => [
         'description'   => 'Erstelle eine neue Kategorie',
         'success'       => 'Kategorie \':name\' erstellt.',
@@ -51,5 +55,9 @@ return [
             'tags'          => 'Kategorien',
         ],
         'title'         => 'Kategorie :name',
+    ],
+    'tags'          => [
+        'description'   => 'Subtags',
+        'title'         => 'Tag :name Subtags',
     ],
 ];

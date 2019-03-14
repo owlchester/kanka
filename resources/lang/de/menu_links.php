@@ -16,8 +16,11 @@ return [
     ],
     'fields'        => [
         'entity'    => 'Objekt',
+        'filters'   => 'Filter',
+        'menu'      => 'Menü',
         'name'      => 'Name',
         'tab'       => 'Reiter',
+        'type'      => 'Objekttyp',
     ],
     'index'         => [
         'add'           => 'Neuer Menü Link',

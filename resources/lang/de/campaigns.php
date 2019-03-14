@@ -38,16 +38,20 @@ return [
     ],
     'fields'                => [
         'description'       => 'Beschreibung',
+        'entity_count'      => 'Objekt Zähler',
         'entity_visibility' => 'Objektsichtbarkeit',
+        'header_image'      => 'Titelbild',
         'image'             => 'Bild',
         'locale'            => 'Schauplatz',
         'name'              => 'Name',
+        'system'            => 'System',
         'visibility'        => 'Sichtbarkeit',
     ],
     'helpers'               => [
         'entity_visibility' => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
         'locale'            => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
         'name'              => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
+        'system'            => 'Wenn deine Kampagne öffentlich einsehbar ist, damm wird das System in der :link Seite angezeigt.',
         'visibility'        => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
     'index'                 => [
@@ -141,10 +145,14 @@ return [
         'title'         => 'Kampagne :name Mitglieder',
         'your_role'     => 'Du bist ein <i>:role</i>',
     ],
+    'panels'                => [
+        'sharing'   => 'Teilen',
+    ],
     'placeholders'          => [
         'description'   => 'Eine kurze Zusammenfassung deiner Kampagne',
         'locale'        => 'Sprachcode',
         'name'          => 'Dein Kampagnenname',
+        'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
     'roles'                 => [
         'actions'       => [

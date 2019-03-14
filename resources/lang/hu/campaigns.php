@@ -51,6 +51,7 @@ return [
         'entity_visibility' => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
         'locale'            => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
         'name'              => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
+        'system'            => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
         'visibility'        => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                 => [
@@ -143,6 +144,9 @@ return [
         ],
         'title'         => ':name kampány tagjai',
         'your_role'     => 'A szereped: <i>:role</i>',
+    ],
+    'panels'                => [
+        'sharing'   => 'Megosztás',
     ],
     'placeholders'          => [
         'description'   => 'A kampányod rövid összefoglalása.',

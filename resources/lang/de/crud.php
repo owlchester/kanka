@@ -2,14 +2,17 @@
 
 return [
     'actions'           => [
+        'apply'         => 'Übernehmen',
         'back'          => 'Zurück',
         'copy'          => 'Kopieren',
+        'explore_view'  => 'Verschachtelte Ansicht',
         'export'        => 'Exportieren',
         'find_out_more' => 'Mehr erfahren',
         'go_to'         => 'Gehe zu :name',
         'more'          => 'Mehr Aktionen',
         'move'          => 'Verschieben',
         'new'           => 'Neu',
+        'next'          => 'Weiter',
         'private'       => 'Privat',
         'public'        => 'Öffentlich',
     ],
@@ -17,6 +20,9 @@ return [
     'attributes'        => [
         'actions'       => [
             'add'               => 'Attribut hinzufügen',
+            'add_block'         => 'Block hinzufügen',
+            'add_checkbox'      => 'Checkbox hinzufügen.',
+            'add_text'          => 'Text hinzufügen',
             'apply_template'    => 'Eine Attributvorlage anwenden',
             'manage'            => 'Verwalten',
         ],
@@ -34,9 +40,10 @@ return [
             'title'         => 'Aktualisiere Attribut für :name',
         ],
         'fields'        => [
-            'attribute' => 'Attribut',
-            'template'  => 'Vorlage',
-            'value'     => 'Wert',
+            'attribute'             => 'Attribut',
+            'community_templates'   => 'Community Vorlagen',
+            'template'              => 'Vorlage',
+            'value'                 => 'Wert',
         ],
         'index'         => [
             'success'   => 'Attribute für :entity aktualisiert',
@@ -44,12 +51,24 @@ return [
         ],
         'placeholders'  => [
             'attribute' => 'Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung',
+            'block'     => 'Blockname',
+            'checkbox'  => 'Checkbox Name',
             'template'  => 'Wähle eine Vorlage',
             'value'     => 'Wert des Attributs',
         ],
         'template'      => [
             'success'   => 'Attributvorlage :name wird auf :entity angewendet',
             'title'     => 'Wende eine Attributvorlage auf :name an',
+        ],
+        'types'         => [
+            'attribute' => 'Attribute',
+            'block'     => 'Block',
+            'checkbox'  => 'Checkbox',
+            'text'      => 'Mehrzeiliger Text',
+        ],
+        'visibility'    => [
+            'private'   => 'Attribut nur für Mitglieder der Rolle "Admin" sichtbar.',
+            'public'    => 'Attribut für alle Mitglieder sichtbar.',
         ],
     ],
     'bulk'              => [
@@ -68,6 +87,9 @@ return [
         'title'     => 'Bestätige deine Aktion',
     ],
     'create'            => 'Erstellen',
+    'datagrid'          => [
+        'empty' => 'Nichts zu sehen bisher.',
+    ],
     'delete_modal'      => [
         'close'         => 'Schließen',
         'delete'        => 'Löschen',
@@ -90,11 +112,13 @@ return [
         'calendar'              => 'Kalender',
         'calendar_date'         => 'Datum',
         'character'             => 'Charakter',
+        'copy_attributes'       => 'Kopiere Attribute',
         'creator'               => 'Ersteller',
         'dice_roll'             => 'Würfelwürf',
         'entity'                => 'Objekt',
         'entry'                 => 'Eintrag',
         'event'                 => 'Ereignis',
+        'excerpt'               => 'Auszug',
         'family'                => 'Familie',
         'files'                 => 'Dateien',
         'image'                 => 'Bild',
@@ -130,9 +154,10 @@ return [
         'title' => 'Filter',
     ],
     'forms'             => [
-        'actions'   => [
+        'actions'       => [
             'calendar'  => 'Füge Datum hinzu',
         ],
+        'copy_options'  => 'Kopiere Optionen',
     ],
     'hidden'            => 'Versteckt',
     'hints'             => [
@@ -274,6 +299,7 @@ return [
     'tabs'              => [
         'attributes'    => 'Attribute',
         'calendars'     => 'Kalender',
+        'default'       => 'Standard',
         'events'        => 'Ereignisse',
         'menu'          => 'Menü',
         'notes'         => 'Notizen',

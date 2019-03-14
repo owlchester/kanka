@@ -20,7 +20,11 @@ return [
     'fields'        => [
         'characters'    => 'Charaktere',
         'name'          => 'Name',
+        'races'         => 'Unterrassen',
         'type'          => 'Typ',
+    ],
+    'helpers'       => [
+        'nested'    => 'In der verschachtelten Ansicht, siehst du alle Rassen verschachtelt. Rassen ohne Oberrasse werden im Standard angezeigt. Rassen mit Unterrassen, können per Klick geöffnet werden, um die Unterrassen zu sehen. Das geht so tief, bis es keine Unterrasse mehr gibt.',
     ],
     'index'         => [
         'add'           => 'Neue Rasse',

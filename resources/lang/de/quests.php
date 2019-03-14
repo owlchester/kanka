@@ -45,7 +45,11 @@ return [
         'name'          => 'Name',
         'organisations' => 'Organisationen',
         'quest'         => 'Elternquest',
+        'quests'        => 'Subquest',
         'type'          => 'Typ',
+    ],
+    'helpers'       => [
+        'nested'    => 'In der verschachtelten Ansicht, siehst du alle Quests verschachtelt. Quests ohne Oberquest werden im Standard angezeigt. Quests mit Subquests, können per Klick geöffnet werden, um die Subquests zu sehen. Das geht so tief, bis es keine Subquest mehr gibt.',
     ],
     'hints'         => [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',

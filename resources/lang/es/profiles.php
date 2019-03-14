@@ -41,8 +41,12 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'date_format'   => 'Formato de fecha',
-            'pagination'    => 'Paginación (elementos por página)',
+            'date_format'       => 'Formato de fecha',
+            'default_nested'    => 'Vista anidada por defecto',
+            'pagination'        => 'Paginación (elementos por página)',
+        ],
+        'hints'     => [
+            'default_nested'    => 'Activa esta opción si quieres que las listas estén en vista anidada por defecto (cuando sea posible).',
         ],
         'success'   => 'Ajustes cambiados.',
     ],

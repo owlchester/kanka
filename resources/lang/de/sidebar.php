@@ -12,6 +12,7 @@ return [
     'dashboard'             => 'Dashboard',
     'dice_rolls'            => 'Würfelwürfe',
     'discord'               => 'Discord',
+    'entity-creator'        => 'Schnell erstellen',
     'events'                => 'Ereignisse',
     'families'              => 'Familien',
     'items'                 => 'Gegenstände',

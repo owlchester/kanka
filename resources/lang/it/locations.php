@@ -49,6 +49,10 @@ return [
         'description'   => 'Oggetti presenti o originari del luogo',
         'title'         => 'Oggetti del Luogo :name',
     ],
+    'journals'      => [
+        'description'   => 'Pagine del diario che sono state scritte in questo luogo.',
+        'title'         => 'Pagine del diario per il Luogo :name',
+    ],
     'locations'     => [
         'description'   => 'Luoghi presenti nel luogo',
         'title'         => 'Luoghi del Luogo :name',
@@ -190,6 +194,7 @@ return [
             'events'        => 'Eventi',
             'information'   => 'Informazioni',
             'items'         => 'Oggetti',
+            'journals'      => 'Pagine del diario',
             'locations'     => 'Luoghi',
             'map'           => 'Mappa',
             'menu'          => 'Menu',
