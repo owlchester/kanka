@@ -16,7 +16,7 @@ class LocationObserver extends MiscObserver
         parent::saving($model);
 
         // Skipping observer (for example when BULK or COPY)
-        if ($model->savingObserver === true) {
+        if ($model->savingObserver === false) {
             return;
         }
 
