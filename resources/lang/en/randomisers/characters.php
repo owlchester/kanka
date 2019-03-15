@@ -1,17 +1,6 @@
 <?php
 
 return [
-    'traits' => [
-        'eye' => 'Eyes',
-        'fear' => 'Fears',
-        'skin' => 'Skin',
-        'hair' => 'Hair',
-        'goal' => 'Goals',
-        'mannerism' => 'Mannerisms',
-        'trait' => 'Traits',
-        'height' => 'Height',
-        'weight' => 'Weight',
-    ],
     'eye'       => [
         '0' => 'Black',
         '1' => 'Blue',
@@ -468,5 +457,16 @@ return [
         '7' => 'Principled',
         '8' => 'Guided',
         '9' => 'Conforming',
+    ],
+    'traits'    => [
+        'eye'       => 'Eyes',
+        'fear'      => 'Fears',
+        'goal'      => 'Goals',
+        'hair'      => 'Hair',
+        'height'    => 'Height',
+        'mannerism' => 'Mannerisms',
+        'skin'      => 'Skin',
+        'trait'     => 'Traits',
+        'weight'    => 'Weight',
     ],
 ];

@@ -50,8 +50,9 @@ return [
             'title'     => 'Modifier Member pour :name',
         ],
         'fields'        => [
-            'character' => 'Personnage',
-            'role'      => 'Rôle',
+            'character'     => 'Personnage',
+            'organisation'  => 'Organisation',
+            'role'          => 'Rôle',
         ],
         'helpers'       => [
             'all_members'       => 'Cette liste contient tous les personnages qui font partie de cette organisation et toutes les organisations descendantes.',

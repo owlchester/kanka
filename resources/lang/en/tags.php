@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'children'      => [
+        'description'   => 'Entities belonging to the tag',
+        'title'         => 'Tag :name Children',
+    ],
     'create'        => [
         'description'   => 'Create a new tag',
         'success'       => 'Tag \':name\' created.',
@@ -52,12 +56,8 @@ return [
         ],
         'title'         => 'Tag :name',
     ],
-    'tags' => [
-        'description' => 'Children Tags',
-        'title' => 'Tag :name Children',
+    'tags'          => [
+        'description'   => 'Children Tags',
+        'title'         => 'Tag :name Children',
     ],
-    'children' => [
-        'description' => 'Entities belonging to the tag',
-        'title' => 'Tag :name Children',
-    ]
 ];

@@ -2,14 +2,14 @@
 
 return [
     'actions'       => [
-        'add_epoch'     => 'Add an epoch',
-        'add_month'     => 'Add a month',
-        'add_moon'      => 'Add a moon',
-        'add_season'    => 'Add a season',
-        'add_intercalary'    => 'Add intercalary days',
-        'add_weekday'   => 'Add a week day',
-        'add_year'      => 'Add a year name',
-        'today'         => 'Today',
+        'add_epoch'         => 'Add an epoch',
+        'add_intercalary'   => 'Add intercalary days',
+        'add_month'         => 'Add a month',
+        'add_moon'          => 'Add a moon',
+        'add_season'        => 'Add a season',
+        'add_weekday'       => 'Add a week day',
+        'add_year'          => 'Add a year name',
+        'today'             => 'Today',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Takes place every year',
@@ -77,6 +77,7 @@ return [
         'current_year'      => 'Current Year',
         'date'              => 'Current Date',
         'has_leap_year'     => 'Has leap years',
+        'intercalary'       => 'Intercalary Days',
         'is_recurring'      => 'Recurring',
         'leap_year_amount'  => 'Add Days',
         'leap_year_month'   => 'Month',
@@ -93,19 +94,18 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
-        'intercalary'       => 'Intercalary Days',
+    ],
+    'helpers'       => [
+        'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
     ],
     'hints'         => [
+        'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'        => 'Your calendar should have at least 2 months.',
         'moons'         => 'Adding moons will make them show up in the calendar on every full moon.',
         'seasons'       => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'      => 'Set your weekday names. At least 2 weekdays are required.',
         'years'         => 'Some years are so important that they have their own name.',
-        'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.'
-    ],
-    'helpers' => [
-        'month_type' => 'Intercalary months don\'t use week days, but still influence moons and seasons.'
     ],
     'index'         => [
         'add'           => 'New Calendar',
@@ -117,36 +117,36 @@ return [
         'month' => 'Month',
         'year'  => 'Year',
     ],
-    'month_types' => [
-        'standard' => 'Standard',
-        'intercalary' => 'Intercalary',
+    'month_types'   => [
+        'intercalary'   => 'Intercalary',
+        'standard'      => 'Standard',
     ],
     'panels'        => [
-        'leap_year' => 'Leap Year',
-        'years'     => 'Named Years',
         'intercalary'   => 'Intercalary Days',
+        'leap_year'     => 'Leap Year',
+        'years'         => 'Named Years',
     ],
     'parameters'    => [
-        'intercalary' => [
-            'length' => 'Duration in days',
-            'name' => 'Name of intercalation',
-            'month' => 'At the end of which month',
+        'intercalary'   => [
+            'length'    => 'Duration in days',
+            'month'     => 'At the end of which month',
+            'name'      => 'Name of intercalation',
         ],
-        'month'     => [
+        'month'         => [
             'length'    => 'Days',
             'name'      => 'Month Name',
             'type'      => 'Type',
         ],
-        'moon'      => [
+        'moon'          => [
             'fullmoon'  => 'Full moon every (days)',
             'name'      => 'Moon Name',
         ],
-        'seasons'   => [
+        'seasons'       => [
             'day'   => 'Day start',
             'month' => 'Month start',
             'name'  => 'Season Name',
         ],
-        'year'      => [
+        'year'          => [
             'name'      => 'Year Name',
             'number'    => 'Year',
         ],

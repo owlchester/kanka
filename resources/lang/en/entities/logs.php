@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'actions' => [
-        'create' => 'Create',
-        'update' => 'Update',
-        'delete' => 'Delete',
+    'actions'   => [
+        'create'    => 'Create',
+        'delete'    => 'Delete',
+        'update'    => 'Update',
     ],
-    'fields' => [
-        'date' => 'Date',
-        'action' => 'Action',
+    'fields'    => [
+        'action'    => 'Action',
+        'date'      => 'Date',
     ],
-    'show' => [
+    'show'      => [
         'title' => 'Entity :name Logs',
-    ]
+    ],
 ];

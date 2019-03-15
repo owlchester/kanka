@@ -16,11 +16,11 @@ return [
     ],
     'fields'        => [
         'entity'    => 'Entity',
+        'filters'   => 'Filters',
+        'menu'      => 'Menu',
         'name'      => 'Name',
         'tab'       => 'Tab',
-        'menu'      => 'Menu',
-        'type'     => 'Entity Type',
-        'filters'    => 'Filters',
+        'type'      => 'Entity Type',
     ],
     'index'         => [
         'add'           => 'New Menu Link',
@@ -30,10 +30,10 @@ return [
     ],
     'placeholders'  => [
         'entity'    => 'Choose an entity',
-        'name'      => 'Name of the menu link',
+        'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpage (use the last text of the url)',
+        'name'      => 'Name of the menu link',
         'tab'       => 'entry, relations, notes',
-        'filters'   => 'location_id=15&type=city'
     ],
     'show'          => [
         'description'   => 'A detailed view of a menu link',

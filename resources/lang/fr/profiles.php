@@ -41,8 +41,12 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'date_format'   => 'Format de date',
-            'pagination'    => 'Pagination (éléments par page)',
+            'date_format'       => 'Format de date',
+            'default_nested'    => 'Vue imbriquée par défaut',
+            'pagination'        => 'Pagination (éléments par page)',
+        ],
+        'hints'     => [
+            'default_nested'    => 'Actives cette option pour que les listes s\'affichent par défaut de manière imbriquées.',
         ],
         'success'   => 'Paramètres modifiés.',
     ],

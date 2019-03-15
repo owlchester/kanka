@@ -2,6 +2,7 @@
 
 return [
     'actions'           => [
+        'apply'         => 'Appliquer',
         'back'          => 'Retour',
         'copy'          => 'Copier',
         'explore_view'  => 'Vue Imbriquée',
@@ -21,6 +22,7 @@ return [
             'add'               => 'Ajouter un attribut',
             'add_block'         => 'Ajouter un block',
             'add_checkbox'      => 'Ajouter une case à docher',
+            'add_text'          => 'Ajouter un text',
             'apply_template'    => 'Appliquer un modèle d\'attribut',
             'manage'            => 'Gérer',
         ],
@@ -38,9 +40,10 @@ return [
             'title'         => 'Modifier l\'attribut pour :name',
         ],
         'fields'        => [
-            'attribute' => 'Attribut',
-            'template'  => 'Modèle',
-            'value'     => 'Valeur',
+            'attribute'             => 'Attribut',
+            'community_templates'   => 'Modèles Communautaire',
+            'template'              => 'Modèle',
+            'value'                 => 'Valeur',
         ],
         'index'         => [
             'success'   => 'Attributs modifiés pour :entity.',
@@ -61,6 +64,7 @@ return [
             'attribute' => 'Attribut',
             'block'     => 'Block',
             'checkbox'  => 'Case à cocher',
+            'text'      => 'Texte multiligne',
         ],
         'visibility'    => [
             'private'   => 'Attribut seulement visible aux membres du rôle "Admin".',
@@ -109,6 +113,7 @@ return [
         'calendar_date'         => 'Date calendrier',
         'character'             => 'Personnage',
         'copy_attributes'       => 'Copier les attributs',
+        'copy_notes'            => 'Copier les notes d\'entité',
         'creator'               => 'Créateur',
         'dice_roll'             => 'Jet de dés',
         'entity'                => 'Entité',
@@ -170,6 +175,7 @@ return [
         'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Inconnu',
         'updated'   => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'      => 'Visionner les journaux de l\'entité',
     ],
     'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
@@ -299,6 +305,8 @@ return [
         'calendars'     => 'Calendriers',
         'default'       => 'Défaut',
         'events'        => 'Événements',
+        'map-points'    => 'Points de carte',
+        'mentions'      => 'Mentions',
         'menu'          => 'Menu',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'                => [
+    'create'                            => [
         'description'           => 'Créer une nouvelle campagne',
         'helper'                => [
             'first' => 'Merci pour l\'intérêt! Avant de pouvoir avancer, nous n\'avons que besoin d\'un <b>nom de campagne</b>. Ceci est le nom unique du monde qui le distingue des autres. Pas d\'inquiétude pour l\'originalité, le nom peut être changé à tout moment, autant de fois que désiré, et d\'autres campagnes peuvent être créées.',
@@ -12,22 +12,25 @@ return [
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créé pour aider à bien démarrer.',
         'title'                 => 'Nouvelle Campagne',
     ],
-    'destroy'               => [
+    'destroy'                           => [
         'success'   => 'Campagne supprimée.',
     ],
-    'edit'                  => [
+    'edit'                              => [
         'description'   => 'Modifier la campagne',
         'success'       => 'Campagne modifiée.',
         'title'         => 'Modifier la campagne :campaign',
     ],
-    'entity_visibilities'   => [
+    'entity_personality_visibilities'   => [
+        'private'   => 'Les nouveaux personnages ont leur personnalité privée par défault.',
+    ],
+    'entity_visibilities'               => [
         'private'   => 'Nouvelles entités privées',
     ],
-    'errors'                => [
+    'errors'                            => [
         'access'        => 'Accès refusé pour cette campagne.',
         'unknown_id'    => 'Campagne inconnue.',
     ],
-    'export'                => [
+    'export'                            => [
         'description'   => 'Exporter la campagne.',
         'errors'        => [
             'limit' => 'Nombre d\'export maximal par jour excédé pour cette campagne.',
@@ -36,24 +39,27 @@ return [
         'success'       => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
         'title'         => 'Export Campagne :name',
     ],
-    'fields'                => [
-        'description'       => 'Description',
-        'entity_count'      => 'Nombre d\'entités',
-        'entity_visibility' => 'Visibilité d\'entité',
-        'header_image'      => 'Image de fond pour le tableau de bord',
-        'image'             => 'Image',
-        'locale'            => 'Langue',
-        'name'              => 'Nom',
-        'system'            => 'Système',
-        'visibility'        => 'Visibilité',
+    'fields'                            => [
+        'description'                   => 'Description',
+        'entity_count'                  => 'Nombre d\'entités',
+        'entity_personality_visibility' => 'Visibilité des traits de personnages',
+        'entity_visibility'             => 'Visibilité d\'entité',
+        'header_image'                  => 'Image de fond pour le tableau de bord',
+        'image'                         => 'Image',
+        'locale'                        => 'Langue',
+        'name'                          => 'Nom',
+        'system'                        => 'Système',
+        'visibility'                    => 'Visibilité',
     ],
-    'helpers'               => [
-        'entity_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
-        'locale'            => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
-        'name'              => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
-        'visibility'        => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
+    'helpers'                           => [
+        'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
+        'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
+        'locale'                        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
+        'name'                          => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
+        'system'                        => 'Si la campagne est publiquement visible, elle sera affichée dans la page :link.',
+        'visibility'                    => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
-    'index'                 => [
+    'index'                             => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Créer une nouvelle campagne',
@@ -66,7 +72,7 @@ return [
         'select'        => 'Choisi une campagne',
         'title'         => 'Campagnes',
     ],
-    'invites'               => [
+    'invites'                           => [
         'actions'       => [
             'add'   => 'Inviter',
             'link'  => 'Nouveau Lien',
@@ -110,12 +116,12 @@ return [
             'link'  => 'Lien',
         ],
     ],
-    'leave'                 => [
+    'leave'                             => [
         'confirm'   => 'Est-tu sûr de vouloir quitter :name? Tu n\'aura plus accès aux données, sauf si un Proprio de la campagne t\'invites à nouveau.',
         'error'     => 'Impossible de quitter la campagne.',
         'success'   => 'Tu as quitté la campagne.',
     ],
-    'members'               => [
+    'members'                           => [
         'create'        => [
             'title' => 'Ajouter un membre à la campagne',
         ],
@@ -144,13 +150,17 @@ return [
         'title'         => 'Membres de la campagne :name',
         'your_role'     => 'Rôle: \'<i>:rôle</i>\'',
     ],
-    'placeholders'          => [
+    'panels'                            => [
+        'permission'    => 'Permission',
+        'sharing'       => 'Partage',
+    ],
+    'placeholders'                      => [
         'description'   => 'Une petite description de la campagne',
         'locale'        => 'La langue utilisée',
         'name'          => 'Le nom de la campagne',
         'system'        => 'D&D 5e, 3.5, Pathfinder, Tigres Volants, Grups',
     ],
-    'roles'                 => [
+    'roles'                             => [
         'actions'       => [
             'add'   => 'Ajouter un rôle',
         ],
@@ -221,7 +231,7 @@ return [
             ],
         ],
     ],
-    'settings'              => [
+    'settings'                          => [
         'description'   => 'Activer ou désactiver des modules de la campagne.',
         'edit'          => [
             'success'   => 'Campagne modifiée.',
@@ -246,7 +256,7 @@ return [
         ],
         'title'         => 'Modules de la campagne :name',
     ],
-    'show'                  => [
+    'show'                              => [
         'actions'       => [
             'leave' => 'Quitter la campagne',
         ],
@@ -261,7 +271,7 @@ return [
         ],
         'title'         => 'Campagne :name',
     ],
-    'visibilities'          => [
+    'visibilities'                      => [
         'private'   => 'Privé',
         'public'    => 'Publique',
         'review'    => 'En attente de revue',

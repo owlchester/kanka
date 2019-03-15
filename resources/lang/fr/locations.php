@@ -49,6 +49,10 @@ return [
         'description'   => 'Objets situés dans ce lieu.',
         'title'         => 'Objets du lieu :name',
     ],
+    'journals'      => [
+        'description'   => 'Journaux écrit dans ce lieu.',
+        'title'         => 'Journaux du lieu :name',
+    ],
     'locations'     => [
         'description'   => 'Lieu situé dans ce lieu.',
         'title'         => 'Sous-lieux du lieu :name',
@@ -190,6 +194,7 @@ return [
             'events'        => 'Evénements',
             'information'   => 'Information',
             'items'         => 'Objets',
+            'journals'      => 'Journaux',
             'locations'     => 'Lieux',
             'map'           => 'Carte',
             'menu'          => 'Menu',

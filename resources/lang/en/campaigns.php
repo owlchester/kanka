@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'                => [
+    'create'                            => [
         'description'           => 'Create a new campaign',
         'helper'                => [
             'first' => 'Thanks for trying our app out! Before we can go any further, we need you to provide one simple thing for us, your <b>campaign name</b>. This is the name of your world that separates it from others. If you don\'t have a good name yet, don\'t worry, you can <b>always change it later</b>, or create more campaigns.',
@@ -12,25 +12,25 @@ return [
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
         'title'                 => 'New Campaign',
     ],
-    'destroy'               => [
+    'destroy'                           => [
         'success'   => 'Campaign removed.',
     ],
-    'edit'                  => [
+    'edit'                              => [
         'description'   => 'Edit your campaign',
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
-    'entity_visibilities'   => [
-        'private'   => 'New entities are private',
-    ],
     'entity_personality_visibilities'   => [
         'private'   => 'New characters have their personality private by default.',
     ],
-    'errors'                => [
+    'entity_visibilities'               => [
+        'private'   => 'New entities are private',
+    ],
+    'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
-    'export'                => [
+    'export'                            => [
         'description'   => 'Export the campaign.',
         'errors'        => [
             'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
@@ -39,27 +39,27 @@ return [
         'success'       => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
         'title'         => 'Campaign :name Export',
     ],
-    'fields'                => [
-        'description'       => 'Description',
-        'entity_count'      => 'Entity Count',
-        'entity_visibility' => 'Entity Visibility',
+    'fields'                            => [
+        'description'                   => 'Description',
+        'entity_count'                  => 'Entity Count',
         'entity_personality_visibility' => 'Character Personality Visibility',
-        'header_image'      => 'Header Image',
-        'image'             => 'Image',
-        'locale'            => 'Locale',
-        'name'              => 'Name',
-        'system'            => 'System',
-        'visibility'        => 'Visibility',
+        'entity_visibility'             => 'Entity Visibility',
+        'header_image'                  => 'Header Image',
+        'image'                         => 'Image',
+        'locale'                        => 'Locale',
+        'name'                          => 'Name',
+        'system'                        => 'System',
+        'visibility'                    => 'Visibility',
     ],
-    'helpers'               => [
-        'entity_visibility' => 'When creating a new entity, the "Private" option will automatically be selected.',
+    'helpers'                           => [
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
-        'locale'            => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
-        'name'              => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
-        'system'             => 'If your campaign is publicly visible, the system is shown in the :link page.',
-        'visibility'        => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
+        'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
+        'locale'                        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
+        'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
+        'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
+        'visibility'                    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
-    'index'                 => [
+    'index'                             => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Create a new campaign',
@@ -72,7 +72,7 @@ return [
         'select'        => 'Select a campaign',
         'title'         => 'Campaigns',
     ],
-    'invites'               => [
+    'invites'                           => [
         'actions'       => [
             'add'   => 'Invite',
             'link'  => 'New Link',
@@ -116,12 +116,12 @@ return [
             'link'  => 'Link',
         ],
     ],
-    'leave'                 => [
+    'leave'                             => [
         'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an owner of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
-    'members'               => [
+    'members'                           => [
         'create'        => [
             'title' => 'Add a member to your campaign',
         ],
@@ -150,17 +150,17 @@ return [
         'title'         => 'Campaign :name Members',
         'your_role'     => 'Your role: <i>:role</i>',
     ],
-    'panels' => [
-        'permission' => 'Permission',
-        'sharing' => 'Sharing',
+    'panels'                            => [
+        'permission'    => 'Permission',
+        'sharing'       => 'Sharing',
     ],
-    'placeholders'          => [
+    'placeholders'                      => [
         'description'   => 'A short summary of your campaign',
         'locale'        => 'Language code',
         'name'          => 'Your campaign name',
         'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
-    'roles'                 => [
+    'roles'                             => [
         'actions'       => [
             'add'   => 'Add a role',
         ],
@@ -231,7 +231,7 @@ return [
             ],
         ],
     ],
-    'settings'              => [
+    'settings'                          => [
         'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',
@@ -256,7 +256,7 @@ return [
         ],
         'title'         => 'Campaign :name Modules',
     ],
-    'show'                  => [
+    'show'                              => [
         'actions'       => [
             'leave' => 'Leave campaign',
         ],
@@ -271,7 +271,7 @@ return [
         ],
         'title'         => 'Campaign :name',
     ],
-    'visibilities'          => [
+    'visibilities'                      => [
         'private'   => 'Private',
         'public'    => 'Public',
         'review'    => 'Awaiting Review',

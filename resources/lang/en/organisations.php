@@ -50,9 +50,9 @@ return [
             'title'     => 'Update Member for :name',
         ],
         'fields'        => [
-            'character' => 'Character',
-            'organisation' => 'Organisation',
-            'role'      => 'Role',
+            'character'     => 'Character',
+            'organisation'  => 'Organisation',
+            'role'          => 'Role',
         ],
         'helpers'       => [
             'all_members'       => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations.',

@@ -40,10 +40,10 @@ return [
             'title'         => 'Update attribute for :name',
         ],
         'fields'        => [
-            'attribute' => 'Attribute',
-            'community_templates' => 'Community Templates',
-            'template'  => 'Template',
-            'value'     => 'Value',
+            'attribute'             => 'Attribute',
+            'community_templates'   => 'Community Templates',
+            'template'              => 'Template',
+            'value'                 => 'Value',
         ],
         'index'         => [
             'success'   => 'Attributes for :entity updated.',
@@ -149,12 +149,12 @@ return [
     ],
     'filter'            => 'Filter',
     'filters'           => [
+        'all'   => 'Filter to all descendants',
         'clear' => 'Clear Filters',
+        'direct'=> 'Filter to direct descendants',
         'hide'  => 'Hide Filters',
         'show'  => 'Show Filters',
         'title' => 'Filters',
-        'all' => 'Filter to all descendants',
-        'direct' => 'Filter to direct descendants',
     ],
     'forms'             => [
         'actions'       => [
@@ -174,8 +174,8 @@ return [
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Unknown',
-        'view'      => 'View entity log',
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'      => 'View entity log',
     ],
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',

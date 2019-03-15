@@ -49,6 +49,10 @@ return [
         'description'   => 'Items located in or from the location.',
         'title'         => 'Location :name Items',
     ],
+    'journals'      => [
+        'description'   => 'Journals that were written in the location.',
+        'title'         => 'Location :name Journals',
+    ],
     'locations'     => [
         'description'   => 'Locations located in the location.',
         'title'         => 'Location :name Locations',
@@ -183,10 +187,6 @@ return [
         'description'   => 'Quests the location is a part of.',
         'title'         => 'Location :name Quests',
     ],
-    'journals'        => [
-        'description'   => 'Journals that were written in the location.',
-        'title'         => 'Location :name Journals',
-    ],
     'show'          => [
         'description'   => 'A detailed view of a location',
         'tabs'          => [
@@ -194,8 +194,8 @@ return [
             'events'        => 'Events',
             'information'   => 'Information',
             'items'         => 'Items',
-            'locations'     => 'Locations',
             'journals'      => 'Journals',
+            'locations'     => 'Locations',
             'map'           => 'Map',
             'menu'          => 'Menu',
             'organisations' => 'Organisations',
