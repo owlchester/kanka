@@ -144,7 +144,7 @@ To create a location, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `locations/` | Default |
+| POST | `locations` | Default |
 
 ### Body
 

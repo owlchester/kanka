@@ -105,7 +105,7 @@ To create a event, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `events/` | Default |
+| POST | `events` | Default |
 
 ### Body
 

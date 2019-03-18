@@ -105,7 +105,7 @@ To create a item, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `items/` | Default |
+| POST | `items` | Default |
 
 ### Body
 

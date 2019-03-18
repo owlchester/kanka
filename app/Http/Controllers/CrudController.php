@@ -153,9 +153,13 @@ class CrudController extends Controller
             $model = new $this->model;
             $new = $model->create($request->all());
 
-            // Fire an event for the Entity Observer
+            // Fire an event for the Entity Observer.
             $new->crudSaved();
-            $new->entity->crudSaved();
+
+            // MenuLink have no entity attached to them.
+            if ($new->entity) {
+                $new->entity->crudSaved();
+            }
 
             $success = trans($this->view . '.create.success', [
                 'name' => link_to_route(
@@ -253,7 +257,11 @@ class CrudController extends Controller
 
             // Fire an event for the Entity Observer
             $model->crudSaved();
-            $model->entity->crudSaved();
+
+            // MenuLink have no entity attached to them.
+            if ($model->entity) {
+                $model->entity->crudSaved();
+            }
 
             $success = trans($this->view . '.edit.success', [
                 'name' => link_to_route(

@@ -188,7 +188,7 @@ To create a conversation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `conversations/` | Default |
+| POST | `conversations` | Default |
 
 ### Body
 

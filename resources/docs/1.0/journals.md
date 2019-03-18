@@ -105,7 +105,7 @@ To create a journal, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `journals/` | Default |
+| POST | `journals` | Default |
 
 ### Body
 

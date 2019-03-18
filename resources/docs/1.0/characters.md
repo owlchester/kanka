@@ -137,7 +137,7 @@ To create a character, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `characters/` | Default |
+| POST | `characters` | Default |
 
 ### Body
 

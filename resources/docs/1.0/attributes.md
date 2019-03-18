@@ -94,7 +94,7 @@ To create an attribute, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/{entity.id}/attributes/` | Default |
+| POST | `entities/{entity.id}/attributes` | Default |
 
 ### Body
 

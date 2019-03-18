@@ -90,7 +90,7 @@ To create an entity-note, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/{entity.id}/entity_notes/` | Default |
+| POST | `entities/{entity.id}/entity_notes` | Default |
 
 ### Body
 

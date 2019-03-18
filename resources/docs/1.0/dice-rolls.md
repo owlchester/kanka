@@ -115,7 +115,7 @@ To create a dice-roll, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `dice_rolls/` | Default |
+| POST | `dice_rolls` | Default |
 
 ### Body
 

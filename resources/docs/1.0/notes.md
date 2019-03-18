@@ -101,7 +101,7 @@ To create a note, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `notes/` | Default |
+| POST | `notes` | Default |
 
 ### Body
 

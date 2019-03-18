@@ -112,7 +112,7 @@ To create a family, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `families/` | Default |
+| POST | `families` | Default |
 
 ### Body
 

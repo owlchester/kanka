@@ -147,7 +147,7 @@ To create a calendar, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `calendars/` | Default |
+| POST | `calendars` | Default |
 
 ### Body
 

@@ -84,7 +84,7 @@ To create an relation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/{entity.id}/relations/` | Default |
+| POST | `entities/{entity.id}/relations` | Default |
 
 ### Body
 

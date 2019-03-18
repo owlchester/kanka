@@ -145,7 +145,7 @@ To create a organisation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `organisations/` | Default |
+| POST | `organisations` | Default |
 
 ### Body
 

@@ -49,11 +49,11 @@ $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type
                             <div class="form-group required">
                                 {!! Form::select2(
                                     'entity_id',
-                                    (!empty($model) && $model->entity? $model->entity: null),
+                                    (!empty($model) && $model->target ? $model->target : null),
                                     App\Models\Entity::class,
                                     false,
                                     'menu_links.fields.entity',
-                                    'search.live',
+                                    'search.entities-with-relations',
                                     'menu_links.placeholders.entity'
                                 ) !!}
                             </div>

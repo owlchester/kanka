@@ -103,7 +103,7 @@ To create a race, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `races/` | Default |
+| POST | `races` | Default |
 
 ### Body
 

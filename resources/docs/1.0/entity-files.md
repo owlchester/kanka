@@ -95,7 +95,7 @@ To create an entity-file, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/{entity.id}/entity_files/` | Default |
+| POST | `entities/{entity.id}/entity_files` | Default |
 
 ### Body
 

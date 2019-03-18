@@ -109,7 +109,7 @@ To create a tag, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `tags/` | Default |
+| POST | `tags` | Default |
 
 ### Body
 

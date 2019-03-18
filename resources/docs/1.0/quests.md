@@ -255,7 +255,7 @@ To create a quest, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `quests/` | Default |
+| POST | `quests` | Default |
 
 ### Body
 

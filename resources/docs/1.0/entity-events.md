@@ -98,7 +98,7 @@ To create an entity-event, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/{entity.id}/entity_events/` | Default |
+| POST | `entities/{entity.id}/entity_events` | Default |
 
 ### Body
 
