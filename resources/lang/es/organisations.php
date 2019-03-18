@@ -50,8 +50,9 @@ return [
             'title'     => 'Actualizar miembro de :name',
         ],
         'fields'        => [
-            'character' => 'Personaje',
-            'role'      => 'Rol',
+            'character'     => 'Personaje',
+            'organisation'  => 'Organización',
+            'role'          => 'Rol',
         ],
         'helpers'       => [
             'all_members'       => 'Esta lista contiene todos los personajes que forman parte de esta organización y de todas las organizaciones inferiores.',

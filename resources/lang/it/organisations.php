@@ -50,8 +50,9 @@ return [
             'title'     => 'Aggiorna Membro per :name',
         ],
         'fields'        => [
-            'character' => 'Personaggio',
-            'role'      => 'Ruolo',
+            'character'     => 'Personaggio',
+            'organisation'  => 'Organizzazione',
+            'role'          => 'Ruolo',
         ],
         'helpers'       => [
             'all_members'       => 'La lista seguente rappresenta tutti i personaggi che fanno parte di questa organizzazione e di tutte le organizzazioni che ne discendono.',

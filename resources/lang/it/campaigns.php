@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'                => [
+    'create'                            => [
         'description'           => 'Crea una nuova campagna',
         'helper'                => [
             'first' => 'Ti ringraziamo per aver provato la nostra app! Prima di poter procedere abbiamo bisogno di una semplice cosa da te, il <b>nome della tua campagna</b>. Questo è il nome del tuo mondo e che lo separa dagli altri. Se non hai ancora un buon nome non ti preoccupare, potrai sempre <b>cambiarlo successivamente</b> o potrai creare altre campagne.',
@@ -12,22 +12,25 @@ return [
         'success_first_time'    => 'La tua campagna è stata creata! Siccome si tratta della tua prima campagna abbiamo provveduto a creare alcune cose per aiutarti ad iniziare e speriamo che ti possa dare un po\' di ispirazione per quello che potrai fare.',
         'title'                 => 'Nuova campagna',
     ],
-    'destroy'               => [
+    'destroy'                           => [
         'success'   => 'Campagna eliminata.',
     ],
-    'edit'                  => [
+    'edit'                              => [
         'description'   => 'Modifica la tua campagna',
         'success'       => 'Campagna aggiornata.',
         'title'         => 'Modifica la campagna :campaign',
     ],
-    'entity_visibilities'   => [
+    'entity_personality_visibilities'   => [
+        'private'   => 'I nuovi personaggi hanno la loro personalità privata in maniera predefinita.',
+    ],
+    'entity_visibilities'               => [
         'private'   => 'Le nuove entità sono private',
     ],
-    'errors'                => [
+    'errors'                            => [
         'access'        => 'Non hai accesso a questa campagna.',
         'unknown_id'    => 'Campagna sconosciuta.',
     ],
-    'export'                => [
+    'export'                            => [
         'description'   => 'Esporta la campagna.',
         'errors'        => [
             'limit' => 'Hai superato il tuo massimo di un\'esportazione al giorno. Per favore riprova domani.',
@@ -36,25 +39,27 @@ return [
         'success'       => 'L\'esportazione della tua campagna sta venendo preparata. Riceverai una notifica su Kanka con il link ad uno zip scaricabile non appena sarà pronto.',
         'title'         => 'Esportazione della Campagna :name',
     ],
-    'fields'                => [
-        'description'       => 'Descrizione',
-        'entity_count'      => 'Numero di Entità',
-        'entity_visibility' => 'Visibilità dell\'entità',
-        'header_image'      => 'Immagine di copertina',
-        'image'             => 'Immagine',
-        'locale'            => 'Lingua',
-        'name'              => 'Nome',
-        'system'            => 'Sistema',
-        'visibility'        => 'Visibilità',
+    'fields'                            => [
+        'description'                   => 'Descrizione',
+        'entity_count'                  => 'Numero di Entità',
+        'entity_personality_visibility' => 'Visibilità della Personalità del Personaggio',
+        'entity_visibility'             => 'Visibilità dell\'entità',
+        'header_image'                  => 'Immagine di copertina',
+        'image'                         => 'Immagine',
+        'locale'                        => 'Lingua',
+        'name'                          => 'Nome',
+        'system'                        => 'Sistema',
+        'visibility'                    => 'Visibilità',
     ],
-    'helpers'               => [
-        'entity_visibility' => 'Quando creerai una nuova entità, l\'opzione "Privato" sarà selezionato automaticamente.',
-        'locale'            => 'La lingua in cui la tua campagna è scritta. Viene usato per generare contenuti e raggruppare le campagne pubbliche.',
-        'name'              => 'Il tuo mondo/campagna può avere qualsiasi nome, basta che contenga almeno 4 lettere o numeri.',
-        'system'            => 'Se la tua campagna è visibile pubblicamente il sistema sarà visualizzato nella pagina :link.',
-        'visibility'        => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
+    'helpers'                           => [
+        'entity_personality_visibility' => 'Quando si crea un nuovo personaggio, l\'opzione "Visibilità della Personalità" sarà automaticamente deselezionata.',
+        'entity_visibility'             => 'Quando creerai una nuova entità, l\'opzione "Privato" sarà selezionato automaticamente.',
+        'locale'                        => 'La lingua in cui la tua campagna è scritta. Viene usato per generare contenuti e raggruppare le campagne pubbliche.',
+        'name'                          => 'Il tuo mondo/campagna può avere qualsiasi nome, basta che contenga almeno 4 lettere o numeri.',
+        'system'                        => 'Se la tua campagna è visibile pubblicamente il sistema sarà visualizzato nella pagina :link.',
+        'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
-    'index'                 => [
+    'index'                             => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Crea una nuova campagna',
@@ -67,7 +72,7 @@ return [
         'select'        => 'Seleziona una campagna',
         'title'         => 'Campagne',
     ],
-    'invites'               => [
+    'invites'                           => [
         'actions'       => [
             'add'   => 'Invita',
             'link'  => 'Nuovo collegamento',
@@ -111,12 +116,12 @@ return [
             'link'  => 'Collegamento',
         ],
     ],
-    'leave'                 => [
+    'leave'                             => [
         'confirm'   => 'Sei sicuro di voler lasciare la campagna :name? Non potrai più accedere, a meno che il proprietario della campagna ti inviti di nuovo.',
         'error'     => 'Non puoi lasciare la campagna.',
         'success'   => 'Hai lasciato la campagna.',
     ],
-    'members'               => [
+    'members'                           => [
         'create'        => [
             'title' => 'Aggiungi un membro alla tua campagna',
         ],
@@ -145,16 +150,17 @@ return [
         'title'         => 'Membri della Campagna :name',
         'your_role'     => 'Il tuo ruolo: <i>:role</i>',
     ],
-    'panels'                => [
-        'sharing'   => 'Condividi',
+    'panels'                            => [
+        'permission'    => 'Permessi',
+        'sharing'       => 'Condividi',
     ],
-    'placeholders'          => [
+    'placeholders'                      => [
         'description'   => 'Un piccolo riassunto della tua campagna',
         'locale'        => 'Codice di lingua',
         'name'          => 'Il nome della tua campagna',
         'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
-    'roles'                 => [
+    'roles'                             => [
         'actions'       => [
             'add'   => 'Aggiungi un ruolo',
         ],
@@ -225,7 +231,7 @@ return [
             ],
         ],
     ],
-    'settings'              => [
+    'settings'                          => [
         'description'   => 'Abilita o disabilita moduli della campagna.',
         'edit'          => [
             'success'   => 'Impostazioni della campagna aggiornate.',
@@ -250,7 +256,7 @@ return [
         ],
         'title'         => 'Moduli della Campagna :name',
     ],
-    'show'                  => [
+    'show'                              => [
         'actions'       => [
             'leave' => 'Abbandona campagna',
         ],
@@ -265,7 +271,7 @@ return [
         ],
         'title'         => 'Campagna :name',
     ],
-    'visibilities'          => [
+    'visibilities'                      => [
         'private'   => 'Privata',
         'public'    => 'Pubblica',
         'review'    => 'In attesa di Revisione',
