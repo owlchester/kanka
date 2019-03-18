@@ -47,6 +47,9 @@
                     <li>
                         <a href="{{ route('roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
                     </li>
+                    <li>
+                        <a href="/docs/1.0">{{ trans('front.menu.api') }}</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-1 col-sm-1 col-xs-12 footer-social">
