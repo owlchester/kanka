@@ -107,6 +107,7 @@ return [
     ],
     'menu'          => [
         'about'     => 'A propos',
+        'api'       => 'API',
         'campaigns' => 'Campagnes Publiques',
         'community' => 'Communauté',
         'contact'   => 'Contact',

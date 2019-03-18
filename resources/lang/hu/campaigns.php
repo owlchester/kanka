@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'                => [
+    'create'                            => [
         'description'           => 'Új kampány létrehozása',
         'helper'                => [
             'first' => 'Köszi, hogy kipróbálod az alkalmazást! Mielőtt bármit csinálhatnál, egy egyszerű dologra szükségünk van tőled: a <b>kampányod nevére</b>. Ez a világod neve, ami megkülönbözteti a többitől. Ha most nem tudsz egy jó nevet kitalálni, ne aggódj, <b>később megváltoztathatod</b>, vagy több kampányt is létrehozhatsz.',
@@ -12,22 +12,25 @@ return [
         'success_first_time'    => 'A kampányodat létrehoztuk! Milve ez az első kampányod, csináltunk néhány dolgot, ami segít a kezdésben, és remélhetőleg némi inspirációt biztosít számodra.',
         'title'                 => 'Új kampány',
     ],
-    'destroy'               => [
+    'destroy'                           => [
         'success'   => 'A kampányt eltávolítottuk.',
     ],
-    'edit'                  => [
+    'edit'                              => [
         'description'   => 'A kampányod szerkesztése',
         'success'       => 'A kampányt frissítettük.',
         'title'         => ':campaign kampány szerkesztése',
     ],
-    'entity_visibilities'   => [
+    'entity_personality_visibilities'   => [
+        'private'   => 'Az új karakterek személyisége legyen alapértelmezetten privát.',
+    ],
+    'entity_visibilities'               => [
         'private'   => 'Az új entitások privát beállításúak.',
     ],
-    'errors'                => [
+    'errors'                            => [
         'access'        => 'Nincs hozzáférésed ehhez a kampányhoz.',
         'unknown_id'    => 'Ismeretlen kampány.',
     ],
-    'export'                => [
+    'export'                            => [
         'description'   => 'Kampány exportálása.',
         'errors'        => [
             'limit' => 'Elérted a napi exportálási lehetőségeid számát. Kérjük, holnap próbáld meg újra.',
@@ -36,25 +39,27 @@ return [
         'success'       => 'A kampányod exportja előkészítés alatt áll. Kapsz majd egy értesítést a Kankában a letölthető zip állományról, amint az elkészül.',
         'title'         => ':name kampány exportálása',
     ],
-    'fields'                => [
-        'description'       => 'Leírás',
-        'entity_count'      => 'Entitások száma',
-        'entity_visibility' => 'Entitás láthatósága',
-        'header_image'      => 'Fejléc képe',
-        'image'             => 'Kép',
-        'locale'            => 'Nyelv',
-        'name'              => 'Név',
-        'system'            => 'Rendszer',
-        'visibility'        => 'Láthatóság',
+    'fields'                            => [
+        'description'                   => 'Leírás',
+        'entity_count'                  => 'Entitások száma',
+        'entity_personality_visibility' => 'Karakter személyiségének láthatósága',
+        'entity_visibility'             => 'Entitás láthatósága',
+        'header_image'                  => 'Fejléc képe',
+        'image'                         => 'Kép',
+        'locale'                        => 'Nyelv',
+        'name'                          => 'Név',
+        'system'                        => 'Rendszer',
+        'visibility'                    => 'Láthatóság',
     ],
-    'helpers'               => [
-        'entity_visibility' => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
-        'locale'            => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
-        'name'              => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
-        'system'            => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
-        'visibility'        => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
+    'helpers'                           => [
+        'entity_personality_visibility' => 'Amikor új karaktert hozol létre, a "személyiség látható" opciót automatikusan kikapcsoljuk.',
+        'entity_visibility'             => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
+        'locale'                        => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
+        'name'                          => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
+        'system'                        => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
+        'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
-    'index'                 => [
+    'index'                             => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Új kapmány létrehozása',
@@ -67,7 +72,7 @@ return [
         'select'        => 'Válassz egy kampányt!',
         'title'         => 'Kampányok',
     ],
-    'invites'               => [
+    'invites'                           => [
         'actions'       => [
             'add'   => 'Meghívó',
             'link'  => 'Új link',
@@ -111,12 +116,12 @@ return [
             'link'  => 'Link',
         ],
     ],
-    'leave'                 => [
+    'leave'                             => [
         'confirm'   => 'Biztos vagy benne, hogy el akarod hagyni az :name nevű kampányt? Nem tudsz majd többé hozzáférni, kivéve, ha a kampány tulajdonosa újra meghív téged.',
         'error'     => 'Nem tudod elhagyni a kampányt.',
         'success'   => 'Elhagytad a kampányt.',
     ],
-    'members'               => [
+    'members'                           => [
         'create'        => [
             'title' => 'Új tag hozzáadása a kapmányhoz.',
         ],
@@ -145,16 +150,17 @@ return [
         'title'         => ':name kampány tagjai',
         'your_role'     => 'A szereped: <i>:role</i>',
     ],
-    'panels'                => [
-        'sharing'   => 'Megosztás',
+    'panels'                            => [
+        'permission'    => 'Jogosultság',
+        'sharing'       => 'Megosztás',
     ],
-    'placeholders'          => [
+    'placeholders'                      => [
         'description'   => 'A kampányod rövid összefoglalása.',
         'locale'        => 'Nyelvkód',
         'name'          => 'A kampányod neve',
         'system'        => 'D&D 5e, 3.5, Pathfinder, Kard és Mágia, M.A.G.U.S., Dungeon World',
     ],
-    'roles'                 => [
+    'roles'                             => [
         'actions'       => [
             'add'   => 'Szerep hozzáadása',
         ],
@@ -225,7 +231,7 @@ return [
             ],
         ],
     ],
-    'settings'              => [
+    'settings'                          => [
         'description'   => 'A kampány moduljainak ki- és bekapcsolása.',
         'edit'          => [
             'success'   => 'A kampány beállításait frissítettük.',
@@ -250,7 +256,7 @@ return [
         ],
         'title'         => ':name kampány moduljai',
     ],
-    'show'                  => [
+    'show'                              => [
         'actions'       => [
             'leave' => 'Kilépés a kampányból',
         ],
@@ -265,7 +271,7 @@ return [
         ],
         'title'         => ':name kampány',
     ],
-    'visibilities'          => [
+    'visibilities'                      => [
         'private'   => 'Privát',
         'public'    => 'Nyilvános',
         'review'    => 'Felülvizsgálatra váró',

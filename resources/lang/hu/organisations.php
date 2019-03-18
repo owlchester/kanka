@@ -50,8 +50,9 @@ return [
             'title'     => ':name tagjának módosítása',
         ],
         'fields'        => [
-            'character' => 'Karakter',
-            'role'      => 'Szerep',
+            'character'     => 'Karakter',
+            'organisation'  => 'Szervezet',
+            'role'          => 'Szerep',
         ],
         'helpers'       => [
             'all_members'       => 'Ez a lista minden karaktert tartalmaz, mely tagja ennek a szervezetnek vagy bármelyik leszármazott szervezetének',

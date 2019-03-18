@@ -107,6 +107,7 @@ return [
     ],
     'menu'          => [
         'about'     => 'Névjegy',
+        'api'       => 'API',
         'campaigns' => 'Nyilvános kampányok',
         'community' => 'Közösség',
         'contact'   => 'Kapcsolat',
