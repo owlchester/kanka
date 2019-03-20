@@ -9,6 +9,16 @@ use Carbon\Carbon;
 class WelcomeController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'identity']);
+    }
+
+    /**
      * Update the user's welcome read attribute
      * @param Release $release
      */

@@ -8,6 +8,16 @@ use App\Models\Release;
 class ReleaseController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'identity']);
+    }
+
+    /**
      * Update the user's last viewed release
      * @param Release $release
      */

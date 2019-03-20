@@ -23,7 +23,7 @@ class PatreonController extends Controller
      */
     public function __construct(PatreonService $patreon)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'identity']);
         $this->patreon = $patreon;
     }
 

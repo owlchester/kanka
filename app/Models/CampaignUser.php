@@ -4,8 +4,16 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\Scopes\CampaignScope;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class CampaignUser
+ * @package App\Models
+ *
+ * @property User $user
+ * @property Campaign $campaign
+ */
 class CampaignUser extends Model
 {
     use Paginatable;

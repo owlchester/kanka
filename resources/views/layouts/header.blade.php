@@ -93,11 +93,13 @@
                                             </li>
                                         @endif
                                     @endforeach
+                                    @can('create', \App\Models\Campaign::class)
                                     <li>
                                         <a href="{{ !Auth::user()->hasCampaigns() ? route('start') : route('campaigns.create') }}">
                                             <i class="fa fa-plus"></i> {{ trans('campaigns.index.actions.new.title') }}
                                         </a>
                                     </li>
+                                    @endcan
                                 </ul>
                             </li>
                         </ul>
@@ -172,12 +174,19 @@
                             </div>
                             @endif
                             <div class="pull-right">
+                                @if (\App\Facades\Identity::isImpersonating())
+
+                                    <a href="{{ route('identity.back') }}" class="btn btn-default">
+                                        <i class="fa fa-sign-out-alt"></i> {{ trans('campaigns.members.actions.switch-back') }}
+                                    </a>
+                                @else
                                 <a href="{{ route('logout') }}" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ trans('header.logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
+                                @endif
                             </div>
                         </li>
                     </ul>

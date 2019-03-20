@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\Identity;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignUser;
@@ -57,5 +58,20 @@ class CampaignUserPolicy
     {
         return $user->campaign->id == $campaignUser->campaign->id
             && $this->isAdmin($user) && $campaignUser->role != 'owner';
+    }
+
+    /**
+     * Determine whether the current user can switch to the user.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Models\CampaignUser  $campaignUser
+     * @return mixed
+     */
+    public function switch(User $user, CampaignUser $campaignUser)
+    {
+        return $user->campaign->id == $campaignUser->campaign->id
+            && $this->isAdmin($user) && $campaignUser->role != 'owner' &&
+            // Don't allow impersonating if we are already impersonating
+            !Identity::isImpersonating();
     }
 }

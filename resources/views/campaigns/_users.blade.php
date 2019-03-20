@@ -13,6 +13,7 @@
                 <th class="hidden-xs hidden-md">{{ trans('campaigns.members.fields.joined') }}</th>
                 <th>&nbsp;</th>
             </tr>
+            <?php /** @var \App\Models\CampaignUser $relation */?>
             @foreach ($r = $campaign->members()->with(['user', 'campaign'])->paginate() as $relation)
                 <tr>
                     <td>{{ $relation->user->name }}</td>
@@ -24,6 +25,11 @@
                     </td>
 
                     <td class="text-right">
+                        @can('switch', $relation)
+                            <a href="{{ route('identity.switch', $relation) }}" class="btn btn-default btn-xs" title="{{ __('campaigns.members.helpers.switch') }}">
+                                <i class="fa fa-user"></i> {{ __('campaigns.members.actions.switch') }}
+                            </a>
+                        @endif
                         @if (Auth::user()->can('delete', $relation))
                         {!! Form::open(['method' => 'DELETE','route' => ['campaign_users.destroy', $relation->id],'style'=>'display:inline']) !!}
                             <button class="btn btn-xs btn-danger">
@@ -36,7 +42,7 @@
             @endforeach
             </tbody></table>
 
-        {{ $r->fragment('tab_member')->links() }}
+        {{ $r->links() }}
     </div>
 </div>
 

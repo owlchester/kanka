@@ -122,6 +122,10 @@ return [
         'success'   => 'You have left the campaign.',
     ],
     'members'                           => [
+        'actions'       => [
+            'switch' => 'Switch',
+            'switch-back' => 'Back to my user'
+        ],
         'create'        => [
             'title' => 'Add a member to your campaign',
         ],
@@ -137,10 +141,15 @@ return [
             'roles'     => 'Roles',
         ],
         'help'          => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
+        'helpers' => [
+            'switch' => 'Switch to this user',
+        ],
         'invite'        => [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
+        'switch_success' => 'You are now viewing the campaign as another user. Some features have been disabled, but the rest acts exactly like the user. To go back to your user, use the Switch Back button located where the Logout button is usually situated.',
+        'switch_back_success' => 'You are now back to your original user.',
         'roles'         => [
             'member'    => 'Member',
             'owner'     => 'Owner',

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\Identity;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\Campaign;
@@ -47,7 +48,7 @@ class CampaignPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return !Identity::isImpersonating();
     }
 
     /**
@@ -117,6 +118,7 @@ class CampaignPolicy
     {
         return $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
-            $campaign->user() && (!$this->isAdmin($user) || count($campaign->admins()) > 1);
+            $campaign->user() && (!$this->isAdmin($user) || count($campaign->admins()) > 1) &&
+            !Identity::isImpersonating();
     }
 }

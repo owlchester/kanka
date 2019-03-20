@@ -189,6 +189,10 @@ Route::group([
         // Campaign Export
         Route::post('/campaigns/{campaign}/export', 'CampaignController@export')->name('campaigns.export');
 
+        // Impersonator
+        Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
+        Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
+
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
             'calendars' => 'CalendarController',
