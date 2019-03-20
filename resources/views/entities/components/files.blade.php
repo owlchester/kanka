@@ -1,5 +1,5 @@
 @if (config('entities.file_upload'))
-<li class="list-group-item">
+<li class="list-group-item export-hidden">
         <b>{{ trans('crud.fields.files') }}
         @can('update', $model)
             <i class="fa fa-cloud-upload-alt pull-right entity-file-ui" data-url="{{ route('entities.entity_files.index', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('crud.files.actions.manage') }}"></i>
