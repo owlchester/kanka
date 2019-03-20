@@ -15,11 +15,14 @@ class MapPoint extends JsonResource
     public function toArray($request)
     {
         return [
-            'target_id' => $this->target_id,
+            'target_entity_id' => $this->target_entity_id,
+            'name' => $this->name,
             'axis_x' => $this->axis_x,
             'axis_y' => $this->axis_y,
             'colour' => $this->colour,
-            'name' => $this->name,
+            'icon' => $this->icon,
+            'shape' => $this->shape,
+            'size' => $this->size,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

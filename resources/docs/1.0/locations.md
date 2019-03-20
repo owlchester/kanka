@@ -112,10 +112,13 @@ To get the map points of a location, use the following endpoint.
 ```json
 {
     "data": {
-        "target_id": 58,
+        "target_entity_id": 58,
         "axis_x": 1356,
         "axis_y": 788,
         "colour": "red",
+        "size": "small",
+        "icon": "skull",
+        "shape": "circle",
         "name": null,
         "created_at": {
             "date": "2018-03-21 12:47:19.000000",
@@ -131,10 +134,34 @@ To get the map points of a location, use the following endpoint.
 }
 ```
 
-> {info} Additional note: `target_id` represents an `entities`.`id`.
+> {info} Additional note: `target_entity_id` represents an `entities`.`id`.
+
+#### Creating a Map Point
+
+To create a map point on a location, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| POST | `locations/{location.id}/map_points` | Default |
+
+
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `location_id` | `integer` | The location id (where this map point is located)|
+| `target_entity_id` | `string` (Required, unless `name` is specified) | Target Entity's `entity_id` |
+| `name` | `string` (Required, unless `target_entity_id` is specified) | Name of the map point |
+| `axis_x` | `integer` (Required) | X Axis of the Map Point |
+| `axis_y` | `integer` (Required) | Y Axis of the Map Point |
+| `colour` | `string` (Required) | `none`, `grey`, `red`, `blue`, `green`, `yellow`, `black` or `white` |
+| `shape` | `string` (Required) | `circle` or `square` |
+| `size` | `string` (Required) | `standard`, `small` or `large` |
+| `icon` | `string` (Required) | `pin`, `entity` or many options. |
+
 
 #### Other endpoints
-> {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) a member from an organisation can also be done using the same patterns as for other endpoints.
+> {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) a map point from a location can also be done using the same patterns as for other endpoints.
 
 
 <a name="create-location"></a>

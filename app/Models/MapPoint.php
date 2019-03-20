@@ -13,8 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $target_entity_id
  * @property integer $axis_x
  * @property integer $axis_y
- * @property string $colour
  * @property string $name
+ * @property string $colour
+ * @property string $size
+ * @property string $shape
+ * @property string $icon
  */
 class MapPoint extends Model
 {
@@ -42,8 +45,8 @@ class MapPoint extends Model
         'target_entity_id',
         'axis_x',
         'axis_y',
-        'colour',
         'name',
+        'colour',
         'shape',
         'size',
         'icon',
