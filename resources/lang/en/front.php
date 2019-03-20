@@ -37,6 +37,11 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'api'               => [
+            'description' => 'Want to build cool tools that integrate with Kanka? Head over to the :link.',
+            'link' => 'API docs',
+            'title' => 'API'
+        ],
         'calendars'         => [
             'description'   => 'Create custom calendars and organise your campaign around them.',
             'title'         => 'Calendars',
