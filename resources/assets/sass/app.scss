@@ -142,6 +142,11 @@ table {
     font-weight: normal;
   }
 }
+.tab-content {
+  table {
+    width: 100% !important;
+  }
+}
 
 .clear {
   clear: both;
