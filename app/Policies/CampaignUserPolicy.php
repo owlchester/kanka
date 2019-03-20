@@ -44,7 +44,10 @@ class CampaignUserPolicy
     public function update(User $user, CampaignUser $campaignUser)
     {
         return $user->campaign->id == $campaignUser->campaign->id
-            && $this->isAdmin($user) && $campaignUser->role != 'owner';
+            && $this->isAdmin($user) && !$campaignUser->user->isAdmin() &&
+
+            // Don't allow updating if we are currently impersonating
+            !Identity::isImpersonating();
     }
 
     /**
@@ -57,7 +60,10 @@ class CampaignUserPolicy
     public function delete(User $user, CampaignUser $campaignUser)
     {
         return $user->campaign->id == $campaignUser->campaign->id
-            && $this->isAdmin($user) && $campaignUser->role != 'owner';
+            && $this->isAdmin($user) && !$campaignUser->user->isAdmin() &&
+
+            // Don't allow deleting if we are currently impersonating
+            !Identity::isImpersonating();
     }
 
     /**
@@ -70,7 +76,8 @@ class CampaignUserPolicy
     public function switch(User $user, CampaignUser $campaignUser)
     {
         return $user->campaign->id == $campaignUser->campaign->id
-            && $this->isAdmin($user) && $campaignUser->role != 'owner' &&
+            && $this->isAdmin($user) && !$campaignUser->user->isAdmin() &&
+
             // Don't allow impersonating if we are already impersonating
             !Identity::isImpersonating();
     }
