@@ -13,6 +13,10 @@ $entities = \App\Models\Entity::recentlyModified()->type($widget->conf('entity')
         </h4>
     </div>
     <div class="panel-body widget-recent-body">
-        @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
+        @if (!empty($widget->conf('singular')))
+            @include('dashboard.widgets._recent_singular', ['entities' => $entities])
+        @else
+            @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
+        @endif
     </div>
 </div>

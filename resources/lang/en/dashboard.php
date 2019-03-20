@@ -84,6 +84,8 @@ TEXT
         ],
         'recent'    => [
             'title' => 'Recently modified',
+            'singular' => 'Singular',
+            'help' => 'Only show the last updated entity, but show a whole preview of the entity',
         ],
         'update'    => [
             'success'   => 'Widget modified.',

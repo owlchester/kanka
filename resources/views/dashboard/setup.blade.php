@@ -33,8 +33,12 @@
                                 </div>
                             @endif
 
-                            @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_RECENT && !empty($widget->conf('entity')))
+                            @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_RECENT)
+                                @if (!empty($widget->conf('entity')))
                                 <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
+                                @elseif (!empty($widget->conf('singular')))
+                                <h5>{{ __('dashboard.widgets.recent.singular') }}</h5>
+                                @endif
                             @endif
                         </div>
                         <input type="hidden" name="widgets[]" value="{{ $widget->id }}" />

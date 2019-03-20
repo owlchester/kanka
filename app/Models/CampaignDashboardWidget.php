@@ -63,9 +63,11 @@ class CampaignDashboardWidget extends Model
      * Get the column size
      * @return int
      */
-    public function colSize()
+    public function colSize(): int
     {
-        return $this->widget == self::WIDGET_PREVIEW ? 4 : 6;
+        return ($this->widget == self::WIDGET_PREVIEW ||
+            ($this->widget == self::WIDGET_RECENT && $this->conf('singular')))
+            ? 4 : 6;
     }
 
     /**
