@@ -22,17 +22,17 @@
                 <div class="map-admin">
                 @can('update', $location)
                     <a href="{{ $location->getLink() }}" class="btn btn-default">
-                        <i class="fa fa-arrow-left"></i> {{ trans('locations.map.points.return', ['name' => $location->name]) }}
+                        <i class="fa fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
                     </a>
                     <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
-                        <i class="fa fa-edit"></i> {{ __('locations.map.actions.admin_mode') }}
+                        <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
                     </button>
                     <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
-                        <i class="fa fa-eye"></i> {{ __('locations.map.actions.view_mode') }}
+                        <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
                     </button>
                 @endcan
                 </div>
-                <div class="map-helper">
+                <div class="map-helper hidden-xs">
                     <p>{{ __('locations.map.helpers.view') }}</p>
                 </div>
                 <div class="map">
@@ -85,6 +85,7 @@
 
 @section('scripts')
     <script src="{{ mix('js/location/map.js') }}" defer></script>
+    <script src="{{ asset('js/vendor/jquery.ui.touch-punch.min.js') }}" defer></script>
 @endsection
 
 @section('styles')
