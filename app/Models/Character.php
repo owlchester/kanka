@@ -26,6 +26,7 @@ class Character extends MiscModel
         'type',
         'is_dead',
         'race_id',
+        'is_personality_visible',
     ];
 
 
