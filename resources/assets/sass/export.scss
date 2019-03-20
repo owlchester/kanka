@@ -23,7 +23,7 @@
 }
 
 .export-hidden {
-    display: none;
+    display: none !important;
 }
 
 .profile-user-img {
@@ -71,4 +71,9 @@ td {
     padding: 10px 15px;
     margin-bottom: -1px;
     background-color: #fff;
+}
+
+.profile-username {
+  font-weight: 400;
+  font-size: 16pt;
 }
