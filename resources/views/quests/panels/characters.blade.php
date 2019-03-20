@@ -27,7 +27,7 @@
                                     {{ $character->character->name }}
                                 </a>
                                 @if ($character->is_private)
-                                    <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                                    <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
                                 @endif
                             </h3>
                         </div>

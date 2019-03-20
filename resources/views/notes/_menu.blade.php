@@ -5,7 +5,7 @@
 
         <h3 class="profile-username text-center">{{ $model->name }}
             @if ($model->is_private)
-                <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif
         </h3>
 

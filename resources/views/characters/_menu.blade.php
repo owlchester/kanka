@@ -9,7 +9,7 @@
 
                 <h3 class="profile-username text-center">{{ $model->name }}
                     @if ($model->is_private)
-                        <i class="fa fa-lock" title="{{ __('crud.is_private') }}"></i>
+                        <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
                     @endif
                     @if ($model->is_dead)
                         <span class="ra ra-skull" title="{{ __('characters.hints.is_dead') }}"></span>

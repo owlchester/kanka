@@ -69,7 +69,7 @@
                 @can('update', $campaign)
                 <li class="">
                     <a href="#roles">
-                        <span class="fa fa-lock"></span> <span class="hidden-xs hidden-sm">{{ trans('campaigns.show.tabs.roles') }}</span>
+                        <span class="fas fa-lock"></span> <span class="hidden-xs hidden-sm">{{ trans('campaigns.show.tabs.roles') }}</span>
                     </a>
                 </li>
                 <li class="">

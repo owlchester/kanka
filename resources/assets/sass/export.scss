@@ -1,4 +1,3 @@
-
 .btn, .btn-group {
    display: none !important;
 }
@@ -69,10 +68,4 @@ td {
     padding: 10px 15px;
     margin-bottom: -1px;
     background-color: #fff;
-}
-
-.fa-check, .fa-lock {
-  &:before {
-    content: "x";
-  }
 }

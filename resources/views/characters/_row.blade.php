@@ -25,7 +25,7 @@
     @if (Auth::user()->isAdmin())
         <td>
             @if ($character->is_private == true)
-                <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif
         </td>
     @endif

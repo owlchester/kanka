@@ -44,7 +44,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                         @endif
                     @endforeach
                     @if(Auth::check() && Auth::user()->isAdmin())
-                        <li class="{{ $sidebar->active('menu_links') }}"><a href="{{ route('menu_links.index') }}"><i class="fa fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
+                        <li class="{{ $sidebar->active('menu_links') }}"><a href="{{ route('menu_links.index') }}"><i class="fas fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
                     @endif
                 </ul>
             </li>
@@ -134,10 +134,10 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 <li><a href="/translations"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.translations') }}</span></a></li>
                 @endtranslator
                 @admin
-                    <li><a href="{{ route('voyager.dashboard') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
+                    <li><a href="{{ route('voyager.dashboard') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
                 @endadmin
                 @moderator
-                    <li><a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
+                    <li><a href="{{ route('admin.campaigns.index') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
                 @endmoderator
             @endauth
         </ul>

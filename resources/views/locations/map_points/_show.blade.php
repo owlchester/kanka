@@ -9,14 +9,14 @@
                     <span class="entity-image" style="background-image: url('{{ $mapPoint->targetEntity->child->getImageUrl(true) }}')"></span>
                     <span class="entity-name">{{ $mapPoint->targetEntity->name }}</span>
                 </a>
-
-                @if ($mapPoint->targetEntity->child->is_private)
-                    <span class="pull-right help-block">
-                        <i class="fa fa-lock"></i>
-                    </span>
-                @endif
             @endif
             <i class="fa fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
+
+            @if ($mapPoint->hasTarget() && $mapPoint->targetEntity->child->is_private)
+                <span class="pull-right fa-xs margin-r-5">
+                    <i class="fas fa-lock"></i>
+                </span>
+            @endif
         </h3>
     </div>
     <div class="panel-body">

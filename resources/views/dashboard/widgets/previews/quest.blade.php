@@ -13,7 +13,7 @@ $model = $widget->entity->child;
             </a>
 
             @if ($model->is_private)
-                <i class="fa fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
             @endif
         </h3>
     </div>

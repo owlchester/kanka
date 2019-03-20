@@ -60,7 +60,7 @@
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
                             @if ($relation->is_private == true)
-                                <i class="fa fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
                             @endif
                         @endif
                     </td>

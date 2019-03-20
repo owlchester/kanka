@@ -51,6 +51,7 @@ class EntityController extends Controller
         if (request()->has('html')) {
             return view('cruds.export', compact('entity', 'name', 'entities', 'exporting'));
         }
+
         return $pdf
             ->loadView('cruds.export', compact('entity', 'name', 'entities', 'exporting'))
             ->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
@@ -93,6 +94,11 @@ class EntityController extends Controller
         ]);
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function files(Entity $entity)
     {
         $this->authorize('view', $entity->child);

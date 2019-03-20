@@ -19,7 +19,7 @@ $model = $widget->entity->child;
             @endif
 
             @if ($model->is_private)
-                <i class="fa fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
             @endif
             @if ($model->is_dead)
                 <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
