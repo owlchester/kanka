@@ -35,17 +35,17 @@ When calling an `index` enpoint, for example the `items` endpoint, you can provi
 
 ```json
 {
-  "data": [
-      {
-          "id": "4",
-          "updated_at": {
-              "date": "2019-03-21 19:24:53.000000",
-              "timezone_type": 3,
-              "timezone": "UTC"
-          }
-      }
-  ],
-  "sync": {
+    "data": [
+        {
+            "id": "4",
+            "updated_at": {
+                "date": "2019-03-21 19:24:53.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        }
+    ],
+    "sync": {
         "date": "2019-03-21 19:32:42.44021",
         "timezone_type": 3,
         "timezone": "UTC"
