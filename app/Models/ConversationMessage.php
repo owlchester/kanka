@@ -91,6 +91,11 @@ class ConversationMessage extends MiscModel
         return null;
     }
 
+    /**
+     * @param $query
+     * @param null $oldestId
+     * @param null $newestId
+     */
     public function scopeDefault($query, $oldestId = null, $newestId = null)
     {
         $query->with(['user', 'character'])
@@ -102,5 +107,20 @@ class ConversationMessage extends MiscModel
         } elseif (!empty($newestId)) {
             $query->where('id', '>', $newestId);
         }
+    }
+
+
+    /**
+     * Used by the API to get models updated since a previous date
+     * @param $query
+     * @param $lastSync
+     * @return mixed
+     */
+    public function scopeLastSync($query, $lastSync)
+    {
+        if (empty($lastSync)) {
+            return $query;
+        }
+        return $query->where('updated_at', '>', $lastSync);
     }
 }

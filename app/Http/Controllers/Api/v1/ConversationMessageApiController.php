@@ -23,6 +23,7 @@ class ConversationMessageApiController extends ApiController
         return new Collection(
             $conversation
                 ->messages()
+                ->lastSync(request()->get('lastSync'))
                 ->paginate()
         );
     }
