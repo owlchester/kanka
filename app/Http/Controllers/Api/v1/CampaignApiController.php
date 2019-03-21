@@ -11,7 +11,12 @@ class CampaignApiController extends ApiController
 {
     public function index()
     {
-        return new Collection(auth()->user()->campaigns()->paginate());
+        return new Collection(auth()
+            ->user()
+            ->campaigns()
+            ->lastSync(request()->get('lastSync'))
+            ->paginate()
+        );
     }
 
     public function show(Campaign $campaign)

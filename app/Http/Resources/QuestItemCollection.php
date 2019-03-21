@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class QuestItemCollection extends ResourceCollection
+class QuestItemCollection extends KankaCollection
 {
     /**
      * Transform the resource collection into an array.

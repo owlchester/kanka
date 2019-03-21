@@ -24,6 +24,7 @@ class CharacterApiController extends ApiController
                 'entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes', 'characterTraits'
             ])
+            ->lastSync(request()->get('lastSync'))
             ->paginate());
     }
 

@@ -38,3 +38,6 @@
 - ## Search
     - [Search](/docs/{{version}}/search)
     
+- ## Other Concepts
+    - [Last Sync](/docs/{{version}}/last-sync)
+    

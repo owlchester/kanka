@@ -25,6 +25,7 @@ class DiceRollApiController extends ApiController
                 'entity.events', 'entity.relationships', 'entity.attributes'
             ])
             ->acl()
+            ->lastSync(request()->get('lastSync'))
             ->paginate());
     }
 

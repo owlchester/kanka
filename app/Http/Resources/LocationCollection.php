@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class LocationCollection extends ResourceCollection
+class LocationCollection extends KankaCollection
 {
     /**
      * Transform the resource collection into an array.

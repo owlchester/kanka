@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
-use App\Scopes\RecentScope;
+use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 /**
  * Class MiscModel
@@ -30,7 +28,8 @@ abstract class MiscModel extends Model
         AclTrait,
         Searchable,
         Orderable,
-        Filterable;
+        Filterable,
+        SubEntityScopes;
 
     /**
      * If set to false, the saving observer in MiscObserver will be skipped
@@ -166,16 +165,7 @@ abstract class MiscModel extends Model
         return '<h4>' . $name . '</h4>' . $text;
     }
 
-    /**
-     * This call should be adapted in each entity model to add required "with()" statements to the query for performance
-     * on the datagrids.
-     * @param $query
-     * @return mixed
-     */
-    public function scopePreparedWith($query)
-    {
-        return $query->with('entity');
-    }
+
 
     /**
      * @return mixed
@@ -202,15 +192,6 @@ abstract class MiscModel extends Model
     public function locationMaps()
     {
         return $this->hasMany('App\Models\MapPoint', 'target_id');
-    }
-
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeRecent($query)
-    {
-        return $query->orderBy('updated_at', 'desc');
     }
 
     /**

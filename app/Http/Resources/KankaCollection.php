@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class QuestOrganisationCollection extends KankaCollection
+class KankaCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +15,10 @@ class QuestOrganisationCollection extends KankaCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => $this->collection,
+            // Add the sync object to the result for caching when the api was last called
+            'sync' => Carbon::now()
+        ];
     }
 }

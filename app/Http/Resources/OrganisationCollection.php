@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class OrganisationCollection extends ResourceCollection
+class OrganisationCollection extends KankaCollection
 {
     /**
      * Transform the resource collection into an array.

@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class JournalCollection extends ResourceCollection
+class JournalCollection extends KankaCollection
 {
     /**
      * Transform the resource collection into an array.

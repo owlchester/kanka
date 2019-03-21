@@ -20,7 +20,11 @@ class ConversationMessageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $conversation);
-        return new Collection($conversation->messages()->paginate());
+        return new Collection(
+            $conversation
+                ->messages()
+                ->paginate()
+        );
     }
 
     /**

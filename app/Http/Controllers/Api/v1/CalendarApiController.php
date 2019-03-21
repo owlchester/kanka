@@ -30,6 +30,7 @@ class CalendarApiController extends ApiController
                 'entity.relationships',
                 'entity.attributes'
             ])
+            ->lastSync(request()->get('lastSync'))
             ->paginate());
     }
 

@@ -22,6 +22,7 @@ class ConversationApiController extends ApiController
             ->conversations()
             ->with(['messages', 'participants'])
             ->acl()
+            ->lastSync(request()->get('lastSync'))
             ->paginate());
     }
 
