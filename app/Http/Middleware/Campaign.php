@@ -7,6 +7,7 @@ use Exception;
 use App\Models\Campaign as CampaignModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use \App\Facades\Identity;
 
 /**
  * Class Campaign
@@ -30,6 +31,14 @@ class Campaign
         }
 
         $campaign = CampaignModel::findOrFail($campaignId);
+
+        // If we are impersonating someone
+        if (Auth::check() && Identity::isImpersonating()) {
+            $forcedCampaignID = Identity::getCampaignId();
+            if ($campaign->id != $forcedCampaignID) {
+                return redirect()->to(app()->getLocale() . '/campaign/' . $forcedCampaignID);
+            }
+        }
 
         // Make sure we can view this campaign?
         if ($campaign->visibility == 'public') {

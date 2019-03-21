@@ -63,8 +63,6 @@ Route::group([
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
     Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 
-    Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
-
     // Slug
     Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 

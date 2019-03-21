@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\CampaignUser;
 use App\User;
 use Illuminate\Foundation\Application;
+use \App\Facades\CampaignLocalization;
 
 
 class IdentityManager
@@ -33,9 +34,9 @@ class IdentityManager
         try {
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
+            session()->put($this->getSessionCampaignKey(), CampaignLocalization::getCampaign()->id);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
-        }
-        catch ( \Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
 
@@ -60,8 +61,7 @@ class IdentityManager
 
             $this->app['auth']->loginUsingId($impersonator->id);
             $this->clear();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
 
@@ -97,6 +97,14 @@ class IdentityManager
         return 'kanka.originalUserID';
     }
 
+    /**
+     * The Key used to determine where our original campaign is stored
+     * @return string
+     */
+    public function getSessionCampaignKey(): string
+    {
+        return 'kanka.originalCampaignID';
+    }
 
     /**
      * @param   void
@@ -108,12 +116,22 @@ class IdentityManager
     }
 
     /**
+     * @param   void
+     * @return  int|null
+     */
+    public function getCampaignId()
+    {
+        return session($this->getSessionCampaignKey(), null);
+    }
+
+    /**
      * Forget the saved user identity.
      * @return bool
      */
     protected function clear(): bool
     {
         session()->forget($this->getSessionKey());
+        session()->forget($this->getSessionCampaignKey());
         return true;
     }
 }

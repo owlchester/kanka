@@ -46,43 +46,6 @@
             {{ trans('front.menu.title') }}
             <i class="fa fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#{{ $error }}">{{ trans("errors.$error.title") }}</a>
-                </li>
-                @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">{{ trans('front.menu.dashboard') }}</a>
-                    </li>
-                @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ trans('front.menu.login') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
-                </li>
-                @endauth
-
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-globe"></i>
-                        {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu navbar-nar" aria-labelledby="drop3">
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            @if ($localeCode != App::getLocale())
-                                <li class="nav-item">
-                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="nav-link">
-                                        {{ ucfirst($properties['native']) }}
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </li>
-            </ul>
-        </div>
     </div>
 </nav>
 
@@ -101,6 +64,8 @@
                     @endif
 
                     <p>{!! trans('errors.footer', ['discord' => link_to(config('discord.url'), 'Discord')]) !!}</p>
+
+                    <p><a href="/">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>.</p>
                 </div>
             </div>
         </div>
@@ -108,7 +73,6 @@
 </header>
 @yield('content')
 
-@include('front.footer')
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>

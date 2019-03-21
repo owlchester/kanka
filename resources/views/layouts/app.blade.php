@@ -99,6 +99,16 @@
             <!-- Main content -->
             <section class="content">
                 <!-- Your Page Content Here -->
+                @if (auth()->check() && \App\Facades\Identity::isImpersonating())
+                    <div class="alert alert-warning">
+                        <h4>
+                            <i class="icon fa fa-exclamation-triangle"></i>
+                            <i class="icon fa fa-info"></i>
+                            {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
+                        </h4>
+                        <p>{{ __('campaigns.members.impersonating.message') }}</p>
+                    </div>
+                @endif
                 @include('partials.success')
                 @yield('content')
             </section><!-- /.content -->

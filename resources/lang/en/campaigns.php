@@ -148,7 +148,10 @@ return [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
-        'switch_success' => 'You are now viewing the campaign as another user. Some features have been disabled, but the rest acts exactly like the user. To go back to your user, use the Switch Back button located where the Logout button is usually situated.',
+        'impersonating' => [
+            'title' => 'Impersonating :name',
+            'message' => 'You are now viewing the campaign as another user. Some features have been disabled, but the rest acts exactly like the user would see it. To go back to your user, use the Switch Back button located where the Logout button is usually situated.',
+        ],
         'switch_back_success' => 'You are now back to your original user.',
         'roles'         => [
             'member'    => 'Member',

@@ -30,8 +30,7 @@ class MemberController extends Controller
 
         if (Identity::switch($campaignUser)) {
             return redirect()
-                ->route('dashboard')
-                ->with('success', __('campaigns.members.switch_success'));
+                ->route('dashboard');
         }
         return redirect()
             ->route('dashboard');

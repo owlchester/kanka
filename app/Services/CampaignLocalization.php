@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Identity;
 use App\Models\Campaign;
 
 class CampaignLocalization
