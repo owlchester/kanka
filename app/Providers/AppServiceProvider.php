@@ -11,6 +11,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Conversation;
+use App\Models\ConversationMessage;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
@@ -82,6 +83,7 @@ class AppServiceProvider extends ServiceProvider
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             Conversation::observe('App\Observers\ConversationObserver');
+            ConversationMessage::observe('App\Observers\ConversationMessageObserver');
             DiceRoll::observe('App\Observers\DiceRollObserver');
             DiceRollResult::observe('App\Observers\DiceRollResultObserver');
             Event::observe(EventObserver::class);
