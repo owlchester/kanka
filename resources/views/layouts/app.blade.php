@@ -103,7 +103,6 @@
                     <div class="alert alert-warning">
                         <h4>
                             <i class="icon fa fa-exclamation-triangle"></i>
-                            <i class="icon fa fa-info"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
                         </h4>
                         <p>{{ __('campaigns.members.impersonating.message') }}</p>

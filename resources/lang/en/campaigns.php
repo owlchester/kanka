@@ -150,7 +150,7 @@ return [
         ],
         'impersonating' => [
             'title' => 'Impersonating :name',
-            'message' => 'You are now viewing the campaign as another user. Some features have been disabled, but the rest acts exactly like the user would see it. To go back to your user, use the Switch Back button located where the Logout button is usually situated.',
+            'message' => 'You are viewing the campaign as another user. Some features have been disabled, but the rest acts exactly as the user would see it. To switch back to your user, use the Switch Back button located where the Logout button is usually situated.',
         ],
         'switch_back_success' => 'You are now back to your original user.',
         'roles'         => [
