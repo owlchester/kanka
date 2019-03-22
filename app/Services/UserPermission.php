@@ -188,7 +188,7 @@ class UserPermission
         /** @var CampaignPermission $permission */
         foreach ($role->permissions as $permission) {
             // Only test permissions who's action is being requested
-            if (!$permission->action() == $this->action) {
+            if ($permission->action() != $this->action) {
                 continue;
             }
 
