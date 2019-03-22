@@ -35,7 +35,7 @@ class LogController extends Controller
         $ajax = request()->ajax();
 
         $entity = $this->logService->createMissingLogs($entity);
-        $logs = $entity->logs()->recent()->paginate();
+        $logs = $entity->logs()->with(['user', 'impersonator'])->recent()->paginate();
 
         return view('entities.pages.logs.logs', compact(
             'ajax',

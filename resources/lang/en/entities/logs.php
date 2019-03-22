@@ -10,6 +10,7 @@ return [
         'action'    => 'Action',
         'date'      => 'Date',
     ],
+    'impersonated' => 'Impersonated by :name',
     'show'      => [
         'title' => 'Entity :name Logs',
     ],

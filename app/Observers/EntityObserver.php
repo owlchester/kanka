@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\EntityPermission;
+use App\Facades\Identity;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -88,6 +89,7 @@ class EntityObserver
         $log = new EntityLog();
         $log->entity_id = $entity->id;
         $log->created_by = auth()->user()->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_CREATE;
         $log->save();
     }
@@ -101,6 +103,7 @@ class EntityObserver
         $log = new EntityLog();
         $log->entity_id = $entity->id;
         $log->created_by = auth()->user()->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_UPDATE;
         $log->save();
     }

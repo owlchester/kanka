@@ -12,9 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $entity_id
  * @property integer $campaign_id
  * @property integer $created_by
+ * @property integer $impersonated_by
  * @property integer $action
  * @property Entity $entity
  * @property User $user
+ * @property User $impersonator
  * @property Campaign $campaign
  */
 class EntityLog extends Model
@@ -26,6 +28,7 @@ class EntityLog extends Model
     public $fillable = [
         'entity_id',
         'created_by',
+        'impersonated_by',
         'action',
         'campaign_id',
     ];
@@ -52,6 +55,14 @@ class EntityLog extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'created_by');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function impersonator()
+    {
+        return $this->belongsTo('App\User', 'impersonated_by');
     }
 
     /**

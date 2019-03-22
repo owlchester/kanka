@@ -44,6 +44,10 @@
                                     @else
                                         {{  __('crud.history.unknown') }}
                                     @endif
+
+                                    @if ($log->impersonator)
+                                        ({{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }})
+                                    @endif
                                 </td>
                                 <td>
                                     {{ $log->created_at->diffForHumans() }}
