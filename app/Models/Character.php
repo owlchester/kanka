@@ -264,6 +264,7 @@ class Character extends MiscModel
     public function menuItems($items = [])
     {
         $campaign = $this->campaign;
+        $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
         $count = $this->items()->acl()->count();
         if ($campaign->enabled('items') && $count > 0) {
@@ -275,7 +276,7 @@ class Character extends MiscModel
         }
 
         $count = $this->organisations()->acl()->organisationAcl()->has('organisation')->count();
-        if ($campaign->enabled('organisations') && $count > 0) {
+        if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',
                 'route' => 'characters.organisations',

@@ -119,6 +119,7 @@ class CampaignPolicy
         return $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
             $campaign->user() && (!$this->isAdmin($user) || count($campaign->admins()) > 1) &&
+            // We also can't leave a campaign if we are not the real user
             !Identity::isImpersonating();
     }
 }

@@ -77,5 +77,6 @@
 </div>
 
 @section('scripts')
+    @parent
     <script src="{{ mix('js/conversation.js') }}" defer></script>
 @endsection

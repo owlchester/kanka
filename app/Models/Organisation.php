@@ -180,15 +180,19 @@ class Organisation extends MiscModel
     public function menuItems($items = [])
     {
         $campaign = $this->campaign;
+        $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
-        $items['organisations'] = [
-            'name' => 'organisations.show.tabs.organisations',
-            'route' => 'organisations.organisations',
-            'count' => $this->descendants()->acl()->count()
-        ];
+        $count = $this->descendants()->acl()->count();
+        if ($count > 0) {
+            $items['organisations'] = [
+                'name' => 'organisations.show.tabs.organisations',
+                'route' => 'organisations.organisations',
+                'count' => $count,
+            ];
+        }
 
         $count = $this->members()->acl()->has('character')->count();
-        if ($campaign->enabled('characters') && $count > 0) {
+        if ($campaign->enabled('characters')) {
             $items['members'] = [
                 'name' => 'organisations.show.tabs.members',
                 'route' => 'organisations.members',
