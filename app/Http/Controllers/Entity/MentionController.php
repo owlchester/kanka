@@ -41,7 +41,7 @@ class MentionController extends Controller
         }
 
         $ajax = request()->ajax();
-        $mentions = $entity->targetMentions()->acl()->paginate();
+        $mentions = $entity->targetMentions()->paginate();
 
         return view('entities.pages.mentions.mentions', compact(
             'ajax',

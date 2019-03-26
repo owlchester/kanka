@@ -37,10 +37,16 @@
                             <tr>
                                 <td>
                                     @if ($mention->isCampaign())
-                                        <a href="{{ route('campaigns.show', $mention->campaign_id) }}">{{ $mention->campaign->name }}</a>
+                                        <a href="{{ route('campaigns.show', $mention->campaign_id) }}">
+                                            {{ $mention->campaign->name }}
+                                        </a>
                                     @elseif ($mention->isEntityNote())
-                                        @viewentity($mention->entityNote->entity)
-                                            <a href="{{ $mention->entityNote->entity->url('show', 'notes') }}">{{ __('entities/mentions.entity_note', ['name' => $mention->entityNote->entity->name]) }}</a>
+                                        @if ($mention->entityNote)
+                                            @viewentity($mention->entityNote->entity)
+                                                <a href="{{ $mention->entityNote->entity->url('show', 'notes') }}">
+                                                    {{ __('entities/mentions.entity_note', ['name' => $mention->entityNote->entity->name]) }}
+                                                </a>
+                                            @endif
                                         @else
                                             <i>{{ trans('crud.hidden') }}</i>
                                         @endviewentity
