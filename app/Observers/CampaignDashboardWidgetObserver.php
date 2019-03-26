@@ -14,7 +14,9 @@ class CampaignDashboardWidgetObserver
     {
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
 
-        $model->config = json_encode(empty($model->config) ? [] : $model->config, JSON_UNESCAPED_SLASHES);
+        $model->config = is_string($model->config) ?
+            $model->config :
+            json_encode(empty($model->config) ? [] : $model->config, JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -85,7 +85,6 @@ class CampaignDashboardWidget extends Model
     public function conf($value)
     {
         $data = json_decode($this->config, true);
-//        dd($data);
         return array_get($data, $value, null);
     }
 }
