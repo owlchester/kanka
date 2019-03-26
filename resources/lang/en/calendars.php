@@ -10,6 +10,7 @@ return [
         'add_weekday'       => 'Add a week day',
         'add_year'          => 'Add a year name',
         'today'             => 'Today',
+        'set_today'         => 'Set as current day',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Takes place every year',
@@ -38,6 +39,7 @@ return [
         'description'   => 'Update the calendar',
         'success'       => 'Calendar \':name\' updated.',
         'title'         => 'Edit Calendar :name',
+        'today'         => 'Calendar date updated.',
     ],
     'event'         => [
         'actions'   => [
