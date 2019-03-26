@@ -1,5 +1,5 @@
 <?php
-if (empty($entities)) {
+if (empty($entities) || count($entities) == 0) {
     return;
 }
 /** @var \App\Models\Entity $entity */
