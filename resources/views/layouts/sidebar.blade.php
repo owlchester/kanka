@@ -137,7 +137,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     <li><a href="{{ route('voyager.dashboard') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
                 @endadmin
                 @moderator
-                    <li><a href="{{ route('admin.campaigns.index') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
+                    <li><a href="{{ route('admin.home') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
                 @endmoderator
             @endauth
         </ul>

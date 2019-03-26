@@ -34,7 +34,7 @@ trait GuestAuthTrait
     protected function authorizeEntityForGuest($action, MiscModel $model)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $permission = EntityPermission::hasPermission($model->getEntityType(), $action, null, $model->child, $campaign);
+        $permission = EntityPermission::hasPermission($model->getEntityType(), $action, null, $model, $campaign);
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error

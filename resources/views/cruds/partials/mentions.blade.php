@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\MiscModel $model */
-$mentionCount = $model->entity->targetMentions()->count();
+$mentionCount = $model->entity->targetMentions()->acl()->count();
 ?>
 @if ($mentionCount > 0)
     <hr />

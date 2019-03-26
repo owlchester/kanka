@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,12 @@ use Illuminate\Support\Facades\DB;
  */
 class EntityMention extends Model
 {
+    /**
+     * Acl setup
+     */
+    use AclTrait;
+    //public $aclFieldName = 'location_id';
+
     public $fillable = [
         'entity_id',
         'entity_note_id',
