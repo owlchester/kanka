@@ -125,7 +125,7 @@ class EntityNoteController extends Controller
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
-            ->with('success', trans('crud.notes.create.success', [
+            ->with('success', trans('entities/notes.create.success', [
                 'name' => $note->name, 'entity' => $entity->child->name
             ]));
     }
@@ -169,7 +169,7 @@ class EntityNoteController extends Controller
         $entityNote->update($request->all());
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
-            ->with('success', trans('crud.notes.edit.success', [
+            ->with('success', trans('entities/notes.edit.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));
     }
@@ -188,7 +188,7 @@ class EntityNoteController extends Controller
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
-            ->with('success', trans('crud.notes.destroy.success', [
+            ->with('success', trans('entities/notes.destroy.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));
     }

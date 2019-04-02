@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('crud.notes.edit.title', ['name' => $entity->name]),
+    'title' => __('entities/notes.edit.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],

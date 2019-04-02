@@ -210,39 +210,6 @@ return [
         ],
         'title' => 'New entity',
     ],
-    'notes'             => [
-        'actions'       => [
-            'add'   => 'Add a note',
-        ],
-        'create'        => [
-            'description'   => 'Create a new note',
-            'success'       => 'Note \':name\' added to :entity.',
-            'title'         => 'New Note for :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Note \':name\' for :entity removed.',
-        ],
-        'edit'          => [
-            'description'   => 'Update an existing note',
-            'success'       => 'Note \':name\' for :entity updated.',
-            'title'         => 'Update note for :name',
-        ],
-        'fields'        => [
-            'creator'   => 'Creator',
-            'entry'     => 'Entry',
-            'name'      => 'Name',
-        ],
-        'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Notes.',
-        'index'         => [
-            'title' => 'Notes for :name',
-        ],
-        'placeholders'  => [
-            'name'  => 'Name of the note, observation or remark.',
-        ],
-        'show'          => [
-            'title' => 'Entity Note :name for :entity',
-        ],
-    ],
     'or_cancel'         => 'or <a href=":url">cancel</a>',
     'panels'            => [
         'appearance'            => 'Appearance',
@@ -310,7 +277,7 @@ return [
         'map-points'    => 'Map Points',
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',
-        'notes'         => 'Notes',
+        'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
     ],

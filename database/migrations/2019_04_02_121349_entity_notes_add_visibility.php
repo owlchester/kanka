@@ -17,6 +17,8 @@ class EntityNotesAddVisibility extends Migration
             $table->enum('visibility', ['all', 'admin', 'self'])->default('all');
             $table->index(['visibility']);
         });
+
+        DB::statement("UPDATE `entity_notes` SET `visibility` = 'admin' WHERE `is_private` = 1");
     }
 
     /**
