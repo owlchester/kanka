@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\EntityMentionAclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\DB;
  */
 class EntityMention extends Model
 {
+    use EntityMentionAclTrait;
+
     public $fillable = [
         'entity_id',
         'entity_note_id',
@@ -81,5 +84,32 @@ class EntityMention extends Model
     public function isCampaign()
     {
         return !empty($this->campaign_id);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeEntity($query)
+    {
+        return $query->whereNotNull('entity_mentions.entity_id');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeEntityNote($query)
+    {
+        return $query->whereNotNull('entity_mentions.entity_note_id');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeCampaign($query)
+    {
+        return $query->whereNotNull('entity_mentions.campaign_id');
     }
 }

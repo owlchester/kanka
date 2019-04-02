@@ -179,7 +179,6 @@ class EntityMappingService
             $singularType = array_get($this->typeMapping, $type, false);
             if ($singularType === false) {
                 if ($this->throwExceptions) {
-                    dump($mentions);
                     throw new Exception("Unknown type $type");
                 } else {
                     continue;
@@ -191,9 +190,17 @@ class EntityMappingService
                 continue;
             }
 
+            // Determine the real campaign id from the model
+            $campaignId = $model->campaign_id;
+            if ($model instanceof Campaign) {
+                $campaignId = $model->id;
+            } elseif ($model instanceof EntityNote) {
+                $campaignId = $model->entity->campaign_id;
+            }
+
             /** @var Entity $entity */
             $target = Entity::where([
-                'type' => $singularType, 'entity_id' => $id, 'campaign_id' => $model->campaign_id
+                'type' => $singularType, 'entity_id' => $id, 'campaign_id' => $campaignId
             ])->first();
             if ($target) {
                 //$this->log("- Mentions " . $model->id);

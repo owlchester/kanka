@@ -5,11 +5,17 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class MentionController extends Controller
 {
+    /**
+     * Guest Auth Trait
+     */
+    use GuestAuthTrait;
+
     /**
      * @var
      */
@@ -27,7 +33,12 @@ class MentionController extends Controller
      */
     public function index(Entity $entity)
     {
-        $this->authorize('view', $entity->child);
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest('read', $entity->child);
+        }
 
         $ajax = request()->ajax();
         $mentions = $entity->targetMentions()->paginate();

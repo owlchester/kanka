@@ -1,5 +1,7 @@
 <?php /** @var \App\Models\MiscModel $model */
-$mentionCount = $model->entity->targetMentions()->count();
+$mentionCount = $model->entity->targetMentions()->entity()->entityAcl()->count() +
+    $model->entity->targetMentions()->entityNote()->entityNoteAcl()->count() +
+    $model->entity->targetMentions()->campaign()->count();
 ?>
 @if ($mentionCount > 0)
     <hr />
