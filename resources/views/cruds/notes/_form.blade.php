@@ -8,7 +8,11 @@
             {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'entry']) !!}
         </div>
 
-        @include('cruds.fields.private')
+        <div class="row">
+            <div class="col-md-6">
+                @include('cruds.fields.visibility')
+            </div>
+        </div>
     </div>
 </div>
 

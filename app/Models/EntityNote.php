@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\Traits\OrderableTrait;
-use App\Traits\VisibleTrait;
+use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 
@@ -16,6 +16,7 @@ use DateTime;
  * @property string $name
  * @property string $value
  * @property string $entry
+ * @property string $visibility
  * @property integer $created_by
  * @property boolean $is_private
  * @property EntityMention[] $mentions
@@ -31,6 +32,7 @@ class EntityNote extends Model
         'entry',
         'created_by',
         'is_private',
+        'visibility'
     ];
 
     /**
@@ -42,7 +44,7 @@ class EntityNote extends Model
     /**
      * Traits
      */
-    use VisibleTrait;
+    use VisibilityTrait;
     use OrderableTrait;
     use Paginatable;
 
