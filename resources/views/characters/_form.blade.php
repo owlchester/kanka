@@ -63,6 +63,7 @@ if (request()->route()->getName() == 'characters.random') {
                     <label>{{ trans('characters.fields.sex') }}</label>
                     {!! Form::text('sex', ($isRandom ? $random->generate('sex') : $formService->prefill('sex', $source)), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
                 </div>
+
                 <div class="character-appearance">
                 @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits() : $formService->prefillCharacterAppearance($source))) as $trait)
                     <div class="form-group parent-delete-row">
@@ -145,6 +146,7 @@ if (request()->route()->getName() == 'characters.random') {
             <div class="panel-heading">
                 <h4>{{ trans('characters.sections.personality') }}</h4>
             </div>
+            @if (!isset($model) || auth()->user()->can('personality', $model))
             <div class="panel-body">
                 <div class="character-personality">
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits(false) : $formService->prefillCharacterPersonality($source))) as $trait)
@@ -215,6 +217,11 @@ if (request()->route()->getName() == 'characters.random') {
                     <p class="help-block">{{ trans('characters.hints.is_personality_visible') }}</p>
                 </div>
             </div>
+            @else
+                <div class="panel-body">
+                    <p class="alert alert-warning">{{ __('characters.warnings.personality_hidden') }}</p>
+                </div>
+            @endif
         </div>
         @include('cruds.fields.copy')
     </div>
