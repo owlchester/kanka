@@ -15,6 +15,8 @@ use Kalnoy\Nestedset\NodeTrait;
  * @var string $entry
  * @var string $image
  * @var string $map
+ * @var boolean $is_private
+ * @var boolean $is_map_private
  * @var integer $parent_location_id
  */
 class Location extends MiscModel
@@ -49,6 +51,7 @@ class Location extends MiscModel
         'parent_location_id',
         'campaign_id',
         'is_private',
+        'is_map_private',
     ];
 
     /**
@@ -272,10 +275,12 @@ class Location extends MiscModel
         $campaign = $this->campaign;
 
         if (!empty($this->map)) {
-            $items['map'] = [
-                'name' => 'locations.show.tabs.map',
-                'route' => 'locations.map'
-            ];
+            if (!$this->is_map_private || (auth()->check() && auth()->user()->can('map', $this))) {
+                $items['map'] = [
+                    'name' => 'locations.show.tabs.map',
+                    'route' => 'locations.map'
+                ];
+            }
         }
 
         $count = $this->descendants()->acl()->count();

@@ -4,8 +4,27 @@
     'breadcrumbs' => [
         ['url' => route('locations.index'), 'label' => trans('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
-    ]
+    ],
+    'headerExtra' => 'ass',
 ])
+
+@section('header-extra')
+    <div class="pull-right">
+    <a href="{{ $location->getLink() }}" class="btn btn-default">
+        <i class="fa fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
+    </a>
+    @if ($location->map)
+        @can('update', $location)
+            <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
+                <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
+            </button>
+            <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
+                <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
+            </button>
+        @endcan
+    @endif
+    </div>
+@endsection
 
 @section('content')
     @if ($location->map)
@@ -18,19 +37,6 @@
                     <button id="map-toggle-hide" class="btn btn-default" title="{{ trans('locations.map.actions.toggle_hide') }}"><i class="fa fa-eye-slash"></i></button>
                     <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa fa-eye"></i></button>
                     <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa fa-download"></i></a>
-                </div>
-                <div class="map-admin">
-                @can('update', $location)
-                    <a href="{{ $location->getLink() }}" class="btn btn-default">
-                        <i class="fa fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
-                    </a>
-                    <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
-                        <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
-                    </button>
-                    <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
-                        <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
-                    </button>
-                @endcan
                 </div>
                 <div class="map-helper hidden-xs">
                     <p>{{ __('locations.map.helpers.view') }}</p>
