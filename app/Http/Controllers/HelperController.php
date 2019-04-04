@@ -19,4 +19,12 @@ class HelperController
     {
         return view('helpers.dice');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function map()
+    {
+        return view('helpers.map');
+    }
 }
