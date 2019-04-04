@@ -2,6 +2,13 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="title entity-title">
+            <i class="fa fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
+
+            @if ($mapPoint->hasTarget() && $mapPoint->targetEntity->child->is_private)
+                <span class="pull-right fa-xs margin-r-5">
+                    <i class="fas fa-lock"></i>
+                </span>
+            @endif
             @if (!$mapPoint->hasTarget())
                 {{ $mapPoint->name }}
             @else
@@ -10,13 +17,7 @@
                     <span class="entity-name">{{ $mapPoint->targetEntity->name }}</span>
                 </a>
             @endif
-            <i class="fa fa-times pull-right fa-xs entity-close" title="{{ __('crud.click_modal.close') }}"></i>
 
-            @if ($mapPoint->hasTarget() && $mapPoint->targetEntity->child->is_private)
-                <span class="pull-right fa-xs margin-r-5">
-                    <i class="fas fa-lock"></i>
-                </span>
-            @endif
         </h3>
     </div>
     <div class="panel-body">

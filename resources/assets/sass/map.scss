@@ -87,11 +87,21 @@
     height: 25px;
     font-size: 13px;
   }
+  .tiny {
+    width: 10px;
+    height: 10px;
+    font-size: 5px;
+  }
 
   .large {
     width: 100px;
     height: 100px;
     font-size: 52px;
+  }
+  .huge {
+    width: 200px;
+    height: 200px;
+    font-size: 108px;
   }
 
   .red {
