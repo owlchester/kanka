@@ -81,7 +81,11 @@ class LocationController extends CrudController
         if (Auth::check()) {
             $this->authorize('map', $location);
         } else {
-            $this->authorizeForGuest('map', $location);
+            $this->authorizeForGuest('read', $location);
+            // Extra check for private maps
+            if ($location->is_map_private) {
+                abort('403');
+            }
         }
 
         return view('locations.map', compact('location'));
