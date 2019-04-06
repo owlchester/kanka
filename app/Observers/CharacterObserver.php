@@ -23,6 +23,12 @@ class CharacterObserver extends MiscObserver
      */
     protected function saveTraits(MiscModel $character, $trait = 'personality')
     {
+        // Users who can edit the character but can't access personality traits shouldn't be allowed to
+        // change those traitrs.
+        if ($trait == 'personality' && !auth()->user()->can('personality', $character)) {
+            return;
+        }
+
         $existing = [];
         foreach ($character->characterTraits()->{$trait}()->get() as $pers) {
             $existing[$pers->id] = $pers;

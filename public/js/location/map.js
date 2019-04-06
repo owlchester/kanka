@@ -528,6 +528,37 @@ function initModalForm() {
     initDeleteMapPoint();
     initIconSelect();
 
+    var phaseFirst = $('.phase-first');
+    var phaseSecond = $('.phase-second');
+    var pointSave = $('.point-save');
+    var pointEntity = $('.point-entity');
+    var pointLabel = $('.point-label');
+
+    $('#phase-first-entity').on('click', function (e) {
+        e.preventDefault();
+        pointEntity.show();
+        phaseFirst.hide();
+        phaseSecond.show();
+        pointSave.show();
+    });
+
+    $('#phase-first-label').on('click', function (e) {
+        e.preventDefault();
+        pointLabel.show();
+        phaseFirst.hide();
+        phaseSecond.show();
+        pointSave.show();
+    });
+
+    $('.phase-undo').on('click', function (e) {
+        e.preventDefault();
+        phaseSecond.hide();
+        pointSave.hide();
+        pointEntity.hide();
+        pointLabel.hide();
+        phaseFirst.show();
+    });
+
     $('.map-point-form').submit(function (e) {
         var formData = $(this).serialize();
 
@@ -644,10 +675,14 @@ function repositionPoint(point, magnifier) {
     //$(this).css('border-radius', (25 * magnifier)+ 'px');
 
     fontSize = 24;
-    if (point.data('size') === 25) {
+    if (point.data('size') === 10) {
+        fontSize = 5;
+    } else if (point.data('size') === 25) {
         fontSize = 12;
     } else if (point.data('size') === 100) {
         fontSize = 56;
+    } else if (point.data('size') === 200) {
+        fontSize = 108;
     }
     point.css('font-size', fontSize * magnifier + 'px');
 }
@@ -708,12 +743,49 @@ function formatState(state) {
 };
 
 /**
+ * Shape state
+ * @param state
+ * @returns {jQuery|HTMLElement|*}
+ */
+function formatColourState(state) {
+    if (state.id === 'none') {
+        return state.text;
+    }
+
+    var $state = $('<span><i class="fas fa-square-full" style="color: ' + state.id + ';"></i> ' + state.text + '</span>');
+    return $state;
+}
+
+/**
+ * Shape state
+ * @param state
+ * @returns {jQuery|HTMLElement|*}
+ */
+function formatShapeState(state) {
+    if (state.id === 'none') {
+        return state.text;
+    }
+
+    var $state = $('<span><i class="fas fa-' + state.id + '"></i> ' + state.text + '</span>');
+    return $state;
+}
+/**
  *
  */
 function initIconSelect() {
     $(".select2-icon").select2({
         templateResult: formatState,
         templateSelection: formatState,
+        language: $(this).data('language')
+    });
+    $(".select2-colour").select2({
+        templateResult: formatColourState,
+        templateSelection: formatColourState,
+        language: $(this).data('language')
+    });
+    $(".select2-shape").select2({
+        templateResult: formatShapeState,
+        templateSelection: formatShapeState,
         language: $(this).data('language')
     });
 }

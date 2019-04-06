@@ -13,7 +13,7 @@
     {!! Form::open(['route' => ['locations.map_points.store', $location], 'method'=>'POST', 'data-shortcut' => "1", 'class' => 'map-point-form']) !!}
     @include('locations.map_points._form')
 
-    <div class="form-group">
+    <div class="form-group point-save " style="display: none">
         <button class="btn btn-success">{{ trans('crud.save') }}</button>
         @if(!isset($ajax))
         {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}

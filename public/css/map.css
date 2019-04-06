@@ -88,10 +88,22 @@
   font-size: 13px;
 }
 
+.map .tiny {
+  width: 10px;
+  height: 10px;
+  font-size: 5px;
+}
+
 .map .large {
   width: 100px;
   height: 100px;
   font-size: 52px;
+}
+
+.map .huge {
+  width: 200px;
+  height: 200px;
+  font-size: 108px;
 }
 
 .map .red {

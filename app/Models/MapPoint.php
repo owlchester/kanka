@@ -80,7 +80,7 @@ class MapPoint extends Model
         $url = $this->hasTarget() ? $this->targetEntity->child->getLink() : '#';
         $style = 'top: ' . e($this->axis_y) . 'px; left: ' . e($this->axis_x) . 'px;';
         $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : e($this->name);
-        $size = $this->size == 'large' ? 100 : ($this->size == 'small' ? 25 : 50);
+        $size = $this->percentageSize();
 
         if ($this->hasTarget() && $this->icon == 'entity') {
             $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
@@ -118,5 +118,23 @@ class MapPoint extends Model
         }
 
         return $icon;
+    }
+
+    /**
+     * Get the size in a percentage, where large is 100%
+     * @return int
+     */
+    public function percentageSize(): int
+    {
+        if ($this->size == 'large') {
+            return 100;
+        } elseif ($this->size == 'huge') {
+            return 200;
+        } elseif ($this->size == 'small') {
+            return 25;
+        } elseif ($this->size == 'tiny') {
+            return 10;
+        }
+        return 50;
     }
 }

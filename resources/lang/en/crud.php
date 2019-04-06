@@ -131,6 +131,7 @@ return [
         'race'                  => 'Race',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'visibility'            => 'Visibility',
     ],
     'files'             => [
         'actions'   => [
@@ -170,6 +171,7 @@ return [
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
         'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
+        'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.'
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -207,39 +209,6 @@ return [
             'name'  => 'Name',
         ],
         'title' => 'New entity',
-    ],
-    'notes'             => [
-        'actions'       => [
-            'add'   => 'Add a note',
-        ],
-        'create'        => [
-            'description'   => 'Create a new note',
-            'success'       => 'Note \':name\' added to :entity.',
-            'title'         => 'New Note for :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Note \':name\' for :entity removed.',
-        ],
-        'edit'          => [
-            'description'   => 'Update an existing note',
-            'success'       => 'Note \':name\' for :entity updated.',
-            'title'         => 'Update note for :name',
-        ],
-        'fields'        => [
-            'creator'   => 'Creator',
-            'entry'     => 'Entry',
-            'name'      => 'Name',
-        ],
-        'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Notes.',
-        'index'         => [
-            'title' => 'Notes for :name',
-        ],
-        'placeholders'  => [
-            'name'  => 'Name of the note, observation or remark.',
-        ],
-        'show'          => [
-            'title' => 'Entity Note :name for :entity',
-        ],
     ],
     'or_cancel'         => 'or <a href=":url">cancel</a>',
     'panels'            => [
@@ -308,7 +277,7 @@ return [
         'map-points'    => 'Map Points',
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',
-        'notes'         => 'Notes',
+        'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
     ],
@@ -317,4 +286,9 @@ return [
         'unknown'   => 'Unknown',
     ],
     'view'              => 'View',
+    'visibilities'      => [
+        'all' => 'All',
+        'admin' => 'Admin',
+        'self' => 'Self',
+    ]
 ];

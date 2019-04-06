@@ -24,6 +24,7 @@ return [
     'fields'        => [
         'characters'    => 'Characters',
         'image'         => 'Image',
+        'is_map_private' => 'Private Map',
         'location'      => 'Location',
         'locations'     => 'Locations',
         'map'           => 'Map',
@@ -35,6 +36,10 @@ return [
         'characters'    => 'View all characters in this location and its children locations, or just those directly located here.',
         'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
         'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'map' => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
+    ],
+    'hints' => [
+        'is_map_private' => 'A private map will only be visible to members of the campaign\'s "Admin" role.'
     ],
     'index'         => [
         'actions'       => [
@@ -75,6 +80,7 @@ return [
             'admin' => 'Activate to enable clicking anywhere on the map to add new points, clicking on points to edit them, or moving them around.',
             'label' => 'This point is a label. Nothing more, nothing less.',
             'view'  => 'Click on any map point to view details about it. Use Ctrl+Zoom to zoom in an out of the map.',
+            'info' => 'More info about maps.',
         ],
         'modal'     => [
             'submit'    => 'Add',
@@ -92,7 +98,7 @@ return [
                 'size'      => 'Size',
             ],
             'helpers'       => [
-                'location_or_name'  => 'A map point can either point to an existing location, or just have a label.',
+                'location_or_name'  => 'A map point can either point to an existing Entity, or just have a label.',
             ],
             'icons'         => [
                 'anchor'        => 'Anchor',
@@ -162,8 +168,10 @@ return [
             ],
             'sizes'         => [
                 'large'     => 'Large',
+                'huge'      => 'Huge',
                 'small'     => 'Small',
                 'standard'  => 'Standard',
+                'tiny'      => 'Tiny',
             ],
             'success'       => [
                 'create'    => 'Location Map Point created.',
@@ -177,6 +185,9 @@ return [
     'organisations' => [
         'description'   => 'Organisations situated in the location.',
         'title'         => 'Location :name Organisations',
+    ],
+    'panels' => [
+        'map' => 'Map',
     ],
     'placeholders'  => [
         'location'  => 'Choose a parent location',

@@ -88,6 +88,8 @@
                 </ol>
                 @endif
                 <h1 class="hidden-xs">
+                    @yield('header-extra')
+
                     {{ $title ?? "Page Title" }}
                     <small>{{ $description ?? null }}</small>
                     @if (!empty($headerExtra))

@@ -17,7 +17,7 @@ class CharacterPolicy extends EntityPolicy
      */
     public function personality(User $user, $entity)
     {
-        return ($this->update($user, $entity) || $entity->is_personality_visible);
+        return $entity->is_personality_visible || $user->isAdmin();
     }
 
     /**

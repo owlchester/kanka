@@ -16,6 +16,7 @@ class EntityNote extends EntityChild
     {
         return $this->entity([
             'name' => $this->name,
+            'visibility' => $this->visibility,
             'entry' => $this->entry,
         ]);
     }

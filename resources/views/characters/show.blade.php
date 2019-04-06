@@ -24,9 +24,12 @@
             </div>
         </div>
 
-        @if (($model->is_personality_visible || (!$model->is_personality_visible && Auth::check() && Auth::user()->can('personality', $model))) && $model->characterTraits()->personality()->count() > 0)
+        @if ((Auth::check() && Auth::user()->can('personality', $model)) && $model->characterTraits()->personality()->count() > 0)
         <div class="box">
             <div class="box-header with-border">
+                @if (!$model->is_personality_visible)
+                <span class="pull-right"><i class="fa fa-lock" title="{{ __('characters.hints.is_personality_visible') }}"></i></span>
+                @endif
                 <h3 class="box-title">{{ trans('characters.show.tabs.personality') }}</h3>
             </div>
             <!-- /.box-header -->

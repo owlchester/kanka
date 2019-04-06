@@ -13,6 +13,11 @@ return [
         'description'   => 'You can easily link to other entities by simply typing \'@\'. You can also type \'#\' to get a list of months from your calendars.',
         'title'         => 'Linking to other entries and shortcuts',
     ],
+    'map' => [
+        'title' => 'Location Maps',
+        'description' => 'Uploading a map to a location will enable the `Map` menu on the Location\'s view page, and a direct link to the map from the campaign\'s locations page. From the map view, users who can edit the location can activate the \'Edit Mode\' which allows them to place Map Points on the map. These can link to an existing entity or be a label, and have various shapes and sizes.',
+        'private' => 'Members in the campaign\'s Admin role can make a map private. This allows users to view a location but for admins to keep the map a secret.',
+    ],
     'public'        => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'title'         => 'Helpers',
 ];

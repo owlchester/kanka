@@ -145,4 +145,7 @@ return [
         ],
         'title'         => 'Character :name',
     ],
+    'warnings' => [
+        'personality_hidden' => 'You aren\'t allowed to edit personality traits on this character.'
+    ]
 ];

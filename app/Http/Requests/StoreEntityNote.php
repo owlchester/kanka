@@ -26,6 +26,7 @@ class StoreEntityNote extends FormRequest
         return [
             'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
+            'visibility' => 'required',
             'entry' => '',
         ];
     }
