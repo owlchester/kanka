@@ -5,7 +5,6 @@
         ['url' => route('locations.index'), 'label' => trans('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ],
-    'headerExtra' => 'ass',
 ])
 
 @section('header-extra')
