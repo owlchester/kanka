@@ -200,4 +200,15 @@ class CalendarController extends CrudController
             ->with('success', trans('calendars.edit.date'));
 
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Calendar $calendar
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Calendar $calendar)
+    {
+        return $this->menuView($calendar, 'map-points', true);
+    }
 }

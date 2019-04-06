@@ -39,7 +39,7 @@
                                     <a href="{{ route('locations.show', $location->location_id) }}" data-toggle="tooltip" title="{{ $location->location->tooltip() }}">{{ $location->location->name }}</a>
                                 </td>
                                 <td>
-                                    @if (!empty($location->location->map))
+                                    @if (!empty($location->location->map) && (!$location->location->is_map_private || (auth()->check() && auth()->user()->can('map', $location->location))))
                                         <a href="{{ route('locations.map', $location->location_id) }}"><i class="fa fa-map"></i></a>
                                     @endif
                                 </td>
