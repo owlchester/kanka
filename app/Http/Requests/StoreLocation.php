@@ -34,7 +34,7 @@ class StoreLocation extends FormRequest
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
 
-        $self = request()->segment(3);
+        $self = request()->segment(5);
         if (!empty($self)) {
             $rules['parent_location_id'] = 'integer|not_in:' . ((int) $self) . '|exists:locations,id';
         }

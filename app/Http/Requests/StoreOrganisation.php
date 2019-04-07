@@ -23,7 +23,7 @@ class StoreOrganisation extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|max:191',
             'type' => 'max:191',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
@@ -32,5 +32,12 @@ class StoreOrganisation extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
+
+        $self = request()->segment(5);
+        if (!empty($self)) {
+            $rules['organisation_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:organisations,id';
+        }
+
+        return $rules;
     }
 }
