@@ -13,7 +13,7 @@
 
 You can get a list of all the journals of a campaign by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaign/{campaign.id}/`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | Endpoint| Headers |
