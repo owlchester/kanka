@@ -49,7 +49,7 @@ class VisibilityScope implements Scope
         } else {
             // However, if we are in console mode (exporting), we need a way to avoid people accessing "self" notes.
             // Todo: how to handle this use case properly? Not exporting "self" seems silly
-            $builder->whereNot($model->getTable() . 'visibility', self::VISIBILITY_SELF);
+            // $builder->where($model->getTable() . 'visibility', '!=', self::VISIBILITY_SELF);
         }
     }
 }
