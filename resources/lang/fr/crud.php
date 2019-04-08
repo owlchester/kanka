@@ -131,6 +131,7 @@ return [
         'race'                  => 'Race',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
+        'visibility'            => 'Visibilité',
     ],
     'files'             => [
         'actions'   => [
@@ -170,6 +171,7 @@ return [
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
         'map_limitations'       => 'Formats supportés: jpg, png, gif et svg. Taille maximale: :size.',
+        'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soit-même" signifie que seulement tu peux le voir.',
     ],
     'history'           => [
         'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -284,4 +286,9 @@ return [
         'unknown'   => 'Inconnu',
     ],
     'view'              => 'Voir',
+    'visibilities'      => [
+        'admin' => 'Admin',
+        'all'   => 'Tous',
+        'self'  => 'Sois-même',
+    ],
 ];

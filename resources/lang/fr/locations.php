@@ -22,19 +22,24 @@ return [
         'title'         => 'Evénements du lieu :name',
     ],
     'fields'        => [
-        'characters'    => 'Personnages',
-        'image'         => 'Image',
-        'location'      => 'Lieu',
-        'locations'     => 'Lieux',
-        'map'           => 'Carte',
-        'name'          => 'Nom',
-        'relation'      => 'Relation',
-        'type'          => 'Type',
+        'characters'        => 'Personnages',
+        'image'             => 'Image',
+        'is_map_private'    => 'Carte Privée',
+        'location'          => 'Lieu',
+        'locations'         => 'Lieux',
+        'map'               => 'Carte',
+        'name'              => 'Nom',
+        'relation'          => 'Relation',
+        'type'              => 'Type',
     ],
     'helpers'       => [
         'characters'    => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou simplement ceux directement ceux qui sont ici.',
         'descendants'   => 'Cette liste contient tous les lieux qui sont descendants de celui-ci, pas uniquement ceux directes.',
+        'map'           => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
         'nested'        => 'Ce mode de naviguation permet d\'afficher tes lieux de manière imbriquée. Les lieux sans lieu parent seront affichés par défaut. Les lieux possédant des sous-lieux peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+    ],
+    'hints'         => [
+        'is_map_private'    => 'Une carte privée est seulement visible aux membres du rôle Admin de la campagne.',
     ],
     'index'         => [
         'actions'       => [
@@ -73,6 +78,7 @@ return [
         'helper'    => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
         'helpers'   => [
             'admin' => 'Cliquer pour activer le mode d\'édition qui permet d\'appuyer sur la carte pour ajouter de nouveaux points, appuyer sur des points pour les modifier, ou pour les déplacer.',
+            'info'  => 'Plus d\'infos sur le cartes.',
             'label' => 'Ce point est un label. Rien de plus, rien de moins.',
             'view'  => 'Appuyer sur un point pour voir les détails de celui-ci. Utiliser Ctrl+Zoom pour agrandir ou rétrécir la carte.',
         ],
@@ -161,9 +167,11 @@ return [
                 'square'    => 'Carré',
             ],
             'sizes'         => [
+                'huge'      => 'Géant',
                 'large'     => 'Grand',
                 'small'     => 'Petit',
                 'standard'  => 'Standard',
+                'tiny'      => 'Minuscule',
             ],
             'success'       => [
                 'create'    => 'Point ajouté.',
@@ -177,6 +185,9 @@ return [
     'organisations' => [
         'description'   => 'Organisations se situant à ce lieu.',
         'title'         => 'Organisations du lieu :name',
+    ],
+    'panels'        => [
+        'map'   => 'Carte',
     ],
     'placeholders'  => [
         'location'  => 'Choix d\'un lieu parent',

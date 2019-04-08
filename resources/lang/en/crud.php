@@ -171,7 +171,7 @@ return [
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
         'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
-        'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.'
+        'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -287,8 +287,8 @@ return [
     ],
     'view'              => 'View',
     'visibilities'      => [
-        'all' => 'All',
         'admin' => 'Admin',
-        'self' => 'Self',
-    ]
+        'all'   => 'All',
+        'self'  => 'Self',
+    ],
 ];

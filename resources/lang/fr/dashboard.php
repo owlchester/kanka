@@ -83,7 +83,9 @@ TEXT
             'success'   => 'Widget retiré du tableau de bord.',
         ],
         'recent'    => [
-            'title' => 'Récemment modifié',
+            'help'      => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
+            'singular'  => 'Singulier',
+            'title'     => 'Récemment modifié',
         ],
         'update'    => [
             'success'   => 'Widget modifié.',

@@ -122,33 +122,45 @@ return [
         'success'   => 'Tu as quitté la campagne.',
     ],
     'members'                           => [
-        'create'        => [
+        'actions'               => [
+            'switch'        => 'Basculer',
+            'switch-back'   => 'Retour à mon compte',
+        ],
+        'create'                => [
             'title' => 'Ajouter un membre à la campagne',
         ],
-        'description'   => 'Gestion des membres de la campagne',
-        'edit'          => [
+        'description'           => 'Gestion des membres de la campagne',
+        'edit'                  => [
             'description'   => 'Modifier un membre de la campagne',
             'title'         => 'Modifier membre :name',
         ],
-        'fields'        => [
+        'fields'                => [
             'joined'    => 'Rejoint',
             'name'      => 'Utilisateur',
             'role'      => 'Rôle',
             'roles'     => 'Rôles',
         ],
-        'help'          => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
-        'invite'        => [
+        'help'                  => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
+        'helpers'               => [
+            'switch'    => 'Basculer vers cet utilisateur',
+        ],
+        'impersonating'         => [
+            'message'   => 'Tu visualises la campagne en tant qu\'un autre utilisateur. Certaines fonctionalités ont été désactivées, mais le reste réagit exactement tel que l\'utilisateur le verrait. Tu peux revenir à ton utilisateur en cliquant sur le bouton "Retour à mon compte" situé à l\'emplacement du bouton de déconnexion.',
+            'title'     => 'Se faisant passer pour :name',
+        ],
+        'invite'                => [
             'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté à la campagne. Tu peux annuler une invitation à tout moment.',
             'title'         => 'Invitation',
         ],
-        'roles'         => [
+        'roles'                 => [
             'member'    => 'Membre',
             'owner'     => 'Administrateur',
             'public'    => 'Publique',
             'viewer'    => 'Observateur',
         ],
-        'title'         => 'Membres de la campagne :name',
-        'your_role'     => 'Rôle: \'<i>:rôle</i>\'',
+        'switch_back_success'   => 'Tu es de retour à ton compte.',
+        'title'                 => 'Membres de la campagne :name',
+        'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
     'panels'                            => [
         'permission'    => 'Permission',

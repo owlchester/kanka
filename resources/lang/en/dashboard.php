@@ -83,9 +83,9 @@ TEXT
             'success'   => 'Widget removed from the dashboard.',
         ],
         'recent'    => [
-            'title' => 'Recently modified',
-            'singular' => 'Singular',
-            'help' => 'Only show the last updated entity, but show a whole preview of the entity',
+            'help'      => 'Only show the last updated entity, but show a whole preview of the entity',
+            'singular'  => 'Singular',
+            'title'     => 'Recently modified',
         ],
         'update'    => [
             'success'   => 'Widget modified.',

@@ -122,45 +122,45 @@ return [
         'success'   => 'You have left the campaign.',
     ],
     'members'                           => [
-        'actions'       => [
-            'switch' => 'Switch',
-            'switch-back' => 'Back to my user'
+        'actions'               => [
+            'switch'        => 'Switch',
+            'switch-back'   => 'Back to my user',
         ],
-        'create'        => [
+        'create'                => [
             'title' => 'Add a member to your campaign',
         ],
-        'description'   => 'Manage the members of the campaign',
-        'edit'          => [
+        'description'           => 'Manage the members of the campaign',
+        'edit'                  => [
             'description'   => 'Edit a member of your campaign',
             'title'         => 'Edit member :name',
         ],
-        'fields'        => [
+        'fields'                => [
             'joined'    => 'Joined',
             'name'      => 'User',
             'role'      => 'Role',
             'roles'     => 'Roles',
         ],
-        'help'          => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
-        'helpers' => [
-            'switch' => 'Switch to this user',
+        'help'                  => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
+        'helpers'               => [
+            'switch'    => 'Switch to this user',
         ],
-        'invite'        => [
+        'impersonating'         => [
+            'message'   => 'You are viewing the campaign as another user. Some features have been disabled, but the rest acts exactly as the user would see it. To switch back to your user, use the Switch Back button located where the Logout button is usually situated.',
+            'title'     => 'Impersonating :name',
+        ],
+        'invite'                => [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
             'title'         => 'Invite',
         ],
-        'impersonating' => [
-            'title' => 'Impersonating :name',
-            'message' => 'You are viewing the campaign as another user. Some features have been disabled, but the rest acts exactly as the user would see it. To switch back to your user, use the Switch Back button located where the Logout button is usually situated.',
-        ],
-        'switch_back_success' => 'You are now back to your original user.',
-        'roles'         => [
+        'roles'                 => [
             'member'    => 'Member',
             'owner'     => 'Owner',
             'public'    => 'Public',
             'viewer'    => 'Viewer',
         ],
-        'title'         => 'Campaign :name Members',
-        'your_role'     => 'Your role: <i>:role</i>',
+        'switch_back_success'   => 'You are now back to your original user.',
+        'title'                 => 'Campaign :name Members',
+        'your_role'             => 'Your role: <i>:role</i>',
     ],
     'panels'                            => [
         'permission'    => 'Permission',

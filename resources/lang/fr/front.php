@@ -37,6 +37,11 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'api'               => [
+            'description'   => 'Envie de développer des outils qui interagissent avec Kanka? C\'est possible! Aller à la :link.',
+            'link'          => 'Documentation d\'API',
+            'title'         => 'API',
+        ],
         'calendars'         => [
             'description'   => 'Créer des calendriers personnalisés et organiser la campagne autour de ceux-ci.',
             'title'         => 'Calendriers',

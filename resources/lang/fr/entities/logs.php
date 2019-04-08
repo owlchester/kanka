@@ -1,16 +1,17 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'create'    => 'Créé',
         'delete'    => 'Supprimé',
         'update'    => 'Mis à jour',
     ],
-    'fields'    => [
+    'fields'        => [
         'action'    => 'Action',
         'date'      => 'Date',
     ],
-    'show'      => [
+    'impersonated'  => 'Imité par :name',
+    'show'          => [
         'title' => 'Journaux de l\'entité :name',
     ],
 ];
