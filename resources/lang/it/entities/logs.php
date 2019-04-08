@@ -1,16 +1,17 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'create'    => 'Creazione',
         'delete'    => 'Cancellazione',
         'update'    => 'Aggiornamento',
     ],
-    'fields'    => [
+    'fields'        => [
         'action'    => 'Azione',
         'date'      => 'Data',
     ],
-    'show'      => [
+    'impersonated'  => 'Impersonato da :name',
+    'show'          => [
         'title' => 'Logs dell\'Entità :name',
     ],
 ];

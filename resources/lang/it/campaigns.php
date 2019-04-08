@@ -122,33 +122,45 @@ return [
         'success'   => 'Hai lasciato la campagna.',
     ],
     'members'                           => [
-        'create'        => [
+        'actions'               => [
+            'switch'        => 'Passa a',
+            'switch-back'   => 'Torna alla mia utenza',
+        ],
+        'create'                => [
             'title' => 'Aggiungi un membro alla tua campagna',
         ],
-        'description'   => 'Gestisci i membri della campagna',
-        'edit'          => [
+        'description'           => 'Gestisci i membri della campagna',
+        'edit'                  => [
             'description'   => 'Modifica un membro della tua campagna',
             'title'         => 'Modifica il membro :name',
         ],
-        'fields'        => [
+        'fields'                => [
             'joined'    => 'Unito',
             'name'      => 'Utente',
             'role'      => 'Ruolo',
             'roles'     => 'Ruoli',
         ],
-        'help'          => 'Non ci sono limiti all\'ammontare di membri che una campagna può avere, come Amministratore della campagna puoi rimuovere i membri che non sono più attivi.',
-        'invite'        => [
+        'help'                  => 'Non ci sono limiti all\'ammontare di membri che una campagna può avere, come Amministratore della campagna puoi rimuovere i membri che non sono più attivi.',
+        'helpers'               => [
+            'switch'    => 'Passa a questa utenza',
+        ],
+        'impersonating'         => [
+            'message'   => 'Sta visualizzando la campagna come un\'altra utenza. Alcune caratteristiche sono state disabilitate, ma il resto viene mostrato esattamente come lo vedrebbe quell\'utenza. Per tornare alla tua utenza use il bottone "Torna alla mia utenza" posizionato dove normalmente si trova il bottone di Logout.',
+            'title'     => 'Stai impersonando :name',
+        ],
+        'invite'                => [
             'description'   => 'Puoi invitare i tuoi amici nella tua campagna indicandoci i loro indirizzi e-mail. Una volta che avranno accettato il loro invito verranno aggiunti come membri nel ruolo indicato. Gli inviti inviati potranno essere cancellati in qualsiasi momento.',
             'title'         => 'Invita',
         ],
-        'roles'         => [
+        'roles'                 => [
             'member'    => 'Membro',
             'owner'     => 'Proprietario',
             'public'    => 'Pubblico',
             'viewer'    => 'Visualizzatore',
         ],
-        'title'         => 'Membri della Campagna :name',
-        'your_role'     => 'Il tuo ruolo: <i>:role</i>',
+        'switch_back_success'   => 'Ora sei tornato alla tua utenza originale.',
+        'title'                 => 'Membri della Campagna :name',
+        'your_role'             => 'Il tuo ruolo: <i>:role</i>',
     ],
     'panels'                            => [
         'permission'    => 'Permessi',

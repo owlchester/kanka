@@ -32,7 +32,7 @@ return [
         'family'                    => 'Familie',
         'image'                     => 'Bild',
         'is_dead'                   => 'Tot',
-        'is_personality_visible'    => 'Ist die Perönlichkeit sichtbar?',
+        'is_personality_visible'    => 'Persönlichkeit sichtbar?',
         'location'                  => 'Aufenthaltsort',
         'name'                      => 'Name',
         'physical'                  => 'Körper',
@@ -47,7 +47,7 @@ return [
         'free'  => 'Wo ist das "Freitext" Feld? Wenn dieser Charakter ein solches Feld hatte, wurde es in den neuen Notizen Tab verschoben.',
     ],
     'hints'         => [
-        'hide_personality'          => 'Dieser Tab kann vor nicht "Admin" Nutzern versteckt werden, in dem die "Persönlichkeit sichtbar" Option ausgewählt wird, wenn man den Charakter bearbeitet.',
+        'hide_personality'          => 'Dieser Tab kann vor nicht "Admin" Nutzern versteckt werden, in dem die "Persönlichkeit sichtbar" Option deaktiviert wird, wenn man den Charakter bearbeitet.',
         'is_dead'                   => 'Dieser Charakter ist tot',
         'is_personality_visible'    => 'Du kannst den kompletten Persönlichkeitsbereich vor deinen Zuschauern verstecken.',
     ],

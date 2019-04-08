@@ -37,6 +37,11 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'api'               => [
+            'description'   => 'Vuoi realizzare un fantastico strumento che si integra con Kanka? Sequi questo link :link.',
+            'link'          => 'API docs',
+            'title'         => 'API',
+        ],
         'calendars'         => [
             'description'   => 'Crea dei calendari personalizzati ed organizza la tua campagna attorno ad essi.',
             'title'         => 'Calendari',
@@ -107,6 +112,7 @@ return [
     ],
     'menu'          => [
         'about'     => 'Su di noi',
+        'api'       => 'API',
         'campaigns' => 'Campagne Pubbliche',
         'community' => 'Comunità',
         'contact'   => 'Contatti',

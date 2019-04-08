@@ -84,7 +84,9 @@ TEXT
             'success'   => 'Widget rimosso dalla dashboard',
         ],
         'recent'    => [
-            'title' => 'Modificati di recente',
+            'help'      => 'Visualizza solamente l\'ultima entità aggiornata, ma visualizza un\'antemprima completa per la stessa.',
+            'singular'  => 'Singola',
+            'title'     => 'Modificati di recente',
         ],
         'update'    => [
             'success'   => 'Widget modificato.',

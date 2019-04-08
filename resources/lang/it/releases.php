@@ -6,7 +6,7 @@ return [
         'title'         => 'Rilasci',
     ],
     'post'  => [
-        'footer'    => 'Da :name il :date',
+        'footer'    => 'Da :name :date',
     ],
     'show'  => [
         'return'    => 'Torna ai rilasci',

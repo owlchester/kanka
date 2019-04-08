@@ -37,6 +37,11 @@ return [
         'title'         => 'GYIK',
     ],
     'features'      => [
+        'api'               => [
+            'description'   => 'Menő alkalmazásokat akarsz készíteni, melyek a Kankát használják? Kattints ide: :link',
+            'link'          => 'API dokumentáció',
+            'title'         => 'API',
+        ],
         'calendars'         => [
             'description'   => 'Készíts egyedi naptárakat, és szervezd köréjük a kampányodat',
             'title'         => 'Naptárak',

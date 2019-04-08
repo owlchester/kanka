@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create'                => [
+    'create'                            => [
         'description'           => 'Erstelle eine neue Kampagne',
         'helper'                => [
             'first' => 'Danke, dass du unsere App ausprobierst! Bevor es losgehen kann, brauchen wir nur eine Kleinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder weitere Kampagnen erstellen.',
@@ -12,22 +12,25 @@ return [
         'success_first_time'    => 'Deine Kampagne wurde erstellt! Da es deine erste Kampagne ist, haben wir ein paar Dinge für dich erstellt, die dir helfen sollen, loszulegen und hoffentlich ein bisschen Inspiration liefern, was du alles machen kannst.',
         'title'                 => 'Neue Kampagne erstellen',
     ],
-    'destroy'               => [
+    'destroy'                           => [
         'success'   => 'Kampagne gelöscht',
     ],
-    'edit'                  => [
+    'edit'                              => [
         'description'   => 'Bearbeite deine Kampagne',
         'success'       => 'Kampagne aktualisiert',
         'title'         => 'Kampagne :campaign bearbeiten',
     ],
-    'entity_visibilities'   => [
+    'entity_personality_visibilities'   => [
+        'private'   => 'Die Persönlichkeit neuer Charaktere ist im Standard auf privat eingestellt.',
+    ],
+    'entity_visibilities'               => [
         'private'   => 'Neue Objekte sind privat',
     ],
-    'errors'                => [
+    'errors'                            => [
         'access'        => 'Du hast keinen Zugang zu dieser Kampagne.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
-    'export'                => [
+    'export'                            => [
         'description'   => 'Exportiere die Kampagne.',
         'errors'        => [
             'limit' => 'Du hast dein Limit von einem Export pro Tag erreicht. Bitte versuche es morgen wieder.',
@@ -36,25 +39,27 @@ return [
         'success'       => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
         'title'         => 'Kampagne :name Export',
     ],
-    'fields'                => [
-        'description'       => 'Beschreibung',
-        'entity_count'      => 'Objekt Zähler',
-        'entity_visibility' => 'Objektsichtbarkeit',
-        'header_image'      => 'Titelbild',
-        'image'             => 'Bild',
-        'locale'            => 'Schauplatz',
-        'name'              => 'Name',
-        'system'            => 'System',
-        'visibility'        => 'Sichtbarkeit',
+    'fields'                            => [
+        'description'                   => 'Beschreibung',
+        'entity_count'                  => 'Objekt Zähler',
+        'entity_personality_visibility' => 'Charakter Persönlichkeit Sichtbarkeit',
+        'entity_visibility'             => 'Objektsichtbarkeit',
+        'header_image'                  => 'Titelbild',
+        'image'                         => 'Bild',
+        'locale'                        => 'Schauplatz',
+        'name'                          => 'Name',
+        'system'                        => 'System',
+        'visibility'                    => 'Sichtbarkeit',
     ],
-    'helpers'               => [
-        'entity_visibility' => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
-        'locale'            => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
-        'name'              => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
-        'system'            => 'Wenn deine Kampagne öffentlich einsehbar ist, damm wird das System in der :link Seite angezeigt.',
-        'visibility'        => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
+    'helpers'                           => [
+        'entity_personality_visibility' => 'Wenn ein neuer Charakter erstellt wird, wird die "Persönlichkeit sichtbar" Option automatisch deaktiviert.',
+        'entity_visibility'             => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
+        'locale'                        => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
+        'name'                          => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
+        'system'                        => 'Wenn deine Kampagne öffentlich einsehbar ist, damm wird das System in der :link Seite angezeigt.',
+        'visibility'                    => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
-    'index'                 => [
+    'index'                             => [
         'actions'       => [
             'new'   => [
                 'description'   => 'Neue Kampagne erstellen',
@@ -67,7 +72,7 @@ return [
         'select'        => 'Wähle eine Kampagne',
         'title'         => 'Kampagnen',
     ],
-    'invites'               => [
+    'invites'                           => [
         'actions'       => [
             'add'   => 'Einladung',
             'link'  => 'Neuer Link',
@@ -111,50 +116,67 @@ return [
             'link'  => 'Link',
         ],
     ],
-    'leave'                 => [
+    'leave'                             => [
         'confirm'   => 'Bist du sicher, dass du die Kampagne :name verlassen möchtest? Du hast danach keinen Zugang mehr, außer ein Besitzer der Kampagne lädt dich erneut ein.',
         'error'     => 'Kann die Kampagne nicht verlassen.',
         'success'   => 'Du hast die Kampagne verlassen.',
     ],
-    'members'               => [
-        'create'        => [
+    'members'                           => [
+        'actions'               => [
+            'switch'        => 'Wechseln',
+            'switch-back'   => 'Zurück zu meinem User',
+        ],
+        'create'                => [
             'title' => 'Füge ein Mitglied zu deiner Kampagne hinzu.',
         ],
-        'description'   => 'Verwalte die Mitglieder deiner Kampagne',
-        'edit'          => [
+        'description'           => 'Verwalte die Mitglieder deiner Kampagne',
+        'edit'                  => [
             'description'   => 'Bearbeite ein Mitglied deiner Kampagne',
             'title'         => 'Bearbeite Mitglied :name',
         ],
-        'fields'        => [
+        'fields'                => [
             'joined'    => 'Beigetreten',
             'name'      => 'Nutzer',
             'role'      => 'Rolle',
             'roles'     => 'Rollen',
         ],
-        'help'          => 'Es gibt kein Limit der Anzahl der Mitglieder einer Kampagne und als ein Admin kannst du Mitglieder entfernen, die nicht mehr aktiv sind.',
-        'invite'        => [
+        'help'                  => 'Es gibt kein Limit der Anzahl der Mitglieder einer Kampagne und als ein Admin kannst du Mitglieder entfernen, die nicht mehr aktiv sind.',
+        'helpers'               => [
+            'switch'    => 'Zu diesem User wechseln',
+        ],
+        'impersonating'         => [
+            'message'   => <<<'TEXT'
+Du siehst die Kampagne jetzt als ein anderer User.
+Einige Funktionen wurden deaktiviert, aber ansonsten sieht es genau so aus wie es der User sehen würde. Um zurück zu deinem User zu wechseln, benutze den "Zurück zu meinem User" Button, wo sonst der Logout Button zu finden ist.
+TEXT
+,
+            'title'     => 'Ansicht von :name',
+        ],
+        'invite'                => [
             'description'   => 'Du kannst deine Freunde zu deiner Kampagne einladen, in dem du ihre Email Adresse eingibst. Wenn sie die Einladung annehmen, werden sie als \'Zuschauer\' hinzugefügt. Du kannst die Einladung auch jederzeit abbrechen.',
             'title'         => 'Einladen',
         ],
-        'roles'         => [
+        'roles'                 => [
             'member'    => 'Mitglied',
             'owner'     => 'Besitzer',
             'public'    => 'Öffentlich',
             'viewer'    => 'Zuschauer',
         ],
-        'title'         => 'Kampagne :name Mitglieder',
-        'your_role'     => 'Du bist ein <i>:role</i>',
+        'switch_back_success'   => 'Du bist nun zurück in deinem eigentlichen User.',
+        'title'                 => 'Kampagne :name Mitglieder',
+        'your_role'             => 'Du bist ein <i>:role</i>',
     ],
-    'panels'                => [
-        'sharing'   => 'Teilen',
+    'panels'                            => [
+        'permission'    => 'Berechtigung',
+        'sharing'       => 'Teilen',
     ],
-    'placeholders'          => [
+    'placeholders'                      => [
         'description'   => 'Eine kurze Zusammenfassung deiner Kampagne',
         'locale'        => 'Sprachcode',
         'name'          => 'Dein Kampagnenname',
         'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
-    'roles'                 => [
+    'roles'                             => [
         'actions'       => [
             'add'   => 'Rolle hinzufügen',
         ],
@@ -225,7 +247,7 @@ return [
             ],
         ],
     ],
-    'settings'              => [
+    'settings'                          => [
         'description'   => 'Aktiviere oder deaktiviere Module für diese Kampagne.',
         'edit'          => [
             'success'   => 'Kampagnen Einstellungen aktualisiert.',
@@ -250,7 +272,7 @@ return [
         ],
         'title'         => 'Kampagne :name Module',
     ],
-    'show'                  => [
+    'show'                              => [
         'actions'       => [
             'leave' => 'Kampagne verlassen',
         ],
@@ -265,7 +287,7 @@ return [
         ],
         'title'         => 'Kampagne :name',
     ],
-    'visibilities'          => [
+    'visibilities'                      => [
         'private'   => 'Privat',
         'public'    => 'Öffentlich',
         'review'    => 'Wartet auf Überprüfung',

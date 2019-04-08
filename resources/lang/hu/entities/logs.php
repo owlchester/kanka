@@ -1,16 +1,17 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'create'    => 'Létrehozás',
         'delete'    => 'Törlés',
         'update'    => 'Frissítés',
     ],
-    'fields'    => [
+    'fields'        => [
         'action'    => 'Művelet',
         'date'      => 'Időpont',
     ],
-    'show'      => [
+    'impersonated'  => 'Megszemélyesítve :name által',
+    'show'          => [
         'title' => ':name entitás előzményei',
     ],
 ];

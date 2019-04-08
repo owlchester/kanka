@@ -82,7 +82,9 @@ TEXT
             'success'   => 'Eltávolítottuk a widget-et a főoldalról.',
         ],
         'recent'    => [
-            'title' => 'Mostanában módosított',
+            'help'      => 'Csak az utoljára frissített entitást mutasd, de teljes előnézettel',
+            'singular'  => 'Csak az utolsót',
+            'title'     => 'Mostanában módosított',
         ],
         'update'    => [
             'success'   => 'Módosítottuk a widget-et.',

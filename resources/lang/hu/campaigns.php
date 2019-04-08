@@ -122,33 +122,45 @@ return [
         'success'   => 'Elhagytad a kampányt.',
     ],
     'members'                           => [
-        'create'        => [
+        'actions'               => [
+            'switch'        => 'Váltás',
+            'switch-back'   => 'Vissza a saját felhasználómhoz',
+        ],
+        'create'                => [
             'title' => 'Új tag hozzáadása a kapmányhoz.',
         ],
-        'description'   => 'A kapmány tagjainak kezelése',
-        'edit'          => [
+        'description'           => 'A kapmány tagjainak kezelése',
+        'edit'                  => [
             'description'   => 'A kampányod tagjainak kezelése',
             'title'         => ':name nevű tag kezelése',
         ],
-        'fields'        => [
+        'fields'                => [
             'joined'    => 'Csalatkozott',
             'name'      => 'Felhasználó',
             'role'      => 'Szerep',
             'roles'     => 'Szerep',
         ],
-        'help'          => 'Nincs korlátozva, hogy hány tagja lehet egy kampánynak, és mint a kampány Adminja, el is távolíthatod azokat a tagokat, akik már nem aktívak.',
-        'invite'        => [
+        'help'                  => 'Nincs korlátozva, hogy hány tagja lehet egy kampánynak, és mint a kampány Adminja, el is távolíthatod azokat a tagokat, akik már nem aktívak.',
+        'helpers'               => [
+            'switch'    => 'Válts erre a felhasználóra',
+        ],
+        'impersonating'         => [
+            'message'   => 'Jelenleg úgy látod ezt a kampányt, mintha egy másik felhasználó lennél. Néhány funkció nem elérhető, de a többi pontosan úgy viselkedik, ahogy a felhasználó látná. A visszalépéshez kattints a "Vissza a saját felhasználómhoz" gombra, ami a Kijelentkezés gomb helyén található.',
+            'title'     => ':name megszemélyesítése',
+        ],
+        'invite'                => [
             'description'   => 'Meghívhatod a barátaidat az email-címük megadásával, hogy csatlakozzanak a kampányodhoz. Ha elfogadják a meghívást, tagok lesznek az igénylet szerepben. A kiküldött meghívókat bármikor visszavonhatod.',
             'title'         => 'Meghívó',
         ],
-        'roles'         => [
+        'roles'                 => [
             'member'    => 'Tag',
             'owner'     => 'Tulajdonos',
             'public'    => 'Nyilvános',
             'viewer'    => 'Megjelenítés',
         ],
-        'title'         => ':name kampány tagjai',
-        'your_role'     => 'A szereped: <i>:role</i>',
+        'switch_back_success'   => 'Visszatértél az eredeti felhasználódhoz.',
+        'title'                 => ':name kampány tagjai',
+        'your_role'             => 'A szereped: <i>:role</i>',
     ],
     'panels'                            => [
         'permission'    => 'Jogosultság',
