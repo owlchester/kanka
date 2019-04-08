@@ -46,7 +46,7 @@
     <div class="col-md-6">
         @include('cruds.fields.entry')
 
-        @can('map', $model)
+        @if (!isset($model) || auth()->user()->can('map', $model))
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>{{ trans('locations.panels.map') }}</h4>
