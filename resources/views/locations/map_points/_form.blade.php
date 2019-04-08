@@ -23,10 +23,11 @@ $shapeOptions = [
     'square' => trans('locations.map.points.shapes.square'),
 ];
 
+
 $sizeOptions = [
-    'standard' => trans('locations.map.points.sizes.standard'),
     'tiny' => trans('locations.map.points.sizes.tiny'),
     'small' => trans('locations.map.points.sizes.small'),
+    'standard' => trans('locations.map.points.sizes.standard'),
     'large' => trans('locations.map.points.sizes.large'),
     'huge' => trans('locations.map.points.sizes.huge'),
 ];
@@ -89,7 +90,7 @@ $sizeOptions = [
                 <label>{{ trans('locations.map.points.fields.icon') }}</label>
                 <select name="icon" class="form-control select2-icon" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     <option value="pin" data-icon="fa fa-map-marker">{{ __('locations.map.points.icons.pin') }}</option>
-                    <option value="entity">{{ __('locations.map.points.icons.entity') }}</option>
+                    <option value="entity"@if (isset($model) && $model->icon == "entity") selected="selected" @endif>{{ __('locations.map.points.icons.entity') }}</option>
                     @foreach ($iconOptions as $icon => $text)
                     <option value="{{ $icon }}" @if (isset($model) && $model->icon == $icon) selected="selected" @endif>{{ $text }}</option>
                     @endforeach
@@ -114,7 +115,7 @@ $sizeOptions = [
                 <label>{{ trans('locations.map.points.fields.size') }}</label>
                 <select name="size" class="form-control select2-size" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     @foreach ($sizeOptions as $size => $text)
-                        <option value="{{ $size }}" @if (isset($model) && $model->size == $size) selected="selected" @endif>{{ $text }}</option>
+                        <option value="{{ $size }}" @if ((isset($model) && $model->size == $size) || ($size == 'standard' && !isset($model))) selected="selected" @endif>{{ $text }}</option>
                     @endforeach
                 </select>
             </div>

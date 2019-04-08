@@ -23,7 +23,7 @@ class StoreFamily extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required',
             'location_id' => 'nullable|integer|exists:locations,id',
             'family_id' => 'nullable|exists:families,id',
@@ -31,5 +31,12 @@ class StoreFamily extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
+
+        $self = request()->segment(5);
+        if (!empty($self)) {
+            $rules['family_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:families,id';
+        }
+
+        return $rules;
     }
 }

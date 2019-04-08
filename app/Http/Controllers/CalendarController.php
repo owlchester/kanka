@@ -178,4 +178,37 @@ class CalendarController extends CrudController
     {
         return $this->menuView($calendar, 'events');
     }
+
+    /**
+     * Set the date as today
+     * @param Calendar $calendar
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function today(Calendar $calendar)
+    {
+        $this->authorize('update', $calendar);
+
+        $date = request()->get('date', null);
+        if ($date) {
+            $calendar->update([
+                'date' => $date
+            ]);
+        }
+
+        return redirect()->back()
+            ->with('success', trans('calendars.edit.date'));
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Calendar $calendar
+     * @return \Illuminate\Http\Response
+     */
+    public function mapPoints(Calendar $calendar)
+    {
+        return $this->menuView($calendar, 'map-points', true);
+    }
 }

@@ -36,7 +36,7 @@
             'label' => trans('locations.fields.map'),
             'field' => 'map',
             'render' => function($model) {
-                if (!empty($model->map)) {
+                if (!empty($model->map) && (!$model->is_map_private || auth()->check() && auth()->user()->can('map', $model))) {
                     return '<a href="' . route('locations.map', $model) . '"><i class="fa fa-map"></i></a>';
                 }
                 return null;

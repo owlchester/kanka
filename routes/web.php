@@ -175,6 +175,8 @@ Route::group([
         Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
         Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
+        Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
+        Route::get('/calendars/{calendar}/map-points', 'CalendarController@mapPoints')->name('calendars.map-points');
 
         // Conversations
         Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');

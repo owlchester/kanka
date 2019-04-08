@@ -79,9 +79,13 @@ class LocationController extends CrudController
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
-            $this->authorize('view', $location);
+            $this->authorize('map', $location);
         } else {
             $this->authorizeForGuest('read', $location);
+            // Extra check for private maps
+            if ($location->is_map_private) {
+                abort('403');
+            }
         }
 
         return view('locations.map', compact('location'));
