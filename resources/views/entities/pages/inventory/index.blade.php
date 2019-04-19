@@ -5,26 +5,31 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
-        ['url' => $entity->url('show'), 'label' => $entity->name]
+        ['url' => $entity->url('show'), 'label' => $entity->name],
+        __('crud.tabs.inventory')
     ]
 ])
 @section('content')
+    @include('partials.errors')
+    <div class="row">
+        <div class="col-md-3">
+            @include($entity->pluralType() . '._menu', ['active' => 'inventory', 'model' => $entity->child, 'name' => $entity->pluralType()])
+        </div>
+        <div class="col-md-9">
+            <div class="box box-flat">
+                <div class="box-body">
+                    <h2 class="page-header with-border">
+                        {{ trans('crud.tabs.inventory') }}
+                    </h2>
 
-    <div class="pagination-ajax-body">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="loading text-center" style="display: none">
-                    <i class="fa fa-spinner fa-spin fa-4x"></i>
-                </div>
-                <div class="pagination-ajax-content">
                     <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th class="avatar"></th>
                             <th>{{ __('crud.fields.item') }}</th>
-                            <th>{{ __('entities/inventories.fields.amount') }}</th>
                             <th>{{ __('entities/inventories.fields.position') }}</th>
+                            <th>{{ __('entities/inventories.fields.amount') }}</th>
                             @if (Auth::check())
                             <th>{{ __('crud.fields.visibility') }}</th>
                                 @can('update', $entity->child)
@@ -47,15 +52,15 @@
                                     <a class="entity-image" style="background-image: url('{{ $item->item->getImageUrl(true) }}');" title="{{ $item->item->name }}" href="{{ $item->item->getLink() }}"></a>
                                 </td>
                                 <td>
-                                    <a href="{{ $item->item->getLink() }}" data-toggle="tooltip" title="{{ $item->item->tooltip() }}">
+                                    <a href="{{ $item->item->getLink() }}" data-toggle="tooltip" data-html="true" title="{{ $item->item->tooltipWithName() }}">
                                         {{ $item->item->name }}
                                     </a>
                                 </td>
                                 <td>
-                                    <?=$item->amount?>
+                                    <?=$item->position?>
                                 </td>
                                 <td>
-                                    <?=$item->position?>
+                                    <?=$item->amount?>
                                 </td>
                                 @if (Auth::check())
                                     <td>

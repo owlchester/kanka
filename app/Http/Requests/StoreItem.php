@@ -31,6 +31,7 @@ class StoreItem extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
+            'price' => 'nullable|string|max:191',
         ];
     }
 }

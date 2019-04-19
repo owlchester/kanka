@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Item extends EntityResource
+class Inventory extends EntityChild
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,10 @@ class Item extends EntityResource
     public function toArray($request)
     {
         return $this->entity([
-            'type' => $this->type,
-            'price' => $this->price
+            'item' => $this->item,
+            'position' => $this->position,
+            'amount' => $this->amount,
+            'visibility' => $this->visibility
         ]);
     }
 }

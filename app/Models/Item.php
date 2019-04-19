@@ -7,6 +7,17 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 
+/**
+ * Class Item
+ * @package App\Models
+ *
+ * @property string $type
+ * @property string $price
+ * @property integer $character_id
+ * @property integer $location_id
+ * @property Character $character
+ * @property Location $location
+ */
 class Item extends MiscModel
 {
     /**
@@ -19,6 +30,7 @@ class Item extends MiscModel
         'type',
         'image',
         'entry',
+        'price',
         'character_id',
         'location_id',
         'is_private',
@@ -28,7 +40,7 @@ class Item extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type', 'entry'];
+    protected $searchableColumns  = ['name', 'type', 'entry', 'price'];
 
     /**
      * Entity type
@@ -47,6 +59,7 @@ class Item extends MiscModel
         'character_id',
         'tag_id',
         'is_private',
+        'price',
     ];
 
     /**
@@ -73,6 +86,17 @@ class Item extends MiscModel
     use CampaignTrait;
     use VisibleTrait;
     use ExportableTrait;
+
+    public function tooltip($limit = 250, $stripSpecial = true)
+    {
+        $tooltip = parent::tooltip($limit, $stripSpecial);
+
+        if (!empty($this->price)) {
+            $tooltip .= '<p>' . __('items.fields.price') . ': ' . $this->price . '</p>';
+        }
+
+        return $tooltip;
+    }
 
     /**
      * Performance with for datagrids
@@ -116,6 +140,14 @@ class Item extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function inventories()
+    {
+        return $this->hasMany('App\Models\Inventory', 'item_id');
+    }
+
+    /**
      * @return array
      */
     public function menuItems($items = [])
@@ -130,6 +162,16 @@ class Item extends MiscModel
                 'count' => $questCount
             ];
         }
+
+        $inventoryCount = $this->inventories()->acl()->count();
+        if ($inventoryCount > 0) {
+            $items['inventories'] = [
+                'name' => 'items.show.tabs.inventories',
+                'route' => 'items.inventories',
+                'count' => $inventoryCount
+            ];
+        }
+
         return parent::menuItems($items);
     }
 }

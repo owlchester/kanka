@@ -32,6 +32,7 @@ class ItemController extends CrudController
         $this->filters = [
             'name',
             'type',
+            'price',
             [
                 'field' => 'location_id',
                 'label' => trans('crud.fields.location'),
@@ -134,5 +135,16 @@ class ItemController extends CrudController
     public function mapPoints(Item $item)
     {
         return $this->menuView($item, 'map-points', true);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function inventories(Item $item)
+    {
+        return $this->menuView($item, 'inventories');
     }
 }

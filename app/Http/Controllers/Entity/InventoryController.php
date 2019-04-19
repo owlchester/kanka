@@ -44,7 +44,7 @@ class InventoryController extends Controller
         }
 
         $ajax = request()->ajax();
-        $inventory = $entity->inventories()->with('item')->paginate();
+        $inventory = $entity->inventories()->with('item')->orderBy('position', 'ASC')->paginate();
 
         return view('entities.pages.inventory.index', compact(
             'ajax',

@@ -5,6 +5,18 @@ namespace App\Models;
 use App\Traits\EntityAclTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Inventory
+ * @package App\Models
+ *
+ * @property integer $entity_id
+ * @property integer $item_id
+ * @property integer $amount
+ * @property string $position
+ * @property string $visibility
+ * @property Item $item
+ * @property Entity $entity
+ */
 class Inventory extends Model
 {
     /**

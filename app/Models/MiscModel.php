@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Storage;
  *
  * @property integer $campaign_id
  * @property string $name
+ * @property string $slug
  * @property Entity $entity
  * @property string $entry
+ * @property string $image
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
  */
@@ -289,7 +291,7 @@ abstract class MiscModel extends Model
         // Each entity can have an inventory
         $items['inventory'] = [
             'name' => 'crud.tabs.inventory',
-            'route' => 'entities.inventory.index',
+            'route' => 'entities.inventories.index',
             'count' => $this->entity->inventories()->acl()->count(),
             'entity' => true,
         ];

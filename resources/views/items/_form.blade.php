@@ -13,6 +13,11 @@
                     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('items.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
                 @include('cruds.fields.type', ['base' => \App\Models\Item::class, 'trans' => 'items'])
+
+                <div class="form-group">
+                    <label>{{ trans('items.fields.price') }}</label>
+                    {!! Form::text('price', $formService->prefill('price', $source), ['placeholder' => trans('items.placeholders.price'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                </div>
                 @include('cruds.fields.location')
                 @include('cruds.fields.character')
                 @include('cruds.fields.tags')

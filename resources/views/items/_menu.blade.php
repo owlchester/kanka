@@ -20,8 +20,14 @@
                 <li class="list-group-item">
                     <b>{{ trans('items.fields.character') }}</b>
                     <span  class="pull-right">
-                            <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
+                            <a href="{{ $model->character->getLink() }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
                             </span>
+                    <br class="clear" />
+                </li>
+            @endif
+            @if ($model->price)
+                <li class="list-group-item">
+                    <b>{{ trans('items.fields.price') }}</b> <span class="pull-right">{{ $model->price }}</span>
                     <br class="clear" />
                 </li>
             @endif

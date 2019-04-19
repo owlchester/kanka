@@ -134,6 +134,7 @@ Route::group([
         // Items menu
         Route::get('/items/{item}/quests', 'ItemController@quests')->name('items.quests');
         Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
+        Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 
         // Quest menus
         Route::get('/quests/{quest}/characters', 'QuestController@characters')->name('quests.characters');

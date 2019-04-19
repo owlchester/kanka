@@ -9,8 +9,8 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('quests.fields.name') }}</th>
-                <th class="visible-sm">{{ trans('quests.fields.type') }}</th>
-                <th class="visible-sm">{{ trans('quests.fields.quest') }}</th>
+                <th class="hidden-sm">{{ trans('quests.fields.type') }}</th>
+                <th class="hidden-sm">{{ trans('quests.fields.quest') }}</th>
                 @if ($campaign->enabled('locations'))
                     <th class="visible-sm">{{ trans('quests.fields.locations') }}</th>
                 @endif
@@ -28,8 +28,8 @@
                     <td>
                         <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltip() }}">{{ $quest->name }}</a>
                     </td>
-                    <td class="visible-sm">{{ $quest->type }}</td>
-                    <td class="visible-sm">
+                    <td class="hidden-sm">{{ $quest->type }}</td>
+                    <td class="hidden-sm">
                         @if ($quest->quest)
                         <a href="{{ route('quests.show', $quest->quest->id) }}" data-toggle="tooltip" title="{{ $quest->quest->tooltip() }}">{{ $quest->quest->name }}</a>
                         @endif
