@@ -30,6 +30,7 @@
     - [Attributes](/docs/{{version}}/attributes)
     - [Entity Events](/docs/{{version}}/entity-events)
     - [Entity Files](/docs/{{version}}/entity-files)
+    - [Entity Inventory](/docs/{{version}}/inventory)
     - [Entity Mentions](/docs/{{version}}/entity-mentions)
     - [Entity Notes](/docs/{{version}}/entity-notes)
     - [Entity Tags](/docs/{{version}}/entity-tags)

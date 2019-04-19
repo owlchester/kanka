@@ -47,7 +47,7 @@ Route::apiResources([
     'campaigns.entities.entity_files' => 'EntityFileApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.tags' => 'EntityTagApiController',
-    'campaigns.entities.inventory' => 'EntityInventoryApiController',
+    'campaigns.entities.inventories' => 'EntityInventoryApiController',
 
 ]);
 
