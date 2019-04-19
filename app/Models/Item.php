@@ -13,6 +13,7 @@ use App\Traits\VisibleTrait;
  *
  * @property string $type
  * @property string $price
+ * @property string $size
  * @property integer $character_id
  * @property integer $location_id
  * @property Character $character
@@ -31,6 +32,7 @@ class Item extends MiscModel
         'image',
         'entry',
         'price',
+        'size',
         'character_id',
         'location_id',
         'is_private',
@@ -60,6 +62,7 @@ class Item extends MiscModel
         'tag_id',
         'is_private',
         'price',
+        'size',
     ];
 
     /**
@@ -91,8 +94,15 @@ class Item extends MiscModel
     {
         $tooltip = parent::tooltip($limit, $stripSpecial);
 
+        $extra = [];
         if (!empty($this->price)) {
-            $tooltip .= '<p>' . __('items.fields.price') . ': ' . $this->price . '</p>';
+            $extra[] = __('items.fields.price') . ': ' . $this->price;
+        }
+        if (!empty($this->size)) {
+            $extra[] = __('items.fields.size') . ': ' . $this->size;
+        }
+        if (!empty($extra)) {
+            $tooltip .= '<p>' . implode('<br />', $extra) . '</p>';
         }
 
         return $tooltip;

@@ -9,6 +9,8 @@
         __('crud.tabs.inventory')
     ]
 ])
+@inject('campaign', 'App\Services\CampaignService')
+
 @section('content')
     @include('partials.errors')
     <div class="row">
@@ -76,7 +78,7 @@
                                         </a>
 
                                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $item->item->name }}"
-                                                data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}" title="{{ trans('crud.remove') }}">
+                                                data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}" title="{{ __('crud.remove') }}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'entity' => $entity, 'inventory' => $item], 'style' => 'display:inline', 'id' => 'delete-form-' . $item->id]) !!}

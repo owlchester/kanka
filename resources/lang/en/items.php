@@ -20,6 +20,7 @@ return [
         'name'      => 'Name',
         'price'     => 'Price',
         'relation'  => 'Relation',
+        'size'      => 'Size',
         'type'      => 'Type',
     ],
     'index'         => [
@@ -33,6 +34,7 @@ return [
         'location'  => 'Choose a location',
         'name'      => 'Name of the item',
         'price'     => 'Price of the item',
+        'size'      => 'Size, Weight, Dimensions',
         'type'      => 'Weapon, Potion, Artefact',
     ],
     'quests'        => [

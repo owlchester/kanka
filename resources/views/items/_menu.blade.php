@@ -31,6 +31,12 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if ($model->size)
+                <li class="list-group-item">
+                    <b>{{ trans('items.fields.size') }}</b> <span class="pull-right">{{ $model->size }}</span>
+                    <br class="clear" />
+                </li>
+            @endif
             @include('entities.components.tags')
             @include('entities.components.files')
         </ul>

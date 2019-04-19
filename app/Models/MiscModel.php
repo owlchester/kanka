@@ -291,7 +291,7 @@ abstract class MiscModel extends Model
         // Each entity can have an inventory
         $items['inventory'] = [
             'name' => 'crud.tabs.inventory',
-            'route' => 'entities.inventories.index',
+            'route' => 'entities.inventory',
             'count' => $this->entity->inventories()->acl()->count(),
             'entity' => true,
         ];

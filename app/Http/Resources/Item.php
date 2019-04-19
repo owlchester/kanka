@@ -16,7 +16,8 @@ class Item extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
-            'price' => $this->price
+            'price' => $this->price,
+            'size' => $this->size,
         ]);
     }
 }

@@ -15,6 +15,7 @@ class UpdateItemsAddPrice extends Migration
     {
         Schema::table('items', function (Blueprint $table) {
             $table->string('price')->nullable();
+            $table->string('size')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class UpdateItemsAddPrice extends Migration
     {
         Schema::table('items', function (Blueprint $table) {
             $table->dropColumn('price');
+            $table->dropColumn('size');
         });
     }
 }
