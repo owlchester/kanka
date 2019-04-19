@@ -20,7 +20,20 @@
 
         <div class="form-group required">
             <label>{{ trans('entities/inventories.fields.position') }}</label>
-            {!! Form::text('position', null, ['placeholder' => trans('entities/inventories.placeholders.position'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('position', null, [
+                'placeholder' => trans('entities/inventories.placeholders.position'),
+                'class' => 'form-control',
+                'maxlength' => 191,
+                'list' => 'position-list',
+                'autocomplete' => 'off'
+            ]) !!}
+        </div>
+        <div class="hidden">
+            <datalist id="position-list">
+                @foreach (\App\Models\Inventory::positionList() as $name)
+                    <option value="{{ $name }}">{{ $name }}</option>
+                @endforeach
+            </datalist>
         </div>
 
         <div class="row">

@@ -47,4 +47,19 @@ class Inventory extends Model
     {
         return $this->belongsTo('App\Models\Item');
     }
+
+    /**
+     * List of recently used positions for the form suggestions
+     * @return mixed
+     */
+    public static function positionList()
+    {
+        return self::acl()
+            ->groupBy('position')
+            ->whereNotNull('position')
+            ->orderBy('position', 'ASC')
+            ->limit(20)
+            ->pluck('position')
+            ->all();
+    }
 }
