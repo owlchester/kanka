@@ -143,10 +143,15 @@ $(document).ready(function() {
         $(this).click(function (e) {
             var name = $(this).data('name');
             var text = $(this).data('text');
+            var target = $(this).data('delete-target');
             if (text) {
                 $('#delete-confirm-text').text(text);
             } else {
                 $('#delete-confirm-name').text(name);
+            }
+
+            if (target) {
+                $('#delete-confirm-submit').data('target', target);
             }
         });
     });
@@ -154,7 +159,12 @@ $(document).ready(function() {
     // Submit modal form
     $.each($('#delete-confirm-submit'), function (index) {
         $(this).click(function (e) {
-            $('#delete-confirm-form').submit();
+            var target = $(this).data('target');
+            if (target) {
+                $('#' + target).submit();
+            } else {
+                $('#delete-confirm-form').submit();
+            }
         })
     });
 

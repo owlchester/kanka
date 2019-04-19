@@ -245,6 +245,7 @@ Route::group([
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
+            'entities.inventories' => 'Entity\InventoryController',
 
             'attribute_templates' => 'AttributeTemplateController',
 
@@ -314,6 +315,15 @@ Route::group([
         Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
         Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
         //Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
+
+        // Inventory
+        Route::get('/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
+        /*Route::get('/entities/{entity}/inventory/create', 'Entity\InventoryController@create')->name('entities.inventory.create');
+        Route::post('/entities/{entity}/inventory/store', 'Entity\InventoryController@store')->name('entities.inventory.store');
+        Route::get('/entities/{entity}/inventory/update', 'Entity\InventoryController@edit')->name('entities.inventory.edit');
+        Route::post('/entities/{entity}/inventory/update', 'Entity\InventoryController@update')->name('entities.inventory.update');
+        Route::delete('/entities/{entity}/inventory/delete', 'Entity\InventoryController@delete')->name('entities.inventory.destroy');
+        */
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');

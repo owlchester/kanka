@@ -25,6 +25,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_private
  * @property Tag[] $tags
  * @property EntityMention[] $mentions
+ * @property Inventory[] $inventories
  * @property EntityMention[] $targetMentions
  * @property MiscModel $child
  */
@@ -208,6 +209,14 @@ class Entity extends Model
             'id',
             'id'
         );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function inventories()
+    {
+        return $this->hasMany('App\Models\Inventory', 'entity_id');
     }
 
     /**

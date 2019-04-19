@@ -14,7 +14,7 @@
                 </li>
                 @foreach ($model->menuItems() as $key => $menuItem)
                     <li class="@if(!empty($active) && $active == $key)active @endif">
-                        <a href="{{ route($menuItem['route'], $model) }}" title="{{ __($menuItem['name']) }}">
+                        <a href="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : $model->entity)) }}" title="{{ __($menuItem['name']) }}">
                             {{ __($menuItem['name']) }}
                             @if (!empty($menuItem['count']))
                             <span class="label label-default pull-right">
