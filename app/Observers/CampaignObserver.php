@@ -94,6 +94,11 @@ class CampaignObserver
             'is_public' => true,
         ]);
 
+        $playerRole = CampaignRole::create([
+            'campaign_id' => $campaign->id,
+            'name' => trans('campaigns.members.roles.player'),
+        ]);
+
         CampaignRoleUser::create([
             'campaign_role_id' => $role->id,
             'user_id' => Auth::user()->id

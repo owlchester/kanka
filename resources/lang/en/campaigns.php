@@ -117,7 +117,7 @@ return [
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an owner of the campaign invites you again.',
+        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
@@ -150,11 +150,14 @@ return [
         ],
         'invite'                => [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
+            'more' => 'You can add more roles on the :link.',
+            'roles_page' => 'Roles page',
             'title'         => 'Invite',
         ],
         'roles'                 => [
             'member'    => 'Member',
-            'owner'     => 'Owner',
+            'owner'     => 'Admin',
+            'player'    => 'Player',
             'public'    => 'Public',
             'viewer'    => 'Viewer',
         ],
@@ -223,7 +226,7 @@ return [
         ],
         'title'         => 'Campaign :name Roles',
         'types'         => [
-            'owner'     => 'Owner',
+            'owner'     => 'Admin',
             'public'    => 'Public',
             'standard'  => 'Standard',
         ],

@@ -52,6 +52,11 @@
             <h2 class="page-header with-border">{{ trans('campaigns.members.invite.title') }}</h2>
             <p class="help-block">
                 {{ trans('campaigns.members.invite.description') }}
+                {!! __('campaigns.members.invite.more', [
+                    'link' =>
+                        '<a href="' . route('campaign_roles.index') . '">'
+                        . __('campaigns.members.invite.roles_page') . '</a>'
+                ]) !!}
             </p>
 
             <table id="campaign-invites" class="table table-hover table-striped">
