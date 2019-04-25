@@ -353,6 +353,7 @@ Route::group([
     // Notification
     Route::get('/notifications/delete/{id}', 'NotificationController@delete')->name('notifications.delete');
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
+    Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
 
     // 3rd party
     Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {

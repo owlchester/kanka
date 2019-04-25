@@ -5,6 +5,9 @@
  */
 require('./bootstrap');
 
+
+var notificationList, notificationCount, notificationRefreshTimeout = 30000;
+
 $(document).ready(function() {
 
     // Inject the isMobile variable into the window. We don't want ALL of the javascript
@@ -179,6 +182,7 @@ $(document).ready(function() {
 
     initTogglePasswordFields();
     initAjaxPagination();
+    initNotifications();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -380,6 +384,9 @@ function entityCreatorUI() {
     });
 }
 
+/**
+ * Replace pagination for ajax links
+ */
 function initAjaxPagination() {
     $('.pagination-ajax-links a').on('click', function(e) {
         e.preventDefault();
@@ -395,6 +402,30 @@ function initAjaxPagination() {
         });
         return false;
     })
+}
+
+/**
+ * Check if there are new notifiations for the user
+ */
+function initNotifications() {
+    notificationList = $('#header-notification-list');
+    notificationCount = $('#header-notification-count');
+    if (notificationList.length === 1) {
+        setTimeout(refreshNotificationList, notificationRefreshTimeout);
+    }
+}
+
+function refreshNotificationList() {
+    console.log('refresh notification list');
+    $.ajax(notificationList.data('url'))
+        .done((result) => {
+            if (result.count > 0) {
+                notificationList.html(result.body);
+                notificationCount.html(result.count).show();
+            }
+            setTimeout(refreshNotificationList, notificationRefreshTimeout);
+        }
+    );
 }
 
 // Helpers are injected directly in the window functions.

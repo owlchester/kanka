@@ -29,6 +29,28 @@ class NotificationController extends Controller
     }
 
     /**
+     * Refresh the notification list
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function refresh()
+    {
+        $unreadNotifications = count(Auth::user()->unreadNotifications);
+
+        $body = '';
+        if ($unreadNotifications > 0) {
+            $notifications = Auth::user()->notifications()->take(5)->get();
+            $body = view('notifications.list', compact(
+                'notifications'
+            ))->render();
+        }
+
+        return response()->json([
+            'body' => $body,
+            'count' => $unreadNotifications
+        ]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  integer  $id

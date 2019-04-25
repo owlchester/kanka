@@ -1,5 +1,13 @@
-<?php $currentCampaign = CampaignLocalization::getCampaign(); ?>
-<?php $notifications = Auth::check() ? Auth::user()->unreadNotifications : []; ?>
+<?php
+$currentCampaign = CampaignLocalization::getCampaign();
+
+$notifications = [];
+$unreadNotifications = [];
+if (Auth::check()) {
+    $unreadNotifications = count(Auth::user()->unreadNotifications);
+    $notifications = Auth::user()->notifications()->take(5)->get();
+}
+?>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -43,22 +51,14 @@
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
                             <i class="far fa-bell"></i>
-                            @if (count($notifications) > 0) <span class="label label-warning">{{ count($notifications) }}</span> @endif
+                            <span id="header-notification-count" class="label label-warning" {{ ($unreadNotifications == 0 ? 'style="display:none"' : '') }}>{{ $unreadNotifications }}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">{{ trans('header.notifications.header', ['count' => $notifications]) }}</li>
+                            <li class="header">{{ trans('header.notifications.header', ['count' => $unreadNotifications]) }}</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    @foreach (Auth::user()->notifications()->take(5)->get() as $notification)
-                                        @if (!empty($notification->data['icon']))
-                                        <li>
-                                            <a href="{{ route('notifications') }}">
-                                                <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {{ trans('notifications.' . $notification->data['key'], $notification->data['params']) }}
-                                            </a>
-                                        </li>
-                                        @endif
-                                    @endforeach
+                                <ul class="menu" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
+                                    @include('notifications.list', ['notifications' => $notifications])
                                 </ul>
                             </li>
                             <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>
