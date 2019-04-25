@@ -5,8 +5,10 @@
  */
 require('./bootstrap');
 
-
-var notificationList, notificationCount, notificationRefreshTimeout = 30000;
+/**
+ * Notifications: List and Count selector, and seconds for the timeout to refresh the list
+ */
+var notificationList, notificationCount, notificationRefreshTimeout = 60 * 1000;
 
 $(document).ready(function() {
 
