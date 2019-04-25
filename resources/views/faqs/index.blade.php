@@ -44,6 +44,19 @@
                         <p class="text-muted">{!! nl2br(__('faq.visibility.answer')) !!}</p>
                         <hr>
 
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'map', 'slug' => str_slug(__('faq.map.question'))]) }}">{{ __('faq.map.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.map.answer')) !!}</p>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => str_slug(__('faq.conversations.question'))]) }}">{{ __('faq.conversations.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.conversations.answer')) !!}</p>
+                        <hr>
+
                         <h4>
                             <a href="{{ route('faq.show', ['key' => 'help', 'slug' => str_slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
                         </h4>
@@ -64,6 +77,18 @@
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.attribute-templates.answer')) !!}</p>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/qKnTpuePqUA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => str_slug(__('faq.mobile.question'))]) }}">{{ __('faq.mobile.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.mobile.answer')) !!}</p>
+                        <hr>
+
+                        <h4>
+                            <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => str_slug(__('faq.plans.question'))]) }}">{{ __('faq.plans.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.plans.answer')) !!}</p>
 
                     </div>
                 </div>
