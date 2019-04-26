@@ -139,7 +139,7 @@ return [
             'manage'    => 'Manage Entity Files',
         ],
         'errors'    => [
-            'max'   => 'You have reach the maximum number (:max) of files for this entity.',
+            'max'   => 'You have reached the maximum number (:max) of files for this entity.',
         ],
         'files'     => 'Uploaded Files',
         'hints'     => [
