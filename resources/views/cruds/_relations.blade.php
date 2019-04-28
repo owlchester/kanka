@@ -50,13 +50,18 @@
                 @can('relation', [$model, 'edit'])
                     <a href="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"
                        data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($name . '.relations.edit', [$name => $model, 'relation' => $relation]) }}"
-                    ><i class="fa fa-edit"></i> {{ trans('crud.edit') }}</a>
+                       title=" {{ trans('crud.edit') }}"
+                    >
+                        <i class="fa fa-edit"></i>
+                    </a>
                 @endcan
                 @can('relation', [$model, 'delete'])
-                {!! Form::open(['method' => 'DELETE', 'route' => [$name . '.relations.destroy', $name => $model, 'relation' => $relation], 'style'=>'display:inline']) !!}
-                <button class="btn btn-xs btn-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->target->name }}"
+                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
+                        title="{{ __('crud.remove') }}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
+                {!! Form::open(['method' => 'DELETE', 'route' => [$name . '.relations.destroy', $name => $model, 'relation' => $relation], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
                 {!! Form::close() !!}
                 @endcan
             </td>

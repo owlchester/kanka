@@ -108,15 +108,23 @@ class EntityEventController extends CrudController
     {
         $this->authorize('attribute', $entity->child);
         $entityEvent->delete();
+        $success = __('calendars.event.destroy', ['name' => $entityEvent->calendar->name]);
 
-        // Redirect to the calendar if that's where we came frome
+        $next = request()->post('next', false);
+        if ($next == 'calendars.events') {
+            return redirect()
+                ->route('calendars.events', $entityEvent->calendar)
+                ->with('success', $success);
+        }
+
+        // Redirect to the calendar if that's where we came from
         $previous = url()->previous();
         if (strpos($previous, '/calendars/') !== false) {
             return redirect()->route('calendars.show', [$entityEvent->calendar_id])
-                ->with('success', trans('calendars.event.destroy', ['name' => $entityEvent->calendar->name]));
+                ->with('success', $success);
         }
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'calendars'])
-            ->with('success', trans('calendars.event.destroy', ['name' => $entityEvent->calendar->name]));
+            ->with('success', $success);
     }
 }
