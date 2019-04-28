@@ -49,7 +49,10 @@
                         <div class="map-container">
                             <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: 100%;" @endif />
                             @foreach ($location->mapPoints()->with(['targetEntity', 'location'])->get() as $point)
-                                @include('locations.map._point')
+                                <?php /** @var \App\Models\MapPoint $point */?>
+                                @if ($point->visible())
+                                    {!! $point->makePin() !!}
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -61,6 +64,23 @@
                 </div>
 
                 <div id="location-map-panel-target"></div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h4 class="box-title">{{ __('locations.map.legend') }}</h4>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                @foreach ($location->legend() as $point)
+                    <div class="col-md-3">
+                        @if ($point->visible())
+                            <a href="#map-point-{{ $point->id }}" class="map-point-legend">@if ($point->label()) {{ $point->label() }} @else <i> {{ __('locations.map.points.empty_label') }} </i> @endif</a>
+                        @endif
+                    </div>
+                @endforeach
+                </div>
             </div>
         </div>
 

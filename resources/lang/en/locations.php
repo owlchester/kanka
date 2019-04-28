@@ -82,12 +82,14 @@ return [
             'label' => 'This point is a label. Nothing more, nothing less.',
             'view'  => 'Click on any map point to view details about it. Use Ctrl+Zoom to zoom in an out of the map.',
         ],
+        'legend'    => 'Legend',
         'modal'     => [
             'submit'    => 'Add',
             'title'     => 'Target of new point',
         ],
         'no_map'    => 'You can upload a map to this location when editing it. Once a map has been provided, it will appear here.',
         'points'    => [
+            'empty_label'   => 'Unnamed Point',
             'fields'        => [
                 'axis_x'    => 'X Axis',
                 'axis_y'    => 'Y Axis',
