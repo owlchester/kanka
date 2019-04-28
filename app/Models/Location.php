@@ -341,4 +341,23 @@ class Location extends MiscModel
         }
         return parent::menuItems($items);
     }
+
+    /**
+     * @return array
+     */
+    public function legend()
+    {
+        $sortedPoints = [];
+        /** @var MapPoint $point */
+        $points = $this->mapPoints()->with(['targetEntity', 'location'])->get();
+        foreach ($points as $point) {
+            if ($point->visible()) {
+                $sortedPoints[] = $point;
+            }
+        }
+        usort($sortedPoints, function($a, $b) {
+            return strcmp($a->label(), $b->label());
+        });
+        return $sortedPoints;
+    }
 }

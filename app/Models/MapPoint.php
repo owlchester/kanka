@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\EntityPermission;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -136,5 +137,26 @@ class MapPoint extends Model
             return 10;
         }
         return 50;
+    }
+
+    /**
+     * Label of the map point (for legend)
+     * @return string
+     */
+    public function label()
+    {
+        return $this->hasTarget() ? $this->targetEntity->name : $this->name;
+    }
+
+    /**
+     * Determine if the user can view this map point
+     * @return bool
+     */
+    public function visible(): bool
+    {
+        if ($this->hasTarget()) {
+            return $this->targetEntity->child && EntityPermission::canView($this->targetEntity, $this->location->campaign);
+        }
+        return true;
     }
 }
