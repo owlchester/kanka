@@ -1,31 +1,31 @@
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('organisations.show.tabs.members') }}
+            {{ __('organisations.show.tabs.members') }}
         </h2>
 
-        <p class="help-block">{{ trans('organisations.members.helpers.direct_members') }}</p>
+        <p class="help-block">{{ __('organisations.members.helpers.direct_members') }}</p>
 
         <table id="organisation-characters" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br></th>
-                <th>{{ trans('characters.fields.name') }}</th>
+                <th>{{ __('characters.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
-                <th>{{ trans('characters.fields.location') }}</th>
+                <th>{{ __('characters.fields.location') }}</th>
                 @endif
-                <th>{{ trans('organisations.members.fields.role') }}</th>
-                <th>{{ trans('characters.fields.age') }}</th>
+                <th>{{ __('organisations.members.fields.role') }}</th>
+                <th>{{ __('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
-                <th>{{ trans('characters.fields.race') }}</th>
+                <th>{{ __('characters.fields.race') }}</th>
                 @endif
-                <th>{{ trans('characters.fields.sex') }}</th>
-                <th>{{ trans('characters.fields.is_dead') }}</th>
+                <th>{{ __('characters.fields.sex') }}</th>
+                <th>{{ __('characters.fields.is_dead') }}</th>
                 <th><br /></th>
                 <th class="text-right">
                     @can('member', $model)
                         <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> {{ trans('organisations.members.actions.add') }}
+                            <i class="fa fa-plus"></i> {{ __('organisations.members.actions.add') }}
                         </a>
                     @endcan
                 </th>
@@ -60,20 +60,26 @@
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
                             @if ($relation->is_private == true)
-                                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
                             @endif
                         @endif
                     </td>
                     <td class="text-right">
                         @can('member', $model)
-                            <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}" class="btn btn-xs btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}">
-                                <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
+                            <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}"
+                               class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal" 
+                               data-url="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}"
+                               title=" {{ __('crud.edit') }}"
+                            >
+                                <i class="fa fa-edit"></i>
                             </a>
-                            {!! Form::open(['method' => 'DELETE','route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style'=>'display:inline']) !!}
-                            <button class="btn btn-xs btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+
+                            <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->character->name }}"
+                                    data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
+                                    title="{{ __('crud.remove') }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
                             {!! Form::close() !!}
                         @endcan
                     </td>

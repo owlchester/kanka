@@ -48,10 +48,12 @@
                             </a>
                         @endcan
                         @can('organisation', [$model, 'delete'])
-                            {!! Form::open(['method' => 'DELETE','route' => ['characters.character_organisations.destroy', $model->id, $organisation->id],'style'=>'display:inline']) !!}
-                            <button class="btn btn-xs btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.remove') }}</span>
+                            <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $organisation->organisation->name }}"
+                                    data-target="#delete-confirm" data-delete-target="delete-form-{{ $organisation->id }}"
+                                    title="{{ __('crud.remove') }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['characters.character_organisations.destroy', $model->id, $organisation->id], 'style' => 'display:inline', 'id' => 'delete-form-' . $organisation->id]) !!}
                             {!! Form::close() !!}
                         @endcan
                     </td>
