@@ -57,7 +57,7 @@ Please note that maps from popular tools like Azgaar and Medieval Fantasy Town G
     'plans'                 => [
         'answer'    => 'The long term plans for Kanka are to build a versatile worldbuilding and campaign management tool that is system agnostic with system specific content managed by the community in the form of "Community Templates". A longer goal is to build tools that integrate with other platforms like Virtual Table Top apps to link those with the worlds of Kanka.
         
-As for the second part, most hobby projects end up in burnout and the creator abandoning them. The Patreon is set up with the goal of me reducing my working hours to devote more time to Kanka without sacrificing my family\'s financial security, as well as covering the server costs. The project is also open source and can be picked up by the community if something were to ever happen to me. Each campaign\'s data can also be exported by the campaign admins once a day in case you are scared of ever losing all your content.',
+As for the second part, most hobby projects end up in burnout and the creator abandoning them. The Patreon is set up with the goal of me reducing my working hours to devote more time to Kanka without sacrificing my family\'s financial security, as well as covering the server costs. The project is also open source and can be picked up by the community if something were to ever happen to me. Each campaign\'s data can also be exported by the campaign admins once a day in case you are concerned about ever losing all your content.',
         'question' => 'What are the long term plans? What if Ilestis gets bored of working on Kanka?'
     ],
     'show'                  => [
