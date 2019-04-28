@@ -1,3 +1,7 @@
+#location-map-main {
+  margin-bottom: 20px;
+}
+
 .map {
   width: 100%;
   position: relative;
