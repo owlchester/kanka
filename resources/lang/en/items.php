@@ -29,6 +29,10 @@ return [
         'header'        => 'Items of :name',
         'title'         => 'Items',
     ],
+    'inventories'   => [
+        'description'   => 'Entity Inventories the item is in.',
+        'title'         => 'Item :name Inventories',
+    ],
     'placeholders'  => [
         'character' => 'Choose a character',
         'location'  => 'Choose a location',

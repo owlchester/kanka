@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('items.quests.title', ['name' => $model->name]),
-    'description' => trans('items.quests.description'),
+    'title' => trans('items.inventories.title', ['name' => $model->name]),
+    'description' => trans('items.inventories.description'),
     'breadcrumbs' => [
         ['url' => route('items.show', $model), 'label' => $model->name],
-        trans('items.show.tabs.quests')
+        trans('items.show.tabs.inventories')
     ]
 ])
 
