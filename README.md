@@ -15,8 +15,28 @@ After cloning the project, create the following files.
   * You'll need to fill it out to your needs.
 * `public/.htaccess`
   * If on Apache.
-  
-Execute the following commands:
+
+
+## Using Vagrant
+Make sure you have [composer](https://getcomposer.org), [Vagrant](https://www.vagrantup.com/) and their dependencies installed and walk through the next steps:
+
+Run command `composer install` - This will install all PHP-dependencies of the project
+
+Then for Mac/Linux users, run:
+
+`php vendor/bin/homestead make`
+
+For Windows users, run:
+
+`vendor\\bin\\homestead make`
+
+Now you can run `vagrant up` to start your virtualized local dev environment.
+
+_For more information on Laravel Homestead check [this](https://laravel.com/docs/5.8/homestead) link. We currently use the per-project installation._
+
+You should now be able to `vagrant ssh` into your virtual machine.
+
+Run the commands below after changing directory to `code`.
 
 ```
 php artisan key:generate
@@ -101,7 +121,7 @@ All migrations should have a working `down()` function. Exceptions are allowed f
 
 ## GIT
 
-Development should be done in the `develop` branch, with substaintial new features done in a separate branch.
+Development should be done on your own fork of the repository in the `develop` branch, with substantial new features done in a separate branch.
 
 **Tagging** is only done on the master branch.
 
