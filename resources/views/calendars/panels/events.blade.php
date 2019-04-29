@@ -42,13 +42,20 @@
                     @endif</td>
                     <td>
                         @can('update', $model)
-                            <a href="{{ route('entities.entity_events.edit', [$event->entity, $event->id]) }}" class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id, 'next' => 'calendars.events']) }}">
-                                <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
+                            <a href="{{ route('entities.entity_events.edit', [$event->entity, $event->id]) }}" class="btn btn-xs btn-primary" data-toggle="ajax-modal"
+                               data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id, 'next' => 'calendars.events']) }}"
+                                title="{{ trans('crud.edit') }}">
+                                <i class="fa fa-edit"></i>
                             </a>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $event->entity, $event->id], 'style'=>'display:inline']) !!}
-                            <button class="btn btn-xs btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+
+
+                            <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $event->entity->name }}"
+                                    data-target="#delete-confirm" data-delete-target="delete-form-{{ $event->id }}"
+                                    title="{{ __('crud.remove') }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $event->entity, $event->id], 'style' => 'display:inline', 'id' => 'delete-form-' . $event->id]) !!}
+                                <input type="hidden" name="next" value="calendars.events">
                             {!! Form::close() !!}
                         @endcan
                     </td>

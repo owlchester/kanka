@@ -1,3 +1,7 @@
+#location-map-main {
+  margin-bottom: 20px;
+}
+
 .map {
   .loading-map {
     z-index: 200;
@@ -67,6 +71,36 @@
     &:hover {
       opacity: 0.5 !important;
     }
+  }
+
+  //.zooming-animation {
+  //  transition: all 0.2s ease;
+  //}
+
+  .point-focus {
+    -moz-animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    -moz-animation-name: ping;
+    -webkit-animation-name: ping;
+
+    animation-iteration-count: infinite;
+    /* W3C and Opera */
+    -moz-animation-iteration-count: infinite;
+    /* Firefox */
+    -webkit-animation-iteration-count: infinite;
+    /*Safari and Chrome*/
+    animation-direction:alternate;
+    /* W3C and Opera */
+    -moz-animation-direction:alternate;
+    /* Firefox */
+    -webkit-animation-direction:alternate;
+    /* Safari and Chrome */
+    animation-delay:0s;
+    /* W3C and Opera */
+    -moz-animation-delay:0s;
+    /* Firefox */
+    -webkit-animation-delay:0s;
+    /* Safari and Chrome */
   }
 
   .square {
@@ -224,4 +258,31 @@
 
 .entity-close {
   cursor: pointer;
+}
+
+@-webkit-keyframes ping {
+  from {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    /* IE 9 */
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+    -o-transform: scale(1);
+    /* Opera */
+    -moz-transform: scale(1);
+    /* Firefox */
+  }
+  to {
+    //transform: scale(1.1);
+    //-ms-transform: scale(1.1);
+    ///* IE 9 */
+    //-webkit-transform: scale(1.1);
+    ///* Safari and Chrome */
+    //-o-transform: scale(1.1);
+    ///* Opera */
+    //-moz-transform: scale(1.1);
+    /* Firefox */
+    box-shadow: 0 0 15px darkred;
+    border-color: darkred;
+  }
 }

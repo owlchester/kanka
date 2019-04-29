@@ -44,7 +44,7 @@ Please note that maps from popular tools like Azgaar and Medieval Fantasy Town G
     ],
     'mobile'                =>  [
         'answer' => 'There currently is no dedicated mobile app for Kanka, but most of the app works on a mobile device. One limitation is the mentions tool not working in the text editor. If the support on Patreon permits it, I hope to pay someone to build a mobile app one day, but don\'t forsee that happening any time soon.',
-        'question' => 'Is there a mobile App? Is one planned?'
+        'question' => 'Is there a mobile app? Is one planned?'
     ],
     'multiworld'            => [
         'answer'    => 'No you don\'t! You can create as many "campaigns" in the app as you want, and have them represent worlds, settings, or whatever you want. Once you have several campaigns, you can easily switch between them',

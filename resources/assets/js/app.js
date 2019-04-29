@@ -424,6 +424,8 @@ function refreshNotificationList() {
             if (result.count > 0) {
                 notificationList.html(result.body);
                 notificationCount.html(result.count).show();
+            } else {
+                notificationCount.hide();
             }
             setTimeout(refreshNotificationList, notificationRefreshTimeout);
         }

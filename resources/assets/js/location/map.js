@@ -73,6 +73,7 @@ function initLocationMap() {
     initAddPoints();
     initMapScroll();
     resizeMapToPage();
+    initMapLegend();
 }
 
 
@@ -168,6 +169,7 @@ function mapZoom(change) {
         return false;
     }
 
+    // mapDraggable.addClass('zooming-animation');
     mapZoomOut.removeAttr('disabled');
     mapZoomIn.removeAttr('disabled');
     mapZoomValue = newZoom;
@@ -208,6 +210,10 @@ function mapZoom(change) {
             //.css('top', pos.top + (mapMouseY * 0.1))
         ;
     }
+
+    // setTimeout(() => {
+    //     mapDraggable.removeClass('zooming-animation');
+    // }, 300);
 }
 
 /**
@@ -294,6 +300,10 @@ function loadMapPoint(element) {
 
     mapPanelLoader.show();
     mapPanelTarget.html('');
+
+    // Show the point as being focused, removing any previously focused point
+    $('.point-focus').removeClass('point-focus');
+    element.addClass('point-focus');
 
     $.ajax(
         element.data('url')
@@ -742,3 +752,20 @@ function initIconSelect() {
     });
 }
 
+/**
+ * Clicking on a map legend should center the map on the point
+ */
+function initMapLegend() {
+    $(".map-point-legend").click(function(e) {
+        // Reposition the map to center on the clicked part
+        let target = $($(this).attr('href'));
+        // let targetPosition = target.position();
+        // let left =  (mapElement.width() - targetPosition.left) / 3;
+        // let top = (mapElement.height() - targetPosition.top) / 2 ;
+        // let mapWidth = mapElement.width();
+        // mapDraggable
+        //     .css('top', top + 'px')
+        //     .css('left', left + 'px');
+        target.click();
+    });
+}
