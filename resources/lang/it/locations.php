@@ -22,19 +22,24 @@ return [
         'title'         => 'Eventi del Luogo :name',
     ],
     'fields'        => [
-        'characters'    => 'Personaggi',
-        'image'         => 'Immagine',
-        'location'      => 'Luogo',
-        'locations'     => 'Luoghi',
-        'map'           => 'Mappa',
-        'name'          => 'Nome',
-        'relation'      => 'Relazione',
-        'type'          => 'Tipo',
+        'characters'        => 'Personaggi',
+        'image'             => 'Immagine',
+        'is_map_private'    => 'Mappa Privata',
+        'location'          => 'Luogo',
+        'locations'         => 'Luoghi',
+        'map'               => 'Mappa',
+        'name'              => 'Nome',
+        'relation'          => 'Relazione',
+        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'characters'    => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
         'descendants'   => 'La lista contiene tutti i luoghi discendenti di questo luogo, non solo quelli direttamente sotto di esso.',
+        'map'           => 'Aggiungere una mappa ad un luogo ti permetterà di aggiungere "Punti" sulla mappa collecandoli ad altre Entità nella campagna.',
         'nested'        => 'Quando ci si trova nella Vista Nidificata puoi visualizzare la gerarchia dei tuoi luoghi. I luoghi senza padri saranno mostrati per impostazione predefinita. I luoghi con dei figli invece potranno essere premuti per mostrare questi figli. Si potrà continuare ad espandere la gerarchia fino a quando non ci saranno più luoghi da mostrare.',
+    ],
+    'hints'         => [
+        'is_map_private'    => 'Una mappa privata sarà visibile solamente ai membri del ruolo "Proprietario" della campagna.',
     ],
     'index'         => [
         'actions'       => [
@@ -73,6 +78,7 @@ return [
         'helper'    => 'Clicca sulla mappa per aggiungere un nuovo punto ad un luogo, o clicca su un punto esistente per modificarlo o cancellarlo.',
         'helpers'   => [
             'admin' => 'Attiva per abilitare l\'aggiunta di nuovi punti con un semplice click, premi sui punti per modificarli o per spostarli.',
+            'info'  => 'Più informazioni dulle mappe.',
             'label' => 'Questo punto è un\'etichetta. Niente di più, niente di meno.',
             'view'  => 'Premi su un qualsiasi punto della mappa per vederne i dettagli. Utilizza Ctrl+Zoom per aumentare o diminuire lo zoom della mappa.',
         ],
@@ -161,9 +167,11 @@ return [
                 'square'    => 'Quadrato',
             ],
             'sizes'         => [
+                'huge'      => 'Enorme',
                 'large'     => 'Grande',
                 'small'     => 'Piccolo',
                 'standard'  => 'Normale',
+                'tiny'      => 'Piccola',
             ],
             'success'       => [
                 'create'    => 'Punto della Mappa del Luogo creato.',
@@ -177,6 +185,9 @@ return [
     'organisations' => [
         'description'   => 'Organizzazioni situate nel luogo.',
         'title'         => 'Organizzazioni del Luogo :name',
+    ],
+    'panels'        => [
+        'map'   => 'Mappa',
     ],
     'placeholders'  => [
         'location'  => 'Scegli un Luogo padre',

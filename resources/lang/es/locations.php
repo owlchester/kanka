@@ -22,19 +22,24 @@ return [
         'title'         => 'Eventos en :name',
     ],
     'fields'        => [
-        'characters'    => 'Personajes',
-        'image'         => 'Imagen',
-        'location'      => 'Localización',
-        'locations'     => 'Lugares',
-        'map'           => 'Mapa',
-        'name'          => 'Nombre',
-        'relation'      => 'Relación',
-        'type'          => 'Tipo',
+        'characters'        => 'Personajes',
+        'image'             => 'Imagen',
+        'is_map_private'    => 'Mapa privado',
+        'location'          => 'Localización',
+        'locations'         => 'Lugares',
+        'map'               => 'Mapa',
+        'name'              => 'Nombre',
+        'relation'          => 'Relación',
+        'type'              => 'Tipo',
     ],
     'helpers'       => [
         'characters'    => 'Muestra todos los personajes en este lugar y sus lugares anidados, o solo los que están aquí.',
         'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
+        'map'           => 'Al añadir un mapa a un lugar, podrás crear puntos en él y enlazar a otras entidades de la campaña.',
         'nested'        => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
+    ],
+    'hints'         => [
+        'is_map_private'    => 'Un mapa privado solo será visible para los miembros con el rol "Admin".',
     ],
     'index'         => [
         'actions'       => [
@@ -73,6 +78,7 @@ return [
         'helper'    => 'Haz click en el mapa para añadir un nuevo punto a una localización, o selecciona un punto existente para editarlo o eliminarlo.',
         'helpers'   => [
             'admin' => 'Actívalo para habilitar la creación de nuevos puntos sólo con hacer clic en el mapa, editarlos al seleccionarlos y moverlos fácilmente.',
+            'info'  => 'Más información sobre los mapas.',
             'label' => 'Este punto es una descripción. Nada más y nada menos.',
             'view'  => 'Haz clic en cualquier punto del mapa para ver los detalles. Usa Ctrl+Rueda para acercarte y alejarte del mapa.',
         ],
@@ -161,9 +167,11 @@ return [
                 'square'    => 'Cuadrado',
             ],
             'sizes'         => [
+                'huge'      => 'Enorme',
                 'large'     => 'Grande',
                 'small'     => 'Pequeño',
                 'standard'  => 'Estándar',
+                'tiny'      => 'Mini',
             ],
             'success'       => [
                 'create'    => 'Punto de localización creado en el mapa.',
@@ -177,6 +185,9 @@ return [
     'organisations' => [
         'description'   => 'Organizaciones situadas en la localización.',
         'title'         => 'Organizaciones de :name',
+    ],
+    'panels'        => [
+        'map'   => 'Mapa',
     ],
     'placeholders'  => [
         'location'  => 'Elige el lugar al que está vinculado',

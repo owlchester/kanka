@@ -131,6 +131,7 @@ return [
         'race'                  => 'Raza',
         'tag'                   => 'Etiqueta',
         'tags'                  => 'Etiquetas',
+        'visibility'            => 'Visibilidad',
     ],
     'files'             => [
         'actions'   => [
@@ -317,4 +318,9 @@ return [
         'unknown'   => 'Desconocido',
     ],
     'view'              => 'Ver',
+    'visibilities'      => [
+        'admin' => 'Admin',
+        'all'   => 'Todos',
+        'self'  => 'Solo yo',
+    ],
 ];

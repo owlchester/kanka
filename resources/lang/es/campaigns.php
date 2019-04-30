@@ -122,33 +122,45 @@ return [
         'success'   => 'Has abandonado la campaña.',
     ],
     'members'                           => [
-        'create'        => [
+        'actions'               => [
+            'switch'        => 'Ver como',
+            'switch-back'   => 'Volver a mi usuario',
+        ],
+        'create'                => [
             'title' => 'Añade un miembro a tu campaña.',
         ],
-        'description'   => 'Gestionar miembros de la campaña',
-        'edit'          => [
+        'description'           => 'Gestionar miembros de la campaña',
+        'edit'                  => [
             'description'   => 'Editar un miembro de tu campaña',
             'title'         => 'Editar miembro :name',
         ],
-        'fields'        => [
+        'fields'                => [
             'joined'    => 'Inscrito',
             'name'      => 'Usuario',
             'role'      => 'Rol',
             'roles'     => 'Roles',
         ],
-        'help'          => 'No hay límite de miembros que puede tener una campaña, y como Administrador de la campaña, puedes eliminar miembros que ya no están activos.',
-        'invite'        => [
+        'help'                  => 'No hay límite de miembros que puede tener una campaña, y como Administrador de la campaña, puedes eliminar miembros que ya no están activos.',
+        'helpers'               => [
+            'switch'    => 'Ver como este usuario',
+        ],
+        'impersonating'         => [
+            'message'   => 'Estás viendo la campaña como otro usuario. Algunas funcionalidades están deshabilitadas, pero el resto actúa exactamente como el usuario lo vería. Para volver a tu usuario, usa el botón "Volver a mi usuario" cerca del botón de Cerrar Sesión.',
+            'title'     => 'Estás viendo como :name',
+        ],
+        'invite'                => [
             'description'   => 'Puedes invitar a tus amigos a unirse a la campaña si provees su correo electrónico. Una vez acepten la invitación, les verás añadidos como "Visitante". Siempre puedes cancelar la invitación en cualquier momento.',
             'title'         => 'Invitar',
         ],
-        'roles'         => [
+        'roles'                 => [
             'member'    => 'Miembro',
             'owner'     => 'Administrador',
             'public'    => 'Público',
             'viewer'    => 'Invitado',
         ],
-        'title'         => 'Miembros de la campaña :name',
-        'your_role'     => 'Tu eres un <i>:role</i>',
+        'switch_back_success'   => 'Has vuelto a tu usuario.',
+        'title'                 => 'Miembros de la campaña :name',
+        'your_role'             => 'Tu eres un <i>:role</i>',
     ],
     'panels'                            => [
         'permission'    => 'Permisos',

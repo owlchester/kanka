@@ -83,6 +83,7 @@ TEXT
             'success'   => 'Widget eliminado del tablero.',
         ],
         'recent'    => [
+            'help'  => 'Solo muestra la previsualización de la última entidad actualizada.',
             'title' => 'Modificado recientemente',
         ],
         'update'    => [

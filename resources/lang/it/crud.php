@@ -131,6 +131,7 @@ return [
         'race'                  => 'Razza',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'visibility'            => 'Visibilità',
     ],
     'files'             => [
         'actions'   => [
@@ -170,6 +171,7 @@ return [
         'image_patreon'         => 'Aumentare la dimensione massima dei file?',
         'is_private'            => 'Nascondi dalle utenze non "Admin".',
         'map_limitations'       => 'Formati supportati:jpg, png, gif e svg. Dimensione massima del file: :size.',
+        'visibility'            => 'Impostare la visibilità agli amministratori significa che solamente i membri del ruolo "Proprietario" della campagna potranno visualizzarlo. Impostarlo a "Te stesso" significa che solo tu potrai vederlo.',
     ],
     'history'           => [
         'created'   => 'Creato da <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -284,4 +286,9 @@ return [
         'unknown'   => 'Sconosciuto',
     ],
     'view'              => 'Visualizza',
+    'visibilities'      => [
+        'admin' => 'Proprietario',
+        'all'   => 'Tutti',
+        'self'  => 'Te stesso',
+    ],
 ];

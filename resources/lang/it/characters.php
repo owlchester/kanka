@@ -145,4 +145,7 @@ return [
         ],
         'title'         => 'Personaggio :name',
     ],
+    'warnings'      => [
+        'personality_hidden'    => 'Non ti è consentito modificare i tratti della personalità di questo personaggio.',
+    ],
 ];
