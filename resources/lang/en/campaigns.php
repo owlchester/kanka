@@ -150,8 +150,8 @@ return [
         ],
         'invite'                => [
             'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
-            'more' => 'You can add more roles on the :link.',
-            'roles_page' => 'Roles page',
+            'more'          => 'You can add more roles on the :link.',
+            'roles_page'    => 'Roles page',
             'title'         => 'Invite',
         ],
         'roles'                 => [

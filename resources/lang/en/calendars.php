@@ -9,8 +9,8 @@ return [
         'add_season'        => 'Add a season',
         'add_weekday'       => 'Add a week day',
         'add_year'          => 'Add a year name',
-        'today'             => 'Today',
         'set_today'         => 'Set as current day',
+        'today'             => 'Today',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Takes place every year',

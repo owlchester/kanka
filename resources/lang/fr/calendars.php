@@ -9,6 +9,7 @@ return [
         'add_season'        => 'Ajouter une saison',
         'add_weekday'       => 'Ajouter un jour de semaine',
         'add_year'          => 'Ajouter un nom d\'année',
+        'set_today'         => 'Définir en tant que jour actuel',
         'today'             => 'Aujourd\'hui',
     ],
     'checkboxes'    => [
@@ -38,6 +39,7 @@ return [
         'description'   => 'Modification de calendrier',
         'success'       => 'Calendrier \':name\' modifié.',
         'title'         => 'Modifier le calendrier :name',
+        'today'         => 'Date du calendrier mise à jour.',
     ],
     'event'         => [
         'actions'   => [

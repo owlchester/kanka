@@ -274,6 +274,7 @@ return [
         'calendars'     => 'Calendriers',
         'default'       => 'Défaut',
         'events'        => 'Événements',
+        'inventory'     => 'Inventaire',
         'map-points'    => 'Points de carte',
         'mentions'      => 'Mentions',
         'menu'          => 'Menu',

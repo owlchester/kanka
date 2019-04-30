@@ -150,11 +150,14 @@ return [
         ],
         'invite'                => [
             'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté à la campagne. Tu peux annuler une invitation à tout moment.',
+            'more'          => 'Tu peux ajouter plus de rôle sur la :link.',
+            'roles_page'    => 'page des rôles',
             'title'         => 'Invitation',
         ],
         'roles'                 => [
             'member'    => 'Membre',
             'owner'     => 'Administrateur',
+            'player'    => 'Joueur',
             'public'    => 'Publique',
             'viewer'    => 'Observateur',
         ],
