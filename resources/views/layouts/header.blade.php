@@ -2,7 +2,7 @@
 $currentCampaign = CampaignLocalization::getCampaign();
 
 $notifications = [];
-$unreadNotifications = [];
+$unreadNotifications = 0;
 if (Auth::check()) {
     $unreadNotifications = count(Auth::user()->unreadNotifications);
     $notifications = Auth::user()->notifications()->take(5)->get();
@@ -51,7 +51,7 @@ if (Auth::check()) {
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
                             <i class="far fa-bell"></i>
-                            <span id="header-notification-count" class="label label-warning" {{ ($unreadNotifications == 0 ? 'style="display:none"' : '') }}>{{ $unreadNotifications }}</span>
+                            <span id="header-notification-count" class="label label-warning" style="{{ ($unreadNotifications == 0 ? 'display:none' : '') }}">{{ $unreadNotifications }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">{{ trans('header.notifications.header', ['count' => $unreadNotifications]) }}</li>
