@@ -678,4 +678,50 @@ td.breakable {
   }
 }
 
+.entity-form {
+  //background-color: rgb(241, 245, 248);
+
+  .nav-tabs-custom {
+    //width: calc(100% - 300px);
+    min-height: 0;
+    background-color: unset;
+  }
+
+  ul.nav {
+    z-index: 2;
+    min-height: 40px;
+    overflow: hidden;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-color: #fff;
+
+    li {
+      background-color: #f5f8fa;
+      margin-right: 2px;
+    }
+  }
+
+  .tab-content {
+    //overflow-x: hidden;
+    //overflow-y: auto;
+    //height: calc(100vh - 200px);
+  }
+}
+.shortcut {
+  margin-left: 14px;
+  color: #8f98a3;
+}
+
+.entity-form-save {
+  padding-right: 0;
+
+  .dropdown-menu {
+    li {
+      a {
+        padding: 10px 14px;
+      }
+    }
+  }
+}
+
 @import "mobile";

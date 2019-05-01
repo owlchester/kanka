@@ -8,10 +8,23 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Tag;
+use App\Services\PermissionService;
 
 class EntityObserver
 {
-    // not used
+    /**
+     * @var PermissionService
+     */
+    protected $permissionService;
+
+    /**
+     * PermissionController constructor.
+     * @param PermissionService $permissionService
+     */
+    public function __construct(PermissionService $permissionService)
+    {
+        $this->permissionService = $permissionService;
+    }
 
     /**
      * An entity has been saved from the crud
@@ -19,6 +32,7 @@ class EntityObserver
     public function crudSaved(Entity $entity)
     {
         $this->saveTags($entity);
+        $this->savePermissions($entity);
     }
 
     /**
@@ -59,6 +73,16 @@ class EntityObserver
         if (!empty($existing)) {
             $entity->tags()->detach(array_keys($existing));
         }
+    }
+
+    /**
+     * Save permissions sent to the controller
+     * @param Entity $entity
+     */
+    public function savePermissions(Entity $entity)
+    {
+
+        $this->permissionService->saveEntity(request()->only('role', 'user'), $entity);
     }
 
     /**

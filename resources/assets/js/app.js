@@ -22,6 +22,7 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 
     initSelect2();
+    initCheckboxSwitch();
 
     // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
     // binded once.
@@ -194,6 +195,7 @@ $(document).ready(function() {
 
         // Also re-bind select2 elements on modal show
         initSelect2();
+        initCheckboxSwitch();
         initAjaxPagination();
 
         // Handle when opening the entity-creator ui
@@ -201,6 +203,13 @@ $(document).ready(function() {
 
     });
 });
+
+/**
+ * Init the toggle elements
+ */
+function initCheckboxSwitch() {
+    //$('[data-toggle="switch"]').bootstrapSwitch();
+}
 
 /**
  * Select2 is used for all the fancy dropdowns

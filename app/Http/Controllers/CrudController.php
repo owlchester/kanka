@@ -135,7 +135,7 @@ class CrudController extends Controller
         }
         $params['ajax'] = request()->ajax();
 
-        return view('cruds.create', array_merge(['name' => $this->view], $params));
+        return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
 
     /**
@@ -237,7 +237,7 @@ class CrudController extends Controller
         $name = $this->view;
         $ajax = request()->ajax();
 
-        return view('cruds.edit', compact('model', 'name', 'ajax'));
+        return view('cruds.forms.edit', compact('model', 'name', 'ajax'));
     }
 
     /**

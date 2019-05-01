@@ -8,14 +8,15 @@
         </div>
         <div class="form-group">
             {!! Form::text('image_url', null, ['placeholder' => trans('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+
+            <p class="help-block">
+                {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
+                @if (!auth()->user()->hasRole('patreon'))
+                    <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
+                @endif
+            </p>
         </div>
 
-        <p class="help-block">
-            {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
-            @if (!auth()->user()->hasRole('patreon'))
-                <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
-            @endif
-        </p>
     </div>
     <div class="col-md-2">
         @if (!empty($model->image))
@@ -28,12 +29,4 @@
             </div>
         @endif
     </div>
-</div>
-<div class="form-group">
-    <div class="row">
-
-    </div>
-
-
-
 </div>
