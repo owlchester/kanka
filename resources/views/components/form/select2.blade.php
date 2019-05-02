@@ -34,6 +34,11 @@ if ($pluralField == 'parent_locations') {
 $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . $singularFieldName : $placeholderKey;
 $labelKey = empty($labelKey) ? 'crud.fields.' . $singularFieldName : $labelKey;
 $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRouteName;
+
+// Check for permissions
+if ($allowNew) {
+    $allowNew = auth()->user()->can('create', new $prefillModel);
+}
 ?>
 <label>{{ trans($labelKey) }}</label>
 @if ($allowNew)

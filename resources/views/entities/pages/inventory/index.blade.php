@@ -70,9 +70,9 @@
                                     </td>
                                     @can('update', $entity->child)
                                     <td class="text-right">
-                                        <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item]) }}"
+                                        <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
                                            data-toggle="ajax-modal" data-target="#entity-modal"
-                                           data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item]) }}"
+                                           data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
                                            title="{{ __('crud.edit') }}" class="btn btn-primary btn-xs">
                                             <i class="fa fa-edit"></i>
                                         </a>

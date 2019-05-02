@@ -98,6 +98,7 @@ class Inventory extends Model
         }
 
         return $query
+            ->select('inventories.*')
             ->join('items', 'inventories.item_id', '=', 'items.id')
             ->join('entities', function ($join) {
                 $join->on('entities.entity_id', '=', 'items.id')
