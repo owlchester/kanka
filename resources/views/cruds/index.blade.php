@@ -57,6 +57,11 @@
                 </div>
             @endif
 
+            @if ($unfilteredCount != $filteredCount)
+                <p class="help-block">
+                    {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount]) }}
+                </p>
+            @endif
             <div class="pull-right">
                 {{ $models->links() }}
             </div>

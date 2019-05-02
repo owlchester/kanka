@@ -156,6 +156,7 @@ return [
         'hide'  => 'Hide Filters',
         'show'  => 'Show Filters',
         'title' => 'Filters',
+        'filtered' => 'Showing :count of :total results.',
     ],
     'forms'             => [
         'actions'       => [
