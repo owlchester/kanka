@@ -14,7 +14,7 @@ if (request()->has('location_id')) {
         <p class="help-block export-hidden">
             @if (request()->has('location_id'))
                 <a href="{{ route('locations.characters', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->acl()->count() }})
                 </a>
             @else
                 <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">

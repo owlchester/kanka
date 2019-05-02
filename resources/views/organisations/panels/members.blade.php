@@ -1,10 +1,28 @@
+<?php
+/** @var \App\Models\Organisation $model */
+$filters = [];
+if (request()->has('organisation_id')) {
+    $filters['organisation_id'] = request()->get('organisation_id');
+}
+?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ __('organisations.show.tabs.members') }}
         </h2>
 
-        <p class="help-block">{{ __('organisations.members.helpers.direct_members') }}</p>
+        <p class="help-block">
+            @if (request()->has('organisation_id'))
+                <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->acl()->count() }})
+                </a>
+            @else
+                <a href="{{ route('organisations.members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->acl()->count() }})
+                </a>
+            @endif
+            {{ __('organisations.members.helpers.direct_members') }}
+        </p>
 
         <table id="organisation-characters" class="table table-hover">
             <tbody><tr>
@@ -30,7 +48,7 @@
                     @endcan
                 </th>
             </tr>
-            <?php $r = $model->members()->acl()->has('character')->with('character', 'character.location')->paginate();?>
+            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')->with('character', 'character.location')->paginate();?>
             @foreach ($r->sortBy('character.name') as $relation)
                 <tr>
                     <td>

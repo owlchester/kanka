@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\AclTrait;
 use App\Traits\VisibleTrait;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrganisationMember extends Model
 {
-    use Paginatable, VisibleTrait;
+    use Paginatable, VisibleTrait, Filterable;
 
     /**
      * ACL Trait config
@@ -28,6 +29,12 @@ class OrganisationMember extends Model
         'role',
         'is_private'
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->filterableColumns = ['organisation_id'];
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
