@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\Inventory $inventory */?>
+ * @var \App\Models\Inventory $item */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('entities/inventories.show.title', ['name' => $entity->name]),
     'description' => '',
@@ -32,6 +32,7 @@
                             <th>{{ __('crud.fields.item') }}</th>
                             <th>{{ __('entities/inventories.fields.position') }}</th>
                             <th>{{ __('entities/inventories.fields.amount') }}</th>
+                            <th>{{ __('entities/inventories.fields.description') }}</th>
                             @if (Auth::check())
                             <th>{{ __('crud.fields.visibility') }}</th>
                                 @can('update', $entity->child)
@@ -63,6 +64,9 @@
                                 </td>
                                 <td>
                                     {{ $item->amount }}
+                                </td>
+                                <td>
+                                    {{ $item->description }}
                                 </td>
                                 @if (Auth::check())
                                     <td>

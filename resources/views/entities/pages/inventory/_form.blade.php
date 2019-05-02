@@ -36,6 +36,11 @@
             </datalist>
         </div>
 
+        <div class="form-group">
+            <label>{{ trans('entities/inventories.fields.description') }}</label>
+            {!! Form::text('description', null, ['placeholder' => trans('entities/inventories.placeholders.description'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 @include('cruds.fields.visibility')

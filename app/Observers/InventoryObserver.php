@@ -27,6 +27,7 @@ class InventoryObserver
     public function saving(Inventory $inventory)
     {
         $inventory->position = $this->purify($inventory->position);
+        $inventory->description = $this->purify($inventory->description);
     }
 
     /**

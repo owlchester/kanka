@@ -14,10 +14,12 @@ return [
     'fields'        => [
         'amount'    => 'Amount',
         'position'  => 'Position',
+        'description' => 'Description',
     ],
     'placeholders'  => [
         'amount'    => 'Any amount',
         'position'  => 'Equipped, Backpack, Storage, Bank',
+        'description' => 'Used, Damaged, Attuned'
     ],
     'show'          => [
         'helper'    => 'Entities can have items attached to them to create an inventory.',

@@ -28,6 +28,7 @@ class StoreInventory extends FormRequest
             'item_id' => 'required|exists:items,id',
             'amount' => 'required|numeric',
             'position' => 'nullable|string|max:191',
+            'description' => 'nullable|string|max:191',
             'visibility' => 'string',
         ];
     }

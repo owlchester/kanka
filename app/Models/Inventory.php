@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $item_id
  * @property integer $amount
  * @property string $position
+ * @property string $description
  * @property string $visibility
  * @property integer $created_by
  * @property Item $item
@@ -31,6 +32,7 @@ class Inventory extends Model
         'item_id',
         'amount',
         'position',
+        'description',
         'visibility',
         'created_by',
     ];

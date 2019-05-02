@@ -44,7 +44,15 @@ class InventoryController extends Controller
         }
 
         $ajax = request()->ajax();
-        $inventory = $entity->inventories()->with('item')->acl()->orderBy('position', 'ASC')->paginate();
+        $inventory = $entity
+            ->inventories()
+            ->select('inventories.*')
+            ->with('item')
+            ->leftJoin('items as i', 'i.id', '=', 'inventories.item_id')
+            ->acl()
+            ->orderBy('position', 'ASC')
+            ->orderBy('i.name', 'ASC')
+            ->paginate();
 
         return view('entities.pages.inventory.index', compact(
             'ajax',
@@ -79,7 +87,7 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'visibility']);
+        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'description', 'visibility']);
         $ajax = $request->ajax();
 
         $inventory = new Inventory();
@@ -120,7 +128,7 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'visibility']);
+        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'description', 'visibility']);
         $ajax = $request->ajax();
 
         $inventory->update($data);
