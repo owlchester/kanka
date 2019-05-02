@@ -80,10 +80,12 @@ class EntityService
         }
 
         foreach ($this->entities() as $entity => $class) {
-            if ($singular) {
-                $labels[$entity] = trans('entities.' . $this->singular($entity));
-            } else {
-                $labels[$entity] = trans('entities.' . $entity);
+            if (auth()->check() && auth()->user()->can('create', $class)) {
+                if ($singular) {
+                    $labels[$entity] = trans('entities.' . $this->singular($entity));
+                } else {
+                    $labels[$entity] = trans('entities.' . $entity);
+                }
             }
         }
 

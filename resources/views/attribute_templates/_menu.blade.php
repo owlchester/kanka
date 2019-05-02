@@ -42,9 +42,9 @@
                     <a href="{{ route('attribute_templates.attribute_templates', $model) }}">
                         {{ __('attribute_templates.show.tabs.attribute_templates') }}
                         <span class="label label-default pull-right">
-                        <?=$count?>
-                    </span>
-                        </a>
+                            {{ $count }}
+                        </span>
+                    </a>
                 </li>
             </ul>
         </div>

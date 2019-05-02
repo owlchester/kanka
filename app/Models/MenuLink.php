@@ -7,6 +7,7 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /**
  * Class MenuLink
@@ -114,6 +115,11 @@ class MenuLink extends MiscModel
         $route = $this->target->pluralType() . '.show';
         if (!empty($this->menu)) {
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
+
+            // Inventories use a different url buildup
+            if (Str::contains($this->menu, 'inventor')) {
+                return route('entities.inventory', $this->target->id);
+            }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;
             }
