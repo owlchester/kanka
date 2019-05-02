@@ -82,12 +82,14 @@ return [
             'label' => 'Ce point est un label. Rien de plus, rien de moins.',
             'view'  => 'Appuyer sur un point pour voir les détails de celui-ci. Utiliser Ctrl+Zoom pour agrandir ou rétrécir la carte.',
         ],
+        'legend'    => 'Légende',
         'modal'     => [
             'submit'    => 'Ajouter',
             'title'     => 'Cible du nouveau point',
         ],
         'no_map'    => 'Ajouter une carte au lieu en premier.',
         'points'    => [
+            'empty_label'   => 'Point sans nom',
             'fields'        => [
                 'axis_x'    => 'Axis X',
                 'axis_y'    => 'Axis Y',
