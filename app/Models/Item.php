@@ -102,7 +102,7 @@ class Item extends MiscModel
             $extra[] = __('items.fields.size') . ': ' . $this->size;
         }
         if (!empty($extra)) {
-            $tooltip .= '<p>' . implode('<br />', $extra) . '</p>';
+            $tooltip .= '<br /><p>' . implode('<br />', $extra) . '</p>';
         }
 
         return $tooltip;

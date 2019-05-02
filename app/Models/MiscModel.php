@@ -159,7 +159,7 @@ abstract class MiscModel extends Model
         $text = $this->tooltip($limit);
 
         // e() isn't enough, remove tags too to avoid ><script injections.
-        $name = e(strip_tags($this->name));
+        $name = $this->tooltipName();
 
         if (empty($text)) {
             return $name;
@@ -167,7 +167,15 @@ abstract class MiscModel extends Model
         return '<h4>' . $name . '</h4>' . $text;
     }
 
-
+    /**
+     * Tooltip name
+     * @return string
+     */
+    public function tooltipName(): string
+    {
+        // e() isn't enough, remove tags too to avoid ><script injections.
+        return e(strip_tags($this->name));
+    }
 
     /**
      * @return mixed

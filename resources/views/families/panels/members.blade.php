@@ -28,7 +28,7 @@
                         <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(true) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('characters.show', $member->id) }}" data-toggle="tooltip" title="{{ $member->tooltip() }}">{{ $member->name }}</a>
+                        <a href="{{ route('characters.show', $member->id) }}" data-toggle="tooltip" title="{{ $member->tooltipWithName() }}" data-html="true">{{ $member->name }}</a>
                     </td>
                     @if ($campaign->enabled('locations'))
                     <td>

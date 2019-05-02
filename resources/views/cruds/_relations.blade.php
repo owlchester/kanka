@@ -29,7 +29,7 @@
                 <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
             </td>
             <td>
-                <a href="{{ $relation->target->url() }}" data-toggle="tooltip" title="{{ $relation->target->child->tooltip() }}">
+                <a href="{{ $relation->target->url() }}" data-toggle="tooltip" title="{{ $relation->target->child->tooltipWithName() }}" data-html="true">
                     {{ $relation->target->child->name }}
                 </a>
             </td>

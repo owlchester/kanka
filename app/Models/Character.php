@@ -317,4 +317,21 @@ class Character extends MiscModel
         }
         return parent::menuItems($items);
     }
+
+    /**
+     * Tooltip name
+     * @return string
+     */
+    public function tooltipName(): string
+    {
+        // e() isn't enough, remove tags too to avoid ><script injections.
+        $str = $this->name;
+        if (!empty($this->title)) {
+            $str .= ' ' . $this->title;
+        }
+        if (!empty($this->family)) {
+            $str .= ' ' . $this->family->name;
+        }
+        return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class="ra ra-skull"></i>' : null);
+    }
 }
