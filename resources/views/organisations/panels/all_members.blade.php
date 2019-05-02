@@ -1,31 +1,49 @@
+<?php
+/** @var \App\Models\Organisation $model */
+$filters = [];
+if (request()->has('organisation_id')) {
+    $filters['organisation_id'] = request()->get('organisation_id');
+}
+?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('organisations.show.tabs.all_members') }}
+            {{ __('organisations.show.tabs.all_members') }}
         </h2>
 
-        <p class="help-block">{{ trans('organisations.members.helpers.all_members') }}</p>
+        <p class="help-block">
+            @if (request()->has('organisation_id'))
+                <a href="{{ route('organisations.all-members', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->acl()->count() }})
+                </a>
+            @else
+                <a href="{{ route('organisations.all-members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->acl()->count() }})
+                </a>
+            @endif
+            {{ __('organisations.members.helpers.all_members') }}
+        </p>
 
         <table id="organisation-characters" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br></th>
-                <th>{{ trans('characters.fields.name') }}</th>
+                <th>{{ __('characters.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
-                <th>{{ trans('characters.fields.location') }}</th>
+                <th>{{ __('characters.fields.location') }}</th>
                 @endif
                 @if (isset($showOrg) && $showOrg)
-                    <th>{{ trans('organisations.members.fields.organisation') }}</th>
+                    <th>{{ __('organisations.members.fields.organisation') }}</th>
                 @endif
-                <th>{{ trans('organisations.members.fields.role') }}</th>
-                <th>{{ trans('characters.fields.age') }}</th>
+                <th>{{ __('organisations.members.fields.role') }}</th>
+                <th>{{ __('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
-                <th>{{ trans('characters.fields.race') }}</th>
+                <th>{{ __('characters.fields.race') }}</th>
                 @endif
-                <th>{{ trans('characters.fields.sex') }}</th>
-                <th>{{ trans('characters.fields.is_dead') }}</th>
+                <th>{{ __('characters.fields.sex') }}</th>
+                <th>{{ __('characters.fields.is_dead') }}</th>
                 <th><br /></th>
             </tr>
-            <?php $r = $model->allMembers()->acl()->has('character')
+            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')
                 ->with('character', 'character.location')
                 ->join('characters', 'characters.id', '=', 'character_id')
                 ->orderBy('characters.name', 'asc')
@@ -62,7 +80,7 @@
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
                             @if ($relation->is_private == true)
-                                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
                             @endif
                         @endif
                     </td>
