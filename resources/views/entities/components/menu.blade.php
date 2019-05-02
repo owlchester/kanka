@@ -18,7 +18,7 @@
                             {{ __($menuItem['name']) }}
                             @if (!empty($menuItem['count']))
                             <span class="label label-default pull-right">
-                                <?=$menuItem['count']?>
+                                {{ $menuItem['count'] }}
                             </span>
                             @endif
                         </a>

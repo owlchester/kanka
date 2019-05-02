@@ -59,10 +59,10 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <?=$item->position?>
+                                    {{ $item->position }}
                                 </td>
                                 <td>
-                                    <?=$item->amount?>
+                                    {{ $item->amount }}
                                 </td>
                                 @if (Auth::check())
                                     <td>

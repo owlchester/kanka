@@ -16,7 +16,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Accounts</span>
-                    <span class="info-box-number"><?=\App\User::count()?></span>
+                    <span class="info-box-number">{{ \App\User::count() }}</span>
                     <span class="progress-description"><?=\App\User::today()->count()?> created today, <?=\App\User::startOfMonth()->count()?> created this month</span>
                 </div>
             </div>

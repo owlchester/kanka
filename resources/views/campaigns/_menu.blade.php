@@ -84,7 +84,7 @@
                 <a href="{{ route('campaign_users.index') }}">
                     {{ __('campaigns.show.tabs.members') }}
                     <span class="label label-default pull-right">
-                        <?=$campaign->users()->count()?>
+                        {{ $campaign->users()->count() }}
                     </span>
                 </a>
             </li>
@@ -93,7 +93,7 @@
                 <a href="{{ route('campaign_roles.index') }}">
                     {{ __('campaigns.show.tabs.roles') }}
                     <span class="label label-default pull-right">
-                        <?=$campaign->roles()->count()?>
+                        {{ $campaign->roles()->count() }}
                     </span>
                 </a>
             </li>
@@ -101,7 +101,7 @@
                 <a href="{{ route('campaign_settings') }}">
                     {{ __('campaigns.show.tabs.settings') }}
                     <span class="label label-default pull-right">
-                        <?=$campaign->setting->countEnabledModules()?>
+                        {{ $campaign->setting->countEnabledModules() }}
                     </span>
                 </a>
             </li>
