@@ -30,11 +30,13 @@ class LiveController extends Controller
     public function index(Request $request)
     {
         $term = trim($request->q);
+        $type = trim($request->type);
         $campaign = CampaignLocalization::getCampaign();
 
         return Response::json(
             $this->search
                 ->term($term)
+                ->type($type)
                 ->campaign($campaign)
                 ->full()
                 ->find()

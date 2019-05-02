@@ -10,17 +10,22 @@
     <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off">
         <div class="form-group required">
             <label>{{ __($type . '.fields.name') }}</label>
-            {!! Form::text('name', old('name'), ['placeholder' => trans($type . '.placeholders.name'), 'autocomplete' => 'off', 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('name', old('name'), [
+                'placeholder' => __($type . '.placeholders.name'),
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'maxlength' => 191,
+                'data-live' => route('search.live'),
+                'data-type' => $singularType
+            ]) !!}
+            <p class="text-yellow duplicate-entity-warning" style="display: none">{{ __('entities.creator.duplicate') }}</p>
         </div>
 
         @include('entities.creator.forms.' . $singularType)
 
         @include('cruds.fields.tags')
 
-        @if (Auth::user()->isAdmin())
-            <hr>
-            @include('cruds.fields.private')
-        @endif
+        @include('cruds.fields.private')
 
         <p class="alert alert-danger entity-creator-error" style="display: none">{{ __('entities.creator.error') }}</p>
         <button class="btn btn-success" id="form-submit-main">{{ trans('crud.save') }}</button>

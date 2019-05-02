@@ -15,6 +15,12 @@ class SearchService
     protected $term;
 
     /**
+     * The search entity type
+     * @var string
+     */
+    protected $type;
+
+    /**
      * The campaign
      * @var Campaign
      */
@@ -66,6 +72,19 @@ class SearchService
     public function term($term)
     {
         $this->term = $term;
+        return $this;
+    }
+
+    /**
+     * The search entity type as requested by the user
+     * @param $type
+     * @return $this
+     */
+    public function type($type)
+    {
+        if (!empty($type)) {
+            $this->onlyTypes = [$type];
+        }
         return $this;
     }
 
@@ -139,6 +158,8 @@ class SearchService
         } else {
             $query->where('name', 'like', '%' . $this->term . '%');
         }
+
+
         $query
             ->acl()
             ->limit($this->limit);
