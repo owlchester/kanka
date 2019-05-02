@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\UserPermission;
 use App\Traits\EntityAclTrait;
 use App\Traits\VisibilityTrait;
@@ -67,9 +68,12 @@ class Inventory extends Model
      */
     public static function positionList()
     {
+        $campaign = CampaignLocalization::getCampaign();
         return self::acl()
             ->groupBy('position')
             ->whereNotNull('position')
+            ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
+            ->where('e.campaign_id', $campaign->id)
             ->orderBy('position', 'ASC')
             ->limit(20)
             ->pluck('position')
