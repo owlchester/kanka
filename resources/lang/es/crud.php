@@ -209,39 +209,6 @@ return [
         ],
         'title' => 'Nueva entidad',
     ],
-    'notes'             => [
-        'actions'       => [
-            'add'   => 'Añadir nota',
-        ],
-        'create'        => [
-            'description'   => 'Crear nueva nota',
-            'success'       => 'Nota \':name\' añadida a :entity.',
-            'title'         => 'Nueva nota en :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Nota \':name\' de :entidad eliminada.',
-        ],
-        'edit'          => [
-            'description'   => 'Actualizar nota existente',
-            'success'       => 'Nota \':name\' de :entity actualizada.',
-            'title'         => 'Actualizar nota de :name',
-        ],
-        'fields'        => [
-            'creator'   => 'Creador',
-            'entry'     => 'Entrada',
-            'name'      => 'Nombre',
-        ],
-        'hint'          => 'La información que no encaja en los campos por defecto de una entidad o que ha de mantenerse en privado puede ser añadida en las Notas.',
-        'index'         => [
-            'title' => 'Notas de :name',
-        ],
-        'placeholders'  => [
-            'name'  => 'Nombre de la nota, observación o comentario.',
-        ],
-        'show'          => [
-            'title' => 'Nota :name de :entity',
-        ],
-    ],
     'or_cancel'         => 'o <a href=":url">Cancelar</a>',
     'panels'            => [
         'appearance'            => 'Apariencia',
