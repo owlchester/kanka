@@ -145,3 +145,15 @@ When you are finished, export your changes.
 ```php
 php artisan translations:export *
 ```
+
+
+# Database Backup
+
+To backup your database in a gzip file, Kanka uses the [laravel backup manager](https://github.com/backup-manager/larave) execute the following command (adapt to your config)
+
+    php artisan db:backup --database=mysql --destination=s3 --compression=gzip --destinationPath=prod/ --timestamp="d-m-Y"
+
+
+To restore a db, use the following
+
+    php artisan db:restore
