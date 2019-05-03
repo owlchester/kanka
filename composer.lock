@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce8967c283ca9d8d61e0e5b5669d20c0",
+    "content-hash": "f65e8de57040e536c1e3b463a435c8cc",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -294,6 +294,138 @@
                 "sdk"
             ],
             "time": "2019-03-04T19:19:05+00:00"
+        },
+        {
+            "name": "backup-manager/backup-manager",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backup-manager/backup-manager.git",
+                "reference": "2176c335e0a3a3f65da4f3966a5336856206a86b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backup-manager/backup-manager/zipball/2176c335e0a3a3f65da4f3966a5336856206a86b",
+                "reference": "2176c335e0a3a3f65da4f3966a5336856206a86b",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^1.0",
+                "php": "^5.5.9 || ^7.0",
+                "symfony/process": "^2.1 || ^3.0 || ^4.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "~3.0",
+                "dropbox/dropbox-sdk": "~1.1",
+                "league/flysystem-aws-s3-v3": "~1.0",
+                "league/flysystem-dropbox": "~1.0",
+                "league/flysystem-rackspace": "~1.0",
+                "league/flysystem-sftp": "~1.0",
+                "mhetreramesh/flysystem-backblaze": "~1.0",
+                "mockery/mockery": "~0.9",
+                "phpspec/phpspec": "~2.1",
+                "satooshi/php-coveralls": "~0.6",
+                "srmklive/flysystem-dropbox-v2": "~1.0",
+                "superbalist/flysystem-google-storage": "^7.0"
+            },
+            "suggest": {
+                "league/flysystem-aws-s3-v3": "AWS S3 adapter support.",
+                "league/flysystem-rackspace": "Rackspace adapter support.",
+                "league/flysystem-sftp": "SFTP adapter support.",
+                "mhetreramesh/flysystem-backblaze": "B2 adapter support.",
+                "srmklive/flysystem-dropbox-v2": "Dropbox API v2 adapter support.",
+                "superbalist/flysystem-google-storage": "Google Cloud Storage adapter support."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BackupManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com",
+                    "homepage": "http://heybigname.com/"
+                },
+                {
+                    "name": "Mitchell van Wijngaarden",
+                    "email": "mitchell@kooding.nl",
+                    "homepage": "http://heybigname.com/"
+                }
+            ],
+            "description": "A framework agnostic database backup manager with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more with drivers for popular frameworks.",
+            "time": "2018-10-16T19:36:05+00:00"
+        },
+        {
+            "name": "backup-manager/laravel",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backup-manager/laravel.git",
+                "reference": "369782a7814f58e740b2d3b35c719facb287af3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/369782a7814f58e740b2d3b35c719facb287af3e",
+                "reference": "369782a7814f58e740b2d3b35c719facb287af3e",
+                "shasum": ""
+            },
+            "require": {
+                "backup-manager/backup-manager": "^1.0",
+                "illuminate/console": "^4.0||^5.0",
+                "illuminate/container": "^4.0||^5.0",
+                "illuminate/support": "^4.0||^5.0",
+                "php": ">=5.5.0",
+                "symfony/process": "^2.0||^3.0||^4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "satooshi/php-coveralls": "~0.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "BackupManager\\Laravel\\Laravel55ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BackupManager\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com",
+                    "homepage": "http://heybigname.com/"
+                },
+                {
+                    "name": "Mitchell van Wijngaarden",
+                    "email": "mitchell@kooding.nl",
+                    "homepage": "http://heybigname.com/"
+                }
+            ],
+            "description": "Database backup manager seamlessly integrated with Laravel 4 or 5 with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more.",
+            "time": "2018-06-18T09:20:25+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
