@@ -8,7 +8,7 @@
                 App\Models\Organisation::class
             ) !!}
         </div>
-        <div class="form-group required">
+        <div class="form-group">
             <label>{{ trans('characters.organisations.fields.role') }}</label>
             {!! Form::text('role', null, ['placeholder' => trans('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
