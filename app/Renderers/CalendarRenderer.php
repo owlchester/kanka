@@ -651,8 +651,8 @@ class CalendarRenderer
             $length = $month['length'];
             $daysInAYear += $length;
         }
-        foreach ($this->calendar->moons() as $fullmoon => $name) {
-            $fullmoon = (int) $fullmoon;
+        foreach ($this->calendar->moons() as $moon) {
+            $fullmoon = (int) $moon['fullmoon'];
             // Let's figure out how many full moons occurred until now
             $numberOfFullMoons = $totalDays / $fullmoon;
 
@@ -663,7 +663,7 @@ class CalendarRenderer
             $daysSinceLastFullMoon = $totalDays - $lastFullMoon;
 
             // Next full moon? If it's 0, we want it today.
-            $nextFullMoon = 1 + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
+            $nextFullMoon = (1 + $moon['offset']) + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
 
 //            if (true) {
 //                dump("$name");
@@ -673,13 +673,13 @@ class CalendarRenderer
 //                dump("next full moon: $nextFullMoon");
 //            }
 
-            $this->addFullMoon($nextFullMoon, $name);
+            $this->addFullMoon($nextFullMoon, $moon['name']);
 
             // Now the full moon will appear several times on this month/year.
             $fullMoonsPerYear = ceil($daysInAYear / $fullmoon);
             for ($i = 0; $i < $fullMoonsPerYear; $i++) {
                 $nextFullMoon += $fullmoon;
-                $this->addFullMoon($nextFullMoon, $name);
+                $this->addFullMoon($nextFullMoon, $moon['name']);
             }
         }
     }

@@ -142,6 +142,7 @@ return [
         'moon'          => [
             'fullmoon'  => 'Full moon every (days)',
             'name'      => 'Moon Name',
+            'offset'    => 'First full moon offset'
         ],
         'seasons'       => [
             'day'   => 'Day start',

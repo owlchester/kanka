@@ -2,24 +2,24 @@
 <p class="help-block">{{ __('calendars.hints.moons') }}</p>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-8">{{ __('calendars.parameters.moon.name') }}</div>
-        <div class="col-md-2">{{ __('calendars.parameters.moon.fullmoon') }}</div>
-        <div class="col-md-2">{{ __('calendars.parameters.moon.offset') }}</div>
+        <div class="col-md-6">{{ __('calendars.parameters.moon.name') }}</div>
+        <div class="col-md-3">{{ __('calendars.parameters.moon.fullmoon') }}</div>
+        <div class="col-md-3">{{ __('calendars.parameters.moon.offset') }}</div>
     </div>
 </div>
 <?php
 $moons = [];
-$names = old('moon_name');
-$fullmoons = old('moon_fullmoon');
-$moonoffsets = old('moon_offset');
-if (!empty($names)) {
+$moonNames = old('moon_name');
+$moonFullmoons = old('moon_fullmoon');
+$moonOffsets = old('moon_offset');
+if (!empty($moonNames)) {
     $cpt = 0;
-    foreach ($names as $name) {
-        if (!empty($name) || !empty($fullmoons[$cpt])) {
+    foreach ($moonNames as $name) {
+        if (!empty($name) || !empty($moonFullmoons[$cpt])) {
             $moons[] = [
                 'name' => $name,
-                'length' => $fullmoons[$cpt],
-                'offset' => $moonoffsets[$cpt]
+                'fullmoon' => $moonFullmoons[$cpt],
+                'offset' => $moonOffsets[$cpt]
             ];
         }
         $cpt++;
@@ -30,25 +30,23 @@ if (!empty($names)) {
     $moons = $source->moons();
 }?>
 <div class="calendar-moons">
-    @foreach ($moons as $fullmoon => $moon)
+    @foreach ($moons as $fullmoon)
         <div class="form-group">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <span class="fa fa-arrows-alt-v"></span>
                         </span>
-                        {!! Form::text('moon_name[]', $moon, ['class' => 'form-control']) !!}
+                        {!! Form::text('moon_name[]', $fullmoon['name'], ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="input-group">
-                        {!! Form::number('moon_fullmoon[]', $fullmoon, ['class' => 'form-control']) !!}
-                    </div>
+                <div class="col-md-3">
+                    {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="input-group">
-                        {!! Form::number('moon_offset[]', $fullmoon, ['class' => 'form-control']) !!}
+                        {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
                             <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
                                 <i class="fa fa-trash"></i>
@@ -66,22 +64,27 @@ if (!empty($names)) {
 
 <div class="form-group" id="template_moon" style="display: none">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="fa fa-arrows-alt-v"></span>
-                                </span>
+                <span class="input-group-addon">
+                    <span class="fa fa-arrows-alt-v"></span>
+                </span>
                 {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
             </div>
         </div>
         <div class="col-md-3">
             <div class="input-group">
                 {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                {!! Form::number('moon_offset[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
                 <span class="input-group-btn">
-                                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                        <i class="fa fa-trash"></i>
-                                    </span>
-                                </span>
+                    <span class="month-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                </span>
             </div>
         </div>
     </div>

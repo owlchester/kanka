@@ -76,13 +76,20 @@ class CalendarObserver extends MiscObserver
         $moonCount = 0;
         $moonValues = request()->post('moon_fullmoon');
         $moonNames = request()->post('moon_name');
+        $moonOffsets = request()->post('moon_offset');
         if ($moonValues) {
             foreach ($moonValues as $moon) {
                 if (empty($moon)) {
                     continue;
                 }
+                $name = $moonNames[$moonCount];
+                $offset = (int) $moonOffsets[$moonCount];
                 // Save the leap moon
-                $moons[$moon] = $moonNames[$moonCount];
+                $moons[] = [
+                    'name' => $name,
+                    'fullmoon' => $moon,
+                    'offset' => $offset
+                ];
                 $moonCount++;
             }
         }
