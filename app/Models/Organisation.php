@@ -192,19 +192,12 @@ class Organisation extends MiscModel
         }
 
         $count = $this->members()->acl()->has('character')->count();
+        $countAll = $this->allMembers()->acl()->has('character')->count();
         if ($campaign->enabled('characters')) {
             $items['members'] = [
                 'name' => 'organisations.show.tabs.members',
                 'route' => 'organisations.members',
-                'count' => $count
-            ];
-        }
-        $count = $this->allMembers()->acl()->has('character')->count();
-        if ($campaign->enabled('characters') && $count > 0) {
-            $items['all_members'] = [
-                'name' => 'organisations.show.tabs.all_members',
-                'route' => 'organisations.all-members',
-                'count' => $count
+                'count' => $count . ' / ' . $countAll
             ];
         }
         $count = $this->quests()->acl()->count();

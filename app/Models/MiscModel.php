@@ -164,7 +164,9 @@ abstract class MiscModel extends Model
         if (empty($text)) {
             return $name;
         }
-        return '<h4>' . $name . '</h4>' . $text;
+
+        $subtitle = $this->tooltipSubtitle();
+        return '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text;
     }
 
     /**
@@ -175,6 +177,15 @@ abstract class MiscModel extends Model
     {
         // e() isn't enough, remove tags too to avoid ><script injections.
         return e(strip_tags($this->name));
+    }
+
+    /**
+     * Subtitle for the entity's tooltip (ex. character title)
+     * @return string
+     */
+    public function tooltipSubtitle(): string
+    {
+        return '';
     }
 
     /**

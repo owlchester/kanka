@@ -326,12 +326,21 @@ class Character extends MiscModel
     {
         // e() isn't enough, remove tags too to avoid ><script injections.
         $str = $this->name;
-        if (!empty($this->title)) {
-            $str .= ' ' . $this->title;
-        }
         if (!empty($this->family)) {
             $str .= ' ' . $this->family->name;
         }
-        return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class="ra ra-skull"></i>' : null);
+        return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class=\'ra ra-skull\'></i>' : null);
+    }
+
+    /**
+     * Tooltip subtitle (character title)
+     * @return string
+     */
+    public function tooltipSubtitle(): string
+    {
+        if (!empty($this->title)) {
+            return e(strip_tags($this->title));
+        }
+        return '';
     }
 }
