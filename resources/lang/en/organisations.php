@@ -55,8 +55,7 @@ return [
             'role'          => 'Role',
         ],
         'helpers'       => [
-            'all_members'       => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations.',
-            'direct_members'    => 'Most organisations require members to run successfully. The following list are characters that are directly in this organisation.',
+            'members'       => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations. You can filter the page to only show direct members.',
         ],
         'placeholders'  => [
             'character' => 'Choose a character',
@@ -79,8 +78,6 @@ return [
     'show'          => [
         'description'   => 'A detailed view of an organisation',
         'tabs'          => [
-            'all_members'   => 'All Members',
-            'members'       => 'Direct Members',
             'organisations' => 'Organisations',
             'quests'        => 'Quests',
             'relations'     => 'Relations',

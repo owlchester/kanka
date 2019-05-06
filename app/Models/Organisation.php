@@ -195,7 +195,7 @@ class Organisation extends MiscModel
         $countAll = $this->allMembers()->acl()->has('character')->count();
         if ($campaign->enabled('characters')) {
             $items['members'] = [
-                'name' => 'organisations.show.tabs.members',
+                'name' => 'organisations.fields.members',
                 'route' => 'organisations.members',
                 'count' => $count . ' / ' . $countAll
             ];

@@ -1,14 +1,27 @@
 <?php
 /** @var \App\Models\Organisation $model */
+$filters = [];
+if (request()->has('organisation_id')) {
+    $filters['organisation_id'] = request()->get('organisation_id');
+}
 ?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ __('organisations.show.tabs.members') }}
+            {{ __('organisations.fields.members') }}
         </h2>
 
         <p class="help-block">
-            {{ __('organisations.members.helpers.direct_members') }}
+            @if (request()->has('organisation_id'))
+                <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->acl()->count() }})
+                </a>
+            @else
+                <a href="{{ route('organisations.members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->acl()->count() }})
+                </a>
+            @endif
+            {{ __('organisations.members.helpers.members') }}
         </p>
 
         <table id="organisation-characters" class="table table-hover">
@@ -16,26 +29,26 @@
                 <th class="avatar"><br></th>
                 <th>{{ __('characters.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
-                <th>{{ __('characters.fields.location') }}</th>
+                <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
                 @endif
                 <th>{{ __('organisations.members.fields.role') }}</th>
-                <th>{{ __('characters.fields.age') }}</th>
+                <th class="hidden-sm hidden-xs">{{ __('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
-                <th>{{ __('characters.fields.race') }}</th>
+                <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
                 @endif
-                <th>{{ __('characters.fields.sex') }}</th>
+                <th class="hidden-sm hidden-xs">{{ __('characters.fields.sex') }}</th>
                 <th>{{ __('characters.fields.is_dead') }}</th>
-                <th><br /></th>
+                <th></th>
                 <th class="text-right">
                     @can('member', $model)
                         <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> {{ __('organisations.members.actions.add') }}
+                            <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
                         </a>
                     @endcan
                 </th>
             </tr>
-            <?php $r = $model->members()->acl()->has('character')->with('character', 'character.location')->paginate();?>
+            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')->with('character', 'character.location')->paginate();?>
             @foreach ($r->sortBy('character.name') as $relation)
                 <tr>
                     <td>
@@ -45,22 +58,22 @@
                         <a href="{{ route('characters.show', $relation->character->id) }}" data-toggle="tooltip" title="{{ $relation->character->tooltip() }}">{{ $relation->character->name }}</a>
                     </td>
                     @if ($campaign->enabled('locations'))
-                    <td>
+                    <td class="hidden-sm hidden-xs">
                         @if ($relation->character->location)
                             <a href="{{ route('locations.show', $relation->character->location_id) }}" data-toggle="tooltip" title="{{ $relation->character->location->tooltip() }}">{{ $relation->character->location->name }}</a>
                         @endif
                     </td>
                     @endif
                     <td>{{ $relation->role }}</td>
-                    <td>{{ $relation->character->age }}</td>
+                    <td class="hidden-sm hidden-xs">{{ $relation->character->age }}</td>
                     @if ($campaign->enabled('races'))
-                        <td>
+                        <td class="hidden-sm hidden-xs">
                             @if ($relation->character->race)
                                 <a href="{{ route('races.show', $relation->character->race_id) }}" data-toggle="tooltip" title="{{ $relation->character->race->tooltip() }}">{{ $relation->character->race->name }}</a>
                             @endif
                         </td>
                     @endif
-                    <td>{{ $relation->character->sex }}</td>
+                    <td class="hidden-sm hidden-xs">{{ $relation->character->sex }}</td>
                     <td>@if ($relation->character->is_dead)<span class="ra ra-skull"></span>@endif</td>
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
