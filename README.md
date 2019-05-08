@@ -14,7 +14,7 @@ After cloning the project, create the following files.
   * `cp .env.example .env`
   * You'll need to fill it out to your needs.
 * `public/.htaccess`
-  * If on Apache.
+  * If on Apache. You can run `cp .htaccess.example public/.htaccess` for quick development on docker.
 
 
 ## Using Vagrant
