@@ -44,6 +44,7 @@ return [
         'entity_count'                  => 'Entity Count',
         'entity_personality_visibility' => 'Character Personality Visibility',
         'entity_visibility'             => 'Entity Visibility',
+        'excerpt'                       => 'Excerpt',
         'header_image'                  => 'Header Image',
         'image'                         => 'Image',
         'locale'                        => 'Locale',
@@ -54,6 +55,7 @@ return [
     'helpers'                           => [
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
+        'excerpt'                       => 'The campaign excerpt will be displayed on the dashboard, so write a few sentences introducing your world. Keep it short for the best results.',
         'locale'                        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
@@ -166,6 +168,7 @@ return [
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'panels'                            => [
+        'dashboard'     => 'Dashboard',
         'permission'    => 'Permission',
         'sharing'       => 'Sharing',
     ],

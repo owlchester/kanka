@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\DB;
  * @property bool $entity_personality_visibility
  * @property string $header_image
  * @property string $system
+ * @property string $excerpt
+ * @property integer $visible_entity_count
  * @property EntityMention[] $mentions
  */
 class Campaign extends MiscModel
@@ -42,6 +44,7 @@ class Campaign extends MiscModel
         'slug',
         'locale',
         'entry',
+        'excerpt',
         'image',
         'join_token',
         'export_path',

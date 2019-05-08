@@ -40,10 +40,12 @@ class CampaignObserver
      */
     public function saving(Campaign $campaign)
     {
-        $campaign->slug = str_slug($campaign->name, '');
-
         // Purity text
+        $campaign->name = $this->purify($campaign->name);
         $campaign->entry = $this->purify($campaign->entry);
+        $campaign->excerpt = $this->purify($campaign->excerpt);
+
+        $campaign->slug = str_slug($campaign->name, '');
 
         // Public?
         $previousVisibility = $campaign->getOriginal('visibility');

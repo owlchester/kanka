@@ -8,16 +8,23 @@
     ]
 ])
 
-@section('content')
-    @include('partials.errors')
 
+@section('header-extra')
     {!! Form::model($model, [
         'method' => 'PATCH',
         'enctype' => 'multipart/form-data',
         'route' => ['campaigns.update', $model->id],
         'data-shortcut' => '1'
     ]) !!}
-        @include('campaigns._form')
+
+    <div class="pull-right">
+        @include('cruds.fields.save', ['onlySave' => true, 'disableCancel' => true, 'target' => 'entity-form'])
+    </div>
+@endsection
+
+@section('content')
+    @include('partials.errors')
+    @include('campaigns.forms.' . ($start ? 'start' : 'standard'))
     {!! Form::close() !!}
 @endsection
 

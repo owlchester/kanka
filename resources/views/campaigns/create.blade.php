@@ -7,22 +7,23 @@
     ]
 ])
 
-@section('content')
-    <div class="row">
-        <div class="{{ $start ? "col-lg-8 col-md-10 col-sm-12" : "col-md-12" }}">
-            @include('partials.errors')
+@section('header-extra')
+    {!! Form::open([
+        'route' => ($start ? 'start' : 'campaigns.store'),
+        'enctype' => 'multipart/form-data',
+        'method' => 'POST',
+        'data-shortcut' => '1'
+    ]) !!}
 
-            {!! Form::open([
-                'route' => ($start ? 'start' : 'campaigns.store'),
-                'enctype' => 'multipart/form-data',
-                'method' => 'POST',
-                'data-shortcut' => '1'
-            ]) !!}
-                @include('campaigns._form')
-            {!! Form::close() !!}
-
-        </div>
+    <div class="pull-right">
+        @include('cruds.fields.save', ['onlySave' => 'true', 'disableCancel' => true, 'target' => 'entity-form'])
     </div>
+@endsection
+
+@section('content')
+    @include('partials.errors')
+    @include('campaigns.forms.' . ($start ? 'start' : 'standard'))
+    {!! Form::close() !!}
 @endsection
 
 @include('editors.editor')

@@ -1,42 +1,54 @@
 .campaign {
   padding: 40px;
-  border-radius: 3px;
-
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   margin-bottom: 15px;
 
   .content {
-    margin-top: 40px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px 40px 10px 100px;
+    margin-top: 80px;
+    padding: 20px 20px 10px 20px;
     border-radius: 5px;
     min-height: 0;
     text-align: justify;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
 
-    a.image {
-      img {
-        width: 60px;
-        height: 60px;
-        margin-left: -80px;
-        float: left;
-
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: cover;
-      }
+    h1, .more, .preview {
+      text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
     }
 
     h1 {
       font-size: 20pt;
       margin: 0;
       padding: 0;
+
+      .img-circle {
+        width: 50px;
+        height: 50px;
+        margin-right: 7px;
+
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+
+        &:hover {
+          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+      }
+
+
+      a {
+        color: #fff;
+
+        &:hover, &:focus, &:active {
+        color: #72afd2;
+        }
+      }
     }
     .preview {
-      max-height: 150px;
-      overflow: hidden;
       position: relative;
+      font-size: 1.2em;
 
       .preview-action {
         text-align: center;
@@ -44,6 +56,7 @@
     }
 
     .more {
+      font-size: 1.2em;
       a {
         padding: 5px 0;
         display: inline-block;
@@ -53,6 +66,7 @@
     ul.campaign-links {
       bottom: 0;
       margin-top: 10px;
+      border-radius: 2px;
       list-style-type: none;
       padding: 0;
       display: block;
@@ -65,10 +79,19 @@
         margin-bottom: 5px;
         a {
           padding: 8px 12px;
-          background: rgba(255, 255, 255, 0.85);
+          background: rgba(0, 0, 0, 0.7);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           display: inline-block;
+          text-align: center;
+
+          i {
+            display: block;
+            margin-bottom: 5px;
+          }
           &:hover {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
           }
         }
       }
@@ -235,18 +258,14 @@
       padding: 10px;
       margin-top: 20px;
 
-      a.image {
-        position: absolute;
+
+      .title {
 
         .img-circle {
           margin-left: 0;
           height: 30px;
           width: 30px;
         }
-      }
-
-      .title {
-        margin-left: 40px;
       }
 
       ul.campaign-links {

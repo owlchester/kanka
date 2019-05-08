@@ -9,7 +9,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ $campaign->tooltip() }}" />
+    <meta property="og:description" content="{{ $campaign->excerpt ?: $campaign->tooltip() }}" />
     @if ($campaign->image)<meta property="og:image" content="{{ Storage::url($campaign->image)  }}" />@endif
 
     <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
@@ -45,19 +45,17 @@
 
     <div class="campaign @if(!empty($campaign->header_image))" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
-            @if (!empty($campaign->image))
-                <a class="image" href="{{ Storage::url($campaign->image) }}" title="{{ $campaign->name }}" target="_blank">
-                    <img class="img-circle" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
-                </a>
-            @endif
             <div class="title">
-                <h1>
+                <h1 title="{{ $campaign->name }}">
+                    @if (!empty($campaign->image))
+                        <img class="img-circle" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
+                    @endif
                     <a href="{{ route('campaigns.show', $campaign) }}">{{ $campaign->name }}</a>
                 </h1>
             </div>
             @if (!empty(strip_tags($campaign->entry)))
                 <div class="preview">
-                    {!! $campaign->entry !!}
+                    {!! $campaign->excerpt !!}
                 </div>
                 <div class="more">
                     <a href="{{ route('campaigns.show', $campaign) }}">{{ __('crud.actions.find_out_more') }}</a>
@@ -68,18 +66,18 @@
             <ul class="campaign-links">
                 <li>
                     <a href="{{ route('campaign_users.index') }}">
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-user"></i>
                         {{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('campaign_roles.index') }}">
-                        <i class="fa fa-layer-group"></i>
+                        <i class="fa fa-lock"></i>
                         {{ __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('campaign_settings') }}">
+                    <a href="{{ route('campaign_settings') }}" class="visible-lg">
                         <i class="fa fa-cogs"></i>
                         {{ __('dashboard.campaigns.tabs.modules', ['count' => $campaign->setting->countEnabledModules()]) }}
                     </a>
