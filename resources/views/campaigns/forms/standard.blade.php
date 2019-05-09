@@ -71,7 +71,7 @@
             </div>
 
             <label for="header_image">{{ __('campaigns.fields.header_image') }}</label>
-            {!! Form::hidden('remove-header-image') !!}
+            {!! Form::hidden('remove-header_image') !!}
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-group">
@@ -92,7 +92,7 @@
                     @if (!empty($model->header_image))
                         <div class="preview-v2">
                             <div class="image" style="background-image: url('{{ $model->getImageUrl(true, 'header_image') }}')" title="{{ $model->name }}">
-                                <a href="#" class="img-delete" data-target="remove-header-image" title="{{ __('crud.remove') }}">
+                                <a href="#" class="img-delete" data-target="remove-header_image" title="{{ __('crud.remove') }}">
                                     <i class="fa fa-trash"></i> {{ __('crud.remove') }}
                                 </a>
                             </div>

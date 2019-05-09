@@ -511,6 +511,10 @@ footer .footer {
   background: none;
 }
 
+.no-header .content {
+  border: none;
+}
+
 .panel-body .preview {
   background: none;
 }

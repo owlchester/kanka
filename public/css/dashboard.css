@@ -113,6 +113,29 @@
 
 .no-header .content {
   margin-top: 0;
+  background-color: #fff;
+  border-radius: 2px;
+  color: #333;
+  border: 1px solid #d3e0e9;
+}
+
+.no-header .content h1,
+.no-header .content .more,
+.no-header .content .preview {
+  text-shadow: none;
+}
+
+.no-header .content h1 a {
+  color: #3c8dbc;
+}
+
+.no-header .content ul.campaign-links li a {
+  border: 1px solid #d3e0e9;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.no-header .content ul.campaign-links li a:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .panel-body .pinned-entity {
