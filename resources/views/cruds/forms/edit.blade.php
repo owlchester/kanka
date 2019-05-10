@@ -10,9 +10,11 @@
 @inject('campaign', 'App\Services\CampaignService')
 @inject('formService', 'App\Services\FormService')
 
-@section('header-extra')
+@section('fullpage-form')
     {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}
+@endsection
 
+@section('header-extra')
     <div class="pull-right">
         @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
     </div>
@@ -51,7 +53,11 @@
             @endif
         </div>
     </div>
-    {!! Form::close() !!}
 @endsection
 
 @include('editors.editor')
+
+
+@section('fullpage-form-end')
+    {!! Form::close() !!}
+@endsection

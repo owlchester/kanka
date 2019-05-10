@@ -9,9 +9,11 @@
 @inject('campaign', 'App\Services\CampaignService')
 @inject('formService', 'App\Services\FormService')
 
-@section('header-extra')
+@section('fullpage-form')
     {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => [$name . '.store'], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}
+@endsection
 
+@section('header-extra')
     <div class="pull-right">
         @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
     </div>
@@ -68,3 +70,7 @@
 @endsection
 
 @include('editors.editor')
+
+@section('fullpage-form-end')
+    {!! Form::close() !!}
+@endsection
