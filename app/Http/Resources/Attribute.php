@@ -19,6 +19,7 @@ class Attribute extends EntityChild
             'value' => $this->value,
             'type' => $this->type,
             'default_order' => $this->default_order,
+            'api_key' => $this->api_key
         ]);
     }
 }

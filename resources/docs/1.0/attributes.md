@@ -25,6 +25,7 @@ You can get a list of all the attributes of an entity by using the following end
 {
     "data": [
         {
+            "api_key": null,
             "created_at": {
                 "date": "2018-06-25 06:07:51.000000",
                 "timezone_type": 3,
@@ -63,6 +64,7 @@ To get the details of a single attribute, use the following endpoint.
 ```json
 {
     "data": {
+        "api_key": null,
         "created_at": {
             "date": "2018-06-25 06:07:51.000000",
             "timezone_type": 3,
@@ -106,6 +108,7 @@ To create an attribute, use the following endpoint.
 | `type` | `string` | The attribute's type (`block` or `checkbox`) |
 | `entity_id` | `integer` (Required) | The attribute's parent entity |
 | `is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
+| `api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
 
 ### Results
 
@@ -123,7 +126,7 @@ To update an attribute, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating an attribute.
+The same body parameters are available as for when creating an attribute. The `name` and `entity_id` fields are required.
 
 ### Results
 
