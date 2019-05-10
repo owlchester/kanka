@@ -31,9 +31,8 @@ trait TreeControllerTrait
             'label' => '<i class="fa fa-list"></i> ' . trans($this->view . '.index.title')
         ]];
 
-        $search = $model
+        $base = $model
             ->acl()
-            ->filter($this->filterService->filters())
             ->search(request()->get('search'))
             ->order($this->filterService->order());
 
@@ -41,7 +40,7 @@ trait TreeControllerTrait
 
         $parentKey = !empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id';
         if (request()->has('parent_id')) {
-            $search = $search->where([$parentKey => request()->get('parent_id')]);
+            $base->where([$parentKey => request()->get('parent_id')]);
 
             $parent = $model->with($singularModel)->where('id', request()->get('parent_id'))->first();
             if (!empty($parent) && !empty($parent->$singularModel)) {
@@ -60,8 +59,14 @@ trait TreeControllerTrait
                 ];
             }
         } else {
-            $search = $search->whereNull($parentKey);
+            $base->whereNull($parentKey);
         }
+
+        $unfilteredCount = $base->count();
+        $base = $base->filter($this->filterService->filters());
+        $filteredCount =  $base->count();
+        $search = $base
+            ->filter($this->filterService->filters());
 
         $models = $search->paginate();
         $view = $this->view;
@@ -75,7 +80,9 @@ trait TreeControllerTrait
             'filters',
             'filterService',
             'view',
-            'route'
+            'route',
+            'unfilteredCount',
+            'filteredCount'
         ));
     }
 }
