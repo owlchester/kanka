@@ -21,7 +21,7 @@ $model = $widget->entity->child;
                 @if ($campaign->enabled('characters') && !empty($model->character))
                     <dt>{{ __('quests.fields.character') }}</dt>
                     <dd>
-                        <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">
+                        <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">
                             {{ $model->character->name }}
                         </a>
                     </dd>

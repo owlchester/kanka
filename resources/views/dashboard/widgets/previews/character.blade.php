@@ -10,7 +10,7 @@ $model = $widget->entity->child;
 
             </a>
             @if ($campaign->enabled('families') && !empty($model->family))
-                <a href="{{ route('families.show', $model->family->id) }}" data-toggle="tooltip" title="{{ $model->family->tooltip() }}">
+                <a href="{{ route('families.show', $model->family->id) }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">
                     {{ $model->family->name }}
                 </a>
             @endif
