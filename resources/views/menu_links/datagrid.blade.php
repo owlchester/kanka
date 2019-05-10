@@ -7,6 +7,7 @@
     [
         // Name
         'name',
+        'position',
         // Entity
         [
             'type' => 'avatar',

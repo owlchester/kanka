@@ -53,6 +53,12 @@ class CrudController extends Controller
     protected $filterService;
 
     /**
+     * If the permissions tab and pane is enabled or not.
+     * @var bool
+     */
+    protected $tabPermissions = true;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -140,6 +146,7 @@ class CrudController extends Controller
             }
         }
         $params['ajax'] = request()->ajax();
+        $params['tabPermissions'] = $this->tabPermissions;
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
@@ -242,8 +249,9 @@ class CrudController extends Controller
         $this->authorize('update', $model);
         $name = $this->view;
         $ajax = request()->ajax();
+        $tabPermissions = $this->tabPermissions;
 
-        return view('cruds.forms.edit', compact('model', 'name', 'ajax'));
+        return view('cruds.forms.edit', compact('model', 'name', 'ajax', 'tabPermissions'));
     }
 
     /**

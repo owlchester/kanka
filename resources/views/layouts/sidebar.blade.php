@@ -27,7 +27,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </span>
                 </a>
                 <ul class="treeview-menu" style="{{ ($sidebar->open('menu_links') == 'menu-open' ? 'display:block' : 'display:none') }}">
-                    @foreach ($currentCampaign->menuLinks()->with(['target'])->orderBy('name', 'ASC')->get() as $menuLink)
+                    @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
                         @if ($menuLink->target && $menuLink->target->child)
                         <li>

@@ -29,11 +29,13 @@
                 </a>
             </li>
             @includeIf($name . '.form._tabs', ['source' => null])
+            @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permission" title="{{ trans('crud.tabs.permissions') }}" data-toggle="tooltip">
                     {{ trans('crud.tabs.permissions') }}
                 </a>
             </li>
+            @endif
         </ul>
 
         <div class="tab-content">
@@ -42,9 +44,11 @@
                 @include($name . '.form._entry', ['source' => null])
             </div>
             @includeIf($name . '.form._panes', ['source' => null])
+            @if ($tabPermissions)
             <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permission">
                 @include('cruds.forms._permission', ['source' => null])
             </div>
+            @endif
         </div>
     </div>
     {!! Form::close() !!}

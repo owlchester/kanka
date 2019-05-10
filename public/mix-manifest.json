@@ -1,16 +1,15 @@
 {
-    "/js/app.js": "/js/app.js?id=6a68de46699c306b62dc",
-    "/css/bootstrap.css": "/css/bootstrap.css?id=4ae4440b1748dc67d1a8",
+    "/js/app.js": "/js/app.js?id=a44e6c7435730d8c3c4f",
+    "/css/bootstrap.css": "/css/bootstrap.css?id=717ed4b7e98f26a1644f",
     "/css/vendor.css": "/css/vendor.css?id=eba591a36a997e2225cd",
-    "/css/app.css": "/css/app.css?id=9f8f935bc2a3d8801f14",
+    "/css/app.css": "/css/app.css?id=341d637b50e3ef83f001",
     "/css/export.css": "/css/export.css?id=7efe967765ecd8c6469c",
     "/css/map.css": "/css/map.css?id=960c0056385d2da35f64",
     "/css/front.css": "/css/front.css?id=8506ac0bc72415c1b0fb",
-    "/css/dashboard.css": "/css/dashboard.css?id=c3c2eb5b348f4c183ee0",
     "/css/future.css": "/css/future.css?id=d9240ae05b10c89f241b",
     "/css/dark.css": "/css/dark.css?id=4708764f6c1b3610c737",
     "/css/midnight.css": "/css/midnight.css?id=d729cd40fcc94d718b68",
-    "/js/api.js": "/js/api.js?id=11504b4ce516ed95927c",
+    "/js/api.js": "/js/api.js?id=782de17d291aab08d688",
     "/js/organisation.js": "/js/organisation.js?id=32c20e56efcbdb233df5",
     "/js/location/map.js": "/js/location/map.js?id=fae0b0726848980dcd16",
     "/js/entity.js": "/js/entity.js?id=3ea7d40363e331dce04f",
@@ -20,5 +19,6 @@
     "/js/attributes.js": "/js/attributes.js?id=574a11bd03820fbf8f86",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=4bfd85460689a29e314d",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
+    "/css/dashboard.css": "/css/dashboard.css?id=c3c2eb5b348f4c183ee0"
 }

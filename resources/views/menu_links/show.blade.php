@@ -11,6 +11,11 @@
                 </h3>
 
                 <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>{{ trans('menu_links.fields.position') }}</b>
+                        <span class="pull-right">{{ $model->position }}</span>
+                    </li>
+
                     @if (!empty($model->target))
                     <li class="list-group-item">
                         <b>{{ trans('menu_links.fields.entity') }}</b>
