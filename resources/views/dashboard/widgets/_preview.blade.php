@@ -11,12 +11,12 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
     <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
+                @if ($model->is_private)
+                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                @endif
                 {{ $widget->entity->name }}
             </a>
 
-            @if ($model->is_private)
-                <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-            @endif
         </h3>
     </div>
     <div class="panel-body">
