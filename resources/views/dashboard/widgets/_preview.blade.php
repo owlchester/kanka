@@ -8,12 +8,9 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
     @include($specificPreview)
 @else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading">
+    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
-                @if (!empty($model->image))
-                    <div class="entity-image" style="background-image: url({{ $model->getImageUrl(true) }})"></div>
-                @endif
                 {{ $widget->entity->name }}
             </a>
 
