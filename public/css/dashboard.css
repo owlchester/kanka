@@ -148,6 +148,8 @@
 
 .panel .panel-heading-entity h3 {
   padding: 20px 10px;
+  -webkit-transition: none;
+  transition: none;
 }
 
 .panel .panel-heading-entity h3 a {
