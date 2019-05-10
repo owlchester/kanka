@@ -6,9 +6,9 @@
     "/css/export.css": "/css/export.css?id=7efe967765ecd8c6469c",
     "/css/map.css": "/css/map.css?id=960c0056385d2da35f64",
     "/css/front.css": "/css/front.css?id=8506ac0bc72415c1b0fb",
-    "/css/future.css": "/css/future.css?id=d9240ae05b10c89f241b",
-    "/css/dark.css": "/css/dark.css?id=4708764f6c1b3610c737",
-    "/css/midnight.css": "/css/midnight.css?id=d729cd40fcc94d718b68",
+    "/css/future.css": "/css/future.css?id=4b95129f071132f405c5",
+    "/css/dark.css": "/css/dark.css?id=529b400af4d64cea6a44",
+    "/css/midnight.css": "/css/midnight.css?id=5ceaa1cc60f915833a6d",
     "/js/api.js": "/js/api.js?id=782de17d291aab08d688",
     "/js/organisation.js": "/js/organisation.js?id=32c20e56efcbdb233df5",
     "/js/location/map.js": "/js/location/map.js?id=fae0b0726848980dcd16",
@@ -20,5 +20,5 @@
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=4bfd85460689a29e314d",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
     "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
-    "/css/dashboard.css": "/css/dashboard.css?id=e7369076772ab3cb0770"
+    "/css/dashboard.css": "/css/dashboard.css?id=e86e88a33b5ef3f45801"
 }

@@ -141,19 +141,23 @@
 .panel .panel-heading-entity {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 20%;
+  background-position: 50% 10%;
   -webkit-transition: all 3s ease;
   transition: all 3s ease;
+  padding: 0;
 }
 
 .panel .panel-heading-entity h3 {
-  padding: 20px 10px;
   -webkit-transition: none;
   transition: none;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .panel .panel-heading-entity h3 a {
-  color: white;
+  padding: 30px 20px;
+  display: inline-block;
+  width: 100%;
+  color: white !important;
   text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 4px;
 }
 

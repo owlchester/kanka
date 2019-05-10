@@ -6,21 +6,23 @@ $model = $widget->entity->child;
     <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
+
+                @if ($model->is_private)
+                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                @endif
+                @if ($model->is_dead)
+                    <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
+                @endif
+
                 {{ $widget->entity->name }}
 
             </a>
             @if ($campaign->enabled('families') && !empty($model->family))
-                <a href="{{ route('families.show', $model->family->id) }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">
-                    {{ $model->family->name }}
-                </a>
+                {{--<a href="{{ route('families.show', $model->family->id) }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">--}}
+                    {{--{{ $model->family->name }}--}}
+                {{--</a>--}}
             @endif
 
-            @if ($model->is_private)
-                <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-            @endif
-            @if ($model->is_dead)
-                <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
-            @endif
         </h3>
     </div>
     <div class="panel-body">
