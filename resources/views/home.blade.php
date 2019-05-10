@@ -53,9 +53,9 @@
                     <a href="{{ route('campaigns.show', $campaign) }}" title="{{ $campaign->name }}">{{ $campaign->name }}</a>
                 </h1>
             </div>
-            @if (!empty(strip_tags($campaign->entry)))
+            @if ($campaign->hasPreview())
                 <div class="preview">
-                    {!! $campaign->excerpt !!}
+                    {!! $campaign->preview() !!}
                 </div>
                 <div class="more">
                     <a href="{{ route('campaigns.show', $campaign) }}">{{ __('crud.actions.find_out_more') }}</a>
