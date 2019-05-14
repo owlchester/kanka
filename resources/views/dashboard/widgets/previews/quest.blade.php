@@ -3,18 +3,15 @@
 $model = $widget->entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading">
+    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
-                @if (!empty($model->image))
-                    <div class="entity-image" style="background-image: url({{ $model->getImageUrl(true) }})"></div>
+                @if ($model->is_private)
+                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 {{ $widget->entity->name }}
             </a>
 
-            @if ($model->is_private)
-                <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-            @endif
         </h3>
     </div>
     <div class="panel-body">
@@ -24,7 +21,7 @@ $model = $widget->entity->child;
                 @if ($campaign->enabled('characters') && !empty($model->character))
                     <dt>{{ __('quests.fields.character') }}</dt>
                     <dd>
-                        <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">
+                        <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">
                             {{ $model->character->name }}
                         </a>
                     </dd>

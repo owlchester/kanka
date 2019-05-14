@@ -269,13 +269,7 @@ class Entity extends Model
      */
     public function tooltipWithName()
     {
-        $text = $this->tooltip();
-        $name = e(strip_tags($this->child->name));
-        if (empty($text)) {
-            return $name;
-        }
-        // Replace double quotes with real quotes again, as they break tinymce
-        return '<h4>' . $name . '</h4>' . str_replace('&amp;quot;', '"', $text);
+        return $this->child ? $this->child->tooltipWithName() : null;
     }
 
     /**

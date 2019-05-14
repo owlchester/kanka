@@ -1,0 +1,371 @@
+/**
+ * All themes can benefit from overriding the same stuff, which is put here.
+ */
+
+
+#app {
+  background: none;
+}
+
+.campaign-dashboard-widgets {
+  .widget {
+    .widget-overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.main-sidebar {
+  background: $Detail !important;
+  li:hover, li.active, li.header {
+    background-color: $Detail !important;
+    a {
+      color: $Hard !important;
+      background-color: $Detail !important;
+    }
+  }
+}
+
+.content-wrapper {
+  background: none !important;
+}
+
+.box, .panel  {
+  background: none !important;
+  border: none !important;
+
+  .box-header, .panel-heading {
+    border: none !important;
+    background-color: transparent !important;
+  }
+  .with-border {
+    background: none !important;
+    border-bottom: 1px solid $Hard !important;
+  }
+
+  .box-footer, .panel-footer {
+    background: none !important;
+    border: none !important;
+  }
+
+  .panel-body {
+    ul {
+      color: $White;
+    }
+  }
+}
+
+.filters {
+  background: $Detail !important;
+  color: white;
+
+  .element {
+    cursor: pointer;
+    &:hover {
+      background: $Soft !important;
+    }
+  }
+  .first {
+    border-left: 1px solid $Unfocused;
+  }
+}
+
+.no-header {
+  .content {
+    border: none;
+  }
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: $Detail !important;
+}
+.table-hover {
+  tbody {
+    tr {
+      &:hover {
+        background-color: $Detail !important;
+      }
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6, h1 > small {
+  color: $White !important;
+}
+
+input, textarea, .select2, select  {
+  border: 1px solid $Hard !important;
+  //border-radius: 0 !important;
+  background-color: $Detail !important;
+  color: white;
+}
+.form-control, label {
+  color: $White;
+}
+.preview {
+  background-color: $Detail;
+  min-height: 40px;
+}
+
+.select2 {
+  .select2-selection {
+    background: none;
+    //border: none;
+    //height: 36px;
+
+    .select2-selection__rendered {
+      color: white;
+    }
+  }
+}
+
+.select2-dropdown {
+  background-color: $Detail;
+  .select2-results {
+    color: white;
+  }
+}
+input[type=checkbox] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  width: 16px;
+  height: 16px;
+}
+input[type=checkbox]:after {
+  background-color: $Detail !important;
+  border: 1px solid $Hard !important;
+}
+input[type="checkbox"]:checked {
+  background: $Hard !important;
+}
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+.main-footer {
+  background: none !important;
+  color: #999fac !important;
+}
+.user-footer {
+  background-color: $Detail !important;
+}
+
+.post {
+  color: $White;
+}
+.help-block {
+  color: #bbb;
+  font-style: italic;
+  text-align: justify;
+}
+p {
+  text-align: justify;
+  color: $White;
+}
+pre, blockquote {
+  background-color: $Detail;
+  color: $White;
+}
+.list-group-item {
+  background: none;
+  border: 1px solid $Detail;
+  color: $White;
+}
+
+.badge {
+  background-color: $Hard !important;
+  color: $Soft !important;
+}
+/**
+ * Tinymce
+ */
+.mce-panel {
+  background-color: $Detail !important;
+}
+.mce-menubar {
+  border: 0 !important;
+}
+.mce-edit-area, .mce-content-body {
+  background: none !important;
+}
+.mce-btn {
+  border: 1px solid $Unfocused !important;
+  border-radius: 2px !important;
+  background: none !important;
+  color: $White !important;
+}
+.mce-menubtn button, .mce-menubtn button span, .mce-ico {
+  color: $White !important;
+}
+.mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
+  background: none !important;
+}
+.mce-widget, .mce-label, .mce-tab {
+  text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
+}
+.mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
+  background: $Unfocused !important;
+}
+
+.input-group .input-group-addon {
+  color: $Hard;
+  background-color: $Soft;
+}
+/**
+ * Modal, Popover
+ */
+.modal-content, .popover-content {
+  background: $Detail;
+  .modal-header, .popover-header {
+    border-color: $Hard !important;
+    border: none !important;
+  }
+  .modal-footer, .popover-footer {
+    border: none !important;
+  }
+}
+.popover-title {
+  background: $Detail;
+}
+
+/**
+ * Dashboard
+ */
+.products-list > .item {
+  background: none;
+}
+.product-list-in-box > .item {
+  border-bottom: 1px solid $Unfocused;
+}
+.small-box, .info-box {
+  background-color: $Detail !important;
+  border: 1px solid $Detail;
+  border-radius: 2px;
+}
+.info-box-icon {
+  background-color: $Unfocused !important;
+}
+
+/**
+ * Menu
+ */
+.dropdown-menu {
+  background-color: $Detail;
+  border: 1px solid $Unfocused;
+  border-radius: 2px;
+
+  li.header {
+    background: none !important;
+  }
+  li {
+    color: $White !important;
+    a {
+      border: none;
+      color: $White;
+    }
+  }
+}
+.main-header, .navbar {
+  background: none !important;
+  a {
+    background: none !important;
+    border: none !important;
+
+    &:hover {
+      color: $Hard !important;
+      background: $Detail !important;
+    }
+  }
+}
+
+/**
+ * Quests
+ */
+.bg-success {
+  background-color: $Detail;
+}
+
+/**
+ * Dashboard
+ */
+.campaign {
+  .content {
+    background: rgba(0, 0, 0, 0.5);
+
+    ul.campaign-links {
+      li {
+        a {
+          background: rgba(0, 0, 0, 0.7);
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.9);
+          }
+        }
+      }
+    }
+  }
+  .preview {
+    background: none;
+  }
+}
+
+/**
+ * Conversations
+ */
+.box-comments, .box-comment {
+  background-color: $Soft;
+
+  .comment-text {
+    color: $White;
+    .username {
+      color: $White;
+    }
+  }
+
+}
+.box-conversation .box-footer {
+  background-color: $Soft;
+}
+
+// Filters
+.table-filters {
+  background-color: $Soft !important;
+}
+
+.alert  {
+  background-color: $Unfocused !important;
+  color: $White !important;
+  border-radius: 2px !important;
+  border: 0;
+
+  a {
+    color: $Hard !important;
+  }
+}
+
+
+/**
+ * Footer
+ */
+footer {
+  .footer {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/*
+ Search
+ */
+.tt-menu {
+  background-color: $Detail;
+  border-color: $Soft;
+}
+.tt-cursor {
+  color: $Hard !important;
+}

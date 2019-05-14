@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
  * @property string $menu
  * @property string $type
  * @property string $filters
+ * @property integer $position
  * @property Entity $target
  * @property boolean $is_private
  */
@@ -42,6 +43,7 @@ class MenuLink extends MiscModel
         'is_private',
         'menu',
         'type',
+        'position'
     ];
 
     /**
@@ -144,5 +146,15 @@ class MenuLink extends MiscModel
     public function getLink($route = 'show')
     {
         return route('menu_links.' . $route, $this->id);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeOrdered($query) {
+        return $query
+            ->orderBy('position', 'ASC')
+            ->orderBy('name', 'ASC');
     }
 }

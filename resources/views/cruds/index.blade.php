@@ -59,7 +59,7 @@
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">
-                    {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount]) }}
+                    {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
                 </p>
             @endif
             <div class="pull-right">

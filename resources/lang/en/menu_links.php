@@ -21,6 +21,10 @@ return [
         'name'      => 'Name',
         'tab'       => 'Tab',
         'type'      => 'Entity Type',
+        'position'  => 'Position',
+    ],
+    'helpers'       => [
+        'position'  => 'Use this field to control in which ascending order the links appear in the menu.',
     ],
     'index'         => [
         'add'           => 'New Menu Link',

@@ -19,6 +19,7 @@ use DateTime;
  * @property integer $origin_attribute_id
  * @property integer $default_order
  * @property boolean $is_private
+ * @property string $api_key
  */
 class Attribute extends Model
 {
@@ -37,6 +38,7 @@ class Attribute extends Model
         'default_order',
         'type',
         'origin_attribute_id',
+        'api_key',
     ];
 
     /**

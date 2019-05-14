@@ -46,16 +46,16 @@
     <div class="campaign @if(!empty($campaign->header_image))" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
             <div class="title">
-                <h1 title="{{ $campaign->name }}">
+                <h1>
                     @if (!empty($campaign->image))
                         <img class="img-circle" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
                     @endif
-                    <a href="{{ route('campaigns.show', $campaign) }}">{{ $campaign->name }}</a>
+                    <a href="{{ route('campaigns.show', $campaign) }}" title="{{ $campaign->name }}">{{ $campaign->name }}</a>
                 </h1>
             </div>
-            @if (!empty(strip_tags($campaign->entry)))
+            @if ($campaign->hasPreview())
                 <div class="preview">
-                    {!! $campaign->excerpt !!}
+                    {!! $campaign->preview() !!}
                 </div>
                 <div class="more">
                     <a href="{{ route('campaigns.show', $campaign) }}">{{ __('crud.actions.find_out_more') }}</a>

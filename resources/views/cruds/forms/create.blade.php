@@ -9,9 +9,11 @@
 @inject('campaign', 'App\Services\CampaignService')
 @inject('formService', 'App\Services\FormService')
 
-@section('header-extra')
+@section('fullpage-form')
     {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => [$name . '.store'], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}
+@endsection
 
+@section('header-extra')
     <div class="pull-right">
         @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
     </div>
@@ -36,11 +38,13 @@
                     </a>
                 </li>
             @endif
+            @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permission" title="{{ trans('crud.tabs.permissions') }}" data-toggle="tooltip">
                     {{ trans('crud.tabs.permissions') }}
                 </a>
             </li>
+            @endif
         </ul>
 
         <div class="tab-content">
@@ -55,12 +59,18 @@
                     @include('cruds.forms._copy', ['source' => $source])
                 </div>
             @endif
+            @if ($tabPermissions)
             <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permission">
                 @include('cruds.forms._permission', ['source' => $source])
             </div>
+            @endif
         </div>
     </div>
     {!! Form::close() !!}
 @endsection
 
 @include('editors.editor')
+
+@section('fullpage-form-end')
+    {!! Form::close() !!}
+@endsection

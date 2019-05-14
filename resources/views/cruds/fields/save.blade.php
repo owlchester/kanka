@@ -1,7 +1,7 @@
 @if (isset($onlySave))
     <button class="btn btn-success" id="form-submit-main" data-unsaved="{{ __('crud.hints.unsaved_changes') }}" data-target="{{ isset($target) ? $target : null }}">{{ trans('crud.save') }}</button>
 @else
-    <div class="col-md-{{ isset($saveColLength) ? $saveColLength : 12 }} margin-bottom">
+    <div class="col-md-{{ isset($saveColLength) ? $saveColLength : 12 }}">
 
     <div class="form-group">
         <div class="btn-group">

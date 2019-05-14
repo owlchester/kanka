@@ -1,10 +1,17 @@
-body {
-  background-color: #333;
-  color: #777;
-}
+/**
+ * All themes can benefit from overriding the same stuff, which is put here.
+ */
 
 #app {
   background: none;
+}
+
+.campaign-dashboard-widgets .widget .widget-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.campaign-dashboard-widgets .widget:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .main-sidebar {
@@ -28,32 +35,18 @@ body {
   background: none !important;
 }
 
-.btn {
-  color: white !important;
-}
-
-.btn-danger:hover {
-  background-color: #992329 !important;
-  color: white !important;
-}
-
-.btn-default,
-.btn-app {
-  color: #444 !important;
-}
-
 .box,
 .panel {
-  border: 1px solid #fff !important;
   background: none !important;
+  border: none !important;
 }
 
 .box .box-header,
 .box .panel-heading,
 .panel .box-header,
 .panel .panel-heading {
-  background: none !important;
   border: none !important;
+  background-color: transparent !important;
 }
 
 .box .with-border,
@@ -92,6 +85,10 @@ body {
   border-left: 1px solid #999;
 }
 
+.no-header .content {
+  border: none;
+}
+
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #222 !important;
 }
@@ -108,20 +105,6 @@ h5,
 h6,
 h1 > small {
   color: #eee !important;
-}
-
-a {
-  color: #999 !important;
-}
-
-a:hover {
-  color: #fff !important;
-}
-
-@media (min-width: 1200px) {
-  a span.visible-lg {
-    display: none !important;
-  }
 }
 
 input,
@@ -183,17 +166,11 @@ input[type="checkbox"]:checked:after {
 
 .main-footer {
   background: none !important;
-  border-top: none !important;
   color: #999fac !important;
 }
 
 .user-footer {
   background-color: #222 !important;
-}
-
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
-  background-color: #333 !important;
-  color: #fff !important;
 }
 
 .post {
@@ -215,54 +192,6 @@ pre,
 blockquote {
   background-color: #222;
   color: #eee;
-}
-
-.nav-tabs-custom {
-  border: 1px solid #fff;
-  background: none;
-}
-
-.nav-tabs-custom .tab-content {
-  background: none;
-}
-
-.nav-tabs {
-  border: none !important;
-}
-
-.nav-tabs li {
-  border: none;
-}
-
-.nav-tabs li:hover {
-  background: #222;
-  border: none;
-  border-bottom: none;
-}
-
-.nav-tabs li:hover a {
-  background: none;
-}
-
-.nav-tabs li.active {
-  border: none;
-}
-
-.nav-tabs li.active a {
-  color: #333 !important;
-  background-color: #fff !important;
-  border: none !important;
-}
-
-.alert {
-  background-color: #999 !important;
-  color: #eee !important;
-  border-radius: 2px !important;
-  border: 0;
-}
-
-.alert a {
-  color: #fff !important;
 }
 
 .list-group-item {
@@ -428,11 +357,23 @@ blockquote {
 }
 
 /**
- * Calendar
+ * Dashboard
  */
 
-.calendar td.today {
-  background-color: #515142;
+.campaign .content {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.campaign .content ul.campaign-links li a {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.campaign .content ul.campaign-links li a:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.campaign .preview {
+  background: none;
 }
 
 /**
@@ -458,6 +399,29 @@ blockquote {
   background-color: #333;
 }
 
+.table-filters {
+  background-color: #333 !important;
+}
+
+.alert {
+  background-color: #999 !important;
+  color: #eee !important;
+  border-radius: 2px !important;
+  border: 0;
+}
+
+.alert a {
+  color: #fff !important;
+}
+
+/**
+ * Footer
+ */
+
+footer .footer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 /*
  Search
  */
@@ -471,40 +435,96 @@ blockquote {
   color: #fff !important;
 }
 
-.table-filters {
+body {
+  background-color: #333;
+  color: #777;
+}
+
+.btn {
+  color: white !important;
+}
+
+.btn-danger:hover {
+  background-color: #992329 !important;
+  color: white !important;
+}
+
+.btn-default,
+.btn-app {
+  color: #444 !important;
+}
+
+.box,
+.panel {
+  border: 1px solid #fff !important;
+}
+
+a {
+  color: #999 !important;
+}
+
+a:hover {
+  color: #fff !important;
+}
+
+@media (min-width: 1200px) {
+  a span.visible-lg {
+    display: none !important;
+  }
+}
+
+.main-footer {
+  border-top: none !important;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
   background-color: #333 !important;
+  color: #fff !important;
 }
 
-/**
- * Footer
- */
-
-footer .footer {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-/**
- * Dashboard
- */
-
-.campaign .content {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.campaign .content ul.campaign-links li a {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.campaign .content ul.campaign-links li a:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.campaign .preview {
+.nav-tabs-custom {
+  border: 1px solid #fff;
   background: none;
 }
 
-.no-header .content {
+.nav-tabs-custom .tab-content {
+  background: none;
+}
+
+.nav-tabs {
+  border: none !important;
+}
+
+.nav-tabs li {
   border: none;
+}
+
+.nav-tabs li:hover {
+  background: #222;
+  border: none;
+  border-bottom: none;
+}
+
+.nav-tabs li:hover a {
+  background: none;
+}
+
+.nav-tabs li.active {
+  border: none;
+}
+
+.nav-tabs li.active a {
+  color: #333 !important;
+  background-color: #fff !important;
+  border: none !important;
+}
+
+/**
+ * Calendar
+ */
+
+.calendar td.today {
+  background-color: #515142;
 }
 
 .panel-body .preview {
@@ -512,14 +532,6 @@ footer .footer {
 }
 
 .panel-body .preview:before {
-  background: linear-gradient(transparent 0px, #333);
-}
-
-.campaign-dashboard-widgets .widget .widget-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.campaign-dashboard-widgets .widget:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(transparent 0px, #333) !important;
 }
 

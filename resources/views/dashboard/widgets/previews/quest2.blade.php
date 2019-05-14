@@ -6,10 +6,12 @@ $model = $widget->entity->child;
     <div class="widget-user-header bg-gray" @if (!empty($model->image)) style="background-image: url({{ $model->getImageUrl() }})" @endif >
         <div class="widget-user-overlay">
             <h3 class="widget-user-username">
-                <a href="{{ $model->getLink() }}">{{ $widget->entity->name }}</a>
-                @if ($model->is_private)
-                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-                @endif
+                <a href="{{ $model->getLink() }}">
+                    @if ($model->is_private)
+                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    @endif
+                    {{ $widget->entity->name }}
+                </a>
             </h3>
             @if ($campaign->enabled('characters') && !empty($model->character))
             <h5 class="widget-user-desc">

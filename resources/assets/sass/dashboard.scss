@@ -1,3 +1,7 @@
+
+// Variables
+@import "variables";
+
 .campaign {
   padding: 40px;
   background-repeat: no-repeat;
@@ -33,7 +37,7 @@
         background-size: cover;
 
         &:hover {
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+          box-shadow: $box-shadow-hover;
         }
       }
 
@@ -91,7 +95,7 @@
           &:hover {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+            box-shadow: $box-shadow-hover;
           }
         }
       }
@@ -133,35 +137,67 @@
   }
 }
 
-.panel-body {
-  .pinned-entity {
-    transition: all 0.5s ease;
-  }
-  .preview {
-    max-height: 200px;
-    position: relative;
-    overflow: hidden;
-    padding-top: 0;
+.panel {
+  .panel-heading-entity {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 10%;
+    transition: all 3s ease;
+    padding: 0;
 
-    &:before {
-      content:'';
-      width:100%;
-      height:30%;
-      position:absolute;
-      left:0;
-      bottom:0;
-      background:linear-gradient(transparent 0px, white);
+    h3 {
+      transition: none;
+      background-color: rgba(0, 0, 0, 0.2);
+
+      a {
+        padding: 30px 20px;
+        display: inline-block;
+        width: 100%;
+        color: white !important;
+        text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 4px;
+        font-size: 18px;
+      }
     }
   }
-  .full {
+
+  &:hover {
+    .panel-heading-entity {
+      background-position: 50% 50%;
+    }
   }
 
-  .preview-switch {
-    width: 100%;
-    padding-left: auto;
-    padding-right: auto;
-    display: block;
-    text-align: center;
+  .panel-body {
+    .pinned-entity {
+      transition: all 0.5s ease;
+    }
+
+    .preview {
+      max-height: 200px;
+      position: relative;
+      overflow: hidden;
+      padding-top: 0;
+
+      &:before {
+        content: '';
+        width: 100%;
+        height: 30%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(transparent 0px, white);
+      }
+    }
+
+    .full {
+    }
+
+    .preview-switch {
+      width: 100%;
+      padding-left: auto;
+      padding-right: auto;
+      display: block;
+      text-align: center;
+    }
   }
 }
 
@@ -267,7 +303,7 @@
   .panel-title {
     vertical-align: middle;
     a {
-      font-size: 18px;
+      font-size: 16px;
     }
     .entity-image {
       display: inline-block;

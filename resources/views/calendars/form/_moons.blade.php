@@ -73,9 +73,7 @@ if (!empty($moonNames)) {
             </div>
         </div>
         <div class="col-md-3">
-            <div class="input-group">
-                {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
-            </div>
+            {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
         </div>
         <div class="col-md-3">
             <div class="input-group">

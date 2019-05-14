@@ -251,6 +251,30 @@ class Campaign extends MiscModel
     }
 
     /**
+     * Does the campaign has a preview text that can be displayed
+     * @return bool
+     */
+    public function hasPreview(): bool
+    {
+        return !empty($this->preview());
+    }
+
+    /**
+     * Preview text for the dashboard
+     * @return string
+     */
+    public function preview(): string
+    {
+        if (!empty(strip_tags($this->excerpt))) {
+            return $this->excerpt;
+        }
+        if (!empty(strip_tags($this->entry))) {
+            return strip_tags(substr($this->entry, 0, 1000)) . ' ...';
+        }
+        return '';
+    }
+
+    /**
      * @return array
      */
     public function membersList($removedIds = [])

@@ -53,6 +53,8 @@
         <!-- Sidebar -->
         @include('layouts.sidebar')
 
+        @yield('fullpage-form')
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -114,6 +116,8 @@
                 @yield('content')
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
+
+        @yield('fullpage-form-end')
 
         <!-- Footer -->
         @include('layouts.footer')

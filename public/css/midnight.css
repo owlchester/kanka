@@ -1,14 +1,21 @@
-body {
-  background-color: #061F2F;
-  color: #d3d4d4;
-}
+/**
+ * All themes can benefit from overriding the same stuff, which is put here.
+ */
 
 #app {
   background: none;
 }
 
+.campaign-dashboard-widgets .widget .widget-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.campaign-dashboard-widgets .widget:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .main-sidebar {
-  background: none !important;
+  background: #0a121b !important;
 }
 
 .main-sidebar li:hover,
@@ -28,37 +35,24 @@ body {
   background: none !important;
 }
 
-.btn {
-  color: white !important;
-}
-
-.btn-danger:hover {
-  background-color: #992329 !important;
-  color: white !important;
-}
-
-.btn-default,
-.btn-app {
-  color: #444 !important;
-}
-
 .box,
 .panel {
+  background: none !important;
   border: none !important;
-  background-color: #0a121b !important;
 }
 
 .box .box-header,
 .box .panel-heading,
 .panel .box-header,
 .panel .panel-heading {
-  background-color: rgba(0, 0, 0, 0.1) !important;
   border: none !important;
+  background-color: transparent !important;
 }
 
 .box .with-border,
 .panel .with-border {
-  border-bottom: none !important;
+  background: none !important;
+  border-bottom: 1px solid #fff !important;
 }
 
 .box .box-footer,
@@ -91,6 +85,10 @@ body {
   border-left: 1px solid #999;
 }
 
+.no-header .content {
+  border: none;
+}
+
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #0a121b !important;
 }
@@ -107,15 +105,6 @@ h5,
 h6,
 h1 > small {
   color: #eee !important;
-}
-
-a {
-  color: #9CD7F7 !important;
-}
-
-a:hover {
-  color: #d4eff7 !important;
-  text-decoration: none;
 }
 
 input,
@@ -203,62 +192,6 @@ pre,
 blockquote {
   background-color: #0a121b;
   color: #eee;
-}
-
-.nav-tabs-custom {
-  border: none;
-  background-color: #0a121b;
-}
-
-.nav-tabs-custom .tab-content {
-  background: none;
-}
-
-.nav-stacked li {
-  border-bottom: 1px solid #333 !important;
-}
-
-.nav-stacked li a:hover {
-  background-color: #333 !important;
-}
-
-.nav-tabs {
-  border: none !important;
-}
-
-.nav-tabs li {
-  border: none;
-}
-
-.nav-tabs li:hover {
-  background: #0a121b;
-  border: none;
-  border-bottom: none;
-}
-
-.nav-tabs li:hover a {
-  background: none;
-}
-
-.nav-tabs li.active {
-  border: none;
-}
-
-.nav-tabs li.active a {
-  color: #333 !important;
-  background-color: #fff !important;
-  border: none !important;
-}
-
-.alert {
-  background-color: #999 !important;
-  color: #eee !important;
-  border-radius: 2px !important;
-  border: 0;
-}
-
-.alert a {
-  color: #fff !important;
 }
 
 .list-group-item {
@@ -361,7 +294,7 @@ blockquote {
 }
 
 .product-list-in-box > .item {
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #999;
 }
 
 .small-box,
@@ -400,13 +333,228 @@ blockquote {
 
 .main-header,
 .navbar {
-  background: #0a121b !important;
+  background: none !important;
 }
 
 .main-header a,
 .navbar a {
   background: none !important;
   border: none !important;
+}
+
+.main-header a:hover,
+.navbar a:hover {
+  color: #fff !important;
+  background: #0a121b !important;
+}
+
+/**
+ * Quests
+ */
+
+.bg-success {
+  background-color: #0a121b;
+}
+
+/**
+ * Dashboard
+ */
+
+.campaign .content {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.campaign .content ul.campaign-links li a {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.campaign .content ul.campaign-links li a:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.campaign .preview {
+  background: none;
+}
+
+/**
+ * Conversations
+ */
+
+.box-comments,
+.box-comment {
+  background-color: #333;
+}
+
+.box-comments .comment-text,
+.box-comment .comment-text {
+  color: #eee;
+}
+
+.box-comments .comment-text .username,
+.box-comment .comment-text .username {
+  color: #eee;
+}
+
+.box-conversation .box-footer {
+  background-color: #333;
+}
+
+.table-filters {
+  background-color: #333 !important;
+}
+
+.alert {
+  background-color: #999 !important;
+  color: #eee !important;
+  border-radius: 2px !important;
+  border: 0;
+}
+
+.alert a {
+  color: #fff !important;
+}
+
+/**
+ * Footer
+ */
+
+footer .footer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/*
+ Search
+ */
+
+.tt-menu {
+  background-color: #0a121b;
+  border-color: #333;
+}
+
+.tt-cursor {
+  color: #fff !important;
+}
+
+body {
+  background-color: #061F2F;
+  color: #d3d4d4;
+}
+
+.main-sidebar {
+  background: none !important;
+}
+
+.btn {
+  color: white !important;
+}
+
+.btn-danger:hover {
+  background-color: #992329 !important;
+  color: white !important;
+}
+
+.btn-default,
+.btn-app {
+  color: #444 !important;
+}
+
+.box,
+.panel {
+  background-color: #0a121b !important;
+}
+
+.box .box-header,
+.box .panel-heading,
+.panel .box-header,
+.panel .panel-heading {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.box .with-border,
+.panel .with-border {
+  border-bottom: none !important;
+}
+
+a {
+  color: #9CD7F7 !important;
+}
+
+a:hover {
+  color: #d4eff7 !important;
+  text-decoration: none;
+}
+
+.nav-tabs-custom {
+  border: none;
+  background-color: #0a121b;
+}
+
+.nav-tabs-custom .nav-tabs {
+  border-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100% !important;
+}
+
+.nav-tabs-custom .nav-tabs li {
+  background-color: #0a121b !important;
+}
+
+.nav-tabs-custom .nav-tabs .active a {
+  background-color: #0a121b !important;
+  color: #fff !important;
+}
+
+.nav-tabs-custom .tab-content {
+  background: none;
+}
+
+.nav-stacked li {
+  border-bottom: 1px solid #333 !important;
+}
+
+.nav-stacked li a:hover {
+  background-color: #333 !important;
+}
+
+.nav-tabs li {
+  border: none;
+}
+
+.nav-tabs li:hover {
+  background: #0a121b;
+  border: none;
+  border-bottom: none;
+}
+
+.nav-tabs li:hover a {
+  background: none;
+}
+
+.nav-tabs li.active {
+  border-top: 3px solid transparent !important;
+}
+
+.nav-tabs li.active a {
+  color: #333 !important;
+  background-color: #fff !important;
+  border: none !important;
+}
+
+.product-list-in-box > .item {
+  border-bottom: 1px solid #333;
+}
+
+/**
+ * Menu
+ */
+
+.main-header,
+.navbar {
+  background: #0a121b !important;
+}
+
+.main-header a,
+.navbar a {
   color: #fff !important;
 }
 
@@ -432,14 +580,6 @@ blockquote {
 }
 
 /**
- * Quests
- */
-
-.bg-success {
-  background-color: #0a121b;
-}
-
-/**
  * Calendar
  */
 
@@ -456,33 +596,6 @@ blockquote {
   background-color: #0a121b;
 }
 
-.box-comments .comment-text,
-.box-comment .comment-text {
-  color: #eee;
-}
-
-.box-comments .comment-text .username,
-.box-comment .comment-text .username {
-  color: #eee;
-}
-
-.box-conversation .box-footer {
-  background-color: #333;
-}
-
-/*
- Search
- */
-
-.tt-menu {
-  background-color: #0a121b;
-  border-color: #333;
-}
-
-.tt-cursor {
-  color: #fff !important;
-}
-
 @media (max-width: 991px) {
   .content-header > .breadcrumb {
     background: none !important;
@@ -493,55 +606,11 @@ blockquote {
   }
 }
 
-.table-filters {
-  background-color: #333 !important;
-}
-
-/**
- * Footer
- */
-
-footer .footer {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-/**
- * Dashboard
- */
-
-.campaign .content {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.campaign .content ul.campaign-links li a {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.campaign .content ul.campaign-links li a:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.campaign .preview {
-  background: none;
-}
-
-.no-header .content {
-  border: none;
-}
-
 .panel-body .preview {
   background: none;
 }
 
 .panel-body .preview:before {
-  background: linear-gradient(transparent 0px, #0a121b);
-}
-
-.campaign-dashboard-widgets .widget .widget-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.campaign-dashboard-widgets .widget:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(transparent 0px, #0a121b) !important;
 }
 
