@@ -137,7 +137,7 @@ class CampaignExport implements ShouldQueue
     /**
      *
      */
-    public function failure()
+    public function failed(Exception $exception)
     {
         // Set the campaign export date to null so that the user can try again.
         // If it failed once, trying again won't help, but this might motivate
