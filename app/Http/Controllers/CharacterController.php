@@ -39,7 +39,7 @@ class CharacterController extends CrudController
         $this->random = $random;
 
         $this->indexActions[] = [
-            'label' => '<i class="fa fa-question"></i> ' . trans('characters.index.actions.random'),
+            'label' => '<i class="fa fa-question-circle"></i> <span class="hidden-xs">' . trans('characters.index.actions.random') . '</span>',
             'route' => route('characters.random'),
             'class' => 'default',
             'policy' => 'random'

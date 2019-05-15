@@ -19,6 +19,8 @@ var entityCalendarCancel, entityCalendarLoading;
 
 var toggablePanels;
 
+var validEntityForm = false;
+
 $(document).ready(function() {
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');
@@ -442,6 +444,10 @@ function registerUnsavedChanges() {
  */
 function registerEntityFormSubmit() {
     $('#entity-form').submit(function (e) {
+        if (validEntityForm) {
+            return true;
+        }
+
         e.preventDefault();
 
         // Allow ajax requests to use the X_CSRF_TOKEN for deletes
@@ -456,8 +462,10 @@ function registerEntityFormSubmit() {
             method: $(this).attr('method'),
             data: $(this).serialize()
         }).done(function (res) {
-            //console.log('res', res);
-            window.location = res.route;
+            // If the validation succeeded, we can really submit the form
+            validEntityForm = true;
+            $('#entity-form').submit();
+            return true;
         }).fail(function (err) {
             // Reset any error fields
             $('.input-error').removeClass('input-error');

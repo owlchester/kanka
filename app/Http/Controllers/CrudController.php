@@ -169,6 +169,11 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         try {
             $model = new $this->model;
             $new = $model->create($request->all());
@@ -193,18 +198,18 @@ class CrudController extends Controller
 
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create');
-                return response()->json(['success' => true, 'route' => $route]);
+                return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', $new);
-                return response()->json(['success' => true, 'route' => $route]);
+                return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
                 $route = route($this->route . '.show', $new);
-                return response()->json(['success' => true, 'route' => $route]);
+                return response()->redirectTo($route);
             }
 
             if ($redirectToCreated) {
                 $route = route($this->route . '.show', $new);
-                return response()->json(['success' => true, 'route' => $route]);
+                return response()->redirectTo($route);
             }
 
             $subroute = 'index';
@@ -212,7 +217,7 @@ class CrudController extends Controller
                 $subroute = 'tree';
             }
             $route = route($this->route . '.' . $subroute);
-            return response()->json(['success' => true, 'route' => $route]);
+            return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
@@ -280,6 +285,11 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         try {
             $data = $this->prepareData($request, $model);
             $model->update($data);
@@ -313,7 +323,7 @@ class CrudController extends Controller
                 }
                 $route = route($this->route . '.' . $subroute);
             }
-            return response()->json(['success' => true, 'route' => $route]);
+            return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
