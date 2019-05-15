@@ -1,5 +1,5 @@
 <?php
-$attributes = isset($model) ? $model->entity->attributes()->orderBy('default_order', 'ASC')->get() : isset($source) ? $source->entity->attributes: [];
+$attributes = isset($model) ? $model->entity->attributes()->orderBy('default_order', 'ASC')->get() : (isset($source) ? $source->entity->attributes: []);
 $isAdmin = Auth::user()->isAdmin();
 ?>
 
