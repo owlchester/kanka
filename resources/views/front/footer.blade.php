@@ -3,7 +3,7 @@
         <div class="row h-100 footer-links">
             <div class="col-md-3 col-sm-4 col-xs-6">
                 <p class="first">
-                    <i class="fa fa-envelope"></i> hello@kanka.io
+                    <i class="fa fa-envelope hidden-xs"></i> hello@kanka.io
                 </p>
                 <p>{!! __('footer.copyright', ['year' => date('Y')]) !!}</p>
             </div>

@@ -3095,6 +3095,11 @@ td.breakable {
     width: auto;
   }
 
+  footer .footer {
+    background: transparent;
+    padding: 3px;
+  }
+
   footer ul li a {
     padding-left: 0;
   }
@@ -3107,7 +3112,51 @@ td.breakable {
   }
 
   .navbar-nav .campaign-menu .campaign-image {
-    margin-right: 0;
+    margin-right: 0px;
+  }
+
+  .navbar-nav .menu .campaign-image {
+    margin-right: 4px;
+  }
+
+  .main-sidebar {
+    padding-top: 0px;
+  }
+
+  .content-header {
+    padding-top: 5px;
+  }
+
+  .content-header h1 {
+    font-size: 22px;
+    line-height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content-header .breadcrumb {
+    background: transparent;
+    padding: 0 0 3px 0;
+    margin-top: 0;
+  }
+
+  .content-header .breadcrumb li {
+    display: inline-block;
+    padding: 5px 0 1px;
+    color: #8f98a3;
+  }
+
+  .content-header .breadcrumb li:before {
+    padding: 0 2px;
+  }
+
+  .content-header .form-group {
+    margin-bottom: 0;
+  }
+
+  section.content {
+    padding-top: 5px;
   }
 }
 

@@ -59,6 +59,12 @@ class CrudController extends Controller
     protected $tabPermissions = true;
 
     /**
+     * If the attributes tab and pane is enabled or not.
+     * @var bool
+     */
+    protected $tabAttributes = true;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -147,6 +153,7 @@ class CrudController extends Controller
         }
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions;
+        $params['tabAttributes'] = $this->tabAttributes;
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
@@ -181,28 +188,31 @@ class CrudController extends Controller
                     $new
                 )
             ]);
+
+            session()->flash('success_raw', $success);
+
             if ($request->has('submit-new')) {
-                return redirect()->route($this->route . '.create')
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.create');
+                return response()->json(['success' => true, 'route' => $route]);
             } elseif ($request->has('submit-update')) {
-                return redirect()->route($this->route . '.edit', $new)
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.edit', $new);
+                return response()->json(['success' => true, 'route' => $route]);
             } elseif ($request->has('submit-view')) {
-                return redirect()->route($this->route . '.show', $new)
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.show', $new);
+                return response()->json(['success' => true, 'route' => $route]);
             }
 
             if ($redirectToCreated) {
-                return redirect()->route($this->route . '.show', $new)
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.show', $new);
+                return response()->json(['success' => true, 'route' => $route]);
             }
 
             $subroute = 'index';
             if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                 $subroute = 'tree';
             }
-            return redirect()->route($this->route . '.' . $subroute)
-                ->with('success_raw', $success);
+            $route = route($this->route . '.' . $subroute);
+            return response()->json(['success' => true, 'route' => $route]);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
@@ -247,11 +257,16 @@ class CrudController extends Controller
     public function crudEdit(Model $model)
     {
         $this->authorize('update', $model);
-        $name = $this->view;
-        $ajax = request()->ajax();
-        $tabPermissions = $this->tabPermissions;
 
-        return view('cruds.forms.edit', compact('model', 'name', 'ajax', 'tabPermissions'));
+        $params = [
+            'model' => $model,
+            'name' => $this->view,
+            'ajax' => request()->ajax(),
+            'tabPermissions' => $this->tabPermissions,
+            'tabAttributes' => $this->tabAttributes
+        ];
+
+        return view('cruds.forms.edit', $params);
     }
 
     /**
@@ -284,23 +299,21 @@ class CrudController extends Controller
                     $model
                 )
             ]);
+            session()->flash('success_raw', $success);
 
+            $route = route($this->route . '.show', $model->id);
             if ($request->has('submit-new')) {
-                return redirect()->route($this->route . '.create')
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.create');
             } elseif ($request->has('submit-update')) {
-                return redirect()->route($this->route . '.edit', $model->id)
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.edit', $model->id);
             } elseif ($request->has('submit-close')) {
                 $subroute = 'index';
                 if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                     $subroute = 'tree';
                 }
-                return redirect()->route($this->route . '.' . $subroute)
-                    ->with('success_raw', $success);
+                $route = route($this->route . '.' . $subroute);
             }
-            return redirect()->route($this->route . '.show', $model->id)
-                ->with('success_raw', $success);
+            return response()->json(['success' => true, 'route' => $route]);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));

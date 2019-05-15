@@ -82,6 +82,7 @@ $(document).ready(function() {
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
     registerToggablePanels();
+    registerEntityFormSubmit();
 });
 
 
@@ -294,6 +295,7 @@ function registerFormSubmitAnimation() {
                         $(this).prop('disabled', true);
                     } else {
                         $(this)
+                            .data('reset', $(this).html())
                             .html('<i class="fa fa-spinner fa-spin"></i>')
                             .prop('disabled', true);
                     }
@@ -434,3 +436,64 @@ function registerUnsavedChanges() {
         });
     }
 }
+
+/**
+ * When the entity form is submitted, we want to ajax validate the request first
+ */
+function registerEntityFormSubmit() {
+    $('#entity-form').submit(function (e) {
+        e.preventDefault();
+
+        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: $(this).attr('method'),
+            data: $(this).serialize()
+        }).done(function (res) {
+            //console.log('res', res);
+            window.location = res.route;
+        }).fail(function (err) {
+            // Reset any error fields
+            $('.input-error').removeClass('input-error');
+            $('.text-danger').remove();
+
+            // Loop through the errors to add the class and error message
+            var errors = err.responseJSON.errors;
+
+            var errorKeys = Object.keys(errors);
+            errorKeys.forEach(function (i) {
+                $('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+            });
+
+            var firstItem = Object.keys(errors)[0];
+            var firstItemDom = document.getElementsByName(firstItem);
+
+            firstItemDom[0].scrollIntoView({ behavior: 'smooth'});
+
+            // Switch tabs/pane
+            $('.tab-content .active').removeClass('active');
+            $('.nav-tabs li.active').removeClass('active');
+            var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+            firstPane.addClass('active');
+            $('a[href="#'+ firstPane.attr('id') + '"]').closest('li').addClass('active');
+
+            // Reset submit buttons
+            submit = $('#entity-form').find('.btn-success');
+            if (submit.length > 0) {
+                $.each(submit, function(su) {
+                    $(this).removeAttr('disabled');
+                    if ($(this).data('reset')) {
+                        $(this).html($(this).data('reset'));
+                    }
+                });
+            }
+        });
+    });
+}
+

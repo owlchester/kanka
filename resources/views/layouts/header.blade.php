@@ -12,7 +12,7 @@ if (Auth::check()) {
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ route('home') }}" class="logo">
+    <a href="{{ route('home') }}" class="logo hidden-xs">
         {{ config('app.name') }}
     </a>
 

@@ -38,9 +38,16 @@
                     </a>
                 </li>
             @endif
+            @if ($tabAttributes)
+                <li class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
+                    <a href="#form-attributes" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
+                        {{ trans('crud.tabs.attributes') }}
+                    </a>
+                </li>
+            @endif
             @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
-                <a href="#form-permission" title="{{ trans('crud.tabs.permissions') }}" data-toggle="tooltip">
+                <a href="#form-permissions" title="{{ trans('crud.tabs.permissions') }}" data-toggle="tooltip">
                     {{ trans('crud.tabs.permissions') }}
                 </a>
             </li>
@@ -59,8 +66,13 @@
                     @include('cruds.forms._copy', ['source' => $source])
                 </div>
             @endif
+            @if ($tabAttributes)
+            <div class="tab-pane {{ (request()->get('tab') == 'attributes' ? ' active' : '') }}" id="form-attributes">
+                @include('cruds.forms._attributes', ['source' => $source])
+            </div>
+            @endif
             @if ($tabPermissions)
-            <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permission">
+            <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permissions">
                 @include('cruds.forms._permission', ['source' => $source])
             </div>
             @endif

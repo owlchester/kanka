@@ -17,7 +17,6 @@
             ) !!}
         </div>
         @include('cruds.fields.tags')
-        @include('cruds.fields.attribute_template')
 
         @include('cruds.fields.private')
     </div>

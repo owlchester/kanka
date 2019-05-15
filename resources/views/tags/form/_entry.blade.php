@@ -6,7 +6,6 @@
         </div>
         @include('cruds.fields.type', ['base' => \App\Models\Tag::class, 'trans' => 'tags'])
         @include('cruds.fields.tag')
-        @include('cruds.fields.attribute_template')
 @include('cruds.fields.private')
     </div>
     <div class="col-md-6">

@@ -118,14 +118,14 @@ abstract class MiscObserver
         }
 
         // Copy attributes from source?
-        if (request()->has('copy_source_attributes') && request()->filled('copy_source_attributes')) {
-            $sourceId = request()->post('copy_source_id');
-            /** @var Entity $source */
-            $source = Entity::findOrFail($sourceId);
-            foreach ($source->attributes as $attribute) {
-                $attribute->copyTo($model->entity);
-            }
-        }
+//        if (request()->has('copy_source_attributes') && request()->filled('copy_source_attributes')) {
+//            $sourceId = request()->post('copy_source_id');
+//            /** @var Entity $source */
+//            $source = Entity::findOrFail($sourceId);
+//            foreach ($source->attributes as $attribute) {
+//                $attribute->copyTo($model->entity);
+//            }
+//        }
         // Copy attributes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
             $sourceId = request()->post('copy_source_id');

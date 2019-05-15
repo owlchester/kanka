@@ -39,11 +39,11 @@
             </li>
             @endif
             @can('delete', $model)
+            <li class="divider"></li>
             <li>
-                <br />
-                <button class="btn btn-danger btn-flat delete-confirm btn-block" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
+                <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
-                </button>
+                </a>
                 {!! Form::open(['method' => 'DELETE','route' => [$name . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                 {!! Form::close() !!}
             </li>

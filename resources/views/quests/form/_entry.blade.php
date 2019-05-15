@@ -20,7 +20,6 @@
         @include('cruds.fields.character')
 
         @include('cruds.fields.tags')
-        @include('cruds.fields.attribute_template')
 
         <div class="form-group">
             {!! Form::hidden('is_completed', 0) !!}

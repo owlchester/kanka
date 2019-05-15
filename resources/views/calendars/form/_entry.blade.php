@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <div class="form-group required">
             <label>{{ trans('calendars.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('calendars.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('calendars.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
         </div>
         @include('cruds.fields.type', ['base' => \App\Models\Calendar::class, 'trans' => 'calendars'])
         <div class="form-group">
@@ -11,7 +11,6 @@
             {!! Form::text('suffix', $formService->prefill('suffix', $source), ['placeholder' => trans('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         @include('cruds.fields.tags')
-        @include('cruds.fields.attribute_template')
 
         <div class="row">
             <div class="col-md-4">

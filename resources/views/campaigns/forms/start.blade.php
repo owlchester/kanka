@@ -15,7 +15,7 @@
         </div>
         <div class="form-group required">
             <label>{{ __('campaigns.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'class' => 'form-control']) !!}
+            {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'class' => 'form-control', 'require', 'minlength' => 4, 'maxlength' => 20]) !!}
             <p class="help-block">{{ __('campaigns.helpers.name') }}</p>
         </div>
     </div>

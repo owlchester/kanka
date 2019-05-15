@@ -8,6 +8,7 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Tag;
+use App\Services\AttributeService;
 use App\Services\PermissionService;
 
 class EntityObserver
@@ -18,12 +19,18 @@ class EntityObserver
     protected $permissionService;
 
     /**
+     * @var AttributeService
+     */
+    protected $attributeService;
+
+    /**
      * PermissionController constructor.
      * @param PermissionService $permissionService
      */
-    public function __construct(PermissionService $permissionService)
+    public function __construct(PermissionService $permissionService, AttributeService $attributeService)
     {
         $this->permissionService = $permissionService;
+        $this->attributeService = $attributeService;
     }
 
     /**
@@ -33,6 +40,7 @@ class EntityObserver
     {
         $this->saveTags($entity);
         $this->savePermissions($entity);
+        $this->saveAttributes($entity);
     }
 
     /**
@@ -81,8 +89,18 @@ class EntityObserver
      */
     public function savePermissions(Entity $entity)
     {
-
         $this->permissionService->saveEntity(request()->only('role', 'user'), $entity);
+    }
+
+    protected function saveAttributes(Entity $entity)
+    {
+        $data = request()->only(
+            'attr_name',
+            'attr_value',
+            'attr_is_private',
+            'attr_type'
+        );
+        $this->attributeService->saveEntity($data, $entity);
     }
 
     /**

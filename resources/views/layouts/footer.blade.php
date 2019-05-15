@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="col-sm-4 col-xs-4">
-                <span><i class="fa fa-envelope"></i> hello@kanka.io</span>
+                <span><i class="fa fa-envelope hidden-xs"></i> hello@kanka.io</span>
             </div>
             <div class="col-sm-4 col-xs-4">
                 <span>{!! __('footer.copyright', ['year' => date('Y')]) !!}</span>

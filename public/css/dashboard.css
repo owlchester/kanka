@@ -316,14 +316,24 @@
     width: 30px;
   }
 
+  .campaign .content ul.campaign-links {
+    margin-bottom: 0;
+  }
+
   .campaign .content ul.campaign-links li {
-    display: block !important;
-    width: 100%;
+    display: inline-block !important;
+    width: 49%;
+    margin-right: 0;
+    text-align: center;
   }
 
   .campaign .content ul.campaign-links li a {
     text-align: center;
     width: 100%;
+  }
+
+  .campaign .content ul.campaign-links li:nth-last-child(1) {
+    display: none !important;
   }
 }
 

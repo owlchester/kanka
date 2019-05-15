@@ -22,7 +22,6 @@
         @include('cruds.fields.location')
 
         @include('cruds.fields.tags')
-        @include('cruds.fields.attribute_template')
 
         <div class="form-group">
             <label>{{ trans('journals.fields.date') }}</label>
