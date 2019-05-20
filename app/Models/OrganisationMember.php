@@ -8,6 +8,13 @@ use App\Traits\AclTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class OrganisationMember
+ * @package App\Models
+ *
+ * @property Character $character
+ * @property Organisation $organisation
+ */
 class OrganisationMember extends Model
 {
     use Paginatable, VisibleTrait, Filterable;
@@ -61,5 +68,14 @@ class OrganisationMember extends Model
         $this->entityType = 'organisation';
         $this->aclFieldName = 'organisation_id';
         return $query->acl();
+    }
+
+    /**
+     * Determine the organisation the character is part of based on the parent organisation.
+     * @param Organisation $parent
+     */
+    public function parentOrganisation(Organisation $parent)
+    {
+
     }
 }

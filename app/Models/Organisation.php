@@ -66,6 +66,8 @@ class Organisation extends MiscModel
         'organisation_id'
     ];
 
+    protected $organisationAndDescendantIds = false;
+
     /**
      * Traits
      */
@@ -151,12 +153,24 @@ class Organisation extends MiscModel
      */
     public function allMembers()
     {
-        $organisationId = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $organisationId[] = $descendant->id;
-        };
+        $organisationId = $this->organisationAndDescendantIds();
 
         return OrganisationMember::whereIn('organisation_id', $organisationId)->with('character');
+    }
+
+    /**
+     * Get a list of this organisation and descendant ids
+     * @return array|bool
+     */
+    public function organisationAndDescendantIds()
+    {
+        if ($this->organisationAndDescendantIds === false) {
+            $this->organisationAndDescendantIds = [$this->id];
+            foreach ($this->descendants as $descendant) {
+                $this->organisationAndDescendantIds[] = $descendant->id;
+            };
+        }
+        return $this->organisationAndDescendantIds;
     }
 
     /**

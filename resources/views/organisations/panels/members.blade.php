@@ -1,9 +1,13 @@
 <?php
-/** @var \App\Models\Organisation $model */
+/**
+ * @var \App\Models\Organisation $model
+ * @var \App\Models\OrganisationMember $relation
+ */
 $filters = [];
 if (request()->has('organisation_id')) {
     $filters['organisation_id'] = request()->get('organisation_id');
 }
+$hasOrg = request()->has('organisation_id');
 ?>
 <div class="box box-flat">
     <div class="box-body">
@@ -12,7 +16,7 @@ if (request()->has('organisation_id')) {
         </h2>
 
         <p class="help-block">
-            @if (request()->has('organisation_id'))
+            @if ($hasOrg)
                 <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm pull-right">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->acl()->count() }})
                 </a>
@@ -31,12 +35,11 @@ if (request()->has('organisation_id')) {
                 @if ($campaign->enabled('locations'))
                 <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
                 @endif
+                @if (!$hasOrg)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
                 <th>{{ __('organisations.members.fields.role') }}</th>
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
                 <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
                 @endif
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.sex') }}</th>
                 <th>{{ __('characters.fields.is_dead') }}</th>
                 <th></th>
                 <th class="text-right">
@@ -48,14 +51,16 @@ if (request()->has('organisation_id')) {
                     @endcan
                 </th>
             </tr>
-            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')->with('character', 'character.location')->paginate();?>
+            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')->with('organisation', 'character', 'character.location')->paginate();?>
             @foreach ($r->sortBy('character.name') as $relation)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('characters.show', $relation->character->id) }}" data-toggle="tooltip" title="{{ $relation->character->tooltip() }}">{{ $relation->character->name }}</a>
+                        <a href="{{ route('characters.show', $relation->character->id) }}" data-toggle="tooltip" title="{{ $relation->character->tooltipWithName() }}" data-html="true">
+                            {{ $relation->character->name }}
+                        </a>
                     </td>
                     @if ($campaign->enabled('locations'))
                     <td class="hidden-sm hidden-xs">
@@ -64,8 +69,14 @@ if (request()->has('organisation_id')) {
                         @endif
                     </td>
                     @endif
+                    @if (!$hasOrg)
+                    <td>
+                        <a href="{{ $relation->organisation->getLink() }}" data-toggle="tooltip" title="{{ $relation->organisation->tooltipWithName() }}" data-html="true">
+                            {{ $relation->organisation->name}}
+                        </a>
+                    </td>
+                    @endif
                     <td>{{ $relation->role }}</td>
-                    <td class="hidden-sm hidden-xs">{{ $relation->character->age }}</td>
                     @if ($campaign->enabled('races'))
                         <td class="hidden-sm hidden-xs">
                             @if ($relation->character->race)
@@ -73,7 +84,6 @@ if (request()->has('organisation_id')) {
                             @endif
                         </td>
                     @endif
-                    <td class="hidden-sm hidden-xs">{{ $relation->character->sex }}</td>
                     <td>@if ($relation->character->is_dead)<span class="ra ra-skull"></span>@endif</td>
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
