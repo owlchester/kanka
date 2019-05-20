@@ -448,7 +448,7 @@ function initNotifications() {
 }
 
 function refreshNotificationList() {
-    console.log('refresh notification list');
+    // console.log('refresh notification list');
     $.ajax(notificationList.data('url'))
         .done((result) => {
             if (result.count > 0) {

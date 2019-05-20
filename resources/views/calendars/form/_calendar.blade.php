@@ -1,8 +1,10 @@
+<?php /** @var \App\Models\Calendar $model */?>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('calendars.fields.months') }}</label>
             <p class="help-block">{{ __('calendars.hints.months') }}</p>
+            <input type="hidden" name="month_name" />
         </div>
         <div class="form-group">
             <div class="row">
@@ -97,6 +99,7 @@
         <div class="form-group">
             <label>{{ trans('calendars.fields.weekdays') }}</label>
             <p class="help-block">{{ __('calendars.hints.weekdays') }}</p>
+            <input type="hidden" name="weekday" />
         </div>
         <?php
         $weekdays = [];

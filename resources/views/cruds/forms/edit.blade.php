@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
+    @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">

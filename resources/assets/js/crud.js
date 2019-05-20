@@ -15,30 +15,30 @@ var entityFormHasUnsavedChanges = false;
 
 // Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
-var entityCalendarCancel, entityCalendarLoading;
+var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 
 var toggablePanels;
 
 var validEntityForm = false;
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Multi-delete
     var crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
         crudDelete.click(function (e) {
             if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function (index) {
+                $.each($("input[name='model[]']"), function () {
                     $(this).prop('checked', true);
                 });
             } else {
-                $.each($("input[name='model[]']"), function (index) {
+                $.each($("input[name='model[]']"), function () {
                     $(this).prop('checked', false);
                 });
             }
             toggleCrudMultiDelete();
         });
     }
-    $.each($("input[name='model[]']"), function (index) {
+    $.each($("input[name='model[]']"), function () {
         $(this).change(function (e) {
             toggleCrudMultiDelete();
             e.preventDefault();
@@ -91,10 +91,11 @@ $(document).ready(function() {
 /**
  *
  */
-function toggleCrudMultiDelete() {
+function toggleCrudMultiDelete()
+{
     var hide = true;
 
-    $.each($("input[name='model[]']"), function(index) {
+    $.each($("input[name='model[]']"), function () {
         if ($(this).prop('checked')) {
             hide = false;
         }
@@ -112,9 +113,9 @@ function toggleCrudMultiDelete() {
  * Filters
  */
 var previousFilterInputValue = '';
-function initCrudFilters() {
-
-    $('#crud-filters .element').on('click', function(e) {
+function initCrudFilters()
+{
+    $('#crud-filters .element').on('click', function () {
         $(this).children('.value').hide();
         $(this).children('.input').show();
 
@@ -128,44 +129,44 @@ function initCrudFilters() {
         //console.log('previous filter', input, previousFilterInputValue);
     });
 
-    $('#crud-filters .element input').on('focusout', function(e) {
+    $('#crud-filters .element input').on('focusout', function (e) {
         // Only submit on change
         e.preventDefault();
         filterSubmit($(this), false);
     });
 
-    $('#crud-filters select.select2').on('change', function(e) {
+    $('#crud-filters select.select2').on('change', function () {
         $('#crud-filters-form').submit();
     });
 
-    $('#crud-filters select.filter-select').on('change', function(e) {
+    $('#crud-filters select.filter-select').on('change', function () {
         $('#crud-filters-form').submit();
     });
 
     // Reset button
-    $('#crud-filters #filters-reset').on('click', function(e) {
+    $('#crud-filters #filters-reset').on('click', function () {
         // Redirect to page without params
         window.location = window.location.href.split("?")[0] + '?reset-filter=true';
     });
 
     // Show on small displays
-    filtersActionShow = $('#crud-filters #filters-show-action');
+    var filtersActionShow = $('#crud-filters #filters-show-action');
     filtersActionHide = $('#crud-filters #filters-hide-action');
-    filtersActionShow.on('click', function(e) {
+    filtersActionShow.on('click', function () {
         $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
         $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
         filtersActionShow.hide();
         filtersActionHide.show();
     });
 
-    filtersActionHide.on('click', function(e) {
+    filtersActionHide.on('click', function () {
         $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
         $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
         filtersActionHide.hide();
         filtersActionShow.show();
     });
 
-    $('#crud-filters .input-field').keypress(function(e) {
+    $('#crud-filters .input-field').keypress(function (e) {
         if (e.which === 13) {
             e.preventDefault();
             filterSubmit($(this), true);
@@ -178,7 +179,8 @@ function initCrudFilters() {
  * @param field
  * @param force
  */
-function filterSubmit(field, force) {
+function filterSubmit(field, force)
+{
     var element = field.parent().parent();
     var input = element.children('.input');
     input.hide();
@@ -207,7 +209,7 @@ function filterSubmit(field, force) {
 function initCharacterPersonality()
 {
     characterTemplatePersonality = $('#template_personality');
-    characterAddPersonality.on('click', function(e) {
+    characterAddPersonality.on('click', function (e) {
         e.preventDefault();
 
         $(characterSortPersonality).append('<div class="form-group">' +
@@ -229,7 +231,7 @@ function initCharacterPersonality()
 function initCharacterAppearance()
 {
     characterTemplateAppearance = $('#template_appearance');
-    characterAddAppearance.on('click', function(e) {
+    characterAddAppearance.on('click', function (e) {
         e.preventDefault();
 
         $(characterSortAppearance).append('<div class="form-group">' +
@@ -248,10 +250,11 @@ function initCharacterAppearance()
 /**
  *
  */
-function characterDeleteRowHandler() {
-    $.each($('.personality-delete'), function (index) {
+function characterDeleteRowHandler()
+{
+    $.each($('.personality-delete'), function () {
         $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function(e) {
+        $(this).on('click', function (e) {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();
         });
@@ -265,11 +268,12 @@ function characterDeleteRowHandler() {
 /**
  *
  */
-function registerEntityFormActions() {
+function registerEntityFormActions()
+{
     entityFormDefaultAction = $('#form-submit-main');
     // Register click on each sub action
-    $.each(entityFormActions, function(ele) {
-        $(this).on('click', function(e) {
+    $.each(entityFormActions, function () {
+        $(this).on('click', function () {
             entityFormDefaultAction
                 .attr('name', $(this).data('action'))
                 .click();
@@ -283,16 +287,17 @@ function registerEntityFormActions() {
 /**
  * On all forms, we want to animate the submit button when it's clicked.
  */
-function registerFormSubmitAnimation() {
-    $.each($('form'), function(ele) {
-        $(this).on('submit', function(e) {
+function registerFormSubmitAnimation()
+{
+    $.each($('form'), function () {
+        $(this).on('submit', function () {
             // Saving, skip alert.
             window.entityFormHasUnsavedChanges = false;
 
             // Find the main button
-            submit = $(this).find('.btn-success');
+            var submit = $(this).find('.btn-success');
             if (submit.length > 0) {
-                $.each(submit, function(su) {
+                $.each(submit, function () {
                     if ($(this).hasClass('dropdown-toggle')) {
                         $(this).prop('disabled', true);
                     } else {
@@ -312,7 +317,8 @@ function registerFormSubmitAnimation() {
     });
 }
 
-function registerEntityCalendarForm() {
+function registerEntityCalendarForm()
+{
     entityCalendarAdd = $('#entity-calendar-form-add');
     if (entityCalendarAdd.length === 1) {
         entityCalendarCancel = $('#entity-calendar-form-cancel');
@@ -322,7 +328,7 @@ function registerEntityCalendarForm() {
         entityCalendarMonthField = $('select[name="calendar_month"]');
         entityCalendarLoading = $('.entity-calendar-loading');
 
-        entityCalendarAdd.on('click', function(e) {
+        entityCalendarAdd.on('click', function (e) {
             e.preventDefault();
 
             entityCalendarAdd.hide();
@@ -338,7 +344,7 @@ function registerEntityCalendarForm() {
             return false;
         });
 
-        entityCalendarField.on('change', function(e) {
+        entityCalendarField.on('change', function () {
             entityCalendarSubForm.hide();
             // No new calendar selected? hide everything again
             if (!entityCalendarField.val()) {
@@ -350,7 +356,7 @@ function registerEntityCalendarForm() {
             loadCalendarDates(entityCalendarField.val());
         });
 
-        entityCalendarCancel.on('click', function(e) {
+        entityCalendarCancel.on('click', function (e) {
             e.preventDefault();
             entityCalendarField.val(null);
             entityCalendarCancel.hide();
@@ -359,37 +365,38 @@ function registerEntityCalendarForm() {
     }
 }
 
-function loadCalendarDates(calendarID) {
+function loadCalendarDates(calendarID)
+{
     calendarID = parseInt(calendarID);
     var url = entityCalendarAdd.data('url').replace('/0/', '/' + calendarID + '/');
     $.ajax(url)
-        .done(function(data) {
-                entityCalendarMonthField.html('');
-                var id = 1;
-                $.each(data.months, function() {
-                    var selected = id == data.current.month ? ' selected="selected"' : '';
-                    entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
-                    id++;
-                });
-                entityCalendarLoading.hide();
-                entityCalendarSubForm.show();
+    .done(function (data) {
+        entityCalendarMonthField.html('');
+        var id = 1;
+        $.each(data.months, function () {
+            var selected = id == data.current.month ? ' selected="selected"' : '';
+            entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
+            id++;
+        });
+        entityCalendarLoading.hide();
+        entityCalendarSubForm.show();
 
-                $('input[name="calendar_day"]').val(data.current.day);
-                $('input[name="calendar_year"]').val(data.current.year);
-                $('input[name="length"]').val(1);
+        $('input[name="calendar_day"]').val(data.current.day);
+        $('input[name="calendar_year"]').val(data.current.year);
+        $('input[name="length"]').val(1);
 
-                // However, if there is only one result, select id.
-                if (data.length === 1) {
-                    entityCalendarMonthField.val(data[0].id);
-                }
-            }
-        );
+        // However, if there is only one result, select id.
+        if (data.length === 1) {
+            entityCalendarMonthField.val(data[0].id);
+        }
+    });
 }
 
 /**
  *
  */
-function calendarHideSubform() {
+function calendarHideSubform()
+{
     entityCalendarForm.hide();
     entityCalendarAdd.show();
     $('input[name="calendar_day"]').val(null);
@@ -400,10 +407,11 @@ function calendarHideSubform() {
 /**
  * Some panels can have their body toggled
  */
-function registerToggablePanels() {
+function registerToggablePanels()
+{
     toggablePanels = $('.panel-toggable');
-    $.each(toggablePanels, function (i) {
-        $(this).on('click', function(e) {
+    $.each(toggablePanels, function () {
+        $(this).on('click', function () {
             $(this).parent().children('.panel-body').fadeToggle();
             var i = $(this).find('i.fa');
             if (i.hasClass('fa-caret-down')) {
@@ -419,11 +427,12 @@ function registerToggablePanels() {
 /**
  * If we change something on a form, avoid losing data when going away.
  */
-function registerUnsavedChanges() {
+function registerUnsavedChanges()
+{
     var save = $('#form-submit-main');
 
     // Save every input change
-    $(document).on('change', ':input', function(){
+    $(document).on('change', ':input', function () {
         window.entityFormHasUnsavedChanges = true;
     });
 
@@ -442,7 +451,8 @@ function registerUnsavedChanges() {
 /**
  * When the entity form is submitted, we want to ajax validate the request first
  */
-function registerEntityFormSubmit() {
+function registerEntityFormSubmit()
+{
     $('#entity-form').submit(function (e) {
         if (validEntityForm) {
             return true;
@@ -471,37 +481,65 @@ function registerEntityFormSubmit() {
             $('.input-error').removeClass('input-error');
             $('.text-danger').remove();
 
+            // If we have a 503 error status, let's assume it's from cloudflare and help the user
+            // properly save their data.
+            if (err.status === 503) {
+                $('#entity-form-503-error').show();
+                resetEntityFormSubmitAnimation();
+            }
+
             // Loop through the errors to add the class and error message
             var errors = err.responseJSON.errors;
 
             var errorKeys = Object.keys(errors);
+            var foundAllErrors = true;
             errorKeys.forEach(function (i) {
-                $('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+                var errorSelector = $('[name="' + i + '"]');
+                if (errorSelector.length > 0) {
+                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+                } else {
+                    foundAllErrors = false;
+                }
             });
+
+            // If not all error fields could be found, show a generic error message on top of the form.
+            if (!foundAllErrors) {
+                $('#entity-form-generic-error').show();
+            }
 
             var firstItem = Object.keys(errors)[0];
             var firstItemDom = document.getElementsByName(firstItem);
 
-            firstItemDom[0].scrollIntoView({ behavior: 'smooth'});
+            // If we can actually find the first element, switch to it and the correct tab.
+            if (firstItemDom[0]) {
+                firstItemDom[0].scrollIntoView({behavior: 'smooth'});
 
-            // Switch tabs/pane
-            $('.tab-content .active').removeClass('active');
-            $('.nav-tabs li.active').removeClass('active');
-            var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-            firstPane.addClass('active');
-            $('a[href="#'+ firstPane.attr('id') + '"]').closest('li').addClass('active');
+                // Switch tabs/pane
+                $('.tab-content .active').removeClass('active');
+                $('.nav-tabs li.active').removeClass('active');
+                var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+                firstPane.addClass('active');
+                $('a[href="#'+ firstPane.attr('id') + '"]').closest('li').addClass('active');
+            }
 
             // Reset submit buttons
-            submit = $('#entity-form').find('.btn-success');
-            if (submit.length > 0) {
-                $.each(submit, function(su) {
-                    $(this).removeAttr('disabled');
-                    if ($(this).data('reset')) {
-                        $(this).html($(this).data('reset'));
-                    }
-                });
-            }
+            resetEntityFormSubmitAnimation();
         });
     });
 }
 
+/**
+ *
+ */
+function resetEntityFormSubmitAnimation()
+{
+    submit = $('#entity-form').find('.btn-success');
+    if (submit.length > 0) {
+        $.each(submit, function (su) {
+            $(this).removeAttr('disabled');
+            if ($(this).data('reset')) {
+                $(this).html($(this).data('reset'));
+            }
+        });
+    }
+}

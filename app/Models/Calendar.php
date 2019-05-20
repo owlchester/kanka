@@ -175,7 +175,10 @@ class Calendar extends MiscModel
     public function months()
     {
         if ($this->loadedMonths === false) {
-            $this->loadedMonths = json_decode(strip_tags($this->months), true);
+            $this->loadedMonths = [];
+            if (!empty($this->months)) {
+                $this->loadedMonths = json_decode(strip_tags($this->months), true);
+            }
         }
         return $this->loadedMonths;
     }
@@ -187,7 +190,10 @@ class Calendar extends MiscModel
     public function weekdays()
     {
         if ($this->loadedWeekdays === false) {
-            $this->loadedWeekdays = json_decode(strip_tags($this->weekdays), true);
+            $this->loadedWeekdays = [];
+            if (!empty($this->months)) {
+                $this->loadedWeekdays = json_decode(strip_tags($this->weekdays), true);
+            }
         }
         return $this->loadedWeekdays;
     }
@@ -199,7 +205,10 @@ class Calendar extends MiscModel
     public function years()
     {
         if ($this->loadedYears === false) {
-            $this->loadedYears = json_decode(strip_tags($this->years), true);
+            $this->loadedYears = [];
+            if (!empty($this->years)) {
+                $this->loadedYears = json_decode(strip_tags($this->years), true);
+            }
         }
         return $this->loadedYears;
     }
@@ -253,6 +262,12 @@ class Calendar extends MiscModel
      */
     public function currentDate($value)
     {
+        // If we have no date saved at all, skip this part. This happens when an entity was changed to the calendar
+        // type and most fields are missing.
+        if (empty($this->date)) {
+            return null;
+        }
+
         $data = explode('-', $this->date);
         if ($value == 'year') {
             return $data[0];
