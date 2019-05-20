@@ -98,7 +98,8 @@ class EntityObserver
             'attr_name',
             'attr_value',
             'attr_is_private',
-            'attr_type'
+            'attr_type',
+            'template_id'
         );
         $this->attributeService->saveEntity($data, $entity);
     }

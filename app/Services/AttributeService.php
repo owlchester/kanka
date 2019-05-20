@@ -184,6 +184,7 @@ class AttributeService
         $values = array_get($request, 'attr_value', []);
         $types = array_get($request, 'attr_type', []);
         $privates = array_get($request, 'attr_is_private', []);
+        $templateId = array_get($request, 'template_id', null);
 
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
@@ -224,6 +225,13 @@ class AttributeService
         // Remaining existing have been deleted
         foreach ($existing as $id => $attribute) {
             $attribute->delete();
+        }
+
+        // If a template id was provided, try and add it to the new entity.
+        if (!empty($templateId)) {
+            /** @var AttributeTemplate $template */
+            $template = AttributeTemplate::findOrFail($templateId);
+            $template->apply($entity, $order);
         }
     }
 }

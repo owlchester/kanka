@@ -85,11 +85,11 @@ class AttributeTemplate extends MiscModel
     /**
      * @param Entity $entity
      */
-    public function apply(Entity $entity)
+    public function apply(Entity $entity, $startingOrder = 0)
     {
-        $order = 0;
+        $order = $startingOrder;
         $existing = array_values($entity->attributes()->pluck('name')->toArray());
-        foreach ($this->entity->attributes()->get() as $attribute) {
+        foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
             // Don't re-create existing attributes.
             if (in_array($attribute->name, $existing)) {
                 continue;
@@ -98,7 +98,7 @@ class AttributeTemplate extends MiscModel
                 'entity_id' => $entity->id,
                 'name' => $attribute->name,
                 'value' => $attribute->value,
-                'default_order' => $attribute->default_order,
+                'default_order' => $order,
                 'is_private' => $attribute->is_private,
                 'type' => $attribute->type,
             ]);
@@ -107,7 +107,7 @@ class AttributeTemplate extends MiscModel
 
         // Loop through parents
         foreach ($this->ancestors()->with('entity')->acl()->get() as $children) {
-            foreach ($children->entity->attributes()->get() as $attribute) {
+            foreach ($children->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
                 // Don't re-create existing attributes.
                 if (in_array($attribute->name, $existing)) {
                     continue;
@@ -116,7 +116,7 @@ class AttributeTemplate extends MiscModel
                     'entity_id' => $entity->id,
                     'name' => $attribute->name,
                     'value' => $attribute->value,
-                    'default_order' => $order + $attribute->default_order,
+                    'default_order' => $order,
                     'is_private' => $attribute->is_private,
                     'type' => $attribute->type,
                 ]);

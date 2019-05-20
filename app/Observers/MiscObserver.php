@@ -4,8 +4,6 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Jobs\EntityMentionJob;
-use App\Models\AttributeTemplate;
-use App\Models\CalendarEvent;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\MiscModel;
@@ -110,12 +108,6 @@ abstract class MiscObserver
             'name' => $model->name,
             'type' => $model->getEntityType()
         ]);
-
-        // Attribute templates
-        if (request()->has('template_id') && request()->filled('template_id')) {
-            $template = AttributeTemplate::findOrFail(request()->get('template_id'));
-            $template->apply($entity);
-        }
 
         // Copy attributes from source?
 //        if (request()->has('copy_source_attributes') && request()->filled('copy_source_attributes')) {

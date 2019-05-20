@@ -16,6 +16,7 @@ class MenuLinkController extends CrudController
     protected $route = 'menu_links';
 
     protected $tabPermissions = false;
+    protected $tabAttributes = false;
 
     /**
      * @var string
