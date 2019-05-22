@@ -68,11 +68,11 @@ return [
         */
 
         'HTML.Allowed' =>
-            'big,small,h1[style],h2[style],h3[style],h4[style],h5[style],h6[style],div[style],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
+            'big,small,h1[style|id],h2[style|id],h3[style|id],h4[style|id],h5[style|id],h6[style|id],div[style],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
             . 'strong,em,b,ul[style],ol[style],li[style],p,i,br,'
             . 'img[src|style|alt|width|height|class|title],'
             . 'a[href|target|rel|title|data-toggle|data-html|id],'
-            . 'p[style],span[style],'
+            . 'p[style|id],span[style],'
             . 'table[summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[style],td[style|abbr|colspan],th[style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
             . 'iframe[src|width|height]', // only use this with HTML.SafeIframe
