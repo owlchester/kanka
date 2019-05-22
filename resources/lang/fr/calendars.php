@@ -142,6 +142,7 @@ return [
         'moon'          => [
             'fullmoon'  => 'Pleine lune chaque (jours)',
             'name'      => 'Nom de la lune',
+            'offset'    => 'Décalage de la première pleine lune',
         ],
         'seasons'       => [
             'day'   => 'Jour de départ',

@@ -168,9 +168,9 @@ return [
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'panels'                            => [
-        'dashboard'     => 'Dashboard',
-        'permission'    => 'Permission',
-        'sharing'       => 'Sharing',
+        'dashboard' => 'Dashboard',
+        'permission'=> 'Permission',
+        'sharing'   => 'Sharing',
     ],
     'placeholders'                      => [
         'description'   => 'A short summary of your campaign',

@@ -1,16 +1,17 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'create'    => 'Crear',
         'delete'    => 'Eliminar',
         'update'    => 'Actualizar',
     ],
-    'fields'    => [
+    'fields'        => [
         'action'    => 'Acción',
         'date'      => 'Fecha',
     ],
-    'show'      => [
+    'impersonated'  => 'Usurpado por :name',
+    'show'          => [
         'title' => 'Historial de :name',
     ],
 ];

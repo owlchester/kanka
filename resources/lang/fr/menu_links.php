@@ -19,8 +19,12 @@ return [
         'filters'   => 'Filtres',
         'menu'      => 'Menu',
         'name'      => 'Nom',
+        'position'  => 'Position',
         'tab'       => 'Onglet',
         'type'      => 'Entité Type',
+    ],
+    'helpers'       => [
+        'position'  => 'Ce champ control dans quel ordre les liens de menus apparaissent.',
     ],
     'index'         => [
         'add'           => 'Nouveau lien de menu',

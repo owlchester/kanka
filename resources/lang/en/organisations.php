@@ -55,7 +55,7 @@ return [
             'role'          => 'Role',
         ],
         'helpers'       => [
-            'members'       => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations. You can filter the page to only show direct members.',
+            'members'   => 'The following list are all characters that are in this organisation and all of the organisation\'s descendant organisations. You can filter the page to only show direct members.',
         ],
         'placeholders'  => [
             'character' => 'Choose a character',

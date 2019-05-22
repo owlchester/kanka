@@ -83,8 +83,9 @@ TEXT
             'success'   => 'Widget eliminado del tablero.',
         ],
         'recent'    => [
-            'help'  => 'Solo muestra la previsualización de la última entidad actualizada.',
-            'title' => 'Modificado recientemente',
+            'help'      => 'Solo muestra la previsualización de la última entidad actualizada.',
+            'singular'  => 'Singular',
+            'title'     => 'Modificado recientemente',
         ],
         'update'    => [
             'success'   => 'Widged modificado.',

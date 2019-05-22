@@ -150,13 +150,13 @@ return [
     ],
     'filter'            => 'Filter',
     'filters'           => [
-        'all'   => 'Filter to all descendants',
-        'clear' => 'Clear Filters',
-        'direct'=> 'Filter to direct descendants',
-        'hide'  => 'Hide Filters',
-        'show'  => 'Show Filters',
-        'title' => 'Filters',
-        'filtered' => 'Showing :count of :total :entity.',
+        'all'       => 'Filter to all descendants',
+        'clear'     => 'Clear Filters',
+        'direct'    => 'Filter to direct descendants',
+        'filtered'  => 'Showing :count of :total :entity.',
+        'hide'      => 'Hide Filters',
+        'show'      => 'Show Filters',
+        'title'     => 'Filters',
     ],
     'forms'             => [
         'actions'       => [

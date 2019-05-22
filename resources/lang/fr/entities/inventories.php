@@ -12,12 +12,14 @@ return [
         'success'   => 'Objet :item retiré de :entity.',
     ],
     'fields'        => [
-        'amount'    => 'Nombre',
-        'position'  => 'Position',
+        'amount'        => 'Nombre',
+        'description'   => 'Description',
+        'position'      => 'Position',
     ],
     'placeholders'  => [
-        'amount'    => 'Un nombre',
-        'position'  => 'Equipé, Sac-à-dos, Entrepôt, Banque',
+        'amount'        => 'Un nombre',
+        'description'   => 'Usé, abimé, atténué',
+        'position'      => 'Equipé, Sac-à-dos, Entrepôt, Banque',
     ],
     'show'          => [
         'helper'    => 'Les entités peuvent avoir des objets attachés pour créer un inventaire.',

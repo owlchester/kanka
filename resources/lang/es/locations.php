@@ -82,12 +82,14 @@ return [
             'label' => 'Este punto es una descripción. Nada más y nada menos.',
             'view'  => 'Haz clic en cualquier punto del mapa para ver los detalles. Usa Ctrl+Rueda para acercarte y alejarte del mapa.',
         ],
+        'legend'    => 'Leyenda',
         'modal'     => [
             'submit'    => 'Añadir',
             'title'     => 'Selección de nuevo punto',
         ],
         'no_map'    => 'Por favor, sube el mapa de la localización primero.',
         'points'    => [
+            'empty_label'   => 'Punto sin nombre',
             'fields'        => [
                 'axis_x'    => 'Eje X',
                 'axis_y'    => 'Eje Y',

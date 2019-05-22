@@ -82,12 +82,14 @@ return [
             'label' => 'Questo punto è un\'etichetta. Niente di più, niente di meno.',
             'view'  => 'Premi su un qualsiasi punto della mappa per vederne i dettagli. Utilizza Ctrl+Zoom per aumentare o diminuire lo zoom della mappa.',
         ],
+        'legend'    => 'Legenda',
         'modal'     => [
             'submit'    => 'Aggiungi',
             'title'     => 'Bersaglio del nuovo punto',
         ],
         'no_map'    => 'Per favore aggiungi una mappa del luogo',
         'points'    => [
+            'empty_label'   => 'Punto Senza Nome',
             'fields'        => [
                 'axis_x'    => 'Asse X',
                 'axis_y'    => 'Asse Y',

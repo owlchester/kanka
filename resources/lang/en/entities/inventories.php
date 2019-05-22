@@ -12,14 +12,14 @@ return [
         'success'   => 'Item :item removed from :entity.',
     ],
     'fields'        => [
-        'amount'    => 'Amount',
-        'position'  => 'Position',
-        'description' => 'Description',
+        'amount'        => 'Amount',
+        'description'   => 'Description',
+        'position'      => 'Position',
     ],
     'placeholders'  => [
-        'amount'    => 'Any amount',
-        'position'  => 'Equipped, Backpack, Storage, Bank',
-        'description' => 'Used, Damaged, Attuned'
+        'amount'        => 'Any amount',
+        'description'   => 'Used, Damaged, Attuned',
+        'position'      => 'Equipped, Backpack, Storage, Bank',
     ],
     'show'          => [
         'helper'    => 'Entities can have items attached to them to create an inventory.',

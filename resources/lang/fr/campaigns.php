@@ -44,6 +44,7 @@ return [
         'entity_count'                  => 'Nombre d\'entités',
         'entity_personality_visibility' => 'Visibilité des traits de personnages',
         'entity_visibility'             => 'Visibilité d\'entité',
+        'excerpt'                       => 'Extrait',
         'header_image'                  => 'Image de fond pour le tableau de bord',
         'image'                         => 'Image',
         'locale'                        => 'Langue',
@@ -54,6 +55,7 @@ return [
     'helpers'                           => [
         'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
+        'excerpt'                       => 'L\'extrait de la campagne apparait sur le tableau de bord.',
         'locale'                        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
         'name'                          => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
         'system'                        => 'Si la campagne est publiquement visible, elle sera affichée dans la page :link.',
@@ -166,8 +168,9 @@ return [
         'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
     'panels'                            => [
-        'permission'    => 'Permission',
-        'sharing'       => 'Partage',
+        'dashboard' => 'Tableau de bord',
+        'permission'=> 'Permission',
+        'sharing'   => 'Partage',
     ],
     'placeholders'                      => [
         'description'   => 'Une petite description de la campagne',

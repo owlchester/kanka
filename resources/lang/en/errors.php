@@ -23,10 +23,10 @@ return [
         ],
         'title' => 'Maintenance',
     ],
-    '503-form' => [
-        'body' => 'We couldn\'t save your data properly, which is usually caused by one of two factors. Please open Kanka in a :link. If the app is under maintenance, please save your data somewhere else until the app is back up and try again. If you were greeted by a "Checking your browser" message, you can try clicking on Save again.',
+    '503-form'  => [
+        'body'  => 'We couldn\'t save your data properly, which is usually caused by one of two factors. Please open Kanka in a :link. If the app is under maintenance, please save your data somewhere else until the app is back up and try again. If you were greeted by a "Checking your browser" message, you can try clicking on Save again.',
+        'link'  => 'new window',
         'title' => 'Something unexpected happened.',
-        'link' => 'new window',
     ],
     'footer'    => 'If you need further assistance, please contact us at hello@kanka.io or on the :discord',
 ];

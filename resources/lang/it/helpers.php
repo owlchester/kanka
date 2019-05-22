@@ -13,6 +13,11 @@ return [
         'description'   => 'Puoi facilmente linkare altre entità scrivendo \'@\'. Puoi anche scrivere \'#\' per avere una lista di mesi del tuo calendario.',
         'title'         => 'Linkando ad altre entità e scorciatoie',
     ],
+    'map'           => [
+        'description'   => 'Caricare una mappa ad un luogo abiliterà il menù `Mappa` nella pagina di visualizzazione del luogo ed un link diretto alla mappa dalla pagina dei luoghi della campgna. Dalla visualizzazione della mappa le utenze con il permesso di modifica del luogo potranno attivare la \'Modalità di modifica\' che gli permetterà di agiungere dei Segnalibri sulla mappa. Questi potranno avere differenti forme e dimensioni ed essere collegati ad un\'entità esistente o essere delle etichette.',
+        'private'       => 'Gli amministratori della campagna possono rendere una mappa privata. Questo permette alle utenze di vedere il luogo e per gli amministratori di mantere la mappa segreta.',
+        'title'         => 'Mappe del luogo',
+    ],
     'public'        => 'Guarda un tutorial su Youtube sulle campagne pubbliche.',
     'title'         => 'Aiuti',
 ];

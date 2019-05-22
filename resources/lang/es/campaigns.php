@@ -150,11 +150,14 @@ return [
         ],
         'invite'                => [
             'description'   => 'Puedes invitar a tus amigos a unirse a la campaña si provees su correo electrónico. Una vez acepten la invitación, les verás añadidos como "Visitante". Siempre puedes cancelar la invitación en cualquier momento.',
+            'more'          => 'Puedes añadir más roles desde este :link.',
+            'roles_page'    => 'Página de roles',
             'title'         => 'Invitar',
         ],
         'roles'                 => [
             'member'    => 'Miembro',
             'owner'     => 'Administrador',
+            'player'    => 'Jugador',
             'public'    => 'Público',
             'viewer'    => 'Invitado',
         ],

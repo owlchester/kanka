@@ -171,6 +171,7 @@ return [
         'image_patreon'         => 'Aumenta el límite apoyándonos en Patreon',
         'is_private'            => 'Ocultar a los "Invitados"',
         'map_limitations'       => 'Formatos soportados: jpg, png, gif y svg. Tamaño máximo del archivo: :size.',
+        'visibility'            => 'Al seleccionar "Administrador", solo los miembros con el rol de administrador podrán ver esto. "Solo yo" significa que solo tú puedes ver esto.',
     ],
     'history'           => [
         'created'   => 'Creado por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -273,6 +274,7 @@ return [
         'calendars'     => 'Calendarios',
         'default'       => 'Por defecto',
         'events'        => 'Eventos',
+        'inventory'     => 'Inventario',
         'map-points'    => 'Puntos del mapa',
         'mentions'      => 'Menciones',
         'menu'          => 'Menú',

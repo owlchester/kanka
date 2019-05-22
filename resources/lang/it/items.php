@@ -18,7 +18,9 @@ return [
         'image'     => 'Immagine',
         'location'  => 'Luogo',
         'name'      => 'Nome',
+        'price'     => 'Prezzo',
         'relation'  => 'Relazione',
+        'size'      => 'Taglia',
         'type'      => 'Tipo',
     ],
     'index'         => [
@@ -27,10 +29,16 @@ return [
         'header'        => 'Oggetti di :name',
         'title'         => 'Oggetti',
     ],
+    'inventories'   => [
+        'description'   => 'Inventari delle entità in cui si trova l\'oggetto.',
+        'title'         => 'Inventari dell\'oggetto :name',
+    ],
     'placeholders'  => [
         'character' => 'Scegli un personaggio',
         'location'  => 'Scegli un luogo',
         'name'      => 'Nome dell\'oggetto',
+        'price'     => 'Prezzo dell\'oggetto',
+        'size'      => 'Taglia, Peso, Dimensioni',
         'type'      => 'Arma, Pozione, Artefatto',
     ],
     'quests'        => [
@@ -41,6 +49,7 @@ return [
         'description'   => 'Una vista dettagliata dell\'oggetto',
         'tabs'          => [
             'information'   => 'Informazioni',
+            'inventories'   => 'Inventari',
             'quests'        => 'Missione',
         ],
         'title'         => 'Oggetto :name',
