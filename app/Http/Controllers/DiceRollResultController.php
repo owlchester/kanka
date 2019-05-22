@@ -77,13 +77,26 @@ class DiceRollResultController extends CrudController
         $filters = $this->filters;
         $filterService = $this->filterService;
 
-        $models = $model
+        $base = $model
             ->search(request()->get('search'))
-            ->filter($this->filterService->filters())
             ->acl()
             ->order($this->filterService->order())
-            ->paginate();
-        return view('cruds.index', compact('models', 'name', 'model', 'actions', 'filters', 'filterService'));
+        ;
+        $unfilteredCount = $base->count();
+        $base = $base->filter($this->filterService->filters());
+        $filteredCount =  $base->count();
+
+        $models = $base->paginate();
+        return view('cruds.index', compact(
+            'models',
+            'name',
+            'model',
+            'actions',
+            'filters',
+            'filterService',
+            'filteredCount',
+            'unfilteredCount'
+        ));
     }
 
     /**
