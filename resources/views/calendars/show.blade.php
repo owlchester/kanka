@@ -2,6 +2,7 @@
 <div class="row">
     <div class="col-md-2">
         @include('calendars._menu')
+        @include('entities.components.attributes')
     </div>
 
     <div class="col-md-10">

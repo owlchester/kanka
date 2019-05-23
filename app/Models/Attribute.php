@@ -20,6 +20,7 @@ use DateTime;
  * @property integer $origin_attribute_id
  * @property integer $default_order
  * @property boolean $is_private
+ * @property boolean $is_star
  * @property string $api_key
  */
 class Attribute extends Model
@@ -40,6 +41,7 @@ class Attribute extends Model
         'type',
         'origin_attribute_id',
         'api_key',
+        'is_star',
     ];
 
     /**
@@ -112,5 +114,25 @@ class Attribute extends Model
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
         return $new->save();
+    }
+
+    /**
+     * @param $query
+     * @param int $star
+     * @return mixed
+     */
+    public function scopeStared($query, $star = 1)
+    {
+        return $query->where(['is_star' => $star]);
+    }
+
+    /**
+     * @param $query
+     * @param int $star
+     * @return mixed
+     */
+    public function scopeOrdered($query, $order = 'asc')
+    {
+        return $query->orderBy('default_order', $order);
     }
 }

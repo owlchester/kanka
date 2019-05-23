@@ -47,12 +47,10 @@
     </div>
 
     <div class="col-lg-2 col-md-3">
-        <!-- About Me Box -->
         <div class="box">
-            <div class="box-header with-border">
+            <div class="box-header">
                 <h3 class="box-title">{{ trans('characters.fields.physical') }}</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
 
                 <ul class="list-group list-group-unbordered">
@@ -77,6 +75,8 @@
                 </ul>
             </div>
         </div>
+
+        @include('entities.components.attributes')
     </div>
 </div>
 

@@ -127,6 +127,7 @@ class AttributeService
                         'default_order' => $order,
                         'is_private' => $private,
                         'type' => $type,
+                        'is_visible_entr'
                     ]);
                 }
 
@@ -187,6 +188,7 @@ class AttributeService
         $values = array_get($request, 'attr_value', []);
         $types = array_get($request, 'attr_type', []);
         $privates = array_get($request, 'attr_is_private', []);
+        $stars = array_get($request, 'attr_is_star', []);
         $templateId = array_get($request, 'template_id', null);
 
         foreach ($names as $id => $name) {
@@ -198,6 +200,7 @@ class AttributeService
             $value = $values[$id];
             $type = $types[$id];
             $isPrivate = !empty($privates[$id]);
+            $isStar = !empty($stars[$id]);
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
@@ -207,6 +210,7 @@ class AttributeService
                 $attribute->name = $name;
                 $attribute->value = $value;
                 $attribute->is_private = $isPrivate;
+                $attribute->is_star = $isStar;
                 $attribute->default_order = $order;
                 $attribute->save();
 
@@ -219,6 +223,7 @@ class AttributeService
                     'name' => $name,
                     'value' => $value,
                     'is_private' => $isPrivate,
+                    'is_star' => $isStar,
                     'default_order' => $order,
                 ]);
             }
@@ -249,6 +254,7 @@ class AttributeService
     public function applyEntityTemplates(Entity $entity, $order = 0)
     {
         $typeId = $entity->typeId();
+        /** @var AttributeTemplate $template */
         $templates = AttributeTemplate::where(['entity_type_id' => $typeId])->get();
         foreach ($templates as $template) {
             $order = $template->apply($entity, $order);

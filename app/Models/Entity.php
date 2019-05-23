@@ -410,4 +410,12 @@ class Entity extends Model
     {
         return config('entities.ids.' . $this->type);
     }
+
+    /**
+     * @return mixed
+     */
+    public function starredAttributes()
+    {
+        return $this->attributes()->stared()->ordered();
+    }
 }

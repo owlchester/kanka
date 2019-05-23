@@ -5,15 +5,15 @@ $id = isset($resetAttributeId) ? null : $attribute->id;
 
 <div class="form-group">
     <div class="row attribute_row">
-        <div class="col-xs-5">
+        <div class="col-xs-4">
             <div class="input-group">
-                        <span class="input-group-addon hidden-xs hidden-sm">
-                            <span class="fa fa-arrows-alt-v"></span>
-                        </span>
+                <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="fa fa-arrows-alt-v"></span>
+                </span>
                 {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>
-        <div class="col-xs-5">
+        <div class="col-xs-4">
             @if ($attribute->isCheckbox())
                 {!! Form::hidden('attr_value[' . $id . ']', 0) !!}
                 {!! Form::checkbox('attr_value[' . $id . ']', 1, $attribute->value) !!}
@@ -24,6 +24,10 @@ $id = isset($resetAttributeId) ? null : $attribute->id;
             @else
                 {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             @endif
+        </div>
+        <div class="col-xs-1 text-center">
+            {!! Form::hidden('attr_is_star[' . $id . ']', $attribute->is_star) !!}
+            <i class="fa-star @if($attribute->is_star) fas @else far @endif fa-2x" data-toggle="star" data-tab="{{ __('crud.attributes.visibility.tab') }}" data-entry="{{ __('crud.attributes.visibility.entry') }}" title="@if($attribute->is_star) {{ __('crud.attributes.visibility.entry') }} @else  {{ __('crud.attributes.visibility.tab') }} @endif"></i>
         </div>
         @if ($isAdmin)
             <div class="col-xs-1 text-center">

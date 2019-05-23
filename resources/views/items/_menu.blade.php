@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box box-solid">
     <div class="box-body box-profile">
         @include ('cruds._image')
 

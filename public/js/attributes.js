@@ -150,6 +150,20 @@ function initAttributeHandlers() {
             }
         });
     });
+
+    $('[data-toggle="star"]').unbind('click');
+    $('[data-toggle="star"]').click(function () {
+        console.log('clicky');
+        if ($(this).hasClass('far')) {
+            // Unlock
+            $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));
+            $(this).parent().find('input:hidden').val("1");
+        } else {
+            // Lock
+            $(this).removeClass('fas').addClass('far').prop('title', $(this).data('tab'));
+            $(this).parent().find('input:hidden').val("0");
+        }
+    });
 }
 
 /***/ }),

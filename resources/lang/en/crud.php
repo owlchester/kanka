@@ -42,6 +42,7 @@ return [
         'fields'        => [
             'attribute'             => 'Attribute',
             'community_templates'   => 'Community Templates',
+            'is_star'               => 'Pinned',
             'template'              => 'Template',
             'value'                 => 'Value',
         ],
@@ -67,8 +68,10 @@ return [
             'text'      => 'Multiline Text',
         ],
         'visibility'    => [
+            'entry'     => 'Attribute is displayed on the Main tab.',
             'private'   => 'Attribute only visible to members of the "Admin" role.',
             'public'    => 'Attribute visible to all members.',
+            'tab'       => 'Attribute is displayed only on the Attributes tab.',
         ],
     ],
     'bulk'              => [

@@ -110,6 +110,7 @@ class AttributeTemplate extends MiscModel
     {
         $order = $startingOrder;
         $existing = array_values($entity->attributes()->pluck('name')->toArray());
+        /** @var Attribute $attribute */
         foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
             // Don't re-create existing attributes.
             if (in_array($attribute->name, $existing)) {
@@ -121,6 +122,7 @@ class AttributeTemplate extends MiscModel
                 'value' => $attribute->value,
                 'default_order' => $order,
                 'is_private' => $attribute->is_private,
+                'is_star' => $attribute->is_star,
                 'type' => $attribute->type,
             ]);
             $order++;
@@ -139,6 +141,7 @@ class AttributeTemplate extends MiscModel
                     'value' => $attribute->value,
                     'default_order' => $order,
                     'is_private' => $attribute->is_private,
+                    'is_star' => $attribute->is_star,
                     'type' => $attribute->type,
                 ]);
                 $order++;
