@@ -604,10 +604,10 @@ function buildErrors(data) {
  * Handle scroll
  */
 function initMapScroll() {
-    $(window).bind('wheel', function(event) {
-        if (event.ctrlKey == true) {
+    $(mapImage).bind('wheel', function(event) {
+        if (event.ctrlKey === true) {
             event.preventDefault();
-            //console.log('wheel', event.originalEvent.deltaY);
+            // console.log('wheel', event.originalEvent.deltaY);
             if (event.originalEvent.deltaY > 0) {
                 mapZoom(-10);
             } else {
