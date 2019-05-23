@@ -26,6 +26,7 @@ class StoreAttributeTemplate extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'attribute_template_id' => 'nullable|integer|exists:attribute_templates,id',
+            'entity_type_id' => 'nullable|integer|exists:entity_types,id',
         ];
 
         // Editing an attribute template? Don't allow selecting oneself.

@@ -88,4 +88,13 @@ class DiceRoll extends MiscModel
     {
         return $this->hasMany('App\Models\DiceRollResult', 'dice_roll_id');
     }
+
+    /**
+     * Get the entity_type id from the entity_types table
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.dice_roll');
+    }
 }

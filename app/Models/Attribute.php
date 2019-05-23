@@ -12,6 +12,7 @@ use DateTime;
  * Class Attribute
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $entity_id
  * @property string $name
  * @property string $value

@@ -97,4 +97,13 @@ class Journal extends MiscModel
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
     }
+
+    /**
+     * Get the entity_type id from the entity_types table
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.journal');
+    }
 }

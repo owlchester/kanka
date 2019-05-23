@@ -401,4 +401,13 @@ class Entity extends Model
         return $query
             ->orderBy('updated_at', 'desc');
     }
+
+    /**
+     * Get the entity's type id
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public function typeId()
+    {
+        return config('entities.ids.' . $this->type);
+    }
 }

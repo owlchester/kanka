@@ -34,4 +34,13 @@ class EntityType extends Model
         $className = 'App\Models\\' . camel_case($this->code);
         return app()->make($className);
     }
+
+    /**
+     * Get the translated name of the entity
+     * @return string
+     */
+    public function name(): string
+    {
+        return trans('entities.' . $this->code);
+    }
 }

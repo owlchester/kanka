@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\GuestAuthTrait;
@@ -151,9 +152,15 @@ class CrudController extends Controller
                 $params['source'] = null;
             }
         }
+        $model = new $this->model;
+        $templates = AttributeTemplate::where(['entity_type_id' => $model->entityTypeId()])
+            ->with(['entity', 'entity.attributes'])
+            ->get();
+
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions;
         $params['tabAttributes'] = $this->tabAttributes;
+        $params['entityAttributeTemplates'] = $templates;
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }

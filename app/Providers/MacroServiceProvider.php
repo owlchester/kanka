@@ -40,6 +40,12 @@ class MacroServiceProvider extends HtmlServiceProvider
             'options' => []
         ]);
 
+
+        Form::component('entityType', 'components.form.entity_types', [
+            'fieldId',
+            'options' => []
+        ]);
+
         // Not used yet.
         Form::component('private', 'components.form.private', [
             'fieldId',

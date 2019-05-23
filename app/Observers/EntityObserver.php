@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
+use App\Models\AttributeTemplate;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -135,6 +136,10 @@ class EntityObserver
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_CREATE;
         $log->save();
+
+        if (!request()->has('attr_name')) {
+            $this->attributeService->applyEntityTemplates($entity);
+        }
     }
 
     /**

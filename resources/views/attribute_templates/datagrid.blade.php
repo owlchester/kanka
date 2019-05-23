@@ -23,6 +23,13 @@
             },
             'disableSort' => true,
         ],
+       [
+            'label' => trans('crud.fields.entity_type'),
+            'render' => function($model) {
+                return $model->entityType ? $model->entityType->name() : null;
+            },
+            'field' => 'entity_type_id'
+        ],
         [
             'type' => 'is_private',
         ]

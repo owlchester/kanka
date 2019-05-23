@@ -6,6 +6,13 @@ use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class AttributeTemplate
+ * @package App\Models
+ *
+ * @property integer $attribute_template_id
+ * @property integer $entity_type_id
+ */
 class AttributeTemplate extends MiscModel
 {
     /**
@@ -17,6 +24,7 @@ class AttributeTemplate extends MiscModel
         'slug',
         'campaign_id',
         'attribute_template_id',
+        'entity_type_id',
         'is_private',
     ];
 
@@ -43,6 +51,7 @@ class AttributeTemplate extends MiscModel
      */
     public $nullableForeignKeys = [
         'attribute_template_id',
+        'entity_type_id'
     ];
 
     /**
@@ -52,6 +61,15 @@ class AttributeTemplate extends MiscModel
     public function attributeTemplate()
     {
         return $this->belongsTo('App\Models\AttributeTemplate', 'attribute_template_id', 'id');
+    }
+
+    /**
+     * Parent
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entityType()
+    {
+        return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
     }
 
     /**
@@ -83,7 +101,10 @@ class AttributeTemplate extends MiscModel
 
 
     /**
+     * Apply a template to an entity
      * @param Entity $entity
+     * @param int $startingOrder
+     * @return int
      */
     public function apply(Entity $entity, $startingOrder = 0)
     {
@@ -123,5 +144,32 @@ class AttributeTemplate extends MiscModel
                 $order++;
             }
         }
+
+        return $order;
+    }
+
+    /**
+     * Get the entity_type id from the entity_types table
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.attribute_template');
+    }
+
+    /**
+     * Determine if the attribute templates has visible (to show on the entity creation _attributes tab) attributes
+     * @param array $names
+     * @return bool
+     */
+    public function hasVisibleAttributes($names = []): bool
+    {
+        $visible = false;
+        foreach ($this->entity->attributes()->get() as $attribute) {
+            if (!in_array($attribute->name, $names)) {
+                $visible = true;
+            }
+        }
+        return $visible;
     }
 }

@@ -244,7 +244,15 @@ function initSelect2() {
             });
         });
     }
+
+    // Select2 with local search
+    $('select.select2-local').select2({
+        placeholder: $(this).data('placeholder'),
+        language: $(this).data('language'),
+        allowClear: true
+    });
 }
+
 
 /**
  * Go through table trs to add on click support

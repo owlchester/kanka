@@ -168,8 +168,11 @@ class AttributeService
     }
 
     /**
+     * Add form attributes to an entity
      * @param $request
      * @param Entity $entity
+     * @return int
+     * @throws \Exception
      */
     public function saveEntity($request, Entity $entity)
     {
@@ -231,7 +234,25 @@ class AttributeService
         if (!empty($templateId)) {
             /** @var AttributeTemplate $template */
             $template = AttributeTemplate::findOrFail($templateId);
-            $template->apply($entity, $order);
+            $order = $template->apply($entity, $order);
         }
+
+        return $order;
+    }
+
+    /**
+     * Apply an entity's templates on creation
+     * @param Entity $entity
+     * @param int $order
+     * @return int
+     */
+    public function applyEntityTemplates(Entity $entity, $order = 0)
+    {
+        $typeId = $entity->typeId();
+        $templates = AttributeTemplate::where(['entity_type_id' => $typeId])->get();
+        foreach ($templates as $template) {
+            $order = $template->apply($entity, $order);
+        }
+        return $order;
     }
 }

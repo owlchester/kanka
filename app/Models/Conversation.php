@@ -104,4 +104,13 @@ class Conversation extends MiscModel
         }
         return $participants;
     }
+
+    /**
+     * Get the entity_type id from the entity_types table
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.conversation');
+    }
 }

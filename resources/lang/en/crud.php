@@ -117,6 +117,7 @@ return [
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
         'entity'                => 'Entity',
+        'entity_type'           => 'Entity Type',
         'entry'                 => 'Entry',
         'event'                 => 'Event',
         'excerpt'               => 'Excerpt',

@@ -18,7 +18,16 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if (!empty($model->entityType))
+                <li class="list-group-item">
+                    <b>{{ trans('crud.fields.entity_type') }}</b>
 
+                    <span class="pull-right">
+                        {{ $model->entityType->name() }}
+                    </span>
+                    <br class="clear" />
+                </li>
+            @endif
         </ul>
         @include('.cruds._actions')
     </div>

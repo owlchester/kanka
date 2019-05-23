@@ -59,4 +59,13 @@ class Note extends MiscModel
     {
         return $query->where(['is_pinned' => 1])->orderBy('name', 'ASC')->take(3);
     }
+
+    /**
+     * Get the entity_type id from the entity_types table
+     * @return int
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.note');
+    }
 }
