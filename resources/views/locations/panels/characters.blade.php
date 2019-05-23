@@ -46,23 +46,23 @@ if (request()->has('location_id')) {
                         <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(true) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltip() }}">{{ $character->name }}</a>
+                        <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltipWithName() }}" data-html="true">{{ $character->name }}</a>
                     </td>
                     @if ($campaign->enabled('families'))
                         <td>
                             @if ($character->family)
-                                <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltip() }}">{{ $character->family->name }}</a>
+                                <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltipWithName() }}" data-html="true">{{ $character->family->name }}</a>
                             @endif
                         </td>
                     @endif
                     <td>
-                        <a href="{{ route('locations.show', $character->location_id) }}" data-toggle="tooltip" title="{{ $character->location->tooltip() }}">{{ $character->location->name }}</a>
+                        <a href="{{ route('locations.show', $character->location_id) }}" data-toggle="tooltip" title="{{ $character->location->tooltipWithName() }}" data-html="true">{{ $character->location->name }}</a>
                     </td>
                     <td>{{ $character->age }}</td>
                     @if ($campaign->enabled('races'))
                         <td>
                             @if ($character->race)
-                                <a href="{{ route('races.show', $character->race_id) }}" data-toggle="tooltip" title="{{ $character->race->tooltip() }}">{{ $character->race->name }}</a>
+                                <a href="{{ route('races.show', $character->race_id) }}" data-toggle="tooltip" title="{{ $character->race->tooltipWithName() }}" data-html="true">{{ $character->race->name }}</a>
                             @endif
                         </td>
                     @endif

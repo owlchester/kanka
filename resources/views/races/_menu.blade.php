@@ -13,7 +13,7 @@
             @if ($model->race)
                 <li class="list-group-item">
                     <b>{{ trans('characters.fields.race') }}</b>
-                    <a class="pull-right" href="{{ route('races.show', $model->race_id) }}" data-toggle="tooltip" title="{{ $model->race->tooltip() }}">{{ $model->race->name }}</a>
+                    <a class="pull-right" href="{{ route('races.show', $model->race_id) }}" data-toggle="tooltip" title="{{ $model->race->tooltipWithName() }}" data-html="true">{{ $model->race->name }}</a>
                     <br class="clear" />
                 </li>
             @endif

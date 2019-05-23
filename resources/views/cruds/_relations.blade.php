@@ -35,7 +35,7 @@
             </td>
             @if ($campaign->enabled('locations'))<td>
                 @if ($relation->target->child->location)
-                    <a href="{{ $relation->target->child->location->getLink() }}" data-toggle="tooltip" title="{{ $relation->target->child->location->tooltip() }}">{{ $relation->target->child->location->name }}</a>
+                    <a href="{{ $relation->target->child->location->getLink() }}" data-toggle="tooltip" title="{{ $relation->target->child->location->tooltipWithName() }}" data-html="true">{{ $relation->target->child->location->name }}</a>
                 @endif
             </td>
             @endif

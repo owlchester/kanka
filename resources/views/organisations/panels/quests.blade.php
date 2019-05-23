@@ -26,12 +26,12 @@
                         <a class="entity-image" style="background-image: url('{{ $quest->getImageUrl(true) }}');" title="{{ $quest->name }}" href="{{ route('quests.show', $quest->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltip() }}">{{ $quest->name }}</a>
+                        <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltipWithName() }}" data-html="true">{{ $quest->name }}</a>
                     </td>
                     <td class="visible-sm">{{ $quest->type }}</td>
                     <td class="visible-sm">
                         @if ($quest->quest)
-                        <a href="{{ route('quests.show', $quest->quest->id) }}" data-toggle="tooltip" title="{{ $quest->quest->tooltip() }}">{{ $quest->quest->name }}</a>
+                        <a href="{{ route('quests.show', $quest->quest->id) }}" data-toggle="tooltip" title="{{ $quest->quest->tooltipWithName() }}" data-html="true">{{ $quest->quest->name }}</a>
                         @endif
                     </td>
                     @if ($campaign->enabled('locations'))

@@ -29,14 +29,14 @@
                         <a class="entity-image" style="background-image: url('{{ $organisation->organisation->getImageUrl(true) }}');" title="{{ $organisation->organisation->name }}" href="{{ route('organisations.show', $organisation->organisation->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('organisations.show', $organisation->organisation_id) }}" data-toggle="tooltip" title="{{ $organisation->organisation->tooltip() }}">{{ $organisation->organisation->name }}</a>
+                        <a href="{{ route('organisations.show', $organisation->organisation_id) }}" data-toggle="tooltip" title="{{ $organisation->organisation->tooltipWithName() }}" data-html="true">{{ $organisation->organisation->name }}</a>
                     </td>
                     <td class="visible-sm">{{ $organisation->organisation->type }}</td>
                     <td>{{ $organisation->role }}</td>
                     @if ($campaign->enabled('locations'))
                         <td class="visible-sm">
                             @if ($organisation->organisation->location)
-                                <a href="{{ route('locations.show', $organisation->organisation->location_id) }}" data-toggle="tooltip" title="{{ $organisation->organisation->location->tooltip() }}">{{ $organisation->organisation->location->name }}</a>
+                                <a href="{{ route('locations.show', $organisation->organisation->location_id) }}" data-toggle="tooltip" title="{{ $organisation->organisation->location->tooltipWithName() }}" data-html="true">{{ $organisation->organisation->location->name }}</a>
                             @endif
                         </td>
                     @endif

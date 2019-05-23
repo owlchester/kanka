@@ -23,7 +23,7 @@
                             @endif
                             <!-- /.widget-user-image -->
                             <h3 class="widget-user-username">
-                                <a href="{{ route('items.show', $item->item) }}" data-toggle="tooltip" title="{{ $item->item->tooltip() }}">
+                                <a href="{{ route('items.show', $item->item) }}" data-toggle="tooltip" title="{{ $item->item->tooltipWithName() }}" data-html="true">
                                     {{ $item->item->name }}
                                 </a>
                                 @if ($item->is_private)

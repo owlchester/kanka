@@ -36,14 +36,14 @@ if (request()->has('tag_id')) {
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('tags.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltip() }}">{{ $model->name }}</a>
+                        <a href="{{ route('tags.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltipWithName() }}" data-html="true">{{ $model->name }}</a>
                     </td>
                     <td>
                         {{ $model->type }}
                     </td>
                     <td>
                         @if ($model->tag)
-                            <a href="{{ route('tags.show', $model->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tooltip() }}">{{ $model->tag->name }}</a>
+                            <a href="{{ route('tags.show', $model->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tooltipWithName() }}" data-html="true">{{ $model->tag->name }}</a>
                         @endif
                     </td>
                 </tr>

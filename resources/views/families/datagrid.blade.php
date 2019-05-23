@@ -17,7 +17,7 @@
             'visible' => $campaign->enabled('families'),
             'render' => function($model) {
                 if ($model->family) {
-                    return '<a href="' . route('families.show', $model->family->id) . '" data-toggle="tooltip" title="' . $model->family->tooltip() . '">' . e($model->family->name) . '</a>';
+                    return '<a href="' . route('families.show', $model->family->id) . '" data-toggle="tooltip" title="' . $model->family->tooltipWithName(). '" data-html="true">' . e($model->family->name) . '</a>';
                 }
             }
         ],

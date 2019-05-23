@@ -18,7 +18,7 @@
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(true) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
             </td>
             <td>
-                <a href="{{ route('calendars.show', $relation->calendar_id) }}">{{ $relation->calendar->name }}</a>
+                <a href="{{ $relation->calendar->getLink() }}" title="{{ $relation->calendar->tooltipWithName() }}" data-toggle="tooltip" data-html="true">{{ $relation->calendar->name }}</a>
             </td>
             <td>{{ $relation->getDate() }}</td>
             <td>{{ trans_choice('calendars.fields.length_days', $relation->length, ['count' => $relation->length]) }}</td>

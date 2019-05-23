@@ -21,7 +21,7 @@
                 <li class="list-group-item">
                     <b>{{ trans('crud.fields.organisation') }}</b>
                     <span class="pull-right">
-                        <a href="{{ $model->organisation->getLink() }}" data-toggle="tooltip" title="{{ $model->organisation->tooltip() }}">{{ $model->organisation->name }}</a>
+                        <a href="{{ $model->organisation->getLink() }}" data-toggle="tooltip" title="{{ $model->organisation->tooltipWithName() }}" data-html="true">{{ $model->organisation->name }}</a>
                     </span>
                     <br class="clear" />
                 </li>

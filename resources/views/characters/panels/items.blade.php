@@ -9,9 +9,9 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('items.fields.name') }}</th>
-                <th class="visible-sm">{{ trans('items.fields.type') }}</th>
+                <th class="hidden-xs">{{ trans('items.fields.type') }}</th>
                 @if ($campaign->enabled('locations'))
-                    <th class="visible-sm">{{ trans('crud.fields.location') }}</th>
+                    <th class="hidden-xs">{{ trans('crud.fields.location') }}</th>
                 @endif
                 <th>&nbsp;</th>
             </tr>
@@ -21,13 +21,13 @@
                         <a class="entity-image" style="background-image: url('{{ $item->getImageUrl(true) }}');" title="{{ $item->name }}" href="{{ route('items.show', $item->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltip() }}">{{ $item->name }}</a>
+                        <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltipWithName() }}" data-html="true">{{ $item->name }}</a>
                     </td>
-                    <td class="visible-sm">{{ $item->type }}</td>
+                    <td class="hidden-xs">{{ $item->type }}</td>
                     @if ($campaign->enabled('locations'))
-                        <td class="visible-sm">
+                        <td class="hidden-xs">
                             @if ($item->location)
-                                <a href="{{ route('locations.show', $item->location_id) }}" data-toggle="tooltip" title="{{ $item->location->tooltip() }}">{{ $item->location->name }}</a>
+                                <a href="{{ route('locations.show', $item->location_id) }}" data-toggle="tooltip" title="{{ $item->location->tooltipWithName() }}" data-html="true">{{ $item->location->name }}</a>
                             @endif
                         </td>
                     @endif

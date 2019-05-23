@@ -22,14 +22,14 @@
                         <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(true) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('journals.show', $journal->id) }}" data-toggle="tooltip" title="{{ $journal->tooltip() }}">{{ $journal->name }}</a>
+                        <a href="{{ route('journals.show', $journal->id) }}" data-toggle="tooltip" title="{{ $journal->tooltipWithName() }}" data-html="true">{{ $journal->name }}</a>
                     </td>
                     <td class="hidden-sm">{{ $journal->type }}</td>
                     <td class="hidden-sm">{{ $journal->date }}</td>
                     @if ($campaign->enabled('characters'))
                     <td>
                         @if ($journal->character)
-                            <a href="{{ route('characters.show', $journal->character) }}" data-toggle="tooltip" title="{{ $journal->character->tooltip() }}">{{ $journal->character->name }}</a>
+                            <a href="{{ route('characters.show', $journal->character) }}" data-toggle="tooltip" title="{{ $journal->character->tooltipWithName() }}" data-html="true">{{ $journal->character->name }}</a>
                         @endif
                     </td>
                     @endif

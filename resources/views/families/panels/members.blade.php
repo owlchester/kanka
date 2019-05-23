@@ -33,7 +33,7 @@
                     @if ($campaign->enabled('locations'))
                     <td>
                         @if ($member->location)
-                            <a href="{{ route('locations.show', $member->location_id) }}" data-toggle="tooltip" title="{{ $member->location->tooltip() }}">{{ $member->location->name }}</a>
+                            <a href="{{ route('locations.show', $member->location_id) }}" data-toggle="tooltip" title="{{ $member->location->tooltipWithName() }}" data-html="true">{{ $member->location->name }}</a>
                         @endif
                     </td>
                     @endif
@@ -41,7 +41,7 @@
                     @if ($campaign->enabled('races'))
                         <td>
                             @if ($member->race)
-                                <a href="{{ route('races.show', $member->race_id) }}" data-toggle="tooltip" title="{{ $member->race->tooltip() }}">{{ $member->race->name }}</a>
+                                <a href="{{ route('races.show', $member->race_id) }}" data-toggle="tooltip" title="{{ $member->race->tooltipWithName() }}" data-html="true">{{ $member->race->name }}</a>
                             @endif
                         </td>
                     @endif

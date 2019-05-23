@@ -20,7 +20,7 @@
                     <li class="list-group-item">
                         <b>{{ trans('menu_links.fields.entity') }}</b>
                         <span  class="pull-right">
-                        <a href="{{ route($model->target->pluralType() . '.show', $model->entity_id) }}" data-toggle="tooltip" title="{{ $model->target->tooltip() }}">{{ $model->target->name }}</a>
+                        <a href="{{ route($model->target->pluralType() . '.show', $model->entity_id) }}" data-toggle="tooltip" title="{{ $model->target->tooltipWithName() }}" data-html="true">{{ $model->target->name }}</a>
                         </span>
                         <br class="clear" />
                     </li>

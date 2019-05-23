@@ -15,7 +15,7 @@ $model = $widget->entity->child;
             </h3>
             @if ($campaign->enabled('characters') && !empty($model->character))
             <h5 class="widget-user-desc">
-                <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">
+                <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">
                     {{ $model->character->name }}
                 </a>
             </h5>

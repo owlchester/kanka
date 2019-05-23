@@ -65,7 +65,7 @@ $hasOrg = request()->has('organisation_id');
                     @if ($campaign->enabled('locations'))
                     <td class="hidden-sm hidden-xs">
                         @if ($relation->character->location)
-                            <a href="{{ route('locations.show', $relation->character->location_id) }}" data-toggle="tooltip" title="{{ $relation->character->location->tooltip() }}">{{ $relation->character->location->name }}</a>
+                            <a href="{{ route('locations.show', $relation->character->location_id) }}" data-toggle="tooltip" title="{{ $relation->character->location->tooltipWithName() }}" data-html="true">{{ $relation->character->location->name }}</a>
                         @endif
                     </td>
                     @endif
@@ -80,7 +80,7 @@ $hasOrg = request()->has('organisation_id');
                     @if ($campaign->enabled('races'))
                         <td class="hidden-sm hidden-xs">
                             @if ($relation->character->race)
-                                <a href="{{ route('races.show', $relation->character->race_id) }}" data-toggle="tooltip" title="{{ $relation->character->race->tooltip() }}">{{ $relation->character->race->name }}</a>
+                                <a href="{{ route('races.show', $relation->character->race_id) }}" data-toggle="tooltip" title="{{ $relation->character->race->tooltipWithName() }}" data-html="true">{{ $relation->character->race->name }}</a>
                             @endif
                         </td>
                     @endif

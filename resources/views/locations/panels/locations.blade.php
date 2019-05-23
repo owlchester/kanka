@@ -38,14 +38,14 @@ if (request()->has('parent_location_id')) {
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('locations.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltip() }}">{{ $model->name }}</a>
+                        <a href="{{ route('locations.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltipWithName() }}" data-html="true">{{ $model->name }}</a>
                     </td>
                     <td>
                         {{ $model->type }}
                     </td>
                     <td>
                         @if ($model->parent)
-                            <a href="{{ route('locations.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltip() }}">{{ $model->parent->name }}</a>
+                            <a href="{{ route('locations.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltipWithName() }}" data-html="true">{{ $model->parent->name }}</a>
                         @endif
                     </td>
                 </tr>

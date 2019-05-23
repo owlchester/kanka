@@ -26,7 +26,7 @@
                 <li class="list-group-item">
                     <b>{{ trans('journals.fields.author') }}</b>
                     <span class="pull-right">
-                                    <a href="{{ route('characters.show', $model->character_id) }}" data-toggle="tooltip" title="{{ $model->character->tooltip() }}">{{ $model->character->name }}</a>
+                                    <a href="{{ route('characters.show', $model->character_id) }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">{{ $model->character->name }}</a>
                                 </span>
                     <br class="clear" />
                 </li>

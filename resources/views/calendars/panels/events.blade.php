@@ -30,7 +30,7 @@
                         <a class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');" title="{{ $event->entity->name }}" href="{{ $event->entity->url() }}"></a>
                     </td>
                     <td>
-                        <a href="{{ $event->entity->url() }}">{{ $event->entity->name }}</a>
+                        <a href="{{ $event->entity->url() }}" title="{{ $event->entity->tooltipWithName() }}" data-html="true" data-toggle="tooltip">{{ $event->entity->name }}</a>
                     </td>
                     <td>{{ $event->getDate() }}</td>
                     <td>{{ trans_choice('calendars.fields.length_days', $event->length, ['count' => $event->length]) }}</td>
