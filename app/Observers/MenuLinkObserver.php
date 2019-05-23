@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
+use App\Models\MenuLink;
 use App\Models\MiscModel;
 
 class MenuLinkObserver
@@ -16,6 +17,14 @@ class MenuLinkObserver
         $model->icon = '';
         $model->tab = strtolower(trim($model->tab, '#'));
 
+        // Handle empty or wrong positions
+        if (empty($model->position)) {
+            $model->position = MenuLink::max('position') + 1;
+        } else {
+            $model->position = (int) $model->position;
+        }
+
+        // Handle the entity type or direct entity
         if (!empty($model->type)) {
             $model->entity_id = null;
             $model->tab = null;
