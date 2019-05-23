@@ -133,10 +133,19 @@ abstract class MiscModel extends Model
         $pureHistory = strip_tags($this->{$this->tooltipField});
 
         if ($stripSpecial) {
+            // Remove double quotes because they are the spawn of the devil.
             $pureHistory = str_replace('"', '\'', $pureHistory);
-//            $pureHistory = str_replace('&gt;', null, $pureHistory);
-//            $pureHistory = str_replace('&lt;', null, $pureHistory);
+            $pureHistory = str_replace('&quot;', '\'', $pureHistory);
+
+            // Remove any leftover < and > for sanity's sake
+            $pureHistory = str_replace('&gt;', null, $pureHistory);
+            $pureHistory = str_replace('&lt;', null, $pureHistory);
             //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
+
+//            if ($this->id == 70) {
+//                dump($this->{$this->tooltipField});
+//                dd($pureHistory);
+//            }
         }
 
         $pureHistory = preg_replace("/\s/ui", ' ', $pureHistory);
