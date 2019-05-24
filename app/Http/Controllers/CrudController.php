@@ -152,7 +152,7 @@ class CrudController extends Controller
             }
         }
         $model = new $this->model;
-        $templates = $this->attributeTemplates($model->entityTypeId());
+        $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions;
@@ -440,7 +440,7 @@ class CrudController extends Controller
      * @param $type
      * @return array
      */
-    protected function attributeTemplates($type): array
+    protected function buildAttributeTemplates($type): array
     {
         $attributeTemplates = [];
         $ids = [];
