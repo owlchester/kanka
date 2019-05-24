@@ -142,6 +142,7 @@ return [
         'moon'          => [
             'fullmoon'  => 'Luna llena cada... días',
             'name'      => 'Nombre de la luna',
+            'offset'    => 'Retraso de la primera luna llena',
         ],
         'seasons'       => [
             'day'   => 'Día inicial',

@@ -12,12 +12,14 @@ return [
         'success'   => 'Objeto :item eliminado de :entity.',
     ],
     'fields'        => [
-        'amount'    => 'Cantidad',
-        'position'  => 'Localización',
+        'amount'        => 'Cantidad',
+        'description'   => 'Descripción',
+        'position'      => 'Localización',
     ],
     'placeholders'  => [
-        'amount'    => 'Cualquier cantidad',
-        'position'  => 'Equipado, Mochila, Almacenamiento, Banco...',
+        'amount'        => 'Cualquier cantidad',
+        'description'   => 'Usado, dañado, roto',
+        'position'      => 'Equipado, Mochila, Almacenamiento, Banco...',
     ],
     'show'          => [
         'helper'    => 'Las entidades pueden tener objetos asociados a ellas, creando así un inventario.',

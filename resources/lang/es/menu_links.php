@@ -19,8 +19,12 @@ return [
         'filters'   => 'Filtros',
         'menu'      => 'Menú',
         'name'      => 'Nombre',
+        'position'  => 'Posición',
         'tab'       => 'Pestaña',
         'type'      => 'Tipo de entidad',
+    ],
+    'helpers'       => [
+        'position'  => 'Usa este campo para controlar en qué orden ascendente aparecen los enlaces en el menú.',
     ],
     'index'         => [
         'add'           => 'Nuevo enlace de menú',

@@ -2,10 +2,11 @@
 
 return [
     'campaign'          => [
-        'export'    => 'Ya se ha exportado tu campaña. Puedes descargarla haciendo click en <a href=":link">aquí</a>. El enlace estará disponible durante 30 minutos.',
-        'join'      => ':user se ha unido a la campaña :campaign.',
-        'leave'     => ':user ha abandonado la campaña :campaign.',
-        'role'      => [
+        'export'        => 'Ya se ha exportado tu campaña. Puedes descargarla haciendo click en <a href=":link">aquí</a>. El enlace estará disponible durante 30 minutos.',
+        'export_error'  => 'Ha ocurrido un error mientras se exportaba tu campaña. Por favor, contáctanos si el error persiste.',
+        'join'          => ':user se ha unido a la campaña :campaign.',
+        'leave'         => ':user ha abandonado la campaña :campaign.',
+        'role'          => [
             'add'       => 'Te han asignado el rol :role en la campaña :campaign.',
             'remove'    => 'Has sido eliminado del rol :role en la campaña :campaign.',
         ],

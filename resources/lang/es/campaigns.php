@@ -44,6 +44,7 @@ return [
         'entity_count'                  => 'Número de entidades',
         'entity_personality_visibility' => 'Visibilidad de la personalidad',
         'entity_visibility'             => 'Visibilidad de la entidad',
+        'excerpt'                       => 'Extracto',
         'header_image'                  => 'Imagen de cabecera',
         'image'                         => 'Imagen',
         'locale'                        => 'Idioma',
@@ -54,6 +55,7 @@ return [
     'helpers'                           => [
         'entity_personality_visibility' => 'Al crear un nuevo personaje, la opción de "Personalidad visible" estará deseleccionada automáticamente.',
         'entity_visibility'             => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
+        'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo.',
         'locale'                        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'                          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
         'system'                        => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
@@ -166,8 +168,9 @@ return [
         'your_role'             => 'Tu eres un <i>:role</i>',
     ],
     'panels'                            => [
-        'permission'    => 'Permisos',
-        'sharing'       => 'Compartir',
+        'dashboard' => 'Tablero',
+        'permission'=> 'Permisos',
+        'sharing'   => 'Compartir',
     ],
     'placeholders'                      => [
         'description'   => 'Corto resumen de tu campaña',

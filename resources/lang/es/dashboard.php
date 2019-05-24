@@ -43,14 +43,14 @@ return [
             'back_to_dashboard' => 'Volver al tablero',
             'edit'              => 'Editar widget',
         ],
-        'title'     => 'Configuración del tablero de campaña',
+        'title'     => 'Configurar el tablero de campaña',
         'widgets'   => [
             'calendar'  => 'Calendario',
             'preview'   => 'Previsualización de la entidad',
             'recent'    => 'Reciente',
         ],
     ],
-    'title'             => 'Tablero',
+    'title'             => 'Tablero de',
     'welcome'           => [
         'body'      => <<<'TEXT'
 ¡Bienvenid@ a Kanka! Tu primera campaña ha sido creada y hemos incluido un par de entidades de ejemplo como inspiración (puedes borrarlas cuando quieras).
