@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
+use App\Http\Resources\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
 use App\Services\FilterService;
@@ -153,9 +152,7 @@ class CrudController extends Controller
             }
         }
         $model = new $this->model;
-        $templates = AttributeTemplate::where(['entity_type_id' => $model->entityTypeId()])
-            ->with(['entity', 'entity.attributes'])
-            ->get();
+        $templates = $this->attributeTemplates($model->entityTypeId());
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions;
@@ -436,5 +433,33 @@ class CrudController extends Controller
             }
         }
         return $data;
+    }
+
+    /**
+     * Get a list of all attribute templates available for this entity type.
+     * @param $type
+     * @return array
+     */
+    protected function attributeTemplates($type): array
+    {
+        $attributeTemplates = [];
+        $ids = [];
+        $templates = AttributeTemplate::where(['entity_type_id' => $type])
+            ->with(['entity', 'entity.attributes'])
+            ->get();
+        /** @var AttributeTemplate $attr */
+        foreach ($templates as $attr) {
+            $attributeTemplates[] = $attr;
+            $ids[] = $attr->id;
+            /** @var Attribute $child */
+            foreach ($attr->ancestors()->with('entity')->acl()->get() as $child) {
+                if (!in_array($child->id, $ids)) {
+                    $ids[] = $child->id;
+                    $attributeTemplates[] = $child;
+                }
+            }
+        }
+
+        return $attributeTemplates;
     }
 }

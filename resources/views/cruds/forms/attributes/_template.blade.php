@@ -14,8 +14,4 @@
             @include('cruds.forms.attributes._attribute', ['resetAttributeId' => true])
         @endif
     @endforeach
-
-    @if ($attributeTemplate->attributeTemplate)
-        @include('cruds.forms.attributes._template', ['attributeTemplate' => $attributeTemplate->attributeTemplate])
-    @endif
 @endif
