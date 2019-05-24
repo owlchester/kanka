@@ -82,7 +82,6 @@ class AttributeService
      */
     public function apply(Entity $entity, $request)
     {
-        die("apply");
         // Are we using a local template?
         $templateId = Arr::get($request, 'template_id');
         $communityTemplate = Arr::get($request, 'template');
