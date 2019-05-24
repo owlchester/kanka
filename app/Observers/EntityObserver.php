@@ -93,6 +93,10 @@ class EntityObserver
         $this->permissionService->saveEntity(request()->only('role', 'user'), $entity);
     }
 
+    /**
+     * @param Entity $entity
+     * @throws \Exception
+     */
     protected function saveAttributes(Entity $entity)
     {
         $data = request()->only(

@@ -176,7 +176,15 @@ class CrudAttributeController extends Controller
     {
         $this->authorize('attribute', [$entity->child, 'edit']);
 
-        $this->attributeService->saveMany($entity, request()->all());
+        $data = request()->only(
+            'attr_name',
+            'attr_value',
+            'attr_is_private',
+            'attr_is_star',
+            'attr_type',
+            'template_id'
+        );
+        $this->attributeService->saveEntity($data, $entity);
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
             ->with('success', trans('crud.attributes.index.success', ['entity' => $entity->name]));

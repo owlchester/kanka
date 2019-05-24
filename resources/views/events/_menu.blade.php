@@ -28,6 +28,7 @@
                     <br class="clear" />
                 </li>
             @endif
+            @include('entities.components.attributes')
             @include('entities.components.tags')
             @include('entities.components.files')
         </ul>

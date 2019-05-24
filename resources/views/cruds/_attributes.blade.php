@@ -62,6 +62,8 @@ if ($layout) {
                     @if ($attribute->value)
                         <i class="fa fa-check"></i>
                     @endif
+                @elseif ($attribute->isText())
+                    {!! nl2br(e($attribute->value)) !!}
                 @else
                 {{ $attribute->value }}
                 @endif

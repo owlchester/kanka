@@ -24,10 +24,11 @@ class AttributeService
         }
 
         $order = 0;
-        $names = array_get($data, 'name', []);
-        $values = array_get($data, 'value', []);
-        $types = array_get($data, 'type', []);
-        $privates = array_get($data, 'is_private', []);
+        $names = array_get($data, 'attr_name', []);
+        $values = array_get($data, 'attr_value', []);
+        $types = array_get($data, 'attr_type', []);
+        $privates = array_get($data, 'attr_is_private', []);
+        $stars = array_get($data, 'attr_is_star', []);
 
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
@@ -38,6 +39,7 @@ class AttributeService
             $value = $values[$id];
             $type = $types[$id];
             $isPrivate = !empty($privates[$id]);
+            $isStar = !empty($stars[$id]);
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
@@ -47,6 +49,7 @@ class AttributeService
                 $attribute->name = $name;
                 $attribute->value = $value;
                 $attribute->is_private = $isPrivate;
+                $attribute->is_star = $isStar;
                 $attribute->default_order = $order;
                 $attribute->save();
 
@@ -59,6 +62,7 @@ class AttributeService
                     'name' => $name,
                     'value' => $value,
                     'is_private' => $isPrivate,
+                    'is_star' => $isStar,
                     'default_order' => $order,
                 ]);
             }
@@ -78,6 +82,7 @@ class AttributeService
      */
     public function apply(Entity $entity, $request)
     {
+        die("apply");
         // Are we using a local template?
         $templateId = Arr::get($request, 'template_id');
         $communityTemplate = Arr::get($request, 'template');
@@ -110,6 +115,7 @@ class AttributeService
 
                     $type = Arr::get($attribute, 'type', null);
                     $private = Arr::get($attribute, 'is_private', false);
+                    $star = Arr::get($attribute, 'is_star', false);
 
                     // Value is based on the translation. This can get confusing
                     $translationKey = $template->alias() . '::template.values.' . $name;
@@ -127,7 +133,7 @@ class AttributeService
                         'default_order' => $order,
                         'is_private' => $private,
                         'type' => $type,
-                        'is_visible_entr'
+                        'is_star' => $star
                     ]);
                 }
 
@@ -142,6 +148,7 @@ class AttributeService
                         'value' => $communityTemplate,
                         'default_order' => $order,
                         'is_private' => false,
+                        'is_star' => false,
                         'type' => null,
                     ]);
                 }

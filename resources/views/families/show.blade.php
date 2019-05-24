@@ -1,15 +1,9 @@
-<?php
-/** @var \App\Models\MiscModel $model */
-$attributes = count($model->entity->starredAttributes);
-$mainClass = $attributes > 0 ? 'col-lg-7 col-md-6' : 'col-md-9';
-$sideClass = $attributes > 0 ? 'col-lg-2 col-md-3' : 'hidden';
-?>
 <div class="row">
     <div class="col-md-3">
         @include('families._menu')
     </div>
 
-    <div class="{{ $mainClass }}">
+    <div class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
@@ -30,10 +24,6 @@ $sideClass = $attributes > 0 ? 'col-lg-2 col-md-3' : 'hidden';
         </div>
 
         @include('cruds.boxes.history')
-    </div>
-
-    <div class="{{ $sideClass }}">
-        @include('entities.components.attributes')
     </div>
 </div>
 

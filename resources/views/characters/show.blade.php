@@ -75,8 +75,6 @@
                 </ul>
             </div>
         </div>
-
-        @include('entities.components.attributes')
     </div>
 </div>
 
