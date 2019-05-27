@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class OrganisationMember
  * @package App\Models
  *
+ * @property integer $character_id
+ * @property integer $organisation_id
  * @property Character $character
  * @property Organisation $organisation
  */
