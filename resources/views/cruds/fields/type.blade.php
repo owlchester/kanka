@@ -11,13 +11,13 @@ $entityTypeListModel = new $base;
             'placeholder' => trans($trans . '.placeholders.type'),
             'class' => 'form-control',
             'maxlength' => 191,
-            'list' => 'entity-type-list',
+            'list' => 'entity-type-list-' . $trans,
             'autocomplete' => 'off'
         ]
     ) !!}
 </div>
 <div class="hidden">
-    <datalist id="entity-type-list">
+    <datalist id="entity-type-list-<?=$trans?>">
         @foreach ($entityTypeListModel->entityTypeList() as $name)
             <option value="{{ $name }}">{{ $name }}</option>
         @endforeach
