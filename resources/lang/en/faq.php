@@ -58,7 +58,7 @@ TEXT
         'question'  => 'I want to use Kanka to build my RPG world, but want my players to have access to some of the entities and edit their characters. Is this possible?',
     ],
     'user-switch'           => [
-        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can naviguate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
+        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can navigate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
         'question'  => 'My campaign permissions are set up, how can I test them?'
     ],
     'plans'                 => [
