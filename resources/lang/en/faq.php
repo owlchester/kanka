@@ -57,6 +57,10 @@ TEXT
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',
         'question'  => 'I want to use Kanka to build my RPG world, but want my players to have access to some of the entities and edit their characters. Is this possible?',
     ],
+    'user-switch'           => [
+        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can naviguate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
+        'question'  => 'My campaign permissions are set up, how can I test them?'
+    ],
     'plans'                 => [
         'answer'    => <<<'TEXT'
 The long term plans for Kanka are to build a versatile worldbuilding and campaign management tool that is system agnostic with system specific content managed by the community in the form of "Community Templates". A longer goal is to build tools that integrate with other platforms like Virtual Table Top apps to link those with the worlds of Kanka.

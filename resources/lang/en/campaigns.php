@@ -142,8 +142,9 @@ return [
             'role'      => 'Role',
             'roles'     => 'Roles',
         ],
-        'help'                  => 'There is no limit on the amount of members a campaign can have, and as an Admin of the campaign, you can remove members that are no longer active from it.',
+        'help'                  => 'Campaigns can have an unlimited amount of members in them.',
         'helpers'               => [
+            'admin'    => 'As a member of the campaign\'s admin role, you can invite new users, remove inactive one, and change their permissions. To test the permissions of a member, use the Switch button. You can read more about this feature in the :link.',
             'switch'    => 'Switch to this user',
         ],
         'impersonating'         => [
