@@ -84,7 +84,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        @foreach (\App\Models\Campaign::top()->limit(5)->get() as $campaign)
+                        @foreach (\App\Models\Campaign::top()->limit(7)->get() as $campaign)
                             <div class="col-xs-8 text-right">
                                 {{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}
                             </div>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        @foreach (\App\Models\Campaign::topMembers()->limit(10)->get() as $campaign)
+                        @foreach (\App\Models\Campaign::topMembers()->limit(5)->get() as $campaign)
                             <div class="col-xs-8 text-right">
                                 {{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}
                             </div>
