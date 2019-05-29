@@ -14,12 +14,13 @@ $attributes = $model->entity->starredAttributes;
                 @else
                     <span class="pull-right">{{ __('voyager.generic.no') }}</span>
                 @endif
-            @elseif (!$attribute->isText())
-                <span class="pull-right">{{ $attribute->value }}</span>
             @endif
             <strong title="{{ __('crud.attributes.fields.is_star') }}">{{ $attribute->name }}</strong>
             @if ($attribute->isText())
                 <p>{!! nl2br(e($attribute->value)) !!}</p>
+            @elseif (!$attribute->isCheckbox())
+                <span class="pull-right">{{ $attribute->value }}</span>
+                <br class="clear" />
             @endif
         </li>
     @endforeach

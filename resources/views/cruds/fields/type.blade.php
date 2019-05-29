@@ -10,7 +10,7 @@ $entityTypeListModel = new $base;
         [
             'placeholder' => trans($trans . '.placeholders.type'),
             'class' => 'form-control',
-            'maxlength' => 191,
+            'maxlength' => 45,
             'list' => 'entity-type-list-' . $trans,
             'autocomplete' => 'off'
         ]
