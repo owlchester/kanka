@@ -53,17 +53,6 @@ class Character extends MiscModel
      * @var array
      */
     protected $hidden = [
-        'traits',
-        'goals',
-        'fears',
-        'mannerisms',
-        'languages',
-        'free',
-        'height',
-        'weight',
-        'eye_colour',
-        'hair',
-        'skin',
     ];
 
     /**
