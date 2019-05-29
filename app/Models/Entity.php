@@ -24,6 +24,8 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer $updated_by
  * @property boolean $is_private
  * @property Tag[] $tags
+ * @property EntityTag[] $entityTags
+ * @property EntityNote[] $notes
  * @property EntityMention[] $mentions
  * @property Inventory[] $inventories
  * @property EntityMention[] $targetMentions
@@ -209,6 +211,14 @@ class Entity extends Model
             'id',
             'id'
         );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entityTags()
+    {
+        return $this->hasMany('App\Models\EntityTag', 'entity_id', 'id');
     }
 
     /**
