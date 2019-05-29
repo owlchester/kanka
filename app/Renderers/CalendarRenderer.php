@@ -172,6 +172,11 @@ class CalendarRenderer
         $data = [];
 
         $offset = $this->weekStartoffset();
+        if ($this->calendar->start_offset > 0) {
+            $offset += $this->calendar->start_offset;
+        } elseif ($this->calendar->start_offset < 0) {
+            $offset += count($weekdays) + $this->calendar->start_offset;
+        }
         $events = $this->events();
 
         if (Arr::get($month, 'type') == 'intercalary') {
@@ -187,6 +192,11 @@ class CalendarRenderer
                     $month['length'] += $this->calendar->leap_year_amount;
                 }
             }
+        }
+
+        // If the offset is higher than a week, let's scale it down a week to avoid an empty week row
+        if ($offset >= count($weekdays)) {
+            $offset -= count($weekdays);
         }
 
         $monthLength = $month['length'];
@@ -236,6 +246,9 @@ class CalendarRenderer
         // Fill in the last week?
         $lastWeekDiff = count($week) - count($weekdays);
         if ($lastWeekDiff < 0) {
+            if (abs($lastWeekDiff) >= count($weekdays)) {
+                $lastWeekDiff += count($weekdays);
+            }
             for ($day = $lastWeekDiff; $day < 0; $day++) {
                 $week[] = null;
             }

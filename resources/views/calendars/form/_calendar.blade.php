@@ -230,7 +230,12 @@
                 </div>
             </div>
         </div>
-
+        <hr >
+        <div class="form-group">
+            <label>{{ trans('calendars.fields.start_offset') }}</label>
+            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : $formService->prefill('start_offset', $source), ['class' => 'form-control']) !!}
+            <p class="help-block">{{ __('calendars.helpers.start_offset') }}</p>
+        </div>
         <hr>
         <div class="form-group">
             <label>{{ trans('calendars.panels.leap_year') }}</label>

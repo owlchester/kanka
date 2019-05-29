@@ -30,6 +30,7 @@ class StoreCalendar extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'month_name' => 'required|array|min:2',
             'weekday' => 'required|array|min:2',
+            'start_offset' => 'nullable|integer|min:0|max:99',
             'year_name' => 'required|array',
             'moon_name' => 'nullable|array',
             'epoch_name' => 'nullable|array',

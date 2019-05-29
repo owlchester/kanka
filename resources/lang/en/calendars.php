@@ -93,12 +93,14 @@ return [
         'parameters'        => 'Parameters',
         'recurring_until'   => 'Recurring Until Year',
         'seasons'           => 'Seasons',
+        'start_offset'      => 'Start Offset',
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
+        'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.'
     ],
     'hints'         => [
         'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',

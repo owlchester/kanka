@@ -9,9 +9,9 @@ use App\Traits\VisibleTrait;
 /**
  * Class Calendar
  * @package App\Models
- * @var integer $campaign_id
- * @var string $date
- * @var string $name
+ *
+ * @property string $date
+ * @property integer $start_offset
  */
 class Calendar extends MiscModel
 {
@@ -24,6 +24,7 @@ class Calendar extends MiscModel
         'slug',
         'type',
         'entry',
+        'start_offset',
         'is_private',
         'parameters',
         'months',
