@@ -7,6 +7,19 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 
+/**
+ * Class Quest
+ * @package App\Models
+ * @property integer $quest_id
+ * @property integer $character_id
+ * @property boolean $is_completed
+ * @property Character $character
+ * @property Character[] $characters
+ * @property Quest $quest
+ * @property Quest[] $quests
+ * @property Item[] $items
+ * @property Organisation[] $organisations
+ */
 class Quest extends MiscModel
 {
     /**

@@ -1,5 +1,5 @@
 <?php
-/** @var \App\Models\MiscModel $model */
+/** @var \App\Models\Quest $model */
 $model = $widget->entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
@@ -8,6 +8,9 @@ $model = $widget->entity->child;
             <a href="{{ $model->getLink() }}">
                 @if ($model->is_private)
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                @endif
+                @if ($model->is_completed)
+                    <i class="fa fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
                 {{ $widget->entity->name }}
             </a>
@@ -25,11 +28,6 @@ $model = $widget->entity->child;
                             {{ $model->character->name }}
                         </a>
                     </dd>
-                @endif
-
-                @if ($model->is_completed)
-                    <dt>{{ __('quests.fields.is_completed') }}</dt>
-                    <dd>{{ __('voyager.generic.yes') }}</dd>
                 @endif
             </dl>
 

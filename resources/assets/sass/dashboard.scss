@@ -50,6 +50,12 @@
         }
       }
     }
+    h2 {
+      font-size: 18pt;
+    }
+    h3, h4, h5, h6 {
+      font-size: 16pt;
+    }
     .preview {
       position: relative;
       font-size: 1.2em;
@@ -138,6 +144,17 @@
 }
 
 .panel {
+
+  h1 {
+    font-size: 20pt;
+  }
+  h2 {
+    font-size: 18pt;
+  }
+  h3, h4, h5, h6 {
+    font-size: 16pt;
+  }
+
   .panel-heading-entity {
     background-size: cover;
     background-repeat: no-repeat;
