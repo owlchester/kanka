@@ -158,7 +158,24 @@ class Character extends MiscModel
     {
         return $this->belongsToMany('App\Models\Quest', 'quest_characters')
             ->using('App\Models\Pivots\QuestCharacter')
-            ->withPivot('role');
+            ->withPivot('role', 'is_private');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function relatedQuests()
+    {
+        $query = $this->quests()
+            ->acl()
+            ->orderBy('name', 'ASC')
+            ->with(['characters', 'locations', 'quests']);
+
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            $query->where('quest_characters.is_private', false);
+        }
+
+        return $query;
     }
 
     /**
@@ -276,7 +293,7 @@ class Character extends MiscModel
                 'count' => $count
             ];
         }
-        $questCount = $this->quests()->acl()->count() + $this->questGiver()->acl()->count();
+        $questCount = $this->relatedQuests()->count() + $this->questGiver()->acl()->count();
         if ($campaign->enabled('quests') && $questCount > 0) {
             $items['quests'] = [
                 'name' => 'characters.show.tabs.quests',

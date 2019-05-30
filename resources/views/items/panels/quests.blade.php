@@ -5,7 +5,7 @@
             {{ trans('items.show.tabs.quests') }}
         </h2>
 
-        <?php  $r = $model->quests()->acl()->orderBy('name', 'ASC')->with(['characters', 'locations', 'quests', 'items'])->paginate(); ?>
+        <?php  $r = $model->relatedQuests()->paginate(); ?>
         <table id="item-quests" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

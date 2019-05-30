@@ -140,7 +140,24 @@ class Organisation extends MiscModel
     {
         return $this->belongsToMany('App\Models\Quest', 'quest_organisations')
             ->using('App\Models\Pivots\QuestOrganisation')
-            ->withPivot('role');
+            ->withPivot('role', 'is_private');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function relatedQuests()
+    {
+        $query = $this->quests()
+            ->acl()
+            ->orderBy('name', 'ASC')
+            ->with(['characters', 'locations', 'quests']);
+
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            $query->where('quest_organisations.is_private', false);
+        }
+
+        return $query;
     }
 
     /**
@@ -209,7 +226,7 @@ class Organisation extends MiscModel
                 'count' => $count . ' / ' . $countAll
             ];
         }
-        $count = $this->quests()->acl()->count();
+        $count = $this->relatedQuests()->count();
         if ($campaign->enabled('quests') && $count > 0) {
             $items['quests'] = [
                 'name' => 'organisations.show.tabs.quests',

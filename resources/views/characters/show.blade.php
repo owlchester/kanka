@@ -94,7 +94,7 @@
     @if ($campaign->enabled('journals') && $model->journals()->count() > 0)
         @include('characters.panels.journals')
     @endif
-    @if ($campaign->enabled('quests') && $model->quests()->count() > 0)
+    @if ($campaign->enabled('quests') && $model->relatedQuests()->count() > 0)
         @include('characters.panels.quests')
     @endif
     @if ($campaign->enabled('dice_rolls') && $model->diceRolls()->count() > 0)

@@ -203,7 +203,24 @@ class Location extends MiscModel
     {
         return $this->belongsToMany('App\Models\Quest', 'quest_locations')
             ->using('App\Models\Pivots\QuestLocation')
-            ->withPivot('role');
+            ->withPivot('role', 'is_private');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function relatedQuests()
+    {
+        $query = $this->quests()
+            ->acl()
+            ->orderBy('name', 'ASC')
+            ->with(['characters', 'locations', 'quests']);
+
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            $query->where('quest_locations.is_private', false);
+        }
+
+        return $query;
     }
 
     /**
@@ -318,7 +335,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->quests()->acl()->count();
+        $count = $this->relatedQuests()->count();
         if ($campaign->enabled('quests') && $count > 0) {
             $items['quests'] = [
                 'name' => 'locations.show.tabs.quests',

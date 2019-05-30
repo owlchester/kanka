@@ -141,16 +141,24 @@ class Item extends MiscModel
     {
         return $this->belongsToMany('App\Models\Quest', 'quest_items')
             ->using('App\Models\Pivots\QuestItem')
-            ->withPivot('role');
+            ->withPivot('role', 'is_private');
+    }
 
-        return $this->hasManyThrough(
-            'App\Models\Quest',
-            'App\Models\QuestItem',
-            'item_id',
-            'id',
-            'id',
-            'quest_id'
-        );
+    /**
+     * @return mixed
+     */
+    public function relatedQuests()
+    {
+        $query = $this->quests()
+            ->acl()
+            ->orderBy('name', 'ASC')
+            ->with(['characters', 'locations', 'quests']);
+
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            $query->where('quest_items.is_private', false);
+        }
+
+        return $query;
     }
 
     /**

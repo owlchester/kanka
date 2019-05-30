@@ -10,7 +10,7 @@
             @include('characters.panels._quest', ['role' => false])
         @endif
 
-        <?php  $r = $model->quests()->acl()->orderBy('name', 'ASC')->with(['characters', 'locations', 'quests'])->paginate(); ?>
+        <?php  $r = $model->relatedQuests()->paginate(); ?>
         @if ($r->count() > 0)
             <p class="help-block">{{ __('characters.quests.helpers.quest_member') }}</p>
             @include('characters.panels._quest', ['role' => true])

@@ -191,32 +191,32 @@ class Quest extends MiscModel
     {
         $campaign = $this->campaign;
 
-        $count = $this->characters()->acl()->count();
         if ($campaign->enabled('characters')) {
+            $count = $this->characters()->with('character')->has('character')->acl()->count();
             $items['characters'] = [
                 'name' => 'quests.show.tabs.characters',
                 'route' => 'quests.characters',
                 'count' => $count
             ];
         }
-        $count = $this->locations()->acl()->count();
         if ($campaign->enabled('locations')) {
+            $count = $this->locations()->with('location')->has('location')->acl()->count();
             $items['locations'] = [
                 'name' => 'quests.show.tabs.locations',
                 'route' => 'quests.locations',
                 'count' => $count
             ];
         }
-        $count = $this->items()->acl()->count();
         if ($campaign->enabled('items')) {
+            $count = $this->items()->acl()->with('item')->has('item')->count();
             $items['items'] = [
                 'name' => 'quests.show.tabs.items',
                 'route' => 'quests.items',
                 'count' => $count
             ];
         }
-        $count = $this->organisations()->acl()->count();
         if ($campaign->enabled('organisations')) {
+            $count = $this->organisations()->acl()->with('organisation')->has('organisation')->count();
             $items['organisations'] = [
                 'name' => 'quests.show.tabs.organisations',
                 'route' => 'quests.organisations',
