@@ -12,18 +12,15 @@
         @endcan
 
         <div class="row">
-            @foreach ($model->organisations()->acl()->with('organisation')->get() as $organisation)
-                @if ($organisation->organisation)
+            @foreach ($model->organisations()->acl()->with('organisation')->has('organisation)->get() as $organisation)
                 <div class="col-md-6">
                     <div class="box box-widget widget-user-2">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-success">
-                            @if ($organisation->organisation->image)
                                 <div class="widget-user-image">
                                     <div class="entity-image" style="background: url({{ $organisation->organisation->getImageUrl(true) }})" title="{{ $organisation->organisation->name }}">
                                     </div>
                                 </div>
-                            @endif
                             <!-- /.widget-user-image -->
                             <h3 class="widget-user-username">
                                 @if ($organisation->is_private)
@@ -51,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
             @endforeach
         </div>
     </div>

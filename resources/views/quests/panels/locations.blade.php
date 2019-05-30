@@ -12,18 +12,15 @@
         @endcan
 
         <div class="row">
-            @foreach ($model->locations()->acl()->with('location')->get() as $location)
-                @if ($location->location)
+            @foreach ($model->locations()->acl()->with('location')->has('location')->get() as $location)
                 <div class="col-md-6">
                     <div class="box box-widget widget-user-2">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-success">
-                            @if ($location->location->image)
                                 <div class="widget-user-image">
                                     <div class="entity-image" style="background: url({{ $location->location->getImageUrl(true) }})" title="{{ $location->location->name }}">
                                     </div>
                                 </div>
-                            @endif
                             <!-- /.widget-user-image -->
                             <h3 class="widget-user-username">
                                 @if ($location->is_private)
@@ -51,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
             @endforeach
         </div>
     </div>
