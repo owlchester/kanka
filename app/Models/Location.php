@@ -196,20 +196,14 @@ class Location extends MiscModel
         return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
     }
 
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function quests()
     {
-        return $this->hasManyThrough(
-            'App\Models\Quest',
-            'App\Models\QuestLocation',
-            'location_id',
-            'id',
-            'id',
-            'quest_id'
-        );
+        return $this->belongsToMany('App\Models\Quest', 'quest_locations')
+            ->using('App\Models\Pivots\QuestLocation')
+            ->withPivot('role');
     }
 
     /**

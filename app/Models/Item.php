@@ -139,6 +139,10 @@ class Item extends MiscModel
      */
     public function quests()
     {
+        return $this->belongsToMany('App\Models\Quest', 'quest_items')
+            ->using('App\Models\Pivots\QuestItem')
+            ->withPivot('role');
+
         return $this->hasManyThrough(
             'App\Models\Quest',
             'App\Models\QuestItem',
@@ -147,6 +151,14 @@ class Item extends MiscModel
             'id',
             'quest_id'
         );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function itemQuests()
+    {
+        return $this->hasMany('App\Models\QuestItem', 'item_id');
     }
 
     /**

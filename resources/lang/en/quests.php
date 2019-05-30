@@ -46,6 +46,7 @@ return [
         'organisations' => 'Organisations',
         'quest'         => 'Parent Quest',
         'quests'        => 'Sub Quests',
+        'role'          => 'Role',
         'type'          => 'Type',
     ],
     'helpers'       => [
@@ -123,6 +124,7 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the quest',
         'quest' => 'Parent Quest',
+        'role'  => 'This entity\'s role in the quest',
         'type'  => 'Character Arc, Sidequest, Main',
     ],
     'show'          => [

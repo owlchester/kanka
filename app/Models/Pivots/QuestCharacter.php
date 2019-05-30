@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Pivots;
 
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class QuestCharacter
@@ -12,7 +13,7 @@ use App\Traits\VisibleTrait;
  * @property string $description
  * @property string $role
  */
-class QuestCharacter extends MiscModel
+class QuestCharacter extends Pivot
 {
     /**
      * Traits

@@ -27,6 +27,7 @@ class StoreQuestOrganisation extends FormRequest
             'quest_id' => 'required|exists:quests,id',
             'organisation_id' => 'required|exists:organisations,id',
             'description' => '',
+            'role' => 'nullable|string|max:45',
         ];
     }
 }

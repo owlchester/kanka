@@ -27,6 +27,7 @@ class StoreQuestCharacter extends FormRequest
             'quest_id' => 'required|exists:quests,id',
             'character_id' => 'required|exists:characters,id',
             'description' => '',
+            'role' => 'nullable|string|max:45',
         ];
     }
 }

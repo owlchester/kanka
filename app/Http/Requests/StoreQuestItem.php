@@ -27,6 +27,7 @@ class StoreQuestItem extends FormRequest
             'quest_id' => 'required|exists:quests,id',
             'item_id' => 'required|exists:items,id',
             'description' => '',
+            'role' => 'nullable|string|max:45',
         ];
     }
 }

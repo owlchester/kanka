@@ -3093,6 +3093,12 @@ td.breakable {
   z-index: 1500;
 }
 
+.widget-user-image .entity-image {
+  float: left;
+  height: 65px;
+  width: 65px;
+}
+
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;

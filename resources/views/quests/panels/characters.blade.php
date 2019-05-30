@@ -19,17 +19,21 @@
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-success">
                             @if ($character->character->image)
-                                <img class="direct-chat-img" src="{{ $character->character->getImageUrl(true) }}" alt="{{ $character->character->name }}">
+                                <div class="widget-user-image">
+                                    <div class="entity-image" style="background: url({{ $character->character->getImageUrl(true) }})" title="{{ $character->character->name }}">
+                                    </div>
+                                </div>
                             @endif
 
                             <h3 class="widget-user-username">
+                                @if ($character->is_private)
+                                    <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                                @endif
                                 <a href="{{ route('characters.show', $character->character) }}" data-toggle="tooltip" title="{{ $character->character->tooltipWithName() }}" data-html="true">
                                     {{ $character->character->name }}
                                 </a>
-                                @if ($character->is_private)
-                                    <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
-                                @endif
                             </h3>
+                            <h5 class="widget-user-desc">{{ $character->role }}<br /></h5>
                         </div>
                         <div class="box-body">
                             <p>{!! $character->description !!}</p>

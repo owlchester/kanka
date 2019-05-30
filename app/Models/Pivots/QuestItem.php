@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Pivots;
 
+use App\Models\Item;
+use App\Models\Quest;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
- * Class QuestCharacter
+ * Class QuestItem
  * @package App\Models
- * @property integer $character_id
- * @property Character $character
+ * @property integer $item_id
+ * @property Item $item
+ * @property integer $quest_id
+ * @property Quest $quest
  * @property string $description
  * @property string $role
+ * @property boolean $is_private
  */
-class QuestCharacter extends MiscModel
+class QuestItem extends Pivot
 {
     /**
      * Traits
@@ -21,22 +27,22 @@ class QuestCharacter extends MiscModel
 
     /**
      * ACL Trait config
-     * Tell the ACL trait that we aren't looking on this model but on locations.
+     * Tell the ACL trait that we aren't looking on this model but on items.
      */
-    public $entityType = 'character';
-    public $aclFieldName = 'character_id';
+    public $entityType = 'item';
+    public $aclFieldName = 'item_id';
 
     /**
      * @var string
      */
-    public $table = 'quest_characters';
+    public $table = 'quest_item';
 
     /**
      * @var array
      */
     protected $fillable = [
         'quest_id',
-        'character_id',
+        'item_id',
         'description',
         'role',
         'is_private'
@@ -53,8 +59,8 @@ class QuestCharacter extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function character()
+    public function item()
     {
-        return $this->belongsTo('App\Models\Character', 'character_id');
+        return $this->belongsTo('App\Models\Item', 'item_id');
     }
 }

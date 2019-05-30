@@ -4,6 +4,14 @@ namespace App\Models;
 
 use App\Traits\VisibleTrait;
 
+/**
+ * Class QuestOrganisation
+ * @package App\Models
+ * @property integer $organisation_id
+ * @property Organisation $organisation
+ * @property string $description
+ * @property string $role
+ */
 class QuestOrganisation extends MiscModel
 {
     /**
@@ -26,7 +34,13 @@ class QuestOrganisation extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['quest_id', 'organisation_id', 'description', 'is_private'];
+    protected $fillable = [
+        'quest_id',
+        'organisation_id',
+        'description',
+        'role',
+        'is_private'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

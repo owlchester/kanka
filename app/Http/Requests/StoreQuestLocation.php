@@ -27,6 +27,7 @@ class StoreQuestLocation extends FormRequest
             'quest_id' => 'required|exists:quests,id',
             'location_id' => 'required|exists:locations,id',
             'description' => '',
+            'role' => 'nullable|string|max:45',
         ];
     }
 }

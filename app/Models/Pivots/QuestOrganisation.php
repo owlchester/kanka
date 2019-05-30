@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Pivots;
 
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
- * Class QuestCharacter
+ * Class QuestOrganisation
  * @package App\Models
- * @property integer $character_id
- * @property Character $character
+ * @property integer $organisation_id
+ * @property Organisation $organisation
  * @property string $description
  * @property string $role
  */
-class QuestCharacter extends MiscModel
+class QuestOrganisation extends Pivot
 {
     /**
      * Traits
@@ -21,22 +22,22 @@ class QuestCharacter extends MiscModel
 
     /**
      * ACL Trait config
-     * Tell the ACL trait that we aren't looking on this model but on locations.
+     * Tell the ACL trait that we aren't looking on this model but on organisations.
      */
-    public $entityType = 'character';
-    public $aclFieldName = 'character_id';
+    public $entityType = 'organisation';
+    public $aclFieldName = 'organisation_id';
 
     /**
      * @var string
      */
-    public $table = 'quest_characters';
+    public $table = 'quest_organisations';
 
     /**
      * @var array
      */
     protected $fillable = [
         'quest_id',
-        'character_id',
+        'organisation_id',
         'description',
         'role',
         'is_private'
@@ -53,8 +54,8 @@ class QuestCharacter extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function character()
+    public function organisation()
     {
-        return $this->belongsTo('App\Models\Character', 'character_id');
+        return $this->belongsTo('App\Models\Organisation', 'organisation_id');
     }
 }

@@ -14,21 +14,44 @@
         // Name
         'name',
         'type',
+        // Character
         [
-            'label' => trans('quests.fields.quests'),
+            'type' => 'avatar',
+            'parent' => 'character',
+            'parent_route' => 'characters',
+            'visible' => $campaign->enabled('characters'),
+        ],
+        [
+            'type' => 'character',
+            'visible' => $campaign->enabled('characters'),
+        ],
+        [
+            'label' => trans('quests.fields.locations'),
+            'visible' => $campaign->enabled('locations'),
             'render' => function($model) {
-                return $model->quests()->count();
+                return $model->locations()->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('quests.fields.quest'),
+            'label' => trans('quests.fields.characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                if ($model->quest) {
-                    return '<a href="' . route('quests.show', $model->quest->id) . '">' . e($model->quest->name) . '</a>';
-                }
+                return $model->characters()->count();
             },
-            'field' => 'quest.name',
+            'disableSort' => true,
+        ],
+        [
+            'label' => trans('quests.fields.organisations'),
+            'visible' => $campaign->enabled('organisations'),
+            'render' => function($model) {
+                return $model->organisations()->count();
+            },
+            'disableSort' => true,
+        ],
+        'is_completed',
+        [
+            'type' => 'calendar_date',
         ],
         [
             'type' => 'is_private',

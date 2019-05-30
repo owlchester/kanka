@@ -152,18 +152,13 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function quests()
     {
-        return $this->hasManyThrough(
-            'App\Models\Quest',
-            'App\Models\QuestCharacter',
-            'character_id',
-            'id',
-            'id',
-            'quest_id'
-        );
+        return $this->belongsToMany('App\Models\Quest', 'quest_characters')
+            ->using('App\Models\Pivots\QuestCharacter')
+            ->withPivot('role');
     }
 
     /**

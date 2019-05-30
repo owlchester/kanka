@@ -737,4 +737,13 @@ td.breakable {
   z-index: 1500;
 }
 
+// Quest entity image
+.widget-user-image {
+  .entity-image {
+    float: left;
+    height: 65px;
+    width: 65px;
+  }
+}
+
 @import "mobile";

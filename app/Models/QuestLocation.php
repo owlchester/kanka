@@ -4,6 +4,14 @@ namespace App\Models;
 
 use App\Traits\VisibleTrait;
 
+/**
+ * Class QuestLocation
+ * @package App\Models
+ * @property integer $location_id
+ * @property Location $location
+ * @property string $description
+ * @property string $role
+ */
 class QuestLocation extends MiscModel
 {
     /**
@@ -26,7 +34,13 @@ class QuestLocation extends MiscModel
     /**
      * @var array
      */
-    protected $fillable = ['quest_id', 'location_id', 'description', 'is_private'];
+    protected $fillable = [
+        'quest_id',
+        'location_id',
+        'description',
+        'role',
+        'is_private'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

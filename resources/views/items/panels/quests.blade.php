@@ -1,14 +1,16 @@
+<?php /** @var \App\Models\Item $model */?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('items.show.tabs.quests') }}
         </h2>
 
-        <?php  $r = $model->quests()->acl()->orderBy('name', 'ASC')->with(['characters', 'locations', 'quests'])->paginate(); ?>
+        <?php  $r = $model->quests()->acl()->orderBy('name', 'ASC')->with(['characters', 'locations', 'quests', 'items'])->paginate(); ?>
         <table id="item-quests" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('quests.fields.name') }}</th>
+                <th class="hidden-sm">{{ trans('quests.fields.role') }}</th>
                 <th class="hidden-sm">{{ trans('quests.fields.type') }}</th>
                 <th class="hidden-sm">{{ trans('quests.fields.quest') }}</th>
                 @if ($campaign->enabled('locations'))
@@ -27,6 +29,9 @@
                     </td>
                     <td>
                         <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltipWithName() }}" data-html="true">{{ $quest->name }}</a>
+                    </td>
+                    <td>
+                        {{ $quest->pivot->role }}
                     </td>
                     <td class="hidden-sm">{{ $quest->type }}</td>
                     <td class="hidden-sm">

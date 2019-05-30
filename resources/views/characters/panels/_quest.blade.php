@@ -3,6 +3,7 @@
         <tr>
             <th class="avatar"><br /></th>
             <th>{{ trans('quests.fields.name') }}</th>
+            @if ($role)<th class="hidden-sm">{{ trans('quests.fields.role') }}</th>@endif
             <th class="visible-sm">{{ trans('quests.fields.type') }}</th>
             <th class="visible-sm">{{ trans('quests.fields.quest') }}</th>
             @if ($campaign->enabled('locations'))
@@ -22,6 +23,9 @@
             <td>
                 <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltipWithName() }}" data-html="true">{{ $quest->name }}</a>
             </td>
+            @if ($role)<td>
+                {{ $quest->pivot->role }}
+            </td>@endif
             <td class="visible-sm">{{ $quest->type }}</td>
             <td class="visible-sm">
                 @if ($quest->quest)
