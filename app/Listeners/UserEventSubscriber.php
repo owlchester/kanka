@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\InviteService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Exception;
 
@@ -44,6 +45,8 @@ class UserEventSubscriber
                 'ip' => request()->ip()
             ]);
             $log->save();
+
+            $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
         }
 
         // We want to register in the session a campaign_id

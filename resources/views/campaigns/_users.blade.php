@@ -14,6 +14,7 @@
                 <th>{{ trans('campaigns.members.fields.name') }}</th>
                 <th>{{ trans('campaigns.members.fields.roles') }}</th>
                 <th class="hidden-xs hidden-md">{{ trans('campaigns.members.fields.joined') }}</th>
+                <th class="hidden-xs hidden-md">{{ trans('campaigns.members.fields.last_login') }}</th>
                 <th>&nbsp;</th>
             </tr>
             <?php /** @var \App\Models\CampaignUser $relation */?>
@@ -24,6 +25,11 @@
                     <td class="hidden-xs hidden-md">
                         @if (!empty($relation->created_at))
                             <span title="{{ $relation->created_at }}+00:00">{{ $relation->created_at->diffForHumans() }}</span>
+                        @endif
+                    </td>
+                    <td class="hidden-xs hidden-md">
+                        @if (!empty($relation->user->last_login_at))
+                            <span title="{{ $relation->user->last_login_at }}+00:00">{{ $relation->user->last_login_at->diffForHumans() }}</span>
                         @endif
                     </td>
 

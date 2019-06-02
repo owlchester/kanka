@@ -17,8 +17,13 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App
  *
- * @var string $name
- * @var integer $welcome_campaign_id
+ * @property string $name
+ * @property string $email
+ * @property integer $last_campaign_id
+ * @property string $provider
+ * @property integer $provider_id
+ * @property string $last_login_at
+ * @property integer $welcome_campaign_id
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -60,6 +65,7 @@ class User extends \TCG\Voyager\Models\User
         'date_format',
         'default_pagination',
         'locale', // Keep this for the LocaleChange middleware
+        'last_login_at',
     ];
 
     /**
@@ -69,6 +75,15 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'last_login_at',
     ];
 
     /**

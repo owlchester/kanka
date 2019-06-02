@@ -138,6 +138,7 @@ return [
         ],
         'fields'                => [
             'joined'    => 'Joined',
+            'last_login' => 'Last Login',
             'name'      => 'User',
             'role'      => 'Role',
             'roles'     => 'Roles',
