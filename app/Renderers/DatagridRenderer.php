@@ -485,6 +485,8 @@ class DatagridRenderer
             'name' => $this->getOption('trans')
         ]);
 
+
+        $filtersHtml = str_replace("&#039;", '&lsquo;', $filtersHtml);
         $filtersHtml = str_replace('"', '\'', $filtersHtml);
         $activeFilters = $this->filterService->activeFilters();
 
@@ -495,6 +497,7 @@ class DatagridRenderer
             ' . (!empty($activeFilters) ? '<span class="label label-danger">' . $activeFilters . '</span>' : null) . '
             <i class="fa fa-caret-down"></i>
         </div>';
+
 
         return $html;
     }
