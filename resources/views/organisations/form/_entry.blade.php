@@ -8,7 +8,7 @@
         <div class="form-group">
             {!! Form::select2(
                 'organisation_id',
-                (isset($model) && $model->organisation ? $model->organisation : $formService->prefillSelect('organisation', $source)),
+                (isset($model) && $model->organisation ? $model->organisation : $formService->prefillSelect('organisation', $source, true, \App\Models\Organisation::class)),
                 App\Models\Organisation::class,
                 true,
                 'organisations.fields.organisation'

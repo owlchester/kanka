@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Family;
 use App\Models\MiscModel;
 
 class FormService
@@ -33,13 +34,23 @@ class FormService
      * @param null $entity
      * @return array
      */
-    public function prefillSelect($field, $entity = null)
+    public function prefillSelect($field, $entity = null, $checkForParent = false, $parentClass = null)
     {
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
             $value = $entity->$field;
             if (!empty($value) and is_object($value)) {
                 return [$value->id => $value->name];
+            }
+        }
+
+        $parent = request()->get('parent_id', false);
+        if ($checkForParent && $parent !== false) {
+            /** @var Family $class */
+            $class = new $parentClass;
+            $parent = $class->acl()->find($parent);
+            if ($parent) {
+                return [$parent->id => $parent->name];
             }
         }
 

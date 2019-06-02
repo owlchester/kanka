@@ -14,7 +14,7 @@
             @include('layouts.datagrid.search', ['route' => route($name . '.index')])
 
             @can('create', $model)
-                <a href="{{ route($name . '.create') }}" class="btn btn-primary pull-right">
+                <a href="{{ route($name . '.create', $createOptions) }}" class="btn btn-primary pull-right">
                     <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
                 </a>
             @endcan

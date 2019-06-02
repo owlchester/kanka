@@ -37,6 +37,7 @@ trait TreeControllerTrait
             ->order($this->filterService->order());
 
         $singularModel = str_singular($this->view);
+        $createOptions = [];
 
         $parentKey = !empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id';
         if (request()->has('parent_id')) {
@@ -50,6 +51,7 @@ trait TreeControllerTrait
                     'class' => 'default',
                     'label' => '<i class="fa fa-arrow-left"></i> ' . $parent->$singularModel->name
                 ];
+                $createOptions['parent_id'] = $parent->$singularModel->id;
             } else {
                 // Go back to first level
                 $actions[] = [
@@ -57,6 +59,7 @@ trait TreeControllerTrait
                     'class' => 'default',
                     'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
                 ];
+                $createOptions['parent_id'] = $parent->id;
             }
         } else {
             $base->whereNull($parentKey);
@@ -82,7 +85,8 @@ trait TreeControllerTrait
             'view',
             'route',
             'unfilteredCount',
-            'filteredCount'
+            'filteredCount',
+            'createOptions'
         ));
     }
 }

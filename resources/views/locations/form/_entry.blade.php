@@ -8,7 +8,7 @@
         <div class="form-group">
             {!! Form::select2(
                 'parent_location_id',
-                (isset($model) && $model->parentLocation ? $model->parentLocation : $formService->prefillSelect('parentLocation', $source)),
+                (isset($model) && $model->parentLocation ? $model->parentLocation : $formService->prefillSelect('parentLocation', $source, true, \App\Models\Location::class)),
                 App\Models\Location::class,
                 true,
                 'crud.fields.location',
