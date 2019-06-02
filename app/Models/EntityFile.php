@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\Traits\OrderableTrait;
+use App\Traits\VisibilityTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
@@ -20,9 +21,12 @@ use DateTime;
  * @property integer $size
  * @property integer $created_by
  * @property boolean $is_private
+ * @property string $visibility
  */
 class EntityFile extends Model
 {
+    use VisibilityTrait;
+
     /**
      * @var array
      */
@@ -31,6 +35,7 @@ class EntityFile extends Model
         'name',
         'created_by',
         'is_private',
+        'visibility',
     ];
 
     /**

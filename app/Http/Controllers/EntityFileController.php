@@ -93,8 +93,7 @@ class EntityFileController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $entityFile->name = $request->post('name');
-        $entityFile->save();
+        $entityFile->update($request->only('name', 'visibility'));
 
         return response()->json(['success' => true]);
     }

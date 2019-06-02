@@ -17,6 +17,7 @@ class EntityFile extends EntityChild
     {
         return $this->entity([
             'name' => $this->name,
+            'visibility' => $this->visibility,
             'type' => $this->type,
             'path' => Storage::url($this->path),
             'size' => $this->size,

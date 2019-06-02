@@ -13,7 +13,8 @@ $(document).ready(function () {
                 initEntityFileModal();
                 registerDeleteBtn();
                 registerRenameBtn();
-                registerRenameField()
+                registerRenameField();
+                registerVisibilityChange();
             });
         });
     }
@@ -126,7 +127,6 @@ function registerDeleteBtn() {
 function registerRenameBtn() {
     $('.entity-file-rename').each(function(i) {
         $(this).unbind('click').on('click', function(e) {
-            console.log('rename click');
             $(this).parent().children('a').hide();
             $(this).parent().children('input').val($(this).data('default')).show().focus();
             $(this).hide();
@@ -190,6 +190,32 @@ function registerRenameField() {
 }
 
 /**
+ * Change the visibility of an entity file
+ */
+function registerVisibilityChange()
+{
+    $('.entity-file-visibility').on('click', function(e) {
+        e.preventDefault();
+
+        // Ajax rename.
+        $.post({
+            url: $(this).data('url'),
+            data: {
+                '_method': 'PATCH',
+                'visibility': $(this).data('visibility'),
+                'csrf-token': $('.csrf-token').val()
+            },
+            datatype: 'JSON',
+            context: this
+        }).done(function (data) {
+            var target = $(this).parent().parent().data('target');
+            $('#' + target).removeClass('fas far fa-lock fa-user-lock fa-eye');
+            $('#' + target).addClass($(this).data('icon')).prop('title', $(this).attr('title'));
+        });
+    });
+}
+
+/**
  *
  * @param data
  * @returns {string}
@@ -215,6 +241,7 @@ function replaceFileList(data) {
     registerDeleteBtn();
     registerRenameBtn();
     registerRenameField();
+    registerVisibilityChange();
 }
 
 /**
