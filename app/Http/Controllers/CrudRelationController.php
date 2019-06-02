@@ -57,12 +57,14 @@ class CrudRelationController extends Controller
         $name = $this->view;
         $route = $this->route;
         $parent = explode('.', $this->view)[0];
+        $ajax = request()->ajax();
 
         return view('cruds.relations.create', compact(
             'model',
             'name',
             'route',
-            'parent'
+            'parent',
+            'ajax'
         ));
     }
 
@@ -98,13 +100,15 @@ class CrudRelationController extends Controller
         $name = $this->view;
         $route = $this->route;
         $parent = explode('.', $this->view)[0];
+        $ajax = request()->ajax();
 
         return view('cruds.relations.edit', compact(
             'model',
             'relation',
             'name',
             'route',
-            'parent'
+            'parent',
+            'ajax'
         ));
     }
 

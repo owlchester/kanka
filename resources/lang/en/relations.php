@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new relation',
+        'description'   => '',
         'success'       => 'Relation added for :name.',
-        'title'         => 'Create relations',
+        'title'         => 'Create relation for :name',
     ],
     'destroy'       => [
         'success'   => 'Relation removed for :name.',
     ],
     'edit'          => [
         'success'   => 'Relation updated for :name.',
-        'title'     => 'Update relations',
+        'title'     => 'Update relation for :name',
     ],
     'fields'        => [
         'relation'  => 'Relation',
