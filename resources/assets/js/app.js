@@ -6,9 +6,11 @@
 require('./bootstrap');
 
 /**
- * Notifications: List and Count selector, and seconds for the timeout to refresh the list
+ * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
+ * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
+ * Todo: workaround to only run timeout if the window is active
  */
-var notificationList, notificationCount, notificationRefreshTimeout = 60 * 1000;
+var notificationList, notificationCount, notificationRefreshTimeout = 60 * 5000;
 
 $(document).ready(function() {
 
