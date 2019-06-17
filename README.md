@@ -43,6 +43,7 @@ php artisan key:generate
 php artisan storage:link
 php artisan voyager:install
 php artisan migrate
+php artisan db:seed
 ```
 
 That should cover you. You can now create an account. If you have errors on the dashboard, check that your `roles` table has entries, and that your user has a valid `role_id` value.
@@ -94,6 +95,10 @@ Assets can be compiled by following the [Laravel Documentation](https://laravel.
 
 You'll need to install the various npm packages first.
 > npm install
+
+On Windows, I've had to install cross-env globally for this to work.
+
+> npm install cross-env -g
 
 The following will produce assets for development
 

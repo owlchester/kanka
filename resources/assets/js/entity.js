@@ -197,6 +197,14 @@ function registerVisibilityChange()
     $('.entity-file-visibility').on('click', function(e) {
         e.preventDefault();
 
+        var parent = $(this).parent().parent();
+        var target = parent.data('target');
+        var targetLoading = parent.data('target-loading');
+        $('#' + target).removeClass('fas far fa-lock fa-user-lock fa-eye entity-file-visibility-dropdown')
+            .addClass('hidden');
+
+        $('#' + targetLoading).removeClass('hidden');
+
         // Ajax rename.
         $.post({
             url: $(this).data('url'),
@@ -208,9 +216,15 @@ function registerVisibilityChange()
             datatype: 'JSON',
             context: this
         }).done(function (data) {
-            var target = $(this).parent().parent().data('target');
-            $('#' + target).removeClass('fas far fa-lock fa-user-lock fa-eye');
-            $('#' + target).addClass($(this).data('icon')).prop('title', $(this).attr('title'));
+            var parent = $(this).parent().parent();
+            var target = parent.data('target');
+            var targetLoading = parent.data('target-loading');
+            $('#' + target).removeClass('hidden');
+            $('#' + target).addClass($(this).data('icon') + ' entity-file-visibility-dropdown')
+                .prop('title', $(this).attr('title'));
+
+            $('#' + targetLoading).addClass('hidden');
+
         });
     });
 }

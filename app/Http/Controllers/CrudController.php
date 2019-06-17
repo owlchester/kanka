@@ -253,7 +253,7 @@ class CrudController extends Controller
 
         return view(
             'cruds.show',
-            compact('model', 'name', 'permissions', 'ajax')
+            compact('model', 'name', 'ajax')
         );
     }
 

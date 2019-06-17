@@ -10,9 +10,11 @@ if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
     $icon =  "far fa-eye";
 }
 ?>
-<i id="entity-file-{{ $model->id }}" class="{{ $icon }} @if ($live)pull-right margin-r-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false @endif" title="{{ __('crud.visibilities.' . $model->visibility) }}"></i>
 @if ($live && auth()->check())
-<ul class="pull-right margin-r-5 dropdown-menu" aria-labelledby="dLabel" data-target="entity-file-{{ $model->id }}">
+    <i id="entity-file-{{ $model->id }}" class="{{ $icon }} pull-right margin-r-5 entity-file-visibility-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{ __('crud.visibilities.' . $model->visibility) }}"></i>
+    <i id="entity-file-loading-{{ $model->id }}" class="pull-right margin-r-5 fa fa-spinner fa-spin hidden"></i>
+
+    <ul class="pull-right margin-r-5 dropdown-menu" aria-labelledby="dLabel" data-target="entity-file-{{ $model->id }}" data-target-loading="entity-file-loading-{{ $model->id }}">
     <li>
         <a href="#" class="entity-file-visibility" data-url="{{ route('entities.entity_files.update', [$entity, $file]) }}" data-visibility="all" data-icon="far fa-eye" title="{{ __('crud.visibilities.all') }}">
             <i class="far fa-eye"></i>
@@ -33,4 +35,6 @@ if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
     </li>
     @endif
 </ul>
+@else
+    <i id="entity-file-{{ $model->id }}" class="{{ $icon }}" title="{{ __('crud.visibilities.' . $model->visibility) }}"></i>
 @endif
