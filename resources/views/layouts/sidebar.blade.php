@@ -5,7 +5,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
 <aside class="main-sidebar">
-    <section class="sidebar">
+    <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->active('dashboard') }}">
                 <a href="{{ route('dashboard') }}">
@@ -44,7 +44,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                         @endif
                     @endforeach
                     @if(Auth::check() && Auth::user()->isAdmin())
-                        <li class="{{ $sidebar->active('menu_links') }}"><a href="{{ route('menu_links.index') }}"><i class="fas fa-lock"></i> {{ trans('sidebar.manage_links') }}</a></li>
+                        <li class="{{ $sidebar->active('menu_links') }}">
+                            <a href="{{ route('menu_links.index') }}">
+                                <i class="fas fa-lock"></i> <span>{{ trans('sidebar.manage_links') }}</span>
+                            </a>
+                        </li>
                     @endif
                 </ul>
             </li>
