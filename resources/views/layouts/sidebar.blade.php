@@ -46,7 +46,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     @if(Auth::check() && Auth::user()->isAdmin())
                         <li class="{{ $sidebar->active('menu_links') }}">
                             <a href="{{ route('menu_links.index') }}">
-                                <i class="fas fa-lock"></i> <span>{{ trans('sidebar.manage_links') }}</span>
+                                <i class="fa fas fa-lock"></i> {{ trans('sidebar.manage_links') }}
                             </a>
                         </li>
                     @endif

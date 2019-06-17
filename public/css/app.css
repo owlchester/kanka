@@ -2846,10 +2846,6 @@ div.mce-fullscreen {
   font-size: 13px;
 }
 
-.sidebar-menu li {
-  overflow: hidden;
-}
-
 .panel-toggable {
   cursor: pointer;
 }
