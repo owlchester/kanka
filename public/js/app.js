@@ -36,12 +36,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -57,7 +77,8 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
+/******/
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -66,6 +87,10 @@
 /******/ ({
 
 /***/ "./node_modules/admin-lte/dist/js/adminlte.min.js":
+/*!********************************************************!*\
+  !*** ./node_modules/admin-lte/dist/js/adminlte.min.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*! AdminLTE app.js
@@ -74,37 +99,43 @@
 * should be included in all pages. It controls some layout
 * options and implements exclusive AdminLTE plugins.
 *
-* @Author  Almsaeed Studio
-* @Support <https://www.almsaeedstudio.com>
-* @Email   <abdullah@almsaeedstudio.com>
-* @version 2.4.8
-* @repository git://github.com/almasaeed2010/AdminLTE.git
+* @author Colorlib
+* @support <https://github.com/ColorlibHQ/AdminLTE/issues>
+* @version 2.4.12
+* @repository git://github.com/ColorlibHQ/AdminLTE.git
 * @license MIT <http://opensource.org/licenses/MIT>
 */
-if("undefined"==typeof jQuery)throw new Error("AdminLTE requires jQuery");+function(a){"use strict";function b(b){return this.each(function(){var e=a(this),g=e.data(c);if(!g){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,g=new f(e,h))}if("string"==typeof g){if(void 0===g[b])throw new Error("No method named "+b);g[b]()}})}var c="lte.boxrefresh",d={source:"",params:{},trigger:".refresh-btn",content:".box-body",loadInContent:!0,responseType:"",overlayTemplate:'<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',onLoadStart:function(){},onLoadDone:function(a){return a}},e={data:'[data-widget="box-refresh"]'},f=function(b,c){if(this.element=b,this.options=c,this.$overlay=a(c.overlayTemplate),""===c.source)throw new Error("Source url was not defined. Please specify a url in your BoxRefresh source option.");this._setUpListeners(),this.load()};f.prototype.load=function(){this._addOverlay(),this.options.onLoadStart.call(a(this)),a.get(this.options.source,this.options.params,function(b){this.options.loadInContent&&a(this.element).find(this.options.content).html(b),this.options.onLoadDone.call(a(this),b),this._removeOverlay()}.bind(this),""!==this.options.responseType&&this.options.responseType)},f.prototype._setUpListeners=function(){a(this.element).on("click",this.options.trigger,function(a){a&&a.preventDefault(),this.load()}.bind(this))},f.prototype._addOverlay=function(){a(this.element).append(this.$overlay)},f.prototype._removeOverlay=function(){a(this.$overlay).remove()};var g=a.fn.boxRefresh;a.fn.boxRefresh=b,a.fn.boxRefresh.Constructor=f,a.fn.boxRefresh.noConflict=function(){return a.fn.boxRefresh=g,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.boxwidget",d={animationSpeed:500,collapseTrigger:'[data-widget="collapse"]',removeTrigger:'[data-widget="remove"]',collapseIcon:"fa-minus",expandIcon:"fa-plus",removeIcon:"fa-times"},e={data:".box",collapsed:".collapsed-box",header:".box-header",body:".box-body",footer:".box-footer",tools:".box-tools"},f={collapsed:"collapsed-box"},g={collapsing:"collapsing.boxwidget",collapsed:"collapsed.boxwidget",expanding:"expanding.boxwidget",expanded:"expanded.boxwidget",removing:"removing.boxwidget",removed:"removed.boxwidget"},h=function(a,b){this.element=a,this.options=b,this._setUpListeners()};h.prototype.toggle=function(){a(this.element).is(e.collapsed)?this.expand():this.collapse()},h.prototype.expand=function(){var b=a.Event(g.expanded),c=a.Event(g.expanding),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).removeClass(f.collapsed),a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+h).removeClass(h).addClass(d),a(this.element).children(e.body+", "+e.footer).slideDown(this.options.animationSpeed,function(){a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.collapse=function(){var b=a.Event(g.collapsed),c=(a.Event(g.collapsing),this.options.collapseIcon),d=this.options.expandIcon;a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+c).removeClass(c).addClass(d),a(this.element).children(e.body+", "+e.footer).slideUp(this.options.animationSpeed,function(){a(this.element).addClass(f.collapsed),a(this.element).trigger(b)}.bind(this)).trigger(expandingEvent)},h.prototype.remove=function(){var b=a.Event(g.removed),c=a.Event(g.removing);a(this.element).slideUp(this.options.animationSpeed,function(){a(this.element).trigger(b),a(this.element).remove()}.bind(this)).trigger(c)},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.collapseTrigger,function(c){return c&&c.preventDefault(),b.toggle(a(this)),!1}),a(this.element).on("click",this.options.removeTrigger,function(c){return c&&c.preventDefault(),b.remove(a(this)),!1})};var i=a.fn.boxWidget;a.fn.boxWidget=b,a.fn.boxWidget.Constructor=h,a.fn.boxWidget.noConflict=function(){return a.fn.boxWidget=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}"string"==typeof b&&f.toggle()})}var c="lte.controlsidebar",d={slide:!0},e={sidebar:".control-sidebar",data:'[data-toggle="control-sidebar"]',open:".control-sidebar-open",bg:".control-sidebar-bg",wrapper:".wrapper",content:".content-wrapper",boxed:".layout-boxed"},f={open:"control-sidebar-open",fixed:"fixed"},g={collapsed:"collapsed.controlsidebar",expanded:"expanded.controlsidebar"},h=function(a,b){this.element=a,this.options=b,this.hasBindedResize=!1,this.init()};h.prototype.init=function(){a(this.element).is(e.data)||a(this).on("click",this.toggle),this.fix(),a(window).resize(function(){this.fix()}.bind(this))},h.prototype.toggle=function(b){b&&b.preventDefault(),this.fix(),a(e.sidebar).is(e.open)||a("body").is(e.open)?this.collapse():this.expand()},h.prototype.expand=function(){this.options.slide?a(e.sidebar).addClass(f.open):a("body").addClass(f.open),a(this.element).trigger(a.Event(g.expanded))},h.prototype.collapse=function(){a("body, "+e.sidebar).removeClass(f.open),a(this.element).trigger(a.Event(g.collapsed))},h.prototype.fix=function(){a("body").is(e.boxed)&&this._fixForBoxed(a(e.bg))},h.prototype._fixForBoxed=function(b){b.css({position:"absolute",height:a(e.wrapper).height()})};var i=a.fn.controlSidebar;a.fn.controlSidebar=b,a.fn.controlSidebar.Constructor=h,a.fn.controlSidebar.noConflict=function(){return a.fn.controlSidebar=i,this},a(document).on("click",e.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var d=a(this),e=d.data(c);e||d.data(c,e=new f(d)),"string"==typeof b&&e.toggle(d)})}var c="lte.directchat",d={data:'[data-widget="chat-pane-toggle"]',box:".direct-chat"},e={open:"direct-chat-contacts-open"},f=function(a){this.element=a};f.prototype.toggle=function(a){a.parents(d.box).first().toggleClass(e.open)};var g=a.fn.directChat;a.fn.directChat=b,a.fn.directChat.Constructor=f,a.fn.directChat.noConflict=function(){return a.fn.directChat=g,this},a(document).on("click",d.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(h))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.layout",d={slimscroll:!0,resetHeight:!0},e={wrapper:".wrapper",contentWrapper:".content-wrapper",layoutBoxed:".layout-boxed",mainFooter:".main-footer",mainHeader:".main-header",sidebar:".sidebar",controlSidebar:".control-sidebar",fixed:".fixed",sidebarMenu:".sidebar-menu",logo:".main-header .logo"},f={fixed:"fixed",holdTransition:"hold-transition"},g=function(a){this.options=a,this.bindedResize=!1,this.activate()};g.prototype.activate=function(){this.fix(),this.fixSidebar(),a("body").removeClass(f.holdTransition),this.options.resetHeight&&a("body, html, "+e.wrapper).css({height:"auto","min-height":"100%"}),this.bindedResize||(a(window).resize(function(){this.fix(),this.fixSidebar(),a(e.logo+", "+e.sidebar).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){this.fix(),this.fixSidebar()}.bind(this))}.bind(this)),this.bindedResize=!0),a(e.sidebarMenu).on("expanded.tree",function(){this.fix(),this.fixSidebar()}.bind(this)),a(e.sidebarMenu).on("collapsed.tree",function(){this.fix(),this.fixSidebar()}.bind(this))},g.prototype.fix=function(){a(e.layoutBoxed+" > "+e.wrapper).css("overflow","hidden");var b=a(e.mainFooter).outerHeight()||0,c=a(e.mainHeader).outerHeight()||0,d=c+b,g=a(window).height(),h=a(e.sidebar).height()||0;if(a("body").hasClass(f.fixed))a(e.contentWrapper).css("min-height",g-b);else{var i;g>=h+c?(a(e.contentWrapper).css("min-height",g-d),i=g-d):(a(e.contentWrapper).css("min-height",h),i=h);var j=a(e.controlSidebar);void 0!==j&&j.height()>i&&a(e.contentWrapper).css("min-height",j.height())}},g.prototype.fixSidebar=function(){if(!a("body").hasClass(f.fixed))return void(void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({destroy:!0}).height("auto"));this.options.slimscroll&&void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({height:a(window).height()-a(e.mainHeader).height()+"px"})};var h=a.fn.layout;a.fn.layout=b,a.fn.layout.Constuctor=g,a.fn.layout.noConflict=function(){return a.fn.layout=h,this},a(window).on("load",function(){b.call(a("body"))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(g))}"toggle"===b&&f.toggle()})}var c="lte.pushmenu",d={collapseScreenSize:767,expandOnHover:!1,expandTransitionDelay:200},e={collapsed:".sidebar-collapse",open:".sidebar-open",mainSidebar:".main-sidebar",contentWrapper:".content-wrapper",searchInput:".sidebar-form .form-control",button:'[data-toggle="push-menu"]',mini:".sidebar-mini",expanded:".sidebar-expanded-on-hover",layoutFixed:".fixed"},f={collapsed:"sidebar-collapse",open:"sidebar-open",mini:"sidebar-mini",expanded:"sidebar-expanded-on-hover",expandFeature:"sidebar-mini-expand-feature",layoutFixed:"fixed"},g={expanded:"expanded.pushMenu",collapsed:"collapsed.pushMenu"},h=function(a){this.options=a,this.init()};h.prototype.init=function(){(this.options.expandOnHover||a("body").is(e.mini+e.layoutFixed))&&(this.expandOnHover(),a("body").addClass(f.expandFeature)),a(e.contentWrapper).click(function(){a(window).width()<=this.options.collapseScreenSize&&a("body").hasClass(f.open)&&this.close()}.bind(this)),a(e.searchInput).click(function(a){a.stopPropagation()})},h.prototype.toggle=function(){var b=a(window).width(),c=!a("body").hasClass(f.collapsed);b<=this.options.collapseScreenSize&&(c=a("body").hasClass(f.open)),c?this.close():this.open()},h.prototype.open=function(){a(window).width()>this.options.collapseScreenSize?a("body").removeClass(f.collapsed).trigger(a.Event(g.expanded)):a("body").addClass(f.open).trigger(a.Event(g.expanded))},h.prototype.close=function(){a(window).width()>this.options.collapseScreenSize?a("body").addClass(f.collapsed).trigger(a.Event(g.collapsed)):a("body").removeClass(f.open+" "+f.collapsed).trigger(a.Event(g.collapsed))},h.prototype.expandOnHover=function(){a(e.mainSidebar).hover(function(){a("body").is(e.mini+e.collapsed)&&a(window).width()>this.options.collapseScreenSize&&this.expand()}.bind(this),function(){a("body").is(e.expanded)&&this.collapse()}.bind(this))},h.prototype.expand=function(){setTimeout(function(){a("body").removeClass(f.collapsed).addClass(f.expanded)},this.options.expandTransitionDelay)},h.prototype.collapse=function(){setTimeout(function(){a("body").removeClass(f.expanded).addClass(f.collapsed)},this.options.expandTransitionDelay)};var i=a.fn.pushMenu;a.fn.pushMenu=b,a.fn.pushMenu.Constructor=h,a.fn.pushMenu.noConflict=function(){return a.fn.pushMenu=i,this},a(document).on("click",e.button,function(c){c.preventDefault(),b.call(a(this),"toggle")}),a(window).on("load",function(){b.call(a(e.button))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(e,h))}if("string"==typeof f){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.todolist",d={onCheck:function(a){return a},onUnCheck:function(a){return a}},e={data:'[data-widget="todo-list"]'},f={done:"done"},g=function(a,b){this.element=a,this.options=b,this._setUpListeners()};g.prototype.toggle=function(a){if(a.parents(e.li).first().toggleClass(f.done),!a.prop("checked"))return void this.unCheck(a);this.check(a)},g.prototype.check=function(a){this.options.onCheck.call(a)},g.prototype.unCheck=function(a){this.options.onUnCheck.call(a)},g.prototype._setUpListeners=function(){var b=this;a(this.element).on("change ifChanged","input:checkbox",function(){b.toggle(a(this))})};var h=a.fn.todoList;a.fn.todoList=b,a.fn.todoList.Constructor=g,a.fn.todoList.noConflict=function(){return a.fn.todoList=h,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this);if(!e.data(c)){var f=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,new h(e,f))}})}var c="lte.tree",d={animationSpeed:500,accordion:!0,followLink:!1,trigger:".treeview a"},e={tree:".tree",treeview:".treeview",treeviewMenu:".treeview-menu",open:".menu-open, .active",li:"li",data:'[data-widget="tree"]',active:".active"},f={open:"menu-open",tree:"tree"},g={collapsed:"collapsed.tree",expanded:"expanded.tree"},h=function(b,c){this.element=b,this.options=c,a(this.element).addClass(f.tree),a(e.treeview+e.active,this.element).addClass(f.open),this._setUpListeners()};h.prototype.toggle=function(a,b){var c=a.next(e.treeviewMenu),d=a.parent(),g=d.hasClass(f.open);d.is(e.treeview)&&(this.options.followLink&&"#"!==a.attr("href")||b.preventDefault(),g?this.collapse(c,d):this.expand(c,d))},h.prototype.expand=function(b,c){var d=a.Event(g.expanded);if(this.options.accordion){var h=c.siblings(e.open),i=h.children(e.treeviewMenu);this.collapse(i,h)}c.addClass(f.open),b.slideDown(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype.collapse=function(b,c){var d=a.Event(g.collapsed);c.removeClass(f.open),b.slideUp(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.trigger,function(c){b.toggle(a(this),c)})};var i=a.fn.tree;a.fn.tree=b,a.fn.tree.Constructor=h,a.fn.tree.noConflict=function(){return a.fn.tree=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery);
+if("undefined"==typeof jQuery)throw new Error("AdminLTE requires jQuery");+function(a){"use strict";function b(b){return this.each(function(){var e=a(this),g=e.data(c);if(!g){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,g=new f(e,h))}if("string"==typeof g){if(void 0===g[b])throw new Error("No method named "+b);g[b]()}})}var c="lte.boxrefresh",d={source:"",params:{},trigger:".refresh-btn",content:".box-body",loadInContent:!0,responseType:"",overlayTemplate:'<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',onLoadStart:function(){},onLoadDone:function(a){return a}},e={data:'[data-widget="box-refresh"]'},f=function(b,c){if(this.element=b,this.options=c,this.$overlay=a(c.overlayTemplate),""===c.source)throw new Error("Source url was not defined. Please specify a url in your BoxRefresh source option.");this._setUpListeners(),this.load()};f.prototype.load=function(){this._addOverlay(),this.options.onLoadStart.call(a(this)),a.get(this.options.source,this.options.params,function(b){this.options.loadInContent&&a(this.element).find(this.options.content).html(b),this.options.onLoadDone.call(a(this),b),this._removeOverlay()}.bind(this),""!==this.options.responseType&&this.options.responseType)},f.prototype._setUpListeners=function(){a(this.element).on("click",this.options.trigger,function(a){a&&a.preventDefault(),this.load()}.bind(this))},f.prototype._addOverlay=function(){a(this.element).append(this.$overlay)},f.prototype._removeOverlay=function(){a(this.$overlay).remove()};var g=a.fn.boxRefresh;a.fn.boxRefresh=b,a.fn.boxRefresh.Constructor=f,a.fn.boxRefresh.noConflict=function(){return a.fn.boxRefresh=g,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.boxwidget",d={animationSpeed:500,collapseTrigger:'[data-widget="collapse"]',removeTrigger:'[data-widget="remove"]',collapseIcon:"fa-minus",expandIcon:"fa-plus",removeIcon:"fa-times"},e={data:".box",collapsed:".collapsed-box",header:".box-header",body:".box-body",footer:".box-footer",tools:".box-tools"},f={collapsed:"collapsed-box"},g={collapsing:"collapsing.boxwidget",collapsed:"collapsed.boxwidget",expanding:"expanding.boxwidget",expanded:"expanded.boxwidget",removing:"removing.boxwidget",removed:"removed.boxwidget"},h=function(a,b){this.element=a,this.options=b,this._setUpListeners()};h.prototype.toggle=function(){a(this.element).is(e.collapsed)?this.expand():this.collapse()},h.prototype.expand=function(){var b=a.Event(g.expanded),c=a.Event(g.expanding),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).removeClass(f.collapsed),a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+h).removeClass(h).addClass(d),a(this.element).children(e.body+", "+e.footer).slideDown(this.options.animationSpeed,function(){a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.collapse=function(){var b=a.Event(g.collapsed),c=a.Event(g.collapsing),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+d).removeClass(d).addClass(h),a(this.element).children(e.body+", "+e.footer).slideUp(this.options.animationSpeed,function(){a(this.element).addClass(f.collapsed),a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.remove=function(){var b=a.Event(g.removed),c=a.Event(g.removing);a(this.element).slideUp(this.options.animationSpeed,function(){a(this.element).trigger(b),a(this.element).remove()}.bind(this)).trigger(c)},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.collapseTrigger,function(c){return c&&c.preventDefault(),b.toggle(a(this)),!1}),a(this.element).on("click",this.options.removeTrigger,function(c){return c&&c.preventDefault(),b.remove(a(this)),!1})};var i=a.fn.boxWidget;a.fn.boxWidget=b,a.fn.boxWidget.Constructor=h,a.fn.boxWidget.noConflict=function(){return a.fn.boxWidget=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}"string"==typeof b&&f.toggle()})}var c="lte.controlsidebar",d={slide:!0},e={sidebar:".control-sidebar",data:'[data-toggle="control-sidebar"]',open:".control-sidebar-open",bg:".control-sidebar-bg",wrapper:".wrapper",content:".content-wrapper",boxed:".layout-boxed"},f={open:"control-sidebar-open",fixed:"fixed"},g={collapsed:"collapsed.controlsidebar",expanded:"expanded.controlsidebar"},h=function(a,b){this.element=a,this.options=b,this.hasBindedResize=!1,this.init()};h.prototype.init=function(){a(this.element).is(e.data)||a(this).on("click",this.toggle),this.fix(),a(window).resize(function(){this.fix()}.bind(this))},h.prototype.toggle=function(b){b&&b.preventDefault(),this.fix(),a(e.sidebar).is(e.open)||a("body").is(e.open)?this.collapse():this.expand()},h.prototype.expand=function(){a(e.sidebar).show(),this.options.slide?a(e.sidebar).addClass(f.open):a("body").addClass(f.open),a(this.element).trigger(a.Event(g.expanded))},h.prototype.collapse=function(){a("body, "+e.sidebar).removeClass(f.open),a(e.sidebar).fadeOut(),a(this.element).trigger(a.Event(g.collapsed))},h.prototype.fix=function(){a("body").is(e.boxed)&&this._fixForBoxed(a(e.bg))},h.prototype._fixForBoxed=function(b){b.css({position:"absolute",height:a(e.wrapper).height()})};var i=a.fn.controlSidebar;a.fn.controlSidebar=b,a.fn.controlSidebar.Constructor=h,a.fn.controlSidebar.noConflict=function(){return a.fn.controlSidebar=i,this},a(document).on("click",e.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var d=a(this),e=d.data(c);e||d.data(c,e=new f(d)),"string"==typeof b&&e.toggle(d)})}var c="lte.directchat",d={data:'[data-widget="chat-pane-toggle"]',box:".direct-chat"},e={open:"direct-chat-contacts-open"},f=function(a){this.element=a};f.prototype.toggle=function(a){a.parents(d.box).first().toggleClass(e.open)};var g=a.fn.directChat;a.fn.directChat=b,a.fn.directChat.Constructor=f,a.fn.directChat.noConflict=function(){return a.fn.directChat=g,this},a(document).on("click",d.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(g))}"toggle"===b&&f.toggle()})}var c="lte.pushmenu",d={collapseScreenSize:767,expandOnHover:!1,expandTransitionDelay:200},e={collapsed:".sidebar-collapse",open:".sidebar-open",mainSidebar:".main-sidebar",contentWrapper:".content-wrapper",searchInput:".sidebar-form .form-control",button:'[data-toggle="push-menu"]',mini:".sidebar-mini",expanded:".sidebar-expanded-on-hover",layoutFixed:".fixed"},f={collapsed:"sidebar-collapse",open:"sidebar-open",mini:"sidebar-mini",expanded:"sidebar-expanded-on-hover",expandFeature:"sidebar-mini-expand-feature",layoutFixed:"fixed"},g={expanded:"expanded.pushMenu",collapsed:"collapsed.pushMenu"},h=function(a){this.options=a,this.init()};h.prototype.init=function(){(this.options.expandOnHover||a("body").is(e.mini+e.layoutFixed))&&(this.expandOnHover(),a("body").addClass(f.expandFeature)),a(e.contentWrapper).click(function(){a(window).width()<=this.options.collapseScreenSize&&a("body").hasClass(f.open)&&this.close()}.bind(this)),a(e.searchInput).click(function(a){a.stopPropagation()})},h.prototype.toggle=function(){var b=a(window).width(),c=!a("body").hasClass(f.collapsed);b<=this.options.collapseScreenSize&&(c=a("body").hasClass(f.open)),c?this.close():this.open()},h.prototype.open=function(){a(window).width()>this.options.collapseScreenSize?a("body").removeClass(f.collapsed).trigger(a.Event(g.expanded)):a("body").addClass(f.open).trigger(a.Event(g.expanded))},h.prototype.close=function(){a(window).width()>this.options.collapseScreenSize?a("body").addClass(f.collapsed).trigger(a.Event(g.collapsed)):a("body").removeClass(f.open+" "+f.collapsed).trigger(a.Event(g.collapsed))},h.prototype.expandOnHover=function(){a(e.mainSidebar).hover(function(){a("body").is(e.mini+e.collapsed)&&a(window).width()>this.options.collapseScreenSize&&this.expand()}.bind(this),function(){a("body").is(e.expanded)&&this.collapse()}.bind(this))},h.prototype.expand=function(){setTimeout(function(){a("body").removeClass(f.collapsed).addClass(f.expanded)},this.options.expandTransitionDelay)},h.prototype.collapse=function(){setTimeout(function(){a("body").removeClass(f.expanded).addClass(f.collapsed)},this.options.expandTransitionDelay)};var i=a.fn.pushMenu;a.fn.pushMenu=b,a.fn.pushMenu.Constructor=h,a.fn.pushMenu.noConflict=function(){return a.fn.pushMenu=i,this},a(document).on("click",e.button,function(c){c.preventDefault(),b.call(a(this),"toggle")}),a(window).on("load",function(){b.call(a(e.button))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(e,h))}if("string"==typeof f){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.todolist",d={onCheck:function(a){return a},onUnCheck:function(a){return a}},e={data:'[data-widget="todo-list"]'},f={done:"done"},g=function(a,b){this.element=a,this.options=b,this._setUpListeners()};g.prototype.toggle=function(a){if(a.parents(e.li).first().toggleClass(f.done),!a.prop("checked"))return void this.unCheck(a);this.check(a)},g.prototype.check=function(a){this.options.onCheck.call(a)},g.prototype.unCheck=function(a){this.options.onUnCheck.call(a)},g.prototype._setUpListeners=function(){var b=this;a(this.element).on("change ifChanged","input:checkbox",function(){b.toggle(a(this))})};var h=a.fn.todoList;a.fn.todoList=b,a.fn.todoList.Constructor=g,a.fn.todoList.noConflict=function(){return a.fn.todoList=h,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this);if(!e.data(c)){var f=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,new h(e,f))}})}var c="lte.tree",d={animationSpeed:500,accordion:!0,followLink:!1,trigger:".treeview a"},e={tree:".tree",treeview:".treeview",treeviewMenu:".treeview-menu",open:".menu-open, .active",li:"li",data:'[data-widget="tree"]',active:".active"},f={open:"menu-open",tree:"tree"},g={collapsed:"collapsed.tree",expanded:"expanded.tree"},h=function(b,c){this.element=b,this.options=c,a(this.element).addClass(f.tree),a(e.treeview+e.active,this.element).addClass(f.open),this._setUpListeners()};h.prototype.toggle=function(a,b){var c=a.next(e.treeviewMenu),d=a.parent(),g=d.hasClass(f.open);d.is(e.treeview)&&(this.options.followLink&&"#"!==a.attr("href")||b.preventDefault(),g?this.collapse(c,d):this.expand(c,d))},h.prototype.expand=function(b,c){var d=a.Event(g.expanded);if(this.options.accordion){var h=c.siblings(e.open),i=h.children(e.treeviewMenu);this.collapse(i,h)}c.addClass(f.open),b.slideDown(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype.collapse=function(b,c){var d=a.Event(g.collapsed);c.removeClass(f.open),b.slideUp(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.trigger,function(c){b.toggle(a(this),c)})};var i=a.fn.tree;a.fn.tree=b,a.fn.tree.Constructor=h,a.fn.tree.noConflict=function(){return a.fn.tree=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(h))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.layout",d={slimscroll:!0,resetHeight:!0},e={wrapper:".wrapper",contentWrapper:".content-wrapper",layoutBoxed:".layout-boxed",mainFooter:".main-footer",mainHeader:".main-header",sidebar:".sidebar",controlSidebar:".control-sidebar",fixed:".fixed",sidebarMenu:".sidebar-menu",logo:".main-header .logo"},f={fixed:"fixed",holdTransition:"hold-transition"},g=function(a){this.options=a,this.bindedResize=!1,this.activate()};g.prototype.activate=function(){this.fix(),this.fixSidebar(),a("body").removeClass(f.holdTransition),this.options.resetHeight&&a("body, html, "+e.wrapper).css({height:"auto","min-height":"100%"}),this.bindedResize||(a(window).resize(function(){this.fix(),this.fixSidebar(),a(e.logo+", "+e.sidebar).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){this.fix(),this.fixSidebar()}.bind(this))}.bind(this)),this.bindedResize=!0),a(e.sidebarMenu).on("expanded.tree",function(){this.fix(),this.fixSidebar()}.bind(this)),a(e.sidebarMenu).on("collapsed.tree",function(){this.fix(),this.fixSidebar()}.bind(this))},g.prototype.fix=function(){a(e.layoutBoxed+" > "+e.wrapper).css("overflow","hidden");var b=a(e.mainFooter).outerHeight()||0,c=a(e.mainHeader).outerHeight()||0,d=c+b,g=a(window).height(),h=a(e.sidebar).height()||0;if(a("body").hasClass(f.fixed))a(e.contentWrapper).css("min-height",g-b);else{var i;g>=h+c?(a(e.contentWrapper).css("min-height",g-d),i=g-d):(a(e.contentWrapper).css("min-height",h),i=h);var j=a(e.controlSidebar);void 0!==j&&j.height()>i&&a(e.contentWrapper).css("min-height",j.height())}},g.prototype.fixSidebar=function(){if(!a("body").hasClass(f.fixed))return void(void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({destroy:!0}).height("auto"));this.options.slimscroll&&void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({height:a(window).height()-a(e.mainHeader).height()+"px"})};var h=a.fn.layout;a.fn.layout=b,a.fn.layout.Constuctor=g,a.fn.layout.noConflict=function(){return a.fn.layout=h,this},a(window).on("load",function(){b.call(a("body"))})}(jQuery);
 
 /***/ }),
 
 /***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./node_modules/axios/lib/axios.js");
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var settle = __webpack_require__("./node_modules/axios/lib/core/settle.js");
-var buildURL = __webpack_require__("./node_modules/axios/lib/helpers/buildURL.js");
-var parseHeaders = __webpack_require__("./node_modules/axios/lib/helpers/parseHeaders.js");
-var isURLSameOrigin = __webpack_require__("./node_modules/axios/lib/helpers/isURLSameOrigin.js");
-var createError = __webpack_require__("./node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__("./node_modules/axios/lib/helpers/btoa.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -116,22 +147,6 @@ module.exports = function xhrAdapter(config) {
     }
 
     var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
 
     // HTTP basic authentication
     if (config.auth) {
@@ -146,8 +161,8 @@ module.exports = function xhrAdapter(config) {
     request.timeout = config.timeout;
 
     // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
         return;
       }
 
@@ -164,15 +179,26 @@ module.exports = function xhrAdapter(config) {
       var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
       var response = {
         data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/mzabriskie/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        status: request.status,
+        statusText: request.statusText,
         headers: responseHeaders,
         config: config,
         request: request
       };
 
       settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(createError('Request aborted', config, 'ECONNABORTED', request));
 
       // Clean up request
       request = null;
@@ -201,12 +227,12 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__("./node_modules/axios/lib/helpers/cookies.js");
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
+        cookies.read(config.xsrfCookieName) :
+        undefined;
 
       if (xsrfValue) {
         requestHeaders[config.xsrfHeaderName] = xsrfValue;
@@ -281,15 +307,20 @@ module.exports = function xhrAdapter(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var bind = __webpack_require__("./node_modules/axios/lib/helpers/bind.js");
-var Axios = __webpack_require__("./node_modules/axios/lib/core/Axios.js");
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
  * Create an instance of Axios
@@ -318,19 +349,19 @@ axios.Axios = Axios;
 
 // Factory for creating new instances
 axios.create = function create(instanceConfig) {
-  return createInstance(utils.merge(defaults, instanceConfig));
+  return createInstance(mergeConfig(axios.defaults, instanceConfig));
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__("./node_modules/axios/lib/cancel/Cancel.js");
-axios.CancelToken = __webpack_require__("./node_modules/axios/lib/cancel/CancelToken.js");
-axios.isCancel = __webpack_require__("./node_modules/axios/lib/cancel/isCancel.js");
+axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__("./node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
 
 module.exports = axios;
 
@@ -341,6 +372,10 @@ module.exports.default = axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/Cancel.js":
+/*!*************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,12 +403,16 @@ module.exports = Cancel;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__("./node_modules/axios/lib/cancel/Cancel.js");
+var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -433,6 +472,10 @@ module.exports = CancelToken;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -446,17 +489,20 @@ module.exports = function isCancel(value) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var InterceptorManager = __webpack_require__("./node_modules/axios/lib/core/InterceptorManager.js");
-var dispatchRequest = __webpack_require__("./node_modules/axios/lib/core/dispatchRequest.js");
-var isAbsoluteURL = __webpack_require__("./node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__("./node_modules/axios/lib/helpers/combineURLs.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
+var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
 
 /**
  * Create a new instance of Axios
@@ -480,18 +526,14 @@ Axios.prototype.request = function request(config) {
   /*eslint no-param-reassign:0*/
   // Allow for axios('example/url'[, config]) a la fetch API
   if (typeof config === 'string') {
-    config = utils.merge({
-      url: arguments[0]
-    }, arguments[1]);
+    config = arguments[1] || {};
+    config.url = arguments[0];
+  } else {
+    config = config || {};
   }
 
-  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
-  config.method = config.method.toLowerCase();
-
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
+  config = mergeConfig(this.defaults, config);
+  config.method = config.method ? config.method.toLowerCase() : 'get';
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -510,6 +552,11 @@ Axios.prototype.request = function request(config) {
   }
 
   return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
 };
 
 // Provide aliases for supported request methods
@@ -540,12 +587,16 @@ module.exports = Axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function InterceptorManager() {
   this.handlers = [];
@@ -600,12 +651,16 @@ module.exports = InterceptorManager;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/createError.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/createError.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__("./node_modules/axios/lib/core/enhanceError.js");
+var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -626,15 +681,21 @@ module.exports = function createError(message, config, code, request, response) 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var transformData = __webpack_require__("./node_modules/axios/lib/core/transformData.js");
-var isCancel = __webpack_require__("./node_modules/axios/lib/cancel/isCancel.js");
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -653,6 +714,11 @@ function throwIfCancellationRequested(config) {
  */
 module.exports = function dispatchRequest(config) {
   throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
 
   // Ensure headers exist
   config.headers = config.headers || {};
@@ -713,6 +779,10 @@ module.exports = function dispatchRequest(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/enhanceError.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -733,21 +803,109 @@ module.exports = function enhanceError(error, config, code, request, response) {
   if (code) {
     error.code = code;
   }
+
   error.request = request;
   error.response = response;
+  error.isAxiosError = true;
+
+  error.toJSON = function() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code
+    };
+  };
   return error;
 };
 
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/core/settle.js":
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__("./node_modules/axios/lib/core/createError.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    }
+  });
+
+  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
+    if (utils.isObject(config2[prop])) {
+      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+    } else if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (utils.isObject(config1[prop])) {
+      config[prop] = utils.deepMerge(config1[prop]);
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  utils.forEach([
+    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
+    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
+    'socketPath'
+  ], function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  return config;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios/lib/core/createError.js");
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -758,8 +916,7 @@ var createError = __webpack_require__("./node_modules/axios/lib/core/createError
  */
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
-  // Note: status is not exposed by XDomainRequest
-  if (!response.status || !validateStatus || validateStatus(response.status)) {
+  if (!validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
     reject(createError(
@@ -776,12 +933,16 @@ module.exports = function settle(resolve, reject, response) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 /**
  * Transform the data for a request or a response
@@ -804,13 +965,17 @@ module.exports = function transformData(data, headers, fns) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/defaults.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/defaults.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var normalizeHeaderName = __webpack_require__("./node_modules/axios/lib/helpers/normalizeHeaderName.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -824,12 +989,13 @@ function setContentTypeIfUnset(headers, value) {
 
 function getDefaultAdapter() {
   var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__("./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof process !== 'undefined') {
+  // Only Node.JS has a process variable that is of [[Class]] process
+  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__("./node_modules/axios/lib/adapters/xhr.js");
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -838,6 +1004,7 @@ var defaults = {
   adapter: getDefaultAdapter(),
 
   transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
     normalizeHeaderName(headers, 'Content-Type');
     if (utils.isFormData(data) ||
       utils.isArrayBuffer(data) ||
@@ -872,6 +1039,10 @@ var defaults = {
     return data;
   }],
 
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
   timeout: 0,
 
   xsrfCookieName: 'XSRF-TOKEN',
@@ -900,11 +1071,15 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -923,57 +1098,17 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/helpers/btoa.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
-
-var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-function E() {
-  this.message = 'String contains an invalid character';
-}
-E.prototype = new Error;
-E.prototype.code = 5;
-E.prototype.name = 'InvalidCharacterError';
-
-function btoa(input) {
-  var str = String(input);
-  var output = '';
-  for (
-    // initialize result and counter
-    var block, charCode, idx = 0, map = chars;
-    // if the next str index does not exist:
-    //   change the mapping table to "="
-    //   check if d has no fractional digits
-    str.charAt(idx | 0) || (map = '=', idx % 1);
-    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
-  ) {
-    charCode = str.charCodeAt(idx += 3 / 4);
-    if (charCode > 0xFF) {
-      throw new E();
-    }
-    block = block << 8 | charCode;
-  }
-  return output;
-}
-
-module.exports = btoa;
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -1014,9 +1149,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
       if (utils.isArray(val)) {
         key = key + '[]';
-      }
-
-      if (!utils.isArray(val)) {
+      } else {
         val = [val];
       }
 
@@ -1034,6 +1167,11 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   }
 
   if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
 
@@ -1044,6 +1182,10 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1066,67 +1208,75 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
 
   // Standard browser envs support document.cookie
-  (function standardBrowserEnv() {
-    return {
-      write: function write(name, value, expires, path, domain, secure) {
-        var cookie = [];
-        cookie.push(name + '=' + encodeURIComponent(value));
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
 
-        if (utils.isNumber(expires)) {
-          cookie.push('expires=' + new Date(expires).toGMTString());
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
         }
-
-        if (utils.isString(path)) {
-          cookie.push('path=' + path);
-        }
-
-        if (utils.isString(domain)) {
-          cookie.push('domain=' + domain);
-        }
-
-        if (secure === true) {
-          cookie.push('secure');
-        }
-
-        document.cookie = cookie.join('; ');
-      },
-
-      read: function read(name) {
-        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-        return (match ? decodeURIComponent(match[3]) : null);
-      },
-
-      remove: function remove(name) {
-        this.write(name, '', Date.now() - 86400000);
-      }
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser env (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return {
-      write: function write() {},
-      read: function read() { return null; },
-      remove: function remove() {}
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
 );
 
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1149,88 +1299,96 @@ module.exports = function isAbsoluteURL(url) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
 
   // Standard browser envs have full support of the APIs needed to test
   // whether the request URL is of the same origin as current location.
-  (function standardBrowserEnv() {
-    var msie = /(msie|trident)/i.test(navigator.userAgent);
-    var urlParsingNode = document.createElement('a');
-    var originURL;
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
 
-    /**
+      /**
     * Parse a URL to discover it's components
     *
     * @param {String} url The URL to be parsed
     * @returns {Object}
     */
-    function resolveURL(url) {
-      var href = url;
+      function resolveURL(url) {
+        var href = url;
 
-      if (msie) {
+        if (msie) {
         // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
         urlParsingNode.setAttribute('href', href);
-        href = urlParsingNode.href;
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
       }
 
-      urlParsingNode.setAttribute('href', href);
+      originURL = resolveURL(window.location.href);
 
-      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-      return {
-        href: urlParsingNode.href,
-        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-        host: urlParsingNode.host,
-        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-        hostname: urlParsingNode.hostname,
-        port: urlParsingNode.port,
-        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
-                  urlParsingNode.pathname :
-                  '/' + urlParsingNode.pathname
-      };
-    }
-
-    originURL = resolveURL(window.location.href);
-
-    /**
+      /**
     * Determine if a URL shares the same origin as the current location
     *
     * @param {String} requestURL The URL to test
     * @returns {boolean} True if URL shares the same origin, otherwise false
     */
-    return function isURLSameOrigin(requestURL) {
-      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
-      return (parsed.protocol === originURL.protocol &&
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
             parsed.host === originURL.host);
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser envs (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return function isURLSameOrigin() {
-      return true;
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
 );
 
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -1245,12 +1403,25 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
 
 /**
  * Parse headers into an object
@@ -1279,7 +1450,14 @@ module.exports = function parseHeaders(headers) {
     val = utils.trim(line.substr(i + 1));
 
     if (key) {
-      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
     }
   });
 
@@ -1290,6 +1468,10 @@ module.exports = function parseHeaders(headers) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1325,13 +1507,17 @@ module.exports = function spread(callback) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__("./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__("./node_modules/is-buffer/index.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1507,9 +1693,13 @@ function trim(str) {
  *
  * react-native:
  *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
  */
 function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
     return false;
   }
   return (
@@ -1537,7 +1727,7 @@ function forEach(obj, fn) {
   }
 
   // Force an array if not already something iterable
-  if (typeof obj !== 'object' && !isArray(obj)) {
+  if (typeof obj !== 'object') {
     /*eslint no-param-reassign:0*/
     obj = [obj];
   }
@@ -1591,6 +1781,32 @@ function merge(/* obj1, obj2, obj3, ... */) {
 }
 
 /**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function deepMerge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val);
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
  * Extends object a by mutably adding to it the properties of object b.
  *
  * @param {Object} a The object to be extended
@@ -1628,6 +1844,7 @@ module.exports = {
   isStandardBrowserEnv: isStandardBrowserEnv,
   forEach: forEach,
   merge: merge,
+  deepMerge: deepMerge,
   extend: extend,
   trim: trim
 };
@@ -1635,19 +1852,49 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/bloodhound-js/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/bloodhound-js/index.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./node_modules/bloodhound-js/lib/bloodhound.js");
+module.exports = __webpack_require__(/*! ./lib/bloodhound */ "./node_modules/bloodhound-js/lib/bloodhound.js");
 
 
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/ajax.js":
+/*!************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/ajax.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise = __webpack_require__("./node_modules/es6-promise/dist/es6-promise.js").Promise;
-var request = __webpack_require__("./node_modules/superagent/lib/client.js");
+var Promise = __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise;
+var request = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
 
 module.exports = function(o) {
   return new Promise(function(resolve, reject) {
@@ -1662,16 +1909,20 @@ module.exports = function(o) {
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/bloodhound.js":
+/*!******************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/bloodhound.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
-var Promise = __webpack_require__("./node_modules/es6-promise/dist/es6-promise.js").Promise;
-var Remote = __webpack_require__("./node_modules/bloodhound-js/lib/remote.js");
-var Prefetch = __webpack_require__("./node_modules/bloodhound-js/lib/prefetch.js");
-var tokenizers = __webpack_require__("./node_modules/bloodhound-js/lib/tokenizers.js");
-var oParser = __webpack_require__("./node_modules/bloodhound-js/lib/options_parser.js");
-var SearchIndex = __webpack_require__("./node_modules/bloodhound-js/lib/search_index.js");
-var Transport = __webpack_require__("./node_modules/bloodhound-js/lib/transport.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
+var Promise = __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise;
+var Remote = __webpack_require__(/*! ./remote */ "./node_modules/bloodhound-js/lib/remote.js");
+var Prefetch = __webpack_require__(/*! ./prefetch */ "./node_modules/bloodhound-js/lib/prefetch.js");
+var tokenizers = __webpack_require__(/*! ./tokenizers */ "./node_modules/bloodhound-js/lib/tokenizers.js");
+var oParser = __webpack_require__(/*! ./options_parser */ "./node_modules/bloodhound-js/lib/options_parser.js");
+var SearchIndex = __webpack_require__(/*! ./search_index */ "./node_modules/bloodhound-js/lib/search_index.js");
+var Transport = __webpack_require__(/*! ./transport */ "./node_modules/bloodhound-js/lib/transport.js");
 
 function Bloodhound(o) {
   o = oParser(o);
@@ -1847,6 +2098,10 @@ module.exports = Bloodhound;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/lru_cache.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/lru_cache.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1857,7 +2112,7 @@ module.exports = Bloodhound;
 
 // inspired by https://github.com/jharding/lru-cache
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 function LruCache(maxSize) {
   this.maxSize = _.isNumber(maxSize) ? maxSize : 100;
@@ -1952,11 +2207,15 @@ module.exports = LruCache;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/options_parser.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/options_parser.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
-var ajax = __webpack_require__("./node_modules/bloodhound-js/lib/ajax.js");
-var VERSION = __webpack_require__("./node_modules/bloodhound-js/lib/version.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
+var ajax = __webpack_require__(/*! ./ajax */ "./node_modules/bloodhound-js/lib/ajax.js");
+var VERSION = __webpack_require__(/*! ./version */ "./node_modules/bloodhound-js/lib/version.js");
 
 module.exports = function(o) {
   var defaults, sorter;
@@ -2152,10 +2411,14 @@ function callbackToDeferred(fn) {
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/persistent_storage.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/persistent_storage.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var storage2 = __webpack_require__("./node_modules/storage2/lib/client.js");
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var storage2 = __webpack_require__(/*! storage2 */ "./node_modules/storage2/lib/client.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var LOCAL_STORAGE;
 
@@ -2301,10 +2564,14 @@ module.exports = PersistentStorage;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/prefetch.js":
+/*!****************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/prefetch.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var PersistentStorage = __webpack_require__("./node_modules/bloodhound-js/lib/persistent_storage.js");
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var PersistentStorage = __webpack_require__(/*! ./persistent_storage */ "./node_modules/bloodhound-js/lib/persistent_storage.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var keys = { data: 'data', protocol: 'protocol', thumbprint: 'thumbprint' };
 var location = null;
@@ -2396,6 +2663,10 @@ module.exports = Prefetch;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/remote.js":
+/*!**************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/remote.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2404,8 +2675,8 @@ module.exports = Prefetch;
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
-var Transport = __webpack_require__("./node_modules/bloodhound-js/lib/transport.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
+var Transport = __webpack_require__(/*! ./transport */ "./node_modules/bloodhound-js/lib/transport.js");
 
 function Remote(o) {
   this.url = o.url;
@@ -2455,9 +2726,13 @@ module.exports = Remote;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/search_index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/search_index.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var CHILDREN = 'c';
 var IDS = 'i';
@@ -2636,6 +2911,10 @@ module.exports = SearchIndex;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/tokenizers.js":
+/*!******************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/tokenizers.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2644,7 +2923,7 @@ module.exports = SearchIndex;
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 function whitespace(str) {
   str = _.toStr(str);
@@ -2685,10 +2964,14 @@ module.exports = {
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/transport.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/transport.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var LruCache = __webpack_require__("./node_modules/bloodhound-js/lib/lru_cache.js");
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var LruCache = __webpack_require__(/*! ./lru_cache */ "./node_modules/bloodhound-js/lib/lru_cache.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var pendingRequestsCount = 0;
 var pendingRequests = {};
@@ -2810,6 +3093,10 @@ module.exports = Transport;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/utils.js":
+/*!*************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/utils.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2818,7 +3105,7 @@ module.exports = Transport;
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-var assign = __webpack_require__("./node_modules/object-assign/index.js");
+var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 
 var _ = {
   isMsie: function() {
@@ -2920,7 +3207,7 @@ var _ = {
     return !!result;
   },
 
-  mixin: __webpack_require__("./node_modules/object-assign/index.js"),
+  mixin: __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js"),
 
   identity: function(x) { return x; },
 
@@ -3010,6 +3297,10 @@ module.exports = _;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/version.js":
+/*!***************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/version.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*
@@ -3024,6 +3315,10 @@ module.exports = '1.0.0';
 /***/ }),
 
 /***/ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
+  \***************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -3034,15 +3329,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function(factory){
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object') {
-        factory(require('jquery'));
-    } else {
-        factory(jQuery);
-    }
+    } else {}
 }(function($, undefined){
 	function UTCDate(){
 		return new Date(Date.UTC.apply(Date, arguments));
@@ -5073,6 +5364,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ }),
 
 /***/ "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*!
@@ -7660,6 +7955,10 @@ if (typeof jQuery === 'undefined') {
 /***/ }),
 
 /***/ "./node_modules/component-emitter/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/component-emitter/index.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -7842,6 +8141,10 @@ Emitter.prototype.hasListeners = function(event){
 /***/ }),
 
 /***/ "./node_modules/corejs-typeahead/dist/typeahead.bundle.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/corejs-typeahead/dist/typeahead.bundle.js ***!
+  \****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -7852,15 +8155,11 @@ Emitter.prototype.hasListeners = function(event){
 
 (function(root, factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a0) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a0) {
             return root["Bloodhound"] = factory(a0);
         }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === "object") {
-        module.exports = factory(require("jquery"));
-    } else {
-        root["Bloodhound"] = factory(root["jQuery"]);
-    }
+    } else {}
 })(this, function($) {
     var _ = function() {
         "use strict";
@@ -8800,15 +9099,11 @@ Emitter.prototype.hasListeners = function(event){
 
 (function(root, factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a0) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a0) {
             return factory(a0);
         }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === "object") {
-        module.exports = factory(require("jquery"));
-    } else {
-        factory(root["jQuery"]);
-    }
+    } else {}
 })(this, function($) {
     var _ = function() {
         "use strict";
@@ -10467,11 +10762,15 @@ Emitter.prototype.hasListeners = function(event){
         }
     })();
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/node-libs-browser/node_modules/timers-browserify/main.js").setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node-libs-browser/node_modules/timers-browserify/main.js */ "./node_modules/node-libs-browser/node_modules/timers-browserify/main.js").setImmediate))
 
 /***/ }),
 
 /***/ "./node_modules/es6-promise/dist/es6-promise.js":
+/*!******************************************************!*\
+  !*** ./node_modules/es6-promise/dist/es6-promise.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {var require;/*!
@@ -10484,8 +10783,7 @@ Emitter.prototype.hasListeners = function(event){
 
 (function (global, factory) {
      true ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.ES6Promise = factory());
+    undefined;
 }(this, (function () { 'use strict';
 
 function objectOrFunction(x) {
@@ -10606,7 +10904,7 @@ function flush() {
 function attemptVertx() {
   try {
     var r = require;
-    var vertx = __webpack_require__(1);
+    var vertx = __webpack_require__(/*! vertx */ 1);
     vertxNext = vertx.runOnLoop || vertx.runOnContext;
     return useVertxTimer();
   } catch (e) {
@@ -11628,39 +11926,15 @@ return Promise;
 
 })));
 //# sourceMappingURL=es6-promise.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js"), __webpack_require__("./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
-}
-
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js"), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/data.js":
+/*!*******************************************!*\
+  !*** ./node_modules/jquery-ui/ui/data.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11681,15 +11955,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 return $.extend( $.expr[ ":" ], {
 	data: $.expr.createPseudo ?
@@ -11710,21 +11980,21 @@ return $.extend( $.expr[ ":" ], {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/ie.js":
+/*!*****************************************!*\
+  !*** ./node_modules/jquery-ui/ui/ie.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 // This file is deprecated
@@ -11735,21 +12005,21 @@ return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/plugin.js":
+/*!*********************************************!*\
+  !*** ./node_modules/jquery-ui/ui/plugin.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 // $.ui.plugin is deprecated. Use $.widget() extensions instead.
@@ -11789,21 +12059,21 @@ return $.ui.plugin = {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/safe-active-element.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/safe-active-element.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 return $.ui.safeActiveElement = function( document ) {
 	var activeElement;
@@ -11839,21 +12109,21 @@ return $.ui.safeActiveElement = function( document ) {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/safe-blur.js":
+/*!************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/safe-blur.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 return $.ui.safeBlur = function( element ) {
 
@@ -11870,6 +12140,10 @@ return $.ui.safeBlur = function( element ) {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/scroll-parent.js":
+/*!****************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/scroll-parent.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11890,15 +12164,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 return $.fn.scrollParent = function( includeHidden ) {
@@ -11925,21 +12195,21 @@ return $.fn.scrollParent = function( includeHidden ) {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/version.js":
+/*!**********************************************!*\
+  !*** ./node_modules/jquery-ui/ui/version.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 $.ui = $.ui || {};
@@ -11952,6 +12222,10 @@ return $.ui.version = "1.12.1";
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widget.js":
+/*!*********************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widget.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11973,15 +12247,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 var widgetUuid = 0;
@@ -12695,6 +12965,10 @@ return $.widget;
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widgets/draggable.js":
+/*!********************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widgets/draggable.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12718,24 +12992,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__("./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widgets/mouse.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/data.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/plugin.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/safe-active-element.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/safe-blur.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/scroll-parent.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widget.js")
+			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+			__webpack_require__(/*! ./mouse */ "./node_modules/jquery-ui/ui/widgets/mouse.js"),
+			__webpack_require__(/*! ../data */ "./node_modules/jquery-ui/ui/data.js"),
+			__webpack_require__(/*! ../plugin */ "./node_modules/jquery-ui/ui/plugin.js"),
+			__webpack_require__(/*! ../safe-active-element */ "./node_modules/jquery-ui/ui/safe-active-element.js"),
+			__webpack_require__(/*! ../safe-blur */ "./node_modules/jquery-ui/ui/safe-blur.js"),
+			__webpack_require__(/*! ../scroll-parent */ "./node_modules/jquery-ui/ui/scroll-parent.js"),
+			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
+			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 $.widget( "ui.draggable", $.ui.mouse, {
@@ -13955,6 +14225,10 @@ return $.ui.draggable;
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widgets/mouse.js":
+/*!****************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widgets/mouse.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13976,19 +14250,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__("./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/ie.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widget.js")
+			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+			__webpack_require__(/*! ../ie */ "./node_modules/jquery-ui/ui/ie.js"),
+			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
+			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 var mouseHandled = false;
@@ -14191,6 +14461,10 @@ return $.widget( "ui.mouse", {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widgets/sortable.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widgets/sortable.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -14214,22 +14488,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__("./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widgets/mouse.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/data.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/ie.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/scroll-parent.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widget.js")
+			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+			__webpack_require__(/*! ./mouse */ "./node_modules/jquery-ui/ui/widgets/mouse.js"),
+			__webpack_require__(/*! ../data */ "./node_modules/jquery-ui/ui/data.js"),
+			__webpack_require__(/*! ../ie */ "./node_modules/jquery-ui/ui/ie.js"),
+			__webpack_require__(/*! ../scroll-parent */ "./node_modules/jquery-ui/ui/scroll-parent.js"),
+			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
+			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 return $.widget( "ui.sortable", $.ui.mouse, {
@@ -15755,6 +16025,10 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 /***/ }),
 
 /***/ "./node_modules/jquery/dist/jquery.js":
+/*!********************************************!*\
+  !*** ./node_modules/jquery/dist/jquery.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -15774,7 +16048,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 	"use strict";
 
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
+	if (  true && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
@@ -26361,6 +26635,10 @@ return jQuery;
 /***/ }),
 
 /***/ "./node_modules/lodash/lodash.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/lodash.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -26787,7 +27065,7 @@ return jQuery;
   var root = freeGlobal || freeSelf || Function('return this')();
 
   /** Detect free variable `exports`. */
-  var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+  var freeExports =  true && exports && !exports.nodeType && exports;
 
   /** Detect free variable `module`. */
   var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
@@ -43460,23 +43738,18 @@ return jQuery;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   }
   // Check for `exports` after `define` in case a build optimizer adds it.
-  else if (freeModule) {
-    // Export for Node.js.
-    (freeModule.exports = _)._ = _;
-    // Export for CommonJS support.
-    freeExports._ = _;
-  }
-  else {
-    // Export to the global object.
-    root._ = _;
-  }
+  else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
 /***/ "./node_modules/node-libs-browser/node_modules/timers-browserify/main.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/node-libs-browser/node_modules/timers-browserify/main.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -43532,7 +43805,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__("./node_modules/setimmediate/setImmediate.js");
+__webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -43543,11 +43816,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/object-assign/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/object-assign/index.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43646,6 +43923,10 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ }),
 
 /***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -43837,44 +44118,27 @@ process.umask = function() { return 0; };
 /***/ }),
 
 /***/ "./node_modules/select2/dist/js/select2.js":
+/*!*************************************************!*\
+  !*** ./node_modules/select2/dist/js/select2.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
- * Select2 4.0.7
+ * Select2 4.0.5
  * https://select2.github.io
  *
  * Released under the MIT license
  * https://github.com/select2/select2/blob/master/LICENSE.md
  */
-;(function (factory) {
+(function (factory) {
   if (true) {
     // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof module === 'object' && module.exports) {
-    // Node/CommonJS
-    module.exports = function (root, jQuery) {
-      if (jQuery === undefined) {
-        // require('jQuery') returns a factory that requires window to
-        // build a jQuery instance, we normalize how we use modules
-        // that require this pattern but the window provided is a noop
-        // if it's defined (how jquery works)
-        if (typeof window !== 'undefined') {
-          jQuery = require('jquery');
-        }
-        else {
-          jQuery = require('jquery')(root);
-        }
-      }
-      factory(jQuery);
-      return jQuery;
-    };
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
+  } else {}
 } (function (jQuery) {
   // This is needed so we can catch the AMD loader configuration and use it
   // The inner file should be wrapped (by `banner.start.js`) in a function that
@@ -44418,10 +44682,10 @@ S2.define('select2/utils',[
     DecoratedClass.prototype = new ctr();
 
     for (var m = 0; m < superMethods.length; m++) {
-      var superMethod = superMethods[m];
+        var superMethod = superMethods[m];
 
-      DecoratedClass.prototype[superMethod] =
-        SuperClass.prototype[superMethod];
+        DecoratedClass.prototype[superMethod] =
+          SuperClass.prototype[superMethod];
     }
 
     var calledMethod = function (methodName) {
@@ -44616,68 +44880,6 @@ S2.define('select2/utils',[
     $element.append($nodes);
   };
 
-  // Cache objects in Utils.__cache instead of $.data (see #4346)
-  Utils.__cache = {};
-
-  var id = 0;
-  Utils.GetUniqueElementId = function (element) {
-    // Get a unique element Id. If element has no id,
-    // creates a new unique number, stores it in the id
-    // attribute and returns the new id.
-    // If an id already exists, it simply returns it.
-
-    var select2Id = element.getAttribute('data-select2-id');
-    if (select2Id == null) {
-      // If element has id, use it.
-      if (element.id) {
-        select2Id = element.id;
-        element.setAttribute('data-select2-id', select2Id);
-      } else {
-        element.setAttribute('data-select2-id', ++id);
-        select2Id = id.toString();
-      }
-    }
-    return select2Id;
-  };
-
-  Utils.StoreData = function (element, name, value) {
-    // Stores an item in the cache for a specified element.
-    // name is the cache key.
-    var id = Utils.GetUniqueElementId(element);
-    if (!Utils.__cache[id]) {
-      Utils.__cache[id] = {};
-    }
-
-    Utils.__cache[id][name] = value;
-  };
-
-  Utils.GetData = function (element, name) {
-    // Retrieves a value from the cache by its key (name)
-    // name is optional. If no name specified, return
-    // all cache items for the specified element.
-    // and for a specified element.
-    var id = Utils.GetUniqueElementId(element);
-    if (name) {
-      if (Utils.__cache[id]) {
-        if (Utils.__cache[id][name] != null) {
-          return Utils.__cache[id][name];
-        }
-        return $(element).data(name); // Fallback to HTML5 data attribs.
-      }
-      return $(element).data(name); // Fallback to HTML5 data attribs.
-    } else {
-      return Utils.__cache[id];
-    }
-  };
-
-  Utils.RemoveData = function (element) {
-    // Removes all cached items for a specified element.
-    var id = Utils.GetUniqueElementId(element);
-    if (Utils.__cache[id] != null) {
-      delete Utils.__cache[id];
-    }
-  };
-
   return Utils;
 });
 
@@ -44813,7 +45015,7 @@ S2.define('select2/results',[
       $options.each(function () {
         var $option = $(this);
 
-        var item = Utils.GetData(this, 'data');
+        var item = $.data(this, 'data');
 
         // id needs to be converted to a string when comparing
         var id = '' + item.id;
@@ -44918,7 +45120,7 @@ S2.define('select2/results',[
       this.template(data, option);
     }
 
-    Utils.StoreData(option, 'data', data);
+    $.data(option, 'data', data);
 
     return option;
   };
@@ -44959,10 +45161,7 @@ S2.define('select2/results',[
       }
 
       self.setClasses();
-
-      if (self.options.get('scrollAfterSelect')) {
-        self.highlightFirstItem();
-      }
+      self.highlightFirstItem();
     });
 
     container.on('unselect', function () {
@@ -44971,10 +45170,7 @@ S2.define('select2/results',[
       }
 
       self.setClasses();
-
-      if (self.options.get('scrollAfterSelect')) {
-        self.highlightFirstItem();
-      }
+      self.highlightFirstItem();
     });
 
     container.on('open', function () {
@@ -45010,7 +45206,7 @@ S2.define('select2/results',[
         return;
       }
 
-      var data = Utils.GetData($highlighted[0], 'data');
+      var data = $highlighted.data('data');
 
       if ($highlighted.attr('aria-selected') == 'true') {
         self.trigger('close', {});
@@ -45028,9 +45224,8 @@ S2.define('select2/results',[
 
       var currentIndex = $options.index($highlighted);
 
-      // If we are already at the top, don't move further
-      // If no options, currentIndex will be -1
-      if (currentIndex <= 0) {
+      // If we are already at te top, don't move further
+      if (currentIndex === 0) {
         return;
       }
 
@@ -45123,7 +45318,7 @@ S2.define('select2/results',[
       function (evt) {
       var $this = $(this);
 
-      var data = Utils.GetData(this, 'data');
+      var data = $this.data('data');
 
       if ($this.attr('aria-selected') === 'true') {
         if (self.options.get('multiple')) {
@@ -45146,7 +45341,7 @@ S2.define('select2/results',[
 
     this.$results.on('mouseenter', '.select2-results__option[aria-selected]',
       function (evt) {
-      var data = Utils.GetData(this, 'data');
+      var data = $(this).data('data');
 
       self.getHighlightedResults()
           .removeClass('select2-results__option--highlighted');
@@ -45261,8 +45456,8 @@ S2.define('select2/selection/base',[
 
     this._tabindex = 0;
 
-    if (Utils.GetData(this.$element[0], 'old-tabindex') != null) {
-      this._tabindex = Utils.GetData(this.$element[0], 'old-tabindex');
+    if (this.$element.data('old-tabindex') != null) {
+      this._tabindex = this.$element.data('old-tabindex');
     } else if (this.$element.attr('tabindex') != null) {
       this._tabindex = this.$element.attr('tabindex');
     }
@@ -45321,10 +45516,8 @@ S2.define('select2/selection/base',[
       self.$selection.removeAttr('aria-activedescendant');
       self.$selection.removeAttr('aria-owns');
 
-      window.setTimeout(function () {
-        self.$selection.focus();
-      }, 0);
-    
+      self.$selection.focus();
+
       self._detachCloseHandler(container);
     });
 
@@ -45372,7 +45565,7 @@ S2.define('select2/selection/base',[
           return;
         }
 
-        var $element = Utils.GetData(this, 'element');
+        var $element = $this.data('element');
 
         $element.select2('close');
       });
@@ -45433,10 +45626,7 @@ S2.define('select2/selection/single',[
 
     var id = container.id + '-container';
 
-    this.$selection.find('.select2-selection__rendered')
-      .attr('id', id)
-      .attr('role', 'textbox')
-      .attr('aria-readonly', 'true');
+    this.$selection.find('.select2-selection__rendered').attr('id', id);
     this.$selection.attr('aria-labelledby', id);
 
     this.$selection.on('mousedown', function (evt) {
@@ -45463,12 +45653,14 @@ S2.define('select2/selection/single',[
         self.$selection.focus();
       }
     });
+
+    container.on('selection:update', function (params) {
+      self.update(params.data);
+    });
   };
 
   SingleSelection.prototype.clear = function () {
-    var $rendered = this.$selection.find('.select2-selection__rendered');
-    $rendered.empty();
-    $rendered.removeAttr('title'); // clear tooltip on empty
+    this.$selection.find('.select2-selection__rendered').empty();
   };
 
   SingleSelection.prototype.display = function (data, container) {
@@ -45494,7 +45686,7 @@ S2.define('select2/selection/single',[
     var formatted = this.display(selection, $rendered);
 
     $rendered.empty().append(formatted);
-    $rendered.attr('title', selection.title || selection.text);
+    $rendered.prop('title', selection.title || selection.text);
   };
 
   return SingleSelection;
@@ -45546,7 +45738,7 @@ S2.define('select2/selection/multiple',[
         var $remove = $(this);
         var $selection = $remove.parent();
 
-        var data = Utils.GetData($selection[0], 'data');
+        var data = $selection.data('data');
 
         self.trigger('unselect', {
           originalEvent: evt,
@@ -45557,9 +45749,7 @@ S2.define('select2/selection/multiple',[
   };
 
   MultipleSelection.prototype.clear = function () {
-    var $rendered = this.$selection.find('.select2-selection__rendered');
-    $rendered.empty();
-    $rendered.removeAttr('title');
+    this.$selection.find('.select2-selection__rendered').empty();
   };
 
   MultipleSelection.prototype.display = function (data, container) {
@@ -45597,9 +45787,9 @@ S2.define('select2/selection/multiple',[
       var formatted = this.display(selection, $selection);
 
       $selection.append(formatted);
-      $selection.attr('title', selection.title || selection.text);
+      $selection.prop('title', selection.title || selection.text);
 
-      Utils.StoreData($selection[0], 'data', selection);
+      $selection.data('data', selection);
 
       $selections.push($selection);
     }
@@ -45664,9 +45854,8 @@ S2.define('select2/selection/placeholder',[
 
 S2.define('select2/selection/allowClear',[
   'jquery',
-  '../keys',
-  '../utils'
-], function ($, KEYS, Utils) {
+  '../keys'
+], function ($, KEYS) {
   function AllowClear () { }
 
   AllowClear.prototype.bind = function (decorated, container, $container) {
@@ -45708,22 +45897,10 @@ S2.define('select2/selection/allowClear',[
 
     evt.stopPropagation();
 
-    var data = Utils.GetData($clear[0], 'data');
-
-    var previousVal = this.$element.val();
-    this.$element.val(this.placeholder.id);
-
-    var unselectData = {
-      data: data
-    };
-    this.trigger('clear', unselectData);
-    if (unselectData.prevented) {
-      this.$element.val(previousVal);
-      return;
-    }
+    var data = $clear.data('data');
 
     for (var d = 0; d < data.length; d++) {
-      unselectData = {
+      var unselectData = {
         data: data[d]
       };
 
@@ -45733,12 +45910,11 @@ S2.define('select2/selection/allowClear',[
 
       // If the event was prevented, don't clear it out.
       if (unselectData.prevented) {
-        this.$element.val(previousVal);
         return;
       }
     }
 
-    this.$element.trigger('change');
+    this.$element.val(this.placeholder.id).trigger('change');
 
     this.trigger('toggle', {});
   };
@@ -45761,14 +45937,12 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');   
-
     var $remove = $(
-      '<span class="select2-selection__clear" title="' + removeAll() +'">' +
+      '<span class="select2-selection__clear">' +
         '&times;' +
       '</span>'
     );
-    Utils.StoreData($remove[0], 'data', data);
+    $remove.data('data', data);
 
     this.$selection.find('.select2-selection__rendered').prepend($remove);
   };
@@ -45859,7 +46033,7 @@ S2.define('select2/selection/search',[
           .prev('.select2-selection__choice');
 
         if ($previousChoice.length > 0) {
-          var item = Utils.GetData($previousChoice[0], 'data');
+          var item = $previousChoice.data('data');
 
           self.searchRemoveChoice(item);
 
@@ -45953,13 +46127,7 @@ S2.define('select2/selection/search',[
 
     this.resizeSearch();
     if (searchHadFocus) {
-      var isTagInput = this.$element.find('[data-select2-tag]').length;
-      if (isTagInput) {
-        // fix IE11 bug where tag input lost focus
-        this.$element.focus();
-      } else {
-        this.$search.focus();
-      }
+      this.$search.focus();
     }
   };
 
@@ -46016,13 +46184,10 @@ S2.define('select2/selection/eventRelay',[
       'open', 'opening',
       'close', 'closing',
       'select', 'selecting',
-      'unselect', 'unselecting',
-      'clear', 'clearing'
+      'unselect', 'unselecting'
     ];
 
-    var preventableEvents = [
-      'opening', 'closing', 'selecting', 'unselecting', 'clearing'
-    ];
+    var preventableEvents = ['opening', 'closing', 'selecting', 'unselecting'];
 
     decorated.call(this, container, $container);
 
@@ -46355,7 +46520,6 @@ S2.define('select2/diacritics',[
     '\u019F': 'O',
     '\uA74A': 'O',
     '\uA74C': 'O',
-    '\u0152': 'OE',
     '\u01A2': 'OI',
     '\uA74E': 'OO',
     '\u0222': 'OU',
@@ -46765,7 +46929,6 @@ S2.define('select2/diacritics',[
     '\uA74B': 'o',
     '\uA74D': 'o',
     '\u0275': 'o',
-    '\u0153': 'oe',
     '\u01A3': 'oi',
     '\u0223': 'ou',
     '\uA74F': 'oo',
@@ -46934,9 +47097,8 @@ S2.define('select2/diacritics',[
     '\u03CD': '\u03C5',
     '\u03CB': '\u03C5',
     '\u03B0': '\u03C5',
-    '\u03CE': '\u03C9',
-    '\u03C2': '\u03C3',
-    '\u2019': '\''
+    '\u03C9': '\u03C9',
+    '\u03C2': '\u03C3'
   };
 
   return diacritics;
@@ -47104,7 +47266,7 @@ S2.define('select2/data/select',[
     // Remove anything added to child elements
     this.$element.find('*').each(function () {
       // Remove any custom data set by Select2
-      Utils.RemoveData(this);
+      $.removeData(this, 'data');
     });
   };
 
@@ -47177,7 +47339,7 @@ S2.define('select2/data/select',[
     normalizedData.element = option;
 
     // Override the option's data with the combined data
-    Utils.StoreData(option, 'data', normalizedData);
+    $.data(option, 'data', normalizedData);
 
     return $option;
   };
@@ -47185,7 +47347,7 @@ S2.define('select2/data/select',[
   SelectAdapter.prototype.item = function ($option) {
     var data = {};
 
-    data = Utils.GetData($option[0], 'data');
+    data = $.data($option[0], 'data');
 
     if (data != null) {
       return data;
@@ -47223,13 +47385,13 @@ S2.define('select2/data/select',[
     data = this._normalizeItem(data);
     data.element = $option[0];
 
-    Utils.StoreData($option[0], 'data', data);
+    $.data($option[0], 'data', data);
 
     return data;
   };
 
   SelectAdapter.prototype._normalizeItem = function (item) {
-    if (item !== Object(item)) {
+    if (!$.isPlainObject(item)) {
       item = {
         id: item,
         text: item
@@ -47433,8 +47595,7 @@ S2.define('select2/data/ajax',[
       }, function () {
         // Attempt to detect if a request was aborted
         // Only works if the transport exposes a status property
-        if ('status' in $request &&
-            ($request.status === 0 || $request.status === '0')) {
+        if ($request.status && $request.status === '0') {
           return;
         }
 
@@ -47833,7 +47994,7 @@ S2.define('select2/dropdown',[
   };
 
   Dropdown.prototype.position = function ($dropdown, $container) {
-    // Should be implemented in subclasses
+    // Should be implmented in subclasses
   };
 
   Dropdown.prototype.destroy = function () {
@@ -47906,7 +48067,6 @@ S2.define('select2/dropdown/search',[
       self.$search.attr('tabindex', -1);
 
       self.$search.val('');
-      self.$search.blur();
     });
 
     container.on('focus', function () {
@@ -48172,14 +48332,14 @@ S2.define('select2/dropdown/attachBody',[
 
     var $watchers = this.$container.parents().filter(Utils.hasScroll);
     $watchers.each(function () {
-      Utils.StoreData(this, 'select2-scroll-position', {
+      $(this).data('select2-scroll-position', {
         x: $(this).scrollLeft(),
         y: $(this).scrollTop()
       });
     });
 
     $watchers.on(scrollEvent, function (ev) {
-      var position = Utils.GetData(this, 'select2-scroll-position');
+      var position = $(this).data('select2-scroll-position');
       $(this).scrollTop(position.y);
     });
 
@@ -48238,10 +48398,10 @@ S2.define('select2/dropdown/attachBody',[
       top: container.bottom
     };
 
-    // Determine what the parent element is to use for calculating the offset
+    // Determine what the parent element is to use for calciulating the offset
     var $offsetParent = this.$dropdownParent;
 
-    // For statically positioned elements, we need to get the element
+    // For statically positoned elements, we need to get the element
     // that is determining the offset
     if ($offsetParent.css('position') === 'static') {
       $offsetParent = $offsetParent.offsetParent();
@@ -48344,8 +48504,8 @@ S2.define('select2/dropdown/minimumResultsForSearch',[
 });
 
 S2.define('select2/dropdown/selectOnClose',[
-  '../utils'
-], function (Utils) {
+
+], function () {
   function SelectOnClose () { }
 
   SelectOnClose.prototype.bind = function (decorated, container, $container) {
@@ -48376,7 +48536,7 @@ S2.define('select2/dropdown/selectOnClose',[
       return;
     }
 
-    var data = Utils.GetData($highlightedResults[0], 'data');
+    var data = $highlightedResults.data('data');
 
     // Don't re-select already selected resulte
     if (
@@ -48417,7 +48577,7 @@ S2.define('select2/dropdown/closeOnSelect',[
     var originalEvent = evt.originalEvent;
 
     // Don't close if the control key is being held
-    if (originalEvent && (originalEvent.ctrlKey || originalEvent.metaKey)) {
+    if (originalEvent && originalEvent.ctrlKey) {
       return;
     }
 
@@ -48471,9 +48631,6 @@ S2.define('select2/i18n/en',[],function () {
     },
     searching: function () {
       return 'Searching…';
-    },
-    removeAllItems: function () {
-      return 'Remove all items';
     }
   };
 });
@@ -48845,7 +49002,6 @@ S2.define('select2/defaults',[
       maximumSelectionLength: 0,
       minimumResultsForSearch: 0,
       selectOnClose: false,
-      scrollAfterSelect: false,
       sorter: function (data) {
         return data;
       },
@@ -48868,7 +49024,7 @@ S2.define('select2/defaults',[
 
     var convertedData = Utils._convertData(data);
 
-    $.extend(true, this.defaults, convertedData);
+    $.extend(this.defaults, convertedData);
   };
 
   var defaults = new Defaults();
@@ -48933,7 +49089,7 @@ S2.define('select2/options',[
     $e.prop('disabled', this.options.disabled);
     $e.prop('multiple', this.options.multiple);
 
-    if (Utils.GetData($e[0], 'select2Tags')) {
+    if ($e.data('select2Tags')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-select2-tags` attribute has been changed to ' +
@@ -48942,11 +49098,11 @@ S2.define('select2/options',[
         );
       }
 
-      Utils.StoreData($e[0], 'data', Utils.GetData($e[0], 'select2Tags'));
-      Utils.StoreData($e[0], 'tags', true);
+      $e.data('data', $e.data('select2Tags'));
+      $e.data('tags', true);
     }
 
-    if (Utils.GetData($e[0], 'ajaxUrl')) {
+    if ($e.data('ajaxUrl')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-ajax-url` attribute has been changed to ' +
@@ -48955,45 +49111,21 @@ S2.define('select2/options',[
         );
       }
 
-      $e.attr('ajax--url', Utils.GetData($e[0], 'ajaxUrl'));
-      Utils.StoreData($e[0], 'ajax-Url', Utils.GetData($e[0], 'ajaxUrl'));
+      $e.attr('ajax--url', $e.data('ajaxUrl'));
+      $e.data('ajax--url', $e.data('ajaxUrl'));
     }
 
     var dataset = {};
 
-    function upperCaseLetter(_, letter) {
-      return letter.toUpperCase();
-    }
-
-    // Pre-load all of the attributes which are prefixed with `data-`
-    for (var attr = 0; attr < $e[0].attributes.length; attr++) {
-      var attributeName = $e[0].attributes[attr].name;
-      var prefix = 'data-';
-
-      if (attributeName.substr(0, prefix.length) == prefix) {
-        // Get the contents of the attribute after `data-`
-        var dataName = attributeName.substring(prefix.length);
-
-        // Get the data contents from the consistent source
-        // This is more than likely the jQuery data helper
-        var dataValue = Utils.GetData($e[0], dataName);
-
-        // camelCase the attribute name to match the spec
-        var camelDataName = dataName.replace(/-([a-z])/g, upperCaseLetter);
-
-        // Store the data attribute contents into the dataset since
-        dataset[camelDataName] = dataValue;
-      }
-    }
-
     // Prefer the element's `dataset` attribute if it exists
     // jQuery 1.x does not correctly handle data attributes with multiple dashes
     if ($.fn.jquery && $.fn.jquery.substr(0, 2) == '1.' && $e[0].dataset) {
-      dataset = $.extend(true, {}, $e[0].dataset, dataset);
+      dataset = $.extend(true, {}, $e[0].dataset, $e.data());
+    } else {
+      dataset = $e.data();
     }
 
-    // Prefer our internal data cache if it exists
-    var data = $.extend(true, {}, Utils.GetData($e[0]), dataset);
+    var data = $.extend(true, {}, dataset);
 
     data = Utils._convertData(data);
 
@@ -49030,8 +49162,8 @@ S2.define('select2/core',[
   './keys'
 ], function ($, Options, Utils, KEYS) {
   var Select2 = function ($element, options) {
-    if (Utils.GetData($element[0], 'select2') != null) {
-      Utils.GetData($element[0], 'select2').destroy();
+    if ($element.data('select2') != null) {
+      $element.data('select2').destroy();
     }
 
     this.$element = $element;
@@ -49047,7 +49179,7 @@ S2.define('select2/core',[
     // Set up the tabindex
 
     var tabindex = $element.attr('tabindex') || 0;
-    Utils.StoreData($element[0], 'old-tabindex', tabindex);
+    $element.data('old-tabindex', tabindex);
     $element.attr('tabindex', '-1');
 
     // Set up containers and adapters
@@ -49108,9 +49240,6 @@ S2.define('select2/core',[
     // Synchronize any monitored attributes
     this._syncAttributes();
 
-    Utils.StoreData($element[0], 'select2', this);
-
-    // Ensure backwards compatibility with $element.data('select2').
     $element.data('select2', this);
   };
 
@@ -49445,8 +49574,7 @@ S2.define('select2/core',[
       'open': 'opening',
       'close': 'closing',
       'select': 'selecting',
-      'unselect': 'unselecting',
-      'clear': 'clearing'
+      'unselect': 'unselecting'
     };
 
     if (args === undefined) {
@@ -49601,12 +49729,10 @@ S2.define('select2/core',[
     this._syncS = null;
 
     this.$element.off('.select2');
-    this.$element.attr('tabindex',
-    Utils.GetData(this.$element[0], 'old-tabindex'));
+    this.$element.attr('tabindex', this.$element.data('old-tabindex'));
 
     this.$element.removeClass('select2-hidden-accessible');
     this.$element.attr('aria-hidden', 'false');
-    Utils.RemoveData(this.$element[0]);
     this.$element.removeData('select2');
 
     this.dataAdapter.destroy();
@@ -49634,7 +49760,7 @@ S2.define('select2/core',[
 
     this.$container.addClass('select2-container--' + this.options.get('theme'));
 
-    Utils.StoreData($container[0], 'element', this.$element);
+    $container.data('element', this.$element);
 
     return $container;
   };
@@ -49654,9 +49780,8 @@ S2.define('jquery.select2',[
   'jquery-mousewheel',
 
   './select2/core',
-  './select2/defaults',
-  './select2/utils'
-], function ($, _, Select2, Defaults, Utils) {
+  './select2/defaults'
+], function ($, _, Select2, Defaults) {
   if ($.fn.select2 == null) {
     // All methods that should return the element
     var thisMethods = ['open', 'close', 'destroy'];
@@ -49677,7 +49802,7 @@ S2.define('jquery.select2',[
         var args = Array.prototype.slice.call(arguments, 1);
 
         this.each(function () {
-          var instance = Utils.GetData(this, 'select2');
+          var instance = $(this).data('select2');
 
           if (instance == null && window.console && console.error) {
             console.error(
@@ -49732,6 +49857,10 @@ S2.define('jquery.select2',[
 /***/ }),
 
 /***/ "./node_modules/setimmediate/setImmediate.js":
+/*!***************************************************!*\
+  !*** ./node_modules/setimmediate/setImmediate.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -49921,15 +50050,19 @@ S2.define('jquery.select2',[
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/client.js":
+/*!*********************************************!*\
+  !*** ./node_modules/storage2/lib/client.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Storage = __webpack_require__("./node_modules/storage2/lib/storage.js");
-var cookie = __webpack_require__("./node_modules/storage2/lib/cookie.js");
+var Storage = __webpack_require__(/*! ./storage */ "./node_modules/storage2/lib/storage.js");
+var cookie = __webpack_require__(/*! ./cookie */ "./node_modules/storage2/lib/cookie.js");
 
 var _storage_support = true;
 
@@ -49972,6 +50105,10 @@ if (_storage_support) {
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/cookie.js":
+/*!*********************************************!*\
+  !*** ./node_modules/storage2/lib/cookie.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 function createCookie(name, value, days) {
@@ -50015,6 +50152,10 @@ module.exports = {
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/num-keys.js":
+/*!***********************************************!*\
+  !*** ./node_modules/storage2/lib/num-keys.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = function(obj) {
@@ -50032,9 +50173,13 @@ module.exports = function(obj) {
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/storage.js":
+/*!**********************************************!*\
+  !*** ./node_modules/storage2/lib/storage.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var numKeys = __webpack_require__("./node_modules/storage2/lib/num-keys.js");
+var numKeys = __webpack_require__(/*! ./num-keys */ "./node_modules/storage2/lib/num-keys.js");
 
 function Storage(obj, set, clear) {
   this._obj = obj || {};
@@ -50096,6 +50241,10 @@ module.exports = Storage;
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/agent-base.js":
+/*!***************************************************!*\
+  !*** ./node_modules/superagent/lib/agent-base.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -50123,6 +50272,10 @@ module.exports = Agent;
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/client.js":
+/*!***********************************************!*\
+  !*** ./node_modules/superagent/lib/client.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -50139,11 +50292,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__("./node_modules/component-emitter/index.js");
-var RequestBase = __webpack_require__("./node_modules/superagent/lib/request-base.js");
-var isObject = __webpack_require__("./node_modules/superagent/lib/is-object.js");
-var ResponseBase = __webpack_require__("./node_modules/superagent/lib/response-base.js");
-var Agent = __webpack_require__("./node_modules/superagent/lib/agent-base.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
+var RequestBase = __webpack_require__(/*! ./request-base */ "./node_modules/superagent/lib/request-base.js");
+var isObject = __webpack_require__(/*! ./is-object */ "./node_modules/superagent/lib/is-object.js");
+var ResponseBase = __webpack_require__(/*! ./response-base */ "./node_modules/superagent/lib/response-base.js");
+var Agent = __webpack_require__(/*! ./agent-base */ "./node_modules/superagent/lib/agent-base.js");
 
 /**
  * Noop.
@@ -51050,6 +51203,10 @@ request.put = function(url, data, fn) {
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/is-object.js":
+/*!**************************************************!*\
+  !*** ./node_modules/superagent/lib/is-object.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51073,6 +51230,10 @@ module.exports = isObject;
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/request-base.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/superagent/lib/request-base.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51081,7 +51242,7 @@ module.exports = isObject;
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__("./node_modules/superagent/lib/is-object.js");
+var isObject = __webpack_require__(/*! ./is-object */ "./node_modules/superagent/lib/is-object.js");
 
 /**
  * Expose `RequestBase`.
@@ -51775,6 +51936,10 @@ RequestBase.prototype._setTimeouts = function() {
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/response-base.js":
+/*!******************************************************!*\
+  !*** ./node_modules/superagent/lib/response-base.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51784,7 +51949,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__("./node_modules/superagent/lib/utils.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/superagent/lib/utils.js");
 
 /**
  * Expose `ResponseBase`.
@@ -51919,6 +52084,10 @@ ResponseBase.prototype._setStatusProperties = function(status){
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/utils.js":
+/*!**********************************************!*\
+  !*** ./node_modules/superagent/lib/utils.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51998,6 +52167,10 @@ exports.cleanHeader = function(header, changesOrigin){
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 var g;
@@ -52009,11 +52182,10 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
+	g = g || new Function("return this")();
+} catch (e) {
 	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
+	if (typeof window === "object") g = window;
 }
 
 // g can still be undefined, but nothing to do about it...
@@ -52026,14 +52198,18 @@ module.exports = g;
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
-	if(!module.webpackPolyfill) {
+	if (!module.webpackPolyfill) {
 		module.deprecate = function() {};
 		module.paths = [];
 		// module.parent = undefined by default
-		if(!module.children) module.children = [];
+		if (!module.children) module.children = [];
 		Object.defineProperty(module, "loaded", {
 			enumerable: true,
 			get: function() {
@@ -52055,6 +52231,10 @@ module.exports = function(module) {
 /***/ }),
 
 /***/ "./resources/assets/js/app.js":
+/*!************************************!*\
+  !*** ./resources/assets/js/app.js ***!
+  \************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -52062,479 +52242,478 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__("./resources/assets/js/bootstrap.js");
-
+__webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 /**
  * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
  * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
  * Todo: workaround to only run timeout if the window is active
  */
+
+
 var notificationList,
     notificationCount,
     notificationRefreshTimeout = 60 * 5000;
-
 $(document).ready(function () {
+  // Inject the isMobile variable into the window. We don't want ALL of the javascript
+  // for mobiles, namely the tooltip tool.
+  window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
 
-    // Inject the isMobile variable into the window. We don't want ALL of the javascript
-    // for mobiles, namely the tooltip tool.
-    window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-    if (!window.kankaIsMobile.matches) {
-        $('[data-toggle="tooltip"]').tooltip();
+  if (!window.kankaIsMobile.matches) {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
+
+  $('[data-toggle="popover"]').popover();
+  initSelect2();
+  initCheckboxSwitch(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
+  // binded once.
+
+  $(document).on('focus', '.select2.select2-container', function (e) {
+    // only open on original attempt - close focus event should not fire open
+    if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
+      $(this).siblings('select').select2('open');
     }
+  });
 
-    $('[data-toggle="popover"]').popover();
+  if ($('.date-picker').length > 0) {
+    $.each($('.date-picker'), function (index) {
+      // instance, using default configuration.
+      $(this).datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        todayHighlight: true
+      });
+    });
+  }
+
+  $.each($('.img-delete'), function (index) {
+    $(this).click(function (e) {
+      e.preventDefault();
+      $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+      $(this).parent().parent().hide();
+    });
+  });
+
+  if ($('#delete-confirm-form').length > 0) {
+    $('#delete-confirm-form').on('keyup keypress', function (e) {
+      var keyCode = e.keyCode || e.which;
+
+      if (keyCode === 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  }
+
+  $.each($('.new-entity-selector'), function (index) {
+    $(this).on('click', function (e) {
+      $('#new-entity-type').val($(this).data('entity'));
+      $('#new-entity-form').data('parent', $(this).data('parent'));
+    });
+  });
+
+  if ($('#new-entity-form').length > 0) {
+    $('#new-entity-form').on('submit', function (e) {
+      $('#new-entity-errors').hide();
+      var target = $(this).data('parent');
+      $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: $(this).serialize()
+      }).done(function (result, textStatus, xhr) {
+        if (textStatus === 'success' && result.id) {
+          $('#' + target).children().remove().end().append(new Option(result.name, result.id)).val(result.id).trigger('change'); // Close modal
+
+          $('#new-entity-modal').modal('toggle');
+          $('#new-entity-errors').hide();
+          $('#new-entity-name').val(''); // Reset submit button
+
+          resetSubmitButton('#new-entity-save');
+        } else {
+          $('#new-entity-errors').show(); // Reset submit button
+
+          resetSubmitButton('#new-entity-save');
+        }
+      }).fail(function (result, textStatus, xhr) {
+        $('#new-entity-errors').show(); // Re-enable the submit button
+
+        resetSubmitButton('#new-entity-save');
+      });
+      e.preventDefault();
+      return false;
+    });
+  } // Treeview for locations
+
+
+  var treeViewLoader = $('#locations-treeview');
+
+  if (treeViewLoader.length > 0) {
+    treeViewInit('locations');
+  } // Treeview for tags
+
+
+  if ($('#tags-treeview').length > 0) {
+    treeViewInit('tags');
+  }
+
+  if ($('#quests-treeview').length > 0) {
+    treeViewInit('quests');
+  }
+
+  if ($('#organisations-treeview').length > 0) {
+    treeViewInit('organisations');
+  }
+
+  if ($('#families-treeview').length > 0) {
+    treeViewInit('families');
+  }
+
+  if ($('#races').length > 0) {
+    treeViewInit('races');
+  }
+
+  manageTabs();
+  manageDashboardNotifications(); // Live search on forms
+
+  /*$.each($('.datagrid-search'), function(index) {
+      $(this).submit(function(event) {
+          event.preventDefault();
+            window.location.href =
+      });
+  });*/
+  // Delete confirm dialog
+
+  $.each($('.delete-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $('#delete-confirm-name').text(name);
+      }
+
+      if (target) {
+        $('#delete-confirm-submit').data('target', target);
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('#delete-confirm-submit'), function (index) {
+    $(this).click(function (e) {
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
+  });
+  initTogglePasswordFields();
+  initAjaxPagination();
+  initNotifications();
+  /**
+   * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
+   */
+
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    $('[data-toggle="tooltip"]').tooltip(); // Also re-bind select2 elements on modal show
 
     initSelect2();
     initCheckboxSwitch();
+    initAjaxPagination(); // Handle when opening the entity-creator ui
 
-    // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
-    // binded once.
-    $(document).on('focus', '.select2.select2-container', function (e) {
-        // only open on original attempt - close focus event should not fire open
-        if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
-            $(this).siblings('select').select2('open');
-        }
-    });
-
-    if ($('.date-picker').length > 0) {
-        $.each($('.date-picker'), function (index) {
-            // instance, using default configuration.
-            $(this).datepicker({
-                autoclose: true,
-                format: 'yyyy-mm-dd',
-                todayHighlight: true
-            });
-        });
-    }
-
-    $.each($('.img-delete'), function (index) {
-        $(this).click(function (e) {
-            e.preventDefault();
-            $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-            $(this).parent().parent().hide();
-        });
-    });
-
-    if ($('#delete-confirm-form').length > 0) {
-        $('#delete-confirm-form').on('keyup keypress', function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    }
-
-    $.each($('.new-entity-selector'), function (index) {
-        $(this).on('click', function (e) {
-            $('#new-entity-type').val($(this).data('entity'));
-            $('#new-entity-form').data('parent', $(this).data('parent'));
-        });
-    });
-
-    if ($('#new-entity-form').length > 0) {
-        $('#new-entity-form').on('submit', function (e) {
-            $('#new-entity-errors').hide();
-            var target = $(this).data('parent');
-            $.ajax({
-                type: "POST",
-                url: $(this).attr('action'),
-                data: $(this).serialize()
-            }).done(function (result, textStatus, xhr) {
-                if (textStatus === 'success' && result.id) {
-                    $('#' + target).children().remove().end().append(new Option(result.name, result.id)).val(result.id).trigger('change');
-
-                    // Close modal
-                    $('#new-entity-modal').modal('toggle');
-                    $('#new-entity-errors').hide();
-                    $('#new-entity-name').val('');
-
-                    // Reset submit button
-                    resetSubmitButton('#new-entity-save');
-                } else {
-                    $('#new-entity-errors').show();
-
-                    // Reset submit button
-                    resetSubmitButton('#new-entity-save');
-                }
-            }).fail(function (result, textStatus, xhr) {
-                $('#new-entity-errors').show();
-
-                // Re-enable the submit button
-                resetSubmitButton('#new-entity-save');
-            });
-
-            e.preventDefault();
-            return false;
-        });
-    }
-
-    // Treeview for locations
-    var treeViewLoader = $('#locations-treeview');
-    if (treeViewLoader.length > 0) {
-        treeViewInit('locations');
-    }
-
-    // Treeview for tags
-    if ($('#tags-treeview').length > 0) {
-        treeViewInit('tags');
-    }
-    if ($('#quests-treeview').length > 0) {
-        treeViewInit('quests');
-    }
-    if ($('#organisations-treeview').length > 0) {
-        treeViewInit('organisations');
-    }
-    if ($('#families-treeview').length > 0) {
-        treeViewInit('families');
-    }
-    if ($('#races').length > 0) {
-        treeViewInit('races');
-    }
-
-    manageTabs();
-    manageDashboardNotifications();
-
-    // Live search on forms
-    /*$.each($('.datagrid-search'), function(index) {
-        $(this).submit(function(event) {
-            event.preventDefault();
-              window.location.href =
-        });
-    });*/
-
-    // Delete confirm dialog
-    $.each($('.delete-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('name');
-            var text = $(this).data('text');
-            var target = $(this).data('delete-target');
-            if (text) {
-                $('#delete-confirm-text').text(text);
-            } else {
-                $('#delete-confirm-name').text(name);
-            }
-
-            if (target) {
-                $('#delete-confirm-submit').data('target', target);
-            }
-        });
-    });
-
-    // Submit modal form
-    $.each($('#delete-confirm-submit'), function (index) {
-        $(this).click(function (e) {
-            var target = $(this).data('target');
-            if (target) {
-                $('#' + target).submit();
-            } else {
-                $('#delete-confirm-form').submit();
-            }
-        });
-    });
-
-    // Delete confirm dialog
-    $.each($('.click-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('message');
-            $('#click-confirm-text').text(name);
-            $('#click-confirm-url').attr('href', $(this).data('url'));
-        });
-    });
-
-    initTogglePasswordFields();
-    initAjaxPagination();
-    initNotifications();
-
-    /**
-     * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
-     */
-    $(document).on('shown.bs.modal shown.bs.popover', function () {
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Also re-bind select2 elements on modal show
-        initSelect2();
-        initCheckboxSwitch();
-        initAjaxPagination();
-
-        // Handle when opening the entity-creator ui
-        entityCreatorUI();
-    });
+    entityCreatorUI();
+  });
 });
-
 /**
  * Init the toggle elements
  */
-function initCheckboxSwitch() {}
-//$('[data-toggle="switch"]').bootstrapSwitch();
 
+function initCheckboxSwitch() {} //$('[data-toggle="switch"]').bootstrapSwitch();
 
 /**
  * Select2 is used for all the fancy dropdowns
  */
+
+
 function initSelect2() {
-    if ($('select.select2').length > 0) {
-        $.each($('select.select2'), function (index) {
-            // Check it isn't the select2-icon
-            $(this).select2({
-                //data: newOptions,
-                placeholder: $(this).data('placeholder'),
-                allowClear: true,
-                tags: $(this).is('[data-tags]'),
-                language: $(this).data('language'),
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).data('url'),
-                    dataType: 'json',
-                    data: function data(params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function processResults(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
-
-    // Select2 with local search
-    $('select.select2-local').select2({
+  if ($('select.select2').length > 0) {
+    $.each($('select.select2'), function (index) {
+      // Check it isn't the select2-icon
+      $(this).select2({
+        //data: newOptions,
         placeholder: $(this).data('placeholder'),
+        allowClear: true,
+        tags: $(this).is('[data-tags]'),
         language: $(this).data('language'),
-        allowClear: true
+        minimumInputLength: 0,
+        ajax: {
+          quietMillis: 200,
+          url: $(this).data('url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
     });
-}
+  } // Select2 with local search
 
+
+  $('select.select2-local').select2({
+    placeholder: $(this).data('placeholder'),
+    language: $(this).data('language'),
+    allowClear: true
+  });
+}
 /**
  * Go through table trs to add on click support
  */
-function treeViewInit(element) {
-    var treeViewLoader = $('#' + element + '-treeview');
-    var link = treeViewLoader.data('url');
-    $.each($('#' + element + ' > tbody > tr'), function (index) {
-        children = $(this).data('children');
-        if (parseInt(children) > 0) {
-            $(this).addClass('tr-hover');
-            $(this).on('click', function (e) {
-                // Don't trigger the click on the checkbox (used for bulk actions)
-                if (e.target.type !== 'checkbox') {
-                    window.location = link + '?parent_id=' + $(this).data('id');
-                }
-            });
-        }
-    });
-}
 
+
+function treeViewInit(element) {
+  var treeViewLoader = $('#' + element + '-treeview');
+  var link = treeViewLoader.data('url');
+  $.each($('#' + element + ' > tbody > tr'), function (index) {
+    children = $(this).data('children');
+
+    if (parseInt(children) > 0) {
+      $(this).addClass('tr-hover');
+      $(this).on('click', function (e) {
+        // Don't trigger the click on the checkbox (used for bulk actions)
+        if (e.target.type !== 'checkbox') {
+          window.location = link + '?parent_id=' + $(this).data('id');
+        }
+      });
+    }
+  });
+}
 /**
  * Save and manage tabs for when refreshing
  */
+
+
 function manageTabs() {
-    var tabLink = $('.nav-tabs li a');
-    tabLink.click(function (e) {
-        e.preventDefault();
+  var tabLink = $('.nav-tabs li a');
+  tabLink.click(function (e) {
+    e.preventDefault(); // If tab isn't ajax request
 
-        // If tab isn't ajax request
-        if (!$(this).data('url')) {
-            $(this).tab('show');
-        }
-    });
+    if (!$(this).data('url')) {
+      $(this).tab('show');
+    }
+  }); // store the currently selected tab in the hash value
 
-    // store the currently selected tab in the hash value
-    tabLink.on("shown.bs.tab", function (e) {
-        e.preventDefault();
-        var tabId = $(e.target).attr("href").substr(1);
-        var dataToggle = $(e.target).attr('ajax-modal');
+  tabLink.on("shown.bs.tab", function (e) {
+    e.preventDefault();
+    var tabId = $(e.target).attr("href").substr(1);
+    var dataToggle = $(e.target).attr('ajax-modal');
 
-        if (dataToggle && dataToggle == 'ajax-modal') {
-            // Modal? Don't do more.
-            return true;
-        }
-        // We fake a tab_ to avoid page jumps from the browser
-        window.location.hash = 'tab_' + tabId;
-    });
+    if (dataToggle && dataToggle == 'ajax-modal') {
+      // Modal? Don't do more.
+      return true;
+    } // We fake a tab_ to avoid page jumps from the browser
 
-    // on load of the page: switch to the currently selected tab
-    var tabHash = window.location.hash.replace('tab_', '');
-    $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
+
+    window.location.hash = 'tab_' + tabId;
+  }); // on load of the page: switch to the currently selected tab
+
+  var tabHash = window.location.hash.replace('tab_', '');
+  $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
-
 /**
  *
  */
+
+
 function manageDashboardNotifications() {
-    $.each($('.click-notification'), function (index) {
-        $(this).modal();
-    });
+  $.each($('.click-notification'), function (index) {
+    $(this).modal();
+  });
+  $.each($('.notification-delete'), function (index) {
+    $(this).on('click', function () {
+      $.ajax({
+        url: $(this).data('url'),
+        dataType: 'json'
+      }); // Had this in the done, but it never fired?
 
-    $.each($('.notification-delete'), function (index) {
-        $(this).on('click', function () {
-            $.ajax({
-                url: $(this).data('url'),
-                dataType: 'json'
-            });
-
-            // Had this in the done, but it never fired?
-            var parent = $(this).data('parent');
-            $('#' + parent).modal('toggle');
-        });
+      var parent = $(this).data('parent');
+      $('#' + parent).modal('toggle');
     });
+  });
 }
-
 /**
  * Show/Hide password field helpers
  */
+
+
 function initTogglePasswordFields() {
-    var passwordField = $('#password');
-    var passwordToggleIcon = $('.toggle-password-icon');
-    $('.toggle-password').on('click', function (e) {
-        e.preventDefault();
-        if (passwordField.prop('type') === 'text') {
-            passwordField.prop('type', 'password');
-            passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
-        } else {
-            passwordField.prop('type', 'text');
-            passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
-        }
-        return false;
-    });
+  var passwordField = $('#password');
+  var passwordToggleIcon = $('.toggle-password-icon');
+  $('.toggle-password').on('click', function (e) {
+    e.preventDefault();
+
+    if (passwordField.prop('type') === 'text') {
+      passwordField.prop('type', 'password');
+      passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+    } else {
+      passwordField.prop('type', 'text');
+      passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+    }
+
+    return false;
+  });
 }
 
 function resetSubmitButton(id) {
-    var newEntitySaveButton = $(id);
-    newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
+  var newEntitySaveButton = $(id);
+  newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
 }
-
 /**
  * Quick Entity Creator UI
  */
+
+
 function entityCreatorUI() {
-    $('[data-toggle="entity-creator"]').on('click', function (e) {
-        e.preventDefault();
+  $('[data-toggle="entity-creator"]').on('click', function (e) {
+    e.preventDefault();
+    var selection = $('#entity-creator-selection');
+    var loader = $('.entity-creator-loader');
+    selection.addClass('hidden');
+    loader.removeClass('hidden');
+    $.ajax($(this).data('url')).done(function (data) {
+      loader.addClass('hidden');
+      selection.html(data).removeClass('hidden');
+      initSelect2();
+      initEntityCreatorDuplicateName();
+      window.initCategories();
+      $('#entity-creator-form').on('submit', function (e) {
+        e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
-        var selection = $('#entity-creator-selection');
-        var loader = $('.entity-creator-loader');
-
-        selection.addClass('hidden');
-        loader.removeClass('hidden');
-
-        $.ajax($(this).data('url')).done(function (data) {
-            loader.addClass('hidden');
-            selection.html(data).removeClass('hidden');
-            initSelect2();
-            initEntityCreatorDuplicateName();
-            window.initCategories();
-
-            $('#entity-creator-form').on('submit', function (e) {
-                e.preventDefault();
-
-                // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.post({
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    context: this
-                }).done(function (result, textStatus, xhr) {
-                    // New entity was created, let's follow that redirect
-                    console.log(result);
-
-                    $('#entity-creator-form').hide();
-
-                    $('.entity-creator-success').html(result.message).show();
-                }).fail(function (data) {
-                    $('.entity-creator-error').show();
-                });
-            });
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
         });
-
-        return false;
+        $.post({
+          url: $(this).attr('action'),
+          data: $(this).serialize(),
+          context: this
+        }).done(function (result, textStatus, xhr) {
+          // New entity was created, let's follow that redirect
+          console.log(result);
+          $('#entity-creator-form').hide();
+          $('.entity-creator-success').html(result.message).show();
+        }).fail(function (data) {
+          $('.entity-creator-error').show();
+        });
+      });
     });
+    return false;
+  });
 }
 
 function initEntityCreatorDuplicateName() {
-    $('#entity-creator-selection input[name="name"]').focusout(function (e) {
-        var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
-        entityCreatorDuplicateWarning.hide();
-        // Check if an entity of the same type already exists, and warn when it does.
-        $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
-            if (res.length > 0) {
-                entityCreatorDuplicateWarning.fadeIn();
-            } else {
-                entityCreatorDuplicateWarning.hide();
-            }
-        });
-    });
-}
+  $('#entity-creator-selection input[name="name"]').focusout(function (e) {
+    var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
+    entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
 
+    $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
+      if (res.length > 0) {
+        entityCreatorDuplicateWarning.fadeIn();
+      } else {
+        entityCreatorDuplicateWarning.hide();
+      }
+    });
+  });
+}
 /**
  * Replace pagination for ajax links
  */
+
+
 function initAjaxPagination() {
-    $('.pagination-ajax-links a').on('click', function (e) {
-        e.preventDefault();
-        var paginationAjaxBody = $('.pagination-ajax-body');
-        paginationAjaxBody.find('.loading').show();
-        paginationAjaxBody.find('.pagination-ajax-content').hide();
-
-        $.ajax($(this).attr('href')).done(function (res) {
-            paginationAjaxBody.parent().html(res);
-            initAjaxPagination();
-        });
-        return false;
+  $('.pagination-ajax-links a').on('click', function (e) {
+    e.preventDefault();
+    var paginationAjaxBody = $('.pagination-ajax-body');
+    paginationAjaxBody.find('.loading').show();
+    paginationAjaxBody.find('.pagination-ajax-content').hide();
+    $.ajax($(this).attr('href')).done(function (res) {
+      paginationAjaxBody.parent().html(res);
+      initAjaxPagination();
     });
+    return false;
+  });
 }
-
 /**
  * Check if there are new notifiations for the user
  */
+
+
 function initNotifications() {
-    notificationList = $('#header-notification-list');
-    notificationCount = $('#header-notification-count');
-    if (notificationList.length === 1) {
-        setTimeout(refreshNotificationList, notificationRefreshTimeout);
-    }
+  notificationList = $('#header-notification-list');
+  notificationCount = $('#header-notification-count');
+
+  if (notificationList.length === 1) {
+    setTimeout(refreshNotificationList, notificationRefreshTimeout);
+  }
 }
 
 function refreshNotificationList() {
-    // console.log('refresh notification list');
-    $.ajax(notificationList.data('url')).done(function (result) {
-        if (result.count > 0) {
-            notificationList.html(result.body);
-            notificationCount.html(result.count).show();
-        } else {
-            notificationCount.hide();
-        }
-        setTimeout(refreshNotificationList, notificationRefreshTimeout);
-    });
-}
+  // console.log('refresh notification list');
+  $.ajax(notificationList.data('url')).done(function (result) {
+    if (result.count > 0) {
+      notificationList.html(result.body);
+      notificationCount.html(result.count).show();
+    } else {
+      notificationCount.hide();
+    }
 
-// Helpers are injected directly in the window functions.
-__webpack_require__("./resources/assets/js/helpers.js");
+    setTimeout(refreshNotificationList, notificationRefreshTimeout);
+  });
+} // Helpers are injected directly in the window functions.
 
-__webpack_require__("./resources/assets/js/keyboard.js");
-__webpack_require__("./resources/assets/js/crud.js");
-__webpack_require__("./resources/assets/js/calendar.js");
-__webpack_require__("./resources/assets/js/search.js");
-__webpack_require__("./resources/assets/js/tags.js");
+
+__webpack_require__(/*! ./helpers.js */ "./resources/assets/js/helpers.js");
+
+__webpack_require__(/*! ./keyboard.js */ "./resources/assets/js/keyboard.js");
+
+__webpack_require__(/*! ./crud.js */ "./resources/assets/js/crud.js");
+
+__webpack_require__(/*! ./calendar.js */ "./resources/assets/js/calendar.js");
+
+__webpack_require__(/*! ./search.js */ "./resources/assets/js/search.js");
+
+__webpack_require__(/*! ./tags.js */ "./resources/assets/js/tags.js");
 
 /***/ }),
 
 /***/ "./resources/assets/js/bootstrap.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/bootstrap.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-window._ = __webpack_require__("./node_modules/lodash/lodash.js");
-
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -52542,31 +52721,31 @@ window._ = __webpack_require__("./node_modules/lodash/lodash.js");
  */
 
 try {
-    window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-    __webpack_require__("./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
+  __webpack_require__(/*! bootstrap-sass */ "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
 } catch (e) {}
 
-__webpack_require__("./node_modules/admin-lte/dist/js/adminlte.min.js");
-__webpack_require__("./node_modules/select2/dist/js/select2.js");
-__webpack_require__("./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
+__webpack_require__(/*! admin-lte */ "./node_modules/admin-lte/dist/js/adminlte.min.js");
 
-// require('corejs-typeahead');
+__webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
+
+__webpack_require__(/*! bootstrap-datepicker */ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"); // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
 
-__webpack_require__("./node_modules/jquery-ui/ui/widgets/draggable.js");
-__webpack_require__("./node_modules/jquery-ui/ui/widgets/sortable.js");
 
+__webpack_require__(/*! jquery-ui/ui/widgets/draggable */ "./node_modules/jquery-ui/ui/widgets/draggable.js");
+
+__webpack_require__(/*! jquery-ui/ui/widgets/sortable */ "./node_modules/jquery-ui/ui/widgets/sortable.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__("./node_modules/axios/index.js");
 
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -52576,70 +52755,71 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
 // import Echo from 'laravel-echo'
-
 // window.Pusher = require('pusher-js');
-
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
 
+
 $.AdminLTESidebarTweak = {};
-
 $.AdminLTESidebarTweak.options = {
-    EnableRemember: true,
-    NoTransitionAfterReload: false
-    //Removes the transition after page reload.
+  EnableRemember: true,
+  NoTransitionAfterReload: false //Removes the transition after page reload.
+
 };
-
 $(function () {
-    "use strict";
+  "use strict";
 
-    $(document).on('click', '.sidebar-toggle', function () {
-        if ($.AdminLTESidebarTweak.options.EnableRemember) {
-            var toggleState = 'opened';
-            if ($("body").hasClass('sidebar-collapse')) {
-                toggleState = 'closed';
-            }
-
-            var date = new Date();
-            date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
-            var expires = " expires=" + date.toGMTString();
-            document.cookie = "toggleState=" + toggleState + "; path=/; secure; " + expires;
-        }
-    });
-
+  $(document).on('click', '.sidebar-toggle', function () {
     if ($.AdminLTESidebarTweak.options.EnableRemember) {
-        var re = new RegExp('toggleState' + "=([^;]+)");
-        var value = re.exec(document.cookie);
-        var toggleState = value != null ? unescape(value[1]) : null;
-        if (toggleState == 'closed') {
-            if ($.AdminLTESidebarTweak.options.NoTransitionAfterReload) {
-                $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function () {
-                    $(this).removeClass('hold-transition');
-                });
-            } else {
-                $("body").addClass('sidebar-collapse');
-            }
-        }
+      var toggleState = 'opened';
+
+      if ($("body").hasClass('sidebar-collapse')) {
+        toggleState = 'closed';
+      }
+
+      var date = new Date();
+      date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+      var expires = " expires=" + date.toGMTString();
+      document.cookie = "toggleState=" + toggleState + "; path=/; secure; " + expires;
     }
+  });
+
+  if ($.AdminLTESidebarTweak.options.EnableRemember) {
+    var re = new RegExp('toggleState' + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    var toggleState = value != null ? unescape(value[1]) : null;
+
+    if (toggleState == 'closed') {
+      if ($.AdminLTESidebarTweak.options.NoTransitionAfterReload) {
+        $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function () {
+          $(this).removeClass('hold-transition');
+        });
+      } else {
+        $("body").addClass('sidebar-collapse');
+      }
+    }
+  }
 });
 
 /***/ }),
 
 /***/ "./resources/assets/js/calendar.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/calendar.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
@@ -52649,993 +52829,962 @@ var calendarAddEpoch, calendarTemplateEpoch;
 var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
-
 $(document).ready(function () {
-    // Form
-    calendarAddMonth = $('#add_month');
-    if (calendarAddMonth.length === 1) {
-        calendarAddWeekday = $('#add_weekday');
-        calendarAddYear = $('#add_year');
-        calendarAddMoon = $('#add_moon');
-        calendarAddSeason = $('#add_season');
-        calendarAddEpoch = $('#add_epoch');
-        calendarAddIntercalary = $('#add_intercalary');
-        calendarTemplateMonth = $('#template_month');
-        calendarTemplateWeekday = $('#template_weekday');
-        calendarTemplateYear = $('#template_year');
-        calendarTemplateMoon = $('#template_moon');
-        calendarTemplateSeason = $('#template_season');
-        calendarTemplateEpoch = $('#template_epoch');
-        calendarTemplateIntercalary = $('#template_intercalary');
-        calendarLeapYear = $('input[name="has_leap_year"]');
+  // Form
+  calendarAddMonth = $('#add_month');
 
-        calendarSortMonths = $(".calendar-months");
-        calendarSortWeekdays = $(".calendar-weekdays");
-        calendarSortYears = $(".calendar-years");
-        calendarSortMoons = $(".calendar-moons");
-        calendarSortSeasons = $(".calendar-seasons");
-        calendarSortEpochs = $(".calendar-epochs");
-        calendarSortIntercalary = $(".calendar-intercalaries");
+  if (calendarAddMonth.length === 1) {
+    calendarAddWeekday = $('#add_weekday');
+    calendarAddYear = $('#add_year');
+    calendarAddMoon = $('#add_moon');
+    calendarAddSeason = $('#add_season');
+    calendarAddEpoch = $('#add_epoch');
+    calendarAddIntercalary = $('#add_intercalary');
+    calendarTemplateMonth = $('#template_month');
+    calendarTemplateWeekday = $('#template_weekday');
+    calendarTemplateYear = $('#template_year');
+    calendarTemplateMoon = $('#template_moon');
+    calendarTemplateSeason = $('#template_season');
+    calendarTemplateEpoch = $('#template_epoch');
+    calendarTemplateIntercalary = $('#template_intercalary');
+    calendarLeapYear = $('input[name="has_leap_year"]');
+    calendarSortMonths = $(".calendar-months");
+    calendarSortWeekdays = $(".calendar-weekdays");
+    calendarSortYears = $(".calendar-years");
+    calendarSortMoons = $(".calendar-moons");
+    calendarSortSeasons = $(".calendar-seasons");
+    calendarSortEpochs = $(".calendar-epochs");
+    calendarSortIntercalary = $(".calendar-intercalaries");
+    initCalendarForm();
+  } // View
 
-        initCalendarForm();
-    }
 
-    // View
-    calendarYearSwitcher = $('#calendar-year-switcher');
-    if (calendarYearSwitcher.length === 1) {
-        calendarYearSwitcherField = $('#calendar-year-switcher-field');
-        calendarEventModal = $('#add-calendar-event');
+  calendarYearSwitcher = $('#calendar-year-switcher');
 
-        initCalendarYearSwitcher();
-        initCalendarEventBlock();
-    }
+  if (calendarYearSwitcher.length === 1) {
+    calendarYearSwitcherField = $('#calendar-year-switcher-field');
+    calendarEventModal = $('#add-calendar-event');
+    initCalendarYearSwitcher();
+    initCalendarEventBlock();
+  }
 
-    $(document).on('shown.bs.modal', function () {
-        initCalendarEventModal();
-    });
+  $(document).on('shown.bs.modal', function () {
+    initCalendarEventModal();
+  });
 });
-
 /**
  * Initialize the calendar
  */
+
 function initCalendarForm() {
-    calendarAddMonth.on('click', function (e) {
-        e.preventDefault();
+  calendarAddMonth.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateMonth.html() + '</div>'); // Handle deleting already loaded blocks
 
-        $(this).before('<div class="form-group">' + calendarTemplateMonth.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddWeekday.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateWeekday.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddYear.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateYear.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarLeapYear.on('click', function () {
-        $('#calendar-leap-year').toggle();
-    });
-
-    calendarAddMoon.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateMoon.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddSeason.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateSeason.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddIntercalary.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateIntercalary.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    // Handle deleting already loaded points
     calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddWeekday.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateWeekday.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddYear.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateYear.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarLeapYear.on('click', function () {
+    $('#calendar-leap-year').toggle();
+  });
+  calendarAddMoon.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateMoon.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddSeason.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateSeason.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddIntercalary.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateIntercalary.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  }); // Handle deleting already loaded points
+
+  calendarDeleteRowHandler();
 }
 
 function calendarDeleteRowHandler() {
-    $.each($('.month-delete'), function (index) {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function (e) {
-            if ($(this).data('remove') === 4) {
-                $(this).parent().parent().parent().parent().remove();
-            } else {
-                $(this).parent().parent().parent().remove();
-            }
-            e.preventDefault();
-            return false;
-        });
-    });
+  $.each($('.month-delete'), function (index) {
+    $(this).unbind('click'); // remove previous bindings
 
-    calendarSortMonths.sortable();
-    calendarSortWeekdays.sortable();
-    calendarSortYears.sortable();
-    calendarSortMoons.sortable();
-    calendarSortSeasons.sortable();
-    calendarSortIntercalary.sortable();
+    $(this).on('click', function (e) {
+      if ($(this).data('remove') === 4) {
+        $(this).parent().parent().parent().parent().remove();
+      } else {
+        $(this).parent().parent().parent().remove();
+      }
+
+      e.preventDefault();
+      return false;
+    });
+  });
+  calendarSortMonths.sortable();
+  calendarSortWeekdays.sortable();
+  calendarSortYears.sortable();
+  calendarSortMoons.sortable();
+  calendarSortSeasons.sortable();
+  calendarSortIntercalary.sortable();
 }
 
 function initCalendarYearSwitcher() {
-    calendarYearSwitcher.on('click', function () {
-        $(this).hide();
-        year = calendarYearSwitcherField.val();
-        calendarYearSwitcherField.show().focus().val('').val(year);
-    });
+  calendarYearSwitcher.on('click', function () {
+    $(this).hide();
+    year = calendarYearSwitcherField.val();
+    calendarYearSwitcherField.show().focus().val('').val(year);
+  });
 }
 
 function initCalendarEventBlock() {
-    $('.calendar-event-block').each(function () {
-        if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
-            $(this).click(function (e) {
-                window.location = $(this).data('url');
-            });
-        }
-    });
+  $('.calendar-event-block').each(function () {
+    if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
+      $(this).click(function (e) {
+        window.location = $(this).data('url');
+      });
+    }
+  });
 }
 
 function initCalendarEventModal() {
-    $('input[name="is_recurring"]').on('click', function (e) {
-        $('#add_event_recurring_until').toggle();
-    });
-
-    $('#calendar-action-existing').on('click', function () {
-        $('#calendar-event-first').hide();
-        $('.calendar-new-event-field').hide();
-        $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').toggle();
-    });
-
-    $('#calendar-action-new').on('click', function () {
-        $('#calendar-event-first').hide();
-        $('.calendar-existing-event-field').hide();
-        $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').toggle();
-    });
-
-    $('#calendar-event-switch').on('click', function (e) {
-        e.preventDefault();
-        $('#calendar-event-subform').hide();
-        $('#calendar-event-first').fadeToggle();
-        $('.calendar-existing-event-field').show();
-        $('.calendar-new-event-field').show();
-
-        $('#calendar-event-submit').toggle();
-    });
+  $('input[name="is_recurring"]').on('click', function (e) {
+    $('#add_event_recurring_until').toggle();
+  });
+  $('#calendar-action-existing').on('click', function () {
+    $('#calendar-event-first').hide();
+    $('.calendar-new-event-field').hide();
+    $('#calendar-event-subform').fadeToggle();
+    $('#calendar-event-submit').toggle();
+  });
+  $('#calendar-action-new').on('click', function () {
+    $('#calendar-event-first').hide();
+    $('.calendar-existing-event-field').hide();
+    $('#calendar-event-subform').fadeToggle();
+    $('#calendar-event-submit').toggle();
+  });
+  $('#calendar-event-switch').on('click', function (e) {
+    e.preventDefault();
+    $('#calendar-event-subform').hide();
+    $('#calendar-event-first').fadeToggle();
+    $('.calendar-existing-event-field').show();
+    $('.calendar-new-event-field').show();
+    $('#calendar-event-submit').toggle();
+  });
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/crud.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/crud.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /**
  * Crud
  */
-
 // Character
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
 var entityFormActions, entityFormDefaultAction;
-
 var filtersActionsShow, filtersActionHide;
-
 var ajaxModalTarget;
-var entityFormHasUnsavedChanges = false;
+var entityFormHasUnsavedChanges = false; // Entity Calendar
 
-// Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
-
 var toggablePanels;
-
 var validEntityForm = false;
-
 $(document).ready(function () {
-    // Multi-delete
-    var crudDelete = $('#datagrid-select-all');
-    if (crudDelete.length > 0) {
-        crudDelete.click(function (e) {
-            if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', false);
-                });
-            }
-            toggleCrudMultiDelete();
+  // Multi-delete
+  var crudDelete = $('#datagrid-select-all');
+
+  if (crudDelete.length > 0) {
+    crudDelete.click(function (e) {
+      if ($(this).prop('checked')) {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', true);
         });
-    }
-    $.each($("input[name='model[]']"), function () {
-        $(this).change(function (e) {
-            toggleCrudMultiDelete();
-            e.preventDefault();
+      } else {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', false);
         });
+      }
+
+      toggleCrudMultiDelete();
     });
+  }
 
-    characterSortPersonality = $('.character-personality');
-    characterSortAppearance = $('.character-appearance');
-
-    characterAddPersonality = $('#add_personality');
-    if (characterAddPersonality.length === 1) {
-        initCharacterPersonality();
-    }
-    characterAddAppearance = $('#add_appearance');
-    if (characterAddAppearance.length === 1) {
-        initCharacterAppearance();
-    }
-
-    $.each($('[data-toggle="ajax-modal"]'), function () {
-        $(this).click(function (e) {
-            e.preventDefault();
-            ajaxModalTarget = $(this).attr('data-target');
-            $.ajax({
-                url: $(this).attr('data-url')
-            }).done(function (result, textStatus, xhr) {
-                if (result) {
-                    $(ajaxModalTarget).find('.modal-content').html(result);
-                    $(ajaxModalTarget).modal();
-                }
-            }).fail(function (result, textStatus, xhr) {
-                //console.log('modal ajax error', result);
-            });
-            return false;
-        });
+  $.each($("input[name='model[]']"), function () {
+    $(this).change(function (e) {
+      toggleCrudMultiDelete();
+      e.preventDefault();
     });
+  });
+  characterSortPersonality = $('.character-personality');
+  characterSortAppearance = $('.character-appearance');
+  characterAddPersonality = $('#add_personality');
 
-    entityFormActions = $('.form-submit-actions');
-    if (entityFormActions.length > 0) {
-        registerEntityFormActions();
-        registerUnsavedChanges();
-    }
+  if (characterAddPersonality.length === 1) {
+    initCharacterPersonality();
+  }
 
-    registerFormSubmitAnimation();
-    registerEntityCalendarForm();
-    registerToggablePanels();
-    registerEntityFormSubmit();
+  characterAddAppearance = $('#add_appearance');
+
+  if (characterAddAppearance.length === 1) {
+    initCharacterAppearance();
+  }
+
+  $.each($('[data-toggle="ajax-modal"]'), function () {
+    $(this).click(function (e) {
+      e.preventDefault();
+      ajaxModalTarget = $(this).attr('data-target');
+      $.ajax({
+        url: $(this).attr('data-url')
+      }).done(function (result, textStatus, xhr) {
+        if (result) {
+          $(ajaxModalTarget).find('.modal-content').html(result);
+          $(ajaxModalTarget).modal();
+        }
+      }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+      });
+      return false;
+    });
+  });
+  entityFormActions = $('.form-submit-actions');
+
+  if (entityFormActions.length > 0) {
+    registerEntityFormActions();
+    registerUnsavedChanges();
+  }
+
+  registerFormSubmitAnimation();
+  registerEntityCalendarForm();
+  registerToggablePanels();
+  registerEntityFormSubmit();
 });
-
 /**
  *
  */
+
 function toggleCrudMultiDelete() {
-    var hide = true;
-
-    $.each($("input[name='model[]']"), function () {
-        if ($(this).prop('checked')) {
-            hide = false;
-        }
-    });
-
-    console.log('hide?', hide);
-    if (hide) {
-        $('.datagrid-bulk-actions').hide();
-    } else {
-        $('.datagrid-bulk-actions').show();
+  var hide = true;
+  $.each($("input[name='model[]']"), function () {
+    if ($(this).prop('checked')) {
+      hide = false;
     }
-}
+  });
+  console.log('hide?', hide);
 
+  if (hide) {
+    $('.datagrid-bulk-actions').hide();
+  } else {
+    $('.datagrid-bulk-actions').show();
+  }
+}
 /**
  * Filters
  */
+
+
 var previousFilterInputValue = '';
+
 function initCrudFilters() {
-    $('#crud-filters .element').on('click', function () {
-        $(this).children('.value').hide();
-        $(this).children('.input').show();
+  $('#crud-filters .element').on('click', function () {
+    $(this).children('.value').hide();
+    $(this).children('.input').show(); // Show the field and focus at the end of it
 
-        // Show the field and focus at the end of it
-        var input = $(this).children('.input').children('.input-field');
-        input.focus();
-        var tmp = input.val();
-        input.val('');
-        input.val(tmp);
-        previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp;
-        //console.log('previous filter', input, previousFilterInputValue);
-    });
+    var input = $(this).children('.input').children('.input-field');
+    input.focus();
+    var tmp = input.val();
+    input.val('');
+    input.val(tmp);
+    previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp; //console.log('previous filter', input, previousFilterInputValue);
+  });
+  $('#crud-filters .element input').on('focusout', function (e) {
+    // Only submit on change
+    e.preventDefault();
+    filterSubmit($(this), false);
+  });
+  $('#crud-filters select.select2').on('change', function () {
+    $('#crud-filters-form').submit();
+  });
+  $('#crud-filters select.filter-select').on('change', function () {
+    $('#crud-filters-form').submit();
+  }); // Reset button
 
-    $('#crud-filters .element input').on('focusout', function (e) {
-        // Only submit on change
-        e.preventDefault();
-        filterSubmit($(this), false);
-    });
+  $('#crud-filters #filters-reset').on('click', function () {
+    // Redirect to page without params
+    window.location = window.location.href.split("?")[0] + '?reset-filter=true';
+  }); // Show on small displays
 
-    $('#crud-filters select.select2').on('change', function () {
-        $('#crud-filters-form').submit();
-    });
-
-    $('#crud-filters select.filter-select').on('change', function () {
-        $('#crud-filters-form').submit();
-    });
-
-    // Reset button
-    $('#crud-filters #filters-reset').on('click', function () {
-        // Redirect to page without params
-        window.location = window.location.href.split("?")[0] + '?reset-filter=true';
-    });
-
-    // Show on small displays
-    var filtersActionShow = $('#crud-filters #filters-show-action');
-    filtersActionHide = $('#crud-filters #filters-hide-action');
-    filtersActionShow.on('click', function () {
-        $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
-        $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
-        filtersActionShow.hide();
-        filtersActionHide.show();
-    });
-
-    filtersActionHide.on('click', function () {
-        $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
-        $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
-        filtersActionHide.hide();
-        filtersActionShow.show();
-    });
-
-    $('#crud-filters .input-field').keypress(function (e) {
-        if (e.which === 13) {
-            e.preventDefault();
-            filterSubmit($(this), true);
-        }
-    });
+  var filtersActionShow = $('#crud-filters #filters-show-action');
+  filtersActionHide = $('#crud-filters #filters-hide-action');
+  filtersActionShow.on('click', function () {
+    $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
+    $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
+    filtersActionShow.hide();
+    filtersActionHide.show();
+  });
+  filtersActionHide.on('click', function () {
+    $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
+    $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
+    filtersActionHide.hide();
+    filtersActionShow.show();
+  });
+  $('#crud-filters .input-field').keypress(function (e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      filterSubmit($(this), true);
+    }
+  });
 }
-
 /**
  *
  * @param field
  * @param force
  */
+
+
 function filterSubmit(field, force) {
-    var element = field.parent().parent();
-    var input = element.children('.input');
-    input.hide();
-    if (field.is(':checkbox')) {
-        if (field.prop('checked')) {
-            element.children('.value').html('<i class="fa fa-check"></i>');
-        } else {
-            element.children('.value').html('');
-        }
+  var element = field.parent().parent();
+  var input = element.children('.input');
+  input.hide();
+
+  if (field.is(':checkbox')) {
+    if (field.prop('checked')) {
+      element.children('.value').html('<i class="fa fa-check"></i>');
     } else {
-        element.children('.value').html(field.val());
+      element.children('.value').html('');
     }
-    element.children('.value').show();
+  } else {
+    element.children('.value').html(field.val());
+  }
 
-    var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val();
-    //console.log('compare', field, compare, previousFilterInputValue);
+  element.children('.value').show();
+  var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val(); //console.log('compare', field, compare, previousFilterInputValue);
 
-    if (force || compare !== previousFilterInputValue) {
-        $('#crud-filters-form').submit();
-    }
+  if (force || compare !== previousFilterInputValue) {
+    $('#crud-filters-form').submit();
+  }
 }
-
 /**
  *
  */
+
+
 function initCharacterPersonality() {
-    characterTemplatePersonality = $('#template_personality');
-    characterAddPersonality.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortPersonality).append('<div class="form-group">' + characterTemplatePersonality.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
+  characterTemplatePersonality = $('#template_personality');
+  characterAddPersonality.on('click', function (e) {
+    e.preventDefault();
+    $(characterSortPersonality).append('<div class="form-group">' + characterTemplatePersonality.html() + '</div>'); // Handle deleting already loaded blocks
 
     characterDeleteRowHandler();
+    return false;
+  });
+  characterDeleteRowHandler();
 }
-
 /**
  *
  */
+
+
 function initCharacterAppearance() {
-    characterTemplateAppearance = $('#template_appearance');
-    characterAddAppearance.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortAppearance).append('<div class="form-group">' + characterTemplateAppearance.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
+  characterTemplateAppearance = $('#template_appearance');
+  characterAddAppearance.on('click', function (e) {
+    e.preventDefault();
+    $(characterSortAppearance).append('<div class="form-group">' + characterTemplateAppearance.html() + '</div>'); // Handle deleting already loaded blocks
 
     characterDeleteRowHandler();
+    return false;
+  });
+  characterDeleteRowHandler();
 }
-
 /**
  *
  */
+
+
 function characterDeleteRowHandler() {
-    $.each($('.personality-delete'), function () {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('.parent-delete-row').remove();
-        });
+  $.each($('.personality-delete'), function () {
+    $(this).unbind('click'); // remove previous bindings
+
+    $(this).on('click', function (e) {
+      e.preventDefault();
+      $(this).closest('.parent-delete-row').remove();
     });
+  }); // Always re-calc the sortable traits
 
-    // Always re-calc the sortable traits
-    characterSortPersonality.sortable();
-    characterSortAppearance.sortable();
+  characterSortPersonality.sortable();
+  characterSortAppearance.sortable();
 }
-
 /**
  *
  */
+
+
 function registerEntityFormActions() {
-    entityFormDefaultAction = $('#form-submit-main');
-    // Register click on each sub action
-    $.each(entityFormActions, function () {
-        $(this).on('click', function () {
-            entityFormDefaultAction.attr('name', $(this).data('action')).click();
-            // .prop('disabled', true);
+  entityFormDefaultAction = $('#form-submit-main'); // Register click on each sub action
 
-            return false;
-        });
+  $.each(entityFormActions, function () {
+    $(this).on('click', function () {
+      entityFormDefaultAction.attr('name', $(this).data('action')).click(); // .prop('disabled', true);
+
+      return false;
     });
+  });
 }
-
 /**
  * On all forms, we want to animate the submit button when it's clicked.
  */
+
+
 function registerFormSubmitAnimation() {
-    $.each($('form'), function () {
-        $(this).on('submit', function () {
-            // Saving, skip alert.
-            window.entityFormHasUnsavedChanges = false;
+  $.each($('form'), function () {
+    $(this).on('submit', function () {
+      // Saving, skip alert.
+      window.entityFormHasUnsavedChanges = false; // Find the main button
 
-            // Find the main button
-            var submit = $(this).find('.btn-success');
-            if (submit.length > 0) {
-                $.each(submit, function () {
-                    if ($(this).hasClass('dropdown-toggle')) {
-                        $(this).prop('disabled', true);
-                    } else {
-                        $(this).data('reset', $(this).html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
-                    }
-                });
+      var submit = $(this).find('.btn-success');
 
-                // Inject the selected option for the "workflow" (submit-action)
-                $(this).append('<input type="hidden" name="' + $('#form-submit-main').attr('name') + '" />');
-            }
+      if (submit.length > 0) {
+        $.each(submit, function () {
+          if ($(this).hasClass('dropdown-toggle')) {
+            $(this).prop('disabled', true);
+          } else {
+            $(this).data('reset', $(this).html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
+          }
+        }); // Inject the selected option for the "workflow" (submit-action)
 
-            return true;
-        });
+        $(this).append('<input type="hidden" name="' + $('#form-submit-main').attr('name') + '" />');
+      }
+
+      return true;
     });
+  });
 }
 
 function registerEntityCalendarForm() {
-    entityCalendarAdd = $('#entity-calendar-form-add');
-    if (entityCalendarAdd.length === 1) {
-        entityCalendarCancel = $('#entity-calendar-form-cancel');
-        entityCalendarForm = $('.entity-calendar-form');
-        entityCalendarSubForm = $('.entity-calendar-subform');
-        entityCalendarField = $('#calendar_id');
-        entityCalendarMonthField = $('select[name="calendar_month"]');
-        entityCalendarLoading = $('.entity-calendar-loading');
+  entityCalendarAdd = $('#entity-calendar-form-add');
 
-        entityCalendarAdd.on('click', function (e) {
-            e.preventDefault();
+  if (entityCalendarAdd.length === 1) {
+    entityCalendarCancel = $('#entity-calendar-form-cancel');
+    entityCalendarForm = $('.entity-calendar-form');
+    entityCalendarSubForm = $('.entity-calendar-subform');
+    entityCalendarField = $('#calendar_id');
+    entityCalendarMonthField = $('select[name="calendar_month"]');
+    entityCalendarLoading = $('.entity-calendar-loading');
+    entityCalendarAdd.on('click', function (e) {
+      e.preventDefault();
+      entityCalendarAdd.hide();
+      entityCalendarForm.show();
+      var defaultCalendarId = entityCalendarAdd.data('default-calendar');
 
-            entityCalendarAdd.hide();
-            entityCalendarForm.show();
+      if (defaultCalendarId) {
+        entityCalendarField.val(defaultCalendarId);
+        entityCalendarCancel.show();
+        entityCalendarSubForm.fadeIn();
+        loadCalendarDates(defaultCalendarId);
+      }
 
-            var defaultCalendarId = entityCalendarAdd.data('default-calendar');
-            if (defaultCalendarId) {
-                entityCalendarField.val(defaultCalendarId);
-                entityCalendarCancel.show();
-                entityCalendarSubForm.fadeIn();
-                loadCalendarDates(defaultCalendarId);
-            }
-            return false;
-        });
+      return false;
+    });
+    entityCalendarField.on('change', function () {
+      entityCalendarSubForm.hide(); // No new calendar selected? hide everything again
 
-        entityCalendarField.on('change', function () {
-            entityCalendarSubForm.hide();
-            // No new calendar selected? hide everything again
-            if (!entityCalendarField.val()) {
-                calendarHideSubform();
-                return;
-            }
-            entityCalendarLoading.show();
-            // Load month list
-            loadCalendarDates(entityCalendarField.val());
-        });
+      if (!entityCalendarField.val()) {
+        calendarHideSubform();
+        return;
+      }
 
-        entityCalendarCancel.on('click', function (e) {
-            e.preventDefault();
-            entityCalendarField.val(null);
-            entityCalendarCancel.hide();
-            calendarHideSubform();
-        });
-    }
+      entityCalendarLoading.show(); // Load month list
+
+      loadCalendarDates(entityCalendarField.val());
+    });
+    entityCalendarCancel.on('click', function (e) {
+      e.preventDefault();
+      entityCalendarField.val(null);
+      entityCalendarCancel.hide();
+      calendarHideSubform();
+    });
+  }
 }
 
 function loadCalendarDates(calendarID) {
-    calendarID = parseInt(calendarID);
-    var url = entityCalendarAdd.data('url').replace('/0/', '/' + calendarID + '/');
-    $.ajax(url).done(function (data) {
-        entityCalendarMonthField.html('');
-        var id = 1;
-        $.each(data.months, function () {
-            var selected = id == data.current.month ? ' selected="selected"' : '';
-            entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
-            id++;
-        });
-        entityCalendarLoading.hide();
-        entityCalendarSubForm.show();
-
-        $('input[name="calendar_day"]').val(data.current.day);
-        $('input[name="calendar_year"]').val(data.current.year);
-        $('input[name="length"]').val(1);
-
-        // However, if there is only one result, select id.
-        if (data.length === 1) {
-            entityCalendarMonthField.val(data[0].id);
-        }
+  calendarID = parseInt(calendarID);
+  var url = entityCalendarAdd.data('url').replace('/0/', '/' + calendarID + '/');
+  $.ajax(url).done(function (data) {
+    entityCalendarMonthField.html('');
+    var id = 1;
+    $.each(data.months, function () {
+      var selected = id == data.current.month ? ' selected="selected"' : '';
+      entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
+      id++;
     });
-}
+    entityCalendarLoading.hide();
+    entityCalendarSubForm.show();
+    $('input[name="calendar_day"]').val(data.current.day);
+    $('input[name="calendar_year"]').val(data.current.year);
+    $('input[name="length"]').val(1); // However, if there is only one result, select id.
 
+    if (data.length === 1) {
+      entityCalendarMonthField.val(data[0].id);
+    }
+  });
+}
 /**
  *
  */
-function calendarHideSubform() {
-    entityCalendarForm.hide();
-    entityCalendarAdd.show();
-    $('input[name="calendar_day"]').val(null);
-    $('input[name="calendar_month"]').val(null);
-    $('input[name="calendar_year"]').val(null);
-}
 
+
+function calendarHideSubform() {
+  entityCalendarForm.hide();
+  entityCalendarAdd.show();
+  $('input[name="calendar_day"]').val(null);
+  $('input[name="calendar_month"]').val(null);
+  $('input[name="calendar_year"]').val(null);
+}
 /**
  * Some panels can have their body toggled
  */
-function registerToggablePanels() {
-    toggablePanels = $('.panel-toggable');
-    $.each(toggablePanels, function () {
-        $(this).on('click', function () {
-            $(this).parent().children('.panel-body').fadeToggle();
-            var i = $(this).find('i.fa');
-            if (i.hasClass('fa-caret-down')) {
-                i.removeClass('fa-caret-down').addClass('fa-caret-left');
-            } else {
-                i.removeClass('fa-caret-left').addClass('fa-caret-down');
-            }
-        });
-    });
-}
 
+
+function registerToggablePanels() {
+  toggablePanels = $('.panel-toggable');
+  $.each(toggablePanels, function () {
+    $(this).on('click', function () {
+      $(this).parent().children('.panel-body').fadeToggle();
+      var i = $(this).find('i.fa');
+
+      if (i.hasClass('fa-caret-down')) {
+        i.removeClass('fa-caret-down').addClass('fa-caret-left');
+      } else {
+        i.removeClass('fa-caret-left').addClass('fa-caret-down');
+      }
+    });
+  });
+}
 /**
  * If we change something on a form, avoid losing data when going away.
  */
+
+
 function registerUnsavedChanges() {
-    var save = $('#form-submit-main');
+  var save = $('#form-submit-main'); // Save every input change
 
-    // Save every input change
-    $(document).on('change', ':input', function () {
-        window.entityFormHasUnsavedChanges = true;
+  $(document).on('change', ':input', function () {
+    window.entityFormHasUnsavedChanges = true;
+  });
+
+  if (save.length === 1) {
+    // Another way to bind the event
+    $(window).bind('beforeunload', function (e) {
+      if (window.entityFormHasUnsavedChanges) {
+        var message = save.data('unsaved');
+        e.returnValue = message;
+        return message;
+      }
     });
-
-    if (save.length === 1) {
-        // Another way to bind the event
-        $(window).bind('beforeunload', function (e) {
-            if (window.entityFormHasUnsavedChanges) {
-                var message = save.data('unsaved');
-                e.returnValue = message;
-                return message;
-            }
-        });
-    }
+  }
 }
-
 /**
  * When the entity form is submitted, we want to ajax validate the request first
  */
+
+
 function registerEntityFormSubmit() {
-    $('#entity-form').submit(function (e) {
-        if (validEntityForm) {
-            return true;
-        }
+  $('#entity-form').submit(function (e) {
+    if (validEntityForm) {
+      return true;
+    }
 
-        e.preventDefault();
+    e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: $(this).serialize()
-        }).done(function (res) {
-            // If the validation succeeded, we can really submit the form
-            validEntityForm = true;
-            $('#entity-form').submit();
-            return true;
-        }).fail(function (err) {
-            // Reset any error fields
-            $('.input-error').removeClass('input-error');
-            $('.text-danger').remove();
-
-            // If we have a 503 error status, let's assume it's from cloudflare and help the user
-            // properly save their data.
-            if (err.status === 503) {
-                $('#entity-form-503-error').show();
-                resetEntityFormSubmitAnimation();
-            }
-
-            // Loop through the errors to add the class and error message
-            var errors = err.responseJSON.errors;
-
-            var errorKeys = Object.keys(errors);
-            var foundAllErrors = true;
-            errorKeys.forEach(function (i) {
-                var errorSelector = $('[name="' + i + '"]');
-                if (errorSelector.length > 0) {
-                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-                } else {
-                    foundAllErrors = false;
-                }
-            });
-
-            // If not all error fields could be found, show a generic error message on top of the form.
-            if (!foundAllErrors) {
-                $('#entity-form-generic-error').show();
-            }
-
-            var firstItem = Object.keys(errors)[0];
-            var firstItemDom = document.getElementsByName(firstItem);
-
-            // If we can actually find the first element, switch to it and the correct tab.
-            if (firstItemDom[0]) {
-                firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
-
-                // Switch tabs/pane
-                $('.tab-content .active').removeClass('active');
-                $('.nav-tabs li.active').removeClass('active');
-                var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-                firstPane.addClass('active');
-                $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
-            }
-
-            // Reset submit buttons
-            resetEntityFormSubmitAnimation();
-        });
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
-}
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize()
+    }).done(function (res) {
+      // If the validation succeeded, we can really submit the form
+      validEntityForm = true;
+      $('#entity-form').submit();
+      return true;
+    }).fail(function (err) {
+      // Reset any error fields
+      $('.input-error').removeClass('input-error');
+      $('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
+      // properly save their data.
 
+      if (err.status === 503) {
+        $('#entity-form-503-error').show();
+        resetEntityFormSubmitAnimation();
+      } // Loop through the errors to add the class and error message
+
+
+      var errors = err.responseJSON.errors;
+      var errorKeys = Object.keys(errors);
+      var foundAllErrors = true;
+      errorKeys.forEach(function (i) {
+        var errorSelector = $('[name="' + i + '"]');
+
+        if (errorSelector.length > 0) {
+          errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+        } else {
+          foundAllErrors = false;
+        }
+      }); // If not all error fields could be found, show a generic error message on top of the form.
+
+      if (!foundAllErrors) {
+        $('#entity-form-generic-error').show();
+      }
+
+      var firstItem = Object.keys(errors)[0];
+      var firstItemDom = document.getElementsByName(firstItem); // If we can actually find the first element, switch to it and the correct tab.
+
+      if (firstItemDom[0]) {
+        firstItemDom[0].scrollIntoView({
+          behavior: 'smooth'
+        }); // Switch tabs/pane
+
+        $('.tab-content .active').removeClass('active');
+        $('.nav-tabs li.active').removeClass('active');
+        var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+        firstPane.addClass('active');
+        $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
+      } // Reset submit buttons
+
+
+      resetEntityFormSubmitAnimation();
+    });
+  });
+}
 /**
  *
  */
+
+
 function resetEntityFormSubmitAnimation() {
-    submit = $('#entity-form').find('.btn-success');
-    if (submit.length > 0) {
-        $.each(submit, function (su) {
-            $(this).removeAttr('disabled');
-            if ($(this).data('reset')) {
-                $(this).html($(this).data('reset'));
-            }
-        });
-    }
+  submit = $('#entity-form').find('.btn-success');
+
+  if (submit.length > 0) {
+    $.each(submit, function (su) {
+      $(this).removeAttr('disabled');
+
+      if ($(this).data('reset')) {
+        $(this).html($(this).data('reset'));
+      }
+    });
+  }
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/helpers.js":
+/*!****************************************!*\
+  !*** ./resources/assets/js/helpers.js ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 window.initSelect2 = function () {
-    if ($('.select2').length > 0) {
-        $.each($('.select2'), function (index) {
-
-            $(this).select2({
-                //            data: newOptions,
-                placeholder: $(this).attr('data-placeholder'),
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function data(params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function processResults(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
+  if ($('.select2').length > 0) {
+    $.each($('.select2'), function (index) {
+      $(this).select2({
+        //            data: newOptions,
+        placeholder: $(this).attr('data-placeholder'),
+        allowClear: true,
+        minimumInputLength: 0,
+        ajax: {
+          quietMillis: 200,
+          url: $(this).attr('data-url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+    });
+  }
 };
 
 window.crudInitAjaxModal = function () {
-    $.each($('[data-toggle="ajax-modal"]'), function () {
-        $(this).click(function (e) {
-            $(this).unbind('click');
-            e.preventDefault();
-            ajaxModalTarget = $(this).attr('data-target');
-            $.ajax({
-                url: $(this).attr('data-url')
-            }).done(function (result, textStatus, xhr) {
-                if (result) {
-                    $(ajaxModalTarget).find('.modal-content').html(result);
-                    $(ajaxModalTarget).modal();
+  $.each($('[data-toggle="ajax-modal"]'), function () {
+    $(this).click(function (e) {
+      $(this).unbind('click');
+      e.preventDefault();
+      ajaxModalTarget = $(this).attr('data-target');
+      $.ajax({
+        url: $(this).attr('data-url')
+      }).done(function (result, textStatus, xhr) {
+        if (result) {
+          $(ajaxModalTarget).find('.modal-content').html(result);
+          $(ajaxModalTarget).modal(); // Reset select2
 
-                    // Reset select2
-                    window.initSelect2();
-                }
-            }).fail(function (result, textStatus, xhr) {
-                //console.log('modal ajax error', result);
-            });
-            return false;
-        });
+          window.initSelect2();
+        }
+      }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+      });
+      return false;
     });
+  });
 };
 
 /***/ }),
 
 /***/ "./resources/assets/js/keyboard.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/keyboard.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-    // Look for a form to save
-    $.each($('form'), function () {
-        if ($(this).attr('data-shortcut')) {
-            initSaveKeyboardShortcut(this);
-        }
-    });
+  // Look for a form to save
+  $.each($('form'), function () {
+    if ($(this).attr('data-shortcut')) {
+      initSaveKeyboardShortcut(this);
+    }
+  });
 });
-
 /**
  * Handle saving form
  * @param form
  */
+
 function initSaveKeyboardShortcut(form) {
-    $(document).bind('keydown', function (e) {
-        if ((e.ctrlKey || e.metaKey) && e.which === 83) {
-            window.entityFormHasUnsavedChanges = false;
-            console.log('sform', $(form));
-            $(form).submit();
-            return false;
-        }
-    });
+  $(document).bind('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.which === 83) {
+      window.entityFormHasUnsavedChanges = false;
+      console.log('sform', $(form));
+      $(form).submit();
+      return false;
+    }
+  });
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/search.js":
+/*!***************************************!*\
+  !*** ./resources/assets/js/search.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Live search is based on corejs-typeahead.
 // Doc: https://github.com/corejavascript/typeahead.js
-__webpack_require__("./node_modules/corejs-typeahead/dist/typeahead.bundle.js");
-window.Bloodhound = __webpack_require__("./node_modules/bloodhound-js/index.js");
+__webpack_require__(/*! corejs-typeahead */ "./node_modules/corejs-typeahead/dist/typeahead.bundle.js");
 
+window.Bloodhound = __webpack_require__(/*! bloodhound-js */ "./node_modules/bloodhound-js/index.js");
 var liveSearchField,
     liveSearchResults,
     liveSearchRunning = false;
 var liveSearchForm, liveSearchClose;
 var searchEngine;
-
 $(document).ready(function () {
-    liveSearchField = $('.typeahead');
-    if (liveSearchField.length === 1) {
-        initLiveSearch();
-    }
-});
+  liveSearchField = $('.typeahead');
 
+  if (liveSearchField.length === 1) {
+    initLiveSearch();
+  }
+});
 /**
  * Live Search
  */
+
 function initLiveSearch() {
-    // Set the Options for "Bloodhound" suggestion engine
-    searchEngine = new Bloodhound({
-        remote: {
-            url: liveSearchField.data('url') + '?q=%QUERY%',
-            wildcard: '%QUERY%'
-        },
-        datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace
-    });
+  // Set the Options for "Bloodhound" suggestion engine
+  searchEngine = new Bloodhound({
+    remote: {
+      url: liveSearchField.data('url') + '?q=%QUERY%',
+      wildcard: '%QUERY%'
+    },
+    datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+  });
+  liveSearchField.typeahead({
+    minLength: 3
+  }, {
+    source: searchEngine.ttAdapter(),
+    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+    name: 'entityList',
+    // Data field used for selection injection in the search field
+    displayKey: 'name',
+    valueKey: 'id',
+    // the key from the array we want to display (name,id,email,etc...)
+    templates: {
+      empty: ['<div class="list-group search-results-dropdown">' + '<div class="list-group-item">' + liveSearchField.data('empty') + '</div>' + '</div>'],
+      header: [''],
+      suggestion: function suggestion(data) {
+        return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip + '" data-toggle="tooltip">' + data.image + data.name + ' (' + data.type + ')</a>';
+      }
+    }
+  }) //Catch typeahead events
+  .on('typeahead:select', submitSuggestion).on('typeahead:autocomplete', submitSuggestion); // Mobile search
 
-    liveSearchField.typeahead({
-        minLength: 3
-    }, {
-        source: searchEngine.ttAdapter(),
-
-        // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
-        name: 'entityList',
-
-        // Data field used for selection injection in the search field
-        displayKey: 'name',
-        valueKey: 'id',
-
-        // the key from the array we want to display (name,id,email,etc...)
-        templates: {
-            empty: ['<div class="list-group search-results-dropdown">' + '<div class="list-group-item">' + liveSearchField.data('empty') + '</div>' + '</div>'],
-            header: [''],
-            suggestion: function suggestion(data) {
-                return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip + '" data-toggle="tooltip">' + data.image + data.name + ' (' + data.type + ')</a>';
-            }
-        }
-    })
-
-    //Catch typeahead events
-    .on('typeahead:select', submitSuggestion).on('typeahead:autocomplete', submitSuggestion);
-
-    // Mobile search
-    liveSearchForm = $('.live-search-form');
-    liveSearchClose = $('.live-search-close');
-    $('.mobile-search').on('click', function (e) {
-        e.preventDefault();
-        liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
-        $('.navbar-custom-menu').hide();
-        $('#live-search').focus();
-    });
-
-    liveSearchClose.on('click', function (e) {
-        e.preventDefault();
-        liveSearchForm.addClass('visible-md').addClass('visible-lg');
-        $('.navbar-custom-menu').show();
-    });
+  liveSearchForm = $('.live-search-form');
+  liveSearchClose = $('.live-search-close');
+  $('.mobile-search').on('click', function (e) {
+    e.preventDefault();
+    liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
+    $('.navbar-custom-menu').hide();
+    $('#live-search').focus();
+  });
+  liveSearchClose.on('click', function (e) {
+    e.preventDefault();
+    liveSearchForm.addClass('visible-md').addClass('visible-lg');
+    $('.navbar-custom-menu').show();
+  });
 }
 /*
  * User triggered a submit, either via the typeahead:submit
  * or autocomplete event
  */
+
+
 function submitSuggestion(ev, suggestion) {
-    //liveSearchField.val(suggestion.name);
-    liveSearchField.prop('disabled', true);
-    window.location = suggestion.url;
+  //liveSearchField.val(suggestion.name);
+  liveSearchField.prop('disabled', true);
+  window.location = suggestion.url;
 }
 
 function requestLiveSearch(value) {
-    if (liveSearchField.val() === value && !liveSearchRunning) {
-        liveSearchRunning = true;
+  if (liveSearchField.val() === value && !liveSearchRunning) {
+    liveSearchRunning = true; // Reset results
 
-        // Reset results
-        liveSearchResults.empty();
-        liveSearchResults.append('<div class="loading"><i class="fa fa-spinner"></i></div>');
+    liveSearchResults.empty();
+    liveSearchResults.append('<div class="loading"><i class="fa fa-spinner"></i></div>');
+    $.ajax({
+      url: liveSearchField.attr('data-url') + '?q=' + liveSearchField.val()
+    }).done(function (result, textStatus, xhr) {
+      liveSearchRunning = false;
 
-        $.ajax({
-            url: liveSearchField.attr('data-url') + '?q=' + liveSearchField.val()
-        }).done(function (result, textStatus, xhr) {
-            liveSearchRunning = false;
-            if (textStatus === 'success' && result) {
-                liveSearchResults.empty();
-                // Append all the results to the result box
-                $.each(result, function (i) {
-                    var data = result[i];
-                    liveSearchResults.append('<a href="' + data.url + '" class="list-group-item">' + data.image + data.name + ' (' + data.type + ')</a>');
-                });
+      if (textStatus === 'success' && result) {
+        liveSearchResults.empty(); // Append all the results to the result box
 
-                // Empty result
-                if (result.length === 0) {
-                    liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
-                }
-                liveSearchResults.focus();
-            }
-        }).fail(function (result, textStatus, xhr) {
-            liveSearchRunning = false;
-            liveSearchResults.empty();
-            liveSearchResults.append('Error!');
-            console.log('error', result);
-        });
-    }
+        $.each(result, function (i) {
+          var data = result[i];
+          liveSearchResults.append('<a href="' + data.url + '" class="list-group-item">' + data.image + data.name + ' (' + data.type + ')</a>');
+        }); // Empty result
+
+        if (result.length === 0) {
+          liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
+        }
+
+        liveSearchResults.focus();
+      }
+    }).fail(function (result, textStatus, xhr) {
+      liveSearchRunning = false;
+      liveSearchResults.empty();
+      liveSearchResults.append('Error!');
+      console.log('error', result);
+    });
+  }
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/tags.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/tags.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-    window.initCategories = function () {
-        $.each($('.form-tags'), function (index) {
+  window.initCategories = function () {
+    $.each($('.form-tags'), function (index) {
+      $(this).select2({
+        tags: true,
+        allowClear: true,
+        minimumInputLength: 0,
+        ajax: {
+          quietMillis: 200,
+          url: $(this).attr('data-url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        },
+        createTag: function createTag(params) {
+          var term = $.trim(params.term);
 
-            $(this).select2({
-                tags: true,
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function data(params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function processResults(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                },
-                createTag: function createTag(params) {
-                    var term = $.trim(params.term);
+          if (term === '') {
+            return null;
+          }
 
-                    if (term === '') {
-                        return null;
-                    }
+          return {
+            id: term,
+            text: term,
+            newTag: true // add additional parameters
 
-                    return {
-                        id: term,
-                        text: term,
-                        newTag: true // add additional parameters
-                    };
-                },
-                templateSelection: function templateSelection(state) {
-                    if (state.newTag) {
-                        return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
-                    }
-                    return state.text;
-                }
-            });
-        });
-    };
+          };
+        },
+        templateSelection: function templateSelection(state) {
+          if (state.newTag) {
+            return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+          }
 
-    window.initCategories();
+          return state.text;
+        }
+      });
+    });
+  };
+
+  window.initCategories();
 });
 
 /***/ }),
 
 /***/ "./resources/assets/sass/app.scss":
+/*!****************************************!*\
+  !*** ./resources/assets/sass/app.scss ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53643,6 +53792,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/bootstrap.scss":
+/*!**********************************************!*\
+  !*** ./resources/assets/sass/bootstrap.scss ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53650,6 +53803,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/dashboard.scss":
+/*!**********************************************!*\
+  !*** ./resources/assets/sass/dashboard.scss ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53657,6 +53814,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/export.scss":
+/*!*******************************************!*\
+  !*** ./resources/assets/sass/export.scss ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53664,6 +53825,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/front.scss":
+/*!******************************************!*\
+  !*** ./resources/assets/sass/front.scss ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53671,6 +53836,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/map.scss":
+/*!****************************************!*\
+  !*** ./resources/assets/sass/map.scss ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53678,6 +53847,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/themes/dark.scss":
+/*!************************************************!*\
+  !*** ./resources/assets/sass/themes/dark.scss ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53685,6 +53858,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/themes/future.scss":
+/*!**************************************************!*\
+  !*** ./resources/assets/sass/themes/future.scss ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53692,6 +53869,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/themes/midnight.scss":
+/*!****************************************************!*\
+  !*** ./resources/assets/sass/themes/midnight.scss ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53699,6 +53880,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/vendor.scss":
+/*!*******************************************!*\
+  !*** ./resources/assets/sass/vendor.scss ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53706,24 +53891,32 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/front.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/app.js");
-__webpack_require__("./resources/assets/sass/bootstrap.scss");
-__webpack_require__("./resources/assets/sass/vendor.scss");
-__webpack_require__("./resources/assets/sass/app.scss");
-__webpack_require__("./resources/assets/sass/export.scss");
-__webpack_require__("./resources/assets/sass/map.scss");
-__webpack_require__("./resources/assets/sass/front.scss");
-__webpack_require__("./resources/assets/sass/dashboard.scss");
-__webpack_require__("./resources/assets/sass/themes/future.scss");
-__webpack_require__("./resources/assets/sass/themes/dark.scss");
-module.exports = __webpack_require__("./resources/assets/sass/themes/midnight.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
 
 
 /***/ }),
 
 /***/ 1:
+/*!***********************!*\
+  !*** vertx (ignored) ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /* (ignored) */

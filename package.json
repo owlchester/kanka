@@ -11,19 +11,25 @@
     },
     "devDependencies": {
         "admin-lte": "^2.4.8",
-        "axios": "^0.16.2",
+        "axios": "^0.19",
         "bootstrap-sass": "^3.3.7",
-        "cross-env": "^5.0.1",
-        "jquery": "^3.1.1",
+        "cross-env": "^5.1",
+        "jquery": "^3.4.1",
         "jquery-ui": "^1.12.1",
-        "laravel-mix": "^1.0",
-        "lodash": "^4.17.10",
-        "vue": "^2.1.10"
+        "laravel-mix": "^4.0.7",
+        "lodash": "^4.17.5",
+        "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.15.2",
+        "sass-loader": "^7.1.0",
+        "vue": "^2.5.17",
+        "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
         "bloodhound-js": "^1.2.3",
         "corejs-typeahead": "^1.2.1",
         "grunt": "^1.0.3",
+        "select2": "^4.0.5",
         "simple-line-icons": "^2.4.1",
         "startbootstrap-new-age": "^3.3.7"
     }

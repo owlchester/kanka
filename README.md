@@ -96,9 +96,9 @@ Assets can be compiled by following the [Laravel Documentation](https://laravel.
 You'll need to install the various npm packages first.
 > npm install
 
-On Windows, I've had to install cross-env globally for this to work.
+Select2 needs to be forced to 4.0.5 because newer builds (4.0.7) break
 
-> npm install cross-env -g
+> npm install select2@4.0.5 --save
 
 The following will produce assets for development
 
