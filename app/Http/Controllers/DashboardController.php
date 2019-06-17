@@ -48,7 +48,6 @@ class DashboardController extends Controller
 
         return view('home', compact(
             'campaign',
-            'notes',
             'settings',
             'release',
             'widgets'

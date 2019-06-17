@@ -32,7 +32,7 @@ class ProfileController extends Controller
      */
     public function update(StoreSettingsProfile $request)
     {
-        Auth::user()->update($request->only('name', 'newsletter', 'avatar'));
+        Auth::user()->update($request->only('name', 'newsletter', 'has_last_login_sharing', 'avatar'));
 
         return redirect()
             ->route('settings.profile')

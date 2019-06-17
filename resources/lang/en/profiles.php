@@ -15,6 +15,7 @@ return [
         'new_password'              => 'New Password',
         'new_password_confirmation' => 'New Password Confirmation',
         'newsletter'                => 'I wish to sometimes be contacted by email.',
+        'last_login_share'          => 'Share with other campaign members when I last logged in.',
         'password'                  => 'Current password',
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',

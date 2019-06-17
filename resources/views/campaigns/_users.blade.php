@@ -28,7 +28,7 @@
                         @endif
                     </td>
                     <td class="hidden-xs hidden-md">
-                        @if (!empty($relation->user->last_login_at))
+                        @if ($relation->user->has_last_login_sharing && !empty($relation->user->last_login_at))
                             <span title="{{ $relation->user->last_login_at }}+00:00">{{ $relation->user->last_login_at->diffForHumans() }}</span>
                         @endif
                     </td>

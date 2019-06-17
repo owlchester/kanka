@@ -33,6 +33,13 @@
                                     {!! Form::checkbox('newsletter') !!}
                                     {{ trans('profiles.fields.newsletter') }}</label>
                             </div>
+
+                            <div class="form-group checkbox">
+                                <label>
+                                    {!! Form::hidden('has_last_login_sharing', 0) !!}
+                                    {!! Form::checkbox('has_last_login_sharing') !!}
+                                    {{ trans('profiles.fields.last_login_share') }}</label>
+                            </div>
                         </div>
                         <div class="col-md-4 col-md-offset-2">
                             <h2 class="page-header with-border">

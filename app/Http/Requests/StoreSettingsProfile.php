@@ -28,6 +28,7 @@ class StoreSettingsProfile extends FormRequest
         $rules = [
             'name' => 'required|string|min:2',
             'newsletter' => 'boolean',
+            'has_last_login_sharing' => 'boolean',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
         ];
 

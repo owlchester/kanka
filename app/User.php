@@ -24,6 +24,8 @@ use Laravel\Passport\HasApiTokens;
  * @property integer $provider_id
  * @property string $last_login_at
  * @property integer $welcome_campaign_id
+ * @property boolean $newsletter
+ * @property boolean $has_last_login_sharing
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -66,6 +68,7 @@ class User extends \TCG\Voyager\Models\User
         'default_pagination',
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
+        'has_last_login_sharing',
     ];
 
     /**
