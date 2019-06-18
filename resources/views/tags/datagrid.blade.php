@@ -13,6 +13,17 @@
         'name',
         'type',
         [
+            'label' => __('tags.fields.colour'),
+            'field' => 'tag.colour',
+            'render' => function ($model) {
+                /** @var \App\Models\Tag $model */
+                if (!$model->hasColour()) {
+                    return '';
+                }
+                return '<span class="' . $model->colourClass() . '">' . __('colours.' . $model->colour) . '</span>';
+            }
+        ],
+        [
             'label' => trans('crud.fields.tag'),
             'field' => 'tag.name',
             'render' => function($model) {

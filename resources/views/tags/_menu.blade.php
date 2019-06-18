@@ -18,13 +18,19 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if ($model->hasColour())
+                <li class="list-group-item">
+                    <b>{{ __('tags.fields.colour') }}</b>
+                    <span class="pull-right clear {{ $model->colourClass() }}">{{ __('colours.' . $model->colour) }}</span>
+                </li>
+            @endif
             @if (!empty($model->tag))
                 <li class="list-group-item">
                     <b>{{ trans('crud.fields.tag') }}</b>
 
                     <span class="pull-right">
                             <a href="{{ route('tags.show', $model->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tooltipWithName() }}" data-html="true">{{ $model->tag->name }}</a>
-                                @if ($model->tag->tag)
+                        @if ($model->tag->tag)
                             , <a href="{{ route('tags.show', $model->tag->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tag->tooltipWithName() }}" data-html="true">{{ $model->tag->tag->name }}</a>
                         @endif
                             </span>

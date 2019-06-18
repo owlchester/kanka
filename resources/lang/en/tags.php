@@ -19,6 +19,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
+        'colour'        => 'Colour',
         'children'      => 'Children',
         'name'          => 'Name',
         'tag'           => 'Tag',

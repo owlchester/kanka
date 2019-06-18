@@ -110,4 +110,18 @@ class FormService
         }
         return null;
     }
+
+    /**
+     * @return array
+     */
+    public function colours()
+    {
+        $colours = [];
+        $colourKeys = config('colours.keys');
+        foreach ($colourKeys as $colour) {
+            $colours[$colour] = trans('colours.' . $colour);
+        }
+
+        return $colours;
+    }
 }

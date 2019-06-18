@@ -7,13 +7,24 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Tag
+ * @package App\Models
+ *
+ * @property string $colour
+ */
 class Tag extends MiscModel
 {
     /**
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type', 'entry'];
+    protected $searchableColumns  = [
+        'name',
+        'type',
+        'entry',
+        'colour'
+    ];
 
     /**
      * Entity type
@@ -32,6 +43,7 @@ class Tag extends MiscModel
         'type',
         'tag_id',
         'is_private',
+        'colour',
     ];
 
     /**
@@ -41,6 +53,7 @@ class Tag extends MiscModel
         'name',
         'slug',
         'type',
+        'colour',
         'image',
         'entry',
         'tag_id',
@@ -101,6 +114,7 @@ class Tag extends MiscModel
     /**
      * Specify parent id attribute mutator
      * @param $value
+     * @throws \Exception
      */
     public function setTagIdAttribute($value)
     {
@@ -124,6 +138,7 @@ class Tag extends MiscModel
 
     /**
      * Get all the children
+     * @param bool $withTags
      * @return array
      */
     public function allChildren($withTags = false)
@@ -160,6 +175,7 @@ class Tag extends MiscModel
     }
 
     /**
+     * @param array $items
      * @return array
      */
     public function menuItems($items = [])
@@ -192,5 +208,32 @@ class Tag extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.tag');
+    }
+
+    /**
+     * Get the tag's colour class
+     * @return string colour css class
+     */
+    public function colourClass()
+    {
+        if (!$this->hasColour()) {
+            return '';
+        }
+
+        $mappings = config('colours.mappings');
+        $colour = $this->colour;
+        if (isset($mappings[$this->colour])) {
+            $colour = $mappings[$this->colour];
+        }
+
+        return 'bg-' . $colour .  ' color-palette color-tag';
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasColour()
+    {
+        return !empty($this->colour);
     }
 }

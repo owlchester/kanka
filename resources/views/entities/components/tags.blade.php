@@ -5,7 +5,7 @@
             @foreach ($model->entity->tags as $section)
                 @viewentity($section->entity)
                 <a href="{{ route('tags.show', $section) }}">
-                    <span class="label label-default">{{ $section->name }}</span>
+                    <span class="@if ($section->hasColour()) {{ $section->colourClass() }} @else label label-default @endif">{{ $section->name }}</span>
                 </a>
                 @endviewentity
             @endforeach

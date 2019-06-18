@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTag extends FormRequest
 {
@@ -23,6 +24,7 @@ class StoreTag extends FormRequest
      */
     public function rules()
     {
+        $colours = config('colours.keys');
         $rules = [
             'name' => 'required|max:191',
             'type' => 'max:45',
@@ -30,6 +32,10 @@ class StoreTag extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
+            'colour' => [
+                'nullable',
+                Rule::in($colours)
+            ]
         ];
 
         $self = request()->segment(5);

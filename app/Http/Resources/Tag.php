@@ -17,6 +17,7 @@ class Tag extends EntityResource
         return $this->entity([
             'type' => $this->type,
             'tag_id' => $this->tag_id,
+            'colour' => $this->colour,
             'entities' => $this->entities()->distinct()->pluck('entities.id')->toArray(),
         ]);
     }
