@@ -159,6 +159,10 @@ Route::group([
         Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
         Route::get('/tags/{tag}/map-points', 'TagController@mapPoints')->name('tags.map-points');
 
+        // Tags Quick Add
+        Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
+        Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.entity-add');
+
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 
@@ -319,12 +323,6 @@ Route::group([
 
         // Inventory
         Route::get('/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
-        /*Route::get('/entities/{entity}/inventory/create', 'Entity\InventoryController@create')->name('entities.inventory.create');
-        Route::post('/entities/{entity}/inventory/store', 'Entity\InventoryController@store')->name('entities.inventory.store');
-        Route::get('/entities/{entity}/inventory/update', 'Entity\InventoryController@edit')->name('entities.inventory.edit');
-        Route::post('/entities/{entity}/inventory/update', 'Entity\InventoryController@update')->name('entities.inventory.update');
-        Route::delete('/entities/{entity}/inventory/delete', 'Entity\InventoryController@delete')->name('entities.inventory.destroy');
-        */
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');

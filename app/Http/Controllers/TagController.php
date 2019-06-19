@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTagEntity;
 use App\Models\Character;
 use App\Http\Requests\StoreTag;
 use App\Models\Tag;
@@ -134,5 +135,45 @@ class TagController extends CrudController
     public function mapPoints(Tag $tag)
     {
         return $this->menuView($tag, 'map-points', true);
+    }
+
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function entityAdd(Tag $tag)
+    {
+        $this->authorize('update', $tag);
+        $ajax = request()->ajax();
+        $formOptions = ['tags.entity-add', 'tag' => $tag];
+        if (request()->has('from-children')) {
+            $formOptions['from-children'] = true;
+        }
+
+        return view('tags.entities.create', [
+            'model' => $tag,
+            'ajax' => $ajax,
+            'formOptions' => $formOptions
+        ]);
+    }
+
+    /**
+     * @param StoreTagEntity $request
+     * @param Tag $tag
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function entityStore(StoreTagEntity $request, Tag $tag)
+    {
+        $this->authorize('update', $tag);
+        $redirectUrlOptions = ['tag' => $tag->id];
+        if (request()->has('from-children')) {
+            $redirectUrlOptions['tag_id'] = $tag->id;
+        }
+
+        $tag->attachEntity($request->only('entity_id'));
+        return redirect()->route('tags.children', $redirectUrlOptions)
+            ->with('success', trans('tags.children.create.success', ['name' => $tag->name]));
     }
 }

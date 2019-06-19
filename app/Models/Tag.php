@@ -236,4 +236,29 @@ class Tag extends MiscModel
     {
         return !empty($this->colour);
     }
+
+    /**
+     * Attach an entity to the tag
+     * @param array $request
+     * @return bool
+     */
+    public function attachEntity(array $request): bool
+    {
+        $entityId = array_get($request, 'entity_id');
+        $entity = Entity::with('tags')->findOrFail($entityId);
+
+        // Make sure the tag isn't already attached to the entity
+        foreach ($entity->entityTags as $tag) {
+            if ($tag->tag_id == $this->id) {
+                return true;
+            }
+        }
+
+        $entityTag = EntityTag::create([
+            'tag_id' => $this->id,
+            'entity_id' => $entityId
+        ]);
+
+        return $entityTag !== false;
+    }
 }
