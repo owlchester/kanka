@@ -17,7 +17,7 @@
                 </a>
             </th>
         @endif
-        <th class="text-right">@can('attribute', [$model, 'add'])
+        <th class="text-right">@can('entity-note', [$model, 'add'])
             <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm"
                 ><i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/notes.actions.add') }}</span>
             </a>
@@ -42,12 +42,12 @@
                 </td>
             @endif
             <td class="text-right">
-                @can('attribute', [$model, 'edit'])
+                @can('entity-note', [$model, 'edit'])
                     <a href="{{ route('entities.entity_notes.edit', ['entity' => $model->entity, 'entity_note' => $note]) }}" class="btn btn-xs btn-primary" title="{{ __('crud.edit') }}">
                         <i class="fa fa-edit"></i>
                     </a>
                 @endcan
-                @can('attribute', [$model, 'delete'])
+                @can('entity-note', [$model, 'delete'])
                     <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $note->name }}"
                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $note->id }}"
                             title="{{ __('crud.remove') }}">

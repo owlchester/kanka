@@ -217,6 +217,7 @@ return [
                 'add'           => 'Create',
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
+                'entity-note'   => 'Entity Note',
                 'permission'    => 'Manage Permissions',
                 'read'          => 'View',
             ],

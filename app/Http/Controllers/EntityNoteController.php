@@ -68,7 +68,7 @@ class EntityNoteController extends Controller
      */
     public function create(Entity $entity, EntityNote $entityNote)
     {
-        $this->authorize('attribute', [$entity->child, 'add']);
+        $this->authorize('entity-note', [$entity->child, 'add']);
 
         $name = $entity->pluralType() . '.notes' . $this->view;
         $route = 'entities.' . $this->route;
@@ -117,7 +117,7 @@ class EntityNoteController extends Controller
      */
     public function store(StoreEntityNote $request, Entity $entity)
     {
-        $this->authorize('attribute', [$entity->child, 'add']);
+        $this->authorize('entity-note', [$entity->child, 'add']);
 
         $note = new EntityNote();
         $note->entity_id = $entity->id;
@@ -139,7 +139,7 @@ class EntityNoteController extends Controller
      */
     public function edit(Entity $entity, EntityNote $entityNote)
     {
-        $this->authorize('attribute', [$entity->child, 'edit']);
+        $this->authorize('entity-note', [$entity->child, 'edit']);
 
         $name = $entity->pluralType() . '.notes' . $this->view;
         $route = 'entities.' . $this->route;
@@ -164,7 +164,7 @@ class EntityNoteController extends Controller
      */
     public function update(StoreEntityNote $request, Entity $entity, EntityNote $entityNote)
     {
-        $this->authorize('attribute', [$entity->child, 'edit']);
+        $this->authorize('entity-note', [$entity->child, 'edit']);
 
         $entityNote->update($request->all());
 
@@ -182,7 +182,7 @@ class EntityNoteController extends Controller
      */
     public function destroy(Entity $entity, EntityNote $entityNote)
     {
-        $this->authorize('attribute', [$entity->child, 'delete']);
+        $this->authorize('entity-note', [$entity->child, 'delete']);
 
         $entityNote->delete();
 

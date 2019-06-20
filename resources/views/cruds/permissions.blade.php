@@ -54,6 +54,12 @@
                                     <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.actions.delete') }}</span>
                                 </label>
                             </td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('role[' . $role->id . '][]', 'entity-note', !empty($permissions['role'][$role->id]['entity-note'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.actions.entity_note') }}</span>
+                                </label>
+                            </td>
                             @endif
                         </tr>
                     @endif
@@ -84,6 +90,12 @@
                                 <label>
                                     {!! Form::checkbox('user[' . $member->user_id . '][]', 'delete', !empty($permissions['user'][$member->user_id]['delete'])) !!}
                                     <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.actions.delete') }}</span>
+                                </label>
+                            </td>
+                            <td>
+                                <label>
+                                    {!! Form::checkbox('user[' . $member->user_id . '][]', 'entity-note', !empty($permissions['user'][$member->user_id]['entity-note'])) !!}
+                                    <span class="hidden-xs hidden-sm">{{ trans('crud.permissions.actions.entity_note') }}</span>
                                 </label>
                             </td>
                         </tr>

@@ -231,6 +231,7 @@ return [
             'delete'    => 'Delete',
             'edit'      => 'Edit',
             'read'      => 'Read',
+            'entity_note' => 'Entity Notes',
         ],
         'allowed'   => 'Allowed',
         'fields'    => [

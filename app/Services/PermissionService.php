@@ -26,7 +26,10 @@ class PermissionService
      * @var array
      */
     public $entityActions = [
-        'read', 'edit', 'delete'
+        'read',
+        'edit',
+        'delete',
+        'entity-note'
     ];
 
     /**
@@ -51,7 +54,7 @@ class PermissionService
             $campaignRolePermissions[$perm->key] = 1;
         }
 
-        $entityActions = ['read', 'edit', 'add', 'delete', 'permission'];
+        $entityActions = ['read', 'edit', 'add', 'delete', 'entity-note', 'permission'];
         //$actions = ['read', 'edit', 'add', 'delete'];
 
         // Public actions
@@ -154,6 +157,7 @@ class PermissionService
         }
 
         $permissions = ['user' => [], 'role' => []];
+        /** @var CampaignPermission $perm */
         foreach (CampaignPermission::whereIn('key', $keys)->get() as $perm) {
             $key = (!empty($perm->user_id) ? 'user' : 'role');
             $subkey = (!empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);

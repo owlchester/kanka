@@ -94,6 +94,12 @@ class EntityPolicy
         return $this->relatedElement($user, $entity, $subAction);
     }
 
+    /**
+     * @param User $user
+     * @param $entity
+     * @param string $subAction
+     * @return bool
+     */
     public function relatedElement(User $user, $entity, $subAction = 'browse')
     {
         if ($subAction == 'browse') {
@@ -110,6 +116,18 @@ class EntityPolicy
     public function relation(User $user, $entity, $subAction = 'browse')
     {
         return $this->relatedElement($user, $entity, $subAction);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function entityNote(User $user, $entity)
+    {
+        return Auth::check() && (
+            $this->update($user, $entity) ||
+            $this->checkPermission('entity-note', $user, $entity)
+        );
     }
 
     /**
