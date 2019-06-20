@@ -58,6 +58,12 @@
                         <hr>
 
                         <h4>
+                            <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => str_slug(__('faq.entity-notes.question'))]) }}">{{ __('faq.entity-notes.question') }}</a>
+                        </h4>
+                        <p class="text-muted">{!! nl2br(__('faq.entity-notes.answer')) !!}</p>
+                        <hr>
+
+                        <h4>
                             <a href="{{ route('faq.show', ['key' => 'help', 'slug' => str_slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.help.answer', [

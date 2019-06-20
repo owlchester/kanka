@@ -16,6 +16,10 @@ TEXT
         'answer'    => 'Conversations can be set up as talks between Characters or between Campaign Members. If for example you wish to document an important talk between NPCs and the PCs, you can do so using this module. You can also use them for play-by-post campaigns.',
         'question'  => 'What are Conversations?',
     ],
+    'entity-notes'           => [
+        'answer'    => 'All entities have an \'Entity Notes\' tab that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit entity notes on entities without having to allow them editing a whole entity.',
+        'question'  => 'How does Kanka handle partially hidden information?',
+    ],
     'fields'                => [
         'answer'    => 'Answer',
         'category'  => 'Category',
