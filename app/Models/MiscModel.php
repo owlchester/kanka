@@ -175,7 +175,8 @@ abstract class MiscModel extends Model
         }
 
         $subtitle = $this->tooltipSubtitle();
-        return '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text;
+        $tags = $this->tooltipTags();
+        return '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text . $tags;
     }
 
     /**
@@ -195,6 +196,24 @@ abstract class MiscModel extends Model
     public function tooltipSubtitle(): string
     {
         return '';
+    }
+
+    /**
+     * Tags in the tooltip
+     * @return string
+     */
+    public function tooltipTags(): string
+    {
+        $html = '';
+        /** @var Tag $tag */
+        foreach ($this->entity->tags as $tag) {
+            $html .= $tag->html();
+        }
+
+        if (!empty($html)) {
+            $html = '<div class="tooltip-tags">' . $html . '</div>';
+        }
+        return $html;
     }
 
     /**

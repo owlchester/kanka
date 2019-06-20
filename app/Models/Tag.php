@@ -261,4 +261,14 @@ class Tag extends MiscModel
 
         return $entityTag !== false;
     }
+
+    /**
+     * Get the tag's html
+     * @return string
+     */
+    public function html(): string
+    {
+        return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '">'
+            . e($this->name) . '</span>';
+    }
 }
