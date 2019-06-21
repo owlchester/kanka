@@ -207,11 +207,11 @@ abstract class MiscModel extends Model
         $html = '';
         /** @var Tag $tag */
         foreach ($this->entity->tags as $tag) {
-            $html .= $tag->html();
+            $html .= str_replace('"', '\'', $tag->html());
         }
 
         if (!empty($html)) {
-            $html = '<div class="tooltip-tags">' . $html . '</div>';
+            $html = '<div class=\'tooltip-tags\'>' . $html . '</div>';
         }
         return $html;
     }

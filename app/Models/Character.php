@@ -8,6 +8,12 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Stevebauman\Purify\Facades\Purify;
 
+/**
+ * Class Character
+ * @package App\Models
+ * @property Family $family
+ * @property Race $race
+ */
 class Character extends MiscModel
 {
     //

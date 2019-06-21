@@ -84,4 +84,10 @@ class CampaignPermission extends Model
         $segments = explode('_', $this->key);
         return is_numeric($segments[count($segments)-1]);
     }
+
+    public function type()
+    {
+        $segments = explode('_', $this->key);
+        return $segments[0];
+    }
 }

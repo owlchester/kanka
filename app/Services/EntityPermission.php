@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
+use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
@@ -29,6 +30,23 @@ class EntityPermission
      * @var array|boolean
      */
     protected $roleIds = false;
+
+    /**
+     * @var array The roles of the user
+     */
+    protected $roles = [];
+
+    /**
+     * @var array Entity Ids
+     */
+    protected $cachedEntityIds = [];
+
+    /**
+     * @var bool is admin
+     */
+    protected $userIsAdmin = null;
+
+    protected $loadedAll = false;
 
     /**
      * Creates new instance.
@@ -128,6 +146,7 @@ class EntityPermission
     }
 
     /**
+     * Check the roles of the user. If the user is an admin, always return true
      * @param Campaign $campaign
      * @param User|null $user
      * @return array|bool
@@ -136,21 +155,22 @@ class EntityPermission
     {
         // If we haven't built a list of roles yet, build it.
         if ($this->roleIds === false) {
-            $roles = false;
+            $this->roles = false;
             // If we have a user, get the user's role for this campaign
             if ($user) {
-                $roles = $user->campaignRoles($campaign->id)->get();
+                $this->roles = $user->campaignRoles($campaign->id)->get();
             }
 
             // If we don't have a user, or our user has no specified role yet, use the public role.
-            if ($roles === false || $roles->count() == 0) {
+            if ($this->roles === false || $this->roles->count() == 0) {
                 // Use the campaign's public role
-                $roles = $campaign->roles()->public()->get();
+                $this->roles = $campaign->roles()->public()->get();
             }
 
             // Save all the role ids. If one of them is an admin, stop there.
             $this->roleIds = [];
-            foreach ($roles as $role) {
+            /** @var CampaignRole $role */
+            foreach ($this->roles as $role) {
                 if ($role->is_admin) {
                     $this->roleIds = true;
                     return true;
@@ -160,5 +180,83 @@ class EntityPermission
         }
 
         return $this->roleIds;
+    }
+
+    /**
+     * Determine if a user is part of a role that can do an action on all entities of a campaign
+     * @param string $action
+     * @param string $model
+     * @return bool
+     */
+    public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
+    {
+        $this->loadAllPermissions($user, $campaign);
+
+        $key = $modelName . '_' . $action;
+
+        if (isset($this->cached[$key]) && $this->cached[$key]) {
+            return $this->cached[$key];
+        }
+
+        return false;
+    }
+
+    /**
+     * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
+     * optional on each query.
+     * @param User $user
+     * @param Campaign $campaign
+     * @return void
+     */
+    protected function loadAllPermissions(User $user, Campaign $campaign = null)
+    {
+        if ($this->loadedAll === true) {
+            return;
+        }
+        $this->loadedAll = true;
+
+        // If no campaign was provided, get the one in the url.
+        if (empty($campaign)) {
+            $campaign = \App\Facades\CampaignLocalization::getCampaign();
+        }
+
+        // Loop through the roles to build a list of ids, and check if one of our roles is an admin
+        $roleIds = $this->getRoleIds($campaign, $user);
+        if ($roleIds === true) {
+            // If the role ids is simply true, it means the user is an admin
+            $this->userIsAdmin = true;
+            return void;
+        }
+
+        /** @var CampaignRole $role */
+        foreach ($this->roles as $role) {
+            /** @var CampaignPermission $permission */
+            foreach ($role->permissions as $permission) {
+                $this->cached[$permission->key] = true;
+                if (!empty($permission->entity_id)) {
+                    $this->cachedEntityIds[$permission->type()][] = $permission->entityId();
+                }
+            }
+        }
+
+        // If a user is provided, get their permissions too
+        if (!empty($user)) {
+            foreach ($user->permissions as $permission) {
+                $this->cached[$permission->key] = true;
+                if (!empty($permission->entity_id)) {
+                    $this->cachedEntityIds[$permission->type()][] = $permission->entityId();
+                }
+            }
+        }
+    }
+
+    /**
+     * Get list of entity ids for a given model type that the user can access.
+     * @param $modelName
+     * @return array
+     */
+    public function entityIds($modelName)
+    {
+        return array_get($this->cachedEntityIds, $modelName, [0]);
     }
 }

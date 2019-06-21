@@ -2,6 +2,9 @@
 
 namespace App\Scopes;
 
+use App\Facades\EntityPermission;
+use App\Models\CampaignPermission;
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,6 +25,20 @@ class VisibleScope implements Scope
         if (!app()->runningInConsole()) {
             if (!Auth::check() || !Auth::user()->isAdmin()) {
                 $builder->where($model->getTable() . '.is_private', false);
+
+                // If the user is part of a role which has a blanket access to this entity type, we're good.
+                // But if they are not, we need to get individual permissions
+                // If one of the user's roles can read all entities of this type, there
+                // is no need to check further.
+                if ($model instanceof MiscModel && !empty($model->getEntityType())) {
+                    if (!EntityPermission::canRole('read', $model->getEntityType(), auth()->user())) {
+                        $entityIds = EntityPermission::entityIds($model->getEntityType());
+                        $builder->where([
+                            $model->getTable() . '.id' =>
+                                $entityIds
+                        ]);
+                    }
+                }
             }
         }
     }

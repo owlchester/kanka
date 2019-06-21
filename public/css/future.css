@@ -156,11 +156,11 @@ input[type=checkbox]:after {
   border: 1px solid #42FFFF !important;
 }
 
-input[type=checkbox]:checked {
+input[type="checkbox"]:checked {
   background: #42FFFF !important;
 }
 
-input[type=checkbox]:checked:after {
+input[type="checkbox"]:checked:after {
   display: block;
 }
 
@@ -437,6 +437,7 @@ footer .footer {
 
 body {
   background-color: #0C1416;
+  background: -webkit-gradient(linear, right top, left top, from(#0B1F20), to(#0C1416)) !important;
   background: linear-gradient(to left, #0B1F20, #0C1416) !important;
 }
 

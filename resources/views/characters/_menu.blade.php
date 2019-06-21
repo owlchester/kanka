@@ -24,7 +24,7 @@
                     @if ($campaign->enabled('families') && $model->family)
                         <li class="list-group-item">
                             <b>{{ __('characters.fields.family') }}</b>
-                            <a class="pull-right" href="{{ route('families.show', $model->family_id) }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">{{ $model->family->name }}</a>
+                            <a class="pull-right" href="{{ $model->family->getLink() }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">{{ $model->family->name }}</a>
                             <br class="clear" />
                         </li>
                     @endif
@@ -32,7 +32,7 @@
                     @if ($campaign->enabled('races') && $model->race)
                         <li class="list-group-item">
                             <b>{{ __('characters.fields.race') }}</b>
-                            <a class="pull-right" href="{{ route('races.show', $model->race_id) }}" data-toggle="tooltip" title="{{ $model->race->tooltipWithName() }}" data-html="true">{{ $model->race->name }}</a>
+                            <a class="pull-right" href="{{ $model->race->getLink() }}" data-toggle="tooltip" title="{{ $model->race->tooltipWithName() }}" data-html="true">{{ $model->race->name }}</a>
                             <br class="clear" />
                         </li>
                     @endif

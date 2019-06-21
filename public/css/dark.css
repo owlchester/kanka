@@ -156,11 +156,11 @@ input[type=checkbox]:after {
   border: 1px solid #fff !important;
 }
 
-input[type=checkbox]:checked {
+input[type="checkbox"]:checked {
   background: #fff !important;
 }
 
-input[type=checkbox]:checked:after {
+input[type="checkbox"]:checked:after {
   display: block;
 }
 
