@@ -172,10 +172,10 @@ class Family extends MiscModel
         $items['families'] = [
             'name' => 'families.show.tabs.families',
             'route' => 'families.families',
-            'count' => $this->descendants()->acl()->count()
+            'count' => $this->descendants()->count()
         ];
 
-        $count = $this->members()->acl()->count();
+        $count = $this->members()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['members'] = [
                 'name' => 'families.show.tabs.members',
@@ -183,7 +183,7 @@ class Family extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->allMembers()->acl()->count();
+        $count = $this->allMembers()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['all_members'] = [
                 'name' => 'families.show.tabs.all_members',

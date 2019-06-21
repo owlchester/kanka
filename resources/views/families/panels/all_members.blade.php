@@ -21,7 +21,7 @@
                 <th>{{ trans('characters.fields.is_dead') }}</th>
             </tr></thead>
             <tbody>
-            <?php $r = $model->allMembers()->acl()->paginate();?>
+            <?php $r = $model->allMembers()->with(['race', 'location'])->paginate();?>
             @foreach ($r->sortBy('character.name') as $member)
                 <tr>
                     <td>

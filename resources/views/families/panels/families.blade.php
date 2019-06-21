@@ -6,7 +6,7 @@
 
         <p class="help-block">{{ trans('families.helpers.descendants') }}</p>
 
-        <?php $r = $model->descendants()->with('parent')->acl()->orderBy('name', 'ASC')->paginate(); ?>
+        <?php $r = $model->descendants()->with('parent')->orderBy('name', 'ASC')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('families.show.tabs.families') }}</p>
         <table id="families" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

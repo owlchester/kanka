@@ -84,6 +84,8 @@ class EntityPermission
      */
     public function hasPermission($modelName, $action, $user = null, $entity = null, Campaign $campaign = null)
     {
+        $this->loadAllPermissions($user, $campaign);
+
         // Check if we have permission to `action` all of the entities of this type first.
         $key = $modelName . '_' . $action;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
@@ -97,6 +99,8 @@ class EntityPermission
                 return $this->cached[$entityKey];
             }
         }
+
+        return false;
 
         // Want to get my user's permissions and roles
         $keys = [$key];
@@ -158,7 +162,7 @@ class EntityPermission
             $this->roles = false;
             // If we have a user, get the user's role for this campaign
             if ($user) {
-                $this->roles = $user->campaignRoles($campaign->id)->get();
+                $this->roles = $user->campaignRoles($campaign->id)->with('permissions')->get();
             }
 
             // If we don't have a user, or our user has no specified role yet, use the public role.
@@ -191,7 +195,6 @@ class EntityPermission
     public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
     {
         $this->loadAllPermissions($user, $campaign);
-
         $key = $modelName . '_' . $action;
 
         if (isset($this->cached[$key]) && $this->cached[$key]) {

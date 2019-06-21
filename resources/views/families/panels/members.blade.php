@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Family $model */?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
@@ -21,7 +22,7 @@
                 <th>{{ trans('characters.fields.is_dead') }}</th>
             </tr></thead>
             <tbody>
-            <?php $r = $model->members()->acl()->paginate();?>
+            <?php $r = $model->members()->with(['race', 'location'])->paginate();?>
             @foreach ($r->sortBy('character.name') as $member)
                 <tr>
                     <td>
