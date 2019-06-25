@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\WelcomeEmailJob;
 use App\Models\CampaignUser;
 use App\Mail\UserDeleted;
 use App\Mail\UserRegistered;
@@ -71,7 +72,7 @@ class UserObserver
         //Mail::to('hello@kanka.io')->send(new UserRegistered($user));
 
         // Send email to the new user too
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        WelcomeEmailJob::dispatch($user, app()->getLocale());
     }
 
     /**
