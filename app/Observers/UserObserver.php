@@ -2,7 +2,8 @@
 
 namespace App\Observers;
 
-use App\Jobs\WelcomeEmailJob;
+use App\Jobs\Emails\GoodbyeEmailJob;
+use App\Jobs\Emails\WelcomeEmailJob;
 use App\Models\CampaignUser;
 use App\Mail\UserDeleted;
 use App\Mail\UserRegistered;
@@ -68,10 +69,6 @@ class UserObserver
         $dashboard->user_id = $user->id;
         $dashboard->save();
 
-        // New user, send notification
-        //Mail::to('hello@kanka.io')->send(new UserRegistered($user));
-
-        // Send email to the new user too
         WelcomeEmailJob::dispatch($user, app()->getLocale());
     }
 
@@ -86,7 +83,7 @@ class UserObserver
         }
 
         // Send notification that an account has been removed
-        Mail::to('hello@kanka.io')->send(new UserDeleted($user));
+        GoodbyeEmailJob::dispatch($user, app()->getLocale());
     }
 
     /**

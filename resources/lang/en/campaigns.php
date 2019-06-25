@@ -91,7 +91,7 @@ return [
         ],
         'email'         => [
             'link'      => '<a href=":link">Join :name\'s campaign</a>',
-            'subject'   => ':name has invited you to join his campaign \':campaign\' on kanka.io! Use the following link to accept his invitation.',
+            'subject'   => ':name has invited you to join their campaign \':campaign\' on kanka.io! Use the following link to accept their invitation.',
             'title'     => 'Invitation from :name',
         ],
         'error'         => [

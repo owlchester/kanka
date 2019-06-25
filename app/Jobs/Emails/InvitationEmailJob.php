@@ -1,21 +1,29 @@
 <?php
 
 
-namespace App\Jobs;
+namespace App\Jobs\Emails;
 
 
+use App\Mail\CampaignInviteMail;
 use App\Mail\WelcomeEmail;
+use App\Models\CampaignInvite;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
-class WelcomeEmailJob implements ShouldQueue
+class InvitationEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * @var int
+     */
+    public $inviteId;
 
     /**
      * @var int
@@ -32,19 +40,23 @@ class WelcomeEmailJob implements ShouldQueue
      * @param User $user
      * @param string $language
      */
-    public function __construct(User $user, string $language = 'en')
+    public function __construct(CampaignInvite $campaignInvite, User $user, string $language = 'en')
     {
+        $this->inviteId = $campaignInvite->id;
         $this->userId = $user->id;
         $this->language = $language;
     }
 
     public function handle()
     {
+        /** @var CampaignInvite $invite */
+        $invite = CampaignInvite::findOrFail($this->inviteId);
         $user = User::findOrFail($this->userId);
-        Mail::to($user->email)
-            ->locale($this->language)
-            ->send(
-                new WelcomeEmail($user)
-            );
+        Mail::to($invite->email)->send(
+            new CampaignInviteMail(
+                $user,
+                $invite
+            )
+        );
     }
 }

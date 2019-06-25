@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\Emails\InvitationEmailJob;
 use App\Mail\CampaignInviteMail;
 use App\Models\CampaignInvite;
 use App\Services\StarterService;
@@ -17,12 +18,7 @@ class CampaignInviteObserver
     {
         // Send email to the new user too join
         if ($campaignInvite->type == 'email') {
-            Mail::to($campaignInvite->email)->send(
-                new CampaignInviteMail(
-                    Auth::user(),
-                    $campaignInvite
-                )
-            );
+            InvitationEmailJob::dispatch($campaignInvite, auth()->user(), app()->getLocale());
         }
     }
 
