@@ -6,6 +6,7 @@ use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,7 @@ abstract class MiscModel extends Model
         Searchable,
         Orderable,
         Filterable,
+        Tooltip,
         SubEntityScopes;
 
     /**
@@ -121,99 +123,6 @@ abstract class MiscModel extends Model
             return '<span title="' . e($this->name) . '">' . substr(e($this->name), 0, 28) . '...</span>';
         }
         return $this->name;
-    }
-
-    /**
-     * Wrapper for short entry
-     * @return mixed
-     */
-    public function tooltip($limit = 250, $stripSpecial = true)
-    {
-        // Always remove tags. ALWAYS.
-        $pureHistory = strip_tags($this->{$this->tooltipField});
-
-        if ($stripSpecial) {
-            // Remove double quotes because they are the spawn of the devil.
-            $pureHistory = str_replace('"', '\'', $pureHistory);
-            $pureHistory = str_replace('&quot;', '\'', $pureHistory);
-
-            // Remove any leftover < and > for sanity's sake
-            $pureHistory = str_replace('&gt;', null, $pureHistory);
-            $pureHistory = str_replace('&lt;', null, $pureHistory);
-            //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
-
-//            if ($this->id == 70) {
-//                dump($this->{$this->tooltipField});
-//                dd($pureHistory);
-//            }
-        }
-
-        $pureHistory = preg_replace("/\s/ui", ' ', $pureHistory);
-        $pureHistory = trim($pureHistory);
-
-        if (!empty($pureHistory)) {
-            if (strlen($pureHistory) > $limit) {
-                return mb_substr($pureHistory, 0, $limit) . '...';
-            }
-        }
-        return $pureHistory;
-    }
-
-    /**
-     * Short tooltip with location name
-     * @return mixed
-     */
-    public function tooltipWithName($limit = 250)
-    {
-        $text = $this->tooltip($limit);
-
-        // e() isn't enough, remove tags too to avoid ><script injections.
-        $name = $this->tooltipName();
-
-        if (empty($text)) {
-            return $name;
-        }
-
-        $subtitle = $this->tooltipSubtitle();
-        $tags = $this->tooltipTags();
-        return '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text . $tags;
-    }
-
-    /**
-     * Tooltip name
-     * @return string
-     */
-    public function tooltipName(): string
-    {
-        // e() isn't enough, remove tags too to avoid ><script injections.
-        return e(strip_tags($this->name));
-    }
-
-    /**
-     * Subtitle for the entity's tooltip (ex. character title)
-     * @return string
-     */
-    public function tooltipSubtitle(): string
-    {
-        return '';
-    }
-
-    /**
-     * Tags in the tooltip
-     * @return string
-     */
-    public function tooltipTags(): string
-    {
-        $html = '';
-        /** @var Tag $tag */
-        foreach ($this->entity->tags as $tag) {
-            $html .= str_replace('"', '\'', $tag->html());
-        }
-
-        if (!empty($html)) {
-            $html = '<div class=\'tooltip-tags\'>' . $html . '</div>';
-        }
-        return $html;
     }
 
     /**

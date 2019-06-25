@@ -82,7 +82,10 @@ class Organisation extends MiscModel
     {
         return $query
             ->with([
-                'entity', 'entity.tags', 'location', 'location.entity', 'organisation',
+                'entity',
+                'location',
+                'location.entity',
+                'organisation',
                 'members',
                 'organisations'
             ]);

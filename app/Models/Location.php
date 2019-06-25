@@ -94,10 +94,8 @@ class Location extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'parentLocation',
             'parentLocation.entity',
-            'parentLocation.entity.tags',
             'locations',
             'characters'
         ]);

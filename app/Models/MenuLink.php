@@ -75,7 +75,6 @@ class MenuLink extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'target',
         ]);
     }

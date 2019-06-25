@@ -104,14 +104,12 @@ class Quest extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'quests',
             'locations',
             'characters',
             'organisations',
             'quest',
             'quest.entity',
-            'quest.entity.tags'
         ]);
     }
 

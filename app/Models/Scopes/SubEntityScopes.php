@@ -16,7 +16,6 @@ trait SubEntityScopes
     {
         return $query->with([
             'entity',
-            'entity.tags'
         ]);
     }
 

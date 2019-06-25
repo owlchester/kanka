@@ -96,10 +96,8 @@ class Family extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'location',
             'location.entity',
-            'location.entity.tags',
             'families',
             'members',
         ]);

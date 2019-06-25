@@ -124,16 +124,12 @@ class Character extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'location',
             'location.entity',
-            'location.entity.tags',
             'family',
             'family.entity',
-            'family.entity.tags',
             'race',
             'race.entity',
-            'race.entity.tags'
         ]);
     }
 

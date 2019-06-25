@@ -86,11 +86,9 @@ class Tag extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'tags',
             'tag',
             'tag.entity',
-            'tag.entity.tags',
             'children',
         ]);
     }

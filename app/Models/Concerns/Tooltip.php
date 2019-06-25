@@ -1,0 +1,129 @@
+<?php
+
+namespace App\Models\Concerns;
+
+use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
+
+trait Tooltip
+{
+    /**
+     * Wrapper for short entry
+     * @return mixed
+     */
+    public function tooltip($limit = 250, $stripSpecial = true)
+    {
+        // Always remove tags. ALWAYS.
+        $pureHistory = strip_tags($this->{$this->tooltipField});
+
+        if ($stripSpecial) {
+            // Remove double quotes because they are the spawn of the devil.
+            $pureHistory = str_replace('"', '\'', $pureHistory);
+            $pureHistory = str_replace('&quot;', '\'', $pureHistory);
+
+            // Remove any leftover < and > for sanity's sake
+            $pureHistory = str_replace('&gt;', null, $pureHistory);
+            $pureHistory = str_replace('&lt;', null, $pureHistory);
+            //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
+
+//            if ($this->id == 70) {
+//                dump($this->{$this->tooltipField});
+//                dd($pureHistory);
+//            }
+        }
+
+        $pureHistory = preg_replace("/\s/ui", ' ', $pureHistory);
+        $pureHistory = trim($pureHistory);
+
+        if (!empty($pureHistory)) {
+            if (strlen($pureHistory) > $limit) {
+                return mb_substr($pureHistory, 0, $limit) . '...';
+            }
+        }
+        return $pureHistory;
+    }
+
+    /**
+     * Short tooltip with location name
+     * @return mixed
+     */
+    public function tooltipWithName(int $limit = 250)
+    {
+        $tooltip = Cache::get($this->tooltipCacheKey(), false);
+        if ($tooltip !== false) {
+            return $tooltip;
+        }
+        return $this->cacheTooltip($limit);
+    }
+
+    /**
+     * Cache the entity's tooltip
+     * @param int $limit
+     * @return string
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
+    protected function cacheTooltip(int $limit)
+    {
+        $text = $this->tooltip($limit);
+
+        // e() isn't enough, remove tags too to avoid ><script injections.
+        $name = $this->tooltipName();
+
+        if (empty($text)) {
+            return $name;
+        }
+
+        $subtitle = $this->tooltipSubtitle();
+        $tags = $this->tooltipTags();
+        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text . $tags;
+
+        Cache::forever($this->tooltipCacheKey(), $tooltip);
+
+        return $tooltip;
+    }
+
+    /**
+     * @return string
+     */
+    public function tooltipCacheKey(): string
+    {
+        return 'tooltip_' . $this->id;
+    }
+
+    /**
+     * Tooltip name
+     * @return string
+     */
+    public function tooltipName(): string
+    {
+        // e() isn't enough, remove tags too to avoid ><script injections.
+        return e(strip_tags($this->name));
+    }
+
+    /**
+     * Subtitle for the entity's tooltip (ex. character title)
+     * @return string
+     */
+    public function tooltipSubtitle(): string
+    {
+        return '';
+    }
+
+    /**
+     * Tags in the tooltip
+     * @return string
+     */
+    public function tooltipTags(): string
+    {
+        $html = '';
+        /** @var Tag $tag */
+        foreach ($this->entity->tags as $tag) {
+            $html .= str_replace('"', '\'', $tag->html());
+        }
+
+        if (!empty($html)) {
+            $html = '<div class=\'tooltip-tags\'>' . $html . '</div>';
+        }
+        return $html;
+    }
+}

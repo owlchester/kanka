@@ -70,7 +70,6 @@ class Race extends MiscModel
     {
         return $query->with([
             'entity',
-            'entity.tags',
             'races',
             'characters',
         ]);

@@ -17,13 +17,13 @@ class TagObserver extends MiscObserver
         /**
          * We need to keep this, because the tree plugin wants to delete child when deleting the parent. It's stupid.
          */
-        // Set all children to no longer have this section
-        foreach ($model->allChildren() as $child) {
+        // Set all children to no longer have this tag
+        foreach ($model->allChildren()->get() as $child) {
             $child->child->tag_id = null;
             $child->child->save();
         }
 
-        // Update sub sections to clean them  up
+        // Update sub tags to clean them  up
         foreach ($model->tags as $child) {
             $child->tag_id = null;
             $child->save();

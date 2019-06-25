@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
+use App\Jobs\EntityUpdatedJob;
 use App\Models\AttributeTemplate;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
@@ -163,6 +164,9 @@ class EntityObserver
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_UPDATE;
         $log->save();
+
+        // Queue job when an entity was updated
+        EntityUpdatedJob::dispatch($entity);
     }
 
     /**
