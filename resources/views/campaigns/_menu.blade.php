@@ -66,7 +66,7 @@
     </div>
 </div>
 
-@if (!auth()->guest() and $campaign->user())
+@if (!auth()->guest() and $campaign->userIsMember())
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">

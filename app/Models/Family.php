@@ -94,7 +94,15 @@ class Family extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity']);
+        return $query->with([
+            'entity',
+            'entity.tags',
+            'location',
+            'location.entity',
+            'location.entity.tags',
+            'families',
+            'members',
+        ]);
     }
 
     /**

@@ -114,10 +114,13 @@ class CrudController extends Controller
             ->search(request()->get('search'))
             ->order($this->filterService->order())
         ;
-        $unfilteredCount = $base->count();
+        $unfilteredCount = $filteredCount = $base->count();
         $base = $base->filter($this->filterService->filters());
-        $filteredCount =  $base->count();
         $models = $base->paginate();
+
+        if ($this->filterService->hasFilters()) {
+            $filteredCount =  $models->total();
+        }
 
         return view('cruds.index', compact(
             'models',

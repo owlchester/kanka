@@ -36,7 +36,7 @@
             'label' => trans('families.fields.members'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->members()->count();
+                return $model->members->count();
             },
             'disableSort' => true,
         ],

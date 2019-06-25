@@ -15,7 +15,7 @@
         [
             'label' => trans('tags.fields.tags'),
             'render' => function($model) {
-                return $model->tags()->count();
+                return $model->tags->count();
             },
             'disableSort' => true,
         ],
@@ -42,7 +42,7 @@
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->tags()->count();
+                    return $model->tags->count();
                 }
             ]
         ]

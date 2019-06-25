@@ -47,7 +47,7 @@ class Campaign
             return $next($request);
         } elseif (Auth::check()) {
             // Obvious check: are we a member of the campaign?
-            if (!$campaign->user()) {
+            if (!$campaign->userIsMember()) {
                 // Let's check if it's in Review mode, then we need to be an admin or moderator
                 if ($campaign->visibility == \App\Models\Campaign::VISIBILITY_REVIEW
                     && !(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))) {

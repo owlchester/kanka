@@ -42,4 +42,13 @@ trait EntityScopes
         }
         return $query->where('type', $type);
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeStandardWith($query)
+    {
+        return $query->with('tags');
+    }
 }

@@ -64,6 +64,9 @@ class Campaign extends MiscModel
      */
     protected $searchableColumns  = ['name'];
 
+    protected $cachedUserInCampaign = null;
+    protected $cachedUserRole = null;
+
     /**
      * @return mixed
      */
@@ -332,13 +335,17 @@ class Campaign extends MiscModel
     }
 
     /**
+     * Determine if the user is in the campaign
      * @return bool
      */
-    public function user()
+    public function userIsMember(): bool
     {
-        return $this->members()
-            ->where('user_id', Auth::user()->id)
-            ->count() == 1;
+        if ($this->cachedUserInCampaign === null) {
+            $this->cachedUserInCampaign = $this->members()
+                    ->where('user_id', Auth::user()->id)
+                    ->count() == 1;
+        }
+        return $this->cachedUserInCampaign;
     }
 
     /**

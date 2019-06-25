@@ -21,7 +21,7 @@
         [
             'label' => trans('organisations.fields.organisations'),
             'render' => function($model) {
-                return $model->organisations()->count();
+                return $model->organisations->count();
             },
             'disableSort' => true,
         ],
@@ -29,7 +29,7 @@
             'label' => trans('organisations.fields.members'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->members()->count();
+                return $model->members->count();
             },
             'disableSort' => true,
         ],
@@ -48,7 +48,7 @@
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->organisations()->count();
+                    return $model->organisations->count();
                 }
             ]
         ]

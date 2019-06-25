@@ -33,6 +33,7 @@ trait TreeControllerTrait
 
         $base = $model
             ->distinct()
+            ->preparedWith()
             ->search(request()->get('search'))
             ->order($this->filterService->order());
 
@@ -65,12 +66,15 @@ trait TreeControllerTrait
             $base->whereNull($parentKey);
         }
 
-        $unfilteredCount = $base->count();
+        $unfilteredCount = $filteredCount = $base->count();
         $base = $base->filter($this->filterService->filters());
-        $filteredCount =  $base->count();
         $search = $base;
 
         $models = $search->paginate();
+        if ($this->filterService->hasFilters()) {
+            $filteredCount = $models->total();
+        }
+
         $view = $this->view;
         $route = $this->route;
 

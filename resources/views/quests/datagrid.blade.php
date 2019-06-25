@@ -36,7 +36,7 @@
             'label' => trans('quests.fields.locations'),
             'visible' => $campaign->enabled('locations'),
             'render' => function($model) {
-                return $model->locations()->count();
+                return $model->locations->count();
             },
             'disableSort' => true,
         ],
@@ -44,7 +44,7 @@
             'label' => trans('quests.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->characters()->count();
+                return $model->characters->count();
             },
             'disableSort' => true,
         ],
@@ -52,7 +52,7 @@
             'label' => trans('quests.fields.organisations'),
             'visible' => $campaign->enabled('organisations'),
             'render' => function($model) {
-                return $model->organisations()->count();
+                return $model->organisations->count();
             },
             'disableSort' => true,
         ],

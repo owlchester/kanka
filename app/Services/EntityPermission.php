@@ -124,52 +124,6 @@ class EntityPermission
         }
 
         return false;
-
-        // Want to get my user's permissions and roles
-        $keys = [$key];
-        // If we've specified an entity, it could be that our role or user has permissions on it
-        if (!empty($entity)) {
-            $keys[] = $modelName . '_' . $action . '_' . $entity->id;
-        }
-
-        // If no campaign was provided, get the one in the url.
-        if (empty($campaign)) {
-            $campaign = \App\Facades\CampaignLocalization::getCampaign();
-        }
-
-        // Loop through the roles to build a list of ids, and check if one of our roles is an admin
-        $roleIds = $this->getRoleIds($campaign, $user);
-        if ($roleIds === true) {
-            // If the role ids is simply true, it means the user is an admin
-            return true;
-        }
-
-        // Check for a permission related to this action.
-        $value = false;
-
-        $permissions = null;
-        if ($user) {
-            $permissions = CampaignPermission::whereIn('key', $keys)
-                ->where(function ($query) use ($user, $roleIds) {
-                    return $query->where(['user_id' => $user->id])->orWhereIn('campaign_role_id', $roleIds);
-                })->get();
-        } else {
-            $permissions = CampaignPermission::whereIn('key', $keys)
-                ->whereIn('campaign_role_id', $roleIds)
-                ->get();
-        }
-        foreach ($permissions as $permission) {
-            // If we got a permission for the exact entity, save that
-            if (isset($keys[1]) && strpos($permission->key, $keys[1]) !== false) {
-                $key = $keys[1];
-            }
-            $value = true;
-        }
-
-        // Cache the result that gave us access.
-        $this->cached[$key] = $value;
-
-        return $value;
     }
 
     /**
@@ -185,13 +139,18 @@ class EntityPermission
             $this->roles = false;
             // If we have a user, get the user's role for this campaign
             if ($user) {
-                $this->roles = $user->campaignRoles($campaign->id)->with('permissions')->get();
+                $this->roles = $user->campaignRoles($campaign->id)
+                    ->with('permissions')
+                    ->get();
             }
 
             // If we don't have a user, or our user has no specified role yet, use the public role.
             if ($this->roles === false || $this->roles->count() == 0) {
                 // Use the campaign's public role
-                $this->roles = $campaign->roles()->public()->get();
+                $this->roles = $campaign->roles()
+                    ->public()
+                    ->with('permissions')
+                    ->get();
             }
 
             // Save all the role ids. If one of them is an admin, stop there.
@@ -234,7 +193,7 @@ class EntityPermission
      * @param Campaign $campaign
      * @return void
      */
-    protected function loadAllPermissions(User $user, Campaign $campaign = null)
+    protected function loadAllPermissions(User $user = null, Campaign $campaign = null)
     {
         if ($this->loadedAll === true) {
             return;

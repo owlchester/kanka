@@ -206,4 +206,12 @@ class FilterService
         }
         return $count;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasFilters(): bool
+    {
+        return !empty($this->filters);
+    }
 }

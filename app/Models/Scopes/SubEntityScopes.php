@@ -42,4 +42,9 @@ trait SubEntityScopes
         }
         return $query->where('updated_at', '>', $lastSync);
     }
+
+    public function scopeStandardWith($query)
+    {
+        return $query->with('entity', 'entitiy.tags');
+    }
 }

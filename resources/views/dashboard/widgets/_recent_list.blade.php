@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Entity $entity */?>
 @foreach ($entities as $entity)
     <?php if (empty($entity->child)) continue; ?>
     <div class="entity">

@@ -92,7 +92,15 @@ class Location extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'parentLocation', 'parentLocation.entity']);
+        return $query->with([
+            'entity',
+            'entity.tags',
+            'parentLocation',
+            'parentLocation.entity',
+            'parentLocation.entity.tags',
+            'locations',
+            'characters'
+        ]);
     }
 
     /**

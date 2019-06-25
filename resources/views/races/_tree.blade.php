@@ -27,7 +27,7 @@
         [
             'label' => trans('races.fields.races'),
             'render' => function($model) {
-                return $model->races()->count();
+                return $model->races->count();
             },
             'disableSort' => true,
         ],
@@ -35,7 +35,7 @@
             'label' => trans('races.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->characters()->count();
+                return $model->characters->count();
             },
             'disableSort' => true,
         ],

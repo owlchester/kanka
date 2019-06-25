@@ -96,6 +96,26 @@ class Quest extends MiscModel
     ];
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with([
+            'entity',
+            'entity.tags',
+            'quests',
+            'locations',
+            'characters',
+            'organisations',
+            'quest',
+            'quest.entity',
+            'quest.entity.tags'
+        ]);
+    }
+
+    /**
      * Parent
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

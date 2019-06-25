@@ -80,7 +80,12 @@ class Organisation extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity', 'organisation']);
+        return $query
+            ->with([
+                'entity', 'entity.tags', 'location', 'location.entity', 'organisation',
+                'members',
+                'organisations'
+            ]);
     }
 
     /**

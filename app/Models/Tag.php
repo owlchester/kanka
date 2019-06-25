@@ -84,7 +84,15 @@ class Tag extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'tag', 'tag.entity']);
+        return $query->with([
+            'entity',
+            'entity.tags',
+            'tags',
+            'tag',
+            'tag.entity',
+            'tag.entity.tags',
+            'children',
+        ]);
     }
 
     /**
@@ -182,7 +190,7 @@ class Tag extends MiscModel
     {
         $campaign = $this->campaign;
 
-        $count = $this->descendants()->count();
+        $count = $this->descendants->count();
         if ($count > 0) {
             $items['tags'] = [
                 'name' => 'tags.show.tabs.tags',

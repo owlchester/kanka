@@ -1,4 +1,6 @@
-<?php $currentCampaign = CampaignLocalization::getCampaign();
+<?php
+/** @var \App\Models\Campaign $currentCampaign */
+$currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 ?>
 @if (!empty($currentCampaign))
@@ -53,7 +55,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 </ul>
             </li>
             @endif
-            @if (Auth::check() && $currentCampaign->user())
+            @if (Auth::check() && $currentCampaign->userIsMember())
                 <li>
                     <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal"><i class="fa fa-plus"></i> <span>{{ trans('sidebar.entity-creator') }}</span></a>
                 </li>

@@ -36,7 +36,7 @@
             'label' => trans('tags.fields.tags'),
             'render' => function($model) {
                 $total = $model->tags->count();
-                foreach ($model->descendants()->with('tags')->get() as $child) {
+                foreach ($model->descendants as $child) {
                     $total += $child->tags->count();
                 }
                 return $total;

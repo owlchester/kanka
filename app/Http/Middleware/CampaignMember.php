@@ -23,17 +23,11 @@ class CampaignMember
             return redirect()->route('campaigns.index');
         }
 
-        // Make sure the campaign exists
-        $campaign = Campaign::where('id', $campaignId)->first();
+        // Make sure the campaign exists. Why do we need this?
+        /*$campaign = Campaign::where('id', $campaignId)->first();
         if (empty($campaign)) {
             return redirect()->route('campaigns.index');
-        }
-
-        // Make sure we are in the campaign users
-        //if (!$campaign->user()) {
-        //    return redirect()->route('campaigns.index');
-        //}
-        // This is now handled by the CampaignLocalization
+        }*/
 
         return $next($request);
     }

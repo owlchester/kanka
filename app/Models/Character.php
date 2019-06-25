@@ -122,7 +122,19 @@ class Character extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity', 'family', 'family.entity', 'race']);
+        return $query->with([
+            'entity',
+            'entity.tags',
+            'location',
+            'location.entity',
+            'location.entity.tags',
+            'family',
+            'family.entity',
+            'family.entity.tags',
+            'race',
+            'race.entity',
+            'race.entity.tags'
+        ]);
     }
 
     /**

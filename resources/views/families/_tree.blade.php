@@ -16,7 +16,7 @@
         [
             'label' => trans('families.fields.families'),
             'render' => function($model) {
-                return $model->families()->count();
+                return $model->families->count();
             },
             'disableSort' => true,
         ],
@@ -35,7 +35,7 @@
             'label' => trans('families.fields.members'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->members()->count();
+                return $model->members->count();
             },
             'disableSort' => true,
         ],
@@ -54,7 +54,7 @@
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->families()->count();
+                    return $model->families->count();
                 }
             ]
         ]

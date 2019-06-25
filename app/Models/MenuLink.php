@@ -67,6 +67,20 @@ class MenuLink extends MiscModel
     ];
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with([
+            'entity',
+            'entity.tags',
+            'target',
+        ]);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()
