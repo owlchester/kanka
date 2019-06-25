@@ -326,7 +326,7 @@ abstract class MiscModel extends Model
      */
     public function menuItems($items = [])
     {
-        $mapPoints = $this->entity->targetMapPoints()->acl()->count();
+        $mapPoints = $this->entity->targetMapPoints()->count();
         if ($mapPoints > 0) {
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',
@@ -339,7 +339,7 @@ abstract class MiscModel extends Model
         $items['inventory'] = [
             'name' => 'crud.tabs.inventory',
             'route' => 'entities.inventory',
-            'count' => $this->entity->inventories()->acl()->count(),
+            'count' => $this->entity->inventories()->count(),
             'entity' => true,
         ];
 
@@ -352,7 +352,7 @@ abstract class MiscModel extends Model
      */
     public function entityTypeList()
     {
-        return $this->acl()
+        return $this
             ->groupBy('type')
             ->whereNotNull('type')
             ->orderBy('type', 'ASC')

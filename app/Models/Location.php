@@ -212,7 +212,6 @@ class Location extends MiscModel
     public function relatedQuests()
     {
         $query = $this->quests()
-            ->acl()
             ->orderBy('name', 'ASC')
             ->with(['characters', 'locations', 'quests']);
 
@@ -295,7 +294,7 @@ class Location extends MiscModel
             }
         }
 
-        $count = $this->descendants()->acl()->count();
+        $count = $this->descendants()->has('location')->count();
         if ($count > 0) {
             $items['locations'] = [
                 'name' => 'locations.show.tabs.locations',
@@ -303,7 +302,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->allCharacters()->acl()->count();
+        $count = $this->allCharacters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['characters'] = [
                 'name' => 'locations.show.tabs.characters',
@@ -311,7 +310,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->events()->acl()->count();
+        $count = $this->events()->count();
         if ($campaign->enabled('events') && $count > 0) {
             $items['events'] = [
                 'name' => 'locations.show.tabs.events',
@@ -319,7 +318,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->items()->acl()->count();
+        $count = $this->items()->count();
         if ($campaign->enabled('items') && $count > 0) {
             $items['items'] = [
                 'name' => 'locations.show.tabs.items',
@@ -327,7 +326,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->organisations()->acl()->count();
+        $count = $this->organisations()->count();
         if ($campaign->enabled('organisations') && $count > 0) {
             $items['organisations'] = [
                 'name' => 'locations.show.tabs.organisations',
@@ -335,7 +334,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->relatedQuests()->count();
+        $count = $this->relatedQuests()->with('quest')->count();
         if ($campaign->enabled('quests') && $count > 0) {
             $items['quests'] = [
                 'name' => 'locations.show.tabs.quests',
@@ -343,7 +342,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->journals()->acl()->count();
+        $count = $this->journals()->count();
         if ($campaign->enabled('journals') && $count > 0) {
             $items['journals'] = [
                 'name' => 'locations.show.tabs.journals',

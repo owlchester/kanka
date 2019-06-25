@@ -160,9 +160,9 @@ class MiscController extends Controller
     {
         $modelClass = new $class;
         if (empty($term)) {
-            $models = $modelClass->acl()->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = $modelClass->limit(10)->orderBy('updated_at', 'DESC')->get();
         } else {
-            $models = $modelClass->acl()->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = $modelClass->where('name', 'like', "%$term%")->limit(10)->get();
         }
         $formatted = [];
 

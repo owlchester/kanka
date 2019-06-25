@@ -14,7 +14,10 @@ trait SubEntityScopes
      */
     public function scopePreparedWith($query)
     {
-        return $query->with('entity');
+        return $query->with([
+            'entity',
+            'entity.tags'
+        ]);
     }
 
     /**

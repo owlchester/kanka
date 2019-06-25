@@ -48,7 +48,7 @@ class FormService
         if ($checkForParent && $parent !== false) {
             /** @var Family $class */
             $class = new $parentClass;
-            $parent = $class->acl()->find($parent);
+            $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];
             }

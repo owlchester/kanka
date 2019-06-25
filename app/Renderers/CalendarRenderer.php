@@ -482,11 +482,12 @@ class CalendarRenderer
      */
     protected function events()
     {
+        /** @var CalendarEvent $event */
         $events = [];
         $datePattern = $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%';
         foreach ($this->calendar->calendarEvents()
                      ->has('entity')
-                     ->with('entity')
+                     ->with(['entity', 'entity.tags'])
                     ->where(function ($query) use ($datePattern) {
                         $query
                             // Where it's the current year , or current year and current month
@@ -516,7 +517,7 @@ class CalendarRenderer
                 if ($blocks[0] > $this->getYear()) {
                     continue;
                 }
-                // Over max reoccuring year?
+                // Over max reoccurring year?
                 if (!empty($event->recurring_until) && $event->recurring_until < $this->getYear()) {
                     continue;
                 }

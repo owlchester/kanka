@@ -33,7 +33,9 @@ class VisibleScope implements Scope
                 if ($model instanceof MiscModel && !empty($model->getEntityType())) {
                     if (!EntityPermission::canRole('read', $model->getEntityType(), auth()->user())) {
                         $entityIds = EntityPermission::entityIds($model->getEntityType());
-                        $builder->whereIn($model->getTable() . '.id', $entityIds);
+
+                        $primaryKey = !empty($model->aclFieldName) ? $model->aclFieldName : 'id';
+                        $builder->whereIn($model->getTable() . '.' . $primaryKey, $entityIds);
                     }
                 }
             }

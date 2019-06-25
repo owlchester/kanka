@@ -14,17 +14,17 @@ if (request()->has('location_id')) {
         <p class="help-block export-hidden">
             @if (request()->has('location_id'))
                 <a href="{{ route('locations.characters', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
                 </a>
             @else
                 <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
                 </a>
             @endif
             {{ trans('locations.helpers.characters') }}
         </p>
 
-        <?php  $r = $model->allCharacters()->acl()->filter($filters)->orderBy('name', 'ASC')->with(['location', 'family'])->paginate(); ?>
+        <?php  $r = $model->allCharacters()->filter($filters)->orderBy('name', 'ASC')->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
         <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

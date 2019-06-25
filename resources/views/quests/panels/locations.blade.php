@@ -12,7 +12,7 @@
         @endcan
 
         <div class="row">
-            @foreach ($model->locations()->acl()->with('location')->has('location')->get() as $location)
+            @foreach ($model->locations()->with('location')->has('location')->get() as $location)
                 <div class="col-md-6">
                     <div class="box box-widget widget-user-2">
                         <!-- Add the bg color to the header using any of the bg-* classes -->

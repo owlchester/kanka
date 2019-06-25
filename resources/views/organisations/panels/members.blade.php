@@ -18,11 +18,11 @@ $hasOrg = request()->has('organisation_id');
         <p class="help-block">
             @if ($hasOrg)
                 <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
                 </a>
             @else
                 <a href="{{ route('organisations.members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
                 </a>
             @endif
             {{ __('organisations.members.helpers.members') }}
@@ -51,7 +51,14 @@ $hasOrg = request()->has('organisation_id');
                     @endcan
                 </th>
             </tr>
-            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')->with('organisation', 'character', 'character.location')->paginate();?>
+            <?php $r = $model->allMembers()
+                ->filter($filters)
+                ->has('character')
+                ->with([
+                    'character', 'character.race', 'character.location', 'character.family', 'organisation',
+                    'character.entity', 'character.entity.tags'
+                ])
+                ->paginate();?>
             @foreach ($r->sortBy('character.name') as $relation)
                 <tr>
                     <td>

@@ -173,7 +173,6 @@ class Character extends MiscModel
     public function relatedQuests()
     {
         $query = $this->quests()
-            ->acl()
             ->orderBy('name', 'ASC')
             ->with(['characters', 'locations', 'quests']);
 
@@ -274,7 +273,7 @@ class Character extends MiscModel
         $campaign = $this->campaign;
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
-        $count = $this->items()->acl()->count();
+        $count = $this->items()->count();
         if ($campaign->enabled('items') && $count > 0) {
             $items['items'] = [
                 'name' => 'characters.show.tabs.items',
@@ -283,7 +282,7 @@ class Character extends MiscModel
             ];
         }
 
-        $count = $this->organisations()->acl()->organisationAcl()->has('organisation')->count();
+        $count = $this->organisations()->has('organisation')->count();
         if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',
@@ -291,7 +290,7 @@ class Character extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->journals()->acl()->count();
+        $count = $this->journals()->count();
         if ($campaign->enabled('journals') && $count > 0) {
             $items['journals'] = [
                 'name' => 'characters.show.tabs.journals',
@@ -299,7 +298,7 @@ class Character extends MiscModel
                 'count' => $count
             ];
         }
-        $questCount = $this->relatedQuests()->count() + $this->questGiver()->acl()->count();
+        $questCount = $this->relatedQuests()->count() + $this->questGiver()->count();
         if ($campaign->enabled('quests') && $questCount > 0) {
             $items['quests'] = [
                 'name' => 'characters.show.tabs.quests',
@@ -307,7 +306,7 @@ class Character extends MiscModel
                 'count' => $questCount
             ];
         }
-        $diceRollCount = $this->diceRolls()->acl()->count();
+        $diceRollCount = $this->diceRolls()->count();
         if ($campaign->enabled('dice_rolls') && $diceRollCount > 0) {
             $items['dice_rolls'] = [
                 'name' => 'characters.show.tabs.dice_rolls',
@@ -315,7 +314,7 @@ class Character extends MiscModel
                 'count' => $diceRollCount
             ];
         }
-        $conversationCount = $this->conversations()->acl()->count();
+        $conversationCount = $this->conversations()->count();
         if ($campaign->enabled('conversations') && $conversationCount > 0) {
             $items['conversations'] = [
                 'name' => 'characters.show.tabs.conversations',

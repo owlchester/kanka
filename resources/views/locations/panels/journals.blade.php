@@ -4,7 +4,7 @@
             {{ trans('locations.show.tabs.journals') }}
         </h2>
 
-        <?php  $r = $model->journals()->acl()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
+        <?php  $r = $model->journals()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
         <table id="location-journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

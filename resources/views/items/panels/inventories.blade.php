@@ -14,6 +14,7 @@
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $inventory)
+                @if ($inventory->entity->child)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $inventory->entity->child->getImageUrl(true) }}');" title="{{ $inventory->entity->name }}" href="{{ $inventory->entity->url() }}"></a>
@@ -29,6 +30,7 @@
                         </a>
                     </td>
                 </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

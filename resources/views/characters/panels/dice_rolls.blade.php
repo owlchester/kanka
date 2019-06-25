@@ -4,7 +4,9 @@
             {{ trans('characters.show.tabs.dice_rolls') }}
         </h2>
 
-        <?php  $r = $model->diceRolls()->acl()->orderBy('name', 'ASC')->with([])->paginate(); ?>
+        <?php  $r = $model->diceRolls()->orderBy('name', 'ASC')->with([
+            'entity', 'entity.tags'
+        ])->paginate(); ?>
         <table id="character-dice_rolls" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

@@ -33,13 +33,11 @@
     </div>
 </div>
 
-@if (!isset($exporting) && ($count = $model->descendants()->acl()->count()) > 0)
+@if (!isset($exporting) && ($count = $model->descendants()->count()) > 0)
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">
-                {{ __('crud.tabs.menu') }}
-            </h3>
-        </div>
+                {{ __('crud.tabs.menu') }}->
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <li class="@if(empty($active))active @endif">

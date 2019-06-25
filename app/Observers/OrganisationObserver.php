@@ -55,7 +55,7 @@ class OrganisationObserver extends MiscObserver
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
-        foreach ($organisation->members()->acl()->get() as $member) {
+        foreach ($organisation->members()->has('character')->get() as $member) {
             // The m_ prefix is to differanciate from existing members to new members
             $existing['m_' . $member->id] = $member;
         }

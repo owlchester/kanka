@@ -105,7 +105,7 @@ class Race extends MiscModel
     {
         $campaign = $this->campaign;
 
-        $count = $this->characters()->acl()->count();
+        $count = $this->characters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['characters'] = [
                 'name' => 'races.show.tabs.characters',
@@ -113,7 +113,7 @@ class Race extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->races()->acl()->count();
+        $count = $this->races()->count();
         if ($campaign->enabled('races') && $count > 0) {
             $items['races'] = [
                 'name' => 'races.show.tabs.races',

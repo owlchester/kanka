@@ -32,7 +32,7 @@ trait TreeControllerTrait
         ]];
 
         $base = $model
-            ->acl()
+            ->distinct()
             ->search(request()->get('search'))
             ->order($this->filterService->order());
 
@@ -68,8 +68,7 @@ trait TreeControllerTrait
         $unfilteredCount = $base->count();
         $base = $base->filter($this->filterService->filters());
         $filteredCount =  $base->count();
-        $search = $base
-            ->filter($this->filterService->filters());
+        $search = $base;
 
         $models = $search->paginate();
         $view = $this->view;

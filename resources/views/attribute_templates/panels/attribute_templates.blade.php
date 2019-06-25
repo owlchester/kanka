@@ -4,7 +4,7 @@
             {{ trans('attribute_templates.show.tabs.attribute_templates') }}
         </h2>
 
-        <?php  $r = $model->descendants()->acl()->orderBy('name', 'ASC')->with(['entity', 'attributeTemplate'])->paginate(); ?>
+        <?php  $r = $model->descendants()->orderBy('name', 'ASC')->with(['entity', 'attributeTemplate'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('attribute_templates.show.tabs.attribute_templates') }}</p>
         <table id="attribute_templates" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

@@ -15,7 +15,7 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
-    foreach ($model->members()->acl()->has('character')->with('character')->get() as $member) {
+    foreach ($model->members()->has('character')->with('character')->get() as $member) {
         if (\App\Facades\EntityPermission::canView($member->character->entity)) {
             // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
             if (!empty($source)) {

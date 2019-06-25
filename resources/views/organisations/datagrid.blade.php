@@ -23,7 +23,7 @@
             'label' => trans('organisations.fields.members'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->members()->count();
+                return $model->members()->has('character')->count();
             },
             'disableSort' => true,
         ],

@@ -22,7 +22,6 @@ class FamilyApiController extends ApiController
             ->families()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files',
                 'entity.events', 'entity.relationships', 'entity.attributes'])
-            ->acl()
             ->lastSync(request()->get('lastSync'))
             ->paginate());
     }

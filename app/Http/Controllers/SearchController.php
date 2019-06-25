@@ -61,7 +61,7 @@ class SearchController extends Controller
         foreach ($this->entity->entities(['menu_links']) as $element => $class) {
             if ($this->campaign->enabled($element)) {
                 $model = new $class;
-                $results[$element] = $model->acl()->search($term)->limit(5)->get();
+                $results[$element] = $model->search($term)->limit(5)->get();
                 $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
                 $resultCount += count($results[$element]);
 

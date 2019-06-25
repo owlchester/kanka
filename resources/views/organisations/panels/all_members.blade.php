@@ -14,11 +14,11 @@ if (request()->has('organisation_id')) {
         <p class="help-block">
             @if (request()->has('organisation_id'))
                 <a href="{{ route('organisations.all-members', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
                 </a>
             @else
                 <a href="{{ route('organisations.all-members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
                 </a>
             @endif
             {{ __('organisations.members.helpers.all_members') }}
@@ -43,11 +43,16 @@ if (request()->has('organisation_id')) {
                 <th>{{ __('characters.fields.is_dead') }}</th>
                 <th><br /></th>
             </tr>
-            <?php $r = $model->allMembers()->filter($filters)->acl()->has('character')
-                ->with('character', 'character.location')
+            <?php $r = $model->allMembers()
+                ->filter($filters)
+                ->has('character')
+                ->with([
+                    'character', 'character.race', 'character.location', 'character.family', 'organisation',
+                    'character.entity', 'character.entity.tags'
+                ])
                 ->join('characters', 'characters.id', '=', 'character_id')
                 ->orderBy('characters.name', 'asc')
-                ->paginate();?>
+                ->paginate(); ?>
             @foreach ($r as $relation)
                 <tr>
                     <td>

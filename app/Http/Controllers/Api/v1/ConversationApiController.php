@@ -21,7 +21,6 @@ class ConversationApiController extends ApiController
         return new Collection($campaign
             ->conversations()
             ->with(['messages', 'participants'])
-            ->acl()
             ->lastSync(request()->get('lastSync'))
             ->paginate());
     }

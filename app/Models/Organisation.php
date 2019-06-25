@@ -149,7 +149,6 @@ class Organisation extends MiscModel
     public function relatedQuests()
     {
         $query = $this->quests()
-            ->acl()
             ->orderBy('name', 'ASC')
             ->with(['characters', 'locations', 'quests']);
 
@@ -208,7 +207,7 @@ class Organisation extends MiscModel
         $campaign = $this->campaign;
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
-        $count = $this->descendants()->acl()->count();
+        $count = $this->descendants()->count();
         if ($count > 0) {
             $items['organisations'] = [
                 'name' => 'organisations.show.tabs.organisations',
@@ -217,8 +216,8 @@ class Organisation extends MiscModel
             ];
         }
 
-        $count = $this->members()->acl()->has('character')->count();
-        $countAll = $this->allMembers()->acl()->has('character')->count();
+        $count = $this->members()->has('character')->count();
+        $countAll = $this->allMembers()->has('character')->count();
         if ($campaign->enabled('characters')) {
             $items['members'] = [
                 'name' => 'organisations.fields.members',
@@ -234,6 +233,7 @@ class Organisation extends MiscModel
                 'count' => $count
             ];
         }
+
         return parent::menuItems($items);
     }
 

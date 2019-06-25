@@ -10,7 +10,7 @@
                 $value = $filterService->single($field['field']);
                 if (!empty($value) && $field['type'] == 'select2') {
                     $modelclass = new $field['model'];
-                    $model = $modelclass->acl()->find($value);
+                    $model = $modelclass->find($value);
                 }?>
                 @if ($field['type'] == 'select')
                     {!! Form::select(

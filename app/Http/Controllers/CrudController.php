@@ -86,6 +86,11 @@ class CrudController extends Controller
     {
         return $this->crudIndex($request);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function crudIndex(Request $request)
     {
         //$this->authorize('browse', $this->model);
@@ -107,7 +112,6 @@ class CrudController extends Controller
         $base = $model
             ->preparedWith()
             ->search(request()->get('search'))
-            ->acl()
             ->order($this->filterService->order())
         ;
         $unfilteredCount = $base->count();
@@ -403,13 +407,17 @@ class CrudController extends Controller
             $fullview = 'cruds.subpage.' . $view;
         }
 
-        $data = $model
-            ->entity
-            ->targetMapPoints()
-            ->acl()
-            ->orderBy('name', 'ASC')
-            ->with(['location'])
-            ->paginate();
+        $data = [];
+
+        if ($view == 'map-points') {
+            $data = $model
+                ->entity
+                ->targetMapPoints()
+                ->orderBy('name', 'ASC')
+                ->with(['location'])
+                ->has('location')
+                ->paginate();
+        }
 
         return view('cruds.subview', compact(
             'fullview',
@@ -452,7 +460,7 @@ class CrudController extends Controller
             $attributeTemplates[] = $attr;
             $ids[] = $attr->id;
             /** @var Attribute $child */
-            foreach ($attr->ancestors()->with('entity')->acl()->get() as $child) {
+            foreach ($attr->ancestors()->with('entity')->get() as $child) {
                 if (!in_array($child->id, $ids)) {
                     $ids[] = $child->id;
                     $attributeTemplates[] = $child;

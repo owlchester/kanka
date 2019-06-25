@@ -61,7 +61,7 @@ class EntityPermission
     /**
      * @param Entity $entity
      * @param Campaign|null $campaign
-     * @return bool|string
+     * @return bool
      */
     public function canView(Entity $entity, Campaign $campaign = null)
     {
@@ -76,15 +76,38 @@ class EntityPermission
     }
 
     /**
+     * @param MiscModel $model
+     * @param Campaign|null $campaign
+     * @return bool
+     */
+    public function canViewMisc(MiscModel $model, Campaign $campaign = null)
+    {
+        // Make sure we can see the entity we're trying to show the user. We do it this way because we
+        // are looping through entities which doesn't allow using the acl trait before hand.
+        if (auth()->check()) {
+            return auth()->user()->can('view', $model);
+        } elseif (!empty($model)) {
+            return self::hasPermission($model->getEntityType(), 'read', null, $model, $campaign);
+        }
+        return false;
+    }
+
+    /**
      * Determine the permission for a user to interact with an entity
-     *
-     * @param string $locale Locale to set the App to (optional)
-     *
-     * @return string Returns locale (if route has any) or null (if route does not have a locale)
+     * @param $modelName
+     * @param $action
+     * @param null $user
+     * @param null $entity
+     * @param Campaign|null $campaign
+     * @return bool
      */
     public function hasPermission($modelName, $action, $user = null, $entity = null, Campaign $campaign = null)
     {
         $this->loadAllPermissions($user, $campaign);
+
+        if ($this->userIsAdmin) {
+            return true;
+        }
 
         // Check if we have permission to `action` all of the entities of this type first.
         $key = $modelName . '_' . $action;
@@ -228,7 +251,7 @@ class EntityPermission
         if ($roleIds === true) {
             // If the role ids is simply true, it means the user is an admin
             $this->userIsAdmin = true;
-            return void;
+            return;
         }
 
         /** @var CampaignRole $role */

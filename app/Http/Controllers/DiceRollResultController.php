@@ -79,7 +79,6 @@ class DiceRollResultController extends CrudController
 
         $base = $model
             ->search(request()->get('search'))
-            ->acl()
             ->order($this->filterService->order())
         ;
         $unfilteredCount = $base->count();

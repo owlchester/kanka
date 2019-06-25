@@ -13,11 +13,11 @@ if (request()->has('tag_id')) {
         <p class="help-block export-hidden">
             @if (request()->has('tag_id'))
                 <a href="{{ route('tags.tags', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
                 <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->acl()->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->count() }})
                 </a>
             @endif
             {{ trans('tags.hints.tag') }}
@@ -30,7 +30,7 @@ if (request()->has('tag_id')) {
                 <th>{{ trans('crud.fields.tag') }}</th>
                 <th>&nbsp;</th>
             </tr>
-            @foreach ($r = $model->descendants()->with('tag')->acl()->filter($filters)->orderBy('name', 'ASC')->paginate() as $model)
+            @foreach ($r = $model->descendants()->with('tag')->has('tag')->filter($filters)->orderBy('name', 'ASC')->paginate() as $model)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>

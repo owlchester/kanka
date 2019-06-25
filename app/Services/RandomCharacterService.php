@@ -124,7 +124,7 @@ class RandomCharacterService
             return [];
         }
 
-        $first = (new $model)->acl(Auth::user())->inRandomOrder()->first();
+        $first = (new $model)->inRandomOrder()->first();
         if (!empty($first)) {
             return [$first->id => $first->name];
         }

@@ -20,7 +20,6 @@ class CalendarApiController extends ApiController
         $this->authorize('access', $campaign);
         return new Collection($campaign
             ->calendars()
-            ->acl()
             ->with([
                 'entity',
                 'entity.tags',

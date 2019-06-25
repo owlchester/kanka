@@ -4,7 +4,7 @@
             {{ trans('characters.show.tabs.conversations') }}
         </h2>
 
-        <?php  $r = $model->conversations()->acl()->orderBy('name', 'ASC')->with(['participants'])->paginate(); ?>
+        <?php  $r = $model->conversations()->orderBy('name', 'ASC')->with(['participants'])->paginate(); ?>
         <table id="character-conversations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

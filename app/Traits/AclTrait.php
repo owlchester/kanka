@@ -23,9 +23,11 @@ trait AclTrait
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param mixed $type
      * @return \Illuminate\Database\Eloquent\Builder
+     * @deprecated No longer used since 0.23
      */
     public function scopeAcl($query, $user = null)
     {
+        throw new \Exception('Deprecated AclTrait::scopeAcl');
         // If we don't have a user passed, assume we want the current logged in user.
         if (empty($user)) {
             // If the user is logged in, good. We'll use their roles.

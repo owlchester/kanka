@@ -150,7 +150,6 @@ class Item extends MiscModel
     public function relatedQuests()
     {
         $query = $this->quests()
-            ->acl()
             ->orderBy('name', 'ASC')
             ->with(['characters', 'locations', 'quests']);
 
@@ -184,7 +183,7 @@ class Item extends MiscModel
     {
         $campaign = $this->campaign;
 
-        $questCount = $this->quests()->acl()->count();
+        $questCount = $this->quests()->count();
         if ($campaign->enabled('quests') && $questCount > 0) {
             $items['quests'] = [
                 'name' => 'items.show.tabs.quests',
@@ -193,7 +192,7 @@ class Item extends MiscModel
             ];
         }
 
-        $inventoryCount = $this->inventories()->acl()->count();
+        $inventoryCount = $this->inventories()->with('item')->count();
         if ($inventoryCount > 0) {
             $items['inventories'] = [
                 'name' => 'items.show.tabs.inventories',

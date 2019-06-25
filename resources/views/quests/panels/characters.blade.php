@@ -12,7 +12,7 @@
         @endcan
 
         <div class="row">
-            @foreach ($model->characters()->acl()->with('character')->has('character')->get() as $character)
+            @foreach ($model->characters()->with(['character', 'character.entity', 'character.entity.tags'])->has('character')->get() as $character)
                 <div class="col-md-6">
                     <div class="box box-widget widget-user-2">
                         <!-- Add the bg color to the header using any of the bg-* classes -->

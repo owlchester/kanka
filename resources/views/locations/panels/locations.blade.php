@@ -23,7 +23,7 @@ if (request()->has('parent_location_id')) {
         </p>
 
 
-        <?php $r = $model->descendants()->filter($filters)->with('parent')->acl()->orderBy('name', 'ASC')->paginate(); ?>
+        <?php $r = $model->descendants()->filter($filters)->with('parent')->orderBy('name', 'ASC')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>
         <table id="locations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -45,7 +45,7 @@ if (request()->has('parent_location_id')) {
                     </td>
                     <td>
                         @if ($model->parent)
-                            <a href="{{ route('locations.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltipWithName() }}" data-html="true">{{ $model->parent->name }}</a>
+                            <a href="{{ route('locations.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltipWithName() }}" data-html="true">{{ $model->parent->name }}</a>Or
                         @endif
                     </td>
                 </tr>

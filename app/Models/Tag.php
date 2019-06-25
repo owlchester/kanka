@@ -182,7 +182,7 @@ class Tag extends MiscModel
     {
         $campaign = $this->campaign;
 
-        $count = $this->descendants()->acl()->count();
+        $count = $this->descendants()->count();
         if ($count > 0) {
             $items['tags'] = [
                 'name' => 'tags.show.tabs.tags',

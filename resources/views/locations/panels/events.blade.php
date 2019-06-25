@@ -4,7 +4,7 @@
             {{ trans('locations.show.tabs.events') }}
         </h2>
 
-        <?php  $r = $model->events()->acl()->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
+        <?php  $r = $model->events()->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.events') }}</p>
         <table id="events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
