@@ -35,7 +35,6 @@
     </div>
 
     @include('partials.errors')
-    {{--@include('cruds._filters', ['route' => route($name . '.index'), 'filters' => $filters, 'filterService' => $filterService, 'name' => $name])--}}
 
     <div class="box no-border">
         {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
