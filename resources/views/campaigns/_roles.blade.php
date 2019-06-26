@@ -20,15 +20,20 @@
                 </a>
             @endif</th>
     </tr>
-    @foreach ($r = $campaign->roles()->with(['users'])->orderBy('is_admin', 'DESC')->orderBy('is_public', 'DESC')->orderBy('name')->paginate() as $relation)
+    @foreach ($r = $campaign->roles()
+            ->with(['users', 'permissions', 'campaign'])
+            ->orderBy('is_admin', 'DESC')
+            ->orderBy('is_public', 'DESC')
+            ->orderBy('name')
+            ->paginate() as $relation)
         <tr>
             <td><a href="{{ route('campaign_roles.show', ['campaign_role' => $relation]) }}">{{ $relation->name }}</a></td>
-            <td>{{ $relation->users()->count() }}</td>
+            <td>{{ $relation->users->count() }}</td>
             <td>{{ trans('campaigns.roles.types.' . ($relation->is_admin ? 'owner' : ($relation->is_public ? 'public' : 'standard'))) }}</td>
             <td>@if ($relation->is_admin)
 
                 @else
-                    {{ $relation->permissions()->count() }}
+                    {{ $relation->permissions->count() }}
             @endif</td>
 
             <td class="text-right">
@@ -36,19 +41,19 @@
                     <i class="fa fa-eye" aria-hidden="true"></i>
                     {{ trans('crud.manage') }}
                 </a>
-                @if (Auth::user()->can('update', $relation))
+                @can('update', $relation)
                     <a href="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}" class="btn btn-xs btn-primary">
                         <i class="fa fa-edit" aria-hidden="true"></i>
                         {{ trans('crud.edit') }}
                     </a>
-                @endif
-                @if (Auth::user()->can('delete', $relation))
+                @endcan
+                @can('delete', $relation)
                 {!! Form::open(['method' => 'DELETE','route' => ['campaign_roles.destroy', 'campaign_role' => $relation],'style'=>'display:inline']) !!}
                     <button class="btn btn-xs btn-danger">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                     </button>
                 {!! Form::close() !!}
-                @endif
+                @endcan
             </td>
         </tr>
     @endforeach

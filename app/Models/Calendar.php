@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -392,8 +393,6 @@ class Calendar extends MiscModel
      */
     public function menuItems($items = [])
     {
-        $campaign = $this->campaign;
-
         $count = $this->calendarEvents()->entityAcl()->count();
         if ($count > 0) {
             $items['events'] = [

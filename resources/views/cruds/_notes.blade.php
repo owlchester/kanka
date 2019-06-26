@@ -1,4 +1,7 @@
-<?php $r = $model->entity->notes()->with(['creator'])->order(request()->get('order'))->paginate(); ?>
+<?php $r = $model->entity->notes()->with(['creator', 'entity'])
+        ->order(request()
+        ->get('order'))
+        ->paginate(); ?>
 <p class="export-hidden">{{ __('entities/notes.hint') }}</p>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('crud.tabs.notes') }}</p>
 

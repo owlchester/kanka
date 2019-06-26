@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -289,7 +290,7 @@ class Location extends MiscModel
      */
     public function menuItems($items = [])
     {
-        $campaign = $this->campaign;
+        $campaign = CampaignLocalization::getCampaign();
 
         if (!empty($this->map)) {
             if (!$this->is_map_private || (auth()->check() && auth()->user()->can('map', $this))) {

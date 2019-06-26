@@ -38,14 +38,14 @@
                             <a href="{{ route('identity.switch', $relation) }}" class="btn btn-default btn-xs" title="{{ __('campaigns.members.helpers.switch') }}">
                                 <i class="fa fa-user"></i> {{ __('campaigns.members.actions.switch') }}
                             </a>
-                        @endif
-                        @if (Auth::user()->can('delete', $relation))
+                        @endcan
+                        @can('delete', $relation)
                         {!! Form::open(['method' => 'DELETE','route' => ['campaign_users.destroy', $relation->id],'style'=>'display:inline']) !!}
                             <button class="btn btn-xs btn-danger">
                                 <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ trans('crud.remove') }}</span>
                             </button>
                         {!! Form::close() !!}
-                        @endif
+                        @endcan
                     </td>
                 </tr>
             @endforeach

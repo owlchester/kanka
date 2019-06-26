@@ -56,11 +56,11 @@ if (request()->has('tag_id')) {
                                 {{ $model->child->name }}
                             </a>
                         </td>
-                        <td>
+                        <td colspan="2">
                             {{ trans('entities.' . $model->pluralType()) }}
                         </td>
                     @else
-                        <td colspan="3">
+                        <td colspan="4">
                             {{ trans('crud.is_private') }}
                         </td>
                     @endif
