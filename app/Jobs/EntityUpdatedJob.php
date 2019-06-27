@@ -54,6 +54,11 @@ class EntityUpdatedJob implements ShouldQueue
                 cache()->forget($child->tooltipCacheKey());
             }
         }
+
+        // Whenever an entity is updates, we always want to re-calculate the cached image.
+        if (method_exists($entity, 'clearAvatarCache')) {
+            $entity->clearAvatarCache();
+        }
     }
 
     public function failure()

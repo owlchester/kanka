@@ -70,6 +70,8 @@ class Location extends MiscModel
         'parent_location_id',
     ];
 
+    public $cachedImageFields = ['map'];
+
     /**
      * Traits
      */
