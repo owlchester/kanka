@@ -31,7 +31,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 <ul class="treeview-menu" style="{{ ($sidebar->open('menu_links') == 'menu-open' ? 'display:block' : 'display:none') }}">
                     @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
-                        @if ($menuLink->target && $menuLink->target->child)
+                        @if ($menuLink->target && $menuLink->target)
                         <li>
                             <a href="{{ $menuLink->getRoute() }}">
                                 <i class="fa fa-arrow-circle-right"></i> {{ $menuLink->name }}

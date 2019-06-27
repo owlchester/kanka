@@ -78,7 +78,7 @@ class MapPoint extends Model
         $dataUrl = route('locations.map_points.show', [$this->location, $this->id]);
         $dataUpdateUrl = route('locations.map_points.edit', [$this->location, $this->id]);
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
-        $url = $this->hasTarget() ? $this->targetEntity->child->getLink() : '#';
+        $url = $this->hasTarget() ? $this->targetEntity->url() : '#';
         $style = 'top: ' . e($this->axis_y) . 'px; left: ' . e($this->axis_x) . 'px;';
         $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : e($this->name);
         $size = $this->percentageSize();

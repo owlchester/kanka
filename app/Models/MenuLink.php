@@ -101,7 +101,7 @@ class MenuLink extends MiscModel
     public function getRouteParams()
     {
         $parameters = [
-            $this->target->child,
+            $this->target->entity_id,
         ];
 
         if (!empty($this->tab)) {

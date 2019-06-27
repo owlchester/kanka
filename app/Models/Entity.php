@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
@@ -53,7 +54,8 @@ class Entity extends Model
         BlameableTrait,
         EntityAclTrait,
         EntityScopes,
-        Searchable;
+        Searchable,
+        Picture;
 
     /**
      * Searchable fields
@@ -292,9 +294,9 @@ class Entity extends Model
             return route($this->pluralType() . '.index');
         }
         if (!empty($tab)) {
-            return route($this->pluralType() . '.' . $action, [$this->child->id, '#' . $tab]);
+            return route($this->pluralType() . '.' . $action, [$this->entity_id, '#' . $tab]);
         }
-        return route($this->pluralType() . '.' . $action, $this->child->id);
+        return route($this->pluralType() . '.' . $action, $this->entity_id);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 /** @var \App\Models\Tag $model*/
+/** @var \App\Models\Entity $child */
 $filters = [];
 $r = null;
 $addEntityUrl = route('tags.entity-add', $model);
@@ -45,25 +46,19 @@ if (request()->has('tag_id')) {
                     @endcan
                 </th>
             </tr>
-            @foreach ($r as $model)
+            @foreach ($r as $child)
                 <tr>
-                    @if ($model->child)
                         <td>
-                            <a class="entity-image" style="background-image: url('{{ $model->child->getImageUrl(true) }}');" title="{{ $model->child->name }}" href="{{ route($model->pluralType() . '.show', $model->child->id) }}"></a>
+                            <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
                         </td>
                         <td>
-                            <a href="{{ route($model->pluralType() . '.show', $model->child->id) }}" data-toggle="tooltip" title="{{ $model->tooltipWithName() }}" data-html="true">
-                                {{ $model->child->name }}
+                            <a href="{{ $child->url() }}" data-toggle="tooltip" title="{{ $child->tooltipWithName() }}" data-html="true">
+                                {{ $child->name }}
                             </a>
                         </td>
                         <td colspan="2">
-                            {{ trans('entities.' . $model->pluralType()) }}
+                            {{ trans('entities.' . $child->pluralType()) }}
                         </td>
-                    @else
-                        <td colspan="4">
-                            {{ trans('crud.is_private') }}
-                        </td>
-                    @endif
                 </tr>
             @endforeach
             </tbody>

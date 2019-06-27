@@ -8,9 +8,9 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
     @include($specificPreview)
 @else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $widget->entity->avatar() }}) @endif">
         <h3 class="panel-title">
-            <a href="{{ $model->getLink() }}">
+            <a href="{{ $widget->entity->url() }}">
                 @if ($model->is_private)
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
@@ -32,7 +32,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
     @if ($widget->entity->type == \App\Models\Entity::TYPE_LOCATION)
         @if (!empty($widget->entity->child->map))
             <div class="panel-footer text-right">
-                <a href="{{ $widget->entity->child->getLink('map') }}">
+                <a href="{{ $widget->entity->url('map') }}">
                     <i class="fa fa-map"></i> {{ __('locations.show.tabs.map') }}
                 </a>
             </div>

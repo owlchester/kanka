@@ -6,11 +6,11 @@
             <i class="far fa-clock"></i> {{ $entity->child->updated_at->diffForHumans() }}
         </span>
 
-        <a class="entity-image" style="background-image: url('{{ $entity->child->getImageUrl(true) }}');"
+        <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');"
            title="{{ $entity->name }}"
-           href="{{ $entity->child->getLink() }}"></a>
+           href="{{ $entity->url() }}"></a>
 
-        <a class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true" href="{{ $entity->child->getLink() }}">
+        <a class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true" href="{{ $entity->url() }}">
             {{ $entity->name }}
         </a>
     </div>
