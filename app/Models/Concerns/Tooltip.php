@@ -79,10 +79,7 @@ trait Tooltip
 
         $subtitle = $this->tooltipSubtitle();
 
-        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text . $tags;
-
-        // Todo: Figure a way to cache tooltips with Tags for all users.
-        //Cache::forever($this->tooltipCacheKey(), $tooltip);
+        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text;
 
         return $tooltip;
     }
