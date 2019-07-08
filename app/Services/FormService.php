@@ -117,7 +117,7 @@ class FormService
     public function colours()
     {
         $colours = [
-            '' => __('crud.none')
+            '' => __('colours.none')
         ];
         $colourKeys = config('colours.keys');
         foreach ($colourKeys as $colour) {

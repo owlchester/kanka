@@ -51,7 +51,8 @@ trait Tooltip
      */
     public function tooltipWithName(int $limit = 250, $tags = false)
     {
-        $tooltip = Cache::get($this->tooltipCacheKey(), false);
+        // Disable caching for Characters?
+        $tooltip = false; //Cache::get($this->tooltipCacheKey(), false);
         if ($tooltip === false) {
             $tooltip = $this->cacheTooltip($limit);
         }
@@ -89,7 +90,7 @@ trait Tooltip
      */
     public function tooltipCacheKey(bool $public = false): string
     {
-        return 'tooltip_' . $this->id . ($public ? '_public' . $key : null);
+        return 'tooltip_' . $this->id . ($public ? '_public' : null);
     }
 
     /**
