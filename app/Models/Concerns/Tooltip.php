@@ -3,10 +3,12 @@
 namespace App\Models\Concerns;
 
 use App\Models\Tag;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 trait Tooltip
 {
+
     /**
      * Wrapper for short entry
      * @return mixed
@@ -47,13 +49,15 @@ trait Tooltip
      * Short tooltip with location name
      * @return mixed
      */
-    public function tooltipWithName(int $limit = 250)
+    public function tooltipWithName(int $limit = 250, $tags = false)
     {
         $tooltip = Cache::get($this->tooltipCacheKey(), false);
-        if ($tooltip !== false) {
-            return $tooltip;
+        if ($tooltip === false) {
+            $tooltip = $this->cacheTooltip($limit);
         }
-        return $this->cacheTooltip($limit);
+
+        // Add tags afterwards since we can't cache them
+        return $this->tooltipAddTags($tooltip, $tags);
     }
 
     /**
@@ -74,10 +78,11 @@ trait Tooltip
         }
 
         $subtitle = $this->tooltipSubtitle();
-        $tags = $this->tooltipTags();
+
         $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text . $tags;
 
-        Cache::forever($this->tooltipCacheKey(), $tooltip);
+        // Todo: Figure a way to cache tooltips with Tags for all users.
+        //Cache::forever($this->tooltipCacheKey(), $tooltip);
 
         return $tooltip;
     }
@@ -85,9 +90,9 @@ trait Tooltip
     /**
      * @return string
      */
-    public function tooltipCacheKey(): string
+    public function tooltipCacheKey(bool $public = false): string
     {
-        return 'tooltip_' . $this->id;
+        return 'tooltip_' . $this->id . ($public ? '_public' . $key : null);
     }
 
     /**
@@ -110,20 +115,26 @@ trait Tooltip
     }
 
     /**
-     * Tags in the tooltip
+     * @param string $tooltip
+     * @param $tags
      * @return string
      */
-    public function tooltipTags(): string
+    protected function tooltipAddTags(string $tooltip, $tags): string
     {
+        if ($tags === false) {
+            $tags = $this->entity->tags;
+        }
+
         $html = '';
         /** @var Tag $tag */
-        foreach ($this->entity->tags as $tag) {
+        foreach ($tags as $tag) {
             $html .= str_replace('"', '\'', $tag->html());
         }
 
         if (!empty($html)) {
             $html = '<div class=\'tooltip-tags\'>' . $html . '</div>';
         }
-        return $html;
+
+        return $tooltip . $html;
     }
 }

@@ -1,6 +1,8 @@
 <?php /** @var \App\Models\Entity $entity */?>
 @foreach ($entities as $entity)
-    <?php if (empty($entity->child)) continue; ?>
+    @if (empty($entity->child))
+        @continue
+    @endif
     <div class="entity">
         <span class="pull-right elapsed" title="{{ $entity->child->updated_at }}">
             <i class="far fa-clock"></i> {{ $entity->child->updated_at->diffForHumans() }}

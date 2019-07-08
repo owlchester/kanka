@@ -76,7 +76,8 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned($query)
     {
-        return $query->with('entity')->orderBy('position', 'asc');
+        return $query->with(['entity'])
+            ->orderBy('position', 'asc');
     }
 
     /**

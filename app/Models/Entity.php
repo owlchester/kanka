@@ -281,7 +281,7 @@ class Entity extends Model
      */
     public function tooltipWithName()
     {
-        return $this->child ? $this->child->tooltipWithName() : null;
+        return $this->child ? $this->child->tooltipWithName(250, $this->tags) : null;
     }
 
     /**

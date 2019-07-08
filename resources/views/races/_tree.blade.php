@@ -54,7 +54,7 @@
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->races()->count();
+                    return $model->races->count();
                 }
             ],
         ]

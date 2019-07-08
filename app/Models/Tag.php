@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -77,22 +78,7 @@ class Tag extends MiscModel
     use VisibleTrait;
     use NodeTrait;
     use ExportableTrait;
-
-    /**
-     * Performance with for datagrids
-     * @param $query
-     * @return mixed
-     */
-    public function scopePreparedWith($query)
-    {
-        return $query->with([
-            'entity',
-            'tags',
-            'tag',
-            'tag.entity',
-            'children',
-        ]);
-    }
+    use TagScopes;
 
     /**
      * Parent

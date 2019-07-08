@@ -40,12 +40,12 @@
                     </td>
                     @if ($campaign->enabled('locations'))
                         <td class="visible-sm">
-                            {{ $quest->locations()->count() }}
+                            {{ $quest->locations->count() }}
                         </td>
                     @endif
                     @if ($campaign->enabled('characters'))
                     <td>
-                        {{ $quest->characters()->count() }}
+                        {{ $quest->characters->count() }}
                     </td>
                     @endif
                     <td>

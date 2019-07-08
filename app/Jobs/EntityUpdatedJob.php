@@ -48,10 +48,12 @@ class EntityUpdatedJob implements ShouldQueue
         if ($entity->type == 'tag') {
             foreach ($entity->child->allChildren()->get() as $child) {
                 cache()->forget($child->child->tooltipCacheKey());
+                cache()->forget($child->child->tooltipCacheKey('public'));
             }
         } elseif ($entity->type == 'family') {
             foreach ($entity->child->members as $child) {
                 cache()->forget($child->tooltipCacheKey());
+                cache()->forget($child->tooltipCacheKey('public'));
             }
         }
 

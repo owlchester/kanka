@@ -66,13 +66,16 @@ trait TreeControllerTrait
             $base->whereNull($parentKey);
         }
 
-        $unfilteredCount = $filteredCount = $base->count();
-        $base = $base->filter($this->filterService->filters());
-        $search = $base;
-
-        $models = $search->paginate();
+        // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
+            $unfilteredCount = $base->count();
+            $base = $base->filter($this->filterService->filters());
+
+            $models = $base->paginate();
             $filteredCount = $models->total();
+        } else {
+            $models = $base->paginate();
+            $unfilteredCount = $filteredCount = $models->total();
         }
 
         $view = $this->view;
