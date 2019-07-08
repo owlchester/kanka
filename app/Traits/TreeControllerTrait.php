@@ -52,7 +52,7 @@ trait TreeControllerTrait
                     'class' => 'default',
                     'label' => '<i class="fa fa-arrow-left"></i> ' . $parent->$singularModel->name
                 ];
-                $createOptions['parent_id'] = $parent->$singularModel->id;
+                $createOptions['parent_id'] = $parent->id;
             } else {
                 // Go back to first level
                 $actions[] = [
