@@ -168,6 +168,14 @@ class Tag extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entityTags()
+    {
+        return $this->hasMany(EntityTag::class);
+    }
+
+    /**
      * @param array $items
      * @return array
      */
