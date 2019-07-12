@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Relation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -77,8 +78,17 @@ class CrudRelationController extends Controller
     {
         $this->authorize('relation', [$model, 'add']);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        /** @var Relation $relation */
         $relation = new $this->model;
         $relation->create($request->all());
+        if ($request->has('two_way')) {
+            $relation->createMirror();
+        }
 
         $parent = explode('.', $this->view)[0];
 
@@ -121,6 +131,11 @@ class CrudRelationController extends Controller
     public function crudUpdate(Request $request, Model $model, Model $relation)
     {
         $this->authorize('relation', [$model, 'edit']);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $relation->update($request->all());
         $parent = explode('.', $this->view)[0];

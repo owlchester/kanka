@@ -17,9 +17,11 @@
         </div>
         @endif
         <div class="panel-body">
-            @include('partials.errors')
+            @include('cruds.forms._errors')
 
-            {!! Form::open(array('route' => [$route . '.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+            {!! Form::open(['route' => [$route . '.store', $model->id], 'method' => 'POST', 'data-shortcut' => 1,
+                'id' => 'relation-form'
+            ]) !!}
             @include('cruds.relations._form')
 
             {!! Form::hidden('owner_id', $model->entity->id) !!}

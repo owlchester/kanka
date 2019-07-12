@@ -430,4 +430,12 @@ class Entity extends Model
     {
         return $this->attributes()->stared()->ordered();
     }
+
+    /**
+     * @return mixed
+     */
+    public function starredRelations()
+    {
+        return $this->relationships()->stared()->ordered();
+    }
 }

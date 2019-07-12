@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Storage;
  * @property string $image
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
+ * @property Attribute[] $starredAttributes
+ * @property Relation[] $starredRelations
  */
 abstract class MiscModel extends Model
 {

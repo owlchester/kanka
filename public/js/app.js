@@ -52153,7 +52153,7 @@ var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 
 var toggablePanels;
 
-var validEntityForm = false;
+var validEntityForm = validRelationForm = false;
 
 $(document).ready(function () {
     // Multi-delete
@@ -52219,7 +52219,17 @@ $(document).ready(function () {
     registerEntityCalendarForm();
     registerToggablePanels();
     registerEntityFormSubmit();
+    registerModalLoad();
 });
+
+/**
+ * Re-register any events that need to be binded when a modal is loaded
+ */
+function registerModalLoad() {
+    $(document).on('shown.bs.modal shown.bs.popover', function () {
+        registerRelationFormSubmit();
+    });
+}
 
 /**
  *
@@ -52641,6 +52651,82 @@ function registerEntityFormSubmit() {
  */
 function resetEntityFormSubmitAnimation() {
     submit = $('#entity-form').find('.btn-success');
+    if (submit.length > 0) {
+        $.each(submit, function (su) {
+            $(this).removeAttr('disabled');
+            if ($(this).data('reset')) {
+                $(this).html($(this).data('reset'));
+            }
+        });
+    }
+}
+
+/**
+ * When the relation form is submitted, we want to ajax validate the request first
+ */
+function registerRelationFormSubmit() {
+    console.log('relation-form registered');
+    $('#relation-form').submit(function (e) {
+        console.log('relation-form submitted');
+        if (validRelationForm) {
+            return true;
+        }
+
+        e.preventDefault();
+
+        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: $(this).attr('method'),
+            data: $(this).serialize()
+        }).done(function (res) {
+            // If the validation succeeded, we can really submit the form
+            validRelationForm = true;
+            $('#relation-form').submit();
+            return true;
+        }).fail(function (err) {
+            // Reset any error fields
+            $('.input-error').removeClass('input-error');
+            $('.text-danger').remove();
+
+            // If we have a 503 error status, let's assume it's from cloudflare and help the user
+            // properly save their data.
+            if (err.status === 503) {
+                $('#entity-form-503-error').show();
+                resetRelationFormSubmitAnimation();
+            }
+
+            // Loop through the errors to add the class and error message
+            var errors = err.responseJSON.errors;
+
+            var errorKeys = Object.keys(errors);
+            var foundAllErrors = true;
+            errorKeys.forEach(function (i) {
+                var errorSelector = $('[name="' + i + '"]');
+                if (errorSelector.length > 0) {
+                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+                } else {
+                    foundAllErrors = false;
+                }
+            });
+
+            // Reset submit buttons
+            resetRelationFormSubmitAnimation();
+        });
+    });
+}
+
+/**
+ *
+ */
+function resetRelationFormSubmitAnimation() {
+    submit = $('#relation-form').find('.btn-success');
     if (submit.length > 0) {
         $.each(submit, function (su) {
             $(this).removeAttr('disabled');

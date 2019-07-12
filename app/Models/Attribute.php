@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
+use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -53,9 +54,7 @@ class Attribute extends Model
     /**
      * Traits
      */
-    use VisibleTrait;
-    use OrderableTrait;
-    use Paginatable;
+    use VisibleTrait, OrderableTrait, Paginatable, Starred;
 
     /**
      * Searchable fields
@@ -114,16 +113,6 @@ class Attribute extends Model
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
         return $new->save();
-    }
-
-    /**
-     * @param $query
-     * @param int $star
-     * @return mixed
-     */
-    public function scopeStared($query, $star = 1)
-    {
-        return $query->where(['is_star' => $star]);
     }
 
     /**

@@ -20,7 +20,11 @@ trait OrderableTrait
     {
         // No token? Next.
         if (strpos($data, $this->orderTrigger) === false) {
-            return $query->orderBy($defaultField);
+            if ($defaultField == 'name' && isset($this->orderDefaultField)) {
+                $defaultField = $this->orderDefaultField;
+            }
+            $defaultDir = isset($this->orderDefaultDir) ? $this->orderDefaultDir : 'asc';
+            return $query->orderBy($defaultField, $defaultDir);
         }
 
         $field = str_replace($this->orderTrigger, '', $data);
