@@ -2,7 +2,7 @@
     <?php
     $preset = null;
     if (isset($model) && $model->tag) {
-        $preset = $model->race;
+        $preset = $model->tag;
     } elseif (isset($parent) && $parent) {
         $preset = $formService->prefillSelect('tag', $source, true, \App\Models\Tag::class);
     } else {

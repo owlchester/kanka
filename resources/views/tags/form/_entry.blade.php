@@ -7,7 +7,7 @@
         @include('cruds.fields.type', ['base' => \App\Models\Tag::class, 'trans' => 'tags'])
 
         <div class="form-group">
-            <label>{{ trans('tags.fields.colour') }}</label>
+            <label>{{ trans('calendars.fields.colour') }}</label>
             {!! Form::select('colour', $formService->colours(), $formService->prefill('colour', $source), ['class' => 'form-control']) !!}
         </div>
         @include('cruds.fields.tag', ['parent' => true])
