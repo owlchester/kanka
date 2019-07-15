@@ -121,12 +121,12 @@ class EntityObserver
     public function created(Entity $entity)
     {
         // If the user has created a new entity but doesn't have the permission to read or edit it,
-        // automatically create said permission.
+        // automatically creates said permission.
         if (!auth()->user()->can('view', $entity->child)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type . '_read_' . $entity->child->id;
+            $permission->key = $entity->type . '_read_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
             $permission->save();
         }
@@ -134,7 +134,7 @@ class EntityObserver
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type . '_edit_' . $entity->child->id;
+            $permission->key = $entity->type . '_edit_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
             $permission->save();
         }
