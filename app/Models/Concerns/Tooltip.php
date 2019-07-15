@@ -120,6 +120,9 @@ trait Tooltip
     protected function tooltipAddTags(string $tooltip, $tags): string
     {
         if ($tags === false) {
+            if (empty($this->entity)) {
+                return '';
+            }
             $tags = $this->entity->tags;
         }
 

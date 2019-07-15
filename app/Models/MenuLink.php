@@ -179,4 +179,10 @@ class MenuLink extends MiscModel
     {
         return (int) config('entities.ids.menu_link');
     }
+
+
+    public function scopeStandardWith($query)
+    {
+        return $query->with('entity');
+    }
 }
