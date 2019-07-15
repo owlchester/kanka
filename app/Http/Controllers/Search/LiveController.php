@@ -81,6 +81,26 @@ class LiveController extends Controller
         );
     }
 
+
+    /**
+     * Filter on entities which have multiple tags
+     * @param Request $request
+     * @return mixed
+     */
+    public function tagChildren(Request $request)
+    {
+        $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
+
+        return Response::json(
+            $this->search
+                ->term($term)
+                ->campaign($campaign)
+                ->exclude(['tag'])
+                ->find()
+        );
+    }
+
     /**
      * Only find calendar entities
      * @param Request $request

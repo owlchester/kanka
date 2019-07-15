@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
+use Illuminate\Support\Arr;
 
 class SearchService
 {
@@ -150,6 +151,10 @@ class SearchService
         // If a list of types are provided, use those
         if (!empty($this->onlyTypes)) {
             $availableEntityTypes = $this->onlyTypes;
+        }
+        // If a list of excluded types are provided, remove them from the results
+        if (!empty($this->excludedTypes)) {
+            $availableEntityTypes = array_diff($availableEntityTypes, $this->excludedTypes);
         }
 
         $query = Entity::whereIn('type', $availableEntityTypes);

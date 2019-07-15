@@ -8,7 +8,7 @@
                 App\Models\Entity::class,
                 false,
                 'crud.fields.entity',
-                'search.entities-with-relations',
+                'search.tag-children',
                 'relations.placeholders.target'
             ) !!}
         </div>
