@@ -210,7 +210,7 @@ class SearchService
         $searchResults = [];
 
         // Load up the calendars of a campaign to get the month names
-        $calendars = Calendar::acl()->get();
+        $calendars = Calendar::get();g
         foreach ($calendars as $calendar) {
             $months = $calendar->months();
 

@@ -42,6 +42,7 @@ return [
         'fields'        => [
             'attribute'             => 'Atributo',
             'community_templates'   => 'Plantillas de la comunidad',
+            'is_star'               => 'Fijado',
             'template'              => 'Plantilla',
             'value'                 => 'Valor',
         ],
@@ -67,8 +68,10 @@ return [
             'text'      => 'Texto multilínea',
         ],
         'visibility'    => [
-            'private'   => 'Atributo visible solo para miembros con el rol "Admin".',
-            'public'    => 'Atributo visible por todos los miembros.',
+            'entry'     => 'El atributo se muestra en el menú de la entidad.',
+            'private'   => 'El atributo es visible solo para miembros con el rol "Admin".',
+            'public'    => 'El atributo es visible por todos los miembros.',
+            'tab'       => 'El atributo se muestra solo en la pestaña de Atributos.',
         ],
     ],
     'bulk'              => [
@@ -117,6 +120,7 @@ return [
         'creator'               => 'Creador',
         'dice_roll'             => 'Tirada de dados',
         'entity'                => 'Entidad',
+        'entity_type'           => 'Tipo de entidad',
         'entry'                 => 'Entrada',
         'event'                 => 'Evento',
         'excerpt'               => 'Extracto',
@@ -224,9 +228,10 @@ return [
     'permissions'       => [
         'action'    => 'Acción',
         'actions'   => [
-            'delete'    => 'Eliminar',
-            'edit'      => 'Editar',
-            'read'      => 'Leer',
+            'delete'        => 'Eliminar',
+            'edit'          => 'Editar',
+            'entity_note'   => 'Notas de entidad',
+            'read'          => 'Leer',
         ],
         'allowed'   => 'Permitido',
         'fields'    => [

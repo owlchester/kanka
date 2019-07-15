@@ -11,6 +11,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo Electronico',
+        'last_login_share'          => 'Compartir la última vez que estuve en línea con otros miembros de la campaña.',
         'name'                      => 'Nombre',
         'new_password'              => 'Contraseña nueva',
         'new_password_confirmation' => 'Confirmar nueva contraseña',

@@ -46,6 +46,7 @@ return [
         'organisations' => 'Organizaciones',
         'quest'         => 'Misión superior',
         'quests'        => 'Submisiones',
+        'role'          => 'Rol',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
@@ -123,6 +124,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nombre de la misión',
         'quest' => 'Misión superior',
+        'role'  => 'El papel que juega la entidad en la misión',
         'type'  => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
     ],
     'show'          => [

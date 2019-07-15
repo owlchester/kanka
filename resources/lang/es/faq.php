@@ -16,6 +16,10 @@ TEXT
         'answer'    => 'Se pueden crear conversaciones entre personajes o entre miembros de la campaña. Por ejemplo, si quieres documentar una charla importante entre PNJs y PJs, puedes hacerlo en este módulo. También se puede usar para jugar campañas online.',
         'question'  => '¿Qué son las conversaciones?',
     ],
+    'entity-notes'          => [
+        'answer'    => 'Todas las entidades tienen una pestaña de "Notas", que son pequeños fragmentos de texto que se pueden configurar para que solo sean visibles para ti (genial para los co-másters), solo para administradores o visibles para todos. También puedes dar permiso a tus jugadores para crear y editar estas notas sin darles acceso también a editar la entidad completa.',
+        'question'  => '¿Como gestiona Kanka la información oculta?',
+    ],
     'fields'                => [
         'answer'    => 'Respuesta',
         'category'  => 'Categoría',
@@ -63,6 +67,10 @@ TEXT
         'return'    => 'Volver a las FAQ',
         'timestamp' => 'Última actualización el :date',
         'title'     => 'FAQ :name',
+    ],
+    'user-switch'           => [
+        'answer'    => 'Manejar los permisos puede ser complicado, sobre todo en campañas grandes. Como administrador de campaña, puedes navegar por la página de miembros y hacer clic en el botón de "Ver como" junto a cada miembro. Así, podrás navegar por la campaña y verla como ellos lo harán. Esta es la manera más fácil de comprobar los permisos de tu campaña.',
+        'question'  => 'Los permisos de mi campaña ya están configurados, ¿cómo puedo comprobarlos?',
     ],
     'visibility'            => [
         'answer'    => 'Solo las personas que invites a tu campaña pueden verla e interactuar con ella. Tus datos son privados y siempre están bajo tu control.',

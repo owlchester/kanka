@@ -93,12 +93,14 @@ return [
         'parameters'        => 'Parámetros',
         'recurring_until'   => 'Recurrente hasta el año',
         'seasons'           => 'Estaciones',
+        'start_offset'      => 'Retraso inicial',
         'suffix'            => 'Sufijo',
         'type'              => 'Tipo',
         'weekdays'          => 'Días de la semana',
     ],
     'helpers'       => [
         'month_type'    => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
+        'start_offset'  => 'Por defecto, el calendario empieza en el primer día de la semana del año 0. En este campo puedes cambiar dónde se situará el primer día del calendario.',
     ],
     'hints'         => [
         'intercalary'   => 'Días que están fuera de los meses y semanas estándar. No influyen en los días de la semana, pero afectan a los ciclos lunares.',
