@@ -11,9 +11,10 @@ class FormService
      * Prefill the field with the copies values
      * @param $field
      * @param null $entity
+     * @param null $default
      * @return mixed|null
      */
-    public function prefill($field, $entity = null)
+    public function prefill($field, $entity = null, $default = null)
     {
         // Characters have a random generator we need to account for
 //        if ($entity instanceof RandomCharacterService) {
@@ -25,7 +26,7 @@ class FormService
             return $entity->getAttributeValue($field);
         }
 
-        return null;
+        return $default;
     }
 
     /**
