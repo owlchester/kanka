@@ -1,5 +1,5 @@
 <?php
-$calendars = \App\Models\Calendar::acl()->get();
+$calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 $oldCalendarID = old('calendar_id');
 $calendar = null;
@@ -25,14 +25,14 @@ if (!empty($oldCalendarID)) {
                 @if (count($calendars) == 1)
                     <input type="hidden" id="calendar_id" name="calendar_id" value="{{ (isset($model) && $model->hasCalendar() ? $model->calendar->id : null) }}">
                 @else
-                <div class="form-group entity-calendar-selector">
-                    {!! Form::select2(
-                        'calendar_id',
-                        (isset($model) && $model->calendar ? $model->calendar : $formService->prefillSelect('calendar', $source)),
-                        App\Models\Calendar::class,
-                        false
-                    ) !!}
-                </div>
+                    <div class="form-group entity-calendar-selector">
+                        {!! Form::select2(
+                            'calendar_id',
+                            (isset($model) && $model->calendar ? $model->calendar : $formService->prefillSelect('calendar', $source)),
+                            App\Models\Calendar::class,
+                            false
+                        ) !!}
+                    </div>
                 @endif
 
                 <div class="row entity-calendar-subform" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">

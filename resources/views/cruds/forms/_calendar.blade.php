@@ -1,5 +1,5 @@
 <?php
-$calendars = \App\Models\Calendar::acl()->get();
+$calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 $oldCalendarID = old('calendar_id');
 $calendar = null;
