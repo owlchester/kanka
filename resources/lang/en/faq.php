@@ -16,7 +16,7 @@ TEXT
         'answer'    => 'Conversations can be set up as talks between Characters or between Campaign Members. If for example you wish to document an important talk between NPCs and the PCs, you can do so using this module. You can also use them for play-by-post campaigns.',
         'question'  => 'What are Conversations?',
     ],
-    'entity-notes'           => [
+    'entity-notes'          => [
         'answer'    => 'All entities have an \'Entity Notes\' tab that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit entity notes on entities without having to allow them editing a whole entity.',
         'question'  => 'How does Kanka handle partially hidden information?',
     ],
@@ -61,10 +61,6 @@ TEXT
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',
         'question'  => 'I want to use Kanka to build my RPG world, but want my players to have access to some of the entities and edit their characters. Is this possible?',
     ],
-    'user-switch'           => [
-        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can navigate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
-        'question'  => 'My campaign permissions are set up, how can I test them?'
-    ],
     'plans'                 => [
         'answer'    => <<<'TEXT'
 The long term plans for Kanka are to build a versatile worldbuilding and campaign management tool that is system agnostic with system specific content managed by the community in the form of "Community Templates". A longer goal is to build tools that integrate with other platforms like Virtual Table Top apps to link those with the worlds of Kanka.
@@ -78,6 +74,10 @@ TEXT
         'return'    => 'Return to the FAQ',
         'timestamp' => 'Last updated :date',
         'title'     => 'FAQ :name',
+    ],
+    'user-switch'           => [
+        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can navigate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
+        'question'  => 'My campaign permissions are set up, how can I test them?',
     ],
     'visibility'            => [
         'answer'    => 'Only the people that you invite to your campaign can see and interact with that you have created. Your data is private and always in your control.',

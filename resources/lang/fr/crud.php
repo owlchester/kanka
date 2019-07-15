@@ -42,6 +42,7 @@ return [
         'fields'        => [
             'attribute'             => 'Attribut',
             'community_templates'   => 'Modèles Communautaire',
+            'is_star'               => 'Épinglé',
             'template'              => 'Modèle',
             'value'                 => 'Valeur',
         ],
@@ -67,8 +68,10 @@ return [
             'text'      => 'Texte multiligne',
         ],
         'visibility'    => [
+            'entry'     => 'Attribut affiché sur le menu d\'entité.',
             'private'   => 'Attribut seulement visible aux membres du rôle "Admin".',
             'public'    => 'Attribut visible par tous les membres.',
+            'tab'       => 'Attribut visible sous l\'onglet Attributs.',
         ],
     ],
     'bulk'              => [
@@ -117,6 +120,7 @@ return [
         'creator'               => 'Créateur',
         'dice_roll'             => 'Jet de dés',
         'entity'                => 'Entité',
+        'entity_type'           => 'Type d\'entité',
         'entry'                 => 'Entrée',
         'event'                 => 'Evénement',
         'excerpt'               => 'Extrait',
@@ -224,9 +228,10 @@ return [
     'permissions'       => [
         'action'    => 'Action',
         'actions'   => [
-            'delete'    => 'Supprimer',
-            'edit'      => 'Modifier',
-            'read'      => 'Lire',
+            'delete'        => 'Supprimer',
+            'edit'          => 'Modifier',
+            'entity_note'   => 'Notes d\'entité',
+            'read'          => 'Lire',
         ],
         'allowed'   => 'Permis',
         'fields'    => [

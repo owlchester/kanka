@@ -12,12 +12,14 @@ return [
         'success'   => 'L\'oggetto :item è stato rimosso da :entity.',
     ],
     'fields'        => [
-        'amount'    => 'Quantità',
-        'position'  => 'Posizione',
+        'amount'        => 'Quantità',
+        'description'   => 'Descrizione',
+        'position'      => 'Posizione',
     ],
     'placeholders'  => [
-        'amount'    => 'Qualsiasi quantità',
-        'position'  => 'Equipaggiato, Zaino, Magazzino, Banca',
+        'amount'        => 'Qualsiasi quantità',
+        'description'   => 'Utilizzato, Danneggiato, In Sintonia',
+        'position'      => 'Equipaggiato, Zaino, Magazzino, Banca',
     ],
     'show'          => [
         'helper'    => 'Le entità possono avere oggetti collegati ad esse per creare degli inventari.',

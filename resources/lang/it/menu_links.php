@@ -19,8 +19,12 @@ return [
         'filters'   => 'Filtri',
         'menu'      => 'Menù',
         'name'      => 'Nome',
+        'position'  => 'Posizione',
         'tab'       => 'Tab',
         'type'      => 'Tipo di entità',
+    ],
+    'helpers'       => [
+        'position'  => 'Utilizza questo campo per controllare in che ordine crescente i link appariranno nel menù.',
     ],
     'index'         => [
         'add'           => 'Nuovo Elemento del Menù',

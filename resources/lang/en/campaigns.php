@@ -137,16 +137,16 @@ return [
             'title'         => 'Edit member :name',
         ],
         'fields'                => [
-            'joined'    => 'Joined',
-            'last_login' => 'Last Login',
-            'name'      => 'User',
-            'role'      => 'Role',
-            'roles'     => 'Roles',
+            'joined'        => 'Joined',
+            'last_login'    => 'Last Login',
+            'name'          => 'User',
+            'role'          => 'Role',
+            'roles'         => 'Roles',
         ],
         'help'                  => 'Campaigns can have an unlimited amount of members in them.',
         'helpers'               => [
-            'admin'    => 'As a member of the campaign\'s admin role, you can invite new users, remove inactive one, and change their permissions. To test the permissions of a member, use the Switch button. You can read more about this feature in the :link.',
-            'switch'    => 'Switch to this user',
+            'admin' => 'As a member of the campaign\'s admin role, you can invite new users, remove inactive one, and change their permissions. To test the permissions of a member, use the Switch button. You can read more about this feature in the :link.',
+            'switch'=> 'Switch to this user',
         ],
         'impersonating'         => [
             'message'   => 'You are viewing the campaign as another user. Some features have been disabled, but the rest acts exactly as the user would see it. To switch back to your user, use the Switch Back button located where the Logout button is usually situated.',

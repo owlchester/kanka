@@ -93,12 +93,14 @@ return [
         'parameters'        => 'Paramètres',
         'recurring_until'   => 'Récurrent jusqu\'à l\'année',
         'seasons'           => 'Saisons',
+        'start_offset'      => 'Décalage de début',
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Jours de la semaine',
     ],
     'helpers'       => [
         'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
+        'start_offset'  => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
     ],
     'hints'         => [
         'intercalary'   => 'Les jours tombants hors des mois et semaines standards. Ils n\'influenceronts pas le jour de semaine.',

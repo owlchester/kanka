@@ -55,9 +55,7 @@ return [
             'role'          => 'Rôle',
         ],
         'helpers'       => [
-            'all_members'       => 'Cette liste contient tous les personnages qui font partie de cette organisation et toutes les organisations descendantes.',
-            'direct_members'    => 'Les organisations ont généralement besoin de membres pour fonctionner correctement. Cette liste contient tous les membres directement membre de cette organisation.',
-            'members'           => 'Cette liste contient tous les personnages dans l\'organisation ainsi que ces descendants. Il est possible d\'afficher que les membres directs en utilisant le filtre.',
+            'members'   => 'Cette liste contient tous les personnages dans l\'organisation ainsi que ces descendants. Il est possible d\'afficher que les membres directs en utilisant le filtre.',
         ],
         'placeholders'  => [
             'character' => 'Choix du personnage',
@@ -80,8 +78,6 @@ return [
     'show'          => [
         'description'   => 'Détail de l\'organisation',
         'tabs'          => [
-            'all_members'   => 'Tous les membres',
-            'members'       => 'Membres',
             'organisations' => 'Organisations',
             'quests'        => 'Quêtes',
             'relations'     => 'Relations',

@@ -44,6 +44,7 @@ return [
         'entity_count'                  => 'Numero di Entità',
         'entity_personality_visibility' => 'Visibilità della Personalità del Personaggio',
         'entity_visibility'             => 'Visibilità dell\'entità',
+        'excerpt'                       => 'Estratto',
         'header_image'                  => 'Immagine di copertina',
         'image'                         => 'Immagine',
         'locale'                        => 'Lingua',
@@ -54,6 +55,7 @@ return [
     'helpers'                           => [
         'entity_personality_visibility' => 'Quando si crea un nuovo personaggio, l\'opzione "Visibilità della Personalità" sarà automaticamente deselezionata.',
         'entity_visibility'             => 'Quando creerai una nuova entità, l\'opzione "Privato" sarà selezionato automaticamente.',
+        'excerpt'                       => 'L\'estratto della campagna sarà mostrato sulla dashboard quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato.',
         'locale'                        => 'La lingua in cui la tua campagna è scritta. Viene usato per generare contenuti e raggruppare le campagne pubbliche.',
         'name'                          => 'Il tuo mondo/campagna può avere qualsiasi nome, basta che contenga almeno 4 lettere o numeri.',
         'system'                        => 'Se la tua campagna è visibile pubblicamente il sistema sarà visualizzato nella pagina :link.',
@@ -166,8 +168,9 @@ return [
         'your_role'             => 'Il tuo ruolo: <i>:role</i>',
     ],
     'panels'                            => [
-        'permission'    => 'Permessi',
-        'sharing'       => 'Condividi',
+        'dashboard' => 'Dashboard',
+        'permission'=> 'Permessi',
+        'sharing'   => 'Condividi',
     ],
     'placeholders'                      => [
         'description'   => 'Un piccolo riassunto della tua campagna',

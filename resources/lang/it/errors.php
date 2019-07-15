@@ -23,5 +23,10 @@ return [
         ],
         'title' => 'Manutenzione',
     ],
+    '503-form'  => [
+        'body'  => 'Non possiamo salvare i tuoi dati correttamente, chè è normalmente causato da uno dei seguenti due fattori. Per favore apri Kanka in una :link se l\'app è in manutenzione, salva cortesemente i tuoi dati da qualche altra parte finché l\'app non è nuovamente utilizzabile e riprova.Se vieni avvisato da un "Controlla il tuo browser" può provare a salvare nuovamente.',
+        'link'  => 'nuova finestra',
+        'title' => 'È successo qualcosa di inaspettato.',
+    ],
     'footer'    => 'Se necessiti di ulteriore assistenza per favore contattaci a hello@kanka.io oppure su :discord',
 ];

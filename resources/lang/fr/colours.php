@@ -1,12 +1,19 @@
 <?php
 
 return [
-    'black' => 'Noir',
-    'blue'  => 'Bleu',
-    'green' => 'Vert',
-    'grey'  => 'Gris',
-    'none'  => 'Aucune',
-    'red'   => 'Rouge',
-    'white' => 'Blanc',
-    'yellow'=> 'Jaune',
+    'aqua'          => 'Aqua',
+    'black'         => 'Noir',
+    'blue'          => 'Bleu',
+    'green'         => 'Vert',
+    'grey'          => 'Gris',
+    'light-blue'    => 'Bleu clair',
+    'maroon'        => 'Maron',
+    'navy'          => 'Bleu foncé',
+    'none'          => 'Aucune',
+    'orange'        => 'Orange',
+    'purple'        => 'Violet',
+    'red'           => 'Rouge',
+    'teal'          => 'Cyan',
+    'white'         => 'Blanc',
+    'yellow'        => 'Jaune',
 ];

@@ -142,6 +142,7 @@ return [
         'moon'          => [
             'fullmoon'  => 'Luna piena ogni (giorni)',
             'name'      => 'Nome della Luna',
+            'offset'    => 'Offset della prima luna piena',
         ],
         'seasons'       => [
             'day'   => 'Giorno iniziale',

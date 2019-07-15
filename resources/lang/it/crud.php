@@ -42,6 +42,7 @@ return [
         'fields'        => [
             'attribute'             => 'Attributo',
             'community_templates'   => 'Templates della Community',
+            'is_star'               => 'Fissato',
             'template'              => 'Template',
             'value'                 => 'Valore',
         ],
@@ -67,8 +68,10 @@ return [
             'text'      => 'Testo multilinea',
         ],
         'visibility'    => [
+            'entry'     => 'Gli Attributi sono mostrati nella tab Principale.',
             'private'   => 'Attributo visibile solamente ai membri del ruolo "Admin".',
             'public'    => 'Attributo visibile a tutti i membri.',
+            'tab'       => 'Gli attributi sono visualizzati solamente nella tab degli Attributi.',
         ],
     ],
     'bulk'              => [
@@ -117,6 +120,7 @@ return [
         'creator'               => 'Creatore',
         'dice_roll'             => 'Tiro di dado',
         'entity'                => 'Entità',
+        'entity_type'           => 'Tipo di Entità',
         'entry'                 => 'Dato inserito',
         'event'                 => 'Evento',
         'excerpt'               => 'Estratto',
@@ -150,12 +154,13 @@ return [
     ],
     'filter'            => 'Filtra',
     'filters'           => [
-        'all'   => 'Filtra includendo tutti i discendenti',
-        'clear' => 'Pulisci i Filtri',
-        'direct'=> 'Filtra includendo solamente i discendenti diretti',
-        'hide'  => 'Nascondi i Filtri',
-        'show'  => 'Visualizza i Filtri',
-        'title' => 'Filtri',
+        'all'       => 'Filtra includendo tutti i discendenti',
+        'clear'     => 'Pulisci i Filtri',
+        'direct'    => 'Filtra includendo solamente i discendenti diretti',
+        'filtered'  => 'Visualizzati :count di :total :entity.',
+        'hide'      => 'Nascondi i Filtri',
+        'show'      => 'Visualizza i Filtri',
+        'title'     => 'Filtri',
     ],
     'forms'             => [
         'actions'       => [

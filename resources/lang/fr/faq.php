@@ -16,6 +16,9 @@ TEXT
         'answer'    => 'Des conversations peuvent être établiées entre des Personnages ou entre les membres d\'une campagne. Si par example tu souhaites documenter une conversation importante entre des NPCs et les joueurs, tu peux le faire en utilisant ce module. Celui-ci peut aussi être utilisé pour des campagnes de type "play-by-post".',
         'question'  => 'Que sont les Conversations?',
     ],
+    'entity-notes'          => [
+        'question'  => 'Comment gérer des informations privées?',
+    ],
     'fields'                => [
         'answer'    => 'Réponse',
         'category'  => 'Question',
@@ -70,6 +73,9 @@ TEXT
         'return'    => 'Retour à la FAQ',
         'timestamp' => 'Dernière mise à jour :date',
         'title'     => 'FAQ :name',
+    ],
+    'user-switch'           => [
+        'question'  => 'Les permissions de ma campagne sont définies, comment les tester?',
     ],
     'visibility'            => [
         'answer'    => 'Seules les personnes que tu invites à ta campagne peuvent voir et interagir avec celle-ci. Tes données sont privées et toujours sous ton contrôle.',

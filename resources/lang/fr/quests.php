@@ -46,6 +46,7 @@ return [
         'organisations' => 'Organisations',
         'quest'         => 'Quête Parentale',
         'quests'        => 'Sous-quêtes',
+        'role'          => 'Rôle',
         'type'          => 'Type',
     ],
     'helpers'       => [
@@ -123,6 +124,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nom de la quête',
         'quest' => 'Quête Parentale',
+        'role'  => 'Le rôle de l\'entité dans la quête.',
         'type'  => 'Principale, side quest, personnage',
     ],
     'show'          => [

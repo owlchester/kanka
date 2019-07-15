@@ -2,13 +2,6 @@
 
 return [
     'children'      => [
-        'actions' => [
-            'add' => 'Add an Entity',
-        ],
-        'create' => [
-            'title' => 'Add an Entity to tag :name',
-            'success' => 'Entity added to :name.',
-        ],
         'description'   => 'Entities belonging to the tag',
         'title'         => 'Tag :name Children',
     ],
@@ -26,7 +19,6 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Characters',
-        'colour'        => 'Colour',
         'children'      => 'Children',
         'name'          => 'Name',
         'tag'           => 'Tag',

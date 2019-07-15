@@ -68,7 +68,7 @@ return [
             'text'      => 'Multiline Text',
         ],
         'visibility'    => [
-            'entry'     => 'Attribute is displayed on the Main tab.',
+            'entry'     => 'Attribute is displayed on the entity menu.',
             'private'   => 'Attribute only visible to members of the "Admin" role.',
             'public'    => 'Attribute visible to all members.',
             'tab'       => 'Attribute is displayed only on the Attributes tab.',
@@ -228,10 +228,10 @@ return [
     'permissions'       => [
         'action'    => 'Action',
         'actions'   => [
-            'delete'    => 'Delete',
-            'edit'      => 'Edit',
-            'read'      => 'Read',
-            'entity_note' => 'Entity Notes',
+            'delete'        => 'Delete',
+            'edit'          => 'Edit',
+            'entity_note'   => 'Entity Notes',
+            'read'          => 'Read',
         ],
         'allowed'   => 'Allowed',
         'fields'    => [
