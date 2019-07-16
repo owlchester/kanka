@@ -5,12 +5,12 @@ namespace App\Jobs;
 
 
 use App\Models\Entity;
+use App\Models\Family;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Exception;
 
 class EntityUpdatedJob implements ShouldQueue
 {
@@ -50,33 +50,29 @@ class EntityUpdatedJob implements ShouldQueue
         /** @var Entity $entity */
         $entity = Entity::findOrFail($this->entityId);
 
-        if (empty($entity->child)) {
-            //throw new Exception('Entity ' . $this->entityId . ' has no child.');
-            return;
+        // Invalid cache
+        cache()->forget($entity->child->tooltipCacheKey());
+
+        if ($entity->type == 'tag') {
+            /** @var Entity $child */
+//            foreach ($entity->child->allChildren()->get() as $child) {
+//                if ($child->child) {
+//                    cache()->forget($child->child->tooltipCacheKey());
+//                    cache()->forget($child->child->tooltipCacheKey('public'));
+//                }
+//            }
+        } elseif ($entity->type == 'family') {
+            /** @var Family $family */
+            $family = $entity->child;
+            foreach ($family->members as $child) {
+                cache()->forget($child->tooltipCacheKey());
+                cache()->forget($child->tooltipCacheKey('public'));
+            }
         }
 
-        // Invalid cache
-        try {
-            cache()->forget($entity->child->tooltipCacheKey());
-
-            if ($entity->type == 'tag') {
-                foreach ($entity->child->allChildren()->get() as $child) {
-                    cache()->forget($child->child->tooltipCacheKey());
-                    cache()->forget($child->child->tooltipCacheKey('public'));
-                }
-            } elseif ($entity->type == 'family') {
-                foreach ($entity->child->members as $child) {
-                    cache()->forget($child->tooltipCacheKey());
-                    cache()->forget($child->tooltipCacheKey('public'));
-                }
-            }
-
-            // Whenever an entity is updates, we always want to re-calculate the cached image.
-            if (method_exists($entity, 'clearAvatarCache')) {
-                $entity->clearAvatarCache();
-            }
-        } catch (Exception $e) {
-            throw new Exception('entity #' . $entity->id . ', type '. $entity->type . ' #' . $entity->entity_id . ' has no tooltipCacheKey()');
+        // Whenever an entity is updates, we always want to re-calculate the cached image.
+        if (method_exists($entity, 'clearAvatarCache')) {
+            $entity->clearAvatarCache();
         }
     }
 
