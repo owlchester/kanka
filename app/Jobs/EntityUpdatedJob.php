@@ -42,6 +42,11 @@ class EntityUpdatedJob implements ShouldQueue
         /** @var Entity $entity */
         $entity = Entity::findOrFail($this->entityId);
 
+        if (empty($entity->child)) {
+            //throw new \Exception('Entity ' . $this->entityId . ' has no child.');
+            return;
+        }
+
         // Invalid cache
         cache()->forget($entity->child->tooltipCacheKey());
 
