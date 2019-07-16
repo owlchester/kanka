@@ -59,7 +59,7 @@
                 {{ csrf_field() }}
                 @include($name . '.form._entry', ['source' => $source])
             </div>
-            @includeIf($name . '.form._panes', ['source' => null])
+            @includeIf($name . '.form._panes', ['source' => $source])
 
             @if (!empty($source) || !empty(old('copy_source_id')))
                 <div class="tab-pane {{ (request()->get('tab') == 'copy' ? ' active' : '') }}" id="form-copy">
