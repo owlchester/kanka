@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class EntityUpdatedJob implements ShouldQueue
 {
@@ -48,7 +49,12 @@ class EntityUpdatedJob implements ShouldQueue
     public function handle()
     {
         /** @var Entity $entity */
-        $entity = Entity::findOrFail($this->entityId);
+        Log::info('EntityUpdateJob for entity #' . $this->entityId);
+        $entity = Entity::find($this->entityId);
+        if (empty($entity)) {
+            // Entity was deleted
+            return;
+        }
 
         // Invalid cache
         cache()->forget($entity->child->tooltipCacheKey());
@@ -63,11 +69,11 @@ class EntityUpdatedJob implements ShouldQueue
 //            }
         } elseif ($entity->type == 'family') {
             /** @var Family $family */
-            $family = $entity->child;
-            foreach ($family->members as $child) {
-                cache()->forget($child->tooltipCacheKey());
-                cache()->forget($child->tooltipCacheKey('public'));
-            }
+//            $family = $entity->child;
+//            foreach ($family->members as $child) {
+//                cache()->forget($child->tooltipCacheKey());
+//                cache()->forget($child->tooltipCacheKey('public'));
+//            }
         }
 
         // Whenever an entity is updates, we always want to re-calculate the cached image.

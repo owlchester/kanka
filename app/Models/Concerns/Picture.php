@@ -75,6 +75,11 @@ trait Picture
         }
     }
 
+    /**
+     * @param bool $thumb
+     * @param string $field
+     * @return string
+     */
     protected function avatarCacheKey(bool $thumb, string $field): string
     {
         return 'picture_' . $this->id . '_' . $field . ($thumb ? '_thumb' : null);
