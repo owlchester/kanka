@@ -3,7 +3,7 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Relation $relation
  */
-$r = $model->entity->relationships()->has('target')->with(['target'])->order(request()->get('order'))->paginate(); ?>
+$r = $model->entity->relationships()->has('target')->with(['target', 'target.tags'])->order(request()->get('order'))->paginate(); ?>
 <p class="export-hidden">
     @can('relation', [$model, 'add'])
         <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary btn-sm pull-right" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($name . '.relations.create', [$name => $model->id]) }}">
@@ -59,7 +59,7 @@ $r = $model->entity->relationships()->has('target')->with(['target'])->order(req
                 <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
             </td>
             <td>
-                <a href="{{ $relation->target->url() }}" data-toggle="tooltip" title="{{ $relation->target->child->tooltipWithName() }}" data-html="true">
+                <a href="{{ $relation->target->url() }}" data-toggle="tooltip" title="{{ $relation->target->tooltipWithName() }}" data-html="true">
                     {{ $relation->target->child->name }}
                 </a>
             </td>
@@ -86,10 +86,12 @@ $r = $model->entity->relationships()->has('target')->with(['target'])->order(req
                 @can('relation', [$model, 'delete'])
                 <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->target->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
+                        data-mirrored="{{ $relation->mirrored() }}"
                         title="{{ __('crud.remove') }}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
                 {!! Form::open(['method' => 'DELETE', 'route' => [$name . '.relations.destroy', $name => $model, 'relation' => $relation], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
+                    {!! Form::hidden('remove_mirrored', 0) !!}
                 {!! Form::close() !!}
                 @endcan
             </td>

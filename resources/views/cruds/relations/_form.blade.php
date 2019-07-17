@@ -42,5 +42,12 @@
             </label>
             <p class="help-block">{{ trans('crud.hints.is_star') }}</p>
         </div>
+
+        @if (!empty($relation) && !empty($relation->mirrored()))
+            <div class="callout callout-info">
+                <h4>{{ __('relations.hints.mirrored.title') }}</h4>
+                <p>{!! __('relations.hints.mirrored.text', ['link' => '<a href="' . $relation->target->url() . '" title="' . $relation->target->tooltipWithName() . '" data-toggle="tooltip" data-html="true">' . $relation->target->name . '</a>']) !!}</p>
+            </div>
+        @endif
     </div>
 </div>

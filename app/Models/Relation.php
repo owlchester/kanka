@@ -86,7 +86,16 @@ class Relation extends Model
      */
     public function mirror()
     {
-        return $this->belongsTo('App\Models\Entity', 'mirror_id', 'id');
+        return $this->belongsTo('App\Models\Relation', 'mirror_id', 'id');
+    }
+
+    /**
+     * Check if a relation is mirrored
+     * @return bool
+     */
+    public function mirrored(): bool
+    {
+        return !empty($this->mirror_id);
     }
 
     /**

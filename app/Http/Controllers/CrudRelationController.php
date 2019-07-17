@@ -85,7 +85,7 @@ class CrudRelationController extends Controller
 
         /** @var Relation $relation */
         $relation = new $this->model;
-        $relation->create($request->all());
+        $relation = $relation->create($request->all());
         if ($request->has('two_way')) {
             $relation->createMirror();
         }
@@ -146,13 +146,29 @@ class CrudRelationController extends Controller
 
     /**
      * @param Model $model
-     * @param Model $relation
+     * @param Relation $relation
      * @return \Illuminate\Http\RedirectResponse
      */
     public function crudDestroy(Model $model, Model $relation)
     {
         $this->authorize('relation', [$model, 'delete']);
 
+        $deletedMirror = false;
+        if (request()->get('remove_mirrored') === '1' && $relation->mirrored()) {
+            $mirror = $relation->mirror;
+            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
+                $mirror->delete();
+                $deletedMirror = true;
+            }
+        }
+
+        // Update the mirror to remove it's mirrored status
+        if ($deletedMirror === false && $relation->mirrored()) {
+            $mirror = $relation->mirror;
+            $mirror->update([
+                'mirror_id' => null
+            ]);
+        }
         $relation->delete();
         $parent = explode('.', $this->view)[0];
 
