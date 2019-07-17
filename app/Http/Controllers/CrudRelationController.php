@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Relation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -77,8 +78,17 @@ class CrudRelationController extends Controller
     {
         $this->authorize('relation', [$model, 'add']);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        /** @var Relation $relation */
         $relation = new $this->model;
-        $relation->create($request->all());
+        $relation = $relation->create($request->all());
+        if ($request->has('two_way')) {
+            $relation->createMirror();
+        }
 
         $parent = explode('.', $this->view)[0];
 
@@ -122,6 +132,11 @@ class CrudRelationController extends Controller
     {
         $this->authorize('relation', [$model, 'edit']);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $relation->update($request->all());
         $parent = explode('.', $this->view)[0];
 
@@ -131,13 +146,29 @@ class CrudRelationController extends Controller
 
     /**
      * @param Model $model
-     * @param Model $relation
+     * @param Relation $relation
      * @return \Illuminate\Http\RedirectResponse
      */
     public function crudDestroy(Model $model, Model $relation)
     {
         $this->authorize('relation', [$model, 'delete']);
 
+        $deletedMirror = false;
+        if (request()->get('remove_mirrored') === '1' && $relation->mirrored()) {
+            $mirror = $relation->mirror;
+            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
+                $mirror->delete();
+                $deletedMirror = true;
+            }
+        }
+
+        // Update the mirror to remove it's mirrored status
+        if ($deletedMirror === false && $relation->mirrored()) {
+            $mirror = $relation->mirror;
+            $mirror->update([
+                'mirror_id' => null
+            ]);
+        }
         $relation->delete();
         $parent = explode('.', $this->view)[0];
 

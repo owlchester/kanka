@@ -158,6 +158,12 @@ $(document).ready(function() {
                 $('#delete-confirm-name').text(name);
             }
 
+            if ($(this).data('mirrored')) {
+                $('#delete-confirm-mirror').show();
+            } else {
+                $('#delete-confirm-mirror').hide();
+            }
+
             if (target) {
                 $('#delete-confirm-submit').data('target', target);
             }
@@ -169,6 +175,9 @@ $(document).ready(function() {
         $(this).click(function (e) {
             var target = $(this).data('target');
             if (target) {
+                $('#' + target + ' input[name=remove_mirrored]').val(
+                    $('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0
+                );
                 $('#' + target).submit();
             } else {
                 $('#delete-confirm-form').submit();

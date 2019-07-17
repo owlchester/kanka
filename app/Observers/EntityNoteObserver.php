@@ -31,14 +31,6 @@ class EntityNoteObserver
     /**
      * @param EntityNote $entityNote
      */
-    public function creating(EntityNote $entityNote)
-    {
-        $entityNote->created_by = Auth::user()->id;
-    }
-
-    /**
-     * @param EntityNote $entityNote
-     */
     public function saving(EntityNote $entityNote)
     {
         $entityNote->entry = $this->purify($entityNote->entry);

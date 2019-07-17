@@ -42,6 +42,10 @@ trait SubEntityScopes
         return $query->where('updated_at', '>', $lastSync);
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeStandardWith($query)
     {
         return $query->with('entity', 'entitiy.tags');
