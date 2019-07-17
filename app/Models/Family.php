@@ -8,6 +8,11 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Family
+ * @package App\Models
+ * @property Character[] $members
+ */
 class Family extends MiscModel
 {
     /**

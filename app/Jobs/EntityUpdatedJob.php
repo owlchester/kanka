@@ -5,11 +5,13 @@ namespace App\Jobs;
 
 
 use App\Models\Entity;
+use App\Models\Family;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class EntityUpdatedJob implements ShouldQueue
 {
@@ -19,6 +21,13 @@ class EntityUpdatedJob implements ShouldQueue
      * @var int
      */
     public $entityId;
+
+    /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 1;
 
     /**
      * Create a new job instance.
@@ -40,10 +49,10 @@ class EntityUpdatedJob implements ShouldQueue
     public function handle()
     {
         /** @var Entity $entity */
-        $entity = Entity::findOrFail($this->entityId);
-
-        if (empty($entity->child)) {
-            //throw new \Exception('Entity ' . $this->entityId . ' has no child.');
+        Log::info('EntityUpdateJob for entity #' . $this->entityId);
+        $entity = Entity::find($this->entityId);
+        if (empty($entity)) {
+            // Entity was deleted
             return;
         }
 
@@ -51,15 +60,20 @@ class EntityUpdatedJob implements ShouldQueue
         cache()->forget($entity->child->tooltipCacheKey());
 
         if ($entity->type == 'tag') {
-            foreach ($entity->child->allChildren()->get() as $child) {
-                cache()->forget($child->child->tooltipCacheKey());
-                cache()->forget($child->child->tooltipCacheKey('public'));
-            }
+            /** @var Entity $child */
+//            foreach ($entity->child->allChildren()->get() as $child) {
+//                if ($child->child) {
+//                    cache()->forget($child->child->tooltipCacheKey());
+//                    cache()->forget($child->child->tooltipCacheKey('public'));
+//                }
+//            }
         } elseif ($entity->type == 'family') {
-            foreach ($entity->child->members as $child) {
-                cache()->forget($child->tooltipCacheKey());
-                cache()->forget($child->tooltipCacheKey('public'));
-            }
+            /** @var Family $family */
+//            $family = $entity->child;
+//            foreach ($family->members as $child) {
+//                cache()->forget($child->tooltipCacheKey());
+//                cache()->forget($child->tooltipCacheKey('public'));
+//            }
         }
 
         // Whenever an entity is updates, we always want to re-calculate the cached image.
