@@ -156,7 +156,7 @@ return [
     'filters'           => [
         'all'       => 'Afficher tous les descendants',
         'clear'     => 'Effacer les filtres',
-        'direct'    => 'Affichier seulement descendants directs',
+        'direct'    => 'Afficher seulement descendants directs',
         'filtered'  => 'Affichant :count de :total :entity.',
         'hide'      => 'Cacher les filtres',
         'show'      => 'Afficher les filtres',
