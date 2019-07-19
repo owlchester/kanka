@@ -28,6 +28,11 @@ class GoodbyeEmailJob implements ShouldQueue
     public $language;
 
     /**
+     *
+     */
+    public $tries = 3;
+
+    /**
      * WelcomeEmailJob constructor.
      * @param User $user
      * @param string $language
