@@ -24,6 +24,7 @@ class UserDeleted extends Mailable
 
     /**
      * UserDeleted constructor.
+     * @param int $userId
      * @param string $email
      */
     public function __construct(int $userId, string $email)
@@ -42,6 +43,6 @@ class UserDeleted extends Mailable
         return $this
             ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanko Support'])
             ->subject('Account #' . $this->id . ' deleted - ' . $this->email)
-            ->view('emails.register');
+            ->view('emails.goodbye');
     }
 }
