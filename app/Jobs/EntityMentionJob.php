@@ -59,6 +59,8 @@ class EntityMentionJob implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('EntityMentionJob for entity #' . $this->entityId);
+
         $this->entityMappingService = app()->make('App\Services\EntityMappingService');
         $entity = Entity::findOrFail($this->entityId);
         $this->entityMappingService->updateMentions($entity, $this->url);
