@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 class EntityMentionJob implements ShouldQueue
 {
@@ -59,6 +60,8 @@ class EntityMentionJob implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('EntityMentionJob for entity #' . $this->entityId);
+
         $this->entityMappingService = app()->make('App\Services\EntityMappingService');
         $entity = Entity::findOrFail($this->entityId);
         $this->entityMappingService->updateMentions($entity, $this->url);
