@@ -13,18 +13,23 @@ class UserDeleted extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * @var User
+     * @var string Email
      */
-    public $user;
+    public $email;
 
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * @var int Id
      */
-    public function __construct(User $user)
+    public $id;
+
+    /**
+     * UserDeleted constructor.
+     * @param string $email
+     */
+    public function __construct(int $userId, string $email)
     {
-        $this->user = $user;
+        $this->id = $userId;
+        $this->email = $email;
     }
 
     /**
@@ -36,7 +41,7 @@ class UserDeleted extends Mailable
     {
         return $this
             ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanko Support'])
-            ->subject('Account deleted - ' . $this->user->email)
+            ->subject('Account #' . $this->id . ' deleted - ' . $this->email)
             ->view('emails.register');
     }
 }
