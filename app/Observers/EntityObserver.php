@@ -166,7 +166,7 @@ class EntityObserver
         $log->save();
 
         // Queue job when an entity was updated
-        //EntityUpdatedJob::dispatch($entity);
+        EntityUpdatedJob::dispatch($entity);
     }
 
     /**

@@ -52,7 +52,7 @@ trait Tooltip
     public function tooltipWithName(int $limit = 250, $tags = false)
     {
         // Disable caching for Characters?
-        $tooltip = false; //Cache::get($this->tooltipCacheKey(), false);
+        $tooltip = Cache::get($this->tooltipCacheKey(), false);
         if ($tooltip === false) {
             $tooltip = $this->cacheTooltip($limit);
         }

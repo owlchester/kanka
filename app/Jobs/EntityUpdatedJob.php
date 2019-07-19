@@ -69,11 +69,11 @@ class EntityUpdatedJob implements ShouldQueue
 //            }
         } elseif ($entity->type == 'family') {
             /** @var Family $family */
-//            $family = $entity->child;
-//            foreach ($family->members as $child) {
-//                cache()->forget($child->tooltipCacheKey());
-//                cache()->forget($child->tooltipCacheKey('public'));
-//            }
+            $family = $entity->child;
+            foreach ($family->members as $child) {
+                cache()->forget($child->tooltipCacheKey());
+                cache()->forget($child->tooltipCacheKey('public'));
+            }
         }
 
         // Whenever an entity is updates, we always want to re-calculate the cached image.
