@@ -28,7 +28,7 @@ class WelcomeEmailJob implements ShouldQueue
     public $language;
 
     /**
-     * @var int
+     *
      */
     public $tries = 3;
 

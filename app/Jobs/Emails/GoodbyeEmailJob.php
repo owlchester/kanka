@@ -18,6 +18,11 @@ class GoodbyeEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
+     * @var string
+     */
+    public $email;
+
+    /**
      * @var int
      */
     public $userId;
@@ -28,6 +33,11 @@ class GoodbyeEmailJob implements ShouldQueue
     public $language;
 
     /**
+     *
+     */
+    public $tries = 3;
+
+    /**
      * WelcomeEmailJob constructor.
      * @param User $user
      * @param string $language
@@ -35,17 +45,16 @@ class GoodbyeEmailJob implements ShouldQueue
     public function __construct(User $user, string $language = 'en')
     {
         $this->userId = $user->id;
+        $this->email = $user->email;
         $this->language = $language;
     }
 
     public function handle()
     {
-        $user = User::findOrFail($this->userId);
-
         Mail::to('hello+deleted@kanka.io')
             ->locale($this->language)
             ->send(
-                new UserDeleted($user)
+                new UserDeleted($this->userId, $this->email)
             );
     }
 }
