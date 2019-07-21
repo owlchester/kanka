@@ -37,7 +37,7 @@
         "sergej-kurakin/diceroller": "^2.0",
         "sofa/eloquence": "^5.5",
         "stevebauman/purify": "2.0.*",
-        "tcg/voyager": "^1.0",
+        "tcg/voyager": "^1.1",
         "vsch/laravel-translation-manager": "^2.5"
     },
     "require-dev": {

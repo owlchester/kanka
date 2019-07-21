@@ -156,7 +156,7 @@ class CrudRelationController extends Controller
         $deletedMirror = false;
         if (request()->get('remove_mirrored') === '1' && $relation->mirrored()) {
             $mirror = $relation->mirror;
-            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
+            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target->child, 'delete'])) {
                 $mirror->delete();
                 $deletedMirror = true;
             }

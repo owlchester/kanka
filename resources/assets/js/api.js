@@ -1,3 +1,8 @@
+
+import Clients from './components/passport/Clients.vue';
+import AuthorizedClients from './components/passport/AuthorizedClients.vue';
+import PersonalAccessTokens from './components/passport/PersonalAccessTokens.vue';
+
 /**
  * Vue is only used on the API token generation, because enabling it in the whole app opens us
  * to {{ }} constructor injections.
@@ -15,17 +20,17 @@ window.Vue = require('vue');
 
 Vue.component(
     'passport-clients',
-    require('./components/passport/Clients.vue').default
+    Clients
 );
 
 Vue.component(
     'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
+    AuthorizedClients
 );
 
 Vue.component(
     'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
+    PersonalAccessTokens
 );
 
 const app = new Vue({

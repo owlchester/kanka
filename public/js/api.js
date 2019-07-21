@@ -13520,7 +13520,20 @@ module.exports = g;
 /***/ }),
 
 /***/ "./resources/assets/js/api.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_passport_Clients_vue__ = __webpack_require__("./resources/assets/js/components/passport/Clients.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_passport_Clients_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_passport_Clients_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_passport_AuthorizedClients_vue__ = __webpack_require__("./resources/assets/js/components/passport/AuthorizedClients.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_passport_AuthorizedClients_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_passport_AuthorizedClients_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_passport_PersonalAccessTokens_vue__ = __webpack_require__("./resources/assets/js/components/passport/PersonalAccessTokens.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_passport_PersonalAccessTokens_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_passport_PersonalAccessTokens_vue__);
+
+
+
+
 
 /**
  * Vue is only used on the API token generation, because enabling it in the whole app opens us
@@ -13536,11 +13549,11 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-Vue.component('passport-clients', __webpack_require__("./resources/assets/js/components/passport/Clients.vue").default);
+Vue.component('passport-clients', __WEBPACK_IMPORTED_MODULE_0__components_passport_Clients_vue___default.a);
 
-Vue.component('passport-authorized-clients', __webpack_require__("./resources/assets/js/components/passport/AuthorizedClients.vue").default);
+Vue.component('passport-authorized-clients', __WEBPACK_IMPORTED_MODULE_1__components_passport_AuthorizedClients_vue___default.a);
 
-Vue.component('passport-personal-access-tokens', __webpack_require__("./resources/assets/js/components/passport/PersonalAccessTokens.vue").default);
+Vue.component('passport-personal-access-tokens', __WEBPACK_IMPORTED_MODULE_2__components_passport_PersonalAccessTokens_vue___default.a);
 
 var app = new Vue({
     el: '#app'
