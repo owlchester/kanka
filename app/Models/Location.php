@@ -298,7 +298,7 @@ class Location extends MiscModel
             if (!$this->is_map_private || (auth()->check() && auth()->user()->can('map', $this))) {
                 $items['map'] = [
                     'name' => 'locations.show.tabs.map',
-                    'route' => 'locations.map'
+                    'route' => 'locations.map',
                 ];
             }
         }
