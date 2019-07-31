@@ -96,10 +96,10 @@ class Item extends MiscModel
 
         $extra = [];
         if (!empty($this->price)) {
-            $extra[] = __('items.fields.price') . ': ' . $this->price;
+            $extra[] = __('items.fields.price') . ': ' . htmlentities($this->price);
         }
         if (!empty($this->size)) {
-            $extra[] = __('items.fields.size') . ': ' . $this->size;
+            $extra[] = __('items.fields.size') . ': ' . htmlentities($this->size);
         }
         if (!empty($extra)) {
             $tooltip .= '<br /><p>' . implode('<br />', $extra) . '</p>';
