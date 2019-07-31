@@ -33,6 +33,7 @@
             @endif
             @include('cruds.lists.location')
             @include('entities.components.calendar')
+            @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')
             @include('entities.components.files')

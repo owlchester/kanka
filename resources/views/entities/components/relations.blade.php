@@ -9,11 +9,13 @@ $models = $model->entity->starredRelations;
     @foreach ($models as $relation)
         <li class="list-group-item">
             <strong>
+                {{ $relation->relation }}
+            </strong>
+            <span class="pull-right">
                 <a href="{{ $relation->target->url() }}" title="{{ $relation->target->tooltipWithName() }}" data-toggle="tooltip" data-html="true">
                     {{ $relation->target->name }}
                 </a>
-            </strong>
-            <span class="pull-right">{{ $relation->relation }}</span>
+            </span>
             <br class="clear" />
         </li>
     @endforeach
