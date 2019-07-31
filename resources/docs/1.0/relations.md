@@ -28,6 +28,7 @@ You can get a list of all the relations of an entity by using the following endp
             "owner_id": 168,
             "target_id": 72,
             "relation": "Just Friends",
+            "attitude": 22,
             "is_private": false,
             "created_at": {
                 "date": "2018-04-18 12:49:16.000000",
@@ -61,6 +62,7 @@ To get the details of a single relation, use the following endpoint.
         "owner_id": 168,
         "target_id": 72,
         "relation": "Just Friends",
+        "attitude": 22,
         "is_private": false,
         "created_at": {
             "date": "2018-04-18 12:49:16.000000",
@@ -93,6 +95,7 @@ To create an relation, use the following endpoint.
 | `relation` | `string` (Required, max 255) | Description of the relation |
 | `owner_id` | `integer` (Required) | The relation's entity |
 | `target_id` | `integer` (Required) | The relation's target entity |
+| `attitude` | `integer` (Required) | -100 to 100 |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
 | `is_private` | `boolean` | If the relation is only visible to `admin` members of the campaign |
 

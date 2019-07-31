@@ -104,7 +104,7 @@ To create an attribute, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the attribute |
 | `value` | `string` | The attribute's value |
-| `default_order` | `string` | The attribute's order |
+| `default_order` | `integer` | The attribute's order |
 | `type` | `string` | The attribute's type (`block` or `checkbox`) |
 | `entity_id` | `integer` (Required) | The attribute's parent entity |
 | `is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
