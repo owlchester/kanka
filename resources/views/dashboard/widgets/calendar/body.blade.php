@@ -16,7 +16,8 @@ $yearlyEvents = $calendar->dashboardEvents('=', 0);
 $upcomingEvents = new \Illuminate\Support\Collection();
 $previousEvents = new \Illuminate\Support\Collection();
 
-// Loop through reminders occurring on this year and month, and sort them out in upcoming and past
+// Loop through reminders occurring on this year, and sort them out in upcoming and past.
+// Todo: only take a few close to the current date?
 foreach ($yearlyEvents as $reminder) {
     if ($reminder->isPast($calendar)) {
         $previousEvents->push($reminder);
