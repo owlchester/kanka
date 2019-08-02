@@ -26,7 +26,9 @@ class CalendarService
             $link = new EntityEvent();
             $link->calendar_id = $calendar->id;
             $link->entity_id = $entity->id;
-            $link->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
+            $link->year = $data['year'];
+            $link->month = $data['month'];
+            $link->day = $data['day'];
             $link->length = $data['length'];
             $link->comment = Purify::clean($data['comment']);
             $link->is_recurring = array_get($data, 'is_recurring', false);

@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Support\Arr;
 
 /**
  * Class Calendar
@@ -111,6 +112,8 @@ class Calendar extends MiscModel
      */
     protected $searchableColumns  = ['name', 'entry', 'type'];
 
+    protected $cachedCurrentDate = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -146,7 +149,9 @@ class Calendar extends MiscModel
      */
     public function dashboardEvents($operator = '=', $take = 5, $recurring = false)
     {
-        return $this->calendarEvents()
+        $this->cacheCurrentDate();
+        $order = $operator == '<' ? 'DESC' : 'ASC';
+        $query = $this->calendarEvents()
             ->with(['entity', 'calendar'])
             ->entityAcl()
             ->where(function ($sub) use ($operator, $recurring) {
@@ -155,19 +160,26 @@ class Calendar extends MiscModel
                     $sub->orWhere(function ($subsub) {
                         $subsub
                             ->where('is_recurring', true)
-                            ->whereRaw("date(`date`) < '" . $this->date . "'")
+                            ->where('year', '<=', Arr::get($this->cachedCurrentDate, 0, 1))
                             ->where(function ($datesub) {
                                 $datesub->whereNull('recurring_until')
                                     ->orWhereRaw("recurring_until >= '" . $this->currentDate('year') . "'");
                             });
                     });
                 } else {
-                    $sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
+                    $sub->where('year', $operator, Arr::get($this->cachedCurrentDate, 0, 1));
+                    //$sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
                 }
             })
-            ->take($take)
-            ->orderByRaw('date(`date`) ' . ($operator == '<' ? 'desc' : 'asc'))
-            ->get();
+            ->orderBy('year', $order)
+            ->orderBy('month', $order)
+            ->orderBy('day', $order);
+
+        if (!empty($take)) {
+            $query->take($take);
+        }
+
+        return $query->get();
     }
 
     /**
@@ -270,13 +282,13 @@ class Calendar extends MiscModel
             return null;
         }
 
-        $data = explode('-', $this->date);
+        $this->cacheCurrentDate();
         if ($value == 'year') {
-            return $data[0];
+            return $this->cachedCurrentDate[0];
         } elseif ($value == 'month') {
-            return $data[1];
+            return $this->cachedCurrentDate[1];
         } elseif ($value == 'date') {
-            return $data[2];
+            return $this->cachedCurrentDate[2];
         }
         return null;
     }
@@ -391,7 +403,7 @@ class Calendar extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems($items = []): array
     {
         $count = $this->calendarEvents()->entityAcl()->count();
         if ($count > 0) {
@@ -411,5 +423,22 @@ class Calendar extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.calendar');
+    }
+
+    /**
+     * Cache the current date explode method
+     */
+    protected function cacheCurrentDate(): void
+    {
+        if ($this->cachedCurrentDate !== false) {
+            return;
+        }
+
+        $date = ltrim($this->date, '-');
+        $this->cachedCurrentDate = explode('-', $date);
+
+        if (substr($this->date, 0, 1) == '-') {
+            $this->cachedCurrentDate[0] = -$this->cachedCurrentDate[0];
+        }
     }
 }

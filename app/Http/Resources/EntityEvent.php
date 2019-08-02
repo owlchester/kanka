@@ -17,10 +17,14 @@ class EntityEvent extends EntityChild
         return $this->entity([
             'calendar_id' => $this->calendar_id,
             'date' => $this->date,
+            'day' => $this->day,
+            'month' => $this->month,
+            'year' => $this->year,
             'length' => $this->length,
             'comment' => $this->comment,
             'is_recurring' => (bool) $this->is_recurring,
             'recurring_until' => $this->recurring_until,
+            'colour' => $this->colour,
         ]);
     }
 }

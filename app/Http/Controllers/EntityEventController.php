@@ -77,8 +77,6 @@ class EntityEventController extends CrudController
         $this->authorize('update', $entityEvent->calendar);
 
         $routeOptions = [$entityEvent->calendar->id, 'year' => request()->post('year')];
-
-        $entityEvent->setDate($request->only(['year', 'month', 'day']));
         $entityEvent->update($request->all());
 
         if (request()->has('layout')) {

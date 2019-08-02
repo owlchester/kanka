@@ -14,6 +14,9 @@ use App\Traits\OrderableTrait;
  * @property integer $length
  * @property string $comment
  * @property string $colour
+ * @property integer $day
+ * @property integer $month
+ * @property integer $year
  * @property boolean $is_recurring
  * @property integer $recurring_until
  * @property boolean $is_private
@@ -62,6 +65,9 @@ class EntityEvent extends MiscModel
         'is_recurring',
         'recurring_until',
         'colour',
+        'day',
+        'month',
+        'year'
     ];
 
     /**
@@ -83,26 +89,16 @@ class EntityEvent extends MiscModel
     /**
      * @return string
      */
-    public function getDate($date = null)
+    public function getDate()
     {
-        if (empty($date)) {
-            $date = $this->date;
-        }
-
-        $dates = explode('-', $date);
-        if (substr($date, 0, 1) === '-') {
-            $dates = explode('-', trim($date, '-'));
-            $dates[0] = -$dates[0];
-        }
-
         // Replace month with real month, and year maybe
         $months = $this->calendar->months();
         $years = $this->calendar->years();
 
         try {
-            return $dates[2] . ' ' .
-                (isset($months[$dates[1] - 1]) ? $months[$dates[1] - 1]['name'] : $dates[1]) . ', ' .
-                (isset($years[$dates[0]]) ? $years[$dates[0]] : $dates[0]) . ' ' .
+            return $this->day . ' ' .
+                (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
+                (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
                 $this->calendar->suffix;
         } catch (\Exception $e) {
             return $this->date;
@@ -110,21 +106,9 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @param $year
      * @return string
      */
-    public function getDateWithYear($year)
-    {
-        $date = explode('-', $this->date);
-        $date[0] = $year;
-
-        return $this->getDate($date);
-    }
-
-    /**
-     * @return string
-     */
-    public function getLabelColour()
+    public function getLabelColour(): string
     {
         if (empty($this->colour) || $this->colour == 'default') {
             return 'colour-pallet bg-gray';
@@ -136,7 +120,7 @@ class EntityEvent extends MiscModel
      * Generate the Entity Event label for the calendar
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         $label = '';
 
@@ -153,37 +137,27 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return mixed
+     * Check if a reminder is after the current date of a given calendar
+     * @param Calendar $calendar
+     * @return bool
      */
-    public function getYearAttribute()
+    public function isPast(Calendar $calendar): bool
     {
-        $segments = explode('-', $this->date);
-        return array_get($segments, 0, 1);
-    }
+        // First check the year
+        if ($this->year < $calendar->currentDate('year')) {
+            return true;
+        } elseif ($this->year > $calendar->currentDate('year')) {
+            return false;
+        }
 
-    /**
-     * @return mixed
-     */
-    public function getMonthAttribute()
-    {
-        $segments = explode('-', $this->date);
-        return array_get($segments, 1, 1);
-    }
+        // Current year is reminder's year, check month
+        if ($this->month < $calendar->currentDate('month')) {
+            return true;
+        } elseif ($this->month > $calendar->currentDate('month')) {
+            return false;
+        }
 
-    /**
-     * @return mixed
-     */
-    public function getDayAttribute()
-    {
-        $segments = explode('-', $this->date);
-        return array_get($segments, 2, 1);
-    }
-
-    /**
-     * @param $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date['year'] . '-' . $date['month'] . '-' . $date['day'];
+        // Current month, check on day
+        return $this->day < $calendar->currentDate('day');
     }
 }
