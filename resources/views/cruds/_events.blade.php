@@ -1,6 +1,7 @@
 <?php
 /** @var \App\Models\MiscModel $model */
 /** @var \App\Models\EntityEvent $relation */
+
 $r = $model
     ->entity
     ->events()
@@ -8,7 +9,14 @@ $r = $model
     ->with(['calendar', 'calendar.entity', 'entity'])
     ->order(request()->get('order'), 'date')
     ->paginate(); ?>
-<p class="export-hidden">{{ trans('crud.events.hint') }}</p>
+<p class="export-hidden">
+    <a href="{{ route('entities.entity_events.create', [$model->entity]) }}" id="entity-calendar-modal-add"
+       class="btn btn-sm btn-primary pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
+       data-url="{{ route('entities.entity_events.create', [$model->entity]) }}">
+        <i class="fa fa-plus"></i> {{ trans('crud.add') }}
+    </a>
+    {{ trans('crud.events.hint') }}
+</p>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.events') }}</p>
 <table id="entity-event-list" class="table table-hover {{ ($r->count() == 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
@@ -29,7 +37,11 @@ $r = $model
             <td>
                 <a href="{{ $relation->calendar->getLink() }}" title="{{ $relation->calendar->tooltipWithName() }}" data-toggle="tooltip" data-html="true">{{ $relation->calendar->name }}</a>
             </td>
-            <td>{{ $relation->getDate() }}</td>
+            <td>
+                <a href="{{ $relation->calendar->getLink() }}?y={{ $relation->year }}&m={{ $relation->month }}">
+                {{ $relation->getDate() }}
+                </a>
+            </td>
             <td>{{ trans_choice('calendars.fields.length_days', $relation->length, ['count' => $relation->length]) }}</td>
             <td>{{ $relation->comment }}</td>
             <td>@if ($relation->is_recurring)

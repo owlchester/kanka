@@ -14,8 +14,10 @@ var ajaxModalTarget;
 var entityFormHasUnsavedChanges = false;
 
 // Entity Calendar
-var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarMonthField;
+var entityCalendarAdd, entityCalendarForm, entityCalendarField;
+var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
+var entityCalendarModalField;
 
 var toggablePanels;
 
@@ -85,6 +87,7 @@ $(document).ready(function () {
     registerEntityCalendarForm();
     registerToggablePanels();
     registerEntityFormSubmit();
+    registerEntityCalendarModal();
     registerModalLoad();
 });
 
@@ -94,6 +97,7 @@ $(document).ready(function () {
 function registerModalLoad() {
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         registerRelationFormSubmit();
+        registerEntityCalendarModal();
     });
 }
 
@@ -110,7 +114,6 @@ function toggleCrudMultiDelete()
         }
     });
 
-    console.log('hide?', hide);
     if (hide) {
         $('.datagrid-bulk-actions').hide();
     } else {
@@ -329,13 +332,17 @@ function registerFormSubmitAnimation()
 function registerEntityCalendarForm()
 {
     entityCalendarAdd = $('#entity-calendar-form-add');
+    entityCalendarField = $('#calendar_id');
+    entityCalendarModalForm = $('.entity-calendar-modal-form');
+    entityCalendarSubForm = $('.entity-calendar-subform');
+    entityCalendarCancel = $('#entity-calendar-form-cancel');
+    entityCalendarForm = $('.entity-calendar-form');
+    entityCalendarYearField = $('input[name="calendar_year"]');
+    entityCalendarMonthField = $('select[name="calendar_month"]');
+    entityCalendarDayField = $('input[name="calendar_day"]');
+    entityCalendarLoading = $('.entity-calendar-loading');
+
     if (entityCalendarAdd.length === 1) {
-        entityCalendarCancel = $('#entity-calendar-form-cancel');
-        entityCalendarForm = $('.entity-calendar-form');
-        entityCalendarSubForm = $('.entity-calendar-subform');
-        entityCalendarField = $('#calendar_id');
-        entityCalendarMonthField = $('select[name="calendar_month"]');
-        entityCalendarLoading = $('.entity-calendar-loading');
 
         entityCalendarAdd.on('click', function (e) {
             e.preventDefault();
@@ -360,8 +367,10 @@ function registerEntityCalendarForm()
                 calendarHideSubform();
                 return;
             }
-            entityCalendarLoading.show();
             // Load month list
+            entityCalendarYearField = $('input[name="calendar_year"]');
+            entityCalendarDayField = $('input[name="calendar_day"]');
+            entityCalendarMonthField = $('select[name="calendar_month"]');
             loadCalendarDates(entityCalendarField.val());
         });
 
@@ -374,13 +383,46 @@ function registerEntityCalendarForm()
     }
 }
 
+function registerEntityCalendarModal()
+{
+    entityCalendarAdd = $('input[name=calendar-data-url]');
+    if (entityCalendarAdd.length === 0) {
+        return;
+    }
+    entityCalendarField = $('#calendar_id');
+    entityCalendarYearField = $('input[name="year"]');
+    entityCalendarMonthField = $('select[name="month"]');
+    entityCalendarDayField = $('input[name="day"]');
+    entityCalendarLoading = $('.entity-calendar-loading');
+    entityCalendarSubForm = $('.entity-calendar-subform');
+
+    entityCalendarField.on('change', function () {
+        entityCalendarSubForm.hide();
+        // No new calendar selected? hide everything again
+        if (!entityCalendarField.val()) {
+            calendarHideSubform();
+            return;
+        }
+        // Load month list
+        loadCalendarDates(entityCalendarField.val());
+
+    });
+}
+
+/**
+ *
+ * @param calendarID
+ */
 function loadCalendarDates(calendarID)
 {
+    entityCalendarLoading.show();
     calendarID = parseInt(calendarID);
-    var url = entityCalendarAdd.data('url').replace('/0/', '/' + calendarID + '/');
+    var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
     $.ajax(url)
     .done(function (data) {
+        entityCalendarYearField.html('');
         entityCalendarMonthField.html('');
+        entityCalendarDayField.html('');
         var id = 1;
         $.each(data.months, function () {
             var selected = id == data.current.month ? ' selected="selected"' : '';
@@ -390,8 +432,8 @@ function loadCalendarDates(calendarID)
         entityCalendarLoading.hide();
         entityCalendarSubForm.show();
 
-        $('input[name="calendar_day"]').val(data.current.day);
-        $('input[name="calendar_year"]').val(data.current.year);
+        entityCalendarDayField.val(data.current.day);
+        entityCalendarYearField.val(data.current.year);
         $('input[name="length"]').val(1);
 
         // However, if there is only one result, select id.
@@ -558,9 +600,7 @@ function resetEntityFormSubmitAnimation()
  */
 function registerRelationFormSubmit()
 {
-    console.log('relation-form registered');
     $('#relation-form').submit(function (e) {
-        console.log('relation-form submitted');
         if (validRelationForm) {
             return true;
         }

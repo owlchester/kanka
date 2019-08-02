@@ -118,7 +118,7 @@ class CalendarController extends CrudController
             $year = -$year;
         }
 
-        return view('calendars.events.' . ($ajax ? '_' : null) . 'create', compact(
+        return view('calendars.events.create', compact(
             'calendar',
             'day',
             'month',

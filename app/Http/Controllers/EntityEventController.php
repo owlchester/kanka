@@ -12,7 +12,7 @@ use App\Services\CalendarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class EntityEventController extends CrudController
+class EntityEventController extends Controller
 {
     /**
      * @var string
@@ -32,8 +32,49 @@ class EntityEventController extends CrudController
      */
     public function __construct(CalendarService $calendarService)
     {
-        parent::__construct();
+        //parent::__construct();
         $this->calendarService = $calendarService;
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function create(Entity $entity)
+    {
+        $this->authorize('update', $entity->child);
+
+        $name = $this->view;
+        $route = $this->route;
+        $parent = explode('.', $this->view)[0];
+        $ajax = request()->ajax();
+        $next = request()->get('next', null);
+
+        return view('calendars.events.create_from_entity', compact(
+            'entity',
+            'entityEvent',
+            'name',
+            'route',
+            'parent',
+            'ajax',
+            'next',
+            'entity'
+        ));
+    }
+
+    public function store(AddCalendarEvent $request, Entity $entity)
+    {
+        $this->authorize('update', $entity->child);
+
+        $reminder = new EntityEvent($request->all());
+        $reminder->entity_id = $entity->id;
+        $reminder->save();
+
+
+        return redirect()
+            ->route($entity->pluralType() . '.show', [$entity->entity_id, '#calendars'])
+            ->with('success', trans('calendars.event.create.success'));
     }
 
     /**
@@ -53,7 +94,7 @@ class EntityEventController extends CrudController
         $ajax = request()->ajax();
         $next = request()->get('next', null);
 
-        return view('calendars.events.' . ($ajax ? '_' : null) . 'edit', compact(
+        return view('calendars.events.edit', compact(
             'entity',
             'entityEvent',
             'calendar',

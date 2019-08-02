@@ -491,37 +491,44 @@ class CalendarRenderer
                     ->where(function ($query) use ($datePattern) {
                         $query
                             // Where it's the current year , or current year and current month
-                            ->where('date', 'like', $datePattern)
+                            //->where('date', 'like', $datePattern)
+                            ->where(function ($sub) {
+                                $sub->where('year', $this->getYear());
+
+                                if (!$this->isYearlyLayout()) {
+                                    $sub->where('month', $this->getMonth());
+                                }
+                            })
                             // Or where the event is recurring, or recurring on this month
                             ->orWhere(function ($sub) {
                                 if ($this->isYearlyLayout()) {
                                     $sub->where('is_recurring', true);
                                 } else {
-                                    $sub->where('date', 'like', '%-' . $this->getMonth() . '-%')
+                                    $sub->where('month', $this->getMonth())
                                         ->where('is_recurring', true);
                                 }
                             })
                             // Events from previous month that spills over
                             ->orWhere(function ($sub) {
-                                $sub->where('date', 'like', $this->subMonth($this->getYear(), $this->getMonth()) . '-%')
+                                $sub->where('year', $this->getYear())
+                                    ->where('month', $this->getMonth())
                                     ->where('length', '>', 1);
                             });
                     })
                      ->get() as $event) {
-            $date = $event->date;
+            $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
             // done in the query, but it didn't work on all systems.
             if ($event->is_recurring) {
-                $blocks = $this->splitDate($date);
-                if ($blocks[0] > $this->getYear()) {
+                if ($event->year > $this->getYear()) {
                     continue;
                 }
                 // Over max reoccurring year?
                 if (!empty($event->recurring_until) && $event->recurring_until < $this->getYear()) {
                     continue;
                 }
-                $date = $this->getYear() . '-' . $blocks[1] . '-' . $blocks[2];
+                $date = $this->getYear() . '-' . $event->month . '-' . $event->day;
             }
             if (!isset($events[$date])) {
                 $events[$date] = [];
