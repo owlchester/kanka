@@ -62,9 +62,18 @@ class ConversationMessageController extends Controller
     public function destroy(Conversation $conversation, ConversationMessage $conversationMessage)
     {
         $this->authorize('update', $conversation);
+        $this->authorize('delete', $conversationMessage);
 
         if (!$conversationMessage->delete()) {
             abort(500);
+        }
+
+        if (request()->ajax()) {
+            return view('conversations._latest', [
+                'model' => $conversation,
+                'oldest' => null,
+                'newest' => request()->get('newest')
+            ]);
         }
 
         return redirect()

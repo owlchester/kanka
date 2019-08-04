@@ -135,7 +135,7 @@
                     <p id="delete-confirm-text">
                         {!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
                     </p>
-                    <div id="delete-confirm-mirror" class="form-group">
+                    <div id="delete-confirm-mirror" class="form-group" style="display: none">
                         <label>
                             <input type="checkbox" id="delete-confirm-mirror-chexkbox" name="delete-mirror">
                             {{ __('crud.delete_modal.mirrored') }}

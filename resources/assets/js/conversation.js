@@ -19,7 +19,8 @@ $(document).ready(function() {
 /**
  *
  */
-function initConversations() {
+function initConversations()
+{
     conversationBox = $('#conversation_box');
 
     conversationToggles.each(function(i) {
@@ -51,7 +52,8 @@ function initConversations() {
 /**
  *
  */
-function initConversation() {
+function initConversation()
+{
     // Save references
     conversationBody = $('#conversation_body');
     conversationSend = $('#conversation_send');
@@ -68,8 +70,9 @@ function initConversation() {
     // });
     scrollToBottom(conversationBody);
     initLoadPrevious();
+    registerActions();
 
-    conversationSend.on('submit', function(e) {
+    conversationSend.on('submit', function (e) {
         e.preventDefault();
         var text = conversationContext.val();
         if (!text || text.length === 0 || !text.trim()) {
@@ -93,14 +96,16 @@ function initConversation() {
 
             // Scroll to bottom
             scrollToBottom(conversationBody);
-        }).fail(function(data) {
+            registerActions();
+        }).fail(function (data) {
            console.error("Failed Post", data);
         });
         return false;
     });
 }
 
-function initLoadPrevious() {
+function initLoadPrevious()
+{
     conversationLoadPrevious = $('#conversation_load_previous');
     if (conversationLoadPrevious.length === 1) {
         conversationLoadPrevious.on('click', function (e) {
@@ -120,7 +125,20 @@ function initLoadPrevious() {
  * Scroll to the bottom of an element.
  * @param element
  */
-function scrollToBottom(element) {
+function scrollToBottom(element)
+{
     element.scrollTop(element.prop('scrollHeight'));
 }
 
+function registerActions()
+{
+    // Delete confirm dialog
+    $.each($('.delete-message'), function (index) {
+        $(this).click(function (e) {
+            var name = $(this).data('name');
+            var target = $(this).data('delete-target');
+            $('#delete-confirm-name').text(name);
+            $('#delete-confirm-submit').data('target', target);
+        });
+    });
+}

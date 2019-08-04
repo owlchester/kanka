@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Blameable;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class ConversationMessage
+ * @package App\Models
+ */
 class ConversationMessage extends MiscModel
 {
+    use Blameable;
+
     //
     protected $fillable = [
         'conversation_id',
@@ -17,6 +24,8 @@ class ConversationMessage extends MiscModel
         'character_id',
         'user_id',
         'message',
+        'created_by',
+        'modified_by',
     ];
 
     /**

@@ -136,6 +136,7 @@ function initConversation() {
     // });
     scrollToBottom(conversationBody);
     initLoadPrevious();
+    registerActions();
 
     conversationSend.on('submit', function (e) {
         e.preventDefault();
@@ -161,6 +162,7 @@ function initConversation() {
 
             // Scroll to bottom
             scrollToBottom(conversationBody);
+            registerActions();
         }).fail(function (data) {
             console.error("Failed Post", data);
         });
@@ -188,6 +190,18 @@ function initLoadPrevious() {
  */
 function scrollToBottom(element) {
     element.scrollTop(element.prop('scrollHeight'));
+}
+
+function registerActions() {
+    // Delete confirm dialog
+    $.each($('.delete-message'), function (index) {
+        $(this).click(function (e) {
+            var name = $(this).data('name');
+            var target = $(this).data('delete-target');
+            $('#delete-confirm-name').text(name);
+            $('#delete-confirm-submit').data('target', target);
+        });
+    });
 }
 
 /***/ }),
