@@ -23,7 +23,6 @@ class Conversation extends MiscModel
     const TARGET_USERS = 'users';
     const TARGET_CHARACTERS = 'characters';
 
-
     /**
      * Entity type
      * @var string
@@ -46,6 +45,15 @@ class Conversation extends MiscModel
         'target',
         'tag_id',
         'is_private',
+    ];
+
+    /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'target',
+        'colour',
     ];
 
     /**

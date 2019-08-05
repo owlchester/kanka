@@ -71,7 +71,7 @@ class DiceRollResultController extends CrudController
         }
 
         $model = new $this->model;
-        $this->filterService->prepare($this->view, request()->all(), $model->filterableColumns());
+        $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;

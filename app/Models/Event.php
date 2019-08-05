@@ -36,6 +36,15 @@ class Event extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'date',
+        'location.name',
+    ];
+
+    /**
      * Nullable values (foreign keys)
      * @var array
      */

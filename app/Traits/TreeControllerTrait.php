@@ -20,7 +20,7 @@ trait TreeControllerTrait
     public function tree(Request $request)
     {
         $model = new $this->model;
-        $this->filterService->prepare($this->view . 'tree', request()->all(), $model->filterableColumns());
+        $this->filterService->make($this->view . 'tree', request()->all(), $model);
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;

@@ -66,6 +66,16 @@ class Item extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'price',
+        'location.name',
+        'character.name',
+    ];
+
+    /**
      * Nullable values (foreign keys)
      * @var array
      */

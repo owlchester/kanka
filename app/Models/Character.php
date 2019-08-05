@@ -35,7 +35,6 @@ class Character extends MiscModel
         'is_personality_visible',
     ];
 
-
     /**
      * Fields that can be filtered on
      * @var array
@@ -52,6 +51,20 @@ class Character extends MiscModel
         'is_private',
         'tag_id',
         'race_id',
+    ];
+
+    /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'title',
+        'family.name',
+        'location.name',
+        'race.name',
+        'age',
+        'sex',
+        'is_dead'
     ];
 
     /**

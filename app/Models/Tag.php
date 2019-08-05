@@ -49,6 +49,15 @@ class Tag extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'tag.name',
+        'colour',
+    ];
+
+    /**
      * @var array
      */
     protected $fillable = [

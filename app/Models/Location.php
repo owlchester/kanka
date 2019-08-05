@@ -28,17 +28,6 @@ class Location extends MiscModel
      */
     protected $searchableColumns  = ['name', 'entry', 'type'];
 
-    /**
-     * Fields that can be filtered on
-     * @var array
-     */
-    protected $filterableColumns = [
-        'name',
-        'type',
-        'parent_location_id',
-        'tag_id',
-        'is_private',
-    ];
 
     /**
      * @var array
@@ -54,6 +43,27 @@ class Location extends MiscModel
         'campaign_id',
         'is_private',
         'is_map_private',
+    ];
+
+    /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = [
+        'name',
+        'type',
+        'parent_location_id',
+        'tag_id',
+        'is_private',
+    ];
+
+    /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'map',
+        'parentLocation.name',
     ];
 
     /**

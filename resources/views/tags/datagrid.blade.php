@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => __('tags.fields.colour'),
+            'label' => __('calendars.fields.colour'),
             'field' => 'tag.colour',
             'render' => function ($model) {
                 /** @var \App\Models\Tag $model */

@@ -47,6 +47,10 @@ class Race extends MiscModel
         'is_private',
     ];
 
+    protected $sortableColumns = [
+        'race.name',
+    ];
+
     /**
      * Nullable values (foreign keys)
      * @var array

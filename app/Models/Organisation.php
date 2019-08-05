@@ -50,6 +50,15 @@ class Organisation extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'organisation.name',
+        'location.name',
+    ];
+
+    /**
      * Foreign relations to add to export
      * @var array
      */

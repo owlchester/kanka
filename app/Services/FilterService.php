@@ -48,31 +48,37 @@ class FilterService
     protected $data = [];
 
     /**
-     * @param $crud
-     * @param array $requestData
-     * @param array $availableFilters
+     * The index crud for session keys
+     * @var string
      */
-    public function prepare($crud, $requestData = [], $availableFilters = [])
+    protected $crud = '';
+
+    /**
+     * @param string $crud
+     * @param array $requestData
+     * @param MiscModel $model
+     */
+    public function make(string $crud, array $requestData, MiscModel $model)
     {
         $this->data = $requestData;
-        $this->prepareFilters($crud, $availableFilters);
-        $this->prepareOrder($crud);
+        $this->crud = $crud;
+        $this->prepareFilters($model->filterableColumns());
+        $this->prepareOrder($model->sortableColumns());
     }
 
     /**
      * Prepare the filters
-     * @param string $crud
      * @param array $availableFilters
      * @return array
      */
-    protected function prepareFilters($crud, $availableFilters = [])
+    protected function prepareFilters($availableFilters = [])
     {
         // No point in doing any work if the model has no fields to filter.
         if (empty($availableFilters)) {
             return [];
         }
 
-        $sessionKey = 'filterService-filter-' . $crud;
+        $sessionKey = 'filterService-filter-' . $this->crud;
         $this->filters = session()->get($sessionKey);
 
         // If the request has _clean, we only want filters that are set in the url
@@ -99,16 +105,15 @@ class FilterService
 
     /**
      * Prepare the Order By data
-     * @param $crud
      * @return array
      */
-    protected function prepareOrder($crud)
+    protected function prepareOrder(array $availableFields = [])
     {
         // Get all of the posted data. We need to see if any of it is part of a filter.
         $field = array_get($this->data, 'order');
         $direction = array_get($this->data, 'desc');
 
-        $sessionKey = 'filterService-order-' . $crud;
+        $sessionKey = 'filterService-order-' . $this->crud;
         $this->order = session()->get($sessionKey);
 
         if (!empty($field)) {
@@ -119,6 +124,10 @@ class FilterService
 
         // Reset the filters if requested, before saving it to the session.
         if (array_has($this->data, 'reset-filter')) {
+            $this->order = [];
+        }
+
+        if (!in_array($field, $availableFields)) {
             $this->order = [];
         }
 

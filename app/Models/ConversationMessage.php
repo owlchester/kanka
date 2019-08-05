@@ -24,8 +24,6 @@ class ConversationMessage extends MiscModel
         'character_id',
         'user_id',
         'message',
-        'created_by',
-        'modified_by',
     ];
 
     /**

@@ -38,6 +38,15 @@ class DiceRoll extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'parameters',
+        'character.name',
+    ];
+
+    /**
      * Nullable values (foreign keys)
      * @var array
      */

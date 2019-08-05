@@ -67,6 +67,12 @@ abstract class MiscModel extends Model
     protected $filterableColumns = [];
 
     /**
+     * Fields that can be ordered on
+     * @var array
+     */
+    protected $sortableColumns = [];
+
+    /**
      * Casting order for mysql.
      * Ex. ['age' => 'unsigned']
      * @var array
@@ -202,9 +208,17 @@ abstract class MiscModel extends Model
     /**
      * @return array
      */
-    public function filterableColumns()
+    public function filterableColumns(): array
     {
         return $this->filterableColumns;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function sortableColumns(): array
+    {
+        return $this->sortableColumns + ['name', 'type', 'is_private'];
     }
 
     /**

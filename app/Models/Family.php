@@ -48,6 +48,15 @@ class Family extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'family.name',
+        'location.name',
+    ];
+
+    /**
      * Foreign relations to add to export
      * @var array
      */

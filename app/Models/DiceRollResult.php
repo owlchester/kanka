@@ -29,6 +29,18 @@ class DiceRollResult extends MiscModel
         'diceRoll-character_id',
     ];
 
+    /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'diceRoll.name',
+        'character.name',
+        'user.name',
+        'results',
+        'created_at',
+    ];
+
     protected $defaultOrderField = 'created_at';
     protected $defaultOrderDirection = 'DESC';
 

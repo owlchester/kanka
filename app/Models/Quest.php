@@ -65,6 +65,17 @@ class Quest extends MiscModel
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    protected $sortableColumns = [
+        'character.name',
+        'is_completed',
+        'calendar_date',
+        'quest.name',
+    ];
+
+    /**
      * Nullable values (foreign keys)
      * @var array
      */

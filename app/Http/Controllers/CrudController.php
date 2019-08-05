@@ -101,7 +101,7 @@ class CrudController extends Controller
         }
 
         $model = new $this->model;
-        $this->filterService->prepare($this->view, request()->all(), $model->filterableColumns());
+        $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;
@@ -126,6 +126,7 @@ class CrudController extends Controller
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->count();
         }
+
 
         return view('cruds.index', compact(
             'models',
