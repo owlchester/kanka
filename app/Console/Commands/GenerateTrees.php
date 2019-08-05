@@ -7,6 +7,7 @@ use App\Models\Family;
 use App\Models\Location;
 use App\Models\MapPoint;
 use App\Models\Organisation;
+use App\Models\Race;
 use App\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -32,7 +33,7 @@ class GenerateTrees extends Command
      */
     public function handle()
     {
-        Family::fixTree();
+        Race::fixTree();
         $this->info("Fixed tree.");
     }
 }

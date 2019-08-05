@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Race extends MiscModel
 {
@@ -62,9 +63,26 @@ class Race extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait;
+
+    /**
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'race_id';
+    }
+
+
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     * @throws \Exception
+     */
+    public function setRaceIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
+    }
 
     /**
      * Performance with for datagrids
@@ -105,6 +123,20 @@ class Race extends MiscModel
     public function races()
     {
         return $this->hasMany('App\Models\Race', 'race_id', 'id');
+    }
+
+
+    /**
+     * Get all characters in the location and descendants
+     */
+    public function allCharacters()
+    {
+        $raceIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $raceIds[] = $descendant->id;
+        };
+
+        return Character::whereIn('race_id', $raceIds)->with('race');
     }
 
     /**
