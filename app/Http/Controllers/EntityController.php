@@ -67,9 +67,13 @@ class EntityController extends Controller
         $this->authorize('move', $entity->child);
 
         try {
-            $entity = $this->entityService->move($entity, $request->only('target', 'campaign'));
+            $entity = $this->entityService->move($entity, $request->only('target', 'campaign', 'copy'));
 
             if ($entity->child->campaign_id != Auth::user()->campaign->id) {
+                if ($request->has('copy')) {
+                    return redirect()->route($entity->pluralType() . '.index')
+                        ->with('success', trans('crud.move.success_copy', ['name' => $entity->name]));
+                }
                 return redirect()->route($entity->pluralType() . '.index')
                 ->with('success', trans('crud.move.success', ['name' => $entity->name]));
             }

@@ -212,13 +212,16 @@ return [
         ],
         'fields'        => [
             'campaign'  => 'New campaign',
+            'copy'      => 'Make a copy',
             'target'    => 'New type',
         ],
         'hints'         => [
             'campaign'  => 'You can also try to move this entity to another campaign.',
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
+            'copy'      => 'Select this option if you want to create copy in the new campaign.',
         ],
         'success'       => 'Entity \':name\' moved.',
+        'success_copy'  => 'Entity \':name\' copied.',
         'title'         => 'Move :name',
     ],
     'new_entity'        => [

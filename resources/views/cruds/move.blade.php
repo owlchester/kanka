@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             @include('partials.errors')
-            {!! Form::open(array('route' => ['entities.move', $entity->id], 'method'=>'POST')) !!}
+            {!! Form::open(['route' => ['entities.move', $entity->id], 'method' => 'POST']) !!}
 
             {{ csrf_field() }}
             <div class="row">
@@ -34,6 +34,13 @@
                                     <label>{{ trans('crud.move.fields.campaign') }}</label>
                                     {!! Form::select('campaign', Auth::user()->moveCampaignList(), null, ['class' => 'form-control']) !!}
                                     <p class="help-block">{{ trans('crud.move.hints.campaign') }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        {!! Form::checkbox('copy') !!}
+                                        {{ trans('crud.move.fields.copy') }}
+                                    </label>
+                                    <p class="help-block">{{ trans('crud.move.hints.copy') }}</p>
                                 </div>
                             @endif
                         </div>
