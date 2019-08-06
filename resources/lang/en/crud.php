@@ -81,7 +81,17 @@ return [
         'success'   => [
             'private'   => ':count entity is now private|:count entities are now private.',
             'public'    => ':count entity is now visible|:count entities are now visible.',
+            'permissions' => 'Permissions changed for :count entity.|Permissions changed for :count entities.'
         ],
+        'permissions' => [
+            'title' => 'Change permissions for several entities',
+            'fields' => [
+                'override' => 'Override',
+            ],
+            'helpers' => [
+                'override' => 'If selected, permissions of the selected entities will be overwritten with these. If unchecked, the selected permissions will be added to the existing ones.'
+            ],
+        ]
     ],
     'cancel'            => 'Cancel',
     'click_modal'       => [
@@ -235,6 +245,11 @@ return [
             'edit'          => 'Edit',
             'entity_note'   => 'Entity Notes',
             'read'          => 'Read',
+            'bulk' => [
+                '' => '',
+                'add' => 'Add',
+                'remove' => 'Remove'
+            ]
         ],
         'allowed'   => 'Allowed',
         'fields'    => [
