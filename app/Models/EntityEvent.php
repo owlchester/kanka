@@ -158,6 +158,6 @@ class EntityEvent extends MiscModel
         }
 
         // Current month, check on day
-        return $this->day < $calendar->currentDate('day');
+        return $this->day < $calendar->currentDate('date');
     }
 }
