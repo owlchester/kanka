@@ -228,7 +228,8 @@ class EntityService
         }
 
         // Copy the image to avoid issues when deleting/replacing one image
-        $newPath = str_replace('.', uniqid() . '.', $entity->child->image);
+        $uniqid = uniqid();
+        $newPath = str_replace('.', $uniqid . '.', $entity->child->image);
         $newModel->image = $newPath;
         if (!Storage::exists($newPath)) {
             Storage::copy($entity->child->image, $newPath);
@@ -236,12 +237,14 @@ class EntityService
 
         // Copy thumb
         $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
-        $newThumb = str_replace('.', uniqid() . '_thumb.', $entity->child->image);
+        $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
         if (!Storage::exists($newThumb)) {
             Storage::copy($oldThumb, $newThumb);
         }
 
         // The model is ready to be saved.
+        $newModel->savingObserver = false;
+        $newModel->saveObserver = false;
         $newModel->save();
 
         // Copy entity notes over
@@ -249,6 +252,7 @@ class EntityService
             /** @var EntityNote $newNote */
             $newNote = $note->replicate();
             $newNote->entity_id = $newModel->entity->id;
+            $newNote->savedObserver = false;
             $newNote->save();
         }
 

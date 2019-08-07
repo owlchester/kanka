@@ -5,6 +5,7 @@ return [
         'apply'         => 'Apply',
         'back'          => 'Back',
         'copy'          => 'Copy',
+        'copy_to_campaign' => 'Copy to Campaign',
         'explore_view'  => 'Nested View',
         'export'        => 'Export',
         'find_out_more' => 'Find out more',
@@ -100,6 +101,10 @@ return [
         'title'     => 'Confirm your action',
     ],
     'create'            => 'Create',
+    'copy_to_campaign' => [
+        'title' => 'Copy \':name\' to another campaign',
+        'panel' => 'Copy',
+    ],
     'datagrid'          => [
         'empty' => 'Nothing to show yet.',
     ],

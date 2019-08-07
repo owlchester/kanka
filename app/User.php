@@ -140,11 +140,12 @@ class User extends \TCG\Voyager\Models\User
 
     /**
      * Get the other campaigns of the user
-     * @return mixed
+     * @param bool $hasEmpty
+     * @return array
      */
-    public function moveCampaignList()
+    public function moveCampaignList(bool $hasEmpty = true): array
     {
-        $campaigns = [0 => ''];
+        $campaigns = $hasEmpty ? [0 => ''] : [];
         foreach ($this->campaigns()->whereNotIn('campaign_id', [$this->campaign->id])->get() as $campaign) {
             $campaigns[$campaign->id] = $campaign->name;
         }
@@ -279,6 +280,21 @@ class User extends \TCG\Voyager\Models\User
         return $this->cachedHasCampaign;
     }
 
+    /**
+     * Check if the user has other campaigns than the current one
+     * @param int $campaignId
+     * @return bool
+     */
+    public function hasOtherCampaigns(int $campaignId): bool
+    {
+        return $this->campaigns()->where('campaign_id', '!=', $campaignId)->count() > 0;
+    }
+
+    /**
+     * Get the user's avatar
+     * @param bool $thumb
+     * @return string
+     */
     public function getAvatar($thumb = false)
     {
         return "<span class=\"entity-image\" style=\"background-image: url('" .

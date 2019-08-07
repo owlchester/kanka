@@ -44,6 +44,12 @@ abstract class MiscModel extends Model
     public $savingObserver = true;
 
     /**
+     * If set to false, the save observer in MiscObserver will be skipped
+     * @var bool
+     */
+    public $saveObserver = true;
+
+    /**
      * Eloquence trait for easy search
      */
     //use Eloquence;

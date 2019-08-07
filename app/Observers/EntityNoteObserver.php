@@ -46,6 +46,10 @@ class EntityNoteObserver
      */
     public function saved(EntityNote $entityNote)
     {
+        if (!$entityNote->savedObserver) {
+            return;
+        }
+
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $entityNote->entity->child->savingObserver = false;
