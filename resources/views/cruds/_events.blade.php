@@ -38,7 +38,7 @@ $r = $model
                 <a href="{{ $relation->calendar->getLink() }}" title="{{ $relation->calendar->tooltipWithName() }}" data-toggle="tooltip" data-html="true">{{ $relation->calendar->name }}</a>
             </td>
             <td>
-                <a href="{{ $relation->calendar->getLink() }}?y={{ $relation->year }}&m={{ $relation->month }}">
+                <a href="{{ $relation->calendar->getLink() }}?year={{ $relation->year }}&month={{ $relation->month }}">
                 {{ $relation->getDate() }}
                 </a>
             </td>
