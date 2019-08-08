@@ -35,7 +35,9 @@ if ($previousEvents->count() < 5) {
 }
 
 // Order the past events in descending date to get the closest ones to the current date first
-$previousEvents = $previousEvents->sortByDesc('year')->sortByDesc('month')->sortByDesc('day');
+$previousEvents = $previousEvents->sortByDesc(function ($reminder) {
+    return [$reminder->year, $reminder->month, $reminder->day];
+});
 
 // If we need more upcoming events, get some
 if ($upcomingEvents->count() < 5) {
@@ -60,7 +62,9 @@ foreach ($upcomingRecurringEvents as $event) {
     }
 }
 // Order the upcoming events by date
-$upcomingEvents = $upcomingEvents->sortBy('year')->sortBy('month')->sortBy('day');
+$upcomingEvents = $upcomingEvents->sortBy(function ($reminder) {
+    return [$reminder->year, $reminder->month, $reminder->day];
+});
 
 // It could be that we get reminders for events the user can't see (2019-08: should no longer be the case? )
 $shownUpcomingEvents = 0;

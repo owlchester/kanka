@@ -168,6 +168,7 @@ class Calendar extends MiscModel
                     });
                 } else {
                     $sub->where('year', $operator, Arr::get($this->cachedCurrentDate, 0, 1));
+                    $sub->where('is_recurring', false);
                     //$sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
                 }
             })
