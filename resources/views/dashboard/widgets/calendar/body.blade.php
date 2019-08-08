@@ -35,7 +35,7 @@ if ($previousEvents->count() < 5) {
 }
 
 // Order the past events in descending date to get the closest ones to the current date first
-$previousEvents = $previousEvents->sortBy('year')->sortBy('month')->sortBy('day');
+$previousEvents = $previousEvents->sortByDesc('year')->sortByDesc('month')->sortByDesc('day');
 
 // If we need more upcoming events, get some
 if ($upcomingEvents->count() < 5) {
