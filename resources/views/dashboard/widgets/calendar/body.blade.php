@@ -50,7 +50,8 @@ if ($upcomingEvents->count() < 5) {
 // Get the recurring events separately to make sure we always have 5 real "upcoming" events that mix recurring and single
 $upcomingRecurringEvents = $calendar->dashboardEvents('>=', 5, true);
 foreach ($upcomingRecurringEvents as $event) {
-    $until = min($event->recurring_until, $currentYear + 5);
+    // Recurring events can be forever, so check that's best
+    $until = !empty($event->recurring_until) ? min($event->recurring_until, $currentYear + 5) : $currentYear + 5;
     for ($y = $currentYear; $y < $until; $y++) {
         if ($y <= $currentYear && ($event->month < $currentMonth || ($event->month == $currentMonth && $event->day < $currentDay))) {
             continue;
