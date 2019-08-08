@@ -52,7 +52,7 @@ $upcomingRecurringEvents = $calendar->dashboardEvents('>=', 5, true);
 foreach ($upcomingRecurringEvents as $event) {
     $until = min($event->recurring_until, $currentYear + 5);
     for ($y = $currentYear; $y < $until; $y++) {
-        if ($y <= $currentYear && ($event->month < $currentMonth || ($event->month == $currentMonth && $event->day <= $currentDay))) {
+        if ($y <= $currentYear && ($event->month < $currentMonth || ($event->month == $currentMonth && $event->day < $currentDay))) {
             continue;
         }
         // Make a copy to change the date

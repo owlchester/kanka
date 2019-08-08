@@ -197,8 +197,7 @@ class CalendarController extends CrudController
         }
 
         return redirect()->back()
-            ->with('success', trans('calendars.edit.date'));
-
+            ->with('success', trans('calendars.edit.today'));
     }
 
     /**
