@@ -91,6 +91,7 @@ trait CalendarDateTrait
         // If the calendar data changed, we need to update a related entity.
         if ($this->isDirty(['calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'])) {
             // We already had this event linked
+            /** @var EntityEvent $event */
             $event = EntityEvent::where([
                 'calendar_id' => $previousCalendarId,
                 'entity_id' => $entity->id,
@@ -103,9 +104,9 @@ trait CalendarDateTrait
                 } else {
                     // Update the existing one
                     $event->calendar_id = $this->calendar_id;
-                    $event->date = $this->calendar_year . '-'
-                        . $this->calendar_month . '-'
-                        . $this->calendar_day;
+                    $event->year = $this->calendar_year;
+                    $event->month = $this->calendar_month;
+                    $event->day = $this->calendar_day;
                     $event->save();
                 }
             } elseif ($this->hasCalendar()) {
@@ -113,9 +114,9 @@ trait CalendarDateTrait
                 EntityEvent::create([
                     'calendar_id' => $this->calendar_id,
                     'entity_id' => $entity->id,
-                    'date' => $this->calendar_year . '-'
-                        . $this->calendar_month . '-'
-                        . $this->calendar_day,
+                    'year' => $this->calendar_year,
+                    'month' => $this->calendar_month,
+                    'day' => $this->calendar_day,
                     'length' => request()->post('length', 1),
                     'is_recurring' => request()->post('is_recurring', false),
                 ]);

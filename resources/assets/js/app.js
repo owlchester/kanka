@@ -21,7 +21,9 @@ $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     }
 
-    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="popover"]').popover({
+        sanitize: false,
+    });
 
     initSelect2();
     initCheckboxSwitch();

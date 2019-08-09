@@ -90,4 +90,5 @@ if (!empty($oldCalendarID)) {
         </div>
     </div>
 </div>
+
 <input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', ['calendar' => 0]) }}">
