@@ -10,6 +10,7 @@ use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Exceptions\TranslatableException;
@@ -170,35 +171,42 @@ class EntityService
             return $this->copyToCampaign($entity, $campaign);
         }
 
-        // Made it so far, we can move the entity's campaign_id. We first need to remove all the relations and, since
-        // they won't make sense on the new campaign.
-        $entity->relationships()->delete();
-        $entity->targetRelationships()->delete();
-
-        // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
-        // won't make sense on the new campaign either.
-        /* @var MiscModel $child */
-        $child = $entity->child;
-        $child->permissions()->delete();
-
-        // Detach is a custom function on a child to remove itself from where it is parent to other entities.
-        $child->detach();
-
         // Save and keep the current campaign before updating the entity
         $currentCampaign = CampaignLocalization::getCampaign();
 
-        // Update Entity first, as there are no hooks on the Entity model.
-        CampaignLocalization::forceCampaign($campaign);
-        $entity->campaign_id = $campaign->id;
-        $entity->save();
+        DB::beginTransaction();
+        try {
+            // Made it so far, we can move the entity's campaign_id. We first need to remove all the relations and, since
+            // they won't make sense on the new campaign.
+            $entity->relationships()->delete();
+            $entity->targetRelationships()->delete();
 
-        // Finally, we can change and save the child. Should be all good. But tell the app not to create the entity to
-        // avoid silly duplicates and new entities.
-        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+            // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
+            // won't make sense on the new campaign either.
+            /* @var MiscModel $child */
+            $child = $entity->child;
+            $child->permissions()->delete();
 
-        // Update child second. We do this otherwise we'll have an old entity and a new one
-        $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
-        $child->save();
+            // Detach is a custom function on a child to remove itself from where it is parent to other entities.
+            $child->detach();
+
+            // Update Entity first, as there are no hooks on the Entity model.
+            CampaignLocalization::forceCampaign($campaign);
+            $entity->campaign_id = $campaign->id;
+            $entity->save();
+
+            // Finally, we can change and save the child. Should be all good. But tell the app not to create the entity to
+            // avoid silly duplicates and new entities.
+            define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+
+            // Update child second. We do this otherwise we'll have an old entity and a new one
+            $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
+            $child->save();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
 
         // Switch back to the original campaign
         CampaignLocalization::forceCampaign($currentCampaign);
@@ -219,61 +227,68 @@ class EntityService
         // Update Entity first, as there are no hooks on the Entity model.
         CampaignLocalization::forceCampaign($newCampaign);
 
-        $newModel = $entity->child->replicate();
-        // Remove any foreign keys that wouldn't make any sense in the new campaign
-        foreach ($newModel->getAttributes() as $attribute) {
-            if (strpos($attribute, '_id') !== false) {
-                $newModel->$attribute = null;
-            }
-        }
-
-        // Copy the image to avoid issues when deleting/replacing one image
-        if (!empty($entity->child->image)) {
-            $uniqid = uniqid();
-            $newPath = str_replace('.', $uniqid . '.', $entity->child->image);
-            $newModel->image = $newPath;
-            if (!Storage::exists($newPath)) {
-                Storage::copy($entity->child->image, $newPath);
+        DB::beginTransaction();
+        try {
+            $newModel = $entity->child->replicate();
+            // Remove any foreign keys that wouldn't make any sense in the new campaign
+            foreach ($newModel->getAttributes() as $attribute) {
+                if (strpos($attribute, '_id') !== false) {
+                    $newModel->$attribute = null;
+                }
             }
 
-            // Copy thumb
-            $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
-            $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
-            if (!Storage::exists($newThumb)) {
-                Storage::copy($oldThumb, $newThumb);
+            // Copy the image to avoid issues when deleting/replacing one image
+            if (!empty($entity->child->image)) {
+                $uniqid = uniqid();
+                $newPath = str_replace('.', $uniqid . '.', $entity->child->image);
+                $newModel->image = $newPath;
+                if (!Storage::exists($newPath)) {
+                    Storage::copy($entity->child->image, $newPath);
+                }
+
+                // Copy thumb
+                $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
+                $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
+                if (!Storage::exists($newThumb)) {
+                    Storage::copy($oldThumb, $newThumb);
+                }
             }
-        }
 
-        // The model is ready to be saved.
-        $newModel->savingObserver = false;
-        $newModel->saveObserver = false;
-        $newModel->save();
+            // The model is ready to be saved.
+            $newModel->savingObserver = false;
+            $newModel->saveObserver = false;
+            $newModel->save();
 
-        // Copy entity notes over
-        foreach ($entity->notes as $note) {
-            /** @var EntityNote $newNote */
-            $newNote = $note->replicate();
-            $newNote->entity_id = $newModel->entity->id;
-            $newNote->savedObserver = false;
-            $newNote->save();
-        }
-
-        // Attributes please
-        foreach ($entity->attributes as $attribute) {
-            /** @var EntityNote $newNote */
-            $newAttribute = $attribute->replicate();
-            $newAttribute->entity_id = $newModel->entity->id;
-            $newAttribute->save();
-        }
-
-        // Characters: copy traits
-        if ($entity->child instanceof Character) {
-            /** @var CharacterTrait $trait */
-            foreach ($entity->child->characterTraits as $trait) {
-                $newTrait = $trait->replicate();
-                $newTrait->character_id = $newModel->id;
-                $newTrait->save();
+            // Copy entity notes over
+            foreach ($entity->notes as $note) {
+                /** @var EntityNote $newNote */
+                $newNote = $note->replicate();
+                $newNote->entity_id = $newModel->entity->id;
+                $newNote->savedObserver = false;
+                $newNote->save();
             }
+
+            // Attributes please
+            foreach ($entity->attributes as $attribute) {
+                /** @var EntityNote $newNote */
+                $newAttribute = $attribute->replicate();
+                $newAttribute->entity_id = $newModel->entity->id;
+                $newAttribute->save();
+            }
+
+            // Characters: copy traits
+            if ($entity->child instanceof Character) {
+                /** @var CharacterTrait $trait */
+                foreach ($entity->child->characterTraits as $trait) {
+                    $newTrait = $trait->replicate();
+                    $newTrait->character_id = $newModel->id;
+                    $newTrait->save();
+                }
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
         }
 
         // Switch back to the original campaign
