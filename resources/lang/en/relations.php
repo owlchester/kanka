@@ -14,22 +14,22 @@ return [
         'title'     => 'Update relations',
     ],
     'fields'        => [
+        'attitude'  => 'Attitude',
+        'is_star'   => 'Pinned',
         'relation'  => 'Relation',
         'target'    => 'Target',
         'two_way'   => 'Create mirror relation',
-        'is_star' => 'Starred',
-        'attitude' => 'Attitude',
     ],
     'hints'         => [
-        'two_way'   => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
-        'mirrored' => [
+        'mirrored'  => [
+            'text'  => 'This relation is mirrored with :link.',
             'title' => 'Mirrored',
-            'text' => 'This relation is mirrored with :link.'
         ],
+        'two_way'   => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
     ],
     'placeholders'  => [
+        'attitude'  => '-100 to 100, 100 being very positive.',
         'relation'  => 'Nature of the relation',
         'target'    => 'Choose an entity',
-        'attitude' => '-100 to 100, 100 being very positive.'
     ],
 ];

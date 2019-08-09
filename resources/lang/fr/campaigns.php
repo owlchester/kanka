@@ -257,7 +257,7 @@ return [
         'edit'          => [
             'success'   => 'Campagne modifiée.',
         ],
-        'helper'        => 'Tu peux facilement modifier les éléments disponibles pour la campagne. Les éléments déjà créés seront simplement cachés',
+        'helper'        => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
         'helpers'       => [
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
             'characters'    => 'Les peuples de ton monde.',

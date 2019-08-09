@@ -97,6 +97,7 @@ return [
         'close'         => 'Fermer',
         'delete'        => 'Supprimer',
         'description'   => 'Est-tu sûr de vouloir supprimer :tag?',
+        'mirrored'      => 'Supprimer la relation liée.',
         'title'         => 'Confirmation la suppression',
     ],
     'destroy_many'      => [
@@ -128,6 +129,7 @@ return [
         'files'                 => 'Fichiers',
         'image'                 => 'Image',
         'is_private'            => 'Privé',
+        'is_star'               => 'Epinglé',
         'item'                  => 'Objet',
         'location'              => 'Lieu',
         'name'                  => 'Nom',
@@ -156,7 +158,7 @@ return [
     'filters'           => [
         'all'       => 'Afficher tous les descendants',
         'clear'     => 'Effacer les filtres',
-        'direct'    => 'Afficher seulement descendants directs',
+        'direct'    => 'Affichier seulement descendants directs',
         'filtered'  => 'Affichant :count de :total :entity.',
         'hide'      => 'Cacher les filtres',
         'show'      => 'Afficher les filtres',
@@ -175,6 +177,7 @@ return [
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
+        'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
         'map_limitations'       => 'Formats supportés: jpg, png, gif et svg. Taille maximale: :size.',
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soit-même" signifie que seulement tu peux le voir.',
     ],

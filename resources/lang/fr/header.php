@@ -2,7 +2,7 @@
 
 return [
     'avatar'            => 'Image',
-    'logout'            => 'Déconnexion',
+    'logout'            => 'Déconnection',
     'member_since'      => 'Membre depuis :date',
     'notifications'     => [
         'header'    => 'Notifications',

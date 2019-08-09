@@ -97,8 +97,8 @@ return [
         'close'         => 'Close',
         'delete'        => 'Delete',
         'description'   => 'Are you sure you want to remove :tag?',
-        'title'         => 'Delete confirmation',
         'mirrored'      => 'Remove mirrored relation.',
+        'title'         => 'Delete confirmation',
     ],
     'destroy_many'      => [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
