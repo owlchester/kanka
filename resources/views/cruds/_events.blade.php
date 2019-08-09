@@ -10,11 +10,13 @@ $r = $model
     ->order(request()->get('order'), 'date')
     ->paginate(); ?>
 <p class="export-hidden">
+    @can('update', $model)
     <a href="{{ route('entities.entity_events.create', [$model->entity]) }}" id="entity-calendar-modal-add"
        class="btn btn-sm btn-primary pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
        data-url="{{ route('entities.entity_events.create', [$model->entity]) }}">
         <i class="fa fa-plus"></i> {{ trans('crud.add') }}
     </a>
+    @endcan
     {{ trans('crud.events.hint') }}
 </p>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.events') }}</p>
