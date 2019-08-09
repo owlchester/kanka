@@ -385,10 +385,10 @@ function registerEntityCalendarForm()
 
 function registerEntityCalendarModal()
 {
-    entityCalendarAdd = $('input[name=calendar-data-url]');
-    if (entityCalendarAdd.length === 0) {
+    if ($('#entity-calendar-modal-add').length === 0) {
         return;
     }
+    entityCalendarAdd = $('input[name=calendar-data-url]');
     entityCalendarField = $('#calendar_id');
     entityCalendarYearField = $('input[name="year"]');
     entityCalendarMonthField = $('select[name="month"]');
@@ -405,8 +405,15 @@ function registerEntityCalendarModal()
         }
         // Load month list
         loadCalendarDates(entityCalendarField.val());
-
     });
+
+    var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+    console.log('entityCalendarField', entityCalendarField, entityCalendarField.val());
+    if (entityCalendarField.val()) {
+        entityCalendarCancel.show();
+        entityCalendarSubForm.fadeIn();
+        loadCalendarDates(entityCalendarField.val());
+    }
 }
 
 /**

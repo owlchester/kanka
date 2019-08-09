@@ -53,7 +53,6 @@ class EntityEventController extends Controller
 
         return view('calendars.events.create_from_entity', compact(
             'entity',
-            'entityEvent',
             'name',
             'route',
             'parent',
