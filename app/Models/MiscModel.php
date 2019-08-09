@@ -11,6 +11,7 @@ use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Exception;
 
 /**
  * Class MiscModel
@@ -199,10 +200,15 @@ abstract class MiscModel extends Model
     /**
      * @param string $route
      * @return string
+     * @throws Exception
      */
     public function getLink($route = 'show')
     {
-        return route($this->entity->pluralType() . '.' . $route, $this->id);
+        try {
+            return route($this->entity->pluralType() . '.' . $route, $this->id);
+        } catch (Exception $e) {
+            return '#';
+        }
     }
 
     /**

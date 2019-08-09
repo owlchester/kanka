@@ -9,7 +9,7 @@ $onlyOneCalendar = count($calendars) == 1;
         <div class="form-group entity-calendar-selector">
             {!! Form::select2(
                 'calendar_id',
-                ($onlyOneCalendar ? $calendary->first() : null),
+                ($onlyOneCalendar ? $calendar->first() : null),
                 App\Models\Calendar::class,
                 false
             ) !!}
