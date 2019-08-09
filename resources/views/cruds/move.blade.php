@@ -37,13 +37,6 @@
                                     {!! Form::select('campaign', Auth::user()->moveCampaignList(), null, ['class' => 'form-control']) !!}
                                     <p class="help-block">{{ trans('crud.move.hints.campaign') }}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label>
-                                        {!! Form::checkbox('copy') !!}
-                                        {{ trans('crud.move.fields.copy') }}
-                                    </label>
-                                    <p class="help-block">{{ trans('crud.move.hints.copy') }}</p>
-                                </div>
                             @endif
                         </div>
 

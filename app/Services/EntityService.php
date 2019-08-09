@@ -135,7 +135,7 @@ class EntityService
         if (!empty($request['target'])) {
             return $this->moveType($entity, $request['target']);
         } elseif (!empty($request['campaign'])) {
-            return $this->moveCampaign($entity, $request['campaign'], $request['copy']);
+            return $this->moveCampaign($entity, $request['campaign'], false);
         }
         return false;
     }
