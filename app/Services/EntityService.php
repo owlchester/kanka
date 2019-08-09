@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use App\Models\Character;
+use App\Models\CharacterTrait;
 use App\Models\Entity;
+use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use Illuminate\Support\Facades\Auth;
@@ -133,7 +135,7 @@ class EntityService
         if (!empty($request['target'])) {
             return $this->moveType($entity, $request['target']);
         } elseif (!empty($request['campaign'])) {
-            return $this->moveCampaign($entity, $request['campaign']);
+            return $this->moveCampaign($entity, $request['campaign'], $request['copy']);
         }
         return false;
     }
@@ -141,11 +143,12 @@ class EntityService
     /**
      * Move an entity to another campaign
      * @param Entity $entity
-     * @param $campaignId
+     * @param int $campaignId
+     * @param bool $copy
      * @return Entity
      * @throws TranslatableException
      */
-    protected function moveCampaign(Entity $entity, $campaignId)
+    protected function moveCampaign(Entity $entity, int $campaignId, bool $copy)
     {
         // First we make sure we have access to the new campaign.
         $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
@@ -161,6 +164,10 @@ class EntityService
         // Can the user create an entity of that type on the new campaign?
         if (!Auth::user()->can('create', [get_class($entity->child), null, $campaign])) {
             throw new TranslatableException('crud.move.errors.permission');
+        }
+
+        if ($copy) {
+            return $this->copyToCampaign($entity, $campaign);
         }
 
         // Made it so far, we can move the entity's campaign_id. We first need to remove all the relations and, since
@@ -195,6 +202,80 @@ class EntityService
 
         // Switch back to the original campaign
         CampaignLocalization::forceCampaign($currentCampaign);
+
+        return $entity;
+    }
+
+    /**
+     * @param Entity $entity
+     * @param Campaign $newCampaign
+     * @return Entity
+     */
+    protected function copyToCampaign(Entity $entity, Campaign $newCampaign)
+    {
+        // Save and keep the current campaign before updating the entity
+        $originalCampaign = CampaignLocalization::getCampaign();
+
+        // Update Entity first, as there are no hooks on the Entity model.
+        CampaignLocalization::forceCampaign($newCampaign);
+
+        $newModel = $entity->child->replicate();
+        // Remove any foreign keys that wouldn't make any sense in the new campaign
+        foreach ($newModel->getAttributes() as $attribute) {
+            if (strpos($attribute, '_id') !== false) {
+                $newModel->$attribute = null;
+            }
+        }
+
+        // Copy the image to avoid issues when deleting/replacing one image
+        $uniqid = uniqid();
+        $newPath = str_replace('.', $uniqid . '.', $entity->child->image);
+        $newModel->image = $newPath;
+        if (!Storage::exists($newPath)) {
+            Storage::copy($entity->child->image, $newPath);
+        }
+
+        // Copy thumb
+        $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
+        $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
+        if (!Storage::exists($newThumb)) {
+            Storage::copy($oldThumb, $newThumb);
+        }
+
+        // The model is ready to be saved.
+        $newModel->savingObserver = false;
+        $newModel->saveObserver = false;
+        $newModel->save();
+
+        // Copy entity notes over
+        foreach ($entity->notes as $note) {
+            /** @var EntityNote $newNote */
+            $newNote = $note->replicate();
+            $newNote->entity_id = $newModel->entity->id;
+            $newNote->savedObserver = false;
+            $newNote->save();
+        }
+
+        // Attributes please
+        foreach ($entity->attributes as $attribute) {
+            /** @var EntityNote $newNote */
+            $newAttribute = $attribute->replicate();
+            $newAttribute->entity_id = $newModel->entity->id;
+            $newAttribute->save();
+        }
+
+        // Characters: copy traits
+        if ($entity->child instanceof Character) {
+            /** @var CharacterTrait $trait */
+            foreach ($entity->child->characterTraits as $trait) {
+                $newTrait = $trait->replicate();
+                $newTrait->character_id = $newModel->id;
+                $newTrait->save();
+            }
+        }
+
+        // Switch back to the original campaign
+        CampaignLocalization::forceCampaign($originalCampaign);
 
         return $entity;
     }

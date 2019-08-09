@@ -5,6 +5,7 @@ return [
         'apply'         => 'Apply',
         'back'          => 'Back',
         'copy'          => 'Copy',
+        'copy_to_campaign' => 'Copy to Campaign',
         'explore_view'  => 'Nested View',
         'export'        => 'Export',
         'find_out_more' => 'Find out more',
@@ -81,7 +82,17 @@ return [
         'success'   => [
             'private'   => ':count entity is now private|:count entities are now private.',
             'public'    => ':count entity is now visible|:count entities are now visible.',
+            'permissions' => 'Permissions changed for :count entity.|Permissions changed for :count entities.'
         ],
+        'permissions' => [
+            'title' => 'Change permissions for several entities',
+            'fields' => [
+                'override' => 'Override',
+            ],
+            'helpers' => [
+                'override' => 'If selected, permissions of the selected entities will be overwritten with these. If unchecked, the selected permissions will be added to the existing ones.'
+            ],
+        ]
     ],
     'cancel'            => 'Cancel',
     'click_modal'       => [
@@ -90,6 +101,10 @@ return [
         'title'     => 'Confirm your action',
     ],
     'create'            => 'Create',
+    'copy_to_campaign' => [
+        'title' => 'Copy \':name\' to another campaign',
+        'panel' => 'Copy',
+    ],
     'datagrid'          => [
         'empty' => 'Nothing to show yet.',
     ],
@@ -202,13 +217,16 @@ return [
         ],
         'fields'        => [
             'campaign'  => 'New campaign',
+            'copy'      => 'Make a copy',
             'target'    => 'New type',
         ],
         'hints'         => [
             'campaign'  => 'You can also try to move this entity to another campaign.',
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
+            'copy'      => 'Select this option if you want to create copy in the new campaign.',
         ],
         'success'       => 'Entity \':name\' moved.',
+        'success_copy'  => 'Entity \':name\' copied.',
         'title'         => 'Move :name',
     ],
     'new_entity'        => [
@@ -235,6 +253,11 @@ return [
             'edit'          => 'Edit',
             'entity_note'   => 'Entity Notes',
             'read'          => 'Read',
+            'bulk' => [
+                '' => '',
+                'add' => 'Add',
+                'remove' => 'Remove'
+            ]
         ],
         'allowed'   => 'Allowed',
         'fields'    => [

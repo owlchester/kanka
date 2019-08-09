@@ -46,7 +46,15 @@ class EntityPermission
      */
     protected $userIsAdmin = null;
 
+    /**
+     * @var bool permissions were loaded
+     */
     protected $loadedAll = false;
+
+    /**
+     * @var int campaign id of the loaded permissions (required for when moving entities between campaigns)
+     */
+    protected $loadedCampaignId = 0;
 
     /**
      * Creates new instance.
@@ -195,15 +203,20 @@ class EntityPermission
      */
     protected function loadAllPermissions(User $user = null, Campaign $campaign = null)
     {
-        if ($this->loadedAll === true) {
-            return;
-        }
-        $this->loadedAll = true;
-
-        // If no campaign was provided, get the one in the url.
+        // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
         if (empty($campaign)) {
             $campaign = \App\Facades\CampaignLocalization::getCampaign();
         }
+
+        if ($this->loadedAll === true && $campaign->id == $this->loadedCampaignId) {
+            return;
+        }
+
+        // Reset the values keeping score
+        $this->loadedAll = true;
+        $this->loadedCampaignId = $campaign->id;
+        $this->cached = [];
+        $this->roleIds = false;
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = $this->getRoleIds($campaign, $user);

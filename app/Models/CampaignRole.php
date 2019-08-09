@@ -67,6 +67,16 @@ class CampaignRole extends Model
     }
 
     /**
+     * Get all roles except admin
+     * @param $query
+     * @return mixed
+     */
+    public function scopeWithoutAdmin($query)
+    {
+        return $query->where('is_admin', false);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function permissions()
