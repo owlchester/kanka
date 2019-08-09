@@ -224,7 +224,7 @@ abstract class MiscModel extends Model
      */
     public function sortableColumns(): array
     {
-        return $this->sortableColumns + ['name', 'type', 'is_private'];
+        return array_merge($this->sortableColumns, ['name', 'type', 'is_private']);
     }
 
     /**

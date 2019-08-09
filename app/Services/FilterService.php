@@ -105,6 +105,7 @@ class FilterService
 
     /**
      * Prepare the Order By data
+     * @property array $availableFields
      * @return array
      */
     protected function prepareOrder(array $availableFields = [])
