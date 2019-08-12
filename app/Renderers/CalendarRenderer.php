@@ -485,37 +485,38 @@ class CalendarRenderer
         /** @var CalendarEvent $event */
         $events = [];
         $datePattern = $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%';
-        foreach ($this->calendar->calendarEvents()
-                     ->has('entity')
-                     ->with(['entity', 'entity.tags'])
-                    ->where(function ($query) use ($datePattern) {
-                        $query
-                            // Where it's the current year , or current year and current month
-                            //->where('date', 'like', $datePattern)
-                            ->where(function ($sub) {
-                                $sub->where('year', $this->getYear());
+        $reminders = $this->calendar->calendarEvents()
+            ->has('entity')
+            ->with(['entity', 'entity.tags'])
+            ->where(function ($query) use ($datePattern) {
+                $query
+                    // Where it's the current year , or current year and current month
+                    //->where('date', 'like', $datePattern)
+                    ->where(function ($sub) {
+                        $sub->where('year', $this->getYear());
 
-                                if (!$this->isYearlyLayout()) {
-                                    $sub->where('month', $this->getMonth());
-                                }
-                            })
-                            // Or where the event is recurring, or recurring on this month
-                            ->orWhere(function ($sub) {
-                                if ($this->isYearlyLayout()) {
-                                    $sub->where('is_recurring', true);
-                                } else {
-                                    $sub->where('month', $this->getMonth())
-                                        ->where('is_recurring', true);
-                                }
-                            })
-                            // Events from previous month that spills over
-                            ->orWhere(function ($sub) {
-                                $sub->where('year', $this->getYear())
-                                    ->where('month', $this->getMonth())
-                                    ->where('length', '>', 1);
-                            });
+                        if (!$this->isYearlyLayout()) {
+                            $sub->where('month', $this->getMonth());
+                        }
                     })
-                     ->get() as $event) {
+                    // Or where the event is recurring, or recurring on this month
+                    ->orWhere(function ($sub) {
+                        if ($this->isYearlyLayout()) {
+                            $sub->where('is_recurring', true);
+                        } else {
+                            $sub->where('month', $this->getMonth())
+                                ->where('is_recurring', true);
+                        }
+                    })
+                    // Events from previous month that spills over
+                    ->orWhere(function ($sub) {
+                        list($year, $month) = $this->subMonth($this->getYear(), $this->getMonth());
+                        $sub->where('year', $year)
+                            ->where('month', $month)
+                            ->where('length', '>', 1);
+                    });
+            });
+        foreach ($reminders->get() as $event) {
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
@@ -553,16 +554,17 @@ class CalendarRenderer
 
     /**
      * Add an extra day to a date.
-     * @param $date string
+     * @param string $date
      */
-    protected function addDay($date)
+    protected function addDay(string $date)
     {
         list($year, $month, $day) = $this->splitDate($date);
         $day++;
 
         // Day longer than month?
         $months = $this->calendar->months();
-        if ($day > $months[$month-1]['length']) {
+        $previousMonth = $month > 1 ? $months[$month-1] : last($months);
+        if ($day > $previousMonth['length']) {
             $day = 1;
             $month++;
         }
@@ -577,11 +579,11 @@ class CalendarRenderer
     }
 
     /**
-     * @param $year
-     * @param $month
-     * @return string
+     * @param int $year
+     * @param int $month
+     * @return array
      */
-    protected function subMonth($year, $month)
+    protected function subMonth(int $year, int $month): array
     {
         $months = $this->calendar->months();
         $month--;
@@ -590,7 +592,7 @@ class CalendarRenderer
             $month = count($months);
             $year--;
         }
-        return "$year-$month";
+        return [$year, $month];
     }
 
     /**
