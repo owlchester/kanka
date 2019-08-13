@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'add_appearance'    => 'Add an appearance',
         'add_personality'   => 'Add a personality',
+        'add_organisation' => 'Add an organisation',
     ],
     'conversations' => [
         'description'   => 'Conversations the character is participating in.',

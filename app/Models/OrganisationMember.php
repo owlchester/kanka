@@ -12,8 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class OrganisationMember
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $character_id
  * @property integer $organisation_id
+ * @property string $role
+ * @property bool $is_private
  * @property Character $character
  * @property Organisation $organisation
  */

@@ -5,6 +5,8 @@ namespace App\Observers;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\MiscModel;
+use App\Models\OrganisationMember;
+use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
 {
@@ -16,6 +18,7 @@ class CharacterObserver extends MiscObserver
         parent::crudSaved($model);
         $this->saveTraits($model, 'personality');
         $this->saveTraits($model, 'appearance');
+        $this->saveOrganisations($model);
     }
 
     /**
@@ -57,6 +60,48 @@ class CharacterObserver extends MiscObserver
             $model->save();
             $traitCount++;
             $traitOrder++;
+        }
+
+        foreach ($existing as $id => $model) {
+            $model->delete();
+        }
+    }
+
+    /**
+     * Save a character's organisations
+     * @param MiscModel $character
+     * @throws \Exception
+     */
+    protected function saveOrganisations(MiscModel $character)
+    {
+        /** @var OrganisationMember $org */
+        $existing = [];
+        foreach ($character->organisations as $org) {
+            $existing[$org->id] = $org;
+        }
+
+        $orgCount = 0;
+        $organisations = request()->post('organisations', []);
+        $roles = new Collection(request()->post('organisation_roles', []));
+
+        foreach ($organisations as $id) {
+            if (empty($id)) {
+                continue;
+            }
+
+            if (!empty($existing[$id])) {
+                $model = $existing[$id];
+                unset($existing[$id]);
+            } else {
+                $model = new OrganisationMember();
+                $model->character_id = $character->id;
+            }
+            $model->organisation_id = $id;
+            $model->role = $roles->shift();
+            $model->is_private = false;
+            if ($model->save()) {
+                $orgCount++;
+            }
         }
 
         foreach ($existing as $id => $model) {

@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
+import select2 from './components/select2.js';
 
 /**
  * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
@@ -228,42 +229,7 @@ function initCheckboxSwitch() {
  * Select2 is used for all the fancy dropdowns
  */
 function initSelect2() {
-    if ($('select.select2').length > 0) {
-        $.each($('select.select2'), function (index) {
-            // Check it isn't the select2-icon
-            $(this).select2({
-                //data: newOptions,
-                placeholder: $(this).data('placeholder'),
-                allowClear: true,
-                tags: $(this).is('[data-tags]'),
-                language: $(this).data('language'),
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).data('url'),
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
-
-    // Select2 with local search
-    $('select.select2-local').select2({
-        placeholder: $(this).data('placeholder'),
-        language: $(this).data('language'),
-        allowClear: true
-    });
+    select2();
 }
 
 
