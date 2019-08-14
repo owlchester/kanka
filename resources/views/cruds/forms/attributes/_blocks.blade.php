@@ -3,9 +3,11 @@
     <div class="row attribute_row">
         <div class="col-xs-4">
             <div class="input-group">
-                <span class="input-group-addon hidden-xs hidden-sm">
+                @if ($existing == 0)
+                    <span class="input-group-addon hidden-xs hidden-sm">
                     <span class="fa fa-arrows-alt-v"></span>
                 </span>
+                @endif
                 {!! Form::text('attr_name[]', null, [
                     'placeholder' => __('crud.attributes.placeholders.attribute'),
                     'class' => 'form-control',
@@ -36,9 +38,11 @@
     <div class="row attribute_row">
         <div class="col-xs-4">
             <div class="input-group">
-                <span class="input-group-addon hidden-xs hidden-sm">
+                @if ($existing == 0)
+                    <span class="input-group-addon hidden-xs hidden-sm">
                     <span class="fa fa-arrows-alt-v"></span>
                 </span>
+                @endif
                 {!! Form::text('attr_name[]', null, ['placeholder' => trans('crud.attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>
@@ -67,9 +71,11 @@
     <div class="row attribute_row">
         <div class="col-xs-4">
             <div class="input-group">
-                <span class="input-group-addon hidden-xs hidden-sm">
+                @if ($existing == 0)
+                    <span class="input-group-addon hidden-xs hidden-sm">
                     <span class="fa fa-arrows-alt-v"></span>
                 </span>
+                @endif
                 {!! Form::text('attr_name[]', null, ['placeholder' => trans('crud.attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>
@@ -96,9 +102,11 @@
     <div class="row attribute_row">
         <div class="col-xs-4">
             <div class="input-group">
+                @if ($existing == 0)
                 <span class="input-group-addon hidden-xs hidden-sm">
                     <span class="fa fa-arrows-alt-v"></span>
                 </span>
+                @endif
                 {!! Form::text('attr_name[]', null, ['placeholder' => trans('crud.attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>

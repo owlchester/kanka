@@ -31,7 +31,7 @@ foreach ($attributes as $attribute) {
     <div id="add_attribute_target"></div>
 </div>
 
-@include('cruds.forms.attributes._blocks')
+@include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])
 @include('cruds.forms.attributes._buttons')
 
 @section('scripts')
