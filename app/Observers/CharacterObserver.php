@@ -74,6 +74,12 @@ class CharacterObserver extends MiscObserver
      */
     protected function saveOrganisations(MiscModel $character): void
     {
+        // If the organisations array isn't provided, skip this feature. The crud interface will always provide one,
+        // and the api calls will provide one if necessary.
+        if (!request()->has('organisations')) {
+            return;
+        }
+
         /** @var OrganisationMember $org */
         $existing = [];
         foreach ($character->organisations as $org) {
@@ -85,11 +91,7 @@ class CharacterObserver extends MiscObserver
         $roles = new Collection(request()->post('organisation_roles', []));
         $privates = new Collection(request()->post('organisation_privates', []));
 
-        dump($organisations);
-        dump($roles);
-        dump($privates);
-        //die("?");
-
+        // Prepare roles and permissions that a new (have no id) to properly map them with new organisations
         $newRoles = new Collection();
         foreach ($roles as $id => $role) {
             if (empty($id)) {
@@ -103,9 +105,6 @@ class CharacterObserver extends MiscObserver
                 $newPrivates->push($private);
             }
         }
-
-        dump($newRoles);
-        dump($newPrivates);
 
         foreach ($organisations as $key => $id) {
             if (empty($id)) {

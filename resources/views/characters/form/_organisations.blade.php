@@ -9,6 +9,11 @@ $organisations = isset($model) ?
     $formService->prefillCharacterOrganisation($source);
 $isAdmin = Auth::user()->isAdmin();
 ?>
+<div class="row">
+    <div class="col-xs-5">{{ __('crud.fields.organisation') }}</div>
+    <div class="col-xs-5">{{ __('organisations.members.fields.role') }}</div>
+    <div class="col-xs-1 text-center">{{ __('crud.fields.is_private') }}</div>
+</div>
 <div class="character-organisations">
     @foreach ($organisations as $organisation)
         <div class="form-group">
@@ -34,7 +39,7 @@ $isAdmin = Auth::user()->isAdmin();
                         <i class="fa @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('crud.attributes.visibility.private') }}" data-public="{{ __('crud.attributes.visibility.public') }}"></i>
                     </div>
                 @endif
-                <div class="col-xs-1 text-right">
+                <div class="col-xs-1 text-center">
                     <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -70,11 +75,10 @@ $isAdmin = Auth::user()->isAdmin();
                 <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('crud.attributes.visibility.private') }}" data-public="{{ __('crud.attributes.visibility.public') }}"></i>
             </div>
         @endif
-        <div class="col-xs-1 text-right">
+        <div class="col-xs-1 text-center">
             <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}">
                 <i class="fa fa-trash"></i>
             </span>
         </div>
     </div>
 </div>
-
