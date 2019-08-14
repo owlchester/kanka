@@ -20,9 +20,9 @@
         @if(!isset($ajax))
         {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
         @else
-        <a class="pull-right btn btn-danger delete-confirm"
-            data-toggle="modal" data-name="{{ $model->label() }}"
-            data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}"
+        <a class="pull-right btn btn-default"
+           data-toggle="popover" data-html="true" data-placement="top"
+           data-content="<button name='remove' class='btn btn-full btn-danger map-point-delete' data-url='{{ route('locations.map_points.destroy', [$location, $model]) }}'><i class='fa fa-trash'></i> {{ __('crud.click_modal.confirm') }}</button>"
             title="{{ __('crud.remove') }}"
         >
             <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
@@ -33,7 +33,5 @@
     {!! Form::close() !!}
 
 
-    {!! Form::open(['method' => 'DELETE', 'route' => ['locations.map_points.destroy', 'location' => $location, 'point' => $model],
-    'style '=> 'display:inline', 'id' => 'delete-form-' . $model->id, 'class' => 'map-point-delete-form']) !!}
-    {!! Form::close() !!}
+
 @endsection

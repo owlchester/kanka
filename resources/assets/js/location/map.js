@@ -1,7 +1,6 @@
 /**
  * Map
  */
-import deleteConfirm from '../components/delete-confirm.js';
 
 var mapModal, mapAdmin, locationInput, mapImage, mapImageOriginalWidth;
 var mapPositionX, mapPositionY;
@@ -287,7 +286,7 @@ function loadMapPoint(element) {
         }).done(function (result, textStatus, xhr) {
             if (result) {
                 mapPointModalLoading.hide();
-                mapPointModalBody.html(result);
+                mapPointModalBody.html(result).show();
                 initModalForm();
             }
         }).fail(function (result, textStatus, xhr) {
@@ -386,7 +385,7 @@ function initAddPoints() {
         }).done(function (result, textStatus, xhr) {
             if (result) {
                 mapPointModalLoading.hide();
-                mapPointModalBody.html(result);
+                mapPointModalBody.html(result).show();
                 initModalForm();
             }
         }).fail(function (result, textStatus, xhr) {
@@ -497,7 +496,6 @@ function initModalForm() {
     initSelect2();
     initDeleteMapPoint();
     initIconSelect();
-    deleteConfirm();
 
     var phaseFirst = $('.phase-first');
     var phaseSecond = $('.phase-second');
@@ -569,34 +567,38 @@ function initModalForm() {
 
         e.preventDefault();
     });
+
+    $('[data-toggle="popover"]').popover();
 }
 
 /**
- *
+ * Register an event listener on map point delete button. Since this is in a popover,
+ * we need to register on the document listener rather than the element directly.
  */
 function initDeleteMapPoint() {
-    $('.map-point-delete-form').each(function() {
-        $(this).on('submit', function(e) {
-            var url = $(this).data('url');
-            e.preventDefault();
+    $(document).on('click', '.map-point-delete', function(e) {
+        var url = $(this).data('url');
+        e.preventDefault();
 
-            $.post({
-                url: url,
-                dataType: 'json',
-                data: {
-                    '_method': 'DELETE'
-                },
-                context: this
-            }).done(function (result, textStatus, xhr) {
-                // Hide this
-                if (result.id) {
-                    $('#' + result.id).remove();
-                }
-                mapModal.modal('hide');
-            });
+        mapPointModalBody.hide();
+        mapPointModalLoading.show();
 
-            return false;
+        $.post({
+            url: url,
+            dataType: 'json',
+            data: {
+                '_method': 'DELETE'
+            },
+            context: this
+        }).done(function (result, textStatus, xhr) {
+            // Hide this
+            if (result.id) {
+                $('#' + result.id).remove();
+            }
+            mapModal.modal('hide');
         });
+
+        return false;
     });
 }
 
