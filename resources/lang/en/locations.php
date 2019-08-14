@@ -65,6 +65,7 @@ return [
     'map'           => [
         'actions'   => [
             'admin_mode'    => 'Enable Edit Mode',
+            'confirm_delete' => 'Are you sure you want to delete this map point?',
             'big'           => 'Full View',
             'download'      => 'Download',
             'points'        => 'Edit Points',

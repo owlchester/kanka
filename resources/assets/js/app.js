@@ -195,7 +195,7 @@ function treeViewInit(element) {
     var treeViewLoader = $('#' + element + '-treeview');
     var link = treeViewLoader.data('url');
     $.each($('#' + element + ' > tbody > tr'), function(index) {
-        children = $(this).data('children');
+        var children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {

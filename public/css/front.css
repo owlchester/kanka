@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 @font-face {
   font-family: "simple-line-icons";
   src: url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7);
@@ -968,7 +970,6 @@ body {
 }
 
 header.masthead {
-  background: -webkit-gradient(linear, right top, left top, from(#2e8893), to(#0E2231)) !important;
   background: linear-gradient(to left, #2e8893, #0E2231) !important;
 }
 
@@ -978,7 +979,6 @@ header.reduced-masthead {
 }
 
 .bg-primary {
-  background: -webkit-gradient(linear, left top, left bottom, from(#FFF0BC), to(#FFF0BC)) !important;
   background: linear-gradient(#FFF0BC, #FFF0BC) !important;
 }
 
@@ -987,7 +987,7 @@ header.reduced-masthead {
 }
 
 @font-face {
-  font-family: 'Dubai';
+  font-family: "Dubai";
   src: url(/fonts/DubaiW23-Light.eot?a75686285a131b29bf9fac9a9a5f846f);
   /* IE9 Compat Modes */
   src: url(/fonts/DubaiW23-Light.eot?a75686285a131b29bf9fac9a9a5f846f) format("embedded-opentype"), url(/fonts/DubaiW23-Light.woff2?bdb3096d629602b828bb50b5ee1ae2bc) format("woff2"), url(/fonts/DubaiW23-Light.woff?2bb30124a37076628f8a020fb689aae0) format("woff"), url(/fonts/DubaiW23-Light.ttf?e378285e0e196dd58db1ccd0934992e4) format("truetype");
@@ -1000,11 +1000,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+  font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
 }
 
 #mainNav .navbar-brand {
-  font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+  font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
 }
 
 section.contact ul.list-social li.social-discord a {
@@ -1078,7 +1078,6 @@ footer a {
 
 footer p:hover,
 footer a:hover {
-  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.4);
   text-decoration: none;
@@ -1120,9 +1119,7 @@ footer .footer-social a:hover {
 }
 
 .campaign:hover {
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  -webkit-transition: all 0.15s ease;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: all 0.15s ease;
   text-decoration: none;
   color: #c09853;
@@ -1142,9 +1139,7 @@ ul.pagination li a {
 }
 
 ul.pagination li a:hover {
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  -webkit-transition: all 0.15s ease;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: all 0.15s ease;
 }
 
@@ -1159,7 +1154,7 @@ ul.pagination li span {
 
 .label {
   display: inline;
-  padding: .2em .5em .3em;
+  padding: 0.2em 0.5em 0.3em;
   font-size: 50%;
   font-weight: bold;
   line-height: 1;
@@ -1167,7 +1162,7 @@ ul.pagination li span {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: .25em;
+  border-radius: 0.25em;
 }
 
 .label-default {
@@ -1202,8 +1197,7 @@ ul.pagination li span {
 .register-page .login-box .register-box-body,
 .register-page .register-box .login-box-body,
 .register-page .register-box .register-box-body {
-  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
