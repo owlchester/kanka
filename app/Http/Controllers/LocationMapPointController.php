@@ -182,6 +182,7 @@ class LocationMapPointController extends Controller
     {
         $this->authorize('update', $location);
 
+        dd('yo');
         $mapPoint->delete();
 
         if (request()->ajax()) {

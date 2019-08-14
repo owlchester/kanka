@@ -86,16 +86,82 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./resources/assets/js/components/delete-confirm.js":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/components/delete-confirm.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return deleteConfirm; });
+function deleteConfirm() {
+  // Delete confirm dialog
+  $.each($('.delete-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $('#delete-confirm-name').text(name);
+      }
+
+      if ($(this).data('mirrored')) {
+        $('#delete-confirm-mirror').show();
+      } else {
+        $('#delete-confirm-mirror').hide();
+      }
+
+      if (target) {
+        $('#delete-confirm-submit').data('target', target);
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('#delete-confirm-submit'), function (index) {
+    $(this).unbind('click');
+    $(this).click(function (e) {
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0);
+        console.log('target', target, $('#' + target));
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/location/map.js":
 /*!*********************************************!*\
   !*** ./resources/assets/js/location/map.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/delete-confirm.js */ "./resources/assets/js/components/delete-confirm.js");
 /**
  * Map
  */
+
 var mapModal, mapAdmin, locationInput, mapImage, mapImageOriginalWidth;
 var mapPositionX, mapPositionY;
 var mapZoomIn, mapZoomOut, mapZoomReset;
@@ -105,7 +171,7 @@ var mapZoomValue = 100,
 var mapDraggable,
     mapIsMoving = false,
     mapPointIsMoving = false;
-var mapPointModalBody;
+var mapPointModalBody, mapPointModalLoading;
 var mapMouseX, mapMouseY; // V2
 
 var mapElement, mapPanel, mapPanelTarget, mapPanelLoader;
@@ -129,6 +195,7 @@ $(document).ready(function () {
   mapToggleHide = $('#map-toggle-hide');
   mapToggleShow = $('#map-toggle-show');
   mapPointModalBody = $('#map-point-body');
+  mapPointModalLoading = $('.modal-loading');
   mapDraggable = $('#draggable-map');
   mapAdminMode = $('#map-admin-mode');
   mapViewMode = $('#map-view-mode');
@@ -261,7 +328,7 @@ function mapZoom(change) {
   mapZoomOut.removeAttr('disabled');
   mapZoomIn.removeAttr('disabled');
   mapZoomValue = newZoom;
-  magnifier = mapZoomValue / 100;
+  var magnifier = mapZoomValue / 100;
   mapImage.width(mapImageOriginalWidth * magnifier);
 
   if (change > 0) {
@@ -361,13 +428,14 @@ function loadMapPoint(element) {
 
 
   if (mapAdminModeActivated) {
+    showLoadingModal();
     $.ajax({
       url: element.data('url-modal')
     }).done(function (result, textStatus, xhr) {
       if (result) {
+        mapPointModalLoading.hide();
         mapPointModalBody.html(result);
         initModalForm();
-        mapModal.modal();
       }
     }).fail(function (result, textStatus, xhr) {
       console.log('map point error', result);
@@ -434,6 +502,7 @@ function initAddPoints() {
       return;
     }
 
+    showLoadingModal();
     var offset = $(this).offset();
     mapPositionX = e.pageX - offset.left - 25;
     mapPositionY = e.pageY - offset.top - 25; // Don't allow negative positions
@@ -447,21 +516,31 @@ function initAddPoints() {
     } // Need to adapt the map position to the magnifier to know where we really are.
 
 
-    magnifier = mapZoomValue / 100;
+    var magnifier = mapZoomValue / 100;
     mapPositionY = parseInt(mapPositionY) / magnifier;
     mapPositionX = parseInt(mapPositionX) / magnifier;
     $.ajax({
       url: $(this).data('url') + '?axis_y=' + parseInt(mapPositionY) + '&axis_x=' + parseInt(mapPositionX)
     }).done(function (result, textStatus, xhr) {
       if (result) {
+        mapPointModalLoading.hide();
         mapPointModalBody.html(result);
         initModalForm();
-        mapModal.modal();
       }
     }).fail(function (result, textStatus, xhr) {
       console.log('map point error', result);
     });
   });
+}
+/**
+ * Show the modal in a loading state
+ */
+
+
+function showLoadingModal() {
+  mapPointModalLoading.show();
+  mapPointModalBody.html('');
+  mapModal.modal();
 }
 /**
  *
@@ -509,7 +588,7 @@ function addPointMove(point) {
     start: function start(event, ui) {
       //console.log('start moving point');
       mapPointIsMoving = true;
-      target = $(event.target);
+      var target = $(event.target);
       target.addClass('point-moving');
     },
     stop: function stop(event, ui) {
@@ -519,7 +598,7 @@ function addPointMove(point) {
       mapPositionX = ui.position.left;
       mapPositionY = ui.position.top; // Recalculate position based on zoom
 
-      magnifier = mapZoomValue / 100;
+      var magnifier = mapZoomValue / 100;
       mapPositionX = mapPositionX / magnifier;
       mapPositionY = mapPositionY / magnifier;
       data = {
@@ -550,6 +629,7 @@ function initModalForm() {
   initSelect2();
   initDeleteMapPoint();
   initIconSelect();
+  Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
   var phaseFirst = $('.phase-first');
   var phaseSecond = $('.phase-second');
   var pointSave = $('.point-save');
@@ -599,9 +679,9 @@ function initModalForm() {
         $('.map-container').append(data.point);
         initPointClick(); // Make the new point movable and add tooltip
 
-        newPoint = $('#' + data.id);
+        var newPoint = $('#' + data.id);
         addPointMove(newPoint);
-        magnifier = mapZoomValue / 100;
+        var magnifier = mapZoomValue / 100;
         repositionPoint(newPoint, magnifier);
         newPoint.tooltip();
       }
@@ -621,9 +701,9 @@ function initModalForm() {
 
 
 function initDeleteMapPoint() {
-  $('.map-point-delete').each(function () {
-    $(this).click(function (e) {
-      url = $(this).data('url');
+  $('.map-point-delete-form').each(function () {
+    $(this).on('submit', function (e) {
+      var url = $(this).data('url');
       e.preventDefault();
       $.post({
         url: url,
@@ -693,7 +773,7 @@ function repositionPoint(point, magnifier) {
   point.css('width', point.data('size') * magnifier + 'px');
   point.css('height', point.data('size') * magnifier + 'px'); //$(this).css('border-radius', (25 * magnifier)+ 'px');
 
-  fontSize = 24;
+  var fontSize = 24;
 
   if (point.data('size') === 10) {
     fontSize = 5;

@@ -52240,12 +52240,14 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
+/* harmony import */ var _components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/delete-confirm.js */ "./resources/assets/js/components/delete-confirm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
+
 
 
 /**
@@ -52386,52 +52388,8 @@ $(document).ready(function () {
             window.location.href =
       });
   });*/
-  // Delete confirm dialog
 
-  $.each($('.delete-confirm'), function (index) {
-    $(this).click(function (e) {
-      var name = $(this).data('name');
-      var text = $(this).data('text');
-      var target = $(this).data('delete-target');
-
-      if (text) {
-        $('#delete-confirm-text').text(text);
-      } else {
-        $('#delete-confirm-name').text(name);
-      }
-
-      if ($(this).data('mirrored')) {
-        $('#delete-confirm-mirror').show();
-      } else {
-        $('#delete-confirm-mirror').hide();
-      }
-
-      if (target) {
-        $('#delete-confirm-submit').data('target', target);
-      }
-    });
-  }); // Submit modal form
-
-  $.each($('#delete-confirm-submit'), function (index) {
-    $(this).click(function (e) {
-      var target = $(this).data('target');
-
-      if (target) {
-        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0);
-        $('#' + target).submit();
-      } else {
-        $('#delete-confirm-form').submit();
-      }
-    });
-  }); // Delete confirm dialog
-
-  $.each($('.click-confirm'), function (index) {
-    $(this).click(function (e) {
-      var name = $(this).data('message');
-      $('#click-confirm-text').text(name);
-      $('#click-confirm-url').attr('href', $(this).data('url'));
-    });
-  });
+  Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
   initTogglePasswordFields();
   initAjaxPagination();
   initNotifications();
@@ -52968,6 +52926,68 @@ function initCalendarEventModal() {
     $('.calendar-existing-event-field').show();
     $('.calendar-new-event-field').show();
     $('#calendar-event-submit').toggle();
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/delete-confirm.js":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/components/delete-confirm.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return deleteConfirm; });
+function deleteConfirm() {
+  // Delete confirm dialog
+  $.each($('.delete-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $('#delete-confirm-name').text(name);
+      }
+
+      if ($(this).data('mirrored')) {
+        $('#delete-confirm-mirror').show();
+      } else {
+        $('#delete-confirm-mirror').hide();
+      }
+
+      if (target) {
+        $('#delete-confirm-submit').data('target', target);
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('#delete-confirm-submit'), function (index) {
+    $(this).unbind('click');
+    $(this).click(function (e) {
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0);
+        console.log('target', target, $('#' + target));
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
   });
 }
 

@@ -4,7 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
+
 import select2 from './components/select2.js';
+import deleteConfirm from './components/delete-confirm.js';
 
 /**
  * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
@@ -149,54 +151,7 @@ $(document).ready(function() {
         });
     });*/
 
-    // Delete confirm dialog
-    $.each($('.delete-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('name');
-            var text = $(this).data('text');
-            var target = $(this).data('delete-target');
-            if (text) {
-                $('#delete-confirm-text').text(text);
-            } else {
-                $('#delete-confirm-name').text(name);
-            }
-
-            if ($(this).data('mirrored')) {
-                $('#delete-confirm-mirror').show();
-            } else {
-                $('#delete-confirm-mirror').hide();
-            }
-
-            if (target) {
-                $('#delete-confirm-submit').data('target', target);
-            }
-        });
-    });
-
-    // Submit modal form
-    $.each($('#delete-confirm-submit'), function (index) {
-        $(this).click(function (e) {
-            var target = $(this).data('target');
-            if (target) {
-                $('#' + target + ' input[name=remove_mirrored]').val(
-                    $('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0
-                );
-                $('#' + target).submit();
-            } else {
-                $('#delete-confirm-form').submit();
-            }
-        })
-    });
-
-    // Delete confirm dialog
-    $.each($('.click-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('message');
-            $('#click-confirm-text').text(name);
-            $('#click-confirm-url').attr('href', $(this).data('url'));
-        });
-    });
-
+    deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
     initNotifications();

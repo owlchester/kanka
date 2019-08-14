@@ -1,13 +1,15 @@
 /**
  * Map
  */
+import deleteConfirm from '../components/delete-confirm.js';
+
 var mapModal, mapAdmin, locationInput, mapImage, mapImageOriginalWidth;
 var mapPositionX, mapPositionY;
 var mapZoomIn, mapZoomOut, mapZoomReset;
 var mapToggleShow, mapToggleHide;
 var mapZoomValue = 100, mapZoomIncrements = 0;
 var mapDraggable, mapIsMoving = false, mapPointIsMoving = false;
-var mapPointModalBody;
+var mapPointModalBody, mapPointModalLoading;
 var mapMouseX, mapMouseY;
 
 // V2
@@ -33,6 +35,7 @@ $(document).ready(function() {
     mapToggleShow = $('#map-toggle-show');
 
     mapPointModalBody = $('#map-point-body');
+    mapPointModalLoading = $('.modal-loading');
     mapDraggable = $('#draggable-map');
 
     mapAdminMode = $('#map-admin-mode');
@@ -174,7 +177,7 @@ function mapZoom(change) {
     mapZoomIn.removeAttr('disabled');
     mapZoomValue = newZoom;
 
-    magnifier = (mapZoomValue / 100);
+    var magnifier = (mapZoomValue / 100);
     mapImage.width(mapImageOriginalWidth * magnifier);
 
     if (change > 0) {
@@ -277,13 +280,15 @@ function loadMapPoint(element) {
 
     // Admin mode? Load the form modal
     if (mapAdminModeActivated) {
+        showLoadingModal();
+
         $.ajax({
             url: element.data('url-modal')
         }).done(function (result, textStatus, xhr) {
             if (result) {
+                mapPointModalLoading.hide();
                 mapPointModalBody.html(result);
                 initModalForm();
-                mapModal.modal();
             }
         }).fail(function (result, textStatus, xhr) {
             console.log('map point error', result);
@@ -357,6 +362,8 @@ function initAddPoints() {
             return;
         }
 
+        showLoadingModal();
+
         var offset = $(this).offset();
         mapPositionX = e.pageX - offset.left - 25;
         mapPositionY = e.pageY - offset.top - 25;
@@ -370,7 +377,7 @@ function initAddPoints() {
         }
 
         // Need to adapt the map position to the magnifier to know where we really are.
-        magnifier = (mapZoomValue / 100);
+        var magnifier = (mapZoomValue / 100);
         mapPositionY = parseInt(mapPositionY) / magnifier;
         mapPositionX = parseInt(mapPositionX) / magnifier;
 
@@ -378,14 +385,23 @@ function initAddPoints() {
             url: $(this).data('url') + '?axis_y=' + parseInt(mapPositionY) + '&axis_x=' + parseInt(mapPositionX)
         }).done(function (result, textStatus, xhr) {
             if (result) {
+                mapPointModalLoading.hide();
                 mapPointModalBody.html(result);
                 initModalForm();
-                mapModal.modal();
             }
         }).fail(function (result, textStatus, xhr) {
             console.log('map point error', result);
         });
     });
+}
+
+/**
+ * Show the modal in a loading state
+ */
+function showLoadingModal() {
+    mapPointModalLoading.show();
+    mapPointModalBody.html('');
+    mapModal.modal();
 }
 
 /**
@@ -428,7 +444,7 @@ function addPointMove(point) {
             //console.log('start moving point');
             mapPointIsMoving = true;
 
-            target = $(event.target);
+            var target = $(event.target);
             target.addClass('point-moving');
         },
         stop: function (event, ui) {
@@ -440,7 +456,7 @@ function addPointMove(point) {
             mapPositionY = ui.position.top;
 
             // Recalculate position based on zoom
-            magnifier = (mapZoomValue / 100);
+            var magnifier = (mapZoomValue / 100);
             mapPositionX = mapPositionX / magnifier;
             mapPositionY = mapPositionY / magnifier;
 
@@ -481,6 +497,7 @@ function initModalForm() {
     initSelect2();
     initDeleteMapPoint();
     initIconSelect();
+    deleteConfirm();
 
     var phaseFirst = $('.phase-first');
     var phaseSecond = $('.phase-second');
@@ -535,15 +552,14 @@ function initModalForm() {
                 initPointClick();
 
                 // Make the new point movable and add tooltip
-                newPoint = $('#' + data.id);
+                var newPoint = $('#' + data.id);
                 addPointMove(newPoint);
 
-                magnifier = (mapZoomValue / 100);
+                var magnifier = (mapZoomValue / 100);
                 repositionPoint(newPoint, magnifier);
 
                 newPoint.tooltip();
             }
-
         }).fail(function (data) {
             console.log('fail', data);
             if (data.responseJSON.errors) {
@@ -559,9 +575,9 @@ function initModalForm() {
  *
  */
 function initDeleteMapPoint() {
-    $('.map-point-delete').each(function() {
-        $(this).click(function(e) {
-            url = $(this).data('url');
+    $('.map-point-delete-form').each(function() {
+        $(this).on('submit', function(e) {
+            var url = $(this).data('url');
             e.preventDefault();
 
             $.post({
@@ -629,7 +645,7 @@ function repositionPoint(point, magnifier) {
     point.css('height', (point.data('size')  * magnifier)+ 'px');
     //$(this).css('border-radius', (25 * magnifier)+ 'px');
 
-    fontSize = 24;
+    var fontSize = 24;
     if (point.data('size') === 10) {
         fontSize = 5;
     } else if (point.data('size') === 25) {
