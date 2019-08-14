@@ -36,12 +36,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -57,7 +77,8 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
+/******/
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 9);
@@ -66,6 +87,10 @@
 /******/ ({
 
 /***/ "./resources/assets/js/dashboard.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/dashboard.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /**
@@ -73,184 +98,173 @@
  */
 var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
 var btnWidgetPreview, btnWidgetCalendar, btnWidgetRecent;
-
 var btnAddWidget;
 var modalContentButtons, modalContentTarget, modalContentSpinner;
-
 $(document).ready(function () {
+  $('.preview-switch').click(function (e) {
+    e.preventDefault();
+    var preview = $('#widget-preview-body-' + $(this).data('widget'));
 
-    $('.preview-switch').click(function (e) {
-        e.preventDefault();
-
-        var preview = $('#widget-preview-body-' + $(this).data('widget'));
-        if (preview.hasClass('preview')) {
-            preview.removeClass('preview').addClass('full');
-            $(this).html('<i class="fa fa-chevron-up"></i>');
-        } else {
-            preview.removeClass('full').addClass('preview');
-            $(this).html('<i class="fa fa-chevron-down"></i>');
-        }
-    });
-
-    $.each($('[data-toggle="preview"]'), function (i) {
-        // If we are exactly the height of 200, some content is hidden
-        if ($(this).height() === 200) {
-            $(this).next().removeClass('hidden');
-        } else {
-            $(this).removeClass('pinned-entity preview');
-        }
-    });
-
-    $.each($('[data-dismiss="alert"]'), function (i) {
-        $(this).click(function (e) {
-            $.post({
-                url: $(this).data('url'),
-                method: 'POST'
-            }).done(function (data) {});
-        });
-    });
-
-    // Ajax requests
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    if ($('.campaign-dashboard-widgets').length === 1) {
-        initDashboardAdminUI();
+    if (preview.hasClass('preview')) {
+      preview.removeClass('preview').addClass('full');
+      $(this).html('<i class="fa fa-chevron-up"></i>');
+    } else {
+      preview.removeClass('full').addClass('preview');
+      $(this).html('<i class="fa fa-chevron-down"></i>');
     }
+  });
+  $.each($('[data-toggle="preview"]'), function (i) {
+    // If we are exactly the height of 200, some content is hidden
+    if ($(this).height() === 200) {
+      $(this).next().removeClass('hidden');
+    } else {
+      $(this).removeClass('pinned-entity preview');
+    }
+  });
+  $.each($('[data-dismiss="alert"]'), function (i) {
+    $(this).click(function (e) {
+      $.post({
+        url: $(this).data('url'),
+        method: 'POST'
+      }).done(function (data) {});
+    });
+  }); // Ajax requests
 
-    initDashboardRecent();
-    initDashboardCalendars();
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  if ($('.campaign-dashboard-widgets').length === 1) {
+    initDashboardAdminUI();
+  }
+
+  initDashboardRecent();
+  initDashboardCalendars();
 });
-
 /**
  *
  */
+
 function initDashboardAdminUI() {
-    newWidget = $('#new-widget');
-    newWidgetPreview = $('#new-widget-preview');
-    newWidgetCalendar = $('#new-widget-calendar');
-    newWidgetRecent = $('#new-widget-recent');
+  newWidget = $('#new-widget');
+  newWidgetPreview = $('#new-widget-preview');
+  newWidgetCalendar = $('#new-widget-calendar');
+  newWidgetRecent = $('#new-widget-recent');
+  btnWidgetPreview = $('#btn-widget-preview');
+  btnWidgetCalendar = $('#btn-widget-calendar');
+  btnWidgetRecent = $('#btn-widget-recent');
+  btnAddWidget = $('#btn-add-widget');
+  modalContentButtons = $('#modal-content-buttons');
+  modalContentTarget = $('#modal-content-target');
+  modalContentSpinner = $('#modal-content-spinner');
+  $('.btn-lg').click(function (e) {
+    loadModalForm($(this).data('url'));
+  }); // Reset the modal
 
-    btnWidgetPreview = $('#btn-widget-preview');
-    btnWidgetCalendar = $('#btn-widget-calendar');
-    btnWidgetRecent = $('#btn-widget-recent');
-
-    btnAddWidget = $('#btn-add-widget');
-    modalContentButtons = $('#modal-content-buttons');
-    modalContentTarget = $('#modal-content-target');
-    modalContentSpinner = $('#modal-content-spinner');
-
-    $('.btn-lg').click(function (e) {
-        loadModalForm($(this).data('url'));
-    });
-
-    // Reset the modal
-    btnAddWidget.click(function (e) {
-        modalContentSpinner.hide();
-        modalContentTarget.html('');
-        modalContentButtons.show();
-    });
-
-    $('#widgets').sortable({
-        items: '.widget-draggable',
-        stop: function stop(event, ui) {
-            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-            $.post({
-                url: $('#widgets').data('url'),
-                dataType: 'json',
-                data: $('input[name="widgets[]"]').serialize()
-            }).done(function (data) {});
-        }
-    });
-    //$('#widgets').disableSelection();
+  btnAddWidget.click(function (e) {
+    modalContentSpinner.hide();
+    modalContentTarget.html('');
+    modalContentButtons.show();
+  });
+  $('#widgets').sortable({
+    items: '.widget-draggable',
+    stop: function stop(event, ui) {
+      // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+      $.post({
+        url: $('#widgets').data('url'),
+        dataType: 'json',
+        data: $('input[name="widgets[]"]').serialize()
+      }).done(function (data) {});
+    }
+  }); //$('#widgets').disableSelection();
 }
-
 /**
  * Load widget subform in modal
  * @param url
  */
+
+
 function loadModalForm(url) {
-    modalContentButtons.fadeOut(400, function () {
-        modalContentSpinner.fadeIn();
-    });
-
-    $.ajax(url).done(function (data) {
-        modalContentSpinner.hide();
-        modalContentTarget.html(data);
-
-        window.initSelect2();
-    });
+  modalContentButtons.fadeOut(400, function () {
+    modalContentSpinner.fadeIn();
+  });
+  $.ajax(url).done(function (data) {
+    modalContentSpinner.hide();
+    modalContentTarget.html(data);
+    window.initSelect2();
+  });
 }
-
 /**
  *
  */
+
+
 function initDashboardRecent() {
-    $('.widget-recent-more').click(function (e) {
-        e.preventDefault();
-        $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+  $('.widget-recent-more').click(function (e) {
+    e.preventDefault();
+    $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+    $.ajax({
+      url: $(this).data('url'),
+      context: this
+    }).done(function (data) {
+      $(this).closest('.widget-recent-body').append(data);
+      $(this).remove();
+      initDashboardRecent(); // Reload tooltips
+      // Inject the isMobile variable into the window. We don't want ALL of the javascript
+      // for mobiles, namely the tooltip tool.
 
-        $.ajax({
-            url: $(this).data('url'),
-            context: this
-        }).done(function (data) {
-            $(this).closest('.widget-recent-body').append(data);
-            $(this).remove();
-            initDashboardRecent();
+      window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
 
-            // Reload tooltips
-            // Inject the isMobile variable into the window. We don't want ALL of the javascript
-            // for mobiles, namely the tooltip tool.
-            window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-            if (!window.kankaIsMobile.matches) {
-                $('[data-toggle="tooltip"]').tooltip();
-            }
-        });
+      if (!window.kankaIsMobile.matches) {
+        $('[data-toggle="tooltip"]').tooltip();
+      }
     });
+  });
 }
-
 /**
  *
  */
+
+
 function initDashboardCalendars() {
-    $('.widget-calendar-switch').click(function (e) {
-        console.log('click calendar switch');
-        var url = $(this).data('url'),
-            widget = $(this).data('widget');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('#widget-date-' + widget).addClass('hidden');
-        $('#widget-loading-' + widget).removeClass('hidden').siblings('.row').addClass('hidden');
-
-        $.ajax({
-            url: url,
-            method: 'POST',
-            context: this
-        }).done(function (data) {
-            if (data) {
-                // Redirect page
-                var widget = $(this).data('widget');
-                $('#widget-body-' + widget).html(data);
-                initDashboardCalendars();
-            }
-        });
+  $('.widget-calendar-switch').click(function (e) {
+    console.log('click calendar switch');
+    var url = $(this).data('url'),
+        widget = $(this).data('widget');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
+    $('#widget-date-' + widget).addClass('hidden');
+    $('#widget-loading-' + widget).removeClass('hidden').siblings('.row').addClass('hidden');
+    $.ajax({
+      url: url,
+      method: 'POST',
+      context: this
+    }).done(function (data) {
+      if (data) {
+        // Redirect page
+        var widget = $(this).data('widget');
+        $('#widget-body-' + widget).html(data);
+        initDashboardCalendars();
+      }
+    });
+  });
 }
 
 /***/ }),
 
 /***/ 9:
+/*!*********************************************!*\
+  !*** multi ./resources/assets/js/dashboard ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/dashboard.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\dashboard */"./resources/assets/js/dashboard.js");
 
 
 /***/ })

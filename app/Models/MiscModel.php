@@ -17,6 +17,7 @@ use Exception;
  * Class MiscModel
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $campaign_id
  * @property string $name
  * @property string $slug

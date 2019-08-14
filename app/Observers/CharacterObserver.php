@@ -72,7 +72,7 @@ class CharacterObserver extends MiscObserver
      * @param MiscModel $character
      * @throws \Exception
      */
-    protected function saveOrganisations(MiscModel $character)
+    protected function saveOrganisations(MiscModel $character): void
     {
         /** @var OrganisationMember $org */
         $existing = [];
@@ -83,8 +83,31 @@ class CharacterObserver extends MiscObserver
         $orgCount = 0;
         $organisations = request()->post('organisations', []);
         $roles = new Collection(request()->post('organisation_roles', []));
+        $privates = new Collection(request()->post('organisation_privates', []));
 
-        foreach ($organisations as $id) {
+        dump($organisations);
+        dump($roles);
+        dump($privates);
+        //die("?");
+
+        $newRoles = new Collection();
+        foreach ($roles as $id => $role) {
+            if (empty($id)) {
+                $newRoles->push($role);
+            }
+        }
+
+        $newPrivates = new Collection();
+        foreach ($privates as $id => $private) {
+            if (empty($id)) {
+                $newPrivates->push($private);
+            }
+        }
+
+        dump($newRoles);
+        dump($newPrivates);
+
+        foreach ($organisations as $key => $id) {
             if (empty($id)) {
                 continue;
             }
@@ -97,8 +120,8 @@ class CharacterObserver extends MiscObserver
                 $model->character_id = $character->id;
             }
             $model->organisation_id = $id;
-            $model->role = $roles->shift();
-            $model->is_private = false;
+            $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
+            $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
             if ($model->save()) {
                 $orgCount++;
             }

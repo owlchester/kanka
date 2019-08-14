@@ -36,12 +36,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -57,7 +77,8 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
+/******/
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -66,6 +87,10 @@
 /******/ ({
 
 /***/ "./node_modules/admin-lte/dist/js/adminlte.min.js":
+/*!********************************************************!*\
+  !*** ./node_modules/admin-lte/dist/js/adminlte.min.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*! AdminLTE app.js
@@ -74,37 +99,43 @@
 * should be included in all pages. It controls some layout
 * options and implements exclusive AdminLTE plugins.
 *
-* @Author  Almsaeed Studio
-* @Support <https://www.almsaeedstudio.com>
-* @Email   <abdullah@almsaeedstudio.com>
-* @version 2.4.8
-* @repository git://github.com/almasaeed2010/AdminLTE.git
+* @author Colorlib
+* @support <https://github.com/ColorlibHQ/AdminLTE/issues>
+* @version 2.4.12
+* @repository git://github.com/ColorlibHQ/AdminLTE.git
 * @license MIT <http://opensource.org/licenses/MIT>
 */
-if("undefined"==typeof jQuery)throw new Error("AdminLTE requires jQuery");+function(a){"use strict";function b(b){return this.each(function(){var e=a(this),g=e.data(c);if(!g){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,g=new f(e,h))}if("string"==typeof g){if(void 0===g[b])throw new Error("No method named "+b);g[b]()}})}var c="lte.boxrefresh",d={source:"",params:{},trigger:".refresh-btn",content:".box-body",loadInContent:!0,responseType:"",overlayTemplate:'<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',onLoadStart:function(){},onLoadDone:function(a){return a}},e={data:'[data-widget="box-refresh"]'},f=function(b,c){if(this.element=b,this.options=c,this.$overlay=a(c.overlay),""===c.source)throw new Error("Source url was not defined. Please specify a url in your BoxRefresh source option.");this._setUpListeners(),this.load()};f.prototype.load=function(){this._addOverlay(),this.options.onLoadStart.call(a(this)),a.get(this.options.source,this.options.params,function(b){this.options.loadInContent&&a(this.options.content).html(b),this.options.onLoadDone.call(a(this),b),this._removeOverlay()}.bind(this),""!==this.options.responseType&&this.options.responseType)},f.prototype._setUpListeners=function(){a(this.element).on("click",e.trigger,function(a){a&&a.preventDefault(),this.load()}.bind(this))},f.prototype._addOverlay=function(){a(this.element).append(this.$overlay)},f.prototype._removeOverlay=function(){a(this.element).remove(this.$overlay)};var g=a.fn.boxRefresh;a.fn.boxRefresh=b,a.fn.boxRefresh.Constructor=f,a.fn.boxRefresh.noConflict=function(){return a.fn.boxRefresh=g,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.boxwidget",d={animationSpeed:500,collapseTrigger:'[data-widget="collapse"]',removeTrigger:'[data-widget="remove"]',collapseIcon:"fa-minus",expandIcon:"fa-plus",removeIcon:"fa-times"},e={data:".box",collapsed:".collapsed-box",header:".box-header",body:".box-body",footer:".box-footer",tools:".box-tools"},f={collapsed:"collapsed-box"},g={collapsed:"collapsed.boxwidget",expanded:"expanded.boxwidget",removed:"removed.boxwidget"},h=function(a,b){this.element=a,this.options=b,this._setUpListeners()};h.prototype.toggle=function(){a(this.element).is(e.collapsed)?this.expand():this.collapse()},h.prototype.expand=function(){var b=a.Event(g.expanded),c=this.options.collapseIcon,d=this.options.expandIcon;a(this.element).removeClass(f.collapsed),a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+d).removeClass(d).addClass(c),a(this.element).children(e.body+", "+e.footer).slideDown(this.options.animationSpeed,function(){a(this.element).trigger(b)}.bind(this))},h.prototype.collapse=function(){var b=a.Event(g.collapsed),c=this.options.collapseIcon,d=this.options.expandIcon;a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+c).removeClass(c).addClass(d),a(this.element).children(e.body+", "+e.footer).slideUp(this.options.animationSpeed,function(){a(this.element).addClass(f.collapsed),a(this.element).trigger(b)}.bind(this))},h.prototype.remove=function(){var b=a.Event(g.removed);a(this.element).slideUp(this.options.animationSpeed,function(){a(this.element).trigger(b),a(this.element).remove()}.bind(this))},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.collapseTrigger,function(c){return c&&c.preventDefault(),b.toggle(a(this)),!1}),a(this.element).on("click",this.options.removeTrigger,function(c){return c&&c.preventDefault(),b.remove(a(this)),!1})};var i=a.fn.boxWidget;a.fn.boxWidget=b,a.fn.boxWidget.Constructor=h,a.fn.boxWidget.noConflict=function(){return a.fn.boxWidget=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}"string"==typeof b&&f.toggle()})}var c="lte.controlsidebar",d={slide:!0},e={sidebar:".control-sidebar",data:'[data-toggle="control-sidebar"]',open:".control-sidebar-open",bg:".control-sidebar-bg",wrapper:".wrapper",content:".content-wrapper",boxed:".layout-boxed"},f={open:"control-sidebar-open",fixed:"fixed"},g={collapsed:"collapsed.controlsidebar",expanded:"expanded.controlsidebar"},h=function(a,b){this.element=a,this.options=b,this.hasBindedResize=!1,this.init()};h.prototype.init=function(){a(this.element).is(e.data)||a(this).on("click",this.toggle),this.fix(),a(window).resize(function(){this.fix()}.bind(this))},h.prototype.toggle=function(b){b&&b.preventDefault(),this.fix(),a(e.sidebar).is(e.open)||a("body").is(e.open)?this.collapse():this.expand()},h.prototype.expand=function(){this.options.slide?a(e.sidebar).addClass(f.open):a("body").addClass(f.open),a(this.element).trigger(a.Event(g.expanded))},h.prototype.collapse=function(){a("body, "+e.sidebar).removeClass(f.open),a(this.element).trigger(a.Event(g.collapsed))},h.prototype.fix=function(){a("body").is(e.boxed)&&this._fixForBoxed(a(e.bg))},h.prototype._fixForBoxed=function(b){b.css({position:"absolute",height:a(e.wrapper).height()})};var i=a.fn.controlSidebar;a.fn.controlSidebar=b,a.fn.controlSidebar.Constructor=h,a.fn.controlSidebar.noConflict=function(){return a.fn.controlSidebar=i,this},a(document).on("click",e.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var d=a(this),e=d.data(c);e||d.data(c,e=new f(d)),"string"==typeof b&&e.toggle(d)})}var c="lte.directchat",d={data:'[data-widget="chat-pane-toggle"]',box:".direct-chat"},e={open:"direct-chat-contacts-open"},f=function(a){this.element=a};f.prototype.toggle=function(a){a.parents(d.box).first().toggleClass(e.open)};var g=a.fn.directChat;a.fn.directChat=b,a.fn.directChat.Constructor=f,a.fn.directChat.noConflict=function(){return a.fn.directChat=g,this},a(document).on("click",d.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(h))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.layout",d={slimscroll:!0,resetHeight:!0},e={wrapper:".wrapper",contentWrapper:".content-wrapper",layoutBoxed:".layout-boxed",mainFooter:".main-footer",mainHeader:".main-header",sidebar:".sidebar",controlSidebar:".control-sidebar",fixed:".fixed",sidebarMenu:".sidebar-menu",logo:".main-header .logo"},f={fixed:"fixed",holdTransition:"hold-transition"},g=function(a){this.options=a,this.bindedResize=!1,this.activate()};g.prototype.activate=function(){this.fix(),this.fixSidebar(),a("body").removeClass(f.holdTransition),this.options.resetHeight&&a("body, html, "+e.wrapper).css({height:"auto","min-height":"100%"}),this.bindedResize||(a(window).resize(function(){this.fix(),this.fixSidebar(),a(e.logo+", "+e.sidebar).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){this.fix(),this.fixSidebar()}.bind(this))}.bind(this)),this.bindedResize=!0),a(e.sidebarMenu).on("expanded.tree",function(){this.fix(),this.fixSidebar()}.bind(this)),a(e.sidebarMenu).on("collapsed.tree",function(){this.fix(),this.fixSidebar()}.bind(this))},g.prototype.fix=function(){a(e.layoutBoxed+" > "+e.wrapper).css("overflow","hidden");var b=a(e.mainFooter).outerHeight()||0,c=a(e.mainHeader).outerHeight()||0,d=c+b,g=a(window).height(),h=a(e.sidebar).height()||0;if(a("body").hasClass(f.fixed))a(e.contentWrapper).css("min-height",g-b);else{var i;g>=h?(a(e.contentWrapper).css("min-height",g-d),i=g-d):(a(e.contentWrapper).css("min-height",h),i=h);var j=a(e.controlSidebar);void 0!==j&&j.height()>i&&a(e.contentWrapper).css("min-height",j.height())}},g.prototype.fixSidebar=function(){if(!a("body").hasClass(f.fixed))return void(void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({destroy:!0}).height("auto"));this.options.slimscroll&&void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({height:a(window).height()-a(e.mainHeader).height()+"px"})};var h=a.fn.layout;a.fn.layout=b,a.fn.layout.Constuctor=g,a.fn.layout.noConflict=function(){return a.fn.layout=h,this},a(window).on("load",function(){b.call(a("body"))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(g))}"toggle"===b&&f.toggle()})}var c="lte.pushmenu",d={collapseScreenSize:767,expandOnHover:!1,expandTransitionDelay:200},e={collapsed:".sidebar-collapse",open:".sidebar-open",mainSidebar:".main-sidebar",contentWrapper:".content-wrapper",searchInput:".sidebar-form .form-control",button:'[data-toggle="push-menu"]',mini:".sidebar-mini",expanded:".sidebar-expanded-on-hover",layoutFixed:".fixed"},f={collapsed:"sidebar-collapse",open:"sidebar-open",mini:"sidebar-mini",expanded:"sidebar-expanded-on-hover",expandFeature:"sidebar-mini-expand-feature",layoutFixed:"fixed"},g={expanded:"expanded.pushMenu",collapsed:"collapsed.pushMenu"},h=function(a){this.options=a,this.init()};h.prototype.init=function(){(this.options.expandOnHover||a("body").is(e.mini+e.layoutFixed))&&(this.expandOnHover(),a("body").addClass(f.expandFeature)),a(e.contentWrapper).click(function(){a(window).width()<=this.options.collapseScreenSize&&a("body").hasClass(f.open)&&this.close()}.bind(this)),a(e.searchInput).click(function(a){a.stopPropagation()})},h.prototype.toggle=function(){var b=a(window).width(),c=!a("body").hasClass(f.collapsed);b<=this.options.collapseScreenSize&&(c=a("body").hasClass(f.open)),c?this.close():this.open()},h.prototype.open=function(){a(window).width()>this.options.collapseScreenSize?a("body").removeClass(f.collapsed).trigger(a.Event(g.expanded)):a("body").addClass(f.open).trigger(a.Event(g.expanded))},h.prototype.close=function(){a(window).width()>this.options.collapseScreenSize?a("body").addClass(f.collapsed).trigger(a.Event(g.collapsed)):a("body").removeClass(f.open+" "+f.collapsed).trigger(a.Event(g.collapsed))},h.prototype.expandOnHover=function(){a(e.mainSidebar).hover(function(){a("body").is(e.mini+e.collapsed)&&a(window).width()>this.options.collapseScreenSize&&this.expand()}.bind(this),function(){a("body").is(e.expanded)&&this.collapse()}.bind(this))},h.prototype.expand=function(){setTimeout(function(){a("body").removeClass(f.collapsed).addClass(f.expanded)},this.options.expandTransitionDelay)},h.prototype.collapse=function(){setTimeout(function(){a("body").removeClass(f.expanded).addClass(f.collapsed)},this.options.expandTransitionDelay)};var i=a.fn.pushMenu;a.fn.pushMenu=b,a.fn.pushMenu.Constructor=h,a.fn.pushMenu.noConflict=function(){return a.fn.pushMenu=i,this},a(document).on("click",e.button,function(c){c.preventDefault(),b.call(a(this),"toggle")}),a(window).on("load",function(){b.call(a(e.button))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(e,h))}if("string"==typeof f){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.todolist",d={onCheck:function(a){return a},onUnCheck:function(a){return a}},e={data:'[data-widget="todo-list"]'},f={done:"done"},g=function(a,b){this.element=a,this.options=b,this._setUpListeners()};g.prototype.toggle=function(a){if(a.parents(e.li).first().toggleClass(f.done),!a.prop("checked"))return void this.unCheck(a);this.check(a)},g.prototype.check=function(a){this.options.onCheck.call(a)},g.prototype.unCheck=function(a){this.options.onUnCheck.call(a)},g.prototype._setUpListeners=function(){var b=this;a(this.element).on("change ifChanged","input:checkbox",function(){b.toggle(a(this))})};var h=a.fn.todoList;a.fn.todoList=b,a.fn.todoList.Constructor=g,a.fn.todoList.noConflict=function(){return a.fn.todoList=h,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this);if(!e.data(c)){var f=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,new h(e,f))}})}var c="lte.tree",d={animationSpeed:500,accordion:!0,followLink:!1,trigger:".treeview a"},e={tree:".tree",treeview:".treeview",treeviewMenu:".treeview-menu",open:".menu-open, .active",li:"li",data:'[data-widget="tree"]',active:".active"},f={open:"menu-open",tree:"tree"},g={collapsed:"collapsed.tree",expanded:"expanded.tree"},h=function(b,c){this.element=b,this.options=c,a(this.element).addClass(f.tree),a(e.treeview+e.active,this.element).addClass(f.open),this._setUpListeners()};h.prototype.toggle=function(a,b){var c=a.next(e.treeviewMenu),d=a.parent(),g=d.hasClass(f.open);d.is(e.treeview)&&(this.options.followLink&&"#"!==a.attr("href")||b.preventDefault(),g?this.collapse(c,d):this.expand(c,d))},h.prototype.expand=function(b,c){var d=a.Event(g.expanded);if(this.options.accordion){var h=c.siblings(e.open),i=h.children(e.treeviewMenu);this.collapse(i,h)}c.addClass(f.open),b.slideDown(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype.collapse=function(b,c){var d=a.Event(g.collapsed);c.removeClass(f.open),b.slideUp(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.trigger,function(c){b.toggle(a(this),c)})};var i=a.fn.tree;a.fn.tree=b,a.fn.tree.Constructor=h,a.fn.tree.noConflict=function(){return a.fn.tree=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery);
+if("undefined"==typeof jQuery)throw new Error("AdminLTE requires jQuery");+function(a){"use strict";function b(b){return this.each(function(){var e=a(this),g=e.data(c);if(!g){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,g=new f(e,h))}if("string"==typeof g){if(void 0===g[b])throw new Error("No method named "+b);g[b]()}})}var c="lte.boxrefresh",d={source:"",params:{},trigger:".refresh-btn",content:".box-body",loadInContent:!0,responseType:"",overlayTemplate:'<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',onLoadStart:function(){},onLoadDone:function(a){return a}},e={data:'[data-widget="box-refresh"]'},f=function(b,c){if(this.element=b,this.options=c,this.$overlay=a(c.overlayTemplate),""===c.source)throw new Error("Source url was not defined. Please specify a url in your BoxRefresh source option.");this._setUpListeners(),this.load()};f.prototype.load=function(){this._addOverlay(),this.options.onLoadStart.call(a(this)),a.get(this.options.source,this.options.params,function(b){this.options.loadInContent&&a(this.element).find(this.options.content).html(b),this.options.onLoadDone.call(a(this),b),this._removeOverlay()}.bind(this),""!==this.options.responseType&&this.options.responseType)},f.prototype._setUpListeners=function(){a(this.element).on("click",this.options.trigger,function(a){a&&a.preventDefault(),this.load()}.bind(this))},f.prototype._addOverlay=function(){a(this.element).append(this.$overlay)},f.prototype._removeOverlay=function(){a(this.$overlay).remove()};var g=a.fn.boxRefresh;a.fn.boxRefresh=b,a.fn.boxRefresh.Constructor=f,a.fn.boxRefresh.noConflict=function(){return a.fn.boxRefresh=g,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.boxwidget",d={animationSpeed:500,collapseTrigger:'[data-widget="collapse"]',removeTrigger:'[data-widget="remove"]',collapseIcon:"fa-minus",expandIcon:"fa-plus",removeIcon:"fa-times"},e={data:".box",collapsed:".collapsed-box",header:".box-header",body:".box-body",footer:".box-footer",tools:".box-tools"},f={collapsed:"collapsed-box"},g={collapsing:"collapsing.boxwidget",collapsed:"collapsed.boxwidget",expanding:"expanding.boxwidget",expanded:"expanded.boxwidget",removing:"removing.boxwidget",removed:"removed.boxwidget"},h=function(a,b){this.element=a,this.options=b,this._setUpListeners()};h.prototype.toggle=function(){a(this.element).is(e.collapsed)?this.expand():this.collapse()},h.prototype.expand=function(){var b=a.Event(g.expanded),c=a.Event(g.expanding),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).removeClass(f.collapsed),a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+h).removeClass(h).addClass(d),a(this.element).children(e.body+", "+e.footer).slideDown(this.options.animationSpeed,function(){a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.collapse=function(){var b=a.Event(g.collapsed),c=a.Event(g.collapsing),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+d).removeClass(d).addClass(h),a(this.element).children(e.body+", "+e.footer).slideUp(this.options.animationSpeed,function(){a(this.element).addClass(f.collapsed),a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.remove=function(){var b=a.Event(g.removed),c=a.Event(g.removing);a(this.element).slideUp(this.options.animationSpeed,function(){a(this.element).trigger(b),a(this.element).remove()}.bind(this)).trigger(c)},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.collapseTrigger,function(c){return c&&c.preventDefault(),b.toggle(a(this)),!1}),a(this.element).on("click",this.options.removeTrigger,function(c){return c&&c.preventDefault(),b.remove(a(this)),!1})};var i=a.fn.boxWidget;a.fn.boxWidget=b,a.fn.boxWidget.Constructor=h,a.fn.boxWidget.noConflict=function(){return a.fn.boxWidget=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}"string"==typeof b&&f.toggle()})}var c="lte.controlsidebar",d={slide:!0},e={sidebar:".control-sidebar",data:'[data-toggle="control-sidebar"]',open:".control-sidebar-open",bg:".control-sidebar-bg",wrapper:".wrapper",content:".content-wrapper",boxed:".layout-boxed"},f={open:"control-sidebar-open",fixed:"fixed"},g={collapsed:"collapsed.controlsidebar",expanded:"expanded.controlsidebar"},h=function(a,b){this.element=a,this.options=b,this.hasBindedResize=!1,this.init()};h.prototype.init=function(){a(this.element).is(e.data)||a(this).on("click",this.toggle),this.fix(),a(window).resize(function(){this.fix()}.bind(this))},h.prototype.toggle=function(b){b&&b.preventDefault(),this.fix(),a(e.sidebar).is(e.open)||a("body").is(e.open)?this.collapse():this.expand()},h.prototype.expand=function(){a(e.sidebar).show(),this.options.slide?a(e.sidebar).addClass(f.open):a("body").addClass(f.open),a(this.element).trigger(a.Event(g.expanded))},h.prototype.collapse=function(){a("body, "+e.sidebar).removeClass(f.open),a(e.sidebar).fadeOut(),a(this.element).trigger(a.Event(g.collapsed))},h.prototype.fix=function(){a("body").is(e.boxed)&&this._fixForBoxed(a(e.bg))},h.prototype._fixForBoxed=function(b){b.css({position:"absolute",height:a(e.wrapper).height()})};var i=a.fn.controlSidebar;a.fn.controlSidebar=b,a.fn.controlSidebar.Constructor=h,a.fn.controlSidebar.noConflict=function(){return a.fn.controlSidebar=i,this},a(document).on("click",e.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var d=a(this),e=d.data(c);e||d.data(c,e=new f(d)),"string"==typeof b&&e.toggle(d)})}var c="lte.directchat",d={data:'[data-widget="chat-pane-toggle"]',box:".direct-chat"},e={open:"direct-chat-contacts-open"},f=function(a){this.element=a};f.prototype.toggle=function(a){a.parents(d.box).first().toggleClass(e.open)};var g=a.fn.directChat;a.fn.directChat=b,a.fn.directChat.Constructor=f,a.fn.directChat.noConflict=function(){return a.fn.directChat=g,this},a(document).on("click",d.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(g))}"toggle"===b&&f.toggle()})}var c="lte.pushmenu",d={collapseScreenSize:767,expandOnHover:!1,expandTransitionDelay:200},e={collapsed:".sidebar-collapse",open:".sidebar-open",mainSidebar:".main-sidebar",contentWrapper:".content-wrapper",searchInput:".sidebar-form .form-control",button:'[data-toggle="push-menu"]',mini:".sidebar-mini",expanded:".sidebar-expanded-on-hover",layoutFixed:".fixed"},f={collapsed:"sidebar-collapse",open:"sidebar-open",mini:"sidebar-mini",expanded:"sidebar-expanded-on-hover",expandFeature:"sidebar-mini-expand-feature",layoutFixed:"fixed"},g={expanded:"expanded.pushMenu",collapsed:"collapsed.pushMenu"},h=function(a){this.options=a,this.init()};h.prototype.init=function(){(this.options.expandOnHover||a("body").is(e.mini+e.layoutFixed))&&(this.expandOnHover(),a("body").addClass(f.expandFeature)),a(e.contentWrapper).click(function(){a(window).width()<=this.options.collapseScreenSize&&a("body").hasClass(f.open)&&this.close()}.bind(this)),a(e.searchInput).click(function(a){a.stopPropagation()})},h.prototype.toggle=function(){var b=a(window).width(),c=!a("body").hasClass(f.collapsed);b<=this.options.collapseScreenSize&&(c=a("body").hasClass(f.open)),c?this.close():this.open()},h.prototype.open=function(){a(window).width()>this.options.collapseScreenSize?a("body").removeClass(f.collapsed).trigger(a.Event(g.expanded)):a("body").addClass(f.open).trigger(a.Event(g.expanded))},h.prototype.close=function(){a(window).width()>this.options.collapseScreenSize?a("body").addClass(f.collapsed).trigger(a.Event(g.collapsed)):a("body").removeClass(f.open+" "+f.collapsed).trigger(a.Event(g.collapsed))},h.prototype.expandOnHover=function(){a(e.mainSidebar).hover(function(){a("body").is(e.mini+e.collapsed)&&a(window).width()>this.options.collapseScreenSize&&this.expand()}.bind(this),function(){a("body").is(e.expanded)&&this.collapse()}.bind(this))},h.prototype.expand=function(){setTimeout(function(){a("body").removeClass(f.collapsed).addClass(f.expanded)},this.options.expandTransitionDelay)},h.prototype.collapse=function(){setTimeout(function(){a("body").removeClass(f.expanded).addClass(f.collapsed)},this.options.expandTransitionDelay)};var i=a.fn.pushMenu;a.fn.pushMenu=b,a.fn.pushMenu.Constructor=h,a.fn.pushMenu.noConflict=function(){return a.fn.pushMenu=i,this},a(document).on("click",e.button,function(c){c.preventDefault(),b.call(a(this),"toggle")}),a(window).on("load",function(){b.call(a(e.button))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(e,h))}if("string"==typeof f){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.todolist",d={onCheck:function(a){return a},onUnCheck:function(a){return a}},e={data:'[data-widget="todo-list"]'},f={done:"done"},g=function(a,b){this.element=a,this.options=b,this._setUpListeners()};g.prototype.toggle=function(a){if(a.parents(e.li).first().toggleClass(f.done),!a.prop("checked"))return void this.unCheck(a);this.check(a)},g.prototype.check=function(a){this.options.onCheck.call(a)},g.prototype.unCheck=function(a){this.options.onUnCheck.call(a)},g.prototype._setUpListeners=function(){var b=this;a(this.element).on("change ifChanged","input:checkbox",function(){b.toggle(a(this))})};var h=a.fn.todoList;a.fn.todoList=b,a.fn.todoList.Constructor=g,a.fn.todoList.noConflict=function(){return a.fn.todoList=h,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this);if(!e.data(c)){var f=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,new h(e,f))}})}var c="lte.tree",d={animationSpeed:500,accordion:!0,followLink:!1,trigger:".treeview a"},e={tree:".tree",treeview:".treeview",treeviewMenu:".treeview-menu",open:".menu-open, .active",li:"li",data:'[data-widget="tree"]',active:".active"},f={open:"menu-open",tree:"tree"},g={collapsed:"collapsed.tree",expanded:"expanded.tree"},h=function(b,c){this.element=b,this.options=c,a(this.element).addClass(f.tree),a(e.treeview+e.active,this.element).addClass(f.open),this._setUpListeners()};h.prototype.toggle=function(a,b){var c=a.next(e.treeviewMenu),d=a.parent(),g=d.hasClass(f.open);d.is(e.treeview)&&(this.options.followLink&&"#"!==a.attr("href")||b.preventDefault(),g?this.collapse(c,d):this.expand(c,d))},h.prototype.expand=function(b,c){var d=a.Event(g.expanded);if(this.options.accordion){var h=c.siblings(e.open),i=h.children(e.treeviewMenu);this.collapse(i,h)}c.addClass(f.open),b.slideDown(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype.collapse=function(b,c){var d=a.Event(g.collapsed);c.removeClass(f.open),b.slideUp(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.trigger,function(c){b.toggle(a(this),c)})};var i=a.fn.tree;a.fn.tree=b,a.fn.tree.Constructor=h,a.fn.tree.noConflict=function(){return a.fn.tree=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(h))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.layout",d={slimscroll:!0,resetHeight:!0},e={wrapper:".wrapper",contentWrapper:".content-wrapper",layoutBoxed:".layout-boxed",mainFooter:".main-footer",mainHeader:".main-header",sidebar:".sidebar",controlSidebar:".control-sidebar",fixed:".fixed",sidebarMenu:".sidebar-menu",logo:".main-header .logo"},f={fixed:"fixed",holdTransition:"hold-transition"},g=function(a){this.options=a,this.bindedResize=!1,this.activate()};g.prototype.activate=function(){this.fix(),this.fixSidebar(),a("body").removeClass(f.holdTransition),this.options.resetHeight&&a("body, html, "+e.wrapper).css({height:"auto","min-height":"100%"}),this.bindedResize||(a(window).resize(function(){this.fix(),this.fixSidebar(),a(e.logo+", "+e.sidebar).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){this.fix(),this.fixSidebar()}.bind(this))}.bind(this)),this.bindedResize=!0),a(e.sidebarMenu).on("expanded.tree",function(){this.fix(),this.fixSidebar()}.bind(this)),a(e.sidebarMenu).on("collapsed.tree",function(){this.fix(),this.fixSidebar()}.bind(this))},g.prototype.fix=function(){a(e.layoutBoxed+" > "+e.wrapper).css("overflow","hidden");var b=a(e.mainFooter).outerHeight()||0,c=a(e.mainHeader).outerHeight()||0,d=c+b,g=a(window).height(),h=a(e.sidebar).height()||0;if(a("body").hasClass(f.fixed))a(e.contentWrapper).css("min-height",g-b);else{var i;g>=h+c?(a(e.contentWrapper).css("min-height",g-d),i=g-d):(a(e.contentWrapper).css("min-height",h),i=h);var j=a(e.controlSidebar);void 0!==j&&j.height()>i&&a(e.contentWrapper).css("min-height",j.height())}},g.prototype.fixSidebar=function(){if(!a("body").hasClass(f.fixed))return void(void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({destroy:!0}).height("auto"));this.options.slimscroll&&void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({height:a(window).height()-a(e.mainHeader).height()+"px"})};var h=a.fn.layout;a.fn.layout=b,a.fn.layout.Constuctor=g,a.fn.layout.noConflict=function(){return a.fn.layout=h,this},a(window).on("load",function(){b.call(a("body"))})}(jQuery);
 
 /***/ }),
 
 /***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./node_modules/axios/lib/axios.js");
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var settle = __webpack_require__("./node_modules/axios/lib/core/settle.js");
-var buildURL = __webpack_require__("./node_modules/axios/lib/helpers/buildURL.js");
-var parseHeaders = __webpack_require__("./node_modules/axios/lib/helpers/parseHeaders.js");
-var isURLSameOrigin = __webpack_require__("./node_modules/axios/lib/helpers/isURLSameOrigin.js");
-var createError = __webpack_require__("./node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__("./node_modules/axios/lib/helpers/btoa.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -116,22 +147,6 @@ module.exports = function xhrAdapter(config) {
     }
 
     var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
 
     // HTTP basic authentication
     if (config.auth) {
@@ -146,8 +161,8 @@ module.exports = function xhrAdapter(config) {
     request.timeout = config.timeout;
 
     // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
         return;
       }
 
@@ -164,15 +179,26 @@ module.exports = function xhrAdapter(config) {
       var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
       var response = {
         data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/mzabriskie/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        status: request.status,
+        statusText: request.statusText,
         headers: responseHeaders,
         config: config,
         request: request
       };
 
       settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(createError('Request aborted', config, 'ECONNABORTED', request));
 
       // Clean up request
       request = null;
@@ -201,12 +227,12 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__("./node_modules/axios/lib/helpers/cookies.js");
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
+        cookies.read(config.xsrfCookieName) :
+        undefined;
 
       if (xsrfValue) {
         requestHeaders[config.xsrfHeaderName] = xsrfValue;
@@ -281,15 +307,20 @@ module.exports = function xhrAdapter(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var bind = __webpack_require__("./node_modules/axios/lib/helpers/bind.js");
-var Axios = __webpack_require__("./node_modules/axios/lib/core/Axios.js");
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
  * Create an instance of Axios
@@ -318,19 +349,19 @@ axios.Axios = Axios;
 
 // Factory for creating new instances
 axios.create = function create(instanceConfig) {
-  return createInstance(utils.merge(defaults, instanceConfig));
+  return createInstance(mergeConfig(axios.defaults, instanceConfig));
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__("./node_modules/axios/lib/cancel/Cancel.js");
-axios.CancelToken = __webpack_require__("./node_modules/axios/lib/cancel/CancelToken.js");
-axios.isCancel = __webpack_require__("./node_modules/axios/lib/cancel/isCancel.js");
+axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__("./node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
 
 module.exports = axios;
 
@@ -341,6 +372,10 @@ module.exports.default = axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/Cancel.js":
+/*!*************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,12 +403,16 @@ module.exports = Cancel;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__("./node_modules/axios/lib/cancel/Cancel.js");
+var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -433,6 +472,10 @@ module.exports = CancelToken;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -446,17 +489,20 @@ module.exports = function isCancel(value) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var InterceptorManager = __webpack_require__("./node_modules/axios/lib/core/InterceptorManager.js");
-var dispatchRequest = __webpack_require__("./node_modules/axios/lib/core/dispatchRequest.js");
-var isAbsoluteURL = __webpack_require__("./node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__("./node_modules/axios/lib/helpers/combineURLs.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
+var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
 
 /**
  * Create a new instance of Axios
@@ -480,18 +526,14 @@ Axios.prototype.request = function request(config) {
   /*eslint no-param-reassign:0*/
   // Allow for axios('example/url'[, config]) a la fetch API
   if (typeof config === 'string') {
-    config = utils.merge({
-      url: arguments[0]
-    }, arguments[1]);
+    config = arguments[1] || {};
+    config.url = arguments[0];
+  } else {
+    config = config || {};
   }
 
-  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
-  config.method = config.method.toLowerCase();
-
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
+  config = mergeConfig(this.defaults, config);
+  config.method = config.method ? config.method.toLowerCase() : 'get';
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -510,6 +552,11 @@ Axios.prototype.request = function request(config) {
   }
 
   return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
 };
 
 // Provide aliases for supported request methods
@@ -540,12 +587,16 @@ module.exports = Axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function InterceptorManager() {
   this.handlers = [];
@@ -600,12 +651,16 @@ module.exports = InterceptorManager;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/createError.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/createError.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__("./node_modules/axios/lib/core/enhanceError.js");
+var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -626,15 +681,21 @@ module.exports = function createError(message, config, code, request, response) 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var transformData = __webpack_require__("./node_modules/axios/lib/core/transformData.js");
-var isCancel = __webpack_require__("./node_modules/axios/lib/cancel/isCancel.js");
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -653,6 +714,11 @@ function throwIfCancellationRequested(config) {
  */
 module.exports = function dispatchRequest(config) {
   throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
 
   // Ensure headers exist
   config.headers = config.headers || {};
@@ -713,6 +779,10 @@ module.exports = function dispatchRequest(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/enhanceError.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -733,21 +803,109 @@ module.exports = function enhanceError(error, config, code, request, response) {
   if (code) {
     error.code = code;
   }
+
   error.request = request;
   error.response = response;
+  error.isAxiosError = true;
+
+  error.toJSON = function() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code
+    };
+  };
   return error;
 };
 
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/core/settle.js":
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__("./node_modules/axios/lib/core/createError.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    }
+  });
+
+  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
+    if (utils.isObject(config2[prop])) {
+      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+    } else if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (utils.isObject(config1[prop])) {
+      config[prop] = utils.deepMerge(config1[prop]);
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  utils.forEach([
+    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
+    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
+    'socketPath'
+  ], function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  return config;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios/lib/core/createError.js");
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -758,8 +916,7 @@ var createError = __webpack_require__("./node_modules/axios/lib/core/createError
  */
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
-  // Note: status is not exposed by XDomainRequest
-  if (!response.status || !validateStatus || validateStatus(response.status)) {
+  if (!validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
     reject(createError(
@@ -776,12 +933,16 @@ module.exports = function settle(resolve, reject, response) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 /**
  * Transform the data for a request or a response
@@ -804,13 +965,17 @@ module.exports = function transformData(data, headers, fns) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/defaults.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/defaults.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var normalizeHeaderName = __webpack_require__("./node_modules/axios/lib/helpers/normalizeHeaderName.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -824,12 +989,13 @@ function setContentTypeIfUnset(headers, value) {
 
 function getDefaultAdapter() {
   var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__("./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof process !== 'undefined') {
+  // Only Node.JS has a process variable that is of [[Class]] process
+  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__("./node_modules/axios/lib/adapters/xhr.js");
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -838,6 +1004,7 @@ var defaults = {
   adapter: getDefaultAdapter(),
 
   transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
     normalizeHeaderName(headers, 'Content-Type');
     if (utils.isFormData(data) ||
       utils.isArrayBuffer(data) ||
@@ -872,6 +1039,10 @@ var defaults = {
     return data;
   }],
 
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
   timeout: 0,
 
   xsrfCookieName: 'XSRF-TOKEN',
@@ -900,11 +1071,15 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -923,57 +1098,17 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/helpers/btoa.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
-
-var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-function E() {
-  this.message = 'String contains an invalid character';
-}
-E.prototype = new Error;
-E.prototype.code = 5;
-E.prototype.name = 'InvalidCharacterError';
-
-function btoa(input) {
-  var str = String(input);
-  var output = '';
-  for (
-    // initialize result and counter
-    var block, charCode, idx = 0, map = chars;
-    // if the next str index does not exist:
-    //   change the mapping table to "="
-    //   check if d has no fractional digits
-    str.charAt(idx | 0) || (map = '=', idx % 1);
-    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
-  ) {
-    charCode = str.charCodeAt(idx += 3 / 4);
-    if (charCode > 0xFF) {
-      throw new E();
-    }
-    block = block << 8 | charCode;
-  }
-  return output;
-}
-
-module.exports = btoa;
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -1014,9 +1149,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
       if (utils.isArray(val)) {
         key = key + '[]';
-      }
-
-      if (!utils.isArray(val)) {
+      } else {
         val = [val];
       }
 
@@ -1034,6 +1167,11 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   }
 
   if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
 
@@ -1044,6 +1182,10 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1066,67 +1208,75 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
 
   // Standard browser envs support document.cookie
-  (function standardBrowserEnv() {
-    return {
-      write: function write(name, value, expires, path, domain, secure) {
-        var cookie = [];
-        cookie.push(name + '=' + encodeURIComponent(value));
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
 
-        if (utils.isNumber(expires)) {
-          cookie.push('expires=' + new Date(expires).toGMTString());
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
         }
-
-        if (utils.isString(path)) {
-          cookie.push('path=' + path);
-        }
-
-        if (utils.isString(domain)) {
-          cookie.push('domain=' + domain);
-        }
-
-        if (secure === true) {
-          cookie.push('secure');
-        }
-
-        document.cookie = cookie.join('; ');
-      },
-
-      read: function read(name) {
-        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-        return (match ? decodeURIComponent(match[3]) : null);
-      },
-
-      remove: function remove(name) {
-        this.write(name, '', Date.now() - 86400000);
-      }
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser env (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return {
-      write: function write() {},
-      read: function read() { return null; },
-      remove: function remove() {}
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
 );
 
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1149,88 +1299,96 @@ module.exports = function isAbsoluteURL(url) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
 
   // Standard browser envs have full support of the APIs needed to test
   // whether the request URL is of the same origin as current location.
-  (function standardBrowserEnv() {
-    var msie = /(msie|trident)/i.test(navigator.userAgent);
-    var urlParsingNode = document.createElement('a');
-    var originURL;
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
 
-    /**
+      /**
     * Parse a URL to discover it's components
     *
     * @param {String} url The URL to be parsed
     * @returns {Object}
     */
-    function resolveURL(url) {
-      var href = url;
+      function resolveURL(url) {
+        var href = url;
 
-      if (msie) {
+        if (msie) {
         // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
         urlParsingNode.setAttribute('href', href);
-        href = urlParsingNode.href;
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
       }
 
-      urlParsingNode.setAttribute('href', href);
+      originURL = resolveURL(window.location.href);
 
-      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-      return {
-        href: urlParsingNode.href,
-        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-        host: urlParsingNode.host,
-        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-        hostname: urlParsingNode.hostname,
-        port: urlParsingNode.port,
-        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
-                  urlParsingNode.pathname :
-                  '/' + urlParsingNode.pathname
-      };
-    }
-
-    originURL = resolveURL(window.location.href);
-
-    /**
+      /**
     * Determine if a URL shares the same origin as the current location
     *
     * @param {String} requestURL The URL to test
     * @returns {boolean} True if URL shares the same origin, otherwise false
     */
-    return function isURLSameOrigin(requestURL) {
-      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
-      return (parsed.protocol === originURL.protocol &&
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
             parsed.host === originURL.host);
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser envs (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return function isURLSameOrigin() {
-      return true;
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
 );
 
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -1245,12 +1403,25 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
 
 /**
  * Parse headers into an object
@@ -1279,7 +1450,14 @@ module.exports = function parseHeaders(headers) {
     val = utils.trim(line.substr(i + 1));
 
     if (key) {
-      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
     }
   });
 
@@ -1290,6 +1468,10 @@ module.exports = function parseHeaders(headers) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1325,13 +1507,17 @@ module.exports = function spread(callback) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__("./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__("./node_modules/is-buffer/index.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1507,9 +1693,13 @@ function trim(str) {
  *
  * react-native:
  *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
  */
 function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
     return false;
   }
   return (
@@ -1537,7 +1727,7 @@ function forEach(obj, fn) {
   }
 
   // Force an array if not already something iterable
-  if (typeof obj !== 'object' && !isArray(obj)) {
+  if (typeof obj !== 'object') {
     /*eslint no-param-reassign:0*/
     obj = [obj];
   }
@@ -1591,6 +1781,32 @@ function merge(/* obj1, obj2, obj3, ... */) {
 }
 
 /**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function deepMerge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val);
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
  * Extends object a by mutably adding to it the properties of object b.
  *
  * @param {Object} a The object to be extended
@@ -1628,6 +1844,7 @@ module.exports = {
   isStandardBrowserEnv: isStandardBrowserEnv,
   forEach: forEach,
   merge: merge,
+  deepMerge: deepMerge,
   extend: extend,
   trim: trim
 };
@@ -1635,19 +1852,49 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/bloodhound-js/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/bloodhound-js/index.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./node_modules/bloodhound-js/lib/bloodhound.js");
+module.exports = __webpack_require__(/*! ./lib/bloodhound */ "./node_modules/bloodhound-js/lib/bloodhound.js");
 
 
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/ajax.js":
+/*!************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/ajax.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise = __webpack_require__("./node_modules/es6-promise/dist/es6-promise.js").Promise;
-var request = __webpack_require__("./node_modules/superagent/lib/client.js");
+var Promise = __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise;
+var request = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
 
 module.exports = function(o) {
   return new Promise(function(resolve, reject) {
@@ -1662,16 +1909,20 @@ module.exports = function(o) {
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/bloodhound.js":
+/*!******************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/bloodhound.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
-var Promise = __webpack_require__("./node_modules/es6-promise/dist/es6-promise.js").Promise;
-var Remote = __webpack_require__("./node_modules/bloodhound-js/lib/remote.js");
-var Prefetch = __webpack_require__("./node_modules/bloodhound-js/lib/prefetch.js");
-var tokenizers = __webpack_require__("./node_modules/bloodhound-js/lib/tokenizers.js");
-var oParser = __webpack_require__("./node_modules/bloodhound-js/lib/options_parser.js");
-var SearchIndex = __webpack_require__("./node_modules/bloodhound-js/lib/search_index.js");
-var Transport = __webpack_require__("./node_modules/bloodhound-js/lib/transport.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
+var Promise = __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise;
+var Remote = __webpack_require__(/*! ./remote */ "./node_modules/bloodhound-js/lib/remote.js");
+var Prefetch = __webpack_require__(/*! ./prefetch */ "./node_modules/bloodhound-js/lib/prefetch.js");
+var tokenizers = __webpack_require__(/*! ./tokenizers */ "./node_modules/bloodhound-js/lib/tokenizers.js");
+var oParser = __webpack_require__(/*! ./options_parser */ "./node_modules/bloodhound-js/lib/options_parser.js");
+var SearchIndex = __webpack_require__(/*! ./search_index */ "./node_modules/bloodhound-js/lib/search_index.js");
+var Transport = __webpack_require__(/*! ./transport */ "./node_modules/bloodhound-js/lib/transport.js");
 
 function Bloodhound(o) {
   o = oParser(o);
@@ -1847,6 +2098,10 @@ module.exports = Bloodhound;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/lru_cache.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/lru_cache.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1857,7 +2112,7 @@ module.exports = Bloodhound;
 
 // inspired by https://github.com/jharding/lru-cache
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 function LruCache(maxSize) {
   this.maxSize = _.isNumber(maxSize) ? maxSize : 100;
@@ -1952,11 +2207,15 @@ module.exports = LruCache;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/options_parser.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/options_parser.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
-var ajax = __webpack_require__("./node_modules/bloodhound-js/lib/ajax.js");
-var VERSION = __webpack_require__("./node_modules/bloodhound-js/lib/version.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
+var ajax = __webpack_require__(/*! ./ajax */ "./node_modules/bloodhound-js/lib/ajax.js");
+var VERSION = __webpack_require__(/*! ./version */ "./node_modules/bloodhound-js/lib/version.js");
 
 module.exports = function(o) {
   var defaults, sorter;
@@ -2152,10 +2411,14 @@ function callbackToDeferred(fn) {
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/persistent_storage.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/persistent_storage.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var storage2 = __webpack_require__("./node_modules/storage2/lib/client.js");
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var storage2 = __webpack_require__(/*! storage2 */ "./node_modules/storage2/lib/client.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var LOCAL_STORAGE;
 
@@ -2301,10 +2564,14 @@ module.exports = PersistentStorage;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/prefetch.js":
+/*!****************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/prefetch.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var PersistentStorage = __webpack_require__("./node_modules/bloodhound-js/lib/persistent_storage.js");
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var PersistentStorage = __webpack_require__(/*! ./persistent_storage */ "./node_modules/bloodhound-js/lib/persistent_storage.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var keys = { data: 'data', protocol: 'protocol', thumbprint: 'thumbprint' };
 var location = null;
@@ -2396,6 +2663,10 @@ module.exports = Prefetch;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/remote.js":
+/*!**************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/remote.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2404,8 +2675,8 @@ module.exports = Prefetch;
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
-var Transport = __webpack_require__("./node_modules/bloodhound-js/lib/transport.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
+var Transport = __webpack_require__(/*! ./transport */ "./node_modules/bloodhound-js/lib/transport.js");
 
 function Remote(o) {
   this.url = o.url;
@@ -2455,9 +2726,13 @@ module.exports = Remote;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/search_index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/search_index.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var CHILDREN = 'c';
 var IDS = 'i';
@@ -2636,6 +2911,10 @@ module.exports = SearchIndex;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/tokenizers.js":
+/*!******************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/tokenizers.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2644,7 +2923,7 @@ module.exports = SearchIndex;
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 function whitespace(str) {
   str = _.toStr(str);
@@ -2685,10 +2964,14 @@ module.exports = {
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/transport.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/transport.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var LruCache = __webpack_require__("./node_modules/bloodhound-js/lib/lru_cache.js");
-var _ = __webpack_require__("./node_modules/bloodhound-js/lib/utils.js");
+var LruCache = __webpack_require__(/*! ./lru_cache */ "./node_modules/bloodhound-js/lib/lru_cache.js");
+var _ = __webpack_require__(/*! ./utils */ "./node_modules/bloodhound-js/lib/utils.js");
 
 var pendingRequestsCount = 0;
 var pendingRequests = {};
@@ -2810,6 +3093,10 @@ module.exports = Transport;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/utils.js":
+/*!*************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/utils.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2818,7 +3105,7 @@ module.exports = Transport;
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-var assign = __webpack_require__("./node_modules/object-assign/index.js");
+var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 
 var _ = {
   isMsie: function() {
@@ -2920,7 +3207,7 @@ var _ = {
     return !!result;
   },
 
-  mixin: __webpack_require__("./node_modules/object-assign/index.js"),
+  mixin: __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js"),
 
   identity: function(x) { return x; },
 
@@ -3010,6 +3297,10 @@ module.exports = _;
 /***/ }),
 
 /***/ "./node_modules/bloodhound-js/lib/version.js":
+/*!***************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/version.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*
@@ -3024,25 +3315,25 @@ module.exports = '1.0.0';
 /***/ }),
 
 /***/ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
+  \***************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * Datepicker for Bootstrap v1.8.0 (https://github.com/uxsolutions/bootstrap-datepicker)
+ * Datepicker for Bootstrap v1.9.0 (https://github.com/uxsolutions/bootstrap-datepicker)
  *
  * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  */
 
 (function(factory){
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object') {
-        factory(require('jquery'));
-    } else {
-        factory(jQuery);
-    }
+    } else {}
 }(function($, undefined){
 	function UTCDate(){
 		return new Date(Date.UTC.apply(Date, arguments));
@@ -3120,6 +3411,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 	var Datepicker = function(element, options){
 		$.data(element, 'datepicker', this);
+
+		this._events = [];
+		this._secondaryEvents = [];
+
 		this._process_options(options);
 
 		this.dates = new DateArray();
@@ -3129,7 +3424,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		this.element = $(element);
 		this.isInput = this.element.is('input');
 		this.inputField = this.isInput ? this.element : this.element.find('input');
-		this.component = this.element.hasClass('date') ? this.element.find('.add-on, .input-group-addon, .btn') : false;
+		this.component = this.element.hasClass('date') ? this.element.find('.add-on, .input-group-addon, .input-group-append, .input-group-prepend, .btn') : false;
 		if (this.component && this.component.length === 0)
 			this.component = false;
 		this.isInline = !this.component && this.element.is('div');
@@ -3339,8 +3634,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 				o.defaultViewDate = UTCToday();
 			}
 		},
-		_events: [],
-		_secondaryEvents: [],
 		_applyEvents: function(evs){
 			for (var i=0, el, ch, ev; i < evs.length; i++){
 				el = evs[i][0];
@@ -3496,7 +3789,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		},
 
 		show: function(){
-			if (this.inputField.prop('disabled') || (this.inputField.prop('readonly') && this.o.enableOnReadonly === false))
+			if (this.inputField.is(':disabled') || (this.inputField.prop('readonly') && this.o.enableOnReadonly === false))
 				return;
 			if (!this.isInline)
 				this.picker.appendTo(this.o.container);
@@ -3993,7 +4286,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 				endMonth = this.o.endDate !== Infinity ? this.o.endDate.getUTCMonth() : Infinity,
 				todaytxt = dates[this.o.language].today || dates['en'].today || '',
 				cleartxt = dates[this.o.language].clear || dates['en'].clear || '',
-				titleFormat = dates[this.o.language].titleFormat || dates['en'].titleFormat,
+        titleFormat = dates[this.o.language].titleFormat || dates['en'].titleFormat,
+        todayDate = UTCToday(),
+        titleBtnVisible = (this.o.todayBtn === true || this.o.todayBtn === 'linked') && todayDate >= this.o.startDate && todayDate <= this.o.endDate && !this.weekOfDateIsDisabled(todayDate),
 				tooltip,
 				before;
 			if (isNaN(year) || isNaN(month))
@@ -4002,7 +4297,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 						.text(DPGlobal.formatDate(d, titleFormat, this.o.language));
 			this.picker.find('tfoot .today')
 						.text(todaytxt)
-						.css('display', this.o.todayBtn === true || this.o.todayBtn === 'linked' ? 'table-cell' : 'none');
+            .css('display', titleBtnVisible ? 'table-cell' : 'none');
 			this.picker.find('tfoot .clear')
 						.text(cleartxt)
 						.css('display', this.o.clearBtn === true ? 'table-cell' : 'none');
@@ -4182,12 +4477,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 					factor *= 10;
 					/* falls through */
 				case 1:
-					prevIsDisabled = Math.floor(year / factor) * factor < startYear;
+					prevIsDisabled = Math.floor(year / factor) * factor <= startYear;
 					nextIsDisabled = Math.floor(year / factor) * factor + factor > endYear;
 					break;
 				case 0:
-					prevIsDisabled = year <= startYear && month < startMonth;
-					nextIsDisabled = year >= endYear && month > endMonth;
+					prevIsDisabled = year <= startYear && month <= startMonth;
+					nextIsDisabled = year >= endYear && month >= endMonth;
 					break;
 			}
 
@@ -5034,7 +5329,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 	/* DATEPICKER VERSION
 	 * =================== */
-	$.fn.datepicker.version = '1.8.0';
+	$.fn.datepicker.version = '1.9.0';
 
 	$.fn.datepicker.deprecated = function(msg){
 		var console = window.console;
@@ -5069,11 +5364,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ }),
 
 /***/ "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
+ * Bootstrap v3.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under the MIT license
  */
 
@@ -5090,10 +5389,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.7
- * http://getbootstrap.com/javascript/#transitions
+ * Bootstrap: transition.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#transitions
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -5101,7 +5400,7 @@ if (typeof jQuery === 'undefined') {
 +function ($) {
   'use strict';
 
-  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // CSS TRANSITION SUPPORT (Shoutout: https://modernizr.com/)
   // ============================================================
 
   function transitionEnd() {
@@ -5123,7 +5422,7 @@ if (typeof jQuery === 'undefined') {
     return false // explicit for ie8 (  ._.)
   }
 
-  // http://blog.alexmaccaw.com/css-transitions
+  // https://blog.alexmaccaw.com/css-transitions
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false
     var $el = this
@@ -5150,10 +5449,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.7
- * http://getbootstrap.com/javascript/#alerts
+ * Bootstrap: alert.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#alerts
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -5169,7 +5468,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.7'
+  Alert.VERSION = '3.4.1'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -5182,7 +5481,8 @@ if (typeof jQuery === 'undefined') {
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = $(selector === '#' ? [] : selector)
+    selector    = selector === '#' ? [] : selector
+    var $parent = $(document).find(selector)
 
     if (e) e.preventDefault()
 
@@ -5245,10 +5545,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.7
- * http://getbootstrap.com/javascript/#buttons
+ * Bootstrap: button.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#buttons
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -5265,7 +5565,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.7'
+  Button.VERSION  = '3.4.1'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -5371,10 +5671,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.7
- * http://getbootstrap.com/javascript/#carousel
+ * Bootstrap: carousel.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#carousel
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -5402,7 +5702,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.7'
+  Carousel.VERSION  = '3.4.1'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -5516,7 +5816,9 @@ if (typeof jQuery === 'undefined') {
     var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
     if ($.support.transition && this.$element.hasClass('slide')) {
       $next.addClass(type)
-      $next[0].offsetWidth // force reflow
+      if (typeof $next === 'object' && $next.length) {
+        $next[0].offsetWidth // force reflow
+      }
       $active.addClass(direction)
       $next.addClass(direction)
       $active
@@ -5578,10 +5880,17 @@ if (typeof jQuery === 'undefined') {
   // =================
 
   var clickHandler = function (e) {
-    var href
     var $this   = $(this)
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+    var href    = $this.attr('href')
+    if (href) {
+      href = href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+    }
+
+    var target  = $this.attr('data-target') || href
+    var $target = $(document).find(target)
+
     if (!$target.hasClass('carousel')) return
+
     var options = $.extend({}, $target.data(), $this.data())
     var slideIndex = $this.attr('data-slide-to')
     if (slideIndex) options.interval = false
@@ -5609,10 +5918,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.7
- * http://getbootstrap.com/javascript/#collapse
+ * Bootstrap: collapse.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#collapse
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -5640,7 +5949,7 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.7'
+  Collapse.VERSION  = '3.4.1'
 
   Collapse.TRANSITION_DURATION = 350
 
@@ -5747,7 +6056,7 @@ if (typeof jQuery === 'undefined') {
   }
 
   Collapse.prototype.getParent = function () {
-    return $(this.options.parent)
+    return $(document).find(this.options.parent)
       .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
       .each($.proxy(function (i, element) {
         var $element = $(element)
@@ -5770,7 +6079,7 @@ if (typeof jQuery === 'undefined') {
     var target = $trigger.attr('data-target')
       || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
 
-    return $(target)
+    return $(document).find(target)
   }
 
 
@@ -5822,10 +6131,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.7
- * http://getbootstrap.com/javascript/#dropdowns
+ * Bootstrap: dropdown.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#dropdowns
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -5842,7 +6151,7 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.7'
+  Dropdown.VERSION = '3.4.1'
 
   function getParent($this) {
     var selector = $this.attr('data-target')
@@ -5852,7 +6161,7 @@ if (typeof jQuery === 'undefined') {
       selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = selector && $(selector)
+    var $parent = selector !== '#' ? $(document).find(selector) : null
 
     return $parent && $parent.length ? $parent : $this.parent()
   }
@@ -5988,10 +6297,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.7
- * http://getbootstrap.com/javascript/#modals
+ * Bootstrap: modal.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#modals
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -6003,15 +6312,16 @@ if (typeof jQuery === 'undefined') {
   // ======================
 
   var Modal = function (element, options) {
-    this.options             = options
-    this.$body               = $(document.body)
-    this.$element            = $(element)
-    this.$dialog             = this.$element.find('.modal-dialog')
-    this.$backdrop           = null
-    this.isShown             = null
-    this.originalBodyPad     = null
-    this.scrollbarWidth      = 0
+    this.options = options
+    this.$body = $(document.body)
+    this.$element = $(element)
+    this.$dialog = this.$element.find('.modal-dialog')
+    this.$backdrop = null
+    this.isShown = null
+    this.originalBodyPad = null
+    this.scrollbarWidth = 0
     this.ignoreBackdropClick = false
+    this.fixedContent = '.navbar-fixed-top, .navbar-fixed-bottom'
 
     if (this.options.remote) {
       this.$element
@@ -6022,7 +6332,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.7'
+  Modal.VERSION = '3.4.1'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -6039,7 +6349,7 @@ if (typeof jQuery === 'undefined') {
 
   Modal.prototype.show = function (_relatedTarget) {
     var that = this
-    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+    var e = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
 
     this.$element.trigger(e)
 
@@ -6130,8 +6440,8 @@ if (typeof jQuery === 'undefined') {
       .off('focusin.bs.modal') // guard against infinite focus loop
       .on('focusin.bs.modal', $.proxy(function (e) {
         if (document !== e.target &&
-            this.$element[0] !== e.target &&
-            !this.$element.has(e.target).length) {
+          this.$element[0] !== e.target &&
+          !this.$element.has(e.target).length) {
           this.$element.trigger('focus')
         }
       }, this))
@@ -6233,7 +6543,7 @@ if (typeof jQuery === 'undefined') {
     var modalIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
 
     this.$element.css({
-      paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
+      paddingLeft: !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
       paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
     })
   }
@@ -6258,11 +6568,26 @@ if (typeof jQuery === 'undefined') {
   Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
     this.originalBodyPad = document.body.style.paddingRight || ''
-    if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
+    var scrollbarWidth = this.scrollbarWidth
+    if (this.bodyIsOverflowing) {
+      this.$body.css('padding-right', bodyPad + scrollbarWidth)
+      $(this.fixedContent).each(function (index, element) {
+        var actualPadding = element.style.paddingRight
+        var calculatedPadding = $(element).css('padding-right')
+        $(element)
+          .data('padding-right', actualPadding)
+          .css('padding-right', parseFloat(calculatedPadding) + scrollbarWidth + 'px')
+      })
+    }
   }
 
   Modal.prototype.resetScrollbar = function () {
     this.$body.css('padding-right', this.originalBodyPad)
+    $(this.fixedContent).each(function (index, element) {
+      var padding = $(element).data('padding-right')
+      $(element).removeData('padding-right')
+      element.style.paddingRight = padding ? padding : ''
+    })
   }
 
   Modal.prototype.measureScrollbar = function () { // thx walsh
@@ -6280,8 +6605,8 @@ if (typeof jQuery === 'undefined') {
 
   function Plugin(option, _relatedTarget) {
     return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.modal')
+      var $this = $(this)
+      var data = $this.data('bs.modal')
       var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
       if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
@@ -6292,7 +6617,7 @@ if (typeof jQuery === 'undefined') {
 
   var old = $.fn.modal
 
-  $.fn.modal             = Plugin
+  $.fn.modal = Plugin
   $.fn.modal.Constructor = Modal
 
 
@@ -6309,10 +6634,13 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
-    var $this   = $(this)
-    var href    = $this.attr('href')
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
-    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+    var $this = $(this)
+    var href = $this.attr('href')
+    var target = $this.attr('data-target') ||
+      (href && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+
+    var $target = $(document).find(target)
+    var option = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
 
     if ($this.is('a')) e.preventDefault()
 
@@ -6328,17 +6656,147 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.7
- * http://getbootstrap.com/javascript/#tooltip
+ * Bootstrap: tooltip.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-
 +function ($) {
   'use strict';
+
+  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn']
+
+  var uriAttrs = [
+    'background',
+    'cite',
+    'href',
+    'itemtype',
+    'longdesc',
+    'poster',
+    'src',
+    'xlink:href'
+  ]
+
+  var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i
+
+  var DefaultWhitelist = {
+    // Global attributes allowed on any supplied element below.
+    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    a: ['target', 'href', 'title', 'rel'],
+    area: [],
+    b: [],
+    br: [],
+    col: [],
+    code: [],
+    div: [],
+    em: [],
+    hr: [],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    i: [],
+    img: ['src', 'alt', 'title', 'width', 'height'],
+    li: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    small: [],
+    span: [],
+    sub: [],
+    sup: [],
+    strong: [],
+    u: [],
+    ul: []
+  }
+
+  /**
+   * A pattern that recognizes a commonly useful subset of URLs that are safe.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi
+
+  /**
+   * A pattern that matches safe data URLs. Only matches image, video and audio types.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i
+
+  function allowedAttribute(attr, allowedAttributeList) {
+    var attrName = attr.nodeName.toLowerCase()
+
+    if ($.inArray(attrName, allowedAttributeList) !== -1) {
+      if ($.inArray(attrName, uriAttrs) !== -1) {
+        return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN))
+      }
+
+      return true
+    }
+
+    var regExp = $(allowedAttributeList).filter(function (index, value) {
+      return value instanceof RegExp
+    })
+
+    // Check if a regular expression validates the attribute.
+    for (var i = 0, l = regExp.length; i < l; i++) {
+      if (attrName.match(regExp[i])) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  function sanitizeHtml(unsafeHtml, whiteList, sanitizeFn) {
+    if (unsafeHtml.length === 0) {
+      return unsafeHtml
+    }
+
+    if (sanitizeFn && typeof sanitizeFn === 'function') {
+      return sanitizeFn(unsafeHtml)
+    }
+
+    // IE 8 and below don't support createHTMLDocument
+    if (!document.implementation || !document.implementation.createHTMLDocument) {
+      return unsafeHtml
+    }
+
+    var createdDocument = document.implementation.createHTMLDocument('sanitization')
+    createdDocument.body.innerHTML = unsafeHtml
+
+    var whitelistKeys = $.map(whiteList, function (el, i) { return i })
+    var elements = $(createdDocument.body).find('*')
+
+    for (var i = 0, len = elements.length; i < len; i++) {
+      var el = elements[i]
+      var elName = el.nodeName.toLowerCase()
+
+      if ($.inArray(elName, whitelistKeys) === -1) {
+        el.parentNode.removeChild(el)
+
+        continue
+      }
+
+      var attributeList = $.map(el.attributes, function (el) { return el })
+      var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || [])
+
+      for (var j = 0, len2 = attributeList.length; j < len2; j++) {
+        if (!allowedAttribute(attributeList[j], whitelistedAttributes)) {
+          el.removeAttribute(attributeList[j].nodeName)
+        }
+      }
+    }
+
+    return createdDocument.body.innerHTML
+  }
 
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
@@ -6355,7 +6813,7 @@ if (typeof jQuery === 'undefined') {
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.7'
+  Tooltip.VERSION  = '3.4.1'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -6372,7 +6830,10 @@ if (typeof jQuery === 'undefined') {
     viewport: {
       selector: 'body',
       padding: 0
-    }
+    },
+    sanitize : true,
+    sanitizeFn : null,
+    whiteList : DefaultWhitelist
   }
 
   Tooltip.prototype.init = function (type, element, options) {
@@ -6380,7 +6841,7 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.$viewport = this.options.viewport && $(document).find($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
     this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
@@ -6413,13 +6874,25 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.getOptions = function (options) {
-    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
+    var dataAttributes = this.$element.data()
+
+    for (var dataAttr in dataAttributes) {
+      if (dataAttributes.hasOwnProperty(dataAttr) && $.inArray(dataAttr, DISALLOWED_ATTRIBUTES) !== -1) {
+        delete dataAttributes[dataAttr]
+      }
+    }
+
+    options = $.extend({}, this.getDefaults(), dataAttributes, options)
 
     if (options.delay && typeof options.delay == 'number') {
       options.delay = {
         show: options.delay,
         hide: options.delay
       }
+    }
+
+    if (options.sanitize) {
+      options.template = sanitizeHtml(options.template, options.whiteList, options.sanitizeFn)
     }
 
     return options
@@ -6533,7 +7006,7 @@ if (typeof jQuery === 'undefined') {
         .addClass(placement)
         .data('bs.' + this.type, this)
 
-      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.options.container ? $tip.appendTo($(document).find(this.options.container)) : $tip.insertAfter(this.$element)
       this.$element.trigger('inserted.bs.' + this.type)
 
       var pos          = this.getPosition()
@@ -6635,7 +7108,16 @@ if (typeof jQuery === 'undefined') {
     var $tip  = this.tip()
     var title = this.getTitle()
 
-    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    if (this.options.html) {
+      if (this.options.sanitize) {
+        title = sanitizeHtml(title, this.options.whiteList, this.options.sanitizeFn)
+      }
+
+      $tip.find('.tooltip-inner').html(title)
+    } else {
+      $tip.find('.tooltip-inner').text(title)
+    }
+
     $tip.removeClass('fade in top bottom left right')
   }
 
@@ -6816,6 +7298,9 @@ if (typeof jQuery === 'undefined') {
     })
   }
 
+  Tooltip.prototype.sanitizeHtml = function (unsafeHtml) {
+    return sanitizeHtml(unsafeHtml, this.options.whiteList, this.options.sanitizeFn)
+  }
 
   // TOOLTIP PLUGIN DEFINITION
   // =========================
@@ -6849,10 +7334,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.7
- * http://getbootstrap.com/javascript/#popovers
+ * Bootstrap: popover.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#popovers
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -6869,7 +7354,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.7'
+  Popover.VERSION  = '3.4.1'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -6895,10 +7380,25 @@ if (typeof jQuery === 'undefined') {
     var title   = this.getTitle()
     var content = this.getContent()
 
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
-      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
-    ](content)
+    if (this.options.html) {
+      var typeContent = typeof content
+
+      if (this.options.sanitize) {
+        title = this.sanitizeHtml(title)
+
+        if (typeContent === 'string') {
+          content = this.sanitizeHtml(content)
+        }
+      }
+
+      $tip.find('.popover-title').html(title)
+      $tip.find('.popover-content').children().detach().end()[
+        typeContent === 'string' ? 'html' : 'append'
+      ](content)
+    } else {
+      $tip.find('.popover-title').text(title)
+      $tip.find('.popover-content').children().detach().end().text(content)
+    }
 
     $tip.removeClass('fade top bottom left right in')
 
@@ -6917,8 +7417,8 @@ if (typeof jQuery === 'undefined') {
 
     return $e.attr('data-content')
       || (typeof o.content == 'function' ?
-            o.content.call($e[0]) :
-            o.content)
+        o.content.call($e[0]) :
+        o.content)
   }
 
   Popover.prototype.arrow = function () {
@@ -6958,10 +7458,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.7
- * http://getbootstrap.com/javascript/#scrollspy
+ * Bootstrap: scrollspy.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#scrollspy
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -6987,7 +7487,7 @@ if (typeof jQuery === 'undefined') {
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.7'
+  ScrollSpy.VERSION  = '3.4.1'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -7131,10 +7631,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.7
- * http://getbootstrap.com/javascript/#tabs
+ * Bootstrap: tab.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#tabs
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -7151,7 +7651,7 @@ if (typeof jQuery === 'undefined') {
     // jscs:enable requireDollarBeforejQueryAssignment
   }
 
-  Tab.VERSION = '3.3.7'
+  Tab.VERSION = '3.4.1'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -7180,7 +7680,7 @@ if (typeof jQuery === 'undefined') {
 
     if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
 
-    var $target = $(selector)
+    var $target = $(document).find(selector)
 
     this.activate($this.closest('li'), $ul)
     this.activate($target, $target.parent(), function () {
@@ -7205,15 +7705,15 @@ if (typeof jQuery === 'undefined') {
       $active
         .removeClass('active')
         .find('> .dropdown-menu > .active')
-          .removeClass('active')
+        .removeClass('active')
         .end()
         .find('[data-toggle="tab"]')
-          .attr('aria-expanded', false)
+        .attr('aria-expanded', false)
 
       element
         .addClass('active')
         .find('[data-toggle="tab"]')
-          .attr('aria-expanded', true)
+        .attr('aria-expanded', true)
 
       if (transition) {
         element[0].offsetWidth // reflow for transition
@@ -7225,10 +7725,10 @@ if (typeof jQuery === 'undefined') {
       if (element.parent('.dropdown-menu').length) {
         element
           .closest('li.dropdown')
-            .addClass('active')
+          .addClass('active')
           .end()
           .find('[data-toggle="tab"]')
-            .attr('aria-expanded', true)
+          .attr('aria-expanded', true)
       }
 
       callback && callback()
@@ -7287,10 +7787,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.7
- * http://getbootstrap.com/javascript/#affix
+ * Bootstrap: affix.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#affix
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -7304,7 +7804,9 @@ if (typeof jQuery === 'undefined') {
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
 
-    this.$target = $(this.options.target)
+    var target = this.options.target === Affix.DEFAULTS.target ? $(this.options.target) : $(document).find(this.options.target)
+
+    this.$target = target
       .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
       .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
 
@@ -7316,7 +7818,7 @@ if (typeof jQuery === 'undefined') {
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.7'
+  Affix.VERSION  = '3.4.1'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -7453,6 +7955,10 @@ if (typeof jQuery === 'undefined') {
 /***/ }),
 
 /***/ "./node_modules/component-emitter/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/component-emitter/index.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -7568,6 +8074,13 @@ Emitter.prototype.removeEventListener = function(event, fn){
       break;
     }
   }
+
+  // Remove event specific arrays for event types that no
+  // one is subscribed for to avoid memory leak.
+  if (callbacks.length === 0) {
+    delete this._callbacks['$' + event];
+  }
+
   return this;
 };
 
@@ -7581,8 +8094,13 @@ Emitter.prototype.removeEventListener = function(event, fn){
 
 Emitter.prototype.emit = function(event){
   this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
+
+  var args = new Array(arguments.length - 1)
     , callbacks = this._callbacks['$' + event];
+
+  for (var i = 1; i < arguments.length; i++) {
+    args[i - 1] = arguments[i];
+  }
 
   if (callbacks) {
     callbacks = callbacks.slice(0);
@@ -7623,6 +8141,10 @@ Emitter.prototype.hasListeners = function(event){
 /***/ }),
 
 /***/ "./node_modules/corejs-typeahead/dist/typeahead.bundle.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/corejs-typeahead/dist/typeahead.bundle.js ***!
+  \****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -7633,15 +8155,11 @@ Emitter.prototype.hasListeners = function(event){
 
 (function(root, factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = function(a0) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a0) {
             return root["Bloodhound"] = factory(a0);
-        }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+        }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === "object") {
-        module.exports = factory(require("jquery"));
-    } else {
-        root["Bloodhound"] = factory(root["jQuery"]);
-    }
+    } else {}
 })(this, function($) {
     var _ = function() {
         "use strict";
@@ -8581,15 +9099,11 @@ Emitter.prototype.hasListeners = function(event){
 
 (function(root, factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = function(a0) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a0) {
             return factory(a0);
-        }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+        }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === "object") {
-        module.exports = factory(require("jquery"));
-    } else {
-        factory(root["jQuery"]);
-    }
+    } else {}
 })(this, function($) {
     var _ = function() {
         "use strict";
@@ -10248,11 +10762,15 @@ Emitter.prototype.hasListeners = function(event){
         }
     })();
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/timers-browserify/main.js").setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node-libs-browser/node_modules/timers-browserify/main.js */ "./node_modules/node-libs-browser/node_modules/timers-browserify/main.js").setImmediate))
 
 /***/ }),
 
 /***/ "./node_modules/es6-promise/dist/es6-promise.js":
+/*!******************************************************!*\
+  !*** ./node_modules/es6-promise/dist/es6-promise.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {var require;/*!
@@ -10265,8 +10783,7 @@ Emitter.prototype.hasListeners = function(event){
 
 (function (global, factory) {
      true ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.ES6Promise = factory());
+    undefined;
 }(this, (function () { 'use strict';
 
 function objectOrFunction(x) {
@@ -10387,7 +10904,7 @@ function flush() {
 function attemptVertx() {
   try {
     var r = require;
-    var vertx = __webpack_require__(1);
+    var vertx = __webpack_require__(/*! vertx */ 1);
     vertxNext = vertx.runOnLoop || vertx.runOnContext;
     return useVertxTimer();
   } catch (e) {
@@ -11409,39 +11926,15 @@ return Promise;
 
 })));
 //# sourceMappingURL=es6-promise.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js"), __webpack_require__("./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
-}
-
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js"), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/data.js":
+/*!*******************************************!*\
+  !*** ./node_modules/jquery-ui/ui/data.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11462,15 +11955,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 return $.extend( $.expr[ ":" ], {
 	data: $.expr.createPseudo ?
@@ -11491,21 +11980,21 @@ return $.extend( $.expr[ ":" ], {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/ie.js":
+/*!*****************************************!*\
+  !*** ./node_modules/jquery-ui/ui/ie.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 // This file is deprecated
@@ -11516,21 +12005,21 @@ return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/plugin.js":
+/*!*********************************************!*\
+  !*** ./node_modules/jquery-ui/ui/plugin.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 // $.ui.plugin is deprecated. Use $.widget() extensions instead.
@@ -11570,21 +12059,21 @@ return $.ui.plugin = {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/safe-active-element.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/safe-active-element.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 return $.ui.safeActiveElement = function( document ) {
 	var activeElement;
@@ -11620,21 +12109,21 @@ return $.ui.safeActiveElement = function( document ) {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/safe-blur.js":
+/*!************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/safe-blur.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 return $.ui.safeBlur = function( element ) {
 
@@ -11651,6 +12140,10 @@ return $.ui.safeBlur = function( element ) {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/scroll-parent.js":
+/*!****************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/scroll-parent.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11671,15 +12164,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 return $.fn.scrollParent = function( includeHidden ) {
@@ -11706,21 +12195,21 @@ return $.fn.scrollParent = function( includeHidden ) {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/version.js":
+/*!**********************************************!*\
+  !*** ./node_modules/jquery-ui/ui/version.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 } ( function( $ ) {
 
 $.ui = $.ui || {};
@@ -11733,6 +12222,10 @@ return $.ui.version = "1.12.1";
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widget.js":
+/*!*********************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widget.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11754,15 +12247,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 var widgetUuid = 0;
@@ -12476,6 +12965,10 @@ return $.widget;
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widgets/draggable.js":
+/*!********************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widgets/draggable.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12499,24 +12992,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__("./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widgets/mouse.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/data.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/plugin.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/safe-active-element.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/safe-blur.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/scroll-parent.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widget.js")
+			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+			__webpack_require__(/*! ./mouse */ "./node_modules/jquery-ui/ui/widgets/mouse.js"),
+			__webpack_require__(/*! ../data */ "./node_modules/jquery-ui/ui/data.js"),
+			__webpack_require__(/*! ../plugin */ "./node_modules/jquery-ui/ui/plugin.js"),
+			__webpack_require__(/*! ../safe-active-element */ "./node_modules/jquery-ui/ui/safe-active-element.js"),
+			__webpack_require__(/*! ../safe-blur */ "./node_modules/jquery-ui/ui/safe-blur.js"),
+			__webpack_require__(/*! ../scroll-parent */ "./node_modules/jquery-ui/ui/scroll-parent.js"),
+			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
+			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 $.widget( "ui.draggable", $.ui.mouse, {
@@ -13736,6 +14225,10 @@ return $.ui.draggable;
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widgets/mouse.js":
+/*!****************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widgets/mouse.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13757,19 +14250,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__("./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/ie.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widget.js")
+			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+			__webpack_require__(/*! ../ie */ "./node_modules/jquery-ui/ui/ie.js"),
+			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
+			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 var mouseHandled = false;
@@ -13972,6 +14461,10 @@ return $.widget( "ui.mouse", {
 /***/ }),
 
 /***/ "./node_modules/jquery-ui/ui/widgets/sortable.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/jquery-ui/ui/widgets/sortable.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13995,22 +14488,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__("./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widgets/mouse.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/data.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/ie.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/scroll-parent.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__("./node_modules/jquery-ui/ui/widget.js")
+			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+			__webpack_require__(/*! ./mouse */ "./node_modules/jquery-ui/ui/widgets/mouse.js"),
+			__webpack_require__(/*! ../data */ "./node_modules/jquery-ui/ui/data.js"),
+			__webpack_require__(/*! ../ie */ "./node_modules/jquery-ui/ui/ie.js"),
+			__webpack_require__(/*! ../scroll-parent */ "./node_modules/jquery-ui/ui/scroll-parent.js"),
+			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
+			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
+	} else {}
 }( function( $ ) {
 
 return $.widget( "ui.sortable", $.ui.mouse, {
@@ -15536,10 +16025,14 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 /***/ }),
 
 /***/ "./node_modules/jquery/dist/jquery.js":
+/*!********************************************!*\
+  !*** ./node_modules/jquery/dist/jquery.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.2.1
+ * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -15549,13 +16042,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2017-03-20T18:59Z
+ * Date: 2019-05-01T21:04Z
  */
 ( function( global, factory ) {
 
 	"use strict";
 
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
+	if (  true && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
@@ -15611,16 +16104,70 @@ var ObjectFunctionString = fnToString.call( Object );
 
 var support = {};
 
+var isFunction = function isFunction( obj ) {
+
+      // Support: Chrome <=57, Firefox <=52
+      // In some browsers, typeof returns "function" for HTML <object> elements
+      // (i.e., `typeof document.createElement( "object" ) === "function"`).
+      // We don't want to classify *any* DOM node as a function.
+      return typeof obj === "function" && typeof obj.nodeType !== "number";
+  };
 
 
-	function DOMEval( code, doc ) {
+var isWindow = function isWindow( obj ) {
+		return obj != null && obj === obj.window;
+	};
+
+
+
+
+	var preservedScriptAttributes = {
+		type: true,
+		src: true,
+		nonce: true,
+		noModule: true
+	};
+
+	function DOMEval( code, node, doc ) {
 		doc = doc || document;
 
-		var script = doc.createElement( "script" );
+		var i, val,
+			script = doc.createElement( "script" );
 
 		script.text = code;
+		if ( node ) {
+			for ( i in preservedScriptAttributes ) {
+
+				// Support: Firefox 64+, Edge 18+
+				// Some browsers don't support the "nonce" property on scripts.
+				// On the other hand, just using `getAttribute` is not enough as
+				// the `nonce` attribute is reset to an empty string whenever it
+				// becomes browsing-context connected.
+				// See https://github.com/whatwg/html/issues/2369
+				// See https://html.spec.whatwg.org/#nonce-attributes
+				// The `node.getAttribute` check was added for the sake of
+				// `jQuery.globalEval` so that it can fake a nonce-containing node
+				// via an object.
+				val = node[ i ] || node.getAttribute && node.getAttribute( i );
+				if ( val ) {
+					script.setAttribute( i, val );
+				}
+			}
+		}
 		doc.head.appendChild( script ).parentNode.removeChild( script );
 	}
+
+
+function toType( obj ) {
+	if ( obj == null ) {
+		return obj + "";
+	}
+
+	// Support: Android <=2.3 only (functionish RegExp)
+	return typeof obj === "object" || typeof obj === "function" ?
+		class2type[ toString.call( obj ) ] || "object" :
+		typeof obj;
+}
 /* global Symbol */
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
@@ -15628,7 +16175,7 @@ var support = {};
 
 
 var
-	version = "3.2.1",
+	version = "3.4.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -15640,16 +16187,7 @@ var
 
 	// Support: Android <=4.0 only
 	// Make sure we trim BOM and NBSP
-	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
-
-	// Matches dashed string for camelizing
-	rmsPrefix = /^-ms-/,
-	rdashAlpha = /-([a-z])/g,
-
-	// Used by jQuery.camelCase as callback to replace()
-	fcamelCase = function( all, letter ) {
-		return letter.toUpperCase();
-	};
+	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
 
 jQuery.fn = jQuery.prototype = {
 
@@ -15749,7 +16287,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
+	if ( typeof target !== "object" && !isFunction( target ) ) {
 		target = {};
 	}
 
@@ -15766,25 +16304,28 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 			// Extend the base object
 			for ( name in options ) {
-				src = target[ name ];
 				copy = options[ name ];
 
+				// Prevent Object.prototype pollution
 				// Prevent never-ending loop
-				if ( target === copy ) {
+				if ( name === "__proto__" || target === copy ) {
 					continue;
 				}
 
 				// Recurse if we're merging plain objects or arrays
 				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
 					( copyIsArray = Array.isArray( copy ) ) ) ) {
+					src = target[ name ];
 
-					if ( copyIsArray ) {
-						copyIsArray = false;
-						clone = src && Array.isArray( src ) ? src : [];
-
+					// Ensure proper type for the source value
+					if ( copyIsArray && !Array.isArray( src ) ) {
+						clone = [];
+					} else if ( !copyIsArray && !jQuery.isPlainObject( src ) ) {
+						clone = {};
 					} else {
-						clone = src && jQuery.isPlainObject( src ) ? src : {};
+						clone = src;
 					}
+					copyIsArray = false;
 
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
@@ -15815,28 +16356,6 @@ jQuery.extend( {
 
 	noop: function() {},
 
-	isFunction: function( obj ) {
-		return jQuery.type( obj ) === "function";
-	},
-
-	isWindow: function( obj ) {
-		return obj != null && obj === obj.window;
-	},
-
-	isNumeric: function( obj ) {
-
-		// As of jQuery 3.0, isNumeric is limited to
-		// strings and numbers (primitives or objects)
-		// that can be coerced to finite numbers (gh-2662)
-		var type = jQuery.type( obj );
-		return ( type === "number" || type === "string" ) &&
-
-			// parseFloat NaNs numeric-cast false positives ("")
-			// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
-			// subtraction forces infinities to NaN
-			!isNaN( obj - parseFloat( obj ) );
-	},
-
 	isPlainObject: function( obj ) {
 		var proto, Ctor;
 
@@ -15859,9 +16378,6 @@ jQuery.extend( {
 	},
 
 	isEmptyObject: function( obj ) {
-
-		/* eslint-disable no-unused-vars */
-		// See https://github.com/eslint/eslint/issues/6125
 		var name;
 
 		for ( name in obj ) {
@@ -15870,27 +16386,9 @@ jQuery.extend( {
 		return true;
 	},
 
-	type: function( obj ) {
-		if ( obj == null ) {
-			return obj + "";
-		}
-
-		// Support: Android <=2.3 only (functionish RegExp)
-		return typeof obj === "object" || typeof obj === "function" ?
-			class2type[ toString.call( obj ) ] || "object" :
-			typeof obj;
-	},
-
 	// Evaluates a script in a global context
-	globalEval: function( code ) {
-		DOMEval( code );
-	},
-
-	// Convert dashed to camelCase; used by the css and data modules
-	// Support: IE <=9 - 11, Edge 12 - 13
-	// Microsoft forgot to hump their vendor prefix (#9572)
-	camelCase: function( string ) {
-		return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+	globalEval: function( code, options ) {
+		DOMEval( code, { nonce: options && options.nonce } );
 	},
 
 	each: function( obj, callback ) {
@@ -16013,37 +16511,6 @@ jQuery.extend( {
 	// A global GUID counter for objects
 	guid: 1,
 
-	// Bind a function to a context, optionally partially applying any
-	// arguments.
-	proxy: function( fn, context ) {
-		var tmp, args, proxy;
-
-		if ( typeof context === "string" ) {
-			tmp = fn[ context ];
-			context = fn;
-			fn = tmp;
-		}
-
-		// Quick check to determine if target is callable, in the spec
-		// this throws a TypeError, but we will just return undefined.
-		if ( !jQuery.isFunction( fn ) ) {
-			return undefined;
-		}
-
-		// Simulated bind
-		args = slice.call( arguments, 2 );
-		proxy = function() {
-			return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
-		};
-
-		// Set the guid of unique handler to the same of original handler, so it can be removed
-		proxy.guid = fn.guid = fn.guid || jQuery.guid++;
-
-		return proxy;
-	},
-
-	now: Date.now,
-
 	// jQuery.support is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
@@ -16066,9 +16533,9 @@ function isArrayLike( obj ) {
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,
-		type = jQuery.type( obj );
+		type = toType( obj );
 
-	if ( type === "function" || jQuery.isWindow( obj ) ) {
+	if ( isFunction( obj ) || isWindow( obj ) ) {
 		return false;
 	}
 
@@ -16077,14 +16544,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.3
+ * Sizzle CSS Selector Engine v2.3.4
  * https://sizzlejs.com/
  *
- * Copyright jQuery Foundation and other contributors
+ * Copyright JS Foundation and other contributors
  * Released under the MIT license
- * http://jquery.org/license
+ * https://js.foundation/
  *
- * Date: 2016-08-08
+ * Date: 2019-04-08
  */
 (function( window ) {
 
@@ -16118,6 +16585,7 @@ var i,
 	classCache = createCache(),
 	tokenCache = createCache(),
 	compilerCache = createCache(),
+	nonnativeSelectorCache = createCache(),
 	sortOrder = function( a, b ) {
 		if ( a === b ) {
 			hasDuplicate = true;
@@ -16179,8 +16647,7 @@ var i,
 
 	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
 	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
-
-	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
+	rdescend = new RegExp( whitespace + "|>" ),
 
 	rpseudo = new RegExp( pseudos ),
 	ridentifier = new RegExp( "^" + identifier + "$" ),
@@ -16201,6 +16668,7 @@ var i,
 			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
 	},
 
+	rhtml = /HTML$/i,
 	rinputs = /^(?:input|select|textarea|button)$/i,
 	rheader = /^h\d$/i,
 
@@ -16255,9 +16723,9 @@ var i,
 		setDocument();
 	},
 
-	disabledAncestor = addCombinator(
+	inDisabledFieldset = addCombinator(
 		function( elem ) {
-			return elem.disabled === true && ("form" in elem || "label" in elem);
+			return elem.disabled === true && elem.nodeName.toLowerCase() === "fieldset";
 		},
 		{ dir: "parentNode", next: "legend" }
 	);
@@ -16370,18 +16838,22 @@ function Sizzle( selector, context, results, seed ) {
 
 			// Take advantage of querySelectorAll
 			if ( support.qsa &&
-				!compilerCache[ selector + " " ] &&
-				(!rbuggyQSA || !rbuggyQSA.test( selector )) ) {
+				!nonnativeSelectorCache[ selector + " " ] &&
+				(!rbuggyQSA || !rbuggyQSA.test( selector )) &&
 
-				if ( nodeType !== 1 ) {
-					newContext = context;
-					newSelector = selector;
-
-				// qSA looks outside Element context, which is not what we want
-				// Thanks to Andrew Dupont for this workaround technique
-				// Support: IE <=8
+				// Support: IE 8 only
 				// Exclude object elements
-				} else if ( context.nodeName.toLowerCase() !== "object" ) {
+				(nodeType !== 1 || context.nodeName.toLowerCase() !== "object") ) {
+
+				newSelector = selector;
+				newContext = context;
+
+				// qSA considers elements outside a scoping root when evaluating child or
+				// descendant combinators, which is not what we want.
+				// In such cases, we work around the behavior by prefixing every selector in the
+				// list with an ID selector referencing the scope context.
+				// Thanks to Andrew Dupont for this technique.
+				if ( nodeType === 1 && rdescend.test( selector ) ) {
 
 					// Capture the context ID, setting it first if necessary
 					if ( (nid = context.getAttribute( "id" )) ) {
@@ -16403,17 +16875,16 @@ function Sizzle( selector, context, results, seed ) {
 						context;
 				}
 
-				if ( newSelector ) {
-					try {
-						push.apply( results,
-							newContext.querySelectorAll( newSelector )
-						);
-						return results;
-					} catch ( qsaError ) {
-					} finally {
-						if ( nid === expando ) {
-							context.removeAttribute( "id" );
-						}
+				try {
+					push.apply( results,
+						newContext.querySelectorAll( newSelector )
+					);
+					return results;
+				} catch ( qsaError ) {
+					nonnativeSelectorCache( selector, true );
+				} finally {
+					if ( nid === expando ) {
+						context.removeAttribute( "id" );
 					}
 				}
 			}
@@ -16577,7 +17048,7 @@ function createDisabledPseudo( disabled ) {
 					// Where there is no isDisabled, check manually
 					/* jshint -W018 */
 					elem.isDisabled !== !disabled &&
-						disabledAncestor( elem ) === disabled;
+						inDisabledFieldset( elem ) === disabled;
 			}
 
 			return elem.disabled === disabled;
@@ -16634,10 +17105,13 @@ support = Sizzle.support = {};
  * @returns {Boolean} True iff elem is a non-HTML XML node
  */
 isXML = Sizzle.isXML = function( elem ) {
-	// documentElement is verified for cases where it doesn't yet exist
-	// (such as loading iframes in IE - #4833)
-	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
-	return documentElement ? documentElement.nodeName !== "HTML" : false;
+	var namespace = elem.namespaceURI,
+		docElem = (elem.ownerDocument || elem).documentElement;
+
+	// Support: IE <=8
+	// Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
+	// https://bugs.jquery.com/ticket/4833
+	return !rhtml.test( namespace || docElem && docElem.nodeName || "HTML" );
 };
 
 /**
@@ -17059,11 +17533,8 @@ Sizzle.matchesSelector = function( elem, expr ) {
 		setDocument( elem );
 	}
 
-	// Make sure that attribute selectors are quoted
-	expr = expr.replace( rattributeQuotes, "='$1']" );
-
 	if ( support.matchesSelector && documentIsHTML &&
-		!compilerCache[ expr + " " ] &&
+		!nonnativeSelectorCache[ expr + " " ] &&
 		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
 		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
 
@@ -17077,7 +17548,9 @@ Sizzle.matchesSelector = function( elem, expr ) {
 					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
-		} catch (e) {}
+		} catch (e) {
+			nonnativeSelectorCache( expr, true );
+		}
 	}
 
 	return Sizzle( expr, document, null, [ elem ] ).length > 0;
@@ -17536,7 +18009,7 @@ Expr = Sizzle.selectors = {
 		"contains": markFunction(function( text ) {
 			text = text.replace( runescape, funescape );
 			return function( elem ) {
-				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+				return ( elem.textContent || getText( elem ) ).indexOf( text ) > -1;
 			};
 		}),
 
@@ -17675,7 +18148,11 @@ Expr = Sizzle.selectors = {
 		}),
 
 		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			var i = argument < 0 ? argument + length : argument;
+			var i = argument < 0 ?
+				argument + length :
+				argument > length ?
+					length :
+					argument;
 			for ( ; --i >= 0; ) {
 				matchIndexes.push( i );
 			}
@@ -18388,11 +18865,9 @@ var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|
 
 
 
-var risSimple = /^.[^:#\[\.,]*$/;
-
 // Implement the identical functionality for filter and not
 function winnow( elements, qualifier, not ) {
-	if ( jQuery.isFunction( qualifier ) ) {
+	if ( isFunction( qualifier ) ) {
 		return jQuery.grep( elements, function( elem, i ) {
 			return !!qualifier.call( elem, i, elem ) !== not;
 		} );
@@ -18412,16 +18887,8 @@ function winnow( elements, qualifier, not ) {
 		} );
 	}
 
-	// Simple selector that can be filtered directly, removing non-Elements
-	if ( risSimple.test( qualifier ) ) {
-		return jQuery.filter( qualifier, elements, not );
-	}
-
-	// Complex selector, compare the two sets, removing non-Elements
-	qualifier = jQuery.filter( qualifier, elements );
-	return jQuery.grep( elements, function( elem ) {
-		return ( indexOf.call( qualifier, elem ) > -1 ) !== not && elem.nodeType === 1;
-	} );
+	// Filtered directly for both simple and complex selectors
+	return jQuery.filter( qualifier, elements, not );
 }
 
 jQuery.filter = function( expr, elems, not ) {
@@ -18542,7 +19009,7 @@ var rootjQuery,
 						for ( match in context ) {
 
 							// Properties of context are called as methods if possible
-							if ( jQuery.isFunction( this[ match ] ) ) {
+							if ( isFunction( this[ match ] ) ) {
 								this[ match ]( context[ match ] );
 
 							// ...and otherwise set as attributes
@@ -18585,7 +19052,7 @@ var rootjQuery,
 
 		// HANDLE: $(function)
 		// Shortcut for document ready
-		} else if ( jQuery.isFunction( selector ) ) {
+		} else if ( isFunction( selector ) ) {
 			return root.ready !== undefined ?
 				root.ready( selector ) :
 
@@ -18735,18 +19202,18 @@ jQuery.each( {
 		return siblings( elem.firstChild );
 	},
 	contents: function( elem ) {
-        if ( nodeName( elem, "iframe" ) ) {
-            return elem.contentDocument;
-        }
+		if ( typeof elem.contentDocument !== "undefined" ) {
+			return elem.contentDocument;
+		}
 
-        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-        // Treat the template element as a regular one in browsers that
-        // don't support it.
-        if ( nodeName( elem, "template" ) ) {
-            elem = elem.content || elem;
-        }
+		// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+		// Treat the template element as a regular one in browsers that
+		// don't support it.
+		if ( nodeName( elem, "template" ) ) {
+			elem = elem.content || elem;
+		}
 
-        return jQuery.merge( [], elem.childNodes );
+		return jQuery.merge( [], elem.childNodes );
 	}
 }, function( name, fn ) {
 	jQuery.fn[ name ] = function( until, selector ) {
@@ -18900,11 +19367,11 @@ jQuery.Callbacks = function( options ) {
 
 					( function add( args ) {
 						jQuery.each( args, function( _, arg ) {
-							if ( jQuery.isFunction( arg ) ) {
+							if ( isFunction( arg ) ) {
 								if ( !options.unique || !self.has( arg ) ) {
 									list.push( arg );
 								}
-							} else if ( arg && arg.length && jQuery.type( arg ) !== "string" ) {
+							} else if ( arg && arg.length && toType( arg ) !== "string" ) {
 
 								// Inspect recursively
 								add( arg );
@@ -19019,11 +19486,11 @@ function adoptValue( value, resolve, reject, noValue ) {
 	try {
 
 		// Check for promise aspect first to privilege synchronous behavior
-		if ( value && jQuery.isFunction( ( method = value.promise ) ) ) {
+		if ( value && isFunction( ( method = value.promise ) ) ) {
 			method.call( value ).done( resolve ).fail( reject );
 
 		// Other thenables
-		} else if ( value && jQuery.isFunction( ( method = value.then ) ) ) {
+		} else if ( value && isFunction( ( method = value.then ) ) ) {
 			method.call( value, resolve, reject );
 
 		// Other non-thenables
@@ -19081,14 +19548,14 @@ jQuery.extend( {
 						jQuery.each( tuples, function( i, tuple ) {
 
 							// Map tuples (progress, done, fail) to arguments (done, fail, progress)
-							var fn = jQuery.isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+							var fn = isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
 
 							// deferred.progress(function() { bind to newDefer or newDefer.notify })
 							// deferred.done(function() { bind to newDefer or newDefer.resolve })
 							// deferred.fail(function() { bind to newDefer or newDefer.reject })
 							deferred[ tuple[ 1 ] ]( function() {
 								var returned = fn && fn.apply( this, arguments );
-								if ( returned && jQuery.isFunction( returned.promise ) ) {
+								if ( returned && isFunction( returned.promise ) ) {
 									returned.promise()
 										.progress( newDefer.notify )
 										.done( newDefer.resolve )
@@ -19142,7 +19609,7 @@ jQuery.extend( {
 										returned.then;
 
 									// Handle a returned thenable
-									if ( jQuery.isFunction( then ) ) {
+									if ( isFunction( then ) ) {
 
 										// Special processors (notify) just wait for resolution
 										if ( special ) {
@@ -19238,7 +19705,7 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
-								jQuery.isFunction( onProgress ) ?
+								isFunction( onProgress ) ?
 									onProgress :
 									Identity,
 								newDefer.notifyWith
@@ -19250,7 +19717,7 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
-								jQuery.isFunction( onFulfilled ) ?
+								isFunction( onFulfilled ) ?
 									onFulfilled :
 									Identity
 							)
@@ -19261,7 +19728,7 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
-								jQuery.isFunction( onRejected ) ?
+								isFunction( onRejected ) ?
 									onRejected :
 									Thrower
 							)
@@ -19301,8 +19768,15 @@ jQuery.extend( {
 					// fulfilled_callbacks.disable
 					tuples[ 3 - i ][ 2 ].disable,
 
+					// rejected_handlers.disable
+					// fulfilled_handlers.disable
+					tuples[ 3 - i ][ 3 ].disable,
+
 					// progress_callbacks.lock
-					tuples[ 0 ][ 2 ].lock
+					tuples[ 0 ][ 2 ].lock,
+
+					// progress_handlers.lock
+					tuples[ 0 ][ 3 ].lock
 				);
 			}
 
@@ -19372,7 +19846,7 @@ jQuery.extend( {
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
 			if ( master.state() === "pending" ||
-				jQuery.isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
 
 				return master.then();
 			}
@@ -19500,7 +19974,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		bulk = key == null;
 
 	// Sets many values
-	if ( jQuery.type( key ) === "object" ) {
+	if ( toType( key ) === "object" ) {
 		chainable = true;
 		for ( i in key ) {
 			access( elems, fn, i, key[ i ], true, emptyGet, raw );
@@ -19510,7 +19984,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	} else if ( value !== undefined ) {
 		chainable = true;
 
-		if ( !jQuery.isFunction( value ) ) {
+		if ( !isFunction( value ) ) {
 			raw = true;
 		}
 
@@ -19552,6 +20026,23 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 
 	return len ? fn( elems[ 0 ], key ) : emptyGet;
 };
+
+
+// Matches dashed string for camelizing
+var rmsPrefix = /^-ms-/,
+	rdashAlpha = /-([a-z])/g;
+
+// Used by camelCase as callback to replace()
+function fcamelCase( all, letter ) {
+	return letter.toUpperCase();
+}
+
+// Convert dashed to camelCase; used by the css and data modules
+// Support: IE <=9 - 11, Edge 12 - 15
+// Microsoft forgot to hump their vendor prefix (#9572)
+function camelCase( string ) {
+	return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+}
 var acceptData = function( owner ) {
 
 	// Accepts only:
@@ -19614,14 +20105,14 @@ Data.prototype = {
 		// Handle: [ owner, key, value ] args
 		// Always use camelCase key (gh-2257)
 		if ( typeof data === "string" ) {
-			cache[ jQuery.camelCase( data ) ] = value;
+			cache[ camelCase( data ) ] = value;
 
 		// Handle: [ owner, { properties } ] args
 		} else {
 
 			// Copy the properties one-by-one to the cache object
 			for ( prop in data ) {
-				cache[ jQuery.camelCase( prop ) ] = data[ prop ];
+				cache[ camelCase( prop ) ] = data[ prop ];
 			}
 		}
 		return cache;
@@ -19631,7 +20122,7 @@ Data.prototype = {
 			this.cache( owner ) :
 
 			// Always use camelCase key (gh-2257)
-			owner[ this.expando ] && owner[ this.expando ][ jQuery.camelCase( key ) ];
+			owner[ this.expando ] && owner[ this.expando ][ camelCase( key ) ];
 	},
 	access: function( owner, key, value ) {
 
@@ -19679,9 +20170,9 @@ Data.prototype = {
 
 				// If key is an array of keys...
 				// We always set camelCase keys, so remove that.
-				key = key.map( jQuery.camelCase );
+				key = key.map( camelCase );
 			} else {
-				key = jQuery.camelCase( key );
+				key = camelCase( key );
 
 				// If a key with the spaces exists, use it.
 				// Otherwise, create an array by matching non-whitespace
@@ -19827,7 +20318,7 @@ jQuery.fn.extend( {
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
 							if ( name.indexOf( "data-" ) === 0 ) {
-								name = jQuery.camelCase( name.slice( 5 ) );
+								name = camelCase( name.slice( 5 ) );
 								dataAttr( elem, name, data[ name ] );
 							}
 						}
@@ -20031,6 +20522,26 @@ var rcssNum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
 
 var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
 
+var documentElement = document.documentElement;
+
+
+
+	var isAttached = function( elem ) {
+			return jQuery.contains( elem.ownerDocument, elem );
+		},
+		composed = { composed: true };
+
+	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
+	// Check attachment across shadow DOM boundaries when possible (gh-3504)
+	// Support: iOS 10.0-10.2 only
+	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
+	// leading to errors. We need to check for `getRootNode`.
+	if ( documentElement.getRootNode ) {
+		isAttached = function( elem ) {
+			return jQuery.contains( elem.ownerDocument, elem ) ||
+				elem.getRootNode( composed ) === elem.ownerDocument;
+		};
+	}
 var isHiddenWithinTree = function( elem, el ) {
 
 		// isHiddenWithinTree might be called from jQuery#filter function;
@@ -20045,7 +20556,7 @@ var isHiddenWithinTree = function( elem, el ) {
 			// Support: Firefox <=43 - 45
 			// Disconnected elements can have computed display: none, so first confirm that elem is
 			// in the document.
-			jQuery.contains( elem.ownerDocument, elem ) &&
+			isAttached( elem ) &&
 
 			jQuery.css( elem, "display" ) === "none";
 	};
@@ -20074,8 +20585,7 @@ var swap = function( elem, options, callback, args ) {
 
 
 function adjustCSS( elem, prop, valueParts, tween ) {
-	var adjusted,
-		scale = 1,
+	var adjusted, scale,
 		maxIterations = 20,
 		currentValue = tween ?
 			function() {
@@ -20088,35 +20598,39 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
 
 		// Starting value computation is required for potential unit mismatches
-		initialInUnit = ( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+		initialInUnit = elem.nodeType &&
+			( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
 			rcssNum.exec( jQuery.css( elem, prop ) );
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
 
+		// Support: Firefox <=54
+		// Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)
+		initial = initial / 2;
+
 		// Trust units reported by jQuery.css
 		unit = unit || initialInUnit[ 3 ];
-
-		// Make sure we update the tween properties later on
-		valueParts = valueParts || [];
 
 		// Iteratively approximate from a nonzero starting point
 		initialInUnit = +initial || 1;
 
-		do {
+		while ( maxIterations-- ) {
 
-			// If previous iteration zeroed out, double until we get *something*.
-			// Use string for doubling so we don't accidentally see scale as unchanged below
-			scale = scale || ".5";
-
-			// Adjust and apply
-			initialInUnit = initialInUnit / scale;
+			// Evaluate and update our best guess (doubling guesses that zero out).
+			// Finish if the scale equals or crosses 1 (making the old*new product non-positive).
 			jQuery.style( elem, prop, initialInUnit + unit );
+			if ( ( 1 - scale ) * ( 1 - ( scale = currentValue() / initial || 0.5 ) ) <= 0 ) {
+				maxIterations = 0;
+			}
+			initialInUnit = initialInUnit / scale;
 
-		// Update scale, tolerating zero or NaN from tween.cur()
-		// Break the loop if scale is unchanged or perfect, or if we've just had enough.
-		} while (
-			scale !== ( scale = currentValue() / initial ) && scale !== 1 && --maxIterations
-		);
+		}
+
+		initialInUnit = initialInUnit * 2;
+		jQuery.style( elem, prop, initialInUnit + unit );
+
+		// Make sure we update the tween properties later on
+		valueParts = valueParts || [];
 	}
 
 	if ( valueParts ) {
@@ -20232,9 +20746,9 @@ jQuery.fn.extend( {
 } );
 var rcheckableType = ( /^(?:checkbox|radio)$/i );
 
-var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]+)/i );
+var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]*)/i );
 
-var rscriptType = ( /^$|\/(?:java|ecma)script/i );
+var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 
 
 
@@ -20304,7 +20818,7 @@ function setGlobalEval( elems, refElements ) {
 var rhtml = /<|&#?\w+;/;
 
 function buildFragment( elems, context, scripts, selection, ignored ) {
-	var elem, tmp, tag, wrap, contains, j,
+	var elem, tmp, tag, wrap, attached, j,
 		fragment = context.createDocumentFragment(),
 		nodes = [],
 		i = 0,
@@ -20316,7 +20830,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 		if ( elem || elem === 0 ) {
 
 			// Add nodes directly
-			if ( jQuery.type( elem ) === "object" ) {
+			if ( toType( elem ) === "object" ) {
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
@@ -20368,13 +20882,13 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 			continue;
 		}
 
-		contains = jQuery.contains( elem.ownerDocument, elem );
+		attached = isAttached( elem );
 
 		// Append to fragment
 		tmp = getAll( fragment.appendChild( elem ), "script" );
 
 		// Preserve script evaluation history
-		if ( contains ) {
+		if ( attached ) {
 			setGlobalEval( tmp );
 		}
 
@@ -20417,8 +20931,6 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	div.innerHTML = "<textarea>x</textarea>";
 	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
 } )();
-var documentElement = document.documentElement;
-
 
 
 var
@@ -20434,8 +20946,19 @@ function returnFalse() {
 	return false;
 }
 
+// Support: IE <=9 - 11+
+// focus() and blur() are asynchronous, except when they are no-op.
+// So expect focus to be synchronous when the element is already active,
+// and blur to be synchronous when the element is not already active.
+// (focus and blur are always synchronous in other supported browsers,
+// this just defines when we can count on it).
+function expectSync( elem, type ) {
+	return ( elem === safeActiveElement() ) === ( type === "focus" );
+}
+
 // Support: IE <=9 only
-// See #13393 for more info
+// Accessing document.activeElement can throw unexpectedly
+// https://bugs.jquery.com/ticket/13393
 function safeActiveElement() {
 	try {
 		return document.activeElement;
@@ -20735,9 +21258,10 @@ jQuery.event = {
 			while ( ( handleObj = matched.handlers[ j++ ] ) &&
 				!event.isImmediatePropagationStopped() ) {
 
-				// Triggered event must either 1) have no namespace, or 2) have namespace(s)
-				// a subset or equal to those in the bound event (both can have no namespace).
-				if ( !event.rnamespace || event.rnamespace.test( handleObj.namespace ) ) {
+				// If the event is namespaced, then each handler is only invoked if it is
+				// specially universal or its namespaces are a superset of the event's.
+				if ( !event.rnamespace || handleObj.namespace === false ||
+					event.rnamespace.test( handleObj.namespace ) ) {
 
 					event.handleObj = handleObj;
 					event.data = handleObj.data;
@@ -20826,7 +21350,7 @@ jQuery.event = {
 			enumerable: true,
 			configurable: true,
 
-			get: jQuery.isFunction( hook ) ?
+			get: isFunction( hook ) ?
 				function() {
 					if ( this.originalEvent ) {
 							return hook( this.originalEvent );
@@ -20861,39 +21385,51 @@ jQuery.event = {
 			// Prevent triggered image.load events from bubbling to window.load
 			noBubble: true
 		},
-		focus: {
-
-			// Fire native event if possible so blur/focus sequence is correct
-			trigger: function() {
-				if ( this !== safeActiveElement() && this.focus ) {
-					this.focus();
-					return false;
-				}
-			},
-			delegateType: "focusin"
-		},
-		blur: {
-			trigger: function() {
-				if ( this === safeActiveElement() && this.blur ) {
-					this.blur();
-					return false;
-				}
-			},
-			delegateType: "focusout"
-		},
 		click: {
 
-			// For checkbox, fire native event so checked state will be right
-			trigger: function() {
-				if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
-					this.click();
-					return false;
+			// Utilize native event to ensure correct state for checkable inputs
+			setup: function( data ) {
+
+				// For mutual compressibility with _default, replace `this` access with a local var.
+				// `|| data` is dead code meant only to preserve the variable through minification.
+				var el = this || data;
+
+				// Claim the first handler
+				if ( rcheckableType.test( el.type ) &&
+					el.click && nodeName( el, "input" ) ) {
+
+					// dataPriv.set( el, "click", ... )
+					leverageNative( el, "click", returnTrue );
 				}
+
+				// Return false to allow normal processing in the caller
+				return false;
+			},
+			trigger: function( data ) {
+
+				// For mutual compressibility with _default, replace `this` access with a local var.
+				// `|| data` is dead code meant only to preserve the variable through minification.
+				var el = this || data;
+
+				// Force setup before triggering a click
+				if ( rcheckableType.test( el.type ) &&
+					el.click && nodeName( el, "input" ) ) {
+
+					leverageNative( el, "click" );
+				}
+
+				// Return non-false to allow normal event-path propagation
+				return true;
 			},
 
-			// For cross-browser consistency, don't fire native .click() on links
+			// For cross-browser consistency, suppress native .click() on links
+			// Also prevent it if we're currently inside a leveraged native-event stack
 			_default: function( event ) {
-				return nodeName( event.target, "a" );
+				var target = event.target;
+				return rcheckableType.test( target.type ) &&
+					target.click && nodeName( target, "input" ) &&
+					dataPriv.get( target, "click" ) ||
+					nodeName( target, "a" );
 			}
 		},
 
@@ -20909,6 +21445,93 @@ jQuery.event = {
 		}
 	}
 };
+
+// Ensure the presence of an event listener that handles manually-triggered
+// synthetic events by interrupting progress until reinvoked in response to
+// *native* events that it fires directly, ensuring that state changes have
+// already occurred before other listeners are invoked.
+function leverageNative( el, type, expectSync ) {
+
+	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
+	if ( !expectSync ) {
+		if ( dataPriv.get( el, type ) === undefined ) {
+			jQuery.event.add( el, type, returnTrue );
+		}
+		return;
+	}
+
+	// Register the controller as a special universal handler for all event namespaces
+	dataPriv.set( el, type, false );
+	jQuery.event.add( el, type, {
+		namespace: false,
+		handler: function( event ) {
+			var notAsync, result,
+				saved = dataPriv.get( this, type );
+
+			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
+
+				// Interrupt processing of the outer synthetic .trigger()ed event
+				// Saved data should be false in such cases, but might be a leftover capture object
+				// from an async native handler (gh-4350)
+				if ( !saved.length ) {
+
+					// Store arguments for use when handling the inner native event
+					// There will always be at least one argument (an event object), so this array
+					// will not be confused with a leftover capture object.
+					saved = slice.call( arguments );
+					dataPriv.set( this, type, saved );
+
+					// Trigger the native event and capture its result
+					// Support: IE <=9 - 11+
+					// focus() and blur() are asynchronous
+					notAsync = expectSync( this, type );
+					this[ type ]();
+					result = dataPriv.get( this, type );
+					if ( saved !== result || notAsync ) {
+						dataPriv.set( this, type, false );
+					} else {
+						result = {};
+					}
+					if ( saved !== result ) {
+
+						// Cancel the outer synthetic event
+						event.stopImmediatePropagation();
+						event.preventDefault();
+						return result.value;
+					}
+
+				// If this is an inner synthetic event for an event with a bubbling surrogate
+				// (focus or blur), assume that the surrogate already propagated from triggering the
+				// native event and prevent that from happening again here.
+				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
+				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
+				// less bad than duplication.
+				} else if ( ( jQuery.event.special[ type ] || {} ).delegateType ) {
+					event.stopPropagation();
+				}
+
+			// If this is a native event triggered above, everything is now in order
+			// Fire an inner synthetic event with the original arguments
+			} else if ( saved.length ) {
+
+				// ...and capture the result
+				dataPriv.set( this, type, {
+					value: jQuery.event.trigger(
+
+						// Support: IE <=9 - 11+
+						// Extend with the prototype to reset the above stopImmediatePropagation()
+						jQuery.extend( saved[ 0 ], jQuery.Event.prototype ),
+						saved.slice( 1 ),
+						this
+					)
+				} );
+
+				// Abort handling of the native event
+				event.stopImmediatePropagation();
+			}
+		}
+	} );
+}
 
 jQuery.removeEvent = function( elem, type, handle ) {
 
@@ -20961,7 +21584,7 @@ jQuery.Event = function( src, props ) {
 	}
 
 	// Create a timestamp if incoming event doesn't have one
-	this.timeStamp = src && src.timeStamp || jQuery.now();
+	this.timeStamp = src && src.timeStamp || Date.now();
 
 	// Mark it as fixed
 	this[ jQuery.expando ] = true;
@@ -21022,6 +21645,7 @@ jQuery.each( {
 	shiftKey: true,
 	view: true,
 	"char": true,
+	code: true,
 	charCode: true,
 	key: true,
 	keyCode: true,
@@ -21067,6 +21691,33 @@ jQuery.each( {
 		return event.which;
 	}
 }, jQuery.event.addProp );
+
+jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
+	jQuery.event.special[ type ] = {
+
+		// Utilize native event if possible so blur/focus sequence is correct
+		setup: function() {
+
+			// Claim the first handler
+			// dataPriv.set( this, "focus", ... )
+			// dataPriv.set( this, "blur", ... )
+			leverageNative( this, type, expectSync );
+
+			// Return false to allow normal processing in the caller
+			return false;
+		},
+		trigger: function() {
+
+			// Force setup before trigger
+			leverageNative( this, type );
+
+			// Return non-false to allow normal event-path propagation
+			return true;
+		},
+
+		delegateType: delegateType
+	};
+} );
 
 // Create mouseenter/leave events using mouseover/out and event-time checks
 // so that event delegation works in jQuery.
@@ -21160,14 +21811,13 @@ var
 
 	/* eslint-enable */
 
-	// Support: IE <=10 - 11, Edge 12 - 13
+	// Support: IE <=10 - 11, Edge 12 - 13 only
 	// In IE/Edge using regex groups here causes severe slowdowns.
 	// See https://connect.microsoft.com/IE/feedback/details/1736512/
 	rnoInnerhtml = /<script|<style|<link/i,
 
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
-	rscriptTypeMasked = /^true\/(.*)/,
 	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
 // Prefer a tbody over its parent table for containing new rows
@@ -21175,7 +21825,7 @@ function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
 		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
 
-		return jQuery( ">tbody", elem )[ 0 ] || elem;
+		return jQuery( elem ).children( "tbody" )[ 0 ] || elem;
 	}
 
 	return elem;
@@ -21187,10 +21837,8 @@ function disableScript( elem ) {
 	return elem;
 }
 function restoreScript( elem ) {
-	var match = rscriptTypeMasked.exec( elem.type );
-
-	if ( match ) {
-		elem.type = match[ 1 ];
+	if ( ( elem.type || "" ).slice( 0, 5 ) === "true/" ) {
+		elem.type = elem.type.slice( 5 );
 	} else {
 		elem.removeAttribute( "type" );
 	}
@@ -21256,15 +21904,15 @@ function domManip( collection, args, callback, ignored ) {
 		l = collection.length,
 		iNoClone = l - 1,
 		value = args[ 0 ],
-		isFunction = jQuery.isFunction( value );
+		valueIsFunction = isFunction( value );
 
 	// We can't cloneNode fragments that contain checked, in WebKit
-	if ( isFunction ||
+	if ( valueIsFunction ||
 			( l > 1 && typeof value === "string" &&
 				!support.checkClone && rchecked.test( value ) ) ) {
 		return collection.each( function( index ) {
 			var self = collection.eq( index );
-			if ( isFunction ) {
+			if ( valueIsFunction ) {
 				args[ 0 ] = value.call( this, index, self.html() );
 			}
 			domManip( self, args, callback, ignored );
@@ -21318,14 +21966,16 @@ function domManip( collection, args, callback, ignored ) {
 						!dataPriv.access( node, "globalEval" ) &&
 						jQuery.contains( doc, node ) ) {
 
-						if ( node.src ) {
+						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
 
 							// Optional AJAX dependency, but won't run scripts if not present
-							if ( jQuery._evalUrl ) {
-								jQuery._evalUrl( node.src );
+							if ( jQuery._evalUrl && !node.noModule ) {
+								jQuery._evalUrl( node.src, {
+									nonce: node.nonce || node.getAttribute( "nonce" )
+								} );
 							}
 						} else {
-							DOMEval( node.textContent.replace( rcleanScript, "" ), doc );
+							DOMEval( node.textContent.replace( rcleanScript, "" ), node, doc );
 						}
 					}
 				}
@@ -21347,7 +21997,7 @@ function remove( elem, selector, keepData ) {
 		}
 
 		if ( node.parentNode ) {
-			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
+			if ( keepData && isAttached( node ) ) {
 				setGlobalEval( getAll( node, "script" ) );
 			}
 			node.parentNode.removeChild( node );
@@ -21365,7 +22015,7 @@ jQuery.extend( {
 	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
 		var i, l, srcElements, destElements,
 			clone = elem.cloneNode( true ),
-			inPage = jQuery.contains( elem.ownerDocument, elem );
+			inPage = isAttached( elem );
 
 		// Fix IE cloning issues
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
@@ -21605,8 +22255,6 @@ jQuery.each( {
 		return this.pushStack( ret );
 	};
 } );
-var rmargin = ( /^margin/ );
-
 var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 
 var getStyles = function( elem ) {
@@ -21623,6 +22271,8 @@ var getStyles = function( elem ) {
 		return view.getComputedStyle( elem );
 	};
 
+var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
+
 
 
 ( function() {
@@ -21636,25 +22286,35 @@ var getStyles = function( elem ) {
 			return;
 		}
 
+		container.style.cssText = "position:absolute;left:-11111px;width:60px;" +
+			"margin-top:1px;padding:0;border:0";
 		div.style.cssText =
-			"box-sizing:border-box;" +
-			"position:relative;display:block;" +
+			"position:relative;display:block;box-sizing:border-box;overflow:scroll;" +
 			"margin:auto;border:1px;padding:1px;" +
-			"top:1%;width:50%";
-		div.innerHTML = "";
-		documentElement.appendChild( container );
+			"width:60%;top:1%";
+		documentElement.appendChild( container ).appendChild( div );
 
 		var divStyle = window.getComputedStyle( div );
 		pixelPositionVal = divStyle.top !== "1%";
 
 		// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
-		reliableMarginLeftVal = divStyle.marginLeft === "2px";
-		boxSizingReliableVal = divStyle.width === "4px";
+		reliableMarginLeftVal = roundPixelMeasures( divStyle.marginLeft ) === 12;
 
-		// Support: Android 4.0 - 4.3 only
+		// Support: Android 4.0 - 4.3 only, Safari <=9.1 - 10.1, iOS <=7.0 - 9.3
 		// Some styles come back with percentage values, even though they shouldn't
-		div.style.marginRight = "50%";
-		pixelMarginRightVal = divStyle.marginRight === "4px";
+		div.style.right = "60%";
+		pixelBoxStylesVal = roundPixelMeasures( divStyle.right ) === 36;
+
+		// Support: IE 9 - 11 only
+		// Detect misreporting of content dimensions for box-sizing:border-box elements
+		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
+
+		// Support: IE 9 only
+		// Detect overflow:scroll screwiness (gh-3699)
+		// Support: Chrome <=64
+		// Don't get tricked when zoom affects offsetWidth (gh-4029)
+		div.style.position = "absolute";
+		scrollboxSizeVal = roundPixelMeasures( div.offsetWidth / 3 ) === 12;
 
 		documentElement.removeChild( container );
 
@@ -21663,7 +22323,12 @@ var getStyles = function( elem ) {
 		div = null;
 	}
 
-	var pixelPositionVal, boxSizingReliableVal, pixelMarginRightVal, reliableMarginLeftVal,
+	function roundPixelMeasures( measure ) {
+		return Math.round( parseFloat( measure ) );
+	}
+
+	var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal,
+		reliableMarginLeftVal,
 		container = document.createElement( "div" ),
 		div = document.createElement( "div" );
 
@@ -21678,26 +22343,26 @@ var getStyles = function( elem ) {
 	div.cloneNode( true ).style.backgroundClip = "";
 	support.clearCloneStyle = div.style.backgroundClip === "content-box";
 
-	container.style.cssText = "border:0;width:8px;height:0;top:0;left:-9999px;" +
-		"padding:0;margin-top:1px;position:absolute";
-	container.appendChild( div );
-
 	jQuery.extend( support, {
-		pixelPosition: function() {
-			computeStyleTests();
-			return pixelPositionVal;
-		},
 		boxSizingReliable: function() {
 			computeStyleTests();
 			return boxSizingReliableVal;
 		},
-		pixelMarginRight: function() {
+		pixelBoxStyles: function() {
 			computeStyleTests();
-			return pixelMarginRightVal;
+			return pixelBoxStylesVal;
+		},
+		pixelPosition: function() {
+			computeStyleTests();
+			return pixelPositionVal;
 		},
 		reliableMarginLeft: function() {
 			computeStyleTests();
 			return reliableMarginLeftVal;
+		},
+		scrollboxSize: function() {
+			computeStyleTests();
+			return scrollboxSizeVal;
 		}
 	} );
 } )();
@@ -21720,7 +22385,7 @@ function curCSS( elem, name, computed ) {
 	if ( computed ) {
 		ret = computed.getPropertyValue( name ) || computed[ name ];
 
-		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+		if ( ret === "" && !isAttached( elem ) ) {
 			ret = jQuery.style( elem, name );
 		}
 
@@ -21729,7 +22394,7 @@ function curCSS( elem, name, computed ) {
 		// but width seems to be reliably pixels.
 		// This is against the CSSOM draft spec:
 		// https://drafts.csswg.org/cssom/#resolved-values
-		if ( !support.pixelMarginRight() && rnumnonpx.test( ret ) && rmargin.test( name ) ) {
+		if ( !support.pixelBoxStyles() && rnumnonpx.test( ret ) && rboxStyle.test( name ) ) {
 
 			// Remember the original values
 			width = style.width;
@@ -21776,29 +22441,12 @@ function addGetHookIf( conditionFn, hookFn ) {
 }
 
 
-var
+var cssPrefixes = [ "Webkit", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style,
+	vendorProps = {};
 
-	// Swappable if display is none or starts with table
-	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
-	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-	rcustomProp = /^--/,
-	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
-	cssNormalTransform = {
-		letterSpacing: "0",
-		fontWeight: "400"
-	},
-
-	cssPrefixes = [ "Webkit", "Moz", "ms" ],
-	emptyStyle = document.createElement( "div" ).style;
-
-// Return a css property mapped to a potentially vendor prefixed property
+// Return a vendor-prefixed property or undefined
 function vendorPropName( name ) {
-
-	// Shortcut for names that are not vendor prefixed
-	if ( name in emptyStyle ) {
-		return name;
-	}
 
 	// Check for vendor prefixed names
 	var capName = name[ 0 ].toUpperCase() + name.slice( 1 ),
@@ -21812,15 +22460,32 @@ function vendorPropName( name ) {
 	}
 }
 
-// Return a property mapped along what jQuery.cssProps suggests or to
-// a vendor prefixed property.
+// Return a potentially-mapped jQuery.cssProps or vendor prefixed property
 function finalPropName( name ) {
-	var ret = jQuery.cssProps[ name ];
-	if ( !ret ) {
-		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
+	var final = jQuery.cssProps[ name ] || vendorProps[ name ];
+
+	if ( final ) {
+		return final;
 	}
-	return ret;
+	if ( name in emptyStyle ) {
+		return name;
+	}
+	return vendorProps[ name ] = vendorPropName( name ) || name;
 }
+
+
+var
+
+	// Swappable if display is none or starts with table
+	// except "table", "table-cell", or "table-caption"
+	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	rcustomProp = /^--/,
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	};
 
 function setPositiveNumber( elem, value, subtract ) {
 
@@ -21834,87 +22499,137 @@ function setPositiveNumber( elem, value, subtract ) {
 		value;
 }
 
-function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
-	var i,
-		val = 0;
+function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computedVal ) {
+	var i = dimension === "width" ? 1 : 0,
+		extra = 0,
+		delta = 0;
 
-	// If we already have the right measurement, avoid augmentation
-	if ( extra === ( isBorderBox ? "border" : "content" ) ) {
-		i = 4;
-
-	// Otherwise initialize for horizontal or vertical properties
-	} else {
-		i = name === "width" ? 1 : 0;
+	// Adjustment may not be necessary
+	if ( box === ( isBorderBox ? "border" : "content" ) ) {
+		return 0;
 	}
 
 	for ( ; i < 4; i += 2 ) {
 
-		// Both box models exclude margin, so add it if we want it
-		if ( extra === "margin" ) {
-			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
+		// Both box models exclude margin
+		if ( box === "margin" ) {
+			delta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
 		}
 
-		if ( isBorderBox ) {
+		// If we get here with a content-box, we're seeking "padding" or "border" or "margin"
+		if ( !isBorderBox ) {
 
-			// border-box includes padding, so remove it if we want content
-			if ( extra === "content" ) {
-				val -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			// Add padding
+			delta += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+
+			// For "border" or "margin", add border
+			if ( box !== "padding" ) {
+				delta += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+
+			// But still keep track of it otherwise
+			} else {
+				extra += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 
-			// At this point, extra isn't border nor margin, so remove border
-			if ( extra !== "margin" ) {
-				val -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
-			}
+		// If we get here with a border-box (content + padding + border), we're seeking "content" or
+		// "padding" or "margin"
 		} else {
 
-			// At this point, extra isn't content, so add padding
-			val += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			// For "content", subtract padding
+			if ( box === "content" ) {
+				delta -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			}
 
-			// At this point, extra isn't content nor padding, so add border
-			if ( extra !== "padding" ) {
-				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			// For "content" or "padding", subtract border
+			if ( box !== "margin" ) {
+				delta -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 		}
 	}
 
-	return val;
+	// Account for positive content-box scroll gutter when requested by providing computedVal
+	if ( !isBorderBox && computedVal >= 0 ) {
+
+		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
+		// Assuming integer scroll gutter, subtract the rest and round down
+		delta += Math.max( 0, Math.ceil(
+			elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+			computedVal -
+			delta -
+			extra -
+			0.5
+
+		// If offsetWidth/offsetHeight is unknown, then we can't determine content-box scroll gutter
+		// Use an explicit zero to avoid NaN (gh-3964)
+		) ) || 0;
+	}
+
+	return delta;
 }
 
-function getWidthOrHeight( elem, name, extra ) {
+function getWidthOrHeight( elem, dimension, extra ) {
 
 	// Start with computed style
-	var valueIsBorderBox,
-		styles = getStyles( elem ),
-		val = curCSS( elem, name, styles ),
+	var styles = getStyles( elem ),
+
+		// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-4322).
+		// Fake content-box until we know it's needed to know the true value.
+		boxSizingNeeded = !support.boxSizingReliable() || extra,
+		isBorderBox = boxSizingNeeded &&
+			jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+		valueIsBorderBox = isBorderBox,
+
+		val = curCSS( elem, dimension, styles ),
+		offsetProp = "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 );
+
+	// Support: Firefox <=54
+	// Return a confounding non-pixel value or feign ignorance, as appropriate.
+	if ( rnumnonpx.test( val ) ) {
+		if ( !extra ) {
+			return val;
+		}
+		val = "auto";
+	}
+
+
+	// Fall back to offsetWidth/offsetHeight when value is "auto"
+	// This happens for inline elements with no explicit setting (gh-3571)
+	// Support: Android <=4.1 - 4.3 only
+	// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+	// Support: IE 9-11 only
+	// Also use offsetWidth/offsetHeight for when box sizing is unreliable
+	// We use getClientRects() to check for hidden/disconnected.
+	// In those cases, the computed value can be trusted to be border-box
+	if ( ( !support.boxSizingReliable() && isBorderBox ||
+		val === "auto" ||
+		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) &&
+		elem.getClientRects().length ) {
+
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 
-	// Computed unit is not pixels. Stop here and return.
-	if ( rnumnonpx.test( val ) ) {
-		return val;
+		// Where available, offsetWidth/offsetHeight approximate border box dimensions.
+		// Where not available (e.g., SVG), assume unreliable box-sizing and interpret the
+		// retrieved value as a content box dimension.
+		valueIsBorderBox = offsetProp in elem;
+		if ( valueIsBorderBox ) {
+			val = elem[ offsetProp ];
+		}
 	}
 
-	// Check for style in case a browser which returns unreliable values
-	// for getComputedStyle silently falls back to the reliable elem.style
-	valueIsBorderBox = isBorderBox &&
-		( support.boxSizingReliable() || val === elem.style[ name ] );
-
-	// Fall back to offsetWidth/Height when value is "auto"
-	// This happens for inline elements with no explicit setting (gh-3571)
-	if ( val === "auto" ) {
-		val = elem[ "offset" + name[ 0 ].toUpperCase() + name.slice( 1 ) ];
-	}
-
-	// Normalize "", auto, and prepare for extra
+	// Normalize "" and auto
 	val = parseFloat( val ) || 0;
 
-	// Use the active box-sizing model to add/subtract irrelevant styles
+	// Adjust for the element's box model
 	return ( val +
-		augmentWidthOrHeight(
+		boxModelAdjustment(
 			elem,
-			name,
+			dimension,
 			extra || ( isBorderBox ? "border" : "content" ),
 			valueIsBorderBox,
-			styles
+			styles,
+
+			// Provide the current computed size to request scroll gutter calculation (gh-3589)
+			val
 		)
 	) + "px";
 }
@@ -21944,6 +22659,13 @@ jQuery.extend( {
 		"flexGrow": true,
 		"flexShrink": true,
 		"fontWeight": true,
+		"gridArea": true,
+		"gridColumn": true,
+		"gridColumnEnd": true,
+		"gridColumnStart": true,
+		"gridRow": true,
+		"gridRowEnd": true,
+		"gridRowStart": true,
 		"lineHeight": true,
 		"opacity": true,
 		"order": true,
@@ -21955,9 +22677,7 @@ jQuery.extend( {
 
 	// Add in properties whose names you wish to fix before
 	// setting or getting the value
-	cssProps: {
-		"float": "cssFloat"
-	},
+	cssProps: {},
 
 	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
@@ -21969,7 +22689,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name
 		var ret, type, hooks,
-			origName = jQuery.camelCase( name ),
+			origName = camelCase( name ),
 			isCustomProp = rcustomProp.test( name ),
 			style = elem.style;
 
@@ -22001,7 +22721,9 @@ jQuery.extend( {
 			}
 
 			// If a number was passed in, add the unit (except for certain CSS properties)
-			if ( type === "number" ) {
+			// The isCustomProp check can be removed in jQuery 4.0 when we only auto-append
+			// "px" to a few hardcoded values.
+			if ( type === "number" && !isCustomProp ) {
 				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
 			}
 
@@ -22037,7 +22759,7 @@ jQuery.extend( {
 
 	css: function( elem, name, extra, styles ) {
 		var val, num, hooks,
-			origName = jQuery.camelCase( name ),
+			origName = camelCase( name ),
 			isCustomProp = rcustomProp.test( name );
 
 		// Make sure that we're working with the right name. We don't
@@ -22075,8 +22797,8 @@ jQuery.extend( {
 	}
 } );
 
-jQuery.each( [ "height", "width" ], function( i, name ) {
-	jQuery.cssHooks[ name ] = {
+jQuery.each( [ "height", "width" ], function( i, dimension ) {
+	jQuery.cssHooks[ dimension ] = {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
@@ -22092,29 +22814,52 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 						swap( elem, cssShow, function() {
-							return getWidthOrHeight( elem, name, extra );
+							return getWidthOrHeight( elem, dimension, extra );
 						} ) :
-						getWidthOrHeight( elem, name, extra );
+						getWidthOrHeight( elem, dimension, extra );
 			}
 		},
 
 		set: function( elem, value, extra ) {
 			var matches,
-				styles = extra && getStyles( elem ),
-				subtract = extra && augmentWidthOrHeight(
-					elem,
-					name,
-					extra,
+				styles = getStyles( elem ),
+
+				// Only read styles.position if the test has a chance to fail
+				// to avoid forcing a reflow.
+				scrollboxSizeBuggy = !support.scrollboxSize() &&
+					styles.position === "absolute",
+
+				// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-3991)
+				boxSizingNeeded = scrollboxSizeBuggy || extra,
+				isBorderBox = boxSizingNeeded &&
 					jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
-					styles
+				subtract = extra ?
+					boxModelAdjustment(
+						elem,
+						dimension,
+						extra,
+						isBorderBox,
+						styles
+					) :
+					0;
+
+			// Account for unreliable border-box dimensions by comparing offset* to computed and
+			// faking a content-box to get border and padding (gh-3699)
+			if ( isBorderBox && scrollboxSizeBuggy ) {
+				subtract -= Math.ceil(
+					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+					parseFloat( styles[ dimension ] ) -
+					boxModelAdjustment( elem, dimension, "border", false, styles ) -
+					0.5
 				);
+			}
 
 			// Convert to pixels if value adjustment is needed
 			if ( subtract && ( matches = rcssNum.exec( value ) ) &&
 				( matches[ 3 ] || "px" ) !== "px" ) {
 
-				elem.style[ name ] = value;
-				value = jQuery.css( elem, name );
+				elem.style[ dimension ] = value;
+				value = jQuery.css( elem, dimension );
 			}
 
 			return setPositiveNumber( elem, value, subtract );
@@ -22158,7 +22903,7 @@ jQuery.each( {
 		}
 	};
 
-	if ( !rmargin.test( prefix ) ) {
+	if ( prefix !== "margin" ) {
 		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
 	}
 } );
@@ -22268,9 +23013,9 @@ Tween.propHooks = {
 			// Use .style if available and use plain properties where available.
 			if ( jQuery.fx.step[ tween.prop ] ) {
 				jQuery.fx.step[ tween.prop ]( tween );
-			} else if ( tween.elem.nodeType === 1 &&
-				( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null ||
-					jQuery.cssHooks[ tween.prop ] ) ) {
+			} else if ( tween.elem.nodeType === 1 && (
+					jQuery.cssHooks[ tween.prop ] ||
+					tween.elem.style[ finalPropName( tween.prop ) ] != null ) ) {
 				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
 				tween.elem[ tween.prop ] = tween.now;
@@ -22329,7 +23074,7 @@ function createFxNow() {
 	window.setTimeout( function() {
 		fxNow = undefined;
 	} );
-	return ( fxNow = jQuery.now() );
+	return ( fxNow = Date.now() );
 }
 
 // Generate parameters to create a standard animation
@@ -22433,9 +23178,10 @@ function defaultPrefilter( elem, props, opts ) {
 	// Restrict "overflow" and "display" styles during box animations
 	if ( isBox && elem.nodeType === 1 ) {
 
-		// Support: IE <=9 - 11, Edge 12 - 13
+		// Support: IE <=9 - 11, Edge 12 - 15
 		// Record all 3 overflow attributes because IE does not infer the shorthand
-		// from identically-valued overflowX and overflowY
+		// from identically-valued overflowX and overflowY and Edge just mirrors
+		// the overflowX value there.
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
 		// Identify a display type, preferring old show/hide data over the CSS cascade
@@ -22543,7 +23289,7 @@ function propFilter( props, specialEasing ) {
 
 	// camelCase, specialEasing and expand cssHook pass
 	for ( index in props ) {
-		name = jQuery.camelCase( index );
+		name = camelCase( index );
 		easing = specialEasing[ name ];
 		value = props[ index ];
 		if ( Array.isArray( value ) ) {
@@ -22668,9 +23414,9 @@ function Animation( elem, properties, options ) {
 	for ( ; index < length; index++ ) {
 		result = Animation.prefilters[ index ].call( animation, elem, props, animation.opts );
 		if ( result ) {
-			if ( jQuery.isFunction( result.stop ) ) {
+			if ( isFunction( result.stop ) ) {
 				jQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
-					jQuery.proxy( result.stop, result );
+					result.stop.bind( result );
 			}
 			return result;
 		}
@@ -22678,7 +23424,7 @@ function Animation( elem, properties, options ) {
 
 	jQuery.map( props, createTween, animation );
 
-	if ( jQuery.isFunction( animation.opts.start ) ) {
+	if ( isFunction( animation.opts.start ) ) {
 		animation.opts.start.call( elem, animation );
 	}
 
@@ -22711,7 +23457,7 @@ jQuery.Animation = jQuery.extend( Animation, {
 	},
 
 	tweener: function( props, callback ) {
-		if ( jQuery.isFunction( props ) ) {
+		if ( isFunction( props ) ) {
 			callback = props;
 			props = [ "*" ];
 		} else {
@@ -22743,9 +23489,9 @@ jQuery.Animation = jQuery.extend( Animation, {
 jQuery.speed = function( speed, easing, fn ) {
 	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
 		complete: fn || !fn && easing ||
-			jQuery.isFunction( speed ) && speed,
+			isFunction( speed ) && speed,
 		duration: speed,
-		easing: fn && easing || easing && !jQuery.isFunction( easing ) && easing
+		easing: fn && easing || easing && !isFunction( easing ) && easing
 	};
 
 	// Go to the end state if fx are off
@@ -22772,7 +23518,7 @@ jQuery.speed = function( speed, easing, fn ) {
 	opt.old = opt.complete;
 
 	opt.complete = function() {
-		if ( jQuery.isFunction( opt.old ) ) {
+		if ( isFunction( opt.old ) ) {
 			opt.old.call( this );
 		}
 
@@ -22936,7 +23682,7 @@ jQuery.fx.tick = function() {
 		i = 0,
 		timers = jQuery.timers;
 
-	fxNow = jQuery.now();
+	fxNow = Date.now();
 
 	for ( ; i < timers.length; i++ ) {
 		timer = timers[ i ];
@@ -23289,7 +24035,7 @@ jQuery.each( [
 
 
 	// Strip and collapse whitespace according to HTML spec
-	// https://html.spec.whatwg.org/multipage/infrastructure.html#strip-and-collapse-whitespace
+	// https://infra.spec.whatwg.org/#strip-and-collapse-ascii-whitespace
 	function stripAndCollapse( value ) {
 		var tokens = value.match( rnothtmlwhite ) || [];
 		return tokens.join( " " );
@@ -23300,20 +24046,30 @@ function getClass( elem ) {
 	return elem.getAttribute && elem.getAttribute( "class" ) || "";
 }
 
+function classesToArray( value ) {
+	if ( Array.isArray( value ) ) {
+		return value;
+	}
+	if ( typeof value === "string" ) {
+		return value.match( rnothtmlwhite ) || [];
+	}
+	return [];
+}
+
 jQuery.fn.extend( {
 	addClass: function( value ) {
 		var classes, elem, cur, curValue, clazz, j, finalValue,
 			i = 0;
 
-		if ( jQuery.isFunction( value ) ) {
+		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
 				jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );
 			} );
 		}
 
-		if ( typeof value === "string" && value ) {
-			classes = value.match( rnothtmlwhite ) || [];
+		classes = classesToArray( value );
 
+		if ( classes.length ) {
 			while ( ( elem = this[ i++ ] ) ) {
 				curValue = getClass( elem );
 				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
@@ -23342,7 +24098,7 @@ jQuery.fn.extend( {
 		var classes, elem, cur, curValue, clazz, j, finalValue,
 			i = 0;
 
-		if ( jQuery.isFunction( value ) ) {
+		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
 				jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );
 			} );
@@ -23352,9 +24108,9 @@ jQuery.fn.extend( {
 			return this.attr( "class", "" );
 		}
 
-		if ( typeof value === "string" && value ) {
-			classes = value.match( rnothtmlwhite ) || [];
+		classes = classesToArray( value );
 
+		if ( classes.length ) {
 			while ( ( elem = this[ i++ ] ) ) {
 				curValue = getClass( elem );
 
@@ -23384,13 +24140,14 @@ jQuery.fn.extend( {
 	},
 
 	toggleClass: function( value, stateVal ) {
-		var type = typeof value;
+		var type = typeof value,
+			isValidValue = type === "string" || Array.isArray( value );
 
-		if ( typeof stateVal === "boolean" && type === "string" ) {
+		if ( typeof stateVal === "boolean" && isValidValue ) {
 			return stateVal ? this.addClass( value ) : this.removeClass( value );
 		}
 
-		if ( jQuery.isFunction( value ) ) {
+		if ( isFunction( value ) ) {
 			return this.each( function( i ) {
 				jQuery( this ).toggleClass(
 					value.call( this, i, getClass( this ), stateVal ),
@@ -23402,12 +24159,12 @@ jQuery.fn.extend( {
 		return this.each( function() {
 			var className, i, self, classNames;
 
-			if ( type === "string" ) {
+			if ( isValidValue ) {
 
 				// Toggle individual class names
 				i = 0;
 				self = jQuery( this );
-				classNames = value.match( rnothtmlwhite ) || [];
+				classNames = classesToArray( value );
 
 				while ( ( className = classNames[ i++ ] ) ) {
 
@@ -23466,7 +24223,7 @@ var rreturn = /\r/g;
 
 jQuery.fn.extend( {
 	val: function( value ) {
-		var hooks, ret, isFunction,
+		var hooks, ret, valueIsFunction,
 			elem = this[ 0 ];
 
 		if ( !arguments.length ) {
@@ -23495,7 +24252,7 @@ jQuery.fn.extend( {
 			return;
 		}
 
-		isFunction = jQuery.isFunction( value );
+		valueIsFunction = isFunction( value );
 
 		return this.each( function( i ) {
 			var val;
@@ -23504,7 +24261,7 @@ jQuery.fn.extend( {
 				return;
 			}
 
-			if ( isFunction ) {
+			if ( valueIsFunction ) {
 				val = value.call( this, i, jQuery( this ).val() );
 			} else {
 				val = value;
@@ -23646,18 +24403,24 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 // Return jQuery for attributes-only inclusion
 
 
-var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/;
+support.focusin = "onfocusin" in window;
+
+
+var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
+	stopPropagationCallback = function( e ) {
+		e.stopPropagation();
+	};
 
 jQuery.extend( jQuery.event, {
 
 	trigger: function( event, data, elem, onlyHandlers ) {
 
-		var i, cur, tmp, bubbleType, ontype, handle, special,
+		var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
 			eventPath = [ elem || document ],
 			type = hasOwn.call( event, "type" ) ? event.type : event,
 			namespaces = hasOwn.call( event, "namespace" ) ? event.namespace.split( "." ) : [];
 
-		cur = tmp = elem = elem || document;
+		cur = lastElement = tmp = elem = elem || document;
 
 		// Don't do events on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
@@ -23709,7 +24472,7 @@ jQuery.extend( jQuery.event, {
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
-		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
 
 			bubbleType = special.delegateType || type;
 			if ( !rfocusMorph.test( bubbleType + type ) ) {
@@ -23729,7 +24492,7 @@ jQuery.extend( jQuery.event, {
 		// Fire handlers on the event path
 		i = 0;
 		while ( ( cur = eventPath[ i++ ] ) && !event.isPropagationStopped() ) {
-
+			lastElement = cur;
 			event.type = i > 1 ?
 				bubbleType :
 				special.bindType || type;
@@ -23761,7 +24524,7 @@ jQuery.extend( jQuery.event, {
 
 				// Call a native DOM method on the target with the same name as the event.
 				// Don't do default actions on window, that's where global variables be (#6170)
-				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
+				if ( ontype && isFunction( elem[ type ] ) && !isWindow( elem ) ) {
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
 					tmp = elem[ ontype ];
@@ -23772,7 +24535,17 @@ jQuery.extend( jQuery.event, {
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
 					jQuery.event.triggered = type;
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.addEventListener( type, stopPropagationCallback );
+					}
+
 					elem[ type ]();
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.removeEventListener( type, stopPropagationCallback );
+					}
+
 					jQuery.event.triggered = undefined;
 
 					if ( tmp ) {
@@ -23818,31 +24591,6 @@ jQuery.fn.extend( {
 } );
 
 
-jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
-	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
-	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
-	function( i, name ) {
-
-	// Handle event binding
-	jQuery.fn[ name ] = function( data, fn ) {
-		return arguments.length > 0 ?
-			this.on( name, null, data, fn ) :
-			this.trigger( name );
-	};
-} );
-
-jQuery.fn.extend( {
-	hover: function( fnOver, fnOut ) {
-		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
-	}
-} );
-
-
-
-
-support.focusin = "onfocusin" in window;
-
-
 // Support: Firefox <=44
 // Firefox doesn't have focus(in | out) events
 // Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
@@ -23886,7 +24634,7 @@ if ( !support.focusin ) {
 }
 var location = window.location;
 
-var nonce = jQuery.now();
+var nonce = Date.now();
 
 var rquery = ( /\?/ );
 
@@ -23944,7 +24692,7 @@ function buildParams( prefix, obj, traditional, add ) {
 			}
 		} );
 
-	} else if ( !traditional && jQuery.type( obj ) === "object" ) {
+	} else if ( !traditional && toType( obj ) === "object" ) {
 
 		// Serialize object item.
 		for ( name in obj ) {
@@ -23966,13 +24714,17 @@ jQuery.param = function( a, traditional ) {
 		add = function( key, valueOrFunction ) {
 
 			// If value is a function, invoke it and use its return value
-			var value = jQuery.isFunction( valueOrFunction ) ?
+			var value = isFunction( valueOrFunction ) ?
 				valueOrFunction() :
 				valueOrFunction;
 
 			s[ s.length ] = encodeURIComponent( key ) + "=" +
 				encodeURIComponent( value == null ? "" : value );
 		};
+
+	if ( a == null ) {
+		return "";
+	}
 
 	// If an array was passed in, assume that it is an array of form elements.
 	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
@@ -24084,7 +24836,7 @@ function addToPrefiltersOrTransports( structure ) {
 			i = 0,
 			dataTypes = dataTypeExpression.toLowerCase().match( rnothtmlwhite ) || [];
 
-		if ( jQuery.isFunction( func ) ) {
+		if ( isFunction( func ) ) {
 
 			// For each dataType in the dataTypeExpression
 			while ( ( dataType = dataTypes[ i++ ] ) ) {
@@ -24476,12 +25228,14 @@ jQuery.extend( {
 						if ( !responseHeaders ) {
 							responseHeaders = {};
 							while ( ( match = rheaders.exec( responseHeadersString ) ) ) {
-								responseHeaders[ match[ 1 ].toLowerCase() ] = match[ 2 ];
+								responseHeaders[ match[ 1 ].toLowerCase() + " " ] =
+									( responseHeaders[ match[ 1 ].toLowerCase() + " " ] || [] )
+										.concat( match[ 2 ] );
 							}
 						}
-						match = responseHeaders[ key.toLowerCase() ];
+						match = responseHeaders[ key.toLowerCase() + " " ];
 					}
-					return match == null ? null : match;
+					return match == null ? null : match.join( ", " );
 				},
 
 				// Raw string
@@ -24556,7 +25310,7 @@ jQuery.extend( {
 		if ( s.crossDomain == null ) {
 			urlAnchor = document.createElement( "a" );
 
-			// Support: IE <=8 - 11, Edge 12 - 13
+			// Support: IE <=8 - 11, Edge 12 - 15
 			// IE throws exception on accessing the href property if url is malformed,
 			// e.g. http://example.com:80x/
 			try {
@@ -24614,8 +25368,8 @@ jQuery.extend( {
 			// Remember the hash so we can put it back
 			uncached = s.url.slice( cacheURL.length );
 
-			// If data is available, append data to url
-			if ( s.data ) {
+			// If data is available and should be processed, append data to url
+			if ( s.data && ( s.processData || typeof s.data === "string" ) ) {
 				cacheURL += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data;
 
 				// #9682: remove data so that it's not used in an eventual retry
@@ -24852,7 +25606,7 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 	jQuery[ method ] = function( url, data, callback, type ) {
 
 		// Shift arguments if data argument was omitted
-		if ( jQuery.isFunction( data ) ) {
+		if ( isFunction( data ) ) {
 			type = type || callback;
 			callback = data;
 			data = undefined;
@@ -24870,7 +25624,7 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 } );
 
 
-jQuery._evalUrl = function( url ) {
+jQuery._evalUrl = function( url, options ) {
 	return jQuery.ajax( {
 		url: url,
 
@@ -24880,7 +25634,16 @@ jQuery._evalUrl = function( url ) {
 		cache: true,
 		async: false,
 		global: false,
-		"throws": true
+
+		// Only evaluate the response if it is successful (gh-4126)
+		// dataFilter is not invoked for failure responses, so using it instead
+		// of the default converter is kludgy but it works.
+		converters: {
+			"text script": function() {}
+		},
+		dataFilter: function( response ) {
+			jQuery.globalEval( response, options );
+		}
 	} );
 };
 
@@ -24890,7 +25653,7 @@ jQuery.fn.extend( {
 		var wrap;
 
 		if ( this[ 0 ] ) {
-			if ( jQuery.isFunction( html ) ) {
+			if ( isFunction( html ) ) {
 				html = html.call( this[ 0 ] );
 			}
 
@@ -24916,7 +25679,7 @@ jQuery.fn.extend( {
 	},
 
 	wrapInner: function( html ) {
-		if ( jQuery.isFunction( html ) ) {
+		if ( isFunction( html ) ) {
 			return this.each( function( i ) {
 				jQuery( this ).wrapInner( html.call( this, i ) );
 			} );
@@ -24936,10 +25699,10 @@ jQuery.fn.extend( {
 	},
 
 	wrap: function( html ) {
-		var isFunction = jQuery.isFunction( html );
+		var htmlIsFunction = isFunction( html );
 
 		return this.each( function( i ) {
-			jQuery( this ).wrapAll( isFunction ? html.call( this, i ) : html );
+			jQuery( this ).wrapAll( htmlIsFunction ? html.call( this, i ) : html );
 		} );
 	},
 
@@ -25031,7 +25794,8 @@ jQuery.ajaxTransport( function( options ) {
 					return function() {
 						if ( callback ) {
 							callback = errorCallback = xhr.onload =
-								xhr.onerror = xhr.onabort = xhr.onreadystatechange = null;
+								xhr.onerror = xhr.onabort = xhr.ontimeout =
+									xhr.onreadystatechange = null;
 
 							if ( type === "abort" ) {
 								xhr.abort();
@@ -25071,7 +25835,7 @@ jQuery.ajaxTransport( function( options ) {
 
 				// Listen to events
 				xhr.onload = callback();
-				errorCallback = xhr.onerror = callback( "error" );
+				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
 
 				// Support: IE 9 only
 				// Use onreadystatechange to replace onabort
@@ -25162,24 +25926,21 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 // Bind script tag hack transport
 jQuery.ajaxTransport( "script", function( s ) {
 
-	// This transport only deals with cross domain requests
-	if ( s.crossDomain ) {
+	// This transport only deals with cross domain or forced-by-attrs requests
+	if ( s.crossDomain || s.scriptAttrs ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {
-				script = jQuery( "<script>" ).prop( {
-					charset: s.scriptCharset,
-					src: s.url
-				} ).on(
-					"load error",
-					callback = function( evt ) {
+				script = jQuery( "<script>" )
+					.attr( s.scriptAttrs || {} )
+					.prop( { charset: s.scriptCharset, src: s.url } )
+					.on( "load error", callback = function( evt ) {
 						script.remove();
 						callback = null;
 						if ( evt ) {
 							complete( evt.type === "error" ? 404 : 200, evt.type );
 						}
-					}
-				);
+					} );
 
 				// Use native DOM manipulation to avoid our domManip AJAX trickery
 				document.head.appendChild( script[ 0 ] );
@@ -25225,7 +25986,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
 
 		// Get callback name, remembering preexisting value associated with it
-		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
+		callbackName = s.jsonpCallback = isFunction( s.jsonpCallback ) ?
 			s.jsonpCallback() :
 			s.jsonpCallback;
 
@@ -25276,7 +26037,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			}
 
 			// Call if it was a function and we have a response
-			if ( responseContainer && jQuery.isFunction( overwritten ) ) {
+			if ( responseContainer && isFunction( overwritten ) ) {
 				overwritten( responseContainer[ 0 ] );
 			}
 
@@ -25368,7 +26129,7 @@ jQuery.fn.load = function( url, params, callback ) {
 	}
 
 	// If it's a function
-	if ( jQuery.isFunction( params ) ) {
+	if ( isFunction( params ) ) {
 
 		// We assume that it's the callback
 		callback = params;
@@ -25476,7 +26237,7 @@ jQuery.offset = {
 			curLeft = parseFloat( curCSSLeft ) || 0;
 		}
 
-		if ( jQuery.isFunction( options ) ) {
+		if ( isFunction( options ) ) {
 
 			// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
 			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
@@ -25499,6 +26260,8 @@ jQuery.offset = {
 };
 
 jQuery.fn.extend( {
+
+	// offset() relates an element's border box to the document origin
 	offset: function( options ) {
 
 		// Preserve chaining for setter
@@ -25510,7 +26273,7 @@ jQuery.fn.extend( {
 				} );
 		}
 
-		var doc, docElem, rect, win,
+		var rect, win,
 			elem = this[ 0 ];
 
 		if ( !elem ) {
@@ -25525,50 +26288,52 @@ jQuery.fn.extend( {
 			return { top: 0, left: 0 };
 		}
 
+		// Get document-relative position by adding viewport scroll to viewport-relative gBCR
 		rect = elem.getBoundingClientRect();
-
-		doc = elem.ownerDocument;
-		docElem = doc.documentElement;
-		win = doc.defaultView;
-
+		win = elem.ownerDocument.defaultView;
 		return {
-			top: rect.top + win.pageYOffset - docElem.clientTop,
-			left: rect.left + win.pageXOffset - docElem.clientLeft
+			top: rect.top + win.pageYOffset,
+			left: rect.left + win.pageXOffset
 		};
 	},
 
+	// position() relates an element's margin box to its offset parent's padding box
+	// This corresponds to the behavior of CSS absolute positioning
 	position: function() {
 		if ( !this[ 0 ] ) {
 			return;
 		}
 
-		var offsetParent, offset,
+		var offsetParent, offset, doc,
 			elem = this[ 0 ],
 			parentOffset = { top: 0, left: 0 };
 
-		// Fixed elements are offset from window (parentOffset = {top:0, left: 0},
-		// because it is its only offset parent
+		// position:fixed elements are offset from the viewport, which itself always has zero offset
 		if ( jQuery.css( elem, "position" ) === "fixed" ) {
 
-			// Assume getBoundingClientRect is there when computed position is fixed
+			// Assume position:fixed implies availability of getBoundingClientRect
 			offset = elem.getBoundingClientRect();
 
 		} else {
-
-			// Get *real* offsetParent
-			offsetParent = this.offsetParent();
-
-			// Get correct offsets
 			offset = this.offset();
-			if ( !nodeName( offsetParent[ 0 ], "html" ) ) {
-				parentOffset = offsetParent.offset();
-			}
 
-			// Add offsetParent borders
-			parentOffset = {
-				top: parentOffset.top + jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
-				left: parentOffset.left + jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )
-			};
+			// Account for the *real* offset parent, which can be the document or its root element
+			// when a statically positioned element is identified
+			doc = elem.ownerDocument;
+			offsetParent = elem.offsetParent || doc.documentElement;
+			while ( offsetParent &&
+				( offsetParent === doc.body || offsetParent === doc.documentElement ) &&
+				jQuery.css( offsetParent, "position" ) === "static" ) {
+
+				offsetParent = offsetParent.parentNode;
+			}
+			if ( offsetParent && offsetParent !== elem && offsetParent.nodeType === 1 ) {
+
+				// Incorporate borders into its offset, since they are outside its content origin
+				parentOffset = jQuery( offsetParent ).offset();
+				parentOffset.top += jQuery.css( offsetParent, "borderTopWidth", true );
+				parentOffset.left += jQuery.css( offsetParent, "borderLeftWidth", true );
+			}
 		}
 
 		// Subtract parent offsets and element margins
@@ -25610,7 +26375,7 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 
 			// Coalesce documents and windows
 			var win;
-			if ( jQuery.isWindow( elem ) ) {
+			if ( isWindow( elem ) ) {
 				win = elem;
 			} else if ( elem.nodeType === 9 ) {
 				win = elem.defaultView;
@@ -25668,7 +26433,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 			return access( this, function( elem, type, value ) {
 				var doc;
 
-				if ( jQuery.isWindow( elem ) ) {
+				if ( isWindow( elem ) ) {
 
 					// $( window ).outerWidth/Height return w/h including scrollbars (gh-1729)
 					return funcName.indexOf( "outer" ) === 0 ?
@@ -25702,6 +26467,28 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 } );
 
 
+jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
+	function( i, name ) {
+
+	// Handle event binding
+	jQuery.fn[ name ] = function( data, fn ) {
+		return arguments.length > 0 ?
+			this.on( name, null, data, fn ) :
+			this.trigger( name );
+	};
+} );
+
+jQuery.fn.extend( {
+	hover: function( fnOver, fnOut ) {
+		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+	}
+} );
+
+
+
+
 jQuery.fn.extend( {
 
 	bind: function( types, data, fn ) {
@@ -25723,6 +26510,37 @@ jQuery.fn.extend( {
 	}
 } );
 
+// Bind a function to a context, optionally partially applying any
+// arguments.
+// jQuery.proxy is deprecated to promote standards (specifically Function#bind)
+// However, it is not slated for removal any time soon
+jQuery.proxy = function( fn, context ) {
+	var tmp, args, proxy;
+
+	if ( typeof context === "string" ) {
+		tmp = fn[ context ];
+		context = fn;
+		fn = tmp;
+	}
+
+	// Quick check to determine if target is callable, in the spec
+	// this throws a TypeError, but we will just return undefined.
+	if ( !isFunction( fn ) ) {
+		return undefined;
+	}
+
+	// Simulated bind
+	args = slice.call( arguments, 2 );
+	proxy = function() {
+		return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
+	};
+
+	// Set the guid of unique handler to the same of original handler, so it can be removed
+	proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+
+	return proxy;
+};
+
 jQuery.holdReady = function( hold ) {
 	if ( hold ) {
 		jQuery.readyWait++;
@@ -25733,6 +26551,26 @@ jQuery.holdReady = function( hold ) {
 jQuery.isArray = Array.isArray;
 jQuery.parseJSON = JSON.parse;
 jQuery.nodeName = nodeName;
+jQuery.isFunction = isFunction;
+jQuery.isWindow = isWindow;
+jQuery.camelCase = camelCase;
+jQuery.type = toType;
+
+jQuery.now = Date.now;
+
+jQuery.isNumeric = function( obj ) {
+
+	// As of jQuery 3.0, isNumeric is limited to
+	// strings and numbers (primitives or objects)
+	// that can be coerced to finite numbers (gh-2662)
+	var type = jQuery.type( obj );
+	return ( type === "number" || type === "string" ) &&
+
+		// parseFloat NaNs numeric-cast false positives ("")
+		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+		// subtraction forces infinities to NaN
+		!isNaN( obj - parseFloat( obj ) );
+};
 
 
 
@@ -25751,9 +26589,9 @@ jQuery.nodeName = nodeName;
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( true ) {
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
@@ -25797,6 +26635,10 @@ return jQuery;
 /***/ }),
 
 /***/ "./node_modules/lodash/lodash.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/lodash.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -25813,7 +26655,7 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.10';
+  var VERSION = '4.17.11';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -26077,7 +26919,7 @@ return jQuery;
   var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange  + rsComboRange + rsVarRange + ']');
 
   /** Used to detect strings that need a more robust regexp to match words. */
-  var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+  var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 
   /** Used to assign default `context` object properties. */
   var contextProps = [
@@ -26223,7 +27065,7 @@ return jQuery;
   var root = freeGlobal || freeSelf || Function('return this')();
 
   /** Detect free variable `exports`. */
-  var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+  var freeExports =  true && exports && !exports.nodeType && exports;
 
   /** Detect free variable `module`. */
   var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
@@ -27023,20 +27865,6 @@ return jQuery;
       }
     }
     return result;
-  }
-
-  /**
-   * Gets the value at `key`, unless `key` is "__proto__".
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @param {string} key The key of the property to get.
-   * @returns {*} Returns the property value.
-   */
-  function safeGet(object, key) {
-    return key == '__proto__'
-      ? undefined
-      : object[key];
   }
 
   /**
@@ -29496,7 +30324,7 @@ return jQuery;
           if (isArguments(objValue)) {
             newValue = toPlainObject(objValue);
           }
-          else if (!isObject(objValue) || (srcIndex && isFunction(objValue))) {
+          else if (!isObject(objValue) || isFunction(objValue)) {
             newValue = initCloneObject(srcValue);
           }
         }
@@ -32417,6 +33245,22 @@ return jQuery;
         array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
       }
       return array;
+    }
+
+    /**
+     * Gets the value at `key`, unless `key` is "__proto__".
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {string} key The key of the property to get.
+     * @returns {*} Returns the property value.
+     */
+    function safeGet(object, key) {
+      if (key == '__proto__') {
+        return;
+      }
+
+      return object[key];
     }
 
     /**
@@ -42888,29 +43732,99 @@ return jQuery;
 
     // Define as an anonymous module so, through path mapping, it can be
     // referenced as the "underscore" module.
-    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() {
       return _;
-    }.call(exports, __webpack_require__, exports, module),
+    }).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   }
   // Check for `exports` after `define` in case a build optimizer adds it.
-  else if (freeModule) {
-    // Export for Node.js.
-    (freeModule.exports = _)._ = _;
-    // Export for CommonJS support.
-    freeExports._ = _;
-  }
-  else {
-    // Export to the global object.
-    root._ = _;
-  }
+  else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "./node_modules/node-libs-browser/node_modules/timers-browserify/main.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/node-libs-browser/node_modules/timers-browserify/main.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(scope, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
+// On some exotic environments, it's not clear which object `setimmediate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
+                       (typeof global !== "undefined" && global.setImmediate) ||
+                       (this && this.setImmediate);
+exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
+                         (typeof global !== "undefined" && global.clearImmediate) ||
+                         (this && this.clearImmediate);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/object-assign/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/object-assign/index.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43009,6 +43923,10 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ }),
 
 /***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -43200,6 +44118,10 @@ process.umask = function() { return 0; };
 /***/ }),
 
 /***/ "./node_modules/select2/dist/js/select2.js":
+/*!*************************************************!*\
+  !*** ./node_modules/select2/dist/js/select2.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -43212,32 +44134,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory) {
   if (true) {
     // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof module === 'object' && module.exports) {
-    // Node/CommonJS
-    module.exports = function (root, jQuery) {
-      if (jQuery === undefined) {
-        // require('jQuery') returns a factory that requires window to
-        // build a jQuery instance, we normalize how we use modules
-        // that require this pattern but the window provided is a noop
-        // if it's defined (how jquery works)
-        if (typeof window !== 'undefined') {
-          jQuery = require('jquery');
-        }
-        else {
-          jQuery = require('jquery')(root);
-        }
-      }
-      factory(jQuery);
-      return jQuery;
-    };
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
+  } else {}
 } (function (jQuery) {
   // This is needed so we can catch the AMD loader configuration and use it
   // The inner file should be wrapped (by `banner.start.js`) in a function that
@@ -48956,6 +49857,10 @@ S2.define('jquery.select2',[
 /***/ }),
 
 /***/ "./node_modules/setimmediate/setImmediate.js":
+/*!***************************************************!*\
+  !*** ./node_modules/setimmediate/setImmediate.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -49145,15 +50050,19 @@ S2.define('jquery.select2',[
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/client.js":
+/*!*********************************************!*\
+  !*** ./node_modules/storage2/lib/client.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Storage = __webpack_require__("./node_modules/storage2/lib/storage.js");
-var cookie = __webpack_require__("./node_modules/storage2/lib/cookie.js");
+var Storage = __webpack_require__(/*! ./storage */ "./node_modules/storage2/lib/storage.js");
+var cookie = __webpack_require__(/*! ./cookie */ "./node_modules/storage2/lib/cookie.js");
 
 var _storage_support = true;
 
@@ -49196,6 +50105,10 @@ if (_storage_support) {
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/cookie.js":
+/*!*********************************************!*\
+  !*** ./node_modules/storage2/lib/cookie.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 function createCookie(name, value, days) {
@@ -49239,6 +50152,10 @@ module.exports = {
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/num-keys.js":
+/*!***********************************************!*\
+  !*** ./node_modules/storage2/lib/num-keys.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = function(obj) {
@@ -49256,9 +50173,13 @@ module.exports = function(obj) {
 /***/ }),
 
 /***/ "./node_modules/storage2/lib/storage.js":
+/*!**********************************************!*\
+  !*** ./node_modules/storage2/lib/storage.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var numKeys = __webpack_require__("./node_modules/storage2/lib/num-keys.js");
+var numKeys = __webpack_require__(/*! ./num-keys */ "./node_modules/storage2/lib/num-keys.js");
 
 function Storage(obj, set, clear) {
   this._obj = obj || {};
@@ -49320,6 +50241,10 @@ module.exports = Storage;
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/agent-base.js":
+/*!***************************************************!*\
+  !*** ./node_modules/superagent/lib/agent-base.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -49347,6 +50272,10 @@ module.exports = Agent;
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/client.js":
+/*!***********************************************!*\
+  !*** ./node_modules/superagent/lib/client.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49363,11 +50292,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__("./node_modules/component-emitter/index.js");
-var RequestBase = __webpack_require__("./node_modules/superagent/lib/request-base.js");
-var isObject = __webpack_require__("./node_modules/superagent/lib/is-object.js");
-var ResponseBase = __webpack_require__("./node_modules/superagent/lib/response-base.js");
-var Agent = __webpack_require__("./node_modules/superagent/lib/agent-base.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
+var RequestBase = __webpack_require__(/*! ./request-base */ "./node_modules/superagent/lib/request-base.js");
+var isObject = __webpack_require__(/*! ./is-object */ "./node_modules/superagent/lib/is-object.js");
+var ResponseBase = __webpack_require__(/*! ./response-base */ "./node_modules/superagent/lib/response-base.js");
+var Agent = __webpack_require__(/*! ./agent-base */ "./node_modules/superagent/lib/agent-base.js");
 
 /**
  * Noop.
@@ -50274,6 +51203,10 @@ request.put = function(url, data, fn) {
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/is-object.js":
+/*!**************************************************!*\
+  !*** ./node_modules/superagent/lib/is-object.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50297,6 +51230,10 @@ module.exports = isObject;
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/request-base.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/superagent/lib/request-base.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50305,7 +51242,7 @@ module.exports = isObject;
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__("./node_modules/superagent/lib/is-object.js");
+var isObject = __webpack_require__(/*! ./is-object */ "./node_modules/superagent/lib/is-object.js");
 
 /**
  * Expose `RequestBase`.
@@ -50999,6 +51936,10 @@ RequestBase.prototype._setTimeouts = function() {
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/response-base.js":
+/*!******************************************************!*\
+  !*** ./node_modules/superagent/lib/response-base.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51008,7 +51949,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__("./node_modules/superagent/lib/utils.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/superagent/lib/utils.js");
 
 /**
  * Expose `ResponseBase`.
@@ -51143,6 +52084,10 @@ ResponseBase.prototype._setStatusProperties = function(status){
 /***/ }),
 
 /***/ "./node_modules/superagent/lib/utils.js":
+/*!**********************************************!*\
+  !*** ./node_modules/superagent/lib/utils.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51221,67 +52166,11 @@ exports.cleanHeader = function(header, changesOrigin){
 
 /***/ }),
 
-/***/ "./node_modules/timers-browserify/main.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__("./node_modules/setimmediate/setImmediate.js");
-exports.setImmediate = setImmediate;
-exports.clearImmediate = clearImmediate;
-
-
-/***/ }),
-
 /***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 var g;
@@ -51293,11 +52182,10 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
+	g = g || new Function("return this")();
+} catch (e) {
 	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
+	if (typeof window === "object") g = window;
 }
 
 // g can still be undefined, but nothing to do about it...
@@ -51310,14 +52198,18 @@ module.exports = g;
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
-	if(!module.webpackPolyfill) {
+	if (!module.webpackPolyfill) {
 		module.deprecate = function() {};
 		module.paths = [];
 		// module.parent = undefined by default
-		if(!module.children) module.children = [];
+		if (!module.children) module.children = [];
 		Object.defineProperty(module, "loaded", {
 			enumerable: true,
 			get: function() {
@@ -51339,17 +52231,21 @@ module.exports = function(module) {
 /***/ }),
 
 /***/ "./resources/assets/js/app.js":
+/*!************************************!*\
+  !*** ./resources/assets/js/app.js ***!
+  \************************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_select2_js__ = __webpack_require__("./resources/assets/js/components/select2.js");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__("./resources/assets/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
 /**
@@ -51357,446 +52253,445 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
  * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
  * Todo: workaround to only run timeout if the window is active
  */
+
 var notificationList,
     notificationCount,
     notificationRefreshTimeout = 60 * 5000;
-
 $(document).ready(function () {
+  // Inject the isMobile variable into the window. We don't want ALL of the javascript
+  // for mobiles, namely the tooltip tool.
+  window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
 
-    // Inject the isMobile variable into the window. We don't want ALL of the javascript
-    // for mobiles, namely the tooltip tool.
-    window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-    if (!window.kankaIsMobile.matches) {
-        $('[data-toggle="tooltip"]').tooltip();
+  if (!window.kankaIsMobile.matches) {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
+
+  $('[data-toggle="popover"]').popover({
+    sanitize: false
+  });
+  initSelect2();
+  initCheckboxSwitch(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
+  // binded once.
+
+  $(document).on('focus', '.select2.select2-container', function (e) {
+    // only open on original attempt - close focus event should not fire open
+    if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
+      $(this).siblings('select').select2('open');
     }
+  });
 
-    $('[data-toggle="popover"]').popover({
-        sanitize: false
+  if ($('.date-picker').length > 0) {
+    $.each($('.date-picker'), function (index) {
+      // instance, using default configuration.
+      $(this).datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        todayHighlight: true
+      });
     });
+  }
+
+  $.each($('.img-delete'), function (index) {
+    $(this).click(function (e) {
+      e.preventDefault();
+      $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+      $(this).parent().parent().hide();
+    });
+  });
+
+  if ($('#delete-confirm-form').length > 0) {
+    $('#delete-confirm-form').on('keyup keypress', function (e) {
+      var keyCode = e.keyCode || e.which;
+
+      if (keyCode === 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  }
+
+  $.each($('.new-entity-selector'), function (index) {
+    $(this).on('click', function (e) {
+      $('#new-entity-type').val($(this).data('entity'));
+      $('#new-entity-form').data('parent', $(this).data('parent'));
+    });
+  });
+
+  if ($('#new-entity-form').length > 0) {
+    $('#new-entity-form').on('submit', function (e) {
+      $('#new-entity-errors').hide();
+      var target = $(this).data('parent');
+      $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: $(this).serialize()
+      }).done(function (result, textStatus, xhr) {
+        if (textStatus === 'success' && result.id) {
+          $('#' + target).children().remove().end().append(new Option(result.name, result.id)).val(result.id).trigger('change'); // Close modal
+
+          $('#new-entity-modal').modal('toggle');
+          $('#new-entity-errors').hide();
+          $('#new-entity-name').val(''); // Reset submit button
+
+          resetSubmitButton('#new-entity-save');
+        } else {
+          $('#new-entity-errors').show(); // Reset submit button
+
+          resetSubmitButton('#new-entity-save');
+        }
+      }).fail(function (result, textStatus, xhr) {
+        $('#new-entity-errors').show(); // Re-enable the submit button
+
+        resetSubmitButton('#new-entity-save');
+      });
+      e.preventDefault();
+      return false;
+    });
+  } // Treeview for locations
+
+
+  var treeViewLoader = $('#locations-treeview');
+
+  if (treeViewLoader.length > 0) {
+    treeViewInit('locations');
+  } // Treeview for tags
+
+
+  if ($('#tags-treeview').length > 0) {
+    treeViewInit('tags');
+  }
+
+  if ($('#quests-treeview').length > 0) {
+    treeViewInit('quests');
+  }
+
+  if ($('#organisations-treeview').length > 0) {
+    treeViewInit('organisations');
+  }
+
+  if ($('#families-treeview').length > 0) {
+    treeViewInit('families');
+  }
+
+  if ($('#races').length > 0) {
+    treeViewInit('races');
+  }
+
+  manageTabs();
+  manageDashboardNotifications(); // Live search on forms
+
+  /*$.each($('.datagrid-search'), function(index) {
+      $(this).submit(function(event) {
+          event.preventDefault();
+            window.location.href =
+      });
+  });*/
+  // Delete confirm dialog
+
+  $.each($('.delete-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $('#delete-confirm-name').text(name);
+      }
+
+      if ($(this).data('mirrored')) {
+        $('#delete-confirm-mirror').show();
+      } else {
+        $('#delete-confirm-mirror').hide();
+      }
+
+      if (target) {
+        $('#delete-confirm-submit').data('target', target);
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('#delete-confirm-submit'), function (index) {
+    $(this).click(function (e) {
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0);
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
+  });
+  initTogglePasswordFields();
+  initAjaxPagination();
+  initNotifications();
+  /**
+   * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
+   */
+
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    $('[data-toggle="tooltip"]').tooltip(); // Also re-bind select2 elements on modal show
 
     initSelect2();
     initCheckboxSwitch();
+    initAjaxPagination(); // Handle when opening the entity-creator ui
 
-    // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
-    // binded once.
-    $(document).on('focus', '.select2.select2-container', function (e) {
-        // only open on original attempt - close focus event should not fire open
-        if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
-            $(this).siblings('select').select2('open');
-        }
-    });
-
-    if ($('.date-picker').length > 0) {
-        $.each($('.date-picker'), function (index) {
-            // instance, using default configuration.
-            $(this).datepicker({
-                autoclose: true,
-                format: 'yyyy-mm-dd',
-                todayHighlight: true
-            });
-        });
-    }
-
-    $.each($('.img-delete'), function (index) {
-        $(this).click(function (e) {
-            e.preventDefault();
-            $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-            $(this).parent().parent().hide();
-        });
-    });
-
-    if ($('#delete-confirm-form').length > 0) {
-        $('#delete-confirm-form').on('keyup keypress', function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    }
-
-    $.each($('.new-entity-selector'), function (index) {
-        $(this).on('click', function (e) {
-            $('#new-entity-type').val($(this).data('entity'));
-            $('#new-entity-form').data('parent', $(this).data('parent'));
-        });
-    });
-
-    if ($('#new-entity-form').length > 0) {
-        $('#new-entity-form').on('submit', function (e) {
-            $('#new-entity-errors').hide();
-            var target = $(this).data('parent');
-            $.ajax({
-                type: "POST",
-                url: $(this).attr('action'),
-                data: $(this).serialize()
-            }).done(function (result, textStatus, xhr) {
-                if (textStatus === 'success' && result.id) {
-                    $('#' + target).children().remove().end().append(new Option(result.name, result.id)).val(result.id).trigger('change');
-
-                    // Close modal
-                    $('#new-entity-modal').modal('toggle');
-                    $('#new-entity-errors').hide();
-                    $('#new-entity-name').val('');
-
-                    // Reset submit button
-                    resetSubmitButton('#new-entity-save');
-                } else {
-                    $('#new-entity-errors').show();
-
-                    // Reset submit button
-                    resetSubmitButton('#new-entity-save');
-                }
-            }).fail(function (result, textStatus, xhr) {
-                $('#new-entity-errors').show();
-
-                // Re-enable the submit button
-                resetSubmitButton('#new-entity-save');
-            });
-
-            e.preventDefault();
-            return false;
-        });
-    }
-
-    // Treeview for locations
-    var treeViewLoader = $('#locations-treeview');
-    if (treeViewLoader.length > 0) {
-        treeViewInit('locations');
-    }
-
-    // Treeview for tags
-    if ($('#tags-treeview').length > 0) {
-        treeViewInit('tags');
-    }
-    if ($('#quests-treeview').length > 0) {
-        treeViewInit('quests');
-    }
-    if ($('#organisations-treeview').length > 0) {
-        treeViewInit('organisations');
-    }
-    if ($('#families-treeview').length > 0) {
-        treeViewInit('families');
-    }
-    if ($('#races').length > 0) {
-        treeViewInit('races');
-    }
-
-    manageTabs();
-    manageDashboardNotifications();
-
-    // Live search on forms
-    /*$.each($('.datagrid-search'), function(index) {
-        $(this).submit(function(event) {
-            event.preventDefault();
-              window.location.href =
-        });
-    });*/
-
-    // Delete confirm dialog
-    $.each($('.delete-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('name');
-            var text = $(this).data('text');
-            var target = $(this).data('delete-target');
-            if (text) {
-                $('#delete-confirm-text').text(text);
-            } else {
-                $('#delete-confirm-name').text(name);
-            }
-
-            if ($(this).data('mirrored')) {
-                $('#delete-confirm-mirror').show();
-            } else {
-                $('#delete-confirm-mirror').hide();
-            }
-
-            if (target) {
-                $('#delete-confirm-submit').data('target', target);
-            }
-        });
-    });
-
-    // Submit modal form
-    $.each($('#delete-confirm-submit'), function (index) {
-        $(this).click(function (e) {
-            var target = $(this).data('target');
-            if (target) {
-                $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0);
-                $('#' + target).submit();
-            } else {
-                $('#delete-confirm-form').submit();
-            }
-        });
-    });
-
-    // Delete confirm dialog
-    $.each($('.click-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('message');
-            $('#click-confirm-text').text(name);
-            $('#click-confirm-url').attr('href', $(this).data('url'));
-        });
-    });
-
-    initTogglePasswordFields();
-    initAjaxPagination();
-    initNotifications();
-
-    /**
-     * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
-     */
-    $(document).on('shown.bs.modal shown.bs.popover', function () {
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Also re-bind select2 elements on modal show
-        initSelect2();
-        initCheckboxSwitch();
-        initAjaxPagination();
-
-        // Handle when opening the entity-creator ui
-        entityCreatorUI();
-    });
+    entityCreatorUI();
+  });
 });
-
 /**
  * Init the toggle elements
  */
-function initCheckboxSwitch() {}
-//$('[data-toggle="switch"]').bootstrapSwitch();
 
+function initCheckboxSwitch() {} //$('[data-toggle="switch"]').bootstrapSwitch();
 
 /**
  * Select2 is used for all the fancy dropdowns
  */
-function initSelect2() {
-    Object(__WEBPACK_IMPORTED_MODULE_0__components_select2_js__["a" /* default */])();
-}
 
+
+function initSelect2() {
+  Object(_components_select2_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+}
 /**
  * Go through table trs to add on click support
  */
-function treeViewInit(element) {
-    var treeViewLoader = $('#' + element + '-treeview');
-    var link = treeViewLoader.data('url');
-    $.each($('#' + element + ' > tbody > tr'), function (index) {
-        children = $(this).data('children');
-        if (parseInt(children) > 0) {
-            $(this).addClass('tr-hover');
-            $(this).on('click', function (e) {
-                // Don't trigger the click on the checkbox (used for bulk actions)
-                if (e.target.type !== 'checkbox') {
-                    window.location = link + '?parent_id=' + $(this).data('id');
-                }
-            });
-        }
-    });
-}
 
+
+function treeViewInit(element) {
+  var treeViewLoader = $('#' + element + '-treeview');
+  var link = treeViewLoader.data('url');
+  $.each($('#' + element + ' > tbody > tr'), function (index) {
+    children = $(this).data('children');
+
+    if (parseInt(children) > 0) {
+      $(this).addClass('tr-hover');
+      $(this).on('click', function (e) {
+        // Don't trigger the click on the checkbox (used for bulk actions)
+        if (e.target.type !== 'checkbox') {
+          window.location = link + '?parent_id=' + $(this).data('id');
+        }
+      });
+    }
+  });
+}
 /**
  * Save and manage tabs for when refreshing
  */
+
+
 function manageTabs() {
-    var tabLink = $('.nav-tabs li a');
-    tabLink.click(function (e) {
-        e.preventDefault();
+  var tabLink = $('.nav-tabs li a');
+  tabLink.click(function (e) {
+    e.preventDefault(); // If tab isn't ajax request
 
-        // If tab isn't ajax request
-        if (!$(this).data('url')) {
-            $(this).tab('show');
-        }
-    });
+    if (!$(this).data('url')) {
+      $(this).tab('show');
+    }
+  }); // store the currently selected tab in the hash value
 
-    // store the currently selected tab in the hash value
-    tabLink.on("shown.bs.tab", function (e) {
-        e.preventDefault();
-        var tabId = $(e.target).attr("href").substr(1);
-        var dataToggle = $(e.target).attr('ajax-modal');
+  tabLink.on("shown.bs.tab", function (e) {
+    e.preventDefault();
+    var tabId = $(e.target).attr("href").substr(1);
+    var dataToggle = $(e.target).attr('ajax-modal');
 
-        if (dataToggle && dataToggle == 'ajax-modal') {
-            // Modal? Don't do more.
-            return true;
-        }
-        // We fake a tab_ to avoid page jumps from the browser
-        window.location.hash = 'tab_' + tabId;
-    });
+    if (dataToggle && dataToggle == 'ajax-modal') {
+      // Modal? Don't do more.
+      return true;
+    } // We fake a tab_ to avoid page jumps from the browser
 
-    // on load of the page: switch to the currently selected tab
-    var tabHash = window.location.hash.replace('tab_', '');
-    $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
+
+    window.location.hash = 'tab_' + tabId;
+  }); // on load of the page: switch to the currently selected tab
+
+  var tabHash = window.location.hash.replace('tab_', '');
+  $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
 }
-
 /**
  *
  */
+
+
 function manageDashboardNotifications() {
-    $.each($('.click-notification'), function (index) {
-        $(this).modal();
-    });
+  $.each($('.click-notification'), function (index) {
+    $(this).modal();
+  });
+  $.each($('.notification-delete'), function (index) {
+    $(this).on('click', function () {
+      $.ajax({
+        url: $(this).data('url'),
+        dataType: 'json'
+      }); // Had this in the done, but it never fired?
 
-    $.each($('.notification-delete'), function (index) {
-        $(this).on('click', function () {
-            $.ajax({
-                url: $(this).data('url'),
-                dataType: 'json'
-            });
-
-            // Had this in the done, but it never fired?
-            var parent = $(this).data('parent');
-            $('#' + parent).modal('toggle');
-        });
+      var parent = $(this).data('parent');
+      $('#' + parent).modal('toggle');
     });
+  });
 }
-
 /**
  * Show/Hide password field helpers
  */
+
+
 function initTogglePasswordFields() {
-    var passwordField = $('#password');
-    var passwordToggleIcon = $('.toggle-password-icon');
-    $('.toggle-password').on('click', function (e) {
-        e.preventDefault();
-        if (passwordField.prop('type') === 'text') {
-            passwordField.prop('type', 'password');
-            passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
-        } else {
-            passwordField.prop('type', 'text');
-            passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
-        }
-        return false;
-    });
+  var passwordField = $('#password');
+  var passwordToggleIcon = $('.toggle-password-icon');
+  $('.toggle-password').on('click', function (e) {
+    e.preventDefault();
+
+    if (passwordField.prop('type') === 'text') {
+      passwordField.prop('type', 'password');
+      passwordToggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+    } else {
+      passwordField.prop('type', 'text');
+      passwordToggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+    }
+
+    return false;
+  });
 }
 
 function resetSubmitButton(id) {
-    var newEntitySaveButton = $(id);
-    newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
+  var newEntitySaveButton = $(id);
+  newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
 }
-
 /**
  * Quick Entity Creator UI
  */
+
+
 function entityCreatorUI() {
-    $('[data-toggle="entity-creator"]').on('click', function (e) {
-        e.preventDefault();
+  $('[data-toggle="entity-creator"]').on('click', function (e) {
+    e.preventDefault();
+    var selection = $('#entity-creator-selection');
+    var loader = $('.entity-creator-loader');
+    selection.addClass('hidden');
+    loader.removeClass('hidden');
+    $.ajax($(this).data('url')).done(function (data) {
+      loader.addClass('hidden');
+      selection.html(data).removeClass('hidden');
+      initSelect2();
+      initEntityCreatorDuplicateName();
+      window.initCategories();
+      $('#entity-creator-form').on('submit', function (e) {
+        e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
-        var selection = $('#entity-creator-selection');
-        var loader = $('.entity-creator-loader');
-
-        selection.addClass('hidden');
-        loader.removeClass('hidden');
-
-        $.ajax($(this).data('url')).done(function (data) {
-            loader.addClass('hidden');
-            selection.html(data).removeClass('hidden');
-            initSelect2();
-            initEntityCreatorDuplicateName();
-            window.initCategories();
-
-            $('#entity-creator-form').on('submit', function (e) {
-                e.preventDefault();
-
-                // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.post({
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    context: this
-                }).done(function (result, textStatus, xhr) {
-                    // New entity was created, let's follow that redirect
-                    console.log(result);
-
-                    $('#entity-creator-form').hide();
-
-                    $('.entity-creator-success').html(result.message).show();
-                }).fail(function (data) {
-                    $('.entity-creator-error').show();
-                });
-            });
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
         });
-
-        return false;
+        $.post({
+          url: $(this).attr('action'),
+          data: $(this).serialize(),
+          context: this
+        }).done(function (result, textStatus, xhr) {
+          // New entity was created, let's follow that redirect
+          console.log(result);
+          $('#entity-creator-form').hide();
+          $('.entity-creator-success').html(result.message).show();
+        }).fail(function (data) {
+          $('.entity-creator-error').show();
+        });
+      });
     });
+    return false;
+  });
 }
 
 function initEntityCreatorDuplicateName() {
-    $('#entity-creator-selection input[name="name"]').focusout(function (e) {
-        var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
-        entityCreatorDuplicateWarning.hide();
-        // Check if an entity of the same type already exists, and warn when it does.
-        $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
-            if (res.length > 0) {
-                entityCreatorDuplicateWarning.fadeIn();
-            } else {
-                entityCreatorDuplicateWarning.hide();
-            }
-        });
-    });
-}
+  $('#entity-creator-selection input[name="name"]').focusout(function (e) {
+    var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
+    entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
 
+    $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
+      if (res.length > 0) {
+        entityCreatorDuplicateWarning.fadeIn();
+      } else {
+        entityCreatorDuplicateWarning.hide();
+      }
+    });
+  });
+}
 /**
  * Replace pagination for ajax links
  */
+
+
 function initAjaxPagination() {
-    $('.pagination-ajax-links a').on('click', function (e) {
-        e.preventDefault();
-        var paginationAjaxBody = $('.pagination-ajax-body');
-        paginationAjaxBody.find('.loading').show();
-        paginationAjaxBody.find('.pagination-ajax-content').hide();
-
-        $.ajax($(this).attr('href')).done(function (res) {
-            paginationAjaxBody.parent().html(res);
-            initAjaxPagination();
-        });
-        return false;
+  $('.pagination-ajax-links a').on('click', function (e) {
+    e.preventDefault();
+    var paginationAjaxBody = $('.pagination-ajax-body');
+    paginationAjaxBody.find('.loading').show();
+    paginationAjaxBody.find('.pagination-ajax-content').hide();
+    $.ajax($(this).attr('href')).done(function (res) {
+      paginationAjaxBody.parent().html(res);
+      initAjaxPagination();
     });
+    return false;
+  });
 }
-
 /**
  * Check if there are new notifiations for the user
  */
+
+
 function initNotifications() {
-    notificationList = $('#header-notification-list');
-    notificationCount = $('#header-notification-count');
-    if (notificationList.length === 1) {
-        setTimeout(refreshNotificationList, notificationRefreshTimeout);
-    }
+  notificationList = $('#header-notification-list');
+  notificationCount = $('#header-notification-count');
+
+  if (notificationList.length === 1) {
+    setTimeout(refreshNotificationList, notificationRefreshTimeout);
+  }
 }
 
 function refreshNotificationList() {
-    // console.log('refresh notification list');
-    $.ajax(notificationList.data('url')).done(function (result) {
-        if (result.count > 0) {
-            notificationList.html(result.body);
-            notificationCount.html(result.count).show();
-        } else {
-            notificationCount.hide();
-        }
-        setTimeout(refreshNotificationList, notificationRefreshTimeout);
-    });
-}
+  // console.log('refresh notification list');
+  $.ajax(notificationList.data('url')).done(function (result) {
+    if (result.count > 0) {
+      notificationList.html(result.body);
+      notificationCount.html(result.count).show();
+    } else {
+      notificationCount.hide();
+    }
 
-// Helpers are injected directly in the window functions.
-__webpack_require__("./resources/assets/js/helpers.js");
+    setTimeout(refreshNotificationList, notificationRefreshTimeout);
+  });
+} // Helpers are injected directly in the window functions.
 
-__webpack_require__("./resources/assets/js/keyboard.js");
-__webpack_require__("./resources/assets/js/crud.js");
-__webpack_require__("./resources/assets/js/calendar.js");
-__webpack_require__("./resources/assets/js/search.js");
-__webpack_require__("./resources/assets/js/tags.js");
+
+__webpack_require__(/*! ./helpers.js */ "./resources/assets/js/helpers.js");
+
+__webpack_require__(/*! ./keyboard.js */ "./resources/assets/js/keyboard.js");
+
+__webpack_require__(/*! ./crud.js */ "./resources/assets/js/crud.js");
+
+__webpack_require__(/*! ./calendar.js */ "./resources/assets/js/calendar.js");
+
+__webpack_require__(/*! ./search.js */ "./resources/assets/js/search.js");
+
+__webpack_require__(/*! ./tags.js */ "./resources/assets/js/tags.js");
 
 /***/ }),
 
 /***/ "./resources/assets/js/bootstrap.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/bootstrap.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-window._ = __webpack_require__("./node_modules/lodash/lodash.js");
-
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -51804,31 +52699,31 @@ window._ = __webpack_require__("./node_modules/lodash/lodash.js");
  */
 
 try {
-    window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-    __webpack_require__("./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
+  __webpack_require__(/*! bootstrap-sass */ "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
 } catch (e) {}
 
-__webpack_require__("./node_modules/admin-lte/dist/js/adminlte.min.js");
-__webpack_require__("./node_modules/select2/dist/js/select2.js");
-__webpack_require__("./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
+__webpack_require__(/*! admin-lte */ "./node_modules/admin-lte/dist/js/adminlte.min.js");
 
-// require('corejs-typeahead');
+__webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
+
+__webpack_require__(/*! bootstrap-datepicker */ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"); // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');
 
-__webpack_require__("./node_modules/jquery-ui/ui/widgets/draggable.js");
-__webpack_require__("./node_modules/jquery-ui/ui/widgets/sortable.js");
 
+__webpack_require__(/*! jquery-ui/ui/widgets/draggable */ "./node_modules/jquery-ui/ui/widgets/draggable.js");
+
+__webpack_require__(/*! jquery-ui/ui/widgets/sortable */ "./node_modules/jquery-ui/ui/widgets/sortable.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__("./node_modules/axios/index.js");
 
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -51838,70 +52733,71 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
 // import Echo from 'laravel-echo'
-
 // window.Pusher = require('pusher-js');
-
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
 
+
 $.AdminLTESidebarTweak = {};
-
 $.AdminLTESidebarTweak.options = {
-    EnableRemember: true,
-    NoTransitionAfterReload: false
-    //Removes the transition after page reload.
+  EnableRemember: true,
+  NoTransitionAfterReload: false //Removes the transition after page reload.
+
 };
-
 $(function () {
-    "use strict";
+  "use strict";
 
-    $(document).on('click', '.sidebar-toggle', function () {
-        if ($.AdminLTESidebarTweak.options.EnableRemember) {
-            var toggleState = 'opened';
-            if ($("body").hasClass('sidebar-collapse')) {
-                toggleState = 'closed';
-            }
-
-            var date = new Date();
-            date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
-            var expires = " expires=" + date.toGMTString();
-            document.cookie = "toggleState=" + toggleState + "; path=/; secure; " + expires;
-        }
-    });
-
+  $(document).on('click', '.sidebar-toggle', function () {
     if ($.AdminLTESidebarTweak.options.EnableRemember) {
-        var re = new RegExp('toggleState' + "=([^;]+)");
-        var value = re.exec(document.cookie);
-        var toggleState = value != null ? unescape(value[1]) : null;
-        if (toggleState == 'closed') {
-            if ($.AdminLTESidebarTweak.options.NoTransitionAfterReload) {
-                $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function () {
-                    $(this).removeClass('hold-transition');
-                });
-            } else {
-                $("body").addClass('sidebar-collapse');
-            }
-        }
+      var toggleState = 'opened';
+
+      if ($("body").hasClass('sidebar-collapse')) {
+        toggleState = 'closed';
+      }
+
+      var date = new Date();
+      date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+      var expires = " expires=" + date.toGMTString();
+      document.cookie = "toggleState=" + toggleState + "; path=/; secure; " + expires;
     }
+  });
+
+  if ($.AdminLTESidebarTweak.options.EnableRemember) {
+    var re = new RegExp('toggleState' + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    var toggleState = value != null ? unescape(value[1]) : null;
+
+    if (toggleState == 'closed') {
+      if ($.AdminLTESidebarTweak.options.NoTransitionAfterReload) {
+        $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function () {
+          $(this).removeClass('hold-transition');
+        });
+      } else {
+        $("body").addClass('sidebar-collapse');
+      }
+    }
+  }
 });
 
 /***/ }),
 
 /***/ "./resources/assets/js/calendar.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/calendar.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 var calendarAddMonth, calendarAddWeekday, calendarAddYear, calendarTemplateMonth, calendarTemplateWeekday, calendarTemplateYear, calendarLeapYear;
@@ -51911,1206 +52807,1215 @@ var calendarAddEpoch, calendarTemplateEpoch;
 var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
-
 $(document).ready(function () {
-    // Form
-    calendarAddMonth = $('#add_month');
-    if (calendarAddMonth.length === 1) {
-        calendarAddWeekday = $('#add_weekday');
-        calendarAddYear = $('#add_year');
-        calendarAddMoon = $('#add_moon');
-        calendarAddSeason = $('#add_season');
-        calendarAddEpoch = $('#add_epoch');
-        calendarAddIntercalary = $('#add_intercalary');
-        calendarTemplateMonth = $('#template_month');
-        calendarTemplateWeekday = $('#template_weekday');
-        calendarTemplateYear = $('#template_year');
-        calendarTemplateMoon = $('#template_moon');
-        calendarTemplateSeason = $('#template_season');
-        calendarTemplateEpoch = $('#template_epoch');
-        calendarTemplateIntercalary = $('#template_intercalary');
-        calendarLeapYear = $('input[name="has_leap_year"]');
+  // Form
+  calendarAddMonth = $('#add_month');
 
-        calendarSortMonths = $(".calendar-months");
-        calendarSortWeekdays = $(".calendar-weekdays");
-        calendarSortYears = $(".calendar-years");
-        calendarSortMoons = $(".calendar-moons");
-        calendarSortSeasons = $(".calendar-seasons");
-        calendarSortEpochs = $(".calendar-epochs");
-        calendarSortIntercalary = $(".calendar-intercalaries");
+  if (calendarAddMonth.length === 1) {
+    calendarAddWeekday = $('#add_weekday');
+    calendarAddYear = $('#add_year');
+    calendarAddMoon = $('#add_moon');
+    calendarAddSeason = $('#add_season');
+    calendarAddEpoch = $('#add_epoch');
+    calendarAddIntercalary = $('#add_intercalary');
+    calendarTemplateMonth = $('#template_month');
+    calendarTemplateWeekday = $('#template_weekday');
+    calendarTemplateYear = $('#template_year');
+    calendarTemplateMoon = $('#template_moon');
+    calendarTemplateSeason = $('#template_season');
+    calendarTemplateEpoch = $('#template_epoch');
+    calendarTemplateIntercalary = $('#template_intercalary');
+    calendarLeapYear = $('input[name="has_leap_year"]');
+    calendarSortMonths = $(".calendar-months");
+    calendarSortWeekdays = $(".calendar-weekdays");
+    calendarSortYears = $(".calendar-years");
+    calendarSortMoons = $(".calendar-moons");
+    calendarSortSeasons = $(".calendar-seasons");
+    calendarSortEpochs = $(".calendar-epochs");
+    calendarSortIntercalary = $(".calendar-intercalaries");
+    initCalendarForm();
+  } // View
 
-        initCalendarForm();
-    }
 
-    // View
-    calendarYearSwitcher = $('#calendar-year-switcher');
-    if (calendarYearSwitcher.length === 1) {
-        calendarYearSwitcherField = $('#calendar-year-switcher-field');
-        calendarEventModal = $('#add-calendar-event');
+  calendarYearSwitcher = $('#calendar-year-switcher');
 
-        initCalendarYearSwitcher();
-        initCalendarEventBlock();
-    }
+  if (calendarYearSwitcher.length === 1) {
+    calendarYearSwitcherField = $('#calendar-year-switcher-field');
+    calendarEventModal = $('#add-calendar-event');
+    initCalendarYearSwitcher();
+    initCalendarEventBlock();
+  }
 
-    $(document).on('shown.bs.modal', function () {
-        initCalendarEventModal();
-    });
+  $(document).on('shown.bs.modal', function () {
+    initCalendarEventModal();
+  });
 });
-
 /**
  * Initialize the calendar
  */
+
 function initCalendarForm() {
-    calendarAddMonth.on('click', function (e) {
-        e.preventDefault();
+  calendarAddMonth.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateMonth.html() + '</div>'); // Handle deleting already loaded blocks
 
-        $(this).before('<div class="form-group">' + calendarTemplateMonth.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddWeekday.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateWeekday.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddYear.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateYear.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarLeapYear.on('click', function () {
-        $('#calendar-leap-year').toggle();
-    });
-
-    calendarAddMoon.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateMoon.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddSeason.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateSeason.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    calendarAddIntercalary.on('click', function (e) {
-        e.preventDefault();
-
-        $(this).before('<div class="form-group">' + calendarTemplateIntercalary.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        calendarDeleteRowHandler();
-
-        return false;
-    });
-
-    // Handle deleting already loaded points
     calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddWeekday.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateWeekday.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddYear.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateYear.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarLeapYear.on('click', function () {
+    $('#calendar-leap-year').toggle();
+  });
+  calendarAddMoon.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateMoon.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddSeason.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateSeason.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  });
+  calendarAddIntercalary.on('click', function (e) {
+    e.preventDefault();
+    $(this).before('<div class="form-group">' + calendarTemplateIntercalary.html() + '</div>'); // Handle deleting already loaded blocks
+
+    calendarDeleteRowHandler();
+    return false;
+  }); // Handle deleting already loaded points
+
+  calendarDeleteRowHandler();
 }
 
 function calendarDeleteRowHandler() {
-    $.each($('.month-delete'), function (index) {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function (e) {
-            if ($(this).data('remove') === 4) {
-                $(this).parent().parent().parent().parent().remove();
-            } else {
-                $(this).parent().parent().parent().remove();
-            }
-            e.preventDefault();
-            return false;
-        });
-    });
+  $.each($('.month-delete'), function (index) {
+    $(this).unbind('click'); // remove previous bindings
 
-    calendarSortMonths.sortable();
-    calendarSortWeekdays.sortable();
-    calendarSortYears.sortable();
-    calendarSortMoons.sortable();
-    calendarSortSeasons.sortable();
-    calendarSortIntercalary.sortable();
+    $(this).on('click', function (e) {
+      if ($(this).data('remove') === 4) {
+        $(this).parent().parent().parent().parent().remove();
+      } else {
+        $(this).parent().parent().parent().remove();
+      }
+
+      e.preventDefault();
+      return false;
+    });
+  });
+  calendarSortMonths.sortable();
+  calendarSortWeekdays.sortable();
+  calendarSortYears.sortable();
+  calendarSortMoons.sortable();
+  calendarSortSeasons.sortable();
+  calendarSortIntercalary.sortable();
 }
 
 function initCalendarYearSwitcher() {
-    calendarYearSwitcher.on('click', function () {
-        $(this).hide();
-        year = calendarYearSwitcherField.val();
-        calendarYearSwitcherField.show().focus().val('').val(year);
-    });
+  calendarYearSwitcher.on('click', function () {
+    $(this).hide();
+    year = calendarYearSwitcherField.val();
+    calendarYearSwitcherField.show().focus().val('').val(year);
+  });
 }
 
 function initCalendarEventBlock() {
-    $('.calendar-event-block').each(function () {
-        if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
-            $(this).click(function (e) {
-                window.location = $(this).data('url');
-            });
-        }
-    });
+  $('.calendar-event-block').each(function () {
+    if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
+      $(this).click(function (e) {
+        window.location = $(this).data('url');
+      });
+    }
+  });
 }
 
 function initCalendarEventModal() {
-    $('input[name="is_recurring"]').on('click', function (e) {
-        $('#add_event_recurring_until').toggle();
-    });
-
-    $('#calendar-action-existing').on('click', function () {
-        $('#calendar-event-first').hide();
-        $('.calendar-new-event-field').hide();
-        $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').toggle();
-    });
-
-    $('#calendar-action-new').on('click', function () {
-        $('#calendar-event-first').hide();
-        $('.calendar-existing-event-field').hide();
-        $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').toggle();
-    });
-
-    $('#calendar-event-switch').on('click', function (e) {
-        e.preventDefault();
-        $('#calendar-event-subform').hide();
-        $('#calendar-event-first').fadeToggle();
-        $('.calendar-existing-event-field').show();
-        $('.calendar-new-event-field').show();
-
-        $('#calendar-event-submit').toggle();
-    });
+  $('input[name="is_recurring"]').on('click', function (e) {
+    $('#add_event_recurring_until').toggle();
+  });
+  $('#calendar-action-existing').on('click', function () {
+    $('#calendar-event-first').hide();
+    $('.calendar-new-event-field').hide();
+    $('#calendar-event-subform').fadeToggle();
+    $('#calendar-event-submit').toggle();
+  });
+  $('#calendar-action-new').on('click', function () {
+    $('#calendar-event-first').hide();
+    $('.calendar-existing-event-field').hide();
+    $('#calendar-event-subform').fadeToggle();
+    $('#calendar-event-submit').toggle();
+  });
+  $('#calendar-event-switch').on('click', function (e) {
+    e.preventDefault();
+    $('#calendar-event-subform').hide();
+    $('#calendar-event-first').fadeToggle();
+    $('.calendar-existing-event-field').show();
+    $('.calendar-new-event-field').show();
+    $('#calendar-event-submit').toggle();
+  });
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/components/select2.js":
+/*!***************************************************!*\
+  !*** ./resources/assets/js/components/select2.js ***!
+  \***************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = select2;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return select2; });
 function select2() {
-    if ($('select.select2').length > 0) {
-        $.each($('select.select2'), function (index) {
-            // Check it isn't the select2-icon
-            $(this).select2({
-                //data: newOptions,
-                placeholder: $(this).data('placeholder'),
-                allowClear: true,
-                tags: $(this).is('[data-tags]'),
-                language: $(this).data('language'),
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).data('url'),
-                    dataType: 'json',
-                    data: function data(params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function processResults(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
-
-    // Select2 with local search
-    $('select.select2-local').select2({
+  if ($('select.select2').length > 0) {
+    $.each($('select.select2'), function (index) {
+      // Check it isn't the select2-icon
+      $(this).select2({
+        //data: newOptions,
         placeholder: $(this).data('placeholder'),
+        allowClear: true,
+        tags: $(this).is('[data-tags]'),
         language: $(this).data('language'),
-        allowClear: true
+        minimumInputLength: 0,
+        ajax: {
+          quietMillis: 200,
+          url: $(this).data('url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
     });
+  } // Select2 with local search
+
+
+  $('select.select2-local').select2({
+    placeholder: $(this).data('placeholder'),
+    language: $(this).data('language'),
+    allowClear: true
+  });
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/crud.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/crud.js ***!
+  \*************************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_select2_js__ = __webpack_require__("./resources/assets/js/components/select2.js");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
 /**
  * Crud
  */
+ // Character
 
-
-
-// Character
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
 var entityFormActions, entityFormDefaultAction;
 var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
-
 var filtersActionsShow, filtersActionHide;
-
 var ajaxModalTarget;
-var entityFormHasUnsavedChanges = false;
+var entityFormHasUnsavedChanges = false; // Entity Calendar
 
-// Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalField, entityCalendarModalForm;
-
 var toggablePanels;
-
 var validEntityForm = false,
     validRelationForm = false;
-
 $(document).ready(function () {
-    // Multi-delete
-    var crudDelete = $('#datagrid-select-all');
-    if (crudDelete.length > 0) {
-        crudDelete.click(function (e) {
-            if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', false);
-                });
-            }
-            toggleCrudMultiDelete();
+  // Multi-delete
+  var crudDelete = $('#datagrid-select-all');
+
+  if (crudDelete.length > 0) {
+    crudDelete.click(function (e) {
+      if ($(this).prop('checked')) {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', true);
         });
-    }
-    $.each($("input[name='model[]']"), function () {
-        $(this).change(function (e) {
-            toggleCrudMultiDelete();
-            e.preventDefault();
+      } else {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', false);
         });
+      }
+
+      toggleCrudMultiDelete();
     });
+  }
 
-    characterSortPersonality = $('.character-personality');
-    characterSortAppearance = $('.character-appearance');
-    characterOrganisations = $('.character-organisations');
-
-    characterAddPersonality = $('#add_personality');
-    if (characterAddPersonality.length === 1) {
-        initCharacterPersonality();
-    }
-    characterAddAppearance = $('#add_appearance');
-    if (characterAddAppearance.length === 1) {
-        initCharacterAppearance();
-    }
-    characterAddOrganisation = $('#add_organisation');
-    if (characterAddOrganisation.length === 1) {
-        initCharacterOrganisation();
-    }
-
-    $.each($('[data-toggle="ajax-modal"]'), function () {
-        $(this).click(function (e) {
-            e.preventDefault();
-            ajaxModalTarget = $(this).attr('data-target');
-            $.ajax({
-                url: $(this).attr('data-url')
-            }).done(function (result, textStatus, xhr) {
-                if (result) {
-                    $(ajaxModalTarget).find('.modal-content').html(result);
-                    $(ajaxModalTarget).modal();
-                }
-            }).fail(function (result, textStatus, xhr) {
-                //console.log('modal ajax error', result);
-            });
-            return false;
-        });
+  $.each($("input[name='model[]']"), function () {
+    $(this).change(function (e) {
+      toggleCrudMultiDelete();
+      e.preventDefault();
     });
+  });
+  characterSortPersonality = $('.character-personality');
+  characterSortAppearance = $('.character-appearance');
+  characterOrganisations = $('.character-organisations');
+  characterAddPersonality = $('#add_personality');
 
-    entityFormActions = $('.form-submit-actions');
-    if (entityFormActions.length > 0) {
-        registerEntityFormActions();
-        registerUnsavedChanges();
-    }
+  if (characterAddPersonality.length === 1) {
+    initCharacterPersonality();
+  }
 
-    registerFormSubmitAnimation();
-    registerEntityCalendarForm();
-    registerToggablePanels();
-    registerEntityFormSubmit();
-    registerEntityCalendarModal();
-    registerModalLoad();
+  characterAddAppearance = $('#add_appearance');
+
+  if (characterAddAppearance.length === 1) {
+    initCharacterAppearance();
+  }
+
+  characterAddOrganisation = $('#add_organisation');
+
+  if (characterAddOrganisation.length === 1) {
+    initCharacterOrganisation();
+  }
+
+  $.each($('[data-toggle="ajax-modal"]'), function () {
+    $(this).click(function (e) {
+      e.preventDefault();
+      ajaxModalTarget = $(this).attr('data-target');
+      $.ajax({
+        url: $(this).attr('data-url')
+      }).done(function (result, textStatus, xhr) {
+        if (result) {
+          $(ajaxModalTarget).find('.modal-content').html(result);
+          $(ajaxModalTarget).modal();
+        }
+      }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+      });
+      return false;
+    });
+  });
+  entityFormActions = $('.form-submit-actions');
+
+  if (entityFormActions.length > 0) {
+    registerEntityFormActions();
+    registerUnsavedChanges();
+  }
+
+  registerFormSubmitAnimation();
+  registerEntityCalendarForm();
+  registerToggablePanels();
+  registerEntityFormSubmit();
+  registerEntityCalendarModal();
+  registerModalLoad();
 });
-
 /**
  * Re-register any events that need to be binded when a modal is loaded
  */
-function registerModalLoad() {
-    $(document).on('shown.bs.modal shown.bs.popover', function () {
-        registerRelationFormSubmit();
-        registerEntityCalendarModal();
-    });
-}
 
+function registerModalLoad() {
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    registerRelationFormSubmit();
+    registerEntityCalendarModal();
+  });
+}
 /**
  *
  */
+
+
 function toggleCrudMultiDelete() {
-    var hide = true;
-
-    $.each($("input[name='model[]']"), function () {
-        if ($(this).prop('checked')) {
-            hide = false;
-        }
-    });
-
-    if (hide) {
-        $('.datagrid-bulk-actions').hide();
-    } else {
-        $('.datagrid-bulk-actions').show();
+  var hide = true;
+  $.each($("input[name='model[]']"), function () {
+    if ($(this).prop('checked')) {
+      hide = false;
     }
-}
+  });
 
+  if (hide) {
+    $('.datagrid-bulk-actions').hide();
+  } else {
+    $('.datagrid-bulk-actions').show();
+  }
+}
 /**
  * Filters
  */
+
+
 var previousFilterInputValue = '';
+
 function initCrudFilters() {
-    $('#crud-filters .element').on('click', function () {
-        $(this).children('.value').hide();
-        $(this).children('.input').show();
+  $('#crud-filters .element').on('click', function () {
+    $(this).children('.value').hide();
+    $(this).children('.input').show(); // Show the field and focus at the end of it
 
-        // Show the field and focus at the end of it
-        var input = $(this).children('.input').children('.input-field');
-        input.focus();
-        var tmp = input.val();
-        input.val('');
-        input.val(tmp);
-        previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp;
-        //console.log('previous filter', input, previousFilterInputValue);
-    });
+    var input = $(this).children('.input').children('.input-field');
+    input.focus();
+    var tmp = input.val();
+    input.val('');
+    input.val(tmp);
+    previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp; //console.log('previous filter', input, previousFilterInputValue);
+  });
+  $('#crud-filters .element input').on('focusout', function (e) {
+    // Only submit on change
+    e.preventDefault();
+    filterSubmit($(this), false);
+  });
+  $('#crud-filters select.select2').on('change', function () {
+    $('#crud-filters-form').submit();
+  });
+  $('#crud-filters select.filter-select').on('change', function () {
+    $('#crud-filters-form').submit();
+  }); // Reset button
 
-    $('#crud-filters .element input').on('focusout', function (e) {
-        // Only submit on change
-        e.preventDefault();
-        filterSubmit($(this), false);
-    });
+  $('#crud-filters #filters-reset').on('click', function () {
+    // Redirect to page without params
+    window.location = window.location.href.split("?")[0] + '?reset-filter=true';
+  }); // Show on small displays
 
-    $('#crud-filters select.select2').on('change', function () {
-        $('#crud-filters-form').submit();
-    });
-
-    $('#crud-filters select.filter-select').on('change', function () {
-        $('#crud-filters-form').submit();
-    });
-
-    // Reset button
-    $('#crud-filters #filters-reset').on('click', function () {
-        // Redirect to page without params
-        window.location = window.location.href.split("?")[0] + '?reset-filter=true';
-    });
-
-    // Show on small displays
-    var filtersActionShow = $('#crud-filters #filters-show-action');
-    filtersActionHide = $('#crud-filters #filters-hide-action');
-    filtersActionShow.on('click', function () {
-        $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
-        $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
-        filtersActionShow.hide();
-        filtersActionHide.show();
-    });
-
-    filtersActionHide.on('click', function () {
-        $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
-        $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
-        filtersActionHide.hide();
-        filtersActionShow.show();
-    });
-
-    $('#crud-filters .input-field').keypress(function (e) {
-        if (e.which === 13) {
-            e.preventDefault();
-            filterSubmit($(this), true);
-        }
-    });
+  var filtersActionShow = $('#crud-filters #filters-show-action');
+  filtersActionHide = $('#crud-filters #filters-hide-action');
+  filtersActionShow.on('click', function () {
+    $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
+    $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
+    filtersActionShow.hide();
+    filtersActionHide.show();
+  });
+  filtersActionHide.on('click', function () {
+    $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
+    $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
+    filtersActionHide.hide();
+    filtersActionShow.show();
+  });
+  $('#crud-filters .input-field').keypress(function (e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      filterSubmit($(this), true);
+    }
+  });
 }
-
 /**
  *
  * @param field
  * @param force
  */
+
+
 function filterSubmit(field, force) {
-    var element = field.parent().parent();
-    var input = element.children('.input');
-    input.hide();
-    if (field.is(':checkbox')) {
-        if (field.prop('checked')) {
-            element.children('.value').html('<i class="fa fa-check"></i>');
-        } else {
-            element.children('.value').html('');
-        }
+  var element = field.parent().parent();
+  var input = element.children('.input');
+  input.hide();
+
+  if (field.is(':checkbox')) {
+    if (field.prop('checked')) {
+      element.children('.value').html('<i class="fa fa-check"></i>');
     } else {
-        element.children('.value').html(field.val());
+      element.children('.value').html('');
     }
-    element.children('.value').show();
+  } else {
+    element.children('.value').html(field.val());
+  }
 
-    var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val();
-    //console.log('compare', field, compare, previousFilterInputValue);
+  element.children('.value').show();
+  var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val(); //console.log('compare', field, compare, previousFilterInputValue);
 
-    if (force || compare !== previousFilterInputValue) {
-        $('#crud-filters-form').submit();
-    }
+  if (force || compare !== previousFilterInputValue) {
+    $('#crud-filters-form').submit();
+  }
 }
-
 /**
  *
  */
+
+
 function initCharacterPersonality() {
-    characterTemplatePersonality = $('#template_personality');
-    characterAddPersonality.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortPersonality).append('<div class="form-group">' + characterTemplatePersonality.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
+  characterTemplatePersonality = $('#template_personality');
+  characterAddPersonality.on('click', function (e) {
+    e.preventDefault();
+    $(characterSortPersonality).append('<div class="form-group">' + characterTemplatePersonality.html() + '</div>'); // Handle deleting already loaded blocks
 
     characterDeleteRowHandler();
+    return false;
+  });
+  characterDeleteRowHandler();
 }
-
 /**
  *
  */
+
+
 function initCharacterAppearance() {
-    characterTemplateAppearance = $('#template_appearance');
-    characterAddAppearance.on('click', function (e) {
-        e.preventDefault();
-
-        $(characterSortAppearance).append('<div class="form-group">' + characterTemplateAppearance.html() + '</div>');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
+  characterTemplateAppearance = $('#template_appearance');
+  characterAddAppearance.on('click', function (e) {
+    e.preventDefault();
+    $(characterSortAppearance).append('<div class="form-group">' + characterTemplateAppearance.html() + '</div>'); // Handle deleting already loaded blocks
 
     characterDeleteRowHandler();
+    return false;
+  });
+  characterDeleteRowHandler();
 }
-
 /**
  *
  */
+
+
 function initCharacterOrganisation() {
-    characterTemplateOrganisation = $('#template_organisation');
-    characterAddOrganisation.on('click', function (e) {
-        e.preventDefault();
+  characterTemplateOrganisation = $('#template_organisation');
+  characterAddOrganisation.on('click', function (e) {
+    e.preventDefault();
+    $(characterOrganisations).append('<div class="form-group">' + characterTemplateOrganisation.html() + '</div>'); // Replace the temp class with the real class. We need this to avoid having two select2 fields
 
-        $(characterOrganisations).append('<div class="form-group">' + characterTemplateOrganisation.html() + '</div>');
-
-        // Replace the temp class with the real class. We need this to avoid having two select2 fields
-        characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
-
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
-
-        return false;
-    });
+    characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2'); // Handle deleting already loaded blocks
 
     characterDeleteRowHandler();
+    registerPrivateCheckboxes();
+    return false;
+  });
+  characterDeleteRowHandler();
 }
-
 /**
  *
  */
+
+
 function characterDeleteRowHandler() {
-    $.each($('.personality-delete'), function () {
-        $(this).unbind('click'); // remove previous bindings
-        $(this).on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('.parent-delete-row').remove();
-        });
+  $.each($('.personality-delete'), function () {
+    $(this).unbind('click'); // remove previous bindings
+
+    $(this).on('click', function (e) {
+      e.preventDefault();
+      $(this).closest('.parent-delete-row').remove();
     });
+  });
+  $.each($('.member-delete'), function () {
+    $(this).unbind('click');
+    $(this).on('click', function (e) {
+      e.preventDefault();
+      $(this).closest('.form-group').remove();
+    });
+  }); // Always re-calc the sortable traits
 
-    // Always re-calc the sortable traits
-    characterSortPersonality.sortable();
-    characterSortAppearance.sortable();
-    Object(__WEBPACK_IMPORTED_MODULE_0__components_select2_js__["a" /* default */])();
+  characterSortPersonality.sortable();
+  characterSortAppearance.sortable();
+  Object(_components_select2_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
 }
-
 /**
  *
  */
-function registerEntityFormActions() {
-    entityFormDefaultAction = $('#form-submit-main');
-    // Register click on each sub action
-    $.each(entityFormActions, function () {
-        $(this).on('click', function () {
-            entityFormDefaultAction.attr('name', $(this).data('action')).click();
-            // .prop('disabled', true);
 
-            return false;
-        });
+
+function registerPrivateCheckboxes() {
+  $.each($('[data-toggle="private"]'), function () {
+    // Add the title first
+    if ($(this).hasClass('fa-lock')) {
+      $(this).prop('title', $(this).data('private'));
+    } else {
+      $(this).prop('title', $(this).data('public'));
+    } // On click toggle
+
+
+    $(this).click(function (e) {
+      if ($(this).hasClass('fa-lock')) {
+        // Unlock
+        $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
+        $(this).parent().find('input:hidden').val("0");
+      } else {
+        // Lock
+        $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
+        $(this).parent().find('input:hidden').val("1");
+      }
     });
+  });
 }
+/**
+ *
+ */
 
+
+function registerEntityFormActions() {
+  entityFormDefaultAction = $('#form-submit-main'); // Register click on each sub action
+
+  $.each(entityFormActions, function () {
+    $(this).on('click', function () {
+      entityFormDefaultAction.attr('name', $(this).data('action')).click(); // .prop('disabled', true);
+
+      return false;
+    });
+  });
+}
 /**
  * On all forms, we want to animate the submit button when it's clicked.
  */
+
+
 function registerFormSubmitAnimation() {
-    $.each($('form'), function () {
-        $(this).on('submit', function () {
-            // Saving, skip alert.
-            window.entityFormHasUnsavedChanges = false;
+  $.each($('form'), function () {
+    $(this).on('submit', function () {
+      // Saving, skip alert.
+      window.entityFormHasUnsavedChanges = false; // Find the main button
 
-            // Find the main button
-            var submit = $(this).find('.btn-success');
-            if (submit.length > 0) {
-                $.each(submit, function () {
-                    if ($(this).hasClass('dropdown-toggle')) {
-                        $(this).prop('disabled', true);
-                    } else {
-                        $(this).data('reset', $(this).html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
-                    }
-                });
+      var submit = $(this).find('.btn-success');
 
-                // Inject the selected option for the "workflow" (submit-action)
-                $(this).append('<input type="hidden" name="' + $('#form-submit-main').attr('name') + '" />');
-            }
+      if (submit.length > 0) {
+        $.each(submit, function () {
+          if ($(this).hasClass('dropdown-toggle')) {
+            $(this).prop('disabled', true);
+          } else {
+            $(this).data('reset', $(this).html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
+          }
+        }); // Inject the selected option for the "workflow" (submit-action)
 
-            return true;
-        });
+        $(this).append('<input type="hidden" name="' + $('#form-submit-main').attr('name') + '" />');
+      }
+
+      return true;
     });
+  });
 }
 
 function registerEntityCalendarForm() {
-    entityCalendarAdd = $('#entity-calendar-form-add');
-    entityCalendarField = $('#calendar_id');
-    entityCalendarModalForm = $('.entity-calendar-modal-form');
-    entityCalendarSubForm = $('.entity-calendar-subform');
-    entityCalendarCancel = $('#entity-calendar-form-cancel');
-    entityCalendarForm = $('.entity-calendar-form');
-    entityCalendarYearField = $('input[name="calendar_year"]');
-    entityCalendarMonthField = $('select[name="calendar_month"]');
-    entityCalendarDayField = $('input[name="calendar_day"]');
-    entityCalendarLoading = $('.entity-calendar-loading');
+  entityCalendarAdd = $('#entity-calendar-form-add');
+  entityCalendarField = $('#calendar_id');
+  entityCalendarModalForm = $('.entity-calendar-modal-form');
+  entityCalendarSubForm = $('.entity-calendar-subform');
+  entityCalendarCancel = $('#entity-calendar-form-cancel');
+  entityCalendarForm = $('.entity-calendar-form');
+  entityCalendarYearField = $('input[name="calendar_year"]');
+  entityCalendarMonthField = $('select[name="calendar_month"]');
+  entityCalendarDayField = $('input[name="calendar_day"]');
+  entityCalendarLoading = $('.entity-calendar-loading');
 
-    if (entityCalendarAdd.length === 1) {
+  if (entityCalendarAdd.length === 1) {
+    entityCalendarAdd.on('click', function (e) {
+      e.preventDefault();
+      entityCalendarAdd.hide();
+      entityCalendarForm.show();
+      var defaultCalendarId = entityCalendarAdd.data('default-calendar');
 
-        entityCalendarAdd.on('click', function (e) {
-            e.preventDefault();
+      if (defaultCalendarId) {
+        entityCalendarField.val(defaultCalendarId);
+        entityCalendarCancel.show();
+        entityCalendarSubForm.fadeIn();
+        loadCalendarDates(defaultCalendarId);
+      }
 
-            entityCalendarAdd.hide();
-            entityCalendarForm.show();
+      return false;
+    });
+    entityCalendarField.on('change', function () {
+      entityCalendarSubForm.hide(); // No new calendar selected? hide everything again
 
-            var defaultCalendarId = entityCalendarAdd.data('default-calendar');
-            if (defaultCalendarId) {
-                entityCalendarField.val(defaultCalendarId);
-                entityCalendarCancel.show();
-                entityCalendarSubForm.fadeIn();
-                loadCalendarDates(defaultCalendarId);
-            }
-            return false;
-        });
+      if (!entityCalendarField.val()) {
+        calendarHideSubform();
+        return;
+      } // Load month list
 
-        entityCalendarField.on('change', function () {
-            entityCalendarSubForm.hide();
-            // No new calendar selected? hide everything again
-            if (!entityCalendarField.val()) {
-                calendarHideSubform();
-                return;
-            }
-            // Load month list
-            entityCalendarYearField = $('input[name="calendar_year"]');
-            entityCalendarDayField = $('input[name="calendar_day"]');
-            entityCalendarMonthField = $('select[name="calendar_month"]');
-            loadCalendarDates(entityCalendarField.val());
-        });
 
-        entityCalendarCancel.on('click', function (e) {
-            e.preventDefault();
-            entityCalendarField.val(null);
-            entityCalendarCancel.hide();
-            calendarHideSubform();
-        });
-    }
+      entityCalendarYearField = $('input[name="calendar_year"]');
+      entityCalendarDayField = $('input[name="calendar_day"]');
+      entityCalendarMonthField = $('select[name="calendar_month"]');
+      loadCalendarDates(entityCalendarField.val());
+    });
+    entityCalendarCancel.on('click', function (e) {
+      e.preventDefault();
+      entityCalendarField.val(null);
+      entityCalendarCancel.hide();
+      calendarHideSubform();
+    });
+  }
 }
 
 function registerEntityCalendarModal() {
-    if ($('#entity-calendar-modal-add').length === 0) {
-        return;
-    }
-    entityCalendarAdd = $('input[name=calendar-data-url]');
-    entityCalendarField = $('#calendar_id');
-    entityCalendarYearField = $('input[name="year"]');
-    entityCalendarMonthField = $('select[name="month"]');
-    entityCalendarDayField = $('input[name="day"]');
-    entityCalendarLoading = $('.entity-calendar-loading');
-    entityCalendarSubForm = $('.entity-calendar-subform');
+  if ($('#entity-calendar-modal-add').length === 0) {
+    return;
+  }
 
-    entityCalendarField.on('change', function () {
-        entityCalendarSubForm.hide();
-        // No new calendar selected? hide everything again
-        if (!entityCalendarField.val()) {
-            calendarHideSubform();
-            return;
-        }
-        // Load month list
-        loadCalendarDates(entityCalendarField.val());
-    });
+  entityCalendarAdd = $('input[name=calendar-data-url]');
+  entityCalendarField = $('#calendar_id');
+  entityCalendarYearField = $('input[name="year"]');
+  entityCalendarMonthField = $('select[name="month"]');
+  entityCalendarDayField = $('input[name="day"]');
+  entityCalendarLoading = $('.entity-calendar-loading');
+  entityCalendarSubForm = $('.entity-calendar-subform');
+  entityCalendarField.on('change', function () {
+    entityCalendarSubForm.hide(); // No new calendar selected? hide everything again
 
-    var defaultCalendarId = entityCalendarAdd.data('default-calendar');
-    console.log('entityCalendarField', entityCalendarField, entityCalendarField.val());
-    if (entityCalendarField.val()) {
-        entityCalendarCancel.show();
-        entityCalendarSubForm.fadeIn();
-        loadCalendarDates(entityCalendarField.val());
-    }
+    if (!entityCalendarField.val()) {
+      calendarHideSubform();
+      return;
+    } // Load month list
+
+
+    loadCalendarDates(entityCalendarField.val());
+  });
+  var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+  console.log('entityCalendarField', entityCalendarField, entityCalendarField.val());
+
+  if (entityCalendarField.val()) {
+    entityCalendarCancel.show();
+    entityCalendarSubForm.fadeIn();
+    loadCalendarDates(entityCalendarField.val());
+  }
 }
-
 /**
  *
  * @param calendarID
  */
+
+
 function loadCalendarDates(calendarID) {
-    entityCalendarLoading.show();
-    calendarID = parseInt(calendarID);
-    var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
-    $.ajax(url).done(function (data) {
-        entityCalendarYearField.html('');
-        entityCalendarMonthField.html('');
-        entityCalendarDayField.html('');
-        var id = 1;
-        $.each(data.months, function () {
-            var selected = id == data.current.month ? ' selected="selected"' : '';
-            entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
-            id++;
-        });
-        entityCalendarLoading.hide();
-        entityCalendarSubForm.show();
-
-        entityCalendarDayField.val(data.current.day);
-        entityCalendarYearField.val(data.current.year);
-        $('input[name="length"]').val(1);
-
-        // However, if there is only one result, select id.
-        if (data.length === 1) {
-            entityCalendarMonthField.val(data[0].id);
-        }
+  entityCalendarLoading.show();
+  calendarID = parseInt(calendarID);
+  var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
+  $.ajax(url).done(function (data) {
+    entityCalendarYearField.html('');
+    entityCalendarMonthField.html('');
+    entityCalendarDayField.html('');
+    var id = 1;
+    $.each(data.months, function () {
+      var selected = id == data.current.month ? ' selected="selected"' : '';
+      entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
+      id++;
     });
-}
+    entityCalendarLoading.hide();
+    entityCalendarSubForm.show();
+    entityCalendarDayField.val(data.current.day);
+    entityCalendarYearField.val(data.current.year);
+    $('input[name="length"]').val(1); // However, if there is only one result, select id.
 
+    if (data.length === 1) {
+      entityCalendarMonthField.val(data[0].id);
+    }
+  });
+}
 /**
  *
  */
-function calendarHideSubform() {
-    entityCalendarForm.hide();
-    entityCalendarAdd.show();
-    $('input[name="calendar_day"]').val(null);
-    $('input[name="calendar_month"]').val(null);
-    $('input[name="calendar_year"]').val(null);
-}
 
+
+function calendarHideSubform() {
+  entityCalendarForm.hide();
+  entityCalendarAdd.show();
+  $('input[name="calendar_day"]').val(null);
+  $('input[name="calendar_month"]').val(null);
+  $('input[name="calendar_year"]').val(null);
+}
 /**
  * Some panels can have their body toggled
  */
-function registerToggablePanels() {
-    toggablePanels = $('.panel-toggable');
-    $.each(toggablePanels, function () {
-        $(this).on('click', function () {
-            $(this).parent().children('.panel-body').fadeToggle();
-            var i = $(this).find('i.fa');
-            if (i.hasClass('fa-caret-down')) {
-                i.removeClass('fa-caret-down').addClass('fa-caret-left');
-            } else {
-                i.removeClass('fa-caret-left').addClass('fa-caret-down');
-            }
-        });
-    });
-}
 
+
+function registerToggablePanels() {
+  toggablePanels = $('.panel-toggable');
+  $.each(toggablePanels, function () {
+    $(this).on('click', function () {
+      $(this).parent().children('.panel-body').fadeToggle();
+      var i = $(this).find('i.fa');
+
+      if (i.hasClass('fa-caret-down')) {
+        i.removeClass('fa-caret-down').addClass('fa-caret-left');
+      } else {
+        i.removeClass('fa-caret-left').addClass('fa-caret-down');
+      }
+    });
+  });
+}
 /**
  * If we change something on a form, avoid losing data when going away.
  */
+
+
 function registerUnsavedChanges() {
-    var save = $('#form-submit-main');
+  var save = $('#form-submit-main'); // Save every input change
 
-    // Save every input change
-    $(document).on('change', ':input', function () {
-        window.entityFormHasUnsavedChanges = true;
+  $(document).on('change', ':input', function () {
+    window.entityFormHasUnsavedChanges = true;
+  });
+
+  if (save.length === 1) {
+    // Another way to bind the event
+    $(window).bind('beforeunload', function (e) {
+      if (window.entityFormHasUnsavedChanges) {
+        var message = save.data('unsaved');
+        e.returnValue = message;
+        return message;
+      }
     });
-
-    if (save.length === 1) {
-        // Another way to bind the event
-        $(window).bind('beforeunload', function (e) {
-            if (window.entityFormHasUnsavedChanges) {
-                var message = save.data('unsaved');
-                e.returnValue = message;
-                return message;
-            }
-        });
-    }
+  }
 }
-
 /**
  * When the entity form is submitted, we want to ajax validate the request first
  */
+
+
 function registerEntityFormSubmit() {
-    $('#entity-form').submit(function (e) {
-        if (validEntityForm) {
-            return true;
-        }
+  $('#entity-form').submit(function (e) {
+    if (validEntityForm) {
+      return true;
+    }
 
-        e.preventDefault();
+    e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: $(this).serialize()
-        }).done(function (res) {
-            // If the validation succeeded, we can really submit the form
-            validEntityForm = true;
-            $('#entity-form').submit();
-            return true;
-        }).fail(function (err) {
-            // Reset any error fields
-            $('.input-error').removeClass('input-error');
-            $('.text-danger').remove();
-
-            // If we have a 503 error status, let's assume it's from cloudflare and help the user
-            // properly save their data.
-            if (err.status === 503) {
-                $('#entity-form-503-error').show();
-                resetEntityFormSubmitAnimation();
-            }
-
-            // Loop through the errors to add the class and error message
-            var errors = err.responseJSON.errors;
-
-            var errorKeys = Object.keys(errors);
-            var foundAllErrors = true;
-            errorKeys.forEach(function (i) {
-                var errorSelector = $('[name="' + i + '"]');
-                if (errorSelector.length > 0) {
-                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-                } else {
-                    foundAllErrors = false;
-                }
-            });
-
-            // If not all error fields could be found, show a generic error message on top of the form.
-            if (!foundAllErrors) {
-                $('#entity-form-generic-error').show();
-            }
-
-            var firstItem = Object.keys(errors)[0];
-            var firstItemDom = document.getElementsByName(firstItem);
-
-            // If we can actually find the first element, switch to it and the correct tab.
-            if (firstItemDom[0]) {
-                firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
-
-                // Switch tabs/pane
-                $('.tab-content .active').removeClass('active');
-                $('.nav-tabs li.active').removeClass('active');
-                var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-                firstPane.addClass('active');
-                $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
-            }
-
-            // Reset submit buttons
-            resetEntityFormSubmitAnimation();
-        });
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
-}
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize()
+    }).done(function (res) {
+      // If the validation succeeded, we can really submit the form
+      validEntityForm = true;
+      $('#entity-form').submit();
+      return true;
+    }).fail(function (err) {
+      // Reset any error fields
+      $('.input-error').removeClass('input-error');
+      $('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
+      // properly save their data.
 
+      if (err.status === 503) {
+        $('#entity-form-503-error').show();
+        resetEntityFormSubmitAnimation();
+      } // Loop through the errors to add the class and error message
+
+
+      var errors = err.responseJSON.errors;
+      var errorKeys = Object.keys(errors);
+      var foundAllErrors = true;
+      errorKeys.forEach(function (i) {
+        var errorSelector = $('[name="' + i + '"]');
+
+        if (errorSelector.length > 0) {
+          errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+        } else {
+          foundAllErrors = false;
+        }
+      }); // If not all error fields could be found, show a generic error message on top of the form.
+
+      if (!foundAllErrors) {
+        $('#entity-form-generic-error').show();
+      }
+
+      var firstItem = Object.keys(errors)[0];
+      var firstItemDom = document.getElementsByName(firstItem); // If we can actually find the first element, switch to it and the correct tab.
+
+      if (firstItemDom[0]) {
+        firstItemDom[0].scrollIntoView({
+          behavior: 'smooth'
+        }); // Switch tabs/pane
+
+        $('.tab-content .active').removeClass('active');
+        $('.nav-tabs li.active').removeClass('active');
+        var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+        firstPane.addClass('active');
+        $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
+      } // Reset submit buttons
+
+
+      resetEntityFormSubmitAnimation();
+    });
+  });
+}
 /**
  *
  */
-function resetEntityFormSubmitAnimation() {
-    submit = $('#entity-form').find('.btn-success');
-    if (submit.length > 0) {
-        $.each(submit, function (su) {
-            $(this).removeAttr('disabled');
-            if ($(this).data('reset')) {
-                $(this).html($(this).data('reset'));
-            }
-        });
-    }
-}
 
+
+function resetEntityFormSubmitAnimation() {
+  submit = $('#entity-form').find('.btn-success');
+
+  if (submit.length > 0) {
+    $.each(submit, function (su) {
+      $(this).removeAttr('disabled');
+
+      if ($(this).data('reset')) {
+        $(this).html($(this).data('reset'));
+      }
+    });
+  }
+}
 /**
  * When the relation form is submitted, we want to ajax validate the request first
  */
+
+
 function registerRelationFormSubmit() {
-    $('#relation-form').submit(function (e) {
-        if (validRelationForm) {
-            return true;
-        }
+  $('#relation-form').submit(function (e) {
+    if (validRelationForm) {
+      return true;
+    }
 
-        e.preventDefault();
+    e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: $(this).serialize()
-        }).done(function (res) {
-            // If the validation succeeded, we can really submit the form
-            validRelationForm = true;
-            $('#relation-form').submit();
-            return true;
-        }).fail(function (err) {
-            // Reset any error fields
-            $('.input-error').removeClass('input-error');
-            $('.text-danger').remove();
-
-            // If we have a 503 error status, let's assume it's from cloudflare and help the user
-            // properly save their data.
-            if (err.status === 503) {
-                $('#entity-form-503-error').show();
-                resetRelationFormSubmitAnimation();
-            }
-
-            // Loop through the errors to add the class and error message
-            var errors = err.responseJSON.errors;
-
-            var errorKeys = Object.keys(errors);
-            var foundAllErrors = true;
-            errorKeys.forEach(function (i) {
-                var errorSelector = $('[name="' + i + '"]');
-                if (errorSelector.length > 0) {
-                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-                } else {
-                    foundAllErrors = false;
-                }
-            });
-
-            // Reset submit buttons
-            resetRelationFormSubmitAnimation();
-        });
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
-}
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize()
+    }).done(function (res) {
+      // If the validation succeeded, we can really submit the form
+      validRelationForm = true;
+      $('#relation-form').submit();
+      return true;
+    }).fail(function (err) {
+      // Reset any error fields
+      $('.input-error').removeClass('input-error');
+      $('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
+      // properly save their data.
 
+      if (err.status === 503) {
+        $('#entity-form-503-error').show();
+        resetRelationFormSubmitAnimation();
+      } // Loop through the errors to add the class and error message
+
+
+      var errors = err.responseJSON.errors;
+      var errorKeys = Object.keys(errors);
+      var foundAllErrors = true;
+      errorKeys.forEach(function (i) {
+        var errorSelector = $('[name="' + i + '"]');
+
+        if (errorSelector.length > 0) {
+          errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+        } else {
+          foundAllErrors = false;
+        }
+      }); // Reset submit buttons
+
+      resetRelationFormSubmitAnimation();
+    });
+  });
+}
 /**
  *
  */
+
+
 function resetRelationFormSubmitAnimation() {
-    submit = $('#relation-form').find('.btn-success');
-    if (submit.length > 0) {
-        $.each(submit, function (su) {
-            $(this).removeAttr('disabled');
-            if ($(this).data('reset')) {
-                $(this).html($(this).data('reset'));
-            }
-        });
-    }
+  submit = $('#relation-form').find('.btn-success');
+
+  if (submit.length > 0) {
+    $.each(submit, function (su) {
+      $(this).removeAttr('disabled');
+
+      if ($(this).data('reset')) {
+        $(this).html($(this).data('reset'));
+      }
+    });
+  }
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/helpers.js":
+/*!****************************************!*\
+  !*** ./resources/assets/js/helpers.js ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 window.initSelect2 = function () {
-    if ($('.select2').length > 0) {
-        $.each($('.select2'), function (index) {
-
-            $(this).select2({
-                //            data: newOptions,
-                placeholder: $(this).attr('data-placeholder'),
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function data(params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function processResults(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
+  if ($('.select2').length > 0) {
+    $.each($('.select2'), function (index) {
+      $(this).select2({
+        //            data: newOptions,
+        placeholder: $(this).attr('data-placeholder'),
+        allowClear: true,
+        minimumInputLength: 0,
+        ajax: {
+          quietMillis: 200,
+          url: $(this).attr('data-url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+    });
+  }
 };
 
 window.crudInitAjaxModal = function () {
-    $.each($('[data-toggle="ajax-modal"]'), function () {
-        $(this).click(function (e) {
-            $(this).unbind('click');
-            e.preventDefault();
-            ajaxModalTarget = $(this).attr('data-target');
-            $.ajax({
-                url: $(this).attr('data-url')
-            }).done(function (result, textStatus, xhr) {
-                if (result) {
-                    $(ajaxModalTarget).find('.modal-content').html(result);
-                    $(ajaxModalTarget).modal();
+  $.each($('[data-toggle="ajax-modal"]'), function () {
+    $(this).click(function (e) {
+      $(this).unbind('click');
+      e.preventDefault();
+      ajaxModalTarget = $(this).attr('data-target');
+      $.ajax({
+        url: $(this).attr('data-url')
+      }).done(function (result, textStatus, xhr) {
+        if (result) {
+          $(ajaxModalTarget).find('.modal-content').html(result);
+          $(ajaxModalTarget).modal(); // Reset select2
 
-                    // Reset select2
-                    window.initSelect2();
-                }
-            }).fail(function (result, textStatus, xhr) {
-                //console.log('modal ajax error', result);
-            });
-            return false;
-        });
+          window.initSelect2();
+        }
+      }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+      });
+      return false;
     });
+  });
 };
 
 /***/ }),
 
 /***/ "./resources/assets/js/keyboard.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/keyboard.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-    // Look for a form to save
-    $.each($('form'), function () {
-        if ($(this).attr('data-shortcut')) {
-            initSaveKeyboardShortcut(this);
-        }
-    });
+  // Look for a form to save
+  $.each($('form'), function () {
+    if ($(this).attr('data-shortcut')) {
+      initSaveKeyboardShortcut(this);
+    }
+  });
 });
-
 /**
  * Handle saving form
  * @param form
  */
+
 function initSaveKeyboardShortcut(form) {
-    $(document).bind('keydown', function (e) {
-        if ((e.ctrlKey || e.metaKey) && e.which === 83) {
-            window.entityFormHasUnsavedChanges = false;
-            console.log('sform', $(form));
-            $(form).submit();
-            return false;
-        }
-    });
+  $(document).bind('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.which === 83) {
+      window.entityFormHasUnsavedChanges = false;
+      console.log('sform', $(form));
+      $(form).submit();
+      return false;
+    }
+  });
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/search.js":
+/*!***************************************!*\
+  !*** ./resources/assets/js/search.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Live search is based on corejs-typeahead.
 // Doc: https://github.com/corejavascript/typeahead.js
-__webpack_require__("./node_modules/corejs-typeahead/dist/typeahead.bundle.js");
-window.Bloodhound = __webpack_require__("./node_modules/bloodhound-js/index.js");
+__webpack_require__(/*! corejs-typeahead */ "./node_modules/corejs-typeahead/dist/typeahead.bundle.js");
 
+window.Bloodhound = __webpack_require__(/*! bloodhound-js */ "./node_modules/bloodhound-js/index.js");
 var liveSearchField,
     liveSearchResults,
     liveSearchRunning = false;
 var liveSearchForm, liveSearchClose;
 var searchEngine;
-
 $(document).ready(function () {
-    liveSearchField = $('.typeahead');
-    if (liveSearchField.length === 1) {
-        initLiveSearch();
-    }
-});
+  liveSearchField = $('.typeahead');
 
+  if (liveSearchField.length === 1) {
+    initLiveSearch();
+  }
+});
 /**
  * Live Search
  */
+
 function initLiveSearch() {
-    // Set the Options for "Bloodhound" suggestion engine
-    searchEngine = new Bloodhound({
-        remote: {
-            url: liveSearchField.data('url') + '?q=%QUERY%',
-            wildcard: '%QUERY%'
-        },
-        datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace
-    });
+  // Set the Options for "Bloodhound" suggestion engine
+  searchEngine = new Bloodhound({
+    remote: {
+      url: liveSearchField.data('url') + '?q=%QUERY%',
+      wildcard: '%QUERY%'
+    },
+    datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+  });
+  liveSearchField.typeahead({
+    minLength: 3
+  }, {
+    source: searchEngine.ttAdapter(),
+    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+    name: 'entityList',
+    // Data field used for selection injection in the search field
+    displayKey: 'name',
+    valueKey: 'id',
+    // the key from the array we want to display (name,id,email,etc...)
+    templates: {
+      empty: ['<div class="list-group search-results-dropdown">' + '<div class="list-group-item">' + liveSearchField.data('empty') + '</div>' + '</div>'],
+      header: [''],
+      suggestion: function suggestion(data) {
+        return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip + '" data-toggle="tooltip">' + data.image + data.name + ' (' + data.type + ')</a>';
+      }
+    }
+  }) //Catch typeahead events
+  .on('typeahead:select', submitSuggestion).on('typeahead:autocomplete', submitSuggestion); // Mobile search
 
-    liveSearchField.typeahead({
-        minLength: 3
-    }, {
-        source: searchEngine.ttAdapter(),
-
-        // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
-        name: 'entityList',
-
-        // Data field used for selection injection in the search field
-        displayKey: 'name',
-        valueKey: 'id',
-
-        // the key from the array we want to display (name,id,email,etc...)
-        templates: {
-            empty: ['<div class="list-group search-results-dropdown">' + '<div class="list-group-item">' + liveSearchField.data('empty') + '</div>' + '</div>'],
-            header: [''],
-            suggestion: function suggestion(data) {
-                return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip + '" data-toggle="tooltip">' + data.image + data.name + ' (' + data.type + ')</a>';
-            }
-        }
-    })
-
-    //Catch typeahead events
-    .on('typeahead:select', submitSuggestion).on('typeahead:autocomplete', submitSuggestion);
-
-    // Mobile search
-    liveSearchForm = $('.live-search-form');
-    liveSearchClose = $('.live-search-close');
-    $('.mobile-search').on('click', function (e) {
-        e.preventDefault();
-        liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
-        $('.navbar-custom-menu').hide();
-        $('#live-search').focus();
-    });
-
-    liveSearchClose.on('click', function (e) {
-        e.preventDefault();
-        liveSearchForm.addClass('visible-md').addClass('visible-lg');
-        $('.navbar-custom-menu').show();
-    });
+  liveSearchForm = $('.live-search-form');
+  liveSearchClose = $('.live-search-close');
+  $('.mobile-search').on('click', function (e) {
+    e.preventDefault();
+    liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
+    $('.navbar-custom-menu').hide();
+    $('#live-search').focus();
+  });
+  liveSearchClose.on('click', function (e) {
+    e.preventDefault();
+    liveSearchForm.addClass('visible-md').addClass('visible-lg');
+    $('.navbar-custom-menu').show();
+  });
 }
 /*
  * User triggered a submit, either via the typeahead:submit
  * or autocomplete event
  */
+
+
 function submitSuggestion(ev, suggestion) {
-    //liveSearchField.val(suggestion.name);
-    liveSearchField.prop('disabled', true);
-    window.location = suggestion.url;
+  //liveSearchField.val(suggestion.name);
+  liveSearchField.prop('disabled', true);
+  window.location = suggestion.url;
 }
 
 function requestLiveSearch(value) {
-    if (liveSearchField.val() === value && !liveSearchRunning) {
-        liveSearchRunning = true;
+  if (liveSearchField.val() === value && !liveSearchRunning) {
+    liveSearchRunning = true; // Reset results
 
-        // Reset results
-        liveSearchResults.empty();
-        liveSearchResults.append('<div class="loading"><i class="fa fa-spinner"></i></div>');
+    liveSearchResults.empty();
+    liveSearchResults.append('<div class="loading"><i class="fa fa-spinner"></i></div>');
+    $.ajax({
+      url: liveSearchField.attr('data-url') + '?q=' + liveSearchField.val()
+    }).done(function (result, textStatus, xhr) {
+      liveSearchRunning = false;
 
-        $.ajax({
-            url: liveSearchField.attr('data-url') + '?q=' + liveSearchField.val()
-        }).done(function (result, textStatus, xhr) {
-            liveSearchRunning = false;
-            if (textStatus === 'success' && result) {
-                liveSearchResults.empty();
-                // Append all the results to the result box
-                $.each(result, function (i) {
-                    var data = result[i];
-                    liveSearchResults.append('<a href="' + data.url + '" class="list-group-item">' + data.image + data.name + ' (' + data.type + ')</a>');
-                });
+      if (textStatus === 'success' && result) {
+        liveSearchResults.empty(); // Append all the results to the result box
 
-                // Empty result
-                if (result.length === 0) {
-                    liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
-                }
-                liveSearchResults.focus();
-            }
-        }).fail(function (result, textStatus, xhr) {
-            liveSearchRunning = false;
-            liveSearchResults.empty();
-            liveSearchResults.append('Error!');
-            console.log('error', result);
-        });
-    }
+        $.each(result, function (i) {
+          var data = result[i];
+          liveSearchResults.append('<a href="' + data.url + '" class="list-group-item">' + data.image + data.name + ' (' + data.type + ')</a>');
+        }); // Empty result
+
+        if (result.length === 0) {
+          liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
+        }
+
+        liveSearchResults.focus();
+      }
+    }).fail(function (result, textStatus, xhr) {
+      liveSearchRunning = false;
+      liveSearchResults.empty();
+      liveSearchResults.append('Error!');
+      console.log('error', result);
+    });
+  }
 }
 
 /***/ }),
 
 /***/ "./resources/assets/js/tags.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/tags.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-    window.initCategories = function () {
-        $.each($('.form-tags'), function (index) {
+  window.initCategories = function () {
+    $.each($('.form-tags'), function (index) {
+      $(this).select2({
+        tags: true,
+        allowClear: true,
+        minimumInputLength: 0,
+        ajax: {
+          quietMillis: 200,
+          url: $(this).attr('data-url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        },
+        createTag: function createTag(params) {
+          var term = $.trim(params.term);
 
-            $(this).select2({
-                tags: true,
-                allowClear: true,
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).attr('data-url'),
-                    dataType: 'json',
-                    data: function data(params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function processResults(data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                },
-                createTag: function createTag(params) {
-                    var term = $.trim(params.term);
+          if (term === '') {
+            return null;
+          }
 
-                    if (term === '') {
-                        return null;
-                    }
+          return {
+            id: term,
+            text: term,
+            newTag: true // add additional parameters
 
-                    return {
-                        id: term,
-                        text: term,
-                        newTag: true // add additional parameters
-                    };
-                },
-                templateSelection: function templateSelection(state) {
-                    if (state.newTag) {
-                        return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
-                    }
-                    return state.text;
-                }
-            });
-        });
-    };
+          };
+        },
+        templateSelection: function templateSelection(state) {
+          if (state.newTag) {
+            return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+          }
 
-    window.initCategories();
+          return state.text;
+        }
+      });
+    });
+  };
+
+  window.initCategories();
 });
 
 /***/ }),
 
 /***/ "./resources/assets/sass/app.scss":
+/*!****************************************!*\
+  !*** ./resources/assets/sass/app.scss ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53118,6 +54023,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/bootstrap.scss":
+/*!**********************************************!*\
+  !*** ./resources/assets/sass/bootstrap.scss ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53125,6 +54034,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/dashboard.scss":
+/*!**********************************************!*\
+  !*** ./resources/assets/sass/dashboard.scss ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53132,6 +54045,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/export.scss":
+/*!*******************************************!*\
+  !*** ./resources/assets/sass/export.scss ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53139,6 +54056,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/front.scss":
+/*!******************************************!*\
+  !*** ./resources/assets/sass/front.scss ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53146,6 +54067,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/map.scss":
+/*!****************************************!*\
+  !*** ./resources/assets/sass/map.scss ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53153,6 +54078,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/themes/dark.scss":
+/*!************************************************!*\
+  !*** ./resources/assets/sass/themes/dark.scss ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53160,6 +54089,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/themes/future.scss":
+/*!**************************************************!*\
+  !*** ./resources/assets/sass/themes/future.scss ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53167,6 +54100,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/themes/midnight.scss":
+/*!****************************************************!*\
+  !*** ./resources/assets/sass/themes/midnight.scss ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53174,6 +54111,10 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ "./resources/assets/sass/vendor.scss":
+/*!*******************************************!*\
+  !*** ./resources/assets/sass/vendor.scss ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -53181,24 +54122,32 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/front.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/app.js");
-__webpack_require__("./resources/assets/sass/bootstrap.scss");
-__webpack_require__("./resources/assets/sass/vendor.scss");
-__webpack_require__("./resources/assets/sass/app.scss");
-__webpack_require__("./resources/assets/sass/export.scss");
-__webpack_require__("./resources/assets/sass/map.scss");
-__webpack_require__("./resources/assets/sass/front.scss");
-__webpack_require__("./resources/assets/sass/dashboard.scss");
-__webpack_require__("./resources/assets/sass/themes/future.scss");
-__webpack_require__("./resources/assets/sass/themes/dark.scss");
-module.exports = __webpack_require__("./resources/assets/sass/themes/midnight.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
 
 
 /***/ }),
 
 /***/ 1:
+/*!***********************!*\
+  !*** vertx (ignored) ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /* (ignored) */

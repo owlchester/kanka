@@ -285,6 +285,7 @@ function initCharacterOrganisation()
 
         // Handle deleting already loaded blocks
         characterDeleteRowHandler();
+        registerPrivateCheckboxes();
 
         return false;
     });
@@ -305,12 +306,47 @@ function characterDeleteRowHandler()
         });
     });
 
+    $.each($('.member-delete'), function () {
+        $(this).unbind('click');
+        $(this).on('click', function (e) {
+            e.preventDefault();
+            $(this).closest('.form-group').remove();
+        });
+    });
+
     // Always re-calc the sortable traits
     characterSortPersonality.sortable();
     characterSortAppearance.sortable();
     select2();
 }
 
+/**
+ *
+ */
+function registerPrivateCheckboxes()
+{
+    $.each($('[data-toggle="private"]'), function () {
+        // Add the title first
+        if ($(this).hasClass('fa-lock')) {
+            $(this).prop('title', $(this).data('private'));
+        } else {
+            $(this).prop('title', $(this).data('public'));
+        }
+
+        // On click toggle
+        $(this).click(function(e) {
+            if ($(this).hasClass('fa-lock')) {
+                // Unlock
+                $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
+                $(this).parent().find('input:hidden').val("0");
+            } else {
+                // Lock
+                $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
+                $(this).parent().find('input:hidden').val("1");
+            }
+        });
+    });
+}
 /**
  *
  */
