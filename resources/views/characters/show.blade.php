@@ -4,7 +4,7 @@
         @include('characters._menu')
     </div>
 
-    <div class="col-lg-8 col-md-6">
+    <div class="@if($model->showAppearance()) col-lg-8 col-md-6 @else col-lg-10 col-md-8 @endif">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
@@ -46,7 +46,7 @@
         @endif
     </div>
 
-    <div class="col-lg-2 col-md-3">
+    <div class="col-lg-2 col-md-3 @if (!$model->showAppearance()) hidden @endif">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('characters.fields.physical') }}</h3>
