@@ -568,7 +568,7 @@ function initModalForm() {
         e.preventDefault();
     });
 
-    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="popover"]').popover({html:true});
 }
 
 /**
@@ -577,7 +577,7 @@ function initModalForm() {
  */
 function initDeleteMapPoint() {
     $(document).on('click', '.map-point-delete', function(e) {
-        var url = $(this).data('url');
+        var url = $(this).attr('href');
         e.preventDefault();
 
         mapPointModalBody.hide();

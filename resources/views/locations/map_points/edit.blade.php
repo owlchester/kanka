@@ -22,7 +22,8 @@
         @else
         <a class="pull-right btn btn-default"
            data-toggle="popover" data-html="true" data-placement="top"
-           data-content="<p>{{ __('locations.map.actions.confirm_delete') }}</p><button name='remove' class='btn btn-full btn-danger map-point-delete' data-url='{{ route('locations.map_points.destroy', [$location, $model]) }}'><i class='fa fa-trash'></i> {{ __('crud.click_modal.confirm') }}</button>"
+           data-content="<p>{{ __('locations.map.actions.confirm_delete') }}</p>
+           <a href='{{ route('locations.map_points.destroy', [$location, $model]) }}' class='btn btn-block btn-danger map-point-delete'>{{ __('crud.click_modal.confirm') }}</a>"
             title="{{ __('crud.remove') }}"
         >
             <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
