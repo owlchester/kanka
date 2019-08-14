@@ -47,7 +47,7 @@ if (Auth::check()) {
                     </li>
                 @endif
                 <!-- Only logged in users can have this dropdown, Also only show this if the user has campaigns -->
-                @if (Auth::check() && Auth::user()->hasCampaigns())
+                @if (Auth::check() && Auth::user()->hasCampaigns() && !\App\Facades\Identity::isImpersonating())
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
                             <i class="far fa-bell"></i>
@@ -80,7 +80,7 @@ if (Auth::check()) {
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu">
                                     @foreach (Auth::user()->campaigns as $campaign)
-                                        @if ($campaign->id != $currentCampaign->id)
+                                        @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
                                             <li>
                                                 <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}">
                                                     @if ($campaign->image)
