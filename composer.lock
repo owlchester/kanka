@@ -2236,16 +2236,16 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
-                "reference": "8320db0f14bed8737a5c35c6b0a573d4cb95ae85"
+                "reference": "81b6e851df0684421cac92878109b02a7aa0cc9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/8320db0f14bed8737a5c35c6b0a573d4cb95ae85",
-                "reference": "8320db0f14bed8737a5c35c6b0a573d4cb95ae85",
+                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/81b6e851df0684421cac92878109b02a7aa0cc9a",
+                "reference": "81b6e851df0684421cac92878109b02a7aa0cc9a",
                 "shasum": ""
             },
             "require": {
@@ -2283,7 +2283,7 @@
                 "kanka",
                 "monsters"
             ],
-            "time": "2019-08-15T08:41:36+00:00"
+            "time": "2019-08-15T12:43:50+00:00"
         },
         {
             "name": "intervention/image",
