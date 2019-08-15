@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions' => [
+        'follow' => 'Follow',
+        'unfollow' => 'Stop following',
+    ],
     'campaigns'         => [
         'manage'    => 'Manage campaign',
         'tabs'      => [
@@ -12,6 +16,7 @@ return [
     'description'       => 'The home for your creativity',
     'helpers'           => [
         'setup' => 'Setup your campaign\'s dashboard.',
+        'follow' => 'Following a campaign will make it appear in the campaign switcher (top-right) below your campaigns.'
     ],
     'latest_release'    => 'Latest Release',
     'notifications'     => [

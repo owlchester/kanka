@@ -85,6 +85,8 @@ Route::group([
         Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
         Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
+        Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
+
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
         Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');

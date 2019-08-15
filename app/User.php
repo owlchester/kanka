@@ -139,6 +139,21 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * @return mixed
+     */
+    public function following()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Campaign',
+            'App\Models\CampaignFollower',
+            'user_id',
+            'id',
+            'id',
+            'campaign_id'
+        );
+    }
+
+    /**
      * Get the other campaigns of the user
      * @param bool $hasEmpty
      * @return array

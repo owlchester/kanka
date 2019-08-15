@@ -13,13 +13,24 @@ use Illuminate\Support\Facades\Session;
 class InvitationController extends Controller
 {
     /**
+     * @var CampaignService
+     */
+    public $campaignService;
+
+    /**
+     * @var InviteService
+     */
+    public $inviteService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CampaignService $campaignService, InviteService $inviteService)
     {
-        // No auth!
+        $this->campaignService = $campaignService;
+        $this->inviteService = $inviteService;
     }
 
     /**
@@ -29,7 +40,7 @@ class InvitationController extends Controller
     public function join($token)
     {
         try {
-            $campaign = InviteService::useToken($token);
+            $campaign = $this->inviteService->useToken($token);
             CampaignService::switchCampaign($campaign);
             return redirect()->to('/');
         } catch (RequireLoginException $e) {

@@ -52,6 +52,7 @@ return [
         'system'                        => 'System',
         'visibility'                    => 'Visibility',
     ],
+    'following' => 'Following',
     'helpers'                           => [
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
