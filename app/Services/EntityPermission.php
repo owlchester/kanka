@@ -84,6 +84,16 @@ class EntityPermission
     }
 
     /**
+     * Get list of entity ids for a given model type that the user can access.
+     * @param string $modelName
+     * @return array
+     */
+    public function entityIds(string $modelName)
+    {
+        return array_get($this->cachedEntityIds, $modelName, [0]);
+    }
+
+    /**
      * @param MiscModel $model
      * @param Campaign|null $campaign
      * @return bool
@@ -102,14 +112,14 @@ class EntityPermission
 
     /**
      * Determine the permission for a user to interact with an entity
-     * @param $modelName
-     * @param $action
-     * @param null $user
+     * @param string $modelName
+     * @param string $action
+     * @param User $user
      * @param null $entity
      * @param Campaign|null $campaign
      * @return bool
      */
-    public function hasPermission($modelName, $action, $user = null, $entity = null, Campaign $campaign = null)
+    public function hasPermission(string $modelName, string $action, User $user = null, $entity = null, Campaign $campaign = null)
     {
         $this->loadAllPermissions($user, $campaign);
 
@@ -246,15 +256,5 @@ class EntityPermission
                 }
             }
         }
-    }
-
-    /**
-     * Get list of entity ids for a given model type that the user can access.
-     * @param $modelName
-     * @return array
-     */
-    public function entityIds($modelName)
-    {
-        return array_get($this->cachedEntityIds, $modelName, [0]);
     }
 }

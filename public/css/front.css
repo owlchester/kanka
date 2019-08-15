@@ -1108,6 +1108,17 @@ footer .footer-social a:hover {
   background-position: 50% 50%;
 }
 
+.campaign .image-wrapper .labels {
+  margin-top: 115px;
+  position: absolute;
+  padding: 7px;
+  font-size: 16pt;
+}
+
+.campaign .image-wrapper .labels .label {
+  margin-right: 5px;
+}
+
 .campaign .small-campaign {
   height: 160px;
 }

@@ -6,6 +6,7 @@ use App\Models\Concerns\Paginatable;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Attribute
@@ -15,6 +16,7 @@ use DateTime;
  * @property string $name
  * @property boolean $is_admin
  * @property boolean $is_public
+ * @property HasMany $permissions
  */
 class CampaignRole extends Model
 {
