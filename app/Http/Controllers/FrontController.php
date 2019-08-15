@@ -85,8 +85,8 @@ class FrontController extends Controller
      */
     public function campaigns()
     {
-        $features = Campaign::public()->featured()->orderBy('visible_entity_count', 'asc')->get();
-        $campaigns = Campaign::public()->featured(false)->orderBy('visible_entity_count', 'asc')->paginate();
+        $features = Campaign::public()->featured()->orderBy('visible_entity_count', 'desc')->get();
+        $campaigns = Campaign::public()->featured(false)->orderBy('visible_entity_count', 'desc')->paginate();
 
         return view('front.campaigns')
             ->with('featured', $features)
