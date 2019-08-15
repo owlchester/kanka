@@ -231,11 +231,9 @@ jQuery(document).ready(function ($) {
                     if (matchedKeys == 0) {
                         matchedTextParent.addClass('has-error');
                         matchedText.addClass('bg-danger');
-                    } else {
-                        if (matchedKeys < filteredKeys) {
-                            matchedTextParent.addClass('has-highlight');
-                            matchedText.addClass('bg-highlight');
-                        }
+                    } else if (matchedKeys < filteredKeys) {
+                        matchedTextParent.addClass('has-highlight');
+                        matchedText.addClass('bg-highlight');
                     }
                 }
             }
@@ -355,9 +353,9 @@ jQuery(document).ready(function ($) {
     });
 
     var updateMatchingTimer = null,
-        matchingText = $('#show-matching-text');
+        $matchingText = $('#show-matching-text');
 
-    matchingText.on('keyup change', function () {
+    $matchingText.on('keyup change', function () {
         if (updateMatchingTimer) {
             window.clearTimeout(updateMatchingTimer);
             updateMatchingTimer = null;
@@ -370,9 +368,9 @@ jQuery(document).ready(function ($) {
     });
 
     $('#show-matching-clear').on('click', function () {
-        if (matchingText.length) {
-            matchingText[0].value = '';
-            matchingText.focus();
+        if ($matchingText.length) {
+            $matchingText[0].value = '';
+            $matchingText.focus();
             updateMatching();
         }
     });
@@ -720,16 +718,7 @@ jQuery(document).ready(function ($) {
 
     $(function () {
         $('.user-locales').editable({
-            template: '' +
-            '<form class="form-inline editableform">' +
-            '<div class="control-group">' +
-            '<div><div id="x-trans-edit" class="editable-input"></div></div>' +
-            '<div class="editable-error-block"></div>' +
-            '</div>' +
-            '</form>'
-
-            , source: USER_LOCALES
-
+            source: USER_LOCALES
             , emptytext: 'All'
             , showbuttons: false
             , display: function (value, sourceData) {
@@ -741,12 +730,11 @@ jQuery(document).ready(function ($) {
                     $.each(checked, function (i, v) {
                         html.push($.fn.editableutils.escape(v.text));
                     });
-                    $(this).html(html.join(' '));
+                    $(this).html(html.join(', '));
                 } else {
                     $(this).empty();
                 }
             }
         });
     });
-
 });

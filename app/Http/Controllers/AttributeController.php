@@ -126,7 +126,6 @@ class AttributeController extends CrudAttributeController
         }
 
         return view('cruds.attributes.' . ($ajax ? '_' : null) . 'template', compact(
-            'attribute',
             'communityTemplates',
             'name',
             'route',
