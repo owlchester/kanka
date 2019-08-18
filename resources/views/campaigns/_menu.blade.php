@@ -17,6 +17,15 @@
                 </span>
                 <br class="clear" />
             </li>
+            @if (false && $campaign->isPublic())
+                <li class="list-group-item">
+                    <b>{{ trans('campaigns.fields.followers') }}</b>
+                    <span  class="pull-right">
+                    {{ $campaign->followers->count() }}
+                </span>
+                    <br class="clear" />
+                </li>
+            @endif
             @if ($campaign->locale)
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.locale') }}</b>

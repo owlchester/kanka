@@ -3,7 +3,7 @@
 return [
     'names' => [
         'D&D',
-        'PathFinder',
+        'Pathfinder',
         'Stars Without Numbers',
         'Savage Worlds',
         'Dungeon World',
@@ -16,5 +16,8 @@ return [
         'DSA',
         'Chronicles of Darkness',
         'Powered by the Apocalypse'
+    ],
+    'systems' => [
+        'dnd5' => 'D&D 5e'
     ]
 ];
