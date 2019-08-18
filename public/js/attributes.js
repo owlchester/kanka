@@ -109,8 +109,6 @@ function initAttributeUI() {
   $('#attribute_add').on('click', function (e) {
     e.preventDefault();
     var realTarget = $(this).data('sortable') ? targetNew : target;
-    console.log('existing', $(this).data('sortable'));
-    console.log('real', realTarget);
     $('#attribute_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
     initAttributeHandlers();
     return false;
@@ -151,7 +149,6 @@ function initAttributeUI() {
 
 
 function initAttributeHandlers() {
-  console.log('not');
   $('.entity-attributes').sortable({});
   $.each($('.attribute_delete'), function () {
     $(this).unbind('click'); // remove previous bindings
@@ -176,8 +173,6 @@ function initAttributeHandlers() {
   });
   $('[data-toggle="star"]').unbind('click');
   $('[data-toggle="star"]').click(function () {
-    console.log('clicky');
-
     if ($(this).hasClass('far')) {
       // Unlock
       $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));
