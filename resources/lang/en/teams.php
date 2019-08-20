@@ -6,6 +6,7 @@ return [
         'description'   => 'These people make Kanka possible',
         'other'         => 'Other',
         'qa'            => 'Quality Assurance',
+        'support'       => 'Support',
         'title'         => 'Team',
         'translations'  => 'Translations',
     ],

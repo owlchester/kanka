@@ -35,10 +35,20 @@
                         <h4>{{ trans('teams.index.core') }}</h4>
 
                         <p>
-                            <strong>Lead</strong>: Ilestis <a href="https://ko-fi.com/kankaio" target="_blank" title="{{ trans('front.team.coffee') }}" data-toggle="tooltip"><i class="fa fa-coffee"></i></a>
+                            <strong>Lead</strong>: <a href="mailto:hello@kanka.io">Ilestis</a>
+                            <a href="https://ko-fi.com/kankaio" target="_blank" title="{{ trans('front.team.coffee') }}" data-toggle="tooltip"><i class="fa fa-coffee"></i></a><br />
+                            <span title="Discord">@Ilestis#9745</span>
                         </p>
                         <p>
-                            <strong>QA Lead</strong>: ArcOnyx
+                            <strong>QA Lead</strong>: ArcOnyx<br />
+                            <span title="Discord">@ArcOnyx#2348</span>
+                        </p>
+
+                        <h4>{{ trans('teams.index.support') }}</h4>
+
+                        <p>
+                            <strong>Product Development</strong>: <a href="mailto:dm@timeraverse.com">Iz Groceman</a><br />
+                            <span title="Discord">@Timera#2707</span>
                         </p>
                     </div>
                     <div class="col-lg-4 my-auto">
@@ -69,7 +79,7 @@
                     <div class="col-lg-4">
                         <h4>{{ trans('teams.index.other') }}</h4>
                         <p>
-                            <strong>{{ trans('teams.index.qa') }}</strong>: MostExcellentPromise
+                            <strong>{{ trans('teams.index.qa') }}</strong>: ChaosOS
                         </p>
                     </div>
                 </div>
