@@ -13,6 +13,6 @@
         @include('campaigns.forms.panes.dashboard')
         @include('campaigns.forms.panes.permission')
         @include('campaigns.forms.panes.public')
-        @include('campaigns.forms.panes.system')
+{{--        @include('campaigns.forms.panes.system')--}}
     </div>
 </div>

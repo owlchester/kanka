@@ -19,9 +19,9 @@
             {{ trans('campaigns.panels.sharing') }}
         </a>
     </li>
-    <li>
-        <a href="#form-system" title="{{ trans('campaigns.panels.systems') }}"  data-toggle="tooltip">
-            {{ trans('campaigns.panels.systems') }}
-        </a>
-    </li>
+{{--    <li>--}}
+{{--        <a href="#form-system" title="{{ trans('campaigns.panels.systems') }}"  data-toggle="tooltip">--}}
+{{--            {{ trans('campaigns.panels.systems') }}--}}
+{{--        </a>--}}
+{{--    </li>--}}
 </ul>
