@@ -20,7 +20,7 @@
             @endif
             @if ($model->hasColour())
                 <li class="list-group-item">
-                    <b>{{ __('tags.fields.colour') }}</b>
+                    <b>{{ __('calendars.fields.colour') }}</b>
                     <span class="pull-right clear {{ $model->colourClass() }}">{{ __('colours.' . $model->colour) }}</span>
                 </li>
             @endif
