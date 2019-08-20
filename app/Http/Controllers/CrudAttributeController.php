@@ -58,12 +58,15 @@ class CrudAttributeController extends Controller
         $route = $entity->type . $this->route;
         $parentRoute = $entity->pluralType();
 
+        $existing = count($entity->attributes);
+
         return view('cruds.attributes.index', compact(
             'attributes',
             'name',
             'route',
             'entity',
-            'parentRoute'
+            'parentRoute',
+            'existing'
         ));
     }
 
