@@ -17,7 +17,7 @@
 @section('header-extra')
     <div class="pull-right">
         @if($settings)
-            <a href="{{ route('dashboard.setup') }}'" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa fa-cog"></i>
             </a>
         @endif
