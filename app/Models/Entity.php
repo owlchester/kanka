@@ -30,6 +30,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property EntityMention[] $mentions
  * @property Inventory[] $inventories
  * @property EntityMention[] $targetMentions
+ * @property CampaignDashboardWidget[] $widgets
  * @property MiscModel $child
  */
 class Entity extends Model
@@ -245,6 +246,14 @@ class Entity extends Model
     public function race()
     {
         return $this->hasOne('App\Models\Race', 'id', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function widgets()
+    {
+        return $this->hasMany('App\Models\CampaignDashboardWidget', 'id', 'entity_id');
     }
 
     /**

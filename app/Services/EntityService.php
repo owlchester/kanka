@@ -9,6 +9,7 @@ use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -136,7 +137,11 @@ class EntityService
         if (!empty($request['target'])) {
             return $this->moveType($entity, $request['target']);
         } elseif (!empty($request['campaign'])) {
-            return $this->moveCampaign($entity, $request['campaign'], $request['copy']);
+            return $this->moveCampaign(
+                $entity,
+                $request['campaign'],
+                Arr::get($request, 'copy', false)
+            );
         }
         return false;
     }

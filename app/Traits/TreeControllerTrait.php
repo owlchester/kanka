@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 trait TreeControllerTrait
@@ -40,7 +41,8 @@ trait TreeControllerTrait
         $singularModel = str_singular($this->view);
         $createOptions = [];
 
-        $parentKey = !empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id';
+        /** @var Tag $model **/
+        $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id');
         if (request()->has('parent_id')) {
             $base->where([$parentKey => request()->get('parent_id')]);
 

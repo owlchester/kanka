@@ -92,7 +92,10 @@ class FormService
     public function prefillCharacterOrganisation($entity = null)
     {
         if ($entity instanceof MiscModel) {
-            return $entity->organisations()->with('organisation')->get();
+            return $entity->organisations()
+                ->with('organisation')
+                ->has('organisation')
+                ->get();
         }
         return [];
     }
