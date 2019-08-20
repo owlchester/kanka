@@ -15,6 +15,9 @@
     <div class="campaign-dashboard-widgets">
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @foreach ($widgets as $widget)
+                @if ($widget->entity && empty($widget->entity->child))
+                    @continue;
+                @endif
                 <?php /** @var \App\Models\CampaignDashboardWidget $widget */ ?>
                 <div class="col-md-{{ $widget->colSize() }} widget-draggable">
                     <div class="widget widget-{{ $widget->widget }}"

@@ -5,7 +5,7 @@
  * @var \App\Services\FormService $formService
  */
 $organisations = isset($model) ?
-    $model->organisations()->with('organisation')->orderBy('role', 'ASC')->get() :
+    $model->organisations()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :
     $formService->prefillCharacterOrganisation($source);
 $isAdmin = Auth::user()->isAdmin();
 ?>

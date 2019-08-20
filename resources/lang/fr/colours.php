@@ -7,7 +7,7 @@ return [
     'green'         => 'Vert',
     'grey'          => 'Gris',
     'light-blue'    => 'Bleu clair',
-    'maroon'        => 'Maron',
+    'maroon'        => 'Bordeaux',
     'navy'          => 'Bleu foncé',
     'none'          => 'Aucune',
     'orange'        => 'Orange',

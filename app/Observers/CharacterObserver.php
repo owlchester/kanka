@@ -82,7 +82,7 @@ class CharacterObserver extends MiscObserver
 
         /** @var OrganisationMember $org */
         $existing = [];
-        foreach ($character->organisations as $org) {
+        foreach ($character->organisations()->has('organisation')->get() as $org) {
             $existing[$org->id] = $org;
         }
 
@@ -120,7 +120,11 @@ class CharacterObserver extends MiscObserver
             }
             $model->organisation_id = $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
-            $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
+            if (request()->has('organisation_privates')) {
+                $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
+            } else {
+                $model->is_private = false;
+            }
             if ($model->save()) {
                 $orgCount++;
             }
