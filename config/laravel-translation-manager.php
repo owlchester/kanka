@@ -20,10 +20,10 @@ return array(
         'fr',
         'de',
         'es',
-        'nl',
+        //'nl',
         'it',
         'pt-BR',
-        'ru',
+        //'ru',
         'hu',
     ],
     /**
@@ -33,6 +33,14 @@ return array(
      * @type array of strings
      */
     'show_locales' => [
+        'en',
+        'en-US',
+        'fr',
+        'de',
+        'pt-br',
+        'es',
+        'it',
+        'hu'
     ],
     /**
      * Specify the prefix used for all cookies, session data and cache persistence.
@@ -345,7 +353,7 @@ return array(
      */
     'language_dirs' => array(
         'lang' => '/resources/lang/{locale}/{group}',
-        'packages' => null, //'/resources/lang/vendor/{package}/{locale}/{group}',
+        'packages' => '/resources/lang/vendor/{package}/{locale}/{group}',
         'workbench' => null,
         'vendor' => null,
         /*
@@ -391,5 +399,8 @@ return array(
      *
      */
     'zip_root' => '/resources',
+
+    'disable-react-ui' => true,
+    'disable-react-ui-link' => true,
 
 );

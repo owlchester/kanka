@@ -30,9 +30,12 @@ foreach ($attributes as $attribute) {
     @endif
     <div id="add_attribute_target"></div>
 </div>
+<div id="add_unsortable_attribute_target">
 
-@include('cruds.forms.attributes._blocks')
-@include('cruds.forms.attributes._buttons')
+</div>
+
+@include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])
+@include('cruds.forms.attributes._buttons', ['existing' => count($attributes)])
 
 @section('scripts')
     @parent

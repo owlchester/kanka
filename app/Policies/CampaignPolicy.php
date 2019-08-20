@@ -122,4 +122,23 @@ class CampaignPolicy
             // We also can't leave a campaign if we are not the real user
             !Identity::isImpersonating();
     }
+
+    /**
+     * Determine if a user can follow a campaign
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function follow(User $user, Campaign $campaign)
+    {
+        if (empty($user)) {
+            return false;
+        }
+
+        if ($campaign->visibility != Campaign::VISIBILITY_PUBLIC) {
+            return false;
+        }
+
+        return !$campaign->userIsMember();
+    }
 }

@@ -85,6 +85,19 @@ class FormService
     }
 
     /**
+     * Character organisations
+     * @param null $entity
+     * @return array
+     */
+    public function prefillCharacterOrganisation($entity = null)
+    {
+        if ($entity instanceof MiscModel) {
+            return $entity->organisations()->with('organisation')->get();
+        }
+        return [];
+    }
+
+    /**
      * @param $field
      * @param null $entity
      */

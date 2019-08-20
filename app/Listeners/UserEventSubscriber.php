@@ -12,13 +12,18 @@ use Exception;
 class UserEventSubscriber
 {
     /**
+     * @var InviteService
+     */
+    public $inviteService;
+
+    /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(InviteService $inviteService)
     {
-        //
+        $this->inviteService = $inviteService;
     }
 
     /**
@@ -29,7 +34,7 @@ class UserEventSubscriber
         // Does the user have a join campaign?
         if (Session::has('invite_token')) {
             try {
-                $campaign = InviteService::useToken(Session::get('invite_token'));
+                $campaign = $this->inviteService->useToken(Session::get('invite_token'));
                 CampaignService::switchCampaign($campaign);
                 return true;
             } catch (Exception $e) {

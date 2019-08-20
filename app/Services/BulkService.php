@@ -15,23 +15,64 @@ class BulkService
     protected $entityService;
 
     /**
+     * @var PermissionService
+     */
+    protected $permissionService;
+
+    /**
+     * @var string
+     */
+    protected $entityName;
+
+    /**
+     * @var array
+     */
+    protected $ids;
+
+    /**
      * BulkService constructor.
      * @param EntityService $entityService
+     * @param PermissionService $permissionService
      */
-    public function __construct(EntityService $entityService)
+    public function __construct(EntityService $entityService, PermissionService $permissionService)
     {
         $this->entityService = $entityService;
+        $this->permissionService = $permissionService;
     }
 
-    /*
-     *
+    /**
+     * @param string $entityName
+     * @return $this
      */
-    public function delete($entityName, $ids = [])
+    public function entity(string $entityName)
     {
-        $model = $this->getEntity($entityName);
+        $this->entityName = $entityName;
+        return $this;
+    }
+
+    /**
+     * @param array $ids
+     * @return $this
+     */
+    public function entities(array $ids = [])
+    {
+        $this->ids = $ids;
+        return $this;
+    }
+
+    /**
+     * Delete several entities
+     * @param string $entityName
+     * @param array $ids
+     * @return int
+     * @throws Exception
+     */
+    public function delete()
+    {
+        $model = $this->getEntity();
 
         $count = 0;
-        foreach ($ids as $id) {
+        foreach ($this->ids as $id) {
             $entity = $model->find($id);
             if (Auth::user()->can('delete', $entity)) {
                 //dd($entity->descendants);
@@ -49,44 +90,64 @@ class BulkService
      * @return array
      * @throws Exception
      */
-    public function export($entityName, $ids = [])
+    public function export()
     {
-        $model = $this->getEntity($entityName);
+        $model = $this->getEntity();
         $entities = [];
-        foreach ($ids as $id) {
+        foreach ($this->ids as $id) {
             $entities[] = $model->findOrFail($id);
         }
         return $entities;
     }
 
     /**
-     * @param $entityName
+     * @param string $entityName
      * @param array $ids
      * @return int
      */
-    public function makePrivate($entityName, $ids = [])
+    public function makePrivate()
     {
-        return $this->switchPrivate($entityName, true, $ids);
-    }
-
-    /**
-     * @param $entityName
-     * @param array $ids
-     * @return int
-     */
-    public function makePublic($entityName, $ids = [])
-    {
-        return $this->switchPrivate($entityName, false, $ids);
+        return $this->switchPrivate(true);
     }
 
     /**
      * @param string $entityName
-     * @param bool $private
      * @param array $ids
+     * @return int
+     */
+    public function makePublic()
+    {
+        return $this->switchPrivate(false);
+    }
+
+    /**
+     * Set permissions for several entities
+     * @param array $users
+     * @param array $roles
+     * @return int number of updated entities
+     */
+    public function permissions(array $permissions = [], bool $override = true): int
+    {
+        $count = 0;
+        $model = $this->getEntity();
+
+        foreach ($this->ids as $id) {
+            $entity = $model->findOrFail($id);
+            if (Auth::user()->can('update', $entity)) {
+                $this->permissionService->change($permissions, $entity->entity, $override);
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     * @param bool $private
      * @return int
      * @throws TranslatableException
      */
-    protected function switchPrivate($entityName, $private = true, $ids = [])
+    protected function switchPrivate(bool $private = true)
     {
         if (!Auth::user()->isAdmin()) {
             throw new TranslatableException("crud.bulk.errors.admin");
@@ -95,9 +156,9 @@ class BulkService
         // Don't want other stuff happening while saving
         define('MISCELLANY_SKIP_ENTITY_CREATION', true);
 
-        $model = $this->getEntity($entityName);
+        $model = $this->getEntity();
         $count = 0;
-        foreach ($ids as $id) {
+        foreach ($this->ids as $id) {
             /** @var MiscModel $entity */
             $entity = $model->findOrFail($id);
             if (Auth::user()->can('update', $entity) && $entity->is_private != $private) {
@@ -113,20 +174,19 @@ class BulkService
     }
 
     /**
-     * @param $entityName
      * @return mixed
      * @throws Exception
      */
-    protected function getEntity($entityName)
+    protected function getEntity()
     {
-        $entity = $this->entityService->getClass($entityName);
+        $entity = $this->entityService->getClass($this->entityName);
         if (empty($entity)) {
-            throw new Exception("Unknown entity name $entityName.");
+            throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
         $model = new $entity();
         if (empty($model)) {
-            throw new Exception("Couldn't create a class from $entity.");
+            throw new Exception("Couldn't create a class from {$this->entity}.");
         }
 
         return $model;

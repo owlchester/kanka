@@ -34,25 +34,31 @@ class BulkController extends Controller
             $subroute = 'tree';
         }
 
+        $this->bulkService->entity($entity)->entities($models);
+
         if ($request->has('delete')) {
-            $count = $this->bulkService->delete($entity, $models);
+            $count = $this->bulkService->delete();
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
         } elseif ($request->has('export')) {
             $pdf = \App::make('dompdf.wrapper');
-            $entities = $this->bulkService->export($entity, $models);
+            $entities = $this->bulkService->export();
             $name = $entity;
             return $pdf
                 ->loadView('cruds.export', compact('entity', 'entities', 'name'))
                 ->download('kanka ' . $entity . ' export.pdf');
         } elseif ($request->has('private')) {
-            $count = $this->bulkService->makePrivate($entity, $models);
+            $count = $this->bulkService->makePrivate();
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.private', $count, ['count' => $count]));
         } elseif ($request->has('public')) {
-            $count = $this->bulkService->makePublic($entity, $models);
+            $count = $this->bulkService->makePublic();
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.public', $count, ['count' => $count]));
+        } elseif ($request->has('bulk-permissions')) {
+            $count = $this->bulkService->permissions($request->only('user', 'role'), $request->has('permission-override'));
+            return redirect()->route($entity . '.' . $subroute)
+                ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
         }
 
         return redirect()->route($entity . '.' . $subroute);

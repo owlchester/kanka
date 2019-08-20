@@ -128,6 +128,8 @@ class Character extends MiscModel
         'is_personality_visible', // checkbox
     ];
 
+    protected $showAppearanceCache = null;
+
     /**
      * Performance with for datagrids
      * @param $query
@@ -379,5 +381,18 @@ class Character extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.character');
+    }
+
+    /**
+     * Determine if the appearance tab should be shown
+     * @return bool
+     */
+    public function showAppearance(): bool
+    {
+        if ($this->showAppearanceCache === null) {
+            $this->showAppearanceCache = !empty($this->sex) || !empty($this->sex) ||
+                $this->characterTraits()->appearance()->count() > 0;
+        }
+        return $this->showAppearanceCache;
     }
 }

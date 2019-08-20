@@ -55,6 +55,7 @@ $(document).ready(function() {
 
     initDashboardRecent();
     initDashboardCalendars();
+    initFollow();
 });
 
 /**
@@ -177,6 +178,42 @@ function initDashboardCalendars()
                 var widget = $(this).data('widget');
                 $('#widget-body-' + widget).html(data);
                 initDashboardCalendars();
+            }
+        });
+    });
+}
+
+/**
+ * Follow / Unfollow a campaign
+ */
+function initFollow()
+{
+    var btn = $('#campaign-follow');
+    var text = $('#campaign-follow-text');
+
+    if (btn.length !== 1) {
+        return;
+    }
+
+    var status = btn.data('following');
+    if (status) {
+        text.html(btn.data('unfollow'));
+    } else {
+        text.html(btn.data('follow'));
+    }
+    btn.show();
+
+    btn.click(function (e) {
+        e.preventDefault();
+
+        $.post({
+            url: $(this).data('url'),
+            method: 'POST'
+        }).done(function(data) {
+            if (data.following) {
+                text.html(btn.data('unfollow'));
+            } else {
+                text.html(btn.data('follow'));
             }
         });
     });

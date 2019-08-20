@@ -33,16 +33,11 @@ $isAdmin = Auth::user()->isAdmin();
             </div>
 
 
-            @include('cruds.forms.attributes._blocks')
+            @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
         </div>
 
         <div class="box-footer">
-
-
             @include('cruds.forms.attributes._buttons')
-            {{--<a class="btn btn-default" data-toggle="modal" data-target="#entity-attribute-template">--}}
-                {{--<i class="fa fa-copy"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.attributes.actions.apply_template') }}</span>--}}
-            {{--</a>--}}
 
             <div class="pull-right">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>

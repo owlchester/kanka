@@ -2236,16 +2236,16 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "1.0.4",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
-                "reference": "140c754b7a2bafa60e777e4d0a0eaae716589865"
+                "reference": "81b6e851df0684421cac92878109b02a7aa0cc9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/140c754b7a2bafa60e777e4d0a0eaae716589865",
-                "reference": "140c754b7a2bafa60e777e4d0a0eaae716589865",
+                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/81b6e851df0684421cac92878109b02a7aa0cc9a",
+                "reference": "81b6e851df0684421cac92878109b02a7aa0cc9a",
                 "shasum": ""
             },
             "require": {
@@ -2283,7 +2283,7 @@
                 "kanka",
                 "monsters"
             ],
-            "time": "2019-02-26T11:49:29+00:00"
+            "time": "2019-08-15T12:43:50+00:00"
         },
         {
             "name": "intervention/image",
@@ -3752,8 +3752,8 @@
             "authors": [
                 {
                     "name": "Marc Cámara",
-                    "email": "mcamara88@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "mcamara88@gmail.com"
                 }
             ],
             "description": "Easy localization for Laravel",
@@ -4489,28 +4489,28 @@
             "authors": [
                 {
                     "name": "Jim Wigginton",
-                    "email": "terrafrost@php.net",
-                    "role": "Lead Developer"
+                    "role": "Lead Developer",
+                    "email": "terrafrost@php.net"
                 },
                 {
                     "name": "Patrick Monnerat",
-                    "email": "pm@datasphere.ch",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "pm@datasphere.ch"
                 },
                 {
                     "name": "Andreas Fischer",
-                    "email": "bantu@phpbb.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "bantu@phpbb.com"
                 },
                 {
                     "name": "Hans-Jürgen Petrich",
-                    "email": "petrich@tronic-media.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "petrich@tronic-media.com"
                 },
                 {
                     "name": "Graham Campbell",
-                    "email": "graham@alt-three.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "graham@alt-three.com"
                 }
             ],
             "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
@@ -7896,8 +7896,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "homepage": "https://github.com/filp",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "https://github.com/filp"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -8744,8 +8744,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Utility class for timing",
@@ -8875,8 +8875,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -9597,8 +9597,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",

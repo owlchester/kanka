@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class MapPoint
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $location_id
  * @property integer $target_entity_id
  * @property integer $axis_x

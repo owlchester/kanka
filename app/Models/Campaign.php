@@ -85,6 +85,29 @@ class Campaign extends MiscModel
     /**
      * @return mixed
      */
+    public function followers()
+    {
+        return $this->hasManyThrough(
+            'App\User',
+            'App\Models\CampaignFollower',
+            'campaign_id',
+            'id',
+            'id',
+            'user_id'
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function rpgSystems()
+    {
+        return $this->belongsToMany('App\Models\RpgSystem');
+    }
+
+    /**
+     * @return mixed
+     */
     public function setting()
     {
         return $this->belongsTo('App\Models\CampaignSetting', 'id', 'campaign_id');
@@ -391,8 +414,26 @@ class Campaign extends MiscModel
     /**
      * @return string
      */
-    public function getMiddlewareLink()
+    public function getMiddlewareLink(): string
     {
         return 'campaign/' . $this->id;
+    }
+
+    /**
+     * Determine if the user is currently following the campaign
+     * @return bool
+     */
+    public function isFollowing(): bool
+    {
+        return $this->followers()->where('user_id', Auth::user()->id)->count() === 1;
+    }
+
+    /**
+     * Determine if a campaign is public
+     * @return bool
+     */
+    public function isPublic(): bool
+    {
+        return $this->visibility == self::VISIBILITY_PUBLIC;
     }
 }

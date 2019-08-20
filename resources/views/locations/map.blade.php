@@ -93,8 +93,13 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}" title="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{{ trans('locations.map.points.modal') }}</h4>
                     </div>
-                    <div class="modal-body" id="map-point-body">
+                    <div class="modal-body">
+                        <div class="modal-loading text-center">
+                            <i class="fa fa-spinner fa-spin fa-2x"></i>
+                        </div>
+                        <div id="map-point-body">
 
+                        </div>
                     </div>
                 </div>
             </div>

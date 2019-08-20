@@ -1,4 +1,6 @@
-@extends((isset($ajax) && $ajax ? 'layouts.ajax' : 'layouts.app'), [
+<?php
+/** @var \App\Models\MapPoint $model */
+?>@extends((isset($ajax) && $ajax ? 'layouts.ajax' : 'layouts.app'), [
     'title' => trans('locations.map_points.edit.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -18,11 +20,19 @@
         @if(!isset($ajax))
         {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
         @else
-        <button name="remove" class="pull-right btn btn-danger map-point-delete" data-url="{{ route('locations.map_points.destroy', [$location, $model]) }}">
+        <a class="pull-right btn btn-default"
+           data-toggle="popover" data-html="true" data-placement="top"
+           data-content="<p>{{ __('locations.map.actions.confirm_delete') }}</p>
+           <a href='{{ route('locations.map_points.destroy', [$location, $model]) }}' class='btn btn-block btn-danger map-point-delete'>{{ __('crud.click_modal.confirm') }}</a>"
+            title="{{ __('crud.remove') }}"
+        >
             <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
-        </button>
+        </a>
         @endif
     </div>
 
     {!! Form::close() !!}
+
+
+
 @endsection

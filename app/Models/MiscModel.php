@@ -17,6 +17,7 @@ use Exception;
  * Class MiscModel
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $campaign_id
  * @property string $name
  * @property string $slug
@@ -43,6 +44,12 @@ abstract class MiscModel extends Model
      * @var bool
      */
     public $savingObserver = true;
+
+    /**
+     * If set to false, the save observer in MiscObserver will be skipped
+     * @var bool
+     */
+    public $saveObserver = true;
 
     /**
      * Eloquence trait for easy search

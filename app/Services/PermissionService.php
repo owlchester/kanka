@@ -114,7 +114,6 @@ class PermissionService
             }
         }
         if (!empty($request['user'])) {
-//            dump($request['user']);
             foreach ($request['user'] as $userId => $data) {
                 foreach ($data as $perm) {
                     if (empty($permissions['user'][$userId][$perm])) {
@@ -130,13 +129,68 @@ class PermissionService
                 }
             }
         }
+    }
 
-        // Delete remaining permissions
-        // Todo: Refactor?
-        foreach ($permissions as $type => $data) {
-            foreach ($data as $user => $actions) {
-                foreach ($actions as $action => $perm) {
-                    $perm->delete();
+    public function change($request, Entity $entity, bool $override = true)
+    {
+        // First, let's get all the stuff for this entity
+        $permissions = $this->entityPermissions($entity);
+
+        // Next, start looping the data
+        if (!empty($request['role'])) {
+            foreach ($request['role'] as $roleId => $data) {
+                foreach ($data as $perm => $action) {
+                    if ($action == 'add') {
+                        if (empty($permissions['role'][$roleId][$perm])) {
+                            $permObject = CampaignPermission::create([
+                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'campaign_role_id' => $roleId,
+                                'table_name' => $entity->pluralType(),
+                                'entity_id' => $entity->id,
+                            ]);
+                        } else {
+                            unset($permissions['role'][$roleId][$perm]);
+                        }
+                    } elseif ($action == 'remove') {
+                        if (!empty($permissions['role'][$roleId][$perm])) {
+                            $permissions['role'][$roleId][$perm]->delete();
+                            unset($permissions['role'][$roleId][$perm]);
+                        }
+                    }
+                }
+            }
+        }
+        if (!empty($request['user'])) {
+            foreach ($request['user'] as $userId => $data) {
+                foreach ($data as $perm => $action) {
+                    if ($action == 'add') {
+                        if (empty($permissions['user'][$userId][$perm])) {
+                            $permObject = CampaignPermission::create([
+                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'user_id' => $userId,
+                                'table_name' => $entity->pluralType(),
+                                'entity_id' => $entity->id,
+                            ]);
+                        } else {
+                            unset($permissions['user'][$userId][$perm]);
+                        }
+                    } elseif ($action == 'remove') {
+                        if (!empty($permissions['user'][$userId][$perm])) {
+                            $permissions['user'][$userId][$perm]->delete();
+                            unset($permissions['user'][$userId][$perm]);
+                        }
+                    }
+                }
+            }
+        }
+
+        // If the user requested an override, any permissions that was not specifically set will be deleted.
+        if ($override) {
+            foreach ($permissions as $type => $data) {
+                foreach ($data as $user => $actions) {
+                    foreach ($actions as $action => $perm) {
+                        $perm->delete();
+                    }
                 }
             }
         }

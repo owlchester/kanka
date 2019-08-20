@@ -8,6 +8,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
+use App\Models\RpgSystem;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\StarterService;
@@ -123,6 +124,8 @@ class CampaignObserver
         if ($campaign->isDirty('entry')) {
             $this->entityMappingService->mapCampaign($campaign);
         }
+
+        $this->saveRpgSystems($campaign);
     }
 
     /**
@@ -148,5 +151,40 @@ class CampaignObserver
         $campaign->setting->delete();
 
         ImageService::cleanup($campaign, 'header_image');
+    }
+
+    protected function saveRpgSystems(Campaign $campaign)
+    {
+        if (!request()->has('rpg_systems')) {
+            return;
+        }
+
+        $ids = request()->post('rpg_systems', []);
+
+        // Only use tags the user can actually view. This way admins can
+        // have tags on entities that the user doesn't know about.
+        $existing = [];
+        foreach ($campaign->rpgSystems as $system) {
+            $existing[] = $system->id;
+        }
+        $new = [];
+
+        foreach ($ids as $id) {
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $system = RpgSystem::find($id);
+                if (empty($system)) {
+                    continue;
+                }
+                $new[] = $system->id;
+            }
+        }
+        $campaign->rpgSystems()->attach($new);
+
+        // Detatch the remaining
+        if (!empty($existing)) {
+            $campaign->rpgSystems()->detach($existing);
+        }
     }
 }

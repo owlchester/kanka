@@ -5,6 +5,9 @@
  */
 require('./bootstrap');
 
+import select2 from './components/select2.js';
+import deleteConfirm from './components/delete-confirm.js';
+
 /**
  * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
  * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
@@ -148,54 +151,7 @@ $(document).ready(function() {
         });
     });*/
 
-    // Delete confirm dialog
-    $.each($('.delete-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('name');
-            var text = $(this).data('text');
-            var target = $(this).data('delete-target');
-            if (text) {
-                $('#delete-confirm-text').text(text);
-            } else {
-                $('#delete-confirm-name').text(name);
-            }
-
-            if ($(this).data('mirrored')) {
-                $('#delete-confirm-mirror').show();
-            } else {
-                $('#delete-confirm-mirror').hide();
-            }
-
-            if (target) {
-                $('#delete-confirm-submit').data('target', target);
-            }
-        });
-    });
-
-    // Submit modal form
-    $.each($('#delete-confirm-submit'), function (index) {
-        $(this).click(function (e) {
-            var target = $(this).data('target');
-            if (target) {
-                $('#' + target + ' input[name=remove_mirrored]').val(
-                    $('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0
-                );
-                $('#' + target).submit();
-            } else {
-                $('#delete-confirm-form').submit();
-            }
-        })
-    });
-
-    // Delete confirm dialog
-    $.each($('.click-confirm'), function (index) {
-        $(this).click(function (e) {
-            var name = $(this).data('message');
-            $('#click-confirm-text').text(name);
-            $('#click-confirm-url').attr('href', $(this).data('url'));
-        });
-    });
-
+    deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
     initNotifications();
@@ -228,42 +184,7 @@ function initCheckboxSwitch() {
  * Select2 is used for all the fancy dropdowns
  */
 function initSelect2() {
-    if ($('select.select2').length > 0) {
-        $.each($('select.select2'), function (index) {
-            // Check it isn't the select2-icon
-            $(this).select2({
-                //data: newOptions,
-                placeholder: $(this).data('placeholder'),
-                allowClear: true,
-                tags: $(this).is('[data-tags]'),
-                language: $(this).data('language'),
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 200,
-                    url: $(this).data('url'),
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    }
-
-    // Select2 with local search
-    $('select.select2-local').select2({
-        placeholder: $(this).data('placeholder'),
-        language: $(this).data('language'),
-        allowClear: true
-    });
+    select2();
 }
 
 
@@ -274,7 +195,7 @@ function treeViewInit(element) {
     var treeViewLoader = $('#' + element + '-treeview');
     var link = treeViewLoader.data('url');
     $.each($('#' + element + ' > tbody > tr'), function(index) {
-        children = $(this).data('children');
+        var children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
             $(this).on('click', function (e) {

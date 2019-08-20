@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\MiscModel;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class FilterService
 {
@@ -90,6 +91,15 @@ class FilterService
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.
                 $this->filters[$key] = $value;
+            }
+        }
+
+        // Foreign keys that are not set might have been cleared. If so, remove them from the filters
+        if (!empty($this->data)) {
+            foreach ($availableFilters as $filter) {
+                if (!isset($this->data[$filter]) && Str::endsWith($filter, '_id')) {
+                    $this->filters[$filter] = null;
+                }
             }
         }
 

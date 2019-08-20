@@ -43,6 +43,12 @@ class EntityNote extends Model
     protected $orderTrigger = 'notes/';
 
     /**
+     * Set to false to skip save observers
+     * @var bool
+     */
+    public $savedObserver = true;
+
+    /**
      * Traits
      */
     use VisibilityTrait, OrderableTrait, Paginatable, Blameable;

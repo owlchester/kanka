@@ -103,7 +103,7 @@ return [
                 'location_or_name'  => 'Un point peut être soit un lieu existant, soit un label.',
             ],
             'icons'         => [
-                'anchor'        => 'Anchre',
+                'anchor'        => 'Ancre',
                 'anvil'         => 'Enclume',
                 'apple'         => 'Pomme',
                 'aura'          => 'Aura',

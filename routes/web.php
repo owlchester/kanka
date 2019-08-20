@@ -85,6 +85,8 @@ Route::group([
         Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
         Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
+        Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
+
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
         Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
@@ -315,6 +317,9 @@ Route::group([
         // Move
         Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
         Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+
+        Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
+        Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
         // Entity files
         Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');

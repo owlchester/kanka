@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
+use App\Http\Requests\CopyEntityToCampaignRequest;
 use App\Http\Requests\CreateEntityRequest;
 use App\Http\Requests\MoveEntityRequest;
 use App\Models\Entity;
@@ -31,8 +32,48 @@ class EntityController extends Controller
      */
     public function move(Entity $entity)
     {
+        $this->authorize('move', $entity->child);
+
         $entities = $this->entityService->labelledEntities(true, $entity->pluralType(), true);
         return view('cruds.move', ['entity' => $entity, 'entities' => $entities]);
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function copyToCampaign(Entity $entity)
+    {
+        $this->authorize('view', $entity->child);
+
+        return view('cruds.copy_to_campaign', [
+            'entity' => $entity,
+            'campaigns' => Auth::user()->moveCampaignList(false)
+        ]);
+    }
+
+    /**
+     * @param CopyEntityToCampaignRequest $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function copyEntityToCampaign(CopyEntityToCampaignRequest $request, Entity $entity)
+    {
+        $this->authorize('view', $entity->child);
+
+        try {
+            $options = $request->only('campaign');
+            $options['copy'] = 'on';
+
+            $entity = $this->entityService->move($entity, $options);
+
+            return redirect()->route($entity->pluralType() . '.show', $entity->entity_id)
+                ->with('success', trans('crud.move.success_copy', ['name' => $entity->name]));
+        } catch (TranslatableException $ex) {
+            return redirect()->route($entity->pluralType() . '.show', $entity->entity_id)
+                ->with('error', trans($ex->getMessage(), ['name' => $entity->name]));
+        }
     }
 
     /**
@@ -67,9 +108,13 @@ class EntityController extends Controller
         $this->authorize('move', $entity->child);
 
         try {
-            $entity = $this->entityService->move($entity, $request->only('target', 'campaign'));
+            $entity = $this->entityService->move($entity, $request->only('target', 'campaign', 'copy'));
 
             if ($entity->child->campaign_id != Auth::user()->campaign->id) {
+                if ($request->has('copy')) {
+                    return redirect()->route($entity->pluralType() . '.index')
+                        ->with('success', trans('crud.move.success_copy', ['name' => $entity->name]));
+                }
                 return redirect()->route($entity->pluralType() . '.index')
                 ->with('success', trans('crud.move.success', ['name' => $entity->name]));
             }

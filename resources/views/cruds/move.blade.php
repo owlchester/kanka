@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             @include('partials.errors')
-            {!! Form::open(array('route' => ['entities.move', $entity->id], 'method'=>'POST')) !!}
+            {!! Form::open(['route' => ['entities.move', $entity->id], 'method' => 'POST']) !!}
 
             {{ csrf_field() }}
             <div class="row">
@@ -22,13 +22,15 @@
                             <h4>{{ trans('crud.panels.move') }}</h4>
                         </div>
                         <div class="panel-body">
+                            @can('move', $entity->child)
                             <div class="form-group">
                                 <label>{{ trans('crud.move.fields.target') }}</label>
                                 {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
                                 <p class="help-block">{{ trans('crud.move.hints.target') }}</p>
                             </div>
+                            @endcan
 
-                            @if (Auth::user()->campaigns()->count() >= 2)
+                            @if (Auth::user()->hasOtherCampaigns($entity->campaign_id))
                                 <hr>
                                 <div class="form-group">
                                     <label>{{ trans('crud.move.fields.campaign') }}</label>

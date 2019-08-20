@@ -103,4 +103,16 @@ trait CampaignScopes
     {
         return $query->whereDate('created_at', Carbon::today());
     }
+
+    /**
+     * Campaigns for the frontend
+     * @param $query
+     * @return mixed
+     */
+    public function scopeFront($query)
+    {
+        return $query->where('visible_entity_count', '>', 0)
+            ->orderBy('visible_entity_count', 'desc')
+            ->orderBy('name', 'asc');
+    }
 }

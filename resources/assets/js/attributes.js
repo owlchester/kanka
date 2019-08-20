@@ -10,13 +10,15 @@ $(document).ready(function() {
 function initAttributeUI()
 {
     var target = $('#add_attribute_target');
+    var targetNew = $('#add_unsortable_attribute_target');
 
     initAttributeHandlers();
 
     $('#attribute_add').on('click', function(e) {
         e.preventDefault();
 
-        $('#attribute_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+        var realTarget = $(this).data('sortable') ? targetNew : target;
+        $('#attribute_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
         initAttributeHandlers();
 
         return false;
@@ -24,21 +26,27 @@ function initAttributeUI()
 
     $('#block_add').click(function(e) {
         e.preventDefault();
-        $('#block_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+
+        var realTarget = $(this).data('sortable') ? targetNew : target;
+        $('#block_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
         initAttributeHandlers();
         return false;
     });
 
     $('#text_add').click(function(e) {
         e.preventDefault();
-        $('#text_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+
+        var realTarget = $(this).data('sortable') ? targetNew : target;
+        $('#text_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
         initAttributeHandlers();
         return false;
     });
 
     $('#checkbox_add').click(function(e) {
         e.preventDefault();
-        $('#checkbox_template').clone().removeClass('hidden').removeAttr('id').insertBefore(target);
+
+        var realTarget = $(this).data('sortable') ? targetNew : target;
+        $('#checkbox_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
         initAttributeHandlers();
         return false;
     });
@@ -58,7 +66,7 @@ function initAttributeUI()
  */
 function initAttributeHandlers() {
 
-    $('.entity-attributes').sortable();
+    $('.entity-attributes').sortable({});
 
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click'); // remove previous bindings
@@ -84,7 +92,6 @@ function initAttributeHandlers() {
 
     $('[data-toggle="star"]').unbind('click');
     $('[data-toggle="star"]').click(function () {
-        console.log('clicky');
         if ($(this).hasClass('far')) {
             // Unlock
             $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));

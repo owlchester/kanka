@@ -12,6 +12,8 @@
             <label>{{ trans('characters.organisations.fields.role') }}</label>
             {!! Form::text('role', null, ['placeholder' => trans('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
+
+        @include('cruds.fields.private', ['model' => !empty($member) ? $member : null])
     </div>
 </div>
 

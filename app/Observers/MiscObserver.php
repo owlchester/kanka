@@ -169,6 +169,9 @@ abstract class MiscObserver
      */
     protected function syncMentions(MiscModel $model, Entity $entity)
     {
+        if (!$model->saveObserver) {
+            return;
+        }
         //$this->entityMappingService->verbose = true;
         // If the entity's entry has changed, we need to re-build it's map.
         if ($model->isDirty('entry')) {

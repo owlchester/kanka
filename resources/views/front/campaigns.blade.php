@@ -1,4 +1,6 @@
-@extends('layouts.front', [
+<?php
+/** @var \App\Models\Campaign $camp */
+?>@extends('layouts.front', [
     'title' => trans('front.menu.campaigns'),
     'menus' => [
         'campaigns',
@@ -31,17 +33,20 @@
                     @foreach ($featured as $camp)
                     <div class="col-lg-4 col-md-6">
                         <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}">
-                                <div class="image-wrapper" @if ($camp->image) style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
-                                </div>
-                            <h4 class="campaign-title">
-                                <span class="pull-right text-right">
+                            <div class="image-wrapper @if ($camp->image)" style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}') @else no-image @endif">
+                                <div class="labels">
+                                    <span class="label label-default count" title="{{ __('campaigns.fields.entity_count') }}">
+                                        <i class="fa fa-eye"></i> {{ number_format($camp->visible_entity_count) }}
+                                    </span>
                                     @if ($camp->locale)
-                                    <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
+                                        <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
                                     @endif
                                     @if (!empty($camp->system))
-                                        <span class="label label-default">{{ $camp->system }}</span>
+                                        <span class="label label-default" title="{{ __('campaigns.fields.system') }}">{{ $camp->system }}</span>
                                     @endif
-                                </span>
+                                </div>
+                            </div>
+                            <h4 class="campaign-title">
                                 {{ $camp->name }}
                             </h4>
                         </a>
@@ -64,21 +69,25 @@
                         @foreach ($campaigns as $camp)
                             <div class="col-lg-3 col-md-4">
                                 <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}" >
-                                    <div class="image-wrapper small-campaign" @if ($camp->image) style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @endif>
-                                    </div>
-                                    <h4 class="campaign-title">
-                                        <span class="pull-right text-right">
+                                    <div class="image-wrapper small-campaign @if ($camp->image)" style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @else no-image @endif">
+                                        <div class="labels">
+                                            <span class="label label-default count" title="{{ __('campaigns.fields.entity_count') }}">
+                                                <i class="fa fa-eye"></i> {{ number_format($camp->visible_entity_count) }}
+                                            </span>
                                             @if ($camp->locale)
-                                                <span class="label label-default " title="{{ __('languages.codes.' . $camp->locale) }}">{{
-                                                 $camp->locale }}</span>
+                                                <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">
+                                                    {{ $camp->locale }}
+                                                </span>
                                             @endif
                                             @if (!empty($camp->system))
-                                                <span class="label label-default margin-r-5">{{ $camp->system }}</span>
+                                                <span class="label label-default" title="{{ __('campaigns.fields.system') }}">
+                                                    {{ $camp->system }}
+                                                </span>
                                             @endif
-                                        </span>
+                                        </div>
+                                    </div>
+                                    <h4 class="campaign-title">
                                         {{ $camp->name }}
-
-
                                     </h4>
                                 </a>
                             </div>

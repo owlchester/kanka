@@ -125,7 +125,19 @@ footer {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+
+    .labels {
+      margin-top: 115px;
+      position: absolute;
+      padding: 7px;
+      font-size: 16pt;
+
+      .label {
+        margin-right: 5px;
+      }
+    }
   }
+
   .small-campaign {
     height: 160px;
   }

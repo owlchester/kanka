@@ -3,7 +3,6 @@
  * Created by vlad on 15-02-10.
  */
 var CLIP_TEXT;
-var MISSMATCHED_QUOTES_MESSAGE;
 var YANDEX_TRANSLATOR_KEY;
 var URL_YANDEX_TRANSLATOR_KEY;
 var PRIMARY_LOCALE;
@@ -13,6 +12,7 @@ var xtranslateText;
 var xtranslateService;
 var MARKDOWN_KEY_SUFFIX;
 
+var MISMATCHED_QUOTES_MESSAGE;
 var TITLE_SAVE_CHANGES;
 var TITLE_CANCEL_CHANGES;
 var TITLE_TRANSLATE;
@@ -26,6 +26,7 @@ var TITLE_SIMULATED_COPY;
 var TITLE_SIMULATED_PASTE;
 var TITLE_RESET_EDITOR;
 var TITLE_LOAD_LAST;
+var countRegEx = /:count\s+/;
 
 function swapInClass(elem, toAdd, toRemove) {
     'use strict';
@@ -138,16 +139,27 @@ function extractPluralForm(pluralForms, index) {
 xtranslateService = translateYandex;
 xtranslateText = function (translator, srcLoc, srcText, dstLoc, processText) {
     var pos, single, plural, havePlural, src = srcText;
+    var hadSingleCount = false;
+    var hadPluralCount = false;
 
     if ((pos = srcText.indexOf('|')) !== -1) {
         // have pluralization
         single = srcText.substr(0, pos);
         plural = srcText.substr(pos + 1);
+
+        if (single.match(countRegEx)) {
+            single = single.replace(countRegEx, '');
+            hadSingleCount = true;
+        }
+        if (plural.match(countRegEx)) {
+            plural = plural.replace(countRegEx, '');
+            hadPluralCount = true;
+        }
         src = 'one ' + single + '\ntwo ' + plural + '\nfive ' + plural;
         havePlural = true;
     }
 
-    // convert all occurences of :parameter to {{#}} where # is the parameter number and store the parameter at index #
+    // convert all occurrences of :parameter to {{#}} where # is the parameter number and store the parameter at index #
     // that way they won't be mangled by translation and we can restore them back on return.
     var lastPos = 0, params = [], haveParams, matches, regexParam = /\:([a-zA-Z0-9_-]*)(?=[^a-zA-Z0-9_-]|$)/g,
         result = '', paramIndex = 0;
@@ -188,14 +200,16 @@ xtranslateText = function (translator, srcLoc, srcText, dstLoc, processText) {
             pluralForms = text.split('\n', 3);
             single = extractPluralForm(pluralForms, 0);
             plural = extractPluralForm(pluralForms, 1);
+            var singlePrefix = hadSingleCount ? ':count ' : '';
+            var pluralPrefix = hadPluralCount ? ':count ' : '';
 
             if (dstLoc === 'ru') {
                 plural2 = extractPluralForm(pluralForms, 2);
-                text = single + '|' + plural + '|' + plural2;
+                text = singlePrefix + single + '|' + pluralPrefix + plural + '|' + pluralPrefix + plural2;
             }
             else {
                 // TODO: have to handle other plural forms for complex locales
-                text = single + '|' + plural;
+                text = singlePrefix + single + '|' + pluralPrefix + plural;
             }
         }
         processText(text, trans);
@@ -233,7 +247,7 @@ $(document).ready(function () {
         // check for open or mismatched quotes in href=  and src=, attributes if any
         var regex = /\b(href=|src=)\s*("|')?([^"'>]*)("|')?/;
         var regexErr = /:string/g;
-        var message = MISSMATCHED_QUOTES_MESSAGE || "mismatched or missing quotes in :string attribute";
+        var message = MISMATCHED_QUOTES_MESSAGE || "mismatched or missing quotes in :string attribute";
         var messages = [];
         var offs = 0, pos;
         var matches, val = value, maxlen = value.length;
@@ -246,7 +260,7 @@ $(document).ready(function () {
             if (!matches) {
                 break;
             }
-            // see if any are missmatched or missing
+            // see if any are mismatched or missing
             if (matches[2] === undefined || matches[2] !== matches[4]) {
                 messages.push(message.replace(regexErr, matches[0]));
             }
@@ -285,7 +299,8 @@ $(document).ready(function () {
     var title_cancel_changes = TITLE_CANCEL_CHANGES || "Cancel changes";
     var title_translate = TITLE_TRANSLATE || "Translate";
     var title_convert_key = TITLE_CONVERT_KEY || "Convert translation key to text";
-    var title_generate_plurals = TITLE_GENERATE_PLURALS || "Generate plural forms";
+    // var title_generate_plurals = TITLE_GENERATE_PLURALS || "Generate plural forms";
+    var title_generate_plurals = TITLE_GENERATE_PLURALS || "Generate plural forms with :count";
     var title_clean_html_markdown = TITLE_CLEAN_HTML_MARKDOWN || "Clean HTML markdown";
     var title_capitalize = TITLE_CAPITALIZE || "Capitalize text";
     var title_lowercase = TITLE_LOWERCASE || "Lowercase text";
@@ -301,6 +316,7 @@ $(document).ready(function () {
         '&nbsp;&nbsp;<button id="x-translate" type="button" title="' + title_translate + '" class="editable-translate btn btn-sm btn-warning hidden"><i class="glyphicon glyphicon-share-alt"></i></button>' +
         '<button id="x-nodash" type="button" title="' + title_convert_key + '" class="editable-translate btn btn-sm btn-warning hidden">❉ <i class="glyphicon glyphicon-share-alt"></i> Ab</button>' +
         '&nbsp;&nbsp;<button id="x-plurals" type="button" title="' + title_generate_plurals + '" class="editable-translate btn btn-sm btn-warning hidden">|</i></button>' +
+        '<button id="x-plurals-count" type="button" title="' + title_generate_plurals + '" class="editable-translate btn btn-sm btn-warning hidden">|:</i></button>' +
         '<button id="x-clean-markdown" type="button" title="' + title_clean_html_markdown + '" class="editable-translate btn btn-sm btn-warning hidden"><i class="glyphicon glyphicon-flash"></i></button>' +
         '&nbsp;&nbsp;<button id="x-capitalize" type="button" title="' + title_capitalize + '" class="editable-translate btn btn-sm btn-info">ab <i class="glyphicon glyphicon-share-alt"></i> Ab</button>' +
         '<button id="x-lowercase" type="button" title="' + title_lowercase + '" class="editable-translate btn btn-sm btn-info">AB <i class="glyphicon glyphicon-share-alt"></i> ab</button>' +
@@ -341,6 +357,7 @@ $(document).ready(function () {
                 btnCapitalize: divElem.find('#x-capitalize').first(),
                 btnLowercase: divElem.find('#x-lowercase').first(),
                 btnPlurals: divElem.find('#x-plurals').first(),
+                btnPluralsCount: divElem.find('#x-plurals-count').first(),
                 btnPropCap: divElem.find('#x-propcap').first(),
                 btnNoDash: divElem.find('#x-nodash').first(),
                 btnCopy: divElem.find('#x-copy').first(),
@@ -370,7 +387,7 @@ $(document).ready(function () {
             return function () {
                 var sel = textAreaSelectedText(dstElem[0]);
                 if (sel) {
-                    dstElem.selection('replace', {text: editOp.apply(sel, params)});
+                    dstElem.selection('replace', { text: editOp.apply(sel, params) });
                 }
                 else {
                     dstElem.val(editOp.apply(dstElem.val(), params));
@@ -382,7 +399,7 @@ $(document).ready(function () {
             return function () {
                 var sel = textAreaSelectedText(dstElem[0]);
                 if (sel) {
-                    dstElem.selection('replace', {text: editOp.apply(sel, params)});
+                    dstElem.selection('replace', { text: editOp.apply(sel, params) });
                 }
                 else {
                     var pluralForms;
@@ -418,10 +435,10 @@ $(document).ready(function () {
             var top = elem.offset().top;
 
             if (top < 300) {
-                elem.editable({placement: 'bottom'});
+                elem.editable({ placement: 'bottom' });
             }
             else {
-                elem.editable({placement: 'top'});
+                elem.editable({ placement: 'top' });
             }
 
             elem.editable().off('hidden');
@@ -477,7 +494,7 @@ $(document).ready(function () {
 
                 srcId = srcLoc + dstId.substr(dstLoc.length);
                 key = dstId.substr(dstLoc.length + 1);
-                elemRow = $('tr#' + key.replace(/\./, '-')).first();
+                elemRow = $(this).closest('tr#' + key.replace(/\./g, '-')).first();
                 value = key.replace(regexnodash, ' ').toCapitalCase();
 
                 var xElem = $.fn.editableform.formElements(this);
@@ -557,32 +574,77 @@ $(document).ready(function () {
                     // });
                 } else {
                     // not markdown
-                    if (xElem.btnPlurals.length) {
+                    // if (xElem.btnPlurals.length) {
+                    //     if (dstLoc === PRIMARY_LOCALE || YANDEX_TRANSLATOR_KEY !== '') {
+                    //         xElem.btnPlurals.removeClass('hidden');
+                    //         xElem.btnPlurals.on('click', xfull(dstElem, function () {
+                    //             var val = this;
+                    //             if (val.indexOf('|') === -1) {
+                    //                 switch (dstLoc) {
+                    //                     case 'ru' :
+                    //                         val = this + '|' + this + '|' + this;
+                    //                         break;
+                    //
+                    //                     case 'en' :
+                    //                         if (PRIMARY_LOCALE === 'en') {
+                    //                             val = value.singularize() + '|' + value.pluralize();
+                    //                         }
+                    //                         else {
+                    //                             val = val.singularize() + '|' + val.pluralize();
+                    //                         }
+                    //                         break;
+                    //
+                    //                     // TODO: add locale tests and code to create plural forms
+                    //                     default:
+                    //                         val = this + '|' + this;
+                    //                         break;
+                    //                 }
+                    //                 return val.toLocaleLowerCase();
+                    //             }
+                    //             return val;
+                    //         }));
+                    //     }
+                    // }
+                    if (xElem.btnPluralsCount.length) {
                         if (dstLoc === PRIMARY_LOCALE || YANDEX_TRANSLATOR_KEY !== '') {
-                            xElem.btnPlurals.removeClass('hidden');
-                            xElem.btnPlurals.on('click', xfull(dstElem, function () {
+                            xElem.btnPluralsCount.removeClass('hidden');
+                            xElem.btnPluralsCount.on('click', xfull(dstElem, function () {
                                 var val = this;
+
                                 if (val.indexOf('|') === -1) {
                                     switch (dstLoc) {
                                         case 'ru' :
-                                            val = this + '|' + this + '|' + this;
+                                            val = this + '|' + ':count ' + this + '|' + ':count ' + this;
                                             break;
 
                                         case 'en' :
                                             if (PRIMARY_LOCALE === 'en') {
-                                                val = value.singularize() + '|' + value.pluralize();
+                                                val = value.singularize() + '|' + ':count ' + value.pluralize();
                                             }
                                             else {
-                                                val = val.singularize() + '|' + val.pluralize();
+                                                val = val.singularize() + '|' + ':count ' + val.pluralize();
                                             }
                                             break;
 
                                         // TODO: add locale tests and code to create plural forms
                                         default:
-                                            val = this + '|' + this;
+                                            val = this + '|' + ':count ' + this;
                                             break;
                                     }
                                     return val.toLocaleLowerCase();
+                                } else {
+                                    // see if all have count
+                                    var parts = val.split('|');
+                                    if (!parts.some(function (part) { return part.match(countRegEx);})) {
+                                        // add to all except first
+                                        val = parts.map(function (part) { return part.replace(countRegEx, '');}).join('|:count ');
+                                    } else if (parts.every(function (part) { return part.match(countRegEx);})) {
+                                        // remove from all
+                                        val = parts.map(function (part) { return part.replace(countRegEx, '');}).join('|');
+                                    } else {
+                                        // add to all
+                                        val = ':count ' + parts.map(function (part) { return part.replace(countRegEx, '');}).join('|:count ');
+                                    }
                                 }
                                 return val;
                             }));
@@ -597,7 +659,11 @@ $(document).ready(function () {
 
                 if (xElem.btnTranslate.length && dstElem.length && YANDEX_TRANSLATOR_KEY !== '') {
                     if (srcLoc !== '') {
-                        srcElem = elemRow.find('#' + srcId.replace(/\./, '-')).first();
+                        srcElem = elemRow.find('#' + srcId.replace(/\./g, '-')).first();
+                        if (srcElem.length === 0) {
+                            // could be search translations table
+                            srcElem = elemRow.parent().find('#' + srcId.replace(/\./g, '-')).first();
+                        }
                         if (srcElem.length) {
                             srcText = srcElem.text();
 

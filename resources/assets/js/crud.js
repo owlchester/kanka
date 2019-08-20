@@ -2,11 +2,14 @@
  * Crud
  */
 
+import select2 from './components/select2.js';
+
 // Character
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
 var entityFormActions, entityFormDefaultAction;
+var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 
 var filtersActionsShow, filtersActionHide;
 
@@ -17,11 +20,11 @@ var entityFormHasUnsavedChanges = false;
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
-var entityCalendarModalField;
+var entityCalendarModalField, entityCalendarModalForm;
 
 var toggablePanels;
 
-var validEntityForm = validRelationForm = false;
+var validEntityForm = false, validRelationForm = false;
 
 $(document).ready(function () {
     // Multi-delete
@@ -49,6 +52,7 @@ $(document).ready(function () {
 
     characterSortPersonality = $('.character-personality');
     characterSortAppearance = $('.character-appearance');
+    characterOrganisations = $('.character-organisations');
 
     characterAddPersonality = $('#add_personality');
     if (characterAddPersonality.length === 1) {
@@ -57,6 +61,10 @@ $(document).ready(function () {
     characterAddAppearance = $('#add_appearance');
     if (characterAddAppearance.length === 1) {
         initCharacterAppearance();
+    }
+    characterAddOrganisation = $('#add_organisation');
+    if (characterAddOrganisation.length === 1) {
+        initCharacterOrganisation();
     }
 
     $.each($('[data-toggle="ajax-modal"]'), function () {
@@ -262,6 +270,32 @@ function initCharacterAppearance()
 /**
  *
  */
+function initCharacterOrganisation()
+{
+    characterTemplateOrganisation = $('#template_organisation');
+    characterAddOrganisation.on('click', function (e) {
+        e.preventDefault();
+
+        $(characterOrganisations).append('<div class="form-group">' +
+            characterTemplateOrganisation.html() +
+            '</div>');
+
+        // Replace the temp class with the real class. We need this to avoid having two select2 fields
+        characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
+
+        // Handle deleting already loaded blocks
+        characterDeleteRowHandler();
+        registerPrivateCheckboxes();
+
+        return false;
+    });
+
+    characterDeleteRowHandler();
+}
+
+/**
+ *
+ */
 function characterDeleteRowHandler()
 {
     $.each($('.personality-delete'), function () {
@@ -272,11 +306,47 @@ function characterDeleteRowHandler()
         });
     });
 
+    $.each($('.member-delete'), function () {
+        $(this).unbind('click');
+        $(this).on('click', function (e) {
+            e.preventDefault();
+            $(this).closest('.form-group').remove();
+        });
+    });
+
     // Always re-calc the sortable traits
     characterSortPersonality.sortable();
     characterSortAppearance.sortable();
+    select2();
 }
 
+/**
+ *
+ */
+function registerPrivateCheckboxes()
+{
+    $.each($('[data-toggle="private"]'), function () {
+        // Add the title first
+        if ($(this).hasClass('fa-lock')) {
+            $(this).prop('title', $(this).data('private'));
+        } else {
+            $(this).prop('title', $(this).data('public'));
+        }
+
+        // On click toggle
+        $(this).click(function(e) {
+            if ($(this).hasClass('fa-lock')) {
+                // Unlock
+                $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
+                $(this).parent().find('input:hidden').val("0");
+            } else {
+                // Lock
+                $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
+                $(this).parent().find('input:hidden').val("1");
+            }
+        });
+    });
+}
 /**
  *
  */
