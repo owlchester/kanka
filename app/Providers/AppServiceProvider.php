@@ -111,8 +111,6 @@ class AppServiceProvider extends ServiceProvider
             Relation::observe('App\Observers\RelationObserver');
 
             Paginator::useBootstrapThree();
-
-            $this->addBladeDirectives();
         }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
@@ -128,36 +126,5 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-    }
-
-    /**
-     *
-     */
-    protected function addBladeDirectives()
-    {
-        // Role based directives
-        Blade::if('admin', function () {
-            return auth()->check() && auth()->user()->hasRole('admin');
-        });
-        Blade::if('translator', function () {
-            return auth()->check() && auth()->user()->hasRole('translator');
-        });
-        Blade::if('moderator', function () {
-            return auth()->check() && auth()->user()->hasRole('moderator');
-        });
-
-        // API directive for users in the API role
-        Blade::if('api', function () {
-            return auth()->check() && auth()->user()->hasRole('api');
-        });
-
-        // Permission to view an entity
-        Blade::if('viewentity', function (Entity $entity) {
-            return EntityPermission::canView($entity);
-        });
-
-//        Blade::if('campaigns', function () {
-//            return auth()->check() && auth()->user()->hasCampaigns();
-//        });
     }
 }

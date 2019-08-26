@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -297,5 +298,10 @@ abstract class MiscModel extends Model
             ->limit(20)
             ->pluck('type')
             ->all();
+    }
+
+    public function entry()
+    {
+        return Mentions::map($this);
     }
 }

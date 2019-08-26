@@ -4,10 +4,13 @@
  */
 namespace App\Providers;
 
+use App\Facades\EntityPermission;
+use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\Macros;
 use Form;
 use Collective\Html\HtmlServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 /**
  * Class MacroServiceProvider
@@ -55,6 +58,8 @@ class MacroServiceProvider extends HtmlServiceProvider
             'fieldId',
         ]);
 
+        $this->blade();
+
         /*Form::function($fieldId, $searchRouteName, $prefill = null, $placeholderKey = null) {
 
             $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . trim($fieldId) : $placeholderKey;
@@ -79,5 +84,33 @@ class MacroServiceProvider extends HtmlServiceProvider
                 ]
             );
         });*/
+    }
+
+    protected function blade()
+    {
+        // Role based directives
+        Blade::if('admin', function () {
+            return auth()->check() && auth()->user()->hasRole('admin');
+        });
+        Blade::if('translator', function () {
+            return auth()->check() && auth()->user()->hasRole('translator');
+        });
+        Blade::if('moderator', function () {
+            return auth()->check() && auth()->user()->hasRole('moderator');
+        });
+
+        // API directive for users in the API role
+        Blade::if('api', function () {
+            return auth()->check() && auth()->user()->hasRole('api');
+        });
+
+        // Permission to view an entity
+        Blade::if('viewentity', function (Entity $entity) {
+            return EntityPermission::canView($entity);
+        });
+
+//        Blade::if('campaigns', function () {
+//            return auth()->check() && auth()->user()->hasCampaigns();
+//        });
     }
 }

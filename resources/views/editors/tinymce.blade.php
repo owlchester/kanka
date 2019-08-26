@@ -37,7 +37,11 @@
                     }
                 },
                 insert: function(item) {
-                    if (item.url) {
+                    if (item.id) {
+                        console.log('mentions v3', item);
+                        return '[' + item.model_type + ':' + item.id + ']';
+                    }
+                    else if (item.url) {
                         if (item.tooltip) {
                             var str = '<a href="' + item.url + '" title="' + item.tooltip.replace(/["]/g, '\'') + '" data-toggle="tooltip" data-html="true" >' + item.fullname + '</a>';
                             return str;

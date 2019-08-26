@@ -207,6 +207,7 @@ return [
         App\Providers\MacroServiceProvider::class,
         App\Providers\CampaignLocalizationServiceProvider::class,
         App\Providers\EntityPermissionServiceProvider::class,
+        App\Providers\MentionsServiceProvider::class,
         App\Providers\UserPermissionServiceProvider::class,
     ],
 
@@ -271,6 +272,7 @@ return [
         // Custom
         'CampaignLocalization' => App\Facades\CampaignLocalization::class,
         'EntityPermission' => App\Facades\EntityPermission::class,
+        'Mentions' => App\Facades\Mentions::class,
         'UserPermission' => App\Facades\UserPermission::class,
     ],
 

@@ -186,6 +186,7 @@ class SearchService
                         'image' => $img,
                         'name' => e($model->name),
                         'type' => __('entities.' . $model->type),
+                        'model_type' => $model->type,
                         'tooltip' => $model->tooltip(),
                         'url' => $model->url()
                     ];
