@@ -17,24 +17,43 @@ trait MentionTrait
      */
     public function extract($text)
     {
-        $data = [];
+        $mentions = [];
         // Extract links from the entry to foreign
-        //preg_match_all('`href="([^"]*)"(.*?)>(.*?)</a>`i', $text, $segments);
         preg_match_all('`\[([a-z]+):(.*?)\]`i' , $text, $segments);
 
         foreach ($segments[1] as $id => $type) {
             $options = explode('|', $segments[2][$id]);
             $id = Arr::first($options);
-            $type = Str::plural($type);
-
             $key = $type.'.' . $id;
 
-            $data[$key] = [
+            $data = [
                 'type' => $type,
                 'id' => $id,
             ];
+
+            if (count($options) > 1) {
+                // Skip the first segment
+                Arr::forget($options, 0);
+                foreach ($options as $option) {
+                    $subSegments = explode(':', $option);
+                    if (count($subSegments) === 1) {
+                        $data['text'] = Arr::first($subSegments);
+                        continue;
+                    }
+
+                    $type = Arr::first($subSegments);
+                    $value = Arr::last($subSegments);
+                    if ($type == 'page') {
+                        $data['page'] = $value;
+                    } elseif ($type == 'tab') {
+                        $data['tab'] = $value;
+                    }
+                }
+            }
+
+            $mentions[$key] = $data;
         }
 
-        return $data;
+        return $mentions;
     }
 }

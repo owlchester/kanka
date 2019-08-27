@@ -2,8 +2,15 @@
 
 namespace App\Facades;
 
+use App\User;
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class UserPermission
+ * @package App\Facades
+ *
+ * @method static user(User $user = null)
+ */
 class UserPermission extends Facade
 {
     /**

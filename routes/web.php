@@ -318,6 +318,8 @@ Route::group([
         Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
         Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 
+        Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
+
         Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
         Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 

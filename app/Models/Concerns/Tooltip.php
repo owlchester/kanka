@@ -53,7 +53,7 @@ trait Tooltip
     {
         // Disable caching for Characters?
         $tooltip = Cache::get($this->tooltipCacheKey(), false);
-        if ($tooltip === false) {
+        if (true || $tooltip === false) {
             $tooltip = $this->cacheTooltip($limit);
         }
 
@@ -80,7 +80,8 @@ trait Tooltip
 
         $subtitle = $this->tooltipSubtitle();
 
-        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . $text;
+        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . 
+            '<p class="tooltip-text">' . $text . '</p>';
 
         return $tooltip;
     }

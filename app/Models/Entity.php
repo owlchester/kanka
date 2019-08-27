@@ -294,6 +294,21 @@ class Entity extends Model
     }
 
     /**
+     * Full tooltip used for ajax calls
+     * @return string|null
+     */
+    public function fullTooltip()
+    {
+        if (!$this->child) {
+            return null;
+        }
+
+        $avatar = '<img class=\'entity-image\' src=\'' . $this->avatar(true) . '\'/>';
+
+        return "$avatar". $this->child->tooltipWithName(500, $this->tags);
+    }
+
+    /**
      * @param string $action
      * @return string
      */

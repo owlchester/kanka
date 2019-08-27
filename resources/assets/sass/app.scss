@@ -14,7 +14,7 @@
 @import "calendar";
 @import "conversation";
 @import "print";
-@import "../components/rpg/scss/rpg-awesome";
+//@import "../components/rpg/scss/rpg-awesome";
 
 // App
 ul.campaigns {
@@ -551,6 +551,23 @@ div.mce-fullscreen {
   span {
     margin: 2px;
     display: inline-block;
+  }
+}
+
+.tooltip-ajax {
+  min-width: 320px;
+  text-align: left;
+
+  .tooltip-text {
+    clear: both;
+  }
+
+  .entity-image {
+    margin: 4px 5px 5px 0;
+    height: 65px;
+    width: 65px;
+    border-radius: 2px;
+    float: left;
   }
 }
 

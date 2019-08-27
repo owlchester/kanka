@@ -22,6 +22,18 @@ $(document).ready(function() {
     window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
     if (!window.kankaIsMobile.matches) {
         $('[data-toggle="tooltip"]').tooltip();
+
+        // New tooltips with ajax call
+        $('[data-toggle="tooltip-ajax"]').tooltip({
+            title: entityTooltip,
+            delay: 300,
+            placement: 'auto',
+            template: '<div class="tooltip" role="tooltip">' +
+                '<div class="tooltip-arrow"></div>' +
+                '<div class="tooltip-inner tooltip-ajax"></div>' +
+                '</div>',
+            html: true
+        });
     }
 
     $('[data-toggle="popover"]').popover({
@@ -209,6 +221,38 @@ function treeViewInit(element) {
 }
 
 /**
+ * Get the entity's tooltip via ajax
+ */
+var cachedTooltips = Array();
+
+function entityTooltip() {
+    var element = $(this);
+
+    var id = element.data('id');
+
+    if (id in cachedTooltips){
+        return cachedTooltips[id];
+    }
+
+    var title = '<div class="center"><i class="fa fa-spinner fa-spin"></i></div>';
+
+    $.ajax({
+        url: $(this).data('url'),
+        method: "GET",
+        async: false,
+        success:function(data)
+        {
+            title = data;
+        }
+    });
+
+    cachedTooltips[id] = title;
+
+    return title;
+
+}
+
+/**
  * Save and manage tabs for when refreshing
  */
 function manageTabs() {
@@ -392,7 +436,7 @@ function initNotifications() {
 function refreshNotificationList() {
     // console.log('refresh notification list');
     $.ajax(notificationList.data('url'))
-        .done((result) => {
+        .done(function(result) {
             if (result.count > 0) {
                 notificationList.html(result.body);
                 notificationCount.html(result.count).show();

@@ -478,7 +478,6 @@ function registerEntityCalendarModal()
     });
 
     var defaultCalendarId = entityCalendarAdd.data('default-calendar');
-    console.log('entityCalendarField', entityCalendarField, entityCalendarField.val());
     if (entityCalendarField.val()) {
         entityCalendarCancel.show();
         entityCalendarSubForm.fadeIn();
