@@ -20,8 +20,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!app()->runningInConsole()) {
+        if (!app()->runningInConsole() || $this->shouldLoadPolicies()) {
             $this->registerPolicies();
+        }
+        if (!app()->runningInConsole()) {
             Passport::routes(null, [
                 'prefix' => LaravelLocalization::setLocale() . '/oauth',
             ]);
@@ -63,4 +65,12 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Race' => 'App\Policies\RacePolicy',
         'App\Models\Tag' => 'App\Policies\TagPolicy',
     ];
+
+    /**
+     * @return bool
+     */
+    private function shouldLoadPolicies(): bool
+    {
+        return (isset($_ENV['LOAD_POLICIES']) && ($_ENV['LOAD_POLICIES'] == 1 || $_ENV['LOAD_POLICIES'] == true));
+    }
 }
