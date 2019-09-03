@@ -1,16 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109130951-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-109130951-1');
-    </script>
-
+@include('layouts._tracking')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ trans('front.meta.description') }}">
@@ -32,6 +23,7 @@
 </head>
 
 <body id="page-top">
+@include('layouts._tracking-fallback')
 <!-- Custom styles for this template -->
 <link href="/css/front/new-age.min.css" rel="stylesheet">
 <link href="{{ mix('css/front.css') }}" rel="stylesheet">
