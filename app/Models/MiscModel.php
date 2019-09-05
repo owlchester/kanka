@@ -313,15 +313,15 @@ abstract class MiscModel extends Model
      * @param string $textField = 'name'
      * @return string
      */
-    public function tooltipedLink($textField = 'name'): string
+    public function tooltipedLink(): string
     {
         if (empty($this->entity)) {
-            return e($this->$textField);
+            return e($this->name);
         }
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '"' .
             'data-url="' . route('entities.tooltip', $this->entity->id). '" href="' .
             $this->getLink() . '">' .
-            e($this->$textField) .
+            e($this->name) .
             '</a>';
     }
 }
