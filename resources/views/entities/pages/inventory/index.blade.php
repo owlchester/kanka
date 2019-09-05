@@ -55,9 +55,7 @@
                                     <a class="entity-image" style="background-image: url('{{ $item->item->getImageUrl(true) }}');" title="{{ $item->item->name }}" href="{{ $item->item->getLink() }}"></a>
                                 </td>
                                 <td>
-                                    <a href="{{ $item->item->getLink() }}" data-toggle="tooltip" data-html="true" title="{{ $item->item->tooltipWithName() }}">
-                                        {{ $item->item->name }}
-                                    </a>
+                                    {!! $item->item->tooltipedLink() !!}
                                 </td>
                                 <td>
                                     {{ $item->position }}

@@ -20,7 +20,7 @@
                 <li class="list-group-item">
                     <b>{{ trans('items.fields.character') }}</b>
                     <span  class="pull-right">
-                            <a href="{{ $model->character->getLink() }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">{{ $model->character->name }}</a>
+                        {!! $model->character->tooltipedLink() !!}
                             </span>
                     <br class="clear" />
                 </li>

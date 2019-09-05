@@ -118,7 +118,7 @@ trait Tooltip
      * @param $tags
      * @return string
      */
-    protected function tooltipAddTags(string $tooltip, $tags): string
+    public function tooltipAddTags(string $tooltip, $tags): string
     {
         if ($tags === false) {
             if (empty($this->entity)) {

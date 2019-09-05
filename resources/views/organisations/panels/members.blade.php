@@ -65,29 +65,25 @@ $hasOrg = request()->has('organisation_id');
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('characters.show', $relation->character->id) }}" data-toggle="tooltip" title="{{ $relation->character->tooltipWithName() }}" data-html="true">
-                            {{ $relation->character->name }}
-                        </a>
+                        {!! $relation->character->tooltipedLink() !!}
                     </td>
                     @if ($campaign->enabled('locations'))
                     <td class="hidden-sm hidden-xs">
                         @if ($relation->character->location)
-                            <a href="{{ route('locations.show', $relation->character->location_id) }}" data-toggle="tooltip" title="{{ $relation->character->location->tooltipWithName() }}" data-html="true">{{ $relation->character->location->name }}</a>
+                            {!! $relation->character->location->tooltipedLink() !!}
                         @endif
                     </td>
                     @endif
                     @if (!$hasOrg)
                     <td>
-                        <a href="{{ $relation->organisation->getLink() }}" data-toggle="tooltip" title="{{ $relation->organisation->tooltipWithName() }}" data-html="true">
-                            {{ $relation->organisation->name}}
-                        </a>
+                        {!! $relation->organisation->tooltipedLink() !!}
                     </td>
                     @endif
                     <td>{{ $relation->role }}</td>
                     @if ($campaign->enabled('races'))
                         <td class="hidden-sm hidden-xs">
                             @if ($relation->character->race)
-                                <a href="{{ route('races.show', $relation->character->race_id) }}" data-toggle="tooltip" title="{{ $relation->character->race->tooltipWithName() }}" data-html="true">{{ $relation->character->race->name }}</a>
+                                {!! $relation->character->race->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif

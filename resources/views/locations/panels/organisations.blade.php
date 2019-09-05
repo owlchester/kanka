@@ -20,7 +20,7 @@
                         <a class="entity-image" style="background-image: url('{{ $org->getImageUrl(true) }}');" title="{{ $org->name }}" href="{{ route('items.show', $org->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('organisations.show', $org->id) }}" data-toggle="tooltip" title="{{ $org->tooltipWithName() }}" data-html="true">{{ $org->name }}</a>
+                        {!! $org->tooltipedLink() !!}
                     </td>
                     <td>{{ $org->type }}</td>
 

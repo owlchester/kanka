@@ -59,13 +59,11 @@ $r = $model->entity->relationships()->has('target')->with(['target', 'target.tag
                 <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
             </td>
             <td>
-                <a href="{{ $relation->target->url() }}" data-toggle="tooltip" title="{{ $relation->target->tooltipWithName() }}" data-html="true">
-                    {{ $relation->target->child->name }}
-                </a>
+                {!! $relation->target->tooltipedLink() !!}
             </td>
             @if ($campaign->enabled('locations'))<td>
                 @if ($relation->target->child->location)
-                    <a href="{{ $relation->target->child->location->getLink() }}" data-toggle="tooltip" title="{{ $relation->target->child->location->tooltipWithName() }}" data-html="true">{{ $relation->target->child->location->name }}</a>
+                    {!! $relation->target->child->location->tooltipedLink() !!}
                 @endif
             </td>
             @endif

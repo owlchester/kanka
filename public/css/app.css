@@ -740,10 +740,21 @@ div.mce-fullscreen {
 
 .tooltip-ajax .entity-image {
   margin: 4px 5px 5px 0;
-  height: 65px;
-  width: 65px;
-  border-radius: 2px;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
   float: left;
+  display: block;
+}
+
+.tooltip-ajax .entity-name {
+  font-size: 16pt;
+  display: block;
+}
+
+.tooltip-ajax .entity-subtitle {
+  font-size: 12pt;
+  display: block;
 }
 
 .panel-entity-files .well {

@@ -13,7 +13,7 @@
                 <li class="list-group-item">
                     <b>{{ trans('families.fields.family') }}</b>
                     <span class="pull-right">
-                        <a href="{{ $model->family->getLink() }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">{{ $model->family->name }}</a>
+                        {!! $model>family->tooltipedLink() !!}
                     </span>
                     <br class="clear" />
                 </li>

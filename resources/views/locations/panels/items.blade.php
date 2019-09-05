@@ -20,13 +20,13 @@
                         <a class="entity-image" style="background-image: url('{{ $item->getImageUrl(true) }}');" title="{{ $item->name }}" href="{{ route('items.show', $item->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltipWithName() }}" data-html="true">{{ $item->name }}</a>
+                        {!! $item->tooltipedLink() !!}
                     </td>
                     <td>{{ $item->type }}</td>
 
                     @if ($campaign->enabled('characters'))<td>
                         @if ($item->character)
-                            <a href="{{ route('characters.show', $item->character) }}" data-toggle="tooltip" title="{{ $item->character->tooltipWithName() }}" data-html="true">{{ $item->character->name }}</a>
+                            {!! $item->character->tooltipedLink() !!}
                         @endif
                     </td>@endif
                     <td class="text-right">

@@ -24,7 +24,10 @@
             @include('cruds.lists.location')
             @if ($campaign->enabled('characters') && !empty($model->character))
                 <li class="list-group-item">
-                    <b>{{ trans('events.fields.character') }}</b> <a class="pull-right" href="{{ route('characters.show', $model->character_id) }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">{{ $model->character->name }}</a>
+                    <b>{{ trans('events.fields.character') }}</b>
+                    <span class="pull-right">
+                        {!! $model->character->tooltipedLink() !!}
+                    </span>
                     <br class="clear" />
                 </li>
             @endif

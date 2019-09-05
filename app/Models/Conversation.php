@@ -121,4 +121,12 @@ class Conversation extends MiscModel
     {
         return (int) config('entities.ids.conversation');
     }
+
+    /**
+     * @return mixed
+     */
+    public function entry()
+    {
+        return '';
+    }
 }

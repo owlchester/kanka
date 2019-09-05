@@ -29,9 +29,9 @@
                     <b>{{ trans('crud.fields.tag') }}</b>
 
                     <span class="pull-right">
-                            <a href="{{ route('tags.show', $model->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tooltipWithName() }}" data-html="true">{{ $model->tag->name }}</a>
+                        {!! $model->tag->tooltipedLink() !!}
                         @if ($model->tag->tag)
-                            , <a href="{{ route('tags.show', $model->tag->tag->id) }}" data-toggle="tooltip" title="{{ $model->tag->tag->tooltipWithName() }}" data-html="true">{{ $model->tag->tag->name }}</a>
+                            {!! $model->tag->tag->tooltipedLink() !!}
                         @endif
                             </span>
                     <br class="clear" />

@@ -19,7 +19,7 @@
                         <a class="entity-image" style="background-image: url('{{ $event->getImageUrl(true) }}');" title="{{ $event->name }}" href="{{ route('events.show', $event->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('events.show', $event->id) }}" data-toggle="tooltip" title="{{ $event->tooltipWithName() }}" data-html="true">{{ $event->name }}</a>
+                        {!! $event->tooltipedLink() !!}
                     </td>
                     <td>{{ $event->type }}</td>
                     <td class="text-right">

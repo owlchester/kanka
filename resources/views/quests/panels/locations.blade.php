@@ -26,9 +26,7 @@
                                 @if ($location->is_private)
                                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                                 @endif
-                                <a href="{{ route('locations.show', $location->location) }}" data-toggle="tooltip" title="{{ $location->location->tooltipWithName() }}" data-html="true">
-                                    {{ $location->location->name }}
-                                </a>
+                                {!! $location->location->tooltipedLink() !!}
                             </h3>
                             <h5 class="widget-user-desc">{{ $location->role }}<br /></h5>
                         </div>

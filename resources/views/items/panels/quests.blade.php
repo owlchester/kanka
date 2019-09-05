@@ -28,7 +28,7 @@
                         <a class="entity-image" style="background-image: url('{{ $quest->getImageUrl(true) }}');" title="{{ $quest->name }}" href="{{ route('quests.show', $quest->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('quests.show', $quest->id) }}" data-toggle="tooltip" title="{{ $quest->tooltipWithName() }}" data-html="true">{{ $quest->name }}</a>
+                        {!! $quest->tooltipedLink() !!}
                     </td>
                     <td>
                         {{ $quest->pivot->role }}
@@ -36,7 +36,7 @@
                     <td class="hidden-sm">{{ $quest->type }}</td>
                     <td class="hidden-sm">
                         @if ($quest->quest)
-                        <a href="{{ route('quests.show', $quest->quest->id) }}" data-toggle="tooltip" title="{{ $quest->quest->tooltipWithName() }}" data-html="true">{{ $quest->quest->name }}</a>
+                            {!! $quest->quest->tooltipedLink() !!}
                         @endif
                     </td>
                     @if ($campaign->enabled('locations'))

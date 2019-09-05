@@ -7,9 +7,11 @@ use App\Models\Concerns\Searchable;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\EntityAclTrait;
+use App\Traits\TooltipTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -56,6 +58,7 @@ class Entity extends Model
         EntityAclTrait,
         EntityScopes,
         Searchable,
+        TooltipTrait,
         Picture;
 
     /**
@@ -303,10 +306,19 @@ class Entity extends Model
             return null;
         }
 
-        $avatar = '<img class=\'entity-image\' src=\'' . $this->avatar(true) . '\'/>';
+        //$avatar = '<img class=\'entity-image\' src=\'' . $this->avatar(true) . '\'/>';
+        $text = Str::limit($this->child->entry(), 500);
+        $text = strip_tags($text);
+        $name = '<span class="entity-name">' . $this->child->tooltipName() . '</span>';
+        $subtitle = $this->child->tooltipSubtitle();
+        if (!empty($subtitle)) {
+            $subtitle = "<span class='entity-subtitle'>$subtitle</span>";
+        }
+        $text = $this->child->tooltipAddTags($text, $this->tags);
 
-        return "$avatar". $this->child->tooltipWithName(500, $this->tags);
+        return $name . $subtitle . $text;
     }
+
 
     /**
      * @param string $action

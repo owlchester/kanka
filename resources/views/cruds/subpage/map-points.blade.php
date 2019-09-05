@@ -36,7 +36,7 @@
                                     <a class="entity-image" style="background-image: url('{{ $location->location->getImageUrl(true) }}');" title="{{ $location->location->name }}" href="{{ route('locations.show', $location->location_id) }}"></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('locations.show', $location->location_id) }}" data-toggle="tooltip" title="{{ $location->location->tooltipWithName() }}" data-html="true">{{ $location->location->name }}</a>
+                                    {!! $location->tooltipedLink() !!}
                                 </td>
                                 <td>
                                     @if (!empty($location->location->map) && (!$location->location->is_map_private || (auth()->check() && auth()->user()->can('map', $location->location))))

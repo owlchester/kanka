@@ -300,8 +300,28 @@ abstract class MiscModel extends Model
             ->all();
     }
 
+    /**
+     * @return mixed
+     */
     public function entry()
     {
         return Mentions::map($this);
+    }
+
+    /**
+     * Get the entity link with ajax tooltip
+     * @param string $textField = 'name'
+     * @return string
+     */
+    public function tooltipedLink($textField = 'name'): string
+    {
+        if (empty($this->entity)) {
+            return e($this->$textField);
+        }
+        return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '"' .
+            'data-url="' . route('entities.tooltip', $this->entity->id). '" href="' .
+            $this->getLink() . '">' .
+            e($this->$textField) .
+            '</a>';
     }
 }

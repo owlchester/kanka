@@ -17,7 +17,7 @@
             'field' => 'parentLocation.name',
             'render' => function($model) {
                 if ($model->parentLocation) {
-                    return '<a href="' . route('locations.show', $model->parentLocation->id) . '" data-toggle="tooltip" data-html="true" title="' . $model->parentLocation->tooltipWithName() . '">' . e($model->parentLocation->name) . '</a>';
+                return $model->parentLocation->tooltipedLink();
                 }
             }
         ],

@@ -42,7 +42,7 @@
                             @if (!empty($event->entity->child->image))
                             <a href="{{ $event->entity->url() }}" class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');"></a>
                             @endif
-                            <span data-toggle="tooltip" title="{{ $event->entity->tooltipWithName() }}" data-html="true" class="reminder-entity">{{ $event->entity->name }}</span>
+                            <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', $event->entity->id) }}" class="reminder-entity">{{ $event->entity->name }}</span>
                             {!! $event->getLabel() !!}
                         </div>
                     @endforeach

@@ -37,7 +37,7 @@ $r = $model
                 <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(true) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
             </td>
             <td>
-                <a href="{{ $relation->calendar->getLink() }}" title="{{ $relation->calendar->tooltipWithName() }}" data-toggle="tooltip" data-html="true">{{ $relation->calendar->name }}</a>
+                {!! $relation->calendar->tooltipedLink() !!}
             </td>
             <td>
                 <a href="{{ $relation->calendar->getLink() }}?year={{ $relation->year }}&month={{ $relation->month }}">

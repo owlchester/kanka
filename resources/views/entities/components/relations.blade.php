@@ -12,9 +12,7 @@ $models = $model->entity->starredRelations;
                 {{ $relation->relation }}
             </strong>
             <span class="pull-right">
-                <a href="{{ $relation->target->url() }}" title="{{ $relation->target->tooltipWithName() }}" data-toggle="tooltip" data-html="true">
-                    {{ $relation->target->name }}
-                </a>
+                {!! $relation->target->tooltipedLink() !!}
             </span>
             <br class="clear" />
         </li>

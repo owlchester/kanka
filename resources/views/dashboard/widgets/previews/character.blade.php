@@ -16,12 +16,6 @@ $model = $widget->entity->child;
                 {{ $widget->entity->name }}
 
             </a>
-            @if ($campaign->enabled('families') && !empty($model->family))
-                {{--<a href="{{ route('families.show', $model->family->id) }}" data-toggle="tooltip" title="{{ $model->family->tooltipWithName() }}" data-html="true">--}}
-                    {{--{{ $model->family->name }}--}}
-                {{--</a>--}}
-            @endif
-
         </h3>
     </div>
     <div class="panel-body">

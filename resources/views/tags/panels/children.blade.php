@@ -52,9 +52,7 @@ if (request()->has('tag_id')) {
                             <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
                         </td>
                         <td>
-                            <a href="{{ $child->url() }}" data-toggle="tooltip" title="{{ $child->tooltipWithName() }}" data-html="true">
-                                {{ $child->name }}
-                            </a>
+                            {!! $child->tooltipedLink() !!}
                         </td>
                         <td colspan="2">
                             {{ trans('entities.' . $child->pluralType()) }}

@@ -16,23 +16,23 @@
                 <th>{{ trans('crud.fields.location') }}</th>
                 <th>&nbsp;</th>
             </tr>
-            @foreach ($r as $model)
+            @foreach ($r as $family)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('families.show', $model->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $family->getImageUrl(true) }}');" title="{{ $family->name }}" href="{{ route('families.show', $family->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('families.show', $model->id) }}" data-toggle="tooltip" title="{{ $model->tooltipWithName() }}" data-html="true">{{ $model->name }}</a>
+                        {!! $family->tooltipedLink() !!}
                     </td>
                     <td>
-                        @if ($model->parent)
-                            <a href="{{ route('families.show', $model->parent->id) }}" data-toggle="tooltip" title="{{ $model->parent->tooltipWithName() }}" data-html="true">{{ $model->parent->name }}</a>
+                        @if ($family->parent)
+                            {!! $family->parent->tooltipedLink() !!}
                         @endif
                     </td>
                     @if ($campaign->enabled('locations'))
                     <td>
-                        @if ($model->location)
-                            <a href="{{ $model->location->getLink() }}" data-toggle="tooltip" title="{{ $model->location->tooltipWithName() }}" data-html="true">{{ $model->location->name }}</a>
+                        @if ($family->location)
+                            {!! $family->location->tooltipedLink() !!}
                         @endif
                     </td>
                     @endif

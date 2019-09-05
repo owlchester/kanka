@@ -22,7 +22,7 @@ class MentionsService
      */
     public function map(MiscModel $model, $field = 'entry'): string
     {
-        $this->text = $model->$field;
+        $this->text = !empty($model->$field) ? $model->$field : '';
 
         $mappings = $this->extract($this->text);
 

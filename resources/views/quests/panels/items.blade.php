@@ -26,9 +26,7 @@
                                 @if ($item->is_private)
                                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                                 @endif
-                                <a href="{{ route('items.show', $item->item) }}" data-toggle="tooltip" title="{{ $item->item->tooltipWithName() }}" data-html="true">
-                                    {{ $item->item->name }}
-                                </a>
+                                {!! $item->item->tooltipedLink() !!}
                             </h3>
                             <h5 class="widget-user-desc">{{ $item->role }}<br /></h5>
                         </div>

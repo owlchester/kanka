@@ -21,13 +21,13 @@
                         <a class="entity-image" style="background-image: url('{{ $item->getImageUrl(true) }}');" title="{{ $item->name }}" href="{{ route('items.show', $item->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('items.show', $item->id) }}" data-toggle="tooltip" title="{{ $item->tooltipWithName() }}" data-html="true">{{ $item->name }}</a>
+                        {!! $item->tooltipedLink() !!}
                     </td>
                     <td class="hidden-xs">{{ $item->type }}</td>
                     @if ($campaign->enabled('locations'))
                         <td class="hidden-xs">
                             @if ($item->location)
-                                <a href="{{ route('locations.show', $item->location_id) }}" data-toggle="tooltip" title="{{ $item->location->tooltipWithName() }}" data-html="true">{{ $item->location->name }}</a>
+                                {!! $item->location->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif

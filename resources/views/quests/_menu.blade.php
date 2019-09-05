@@ -19,10 +19,8 @@
                 <li class="list-group-item">
                     <b>{{ trans('quests.fields.quest') }}</b>
                     <span class="pull-right">
-                                <a href="{{ route('quests.show', $model->quest->id) }}" data-toggle="tooltip" title="{{ $model->quest->tooltipWithName() }}" data-html="true">
-                                    {{ $model->quest->name }}
-                                </a>
-                            </span>
+                        {!! $model->quest->tooltipedLink() !!}
+                    </span>
                     <br class="clear" />
                 </li>
             @endif
@@ -30,10 +28,8 @@
                 <li class="list-group-item">
                     <b>{{ trans('quests.fields.character') }}</b>
                     <span  class="pull-right">
-                            <a href="{{ route('characters.show', $model->character->id) }}" data-toggle="tooltip" title="{{ $model->character->tooltipWithName() }}" data-html="true">
-                                {{ $model->character->name }}
-                            </a>
-                        </span>
+                        {!! $model->character->tooltipedLink() !!}
+                    </span>
                     <br class="clear" />
                 </li>
             @endif

@@ -18,7 +18,7 @@
             'visible' => $campaign->enabled('families'),
             'render' => function($model) {
                 if ($model->family) {
-                    return '<a href="' . route('families.show', $model->family->id) . '" data-toggle="tooltip" title="' . $model->family->tooltipWithName() . '" data-html="true">' . e($model->family->name) . '</a>';
+                    return $model->family->tooltipedLink();
                 }
             }
         ],
@@ -32,7 +32,7 @@
             'visible' => $campaign->enabled('races'),
             'render' => function($model) {
                 if ($model->race) {
-                    return '<a href="' . route('races.show', $model->race_id) . '" data-toggle="tooltip" title="' . $model->race->tooltipWithName() . '" data-html="true">' . e($model->race->name) . '</a>';
+                    return $model->race->tooltipedLink();
                 }
             }
         ],

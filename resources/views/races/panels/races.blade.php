@@ -21,7 +21,7 @@
                         <a class="entity-image" style="background-image: url('{{ $race->getImageUrl(true) }}');" title="{{ $race->name }}" href="{{ route('races.show', $race->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('races.show', $race->id) }}" data-toggle="tooltip" title="{{ $race->tooltipWithName() }}" data-html="true">{{ $race->name }}</a>
+                        {!! $race->tooltipedLink() !!}
                     </td>
                     @if ($campaign->enabled('characters'))
                     <td>

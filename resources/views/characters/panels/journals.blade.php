@@ -23,7 +23,7 @@
                         <a class="entity-image" style="background-image: url('{{ $journal->getImageUrl(true) }}');" title="{{ $journal->name }}" href="{{ route('journals.show', $journal->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('journals.show', $journal->id) }}" data-toggle="tooltip" title="{{ $journal->tooltipWithName() }}" data-html="true">{{ $journal->name }}</a>
+                        {!! $journal->tooltipedLink() !!}
                     </td>
                     <td class="visible-sm">{{ $journal->type }}</td>
                     <td class="visible-sm">{{ $dateRenderer->render($journal->date) }}</td>

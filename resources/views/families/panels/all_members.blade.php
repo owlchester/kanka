@@ -28,12 +28,12 @@
                         <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(true) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('characters.show', $member->id) }}" data-toggle="tooltip" title="{{ $member->tooltipWithName() }}" data-html="true">{{ $member->name }}</a>
+                        {!! $member->tooltipedLink() !!}
                     </td>
                     @if ($campaign->enabled('locations'))
                         <td>
                             @if ($member->location)
-                                <a href="{{ route('locations.show', $member->location_id) }}" data-toggle="tooltip" title="{{ $member->location->tooltipWithName() }}" data-html="true">{{ $member->location->name }}</a>
+                                {!! $member->location->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif
@@ -41,7 +41,7 @@
                     @if ($campaign->enabled('races'))
                         <td>
                             @if ($member->race)
-                                <a href="{{ route('races.show', $member->race_id) }}" data-toggle="tooltip" title="{{ $member->race->tooltipWithName() }}" data-html="true">{{ $member->race->name }}</a>
+                                {!! $member->race->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif

@@ -17,9 +17,7 @@ if (empty($entity->child)) {
        title="{{ $entity->name }}"
        href="{{ $entity->url() }}"></a>
 
-    <a class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true" href="{{ $entity->url() }}">
-        {{ $entity->name }}
-    </a>
+    {!! $entity->tooltipedLink() !!}
 
     <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
         {!! $entity->child->entry !!}

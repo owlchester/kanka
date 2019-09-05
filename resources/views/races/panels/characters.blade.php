@@ -25,19 +25,19 @@
                         <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(true) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
                     </td>
                     <td>
-                        <a href="{{ route('characters.show', $character->id) }}" data-toggle="tooltip" title="{{ $character->tooltipWithName() }}" data-html="true">{{ $character->name }}</a>
+                        {!! $character->tooltipedLink() !!}
                     </td>
                     @if ($campaign->enabled('locations'))
                         <td>
                             @if ($character->location)
-                                <a href="{{ route('locations.show', $character->location_id) }}" data-toggle="tooltip" title="{{ $character->location->tooltipWithName() }}" data-html="true">{{ $character->location->name }}</a>
+                                {!! $character->location->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif
                     @if ($campaign->enabled('families'))
                     <td>
                         @if ($character->family)
-                            <a href="{{ route('families.show', $character->family_id) }}" data-toggle="tooltip" title="{{ $character->family->tooltipWithName() }}" data-html="true">{{ $character->family->name }}</a>
+                            {!! $character->family->tooltipedLink() !!}
                         @endif
                     </td>
                     @endif

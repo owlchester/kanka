@@ -20,7 +20,7 @@
             'label' => __('menu_links.fields.entity'),
             'render' => function($model) {
                 if ($model->target) {
-                    return '<a href="' . $model->target->url('show') . '" data-toggle="tooltip" data-html="true" title="' . $model->target->tooltipWithName() . '">' . e($model->target->name) . '</a>';
+                    return $model->target->tooltipedLink();
                 }
                 return __('entities.' . str_plural($model->type));
             },

@@ -12,9 +12,7 @@
            title="{{ $entity->name }}"
            href="{{ $entity->url() }}"></a>
 
-        <a class="name" data-toggle="tooltip" title="{{ $entity->tooltipWithName() }}" data-html="true" href="{{ $entity->url() }}">
-            {{ $entity->name }}
-        </a>
+        {!! $entity->tooltipedLink() !!}
     </div>
 @endforeach
 <div class="text-center">

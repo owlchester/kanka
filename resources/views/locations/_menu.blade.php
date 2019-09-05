@@ -24,8 +24,9 @@
                     </b>
 
                     <span class="pull-right">
-                            <a href="{{ route('locations.show', $model->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->parentLocation->tooltipWithName() }}" data-html="true">{{ $model->parentLocation->name }}</a>@if ($model->parentLocation->parentLocation),
-                        <a href="{{ route('locations.show', $model->parentLocation->parentLocation->id) }}" data-toggle="tooltip" title="{{ $model->parentLocation->parentLocation->tooltipWithName() }}" data-html="true">{{ $model->parentLocation->parentLocation->name }}</a>
+                        {!! $model->parentLocation->tooltipedLink() !!}
+                        @if ($model->parentLocation->parentLocation),
+                        {!! $model->parentLocation->parentLocation->tooltipedLink() !!}
                         @endif
                             </span>
                     <br class="clear" />

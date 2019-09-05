@@ -26,9 +26,7 @@
                                 @if ($organisation->is_private)
                                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                                 @endif
-                                <a href="{{ route('organisations.show', $organisation->organisation) }}" data-toggle="tooltip" title="{{ $organisation->organisation->tooltipWithName() }}" data-html="true">
-                                    {{ $organisation->organisation->name }}
-                                </a>
+                                {!! $organisation->organisation->tooltipedLink() !!}
                             </h3>
                             <h5 class="widget-user-desc">{{ $organisation->role }}<br /></h5>
                         </div>

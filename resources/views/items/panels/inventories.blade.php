@@ -20,7 +20,7 @@
                         <a class="entity-image" style="background-image: url('{{ $inventory->entity->child->getImageUrl(true) }}');" title="{{ $inventory->entity->name }}" href="{{ $inventory->entity->url() }}"></a>
                     </td>
                     <td>
-                        <a href="{{ $inventory->entity->url() }}" data-toggle="tooltip" title="{{ $inventory->entity->child->tooltipWithName() }}" data-html="true">{{ $inventory->entity->name }}</a>
+                        {!! $inventory->entity->tooltipedLink() !!}
                     </td>
                     <td class="hidden-sm">{{ $inventory->amount }}</td>
                     <td class="hidden-sm">{{ $inventory->position }}</td>
