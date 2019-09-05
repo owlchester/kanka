@@ -31,6 +31,7 @@ $isAdmin = Auth::user()->isAdmin();
             @endforeach
                 <div id="add_attribute_target"></div>
             </div>
+            <div id="add_unsortable_attribute_target">
 
 
             @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
