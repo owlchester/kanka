@@ -2,16 +2,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109130951-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-109130951-1');
-    </script>
-
+@include('layouts._tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? '' }} - {{ config('app.name', 'Kanka') }}</title>
@@ -46,6 +37,7 @@
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns())) @else layout-top-nav @endif">
+@include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
         <!-- Header -->
         @include('layouts.header')
