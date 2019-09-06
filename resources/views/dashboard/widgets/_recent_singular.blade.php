@@ -20,7 +20,7 @@ if (empty($entity->child)) {
     {!! $entity->tooltipedLink() !!}
 
     <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
-        {!! $entity->child->entry !!}
+        {!! $entity->child->entry() !!}
     </div>
     <a href="#" class="preview-switch hidden"
        id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">

@@ -23,7 +23,7 @@
     <div class="panel-body">
         @if ($mapPoint->hasTarget())
             <div class="entity-entry">
-            {!! $mapPoint->targetEntity->child->entry !!}
+            {!! $mapPoint->targetEntity->child->entry() !!}
             </div>
     </div>
     <div class="panel-footer">

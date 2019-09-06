@@ -20,7 +20,7 @@ $model = $widget->entity->child;
     </div>
     <div class="panel-body">
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
-            {!! $model->entry !!}
+            {!! $model->entry() !!}
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">

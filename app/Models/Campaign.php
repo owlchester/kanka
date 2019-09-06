@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -292,10 +293,10 @@ class Campaign extends MiscModel
     public function preview(): string
     {
         if (!empty(strip_tags($this->excerpt))) {
-            return $this->excerpt;
+            return $this->excerpt();
         }
         if (!empty(strip_tags($this->entry))) {
-            return strip_tags(substr($this->entry, 0, 1000)) . ' ...';
+            return strip_tags(substr($this->entry(), 0, 1000)) . ' ...';
         }
         return '';
     }
@@ -435,5 +436,21 @@ class Campaign extends MiscModel
     public function isPublic(): bool
     {
         return $this->visibility == self::VISIBILITY_PUBLIC;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function entry()
+    {
+        return Mentions::mapCampaign($this);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function excerpt()
+    {
+        return Mentions::mapCampaign($this, 'excerpt');
     }
 }

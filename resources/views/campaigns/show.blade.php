@@ -23,7 +23,7 @@
             <div class="box box-flat">
                 <div class="box-body">
                     <div class="post">
-                        <p>{!! $campaign->entry !!}</p>
+                        <p>{!! $campaign->entry() !!}</p>
                     </div>
                 </div>
             </div>

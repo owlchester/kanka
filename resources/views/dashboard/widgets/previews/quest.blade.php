@@ -29,7 +29,7 @@ $model = $widget->entity->child;
                 @endif
             </dl>
 
-            {!! $model->entry !!}
+            {!! $model->entry() !!}
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">

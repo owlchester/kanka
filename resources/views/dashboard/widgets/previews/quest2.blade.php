@@ -25,6 +25,6 @@ $model = $widget->entity->child;
         </div>
     </div>
     <div class="box-body">
-        {!! $model->entry !!}
+        {!! $model->entry() !!}
     </div>
 </div>
