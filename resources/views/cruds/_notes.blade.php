@@ -32,7 +32,7 @@
             <td>
                 <a href="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}" data-toggle="ajax-modal"
                    data-target="#large-modal" data-url="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}"
-                   data-title="{{ $note->name }}" data-entry="{{ $note->entry }}">{{ $note->name }}</a>
+                   data-title="{{ $note->name }}" data-entry="{{ $note->entry() }}">{{ $note->name }}</a>
             </td>
             <td class="visible-lg">
                 @if ($note->creator)
@@ -63,7 +63,7 @@
         </tr>
         <tr class="export-visible">
             <td colspan="4" style="font-size: 12pt">
-                {!! $note->entry !!}
+                {!! $note->entry() !!}
             </td>
         </tr>
     @endforeach

@@ -8,7 +8,7 @@
         </h4>
     </div>
     <div class="panel-body">
-        {!! $entityNote->entry !!}
+        {!! $entityNote->entry() !!}
     </div>
     @if (!$ajax)
         @can('attribute', [$entity->child, 'edit'])

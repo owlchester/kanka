@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Traits\MentionTrait;
 use Illuminate\Support\Arr;
@@ -16,6 +18,7 @@ class MentionsService
     protected $entities = [];
 
     /**
+     * Map the mentions in an entity
      * @param MiscModel $model
      * @param string $field
      * @return string
@@ -23,7 +26,37 @@ class MentionsService
     public function map(MiscModel $model, $field = 'entry'): string
     {
         $this->text = !empty($model->$field) ? $model->$field : '';
+        return $this->extractAndReplace();
+    }
 
+    /**
+     * Map the mentions in an entity note
+     * @param EntityNote $entityNote
+     * @return string|string[]|null
+     */
+    public function mapEntityNote(EntityNote $entityNote)
+    {
+        $this->text = $entityNote->entry;
+        return $this->extractAndReplace();
+    }
+
+    /**
+     * Map the mentions in an entity note
+     * @param EntityNote $entityNote
+     * @return string|string[]|null
+     */
+    public function mapCampaign(Campaign $campaign, string $field = 'entry')
+    {
+        $this->text = $campaign->$field;
+        return $this->extractAndReplace();
+    }
+
+    /**
+     * Searche mentions in a text and replace them with tooltiped links
+     * @return string|string[]|null
+     */
+    protected function extractAndReplace()
+    {
         $mappings = $this->extract($this->text);
 
         foreach ($mappings as $text => $data) {
@@ -31,10 +64,8 @@ class MentionsService
             $entity = $this->entity($data['id']);
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
-                //$this->replace($text, $data, __('Unknown'));
                 $replace = Arr::get($data, 'text', '<i>' . __('crud.history.unknown') . '</i>');
             } else {
-                //$this->replace($text, $data, $entity);
                 $tab = Arr::get($data, 'tab', null);
                 $url = $entity->url('show', $tab);
                 if (!empty($data['page']) && strlen($data['page']) < 8) {
@@ -46,7 +77,7 @@ class MentionsService
                     . ' data-url="' . route('entities.tooltip', $entity). '"'
                     . '>'
                     . Arr::get($data, 'text', $entity->name)
-                . '</a>';
+                    . '</a>';
             }
 
             $search = '`\[' . $data['type'] . ':' . $data['id'] . '([^\]]*?)\]`i';
@@ -67,16 +98,5 @@ class MentionsService
         }
 
         return Arr::get($this->entities, $id, null);
-    }
-
-    /**
-     * @param string $lookup
-     * @param string $replace
-     * @param string $text
-     * @return string
-     */
-    protected function replace(string $lookup, string $replace, string $text): string
-    {
-        return $text;
     }
 }

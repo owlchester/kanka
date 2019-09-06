@@ -88,7 +88,7 @@
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <div class="post">
-                        <p>{!! $campaign->entry !!}</p>
+                        <p>{!! $campaign->entry() !!}</p>
                     </div>
                 </div>
                 <div class="tab-pane" id="member">

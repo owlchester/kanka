@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\OrderableTrait;
@@ -87,5 +88,13 @@ class EntityNote extends Model
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
         return $new->save();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function entry()
+    {
+        return Mentions::mapEntityNote($this);
     }
 }
