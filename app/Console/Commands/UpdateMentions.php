@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\EntityMention;
 use App\Models\MiscModel;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 
 class UpdateMentions extends Command
 {
@@ -47,7 +48,7 @@ class UpdateMentions extends Command
         EntityMention::with(['target', 'entity'])->entity()->chunk(1000, function ($mentions) {
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
-                $this->update($mention, $mention->entity);
+                $this->update($mention, $mention->entity->child);
             }
         });
         EntityMention::with(['target', 'entityNote'])->entityNote()->chunk(1000, function ($mentions) {
@@ -68,19 +69,22 @@ class UpdateMentions extends Command
 
     /**
      * @param EntityMention $mention
+     * @param Model $source entity, entity note
+     * @throws \Exception
      */
-    protected function update(EntityMention $mention, $child)
+    protected function update(EntityMention $mention, $source)
     {
         /** @var MiscModel $child */
         $child = $mention->target->child;
-        $text = $child->entry;
+        $text = $source->entry;
+
         $link = str_replace('campaign/0', 'campaign/' . $mention->target->campaign_id, $child->getLink());
         //<a href="https://kanka.io/en/campaign/1/characters/1" tooltip="aaa" toggle="tooltip"
         $search = '<a title="([^"]*)" href="' . $link . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
-        $search = '<a (.*?) data-toggle="tooltip" data-html="true">' . e($child->name) . '</a>';
+        $search = '<a (.*?) data-toggle="tooltip" data-html="true">' . $child->name . '</a>';
         $replace = '[' . $mention->target->type . ':' . $mention->target->id .']';
 
-//        $this->info('replacing for ' . $mention->target->name);
+        $this->info('replacing \'' . $mention->target->name . '\' with ' . $replace);
 //        dump($text);
 //        dump($search);
 
@@ -88,15 +92,22 @@ class UpdateMentions extends Command
         //$text = str_replace($search, $replace, $text);
         $text = preg_replace("`$search`i", $replace, $text);
 
-        /*$this->info('new text');
-        dump($text);
-        dd("end");*/
+        if ($source->id == 168) {
+            dd($search);
+            dd($replace);
+            dd($text);
+        }
 
-        $child->entry = $text;
-        if ($child->isDirty('entry')) {
+//        $this->info('new text');
+//        dump($text);
+//        dd("end");
+
+        // update the source
+        $source->entry = $text;
+        if ($source->isDirty('entry')) {
             $this->mentionCount++;
-            $child->timestamps = false;
-            $child->save();
+            $source->timestamps = false;
+            $source->save();
 
             if (!in_array($mention->target_id, $this->entityIds)) {
                 $this->entityIds[] = $mention->target->id;
