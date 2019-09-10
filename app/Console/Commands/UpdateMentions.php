@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\MiscModel;
 use Illuminate\Console\Command;
@@ -27,6 +28,10 @@ class UpdateMentions extends Command
     protected $mentionCount = 0;
 
     protected $entityIds = [];
+    protected $campaignIds = [];
+    protected $noteIds = [];
+
+    protected $errors = [];
 
     /**
      * Create a new command instance.
@@ -45,26 +50,48 @@ class UpdateMentions extends Command
      */
     public function handle()
     {
-        EntityMention::with(['target', 'entity'])->entity()->chunk(1000, function ($mentions) {
+        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+
+        EntityMention::with(['target', 'entity'])->entity()->chunk(10000, function ($mentions) {
+            $bar = $this->output->createProgressBar(count($mentions));
+            $bar->start();
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
                 $this->update($mention, $mention->entity->child);
+                $bar->advance();
             }
+            $bar->finish();
+            $this->info('');
         });
-        EntityMention::with(['target', 'entityNote'])->entityNote()->chunk(1000, function ($mentions) {
+        EntityMention::with(['target', 'entityNote'])->entityNote()->chunk(10000, function ($mentions) {
+            $bar = $this->output->createProgressBar(count($mentions));
+            $bar->start();
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
                 $this->update($mention, $mention->entityNote);
+                $bar->advance();
             }
+            $bar->finish();
+            $this->info('Finished batch.');
         });
-        EntityMention::with(['target', 'campaign'])->campaign()->chunk(1000, function ($mentions) {
+        EntityMention::with(['target', 'campaign'])->campaign()->chunk(5000, function ($mentions) {
+            $bar = $this->output->createProgressBar(count($mentions));
+            $bar->start();
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
                 $this->update($mention, $mention->campaign);
+                $bar->advance();
             }
+            $bar->finish();
+            $this->info('Finished batch.');
         });
 
-        $this->info('Updated ' . $this->mentionCount . ' mentions to ' . $this->entityCount . ' entities.');
+        foreach ($this->errors as $error) {
+            $this->error($error);
+        }
+
+        $this->info('Updated ' . $this->mentionCount . ' mentions to ' . count($this->entityIds) . ' entities, '
+            . count($this->noteIds) . ' notes and ' . count($this->campaignIds) . ' campaigns.');
     }
 
     /**
@@ -74,46 +101,55 @@ class UpdateMentions extends Command
      */
     protected function update(EntityMention $mention, $source)
     {
-        /** @var MiscModel $child */
-        $child = $mention->target->child;
+        /** @var Entity $target */
+        $target = $mention->target;
         $text = $source->entry;
 
-        $link = str_replace('campaign/0', 'campaign/' . $mention->target->campaign_id, $child->getLink());
-        //<a href="https://kanka.io/en/campaign/1/characters/1" tooltip="aaa" toggle="tooltip"
-        $search = '<a title="([^"]*)" href="' . $link . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
-        $search = '<a (.*?) data-toggle="tooltip" data-html="true">' . $child->name . '</a>';
-        $replace = '[' . $mention->target->type . ':' . $mention->target->id .']';
+        $link = str_replace('campaign/0/', 'campaign/' . $target->campaign_id . '/', $target->url());
+//        $search = '<a title="([^"]*)" href="' . $link . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
+        $name = str_replace(['(', ')'], ['\(', '\)'], $target->name);
+        $search = '<a (.*?) data-toggle="tooltip" data-html="true">' . $name . '</a>';
+        $replace = '[' . $target->type . ':' . $target->id .']';
 
-        $this->info('replacing \'' . $mention->target->name . '\' with ' . $replace);
+//        $this->info('replacing \'' . $mention->target->name . '\' with ' . $replace);
 //        dump($text);
 //        dump($search);
 
 //        $this->info('replace with: ' . $replace);
         //$text = str_replace($search, $replace, $text);
-        $text = preg_replace("`$search`i", $replace, $text);
+        try {
+            $text = preg_replace("`$search`i", $replace, $text);
+            // update the source
+            $source->entry = $text;
+            if ($source->isDirty('entry')) {
+                $this->mentionCount++;
+                $source->timestamps = false;
+                $source->save();
 
-        if ($source->id == 168) {
-            dd($search);
-            dd($replace);
-            dd($text);
+                if ($mention->isEntity()) {
+                    if (!in_array($source->id, $this->entityIds)) {
+                        $this->entityIds[] = $source->id;
+                        $this->entityCount++;
+                    }
+                } elseif ($mention->isEntityNote()) {
+                    if (!in_array($source->id, $this->noteIds)) {
+                        $this->entityIds[] = $source->id;
+                        $this->noteIds++;
+                    }
+                } elseif ($mention->isCampaign()) {
+                    if (!in_array($source->id, $this->campaignIds)) {
+                        $this->campaignIds[] = $source->id;
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            $this->errors[] = "Error with the following check.\nLooking to replace '$search' with '$replace' on mention #"
+                . $mention->id . "\n" . $e->getMessage();
         }
 
 //        $this->info('new text');
 //        dump($text);
 //        dd("end");
-
-        // update the source
-        $source->entry = $text;
-        if ($source->isDirty('entry')) {
-            $this->mentionCount++;
-            $source->timestamps = false;
-            $source->save();
-
-            if (!in_array($mention->target_id, $this->entityIds)) {
-                $this->entityIds[] = $mention->target->id;
-                $this->entityCount++;
-            }
-        }
 
     }
 }
