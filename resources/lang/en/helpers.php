@@ -10,7 +10,10 @@ return [
     ],
     'link'          => [
         'auto_update'   => 'Links to other entities will automatically be updated when the target\'s name or description is changed.',
-        'description'   => 'You can easily link to other entities by simply typing \'@\'. You can also type \'#\' to get a list of months from your calendars.',
+        'description'   => 'You can easily link to other entities in your campaign using the following shorthands.',
+        'limitations' => 'Please note that due to technical limitations, these shorthands don\'t work on android mobile devices.',
+        'mentions' => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor. To customise the name of the entity displayed, you can type :example_name. To set the entity\'s subpage, use :example_page. To set the entity\'s tab, use :example_tab.',
+        'months' => 'Type :code to get a list of months from your calendars.',
         'title'         => 'Linking to other entries and shortcuts',
     ],
     'map'           => [

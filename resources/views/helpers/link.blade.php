@@ -19,8 +19,20 @@
                         {{ trans('helpers.link.description') }}
                     </p>
                     <p>
-                        {{ trans('helpers.link.auto_update') }}
+                        {!! trans('helpers.link.mentions', [
+                            'code' => '<code>@</code>',
+                            'example' => '<code>[entity:123]</code>',
+                            'example_name' => '<code>[entity:123|Alex]</code>',
+                            'example_page' => '<code>[entity:123|page:inventory]</code>',
+                            'example_tab' => '<code>[entity:123|tab:relations]</code>',
+                        ]) !!}
                     </p>
+                    <p>
+                        {!! trans('helpers.link.months', [
+                            'code' => '<code>#</code>'
+                        ]) !!}
+                    </p>
+                    <p class="info">{{ __('helpers.link.limitations') }}</p>
                 </div>
             </div>
         </div>
