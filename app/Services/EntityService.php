@@ -429,7 +429,7 @@ class EntityService
          */
         $new = new $this->entities[$target]();
         $new->name = $name;
-        $new->is_private = false;
+        $new->is_private = Auth::user()->isAdmin() ? CampaignLocalization::getCampaign()->entity_visibility : false;
         $new->save();
         return $new;
     }
