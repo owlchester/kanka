@@ -129,8 +129,21 @@ class PermissionService
                 }
             }
         }
+
+        foreach ($permissions as $type => $data) {
+            foreach ($data as $user => $actions) {
+                foreach ($actions as $action => $perm) {
+                    $perm->delete();
+                }
+            }
+        }
     }
 
+    /**
+     * @param $request
+     * @param Entity $entity
+     * @param bool $override
+     */
     public function change($request, Entity $entity, bool $override = true)
     {
         // First, let's get all the stuff for this entity
