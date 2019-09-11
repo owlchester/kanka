@@ -21,19 +21,7 @@ $(document).ready(function() {
     // for mobiles, namely the tooltip tool.
     window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
     if (!window.kankaIsMobile.matches) {
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // New tooltips with ajax call
-        $('[data-toggle="tooltip-ajax"]').tooltip({
-            title: entityTooltip,
-            delay: 300,
-            placement: 'auto',
-            template: '<div class="tooltip" role="tooltip">' +
-                '<div class="tooltip-arrow"></div>' +
-                '<div class="tooltip-inner tooltip-ajax"></div>' +
-                '</div>',
-            html: true
-        });
+        initTooltips();
     }
 
     $('[data-toggle="popover"]').popover({
@@ -178,6 +166,7 @@ $(document).ready(function() {
         initSelect2();
         initCheckboxSwitch();
         initAjaxPagination();
+        initTooltips();
 
         // Handle when opening the entity-creator ui
         entityCreatorUI();
@@ -446,6 +435,26 @@ function refreshNotificationList() {
             setTimeout(refreshNotificationList, notificationRefreshTimeout);
         }
     );
+}
+
+/**
+ * Register the tooltip and tooltip-ajax helper
+ */
+function initTooltips()
+{
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // New tooltips with ajax call
+    $('[data-toggle="tooltip-ajax"]').tooltip({
+        title: entityTooltip,
+        delay: 300,
+        placement: 'auto',
+        template: '<div class="tooltip" role="tooltip">' +
+            '<div class="tooltip-arrow"></div>' +
+            '<div class="tooltip-inner tooltip-ajax"></div>' +
+            '</div>',
+        html: true
+    });
 }
 
 // Helpers are injected directly in the window functions.
