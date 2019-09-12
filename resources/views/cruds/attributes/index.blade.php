@@ -15,8 +15,17 @@ $isAdmin = Auth::user()->isAdmin();
     ]
 ])
 
-@section('content')
+@section('fullpage-form')
     {!! Form::open(['url' => route('entities.attributes.saveMany', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => "1"]) !!}
+@endsection
+
+@section('header-extra')
+    <div class="pull-right">
+        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+    </div>
+@endsection
+
+@section('content')
     <div class="box">
         <div class="box-body">
             <div class="row">
@@ -25,13 +34,15 @@ $isAdmin = Auth::user()->isAdmin();
                 <div class="col-xs-1"><span class="hidden-xs">{{ trans('crud.attributes.fields.is_star') }}</span></div>
                 @if ($isAdmin)<div class="col-sm-2">{{ trans('crud.fields.is_private') }}</div>@endif
             </div>
-            <div class="entity-attributes">
-            @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)
-                    @include('cruds.forms.attributes._attribute')
-            @endforeach
-                <div id="add_attribute_target"></div>
+            <div id="entity-attributes-all">
+                <div class="entity-attributes">
+                @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)
+                        @include('cruds.forms.attributes._attribute')
+                @endforeach
+                    <div id="add_attribute_target"></div>
+                </div>
+                <div id="add_unsortable_attribute_target"></div>
             </div>
-            <div id="add_unsortable_attribute_target">
 
 
             @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
@@ -39,13 +50,11 @@ $isAdmin = Auth::user()->isAdmin();
 
         <div class="box-footer">
             @include('cruds.forms.attributes._buttons')
-
-            <div class="pull-right">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
-            </div>
         </div>
     </div>
+@endsection
+
+@section('fullpage-form-end')
     {!! Form::close() !!}
 @endsection
 

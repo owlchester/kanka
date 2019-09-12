@@ -49,8 +49,11 @@ return [
             'template'              => 'Template',
             'value'                 => 'Value',
         ],
+        'helpers' => [
+            'delete_all' => 'Are you sure you want to delete all of this entity\'s attributes?',
+        ],
         'hints' => [
-            'is_private' => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.'
+            'is_private' => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',
         ],
         'index'         => [
             'success'   => 'Attributes for :entity updated.',

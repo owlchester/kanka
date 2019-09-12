@@ -13,7 +13,7 @@ class UpdateEntityPrivateAttributes extends Migration
      */
     public function up()
     {
-        Schema::table('Entities', function (Blueprint $table) {
+        Schema::table('entities', function (Blueprint $table) {
             $table->boolean('is_attributes_private')->default(false);
         });
     }
@@ -25,7 +25,7 @@ class UpdateEntityPrivateAttributes extends Migration
      */
     public function down()
     {
-        Schema::table('Entities', function (Blueprint $table) {
+        Schema::table('entities', function (Blueprint $table) {
             $table->dropColumn('is_attributes_private');
         });
     }
