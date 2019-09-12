@@ -8,4 +8,8 @@
     <button class="btn btn-default" id="text_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
         <i class="fas fa-align-justify"></i> <span class="hidden-xs">{{ trans('crud.attributes.types.text') }}</span>
     </button>
+
+    <button class="btn btn-danger pull-right" id="delete-all">
+        <i class="fa fa-trash-o"></i> <span class="hidden-xs"></span>
+    </button>
 </div>
