@@ -28,6 +28,10 @@
 
     @include('dashboard.widgets.forms._' . $widget)
 
+    <div class="form-group required">
+        <label>{{ __('dashboard.widgets.fields.width') }}</label>
+        {!! Form::select('width', __('dashboard.widgets.widths'), null, ['class' => 'form-control']) !!}
+    </div>
 
     <div class="row">
         <div class="col-md-6">

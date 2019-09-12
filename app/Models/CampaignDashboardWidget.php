@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $entity_id
  * @property string $widget
  * @property string $config
+ * @property integer $width
  * @property integer $position
  */
 class CampaignDashboardWidget extends Model
@@ -41,6 +42,8 @@ class CampaignDashboardWidget extends Model
         'widget',
         'config',
         'position',
+        'width',
+        'is_full',
     ];
 
     /**
@@ -65,6 +68,9 @@ class CampaignDashboardWidget extends Model
      */
     public function colSize(): int
     {
+        if (!empty($this->width)) {
+            return $this->width;
+        }
         return ($this->widget == self::WIDGET_PREVIEW ||
             ($this->widget == self::WIDGET_RECENT && $this->conf('singular')))
             ? 4 : 6;

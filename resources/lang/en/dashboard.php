@@ -87,13 +87,26 @@ TEXT
         'delete'    => [
             'success'   => 'Widget removed from the dashboard.',
         ],
+        'fields' => [
+            'width' => 'Width'
+        ],
         'recent'    => [
             'help'      => 'Only show the last updated entity, but show a whole preview of the entity',
             'singular'  => 'Singular',
             'title'     => 'Recently modified',
+            'full'      => 'Full',
+            'helpers' => [
+                'full' => 'Display the whole entity\'s entry by default instead of a preview.',
+            ]
         ],
         'update'    => [
             'success'   => 'Widget modified.',
         ],
+        'widths' => [
+            0 => 'Auto',
+            4 => 'Small',
+            6 => 'Half',
+            12 => 'Full'
+        ]
     ],
 ];
