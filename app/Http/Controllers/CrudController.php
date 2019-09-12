@@ -168,7 +168,7 @@ class CrudController extends Controller
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
         $params['ajax'] = request()->ajax();
-        $params['tabPermissions'] = $this->tabPermissions;
+        $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
         $params['entityAttributeTemplates'] = $templates;
 
@@ -284,7 +284,7 @@ class CrudController extends Controller
             'model' => $model,
             'name' => $this->view,
             'ajax' => request()->ajax(),
-            'tabPermissions' => $this->tabPermissions,
+            'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes
         ];
 

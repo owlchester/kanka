@@ -139,6 +139,9 @@ class EntityPolicy
      */
     public function permission(User $user, $entity)
     {
+        if ($entity->exists === false) {
+            return $this->checkPermission('permission', $user, null);
+        }
         return $user->campaign->id == $entity->campaign_id &&
             ($user->campaign->roles()->count() > 1 || $user->campaign->members()->count() > 1) &&
             $this->checkPermission('permission', $user, $entity);
