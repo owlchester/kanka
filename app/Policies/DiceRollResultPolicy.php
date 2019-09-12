@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Campaign;
 use App\User;
 
-class DiceRollResultPolicy extends EntityPolicy
+class DiceRollResultPolicy extends MiscPolicy
 {
     /**
      * @var string

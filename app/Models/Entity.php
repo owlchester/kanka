@@ -26,6 +26,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer $created_by
  * @property integer $updated_by
  * @property boolean $is_private
+ * @property boolean $is_attributes_private
  * @property Tag[] $tags
  * @property EntityTag[] $entityTags
  * @property EntityNote[] $notes
@@ -48,6 +49,7 @@ class Entity extends Model
         'name',
         'type',
         'is_private',
+        'is_attributes_private',
     ];
 
     /**

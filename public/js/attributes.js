@@ -134,6 +134,20 @@ function initAttributeUI() {
     initAttributeHandlers();
     return false;
   });
+  $('#entity_add').click(function (e) {
+    e.preventDefault();
+    var realTarget = $(this).data('sortable') ? targetNew : target;
+    $('#entity_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    initAttributeHandlers();
+    return false;
+  }); // Delete all visible attributes
+
+  $('#attributes-delete-all-confirm-submit').click(function (e) {
+    e.preventDefault();
+    $('#entity-attributes-all .attribute_delete').click();
+    $('#attributes-delete-all-confirm').modal('hide');
+    return false;
+  });
   $.each($('[data-toggle="private"]'), function () {
     // Add the title first
     if ($(this).hasClass('fa-lock')) {
@@ -182,7 +196,7 @@ function initAttributeHandlers() {
       $(this).removeClass('fas').addClass('far').prop('title', $(this).data('tab'));
       $(this).parent().find('input:hidden').val("0");
     }
-  });
+  }); //window.initSelect2();
 }
 
 /***/ }),
@@ -194,7 +208,7 @@ function initAttributeHandlers() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
 
 
 /***/ })

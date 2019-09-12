@@ -101,11 +101,11 @@
 *
 * @author Colorlib
 * @support <https://github.com/ColorlibHQ/AdminLTE/issues>
-* @version 2.4.17
+* @version 2.4.12
 * @repository git://github.com/ColorlibHQ/AdminLTE.git
 * @license MIT <http://opensource.org/licenses/MIT>
 */
-if("undefined"==typeof jQuery)throw new Error("AdminLTE requires jQuery");!function(i){"use strict";function s(t,e){if(this.element=t,this.options=e,this.$overlay=i(e.overlayTemplate),""===e.source)throw new Error("Source url was not defined. Please specify a url in your BoxRefresh source option.");this._setUpListeners(),this.load()}var r="lte.boxrefresh",a={source:"",params:{},trigger:".refresh-btn",content:".box-body",loadInContent:!0,responseType:"",overlayTemplate:'<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',onLoadStart:function(){},onLoadDone:function(t){return t}},t='[data-widget="box-refresh"]';function e(n){return this.each(function(){var t=i(this),e=t.data(r);if(!e){var o=i.extend({},a,t.data(),"object"==typeof n&&n);t.data(r,e=new s(t,o))}if("string"==typeof e){if(void 0===e[n])throw new Error("No method named "+n);e[n]()}})}s.prototype.load=function(){this._addOverlay(),this.options.onLoadStart.call(i(this)),i.get(this.options.source,this.options.params,function(t){this.options.loadInContent&&i(this.element).find(this.options.content).html(t),this.options.onLoadDone.call(i(this),t),this._removeOverlay()}.bind(this),""!==this.options.responseType&&this.options.responseType)},s.prototype._setUpListeners=function(){i(this.element).on("click",this.options.trigger,function(t){t&&t.preventDefault(),this.load()}.bind(this))},s.prototype._addOverlay=function(){i(this.element).append(this.$overlay)},s.prototype._removeOverlay=function(){i(this.$overlay).remove()};var o=i.fn.boxRefresh;i.fn.boxRefresh=e,i.fn.boxRefresh.Constructor=s,i.fn.boxRefresh.noConflict=function(){return i.fn.boxRefresh=o,this},i(window).on("load",function(){i(t).each(function(){e.call(i(this))})})}(jQuery),function(i){"use strict";function s(t,e){this.element=t,this.options=e,this._setUpListeners()}var r="lte.boxwidget",a={animationSpeed:500,collapseTrigger:'[data-widget="collapse"]',removeTrigger:'[data-widget="remove"]',collapseIcon:"fa-minus",expandIcon:"fa-plus",removeIcon:"fa-times"},t=".box",e=".collapsed-box",d=".box-header",l=".box-body",c=".box-footer",h=".box-tools",f="collapsed-box",p="collapsing.boxwidget",u="collapsed.boxwidget",g="expanding.boxwidget",v="expanded.boxwidget",o="removing.boxwidget",n="removed.boxwidget";function b(n){return this.each(function(){var t=i(this),e=t.data(r);if(!e){var o=i.extend({},a,t.data(),"object"==typeof n&&n);t.data(r,e=new s(t,o))}if("string"==typeof n){if(void 0===e[n])throw new Error("No method named "+n);e[n]()}})}s.prototype.toggle=function(){!i(this.element).is(e)?this.collapse():this.expand()},s.prototype.expand=function(){var t=i.Event(v),e=i.Event(g),o=this.options.collapseIcon,n=this.options.expandIcon;i(this.element).removeClass(f),i(this.element).children(d+", "+l+", "+c).children(h).find("."+n).removeClass(n).addClass(o),i(this.element).children(l+", "+c).slideDown(this.options.animationSpeed,function(){i(this.element).trigger(t)}.bind(this)).trigger(e)},s.prototype.collapse=function(){var t=i.Event(u),e=i.Event(p),o=this.options.collapseIcon,n=this.options.expandIcon;i(this.element).children(d+", "+l+", "+c).children(h).find("."+o).removeClass(o).addClass(n),i(this.element).children(l+", "+c).slideUp(this.options.animationSpeed,function(){i(this.element).addClass(f),i(this.element).trigger(t)}.bind(this)).trigger(e)},s.prototype.remove=function(){var t=i.Event(n),e=i.Event(o);i(this.element).slideUp(this.options.animationSpeed,function(){i(this.element).trigger(t),i(this.element).remove()}.bind(this)).trigger(e)},s.prototype._setUpListeners=function(){var e=this;i(this.element).on("click",this.options.collapseTrigger,function(t){return t&&t.preventDefault(),e.toggle(i(this)),!1}),i(this.element).on("click",this.options.removeTrigger,function(t){return t&&t.preventDefault(),e.remove(i(this)),!1})};var m=i.fn.boxWidget;i.fn.boxWidget=b,i.fn.boxWidget.Constructor=s,i.fn.boxWidget.noConflict=function(){return i.fn.boxWidget=m,this},i(window).on("load",function(){i(t).each(function(){b.call(i(this))})})}(jQuery),function(i){"use strict";function s(t,e){this.element=t,this.options=e,this.hasBindedResize=!1,this.init()}var r="lte.controlsidebar",a={controlsidebarSlide:!0},e=".control-sidebar",t='[data-toggle="control-sidebar"]',o=".control-sidebar-open",n=".control-sidebar-bg",d=".wrapper",l=".layout-boxed",c="control-sidebar-open",h="control-sidebar-hold-transition",f="collapsed.controlsidebar",p="expanded.controlsidebar";function u(n){return this.each(function(){var t=i(this),e=t.data(r);if(!e){var o=i.extend({},a,t.data(),"object"==typeof n&&n);t.data(r,e=new s(t,o))}"string"==typeof n&&e.toggle()})}s.prototype.init=function(){i(this.element).is(t)||i(this).on("click",this.toggle),this.fix(),i(window).resize(function(){this.fix()}.bind(this))},s.prototype.toggle=function(t){t&&t.preventDefault(),this.fix(),i(e).is(o)||i("body").is(o)?this.collapse():this.expand()},s.prototype.expand=function(){i(e).show(),this.options.controlsidebarSlide?i(e).addClass(c):i("body").addClass(h).addClass(c).delay(50).queue(function(){i("body").removeClass(h),i(this).dequeue()}),i(this.element).trigger(i.Event(p))},s.prototype.collapse=function(){this.options.controlsidebarSlide?i(e).removeClass(c):i("body").addClass(h).removeClass(c).delay(50).queue(function(){i("body").removeClass(h),i(this).dequeue()}),i(e).fadeOut(),i(this.element).trigger(i.Event(f))},s.prototype.fix=function(){i("body").is(l)&&this._fixForBoxed(i(n))},s.prototype._fixForBoxed=function(t){t.css({position:"absolute",height:i(d).height()})};var g=i.fn.controlSidebar;i.fn.controlSidebar=u,i.fn.controlSidebar.Constructor=s,i.fn.controlSidebar.noConflict=function(){return i.fn.controlSidebar=g,this},i(document).on("click",t,function(t){t&&t.preventDefault(),u.call(i(this),"toggle")})}(jQuery),function(n){"use strict";function i(t){this.element=t}var s="lte.directchat",t='[data-widget="chat-pane-toggle"]',e=".direct-chat",o="direct-chat-contacts-open";function r(o){return this.each(function(){var t=n(this),e=t.data(s);e||t.data(s,e=new i(t)),"string"==typeof o&&e.toggle(t)})}i.prototype.toggle=function(t){t.parents(e).first().toggleClass(o)};var a=n.fn.directChat;n.fn.directChat=r,n.fn.directChat.Constructor=i,n.fn.directChat.noConflict=function(){return n.fn.directChat=a,this},n(document).on("click",t,function(t){t&&t.preventDefault(),r.call(n(this),"toggle")})}(jQuery),function(i){"use strict";function s(t){this.options=t,this.init()}var r="lte.pushmenu",a={collapseScreenSize:767,expandOnHover:!1,expandTransitionDelay:200},t=".sidebar-collapse",e=".main-sidebar",o=".content-wrapper",n=".sidebar-form .form-control",d='[data-toggle="push-menu"]',l=".sidebar-mini",c=".sidebar-expanded-on-hover",h=".fixed",f="sidebar-collapse",p="sidebar-open",u="sidebar-expanded-on-hover",g="sidebar-mini-expand-feature",v="expanded.pushMenu",b="collapsed.pushMenu";function m(n){return this.each(function(){var t=i(this),e=t.data(r);if(!e){var o=i.extend({},a,t.data(),"object"==typeof n&&n);t.data(r,e=new s(o))}"toggle"===n&&e.toggle()})}s.prototype.init=function(){(this.options.expandOnHover||i("body").is(l+h))&&(this.expandOnHover(),i("body").addClass(g)),i(o).click(function(){i(window).width()<=this.options.collapseScreenSize&&i("body").hasClass(p)&&this.close()}.bind(this)),i(n).click(function(t){t.stopPropagation()})},s.prototype.toggle=function(){var t=i(window).width(),e=!i("body").hasClass(f);t<=this.options.collapseScreenSize&&(e=i("body").hasClass(p)),e?this.close():this.open()},s.prototype.open=function(){i(window).width()>this.options.collapseScreenSize?i("body").removeClass(f).trigger(i.Event(v)):i("body").addClass(p).trigger(i.Event(v))},s.prototype.close=function(){i(window).width()>this.options.collapseScreenSize?i("body").addClass(f).trigger(i.Event(b)):i("body").removeClass(p+" "+f).trigger(i.Event(b))},s.prototype.expandOnHover=function(){i(e).hover(function(){i("body").is(l+t)&&i(window).width()>this.options.collapseScreenSize&&this.expand()}.bind(this),function(){i("body").is(c)&&this.collapse()}.bind(this))},s.prototype.expand=function(){setTimeout(function(){i("body").removeClass(f).addClass(u)},this.options.expandTransitionDelay)},s.prototype.collapse=function(){setTimeout(function(){i("body").removeClass(u).addClass(f)},this.options.expandTransitionDelay)};var y=i.fn.pushMenu;i.fn.pushMenu=m,i.fn.pushMenu.Constructor=s,i.fn.pushMenu.noConflict=function(){return i.fn.pushMenu=y,this},i(document).on("click",d,function(t){t.preventDefault(),m.call(i(this),"toggle")}),i(window).on("load",function(){m.call(i(d))})}(jQuery),function(i){"use strict";function s(t,e){this.element=t,this.options=e,this._setUpListeners()}var r="lte.todolist",a={onCheck:function(t){return t},onUnCheck:function(t){return t}},e={data:'[data-widget="todo-list"]'},o="done";function t(n){return this.each(function(){var t=i(this),e=t.data(r);if(!e){var o=i.extend({},a,t.data(),"object"==typeof n&&n);t.data(r,e=new s(t,o))}if("string"==typeof e){if(void 0===e[n])throw new Error("No method named "+n);e[n]()}})}s.prototype.toggle=function(t){t.parents(e.li).first().toggleClass(o),t.prop("checked")?this.check(t):this.unCheck(t)},s.prototype.check=function(t){this.options.onCheck.call(t)},s.prototype.unCheck=function(t){this.options.onUnCheck.call(t)},s.prototype._setUpListeners=function(){var t=this;i(this.element).on("change ifChanged","input:checkbox",function(){t.toggle(i(this))})};var n=i.fn.todoList;i.fn.todoList=t,i.fn.todoList.Constructor=s,i.fn.todoList.noConflict=function(){return i.fn.todoList=n,this},i(window).on("load",function(){i(e.data).each(function(){t.call(i(this))})})}(jQuery),function(s){"use strict";function n(t,e){this.element=t,this.options=e,s(this.element).addClass(h),s(a+o,this.element).addClass(c),this._setUpListeners()}var i="lte.tree",r={animationSpeed:500,accordion:!0,followLink:!1,trigger:".treeview a"},a=".treeview",d=".treeview-menu",l=".menu-open, .active",t='[data-widget="tree"]',o=".active",c="menu-open",h="tree",f="collapsed.tree",p="expanded.tree";function e(o){return this.each(function(){var t=s(this);if(!t.data(i)){var e=s.extend({},r,t.data(),"object"==typeof o&&o);t.data(i,new n(t,e))}})}n.prototype.toggle=function(t,e){var o=t.next(d),n=t.parent(),i=n.hasClass(c);n.is(a)&&(this.options.followLink&&"#"!==t.attr("href")||e.preventDefault(),i?this.collapse(o,n):this.expand(o,n))},n.prototype.expand=function(t,e){var o=s.Event(p);if(this.options.accordion){var n=e.siblings(l),i=n.children(d);this.collapse(i,n)}e.addClass(c),t.slideDown(this.options.animationSpeed,function(){s(this.element).trigger(o),e.height("auto")}.bind(this))},n.prototype.collapse=function(t,e){var o=s.Event(f);e.removeClass(c),t.slideUp(this.options.animationSpeed,function(){s(this.element).trigger(o),e.find(a).removeClass(c).find(d).hide()}.bind(this))},n.prototype._setUpListeners=function(){var e=this;s(this.element).on("click",this.options.trigger,function(t){e.toggle(s(this),t)})};var u=s.fn.tree;s.fn.tree=e,s.fn.tree.Constructor=n,s.fn.tree.noConflict=function(){return s.fn.tree=u,this},s(window).on("load",function(){s(t).each(function(){e.call(s(this))})})}(jQuery),function(a){"use strict";function i(t){this.options=t,this.bindedResize=!1,this.activate()}var s="lte.layout",r={slimscroll:!0,resetHeight:!0},d=".wrapper",l=".content-wrapper",c=".layout-boxed",h=".main-footer",f=".main-header",t=".main-sidebar",e="slimScrollDiv",p=".sidebar",u=".control-sidebar",o=".sidebar-menu",n=".main-header .logo",g="fixed",v="hold-transition";function b(n){return this.each(function(){var t=a(this),e=t.data(s);if(!e){var o=a.extend({},r,t.data(),"object"==typeof n&&n);t.data(s,e=new i(o))}if("string"==typeof n){if(void 0===e[n])throw new Error("No method named "+n);e[n]()}})}i.prototype.activate=function(){this.fix(),this.fixSidebar(),a("body").removeClass(v),this.options.resetHeight&&a("body, html, "+d).css({height:"auto","min-height":"100%"}),this.bindedResize||(a(window).resize(function(){this.fix(),this.fixSidebar(),a(n+", "+p).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){this.fix(),this.fixSidebar()}.bind(this))}.bind(this)),this.bindedResize=!0),a(o).on("expanded.tree",function(){this.fix(),this.fixSidebar()}.bind(this)),a(o).on("collapsed.tree",function(){this.fix(),this.fixSidebar()}.bind(this))},i.prototype.fix=function(){a(c+" > "+d).css("overflow","hidden");var t=a(h).outerHeight()||0,e=a(f).outerHeight()||0,o=e+t,n=a(window).height(),i=a(p).outerHeight()||0;if(a("body").hasClass(g))a(l).css("min-height",n-t);else{var s;s=i+e<=n?(a(l).css("min-height",n-o),n-o):(a(l).css("min-height",i),i);var r=a(u);void 0!==r&&r.height()>s&&a(l).css("min-height",r.height())}},i.prototype.fixSidebar=function(){a("body").hasClass(g)?this.options.slimscroll&&void 0!==a.fn.slimScroll&&0===a(t).find(e).length&&a(p).slimScroll({height:a(window).height()-a(f).height()+"px"}):void 0!==a.fn.slimScroll&&a(p).slimScroll({destroy:!0}).height("auto")};var m=a.fn.layout;a.fn.layout=b,a.fn.layout.Constuctor=i,a.fn.layout.noConflict=function(){return a.fn.layout=m,this},a(window).on("load",function(){b.call(a("body"))})}(jQuery);
+if("undefined"==typeof jQuery)throw new Error("AdminLTE requires jQuery");+function(a){"use strict";function b(b){return this.each(function(){var e=a(this),g=e.data(c);if(!g){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,g=new f(e,h))}if("string"==typeof g){if(void 0===g[b])throw new Error("No method named "+b);g[b]()}})}var c="lte.boxrefresh",d={source:"",params:{},trigger:".refresh-btn",content:".box-body",loadInContent:!0,responseType:"",overlayTemplate:'<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',onLoadStart:function(){},onLoadDone:function(a){return a}},e={data:'[data-widget="box-refresh"]'},f=function(b,c){if(this.element=b,this.options=c,this.$overlay=a(c.overlayTemplate),""===c.source)throw new Error("Source url was not defined. Please specify a url in your BoxRefresh source option.");this._setUpListeners(),this.load()};f.prototype.load=function(){this._addOverlay(),this.options.onLoadStart.call(a(this)),a.get(this.options.source,this.options.params,function(b){this.options.loadInContent&&a(this.element).find(this.options.content).html(b),this.options.onLoadDone.call(a(this),b),this._removeOverlay()}.bind(this),""!==this.options.responseType&&this.options.responseType)},f.prototype._setUpListeners=function(){a(this.element).on("click",this.options.trigger,function(a){a&&a.preventDefault(),this.load()}.bind(this))},f.prototype._addOverlay=function(){a(this.element).append(this.$overlay)},f.prototype._removeOverlay=function(){a(this.$overlay).remove()};var g=a.fn.boxRefresh;a.fn.boxRefresh=b,a.fn.boxRefresh.Constructor=f,a.fn.boxRefresh.noConflict=function(){return a.fn.boxRefresh=g,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.boxwidget",d={animationSpeed:500,collapseTrigger:'[data-widget="collapse"]',removeTrigger:'[data-widget="remove"]',collapseIcon:"fa-minus",expandIcon:"fa-plus",removeIcon:"fa-times"},e={data:".box",collapsed:".collapsed-box",header:".box-header",body:".box-body",footer:".box-footer",tools:".box-tools"},f={collapsed:"collapsed-box"},g={collapsing:"collapsing.boxwidget",collapsed:"collapsed.boxwidget",expanding:"expanding.boxwidget",expanded:"expanded.boxwidget",removing:"removing.boxwidget",removed:"removed.boxwidget"},h=function(a,b){this.element=a,this.options=b,this._setUpListeners()};h.prototype.toggle=function(){a(this.element).is(e.collapsed)?this.expand():this.collapse()},h.prototype.expand=function(){var b=a.Event(g.expanded),c=a.Event(g.expanding),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).removeClass(f.collapsed),a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+h).removeClass(h).addClass(d),a(this.element).children(e.body+", "+e.footer).slideDown(this.options.animationSpeed,function(){a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.collapse=function(){var b=a.Event(g.collapsed),c=a.Event(g.collapsing),d=this.options.collapseIcon,h=this.options.expandIcon;a(this.element).children(e.header+", "+e.body+", "+e.footer).children(e.tools).find("."+d).removeClass(d).addClass(h),a(this.element).children(e.body+", "+e.footer).slideUp(this.options.animationSpeed,function(){a(this.element).addClass(f.collapsed),a(this.element).trigger(b)}.bind(this)).trigger(c)},h.prototype.remove=function(){var b=a.Event(g.removed),c=a.Event(g.removing);a(this.element).slideUp(this.options.animationSpeed,function(){a(this.element).trigger(b),a(this.element).remove()}.bind(this)).trigger(c)},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.collapseTrigger,function(c){return c&&c.preventDefault(),b.toggle(a(this)),!1}),a(this.element).on("click",this.options.removeTrigger,function(c){return c&&c.preventDefault(),b.remove(a(this)),!1})};var i=a.fn.boxWidget;a.fn.boxWidget=b,a.fn.boxWidget.Constructor=h,a.fn.boxWidget.noConflict=function(){return a.fn.boxWidget=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(e,g))}"string"==typeof b&&f.toggle()})}var c="lte.controlsidebar",d={slide:!0},e={sidebar:".control-sidebar",data:'[data-toggle="control-sidebar"]',open:".control-sidebar-open",bg:".control-sidebar-bg",wrapper:".wrapper",content:".content-wrapper",boxed:".layout-boxed"},f={open:"control-sidebar-open",fixed:"fixed"},g={collapsed:"collapsed.controlsidebar",expanded:"expanded.controlsidebar"},h=function(a,b){this.element=a,this.options=b,this.hasBindedResize=!1,this.init()};h.prototype.init=function(){a(this.element).is(e.data)||a(this).on("click",this.toggle),this.fix(),a(window).resize(function(){this.fix()}.bind(this))},h.prototype.toggle=function(b){b&&b.preventDefault(),this.fix(),a(e.sidebar).is(e.open)||a("body").is(e.open)?this.collapse():this.expand()},h.prototype.expand=function(){a(e.sidebar).show(),this.options.slide?a(e.sidebar).addClass(f.open):a("body").addClass(f.open),a(this.element).trigger(a.Event(g.expanded))},h.prototype.collapse=function(){a("body, "+e.sidebar).removeClass(f.open),a(e.sidebar).fadeOut(),a(this.element).trigger(a.Event(g.collapsed))},h.prototype.fix=function(){a("body").is(e.boxed)&&this._fixForBoxed(a(e.bg))},h.prototype._fixForBoxed=function(b){b.css({position:"absolute",height:a(e.wrapper).height()})};var i=a.fn.controlSidebar;a.fn.controlSidebar=b,a.fn.controlSidebar.Constructor=h,a.fn.controlSidebar.noConflict=function(){return a.fn.controlSidebar=i,this},a(document).on("click",e.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var d=a(this),e=d.data(c);e||d.data(c,e=new f(d)),"string"==typeof b&&e.toggle(d)})}var c="lte.directchat",d={data:'[data-widget="chat-pane-toggle"]',box:".direct-chat"},e={open:"direct-chat-contacts-open"},f=function(a){this.element=a};f.prototype.toggle=function(a){a.parents(d.box).first().toggleClass(e.open)};var g=a.fn.directChat;a.fn.directChat=b,a.fn.directChat.Constructor=f,a.fn.directChat.noConflict=function(){return a.fn.directChat=g,this},a(document).on("click",d.data,function(c){c&&c.preventDefault(),b.call(a(this),"toggle")})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var g=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new h(g))}"toggle"===b&&f.toggle()})}var c="lte.pushmenu",d={collapseScreenSize:767,expandOnHover:!1,expandTransitionDelay:200},e={collapsed:".sidebar-collapse",open:".sidebar-open",mainSidebar:".main-sidebar",contentWrapper:".content-wrapper",searchInput:".sidebar-form .form-control",button:'[data-toggle="push-menu"]',mini:".sidebar-mini",expanded:".sidebar-expanded-on-hover",layoutFixed:".fixed"},f={collapsed:"sidebar-collapse",open:"sidebar-open",mini:"sidebar-mini",expanded:"sidebar-expanded-on-hover",expandFeature:"sidebar-mini-expand-feature",layoutFixed:"fixed"},g={expanded:"expanded.pushMenu",collapsed:"collapsed.pushMenu"},h=function(a){this.options=a,this.init()};h.prototype.init=function(){(this.options.expandOnHover||a("body").is(e.mini+e.layoutFixed))&&(this.expandOnHover(),a("body").addClass(f.expandFeature)),a(e.contentWrapper).click(function(){a(window).width()<=this.options.collapseScreenSize&&a("body").hasClass(f.open)&&this.close()}.bind(this)),a(e.searchInput).click(function(a){a.stopPropagation()})},h.prototype.toggle=function(){var b=a(window).width(),c=!a("body").hasClass(f.collapsed);b<=this.options.collapseScreenSize&&(c=a("body").hasClass(f.open)),c?this.close():this.open()},h.prototype.open=function(){a(window).width()>this.options.collapseScreenSize?a("body").removeClass(f.collapsed).trigger(a.Event(g.expanded)):a("body").addClass(f.open).trigger(a.Event(g.expanded))},h.prototype.close=function(){a(window).width()>this.options.collapseScreenSize?a("body").addClass(f.collapsed).trigger(a.Event(g.collapsed)):a("body").removeClass(f.open+" "+f.collapsed).trigger(a.Event(g.collapsed))},h.prototype.expandOnHover=function(){a(e.mainSidebar).hover(function(){a("body").is(e.mini+e.collapsed)&&a(window).width()>this.options.collapseScreenSize&&this.expand()}.bind(this),function(){a("body").is(e.expanded)&&this.collapse()}.bind(this))},h.prototype.expand=function(){setTimeout(function(){a("body").removeClass(f.collapsed).addClass(f.expanded)},this.options.expandTransitionDelay)},h.prototype.collapse=function(){setTimeout(function(){a("body").removeClass(f.expanded).addClass(f.collapsed)},this.options.expandTransitionDelay)};var i=a.fn.pushMenu;a.fn.pushMenu=b,a.fn.pushMenu.Constructor=h,a.fn.pushMenu.noConflict=function(){return a.fn.pushMenu=i,this},a(document).on("click",e.button,function(c){c.preventDefault(),b.call(a(this),"toggle")}),a(window).on("load",function(){b.call(a(e.button))})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(e,h))}if("string"==typeof f){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.todolist",d={onCheck:function(a){return a},onUnCheck:function(a){return a}},e={data:'[data-widget="todo-list"]'},f={done:"done"},g=function(a,b){this.element=a,this.options=b,this._setUpListeners()};g.prototype.toggle=function(a){if(a.parents(e.li).first().toggleClass(f.done),!a.prop("checked"))return void this.unCheck(a);this.check(a)},g.prototype.check=function(a){this.options.onCheck.call(a)},g.prototype.unCheck=function(a){this.options.onUnCheck.call(a)},g.prototype._setUpListeners=function(){var b=this;a(this.element).on("change ifChanged","input:checkbox",function(){b.toggle(a(this))})};var h=a.fn.todoList;a.fn.todoList=b,a.fn.todoList.Constructor=g,a.fn.todoList.noConflict=function(){return a.fn.todoList=h,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this);if(!e.data(c)){var f=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,new h(e,f))}})}var c="lte.tree",d={animationSpeed:500,accordion:!0,followLink:!1,trigger:".treeview a"},e={tree:".tree",treeview:".treeview",treeviewMenu:".treeview-menu",open:".menu-open, .active",li:"li",data:'[data-widget="tree"]',active:".active"},f={open:"menu-open",tree:"tree"},g={collapsed:"collapsed.tree",expanded:"expanded.tree"},h=function(b,c){this.element=b,this.options=c,a(this.element).addClass(f.tree),a(e.treeview+e.active,this.element).addClass(f.open),this._setUpListeners()};h.prototype.toggle=function(a,b){var c=a.next(e.treeviewMenu),d=a.parent(),g=d.hasClass(f.open);d.is(e.treeview)&&(this.options.followLink&&"#"!==a.attr("href")||b.preventDefault(),g?this.collapse(c,d):this.expand(c,d))},h.prototype.expand=function(b,c){var d=a.Event(g.expanded);if(this.options.accordion){var h=c.siblings(e.open),i=h.children(e.treeviewMenu);this.collapse(i,h)}c.addClass(f.open),b.slideDown(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype.collapse=function(b,c){var d=a.Event(g.collapsed);c.removeClass(f.open),b.slideUp(this.options.animationSpeed,function(){a(this.element).trigger(d)}.bind(this))},h.prototype._setUpListeners=function(){var b=this;a(this.element).on("click",this.options.trigger,function(c){b.toggle(a(this),c)})};var i=a.fn.tree;a.fn.tree=b,a.fn.tree.Constructor=h,a.fn.tree.noConflict=function(){return a.fn.tree=i,this},a(window).on("load",function(){a(e.data).each(function(){b.call(a(this))})})}(jQuery),function(a){"use strict";function b(b){return this.each(function(){var e=a(this),f=e.data(c);if(!f){var h=a.extend({},d,e.data(),"object"==typeof b&&b);e.data(c,f=new g(h))}if("string"==typeof b){if(void 0===f[b])throw new Error("No method named "+b);f[b]()}})}var c="lte.layout",d={slimscroll:!0,resetHeight:!0},e={wrapper:".wrapper",contentWrapper:".content-wrapper",layoutBoxed:".layout-boxed",mainFooter:".main-footer",mainHeader:".main-header",sidebar:".sidebar",controlSidebar:".control-sidebar",fixed:".fixed",sidebarMenu:".sidebar-menu",logo:".main-header .logo"},f={fixed:"fixed",holdTransition:"hold-transition"},g=function(a){this.options=a,this.bindedResize=!1,this.activate()};g.prototype.activate=function(){this.fix(),this.fixSidebar(),a("body").removeClass(f.holdTransition),this.options.resetHeight&&a("body, html, "+e.wrapper).css({height:"auto","min-height":"100%"}),this.bindedResize||(a(window).resize(function(){this.fix(),this.fixSidebar(),a(e.logo+", "+e.sidebar).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){this.fix(),this.fixSidebar()}.bind(this))}.bind(this)),this.bindedResize=!0),a(e.sidebarMenu).on("expanded.tree",function(){this.fix(),this.fixSidebar()}.bind(this)),a(e.sidebarMenu).on("collapsed.tree",function(){this.fix(),this.fixSidebar()}.bind(this))},g.prototype.fix=function(){a(e.layoutBoxed+" > "+e.wrapper).css("overflow","hidden");var b=a(e.mainFooter).outerHeight()||0,c=a(e.mainHeader).outerHeight()||0,d=c+b,g=a(window).height(),h=a(e.sidebar).height()||0;if(a("body").hasClass(f.fixed))a(e.contentWrapper).css("min-height",g-b);else{var i;g>=h+c?(a(e.contentWrapper).css("min-height",g-d),i=g-d):(a(e.contentWrapper).css("min-height",h),i=h);var j=a(e.controlSidebar);void 0!==j&&j.height()>i&&a(e.contentWrapper).css("min-height",j.height())}},g.prototype.fixSidebar=function(){if(!a("body").hasClass(f.fixed))return void(void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({destroy:!0}).height("auto"));this.options.slimscroll&&void 0!==a.fn.slimScroll&&a(e.sidebar).slimScroll({height:a(window).height()-a(e.mainHeader).height()+"px"})};var h=a.fn.layout;a.fn.layout=b,a.fn.layout.Constuctor=g,a.fn.layout.noConflict=function(){return a.fn.layout=h,this},a(window).on("load",function(){b.call(a("body"))})}(jQuery);
 
 /***/ }),
 
@@ -26644,7 +26644,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * @license
  * Lodash <https://lodash.com/>
- * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Copyright JS Foundation and other contributors <https://js.foundation/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -26655,7 +26655,7 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.15';
+  var VERSION = '4.17.11';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -29314,10 +29314,16 @@ return jQuery;
         value.forEach(function(subValue) {
           result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
         });
-      } else if (isMap(value)) {
+
+        return result;
+      }
+
+      if (isMap(value)) {
         value.forEach(function(subValue, key) {
           result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
         });
+
+        return result;
       }
 
       var keysFunc = isFull
@@ -30241,8 +30247,8 @@ return jQuery;
         return;
       }
       baseFor(source, function(srcValue, key) {
-        stack || (stack = new Stack);
         if (isObject(srcValue)) {
+          stack || (stack = new Stack);
           baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
         }
         else {
@@ -32059,7 +32065,7 @@ return jQuery;
       return function(number, precision) {
         number = toNumber(number);
         precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
-        if (precision && nativeIsFinite(number)) {
+        if (precision) {
           // Shift with exponential notation to avoid floating-point issues.
           // See [MDN](https://mdn.io/round#Examples) for more details.
           var pair = (toString(number) + 'e').split('e'),
@@ -33242,7 +33248,7 @@ return jQuery;
     }
 
     /**
-     * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
+     * Gets the value at `key`, unless `key` is "__proto__".
      *
      * @private
      * @param {Object} object The object to query.
@@ -33250,10 +33256,6 @@ return jQuery;
      * @returns {*} Returns the property value.
      */
     function safeGet(object, key) {
-      if (key === 'constructor' && typeof object[key] === 'function') {
-        return;
-      }
-
       if (key == '__proto__') {
         return;
       }
@@ -37054,7 +37056,6 @@ return jQuery;
           }
           if (maxing) {
             // Handle invocations in a tight loop.
-            clearTimeout(timerId);
             timerId = setTimeout(timerExpired, wait);
             return invokeFunc(lastCallTime);
           }
@@ -41441,12 +41442,9 @@ return jQuery;
       , 'g');
 
       // Use a sourceURL for easier debugging.
-      // The sourceURL gets injected into the source that's eval-ed, so be careful
-      // with lookup (in case of e.g. prototype pollution), and strip newlines if any.
-      // A newline wouldn't be a valid sourceURL anyway, and it'd enable code injection.
       var sourceURL = '//# sourceURL=' +
-        (hasOwnProperty.call(options, 'sourceURL')
-          ? (options.sourceURL + '').replace(/[\r\n]/g, ' ')
+        ('sourceURL' in options
+          ? options.sourceURL
           : ('lodash.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
@@ -41479,9 +41477,7 @@ return jQuery;
 
       // If `variable` is not specified wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain.
-      // Like with sourceURL, we take care to not check the option's prototype,
-      // as this configuration is a code injection vector.
-      var variable = hasOwnProperty.call(options, 'variable') && options.variable;
+      var variable = options.variable;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
@@ -43686,11 +43682,10 @@ return jQuery;
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       var lodashFunc = lodash[methodName];
       if (lodashFunc) {
-        var key = lodashFunc.name + '';
-        if (!hasOwnProperty.call(realNames, key)) {
-          realNames[key] = [];
-        }
-        realNames[key].push({ 'name': methodName, 'func': lodashFunc });
+        var key = (lodashFunc.name + ''),
+            names = realNames[key] || (realNames[key] = []);
+
+        names.push({ 'name': methodName, 'func': lodashFunc });
       }
     });
 
@@ -44130,13 +44125,13 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
- * Select2 4.0.8
+ * Select2 4.0.5
  * https://select2.github.io
  *
  * Released under the MIT license
  * https://github.com/select2/select2/blob/master/LICENSE.md
  */
-;(function (factory) {
+(function (factory) {
   if (true) {
     // AMD. Register as an anonymous module.
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -44687,10 +44682,10 @@ S2.define('select2/utils',[
     DecoratedClass.prototype = new ctr();
 
     for (var m = 0; m < superMethods.length; m++) {
-      var superMethod = superMethods[m];
+        var superMethod = superMethods[m];
 
-      DecoratedClass.prototype[superMethod] =
-        SuperClass.prototype[superMethod];
+        DecoratedClass.prototype[superMethod] =
+          SuperClass.prototype[superMethod];
     }
 
     var calledMethod = function (methodName) {
@@ -44885,68 +44880,6 @@ S2.define('select2/utils',[
     $element.append($nodes);
   };
 
-  // Cache objects in Utils.__cache instead of $.data (see #4346)
-  Utils.__cache = {};
-
-  var id = 0;
-  Utils.GetUniqueElementId = function (element) {
-    // Get a unique element Id. If element has no id,
-    // creates a new unique number, stores it in the id
-    // attribute and returns the new id.
-    // If an id already exists, it simply returns it.
-
-    var select2Id = element.getAttribute('data-select2-id');
-    if (select2Id == null) {
-      // If element has id, use it.
-      if (element.id) {
-        select2Id = element.id;
-        element.setAttribute('data-select2-id', select2Id);
-      } else {
-        element.setAttribute('data-select2-id', ++id);
-        select2Id = id.toString();
-      }
-    }
-    return select2Id;
-  };
-
-  Utils.StoreData = function (element, name, value) {
-    // Stores an item in the cache for a specified element.
-    // name is the cache key.
-    var id = Utils.GetUniqueElementId(element);
-    if (!Utils.__cache[id]) {
-      Utils.__cache[id] = {};
-    }
-
-    Utils.__cache[id][name] = value;
-  };
-
-  Utils.GetData = function (element, name) {
-    // Retrieves a value from the cache by its key (name)
-    // name is optional. If no name specified, return
-    // all cache items for the specified element.
-    // and for a specified element.
-    var id = Utils.GetUniqueElementId(element);
-    if (name) {
-      if (Utils.__cache[id]) {
-        if (Utils.__cache[id][name] != null) {
-          return Utils.__cache[id][name];
-        }
-        return $(element).data(name); // Fallback to HTML5 data attribs.
-      }
-      return $(element).data(name); // Fallback to HTML5 data attribs.
-    } else {
-      return Utils.__cache[id];
-    }
-  };
-
-  Utils.RemoveData = function (element) {
-    // Removes all cached items for a specified element.
-    var id = Utils.GetUniqueElementId(element);
-    if (Utils.__cache[id] != null) {
-      delete Utils.__cache[id];
-    }
-  };
-
   return Utils;
 });
 
@@ -45082,7 +45015,7 @@ S2.define('select2/results',[
       $options.each(function () {
         var $option = $(this);
 
-        var item = Utils.GetData(this, 'data');
+        var item = $.data(this, 'data');
 
         // id needs to be converted to a string when comparing
         var id = '' + item.id;
@@ -45127,12 +45060,7 @@ S2.define('select2/results',[
       'aria-selected': 'false'
     };
 
-    var matches = window.Element.prototype.matches ||
-      window.Element.prototype.msMatchesSelector ||
-      window.Element.prototype.webkitMatchesSelector;
-
-    if ((data.element != null && matches.call(data.element, ':disabled')) ||
-        (data.element == null && data.disabled)) {
+    if (data.disabled) {
       delete attrs['aria-selected'];
       attrs['aria-disabled'] = 'true';
     }
@@ -45192,7 +45120,7 @@ S2.define('select2/results',[
       this.template(data, option);
     }
 
-    Utils.StoreData(option, 'data', data);
+    $.data(option, 'data', data);
 
     return option;
   };
@@ -45233,10 +45161,7 @@ S2.define('select2/results',[
       }
 
       self.setClasses();
-
-      if (self.options.get('scrollAfterSelect')) {
-        self.highlightFirstItem();
-      }
+      self.highlightFirstItem();
     });
 
     container.on('unselect', function () {
@@ -45245,10 +45170,7 @@ S2.define('select2/results',[
       }
 
       self.setClasses();
-
-      if (self.options.get('scrollAfterSelect')) {
-        self.highlightFirstItem();
-      }
+      self.highlightFirstItem();
     });
 
     container.on('open', function () {
@@ -45284,7 +45206,7 @@ S2.define('select2/results',[
         return;
       }
 
-      var data = Utils.GetData($highlighted[0], 'data');
+      var data = $highlighted.data('data');
 
       if ($highlighted.attr('aria-selected') == 'true') {
         self.trigger('close', {});
@@ -45302,9 +45224,8 @@ S2.define('select2/results',[
 
       var currentIndex = $options.index($highlighted);
 
-      // If we are already at the top, don't move further
-      // If no options, currentIndex will be -1
-      if (currentIndex <= 0) {
+      // If we are already at te top, don't move further
+      if (currentIndex === 0) {
         return;
       }
 
@@ -45397,7 +45318,7 @@ S2.define('select2/results',[
       function (evt) {
       var $this = $(this);
 
-      var data = Utils.GetData(this, 'data');
+      var data = $this.data('data');
 
       if ($this.attr('aria-selected') === 'true') {
         if (self.options.get('multiple')) {
@@ -45420,7 +45341,7 @@ S2.define('select2/results',[
 
     this.$results.on('mouseenter', '.select2-results__option[aria-selected]',
       function (evt) {
-      var data = Utils.GetData(this, 'data');
+      var data = $(this).data('data');
 
       self.getHighlightedResults()
           .removeClass('select2-results__option--highlighted');
@@ -45535,8 +45456,8 @@ S2.define('select2/selection/base',[
 
     this._tabindex = 0;
 
-    if (Utils.GetData(this.$element[0], 'old-tabindex') != null) {
-      this._tabindex = Utils.GetData(this.$element[0], 'old-tabindex');
+    if (this.$element.data('old-tabindex') != null) {
+      this._tabindex = this.$element.data('old-tabindex');
     } else if (this.$element.attr('tabindex') != null) {
       this._tabindex = this.$element.attr('tabindex');
     }
@@ -45595,7 +45516,7 @@ S2.define('select2/selection/base',[
       self.$selection.removeAttr('aria-activedescendant');
       self.$selection.removeAttr('aria-owns');
 
-      self.$selection.trigger('focus');
+      self.$selection.focus();
 
       self._detachCloseHandler(container);
     });
@@ -45644,7 +45565,7 @@ S2.define('select2/selection/base',[
           return;
         }
 
-        var $element = Utils.GetData(this, 'element');
+        var $element = $this.data('element');
 
         $element.select2('close');
       });
@@ -45705,10 +45626,7 @@ S2.define('select2/selection/single',[
 
     var id = container.id + '-container';
 
-    this.$selection.find('.select2-selection__rendered')
-      .attr('id', id)
-      .attr('role', 'textbox')
-      .attr('aria-readonly', 'true');
+    this.$selection.find('.select2-selection__rendered').attr('id', id);
     this.$selection.attr('aria-labelledby', id);
 
     this.$selection.on('mousedown', function (evt) {
@@ -45732,15 +45650,17 @@ S2.define('select2/selection/single',[
 
     container.on('focus', function (evt) {
       if (!container.isOpen()) {
-        self.$selection.trigger('focus');
+        self.$selection.focus();
       }
+    });
+
+    container.on('selection:update', function (params) {
+      self.update(params.data);
     });
   };
 
   SingleSelection.prototype.clear = function () {
-    var $rendered = this.$selection.find('.select2-selection__rendered');
-    $rendered.empty();
-    $rendered.removeAttr('title'); // clear tooltip on empty
+    this.$selection.find('.select2-selection__rendered').empty();
   };
 
   SingleSelection.prototype.display = function (data, container) {
@@ -45766,7 +45686,7 @@ S2.define('select2/selection/single',[
     var formatted = this.display(selection, $rendered);
 
     $rendered.empty().append(formatted);
-    $rendered.attr('title', selection.title || selection.text);
+    $rendered.prop('title', selection.title || selection.text);
   };
 
   return SingleSelection;
@@ -45818,7 +45738,7 @@ S2.define('select2/selection/multiple',[
         var $remove = $(this);
         var $selection = $remove.parent();
 
-        var data = Utils.GetData($selection[0], 'data');
+        var data = $selection.data('data');
 
         self.trigger('unselect', {
           originalEvent: evt,
@@ -45829,9 +45749,7 @@ S2.define('select2/selection/multiple',[
   };
 
   MultipleSelection.prototype.clear = function () {
-    var $rendered = this.$selection.find('.select2-selection__rendered');
-    $rendered.empty();
-    $rendered.removeAttr('title');
+    this.$selection.find('.select2-selection__rendered').empty();
   };
 
   MultipleSelection.prototype.display = function (data, container) {
@@ -45869,9 +45787,9 @@ S2.define('select2/selection/multiple',[
       var formatted = this.display(selection, $selection);
 
       $selection.append(formatted);
-      $selection.attr('title', selection.title || selection.text);
+      $selection.prop('title', selection.title || selection.text);
 
-      Utils.StoreData($selection[0], 'data', selection);
+      $selection.data('data', selection);
 
       $selections.push($selection);
     }
@@ -45936,9 +45854,8 @@ S2.define('select2/selection/placeholder',[
 
 S2.define('select2/selection/allowClear',[
   'jquery',
-  '../keys',
-  '../utils'
-], function ($, KEYS, Utils) {
+  '../keys'
+], function ($, KEYS) {
   function AllowClear () { }
 
   AllowClear.prototype.bind = function (decorated, container, $container) {
@@ -45980,22 +45897,10 @@ S2.define('select2/selection/allowClear',[
 
     evt.stopPropagation();
 
-    var data = Utils.GetData($clear[0], 'data');
-
-    var previousVal = this.$element.val();
-    this.$element.val(this.placeholder.id);
-
-    var unselectData = {
-      data: data
-    };
-    this.trigger('clear', unselectData);
-    if (unselectData.prevented) {
-      this.$element.val(previousVal);
-      return;
-    }
+    var data = $clear.data('data');
 
     for (var d = 0; d < data.length; d++) {
-      unselectData = {
+      var unselectData = {
         data: data[d]
       };
 
@@ -46005,12 +45910,11 @@ S2.define('select2/selection/allowClear',[
 
       // If the event was prevented, don't clear it out.
       if (unselectData.prevented) {
-        this.$element.val(previousVal);
         return;
       }
     }
 
-    this.$element.trigger('change');
+    this.$element.val(this.placeholder.id).trigger('change');
 
     this.trigger('toggle', {});
   };
@@ -46033,14 +45937,12 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');   
-
     var $remove = $(
-      '<span class="select2-selection__clear" title="' + removeAll() +'">' +
+      '<span class="select2-selection__clear">' +
         '&times;' +
       '</span>'
     );
-    Utils.StoreData($remove[0], 'data', data);
+    $remove.data('data', data);
 
     this.$selection.find('.select2-selection__rendered').prepend($remove);
   };
@@ -46131,7 +46033,7 @@ S2.define('select2/selection/search',[
           .prev('.select2-selection__choice');
 
         if ($previousChoice.length > 0) {
-          var item = Utils.GetData($previousChoice[0], 'data');
+          var item = $previousChoice.data('data');
 
           self.searchRemoveChoice(item);
 
@@ -46225,7 +46127,7 @@ S2.define('select2/selection/search',[
 
     this.resizeSearch();
     if (searchHadFocus) {
-      this.$search.trigger('focus');
+      this.$search.focus();
     }
   };
 
@@ -46282,13 +46184,10 @@ S2.define('select2/selection/eventRelay',[
       'open', 'opening',
       'close', 'closing',
       'select', 'selecting',
-      'unselect', 'unselecting',
-      'clear', 'clearing'
+      'unselect', 'unselecting'
     ];
 
-    var preventableEvents = [
-      'opening', 'closing', 'selecting', 'unselecting', 'clearing'
-    ];
+    var preventableEvents = ['opening', 'closing', 'selecting', 'unselecting'];
 
     decorated.call(this, container, $container);
 
@@ -46621,7 +46520,6 @@ S2.define('select2/diacritics',[
     '\u019F': 'O',
     '\uA74A': 'O',
     '\uA74C': 'O',
-    '\u0152': 'OE',
     '\u01A2': 'OI',
     '\uA74E': 'OO',
     '\u0222': 'OU',
@@ -47031,7 +46929,6 @@ S2.define('select2/diacritics',[
     '\uA74B': 'o',
     '\uA74D': 'o',
     '\u0275': 'o',
-    '\u0153': 'oe',
     '\u01A3': 'oi',
     '\u0223': 'ou',
     '\uA74F': 'oo',
@@ -47200,9 +47097,8 @@ S2.define('select2/diacritics',[
     '\u03CD': '\u03C5',
     '\u03CB': '\u03C5',
     '\u03B0': '\u03C5',
-    '\u03CE': '\u03C9',
-    '\u03C2': '\u03C3',
-    '\u2019': '\''
+    '\u03C9': '\u03C9',
+    '\u03C2': '\u03C3'
   };
 
   return diacritics;
@@ -47370,7 +47266,7 @@ S2.define('select2/data/select',[
     // Remove anything added to child elements
     this.$element.find('*').each(function () {
       // Remove any custom data set by Select2
-      Utils.RemoveData(this);
+      $.removeData(this, 'data');
     });
   };
 
@@ -47443,7 +47339,7 @@ S2.define('select2/data/select',[
     normalizedData.element = option;
 
     // Override the option's data with the combined data
-    Utils.StoreData(option, 'data', normalizedData);
+    $.data(option, 'data', normalizedData);
 
     return $option;
   };
@@ -47451,7 +47347,7 @@ S2.define('select2/data/select',[
   SelectAdapter.prototype.item = function ($option) {
     var data = {};
 
-    data = Utils.GetData($option[0], 'data');
+    data = $.data($option[0], 'data');
 
     if (data != null) {
       return data;
@@ -47489,13 +47385,13 @@ S2.define('select2/data/select',[
     data = this._normalizeItem(data);
     data.element = $option[0];
 
-    Utils.StoreData($option[0], 'data', data);
+    $.data($option[0], 'data', data);
 
     return data;
   };
 
   SelectAdapter.prototype._normalizeItem = function (item) {
-    if (item !== Object(item)) {
+    if (!$.isPlainObject(item)) {
       item = {
         id: item,
         text: item
@@ -47699,8 +47595,7 @@ S2.define('select2/data/ajax',[
       }, function () {
         // Attempt to detect if a request was aborted
         // Only works if the transport exposes a status property
-        if ('status' in $request &&
-            ($request.status === 0 || $request.status === '0')) {
+        if ($request.status && $request.status === '0') {
           return;
         }
 
@@ -47915,7 +47810,7 @@ S2.define('select2/data/tokenizer',[
       // Replace the search term if we have the search box
       if (this.$search.length) {
         this.$search.val(tokenData.term);
-        this.$search.trigger('focus');
+        this.$search.focus();
       }
 
       params.term = tokenData.term;
@@ -48099,7 +47994,7 @@ S2.define('select2/dropdown',[
   };
 
   Dropdown.prototype.position = function ($dropdown, $container) {
-    // Should be implemented in subclasses
+    // Should be implmented in subclasses
   };
 
   Dropdown.prototype.destroy = function () {
@@ -48161,10 +48056,10 @@ S2.define('select2/dropdown/search',[
     container.on('open', function () {
       self.$search.attr('tabindex', 0);
 
-      self.$search.trigger('focus');
+      self.$search.focus();
 
       window.setTimeout(function () {
-        self.$search.trigger('focus');
+        self.$search.focus();
       }, 0);
     });
 
@@ -48172,12 +48067,11 @@ S2.define('select2/dropdown/search',[
       self.$search.attr('tabindex', -1);
 
       self.$search.val('');
-      self.$search.trigger('blur');
     });
 
     container.on('focus', function () {
       if (!container.isOpen()) {
-        self.$search.trigger('focus');
+        self.$search.focus();
       }
     });
 
@@ -48276,7 +48170,6 @@ S2.define('select2/dropdown/infiniteScroll',[
 
     if (this.showLoadingMore(data)) {
       this.$results.append(this.$loadingMore);
-      this.loadMoreIfNeeded();
     }
   };
 
@@ -48295,27 +48188,25 @@ S2.define('select2/dropdown/infiniteScroll',[
       self.loading = true;
     });
 
-    this.$results.on('scroll', this.loadMoreIfNeeded.bind(this));
-  };
+    this.$results.on('scroll', function () {
+      var isLoadMoreVisible = $.contains(
+        document.documentElement,
+        self.$loadingMore[0]
+      );
 
-  InfiniteScroll.prototype.loadMoreIfNeeded = function () {
-    var isLoadMoreVisible = $.contains(
-      document.documentElement,
-      this.$loadingMore[0]
-    );
+      if (self.loading || !isLoadMoreVisible) {
+        return;
+      }
 
-    if (this.loading || !isLoadMoreVisible) {
-      return;
-    }
+      var currentOffset = self.$results.offset().top +
+        self.$results.outerHeight(false);
+      var loadingMoreOffset = self.$loadingMore.offset().top +
+        self.$loadingMore.outerHeight(false);
 
-    var currentOffset = this.$results.offset().top +
-      this.$results.outerHeight(false);
-    var loadingMoreOffset = this.$loadingMore.offset().top +
-      this.$loadingMore.outerHeight(false);
-
-    if (currentOffset + 50 >= loadingMoreOffset) {
-      this.loadMore();
-    }
+      if (currentOffset + 50 >= loadingMoreOffset) {
+        self.loadMore();
+      }
+    });
   };
 
   InfiniteScroll.prototype.loadMore = function () {
@@ -48441,14 +48332,14 @@ S2.define('select2/dropdown/attachBody',[
 
     var $watchers = this.$container.parents().filter(Utils.hasScroll);
     $watchers.each(function () {
-      Utils.StoreData(this, 'select2-scroll-position', {
+      $(this).data('select2-scroll-position', {
         x: $(this).scrollLeft(),
         y: $(this).scrollTop()
       });
     });
 
     $watchers.on(scrollEvent, function (ev) {
-      var position = Utils.GetData(this, 'select2-scroll-position');
+      var position = $(this).data('select2-scroll-position');
       $(this).scrollTop(position.y);
     });
 
@@ -48507,10 +48398,10 @@ S2.define('select2/dropdown/attachBody',[
       top: container.bottom
     };
 
-    // Determine what the parent element is to use for calculating the offset
+    // Determine what the parent element is to use for calciulating the offset
     var $offsetParent = this.$dropdownParent;
 
-    // For statically positioned elements, we need to get the element
+    // For statically positoned elements, we need to get the element
     // that is determining the offset
     if ($offsetParent.css('position') === 'static') {
       $offsetParent = $offsetParent.offsetParent();
@@ -48613,8 +48504,8 @@ S2.define('select2/dropdown/minimumResultsForSearch',[
 });
 
 S2.define('select2/dropdown/selectOnClose',[
-  '../utils'
-], function (Utils) {
+
+], function () {
   function SelectOnClose () { }
 
   SelectOnClose.prototype.bind = function (decorated, container, $container) {
@@ -48645,7 +48536,7 @@ S2.define('select2/dropdown/selectOnClose',[
       return;
     }
 
-    var data = Utils.GetData($highlightedResults[0], 'data');
+    var data = $highlightedResults.data('data');
 
     // Don't re-select already selected resulte
     if (
@@ -48686,7 +48577,7 @@ S2.define('select2/dropdown/closeOnSelect',[
     var originalEvent = evt.originalEvent;
 
     // Don't close if the control key is being held
-    if (originalEvent && (originalEvent.ctrlKey || originalEvent.metaKey)) {
+    if (originalEvent && originalEvent.ctrlKey) {
       return;
     }
 
@@ -48740,9 +48631,6 @@ S2.define('select2/i18n/en',[],function () {
     },
     searching: function () {
       return 'Searching…';
-    },
-    removeAllItems: function () {
-      return 'Remove all items';
     }
   };
 });
@@ -49114,7 +49002,6 @@ S2.define('select2/defaults',[
       maximumSelectionLength: 0,
       minimumResultsForSearch: 0,
       selectOnClose: false,
-      scrollAfterSelect: false,
       sorter: function (data) {
         return data;
       },
@@ -49137,7 +49024,7 @@ S2.define('select2/defaults',[
 
     var convertedData = Utils._convertData(data);
 
-    $.extend(true, this.defaults, convertedData);
+    $.extend(this.defaults, convertedData);
   };
 
   var defaults = new Defaults();
@@ -49202,7 +49089,7 @@ S2.define('select2/options',[
     $e.prop('disabled', this.options.disabled);
     $e.prop('multiple', this.options.multiple);
 
-    if (Utils.GetData($e[0], 'select2Tags')) {
+    if ($e.data('select2Tags')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-select2-tags` attribute has been changed to ' +
@@ -49211,11 +49098,11 @@ S2.define('select2/options',[
         );
       }
 
-      Utils.StoreData($e[0], 'data', Utils.GetData($e[0], 'select2Tags'));
-      Utils.StoreData($e[0], 'tags', true);
+      $e.data('data', $e.data('select2Tags'));
+      $e.data('tags', true);
     }
 
-    if (Utils.GetData($e[0], 'ajaxUrl')) {
+    if ($e.data('ajaxUrl')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-ajax-url` attribute has been changed to ' +
@@ -49224,45 +49111,21 @@ S2.define('select2/options',[
         );
       }
 
-      $e.attr('ajax--url', Utils.GetData($e[0], 'ajaxUrl'));
-      Utils.StoreData($e[0], 'ajax-Url', Utils.GetData($e[0], 'ajaxUrl'));
+      $e.attr('ajax--url', $e.data('ajaxUrl'));
+      $e.data('ajax--url', $e.data('ajaxUrl'));
     }
 
     var dataset = {};
 
-    function upperCaseLetter(_, letter) {
-      return letter.toUpperCase();
-    }
-
-    // Pre-load all of the attributes which are prefixed with `data-`
-    for (var attr = 0; attr < $e[0].attributes.length; attr++) {
-      var attributeName = $e[0].attributes[attr].name;
-      var prefix = 'data-';
-
-      if (attributeName.substr(0, prefix.length) == prefix) {
-        // Get the contents of the attribute after `data-`
-        var dataName = attributeName.substring(prefix.length);
-
-        // Get the data contents from the consistent source
-        // This is more than likely the jQuery data helper
-        var dataValue = Utils.GetData($e[0], dataName);
-
-        // camelCase the attribute name to match the spec
-        var camelDataName = dataName.replace(/-([a-z])/g, upperCaseLetter);
-
-        // Store the data attribute contents into the dataset since
-        dataset[camelDataName] = dataValue;
-      }
-    }
-
     // Prefer the element's `dataset` attribute if it exists
     // jQuery 1.x does not correctly handle data attributes with multiple dashes
     if ($.fn.jquery && $.fn.jquery.substr(0, 2) == '1.' && $e[0].dataset) {
-      dataset = $.extend(true, {}, $e[0].dataset, dataset);
+      dataset = $.extend(true, {}, $e[0].dataset, $e.data());
+    } else {
+      dataset = $e.data();
     }
 
-    // Prefer our internal data cache if it exists
-    var data = $.extend(true, {}, Utils.GetData($e[0]), dataset);
+    var data = $.extend(true, {}, dataset);
 
     data = Utils._convertData(data);
 
@@ -49299,8 +49162,8 @@ S2.define('select2/core',[
   './keys'
 ], function ($, Options, Utils, KEYS) {
   var Select2 = function ($element, options) {
-    if (Utils.GetData($element[0], 'select2') != null) {
-      Utils.GetData($element[0], 'select2').destroy();
+    if ($element.data('select2') != null) {
+      $element.data('select2').destroy();
     }
 
     this.$element = $element;
@@ -49316,7 +49179,7 @@ S2.define('select2/core',[
     // Set up the tabindex
 
     var tabindex = $element.attr('tabindex') || 0;
-    Utils.StoreData($element[0], 'old-tabindex', tabindex);
+    $element.data('old-tabindex', tabindex);
     $element.attr('tabindex', '-1');
 
     // Set up containers and adapters
@@ -49377,9 +49240,6 @@ S2.define('select2/core',[
     // Synchronize any monitored attributes
     this._syncAttributes();
 
-    Utils.StoreData($element[0], 'select2', this);
-
-    // Ensure backwards compatibility with $element.data('select2').
     $element.data('select2', this);
   };
 
@@ -49454,12 +49314,6 @@ S2.define('select2/core',[
       }
 
       return null;
-    }
-
-    if (method == 'computedstyle') {
-      var computedStyle = window.getComputedStyle($element[0]);
-
-      return computedStyle.width;
     }
 
     return method;
@@ -49720,8 +49574,7 @@ S2.define('select2/core',[
       'open': 'opening',
       'close': 'closing',
       'select': 'selecting',
-      'unselect': 'unselecting',
-      'clear': 'clearing'
+      'unselect': 'unselecting'
     };
 
     if (args === undefined) {
@@ -49876,12 +49729,10 @@ S2.define('select2/core',[
     this._syncS = null;
 
     this.$element.off('.select2');
-    this.$element.attr('tabindex',
-    Utils.GetData(this.$element[0], 'old-tabindex'));
+    this.$element.attr('tabindex', this.$element.data('old-tabindex'));
 
     this.$element.removeClass('select2-hidden-accessible');
     this.$element.attr('aria-hidden', 'false');
-    Utils.RemoveData(this.$element[0]);
     this.$element.removeData('select2');
 
     this.dataAdapter.destroy();
@@ -49909,7 +49760,7 @@ S2.define('select2/core',[
 
     this.$container.addClass('select2-container--' + this.options.get('theme'));
 
-    Utils.StoreData($container[0], 'element', this.$element);
+    $container.data('element', this.$element);
 
     return $container;
   };
@@ -49929,9 +49780,8 @@ S2.define('jquery.select2',[
   'jquery-mousewheel',
 
   './select2/core',
-  './select2/defaults',
-  './select2/utils'
-], function ($, _, Select2, Defaults, Utils) {
+  './select2/defaults'
+], function ($, _, Select2, Defaults) {
   if ($.fn.select2 == null) {
     // All methods that should return the element
     var thisMethods = ['open', 'close', 'destroy'];
@@ -49952,7 +49802,7 @@ S2.define('jquery.select2',[
         var args = Array.prototype.slice.call(arguments, 1);
 
         this.each(function () {
-          var instance = Utils.GetData(this, 'select2');
+          var instance = $(this).data('select2');
 
           if (instance == null && window.console && console.error) {
             console.error(
@@ -54340,17 +54190,17 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
-__webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
-module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
 
 
 /***/ }),

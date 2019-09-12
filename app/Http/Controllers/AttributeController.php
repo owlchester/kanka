@@ -48,6 +48,7 @@ class AttributeController extends CrudAttributeController
      */
     public function index(Entity $entity)
     {
+        $this->authorize('attributes', $entity);
         return $this->crudIndex($entity);
     }
 
@@ -114,6 +115,7 @@ class AttributeController extends CrudAttributeController
     public function template(Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $this->authorize('attributes', $entity);
 
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';

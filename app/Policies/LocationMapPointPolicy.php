@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Location;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class LocationMapPointPolicy extends EntityPolicy
+class LocationMapPointPolicy extends MiscPolicy
 {
     protected $model = 'location';
 }
