@@ -44,7 +44,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Every location can contain a map (png, jpg or svg) that itself has "map points" that can be placed with control over size, shape, icon and colour, and as links to entities or simple labels.
 
-Please note that maps from popular tools like Watabou's Medieval Fantasy Town Generator compress the generated files making them incompatible with Kanka. A fix involves opening the files in Inkscape or Photoshop and re-saving the SVG files before uploading them to Kanka.
+SVG files from Azgaar's :azgaar and watabou's :watabou are fully compatible with Kanka. Some other map making tools compress the generated SVG files making them incompatible with the app. You can usually fix those by opening the files in Inkscape or Photoshop and re-saving the SVG files before uploading them to the location.
 TEXT
 ,
         'question'  => 'Can I upload maps to Kanka?',
