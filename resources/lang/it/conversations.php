@@ -31,6 +31,9 @@ return [
         'title'         => 'Conversazioni',
     ],
     'messages'      => [
+        'destroy'       => [
+            'success'   => 'Messaggio rimosso.',
+        ],
         'load_previous' => 'Carica i messaggi precedenti',
         'placeholders'  => [
             'message'   => 'Il tuo messaggio',

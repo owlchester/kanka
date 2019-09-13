@@ -31,6 +31,9 @@ return [
         'title'         => 'Unterhaltungen',
     ],
     'messages'      => [
+        'destroy'       => [
+            'success'   => 'Nachricht gelöscht.',
+        ],
         'load_previous' => 'Lade vorherige Nachrichten',
         'placeholders'  => [
             'message'   => 'Deine Nachricht',

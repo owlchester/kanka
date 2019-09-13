@@ -55,9 +55,7 @@ return [
             'role'          => 'Ruolo',
         ],
         'helpers'       => [
-            'all_members'       => 'La lista seguente rappresenta tutti i personaggi che fanno parte di questa organizzazione e di tutte le organizzazioni che ne discendono.',
-            'direct_members'    => 'La maggior parte delle organizzazioni richiedono membri per funzionare correttamente. La lista seguente rappresenta i personaggi che sono membri diretti di questa organizzazione.',
-            'members'           => 'La lista seguente rappresenta tutti i personaggi che fanno parte di questa organizzazione e di tutte le organizzazioni che ne discendono.',
+            'members'   => 'La lista seguente rappresenta tutti i personaggi che fanno parte di questa organizzazione e di tutte le organizzazioni che ne discendono.',
         ],
         'placeholders'  => [
             'character' => 'Seleziona un personaggio',
@@ -80,8 +78,6 @@ return [
     'show'          => [
         'description'   => 'Una vista dettagliata di un\'organizzazione',
         'tabs'          => [
-            'all_members'   => 'Tutti i Membri',
-            'members'       => 'Membri Diretti',
             'organisations' => 'Organizzazioni',
             'quests'        => 'Missioni',
             'relations'     => 'Relazioni',

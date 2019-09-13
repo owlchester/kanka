@@ -2,8 +2,14 @@
 
 return [
     'children'      => [
+        'actions'       => [
+            'add'   => 'Füge neue Kategorie hinzu',
+        ],
+        'create'        => [
+            'title' => 'Füge Kategorie zu :name hinzu',
+        ],
         'description'   => 'Objekte mit diesem Tag',
-        'title'         => 'Tag :name Subtags',
+        'title'         => 'Kategorie :name Unterkategorien',
     ],
     'create'        => [
         'description'   => 'Erstelle eine neue Kategorie',
@@ -21,8 +27,8 @@ return [
         'characters'    => 'Charaktere',
         'children'      => 'Kinder',
         'name'          => 'Name',
-        'tag'           => 'Tag',
-        'tags'          => 'Subtags',
+        'tag'           => 'Kategorie',
+        'tags'          => 'Unterkategorien',
         'type'          => 'Typ',
     ],
     'helpers'       => [
@@ -41,7 +47,7 @@ return [
         'header'        => 'Kategorien von :name',
         'title'         => 'Kategorien',
     ],
-    'new_tag'       => 'Neues Tag',
+    'new_tag'       => 'Neue Kategorie',
     'placeholders'  => [
         'name'  => 'Name der Kategorie',
         'tag'   => 'Wähle eine Elternkategorie',
@@ -57,7 +63,7 @@ return [
         'title'         => 'Kategorie :name',
     ],
     'tags'          => [
-        'description'   => 'Subtags',
-        'title'         => 'Tag :name Subtags',
+        'description'   => 'Unterkategorien',
+        'title'         => 'Kategorie :name Unterkategorien',
     ],
 ];

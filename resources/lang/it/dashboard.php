@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'           => [
+        'follow'    => 'Segui',
+        'unfollow'  => 'Smetti di seguire',
+    ],
     'campaigns'         => [
         'manage'    => 'Gestisci la campagna',
         'tabs'      => [
@@ -11,7 +15,8 @@ return [
     ],
     'description'       => 'La dimora della tua creatività',
     'helpers'           => [
-        'setup' => 'Imposta la dashboard della tua campagna.',
+        'follow'    => 'Seguire una campagna farà si che questa appaia nel selettore delle campagne (in alto a destra) sotto alle tue campagna.',
+        'setup'     => 'Imposta la dashboard della tua campagna.',
     ],
     'latest_release'    => 'Ultima Versione',
     'notifications'     => [

@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Füge ein Aussehen hinzu',
+        'add_organisation'  => 'Füge eine Organisation hinzu',
         'add_personality'   => 'Füge eine Persönlichkeit hinzu',
     ],
     'conversations' => [
@@ -144,5 +145,8 @@ return [
             'quests'        => 'Quests',
         ],
         'title'         => 'Charakter :name',
+    ],
+    'warnings'      => [
+        'personality_hidden'    => 'Es ist dir nicht erlaubt, die Persönlichkeit dieses Charakters zu bearbeiten.',
     ],
 ];

@@ -46,6 +46,7 @@ return [
         'organisations' => 'Organisationen',
         'quest'         => 'Elternquest',
         'quests'        => 'Subquest',
+        'role'          => 'Rolle',
         'type'          => 'Typ',
     ],
     'helpers'       => [
@@ -123,6 +124,7 @@ return [
     'placeholders'  => [
         'name'  => 'Name des Quests',
         'quest' => 'Elternquest',
+        'role'  => 'Die Rolle des Objekts in der Quest',
         'type'  => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],
     'show'          => [

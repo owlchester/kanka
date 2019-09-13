@@ -2,19 +2,20 @@
 
 return [
     'actions'           => [
-        'apply'         => 'Applica',
-        'back'          => 'Indietro',
-        'copy'          => 'Copia',
-        'explore_view'  => 'Vista annidata',
-        'export'        => 'Esporta',
-        'find_out_more' => 'Scopri di più',
-        'go_to'         => 'Vai a :name',
-        'more'          => 'Più Azioni',
-        'move'          => 'Muovi',
-        'new'           => 'Nuovo',
-        'next'          => 'Prossimo',
-        'private'       => 'Privato',
-        'public'        => 'Pubblico',
+        'apply'             => 'Applica',
+        'back'              => 'Indietro',
+        'copy'              => 'Copia',
+        'copy_to_campaign'  => 'Copia nella Campagna',
+        'explore_view'      => 'Vista annidata',
+        'export'            => 'Esporta',
+        'find_out_more'     => 'Scopri di più',
+        'go_to'             => 'Vai a :name',
+        'more'              => 'Più Azioni',
+        'move'              => 'Muovi',
+        'new'               => 'Nuovo',
+        'next'              => 'Prossimo',
+        'private'           => 'Privato',
+        'public'            => 'Pubblico',
     ],
     'add'               => 'Aggiungi',
     'attributes'        => [
@@ -75,12 +76,22 @@ return [
         ],
     ],
     'bulk'              => [
-        'errors'    => [
+        'errors'        => [
             'admin' => 'Solo gli amministratori della campagna possono cambiare lo stato di visibilità delle entità.',
         ],
-        'success'   => [
-            'private'   => ':count entità è adesso privata|:count entità sono adesso private.',
-            'public'    => ':count entità è adesso visibile|:count entità sono adesso visibili.',
+        'permissions'   => [
+            'fields'    => [
+                'override'  => 'Sovrascrivi',
+            ],
+            'helpers'   => [
+                'override'  => 'Se selezionato, i permessi delle entità selezionate saranno sovrascritti con questi. Se non selezionato i permessi selezionati saranno aggiunti a quelli già assegnati.',
+            ],
+            'title'     => 'Cambia i permessi a più entità',
+        ],
+        'success'       => [
+            'permissions'   => 'Permessi modificati a :count entità.|Permessi modificati a :count entità.',
+            'private'       => ':count entità è adesso privata|:count entità sono adesso private.',
+            'public'        => ':count entità è adesso visibile|:count entità sono adesso visibili.',
         ],
     ],
     'cancel'            => 'Annulla',
@@ -88,6 +99,10 @@ return [
         'close'     => 'Chiudi',
         'confirm'   => 'Conferma',
         'title'     => 'Conferma la tua azione',
+    ],
+    'copy_to_campaign'  => [
+        'panel' => 'Copia',
+        'title' => 'Copia \':name\' in una\'ltra campagna',
     ],
     'create'            => 'Crea',
     'datagrid'          => [
@@ -97,6 +112,7 @@ return [
         'close'         => 'Chiudi',
         'delete'        => 'Cancella',
         'description'   => 'Sei sicuro di vole rimuovere :tag?',
+        'mirrored'      => 'Rimuove relazioni speculari.',
         'title'         => 'Conferma di cancellazione',
     ],
     'destroy_many'      => [
@@ -128,6 +144,7 @@ return [
         'files'                 => 'Files',
         'image'                 => 'Immagine',
         'is_private'            => 'Privato',
+        'is_star'               => 'Fissato',
         'item'                  => 'Oggetto',
         'location'              => 'Luogo',
         'name'                  => 'Nome',
@@ -175,6 +192,7 @@ return [
         'image_limitations'     => 'Formati supportati: jpg, png and gif. Dimensione massima del file: :size.',
         'image_patreon'         => 'Aumentare la dimensione massima dei file?',
         'is_private'            => 'Nascondi dalle utenze non "Admin".',
+        'is_star'               => 'Gli elementi fissati appariranno nel menù dell\'entità',
         'map_limitations'       => 'Formati supportati:jpg, png, gif e svg. Dimensione massima del file: :size.',
         'visibility'            => 'Impostare la visibilità agli amministratori significa che solamente i membri del ruolo "Proprietario" della campagna potranno visualizzarlo. Impostarlo a "Te stesso" significa che solo tu potrai vederlo.',
     ],
@@ -199,13 +217,16 @@ return [
         ],
         'fields'        => [
             'campaign'  => 'Nuova campagna',
+            'copy'      => 'Crea una Copia',
             'target'    => 'Nuovo tipo',
         ],
         'hints'         => [
             'campaign'  => 'Puoi anche provare a muovere questa entità in un\'altra campagna',
+            'copy'      => 'Seleziona questa opzione se vuoi crearne una copia nella nuova campagna.',
             'target'    => 'Per favore considera che alcuni dati potrebbero andare perso nel caso si muovesse un elemento da un tipo ad un\'altro.',
         ],
         'success'       => 'Entità \':name\' spostata.',
+        'success_copy'  => 'Entità \':name\' copiata.',
         'title'         => 'Sposta :name',
     ],
     'new_entity'        => [
@@ -228,9 +249,14 @@ return [
     'permissions'       => [
         'action'    => 'Azione',
         'actions'   => [
-            'delete'    => 'Cancellazione',
-            'edit'      => 'Modifica',
-            'read'      => 'Lettura',
+            'bulk'          => [
+                'add'       => 'Aggiungi',
+                'remove'    => 'Rimuovi',
+            ],
+            'delete'        => 'Cancellazione',
+            'edit'          => 'Modifica',
+            'entity_note'   => 'Note dell\'Entità',
+            'read'          => 'Lettura',
         ],
         'allowed'   => 'Permesso',
         'fields'    => [

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'           => [
+        'follow'    => 'Folgen',
+        'unfollow'  => 'Nicht mehr folgen',
+    ],
     'campaigns'         => [
         'manage'    => 'Kampagnen verwalten',
         'tabs'      => [
@@ -11,7 +15,8 @@ return [
     ],
     'description'       => 'Das Zuhause deiner Kreativität',
     'helpers'           => [
-        'setup' => 'Richte dein Kampagnen Dashboard ein.',
+        'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
+        'setup'     => 'Richte dein Kampagnen Dashboard ein.',
     ],
     'latest_release'    => 'Letztes Release',
     'notifications'     => [
@@ -83,7 +88,9 @@ TEXT
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
         'recent'    => [
-            'title' => 'Vor kurzem aktualisiert',
+            'help'      => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
+            'singular'  => 'Einzelnes Objekt',
+            'title'     => 'Vor kurzem aktualisiert',
         ],
         'update'    => [
             'success'   => 'Widget angepasst.',
