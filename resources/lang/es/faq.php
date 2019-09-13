@@ -37,7 +37,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Cada localización puede contener un mapa (png, jpg o svg) con puntos que se pueden colocar sobre él, personalizando el tamaño, forma, icono y color; y que enlacen a otras entidades o simplemente sean etiquetas.
 
-Ten en cuenta que los mapas generados en sitios como Azgaar o Medieval Fantasy Town Generator comprimen los archivos, de forma que son incompatibles con Kanka. Para arreglar esto puedes abrir los archivos en Inskape o Photoshop y volver a guardar los archivos SGV antes de subirlos a Kanka.
+Ten en cuenta que los mapas generados en sitios como Medieval Fantasy Town Generator comprimen los archivos, de forma que son incompatibles con Kanka. Para arreglar esto puedes abrir los archivos en Inskape o Photoshop y volver a guardar los archivos SGV antes de subirlos a Kanka.
 TEXT
 ,
         'question'  => '¿Puedo subir mapas a Kanka?',

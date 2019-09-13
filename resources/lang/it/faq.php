@@ -40,7 +40,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Ogno luogo può contenere una mappa (png, jpg o svg) con all'interno dei "punti della mappa" che possono essere posizionati controllandone la dimensione, la forma, l'icona ed il colore impostandoli come collegamenti ad altre entità o semplici etichette.
 
-Per favore considerate che le mappe prodotte da tool popolari come Azgaar e Medieval Fantasy Town Generator comprimono iol file generato rendendoli incompatibili con Kanka. Un fix è quello di aprire il file con Inkscape o Photoshop e salvarlo nuovamente prima di caricarlo su Kanka.
+Per favore considerate che le mappe prodotte da tool popolari come Medieval Fantasy Town Generator comprimono iol file generato rendendoli incompatibili con Kanka. Un fix è quello di aprire il file con Inkscape o Photoshop e salvarlo nuovamente prima di caricarlo su Kanka.
 TEXT
 ,
         'question'  => 'Posso caricare delle mappe su Kanka?',
