@@ -9,5 +9,5 @@ return [
         'read_all'  => 'Tout lire',
     ],
     'profile'           => 'Profil',
-    'toggle_navigation' => 'Basculer la naviguation',
+    'toggle_navigation' => 'Basculer la navigation',
 ];

@@ -94,7 +94,7 @@ return [
     'footer'        => [
         'app'       => 'App',
         'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
-        'navigation'=> 'Naviguation',
+        'navigation'=> 'Navigation',
         'resources' => 'Ressources',
         'social'    => 'Social',
     ],
