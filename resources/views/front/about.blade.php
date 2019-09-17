@@ -54,7 +54,7 @@
                     <div class="col-lg-4 my-auto">
                         <h4>{{ trans('teams.index.translations') }}</h4>
                         <p>
-                            <strong>{{ trans('languages.codes.de') }}</strong>: TheFurya, Yanila
+                            <strong>{{ trans('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim
                         </p>
                         <p>
                             <strong>{{ trans('languages.codes.en-US') }}</strong>: Oriek
