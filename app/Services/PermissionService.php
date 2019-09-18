@@ -8,6 +8,7 @@ use App\Models\CampaignInvite;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -128,6 +129,13 @@ class PermissionService
                     }
                 }
             }
+        }
+
+        // Campaign admins can hide all attributes from an entity
+        if (Auth::user()->isAdmin()) {
+            $privateAttributes = Arr::get($request, 'is_attributes_private', false);
+            $entity->is_attributes_private = $privateAttributes;
+            $entity->save();
         }
     }
 

@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Character;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CharacterPolicy extends EntityPolicy
+class CharacterPolicy extends MiscPolicy
 {
     protected $model = 'character';
 

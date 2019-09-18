@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Event;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ConversationPolicy extends EntityPolicy
+class ConversationPolicy extends MiscPolicy
 {
     protected $model = 'conversation';
 }

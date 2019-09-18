@@ -23,6 +23,7 @@ class Entity extends EntityChild
             'type' => $this->type,
             'tooltip' => $this->tooltip(),
             'url' => $this->url(),
+            'is_attributes_private' => $this->is_attributes_private,
 
             'is_private' => (bool) $this->child->is_private,
 
@@ -30,17 +31,6 @@ class Entity extends EntityChild
             'created_by' => $this->created_by,
             'updated_at' => $this->child->updated_at,
             'updated_by' => $this->updated_by,
-
-            /*
-             *
-                    'id' => $model->id,
-                    'fullname' => $model->name,
-                    'image' => !empty($model->child->image) ? '<span class="entity-image-mention" style="background-image: url(\'' . $model->child->getImageUrl(true) . '\');"></span> ' : '',
-                    'name' => $model->name,
-                    'type' => trans('entities.' . $model->type),
-                    'tooltip' => $model->tooltip(),
-                    'url' => route($model->pluralType() . '.show', $model->entity_id)
-             */
         ];
     }
 }

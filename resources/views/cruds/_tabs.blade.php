@@ -20,11 +20,13 @@
     </a>
 </li>
 
+@can('attributes', $model->entity)
 <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
     <a href="#attribute" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
         <i class="fa fa-th-list"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.attributes') }}</span>
     </a>
 </li>
+@endcan
 @can('permission', $model)
     <li class="pull-right" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
         <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.permissions', $model->entity) }}">

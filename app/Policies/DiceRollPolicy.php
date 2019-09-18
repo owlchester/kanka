@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Character;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DiceRollPolicy extends EntityPolicy
+class DiceRollPolicy extends MiscPolicy
 {
     /**
      * @var string

@@ -19,19 +19,19 @@ foreach ($attributes as $attribute) {
     <div class="col-xs-1"><span class="hidden-xs">{{ trans('crud.attributes.fields.is_star') }}</span></div>
     @if ($isAdmin)<div class="col-xs-2"><span class="hidden-xs">{{ trans('crud.fields.is_private') }}</span></div>@endif
 </div>
-<div class="entity-attributes">
-    @foreach ($attributes as $attribute)
-        @include('cruds.forms.attributes._attribute')
-    @endforeach
-    @if (isset($entityAttributeTemplates))
-        @foreach ($entityAttributeTemplates as $attributeTemplate)
-            @include('cruds.forms.attributes._template')
+<div id="entity-attributes-all">
+    <div class="entity-attributes">
+        @foreach ($attributes as $attribute)
+            @include('cruds.forms.attributes._attribute')
         @endforeach
-    @endif
-    <div id="add_attribute_target"></div>
-</div>
-<div id="add_unsortable_attribute_target">
-
+        @if (isset($entityAttributeTemplates))
+            @foreach ($entityAttributeTemplates as $attributeTemplate)
+                @include('cruds.forms.attributes._template')
+            @endforeach
+        @endif
+        <div id="add_attribute_target"></div>
+    </div>
+    <div id="add_unsortable_attribute_target"></div>
 </div>
 
 @include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])

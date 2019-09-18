@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Organisation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class OrganisationPolicy extends EntityPolicy
+class OrganisationPolicy extends MiscPolicy
 {
     protected $model = 'organisation';
 

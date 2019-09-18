@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Event;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class EventPolicy extends EntityPolicy
+class EventPolicy extends MiscPolicy
 {
     protected $model = 'event';
 

@@ -26,6 +26,7 @@ return [
             'add_text'          => 'Add a text',
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
+            'remove_all'        => 'Delete All',
         ],
         'create'        => [
             'description'   => 'Create a new attribute',
@@ -43,9 +44,16 @@ return [
         'fields'        => [
             'attribute'             => 'Attribute',
             'community_templates'   => 'Community Templates',
+            'is_private'            => 'Private Attributes',
             'is_star'               => 'Pinned',
             'template'              => 'Template',
             'value'                 => 'Value',
+        ],
+        'helpers' => [
+            'delete_all' => 'Are you sure you want to delete all of this entity\'s attributes?',
+        ],
+        'hints' => [
+            'is_private' => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',
         ],
         'index'         => [
             'success'   => 'Attributes for :entity updated.',

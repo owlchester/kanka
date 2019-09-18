@@ -1,3 +1,6 @@
+<?php
+/** @var \App\Models\MiscModel $model */
+?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans($name . '.edit.title', ['name' => $model->name]),
     'description' => '',

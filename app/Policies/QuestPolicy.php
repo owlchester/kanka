@@ -7,7 +7,7 @@ use App\User;
 use App\Models\Quest;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class QuestPolicy extends EntityPolicy
+class QuestPolicy extends MiscPolicy
 {
     protected $model = 'quest';
 }

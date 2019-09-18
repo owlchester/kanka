@@ -12,6 +12,7 @@ use App\Models\EntityLog;
 use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\PermissionService;
+use Illuminate\Support\Facades\Auth;
 
 class EntityObserver
 {
@@ -91,7 +92,7 @@ class EntityObserver
      */
     public function savePermissions(Entity $entity)
     {
-        $this->permissionService->saveEntity(request()->only('role', 'user'), $entity);
+        $this->permissionService->saveEntity(request()->only('role', 'user', 'is_attributes_private'), $entity);
     }
 
     /**
@@ -101,7 +102,7 @@ class EntityObserver
     protected function saveAttributes(Entity $entity)
     {
         // If we're not in an interface that has attributes, don't go any further
-        if (!request()->has('attr_name')) {
+        if (!request()->has('attr_name') || !Auth::user()->can('attributes', $entity->is_attributes_private)) {
             return false;
         }
         $data = request()->only(
@@ -110,7 +111,8 @@ class EntityObserver
             'attr_is_private',
             'attr_is_star',
             'attr_type',
-            'template_id'
+            'template_id',
+            'is_attributes_private'
         );
         $this->attributeService->saveEntity($data, $entity);
     }

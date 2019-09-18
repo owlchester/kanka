@@ -51,6 +51,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\DiceRollResult' => 'App\Policies\DiceRollResultPolicy',
         'App\Models\Event' => 'App\Policies\EventPolicy',
         //'App\Models\EntityFile' => 'App\Policies\EntityFile',
+        'App\Models\Entity' => 'App\Policies\EntityPolicy',
         'App\Models\Family' => 'App\Policies\FamilyPolicy',
         'App\Models\Item' => 'App\Policies\ItemPolicy',
         'App\Models\Journal' => 'App\Policies\JournalPolicy',

@@ -273,7 +273,7 @@ class CrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Character  $character
+     * @param  \App\Models\MiscModel  $model
      * @return \Illuminate\Http\Response
      */
     public function crudEdit(Model $model)
@@ -285,7 +285,7 @@ class CrudController extends Controller
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
-            'tabAttributes' => $this->tabAttributes
+            'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity)
         ];
 
         return view('cruds.forms.edit', $params);
