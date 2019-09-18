@@ -18,7 +18,7 @@ trait MentionTrait
     public function extract($text)
     {
         $mentions = [];
-        // Extract links from the entry to foreign
+
         preg_match_all('`\[([a-z]+):(.*?)\]`i' , $text, $segments);
 
         foreach ($segments[1] as $id => $type) {
@@ -55,5 +55,46 @@ trait MentionTrait
         }
 
         return $mentions;
+    }
+
+    /**
+     * Extract the formatting for a mention
+     * @param array $matches
+     * @return array
+     */
+    protected function extractData(array $matches): array
+    {
+        $segments = explode('|', $matches[2]);
+
+        // The first block should always be type:id
+        $id = (int) Arr::first($segments);
+        $type = $matches[1];
+
+        $data = [
+            'type' => $type,
+            'id' => (int) $id,
+        ];
+
+        if (count($segments) > 1) {
+            // Skip the first segment
+            Arr::forget($segments, 0);
+            foreach ($segments as $option) {
+                $subSegments = explode(':', $option);
+                if (count($subSegments) === 1) {
+                    $data['text'] = Arr::first($subSegments);
+                    continue;
+                }
+
+                $type = Arr::first($subSegments);
+                $value = Arr::last($subSegments);
+                if ($type == 'page') {
+                    $data['page'] = strtolower($value);
+                } elseif ($type == 'tab') {
+                    $data['tab'] = strtolower($value);
+                }
+            }
+        }
+
+        return $data;
     }
 }

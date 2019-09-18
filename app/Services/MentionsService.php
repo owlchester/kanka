@@ -8,6 +8,7 @@ use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Traits\MentionTrait;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class MentionsService
@@ -57,19 +58,27 @@ class MentionsService
      */
     protected function extractAndReplace()
     {
-        $mappings = $this->extract($this->text);
+        // Extract links from the entry to foreign
+        $this->text = preg_replace_callback('`\[([a-z]+):(.*?)\]`i' , function($matches) {
+            $data = $this->extractData($matches);
 
-        foreach ($mappings as $text => $data) {
             /** @var Entity $entity */
             $entity = $this->entity($data['id']);
+
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
                 $replace = Arr::get($data, 'text', '<i>' . __('crud.history.unknown') . '</i>');
             } else {
                 $tab = Arr::get($data, 'tab', null);
                 $url = $entity->url('show', $tab);
-                if (!empty($data['page']) && strlen($data['page']) < 8) {
+                if (!empty($data['page'])) {
                     $url .= '/' . strip_tags(trim($data['page'], '/'));
+
+                    // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
+                    $entityPages = ['inventory'];
+                    if (in_array($data['page'], $entityPages)) {
+                        $url = route('entities.' . $data['page'], $entity->id);
+                    }
                 }
                 $replace = '<a href="' . $url . '"'
                     . ' data-toggle="tooltip-ajax"'
@@ -79,10 +88,8 @@ class MentionsService
                     . Arr::get($data, 'text', $entity->name)
                     . '</a>';
             }
-
-            $search = '`\[' . $data['type'] . ':' . $data['id'] . '([^\]]*?)\]`i';
-            $this->text = preg_replace($search, $replace, $this->text);
-        }
+            return $replace;
+        }, $this->text);
 
         return $this->text;
     }
