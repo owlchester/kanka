@@ -18,7 +18,7 @@
             {!! Form::text('relation', null, ['placeholder' => trans('relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
-        <div class="form-group required">
+        <div class="form-group">
             <label>{{ trans('relations.fields.attitude') }}</label>
             {!! Form::number('attitude', null, ['placeholder' => trans('relations.placeholders.attitude'), 'class' => 'form-control', 'min' => -100, 'max' => 100]) !!}
         </div>
@@ -46,7 +46,7 @@
         @if (!empty($relation) && !empty($relation->mirrored()))
             <div class="callout callout-info">
                 <h4>{{ __('relations.hints.mirrored.title') }}</h4>
-                <p>{!! __('relations.hints.mirrored.text', ['link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->entity->id) . "'>' . $relation->target->name . '</a>']) !!}</p>
+                <p>{!! __('relations.hints.mirrored.text', ['link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->entity->id) . "'>" . $relation->target->name . '</a>']) !!}</p>
             </div>
         @endif
     </div>

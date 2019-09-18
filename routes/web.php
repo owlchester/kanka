@@ -227,6 +227,7 @@ Route::group([
             'items' => 'ItemController',
             'items.relations' => 'ItemRelationController',
             'journals' => 'JournalController',
+            'journals.relations' => 'JournalRelationController',
             'menu_links' => 'MenuLinkController',
             'organisations' => 'OrganisationController',
             'organisations.relations' => 'OrganisationRelationController',

@@ -28,7 +28,7 @@ class StoreRelation extends FormRequest
             'target_id' => 'required|exists:entities,id|different:owner_id',
             'relation' => 'required|max:255',
             'visibility' => 'required',
-            'attitude' => 'integer|min:-100|max:100',
+            'attitude' => 'min:-100|max:100',
             'is_star' => 'boolean'
         ];
     }
