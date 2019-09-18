@@ -16,7 +16,7 @@ class UpdateRelationsVisibility extends Migration
         Schema::table('relations', function (Blueprint $table) {
             $table->string('visibility')->default('all');
             $table->unsignedInteger('mirror_id')->nullable();
-            $table->tinyInteger('attitude')->default(0);
+            $table->tinyInteger('attitude')->default(0)->nullable();
             $table->boolean('is_star')->default(false);
 
             $table->index(['visibility']);
