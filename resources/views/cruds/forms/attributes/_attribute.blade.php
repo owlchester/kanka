@@ -21,6 +21,8 @@ $id = isset($resetAttributeId) ? null : $attribute->id;
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
             @elseif ($attribute->isText())
                 {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('crud.attributes.placeholders.value'), 'class' => 'form-control', 'rows' => 4]) !!}
+            @elseif ($attribute->isSection())
+                {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
             @else
                 {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             @endif

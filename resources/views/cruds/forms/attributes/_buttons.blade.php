@@ -8,6 +8,9 @@
     <button class="btn btn-default" id="text_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
         <i class="fas fa-align-justify"></i> <span class="hidden-xs">{{ trans('crud.attributes.types.text') }}</span>
     </button>
+    <button class="btn btn-default" id="section_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
+        <i class="fas fa-layer-group"></i> <span class="hidden-xs">{{ trans('crud.attributes.types.section') }}</span>
+    </button>
 {{--    <button class="btn btn-default" id="entity_add" data-sortable="{{ $existing ? 'true' : 'false'}}">--}}
 {{--        <i class="fas fa-user"></i> <span class="hidden-xs">{{ trans('crud.attributes.types.entity') }}</span>--}}
 {{--    </button>--}}

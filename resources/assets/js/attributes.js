@@ -51,6 +51,15 @@ function initAttributeUI()
         return false;
     });
 
+    $('#section_add').click(function(e) {
+        e.preventDefault();
+
+        var realTarget = $(this).data('sortable') ? targetNew : target;
+        $('#section_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        initAttributeHandlers();
+        return false;
+    });
+
     $('#entity_add').click(function(e) {
         e.preventDefault();
 

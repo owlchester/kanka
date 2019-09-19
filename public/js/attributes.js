@@ -134,6 +134,13 @@ function initAttributeUI() {
     initAttributeHandlers();
     return false;
   });
+  $('#section_add').click(function (e) {
+    e.preventDefault();
+    var realTarget = $(this).data('sortable') ? targetNew : target;
+    $('#section_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    initAttributeHandlers();
+    return false;
+  });
   $('#entity_add').click(function (e) {
     e.preventDefault();
     var realTarget = $(this).data('sortable') ? targetNew : target;
@@ -208,7 +215,7 @@ function initAttributeHandlers() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
+module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
 
 
 /***/ })

@@ -129,3 +129,35 @@
         {!! Form::hidden('attr_type[]', 'checkbox') !!}
     </div>
 </div>
+<!-- Section -->
+<div class="form-group hidden" id="section_template">
+    <div class="row attribute_row">
+        <div class="col-xs-4">
+            <div class="input-group">
+                @if ($existing == 0)
+                    <span class="input-group-addon hidden-xs hidden-sm">
+                    <span class="fa fa-arrows-alt-v"></span>
+                </span>
+                @endif
+                {!! Form::text('attr_name[]', null, ['placeholder' => trans('crud.attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            </div>
+        </div>
+        <div class="col-xs-4">
+            {!! Form::hidden('attr_value[]', null) !!}
+        </div>
+        <div class="col-xs-1 text-center">
+            {!! Form::hidden('attr_is_star[]', false) !!}
+            <i class="far fa-star fa-2x"  data-toggle="star" data-tab="{{ __('crud.attributes.visibility.tab') }}" data-entry="{{ __('crud.attributes.visibility.entry') }}" title="{{ __('crud.attributes.visibility.tab') }}"></i>
+        </div>
+        @if ($isAdmin)
+            <div class="col-xs-1 text-center">
+                {!! Form::hidden('attr_is_private[]', false) !!}
+                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('crud.attributes.visibility.private') }}" data-public="{{ __('crud.attributes.visibility.public') }}"></i>
+            </div>
+        @endif
+        <div class="col-xs-1 text-right">
+            <button class="btn btn-danger attribute_delete" title="{{ __('crud.remove') }}"><i class="fa fa-trash"></i></button>
+        </div>
+        {!! Form::hidden('attr_type[]', 'section') !!}
+    </div>
+</div>
