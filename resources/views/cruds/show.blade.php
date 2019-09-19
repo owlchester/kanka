@@ -46,11 +46,3 @@ if (auth()->check() && auth()->user()->defaultNested) {
     @endadmin
     @endif
 @endsection
-
-
-@section('scripts')
-    <script src="{{ mix('js/entity.js') }}" defer></script>
-    <script src="{{ mix('js/jquery.fileupload.js') }}" defer></script>
-    <script src="{{ mix('js/jquery.iframe-transport.js') }}" defer></script>
-    <script src="{{ mix('js/vendor/jquery.ui.widget.js') }}" defer></script>
-@endsection
