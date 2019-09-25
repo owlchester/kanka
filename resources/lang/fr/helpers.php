@@ -11,6 +11,9 @@ return [
     'link'          => [
         'auto_update'   => 'Les liens vers d\'autres entités seront automatiquement mis à jour lorsque le nom ou la description de l\'entitée cible est modifié.',
         'description'   => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',
+        'limitations'   => 'Malheureusement, à cause de limitation technique, ces raccourcits ne sont pas disponnible sur Android.',
+        'mentions'      => 'Créer des liens vers d\'autres entités en saisissant :code suivit du nom d\'une entité pour la chercher. Cela injectera :example dans l\'editeur. Le nom affiché peut être controllé avec :example_name. Le lien vers une sous-page peut être controllé avec :example_page. Le lien vers un onglet peut être controllé avec :example_tab.',
+        'months'        => 'Saisis :code pour avoid une liste de mois des calendriers de la campagne.',
         'title'         => 'Liens vers d\'autres éléments et raccourcis',
     ],
     'map'           => [

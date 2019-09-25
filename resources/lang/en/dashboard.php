@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'actions' => [
-        'follow' => 'Follow',
-        'unfollow' => 'Stop following',
+    'actions'           => [
+        'follow'    => 'Follow',
+        'unfollow'  => 'Stop following',
     ],
     'campaigns'         => [
         'manage'    => 'Manage campaign',
@@ -15,8 +15,8 @@ return [
     ],
     'description'       => 'The home for your creativity',
     'helpers'           => [
-        'setup' => 'Setup your campaign\'s dashboard.',
-        'follow' => 'Following a campaign will make it appear in the campaign switcher (top-right) below your campaigns.'
+        'follow'    => 'Following a campaign will make it appear in the campaign switcher (top-right) below your campaigns.',
+        'setup'     => 'Setup your campaign\'s dashboard.',
     ],
     'latest_release'    => 'Latest Release',
     'notifications'     => [
@@ -87,26 +87,26 @@ TEXT
         'delete'    => [
             'success'   => 'Widget removed from the dashboard.',
         ],
-        'fields' => [
-            'width' => 'Width'
+        'fields'    => [
+            'width' => 'Width',
         ],
         'recent'    => [
+            'full'      => 'Full',
             'help'      => 'Only show the last updated entity, but show a whole preview of the entity',
+            'helpers'   => [
+                'full'  => 'Display the whole entity\'s entry by default instead of a preview.',
+            ],
             'singular'  => 'Singular',
             'title'     => 'Recently modified',
-            'full'      => 'Full',
-            'helpers' => [
-                'full' => 'Display the whole entity\'s entry by default instead of a preview.',
-            ]
         ],
         'update'    => [
             'success'   => 'Widget modified.',
         ],
-        'widths' => [
-            0 => 'Auto',
-            4 => 'Small',
-            6 => 'Half',
-            12 => 'Full'
-        ]
+        'widths'    => [
+            '0' => 'Auto',
+            '12'=> 'Full',
+            '4' => 'Small',
+            '6' => 'Half',
+        ],
     ],
 ];

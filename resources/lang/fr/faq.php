@@ -17,6 +17,7 @@ TEXT
         'question'  => 'Que sont les Conversations?',
     ],
     'entity-notes'          => [
+        'answer'    => 'Chaque entité a une section "Note d\'entité" qui peuvent contenir des informations cachées des autres membres de la campagne. Il est aussi possible de permettre des membres de gérer les notes d\'entité sans leur donner les droits de modifié l\'entité.',
         'question'  => 'Comment gérer des informations privées?',
     ],
     'fields'                => [

@@ -2,20 +2,20 @@
 
 return [
     'actions'           => [
-        'apply'         => 'Apply',
-        'back'          => 'Back',
-        'copy'          => 'Copy',
-        'copy_to_campaign' => 'Copy to Campaign',
-        'explore_view'  => 'Nested View',
-        'export'        => 'Export',
-        'find_out_more' => 'Find out more',
-        'go_to'         => 'Go to :name',
-        'more'          => 'More Actions',
-        'move'          => 'Move',
-        'new'           => 'New',
-        'next'          => 'Next',
-        'private'       => 'Private',
-        'public'        => 'Public',
+        'apply'             => 'Apply',
+        'back'              => 'Back',
+        'copy'              => 'Copy',
+        'copy_to_campaign'  => 'Copy to Campaign',
+        'explore_view'      => 'Nested View',
+        'export'            => 'Export',
+        'find_out_more'     => 'Find out more',
+        'go_to'             => 'Go to :name',
+        'more'              => 'More Actions',
+        'move'              => 'Move',
+        'new'               => 'New',
+        'next'              => 'Next',
+        'private'           => 'Private',
+        'public'            => 'Public',
     ],
     'add'               => 'Add',
     'attributes'        => [
@@ -49,11 +49,11 @@ return [
             'template'              => 'Template',
             'value'                 => 'Value',
         ],
-        'helpers' => [
-            'delete_all' => 'Are you sure you want to delete all of this entity\'s attributes?',
+        'helpers'       => [
+            'delete_all'    => 'Are you sure you want to delete all of this entity\'s attributes?',
         ],
-        'hints' => [
-            'is_private' => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',
+        'hints'         => [
+            'is_private'    => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',
         ],
         'index'         => [
             'success'   => 'Attributes for :entity updated.',
@@ -86,23 +86,23 @@ return [
         ],
     ],
     'bulk'              => [
-        'errors'    => [
+        'errors'        => [
             'admin' => 'Only campaign admins can change the private status of entities.',
         ],
-        'success'   => [
-            'private'   => ':count entity is now private|:count entities are now private.',
-            'public'    => ':count entity is now visible|:count entities are now visible.',
-            'permissions' => 'Permissions changed for :count entity.|Permissions changed for :count entities.'
+        'permissions'   => [
+            'fields'    => [
+                'override'  => 'Override',
+            ],
+            'helpers'   => [
+                'override'  => 'If selected, permissions of the selected entities will be overwritten with these. If unchecked, the selected permissions will be added to the existing ones.',
+            ],
+            'title'     => 'Change permissions for several entities',
         ],
-        'permissions' => [
-            'title' => 'Change permissions for several entities',
-            'fields' => [
-                'override' => 'Override',
-            ],
-            'helpers' => [
-                'override' => 'If selected, permissions of the selected entities will be overwritten with these. If unchecked, the selected permissions will be added to the existing ones.'
-            ],
-        ]
+        'success'       => [
+            'permissions'   => 'Permissions changed for :count entity.|Permissions changed for :count entities.',
+            'private'       => ':count entity is now private|:count entities are now private.',
+            'public'        => ':count entity is now visible|:count entities are now visible.',
+        ],
     ],
     'cancel'            => 'Cancel',
     'click_modal'       => [
@@ -110,11 +110,11 @@ return [
         'confirm'   => 'Confirm',
         'title'     => 'Confirm your action',
     ],
-    'create'            => 'Create',
-    'copy_to_campaign' => [
-        'title' => 'Copy \':name\' to another campaign',
+    'copy_to_campaign'  => [
         'panel' => 'Copy',
+        'title' => 'Copy \':name\' to another campaign',
     ],
+    'create'            => 'Create',
     'datagrid'          => [
         'empty' => 'Nothing to show yet.',
     ],
@@ -232,8 +232,8 @@ return [
         ],
         'hints'         => [
             'campaign'  => 'You can also try to move this entity to another campaign.',
-            'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
             'copy'      => 'Select this option if you want to create copy in the new campaign.',
+            'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
         ],
         'success'       => 'Entity \':name\' moved.',
         'success_copy'  => 'Entity \':name\' copied.',
@@ -259,15 +259,14 @@ return [
     'permissions'       => [
         'action'    => 'Action',
         'actions'   => [
+            'bulk'          => [
+                'add'       => 'Add',
+                'remove'    => 'Remove',
+            ],
             'delete'        => 'Delete',
             'edit'          => 'Edit',
             'entity_note'   => 'Entity Notes',
             'read'          => 'Read',
-            'bulk' => [
-                '' => '',
-                'add' => 'Add',
-                'remove' => 'Remove'
-            ]
         ],
         'allowed'   => 'Allowed',
         'fields'    => [

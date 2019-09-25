@@ -2,19 +2,20 @@
 
 return [
     'actions'           => [
-        'apply'         => 'Appliquer',
-        'back'          => 'Retour',
-        'copy'          => 'Copier',
-        'explore_view'  => 'Vue Imbriquée',
-        'export'        => 'Export',
-        'find_out_more' => 'En savoir plus',
-        'go_to'         => 'Aller à :name',
-        'more'          => 'Autres Actions',
-        'move'          => 'Déplacer',
-        'new'           => 'Nouveau',
-        'next'          => 'Prochain',
-        'private'       => 'Privé',
-        'public'        => 'Publique',
+        'apply'             => 'Appliquer',
+        'back'              => 'Retour',
+        'copy'              => 'Copier',
+        'copy_to_campaign'  => 'Copier vers une campagne',
+        'explore_view'      => 'Vue Imbriquée',
+        'export'            => 'Export',
+        'find_out_more'     => 'En savoir plus',
+        'go_to'             => 'Aller à :name',
+        'more'              => 'Autres Actions',
+        'move'              => 'Déplacer',
+        'new'               => 'Nouveau',
+        'next'              => 'Prochain',
+        'private'           => 'Privé',
+        'public'            => 'Publique',
     ],
     'add'               => 'Ajouter',
     'attributes'        => [
@@ -25,6 +26,7 @@ return [
             'add_text'          => 'Ajouter un text',
             'apply_template'    => 'Appliquer un modèle d\'attribut',
             'manage'            => 'Gérer',
+            'remove_all'        => 'Tout supprimer',
         ],
         'create'        => [
             'description'   => 'Créer un nouvel attribut',
@@ -42,9 +44,16 @@ return [
         'fields'        => [
             'attribute'             => 'Attribut',
             'community_templates'   => 'Modèles Communautaire',
+            'is_private'            => 'Attributs privés',
             'is_star'               => 'Épinglé',
             'template'              => 'Modèle',
             'value'                 => 'Valeur',
+        ],
+        'helpers'       => [
+            'delete_all'    => 'Es-tu certain de vouloir supprimer tous les attributs de cette entité?',
+        ],
+        'hints'         => [
+            'is_private'    => 'Tous les attributs d\'une entité peuvent être cachés des membres non-admin.',
         ],
         'index'         => [
             'success'   => 'Attributs modifiés pour :entity.',
@@ -54,6 +63,7 @@ return [
             'attribute' => 'Nombre de quêtes, niveau de difficulté, initiative, population',
             'block'     => 'Nom du bloque',
             'checkbox'  => 'Nom de la case à cocher',
+            'section'   => 'Nom de la section',
             'template'  => 'Sélectionner un modèle',
             'value'     => 'Valeur de l\'attribut',
         ],
@@ -65,6 +75,7 @@ return [
             'attribute' => 'Attribut',
             'block'     => 'Block',
             'checkbox'  => 'Case à cocher',
+            'section'   => 'Section',
             'text'      => 'Texte multiligne',
         ],
         'visibility'    => [
@@ -75,12 +86,22 @@ return [
         ],
     ],
     'bulk'              => [
-        'errors'    => [
+        'errors'        => [
             'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
         ],
-        'success'   => [
-            'private'   => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
-            'public'    => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
+        'permissions'   => [
+            'fields'    => [
+                'override'  => 'Remplacer',
+            ],
+            'helpers'   => [
+                'override'  => 'Si sélectionné, les permissions des entités sélectionnées seront remplacer par ceux-ci. Si non-sélectionné, les permissions sélectionnées seront ajoutées à celles existantes.',
+            ],
+            'title'     => 'Changer les permissions pour plusieurs entités',
+        ],
+        'success'       => [
+            'permissions'   => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
+            'private'       => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
+            'public'        => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
         ],
     ],
     'cancel'            => 'Annuler',
@@ -88,6 +109,10 @@ return [
         'close'     => 'Fermer',
         'confirm'   => 'Confirmer',
         'title'     => 'Confirme ton action',
+    ],
+    'copy_to_campaign'  => [
+        'panel' => 'Copier',
+        'title' => 'Copier \':name\' vers une autre campagne',
     ],
     'create'            => 'Créer',
     'datagrid'          => [
@@ -202,13 +227,16 @@ return [
         ],
         'fields'        => [
             'campaign'  => 'Nouvelle campagne',
+            'copy'      => 'Créer une copie',
             'target'    => 'Nouveau type',
         ],
         'hints'         => [
             'campaign'  => 'Il est aussi possible de déplacer cette entité vers une autre campagne.',
+            'copy'      => 'Activer cette option créé une copie dans la nouvelle campagne.',
             'target'    => 'Attention! Certaines informations peuvent être perdues lors du déplacement d\'un élément.',
         ],
         'success'       => 'Elément :name déplacé.',
+        'success_copy'  => 'Entité \':name\' copiée.',
         'title'         => 'Déplacer :name autre part',
     ],
     'new_entity'        => [
@@ -231,6 +259,10 @@ return [
     'permissions'       => [
         'action'    => 'Action',
         'actions'   => [
+            'bulk'          => [
+                'add'       => 'Ajouter',
+                'remove'    => 'Retirer',
+            ],
             'delete'        => 'Supprimer',
             'edit'          => 'Modifier',
             'entity_note'   => 'Notes d\'entité',

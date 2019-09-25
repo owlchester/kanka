@@ -2,6 +2,12 @@
 
 return [
     'children'      => [
+        'actions'       => [
+            'add'   => 'Ajouter une nouvelle étiquette',
+        ],
+        'create'        => [
+            'title' => 'Ajouter une nouvelle étiquette pour :name',
+        ],
         'description'   => 'Entités appartenant à l\'étiquette',
         'title'         => 'Enfants de l\'étiquette :name',
     ],

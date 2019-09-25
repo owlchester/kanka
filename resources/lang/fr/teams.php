@@ -6,6 +6,7 @@ return [
         'description'   => 'Ces personnes rendent Kanka possible',
         'other'         => 'Autre',
         'qa'            => 'Assurance Qualité',
+        'support'       => 'Support',
         'title'         => 'L\'équipe',
         'translations'  => 'Traductions',
     ],

@@ -2,14 +2,14 @@
 
 return [
     'children'      => [
-        'actions' => [
-            'add' => 'Add a new tag',
+        'actions'       => [
+            'add'   => 'Add a new tag',
+        ],
+        'create'        => [
+            'title' => 'Add a tag to :name',
         ],
         'description'   => 'Entities belonging to the tag',
         'title'         => 'Tag :name Children',
-        'create' => [
-            'title' => 'Add a tag to :name'
-        ]
     ],
     'create'        => [
         'description'   => 'Create a new tag',

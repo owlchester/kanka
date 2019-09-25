@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'           => [
+        'follow'    => 'Suivre',
+        'unfollow'  => 'Ne plus suivre',
+    ],
     'campaigns'         => [
         'manage'    => 'Gérer la campagne',
         'tabs'      => [
@@ -11,7 +15,8 @@ return [
     ],
     'description'       => 'Place à la créativité',
     'helpers'           => [
-        'setup' => 'Configurer le tableau de bord de la campagne',
+        'follow'    => 'Suivre une campagne la rend visibile dans le changeur de campagne (en haut à droite) après tes campagnes.',
+        'setup'     => 'Configurer le tableau de bord de la campagne',
     ],
     'latest_release'    => 'Dernière modification',
     'notifications'     => [
@@ -82,13 +87,26 @@ TEXT
         'delete'    => [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
+        'fields'    => [
+            'width' => 'Largeur',
+        ],
         'recent'    => [
+            'full'      => 'Entier',
             'help'      => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
+            'helpers'   => [
+                'full'  => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
+            ],
             'singular'  => 'Singulier',
             'title'     => 'Récemment modifié',
         ],
         'update'    => [
             'success'   => 'Widget modifié.',
+        ],
+        'widths'    => [
+            '0' => 'Automatique',
+            '12'=> 'Complet',
+            '4' => 'Petit',
+            '6' => 'Moitié',
         ],
     ],
 ];
