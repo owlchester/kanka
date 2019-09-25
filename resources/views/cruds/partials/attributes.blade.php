@@ -15,7 +15,7 @@ $inSection = false;
         <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
                 <h4 class="panel-title">
-                    @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private === true)
+                    @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
                         <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
@@ -24,12 +24,13 @@ $inSection = false;
             </div>
             <div class="panel-body collapse in" id="attribute-section-body-{{ $attribute->id }}">
                 <dl class="dl-horizontal">
+        @continue
     @endif
         <dt>
-            @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private === true)
-                <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-            @endif
             {{ $attribute->name }}
+            @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
+                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+            @endif
         </dt>
         <dd>
             @if ($attribute->isCheckbox())
