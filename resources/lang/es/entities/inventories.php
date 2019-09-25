@@ -13,7 +13,7 @@ return [
     ],
     'fields'        => [
         'amount'        => 'Cantidad',
-        'description'   => 'Descripción',
+        'description'   => 'Observaciones',
         'position'      => 'Localización',
     ],
     'placeholders'  => [

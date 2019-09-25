@@ -9,6 +9,7 @@ return [
         'add_season'        => 'Jahreszeit hinzufügen',
         'add_weekday'       => 'Wochentag hinzufügen',
         'add_year'          => 'Jahr hinzufügen',
+        'set_today'         => 'Als aktuellen Tag festlegen.',
         'today'             => 'Heute',
     ],
     'checkboxes'    => [
@@ -38,6 +39,7 @@ return [
         'description'   => 'Kalender aktualisieren',
         'success'       => 'Kalender \':name\' aktualisiert',
         'title'         => 'Kalender :name bearbeiten',
+        'today'         => 'Kalenderdatum aktualisiert.',
     ],
     'event'         => [
         'actions'   => [
@@ -91,12 +93,14 @@ return [
         'parameters'        => 'Parameter',
         'recurring_until'   => 'Wiederholt sich bis zum Jahr',
         'seasons'           => 'Jahreszeiten',
+        'start_offset'      => 'Startdatum',
         'suffix'            => 'Suffix',
         'type'              => 'Typ',
         'weekdays'          => 'Wochentage',
     ],
     'helpers'       => [
         'month_type'    => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
+        'start_offset'  => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
     ],
     'hints'         => [
         'intercalary'   => 'Tage die außerhalb der Standard Monate und Wochen liegen. Sie beeinflussen keine Wochentage aber beeinflussen Mondzyklen.',
@@ -140,6 +144,7 @@ return [
         'moon'          => [
             'fullmoon'  => 'Vollmond alle (Tage)',
             'name'      => 'Mond Name',
+            'offset'    => 'Tag des ersten Vollmonds',
         ],
         'seasons'       => [
             'day'   => 'Starttag',

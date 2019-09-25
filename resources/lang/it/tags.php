@@ -2,6 +2,12 @@
 
 return [
     'children'      => [
+        'actions'       => [
+            'add'   => 'Aggiungi un nuovo tag',
+        ],
+        'create'        => [
+            'title' => 'Aggiungi un tag a :name',
+        ],
         'description'   => 'Entità associate al tag',
         'title'         => 'Discendente del tag :name',
     ],

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'           => [
+        'follow'    => 'Seguir',
+        'unfollow'  => 'Dejar de seguir',
+    ],
     'campaigns'         => [
         'manage'    => 'Gestionar campaña',
         'tabs'      => [
@@ -11,7 +15,8 @@ return [
     ],
     'description'       => 'Tu plaza creativa',
     'helpers'           => [
-        'setup' => 'Configura el tablero de tu campaña.',
+        'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
+        'setup'     => 'Configura el tablero de tu campaña',
     ],
     'latest_release'    => 'Publicación reciente',
     'notifications'     => [

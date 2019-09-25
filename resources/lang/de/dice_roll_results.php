@@ -2,7 +2,7 @@
 
 return [
     'index' => [
-        'description'   => 'Ergebnisse des Würfelwürfs von :name',
-        'title'         => 'Ergebnisse des Würfelwürfs',
+        'description'   => 'Ergebnisse des Würfelwurfs von :name',
+        'title'         => 'Ergebnisse des Würfelwurfs',
     ],
 ];

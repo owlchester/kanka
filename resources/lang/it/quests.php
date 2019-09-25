@@ -46,6 +46,7 @@ return [
         'organisations' => 'Organizzazioni',
         'quest'         => 'Missione Padre',
         'quests'        => 'Sotto-Missioni',
+        'role'          => 'Ruolo',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
@@ -123,6 +124,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nome della missione',
         'quest' => 'Missione Padre',
+        'role'  => 'Il ruolo dell\'entità nella missione',
         'type'  => 'Personaggio, Missione Secondaria, Missione Principale',
     ],
     'show'          => [

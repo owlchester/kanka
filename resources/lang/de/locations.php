@@ -22,14 +22,15 @@ return [
         'title'         => 'Ort :name Ereignisse',
     ],
     'fields'        => [
-        'characters'    => 'Charaktere',
-        'image'         => 'Bild',
-        'location'      => 'Ort',
-        'locations'     => 'Orte',
-        'map'           => 'Karte',
-        'name'          => 'Name',
-        'relation'      => 'Beziehung',
-        'type'          => 'Typ',
+        'characters'        => 'Charaktere',
+        'image'             => 'Bild',
+        'is_map_private'    => 'Private Karte',
+        'location'          => 'Ort',
+        'locations'         => 'Orte',
+        'map'               => 'Karte',
+        'name'              => 'Name',
+        'relation'          => 'Beziehung',
+        'type'              => 'Typ',
     ],
     'helpers'       => [
         'characters'    => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
@@ -145,6 +146,7 @@ return [
                 'tombstone'     => 'Grabstein',
                 'torch'         => 'Fackel',
                 'tower'         => 'Turm',
+                'vase'          => 'Vase',
                 'water-drop'    => 'Wasser',
                 'wooden-sign'   => 'Holzschild',
                 'wrench'        => 'Mutternschlüssel',
@@ -164,6 +166,7 @@ return [
                 'large'     => 'Groß',
                 'small'     => 'Klein',
                 'standard'  => 'Standard',
+                'tiny'      => 'Winzig',
             ],
             'success'       => [
                 'create'    => 'Kartenpunkt für Ort erstellt.',
@@ -177,6 +180,9 @@ return [
     'organisations' => [
         'description'   => 'Organisationen in diesem Ort.',
         'title'         => 'Ort :name Organisationen',
+    ],
+    'panels'        => [
+        'map'   => 'Karte',
     ],
     'placeholders'  => [
         'location'  => 'Wähle einen übergeordneten Ort',

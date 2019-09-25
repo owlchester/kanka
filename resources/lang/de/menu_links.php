@@ -19,8 +19,12 @@ return [
         'filters'   => 'Filter',
         'menu'      => 'Menü',
         'name'      => 'Name',
+        'position'  => 'Position',
         'tab'       => 'Reiter',
         'type'      => 'Objekttyp',
+    ],
+    'helpers'       => [
+        'position'  => 'Dieses Feld kann genutzt werden um die Linkreihenfolge im Menü festzulegen.',
     ],
     'index'         => [
         'add'           => 'Neuer Menü Link',
@@ -30,6 +34,8 @@ return [
     ],
     'placeholders'  => [
         'entity'    => 'Wähle ein Objekt',
+        'filters'   => 'location_id=15&type=city',
+        'menu'      => 'Menü Unterseite (Nutze den letzten Text der URL)',
         'name'      => 'Name des Menü Links',
         'tab'       => 'Geschichte, Beziehungen, Notizen',
     ],

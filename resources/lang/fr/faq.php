@@ -43,7 +43,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Chaque lieu peut contenir une carte (png, jpg ou svg) qui elle-même contient des "points" qui sont placés sur la carte avec une taille, forme, icône et couleur, et ces points peuvent être lié à des entités ou un simple text.
 
-Attention cependant, les images générées par Azgaar et watabou.io sont comprimés de tel à ce qu'ils sont incompatibles avec Kanka. Une solution est d'ouvrir les images dans Inkscape ou Photoshop et simplement réenregister les images SVG avant de les uploadé à Kanka.
+Les fichiers SVG venant de :azgaar et :watabou sont pleinement compatibles avex Kanka. Attention cependant, les images générées par d'autres outils sont comprimés de tel à ce qu'ils sont incompatibles avec l'application. Une solution consiste à ouvrir les images dans Inkscape ou Photoshop et simplement réenregister les images SVG avant de les téléverser sur un lieu.
 TEXT
 ,
         'question'  => 'Puis-je uploadé des cartes sur Kanka?',

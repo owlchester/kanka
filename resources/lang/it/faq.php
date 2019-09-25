@@ -16,6 +16,10 @@ TEXT
         'answer'    => 'Le conversazioni possono essere impostate come discorsi fra Personaggio o fra Membri della Campagna. Se, per esempio, volessi documentare un\'importante discorso tra NPCs e PCs lo potresti fare utilizzando questo modulo. You puoi utilizzare anche per le campagna play-by-post.',
         'question'  => 'Che cosa sono le Conversazioni?',
     ],
+    'entity-notes'          => [
+        'answer'    => 'Tutte le entità hanno le "Note dell\'Entità" che sono piccoli testi che possono essere impostati per essere visibili solamente da te (perfetto quando co-amministrata), solo agli amministratori della campagna o a tutti. Puoi anche dare i permessi ai tuoi membri per creare e modificare le note senza il bisogno di abilitarli alla modifica completa dell\'entità.',
+        'question'  => 'Come Kanka gestisce le informazioni parzialmente nascoste?',
+    ],
     'fields'                => [
         'answer'    => 'Risposta',
         'category'  => 'Categoria',
@@ -70,6 +74,10 @@ TEXT
         'return'    => 'Ritorna alle FAQ',
         'timestamp' => 'Ultimo aggiornamento: date',
         'title'     => 'FAQ :name',
+    ],
+    'user-switch'           => [
+        'answer'    => 'I permessi possono diventare complicati, specialmente con grandi campagne. Come amministratore di una campagna puoi navigare alla lista dei membri della campagna e premere sul pulsante "Cambia" che apparirà accanto ai membri non amministratori. Facendo così effettuerai l\'accesso con quell\'utente e vedrai la campagna come sarà vista da lui. Questo è il modo più semplice per controllare i permessi della tua campagna.',
+        'question'  => 'I permessi della mia campagna sono stati impostati, come posso testarli?',
     ],
     'visibility'            => [
         'answer'    => 'Solo le persone che hai invitato alla tua campagna potranno vedere ed interagire con quello che hai creato. I tuoi dati sono provati e sempre sotto il tuo controllo.',

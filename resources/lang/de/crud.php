@@ -2,19 +2,20 @@
 
 return [
     'actions'           => [
-        'apply'         => 'Übernehmen',
-        'back'          => 'Zurück',
-        'copy'          => 'Kopieren',
-        'explore_view'  => 'Verschachtelte Ansicht',
-        'export'        => 'Exportieren',
-        'find_out_more' => 'Mehr erfahren',
-        'go_to'         => 'Gehe zu :name',
-        'more'          => 'Mehr Aktionen',
-        'move'          => 'Verschieben',
-        'new'           => 'Neu',
-        'next'          => 'Weiter',
-        'private'       => 'Privat',
-        'public'        => 'Öffentlich',
+        'apply'             => 'Übernehmen',
+        'back'              => 'Zurück',
+        'copy'              => 'Kopieren',
+        'copy_to_campaign'  => 'Kopiere zu Kampagne',
+        'explore_view'      => 'Verschachtelte Ansicht',
+        'export'            => 'Exportieren',
+        'find_out_more'     => 'Mehr erfahren',
+        'go_to'             => 'Gehe zu :name',
+        'more'              => 'Mehr Aktionen',
+        'move'              => 'Verschieben',
+        'new'               => 'Neu',
+        'next'              => 'Weiter',
+        'private'           => 'Privat',
+        'public'            => 'Öffentlich',
     ],
     'add'               => 'Hinzufügen',
     'attributes'        => [
@@ -42,6 +43,7 @@ return [
         'fields'        => [
             'attribute'             => 'Attribut',
             'community_templates'   => 'Community Vorlagen',
+            'is_star'               => 'Angepinnt',
             'template'              => 'Vorlage',
             'value'                 => 'Wert',
         ],
@@ -67,17 +69,29 @@ return [
             'text'      => 'Mehrzeiliger Text',
         ],
         'visibility'    => [
+            'entry'     => 'Das Attribut wird im Objektmenü angezeigt.',
             'private'   => 'Attribut nur für Mitglieder der Rolle "Admin" sichtbar.',
             'public'    => 'Attribut für alle Mitglieder sichtbar.',
+            'tab'       => 'Das Attribut wird nur im Attribute-Reiter angezeigt.',
         ],
     ],
     'bulk'              => [
-        'errors'    => [
+        'errors'        => [
             'admin' => 'Nur Kampagnenadmins können den "Privat" Status eines Objektes ändern.',
         ],
-        'success'   => [
-            'private'   => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
-            'public'    => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
+        'permissions'   => [
+            'fields'    => [
+                'override'  => 'Überschreiben',
+            ],
+            'helpers'   => [
+                'override'  => 'Wenn ausgewählt, werden die Berechtigungen der ausgewählten Objekte mit diesen überschrieben. Wenn das Kontrollkästchen deaktiviert ist, werden die ausgewählten Berechtigungen zu den vorhandenen Berechtigungen hinzugefügt.',
+            ],
+            'title'     => 'Ändert die Berechtigungen für mehrere Objekte',
+        ],
+        'success'       => [
+            'permissions'   => 'Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
+            'private'       => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
+            'public'        => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
         ],
     ],
     'cancel'            => 'Abbrechen',
@@ -85,6 +99,10 @@ return [
         'close'     => 'Schließen',
         'confirm'   => 'Bestätigen',
         'title'     => 'Bestätige deine Aktion',
+    ],
+    'copy_to_campaign'  => [
+        'panel' => 'Kopieren',
+        'title' => 'Kopiere :name in eine andere Kampagne',
     ],
     'create'            => 'Erstellen',
     'datagrid'          => [
@@ -94,6 +112,7 @@ return [
         'close'         => 'Schließen',
         'delete'        => 'Löschen',
         'description'   => 'Bist du sicher das du :tag entfernen möchtest?',
+        'mirrored'      => 'Entferne gespiegelte Beziehung.',
         'title'         => 'Löschen bestätigen',
     ],
     'destroy_many'      => [
@@ -113,9 +132,11 @@ return [
         'calendar_date'         => 'Datum',
         'character'             => 'Charakter',
         'copy_attributes'       => 'Kopiere Attribute',
+        'copy_notes'            => 'Kopiere Objektnotizen',
         'creator'               => 'Ersteller',
         'dice_roll'             => 'Würfelwürf',
         'entity'                => 'Objekt',
+        'entity_type'           => 'Objekttyp',
         'entry'                 => 'Eintrag',
         'event'                 => 'Ereignis',
         'excerpt'               => 'Auszug',
@@ -123,6 +144,7 @@ return [
         'files'                 => 'Dateien',
         'image'                 => 'Bild',
         'is_private'            => 'Privat',
+        'is_star'               => 'Angepinnt',
         'item'                  => 'Gegenstand',
         'location'              => 'Ort',
         'name'                  => 'Name',
@@ -130,6 +152,7 @@ return [
         'race'                  => 'Rasse',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'visibility'            => 'Sichtbarkeit',
     ],
     'files'             => [
         'actions'   => [
@@ -148,10 +171,13 @@ return [
     ],
     'filter'            => 'Filter',
     'filters'           => [
-        'clear' => 'Filter zurücksetzen',
-        'hide'  => 'Verstecken',
-        'show'  => 'Zeigen',
-        'title' => 'Filter',
+        'all'       => 'Filter um alle Unterobjekte zu sehen',
+        'clear'     => 'Filter zurücksetzen',
+        'direct'    => 'Filter um nur direkte Unterobjekte zu sehen',
+        'filtered'  => 'Zeige :count von :total :entity.',
+        'hide'      => 'Verstecken',
+        'show'      => 'Zeigen',
+        'title'     => 'Filter',
     ],
     'forms'             => [
         'actions'       => [
@@ -166,12 +192,15 @@ return [
         'image_limitations'     => 'Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: :size.',
         'image_patreon'         => 'Erhöhe das Limit indem du uns bei Patreon unterstützt.',
         'is_private'            => 'Vor \'Zuschauern\' verbergen',
+        'is_star'               => 'Angepinnte Objekte erscheinen im Objektmenü.',
         'map_limitations'       => 'Unterstützte Formate: jpg, png, gif und svg. Max Dateigröße: :size.',
+        'visibility'            => 'Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf "Selbst" gesetzt, kannst es nur du sehen.',
     ],
     'history'           => [
         'created'   => 'Erstellt von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Unbekannt',
         'updated'   => 'Zuletzt aktualisiert von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'      => 'Zeige Objektprotokoll',
     ],
     'image'             => [
         'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
@@ -188,13 +217,16 @@ return [
         ],
         'fields'        => [
             'campaign'  => 'Neue Kampagne',
+            'copy'      => 'Erstelle Kopie',
             'target'    => 'Neuer Typ',
         ],
         'hints'         => [
             'campaign'  => 'Du kannst auch versuchen, diese Objekt in eine andere Kampagne zu verschieben.',
+            'copy'      => 'Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.',
             'target'    => 'Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird.',
         ],
-        'success'       => 'Objekt :name verschoben',
+        'success'       => 'Objekt \':name\' verschoben',
+        'success_copy'  => 'Objekt \':name\' kopiert',
         'title'         => 'Verschiebe :name an einen anderen Ort',
     ],
     'new_entity'        => [
@@ -217,9 +249,14 @@ return [
     'permissions'       => [
         'action'    => 'Aktion',
         'actions'   => [
-            'delete'    => 'Löschen',
-            'edit'      => 'Bearbeiten',
-            'read'      => 'Lesen',
+            'bulk'          => [
+                'add'       => 'Hinzufügen',
+                'remove'    => 'Entfernen',
+            ],
+            'delete'        => 'Löschen',
+            'edit'          => 'Bearbeiten',
+            'entity_note'   => 'Objektnotizen',
+            'read'          => 'Lesen',
         ],
         'allowed'   => 'Erlaubt',
         'fields'    => [
@@ -268,14 +305,22 @@ return [
         'calendars'     => 'Kalender',
         'default'       => 'Standard',
         'events'        => 'Ereignisse',
+        'inventory'     => 'Inventar',
+        'map-points'    => 'Kartenmarker',
+        'mentions'      => 'Erwähnungen',
         'menu'          => 'Menü',
         'notes'         => 'Notizen',
         'permissions'   => 'Berechtigungen',
         'relations'     => 'Beziehungen',
     ],
-    'update'            => 'Aktualisieren',
+    'update'            => 'Bearbeiten',
     'users'             => [
         'unknown'   => 'Unbekannt',
     ],
     'view'              => 'Ansehen',
+    'visibilities'      => [
+        'admin' => 'Admin',
+        'all'   => 'Jeder',
+        'self'  => 'Selbst',
+    ],
 ];

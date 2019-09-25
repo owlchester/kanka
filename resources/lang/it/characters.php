@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Aggiungi un dettaglio dell\'aspetto fisico',
+        'add_organisation'  => 'Aggiungi un\'organizzazione',
         'add_personality'   => 'Aggiungi un tratto della personalità',
     ],
     'conversations' => [

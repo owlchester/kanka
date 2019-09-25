@@ -45,13 +45,16 @@ return [
         'entity_personality_visibility' => 'Visibilidad de la personalidad',
         'entity_visibility'             => 'Visibilidad de la entidad',
         'excerpt'                       => 'Extracto',
+        'followers'                     => 'Seguidores',
         'header_image'                  => 'Imagen de cabecera',
         'image'                         => 'Imagen',
         'locale'                        => 'Idioma',
         'name'                          => 'Nombre',
+        'rpg_system'                    => 'Sistemas RPG',
         'system'                        => 'Sistema',
         'visibility'                    => 'Visibilidad',
     ],
+    'following'                         => 'Siguiendo',
     'helpers'                           => [
         'entity_personality_visibility' => 'Al crear un nuevo personaje, la opción de "Personalidad visible" estará deseleccionada automáticamente.',
         'entity_visibility'             => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
@@ -59,6 +62,7 @@ return [
         'locale'                        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'                          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
         'system'                        => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
+        'systems'                       => 'Para evitar líos, algunos elementos de Kanka solo están disponibles en sistemas RPG específicos (por ejemplo, el bloque de stats de monstruo de D&D 5e). Si eliges un sistema soportado, se activarán dichos elementos.',
         'visibility'                    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'                             => [
@@ -173,6 +177,7 @@ return [
         'dashboard' => 'Tablero',
         'permission'=> 'Permisos',
         'sharing'   => 'Compartir',
+        'systems'   => 'Sistemas',
     ],
     'placeholders'                      => [
         'description'   => 'Corto resumen de tu campaña',

@@ -2,19 +2,20 @@
 
 return [
     'actions'           => [
-        'apply'         => 'Aplicar',
-        'back'          => 'Atrás',
-        'copy'          => 'Copiar',
-        'explore_view'  => 'Vista anidada',
-        'export'        => 'Exportar',
-        'find_out_more' => 'Saber más',
-        'go_to'         => 'Ir a :name',
-        'more'          => 'Más acciones',
-        'move'          => 'Mover',
-        'new'           => 'Nuevo',
-        'next'          => 'Siguiente',
-        'private'       => 'Privado',
-        'public'        => 'Público',
+        'apply'             => 'Aplicar',
+        'back'              => 'Atrás',
+        'copy'              => 'Copiar',
+        'copy_to_campaign'  => 'Copiar a campaña',
+        'explore_view'      => 'Vista anidada',
+        'export'            => 'Exportar',
+        'find_out_more'     => 'Saber más',
+        'go_to'             => 'Ir a :name',
+        'more'              => 'Más acciones',
+        'move'              => 'Mover',
+        'new'               => 'Nuevo',
+        'next'              => 'Siguiente',
+        'private'           => 'Privado',
+        'public'            => 'Público',
     ],
     'add'               => 'Añadir',
     'attributes'        => [
@@ -75,12 +76,22 @@ return [
         ],
     ],
     'bulk'              => [
-        'errors'    => [
+        'errors'        => [
             'admin' => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
         ],
-        'success'   => [
-            'private'   => ':count entidad es ahora privada|:count entidades son ahora privadas.',
-            'public'    => ':count entidad es ahora visible|:count son ahora visibles.',
+        'permissions'   => [
+            'fields'    => [
+                'override'  => 'Ignorar',
+            ],
+            'helpers'   => [
+                'override'  => 'Si está seleccionado, los permisos de las entidades seleccionadas serán ignorados y en cambio usarán estos ajustes. Si no está seleccionado, los estos permisos se añadirán a los existentes.',
+            ],
+            'title'     => 'Cambiar permisos a varias entidades',
+        ],
+        'success'       => [
+            'permissions'   => 'Permisos cambiados en :count entidad.|Permisos cambiados en :count entidades.',
+            'private'       => ':count entidad es ahora privada|:count entidades son ahora privadas.',
+            'public'        => ':count entidad es ahora visible|:count son ahora visibles.',
         ],
     ],
     'cancel'            => 'Cancelar',
@@ -88,6 +99,10 @@ return [
         'close'     => 'Cerrar',
         'confirm'   => 'Confirmar',
         'title'     => 'Confirmar acción',
+    ],
+    'copy_to_campaign'  => [
+        'panel' => 'Copiar',
+        'title' => 'Copiar \':name\' a otra campaña',
     ],
     'create'            => 'Crear',
     'datagrid'          => [
@@ -202,13 +217,16 @@ return [
         ],
         'fields'        => [
             'campaign'  => 'Nueva campaña',
+            'copy'      => 'Hacer una copia',
             'target'    => 'Nuevo tipo',
         ],
         'hints'         => [
             'campaign'  => 'También puedes intentar mover esta entidad a otra campaña.',
+            'copy'      => 'Selecciona esta opción si quieres crear una copia en la nueva campaña.',
             'target'    => 'Por favor ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro.',
         ],
-        'success'       => 'Entidad :name movida.',
+        'success'       => 'Entidad \':name\' movida.',
+        'success_copy'  => 'Entidad \':name\' copiada.',
         'title'         => 'Mover :name',
     ],
     'new_entity'        => [
@@ -231,6 +249,10 @@ return [
     'permissions'       => [
         'action'    => 'Acción',
         'actions'   => [
+            'bulk'          => [
+                'add'       => 'Añadir',
+                'remove'    => 'Eliminar',
+            ],
             'delete'        => 'Eliminar',
             'edit'          => 'Editar',
             'entity_note'   => 'Notas de entidad',

@@ -37,6 +37,9 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'api'               => [
+            'title' => 'API',
+        ],
         'calendars'         => [
             'description'   => 'Erstelle eigene Kalender und organisiere deine Kampagne damit.',
             'title'         => 'Kalender',
@@ -107,6 +110,7 @@ return [
     ],
     'menu'          => [
         'about'     => 'Über Kanka',
+        'api'       => 'API',
         'campaigns' => 'Öffentliche Kampagnen',
         'community' => 'Community',
         'contact'   => 'Kontakt',

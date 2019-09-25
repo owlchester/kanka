@@ -50,12 +50,14 @@ return [
             'title'     => 'Aktualisiere Mitglied für :name',
         ],
         'fields'        => [
-            'character' => 'Charakter',
-            'role'      => 'Rolle',
+            'character'     => 'Charakter',
+            'organisation'  => 'Organisation',
+            'role'          => 'Rolle',
         ],
         'helpers'       => [
             'all_members'       => 'Diese Liste enthält alle Charaktere, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
             'direct_members'    => 'Diese Liste enthält alle Charaktere, die direkt in dieser Organisation sind und keiner Unterorganisation.',
+            'members'           => 'Die folgende Liste enthält alle Charaktere in dieser Organisation und alle untergeordneten Organisationen der Organisation. Du kannst die Seite filtern, um nur direkte Mitglieder anzuzeigen.',
         ],
         'hint'          => 'Die meisten Organisationen brauchen Mitglieder um erfolgreich zu sein.',
         'placeholders'  => [

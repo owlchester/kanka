@@ -2,20 +2,26 @@
 
 return [
     'children'      => [
+        'actions'       => [
+            'add'   => 'Añadir etiqueta nueva',
+        ],
+        'create'        => [
+            'title' => 'Añadir etiqueta a :name',
+        ],
         'description'   => 'Entidades etiquetadas',
         'title'         => 'Descendientes de la etiqueta :name',
     ],
     'create'        => [
         'description'   => 'Crear nueva etiqueta',
-        'success'       => 'Etiqueta \':name\' creada.',
+        'success'       => 'Etiqueta ":name" creada.',
         'title'         => 'Nueva Etiqueta',
     ],
     'destroy'       => [
-        'success'   => 'Etiqueta \':name\' eliminada.',
+        'success'   => 'Etiqueta ":name" eliminada.',
     ],
     'edit'          => [
-        'success'   => 'Etiqueta \':name\' actualizada.',
-        'title'     => 'Editar Etiqueta \':name',
+        'success'   => 'Etiqueta ":name" actualizada.',
+        'title'     => 'Editar Etiqueta ":name"',
     ],
     'fields'        => [
         'characters'    => 'Personajes',

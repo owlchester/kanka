@@ -93,12 +93,14 @@ return [
         'parameters'        => 'Parametri',
         'recurring_until'   => 'Ricorrente fino all\'Anno',
         'seasons'           => 'Stagioni',
+        'start_offset'      => 'Offset Iniziale',
         'suffix'            => 'Suffisso',
         'type'              => 'Tipo',
         'weekdays'          => 'Giorni della Settimana',
     ],
     'helpers'       => [
         'month_type'    => 'I mesi intercalari non utilizzano i giorni della settimana ma influenzano comunque le fasi lunari e le stagioni.',
+        'start_offset'  => 'In maniera predefinita il calendario inizia col primo giorno della settimana dell\'anno 0. Cambiare questo campo influenzerà il primo giorno del calendario.',
     ],
     'hints'         => [
         'intercalary'   => 'Giorni che cadono al difuori dei nomali mesi e dettimane. Non influenzano i giorni della settimana ma influenzano le fasi lunari.',
