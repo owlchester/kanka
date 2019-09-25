@@ -37,7 +37,9 @@
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">
-                {{ __('crud.tabs.menu') }}->
+                {{ __('crud.tabs.menu') }}
+            </h3>
+        </div>
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <li class="@if(empty($active))active @endif">

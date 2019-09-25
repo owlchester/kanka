@@ -59,7 +59,7 @@ class MentionsService
     protected function extractAndReplace()
     {
         // Extract links from the entry to foreign
-        $this->text = preg_replace_callback('`\[([a-z]+):(.*?)\]`i' , function($matches) {
+        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
             $data = $this->extractData($matches);
 
             /** @var Entity $entity */

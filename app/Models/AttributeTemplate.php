@@ -63,6 +63,8 @@ class AttributeTemplate extends MiscModel
         'entity_type_id'
     ];
 
+    public $tooltipField = 'name';
+
     /**
      * Parent
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -183,5 +185,14 @@ class AttributeTemplate extends MiscModel
             }
         }
         return $visible;
+    }
+
+    /**
+     * Attribute Templates have no entry field
+     * @return mixed|string
+     */
+    public function entry()
+    {
+        return '';
     }
 }
