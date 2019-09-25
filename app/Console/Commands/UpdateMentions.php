@@ -57,6 +57,11 @@ class UpdateMentions extends Command
             $bar->start();
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
+                if (empty($mention->entity) || empty($mention->entity->child)) {
+                    $this->warn('mention #' . $mention->id . ' missing entity');
+                    $mention->delete();
+                    continue;
+                }
                 $this->update($mention, $mention->entity->child);
                 $bar->advance();
             }
@@ -68,6 +73,11 @@ class UpdateMentions extends Command
             $bar->start();
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
+                if (empty($mention->entityNote)) {
+                    $this->warn('mention #' . $mention->id . ' missing entity_note');
+                    $mention->delete();
+                    continue;
+                }
                 $this->update($mention, $mention->entityNote);
                 $bar->advance();
             }
@@ -79,6 +89,11 @@ class UpdateMentions extends Command
             $bar->start();
             /** @var EntityMention $mention */
             foreach ($mentions as $mention) {
+                if (empty($mention->campaign)) {
+                    $this->warn('mention #' . $mention->id . ' missing campaign');
+                    $mention->delete();
+                    continue;
+                }
                 $this->update($mention, $mention->campaign);
                 $bar->advance();
             }
@@ -107,7 +122,7 @@ class UpdateMentions extends Command
 
         $link = str_replace('campaign/0/', 'campaign/' . $target->campaign_id . '/', $target->url());
 //        $search = '<a title="([^"]*)" href="' . $link . '" data-toggle="tooltip" data-html="true">(.*?)</a>';
-        $name = str_replace(['(', ')'], ['\(', '\)'], $target->name);
+        $name = str_replace(['(', ')', '`', '*', '[', ']'], ['\(', '\)', '\`', '\*', '\[', '\]'], $target->name);
         $search = '<a (.*?) data-toggle="tooltip" data-html="true">' . $name . '</a>';
         $replace = '[' . $target->type . ':' . $target->id .']';
 
@@ -133,8 +148,7 @@ class UpdateMentions extends Command
                     }
                 } elseif ($mention->isEntityNote()) {
                     if (!in_array($source->id, $this->noteIds)) {
-                        $this->entityIds[] = $source->id;
-                        $this->noteIds++;
+                        $this->noteIds[] = $source->id;
                     }
                 } elseif ($mention->isCampaign()) {
                     if (!in_array($source->id, $this->campaignIds)) {
