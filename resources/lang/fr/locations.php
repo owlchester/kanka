@@ -36,7 +36,7 @@ return [
         'characters'    => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou simplement ceux directement ceux qui sont ici.',
         'descendants'   => 'Cette liste contient tous les lieux qui sont descendants de celui-ci, pas uniquement ceux directes.',
         'map'           => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
-        'nested'        => 'Ce mode de naviguation permet d\'afficher tes lieux de manière imbriquée. Les lieux sans lieu parent seront affichés par défaut. Les lieux possédant des sous-lieux peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested'        => 'Ce mode de navigation permet d\'afficher tes lieux de manière imbriquée. Les lieux sans lieu parent seront affichés par défaut. Les lieux possédant des sous-lieux peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'hints'         => [
         'is_map_private'    => 'Une carte privée est seulement visible aux membres du rôle Admin de la campagne.',
