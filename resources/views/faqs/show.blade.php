@@ -19,7 +19,10 @@
                 {{--{{ trans('faq.show.timestamp', ['date' => $model->updated_at->diffForHumans()]) }}--}}
             {{--</p>--}}
 
-            <p>{!! nl2br(__("faq.$key.answer")) !!}</p>
+            <p>{!! nl2br(__("faq.$key.answer", [
+                'azgaar' => link_to('https://azgaar.github.io/Fantasy-Map-Generator', 'Fantasy Map Generator', ['target' => '_blank']),
+                'watabou' => link_to('https://watabou.itch.io/medieval-fantasy-city-generator', 'Medieval Fantasy City Generator', ['target' => '_blank']),
+            ])) !!}</p>
 
             @if ($key == 'permissions')
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/ikNPzNgjYmg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

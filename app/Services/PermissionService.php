@@ -131,6 +131,14 @@ class PermissionService
             }
         }
 
+        foreach ($permissions as $type => $data) {
+            foreach ($data as $user => $actions) {
+                foreach ($actions as $action => $perm) {
+                    $perm->delete();
+                }
+            }
+        }
+
         // Campaign admins can hide all attributes from an entity
         if (Auth::user()->isAdmin()) {
             $privateAttributes = Arr::get($request, 'is_attributes_private', false);
@@ -139,6 +147,11 @@ class PermissionService
         }
     }
 
+    /**
+     * @param $request
+     * @param Entity $entity
+     * @param bool $override
+     */
     public function change($request, Entity $entity, bool $override = true)
     {
         // First, let's get all the stuff for this entity
