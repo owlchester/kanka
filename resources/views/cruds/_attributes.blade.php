@@ -28,6 +28,10 @@ if ($layout) {
 
 @if (!empty($template))
     @include($template->view())
+@elseif (true)
+    @include('cruds.partials.attributes', [
+        'attributes' => $model->entity->attributes()->order(request()->get('order'), 'default_order')->get()
+    ])
 @else
 <?php $r = $model->entity->attributes()->order(request()->get('order'), 'default_order')->paginate(); ?>
 <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.attributes') }}</p>

@@ -172,25 +172,22 @@ function initAttributeUI() {
 function initAttributeHandlers() {
   $('.entity-attributes').sortable({});
   $.each($('.attribute_delete'), function () {
-    $(this).unbind('click'); // remove previous bindings
-
+    $(this).unbind('click');
     $(this).on('click', function () {
       $(this).parent().parent().parent().remove();
     });
   });
-  $.each($('[data-toggle="private"]'), function () {
-    // On click toggle
-    $(this).click(function (e) {
-      if ($(this).hasClass('fa-lock')) {
-        // Unlock
-        $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
-        $(this).parent().find('input:hidden').val("0");
-      } else {
-        // Lock
-        $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
-        $(this).parent().find('input:hidden').val("1");
-      }
-    });
+  $('[data-toggle="private"]').unbind('click');
+  $('[data-toggle="private"]').click(function () {
+    if ($(this).hasClass('fa-lock')) {
+      // Unlock
+      $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
+      $(this).parent().find('input:hidden').val("0");
+    } else {
+      // Lock
+      $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
+      $(this).parent().find('input:hidden').val("1");
+    }
   });
   $('[data-toggle="star"]').unbind('click');
   $('[data-toggle="star"]').click(function () {

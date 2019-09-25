@@ -63,6 +63,7 @@ return [
             'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
             'block'     => 'Block name',
             'checkbox'  => 'Checkbox name',
+            'section'   => 'Section name',
             'template'  => 'Select a template',
             'value'     => 'Value of the attribute',
         ],
@@ -74,6 +75,7 @@ return [
             'attribute' => 'Attribute',
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
+            'section'   => 'Section',
             'text'      => 'Multiline Text',
         ],
         'visibility'    => [
