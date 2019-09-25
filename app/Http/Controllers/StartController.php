@@ -54,7 +54,11 @@ class StartController extends Controller
         $this->authorize('create', 'App\Models\Campaign');
 
         $first = !Auth::user()->hasCampaigns();
-        $campaign = Campaign::create($request->all());
+        $options = $request->all();
+        $options['entry'] = '';
+        $options['excerpt'] = '';
+        $campaign = Campaign::create($options);
+
         $user = auth()->user();
         $user->welcome_campaign_id = $campaign->id;
         $user->save();
