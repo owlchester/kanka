@@ -11,12 +11,14 @@
 
 
 <div class="form-group">
-    <label for="config-full">
-        {!! Form::hidden('config[full]', 0) !!}
+    {!! Form::hidden('config[full]', 0) !!}
+    <label>
         {{ __('dashboard.widgets.recent.full') }}
-        {!! Form::checkbox('config[full]', 1, (!empty($model) ? $model->conf('full') : null), ['id' => 'config-full']) !!}
     </label>
-    <p class="help-block">
-        {{ __('dashboard.widgets.recent.helpers.full') }}
-    </p>
+    <div class="checkbox">
+        <label>
+            {!! Form::checkbox('config[full]', 1, (!empty($model) ? $model->conf('full') : null), ['id' => 'config-full']) !!}
+            {{ __('dashboard.widgets.recent.helpers.full') }}
+        </label>
+    </div>
 </div>
