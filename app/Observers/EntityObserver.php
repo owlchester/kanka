@@ -92,6 +92,10 @@ class EntityObserver
      */
     public function savePermissions(Entity $entity)
     {
+        // If the request's user is empty, we shouldn't be here in the first place.
+        if (!request()->has('user')) {
+            return;
+        }
         $this->permissionService->saveEntity(request()->only('role', 'user', 'is_attributes_private'), $entity);
     }
 
