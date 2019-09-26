@@ -66,6 +66,8 @@ class MenuLink extends MiscModel
         'entity_id'
     ];
 
+    public $tooltipField = 'name';
+
     /**
      * Performance with for datagrids
      * @param $query
@@ -180,7 +182,10 @@ class MenuLink extends MiscModel
         return (int) config('entities.ids.menu_link');
     }
 
-
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeStandardWith($query)
     {
         return $query->with('entity');
