@@ -106,4 +106,12 @@ class DiceRoll extends MiscModel
     {
         return (int) config('entities.ids.dice_roll');
     }
+
+    /**
+     * @return mixed|string
+     */
+    public function entry()
+    {
+        return '';
+    }
 }
