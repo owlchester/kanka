@@ -2,7 +2,7 @@
     'title' => trans('families.members.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('families.index'), 'label' => __('families.index.title')],
+        ['url' => Breadcrumb::index('families'), 'label' => __('families.index.title')],
         ['url' => route('families.show', $model), 'label' => $model->name],
         trans('families.show.tabs.members')
     ]

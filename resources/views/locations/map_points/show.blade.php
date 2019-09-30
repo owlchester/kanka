@@ -2,7 +2,7 @@
     'title' => trans('locations.map.points.title', ['name' => $location->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('locations.index'), 'label' => trans('locations.index.title')],
+        ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ]
 ])

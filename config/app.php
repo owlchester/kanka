@@ -209,6 +209,7 @@ return [
         App\Providers\EntityPermissionServiceProvider::class,
         App\Providers\MentionsServiceProvider::class,
         App\Providers\UserPermissionServiceProvider::class,
+        App\Providers\BreadcrumbServiceProvider::class,
     ],
 
     /*
@@ -274,6 +275,7 @@ return [
         'EntityPermission' => App\Facades\EntityPermission::class,
         'Mentions' => App\Facades\Mentions::class,
         'UserPermission' => App\Facades\UserPermission::class,
+        'Breadcrumb' => App\Facades\Breadcrumb::class,
     ],
 
 ];

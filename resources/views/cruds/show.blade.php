@@ -1,18 +1,9 @@
-<?php /** @var \App\Models\MiscModel $model */
-
-// If the user activated nested views by default, go back to it.
-$entityIndexRoute = route($name . '.index');
-if (auth()->check() && auth()->user()->defaultNested) {
-    if (\Illuminate\Support\Facades\Route::has($name . '.tree')) {
-        $entityIndexRoute = route($name . '.tree');
-    }
-}
-?>
+<?php /** @var \App\Models\MiscModel $model */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans($name . '.show.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entityIndexRoute, 'label' => trans($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
         $model->name,
     ]
 ])

@@ -3,7 +3,7 @@
     'title' => trans('tags.children.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('tags.index'), 'label' => trans('tags.index.title')],
+        ['url' => Breadcrumb::index('tags'), 'label' => trans('tags.index.title')],
         ['url' => route('tags.show', $model->id), 'label' => $model->name]
     ]
 ])

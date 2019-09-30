@@ -2,7 +2,7 @@
     'title' => trans('quests.organisations.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('quests.index'), 'label' => __('quests.index.title')],
+        ['url' => Breadcrumb::index('quests'), 'label' => __('quests.index.title')],
         ['url' => route('quests.show', $model), 'label' => $model->name],
         trans('quests.show.tabs.organisations')
     ]
