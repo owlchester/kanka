@@ -1,4 +1,5 @@
 <?php
+/** @var \App\Models\Location $model*/
 $filters = [];
 if (request()->has('location_id')) {
     $filters['location_id'] = request()->get('location_id');

@@ -208,6 +208,19 @@ class Location extends MiscModel
     }
 
     /**
+     * Get all characters in the location and descendants
+     */
+    public function allOrganisations()
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        return Organisation::whereIn('location_id', $locationIds)->with('location');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function mapPoints()

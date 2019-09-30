@@ -37,6 +37,7 @@ return [
         'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
         'map'           => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
         'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'organisations' => 'View all organisations in this location and its children locations, or just those directly located here.',
     ],
     'hints'         => [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',

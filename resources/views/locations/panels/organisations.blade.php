@@ -1,10 +1,31 @@
+<?php
+/** @var \App\Models\Location $model */
+$filters = [];
+if (request()->has('location_id')) {
+    $filters['location_id'] = request()->get('location_id');
+}
+?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('locations.show.tabs.organisations') }}
         </h2>
 
-        <?php  $r = $model->organisations()->orderBy('name', 'ASC')->with(['members'])->paginate(); ?>
+        <p class="help-block export-hidden">
+
+            @if (request()->has('location_id'))
+                <a href="{{ route('locations.organisations', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allOrganisations()->count() }})
+                </a>
+            @else
+                <a href="{{ route('locations.organisations', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->organisations()->count() }})
+                </a>
+            @endif
+            {{ trans('locations.helpers.organisations') }}
+        </p>
+
+        <?php  $r = $model->allOrganisations()->filter($filters)->orderBy('name', 'ASC')->with(['members'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.organisations') }}</p>
         <table id="items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
