@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Traits\VisibleTrait;
 
 /**
@@ -56,5 +57,13 @@ class QuestOrganisation extends MiscModel
     public function organisation()
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function entry()
+    {
+        return Mentions::map($this, 'description');
     }
 }
