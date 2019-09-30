@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Traits\VisibleTrait;
 
 /**
@@ -56,5 +57,13 @@ class QuestLocation extends MiscModel
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function entry()
+    {
+        return Mentions::map($this, 'description');
     }
 }

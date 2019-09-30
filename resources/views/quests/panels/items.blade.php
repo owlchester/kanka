@@ -31,7 +31,7 @@
                             <h5 class="widget-user-desc">{{ $item->role }}<br /></h5>
                         </div>
                         <div class="box-body">
-                            <p>{!! $item->description !!}</p>
+                            <p>{!! $item->entry() !!}</p>
                         </div>
                         <div class="box-footer text-right">
                             @can('update', $model)

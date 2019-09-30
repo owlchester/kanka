@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\QuestCharacter $character */?>
 <div class="box box-flat">
     <div class="box-body">
         <h2 class="page-header with-border">
@@ -31,7 +32,7 @@
                             <h5 class="widget-user-desc">{{ $character->role }}<br /></h5>
                         </div>
                         <div class="box-body">
-                            <p>{!! $character->description !!}</p>
+                            <p>{!! $character->entry() !!}</p>
                         </div>
                         <div class="box-footer text-right">
                             @can('update', $model)
