@@ -59,7 +59,7 @@ class CalendarObserver extends MiscObserver
         $yearCount = 0;
         $yearValues = request()->post('year_number');
         $yearNames = request()->post('year_name');
-        if ($yearValues) {
+        if ($yearValues && !empty($yearValues)) {
             foreach ($yearValues as $year) {
                 if (empty($year)) {
                     continue;

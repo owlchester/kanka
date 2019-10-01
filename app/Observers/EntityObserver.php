@@ -105,7 +105,7 @@ class EntityObserver
     protected function saveAttributes(Entity $entity)
     {
         // If we're not in an interface that has attributes, don't go any further
-        if (!request()->has('attr_name') || !Auth::user()->can('attributes', $entity->is_attributes_private)) {
+        if (!request()->has('attr_name') || !Auth::user()->can('attributes', $entity)) {
             return false;
         }
         $data = request()->only(
