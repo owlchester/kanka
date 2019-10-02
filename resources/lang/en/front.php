@@ -134,6 +134,11 @@ return [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
         'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
     ],
+    'partners'      => [
+        'title' => 'Partners',
+        'description' => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',
+        'inkarnate' => 'Build beautiful maps with Inkarnate',
+    ],
     'privacy'       => [
         'description'   => 'Effective date: May 25th, 2018',
         'title'         => 'Privacy Policy',
