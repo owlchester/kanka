@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Jobs\EntityUpdatedJob;
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Auth;
 
 class EntityObserver
 {
+    /**
+     * Purify trait
+     */
+    use PurifiableTrait;
+
     /**
      * @var PermissionService
      */
@@ -44,6 +50,7 @@ class EntityObserver
         $this->saveTags($entity);
         $this->savePermissions($entity);
         $this->saveAttributes($entity);
+        $this->saveBoosted($entity);
     }
 
     /**
@@ -172,6 +179,21 @@ class EntityObserver
 
         // Queue job when an entity was updated
         EntityUpdatedJob::dispatch($entity);
+    }
+
+    public function saveBoosted(Entity $entity): void
+    {
+        // No changed for non-boosted campaigns
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->boosted()) {
+            return;
+        }
+
+        if (request()->has('entity_tooltip')) {
+            $entity->tooltip = $this->purify(request()->get('entity_tooltip'));
+        }
+
+        $entity->save();
     }
 
     /**

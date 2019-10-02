@@ -31,6 +31,18 @@ class MentionsService
     }
 
     /**
+     * Map the mentions in an entity's tooltip (boosted feature)
+     * @param Entity $entity
+     * @param string $field
+     * @return string
+     */
+    public function mapEntity(Entity $entity, $field = 'tooltip'): string
+    {
+        $this->text = !empty($entity->$field) ? $entity->$field : '';
+        return $this->extractAndReplace();
+    }
+
+    /**
      * Map the mentions in an entity note
      * @param EntityNote $entityNote
      * @return string|string[]|null

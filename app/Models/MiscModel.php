@@ -25,6 +25,8 @@ use Exception;
  * @property Entity $entity
  * @property string $entry
  * @property string $image
+ * @property string $tooltip
+ * @property string $header_image
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
  * @property Attribute[] $starredAttributes
@@ -323,5 +325,13 @@ abstract class MiscModel extends Model
             $this->getLink() . '">' .
             e($this->name) .
             '</a>';
+    }
+
+    public function getEntityTooltipAttribute()
+    {
+        if ($this->entity) {
+            return $this->entity->tooltip;
+        }
+        return null;
     }
 }

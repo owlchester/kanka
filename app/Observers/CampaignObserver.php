@@ -120,6 +120,9 @@ class CampaignObserver
         }
     }
 
+    /**
+     * @param Campaign $campaign
+     */
     public function saved(Campaign $campaign)
     {
         // If the entity note's entry has changed, we need to re-build it's map.

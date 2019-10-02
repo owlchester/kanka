@@ -162,6 +162,7 @@ return [
         'race'                  => 'Race',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'tooltip'               => 'Tooltip',
         'visibility'            => 'Visibility',
     ],
     'files'             => [
@@ -204,6 +205,7 @@ return [
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
         'is_star'               => 'Pinned elements will appear on the entity\'s menu',
         'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
+        'tooltip'               => 'Replace the automatically calculated tooltip with the following contents.',
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'           => [
@@ -322,6 +324,7 @@ return [
         'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
+        'tooltip'       => 'Tooltip',
     ],
     'update'            => 'Update',
     'users'             => [

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Scopes\EntityScopes;
@@ -256,6 +257,14 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
+    public function campaign()
+    {
+        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
     public function widgets()
     {
         return $this->hasMany('App\Models\CampaignDashboardWidget', 'id', 'entity_id');
@@ -311,6 +320,15 @@ class Entity extends Model
         //$avatar = '<img class=\'entity-image\' src=\'' . $this->avatar(true) . '\'/>';
         $text = Str::limit($this->child->entry(), 500);
         $text = strip_tags($text);
+
+        if ($this->campaign->boosted()) {
+            $boostedTooltip = strip_tags($this->tooltip);
+            if (!empty(trim($boostedTooltip))) {
+                $text = Mentions::mapEntity($this);
+                $text = strip_tags($text);
+            }
+        }
+
         $name = '<span class="entity-name">' . $this->child->tooltipName() . '</span>';
         $subtitle = $this->child->tooltipSubtitle();
         if (!empty($subtitle)) {
