@@ -31,4 +31,14 @@ class TranslatableException extends Exception
     {
         return __($this->trans, $this->options);
     }
+
+    /**
+     * @param array $options
+     * @return $this
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+        return $this;
+    }
 }

@@ -21,7 +21,7 @@ class CampaignBoostService
     public function boost(Campaign $campaign, User $user = null): CampaignBoost
     {
         if ($campaign->boosted()) {
-            throw new AlreadyBoostedException();
+            throw new AlreadyBoostedException($campaign);
         }
 
         if ($user === null) {

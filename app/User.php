@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -26,6 +27,7 @@ use Laravel\Passport\HasApiTokens;
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharing
+ * @property string $patreon_pledge
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -549,6 +551,17 @@ class User extends \TCG\Voyager\Models\User
      */
     public function maxBoosts(): int
     {
-        return 3;
+        if (!$this->isPatron()) {
+            return 0;
+        }
+
+        $levels = [
+            self::PLEDGE_KOBOLD => 0,
+            self::PLEDGE_GOBLIN => 1,
+            self::PLEDGE_ELEMENTAL => 5,
+        ];
+
+        // Default 3 for admins and owlbears
+        return Arr::get($levels, $this->patreon_pledge, 3);
     }
 }

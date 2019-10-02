@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(EntityTypesTableSeeder::class);
         $this->call(RpgSystemsTableSeeder::class);
+        $this->call(ThemesTableSeeder::class);
     }
 }

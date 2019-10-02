@@ -13,6 +13,7 @@ use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CampaignObserver
 {
@@ -45,8 +46,9 @@ class CampaignObserver
         $campaign->name = $this->purify($campaign->name);
         $campaign->entry = $this->purify($campaign->entry);
         $campaign->excerpt = $this->purify($campaign->excerpt);
+        $campaign->css = $this->purify($campaign->css);
 
-        $campaign->slug = str_slug($campaign->name, '');
+        $campaign->slug = Str::slug($campaign->name, '');
 
         // Public?
         $previousVisibility = $campaign->getOriginal('visibility');
@@ -153,7 +155,10 @@ class CampaignObserver
         ImageService::cleanup($campaign, 'header_image');
     }
 
-    protected function saveRpgSystems(Campaign $campaign)
+    /**
+     * @param Campaign $campaign
+     */
+    protected function saveRpgSystems(Campaign $campaign): void
     {
         if (!request()->has('rpg_systems')) {
             return;

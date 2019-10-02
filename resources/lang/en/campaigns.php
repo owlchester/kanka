@@ -41,6 +41,7 @@ return [
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',
+        'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
         'entity_personality_visibility' => 'Character Personality Visibility',
@@ -53,10 +54,13 @@ return [
         'name'                          => 'Name',
         'rpg_system'                    => 'RPG Systems',
         'system'                        => 'System',
+        'theme'                         => 'Theme',
         'visibility'                    => 'Visibility',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
+        'boosted'                       => 'This campaign is being boosted! This unlocks various features that will stay active while the campaign stays boosted. If a boost is removed from the campaign, these options deactivate but won\'t be lost in case the campaign gets boosted again in the future.',
+        'css'                           => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
         'excerpt'                       => 'The campaign excerpt will be displayed on the dashboard, so write a few sentences introducing your world. Keep it short for the best results.',
@@ -64,6 +68,7 @@ return [
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                       => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
+        'theme'                         => 'Force the theme for the campaign, overriding a user\'s preference.',
         'visibility'                    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
     'index'                             => [
@@ -175,6 +180,7 @@ return [
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'panels'                            => [
+        'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permission',
         'sharing'   => 'Sharing',

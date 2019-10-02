@@ -1,4 +1,6 @@
-<?php $campaign = CampaignLocalization::getCampaign(); ?>
+<?php
+/** @var \App\Models\Campaign $campaign */
+$campaign = CampaignLocalization::getCampaign(); ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -31,8 +33,19 @@
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('styles')
-    @if (auth()->check() && !empty(auth()->user()->theme))
+
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+        @if ($campaign->theme_id !== 1)
+        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+        @endif
+    @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+    @endif
+
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
+    <style>
+{{ $campaign->css }}
+    </style>
     @endif
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}

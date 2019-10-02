@@ -13,6 +13,9 @@
         @include('campaigns.forms.panes.dashboard')
         @include('campaigns.forms.panes.permission')
         @include('campaigns.forms.panes.public')
+        @if($model->boosted())
+            @include('campaigns.forms.panes.boosted')
+        @endif
 {{--        @include('campaigns.forms.panes.system')--}}
     </div>
 </div>

@@ -31,6 +31,8 @@ class StoreCampaign extends FormRequest
             'system' => 'nullable|string',
             'entity_visibility' => 'nullable',
             'entity_personality_visibility' => 'nullable',
+            'css' =>  'nullable|string',
+            'theme_id' => 'nullable|exists:themes,id'
         ];
     }
 }

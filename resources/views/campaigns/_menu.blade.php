@@ -10,14 +10,6 @@
         @endif
 
         <ul class="list-group list-group-unbordered">
-            @if ($campaign->boosted())
-                <li class="list-group-item boosted bg-maroon">
-                    <b><i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}</b>
-                    <span class="pull-right">
-                        {{ $campaign->boosts->first()->user->name }}
-                    </span>
-                </li>
-            @endif
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.visibility') }}</b>
                 <span  class="pull-right">
@@ -58,6 +50,14 @@
                 </span>
                 <br class="clear" />
             </li>
+            @endif
+            @if ($campaign->boosted())
+                <li class="list-group-item boosted bg-maroon">
+                    <b><i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}</b>
+                    <span class="pull-right">
+                        {{ $campaign->boosts->first()->user->name }}
+                    </span>
+                </li>
             @endif
         </ul>
 

@@ -60,10 +60,16 @@
                                         <div class="actions">
                                             <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}">{!! $campaign->name !!}</a>
 
+                                            @if(Auth::user()->availableBoosts() > 0)
                                             {!! Form::open(['route' => 'campaign_boost.store']) !!}
                                             {!! Form::submit(__('settings.boost.buttons.boost'), ['class' => 'btn btn-primary boost']) !!}
                                             {!! Form::hidden('campaign_id', $campaign->id) !!}
                                             {!! Form::close(); !!}
+                                            @else
+                                            <button class="btn btn-default boost" disabled="disabled">
+                                                {{ __('settings.boost.buttons.boost')  }}
+                                            </button>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\DB;
  * @property string $header_image
  * @property string $system
  * @property string $excerpt
+ * @property string $css
+ * @property string $theme
  * @property integer $visible_entity_count
  * @property EntityMention[] $mentions
  */
@@ -55,7 +57,9 @@ class Campaign extends MiscModel
         'entity_visibility',
         'entity_personality_visibility',
         'header_image',
-        'system'
+        'system',
+        'theme_id',
+        'css'
     ];
 
     use CampaignScopes;
@@ -268,6 +272,14 @@ class Campaign extends MiscModel
     public function entities()
     {
         return $this->hasMany('App\Models\Entity', 'campaign_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function theme()
+    {
+        return $this->belongsTo('App\Models\Theme');
     }
 
     /**

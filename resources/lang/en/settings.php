@@ -32,7 +32,7 @@ return [
         'title' => 'Boost',
         'benefits' => [
             'first' => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill.',
-            'second' => 'Boosting a campaign enables the following',
+            'second' => 'Boosting a campaign enables the following benefits:',
             'theme' => 'Custom campaign theming',
             'tooltip' => 'Custom tooltips for entities',
             'header' => 'Entity header images',
@@ -43,11 +43,12 @@ return [
             'boost' => 'Boost'
         ],
         'success' => [
-            'delete' => 'Removed your boost from :name'
+            'boost' => 'Campaign :name boosted.',
+            'delete' => 'Removed your boost from :name.'
         ],
         'exceptions' => [
             'already_boosted' => 'Campaign :name is already boosted.',
-            'already_boosted' => 'Campaign :name is already boosted.',
+            'exhausted_boosts' => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
         ]
     ],
     'layout'    => [

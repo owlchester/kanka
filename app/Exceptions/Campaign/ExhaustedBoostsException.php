@@ -8,5 +8,5 @@ use Throwable;
 
 class ExhaustedBoostsException extends TranslatableException
 {
-    public $trans = 'campaigns.boost.exceptions.exhausted_boosts';
+    public $trans = 'settings.boost.exceptions.exhausted_boosts';
 }
