@@ -28,6 +28,28 @@ return [
         'request_permission'    => 'We are currently building a powerful RESTful API so that third-party apps can connect to the app. However, we are currently limiting the number of users who can interact with the API while we polish it. If you want to get access to the API and build cools apps that talk with Kanka, please contact us and we\'ll send you all the information you need.',
         'title'                 => 'API',
     ],
+    'boost' => [
+        'title' => 'Boost',
+        'benefits' => [
+            'first' => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill.',
+            'second' => 'Boosting a campaign enables the following',
+            'theme' => 'Custom campaign theming',
+            'tooltip' => 'Custom tooltips for entities',
+            'header' => 'Entity header images',
+            'more' => 'More to come'
+        ],
+        'campaigns' => 'Boosted Campaigns :count / :max',
+        'buttons' => [
+            'boost' => 'Boost'
+        ],
+        'success' => [
+            'delete' => 'Removed your boost from :name'
+        ],
+        'exceptions' => [
+            'already_boosted' => 'Campaign :name is already boosted.',
+            'already_boosted' => 'Campaign :name is already boosted.',
+        ]
+    ],
     'layout'    => [
         'description'   => 'Update your layout options',
         'success'       => 'Layout options updated.',
@@ -36,6 +58,7 @@ return [
     'menu'      => [
         'account'           => 'Account',
         'api'               => 'API',
+        'boost'             => 'Boost',
         'layout'            => 'Layout',
         'patreon'           => 'Patreon',
         'personal_settings' => 'Personal Settings',

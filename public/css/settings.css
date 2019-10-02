@@ -1,0 +1,26 @@
+.campaign {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-color: #eee;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+.campaign .actions {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.campaign .actions a {
+  font-size: 14pt;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 4px;
+}
+
+.campaign .actions .btn {
+  font-size: 10pt;
+  text-shadow: none;
+}
+

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Campaign;
+use App\Models\CampaignBoost;
 use App\Models\CampaignUser;
+use App\Policies\CampaignBoostPolicy;
 use App\Policies\CampaignPolicy;
 use App\Policies\CampaignUserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -38,6 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Model' => 'App\Policies\ModelPolicy',
         CampaignUser::class => CampaignUserPolicy::class,
         Campaign::class => CampaignPolicy::class,
+        CampaignBoost::class => CampaignBoostPolicy::class,
         'App\Models\AttributeTemplate' => 'App\Policies\AttributeTemplatePolicy',
         'App\Models\Calendar' => 'App\Policies\CalendarPolicy',
         'App\Models\CampaignInvite' => 'App\Policies\CampaignInvitePolicy',

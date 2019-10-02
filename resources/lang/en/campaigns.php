@@ -40,6 +40,7 @@ return [
         'title'         => 'Campaign :name Export',
     ],
     'fields'                            => [
+        'boosted'                       => 'Boosted by',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
         'entity_personality_visibility' => 'Character Personality Visibility',
@@ -285,6 +286,7 @@ return [
     'show'                              => [
         'actions'       => [
             'leave' => 'Leave campaign',
+            'boost' => 'Boost campaign'
         ],
         'description'   => 'A detailed view of a campaign',
         'tabs'          => [

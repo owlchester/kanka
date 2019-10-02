@@ -514,4 +514,41 @@ class User extends \TCG\Voyager\Models\User
             ->orderBy('cpt', 'desc')
             ;
     }
+
+
+    /**
+     * List of boosts the user is giving
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function boosts()
+    {
+        return $this->hasMany('App\Models\CampaignBoost', 'user_id', 'id');
+    }
+
+    /**
+     * Get available boosts for the user
+     * @return int
+     */
+    public function availableBoosts(): int
+    {
+        return $this->maxBoosts() - $this->boosting();
+    }
+
+    /**
+     * Get amount of campaigns the user is boosting
+     * @return int
+     */
+    public function boosting(): int
+    {
+        return $this->boosts->count();
+    }
+
+    /**
+     * Get max number of boosts a user can give
+     * @return int
+     */
+    public function maxBoosts(): int
+    {
+        return 3;
+    }
 }

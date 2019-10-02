@@ -2341,20 +2341,6 @@
   content: "\E901";
 }
 
-ul.campaigns li {
-  float: left;
-  width: 20%;
-}
-
-ul.campaigns li.add {
-  background-color: red;
-}
-
-ul,
-ol {
-  padding-left: 25px;
-}
-
 img.profile-user-img {
   width: 200px;
 }
@@ -3113,6 +3099,37 @@ td.breakable {
 
 .entity-file-visibility-dropdown {
   cursor: pointer;
+}
+
+/** New fancy images **/
+
+.full-sized-image {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  min-height: 160px;
+  display: flex;
+}
+
+.full-sized-image h1 {
+  margin: 5px;
+  align-self: flex-end;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+  color: white;
+}
+
+.booster {
+  background-color: #9b8a30;
+}
+
+.btn-boost {
+  margin-bottom: 25px;
+}
+
+.boosted {
+  padding: 5px !important;
 }
 
 @media (max-width: 787px) {

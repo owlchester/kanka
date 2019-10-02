@@ -36,6 +36,9 @@ Route::group([
     Route::get('/settings/profile', 'Settings\ProfileController@index')->name('settings.profile');
     Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
+    // Model mapping
+    Route::get('/settings/boost', 'Settings\BoostController@index')->name('settings.boost');
+
     Route::post('/settings/release/{release}', 'Settings\ReleaseController@read')->name('settings.release');
     Route::post('/settings/welcome', 'Settings\WelcomeController@read')->name('settings.welcome');
 
@@ -52,6 +55,10 @@ Route::group([
 
     Route::get('/settings/layout', 'Settings\LayoutController@index')->name('settings.layout');
     Route::patch('/settings/layout', 'Settings\LayoutController@update')->name('settings.layout');
+
+    Route::resources([
+        'campaign_boost' => 'CampaignBoostController',
+    ]);
 
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
@@ -193,9 +200,6 @@ Route::group([
 
         // Permission save
         Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
-
-        // Campaign Export
-        Route::post('/campaigns/{campaign}/export', 'CampaignController@export')->name('campaigns.export');
 
         // Impersonator
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');

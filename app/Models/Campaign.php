@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
+use App\Models\Concerns\Boosted;
 use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +59,7 @@ class Campaign extends MiscModel
     ];
 
     use CampaignScopes;
+    use Boosted;
 
     /**
      * Searchable fields

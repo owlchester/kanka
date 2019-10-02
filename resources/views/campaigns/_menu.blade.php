@@ -2,14 +2,22 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
         @if ($campaign->image)
-            <a href="{{ Storage::url($campaign->image) }}" title="{{ $campaign->name }}" target="_blank">
-                <img class="profile-user-img img-responsive" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
-            </a>
+            <div class="full-sized-image" style="background-image: url('{{ Storage::url($campaign->image) }}');">
+                <h1>{!! $campaign->name !!}</h1>
+            </div>
+        @else
+            <h3 class="profile-username text-center">{!! $campaign->name !!}</h3>
         @endif
 
-        <h3 class="profile-username text-center">{{ $campaign->name }}</h3>
-
         <ul class="list-group list-group-unbordered">
+            @if ($campaign->boosted())
+                <li class="list-group-item boosted bg-maroon">
+                    <b><i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}</b>
+                    <span class="pull-right">
+                        {{ $campaign->boosts->first()->user->name }}
+                    </span>
+                </li>
+            @endif
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.visibility') }}</b>
                 <span  class="pull-right">
@@ -53,16 +61,23 @@
             @endif
         </ul>
 
+        @if (!$campaign->boosted())
+            <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn btn-block bg-maroon btn-boost">
+                <i class="fa fa-rocket"></i> {{ __('campaigns.show.actions.boost') }}
+            </a>
+        @endif
         @can('update', $campaign)
             <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-primary btn-block">
                 <i class="fa fa-edit" aria-hidden="true"></i> {{ trans('crud.update') }}
             </a>
         @endcan
+
         @can('leave', $campaign)
             <button data-url="{{ route('campaigns.leave', $campaign->id) }}" class="btn btn-warning btn-block click-confirm" data-toggle="modal" data-target="#click-confirm" data-message="{{ trans('campaigns.leave.confirm', ['name' => $campaign->name]) }}">
-                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ trans('campaigns.show.actions.leave') }}
+                <i class="fa fa-sign-out-alt" aria-hidden="true"></i> {{ trans('campaigns.show.actions.leave') }}
             </button>
         @endcan
+
 
         @can('delete', $campaign)
             <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm">
