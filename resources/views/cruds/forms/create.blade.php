@@ -32,9 +32,9 @@
             @includeIf($name . '.form._tabs', ['source' => $source])
 
             @if ($campaign->campaign()->boosted())
-                <li class="{{ (request()->get('tab') == 'tooltip' ? ' active' : '') }}">
-                    <a href="#form-tooltip" title="{{ trans('crud.tabs.tooltip') }}" data-toggle="tooltip">
-                        <i class="fa fa-rocket"></i> {{ __('crud.tabs.tooltip') }}
+                <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
+                    <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}" data-toggle="tooltip">
+                        <i class="fa fa-rocket"></i> {{ __('crud.tabs.boost') }}
                     </a>
                 </li>
             @endif
@@ -69,8 +69,8 @@
             @includeIf($name . '.form._panes', ['source' => $source])
 
             @if ($campaign->campaign()->boosted())
-                <div class="tab-pane {{ (request()->get('tab') == 'tooltip' ? ' active' : '') }}" id="form-tooltip">
-                    @include('cruds.forms._tooltip', ['source' => $source])
+                <div class="tab-pane {{ (request()->get('tab') == 'boost' ? ' active' : '') }}" id="form-boost">
+                    @include('cruds.forms._boost', ['source' => $source])
                 </div>
             @endif
             @if (!empty($source) || !empty(old('copy_source_id')))

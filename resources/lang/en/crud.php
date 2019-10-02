@@ -85,6 +85,7 @@ return [
             'tab'       => 'Attribute is displayed only on the Attributes tab.',
         ],
     ],
+    'boosted' => 'Boosted',
     'bulk'              => [
         'errors'        => [
             'admin' => 'Only campaign admins can change the private status of entities.',
@@ -205,7 +206,7 @@ return [
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
         'is_star'               => 'Pinned elements will appear on the entity\'s menu',
         'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
-        'tooltip'               => 'Replace the automatically calculated tooltip with the following contents.',
+        'tooltip'               => 'Replace the automatically generated tooltip with the following contents.',
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'           => [

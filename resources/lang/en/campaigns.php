@@ -59,7 +59,7 @@ return [
     ],
     'following'                         => 'Following',
     'helpers'                           => [
-        'boosted'                       => 'This campaign is being boosted, which unlocks various features that will stay active as long as it stays this way. Removing the boosted status does not remove the content of these perks but simply hides them until the campaign becomes boosted again.',
+        'boosted'                       => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
         'css'                           => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
