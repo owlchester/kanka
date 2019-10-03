@@ -1,8 +1,10 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
-        @include ('cruds._image')
+        @if (!View::hasSection('entity-header'))
+            @include ('cruds._image')
 
-        <h3 class="profile-username text-center">{{ $model->name }}</h3>
+            <h3 class="profile-username text-center">{{ $model->name }}</h3>
+        @endif
 
         <ul class="list-group list-group-unbordered">
             @if ($campaign->enabled('characters') && $model->character)

@@ -3120,70 +3120,6 @@ td.breakable {
   color: white;
 }
 
-.booster {
-  background-color: #9b8a30;
-}
-
-.btn-boost {
-  margin-bottom: 25px;
-}
-
-.boosted {
-  padding: 5px !important;
-}
-
-.entity-header {
-  height: calc(40vh);
-  max-height: 240px;
-  min-height: 190px;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-  display: flex;
-  border-radius: 3px;
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom {
-  align-items: flex-end;
-  align-self: flex-end;
-  display: flex;
-}
-
-.entity-header .bottom .texts {
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom .texts h1,
-.entity-header .bottom .texts h3 {
-  margin: 0;
-  align-self: flex-end;
-  text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-  color: white;
-}
-
-.entity-header .bottom .texts h3 {
-  margin-top: 5px;
-  font-style: italic;
-}
-
-.entity-header .bottom .entity-avatar {
-  margin: 10px;
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom .entity-avatar img {
-  transition: all 1s ease;
-  border-radius: 2px;
-  max-width: 160px;
-  max-height: 160px;
-  box-shadow: 0 6px 6px rgba(150, 150, 150, 0.3), 0 1px 3px rgba(255, 255, 255, 0.08);
-}
-
-.entity-header .bottom .entity-avatar:hover img {
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
 .cursor {
   cursor: pointer;
 }
@@ -3257,5 +3193,69 @@ td.breakable {
   section.content {
     padding-top: 5px;
   }
+}
+
+/**
+ * Styling related to elements that benefit from a campaign's boosted status
+ */
+
+.booster {
+  background-color: #9b8a30;
+}
+
+.btn-boost {
+  margin-bottom: 25px;
+}
+
+.entity-header {
+  height: calc(40vh);
+  max-height: 240px;
+  min-height: 190px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.entity-header .bottom {
+  align-items: flex-end;
+  align-self: flex-end;
+  display: flex;
+}
+
+.entity-header .bottom .texts {
+  margin-bottom: 15px;
+}
+
+.entity-header .bottom .texts h1,
+.entity-header .bottom .texts h3 {
+  margin: 0;
+  align-self: flex-end;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+  color: white;
+}
+
+.entity-header .bottom .texts h3 {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.entity-header .bottom .entity-avatar {
+  margin: 10px;
+  margin-bottom: 15px;
+}
+
+.entity-header .bottom .entity-avatar img {
+  transition: all 1s ease;
+  border-radius: 3px;
+  max-width: 160px;
+  max-height: 160px;
+  box-shadow: 0 6px 6px rgba(150, 150, 150, 0.3), 0 1px 3px rgba(255, 255, 255, 0.08);
+}
+
+.entity-header .bottom .entity-avatar:hover img {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 

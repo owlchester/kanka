@@ -1,0 +1,60 @@
+/**
+ * Styling related to elements that benefit from a campaign's boosted status
+ */
+.booster {
+  background-color: #9b8a30;
+}
+.btn-boost {
+  margin-bottom: 25px;
+}
+
+.entity-header {
+  height: calc(40vh);
+  max-height: 240px;
+  min-height: 190px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  border-radius: 3px;
+  margin-bottom: 15px;
+
+  .bottom {
+    align-items: flex-end;
+    align-self: flex-end;
+    display: flex;
+
+    .texts {
+      margin-bottom: 15px;
+      h1, h3 {
+        margin: 0;
+        align-self: flex-end;
+        text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+        color: white;
+      }
+      h3 {
+        margin-top: 5px;
+        font-style: italic;
+      }
+    }
+
+    .entity-avatar {
+      margin: 10px;
+      margin-bottom: 15px;
+
+      img {
+        transition: all 1.0s ease;
+        border-radius: 3px;
+        max-width: 160px;
+        max-height: 160px;
+        box-shadow: $box-shadow-white;
+      }
+
+      &:hover {
+        img {
+          box-shadow: $box-shadow-hover;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.show.title', ['name' => $campaign->name]),
-    'description' => trans('campaigns.show.description'),
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')]
     ]
@@ -20,8 +19,11 @@
             @include('campaigns._menu')
         </div>
         <div class="col-md-9">
-            <div class="box box-flat">
+            <div class="box box-solid">
                 <div class="box-body">
+                    <h2 class="page-header with-border">
+                        {{ trans('crud.fields.entry') }}
+                    </h2>
                     <div class="post">
                         <p>{!! $campaign->entry() !!}</p>
                     </div>

@@ -23,7 +23,7 @@
     @if($model->boosted())
     <li>
         <a href="#form-boosted" title="{{ __('campaigns.panels.boosted') }}"  data-toggle="tooltip">
-            {{ __('campaigns.panels.boosted') }}
+            <i class="fa fa-rocket"></i> {{ __('campaigns.panels.boosted') }}
         </a>
     </li>
     @endif

@@ -13,8 +13,8 @@
 
     <div class="row">
         @if (!$role->is_public)
-        <div class="col-md-6">
-            <div class="box box-default">
+        <div class="col-md-4">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('campaigns.roles.members') }}</h3>
                 </div>
@@ -53,8 +53,8 @@
         </div>
         @endif
 
-        <div class="col-md-6">
-            <div class="box box-default">
+        <div class="col-md-8">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('crud.permissions.title') }}</h3>
                 </div>

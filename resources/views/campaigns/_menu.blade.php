@@ -52,7 +52,7 @@
             </li>
             @endif
             @if ($campaign->boosted())
-                <li class="list-group-item boosted bg-maroon">
+                <li class="list-group-item text-maroon">
                     <b><i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}</b>
                     <span class="pull-right">
                         {{ $campaign->boosts->first()->user->name }}

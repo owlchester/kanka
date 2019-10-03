@@ -1,4 +1,4 @@
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('campaigns.show.tabs.members') }}
@@ -56,7 +56,7 @@
 </div>
 
 @if (Auth::user()->can('invite', $campaign))
-    <div class="box box-flat">
+    <div class="box box-solid">
         <div class="box-body">
             <h2 class="page-header with-border">{{ trans('campaigns.members.invite.title') }}</h2>
             <p class="help-block">

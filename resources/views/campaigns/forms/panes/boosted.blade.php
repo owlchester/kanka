@@ -6,7 +6,7 @@ endforeach;
 @endphp
 
 <div class="tab-pane" id="form-boosted">
-    <p class="help-block">{{ __('campaigns.helpers.boosted') }}</p>
+    @include('cruds.partials.boosted')
 
     <div class="form-group">
         <label>{{ __('campaigns.fields.theme') }}</label>

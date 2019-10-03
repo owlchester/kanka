@@ -74,15 +74,10 @@ return [
     'index'                             => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Create a new campaign',
                 'title'         => 'New Campaign',
             ],
         ],
-        'add'           => 'New Campaign',
-        'description'   => 'Manage your campaigns.',
-        'list'          => 'Your campaigns',
-        'select'        => 'Select a campaign',
-        'title'         => 'Campaigns',
+        'title'         => 'Campaign',
     ],
     'invites'                           => [
         'actions'       => [

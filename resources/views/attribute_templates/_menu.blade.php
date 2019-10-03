@@ -1,10 +1,12 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
+        @if (!View::hasSection('entity-header'))
         <h3 class="profile-username text-center">{{ $model->name }}
             @if ($model->is_private)
                 <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif
         </h3>
+        @endif
 
         <ul class="list-group list-group-unbordered">
             @if (!empty($model->attributeTemplate))

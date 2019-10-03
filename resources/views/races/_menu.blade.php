@@ -1,13 +1,15 @@
 <?php /** @var App\Models\location $location */ ?>
 <div class="box box-solid">
     <div class="box-body box-profile">
-        @include ('cruds._image')
+        @if (!View::hasSection('entity-header'))
+            @include ('cruds._image')
 
-        <h3 class="profile-username text-center">{{ $model->name }}
-            @if ($model->is_private)
-                <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
-            @endif
-        </h3>
+            <h3 class="profile-username text-center">{{ $model->name }}
+                @if ($model->is_private)
+                    <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
+                @endif
+            </h3>
+        @endif
 
         <ul class="list-group list-group-unbordered">
             @if ($model->race)

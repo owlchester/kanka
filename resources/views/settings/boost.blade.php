@@ -29,6 +29,7 @@
                         <li>{{ __('settings.boost.benefits.theme') }}</li>
                         <li>{{ __('settings.boost.benefits.tooltip') }}</li>
                         <li>{{ __('settings.boost.benefits.header') }}</li>
+                        <li>{{ __('settings.boost.benefits.upload') }}</li>
                         <li>{{ __('settings.boost.benefits.more') }}</li>
                     </ul>
 
