@@ -94,6 +94,8 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     @endif
                 </ol>
                 @endif
+
+                @if (!View::hasSection('entity-header'))
                 <h1>
                     @yield('header-extra')
                     {{ $title ?? "Page Title" }}
@@ -102,6 +104,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                         {!! $headerExtra !!}
                     @endif
                 </h1>
+                @endif
             </section>
 
             <!-- Main content -->
@@ -117,6 +120,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     </div>
                 @endif
                 @include('partials.success')
+                @yield('entity-header')
                 @yield('content')
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->

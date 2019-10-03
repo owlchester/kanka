@@ -2,11 +2,13 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
         <div class="row">
+            @if (!View::hasSection('entity-header'))
             <div class="col-md-12 col-sm-4 col-xs-4">
                 @include ('cruds._image')
             </div>
+            @endif
             <div class="col-md-12 col-sm-8 col-xs-8">
-
+                @if (!View::hasSection('entity-header'))
                 <h3 class="profile-username text-center">{{ $model->name }}
                     @if ($model->is_private)
                         <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
@@ -15,10 +17,11 @@
                         <span class="ra ra-skull" title="{{ __('characters.hints.is_dead') }}"></span>
                     @endif
                 </h3>
-
                 @if ($model->title)
                     <p class="text-muted text-center">{{ $model->title }}</p>
                 @endif
+                @endif
+
 
                 <ul class="list-group list-group-unbordered">
                     @if ($campaign->enabled('families') && $model->family)

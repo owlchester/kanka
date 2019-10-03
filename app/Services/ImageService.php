@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Entity;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -18,7 +19,7 @@ class ImageService
      * @param MiscModel $model
      * @param string $folder
      */
-    public static function handle(Model $model, $folder = '', $thumbSize = 60, $field = 'image')
+    public static function handle(Model $model, string $folder = '', $thumbSize = 60, $field = 'image')
     {
         if (request()->has($field) or request()->filled($field . '_url')) {
             try {
@@ -94,11 +95,87 @@ class ImageService
         }
     }
 
+    public static function entity(Entity $entity, string $folder = '', $thumbSize = 60, string $field = 'header_image')
+    {
+        if (request()->has($field) or request()->filled($field . '_url')) {
+            try {
+                $file = $path = null;
+                $url = request()->filled($field . '_url');
+
+                // Download the file locally to check it out
+                if ($url) {
+                    $externalUrl = request()->post($field . '_url');
+                    $externalFile = basename($externalUrl);
+
+                    $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
+                    copy($externalUrl, $tempImage);
+
+                    $file = $tempImage;
+                    $path = rtrim($folder, '/') . '/' . uniqid() . '_' . $externalFile;
+
+                    // Check if file is too big
+                    $copiedFileSize = ceil(filesize($tempImage) / 1000);
+                    if ($copiedFileSize > auth()->user()->maxUploadSize()) {
+                        unlink($tempImage);
+                        throw new \Exception('image_url target too big');
+                    }
+                    $file = new UploadedFile($tempImage, basename($externalUrl));
+                } else {
+                    $file = request()->file($field);
+                    $path = $file->hashName($folder);
+                }
+
+                $thumb = str_replace('.', '_thumb.', $path);
+
+                // Sanitize SVGs to avoid any XSS attacks
+                if ($file->getMimeType() == 'image/svg+xml') {
+                    $sanitizer = new Sanitizer();
+                    $dirtySVG = file_get_contents($file);
+                    $cleanSVG = $sanitizer->sanitize($dirtySVG);
+                    file_put_contents($file, $cleanSVG);
+                }
+
+                if (!empty($path)) {
+                    // Remove old
+                    self::cleanup($entity, $field);
+
+                    // Create a thumb of the picture
+                    if ($thumbSize !== false) {
+                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        });
+                        Storage::put($thumb, (string) $image->encode(), 'public');
+                    }
+
+                    // Save new image
+                    if ($url) {
+                        if ($file->getMimeType() == 'image/svg+xml') {
+                            // GD can't handle svgs, so we need to move them directly
+                            Storage::put($path, $cleanSVG, 'public');
+                        } else {
+                            $image = Image::make($file);
+                            Storage::put($path, (string)$image->encode(), 'public');
+                        }
+                    } else {
+                        $path = request()->file($field)->storePublicly($folder);
+                    }
+                    $entity->$field = $path;
+                }
+            } catch (Exception $e) {
+                // There was an error getting the image. Could be the url, could be the request.
+                session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
+            }
+        } elseif (request()->post('remove-' . $field) == '1') {
+            // Remove old
+            self::cleanup($entity, $field);
+        }
+    }
+
     /**
      * Delete old image and thumb
-     * @param MiscModel $model
+     * @param MiscModel|Entity $model
      */
-    public static function cleanup(Model $model, $field = 'image')
+    public static function cleanup($model, $field = 'image')
     {
         if ($model->$field) {
             Storage::delete($model->$field);

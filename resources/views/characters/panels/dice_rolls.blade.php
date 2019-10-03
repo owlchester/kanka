@@ -1,6 +1,6 @@
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
-        <h2 class="page-header with-border">
+        <h2 class="page-header ">
             {{ trans('characters.show.tabs.dice_rolls') }}
         </h2>
 

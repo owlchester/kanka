@@ -25,8 +25,8 @@
         </div>
 
         @if ((Auth::check() && Auth::user()->can('personality', $model)) && $model->characterTraits()->personality()->count() > 0)
-        <div class="box">
-            <div class="box-header with-border">
+        <div class="box box-solid">
+            <div class="box-header">
                 @if (!$model->is_personality_visible)
                 <span class="pull-right"><i class="fa fa-lock" title="{{ __('characters.hints.is_personality_visible') }}"></i></span>
                 @endif
@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-lg-2 col-md-3 @if (!$model->showAppearance()) hidden @endif">
-        <div class="box">
+        <div class="box box-solid">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('characters.fields.physical') }}</h3>
             </div>

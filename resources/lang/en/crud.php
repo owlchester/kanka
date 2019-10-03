@@ -153,6 +153,7 @@ return [
         'excerpt'               => 'Excerpt',
         'family'                => 'Family',
         'files'                 => 'Files',
+        'header_image'          => 'Header Image',
         'image'                 => 'Image',
         'is_private'            => 'Private',
         'is_star'               => 'Pinned',
@@ -201,6 +202,7 @@ return [
     'hints'             => [
         'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
+        'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
@@ -315,6 +317,7 @@ return [
     'select'            => 'Select',
     'tabs'              => [
         'attributes'    => 'Attributes',
+        'boost'         => 'Boost',
         'calendars'     => 'Calendars',
         'default'       => 'Default',
         'events'        => 'Events',

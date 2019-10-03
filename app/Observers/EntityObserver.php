@@ -12,6 +12,7 @@ use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Tag;
 use App\Services\AttributeService;
+use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Facades\Auth;
 
@@ -192,6 +193,10 @@ class EntityObserver
         if (request()->has('entity_tooltip')) {
             $entity->tooltip = $this->purify(request()->get('entity_tooltip'));
         }
+
+
+        // Handle map. Let's use a service for this.
+        ImageService::entity($entity, 'campaign/' . $entity->campaign_id, false, 'header_image');
 
         $entity->save();
     }

@@ -12,6 +12,7 @@ use App\Traits\TooltipTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
@@ -28,6 +29,8 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer $updated_by
  * @property boolean $is_private
  * @property boolean $is_attributes_private
+ * @property string $tooltip
+ * @property string $header_image
  * @property Tag[] $tags
  * @property EntityTag[] $entityTags
  * @property EntityNote[] $notes
@@ -51,6 +54,7 @@ class Entity extends Model
         'type',
         'is_private',
         'is_attributes_private',
+        'header_image',
     ];
 
     /**
@@ -493,5 +497,19 @@ class Entity extends Model
     public function starredRelations()
     {
         return $this->relationships()->stared()->ordered();
+    }
+
+    /**
+     * Get the image (or default image) of an entity
+     * @param bool $thumb
+     * @return string
+     */
+    public function getImageUrl($thumb = false, $field = 'header_image'): string
+    {
+        if (empty($this->$field)) {
+            return '';
+        }
+
+        return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
     }
 }

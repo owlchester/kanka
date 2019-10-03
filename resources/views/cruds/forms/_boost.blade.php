@@ -10,17 +10,18 @@
 </div>
 
 <div class="form-group">
-    <label>{{ trans('crud.fields.entity_header') }}</label>
+    <label>{{ trans('crud.fields.header_image') }}</label>
+    <p class="help-block">{{ __('crud.hints.header_image') }}</p>
 
-    {!! Form::hidden('remove-entity-header') !!}
+    {!! Form::hidden('remove-header_image') !!}
 
     <div class="row">
         <div class="col-md-10">
             <div class="form-group">
-                {!! Form::file('entity_header', array('class' => 'image form-control')) !!}
+                {!! Form::file('header_image', array('class' => 'image form-control')) !!}
             </div>
             <div class="form-group">
-                {!! Form::text('entity_header_url', null, ['placeholder' => trans('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                {!! Form::text('header_image_url', null, ['placeholder' => trans('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
 
                 <p class="help-block">
                     {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
@@ -32,10 +33,10 @@
 
         </div>
         <div class="col-md-2">
-            @if (!empty($model->entity) && !empty($model->entity->entity_header))
+            @if (!empty($model->entity) && !empty($model->entity->header_image))
                 <div class="preview-v2">
-                    <div class="image" style="background-image: url('{{ $model->entity->getImageUrl(false, 'entity_header') }}')" title="{{ $model->name }}">
-                        <a href="#" class="img-delete" data-target="remove-entity-header" title="{{ trans('crud.remove') }}">
+                    <div class="image" style="background-image: url('{{ $model->entity->getImageUrl(false, 'header_image') }}')" title="{{ $model->name }}">
+                        <a href="#" class="img-delete" data-target="remove-header_image" title="{{ trans('crud.remove') }}">
                             <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                         </a>
                     </div>
