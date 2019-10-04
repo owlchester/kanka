@@ -31,6 +31,7 @@
         "grunt": "^1.0.3",
         "select2": "^4.0.8",
         "simple-line-icons": "^2.4.1",
-        "startbootstrap-new-age": "^3.3.7"
+        "startbootstrap-new-age": "^3.3.7",
+        "vue-dragscroll": "^1.10.2"
     }
 }

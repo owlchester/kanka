@@ -60,9 +60,9 @@ class FormCopyService
 
     /**
      * @param string|null $default
-     * @return string
+     * @return string|null
      */
-    public function string(string $default = ''): string
+    public function string($default = null)
     {
         if ($this->valid()) {
             return $this->getValue();
@@ -225,6 +225,10 @@ class FormCopyService
      */
     private function getValues()
     {
+        if (!$this->valid()) {
+            return null;
+        }
+
         if ($this->entity === true) {
             $this->entity = false;
             return $this->source->entity->{$this->field};

@@ -88,7 +88,7 @@ class LocationController extends CrudController
             }
         }
 
-        return view('locations.map', compact('location'));
+        return view('locations.map-v2', compact('location'));
     }
 
     /**
