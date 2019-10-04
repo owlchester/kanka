@@ -6,7 +6,7 @@
  */
 $organisations = isset($model) ?
     $model->organisations()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :
-    $formService->prefillCharacterOrganisation($source);
+    FormCopy::characterOrganisation();
 $isAdmin = Auth::user()->isAdmin();
 ?>
 <div class="row">

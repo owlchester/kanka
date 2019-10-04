@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\FormCopy;
 use App\Http\Resources\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
@@ -160,6 +161,7 @@ class CrudController extends Controller
             if (!empty($copyId)) {
                 $model = new $this->model;
                 $params['source'] = $model->findOrFail($copyId);
+                FormCopy::source($params['source']);
             } else {
                 $params['source'] = null;
             }
@@ -279,6 +281,8 @@ class CrudController extends Controller
     public function crudEdit(Model $model)
     {
         $this->authorize('update', $model);
+
+        FormCopy::source($model);
 
         $params = [
             'model' => $model,

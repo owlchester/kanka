@@ -13,7 +13,7 @@ if (request()->route()->getName() == 'characters.random') {
     <div class="col-md-6">
         <label>{{ __('characters.sections.appearance') }}</label>
         <div class="character-appearance">
-            @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits() : $formService->prefillCharacterAppearance($source))) as $trait)
+            @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits() : FormCopy::characterAppearance())) as $trait)
                 <div class="form-group parent-delete-row">
                     <div class="row">
                         <div class="col-md-4 col-xs-4">
@@ -85,7 +85,7 @@ if (request()->route()->getName() == 'characters.random') {
         <label>{{ __('characters.sections.personality') }}</label>
         @if (!isset($model) || auth()->user()->can('personality', $model))
             <div class="character-personality">
-                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits(false) : $formService->prefillCharacterPersonality($source))) as $trait)
+                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : ($isRandom ? $random->generateTraits(false) : FormCopy::characterPersonality())) as $trait)
                     <div class="parent-delete-row margin-bottom">
                         <div class="form-group">
                             <div class="input-group">
@@ -147,7 +147,7 @@ if (request()->route()->getName() == 'characters.random') {
             <hr>
             <div class="form-group">
                 {!! Form::hidden('is_personality_visible', 0) !!}
-                <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? $formService->prefill('is_personality_visible', $source) : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
+                <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
                     {{ trans('characters.fields.is_personality_visible') }}
                 </label>
                 <p class="help-block">{{ trans('characters.hints.is_personality_visible') }}</p>

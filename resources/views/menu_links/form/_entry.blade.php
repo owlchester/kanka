@@ -20,6 +20,7 @@ foreach ($entityService->getEnabledEntities($campaign->campaign()) as $entity) {
 $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type';
 ?>
 
+@include('cruds.fields.name', ['trans' => 'menu_links'])
 <div class="form-group required">
     <label>{{ trans('menu_links.fields.name') }}</label>
     {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('menu_links.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}

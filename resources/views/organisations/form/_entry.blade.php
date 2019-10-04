@@ -1,9 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('organisations.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('organisations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.name', ['trans' => 'organisations'])
         @include('cruds.fields.type', ['base' => \App\Models\Organisation::class, 'trans' => 'organisations'])
         <div class="form-group">
             {!! Form::select2(

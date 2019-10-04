@@ -2,14 +2,11 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('families.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('families.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.name', ['trans' => 'families'])
         <div class="form-group">
             {!! Form::select2(
                 'family_id',
-                (isset($model) && $model->family ? $model->family : $formService->prefillSelect('family', $source, true, \App\Models\Family::class)),
+                (isset($model) && $model->family ? $model->family : FormCopy::field('family')->select(true, \App\Models\Family::class)),
                 App\Models\Family::class,
                 true,
                 'families.fields.family'

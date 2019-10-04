@@ -1,10 +1,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('notes.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.name', ['trans' => 'notes'])
         @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
         @include('cruds.fields.tags')
 

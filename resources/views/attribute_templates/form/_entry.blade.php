@@ -1,13 +1,10 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('attribute_templates.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('attribute_templates.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.name', ['trans' => 'attribute_templates'])
         <div class="form-group">
             {!! Form::select2(
                 'attribute_template_id',
-                (isset($model) && $model->attributeTemplate ? $model->attributeTemplate : $formService->prefillSelect('attributeTemplate', $source)),
+                (isset($model) && $model->attributeTemplate ? $model->attributeTemplate : FormCop::field('attributeTemplate')->select()),
                 App\Models\AttributeTemplate::class,
                 true,
                 __('attribute_templates.fields.attribute_template'),
@@ -20,7 +17,7 @@
             {!! Form::entityType(
                 'entity_type_id',
                 [
-                    'model' => (isset($model) && $model->entityType ? $model->entityType : $formService->prefillSelect('entityType', $source)),
+                    'model' => (isset($model) && $model->entityType ? $model->entityType : FormCopy::field('entityType')->select()),
             ]) !!}
             <p class="help-block">{{ __('attribute_templates.hints.entity_type') }}</p>
         </div>

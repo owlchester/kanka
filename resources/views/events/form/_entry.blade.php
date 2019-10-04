@@ -1,13 +1,10 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('events.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.name', ['trans' => 'events'])
         @include('cruds.fields.type', ['base' => \App\Models\Event::class, 'trans' => 'events'])
         <div class="form-group">
             <label>{{ trans('events.fields.date') }}</label>
-            {!! Form::text('date', $formService->prefill('date', $source), ['placeholder' => trans('events.placeholders.date'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('date', FormCopy::field('date'), ['placeholder' => trans('events.placeholders.date'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         @include('cruds.fields.location')
 

@@ -3,7 +3,7 @@
         {!! Form::tags(
             'tag_id',
             [
-                'model' => isset($model) ? $model : $formService->prefillModel($source)
+                'model' => isset($model) ? $model : FormCopy::model()
             ]
         ) !!}
     </div>

@@ -1,14 +1,11 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            <label>{{ trans('locations.fields.name') }}</label>
-            {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('locations.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.name', ['trans' => 'locations'])
         @include('cruds.fields.type', ['base' => \App\Models\Location::class, 'trans' => 'locations'])
         <div class="form-group">
             {!! Form::select2(
                 'parent_location_id',
-                (isset($model) && $model->parentLocation ? $model->parentLocation : $formService->prefillSelect('parentLocation', $source, true, \App\Models\Location::class)),
+                (isset($model) && $model->parentLocation ? $model->parentLocation : FormCopy::field('parentLocation')->select(true, \App\Models\Location::class)),
                 App\Models\Location::class,
                 true,
                 'crud.fields.location',
