@@ -566,6 +566,10 @@ class User extends \TCG\Voyager\Models\User
         return Arr::get($levels, $this->patreon_pledge, 3);
     }
 
+    /**
+     * API throttling is increased for patrons
+     * @return int
+     */
     public function getRateLimitAttribute(): int
     {
         return $this->isGoblinPatron() ? 90 : 30;
