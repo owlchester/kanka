@@ -203,6 +203,14 @@
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
+                    <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('about', __('teams.hall_of_fame'), ['#patreon'])]) !!}</td>
+                    <td></td>
+                    <td></td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
                     <td class="text">{{ __('front.features.patreon.api_calls') }}</td>
                     <td></td>
                     <td></td>
@@ -268,34 +276,28 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>{{ __('front.features.boosts.standard') }}</th>
                     <th>{{ __('front.features.boosts.boosted') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td class="text">{{ __('front.features.boosts.theme') }}</td>
-                    <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.boosts.css') }}</td>
-                    <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.boosts.tooltip') }}</td>
-                    <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.boosts.header_image') }}</td>
-                    <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.boosts.upload') }}</td>
-                    <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 </tbody>

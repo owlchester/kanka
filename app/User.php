@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Models\Patreon;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,10 +32,6 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends \TCG\Voyager\Models\User
 {
-    const PLEDGE_KOBOLD = 'Kobold';
-    const PLEDGE_GOBLIN = 'Goblin';
-    const PLEDGE_OWLBEAR = 'Owlbear';
-    const PLEDGE_ELEMENTAL = 'Elemental';
     /**
      * Cached calculation if the user is an admin of the current campaign he is viewing
      * @var null
@@ -458,7 +455,7 @@ class User extends \TCG\Voyager\Models\User
     public function isGoblinPatron()
     {
         return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
-                && $this->patreon_pledge != self::PLEDGE_KOBOLD)
+                && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
            || $this->hasRole('admin')
         ;
     }
@@ -557,9 +554,9 @@ class User extends \TCG\Voyager\Models\User
         }
 
         $levels = [
-            self::PLEDGE_KOBOLD => 0,
-            self::PLEDGE_GOBLIN => 1,
-            self::PLEDGE_ELEMENTAL => 5,
+            Patreon::PLEDGE_KOBOLD => 0,
+            Patreon::PLEDGE_GOBLIN => 1,
+            Patreon::PLEDGE_ELEMENTAL => 5,
         ];
 
         // Default 3 for admins and owlbears

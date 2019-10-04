@@ -90,13 +90,14 @@
     <section class="features" id="patreon">
         <div class="container">
             <div class="section-body">
-                <h1>{{ trans('teams.patreon.title') }}</h1>
+                <h1>{{ trans('teams.hall_of_fame') }}</h1>
                 <p class="text-muted">{{ trans('teams.patreon.description') }}
-                    <a href="{{ config('patreon.url') }}" class="" target="_blank">{{ __('footer.patreon') }}</a>
+                    <a href="{{ config('patreon.url') }}" class="" target="_blank">{{ __('footer.patreon') }}</a>.
+                    <a href="{{ route('features', ['#patreon']) }}">{{ __('teams.patreon.learn_more') }}</a>.
                 </p>
 
                     @foreach ($patrons as $pledge => $users)
-                        @if (!empty($users))
+                        @if (!empty($users) && $pledge != \App\Models\Patreon::PLEDGE_KOBOLD)
                             <h4>{{ $pledge }}</h4>
                             <div class="row patreon-pledge">
                             @foreach ($users as $user)

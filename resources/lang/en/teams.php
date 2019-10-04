@@ -13,5 +13,7 @@ return [
     'patreon'   => [
         'description'   => 'These amazing people help and support Kanka on Patreon.',
         'title'         => 'Patreon',
+        'learn_more' => 'Lean more about Patreon benefits',
     ],
+    'hall_of_fame' => 'Hall of Fame',
 ];
