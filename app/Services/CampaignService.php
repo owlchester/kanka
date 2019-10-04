@@ -208,12 +208,12 @@ class CampaignService
 
     /**
      * @param Campaign $campaign
-     * @param $key
-     * @param $icon
-     * @param $colour
+     * @param string $key
+     * @param string $icon
+     * @param string $colour
      * @param array $params
      */
-    public function notify(Campaign $campaign, $key, $icon, $colour, array $params = [])
+    public function notify(Campaign $campaign, string $key, string $icon, string $colour, array $params = []): void
     {
         // Notify all admins
         foreach ($campaign->admins() as $user) {

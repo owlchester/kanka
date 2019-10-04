@@ -53862,7 +53862,7 @@ function registerEntityFormSubmit() {
 
 
 function resetEntityFormSubmitAnimation() {
-  submit = $('#entity-form').find('.btn-success');
+  var submit = $('#entity-form').find('.btn-success');
 
   if (submit.length > 0) {
     $.each(submit, function (su) {

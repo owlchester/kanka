@@ -10,6 +10,10 @@ return [
             'add'       => 'You have been added to the :role role in the :campaign campaign.',
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
         ],
+        'boost' => [
+            'remove' => ':user is no longer boosting the :campaign campaign.',
+            'add' => 'Campaign :campaign is being boosted by :user.'
+        ]
     ],
     'header'            => 'You have :count notifications',
     'index'             => [

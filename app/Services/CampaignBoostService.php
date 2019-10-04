@@ -32,9 +32,11 @@ class CampaignBoostService
             throw new ExhaustedBoostsException();
         }
 
-        return CampaignBoost::create([
+        $boost = CampaignBoost::create([
             'campaign_id' => $campaign->id,
             'user_id' => $user->id
         ]);
+
+        return $boost;
     }
 }

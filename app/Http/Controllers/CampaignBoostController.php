@@ -6,8 +6,10 @@ use App\Exceptions\TranslatableException;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\CampaignBoostService;
+use App\Services\CampaignService;
 use http\Client\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostController extends Controller
 {
@@ -17,13 +19,19 @@ class CampaignBoostController extends Controller
     protected $campaignBoostService;
 
     /**
+     * @var CampaignService
+     */
+    protected $campaignService;
+
+    /**
      * CampaignBoostController constructor.
      * @param CampaignBoostService $campaignBoostService
      */
-    public function __construct(CampaignBoostService $campaignBoostService)
+    public function __construct(CampaignBoostService $campaignBoostService, CampaignService $campaignService)
     {
         $this->middleware(['auth', 'identity']);
         $this->campaignBoostService = $campaignBoostService;
+        $this->campaignService = $campaignService;
     }
 
     /**
@@ -39,6 +47,16 @@ class CampaignBoostController extends Controller
 
         try {
             $this->campaignBoostService->boost($campaign);
+            $this->campaignService->notify(
+                $campaign,
+                'boost.add',
+                'rocket',
+                'maroon',
+                [
+                    'user' => e(Auth::user()->name),
+                    'campaign' => e($campaign->name)
+                ]
+            );
 
             return redirect()
                 ->route('settings.boost')
@@ -60,6 +78,19 @@ class CampaignBoostController extends Controller
         $this->authorize('destroy', $campaignBoost);
 
         $campaignBoost->delete();
+
+        $this->campaignService->notify(
+            $campaignBoost->campaign,
+            'boost.remove',
+            'rocket',
+            'red',
+            [
+                'user' => e(Auth::user()->name),
+                'campaign' => e($campaignBoost->campaign->name)
+            ]
+        );
+
+
         return redirect()
             ->route('settings.boost')
             ->with('success', __('settings.boost.success.delete', ['name' => $campaignBoost->campaign->name]));

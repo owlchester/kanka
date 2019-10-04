@@ -2,11 +2,27 @@
 
 namespace App\Services;
 
+use App\Models\Entity;
 use App\Models\Family;
 use App\Models\MiscModel;
 
 class FormService
 {
+    /**
+     * @var MiscModel|null
+     */
+    protected $source;
+
+    /**
+     * @param MiscModel|null $source
+     * @return $this
+     */
+    public function source(MiscModel $source = null)
+    {
+        $this->source = $source;
+        return $this;
+    }
+
     /**
      * Prefill the field with the copies values
      * @param $field
@@ -125,6 +141,21 @@ class FormService
         if ($entity instanceof MiscModel) {
             return $entity;
         }
+        return null;
+    }
+
+    /**
+     * Prefill a value based on an attribute
+     * @param string $field
+     * @param MiscModel|null $entity
+     * @return mixed
+     */
+    public function prefillEntity(string $field, $entity = null)
+    {
+        if ($entity instanceof MiscModel && $entity->entity) {
+            return $entity->entity->$field;
+        }
+
         return null;
     }
 
