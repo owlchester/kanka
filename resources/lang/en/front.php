@@ -94,7 +94,6 @@ return [
             'upload_limit' => 'Increased upload sizes (8mb)',
             'upload_limit_map' => 'Increased map upload sizes (10mb)',
             'default_image' => 'Nice default images for entities',
-            'api_calls' => 'Increased API calls',
             'pagination' => 'Increased pagination results',
             'monthly_vote' => 'Participation in the monthly feature vote',
             'boosts' => 'Campaign Boosters',
@@ -111,6 +110,7 @@ return [
             'upload' => 'Increased upload sizes for all members',
             'standard' => 'Standard',
             'boosted' => 'Boosted campaign',
+            'api_calls' => 'Increased API calls on the campaign',
         ]
     ],
     'first_block'   => [

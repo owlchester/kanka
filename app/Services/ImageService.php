@@ -86,7 +86,6 @@ class ImageService
                     $model->$field = $path;
                 }
             } catch (Exception $e) {
-                dd($e->getMessage());
                 // There was an error getting the image. Could be the url, could be the request.
                 session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
             }
@@ -96,6 +95,12 @@ class ImageService
         }
     }
 
+    /**
+     * @param Entity $entity
+     * @param string $folder
+     * @param int $thumbSize
+     * @param string $field
+     */
     public static function entity(Entity $entity, string $folder = '', $thumbSize = 60, string $field = 'header_image')
     {
         if (request()->has($field) or request()->filled($field . '_url')) {
