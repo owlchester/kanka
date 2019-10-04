@@ -63,7 +63,9 @@
 
                                             @if(Auth::user()->availableBoosts() > 0)
                                             {!! Form::open(['route' => 'campaign_boost.store']) !!}
-                                            {!! Form::submit(__('settings.boost.buttons.boost'), ['class' => 'btn btn-primary boost']) !!}
+                                            <button type="submit" class="btn btn-primary boost">
+                                                <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.boost') }}
+                                            </button>
                                             {!! Form::hidden('campaign_id', $campaign->id) !!}
                                             {!! Form::close(); !!}
                                             @else

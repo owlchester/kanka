@@ -86,6 +86,7 @@ class ImageService
                     $model->$field = $path;
                 }
             } catch (Exception $e) {
+                dd($e->getMessage());
                 // There was an error getting the image. Could be the url, could be the request.
                 session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
             }
@@ -178,10 +179,14 @@ class ImageService
     public static function cleanup($model, $field = 'image')
     {
         if ($model->$field) {
-            Storage::delete($model->$field);
-            $thumb = str_replace('.', '_thumb.', $model->$field);
-            if (Storage::has($thumb)) {
-                Storage::delete($thumb);
+            try {
+                Storage::delete($model->$field);
+                $thumb = str_replace('.', '_thumb.', $model->$field);
+                if (Storage::has($thumb)) {
+                    Storage::delete($thumb);
+                }
+            } catch (Exception $e) {
+                // silence exception, didn't find the image to delete.
             }
             $model->$field = null;
         }

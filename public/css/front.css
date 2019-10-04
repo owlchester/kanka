@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: "simple-line-icons";
-  src: url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7);
-  src: url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7) format("embedded-opentype"), url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.woff2?0cb0b9c589c0624c9c78dd3d83e946f6) format("woff2"), url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.ttf?d2285965fe34b05465047401b8595dd0) format("truetype"), url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.woff?78f07e2c2a535c26ef21d95e41bd7175) format("woff"), url(/fonts/vendor/simple-line-icons/Simple-Line-Icons.svg?2fe2efe63441d830b1acd106c1fe8734) format("svg");
+  src: url(/fonts/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7);
+  src: url(/fonts/Simple-Line-Icons.eot?f33df365d6d0255b586f2920355e94d7) format("embedded-opentype"), url(/fonts/Simple-Line-Icons.woff2?0cb0b9c589c0624c9c78dd3d83e946f6) format("woff2"), url(/fonts/Simple-Line-Icons.ttf?d2285965fe34b05465047401b8595dd0) format("truetype"), url(/fonts/Simple-Line-Icons.woff?78f07e2c2a535c26ef21d95e41bd7175) format("woff"), url(/fonts/Simple-Line-Icons.svg?73a932562a1e314703469d0a352fcda9) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -1221,5 +1221,17 @@ ul.pagination li span {
 .partners a {
   display: block;
   border-radius: 4px;
+}
+
+.minimal-padding {
+  padding: 50px 100px;
+}
+
+.table {
+  text-align: center;
+}
+
+.table .text {
+  text-align: left;
 }
 
