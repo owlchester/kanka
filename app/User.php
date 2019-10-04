@@ -568,6 +568,6 @@ class User extends \TCG\Voyager\Models\User
 
     public function getRateLimitAttribute(): int
     {
-        return $this->isGoblinPatron() ? 60 : 30;
+        return $this->isGoblinPatron() ? 90 : 30;
     }
 }
