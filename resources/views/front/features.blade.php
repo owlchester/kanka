@@ -203,6 +203,14 @@
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
+                    <td class="text">{{ __('front.features.patreon.api_calls') }}</td>
+                    <td></td>
+                    <td></td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
                     <td class="text">{{ __('front.features.patreon.pagination') }}</td>
                     <td></td>
                     <td></td>
@@ -287,11 +295,6 @@
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.boosts.upload') }}</td>
-                    <td></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                </tr>
-                <tr>
-                    <td class="text">{{ __('front.features.boosts.api_calls') }}</td>
                     <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>

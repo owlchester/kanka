@@ -32,7 +32,9 @@ When calling the API, add the following headers:
 
 ### Throttling
 
-The API is set up to allow a maximum of 60 requests per minute per client. When you exceed this limit, you will be greated with a `421` error code.
+The API is set up to allow a maximum of 30 requests per minute per client. When you exceed this limit, you will be greated with a `421` error code.
+
+You can increase this limit to 90 requests per minute by becoming a [Patreon](https://patreon.com/kankaio).
 
 --- 
 Next up: [Profile](/docs/{{version}}/profile)

@@ -99,6 +99,7 @@ return [
             'boosts' => 'Campaign Boosters',
             'curation' => 'Help curate the monthly vote list',
             'impact' => 'Impact future features',
+            'api_calls' => 'Increased API calls',
         ],
         'boosts' => [
             'title' => 'Boosted Campaigns',
@@ -110,7 +111,6 @@ return [
             'upload' => 'Increased upload sizes for all members',
             'standard' => 'Standard',
             'boosted' => 'Boosted campaign',
-            'api_calls' => 'Increased API calls on the campaign',
         ]
     ],
     'first_block'   => [

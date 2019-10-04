@@ -565,4 +565,9 @@ class User extends \TCG\Voyager\Models\User
         // Default 3 for admins and owlbears
         return Arr::get($levels, $this->patreon_pledge, 3);
     }
+
+    public function getRateLimitAttribute(): int
+    {
+        return $this->isGoblinPatron() ? 60 : 30;
+    }
 }
