@@ -15,7 +15,7 @@
 
         <div class="form-group required">
             <label>{{ trans('dice_rolls.fields.parameters') }}</label>
-            {!! Form::text('parameters', FormCopy::field('parameters'), ['placeholder' => trans('dice_rolls.placeholders.parameters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('parameters', FormCopy::field('parameters')->string(), ['placeholder' => trans('dice_rolls.placeholders.parameters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             <a href="{{ route('helpers.dice') }}" target="_blank">{{ trans('dice_rolls.hints.parameters') }}</a>
         </div>
 

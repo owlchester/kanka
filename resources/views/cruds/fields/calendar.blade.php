@@ -39,27 +39,27 @@ if (!empty($oldCalendarID)) {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>{{ trans('calendars.fields.current_year') }}</label>
-                            {!! Form::number('calendar_year', FormCopy::field('calendar_year'), ['class' => 'form-control']) !!}
+                            {!! Form::number('calendar_year', FormCopy::field('calendar_year')->string(), ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="col-md-4">
 
                         <div class="form-group">
                             <label>{{ trans('calendars.fields.current_month') }}</label>
-                            {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month'), ['class' => 'form-control']) !!}
+                            {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>{{ trans('calendars.fields.current_day') }}</label>
-                            {!! Form::number('calendar_day', FormCopy::field('calendar_day'), ['class' => 'form-control']) !!}
+                            {!! Form::number('calendar_day', FormCopy::field('calendar_day')->string(), ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     @if (!isset($model) || !$model->hasCalendar())
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>{{ trans('calendars.fields.length') }}</label>
-                                {!! Form::number('length', FormCopy::field('length'), ['class' => 'form-control']) !!}
+                                {!! Form::number('length', FormCopy::field('length')->string(), ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="col-md-4">

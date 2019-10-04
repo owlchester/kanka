@@ -15,7 +15,7 @@ if (request()->route()->getName() == 'characters.random') {
         @include('cruds.fields.name', ['trans' => 'characters'])
         <div class="form-group">
             <label>{{ trans('characters.fields.title') }}</label>
-            {!! Form::text('title', ($isRandom ? $random->generate('title') : FormCopy::field('title')), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('title', ($isRandom ? $random->generate('title') : FormCopy::field('title')->string()), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         @include('cruds.fields.family')
         @include('cruds.fields.race')
@@ -24,11 +24,11 @@ if (request()->route()->getName() == 'characters.random') {
         @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
         <div class="form-group">
             <label>{{ trans('characters.fields.age') }}</label>
-            {!! Form::text('age', ($isRandom ? $random->generateNumber(1, 300) : FormCopy::field('age')), ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
+            {!! Form::text('age', ($isRandom ? $random->generateNumber(1, 300) : FormCopy::field('age')->string()), ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.sex') }}</label>
-            {!! Form::text('sex', ($isRandom ? $random->generate('sex') : FormCopy::field('sex')), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+            {!! Form::text('sex', ($isRandom ? $random->generate('sex') : FormCopy::field('sex')->string()), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
 
         <div class="form-group">

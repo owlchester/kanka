@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>{{ trans('characters.fields.title') }}</label>
-    {!! Form::text('title', FormCopy::field('title'), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+    {!! Form::text('title', FormCopy::field('title')->string(), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
 </div>
 @include('cruds.fields.family')
 @include('cruds.fields.race')

@@ -5,7 +5,7 @@
         @include('cruds.fields.type', ['base' => \App\Models\Calendar::class, 'trans' => 'calendars'])
         <div class="form-group">
             <label>{{ trans('calendars.fields.suffix') }}</label>
-            {!! Form::text('suffix', FormCopy::field('suffix'), ['placeholder' => trans('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('suffix', FormCopy::field('suffix')->string(), ['placeholder' => trans('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         @include('cruds.fields.tags')
 

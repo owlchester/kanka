@@ -2,7 +2,7 @@
     <label>{{ __('crud.panels.entry') }}</label>
     {!! Form::textarea(
         'entry',
-        FormCopy::field('entry'),
+        FormCopy::field('entry')->string(),
         [
             'class' => 'form-control html-editor',
             'id' => 'entry'

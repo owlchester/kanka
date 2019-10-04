@@ -5,11 +5,11 @@
 
         <div class="form-group">
             <label>{{ trans('items.fields.price') }}</label>
-            {!! Form::text('price', FormCopy::field('price'), ['placeholder' => trans('items.placeholders.price'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('price', FormCopy::field('price')->string(), ['placeholder' => trans('items.placeholders.price'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group">
             <label>{{ trans('items.fields.size') }}</label>
-            {!! Form::text('size', FormCopy::field('size'), ['placeholder' => trans('items.placeholders.size'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('size', FormCopy::field('size')->string(), ['placeholder' => trans('items.placeholders.size'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         @include('cruds.fields.location')
         @include('cruds.fields.character')

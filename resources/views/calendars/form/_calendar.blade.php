@@ -233,7 +233,7 @@
         <hr >
         <div class="form-group">
             <label>{{ trans('calendars.fields.start_offset') }}</label>
-            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset', 0), ['class' => 'form-control']) !!}
+            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
             <p class="help-block">{{ __('calendars.helpers.start_offset') }}</p>
         </div>
         <hr>
@@ -242,26 +242,26 @@
         </div>
         <div class="form-group checkbox">
             {!! Form::hidden('has_leap_year', 0) !!}
-            <label>{!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')) !!}
+            <label>{!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}
                 {{ trans('calendars.fields.has_leap_year') }}
             </label>
         </div>
         <div class="" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else display:none; @endif">
             <div class="form-group">
                 <label>{{ trans('calendars.fields.leap_year_amount') }}</label>
-                {!! Form::number('leap_year_amount', FormCopy::field('leap_year_amount'), ['placeholder' => trans('calendars.placeholders.leap_year_amount'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::number('leap_year_amount', FormCopy::field('leap_year_amount')->string(), ['placeholder' => trans('calendars.placeholders.leap_year_amount'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="form-group">
                 <label>{{ trans('calendars.fields.leap_year_month') }}</label>
-                {!! Form::number('leap_year_month', FormCopy::field('leap_year_month'), ['placeholder' => trans('calendars.placeholders.leap_year_month'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::number('leap_year_month', FormCopy::field('leap_year_month')->string(), ['placeholder' => trans('calendars.placeholders.leap_year_month'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="form-group">
                 <label>{{ trans('calendars.fields.leap_year_offset') }}</label>
-                {!! Form::number('leap_year_offset', FormCopy::field('leap_year_offset'), ['placeholder' => trans('calendars.placeholders.leap_year_offset'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::number('leap_year_offset', FormCopy::field('leap_year_offset')->string(), ['placeholder' => trans('calendars.placeholders.leap_year_offset'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="form-group">
                 <label>{{ trans('calendars.fields.leap_year_start') }}</label>
-                {!! Form::number('leap_year_start', FormCopy::field('leap_year_start'), ['placeholder' => trans('calendars.placeholders.leap_year_start'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::number('leap_year_start', FormCopy::field('leap_year_start')->string(), ['placeholder' => trans('calendars.placeholders.leap_year_start'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>
     </div>

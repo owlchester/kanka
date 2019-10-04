@@ -6,7 +6,7 @@
 
         <div class="form-group required">
             <label>{{ trans('conversations.fields.target') }}</label>
-            {!! Form::select('target', trans('conversations.targets'), FormCopy::field('target'), ['class' => 'form-control']) !!}
+            {!! Form::select('target', trans('conversations.targets'), FormCopy::field('target')->string(), ['class' => 'form-control']) !!}
         </div>
 
         @include('cruds.fields.tags')

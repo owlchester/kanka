@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body editor-panel">
         <div class="form-group">
-            {!! Form::textarea('entry', FormCopy::field('entry'), ['class' => 'form-control html-editor', 'id' => 'entry']) !!}
+            {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'entry']) !!}
         </div>
     </div>
     <div class="panel-footer">
