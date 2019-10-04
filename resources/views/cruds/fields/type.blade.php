@@ -6,7 +6,7 @@ $entityTypeListModel = new $base;
     <label>{{ trans($trans . '.fields.type') }}</label>
     {!! Form::text(
         'type',
-        (isset($isRandom) && $isRandom ? $random->generate('type') : $formService->prefill('type', $source)),
+        (isset($isRandom) && $isRandom ? $random->generate('type') : FormCopy::field('type')),
         [
             'placeholder' => trans($trans . '.placeholders.type'),
             'class' => 'form-control',

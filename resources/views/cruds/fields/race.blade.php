@@ -6,9 +6,9 @@
     } elseif (isset($isRandom) && $isRandom) {
         $preset = $random->generateForeign(\App\Models\Race::class);
     } elseif (isset($parent) && $parent) {
-        $preset = $formService->prefillSelect('race', $source, true, \App\Models\Race::class);
+        $preset = FormCopy::field('race')->select(true, \App\Models\Race::class);
     } else {
-        $preset = $formService->prefillSelect('race', $source);
+        $preset = FormCopy::field('race')->select();
     }?>
     <div class="form-group">
         {!! Form::select2(

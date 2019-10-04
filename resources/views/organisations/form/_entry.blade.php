@@ -5,7 +5,7 @@
         <div class="form-group">
             {!! Form::select2(
                 'organisation_id',
-                (isset($model) && $model->organisation ? $model->organisation : $formService->prefillSelect('organisation', $source, true, \App\Models\Organisation::class)),
+                (isset($model) && $model->organisation ? $model->organisation : FormCopy::field('organisation')->select(true, \App\Models\Organisation::class)),
                 App\Models\Organisation::class,
                 true,
                 'organisations.fields.organisation'
@@ -20,7 +20,7 @@
                 {!! Form::members(
                     'id',
                     [
-                        'model' => isset($model) ? $model : $formService->prefillModel($source),
+                        'model' => isset($model) ? $model : FormCopy::model(),
                         'source' => $source
                     ]
                 ) !!}

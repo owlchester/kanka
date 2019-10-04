@@ -11,7 +11,6 @@
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
-@inject('formService', 'App\Services\FormService')
 
 @section('fullpage-form')
     {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}

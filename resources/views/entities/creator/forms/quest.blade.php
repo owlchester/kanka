@@ -2,7 +2,7 @@
 <div class="form-group">
     {!! Form::select2(
         'quest_id',
-        (isset($model) && $model->quest ? $model->quest : $formService->prefillSelect('quest', $source)),
+        (isset($model) && $model->quest ? $model->quest : FormCopy::field('quest')->select()),
         App\Models\Quest::class,
         true,
         'quests.fields.quest',

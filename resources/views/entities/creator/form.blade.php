@@ -1,5 +1,4 @@
 <?php $enableNew = false; ?>
-@inject('formService', 'App\Services\FormService')
 @inject('campaign', 'App\Services\CampaignService')
 
 <div class="panel-heading">

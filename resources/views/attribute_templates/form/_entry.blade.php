@@ -4,7 +4,7 @@
         <div class="form-group">
             {!! Form::select2(
                 'attribute_template_id',
-                (isset($model) && $model->attributeTemplate ? $model->attributeTemplate : FormCop::field('attributeTemplate')->select()),
+                (isset($model) && $model->attributeTemplate ? $model->attributeTemplate : FormCopy::field('attributeTemplate')->select()),
                 App\Models\AttributeTemplate::class,
                 true,
                 __('attribute_templates.fields.attribute_template'),

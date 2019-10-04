@@ -1,4 +1,3 @@
-@inject('formService', 'App\Services\FormService')
 
 {{ csrf_field() }}
 <div class="row">

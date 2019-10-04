@@ -72,9 +72,9 @@ class FormCopyService
     }
 
     /**
-     * Prefill a select dropdown
-     * @param $field
-     * @param null $entity
+     * Get values for a select field
+     * @param bool $checkForParent
+     * @param string|null $parentClass
      * @return array
      */
     public function select(bool $checkForParent = false, string $parentClass = null)
@@ -102,7 +102,6 @@ class FormCopyService
 
     /**
      * Character traits
-     * @param null $entity
      * @return array
      */
     public function characterPersonality()
@@ -172,6 +171,22 @@ class FormCopyService
     }
 
     /**
+     * @return array
+     */
+    public function colours(): array
+    {
+        $colours = [
+            '' => __('colours.none')
+        ];
+        $colourKeys = config('colours.keys');
+        foreach ($colourKeys as $colour) {
+            $colours[$colour] = trans('colours.' . $colour);
+        }
+
+        return $colours;
+    }
+
+    /**
      * @return string
      */
     public function __toString(): string
@@ -193,6 +208,10 @@ class FormCopyService
      */
     private function getValue()
     {
+        if (!$this->valid()) {
+            return null;
+        }
+
         if ($this->entity === true) {
             $this->entity = false;
             return $this->source->entity->getAttributeValue($this->field);

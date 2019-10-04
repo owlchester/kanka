@@ -282,8 +282,6 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
 
-        FormCopy::source($model);
-
         $params = [
             'model' => $model,
             'name' => $this->view,

@@ -2,5 +2,5 @@
 
 <div class="form-group">
     <label>{{ trans('crud.fields.entry') }}</label>
-    {!! Form::textarea('entry', $formService->prefill('history', $source), ['class' => 'form-control']) !!}
+    {!! Form::textarea('entry', FormCopy::field('entry'), ['class' => 'form-control']) !!}
 </div>

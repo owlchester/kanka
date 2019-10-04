@@ -4,9 +4,9 @@
     if (isset($model) && $model->tag) {
         $preset = $model->tag;
     } elseif (isset($parent) && $parent) {
-        $preset = $formService->prefillSelect('tag', $source, true, \App\Models\Tag::class);
+        $preset = FormCopy::field('tag')->select(true, \App\Models\Tag::class);
     } else {
-        $preset = $formService->prefillSelect('tag', $source);
+        $preset = FormCopy::field('tag')->select();
     }?>
     <div class="form-group">
         {!! Form::select2(

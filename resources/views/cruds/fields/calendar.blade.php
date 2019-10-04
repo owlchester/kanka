@@ -28,7 +28,7 @@ if (!empty($oldCalendarID)) {
                     <div class="form-group entity-calendar-selector">
                         {!! Form::select2(
                             'calendar_id',
-                            (isset($model) && $model->calendar ? $model->calendar : $formService->prefillSelect('calendar', $source)),
+                            (isset($model) && $model->calendar ? $model->calendar : FormCopy::field('calendar')->select()),
                             App\Models\Calendar::class,
                             false
                         ) !!}
@@ -39,27 +39,27 @@ if (!empty($oldCalendarID)) {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>{{ trans('calendars.fields.current_year') }}</label>
-                            {!! Form::number('calendar_year', $formService->prefill('calendar_year', $source), ['class' => 'form-control']) !!}
+                            {!! Form::number('calendar_year', FormCopy::field('calendar_year'), ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="col-md-4">
 
                         <div class="form-group">
                             <label>{{ trans('calendars.fields.current_month') }}</label>
-                            {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), $formService->prefill('calendar_month', $source), ['class' => 'form-control']) !!}
+                            {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month'), ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>{{ trans('calendars.fields.current_day') }}</label>
-                            {!! Form::number('calendar_day', $formService->prefill('calendar_day', $source), ['class' => 'form-control']) !!}
+                            {!! Form::number('calendar_day', FormCopy::field('calendar_day'), ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     @if (!isset($model) || !$model->hasCalendar())
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>{{ trans('calendars.fields.length') }}</label>
-                                {!! Form::number('length', $formService->prefill('length', $source), ['class' => 'form-control']) !!}
+                                {!! Form::number('length', FormCopy::field('length'), ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="col-md-4">

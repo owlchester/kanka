@@ -2,7 +2,6 @@
 <?php /**
  * @var \App\Models\MenuLink $model
  * @var \App\Services\EntityService $entityService
- * @var \App\Services\FormService $formService
  * @var \App\Services\CampaignService $campaign
  */
 
@@ -21,13 +20,9 @@ $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type
 ?>
 
 @include('cruds.fields.name', ['trans' => 'menu_links'])
-<div class="form-group required">
-    <label>{{ trans('menu_links.fields.name') }}</label>
-    {!! Form::text('name', $formService->prefill('name', $source), ['placeholder' => trans('menu_links.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-</div>
 <div class="form-group">
     <label>{{ trans('menu_links.fields.position') }}</label>
-    {!! Form::number('position', $formService->prefill('position', $source), ['class' => 'form-control', 'maxlength' => 1]) !!}
+    {!! Form::number('position', FormCopy::field('position'), ['class' => 'form-control', 'maxlength' => 1]) !!}
     <p class="help-block">{{ __('menu_links.helpers.position') }}</p>
 </div>
 
@@ -61,19 +56,19 @@ $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type
 
             <div class="form-group">
                 <label>{{ trans('menu_links.fields.menu') }}</label>
-                {!! Form::text('menu', $formService->prefill('tab', $source), ['placeholder' => trans('menu_links.placeholders.menu'), 'class' => 'form-control', 'maxlength' => 20]) !!}
+                {!! Form::text('menu', FormCopy::field('tab'), ['placeholder' => trans('menu_links.placeholders.menu'), 'class' => 'form-control', 'maxlength' => 20]) !!}
             </div>
         </div>
         <div class="tab-pane {{ $tab == 'type' ? 'active' : null }}" id="tab_type">
 
             <div class="form-group">
                 <label>{{ trans('menu_links.fields.type') }}</label>
-                {!! Form::select('type', $entityTypes, $formService->prefill('type', $source), ['class' => 'form-control']) !!}
+                {!! Form::select('type', $entityTypes, FormCopy::field('type'), ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
                 <label>{{ trans('menu_links.fields.filters') }}</label>
-                {!! Form::text('filters', $formService->prefill('filters', $source), ['placeholder' => trans('menu_links.placeholders.filters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('filters', FormCopy::field('filters'), ['placeholder' => trans('menu_links.placeholders.filters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
         </div>
     </div>

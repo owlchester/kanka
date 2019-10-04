@@ -2,7 +2,6 @@
 /**
  * @var \App\Models\OrganisationMember $organisation
  * @var \App\Models\Character $model
- * @var \App\Services\FormService $formService
  */
 $organisations = isset($model) ?
     $model->organisations()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :

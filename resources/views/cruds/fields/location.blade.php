@@ -6,7 +6,7 @@
     } elseif (isset($isRandom) && $isRandom) {
         $preset = $random->generateForeign(\App\Models\Location::class);
     } else {
-        $preset = $formService->prefillSelect('location', $source);
+        $preset = FormCopy::field('location')->select();
     }?>
     <div class="form-group">
         {!! Form::select2(

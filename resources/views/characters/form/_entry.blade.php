@@ -3,7 +3,6 @@
 <?php // Dirty hack to know if we need the prefill or the random generator
 /**
  * @var \App\Services\RandomCharacterService $random
- * @var \App\Services\FormService $formService
  */
 $isRandom = false;
 if (request()->route()->getName() == 'characters.random') {
