@@ -98,24 +98,6 @@
         <div class="overlay"></div>
     </section>
 
-    <section class="partners" id="partners">
-        <div class="container">
-            <div class="section-heading text-center">
-                <h2>{{ trans('front.partners.title') }}</h2>
-                <p class="text-muted">{{ trans('front.partners.description') }}</p>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 offset-lg-4 text-center">
-                    <a href="//www.inkarnate.com" target="_blank">
-                        <img src="/images/thirdparty/inkarnate.png" title="Inkarnate" alt="Inkarnate" /><br />
-                        {{ __('front.partners.inkarnate') }}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="contact bg-primary" id="contact">
         <div class="container">
             <h2>{!! trans('front.contact.title', ['icon' => '<i class="fa fa-heart"></i>']) !!}</h2>
