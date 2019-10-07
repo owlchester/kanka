@@ -21,7 +21,7 @@ $headerImage = !empty($model->entity->header_image) && $campaign->campaign()->bo
     <meta property="og:url" content="{{ $model->getLink()  }}" />
 @endsection
 
-@include('entities.components.header', ['model' => $model]);
+@include('entities.components.header', ['model' => $model])
 
 @section('content')
 

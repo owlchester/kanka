@@ -2367,6 +2367,7 @@ img.profile-user-img {
 }
 
 .navbar-nav .campaign-menu a.campaign-selector {
+  background-color: #ddd;
   font-size: 1.2em;
   color: white;
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
