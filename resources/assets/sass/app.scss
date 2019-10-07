@@ -43,6 +43,27 @@ img.profile-user-img {
     margin-right: 10px;
     margin-top: -2px;
   }
+
+  .campaign-menu {
+    a.campaign-selector {
+      font-size: 1.2em;
+      color: white;
+      text-shadow: $text-shadow;
+      -webkit-filter: grayscale(60%);
+      filter: grayscale(60%);
+
+      &:hover {
+        -webkit-filter: grayscale(0%);
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
+
+.cover-background {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: 50% 50% !important;
 }
 
 .user-header a {
@@ -81,9 +102,9 @@ table th.avatar, table td.avatar {
 }
 table {
   th {
-    i {
-      padding-left: 5px;
-    }
+    //i {
+    //  padding-left: 5px;
+    //}
 
     .btn {
       i {
@@ -697,6 +718,10 @@ td.breakable {
     //width: calc(100% - 300px);
     min-height: 0;
     background-color: unset;
+
+    i.fa, i.ra {
+      line-height: 1.6em;
+    }
   }
 
   ul.nav {
@@ -775,7 +800,7 @@ td.breakable {
   h1 {
     margin: 5px;
     align-self: flex-end;
-    text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+    text-shadow: $text-shadow;
     color: white;
   }
 }

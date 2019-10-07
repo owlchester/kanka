@@ -34,6 +34,16 @@
         margin-right: 4px;
       }
     }
+    .campaign-menu {
+      .dropdown-menu {
+        width: 90%;
+        box-shadow: $box-shadow;
+      }
+      a.campaign-selector {
+        -webkit-filter: unset;
+        filter: unset;
+      }
+    }
   }
 
   .main-sidebar {
