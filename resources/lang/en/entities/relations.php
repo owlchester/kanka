@@ -2,16 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new relation',
-        'success'       => 'Relation added for :name.',
-        'title'         => 'Create relations',
+        'success'       => 'Relation :target added to :entity.',
+        'title'         => 'New relation for :name',
     ],
     'destroy'       => [
-        'success'   => 'Relation removed for :name.',
+        'success'   => 'Relation :target removed for :entity.',
     ],
-    'edit'          => [
-        'success'   => 'Relation updated for :name.',
-        'title'     => 'Update relations',
+    'update'          => [
+        'success'   => 'Relation :target updated for :entity.',
+        'title'     => 'Update relations for :name',
     ],
     'fields'        => [
         'attitude'  => 'Attitude',

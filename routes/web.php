@@ -242,6 +242,7 @@ Route::group([
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
             'entities.inventories' => 'Entity\InventoryController',
+            'entities.relations' => 'Entity\RelationController',
 
             'attribute_templates' => 'AttributeTemplateController',
 
