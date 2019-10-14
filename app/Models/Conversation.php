@@ -57,11 +57,15 @@ class Conversation extends MiscModel
     ];
 
     /**
+     * Set to false if this entity type doesn't have relations
+     * @var bool
+     */
+    public $hasRelations = false;
+
+    /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait;
 
     /**
      * Field used for tooltips

@@ -50,8 +50,7 @@ class RelationController extends Controller
             ->with('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->acl()
-            ->orderBy('attitude', 'DESC')
-            ->orderBy('t.name', 'ASC')
+            ->order(request()->get('order'))
             ->paginate();
 
         return view('entities.pages.relations.index', compact(

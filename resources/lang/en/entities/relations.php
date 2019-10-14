@@ -19,6 +19,7 @@ return [
         'target'    => 'Target',
         'two_way'   => 'Create mirror relation',
     ],
+    'helper' => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entitiy\'s menu.',
     'hints'         => [
         'mirrored'  => [
             'text'  => 'This relation is mirrored with :link.',
@@ -31,4 +32,7 @@ return [
         'relation'  => 'Nature of the relation',
         'target'    => 'Choose an entity',
     ],
+    'show' => [
+        'title' => 'Relations for :name',
+    ]
 ];

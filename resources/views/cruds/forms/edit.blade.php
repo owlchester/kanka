@@ -33,7 +33,7 @@
                 </a>
             </li>
             @includeIf($name . '.form._tabs', ['source' => null])
-            @if ($campaign->campaign()->boosted())
+            @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}" data-toggle="tooltip">
                         <i class="fa fa-rocket"></i> {{ __('crud.tabs.boost') }}
@@ -64,7 +64,7 @@
                 @include($name . '.form._entry', ['source' => null])
             </div>
             @includeIf($name . '.form._panes', ['source' => null])
-            @if ($campaign->campaign()->boosted())
+            @if ($tabBoosted)
                 <div class="tab-pane {{ (request()->get('tab') == 'boost' ? ' active' : '') }}" id="form-boost">
                     @include('cruds.forms._boost', ['source' => null])
                 </div>

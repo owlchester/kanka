@@ -277,12 +277,15 @@ abstract class MiscModel extends Model
         }
 
         // Each entity can have relations
-        $items['relations'] = [
-            'name' => 'crud.tabs.relations',
-            'route' => 'entities.relations.index',
-            'count' => $this->entity->relationships()->count(),
-            'entity' => true,
-        ];
+        if (!isset($this->hasRelations) || $this->hasRelations === true) {
+            $items['relations'] = [
+                'name' => 'crud.tabs.relations',
+                'route' => 'entities.relations.index',
+                'count' => $this->entity->relationships()->count(),
+                'entity' => true,
+            ];
+        }
+
 
         // Each entity can have an inventory
         $items['inventory'] = [

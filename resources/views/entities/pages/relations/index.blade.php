@@ -1,9 +1,9 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('relations.show.title', ['name' => $entity->name]),
+    'title' => __('entities/relations.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
+        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.relations')
     ]
@@ -20,43 +20,43 @@
             <div class="box box-solid">
                 <div class="box-body">
                     <h2 class="page-header with-border">
-                        {{ trans('crud.tabs.relations') }}
+                        {{ __('crud.tabs.relations') }}
                     </h2>
 
                     <p class="help-block export-hidden">
                         @can('relation', [$entity->child, 'add'])
                             <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm pull-right" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
                                 <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">
-                        {{ trans('crud.relations.actions.add') }}
+                        {{ __('crud.relations.actions.add') }}
                         </span></a>
                         @endcan
-                        {{ __('relations.show.helper') }}
+                        {{ __('entities/relations.helper') }}
                     </p>
 
                     <table id="entity_relations" class="table table-hover {{ ($relations->count() === 0 ? 'export-hidden' : '') }}">
                         <thead>
                         <tr>
                             <th>
-                                <a href="{{ route('entities.relations.index', [$entity, 'order' => 'relations/relation', '#relations']) }}">
-                                    {{ trans('entities/relations.fields.relation') }}@if (request()->get('order') == 'relations/relation') <i class="fa fa-long-arrow-down"></i>@endif
+                                <a href="{{ route('entities.relations.index', [$entity, 'order' => 'relations/relation']) }}">
+                                    {{ __('entities/relations.fields.relation') }}@if (request()->get('order') == 'relations/relation') <i class="fa fa-long-arrow-down"></i>@endif
                                 </a>
                             </th>
                             <th>
-                                <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/attitude', '#relations']) }}">
-                                    {{ trans('relations.fields.attitude') }}@if (request()->get('order') == 'relations/attitude') <i class="fa fa-long-arrow-down"></i>@endif
+                                <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/attitude']) }}">
+                                    {{ __('entities/relations.fields.attitude') }}@if (request()->get('order') == 'relations/attitude') <i class="fa fa-long-arrow-down"></i>@endif
                                 </a>
                             </th>
                             <th class="avatar"><br></th>
                             <th>
-                                <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/target.name', '#relations']) }}">
-                                    {{ trans('crud.relations.fields.name') }}@if (request()->get('order') == 'relations/target.name') <i class="fa fa-long-arrow-down"></i>@endif
+                                <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/target.name']) }}">
+                                    {{ __('crud.relations.fields.name') }}@if (request()->get('order') == 'relations/target.name') <i class="fa fa-long-arrow-down"></i>@endif
                                 </a>
                             </th>
-                            @if ($campaign->enabled('locations'))<th>{{ trans('crud.relations.fields.location') }}</th>@endif
+                            @if ($campaign->enabled('locations'))<th>{{ __('crud.relations.fields.location') }}</th>@endif
                             @if (Auth::check())
                                 <th>
-                                    <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/visibility', '#relations']) }}">
-                                        {{ trans('crud.fields.visibility') }}@if (request()->get('order') == 'relations/visibility') <i class="fa fa-long-arrow-down"></i>@endif
+                                    <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/visibility']) }}">
+                                        {{ __('crud.fields.visibility') }}@if (request()->get('order') == 'relations/visibility') <i class="fa fa-long-arrow-down"></i>@endif
                                     </a>
                                 </th>
                             @endif
@@ -92,7 +92,7 @@
                                     @can('relation', [$entity->child, 'edit'])
                                         <a href="{{ route('entities.relations.edit', [$entity, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"
                                            data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.edit', [$entity, 'relation' => $relation]) }}"
-                                           title=" {{ trans('crud.edit') }}"
+                                           title=" {{ __('crud.edit') }}"
                                         >
                                             <i class="fa fa-edit"></i>
                                         </a>
@@ -112,7 +112,7 @@
                             </tr>
                             @else
                                 <tr class="entity-hidden">
-                                    <td colspan="{{ ($campaign->enabled('locations') ? 5 : 4) }}">{{ trans('crud.hidden') }}</td>
+                                    <td colspan="{{ ($campaign->enabled('locations') ? 5 : 4) }}">{{ __('crud.hidden') }}</td>
                                 </tr>
                                 @endviewentity
                                 @endforeach

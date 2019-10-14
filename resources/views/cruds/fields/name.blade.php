@@ -3,7 +3,6 @@
     {!! Form::text(
         'name',
         FormCopy::field('name')->string(),
-        null,
         [
             'placeholder' => trans($trans . '.placeholders.name'),
             'class' => 'form-control',

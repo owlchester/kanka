@@ -69,6 +69,12 @@ class MenuLink extends MiscModel
     public $tooltipField = 'name';
 
     /**
+     * Set to false if this entity type doesn't have relations
+     * @var bool
+     */
+    public $hasRelations = false;
+
+    /**
      * Performance with for datagrids
      * @param $query
      * @return mixed
@@ -136,6 +142,9 @@ class MenuLink extends MiscModel
             // Inventories use a different url buildup
             if (Str::contains($this->menu, 'inventor')) {
                 return route('entities.inventory', $this->target->id);
+            }
+            elseif (Str::contains($this->menu, 'relation')) {
+                return route('entities.relations.index', $this->target->id);
             }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;

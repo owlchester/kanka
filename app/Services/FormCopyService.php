@@ -60,9 +60,9 @@ class FormCopyService
 
     /**
      * @param string|null $default
-     * @return string
+     * @return string|null
      */
-    public function string(string $default = ''): string
+    public function string($default = null)
     {
         if ($this->valid()) {
             return $this->getValue();
