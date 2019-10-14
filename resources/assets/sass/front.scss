@@ -119,7 +119,8 @@ footer {
 
   .image-wrapper {
     max-width: 100%;
-    display: block;
+    display: flex;
+    align-items: flex-end;
     height: 200px;
     background-color: #ebebeb;
     background-size: cover;
@@ -127,8 +128,6 @@ footer {
     background-position: 50% 50%;
 
     .labels {
-      margin-top: 115px;
-      position: absolute;
       padding: 7px;
       font-size: 16pt;
 

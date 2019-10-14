@@ -1,10 +1,3 @@
-@if (!isset($relations))
-    <li class="{{ (request()->get('tab') == 'relations' ? ' active' : '') }}">
-        <a href="#relations" title="{{ trans('crud.tabs.relations') }}" data-toggle="tooltip">
-            <i class="fa fa-users"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.tabs.relations') }}</span>
-        </a>
-    </li>
-@endif
 
 @if (!isset($calendars) && $campaign->enabled('calendars'))
     <li class="{{ (request()->get('tab') == 'calendars' ? ' active' : '') }}">

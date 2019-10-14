@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v2.4.18
+ * AdminLTE v2.4.17
  * 
  *   Author:  Colorlib
  *   Support: <https://github.com/ColorlibHQ/AdminLTE/issues>
@@ -1747,9 +1747,9 @@ a:focus {
   margin-right: 5px;
 }
 .box-header > .box-tools {
-  float: right;
-  margin-top: -5px;
-  margin-bottom: -5px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }
 .box-header > .box-tools [data-toggle="tooltip"] {
   position: relative;
@@ -7410,8 +7410,7 @@ hr {
     float: right;
     font-weight: bold;
     margin-top: 5px;
-    margin-right: 10px;
-    padding: 1px; }
+    margin-right: 10px; }
   .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
     border: 1px solid #aaa;

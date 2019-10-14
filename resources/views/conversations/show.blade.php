@@ -10,7 +10,7 @@
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('conversations.tabs.conversation') }}</span>
                     </a>
                 </li>
-                @include('cruds._tabs', ['relations' => false])
+                @include('cruds._tabs')
                 <li class="pull-right" data-toggle="tooltip" title="{{ trans('conversations.tabs.participants') }}">
                     <a href="#members" data-toggle="ajax-modal" data-target="#entity-modal"
                        data-url="{{ route('conversations.conversation_participants.index', $model) }}">
@@ -70,7 +70,7 @@
                         {!! Form::close() !!}
                     @endcan
                 </div>
-                @include('cruds._panes', ['relations' => false])
+                @include('cruds._panes')
             </div>
         </div>
     </div>

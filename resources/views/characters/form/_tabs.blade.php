@@ -6,7 +6,8 @@
 @if ($campaign->enabled('organisations'))
 <li class="{{ (request()->get('tab') == 'organisations' ? ' active' : '') }}">
     <a href="#form-organisations" title="{{ trans('characters.show.tabs.organisations') }}" data-toggle="tooltip">
-        {{ trans('characters.show.tabs.organisations') }}
+        <span class="hidden-xs hidden-sm">{{ trans('characters.show.tabs.organisations') }}</span>
+        <i class="visible-xs visible-sm ra ra-hood" title="{{ trans('characters.show.tabs.organisations') }}"></i>
     </a>
 </li>
 @endif

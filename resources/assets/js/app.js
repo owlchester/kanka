@@ -448,6 +448,7 @@ function initTooltips()
     $('[data-toggle="tooltip-ajax"]').tooltip({
         title: entityTooltip,
         delay: 300,
+        trigger: 'hover',
         placement: 'auto',
         template: '<div class="tooltip" role="tooltip">' +
             '<div class="tooltip-arrow"></div>' +

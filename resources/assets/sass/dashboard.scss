@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 
     h1, .more, .preview {
-      text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+      text-shadow: $text-shadow;
     }
 
     h1 {

@@ -20,7 +20,7 @@
             {{ __('campaigns.panels.sharing') }}
         </a>
     </li>
-    @if($model->boosted())
+    @if(isset($model) && $model->boosted())
     <li>
         <a href="#form-boosted" title="{{ __('campaigns.panels.boosted') }}"  data-toggle="tooltip">
             <i class="fa fa-rocket"></i> {{ __('campaigns.panels.boosted') }}

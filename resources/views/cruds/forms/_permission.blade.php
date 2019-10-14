@@ -1,12 +1,16 @@
 @inject('permissionService', 'App\Services\PermissionService')
 <?php $permissions = isset($model) ? $permissionService->entityPermissions($model->entity) : []; ?>
 
-<p class="text-muted">{{ trans('crud.permissions.helper') }}</p>
+<p class="help-block">{{ trans('crud.permissions.helper') }}</p>
 
 <table id="crud_permissions" class="table table-hover export-hidden">
     <tbody>
     <tr>
-        <th colspan="5">{{ trans('crud.permissions.fields.role') }}</th>
+        <th>{{ trans('crud.permissions.fields.role') }}</th>
+        <th><i class="fa fa-eye visible-xs visible-sm" title="{{ __('crud.permissions.actions.read') }}"></i></th>
+        <th><i class="fa fa-edit visible-xs visible-sm" title="{{ __('crud.permissions.actions.edit') }}"></i></th>
+        <th><i class="fa fa-trash visible-xs visible-sm" title="{{ __('crud.permissions.actions.delete') }}"></i></th>
+        <th><i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i></th>
     </tr>
     @foreach (Auth::user()->campaign->roles as $role)
         @if (!$role->is_admin)

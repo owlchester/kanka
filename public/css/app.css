@@ -2366,6 +2366,26 @@ img.profile-user-img {
   margin-top: -2px;
 }
 
+.navbar-nav .campaign-menu a.campaign-selector {
+  background-color: #ddd;
+  font-size: 1.2em;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+  -webkit-filter: grayscale(60%);
+  filter: grayscale(60%);
+}
+
+.navbar-nav .campaign-menu a.campaign-selector:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
+.cover-background {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: 50% 50% !important;
+}
+
 .user-header a {
   display: inline;
   background: none;
@@ -2402,10 +2422,6 @@ div.required label:after {
 table th.avatar,
 table td.avatar {
   width: 40px;
-}
-
-table th i {
-  padding-left: 5px;
 }
 
 table th .btn i {
@@ -3051,6 +3067,11 @@ td.breakable {
   background-color: unset;
 }
 
+.entity-form .nav-tabs-custom i.fa,
+.entity-form .nav-tabs-custom i.ra {
+  line-height: 1.6em;
+}
+
 .entity-form ul.nav {
   z-index: 2;
   min-height: 40px;
@@ -3116,7 +3137,7 @@ td.breakable {
 .full-sized-image h1 {
   margin: 5px;
   align-self: flex-end;
-  text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
   color: white;
 }
 
@@ -3152,6 +3173,16 @@ td.breakable {
 
   .navbar-nav .menu .campaign-image {
     margin-right: 4px;
+  }
+
+  .navbar-nav .campaign-menu .dropdown-menu {
+    width: 90%;
+    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-nav .campaign-menu a.campaign-selector {
+    -webkit-filter: unset;
+    filter: unset;
   }
 
   .main-sidebar {

@@ -18,7 +18,7 @@
             @include($entity->pluralType() . '._menu', ['active' => 'inventory', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
         <div class="col-md-9">
-            <div class="box box-flat">
+            <div class="box box-solid">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ trans('crud.tabs.inventory') }}

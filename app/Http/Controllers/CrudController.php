@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
 use App\Http\Resources\Attribute;
 use App\Models\AttributeTemplate;
@@ -64,6 +65,12 @@ class CrudController extends Controller
      * @var bool
      */
     protected $tabAttributes = true;
+
+    /**
+     * If the boosted tab and pane is enabled or not.
+     * @var bool
+     */
+    protected $tabBoosted = true;
 
     /**
      * Create a new controller instance.
@@ -172,6 +179,7 @@ class CrudController extends Controller
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
+        $params['tabBoosted'] = $this->tabBoosted && CampaignLocalization::getCampaign()->boosted();
         $params['entityAttributeTemplates'] = $templates;
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
@@ -287,7 +295,8 @@ class CrudController extends Controller
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
-            'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity)
+            'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
+            'tabBoosted' => $this->tabBoosted && CampaignLocalization::getCampaign()->boosted()
         ];
 
         return view('cruds.forms.edit', $params);

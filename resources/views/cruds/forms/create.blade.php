@@ -30,7 +30,7 @@
             </li>
             @includeIf($name . '.form._tabs', ['source' => $source])
 
-            @if ($campaign->campaign()->boosted())
+            @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}" data-toggle="tooltip">
                         <i class="fa fa-rocket"></i> {{ __('crud.tabs.boost') }}
@@ -47,14 +47,16 @@
             @if ($tabAttributes)
                 <li class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
                     <a href="#form-attributes" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
-                        {{ trans('crud.tabs.attributes') }}
+                        <span class="hidden-xs hidden-sm">{{ trans('crud.tabs.attributes') }}</span>
+                        <i class="visible-xs visible-sm fa fa-th-list" title="{{ trans('crud.tabs.attributes') }}"></i>
                     </a>
                 </li>
             @endif
             @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permissions" title="{{ trans('crud.tabs.permissions') }}" data-toggle="tooltip">
-                    {{ trans('crud.tabs.permissions') }}
+                    <span class="hidden-xs hidden-sm">{{ trans('crud.tabs.permissions') }}</span>
+                    <i class="visible-xs visible-sm fa fa-cog" title="{{ trans('crud.tabs.permissions') }}"></i>
                 </a>
             </li>
             @endif
@@ -67,7 +69,7 @@
             </div>
             @includeIf($name . '.form._panes', ['source' => $source])
 
-            @if ($campaign->campaign()->boosted())
+            @if ($tabBoosted)
                 <div class="tab-pane {{ (request()->get('tab') == 'boost' ? ' active' : '') }}" id="form-boost">
                     @include('cruds.forms._boost', ['source' => $source])
                 </div>
