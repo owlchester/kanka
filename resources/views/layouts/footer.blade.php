@@ -22,12 +22,6 @@
                     <li>
                         <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
                     </li>
-                    <li>
-                        <a href="//www.facebook.com/kanka.io.ch" target="facebook" title="Facebook" rel="noreferrer"><i class="fab fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="//twitter.com/kankaio" target="twitter" title="Twitter" rel="noreferrer"><i class="fab fa-twitter"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>

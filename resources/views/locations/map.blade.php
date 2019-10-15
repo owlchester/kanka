@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box box-solid">
             <div class="box-header with-border">
                 <h4 class="box-title">{{ __('locations.map.legend') }}</h4>
             </div>

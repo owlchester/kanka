@@ -92,6 +92,10 @@ class RelationController extends Controller
         $relation = new Relation();
         $relation = $relation->create($data);
 
+        if ($request->has('two_way')) {
+            $relation->createMirror();
+        }
+
         return redirect()
             ->route('entities.relations.index', $entity)
             ->with('success', trans('entities/relations.create.success', [
