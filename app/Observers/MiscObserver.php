@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Mentions;
 use App\Jobs\EntityMentionJob;
 use App\Models\Entity;
 use App\Models\EntityEvent;
@@ -10,6 +11,7 @@ use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 abstract class MiscObserver
 {
@@ -38,7 +40,7 @@ abstract class MiscObserver
      */
     public function saving(MiscModel $model)
     {
-        $model->slug = str_slug($model->name, '');
+        $model->slug = Str::slug($model->name, '');
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
 
         // If we're from the "move" service, we can skip this part.
@@ -51,7 +53,7 @@ abstract class MiscObserver
 
         $attributes = $model->getAttributes();
         if (array_key_exists('entry', $attributes)) {
-            $model->entry = $this->purify($model->entry);
+            $model->entry = $this->purify(Mentions::codify($model->entry));
         }
 
         // Handle image. Let's use a service for this.

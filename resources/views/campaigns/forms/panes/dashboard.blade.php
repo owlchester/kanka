@@ -1,7 +1,7 @@
 <div class="tab-pane" id="form-dashboard">
     <div class="form-group">
         <label>{{ __('campaigns.fields.excerpt') }}</label>
-        {!! Form::textarea('excerpt', null, ['class' => 'form-control html-editor', 'id' => 'excerpt']) !!}
+        {!! Form::textarea('excerptForEdition', null, ['class' => 'form-control html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
         <p class="help-block">{{ __('campaigns.helpers.excerpt') }}</p>
     </div>
 

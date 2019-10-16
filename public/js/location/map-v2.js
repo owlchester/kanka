@@ -620,18 +620,6 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/vue-dragscroll/dist/vue-dragscroll.min.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/vue-dragscroll/dist/vue-dragscroll.min.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(e,o){ true?module.exports=o():undefined}(window,(function(){return function(e){var o={};function t(r){if(o[r])return o[r].exports;var n=o[r]={i:r,l:!1,exports:{}};return e[r].call(n.exports,n,n.exports,t),n.l=!0,n.exports}return t.m=e,t.c=o,t.d=function(e,o,r){t.o(e,o)||Object.defineProperty(e,o,{enumerable:!0,get:r})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,o){if(1&o&&(e=t(e)),8&o)return e;if(4&o&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(t.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&o&&"string"!=typeof e)for(var n in e)t.d(r,n,function(o){return e[o]}.bind(null,n));return r},t.n=function(e){var o=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(o,"a",o),o},t.o=function(e,o){return Object.prototype.hasOwnProperty.call(e,o)},t.p="/dist/",t(t.s=0)}([function(e,o,t){"use strict";t.r(o);var r=function(e,o,t){for(var r=0,n=o.length;r<n;r++)e.addEventListener(o[r],t)},n=function(e,o,t){for(var r=0,n=o.length;r<n;r++)e.removeEventListener(o[r],t)},i=function(e,o,t){var r;e.componentInstance?e.componentInstance.$emit(o,t):("function"==typeof window.CustomEvent?r=new window.CustomEvent(o,{detail:t}):(r=document.createEvent("CustomEvent")).initCustomEvent(o,!0,!0,t),e.elm.dispatchEvent(r))};function l(e){return(l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}var u=["mousedown","touchstart"],c=["mousemove","touchmove"],d=["mouseup","touchend"],a=function(e,o,t){var a=e,s=!0;"boolean"==typeof o.value?s=o.value:"object"===l(o.value)?("string"==typeof o.value.target?(a=e.querySelector(o.value.target))||console.error("There is no element with the current target value."):void 0!==o.value.target&&console.error("The parameter \"target\" should be be either 'undefined' or 'string'."),"boolean"==typeof o.value.active?s=o.value.active:void 0!==o.value.active&&console.error("The parameter \"active\" value should be either 'undefined', 'true' or 'false'.")):void 0!==o.value&&console.error("The passed value should be either 'undefined', 'true' or 'false' or 'object'.");var f=function(){var e,n,l,s=!1,f=!1;a.md=function(t){t.preventDefault();var r=t instanceof window.MouseEvent,i=r?t.pageX:t.touches[0].pageX,u=r?t.pageY:t.touches[0].pageY,c=document.elementFromPoint(i-window.pageXOffset,u-window.pageYOffset),d="nochilddrag"===o.arg,s=o.modifiers.noleft,m=o.modifiers.noright,v=o.modifiers.nomiddle,p=o.modifiers.noback,w=o.modifiers.noforward,y="firstchilddrag"===o.arg,h=c===a,g=c===a.firstChild,b=d?void 0!==c.dataset.dragscroll:void 0===c.dataset.noDragscroll;(h||b&&(!y||g))&&(1===t.which&&s||2===t.which&&v||3===t.which&&m||4===t.which&&p||5===t.which&&w||(l=1,e=r?t.clientX:t.touches[0].clientX,n=r?t.clientY:t.touches[0].clientY,"touchstart"===t.type&&(f=!0)))},a.mu=function(e){l=0,s&&i(t,"dragscrollend"),s=!1,"touchend"===e.type&&!0===f?(e.target.click(),f=!1):e.target.focus()},a.mm=function(r){var u,c,d=r instanceof window.MouseEvent,f={};if(l){s||i(t,"dragscrollstart"),s=!0;var m=a.scrollLeft+a.clientWidth>=a.scrollWidth||0===a.scrollLeft,v=a.scrollTop+a.clientHeight>=a.scrollHeight||0===a.scrollTop;u=-e+(e=d?r.clientX:r.touches[0].clientX),c=-n+(n=d?r.clientY:r.touches[0].clientY),o.modifiers.pass?(a.scrollLeft-=o.modifiers.y?-0:u,a.scrollTop-=o.modifiers.x?-0:c,a===document.body&&(a.scrollLeft-=o.modifiers.y?-0:u,a.scrollTop-=o.modifiers.x?-0:c),(m||o.modifiers.y)&&window.scrollBy(-u,0),(v||o.modifiers.x)&&window.scrollBy(0,-c)):(o.modifiers.x&&(c=-0),o.modifiers.y&&(u=-0),a.scrollLeft-=u,a.scrollTop-=c,a===document.body&&(a.scrollLeft-=u,a.scrollTop-=c)),f.deltaX=-u,f.deltaY=-c,i(t,"dragscrollmove",f)}},r(a,u,a.md),r(window,d,a.mu),r(window,c,a.mm)};s?"complete"===document.readyState?f():window.addEventListener("load",f):(n(a,u,a.md),n(window,d,a.mu),n(window,c,a.mm))},s={bind:function(e,o,t){a(e,o,t)},update:function(e,o,t,r){JSON.stringify(o.value)!==JSON.stringify(o.oldValue)&&a(e,o,t)},unbind:function(e,o,t){var r=e;n(r,u,r.md),n(window,d,r.mu),n(window,c,r.mm)}};t.d(o,"dragscroll",(function(){return s}));var f={install:function(e,o){var t=Number(e.version.split(".")[0]),r=Number(e.version.split(".")[1]);if(t<2&&r<1)throw new Error("v-dragscroll supports vue version 2.1 and above. You are using Vue@".concat(e.version,". Please upgrade to the latest version of Vue."));e.directive("dragscroll",s)}};"undefined"!=typeof window&&window.Vue&&(window.VueDragscroll=f,window.Vue.use(f));o.default=f}])}));
-//# sourceMappingURL=vue-dragscroll.min.js.map
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/map/Map.vue?vue&type=template&id=587069c2&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/map/Map.vue?vue&type=template&id=587069c2& ***!
@@ -12881,8 +12869,7 @@ component.options.__file = "resources/assets/js/components/map/Point.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_map_Map_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/map/Map.vue */ "./resources/assets/js/components/map/Map.vue");
 /* harmony import */ var _components_map_Point_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/map/Point.vue */ "./resources/assets/js/components/map/Point.vue");
-/* harmony import */ var vue_dragscroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-dragscroll */ "./node_modules/vue-dragscroll/dist/vue-dragscroll.min.js");
-/* harmony import */ var vue_dragscroll__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_dragscroll__WEBPACK_IMPORTED_MODULE_2__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-dragscroll'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
  // Register dragscroll globally
 
@@ -12894,7 +12881,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('location-map', _components_map_Map_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.use(vue_dragscroll__WEBPACK_IMPORTED_MODULE_2___default.a);
+Vue.use(!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-dragscroll'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 var app = new Vue({
   el: '#location-map'
 });

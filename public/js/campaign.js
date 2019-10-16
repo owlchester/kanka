@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -112,14 +112,14 @@ function initRpgSystems() {
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /*!***********************************************!*\
   !*** multi ./resources/assets/js/campaign.js ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\campaign.js */"./resources/assets/js/campaign.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\campaign.js */"./resources/assets/js/campaign.js");
 
 
 /***/ })

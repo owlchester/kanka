@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\Mentions;
 use App\Models\EntityNote;
 use App\Services\EntityMappingService;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class EntityNoteObserver
      */
     public function saving(EntityNote $entityNote)
     {
-        $entityNote->entry = $this->purify($entityNote->entry);
+        $entityNote->entry = $this->purify(Mentions::codify($entityNote->entry));
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($entityNote->is_private)) {

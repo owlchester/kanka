@@ -15,7 +15,7 @@ const tailwindcss = require('tailwindcss');
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/character-map.js', 'public/js')
     .js('resources/assets/js/location/map.js', 'public/js/location')
-    .js('resources/assets/js/location/map-v2.js', 'public/js/location')
+    //.js('resources/assets/js/location/map-v2.js', 'public/js/location')
     .js('resources/assets/js/api.js', 'public/js')
     .js('resources/assets/js/campaign.js', 'public/js')
     .js('resources/assets/js/entity', 'public/js')
@@ -39,6 +39,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/themes/future.scss', 'public/css')
     .sass('resources/assets/sass/themes/dark.scss', 'public/css')
     .sass('resources/assets/sass/themes/midnight.scss', 'public/css')
+    .sass('resources/assets/sass/tinymce.scss', 'public/css')
     // .options({
     //     processCssUrls: false,
     //     postCss:[

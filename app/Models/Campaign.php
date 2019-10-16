@@ -463,8 +463,23 @@ class Campaign extends MiscModel
     /**
      * @return mixed
      */
+    public function getEntryForEditionAttribute()
+    {
+        return Mentions::editCampaign($this);
+    }
+
+    /**
+     * @return mixed
+     */
     public function excerpt()
     {
         return Mentions::mapCampaign($this, 'excerpt');
+    }
+    /**
+     * @return mixed
+     */
+    public function getExcerptForEditionAttribute()
+    {
+        return Mentions::editCampaign($this, 'excerpt');
     }
 }

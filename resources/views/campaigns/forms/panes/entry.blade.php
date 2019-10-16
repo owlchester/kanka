@@ -7,7 +7,7 @@
 
     <div class="form-group">
         <label>{{ __('campaigns.fields.description') }}</label>
-        {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'entry']) !!}
+        {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
     </div>
 
     @include('cruds.fields.image')

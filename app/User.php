@@ -29,6 +29,10 @@ use Laravel\Passport\HasApiTokens;
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharing
  * @property string $patreon_pledge
+ *
+ * Virtual
+ * @property bool $advancedMentions
+ * @property bool $defaultNested
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -362,7 +366,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function getReleaseAttribute()
     {
-        return array_get($this->settings, 'release', null);
+        return Arr::get($this->settings, 'release', null);
     }
 
     /**
@@ -378,7 +382,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function getEditorAttribute()
     {
-        return array_get($this->settings, 'editor', null);
+        return Arr::get($this->settings, 'editor', null);
     }
 
     /**
@@ -394,7 +398,23 @@ class User extends \TCG\Voyager\Models\User
      */
     public function getDefaultNestedAttribute()
     {
-        return array_get($this->settings, 'default_nested', null);
+        return Arr::get($this->settings, 'default_nested', null);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setAdvancedMentionsAttribute($value)
+    {
+        $this->setSettingsOption('advanced_mentions', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdvancedMentionsAttribute()
+    {
+        return Arr::get($this->settings, 'advanced_mentions', false);
     }
 
     /**
@@ -412,13 +432,18 @@ class User extends \TCG\Voyager\Models\User
      */
     public function saveSettings($data)
     {
-        $this->editor = array_get($data, 'editor', null);
+        // Todo: refactor into an array
+        $this->editor = Arr::get($data, 'editor', null);
         if (empty($this->editor)) {
             unset($this->attributes['settings']['editor']);
         }
-        $this->default_nested = array_get($data, 'default_nested', null);
+        $this->default_nested = Arr::get($data, 'default_nested', null);
         if (empty($this->default_nested)) {
             unset($this->attributes['settings']['default_nested']);
+        }
+        $this->advanced_mentions = Arr::get($data, 'advanced_mentions', null);
+        if (empty($this->advanced_mentions)) {
+            unset($this->attributes['settings']['advanced_mentions']);
         }
         return $this;
     }

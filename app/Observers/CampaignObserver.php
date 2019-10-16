@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\Mentions;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Facades\CampaignLocalization;
@@ -44,8 +45,8 @@ class CampaignObserver
     {
         // Purity text
         $campaign->name = $this->purify($campaign->name);
-        $campaign->entry = $this->purify($campaign->entry);
-        $campaign->excerpt = $this->purify($campaign->excerpt);
+        $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
+        $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
         $campaign->css = $this->purify($campaign->css);
 
         $campaign->slug = Str::slug($campaign->name, '');

@@ -82,6 +82,7 @@ trait MentionTrait
                 $subSegments = explode(':', $option);
                 if (count($subSegments) === 1) {
                     $data['text'] = Arr::first($subSegments);
+                    $data['custom'] = true;
                     continue;
                 }
 
@@ -89,8 +90,10 @@ trait MentionTrait
                 $value = Arr::last($subSegments);
                 if ($type == 'page') {
                     $data['page'] = strtolower($value);
+                    $data['custom'] = true;
                 } elseif ($type == 'tab') {
                     $data['tab'] = strtolower($value);
+                    $data['custom'] = true;
                 }
             }
         }

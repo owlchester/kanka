@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -228,14 +228,14 @@ function registerActions() {
 
 /***/ }),
 
-/***/ 10:
+/***/ 9:
 /*!************************************************!*\
   !*** multi ./resources/assets/js/conversation ***!
   \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\conversation */"./resources/assets/js/conversation.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\conversation */"./resources/assets/js/conversation.js");
 
 
 /***/ })

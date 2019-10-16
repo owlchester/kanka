@@ -51,8 +51,19 @@
                         {!! Form::hidden('default_nested', 0) !!}
                         <label>
                             {!! Form::checkbox('default_nested', 1, auth()->user()->defaultNested) !!}
-                            {{ trans('profiles.settings.fields.default_nested') }}</label>
+                            {{ trans('profiles.settings.fields.default_nested') }}
+                        </label>
                         <p class="help-block">{{ trans('profiles.settings.hints.default_nested') }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group">
+                        {!! Form::hidden('advanced_mentions', 0) !!}
+                        <label>
+                            {!! Form::checkbox('advanced_mentions', 1, auth()->user()->advancedMentions) !!}
+                            {{ trans('profiles.settings.fields.advanced_mentions') }}
+                        </label>
+                        <p class="help-block">{{ trans('profiles.settings.hints.advanced_mentions') }}</p>
                     </div>
 
                     <button class="btn btn-primary">

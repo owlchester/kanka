@@ -107,16 +107,6 @@
                         <i class="fab fa-reddit"></i>
                     </a>
                 </li>
-                <li class="list-inline-item social-twitter">
-                    <a href="https://twitter.com/kankaio" title="Twitter" rel="noreferrer" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item social-facebook">
-                    <a href="https://www.facebook.com/kanka.io.ch/" title="Facebook" rel="noreferrer" target="_blank">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                </li>
                 <li class="list-inline-item social-discord">
                     <a href="{{ config('discord.url') }}" title="Discord">
                         <img src="/images/thirdparty/discord-logo-white.png" alt="Discord" rel="noreferrer" target="_blank">

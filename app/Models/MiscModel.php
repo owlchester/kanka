@@ -322,6 +322,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getEntryForEditionAttribute()
+    {
+        $text = Mentions::edit($this);
+        return $text;
+    }
+
+    /**
      * Get the entity link with ajax tooltip
      * @param string $textField = 'name'
      * @return string

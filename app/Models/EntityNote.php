@@ -97,4 +97,13 @@ class EntityNote extends Model
     {
         return Mentions::mapEntityNote($this);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEntryForEditionAttribute()
+    {
+        $text = Mentions::editEntityNote($this);
+        return $text;
+    }
 }

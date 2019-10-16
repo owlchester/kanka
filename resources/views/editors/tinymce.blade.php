@@ -2,6 +2,7 @@
     @parent
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script>
+        var advancedRequest = false;
         var editor_config = {
             path_absolute : "/",
             language: '{{ App::getLocale() == 'en-US' ? 'en' : App::getLocale() }}',
@@ -21,25 +22,38 @@
             branding: false,
             media_live_embeds: true,
             menubar: false,
+            content_css: '{{ mix('css/tinymce.css') }}',
+            extended_valid_elements: "+@[data-mention]",
             mentions: {
-                delimiter: ['@', '#'],
+                delimiter: ['@', '#', '['],
                 delay: 250,
                 source: function(query, process, delimiter) {
-                    if (delimiter === '@') {
-                        $.getJSON('{{ route('search.live') }}?q='+ query, function(data) {
-                            process(data)
-                        })
-                    }
                     if (delimiter === '#') {
                         $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
+                            process(data)
+                        })
+                    } else {
+                        if (delimiter === '[') {
+                            advancedRequest = true;
+                        } else {
+                            advancedRequest = false;
+                        }
+                        $.getJSON('{{ route('search.live') }}?q='+ query, function(data) {
                             process(data)
                         })
                     }
                 },
                 insert: function(item) {
                     if (item.id) {
-                        console.log('mentions v3', item);
-                        return '[' + item.model_type + ':' + item.id + ']';
+                        var mention = '[' + item.model_type + ':' + item.id + ']';
+                        @if (Auth::user()->advancedMentions)
+                        return mention;
+                        @else
+                        if (advancedRequest) {
+                            return mention;
+                        }
+                        return '<a href="#" class="mention" data-mention="' + mention + '">' + item.fullname + '</a>';
+                        @endif
                     }
                     else if (item.url) {
                         if (item.tooltip) {

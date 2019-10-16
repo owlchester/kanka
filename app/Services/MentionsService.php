@@ -8,6 +8,7 @@ use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Traits\MentionTrait;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -65,6 +66,56 @@ class MentionsService
     }
 
     /**
+     * @param MiscModel $model
+     * @param string $field
+     * @return string|string[]|null
+     */
+    public function edit(MiscModel $model, string $field = 'entry')
+    {
+        return $this->editEntity($model, $field);
+    }
+    public function editEntityNote(EntityNote $entityNote, string $field = 'entry')
+    {
+        return $this->editEntity($entityNote, $field);
+    }
+    public function editCampaign(Campaign $campaign, string $field = 'entry')
+    {
+        return $this->editEntity($campaign, $field);
+    }
+
+    /**
+     * @param $model
+     * @param string $field
+     * @return string
+     */
+    protected function editEntity($model, string $field): string
+    {
+        // Advance mode will send back the "codes"
+        if (Auth::user()->advancedMentions) {
+            return $model->$field;
+        }
+
+        // Standard more we want to remap mentions
+        $this->text = $model->$field;
+        return $this->replaceForEdit();
+    }
+
+    /**
+     * Replace span mentions into [entity:123] blocks
+     * @param string $text
+     * @return string
+     */
+    public function codify(string $text): string
+    {
+        $text = preg_replace(
+            '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
+            '$1',
+            $text
+        );
+        return $text;
+    }
+
+    /**
      * Searche mentions in a text and replace them with tooltiped links
      * @return string|string[]|null
      */
@@ -101,6 +152,35 @@ class MentionsService
                     . '</a>';
             }
             return $replace;
+        }, $this->text);
+
+        return $this->text;
+    }
+
+    /**
+     * @return string|string[]|null
+     */
+    protected function replaceForEdit()
+    {
+        // Extract links from the entry to foreign
+        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
+            $data = $this->extractData($matches);
+
+            $hasCustom = Arr::has($data, 'custom');
+            if ($hasCustom) {
+                return $matches[0];
+            }
+
+            /** @var Entity $entity */
+            $entity = $this->entity($data['id']);
+
+            // No entity found, the user might not be allowed to see it
+            if (empty($entity) || empty($entity->child)) {
+                $name = __('crud.history.unknown');
+            } else {
+                $name = $entity->name;
+            }
+            return '<a href="#" class="mention" data-mention="' . $matches[0] . '">' . $name . '</a>';
         }, $this->text);
 
         return $this->text;

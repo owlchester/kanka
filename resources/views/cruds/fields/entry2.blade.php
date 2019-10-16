@@ -1,11 +1,12 @@
 <div class="form-group">
     <label>{{ __('crud.panels.entry') }}</label>
     {!! Form::textarea(
-        'entry',
-        FormCopy::field('entry')->string(),
+        'entryForEdition',
+        FormCopy::field('entryForEdition')->string(),
         [
             'class' => 'form-control html-editor',
-            'id' => 'entry'
+            'id' => 'entry',
+            'name' => 'entry'
         ]
     ) !!}
     <div class="text-right">
