@@ -62,7 +62,10 @@
                                         <div class="feature-item">
                                             <i class="icon-present text-primary"></i>
                                             <h3>{{ trans('front.features.free.title') }}</h3>
-                                            <p class="text-muted">{{ trans('front.features.free.description') }}</p>
+                                            <p class="text-muted">{!! trans('front.features.free.description', [
+                                                'bonuses' => link_to('#patreon', __('front.features.free.bonuses')),
+                                                'patreon' => link_to(config('patreon.url'), 'Patreon', ['rel' => 'nofollow', 'target' => '_blank'])
+                                            ]) !!}</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">

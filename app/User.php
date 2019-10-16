@@ -431,7 +431,7 @@ class User extends \TCG\Voyager\Models\User
     public function maxUploadSize($readable = false, $what = 'image')
     {
         $campaign = CampaignLocalization::getCampaign();
-        if ($this->isPatron() || $campaign->boosted()) {
+        if ($this->isPatron() || ($campaign && $campaign->boosted())) {
             if ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }

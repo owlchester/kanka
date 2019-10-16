@@ -310,7 +310,7 @@ function loadMapPoint(element) {
     element.addClass('point-focus');
 
     $.ajax(
-        element.data('url')
+        element.data('url-show')
     ).done(function(data) {
         mapPanelLoader.hide();
         mapPanelTarget.html(data);

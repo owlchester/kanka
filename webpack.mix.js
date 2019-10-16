@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/attributes', 'public/js')
     .js('resources/assets/js/conversation', 'public/js')
     .js('resources/assets/js/dashboard', 'public/js')
+    //.js('resources/assets/js/front', 'public/js')
     .copy('vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js', 'public/js')
     .copy('vendor/blueimp/jquery-file-upload/js/jquery.iframe-transport.js', 'public/js')
     .copy('vendor/blueimp/jquery-file-upload/js/vendor/jquery.ui.widget.js', 'public/js/vendor')
@@ -37,5 +39,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/themes/future.scss', 'public/css')
     .sass('resources/assets/sass/themes/dark.scss', 'public/css')
     .sass('resources/assets/sass/themes/midnight.scss', 'public/css')
+    // .options({
+    //     processCssUrls: false,
+    //     postCss:[
+    //         tailwindcss('./tailwind.config.js')
+    //     ]
+    // })
     .version()
 ;

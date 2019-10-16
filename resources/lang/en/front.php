@@ -53,7 +53,8 @@ return [
         'description'       => 'Here are but a few things that we think you will love with our app!',
         'description_full'  => 'A showcase of some of our best and most loved features.',
         'free'              => [
-            'description'   => 'The best things in life are those which are free. No ads, no hidden costs, no pay wall.',
+            'bonuses' => 'bonuses',
+            'description'   => 'All core features of Kanka are free with no artificial limitations, with :bonuses for :patreon supporters.',
             'title'         => 'Free to Use',
         ],
         'layers'            => [

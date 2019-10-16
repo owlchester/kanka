@@ -46,7 +46,9 @@
         @if (!empty($relation) && !empty($relation->mirrored()))
             <div class="callout callout-info">
                 <h4>{{ __('entities/relations.hints.mirrored.title') }}</h4>
-                <p>{!! __('entities/relations.hints.mirrored.text', ['link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->entity->id) . "'>" . $relation->target->name . '</a>']) !!}</p>
+                <p>{!! __('entities/relations.hints.mirrored.text', [
+                'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->id) . "\">" . $relation->target->name . '</a>'
+                ]) !!}</p>
             </div>
         @endif
     </div>

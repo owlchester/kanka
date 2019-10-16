@@ -20,6 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $size
  * @property string $shape
  * @property string $icon
+ *
+ * @property Location $location
+ * @property Entity $targetEntity
  */
 class MapPoint extends Model
 {
@@ -81,18 +84,24 @@ class MapPoint extends Model
         $dataMoveUrl = route('locations.map_points.move', [$this->location, $this->id]);
         $url = $this->hasTarget() ? $this->targetEntity->url() : '#';
         $style = 'top: ' . e($this->axis_y) . 'px; left: ' . e($this->axis_x) . 'px;';
-        $title = $this->hasTarget() ? $this->targetEntity->tooltipWithName() : e($this->name);
+        $title = 'title="' . e($this->name) . '"';
         $size = $this->percentageSize();
 
-        if ($this->hasTarget() && $this->icon == 'entity') {
-            $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
-            $marker = '';
+        if ($this->hasTarget()) {
+            $title = 'data-url="' . route('entities.tooltip', $this->target_entity_id) . '" '
+                . 'data-toggle="tooltip-ajax" '
+                . 'data-id="' . $this->target_entity_id . '" ';
+            if($this->icon == 'entity') {
+                $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
+                $marker = '';
+            }
         }
 
         return '<a id="map-point-' . $this->id . '" class="point ' . e($this->size) . ' ' . e($this->shape) . ' '
             . e($this->colour) . '" '
-            . 'style="' . $style . '" href="' . $url . '" data-url="' . $dataUrl . '" '
-            . 'data-url-modal="' . $dataUpdateUrl . '" title="' . e($title) . '" '
+            . 'style="' . $style . '" href="' . $url . '" data-url-show="' . $dataUrl . '" '
+            . 'data-url-modal="' . $dataUpdateUrl . '" '
+            . $title
             . 'data-url-move="' . $dataMoveUrl . '" '
             . 'data-toggle="tooltip" data-html="true" data-top="' . $this->axis_y . '" '
             . 'data-left="' . $this->axis_x . '" data-size="' . $size . '"'
