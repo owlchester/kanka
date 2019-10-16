@@ -145,6 +145,12 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('moderator', function () {
             return auth()->check() && auth()->user()->hasRole('moderator');
         });
+        Blade::if('env', function ($environment) {
+            return app()->environment($environment);
+        });
+        Blade::if('notEnv', function ($environment) {
+            return !app()->environment($environment);
+        });
 
         // API directive for users in the API role
         Blade::if('api', function () {

@@ -4,14 +4,14 @@ namespace App\Policies;
 
 use App\Facades\Identity;
 use App\Traits\AdminPolicyTrait;
+use App\Traits\EnvTrait;
 use App\User;
 use App\Models\CampaignUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignUserPolicy
 {
-    use HandlesAuthorization;
-    use AdminPolicyTrait;
+    use HandlesAuthorization, AdminPolicyTrait, EnvTrait;
     
     /**
      * Determine whether the user can view the campaignUser.
@@ -45,7 +45,7 @@ class CampaignUserPolicy
     {
         return $user->campaign->id == $campaignUser->campaign->id
             && $this->isAdmin($user) && !$campaignUser->user->isAdmin() &&
-
+            !$this->shadow() &&
             // Don't allow updating if we are currently impersonating
             !Identity::isImpersonating();
     }
@@ -61,7 +61,7 @@ class CampaignUserPolicy
     {
         return $user->campaign->id == $campaignUser->campaign->id
             && $this->isAdmin($user) && !$campaignUser->user->isAdmin() &&
-
+            !$this->shadow() &&
             // Don't allow deleting if we are currently impersonating
             !Identity::isImpersonating();
     }
@@ -77,7 +77,7 @@ class CampaignUserPolicy
     {
         return $user->campaign->id == $campaignUser->campaign->id
             && $this->isAdmin($user) && !$campaignUser->user->isAdmin() &&
-
+            !$this->shadow() &&
             // Don't allow impersonating if we are already impersonating
             !Identity::isImpersonating();
     }

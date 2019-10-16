@@ -14,12 +14,14 @@
     </a>
     @if ($location->map)
         @can('update', $location)
+            @notEnv('shadow')
             <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
                 <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
             </button>
             <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
                 <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
             </button>
+            @endenv
         @endcan
     @endif
     </div>

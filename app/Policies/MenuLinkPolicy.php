@@ -4,13 +4,13 @@ namespace App\Policies;
 
 use App\Models\MenuLink;
 use App\Traits\AdminPolicyTrait;
+use App\Traits\EnvTrait;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MenuLinkPolicy
 {
-    use HandlesAuthorization;
-    use AdminPolicyTrait;
+    use HandlesAuthorization, EnvTrait, AdminPolicyTrait;
 
     public function browse(User $user)
     {
@@ -37,7 +37,7 @@ class MenuLinkPolicy
      */
     public function create(User $user)
     {
-        return
+        return !$this->shadow() &&
             $this->isAdmin($user);
     }
 
@@ -63,7 +63,7 @@ class MenuLinkPolicy
      */
     public function delete(User $user, MenuLink $menuLink)
     {
-        return
+        return !$this->shadow() &&
             $this->isAdmin($user);
     }
 }

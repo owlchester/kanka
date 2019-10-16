@@ -22,7 +22,7 @@
                 </a>
             </li>
             @endcan
-            @if ((empty($disableMove) || !$disableMove) && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
+            @if ((empty($disableMove) || !$disableMove) && getenv('APP_ENV') !== 'shadow' && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
                 <li>
                     <a href="{{ route('entities.copy_to_campaign', $model->entity->id) }}">
                         <i class="fa fa-clone" aria-hidden="true"></i> {{ trans('crud.actions.copy_to_campaign') }}
@@ -30,7 +30,7 @@
                 </li>
             @endif
 
-            @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
+            @if ((empty($disableMove) || !$disableMove) && getenv('APP_ENV') !== 'shadow' && Auth::user()->can('move', $model))
             <li>
                 <a href="{{ route('entities.move', $model->entity->id) }}">
                     <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ trans('crud.actions.move') }}

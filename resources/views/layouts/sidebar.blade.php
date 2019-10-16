@@ -55,7 +55,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 </ul>
             </li>
             @endif
-            @if (Auth::check() && $currentCampaign->userIsMember())
+            @if (Auth::check() && $currentCampaign->userIsMember() && env('APP_ENV') !== 'shadow')
                 <li>
                     <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal"><i class="fa fa-plus"></i> <span>{{ trans('sidebar.entity-creator') }}</span></a>
                 </li>

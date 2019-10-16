@@ -75,5 +75,6 @@ class Kernel extends HttpKernel
         'translator' => \App\Http\Middleware\Translator::class,
         'moderator' => \App\Http\Middleware\Moderator::class,
         'identity' => \App\Http\Middleware\Identity::class,
+        'shadow' => \App\Http\Middleware\Shadow::class,
     ];
 }
