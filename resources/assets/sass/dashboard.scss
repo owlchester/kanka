@@ -4,9 +4,6 @@
 
 .campaign {
   padding: 40px;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
   margin-bottom: 15px;
 
   .content {
@@ -31,10 +28,6 @@
         width: 50px;
         height: 50px;
         margin-right: 0px;
-
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: cover;
 
         &:hover {
           box-shadow: $box-shadow-hover;
@@ -137,9 +130,6 @@
   }
 
   .panel-heading-entity {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 10%;
     transition: all 3s ease;
     padding: 0;
 
@@ -215,9 +205,6 @@
     margin-bottom: 20px;
     height: 160px;
     overflow: hidden;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.8);
@@ -258,6 +245,22 @@
 }
 
 .widget-recent {
+  .panel-body {
+    padding: 0;
+
+  }
+  .row {
+    margin: 4px 0;
+  }
+
+  .entity-image {
+     display: inline-block;
+     margin-right: 8px;
+     width: 35px;
+     height: 35px;
+     vertical-align: middle;
+   }
+
   .entity {
     padding: 5px;
 
@@ -268,7 +271,7 @@
 
     .entity-image {
       display: inline-block;
-      margin-right: 4px;
+      margin-right: 8px;
       width: 25px;
       height: 25px;
       vertical-align: middle;
@@ -287,9 +290,6 @@
 .widget-user-header {
   padding: 0 !important;
   height: auto !important;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
   .widget-user-overlay {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;

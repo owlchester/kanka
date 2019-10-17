@@ -3,7 +3,7 @@
 $model = $widget->entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($model->image) panel-heading-entitycover-background" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
                 @if ($model->is_private)

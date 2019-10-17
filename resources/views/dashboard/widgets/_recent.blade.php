@@ -6,7 +6,7 @@ if (!isset($offset)) {
 }
 $entityType = $widget->conf('entity');
 $entities = \App\Models\Entity::recentlyModified()->with('tags')->type($entityType)->acl()->take(10)->offset($offset)->get();
-$entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : str_plural($entityType)) : null;
+$entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : Str::plural($entityType)) : null;
 ?>
 <div class="panel panel-default" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">

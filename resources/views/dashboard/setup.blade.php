@@ -20,7 +20,7 @@
                 @endif
                 <?php /** @var \App\Models\CampaignDashboardWidget $widget */ ?>
                 <div class="col-md-{{ $widget->colSize() }} widget-draggable">
-                    <div class="widget widget-{{ $widget->widget }}"
+                    <div class="widget widget-{{ $widget->widget }} cover-background"
                          data-toggle="ajax-modal"
                          data-target="#edit-widget"
                          data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"

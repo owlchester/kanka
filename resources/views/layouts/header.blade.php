@@ -83,8 +83,8 @@ if (Auth::check()) {
                                         @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
                                             <li>
                                                 <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
-                                                   class="campaign-selector cover-background"
-                                                   @if ($campaign->image) style="background-image: url({{ $campaign->getImageUrl() }}" @endif >
+                                                   class="campaign-selector
+                                                   @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}" @else placeholder-background" @endif >
                                                     {{ $campaign->name }}
                                                 </a>
                                             </li>
@@ -94,8 +94,8 @@ if (Auth::check()) {
                                             @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
                                                 <li>
                                                     <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
-                                                       class="campaign-selector cover-background"
-                                                       @if ($campaign->image) style="background-image: url({{ $campaign->getImageUrl() }}" @endif >
+                                                       class="campaign-selector
+                                                       @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}" @else placeholder-background" @endif >
                                                         <i class="fa fa-star pull-right" title="{{ __('campaigns.following')  }}"></i>
                                                         {{ $campaign->name }}
                                                     </a>
@@ -131,9 +131,7 @@ if (Auth::check()) {
                 @endif
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-languages">
-                        <span class="hidden-xs hidden-sm">{{ LaravelLocalization::getCurrentLocaleNative() }}</span>
-                        <span class="visible-xs-inline visible-sm-inline text-uppercase">{{ LaravelLocalization::getCurrentLocale() }}</span>
-                        <i class="fa fa-caret-down"></i>
+                        <span class="text-uppercase">{{ LaravelLocalization::getCurrentLocale() }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">{{ trans('languages.header') }}</li>
@@ -164,7 +162,6 @@ if (Auth::check()) {
                         <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
 
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
-                        <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
