@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AuthController extends Controller
 {
@@ -84,6 +85,11 @@ class AuthController extends Controller
         $emailExists = User::where('email', $user->email)->first();
         if ($emailExists) {
             throw new \Exception(null, 1);
+        }
+
+        // Only allow creating if it's set that way
+        if (env('APP_REGISTRATION_ENABLED') === false) {
+            throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
 
         return User::create([
