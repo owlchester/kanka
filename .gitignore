@@ -4,6 +4,7 @@
 /public/.htaccess
 /public/exports
 /public/info.php
+/public/robots.txt
 /storage/*.key
 /storage
 /vendor

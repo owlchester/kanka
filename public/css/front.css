@@ -1100,8 +1100,7 @@ footer .footer-social a:hover {
 
 .campaign .image-wrapper {
   max-width: 100%;
-  display: flex;
-  align-items: flex-end;
+  display: block;
   height: 200px;
   background-color: #ebebeb;
   background-size: cover;
@@ -1110,6 +1109,8 @@ footer .footer-social a:hover {
 }
 
 .campaign .image-wrapper .labels {
+  margin-top: 115px;
+  position: absolute;
   padding: 7px;
   font-size: 16pt;
 }
@@ -1215,22 +1216,5 @@ ul.pagination li span {
 .register-page .btn-app .fab {
   font-size: 20px;
   display: block;
-}
-
-.partners a {
-  display: block;
-  border-radius: 4px;
-}
-
-.minimal-padding {
-  padding: 50px 100px;
-}
-
-.table {
-  text-align: center;
-}
-
-.table .text {
-  text-align: left;
 }
 

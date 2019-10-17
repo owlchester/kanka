@@ -5,13 +5,14 @@ namespace App\Policies;
 use App\Models\Campaign;
 use App\Facades\EntityPermission;
 use App\Models\Entity;
+use App\Traits\EnvTrait;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
 class MiscPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, EnvTrait;
 
     protected static $cached = [];
 
@@ -56,7 +57,7 @@ class MiscPolicy
      */
     public function create(User $user, $entity = null, Campaign $campaign = null)
     {
-        return Auth::check() && $this->checkPermission('add', $user, null, $campaign);
+        return Auth::check() && !$this->shadow() && $this->checkPermission('add', $user, null, $campaign);
     }
 
     /**
@@ -81,7 +82,7 @@ class MiscPolicy
      */
     public function delete(User $user, $entity)
     {
-        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
+        return Auth::check() && !$this->shadow() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
             && $this->checkPermission('delete', $user, $entity);
     }
 
@@ -105,7 +106,7 @@ class MiscPolicy
         if ($subAction == 'browse') {
             return Auth::check() && $this->view($user, $entity);
         } else {
-            return Auth::check() && $this->update($user, $entity);
+            return Auth::check() && $this->update($user, $entity) && !$this->shadow();
         }
     }
 
@@ -127,7 +128,7 @@ class MiscPolicy
         return Auth::check() && (
             $this->update($user, $entity) ||
             $this->checkPermission('entity-note', $user, $entity)
-        );
+        ) && !$this->shadow();
     }
 
     /**
@@ -153,7 +154,25 @@ class MiscPolicy
      */
     public function move(User $user, $entity)
     {
-        return $this->update($user, $entity);
+        return !$this->shadow() && $this->update($user, $entity);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function events(User $user, $entity)
+    {
+        return !$this->shadow() && $this->update($user, $entity);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function inventory(User $user, $entity)
+    {
+        return !$this->shadow() && $this->update($user, $entity);
     }
 
     /**

@@ -52765,7 +52765,6 @@ function initTooltips() {
   $('[data-toggle="tooltip-ajax"]').tooltip({
     title: entityTooltip,
     delay: 300,
-    trigger: 'hover',
     placement: 'auto',
     template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner tooltip-ajax"></div>' + '</div>',
     html: true
@@ -53813,7 +53812,7 @@ function registerEntityFormSubmit() {
 
 
 function resetEntityFormSubmitAnimation() {
-  var submit = $('#entity-form').find('.btn-success');
+  submit = $('#entity-form').find('.btn-success');
 
   if (submit.length > 0) {
     $.each(submit, function (su) {
@@ -54236,7 +54235,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\jerem\\Projects\\Php\\kanka\\resources\\assets\\sass\\map-v2.scss'\n    at runLoaders (C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\webpack\\lib\\NormalModule.js:316:20)\n    at C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\loader-runner\\lib\\LoaderRunner.js:203:19\n    at process.nextTick (C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\webpack\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:85:15)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ }),
 
@@ -54258,7 +54257,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\jerem\\Projects\\Php\\kanka\\resources\\assets\\sass\\settings.scss'\n    at runLoaders (C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\webpack\\lib\\NormalModule.js:316:20)\n    at C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\loader-runner\\lib\\LoaderRunner.js:203:19\n    at process.nextTick (C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\webpack\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:85:15)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ }),
 
@@ -54302,7 +54301,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\jerem\\Projects\\Php\\kanka\\resources\\assets\\sass\\tinymce.scss'\n    at runLoaders (C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\webpack\\lib\\NormalModule.js:316:20)\n    at C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\loader-runner\\lib\\LoaderRunner.js:203:19\n    at process.nextTick (C:\\Users\\jerem\\Projects\\Php\\kanka\\node_modules\\webpack\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:85:15)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ }),
 

@@ -4,14 +4,14 @@ namespace App\Policies;
 
 use App\Facades\Identity;
 use App\Traits\AdminPolicyTrait;
+use App\Traits\EnvTrait;
 use App\User;
 use App\Models\Campaign;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
 {
-    use HandlesAuthorization;
-    use AdminPolicyTrait;
+    use HandlesAuthorization, AdminPolicyTrait, EnvTrait;
 
     /**
      * Determine whether the user can view the campaign.
@@ -48,7 +48,7 @@ class CampaignPolicy
      */
     public function create(User $user)
     {
-        return !Identity::isImpersonating();
+        return !Identity::isImpersonating() && !$this->shadow();
     }
 
     /**
@@ -61,7 +61,7 @@ class CampaignPolicy
     public function update(User $user, Campaign $campaign)
     {
         return
-            $user->campaign->id == $campaign->id && $this->isAdmin($user);
+            $user->campaign->id == $campaign->id && $this->isAdmin($user) && !$this->shadow();
     }
 
     /**
@@ -74,6 +74,7 @@ class CampaignPolicy
     public function delete(User $user, Campaign $campaign)
     {
         return
+            !$this->shadow() &&
             $user->campaign->id == $campaign->id && $this->isAdmin($user) && $campaign->members()->count() == 1;
     }
 
@@ -84,7 +85,7 @@ class CampaignPolicy
      */
     public function invite(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -94,7 +95,7 @@ class CampaignPolicy
      */
     public function setting(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
 
     /**
@@ -116,7 +117,8 @@ class CampaignPolicy
      */
     public function leave(User $user, Campaign $campaign)
     {
-        return $user->campaign->id == $campaign->id &&
+        return !$this->shadow() &&
+            $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
             $campaign->userIsMember() && (!$this->isAdmin($user) || count($campaign->admins()) > 1) &&
             // We also can't leave a campaign if we are not the real user
@@ -131,6 +133,10 @@ class CampaignPolicy
      */
     public function follow(User $user, Campaign $campaign)
     {
+        if ($this->shadow()) {
+            return false;
+        }
+
         if (empty($user)) {
             return false;
         }

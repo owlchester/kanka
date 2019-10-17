@@ -25,7 +25,9 @@
 
             @include('partials.errors')
 
+            @notEnv('shadow')
             {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
+            @endif
             <table id="crud_permissions" class="table table-hover export-hidden">
                 <tbody>
                 <tr>
@@ -103,6 +105,7 @@
             </table>
 
 
+            @notEnv('shadow')
             {!! Form::hidden('entity_id', $entity->id) !!}
 
             <div class="form-group">
@@ -110,6 +113,7 @@
             </div>
 
             {!! Form::close() !!}
+            @endif
 
         </div>
     </div>

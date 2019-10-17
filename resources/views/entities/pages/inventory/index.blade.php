@@ -35,7 +35,7 @@
                             <th>{{ __('entities/inventories.fields.description') }}</th>
                             @if (Auth::check())
                             <th>{{ __('crud.fields.visibility') }}</th>
-                                @can('update', $entity->child)
+                                @can('inventory', $entity->child)
                                     <th class="text-right">
                                         <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-primary btn-sm"
                                            data-toggle="ajax-modal" data-target="#entity-modal"
@@ -70,7 +70,7 @@
                                     <td>
                                         @include('cruds.partials.visibility', ['model' => $item])
                                     </td>
-                                    @can('update', $entity->child)
+                                    @can('inventory', $entity->child)
                                     <td class="text-right">
                                         <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
                                            data-toggle="ajax-modal" data-target="#entity-modal"

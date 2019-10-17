@@ -2341,6 +2341,20 @@
   content: "\E901";
 }
 
+ul.campaigns li {
+  float: left;
+  width: 20%;
+}
+
+ul.campaigns li.add {
+  background-color: red;
+}
+
+ul,
+ol {
+  padding-left: 25px;
+}
+
 img.profile-user-img {
   width: 200px;
 }
@@ -2364,26 +2378,6 @@ img.profile-user-img {
   border-radius: 50%;
   margin-right: 10px;
   margin-top: -2px;
-}
-
-.navbar-nav .campaign-menu a.campaign-selector {
-  background-color: #ddd;
-  font-size: 1.2em;
-  color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
-  -webkit-filter: grayscale(60%);
-  filter: grayscale(60%);
-}
-
-.navbar-nav .campaign-menu a.campaign-selector:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-}
-
-.cover-background {
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: 50% 50% !important;
 }
 
 .user-header a {
@@ -2422,6 +2416,10 @@ div.required label:after {
 table th.avatar,
 table td.avatar {
   width: 40px;
+}
+
+table th i {
+  padding-left: 5px;
 }
 
 table th .btn i {
@@ -3067,11 +3065,6 @@ td.breakable {
   background-color: unset;
 }
 
-.entity-form .nav-tabs-custom i.fa,
-.entity-form .nav-tabs-custom i.ra {
-  line-height: 1.6em;
-}
-
 .entity-form ul.nav {
   z-index: 2;
   min-height: 40px;
@@ -3122,29 +3115,6 @@ td.breakable {
   cursor: pointer;
 }
 
-/** New fancy images **/
-
-.full-sized-image {
-  width: 100%;
-  height: auto;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  min-height: 160px;
-  display: flex;
-}
-
-.full-sized-image h1 {
-  margin: 5px;
-  align-self: flex-end;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
-  color: white;
-}
-
-.cursor {
-  cursor: pointer;
-}
-
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;
@@ -3173,16 +3143,6 @@ td.breakable {
 
   .navbar-nav .menu .campaign-image {
     margin-right: 4px;
-  }
-
-  .navbar-nav .campaign-menu .dropdown-menu {
-    width: 90%;
-    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-  }
-
-  .navbar-nav .campaign-menu a.campaign-selector {
-    -webkit-filter: unset;
-    filter: unset;
   }
 
   .main-sidebar {
@@ -3224,69 +3184,5 @@ td.breakable {
   section.content {
     padding-top: 5px;
   }
-}
-
-/**
- * Styling related to elements that benefit from a campaign's boosted status
- */
-
-.booster {
-  background-color: #9b8a30;
-}
-
-.btn-boost {
-  margin-bottom: 25px;
-}
-
-.entity-header {
-  height: calc(40vh);
-  max-height: 240px;
-  min-height: 190px;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-  display: flex;
-  border-radius: 3px;
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom {
-  align-items: flex-end;
-  align-self: flex-end;
-  display: flex;
-}
-
-.entity-header .bottom .texts {
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom .texts h1,
-.entity-header .bottom .texts h3 {
-  margin: 0;
-  align-self: flex-end;
-  text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-  color: white;
-}
-
-.entity-header .bottom .texts h3 {
-  margin-top: 5px;
-  font-style: italic;
-}
-
-.entity-header .bottom .entity-avatar {
-  margin: 10px;
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom .entity-avatar img {
-  transition: all 1s ease;
-  border-radius: 3px;
-  max-width: 160px;
-  max-height: 160px;
-  box-shadow: 0 6px 6px rgba(150, 150, 150, 0.3), 0 1px 3px rgba(255, 255, 255, 0.08);
-}
-
-.entity-header .bottom .entity-avatar:hover img {
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 

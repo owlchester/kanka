@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\Faq;
 use App\Services\PatreonService;
+use Illuminate\Support\Collection;
 
 class FrontController extends Controller
 {
@@ -87,6 +88,10 @@ class FrontController extends Controller
     {
         $features = Campaign::public()->front()->featured()->get();
         $campaigns = Campaign::public()->front()->featured(false)->paginate();
+
+        if (getenv('APP_ENV') === 'shadow') {
+            $features = $campaigns = new Collection();
+        }
 
         return view('front.campaigns')
             ->with('featured', $features)

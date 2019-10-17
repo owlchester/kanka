@@ -388,7 +388,7 @@ function loadMapPoint(element) {
 
   $('.point-focus').removeClass('point-focus');
   element.addClass('point-focus');
-  $.ajax(element.data('url-show')).done(function (data) {
+  $.ajax(element.data('url')).done(function (data) {
     mapPanelLoader.hide();
     mapPanelTarget.html(data); // Closing the modal
 
