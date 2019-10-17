@@ -23,14 +23,14 @@
     }
 
     h1 {
-      font-size: 20pt;
+      font-size: 16pt;
       margin: 0;
       padding: 0;
 
       .img-circle {
         width: 50px;
         height: 50px;
-        margin-right: 7px;
+        margin-right: 0px;
 
         background-repeat: no-repeat;
         background-position: 50% 50%;
@@ -54,7 +54,7 @@
       font-size: 18pt;
     }
     h3, h4, h5, h6 {
-      font-size: 16pt;
+      font-size: 14pt;
     }
     .preview {
       position: relative;
@@ -73,37 +73,18 @@
       }
     }
 
-    ul.campaign-links {
-      bottom: 0;
-      margin-top: 10px;
-      border-radius: 2px;
-      list-style-type: none;
-      padding: 0;
+    .campaign-link {
       display: block;
-      width: 100%;
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
 
-      li {
-        display: inline-block;
-        text-align: left;
-        margin-right: 8px;
-        margin-bottom: 5px;
-        a {
-          padding: 8px 12px;
-          background: rgba(0, 0, 0, 0.7);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          display: inline-block;
-          text-align: center;
-
-          i {
-            display: block;
-            margin-bottom: 5px;
-          }
-          &:hover {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: $box-shadow-hover;
-          }
-        }
+      &:hover {
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: $box-shadow-hover;
       }
     }
   }
@@ -152,7 +133,7 @@
     font-size: 18pt;
   }
   h3, h4, h5, h6 {
-    font-size: 16pt;
+    font-size: 12pt;
   }
 
   .panel-heading-entity {
@@ -214,6 +195,12 @@
       padding-right: auto;
       display: block;
       text-align: center;
+    }
+  }
+
+  ul {
+    padding-left: 25px;
+    li {
     }
   }
 }
@@ -319,9 +306,6 @@
 .widget-preview {
   .panel-title {
     vertical-align: middle;
-    a {
-      font-size: 16px;
-    }
     .entity-image {
       display: inline-block;
       vertical-align: middle;
@@ -332,6 +316,8 @@
 }
 
 @media (max-width: 787px) {
+  .content-header {
+  }
   .campaign {
     padding: 10px;
     .content {

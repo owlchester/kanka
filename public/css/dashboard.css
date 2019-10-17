@@ -23,7 +23,7 @@
 }
 
 .campaign .content h1 {
-  font-size: 20pt;
+  font-size: 16pt;
   margin: 0;
   padding: 0;
 }
@@ -31,7 +31,7 @@
 .campaign .content h1 .img-circle {
   width: 50px;
   height: 50px;
-  margin-right: 7px;
+  margin-right: 0px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -59,7 +59,7 @@
 .campaign .content h4,
 .campaign .content h5,
 .campaign .content h6 {
-  font-size: 16pt;
+  font-size: 14pt;
 }
 
 .campaign .content .preview {
@@ -80,37 +80,16 @@
   display: inline-block;
 }
 
-.campaign .content ul.campaign-links {
-  bottom: 0;
-  margin-top: 10px;
-  border-radius: 2px;
-  list-style-type: none;
-  padding: 0;
+.campaign .content .campaign-link {
   display: block;
-  width: 100%;
-}
-
-.campaign .content ul.campaign-links li {
-  display: inline-block;
-  text-align: left;
-  margin-right: 8px;
-  margin-bottom: 5px;
-}
-
-.campaign .content ul.campaign-links li a {
   padding: 8px 12px;
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  display: inline-block;
   text-align: center;
 }
 
-.campaign .content ul.campaign-links li a i {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.campaign .content ul.campaign-links li a:hover {
+.campaign .content .campaign-link:hover {
+  color: white;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -159,7 +138,7 @@
 .panel h4,
 .panel h5,
 .panel h6 {
-  font-size: 16pt;
+  font-size: 12pt;
 }
 
 .panel .panel-heading-entity {
@@ -215,6 +194,10 @@
   padding-right: auto;
   display: block;
   text-align: center;
+}
+
+.panel ul {
+  padding-left: 25px;
 }
 
 .campaign-dashboard-widgets .widget {
@@ -309,10 +292,6 @@
 
 .widget-preview .panel-title {
   vertical-align: middle;
-}
-
-.widget-preview .panel-title a {
-  font-size: 16px;
 }
 
 .widget-preview .panel-title .entity-image {

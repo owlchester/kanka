@@ -3059,7 +3059,7 @@ td.breakable {
 }
 
 .btn-group .dropdown-toggle {
-  height: 36px;
+  height: 367x;
 }
 
 .entity-form .nav-tabs-custom {
@@ -3068,7 +3068,9 @@ td.breakable {
 }
 
 .entity-form .nav-tabs-custom i.fa,
-.entity-form .nav-tabs-custom i.ra {
+.entity-form .nav-tabs-custom i.ra,
+.entity-form .nav-tabs-custom i.fas,
+.entity-form .nav-tabs-custom i.far {
   line-height: 1.6em;
 }
 

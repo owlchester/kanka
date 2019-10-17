@@ -85,26 +85,23 @@
             @endif
 
             @can('update', $campaign)
-            <ul class="campaign-links">
-                <li>
-                    <a href="{{ route('campaign_users.index') }}">
-                        <i class="fa fa-user"></i>
-                        {{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}">
+                        <i class="fa fa-user"></i> {{ $campaign->users()->count() }}
                     </a>
-                </li>
-                <li>
-                    <a href="{{ route('campaign_roles.index') }}">
-                        <i class="fa fa-lock"></i>
-                        {{ __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{  __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}">
+                        <i class="fa fa-lock"></i> {{ $campaign->roles()->count() }}
                     </a>
-                </li>
-                <li>
-                    <a href="{{ route('campaign_settings') }}" class="visible-lg">
-                        <i class="fa fa-cogs"></i>
-                        {{ __('dashboard.campaigns.tabs.modules', ['count' => $campaign->setting->countEnabledModules()]) }}
+                </div>
+                <div class="col-md-2 hidden-xs hidden-sm">
+                    <a href="{{ route('campaign_settings') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.modules', ['count' => $campaign->setting->countEnabledModules()]) }}">
+                        <i class="fa fa-cogs"></i> {{ $campaign->setting->countEnabledModules() }}
                     </a>
-                </li>
-            </ul>
+                </div>
+            </div>
             @endcan
         </div>
     </div>

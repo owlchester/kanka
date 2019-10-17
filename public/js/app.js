@@ -54019,10 +54019,10 @@ $(document).ready(function () {
   }
 });
 /**
- * Live Search
+ * Init the bloodhound search engine
  */
 
-function initLiveSearch() {
+function initSearchEngine() {
   // Set the Options for "Bloodhound" suggestion engine
   searchEngine = new Bloodhound({
     remote: {
@@ -54032,6 +54032,14 @@ function initLiveSearch() {
     datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
     queryTokenizer: Bloodhound.tokenizers.whitespace
   });
+}
+/**
+ * Live Search
+ */
+
+
+function initLiveSearch() {
+  initSearchEngine();
   liveSearchField.typeahead({
     minLength: 3
   }, {
@@ -54066,7 +54074,7 @@ function initLiveSearch() {
     $('.navbar-custom-menu').show();
   });
 }
-/*
+/**
  * User triggered a submit, either via the typeahead:submit
  * or autocomplete event
  */
@@ -54076,40 +54084,6 @@ function submitSuggestion(ev, suggestion) {
   //liveSearchField.val(suggestion.name);
   liveSearchField.prop('disabled', true);
   window.location = suggestion.url;
-}
-
-function requestLiveSearch(value) {
-  if (liveSearchField.val() === value && !liveSearchRunning) {
-    liveSearchRunning = true; // Reset results
-
-    liveSearchResults.empty();
-    liveSearchResults.append('<div class="loading"><i class="fa fa-spinner"></i></div>');
-    $.ajax({
-      url: liveSearchField.attr('data-url') + '?q=' + liveSearchField.val()
-    }).done(function (result, textStatus, xhr) {
-      liveSearchRunning = false;
-
-      if (textStatus === 'success' && result) {
-        liveSearchResults.empty(); // Append all the results to the result box
-
-        $.each(result, function (i) {
-          var data = result[i];
-          liveSearchResults.append('<a href="' + data.url + '" class="list-group-item">' + data.image + data.name + ' (' + data.type + ')</a>');
-        }); // Empty result
-
-        if (result.length === 0) {
-          liveSearchResults.append('<div class="loading">' + liveSearchField.attr('data-empty') + '</div>');
-        }
-
-        liveSearchResults.focus();
-      }
-    }).fail(function (result, textStatus, xhr) {
-      liveSearchRunning = false;
-      liveSearchResults.empty();
-      liveSearchResults.append('Error!');
-      console.log('error', result);
-    });
-  }
 }
 
 /***/ }),
