@@ -3,33 +3,14 @@
 namespace App\Services;
 
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class FilterService
 {
-//    /**
-//     * @var Request
-//     */
-//    protected $request;
-//
-//    /**
-//     * @var Session
-//     */
-//    protected $session;
-//
-//    /**
-//     * FilterService constructor.
-//     * @param Request $request
-//     * @param Session $session
-//     */
-//    public function __construct(Request $request, Session $session)
-//    {
-//        $this->request = $request;
-//        $this->session = $session;
-//    }
-
     /**
      * The filters as saved in the session
      * @var array
@@ -57,12 +38,17 @@ class FilterService
     /**
      * @param string $crud
      * @param array $requestData
-     * @param MiscModel $model
+     * @param Model $model
+     * @throws \Exception
      */
-    public function make(string $crud, array $requestData, MiscModel $model)
+    public function make(string $crud, array $requestData, Model $model)
     {
         $this->data = $requestData;
         $this->crud = $crud;
+
+        if (!method_exists($model, 'filterableColumns')) {
+            throw new \Exception('Model ' . $model . ' doesn\'t implement the Filterable trait.');
+        }
         $this->prepareFilters($model->filterableColumns());
         $this->prepareOrder($model->sortableColumns());
     }
@@ -121,8 +107,8 @@ class FilterService
     protected function prepareOrder(array $availableFields = [])
     {
         // Get all of the posted data. We need to see if any of it is part of a filter.
-        $field = array_get($this->data, 'order');
-        $direction = array_get($this->data, 'desc');
+        $field = Arr::get($this->data, 'order');
+        $direction = Arr::get($this->data, 'desc');
 
         $sessionKey = 'filterService-order-' . $this->crud;
         $this->order = session()->get($sessionKey);
@@ -134,7 +120,7 @@ class FilterService
         }
 
         // Reset the filters if requested, before saving it to the session.
-        if (array_has($this->data, 'reset-filter')) {
+        if (Arr::has($this->data, 'reset-filter')) {
             $this->order = [];
         }
 
@@ -149,7 +135,9 @@ class FilterService
 
     /**
      * @param $key
-     * @return mixed|null
+     * @param null $default
+     * @return array|\Illuminate\Contracts\Translation\Translator|mixed|string|null
+     * @throws \Exception
      */
     public function single($key, $default = null)
     {

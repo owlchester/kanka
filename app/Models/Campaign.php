@@ -6,6 +6,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -481,5 +482,14 @@ class Campaign extends MiscModel
     public function getExcerptForEditionAttribute()
     {
         return Mentions::editCampaign($this, 'excerpt');
+    }
+
+    /**
+     * Link to the dashboard
+     * @return string
+     */
+    public function dashboard(): string
+    {
+        return link_to(App::getLocale() . '/' . $this->getMiddlewareLink(), e($this->name));
     }
 }

@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LogicException;
 
+/**
+ * Class AdminCrudController
+ * @package App\Http\Controllers\Admin
+ */
 class AdminCrudController extends Controller
 {
     /**
@@ -52,6 +56,12 @@ class AdminCrudController extends Controller
     protected $filterService;
 
     /**
+     * If the create index action button is available
+     * @var bool
+     */
+    public $createAction = true;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -77,12 +87,13 @@ class AdminCrudController extends Controller
     public function crudIndex(Request $request)
     {
         $model = new $this->model;
-        $this->filterService->prepare($this->view, request()->all(), $model->filterableColumns());
+        $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
         $route = $this->route;
+        $createAction = $this->createAction;
 
         $models = $model
             ->preparedWith()
@@ -96,6 +107,7 @@ class AdminCrudController extends Controller
             'name',
             'model',
             'actions',
+            'createAction',
             'filters',
             'filterService',
             'route'
@@ -172,12 +184,13 @@ class AdminCrudController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Character  $character
+     * @param  array $fields
      * @return \Illuminate\Http\Response
      */
-    public function crudUpdate(Request $request, Model $model)
+    public function crudUpdate(Request $request, Model $model, array $fields = [])
     {
         try {
-            $model->update($request->all());
+            $model->update(empty($fields) ? $request->all() : $request->only($fields));
             $success = trans($this->view . '.edit.success', [
                 'name' => link_to_route(
                     $this->route . '.index',

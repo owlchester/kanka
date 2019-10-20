@@ -17,7 +17,7 @@
             <td>{{ $model->question }}</td>
             <td>{{ $model->answer }}</td>
             <td>
-                <a href="{{ route('faqs.edit', $model) }}">
+                <a href="{{ route('admin.faqs.edit', $model) }}">
                     <i class="fa fa-edit"></i>
                 </a>
             </td>

@@ -4,8 +4,12 @@ namespace App;
 
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Models\CampaignBoost;
 use App\Models\Patreon;
+use App\Models\Scopes\UserScope;
+use App\Models\UserSetting;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DateTime;
@@ -33,6 +37,9 @@ use Laravel\Passport\HasApiTokens;
  * Virtual
  * @property bool $advancedMentions
  * @property bool $defaultNested
+ * @property string $patreon_fullname
+ * @property string $patreon_email
+ * @property CampaignBoost[] $boosts
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -47,9 +54,12 @@ class User extends \TCG\Voyager\Models\User
     protected $cachedHasCampaign = null;
 
 
-    public $additional_attributes = ['patreon_fullname'];
+    public $additional_attributes = [
+        'patreon_fullname',
+        //'patreon_email'
+    ];
 
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, UserScope, UserSetting;
 
     /**
      * The attributes that are mass assignable.
@@ -72,6 +82,7 @@ class User extends \TCG\Voyager\Models\User
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
         'has_last_login_sharing',
+        'patreon_pledge'
     ];
 
     /**
@@ -321,134 +332,6 @@ class User extends \TCG\Voyager\Models\User
 
 
     /**
-     * @param $value
-     */
-    public function setPledgeAttribute($value)
-    {
-        $this->setSettingsOption('pledge', $value);
-    }
-
-    /**
-     * Last read release
-     * @param $value
-     */
-    public function setReleaseAttribute($value)
-    {
-        $this->setSettingsOption('release', $value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setPatreonEmailAttribute($value)
-    {
-        $this->setSettingsOption('patreon_email', $value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setPatreonFullnameAttribute($value)
-    {
-        $this->setSettingsOption('patreon_fullname', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPatreonFullnameAttribute()
-    {
-        return $this->settings['patreon_fullname'];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReleaseAttribute()
-    {
-        return Arr::get($this->settings, 'release', null);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setEditorAttribute($value)
-    {
-        $this->setSettingsOption('editor', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEditorAttribute()
-    {
-        return Arr::get($this->settings, 'editor', null);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setDefaultNestedAttribute($value)
-    {
-        $this->setSettingsOption('default_nested', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDefaultNestedAttribute()
-    {
-        return Arr::get($this->settings, 'default_nested', null);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setAdvancedMentionsAttribute($value)
-    {
-        $this->setSettingsOption('advanced_mentions', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAdvancedMentionsAttribute()
-    {
-        return Arr::get($this->settings, 'advanced_mentions', false);
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     */
-    protected function setSettingsOption($key, $value)
-    {
-        $this->attributes['settings'] = collect($this->settings)->merge([$key => $value]);
-    }
-
-    /**
-     * @param $data
-     * @return $this
-     */
-    public function saveSettings($data)
-    {
-        // Todo: refactor into an array
-        $this->editor = Arr::get($data, 'editor', null);
-        if (empty($this->editor)) {
-            unset($this->attributes['settings']['editor']);
-        }
-        $this->default_nested = Arr::get($data, 'default_nested', null);
-        if (empty($this->default_nested)) {
-            unset($this->attributes['settings']['default_nested']);
-        }
-        $this->advanced_mentions = Arr::get($data, 'advanced_mentions', null);
-        if (empty($this->advanced_mentions)) {
-            unset($this->attributes['settings']['advanced_mentions']);
-        }
-        return $this;
-    }
-
-    /**
      * Get max file size of user
      * @param bool $readable
      * @return int|string
@@ -483,61 +366,6 @@ class User extends \TCG\Voyager\Models\User
                 && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
            || $this->hasRole('admin')
         ;
-    }
-
-    /**
-     * Created today
-     * @param $query
-     * @return mixed
-     */
-    public function scopeToday($query)
-    {
-        return $query->whereDate('created_at', Carbon::today());
-    }
-
-    /**
-     * Created today
-     * @param $query
-     * @return mixed
-     */
-    public function scopeStartOfMonth($query)
-    {
-        return $query->whereDate('created_at', '>=', Carbon::now()->startOfMonth());
-    }
-
-    /**
-     * Users who most log in
-     * @param $query
-     * @return mixed
-     */
-    public function scopeTop($query)
-    {
-        return $query
-            ->select([
-                $this->getTable() . '.*',
-                DB::raw("(select count(*) from user_logs where user_id = " . $this->getTable()
-                    . ".id and action = 'login') as cpt")
-            ])
-            ->orderBy('cpt', 'desc')
-            ;
-    }
-
-
-    /**
-     * Users grouped by themes
-     * @param $query
-     * @return mixed
-     */
-    public function scopeThemes($query)
-    {
-        return $query
-            ->select([
-                $this->getTable() . '.theme',
-                DB::raw("count(*) as cpt")
-            ])
-            ->groupBy('theme')
-            ->orderBy('cpt', 'desc')
-            ;
     }
 
 

@@ -20,7 +20,7 @@
 }
 
 .campaign .content h1 {
-  font-size: 16pt;
+  font-size: 18pt;
   margin: 0;
   padding: 0;
 }
@@ -46,19 +46,19 @@
 }
 
 .campaign .content h2 {
-  font-size: 18pt;
+  font-size: 16pt;
 }
 
 .campaign .content h3,
 .campaign .content h4,
 .campaign .content h5,
 .campaign .content h6 {
-  font-size: 14pt;
+  font-size: 15pt;
 }
 
 .campaign .content .preview {
   position: relative;
-  font-size: 1.2em;
+  font-size: 11pt;
 }
 
 .campaign .content .preview .preview-action {
@@ -77,16 +77,23 @@
 .campaign .content .campaign-link {
   display: block;
   padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   text-align: center;
+  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .campaign .content .campaign-link:hover {
   color: white;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cover-background .campaign-link {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.cover-background .campaign-link:hover {
+  background: rgba(0, 0, 0, 0.6) !important;
 }
 
 .no-header {
@@ -191,6 +198,10 @@
   padding-left: 25px;
 }
 
+.panel ul.list-unstyled {
+  padding-left: 10px;
+}
+
 .campaign-dashboard-widgets .widget {
   border-radius: 3px;
   font-size: 24px;
@@ -250,13 +261,13 @@
   vertical-align: middle;
 }
 
-.widget-recent .entity {
-  padding: 5px;
-}
-
-.widget-recent .entity .elapsed {
+.widget-recent .elapsed {
   font-size: 11px;
   color: #888;
+}
+
+.widget-recent .entity {
+  padding: 5px;
 }
 
 .widget-recent .entity .entity-image {
@@ -274,6 +285,27 @@
 .widget-recent-body {
   overflow: auto;
   max-height: 400px;
+}
+
+.widget-recent-body .flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 45px;
+  padding: 3px;
+}
+
+.widget-recent-body .flex:hover {
+  background-color: rgba(50, 50, 50, 0.05);
+}
+
+.widget-recent-body .flex .entity-image {
+  min-width: 35px;
+}
+
+.widget-recent-body .flex .blame {
+  margin-left: auto;
+  font-size: 10pt;
 }
 
 .widget-user-header {

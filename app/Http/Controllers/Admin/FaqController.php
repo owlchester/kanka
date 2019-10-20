@@ -12,7 +12,7 @@ class FaqController extends AdminCrudController
      * @var string
      */
     protected $view = 'admin.faqs';
-    protected $route = 'faqs';
+    protected $route = 'admin.faqs';
 
     /**
      * @var string
@@ -33,10 +33,16 @@ class FaqController extends AdminCrudController
         parent::__construct();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @throws \Exception
+     */
     public function index(\Illuminate\Http\Request $request)
     {
+        /** @var Faq $model */
         $model = new $this->model;
-        $this->filterService->prepare($this->view, request()->all(), $model->filterableColumns());
+        $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;

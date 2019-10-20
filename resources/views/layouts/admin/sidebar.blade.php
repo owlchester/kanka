@@ -14,8 +14,11 @@
             <li class="{{ $sidebar->admin('campaigns') }}">
                 <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ __('sidebar.campaigns') }}</span></a>
             </li>
+            <li class="{{ $sidebar->admin('patrons') }}">
+                <a href="{{ route('admin.patrons.index') }}"><i class="fab fa-patreon"></i> <span>Patrons</span></a>
+            </li>
             <li class="{{ $sidebar->admin('faqs') }}">
-                <a href="{{ route('faqs.index') }}"><i class="fa fa-question"></i> <span>FAQ</span></a>
+                <a href="{{ route('admin.faqs.index') }}"><i class="fa fa-question"></i> <span>FAQ</span></a>
             </li>
         </ul><!-- /.sidebar-menu -->
 

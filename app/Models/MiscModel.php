@@ -7,6 +7,7 @@ use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
@@ -40,6 +41,7 @@ abstract class MiscModel extends Model
         Orderable,
         Filterable,
         Tooltip,
+        Sortable,
         SubEntityScopes;
 
     /**
@@ -219,22 +221,6 @@ abstract class MiscModel extends Model
         } catch (Exception $e) {
             return '#';
         }
-    }
-
-    /**
-     * @return array
-     */
-    public function filterableColumns(): array
-    {
-        return $this->filterableColumns;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function sortableColumns(): array
-    {
-        return array_merge($this->sortableColumns, ['name', 'type', 'is_private']);
     }
 
     /**
