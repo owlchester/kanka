@@ -1,0 +1,137 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Requests\Admin\StorePatron;
+use App\Http\Requests\StoreFaq;
+use App\Models\Faq;
+use App\User;
+use Illuminate\Http\Request;
+use TCG\Voyager\Models\Role;
+
+class PatronController extends AdminCrudController
+{
+    /**
+     * @var string
+     */
+    protected $view = 'admin.patrons';
+    protected $route = 'admin.patrons';
+
+    /**
+     * @var string
+     */
+    protected $model = \App\User::class;
+
+    public $createAction = false;
+
+    /**
+     * CharacterController constructor.
+     */
+    public function __construct()
+    {
+        $this->filters = [
+            'question',
+            'locale',
+            'order',
+        ];
+
+        $this->indexActions = [
+          [
+              'params' => ['patreon_pledge' => ''],
+              'icon' => 'fab fa-patreon',
+              'text' => 'No-pledge set',
+          ]
+        ];
+
+        parent::__construct();
+    }
+
+    public function index(\Illuminate\Http\Request $request)
+    {
+        $model = new $this->model;
+        $name = $this->view;
+        $actions = $this->indexActions;
+        $route = $this->route;
+        $createAction = $this->createAction;
+
+        $models = $model
+            ->patron()
+            ->with(['boosts', 'boosts.campaign'])
+            ->filter(request()->all())
+            ->search(request()->get('search'))
+            ->paginate();
+        return view('admin.cruds.index', compact(
+            'models',
+            'name',
+            'model',
+            'actions',
+            'createAction',
+            'route'
+        ));
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StorePatron $request)
+    {
+        return $this->crudStore($request);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
+    {
+        return $this->crudEdit($user);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Faq  $character
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StorePatron $request, User $user)
+    {
+        return $this->crudUpdate($request, $user, ['patreon_pledge']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        //$this->authorize('unboost', $user);
+
+        $user->patreon_pledge = null;
+        $user->patreon_email = null;
+        $user->patreon_fullname = null;
+        $user->save();
+
+        foreach ($user->boosts as $boost) {
+            // Notify campaign owners?
+
+            $boost->delete();
+        }
+
+        /** @var Role $role */
+        $role = Role::where('name', 'patreon')->first();
+        $user->roles()->detach($role->id);
+
+        return redirect()->route($this->route . '.index')
+            ->with('success', trans($this->view . '.destroy.success', ['name' => $user->name]));
+
+    }
+}
