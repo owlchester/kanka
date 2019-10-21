@@ -99,18 +99,4 @@ trait UserScope
             }
         }
     }
-
-    /**
-     * @param Builder $query
-     * @param string|null $term
-     * @return Builder
-     */
-    public function scopeSearch(Builder $query, string $term = null)
-    {
-        if (empty($term)) {
-            return $query;
-        }
-
-        $query->orWhere($this->getTable() . '.name', 'like', "%$term%");
-    }
 }

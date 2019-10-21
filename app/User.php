@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignBoost;
+use App\Models\Concerns\Searchable;
 use App\Models\Patreon;
 use App\Models\Scopes\UserScope;
 use App\Models\UserSetting;
@@ -59,7 +60,9 @@ class User extends \TCG\Voyager\Models\User
         //'patreon_email'
     ];
 
-    use Notifiable, HasApiTokens, UserScope, UserSetting;
+    public $searchableColumns = ['email', 'settings'];
+
+    use Notifiable, HasApiTokens, UserScope, UserSetting, Searchable;
 
     /**
      * The attributes that are mass assignable.
