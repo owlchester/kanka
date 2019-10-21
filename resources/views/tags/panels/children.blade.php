@@ -14,7 +14,7 @@ if (request()->has('tag_id')) {
 }
 
 ?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('tags.show.tabs.children') }}

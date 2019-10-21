@@ -16,7 +16,7 @@
             @include($name . '._menu', ['active' => 'map-points'])
         </div>
         <div class="col-md-9">
-            <div class="box box-flat">
+            <div class="box box-solid">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ trans('entities/map-points.title', ['name' => $model->name]) }}

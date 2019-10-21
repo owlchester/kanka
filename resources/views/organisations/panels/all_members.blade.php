@@ -5,7 +5,7 @@ if (request()->has('organisation_id')) {
     $filters['organisation_id'] = request()->get('organisation_id');
 }
 ?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ __('organisations.show.tabs.all_members') }}

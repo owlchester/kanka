@@ -5,7 +5,7 @@ if (request()->has('location_id')) {
     $filters['location_id'] = request()->get('location_id');
 }
 ?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('locations.show.tabs.organisations') }}

@@ -9,7 +9,7 @@ if (request()->has('organisation_id')) {
 }
 $hasOrg = request()->has('organisation_id');
 ?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ __('organisations.fields.members') }}

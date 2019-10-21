@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Family $model */?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('families.show.tabs.members') }}

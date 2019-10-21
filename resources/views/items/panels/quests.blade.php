@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Item $model */?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('items.show.tabs.quests') }}

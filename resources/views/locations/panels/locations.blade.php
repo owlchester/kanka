@@ -3,7 +3,7 @@ $filters = [];
 if (request()->has('parent_location_id')) {
     $filters['parent_location_id'] = request()->get('parent_location_id');
 }
-?><div class="box box-flat">
+?><div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('locations.show.tabs.locations') }}

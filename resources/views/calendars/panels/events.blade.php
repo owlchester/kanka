@@ -2,7 +2,7 @@
 /** @var \App\Models\Calendar $model */
 /** @var \App\Models\EntityEvent $event */
 ?>
-<div class="box box-flat">
+<div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('calendars.show.tabs.events') }}
@@ -25,6 +25,9 @@
             </thead>
             <tbody>
             @foreach ($r as $event)
+                @if (empty($event->entity) || empty($event->entity->child))
+                    @continue
+                @endif
                 <tr>
                     <td class="avatar">
                         <a class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');" title="{{ $event->entity->name }}" href="{{ $event->entity->url() }}"></a>
