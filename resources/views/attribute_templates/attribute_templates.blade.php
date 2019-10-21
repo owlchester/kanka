@@ -5,7 +5,8 @@
         ['url' => route('attribute_templates.index'), 'label' => __('attribute_templates.index.title')],
         ['url' => route('attribute_templates.show', $model), 'label' => $model->name],
         trans('attribute_templates.show.tabs.attribute_templates')
-    ]
+    ],
+    'canonical' => true,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

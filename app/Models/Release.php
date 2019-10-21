@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use TCG\Voyager\Models\Post;
 
 class Release extends Post
@@ -15,6 +16,6 @@ class Release extends Post
      */
     public function getSlug()
     {
-        return $this->id . '-' . str_slug($this->title);
+        return $this->id . '-' . Str::slug($this->title);
     }
 }

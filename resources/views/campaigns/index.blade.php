@@ -3,7 +3,8 @@
     'description' => trans('campaigns.index.description'),
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')]
-    ]
+    ],
+    'canonical' => true,
 ])
 
 @section('content')

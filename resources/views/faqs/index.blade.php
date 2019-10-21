@@ -1,3 +1,4 @@
+<?php use Illuminate\Support\Str ?>
 @extends('layouts.front', [
     'title' => trans('front.menu.faq'),
     'menus' => [
@@ -25,7 +26,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'free', 'slug' => str_slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'free', 'slug' => Str::slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.free.answer', [
                             'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
@@ -33,38 +34,38 @@
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => str_slug(__('faq.multiworld.question'))]) }}">{{ __('faq.multiworld.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => Str::slug(__('faq.multiworld.question'))]) }}">{{ __('faq.multiworld.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.multiworld.answer')) !!}</p>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => str_slug(__('faq.visibility.question'))]) }}">{{ __('faq.visibility.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => Str::slug(__('faq.visibility.question'))]) }}">{{ __('faq.visibility.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.visibility.answer')) !!}</p>
                         <hr>
 
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'map', 'slug' => str_slug(__('faq.map.question'))]) }}">{{ __('faq.map.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'map', 'slug' => Str::slug(__('faq.map.question'))]) }}">{{ __('faq.map.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.map.answer')) !!}</p>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => str_slug(__('faq.conversations.question'))]) }}">{{ __('faq.conversations.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">{{ __('faq.conversations.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.conversations.answer')) !!}</p>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => str_slug(__('faq.entity-notes.question'))]) }}">{{ __('faq.entity-notes.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => Str::slug(__('faq.entity-notes.question'))]) }}">{{ __('faq.entity-notes.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.entity-notes.answer')) !!}</p>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'help', 'slug' => str_slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.help.answer', [
                             'discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])
@@ -72,27 +73,27 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => str_slug(__('faq.permissions.question'))]) }}">{{ __('faq.permissions.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => Str::slug(__('faq.permissions.question'))]) }}">{{ __('faq.permissions.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.permissions.answer')) !!}</p>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/ikNPzNgjYmg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => str_slug(__('faq.attribute-templates.question'))]) }}">{{ __('faq.attribute-templates.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">{{ __('faq.attribute-templates.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.attribute-templates.answer')) !!}</p>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/qKnTpuePqUA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => str_slug(__('faq.mobile.question'))]) }}">{{ __('faq.mobile.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">{{ __('faq.mobile.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.mobile.answer')) !!}</p>
                         <hr>
 
                         <h4>
-                            <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => str_slug(__('faq.plans.question'))]) }}">{{ __('faq.plans.question') }}</a>
+                            <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">{{ __('faq.plans.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.plans.answer')) !!}</p>
 

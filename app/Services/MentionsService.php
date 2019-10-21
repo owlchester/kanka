@@ -147,6 +147,8 @@ class MentionsService
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . route('entities.tooltip', $entity). '"'
+//                    . ' data-mention-url="' . route('entities.tooltip', $entity). '"'
+//                    . ' title="<i class=\'fa fa-spinner fa-spin\'></i>"'
                     . '>'
                     . Arr::get($data, 'text', $entity->name)
                     . '</a>';

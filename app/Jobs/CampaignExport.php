@@ -85,7 +85,7 @@ class CampaignExport implements ShouldQueue
                 try {
                     $property = Str::camel($entity);
                     foreach ($this->campaign->$property()->with('entity')->get() as $model) {
-                        $zipper->addString($entity . '/' . str_slug($model->name) . '.json', $model->export());
+                        $zipper->addString($entity . '/' . Str::slug($model->name) . '.json', $model->export());
                         if (!empty($model->image) && Storage::exists($model->image)) {
                             $zipper->addString($model->image, Storage::get($model->image));
                         }

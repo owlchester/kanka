@@ -375,3 +375,5 @@ Route::group([
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/sitemap', 'Front\SitemapController@index')->name('front.sitemap');

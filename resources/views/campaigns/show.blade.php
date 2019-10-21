@@ -2,7 +2,8 @@
     'title' => trans('campaigns.show.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')]
-    ]
+    ],
+    'canonical' => true,
 ])
 
 @section('og')

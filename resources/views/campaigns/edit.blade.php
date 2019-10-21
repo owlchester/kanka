@@ -4,7 +4,8 @@
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         trans('crud.update')
-    ]
+    ],
+    'canonical' => true,
 ])
 
 @section('fullpage-form')

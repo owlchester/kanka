@@ -4,7 +4,8 @@
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => $campaign->name],
         trans('campaigns.show.tabs.roles')
-    ]
+    ],
+    'canonical' => true,
 ])
 
 @section('content')

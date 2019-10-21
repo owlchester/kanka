@@ -6,7 +6,8 @@
         ['url' => $entity->url(), 'label' => $entity->name],
         ['url' => $entity->url() . '#calendars', 'label' => trans('crud.tabs.events')],
         trans('crud.update'),
-    ]
+    ],
+    'canonical' => true,
 ])
 @section('content')
     <div class="panel panel-default">

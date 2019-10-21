@@ -18,6 +18,11 @@
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
+    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
+@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+    <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
+@endforeach
+
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>

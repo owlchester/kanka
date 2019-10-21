@@ -52761,14 +52761,39 @@ function refreshNotificationList() {
 
 function initTooltips() {
   $('[data-toggle="tooltip"]').tooltip(); // New tooltips with ajax call
+  // $('[data-toggle="tooltip-ajax"]').on('mouseenter', function(e) {
+  //     var self = $(this);
+  //     console.log('mention-loaded?', self.data('mention-loaded'));
+  //     if (self.data('mention-loaded')) {
+  //         return;
+  //     }
+  //
+  //     e.preventDefault();
+  //     setTimeout(function() {
+  //         $.ajax({
+  //             url: self.data('mention-url'),
+  //             async: true
+  //         })
+  //         .done(function(data) {
+  //             console.log('data from request', data[0]);
+  //             self.data('original-title', data[0]);
+  //             //self.prop('title', data[0]);
+  //             self.data('mention-loaded', true);
+  //             console.log('finished setting data', self.data('mention-loaded'));
+  //         });
+  //     }, 5);
+  // });
 
   $('[data-toggle="tooltip-ajax"]').tooltip({
     title: entityTooltip,
-    delay: 300,
+    delay: 250,
     trigger: 'hover',
     placement: 'auto',
     template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner tooltip-ajax"></div>' + '</div>',
     html: true
+  });
+  $('[data-toggle="tooltip-ajax"]').click(function (e) {
+    $(this).tooltip('hide');
   });
 } // Helpers are injected directly in the window functions.
 
@@ -54298,20 +54323,20 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\settings.scss */"./resources/assets/sass/settings.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
-__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
-module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\tinymce.scss */"./resources/assets/sass/tinymce.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\settings.scss */"./resources/assets/sass/settings.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
+__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\tinymce.scss */"./resources/assets/sass/tinymce.scss");
 
 
 /***/ }),

@@ -5,6 +5,7 @@
     'title' => trans('dashboard.title') . ' ' . $campaign->name,
     'description' => trans('dashboard.description'),
     'breadcrumbs' => false,
+    'canonical' => true,
 ])
 
 @section('og')

@@ -15,7 +15,7 @@ class ReleaseController extends Controller
     public function index()
     {
         $models = Release::with(['category'])
-            ->where('status', 'PUBLISHED')
+            ->published()
             ->orderBy('created_at', 'DESC')
             ->paginate();
         return view('releases.index', compact('models'));

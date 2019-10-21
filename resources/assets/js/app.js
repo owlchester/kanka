@@ -445,9 +445,31 @@ function initTooltips()
     $('[data-toggle="tooltip"]').tooltip();
 
     // New tooltips with ajax call
+    // $('[data-toggle="tooltip-ajax"]').on('mouseenter', function(e) {
+    //     var self = $(this);
+    //     console.log('mention-loaded?', self.data('mention-loaded'));
+    //     if (self.data('mention-loaded')) {
+    //         return;
+    //     }
+    //
+    //     e.preventDefault();
+    //     setTimeout(function() {
+    //         $.ajax({
+    //             url: self.data('mention-url'),
+    //             async: true
+    //         })
+    //         .done(function(data) {
+    //             console.log('data from request', data[0]);
+    //             self.data('original-title', data[0]);
+    //             //self.prop('title', data[0]);
+    //             self.data('mention-loaded', true);
+    //             console.log('finished setting data', self.data('mention-loaded'));
+    //         });
+    //     }, 5);
+    // });
     $('[data-toggle="tooltip-ajax"]').tooltip({
         title: entityTooltip,
-        delay: 300,
+        delay: 250,
         trigger: 'hover',
         placement: 'auto',
         template: '<div class="tooltip" role="tooltip">' +
@@ -455,6 +477,10 @@ function initTooltips()
             '<div class="tooltip-inner tooltip-ajax"></div>' +
             '</div>',
         html: true
+    });
+
+    $('[data-toggle="tooltip-ajax"]').click(function (e) {
+        $(this).tooltip('hide');
     });
 }
 
