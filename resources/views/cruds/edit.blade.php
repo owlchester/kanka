@@ -5,7 +5,8 @@
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
         trans('crud.update'),
-    ]
+    ],
+    'canonical' => $model,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

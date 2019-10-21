@@ -10,8 +10,8 @@ $headerImage = !empty($model->entity->header_image) && $campaign->campaign()->bo
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
-        $model->name,
     ],
+    'canonical' => true
 ])
 
 @section('og')

@@ -333,6 +333,9 @@ abstract class MiscModel extends Model
             '</a>';
     }
 
+    /**
+     * @return string|null
+     */
     public function getEntityTooltipAttribute()
     {
         if ($this->entity) {

@@ -6,7 +6,8 @@
         ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.relations')
-    ]
+    ],
+    'canonical' => true
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

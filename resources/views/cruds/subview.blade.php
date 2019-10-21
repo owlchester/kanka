@@ -7,6 +7,6 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 
-@include('entities.components.header', ['model' => $model]);
+@include('entities.components.header', ['model' => $model])
 
 @include($fullview)

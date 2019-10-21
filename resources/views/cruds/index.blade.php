@@ -3,7 +3,8 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
-    ]
+    ],
+    'canonical' => true,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

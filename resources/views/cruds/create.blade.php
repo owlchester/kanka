@@ -4,7 +4,8 @@
     'breadcrumbs' => [
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')],
         trans('crud.create'),
-    ]
+    ],
+    'canonical' => true,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

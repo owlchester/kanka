@@ -3,10 +3,10 @@
     'description' => trans($name . '.index.description',  ['name' => CampaignLocalization::getCampaign()->name]),
     'breadcrumbs' => [
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
-    ]
+    ],
+    'canonical' => true,
 ])
 @inject('campaign', 'App\Services\CampaignService')
-
 
 @section('content')
     <div class="row margin-bottom">
