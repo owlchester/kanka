@@ -45,39 +45,53 @@ class SitemapService
     /**
      * @return array
      */
-    public function links(): array
+    public function sitemaps(): array
     {
         if (empty($this->locale)) {
             return $this->base();
         }
         elseif (!empty($this->page) && method_exists($this, $this->page)) {
-            return $this->{$this->page}();
+            return [];
         }
         return $this->language();
     }
 
-    protected function language(): array
+    public function urls(): array
     {
-        $base = [
-            '/',
-            'about',
-            'privacy-policy',
-            'help',
-            'faq',
-            'features',
-            'roadmap',
-            'community',
-            'public-campaigns',
-            'releases',
-        ];
-
-        foreach ($base as $link) {
-            $links[] = LaravelLocalization::localizeURL($link, $this->locale);
+        if (empty($this->locale)) {
+            return [];
         }
 
-        // Pages
-        $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'releases']);
-        $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'campaigns']);
+        if (!empty($this->page) && method_exists($this, $this->page)) {
+            return $this->{$this->page}();
+        }
+
+        return $this->language(true);
+    }
+
+    protected function language(bool $urls = false): array
+    {
+        if ($urls) {
+            // Pages
+            $links = [];
+        } else {
+            $base = [
+                '/',
+                'about',
+                'privacy-policy',
+                'help',
+                'faq',
+                'features',
+                'roadmap',
+                'community',
+                'public-campaigns',
+                'releases',
+            ];
+
+            foreach ($base as $link) {
+                $links[] = LaravelLocalization::localizeURL($link, $this->locale);
+            }
+        }
 
         return $links;
     }
@@ -120,6 +134,8 @@ class SitemapService
         $links = [];
         foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $links[] = route('front.sitemap', ['locale' => $localeCode]);
+            $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'releases']);
+            $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'campaigns']);
         }
         return $links;
     }

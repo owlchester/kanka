@@ -32,12 +32,14 @@ class SitemapController extends Controller
      */
     public function index()
     {
-        $links = $this->sitemapService
+        $this->sitemapService
             ->locale(request()->get('locale', ''))
-            ->page(request()->get('page', ''))
-            ->links();
+            ->page(request()->get('page', ''));
 
-        $contents = view('front.sitemap', compact('links'));
+        $sitemaps = $this->sitemapService->sitemaps();
+        $urls = $this->sitemapService->urls();
+
+        $contents = view('front.sitemap', compact('urls', 'sitemaps'));
         return response($contents)->withHeaders([
             'Content-Type' => 'text/xml'
         ]);
