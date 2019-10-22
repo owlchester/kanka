@@ -8,6 +8,7 @@ use App\Models\CampaignInvite;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -23,6 +24,16 @@ class PermissionService
      */
     private $entityService;
 
+    /**
+     * @var MiscModel
+     */
+    private $baseModel;
+
+    /**
+     * Permissions setup on the campaign
+     * @var bool|array
+     */
+    private $basePermissions = false;
     /**
      * @var array
      */
@@ -40,6 +51,16 @@ class PermissionService
     public function __construct(EntityService $entityService)
     {
         $this->entityService = $entityService;
+    }
+
+    /**
+     * @param MiscModel $model
+     * @return $this
+     */
+    public function base(MiscModel $model): self
+    {
+        $this->base = $model;
+        return $this;
     }
 
     /**
@@ -240,5 +261,46 @@ class PermissionService
         }
 
         return $permissions;
+    }
+
+    /**
+     * @param string $action
+     * @param int $role
+     * @param int $user
+     * @return bool
+     */
+    public function inherited(string $action, int $role = 0, int $user = 0): bool
+    {
+        if (empty($this->base)) {
+            return false;
+        }
+
+        if ($this->basePermissions === false) {
+            $campaign = \App\Facades\CampaignLocalization::getCampaign();
+            $this->basePermissions = [
+                'roles' => [],
+                'users' => []
+            ];
+
+            $roles = $campaign->roles;
+            foreach ($roles as $role) {
+                $campaignPermissions = CampaignPermission::whereNull('entity_id')->where('campaign_role_id', $campaign->id)->get();
+                foreach ($campaignPermissions as $campaignPermission) {
+                    $key = $campaignPermission->key . '_' . $action;
+                    if (!empty($campaignPermission->campaign_role_id)) {
+                        $this->basePermissions['roles'][$key] = true;
+                    } else {
+                        $key .= $campaignPermission->user_id;
+                        $this->basePermissions['users'][$key] = true;
+                    }
+                }
+            }
+        }
+
+        $key = $this->baseModel->type . '_' . $action;
+        if (!empty($role)) {
+            return isset($this->basePermissions['roles'][$key]);
+        }
+        return isset($this->basePermissions['users'][$key]);
     }
 }
