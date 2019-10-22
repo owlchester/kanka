@@ -1413,13 +1413,13 @@ textarea {
 }
 
 a {
-  color: #3097D1;
+  color: #3c8dbc;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #216a94;
+  color: #296282;
   text-decoration: underline;
 }
 
@@ -4362,7 +4362,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 
 .btn-link {
-  color: #3097D1;
+  color: #3c8dbc;
   font-weight: normal;
   border-radius: 0;
 }
@@ -4385,7 +4385,7 @@ fieldset[disabled] .btn-link {
 
 .btn-link:hover,
 .btn-link:focus {
-  color: #216a94;
+  color: #296282;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -5049,7 +5049,7 @@ tbody.collapse.in {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: #3097D1;
+  border-color: #3c8dbc;
 }
 
 .nav .nav-divider {
@@ -5904,7 +5904,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 6px 12px;
   line-height: 1.6;
   text-decoration: none;
-  color: #3097D1;
+  color: #3c8dbc;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -5928,7 +5928,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span:hover,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #216a94;
+  color: #296282;
   background-color: #eeeeee;
   border-color: #ddd;
 }
@@ -6166,7 +6166,7 @@ a.label:focus {
 
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-  color: #3097D1;
+  color: #3c8dbc;
   background-color: #fff;
 }
 
@@ -6269,7 +6269,7 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #3097D1;
+  border-color: #3c8dbc;
 }
 
 .alert {

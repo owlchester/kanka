@@ -3161,6 +3161,10 @@ td.breakable {
   cursor: pointer;
 }
 
+.margin-top {
+  margin-top: 25px;
+}
+
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;

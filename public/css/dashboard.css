@@ -10,7 +10,7 @@
   min-height: 0;
   text-align: justify;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .campaign .content h1,
@@ -79,21 +79,21 @@
   padding: 8px 12px;
   background: rgba(0, 0, 0, 0.1);
   text-align: center;
-  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-size: 1.1em;
 }
 
 .campaign .content .campaign-link:hover {
   color: white;
-  background: rgba(0, 0, 0, 0.2);
+  background: #3c8dbc;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .cover-background .campaign-link {
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
 }
 
 .cover-background .campaign-link:hover {
-  background: rgba(0, 0, 0, 0.6) !important;
+  background: #3c8dbc !important;
 }
 
 .no-header {

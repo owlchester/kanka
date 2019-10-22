@@ -369,3 +369,17 @@ footer {
 .tt-cursor {
   color: $Hard !important;
 }
+
+
+/**
+ * Dashboard
+ */
+.cover-background {
+  .campaign-link {
+    background: rgba(0, 0, 0, 0.6) !important;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.9) !important;
+    }
+  }
+}

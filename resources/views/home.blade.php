@@ -128,18 +128,12 @@
     @endforeach
     </div>
 
-    @if (count($widgets) == 0 && $settings)
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <a href="{{ route('dashboard.setup') }}">
-                <h3>{{ __('dashboard.helpers.setup') }}</h3>
-            </a>
-        </div>
-    </div>
-    @elseif ($settings)
-        <div class="row">
-            <div class="col-md-12 text-center visible-xs">
-                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-block" title="{{ trans('dashboard.settings.title') }}"><i class="fa fa-cog"></i> {{ trans('dashboard.settings.title') }}</a>
+    @if ($settings)
+        <div class="row margin-top">
+            <div class="col-md-12 text-center">
+                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-lg" title="{{ trans('dashboard.settings.title') }}">
+                    <i class="fa fa-cog"></i> {{ trans('dashboard.settings.title') }}
+                </a>
             </div>
         </div>
     @endif

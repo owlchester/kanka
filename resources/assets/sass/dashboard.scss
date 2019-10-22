@@ -13,7 +13,7 @@
     min-height: 0;
     text-align: justify;
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
 
     h1, .more, .preview {
       text-shadow: $text-shadow;
@@ -71,11 +71,11 @@
       padding: 8px 12px;
       background: rgba(0, 0, 0, 0.1);
       text-align: center;
-      box-shadow: $box-shadow;
+      font-size: 1.1em;
 
       &:hover {
         color: white;
-        background: rgba(0, 0, 0, 0.2);
+        background: $link-color;
         box-shadow: $box-shadow-hover;
       }
     }
@@ -83,10 +83,11 @@
 }
 .cover-background {
     .campaign-link {
-      background: rgba(0, 0, 0, 0.4) !important;
+      background: rgba(0, 0, 0, 0.6) !important;
 
       &:hover {
-        background: rgba(0, 0, 0, 0.6) !important;
+        //background: rgba(0, 0, 0, 0.9) !important;
+        background: $link-color !important;
       }
     }
 }

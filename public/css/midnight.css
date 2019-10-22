@@ -435,6 +435,18 @@ footer .footer {
   color: #fff !important;
 }
 
+/**
+ * Dashboard
+ */
+
+.cover-background .campaign-link {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.cover-background .campaign-link:hover {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
 body {
   background-color: #061F2F;
   color: #d3d4d4;
