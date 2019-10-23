@@ -141,6 +141,9 @@
   .panel-heading-entity {
     transition: all 3s ease;
     padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 20% 50%;
 
     h3 {
       transition: none;
