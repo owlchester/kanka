@@ -279,6 +279,8 @@ return [
             'role'      => 'Role',
         ],
         'helper'    => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
+        'inherited' => 'This role already this permission set for this entity type.',
+        'inherited_by' => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
         'success'   => 'Permissions saved.',
         'title'     => 'Permissions',
     ],

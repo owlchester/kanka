@@ -181,6 +181,7 @@ class CrudController extends Controller
         $params['tabAttributes'] = $this->tabAttributes;
         $params['tabBoosted'] = $this->tabBoosted && CampaignLocalization::getCampaign()->boosted();
         $params['entityAttributeTemplates'] = $templates;
+        $params['entityType'] = $model->getEntityType();
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
@@ -296,7 +297,8 @@ class CrudController extends Controller
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
-            'tabBoosted' => $this->tabBoosted && CampaignLocalization::getCampaign()->boosted()
+            'tabBoosted' => $this->tabBoosted && CampaignLocalization::getCampaign()->boosted(),
+            'entityType' => $model->getEntityType()
         ];
 
         return view('cruds.forms.edit', $params);

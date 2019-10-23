@@ -30,6 +30,11 @@ class PermissionService
     private $baseModel;
 
     /**
+     * @var string
+     */
+    private $type;
+
+    /**
      * Permissions setup on the campaign
      * @var bool|array
      */
@@ -59,7 +64,18 @@ class PermissionService
      */
     public function base(MiscModel $model): self
     {
-        $this->base = $model;
+        $this->baseModel = $model;
+        return $this;
+    }
+
+    /**
+     * Set the entity type
+     * @param string $type
+     * @return PermissionService
+     */
+    public function type(string $type): self
+    {
+        $this->type = $type;
         return $this;
     }
 
@@ -271,7 +287,7 @@ class PermissionService
      */
     public function inherited(string $action, int $role = 0, int $user = 0): bool
     {
-        if (empty($this->base)) {
+        if (empty($this->type)) {
             return false;
         }
 
@@ -282,25 +298,38 @@ class PermissionService
                 'users' => []
             ];
 
-            $roles = $campaign->roles;
-            foreach ($roles as $role) {
-                $campaignPermissions = CampaignPermission::whereNull('entity_id')->where('campaign_role_id', $campaign->id)->get();
+            /** @var CampaignRole $role */
+            foreach ($campaign->roles()->with('users')->get() as $role) {
+                $campaignPermissions = $role->permissions()
+                    ->whereNull('entity_id')
+                    ->whereNull('user_id')
+                    ->get();
+                $users = $role->users->pluck('user_id');
                 foreach ($campaignPermissions as $campaignPermission) {
-                    $key = $campaignPermission->key . '_' . $action;
-                    if (!empty($campaignPermission->campaign_role_id)) {
-                        $this->basePermissions['roles'][$key] = true;
-                    } else {
-                        $key .= $campaignPermission->user_id;
-                        $this->basePermissions['users'][$key] = true;
+                    $key = $campaignPermission->key;
+                    $this->basePermissions['roles'][$key] = true;
+                    foreach ($users as $permissionUser) {
+                        $this->basePermissions['users'][$permissionUser][$key] = $role->name;
                     }
                 }
             }
         }
 
-        $key = $this->baseModel->type . '_' . $action;
+        $key = $this->type . '_' . $action;
         if (!empty($role)) {
             return isset($this->basePermissions['roles'][$key]);
         }
-        return isset($this->basePermissions['users'][$key]);
+        return isset($this->basePermissions['users'][$user][$key]);
+    }
+
+    /**
+     * @param string $action
+     * @param int $user
+     * @return string
+     */
+    public function inheritedRole(string $action, int $user): string
+    {
+        $key = $this->type . '_' . $action;
+        return $this->basePermissions['users'][$user][$key];
     }
 }

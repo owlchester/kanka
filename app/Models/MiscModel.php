@@ -202,9 +202,9 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEntityType()
+    public function getEntityType(): string
     {
         return $this->entityType;
     }

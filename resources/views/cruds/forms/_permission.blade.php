@@ -3,7 +3,9 @@
 /** @var \App\Services\PermissionService $permissionService */
 $permissions = isset($model) ? $permissionService->entityPermissions($model->entity) : [];
 if (isset($model)) {
-    $permissionService->base($model);
+    $permissionService->type($entityType);
+} else {
+    $permissionService->type($entityType);
 }
 @endphp
 
@@ -18,7 +20,7 @@ if (isset($model)) {
         <th><i class="fa fa-trash visible-xs visible-sm" title="{{ __('crud.permissions.actions.delete') }}"></i></th>
         <th><i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i></th>
     </tr>
-    @foreach (Auth::user()->campaign->roles as $role)
+    @foreach ($campaign->campaign()->roles as $role)
         @if (!$role->is_admin)
             <tr>
                 <td>{{ $role->name }}</td>
@@ -73,7 +75,7 @@ if (isset($model)) {
     <tr>
         <th colspan="5">{{ __('crud.permissions.fields.member') }}</th>
     </tr>
-    @foreach (Auth::user()->campaign->members()->with('user')->get() as $member)
+    @foreach ($campaign->campaign()->members()->with('user')->get() as $member)
         @if (!$member->isAdmin())
             <tr>
                 <td>{{ $member->user->name }}</td>
@@ -83,7 +85,9 @@ if (isset($model)) {
                         <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.read') }}</span>
 
                         @if ($permissionService->inherited('read', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
+                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRole('read', $member->user_id))
+                           ]) }}" data-toggle="tooltip"></i>
                         @endif
                     </label>
                 </td>
@@ -93,7 +97,9 @@ if (isset($model)) {
                         <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.edit') }}</span>
 
                         @if ($permissionService->inherited('edit', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
+                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRole('edit', $member->user_id))
+                           ]) }}" data-toggle="tooltip"></i>
                         @endif
                     </label>
                 </td>
@@ -103,7 +109,9 @@ if (isset($model)) {
                         <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.delete') }}</span>
 
                         @if ($permissionService->inherited('delete', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
+                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRole('delete', $member->user_id))
+                           ]) }}" data-toggle="tooltip"></i>
                         @endif
                     </label>
                 </td>
@@ -113,7 +121,9 @@ if (isset($model)) {
                         <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.entity_note') }}</span>
 
                         @if ($permissionService->inherited('entity-note', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
+                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRole('entity-note', $member->user_id))
+                           ]) }}" data-toggle="tooltip"></i>
                         @endif
                     </label>
                 </td>
