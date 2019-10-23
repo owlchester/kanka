@@ -145,6 +145,10 @@
     background-repeat: no-repeat;
     background-position: 20% 50%;
 
+    &:hover {
+      background-position: 50% 50%;
+    }
+
     h3 {
       transition: none;
       background-color: rgba(0, 0, 0, 0.2);
@@ -157,12 +161,6 @@
         text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 4px;
         font-size: 18px;
       }
-    }
-  }
-
-  &:hover {
-    .panel-heading-entity {
-      background-position: 50% 50%;
     }
   }
 

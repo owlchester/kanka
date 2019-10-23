@@ -145,6 +145,13 @@
 .panel .panel-heading-entity {
   transition: all 3s ease;
   padding: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 20% 50%;
+}
+
+.panel .panel-heading-entity:hover {
+  background-position: 50% 50%;
 }
 
 .panel .panel-heading-entity h3 {
@@ -159,10 +166,6 @@
   color: white !important;
   text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 4px;
   font-size: 18px;
-}
-
-.panel:hover .panel-heading-entity {
-  background-position: 50% 50%;
 }
 
 .panel .panel-body .pinned-entity {
