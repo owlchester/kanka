@@ -76,6 +76,7 @@ TEXT
         'title'     => 'FAQ :name',
     ],
     'user-switch'           => [
+        'answer'    => 'Les permissions peuvent rapidement devenir compliqué, surtout au sein de grande campagne. En tant qu\'administateur d\'une campagne, naviguer vers la page affichant les membres d\'une campagne permet de cliquer sur le bouton "Usurper". Cela permet d\'afficher la campagne tel que visible par le compte usurpé avec les permissions de celui-ci.',
         'question'  => 'Les permissions de ma campagne sont définies, comment les tester?',
     ],
     'visibility'            => [

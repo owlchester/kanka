@@ -85,6 +85,7 @@ return [
             'tab'       => 'Attribut visible sous l\'onglet Attributs.',
         ],
     ],
+    'boosted'           => 'Boosté',
     'bulk'              => [
         'errors'        => [
             'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
@@ -152,6 +153,7 @@ return [
         'excerpt'               => 'Extrait',
         'family'                => 'Famille',
         'files'                 => 'Fichiers',
+        'header_image'          => 'Image d\'en-tête',
         'image'                 => 'Image',
         'is_private'            => 'Privé',
         'is_star'               => 'Epinglé',
@@ -162,6 +164,7 @@ return [
         'race'                  => 'Race',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
+        'tooltip'               => 'Infobulle',
         'visibility'            => 'Visibilité',
     ],
     'files'             => [
@@ -199,11 +202,13 @@ return [
     'hints'             => [
         'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
+        'header_image'          => 'Cette image s\'affiche au dela de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
         'map_limitations'       => 'Formats supportés: jpg, png, gif et svg. Taille maximale: :size.',
+        'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le text ci-dessous.',
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soit-même" signifie que seulement tu peux le voir.',
     ],
     'history'           => [
@@ -257,8 +262,8 @@ return [
         'system'                => 'Système',
     ],
     'permissions'       => [
-        'action'    => 'Action',
-        'actions'   => [
+        'action'        => 'Action',
+        'actions'       => [
             'bulk'          => [
                 'add'       => 'Ajouter',
                 'remove'    => 'Retirer',
@@ -268,14 +273,16 @@ return [
             'entity_note'   => 'Notes d\'entité',
             'read'          => 'Lire',
         ],
-        'allowed'   => 'Permis',
-        'fields'    => [
+        'allowed'       => 'Permis',
+        'fields'        => [
             'member'    => 'Membre',
             'role'      => 'Rôle',
         ],
-        'helper'    => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
-        'success'   => 'Permissions enregistrées.',
-        'title'     => 'Permissions',
+        'helper'        => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
+        'inherited'     => 'Ce rôle a déjà cette permission pour ce type d\'entité.',
+        'inherited_by'  => 'Cet utilisateur fait partie du rôle :role qui permet cette permission pour ce type d\'entité.',
+        'success'       => 'Permissions enregistrées.',
+        'title'         => 'Permissions',
     ],
     'placeholders'      => [
         'calendar'      => 'Choix du calendrier',
@@ -312,6 +319,7 @@ return [
     'select'            => 'Sélection',
     'tabs'              => [
         'attributes'    => 'Attributs',
+        'boost'         => 'Boost',
         'calendars'     => 'Calendriers',
         'default'       => 'Défaut',
         'events'        => 'Événements',
@@ -322,6 +330,7 @@ return [
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
+        'tooltip'       => 'Infobulle',
     ],
     'update'            => 'Modifier',
     'users'             => [

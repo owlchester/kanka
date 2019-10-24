@@ -40,6 +40,8 @@ return [
         'title'         => 'Export Campagne :name',
     ],
     'fields'                            => [
+        'boosted'                       => 'Boosté par',
+        'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Nombre d\'entités',
         'entity_personality_visibility' => 'Visibilité des traits de personnages',
@@ -52,30 +54,30 @@ return [
         'name'                          => 'Nom',
         'rpg_system'                    => 'Système RPG',
         'system'                        => 'Système',
+        'theme'                         => 'Thème',
         'visibility'                    => 'Visibilité',
     ],
     'following'                         => 'Suivant',
     'helpers'                           => [
+        'boosted'                       => 'Cette campagne est boostée ce qui active certaines fonctionalités. Plus de détails sur la page :settings.',
+        'css'                           => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
         'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'excerpt'                       => 'L\'extrait de la campagne apparait sur le tableau de bord.',
         'locale'                        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
         'name'                          => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
         'system'                        => 'Si la campagne est publiquement visible, elle sera affichée dans la page :link.',
+        'systems'                       => 'A définir.',
+        'theme'                         => 'Définir le thème pour la campagne qui surplante le thème de l\'utilisateur.',
         'visibility'                    => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Créer une nouvelle campagne',
-                'title'         => 'Nouvelle Campagne',
+                'title' => 'Nouvelle Campagne',
             ],
         ],
-        'add'           => 'Nouvelle Campagne',
-        'description'   => 'Gère tes campagnes.',
-        'list'          => 'Tes campagnes',
-        'select'        => 'Choisi une campagne',
-        'title'         => 'Campagnes',
+        'title'     => 'Campagnes',
     ],
     'invites'                           => [
         'actions'       => [
@@ -173,6 +175,7 @@ return [
         'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
     'panels'                            => [
+        'boosted'   => 'Boosté',
         'dashboard' => 'Tableau de bord',
         'permission'=> 'Permission',
         'sharing'   => 'Partage',
@@ -283,6 +286,7 @@ return [
     ],
     'show'                              => [
         'actions'       => [
+            'boost' => 'Booster la campagne',
             'leave' => 'Quitter la campagne',
         ],
         'description'   => 'Détail d\'une campagne',

@@ -42,11 +42,13 @@ return [
     ],
     'settings'      => [
         'fields'    => [
+            'advanced_mentions' => 'Mentions Avancées',
             'date_format'       => 'Format de date',
             'default_nested'    => 'Vue imbriquée par défaut',
             'pagination'        => 'Pagination (éléments par page)',
         ],
         'hints'     => [
+            'advanced_mentions' => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',
             'default_nested'    => 'Actives cette option pour que les listes s\'affichent par défaut de manière imbriquées.',
         ],
         'success'   => 'Paramètres modifiés.',

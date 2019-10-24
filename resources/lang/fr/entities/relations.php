@@ -2,14 +2,13 @@
 
 return [
     'create'        => [
-        'description'   => 'Créer une nouvelle relation',
         'success'       => 'Relation ajoutée pour :name.',
         'title'         => 'Nouvelle relation pour :name',
     ],
     'destroy'       => [
         'success'   => 'Relation supprimée pour :name.',
     ],
-    'edit'          => [
+    'update'        => [
         'success'   => 'Relation modifiée pour :name.',
         'title'     => 'Modifier la relation de :name',
     ],
@@ -20,6 +19,7 @@ return [
         'target'    => 'Cible',
         'two_way'   => 'Créer une relation miroir',
     ],
+    'helper' => 'Définir des relations entre entités avec leur description, attitude et visibilité. Les relations peuvent aussi être épinglée sur le menu de l\'entité.',
     'hints'         => [
         'mirrored'  => [
             'text'  => 'Cette relation est liée avec :link.',
@@ -32,4 +32,7 @@ return [
         'relation'  => 'Nature de la relation',
         'target'    => 'Choix d\'un élément',
     ],
+    'show' => [
+        'title' => 'Relations de :name',
+    ]
 ];
