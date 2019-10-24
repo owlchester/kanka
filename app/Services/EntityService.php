@@ -441,7 +441,7 @@ class EntityService
      */
     public function getClass($entity)
     {
-        return array_get($this->entities, $entity, false);
+        return Arr::get($this->entities, $entity, false);
     }
 
     /**

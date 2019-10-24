@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-3">
-        <div class="box">
-            <div class="box-body box-profile">
+        <div class="box box-solid">
+            <div class="box-body">
                 @include ('cruds._image')
 
                 <h3 class="profile-username text-center">{{ $model->name }}

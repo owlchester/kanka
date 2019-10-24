@@ -138,7 +138,7 @@ class CampaignDashboardWidgetController extends Controller
             '' => 'All',
         ];
 
-        foreach ($this->entityService->getEnabledEntities(CampaignLocalization::getCampaign()) as $entity) {
+        foreach ($this->entityService->getEnabledEntities(CampaignLocalization::getCampaign(), ['menu_links']) as $entity) {
             $entities[$entity] = __('entities.' . $entity);
         }
 

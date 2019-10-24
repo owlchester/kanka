@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Str;
 /** @var \App\Models\Entity $entity */
 /** @var \App\Models\CampaignDashboardWidget $widget */
 if (!isset($offset)) {
