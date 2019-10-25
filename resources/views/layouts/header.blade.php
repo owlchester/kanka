@@ -115,8 +115,12 @@ if (Auth::check()) {
                     </li>
                 @elseif (!empty($currentCampaign))
                     <li class="messages-menu campaign-menu">
-                        <a href="{{ route('dashboard') }}" class="campaign-selector cover-background"
-                           @if ($campaign->image) style="background-image: url({{ $campaign->getImageUrl() }}" @endif >
+                        <a href="{{ route('dashboard') }}">
+                            @if ($currentCampaign->image)
+                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                            @else
+                                <i class="fa fa-globe"></i>
+                            @endif
                             <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
                         </a>
                     </li>
