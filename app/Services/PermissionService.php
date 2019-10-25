@@ -299,17 +299,18 @@ class PermissionService
             ];
 
             /** @var CampaignRole $role */
-            foreach ($campaign->roles()->with('users')->get() as $role) {
-                $campaignPermissions = $role->permissions()
+            foreach ($campaign->roles()->with('users')->get() as $campaignRole) {
+                $campaignPermissions = $campaignRole->permissions()
                     ->whereNull('entity_id')
                     ->whereNull('user_id')
                     ->get();
-                $users = $role->users->pluck('user_id');
+                $users = $campaignRole->users->pluck('user_id');
+                /** @var CampaignPermission $campaignPermission */
                 foreach ($campaignPermissions as $campaignPermission) {
                     $key = $campaignPermission->key;
-                    $this->basePermissions['roles'][$key] = true;
+                    $this->basePermissions['roles'][$campaignRole->id][$key] = true;
                     foreach ($users as $permissionUser) {
-                        $this->basePermissions['users'][$permissionUser][$key] = $role->name;
+                        $this->basePermissions['users'][$permissionUser][$key] = $campaignRole->name;
                     }
                 }
             }
@@ -317,9 +318,9 @@ class PermissionService
 
         $key = $this->type . '_' . $action;
         if (!empty($role)) {
-            return isset($this->basePermissions['roles'][$key]);
+            return Arr::has($this->basePermissions, "roles.$role.$key");
         }
-        return isset($this->basePermissions['users'][$user][$key]);
+        return Arr::has($this->basePermissions, "users.$user.$key");
     }
 
     /**

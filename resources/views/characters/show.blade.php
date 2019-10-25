@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        @if ((Auth::check() && Auth::user()->can('personality', $model)) && $model->characterTraits()->personality()->count() > 0)
+        @if (((Auth::check() && Auth::user()->can('personality', $model)) || $model->is_personality_visible) && $model->characterTraits()->personality()->count() > 0)
         <div class="box box-solid">
             <div class="box-header">
                 @if (!$model->is_personality_visible)
