@@ -26,6 +26,7 @@ return [
             'add_text'          => 'Añadir texto',
             'apply_template'    => 'Aplicar una plantilla de atributos',
             'manage'            => 'Administrar',
+            'remove_all'        => 'Eliminar todos',
         ],
         'create'        => [
             'description'   => 'Crear nuevo atributo',
@@ -43,9 +44,16 @@ return [
         'fields'        => [
             'attribute'             => 'Atributo',
             'community_templates'   => 'Plantillas de la comunidad',
+            'is_private'            => 'Atributos privados',
             'is_star'               => 'Fijado',
             'template'              => 'Plantilla',
             'value'                 => 'Valor',
+        ],
+        'helpers'       => [
+            'delete_all'    => '¿Seguro que quieres eliminar todos los atributos de esta entidad?',
+        ],
+        'hints'         => [
+            'is_private'    => 'Puedes ocultar todos los atributos de una entidad a todos los miembros no administradores haciéndola privada.',
         ],
         'index'         => [
             'success'   => 'Atributos de :entity actualizados.',
@@ -55,6 +63,7 @@ return [
             'attribute' => 'Número de conquistas, Iniciativa, Población',
             'block'     => 'Nombre del bloque',
             'checkbox'  => 'Nombre de la casilla',
+            'section'   => 'Nombre de la sección',
             'template'  => 'Seleccionar plantilla',
             'value'     => 'Valor del atributo',
         ],
@@ -66,6 +75,7 @@ return [
             'attribute' => 'Atributo',
             'block'     => 'Bloque',
             'checkbox'  => 'Casilla',
+            'section'   => 'Sección',
             'text'      => 'Texto multilínea',
         ],
         'visibility'    => [

@@ -2,14 +2,13 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle eine neue Beziehung',
         'success'       => 'Beziehung für :name hinzugefügt.',
         'title'         => 'Beziehung erstellen',
     ],
     'destroy'       => [
         'success'   => 'Beziehung für :name entfernt',
     ],
-    'edit'          => [
+    'update'          => [
         'success'   => 'Beziehung für :name aktualisiert',
         'title'     => 'Beziehungen aktualisieren',
     ],

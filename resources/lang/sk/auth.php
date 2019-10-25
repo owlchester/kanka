@@ -44,7 +44,7 @@ return [
         ],
         'fields'                    => [
             'email'     => 'E-mail',
-            'name'      => 'Meno používateľa',
+            'name'      => 'Meno užívateľa',
             'password'  => 'Heslo',
             'tos'       => 'Súhlasím s <a href=":privacyUrl" target="_blank">Privacy Policy</a>.',
         ],

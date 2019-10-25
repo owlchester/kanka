@@ -87,13 +87,26 @@ TEXT
         'delete'    => [
             'success'   => 'Widget eliminado del tablero.',
         ],
+        'fields'    => [
+            'width' => 'Anchura',
+        ],
         'recent'    => [
+            'full'      => 'Completa',
             'help'      => 'Solo muestra la previsualización de la última entidad actualizada.',
+            'helpers'   => [
+                'full'  => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
+            ],
             'singular'  => 'Singular',
             'title'     => 'Modificado recientemente',
         ],
         'update'    => [
             'success'   => 'Widged modificado.',
+        ],
+        'widths'    => [
+            '0' => 'Auto',
+            '12'=> 'Completa',
+            '4' => 'Pequeña',
+            '6' => 'Mitad',
         ],
     ],
 ];

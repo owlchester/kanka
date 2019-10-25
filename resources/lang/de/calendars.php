@@ -60,7 +60,7 @@ return [
         ],
         'helpers'   => [
             'add'   => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
-            'new'   => 'Oder gebe einfach einen Namen für ein neues EVent ein.',
+            'new'   => 'Oder gebe einfach einen Namen für ein neues Ereignis ein.',
         ],
         'modal'     => [
             'title' => 'Füge ein Event zum Kalender hinzu',
@@ -133,7 +133,7 @@ return [
     'parameters'    => [
         'intercalary'   => [
             'length'    => 'Dauer in Tagen',
-            'month'     => 'Am ende welchen Monats',
+            'month'     => 'Am Ende welchen Monats',
             'name'      => 'Name des Schaltmonats',
         ],
         'month'         => [
@@ -167,7 +167,7 @@ return [
         'length'            => 'Ereignislänge in Tagen',
         'months'            => 'Anzahl der Monate in einem Jahr',
         'name'              => 'Name des Kalenders',
-        'recurring_until'   => 'Letztes Jahr der Wiederholung (leer lassen für für immer wiederholend)',
+        'recurring_until'   => 'Letztes Jahr der Wiederholung (leer lassen für immer wiederholend)',
         'seasons'           => 'Anzahl der Jahrezeiten',
         'suffix'            => 'Aktueller Suffix der Ära (v. Chr., n. Chr.)',
         'type'              => 'Art des Kalenders',

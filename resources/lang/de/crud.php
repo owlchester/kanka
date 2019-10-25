@@ -26,6 +26,7 @@ return [
             'add_text'          => 'Text hinzufügen',
             'apply_template'    => 'Eine Attributvorlage anwenden',
             'manage'            => 'Verwalten',
+            'remove_all'        => 'Alles löschen',
         ],
         'create'        => [
             'description'   => 'Erstelle ein neues Attribut',

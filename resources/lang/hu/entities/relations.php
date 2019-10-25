@@ -2,14 +2,13 @@
 
 return [
     'create'        => [
-        'description'   => 'Új kapcsolat létrehozása',
         'success'       => ':name új kapcsolatát létrehoztuk.',
         'title'         => 'Kapcsolatok létrehozása',
     ],
     'destroy'       => [
         'success'   => ':name kapcsolatát eltávolítottuk.',
     ],
-    'edit'          => [
+    'update'          => [
         'success'   => ':name kapcsolatát frissítettük.',
         'title'     => 'Kapcsolatok módosítása',
     ],
