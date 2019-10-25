@@ -9,7 +9,7 @@ return [
     'destroy'       => [
         'success'   => 'Relación de :name eliminada.',
     ],
-    'edit'          => [
+    'update'          => [
         'success'   => 'Relación de :name actualizada.',
         'title'     => 'Actualizar relaciones',
     ],
