@@ -37,7 +37,7 @@ return [
             'tooltip' => 'Custom tooltips for entities.',
             'header' => 'Entity header images.',
             'upload' => 'Increased upload size for every member in the campaign.',
-            'more' => 'More to come.'
+            'more' => 'Find out more about all features.'
         ],
         'campaigns' => 'Boosted Campaigns :count / :max',
         'buttons' => [

@@ -30,7 +30,9 @@
                         <li>{{ __('settings.boost.benefits.tooltip') }}</li>
                         <li>{{ __('settings.boost.benefits.header') }}</li>
                         <li>{{ __('settings.boost.benefits.upload') }}</li>
-                        <li>{{ __('settings.boost.benefits.more') }}</li>
+                        <li><a href="{{ route('features', '#boost') }}">
+                            {{ __('settings.boost.benefits.more') }}
+                            </a></li>
                     </ul>
 
                     @if (Auth::user()->maxBoosts() > 0)
