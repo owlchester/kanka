@@ -409,6 +409,10 @@ class User extends \TCG\Voyager\Models\User
             return 0;
         }
 
+        if ($this->hasRole('admin')) {
+            return 3;
+        }
+
         $levels = [
             Patreon::PLEDGE_KOBOLD => 0,
             Patreon::PLEDGE_GOBLIN => 1,
