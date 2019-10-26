@@ -412,11 +412,12 @@ class User extends \TCG\Voyager\Models\User
         $levels = [
             Patreon::PLEDGE_KOBOLD => 0,
             Patreon::PLEDGE_GOBLIN => 1,
+            Patreon::PLEDGE_OWLBEAR => 1,
             Patreon::PLEDGE_ELEMENTAL => 5,
         ];
 
         // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->patreon_pledge, 3);
+        return Arr::get($levels, $this->patreon_pledge, 0);
     }
 
     /**
