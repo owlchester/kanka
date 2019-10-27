@@ -57,6 +57,7 @@ return [
             'description'   => 'All core features of Kanka are free with no artificial limitations, with :bonuses for :patreon supporters.',
             'title'         => 'Free to Use',
         ],
+        'landscape'         => 'Please switch your device to landscape mode to display the list of features.',
         'layers'            => [
             'description'   => 'Keep track of characters, their families, their whereabouts and lots more at all times.',
             'title'         => 'Characters, Families, Location',

@@ -11,8 +11,8 @@
             {!! $entity->tooltipedLink() !!}
         <div class="blame">
             {{ $entity->updater ? $entity->updater->name : trans('crud.history.unknown') }}<br />
-            <span class="elapsed" title="{{ $entity->child->updated_at }}">
-                {{ $entity->child->updated_at->diffForHumans() }}
+            <span class="elapsed" title="{{ $entity->updated_at }}">
+                {{ $entity->updated_at->diffForHumans() }}
             </span>
         </div>
     </div>
