@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'       => 'Beziehung für :name hinzugefügt.',
-        'title'         => 'Beziehung erstellen',
+        'success'   => 'Beziehung für :name hinzugefügt.',
+        'title'     => 'Beziehung erstellen',
     ],
     'destroy'       => [
         'success'   => 'Beziehung für :name entfernt',
-    ],
-    'update'          => [
-        'success'   => 'Beziehung für :name aktualisiert',
-        'title'     => 'Beziehungen aktualisieren',
     ],
     'fields'        => [
         'attitude'  => 'Einstellung',
@@ -30,5 +26,9 @@ return [
         'attitude'  => '-100 bis 100, 100 ist maximal positiv.',
         'relation'  => 'Art der Beziehung',
         'target'    => 'Wähle ein Objekt',
+    ],
+    'update'        => [
+        'success'   => 'Beziehung für :name aktualisiert',
+        'title'     => 'Beziehungen aktualisieren',
     ],
 ];

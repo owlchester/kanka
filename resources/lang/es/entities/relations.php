@@ -20,6 +20,7 @@ return [
         'target'    => 'Objetivo',
         'two_way'   => 'Reflejar relación creada',
     ],
+    'helper'        => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
     'hints'         => [
         'mirrored'  => [
             'text'  => 'Esta relación está reflejada en :link.',
@@ -31,5 +32,12 @@ return [
         'attitude'  => 'Desde -100 hasta 100, siendo 100 muy positiva.',
         'relation'  => 'Naturaleza de la relación',
         'target'    => 'Elige una entidad',
+    ],
+    'show'          => [
+        'title' => 'Relaciones de :name',
+    ],
+    'update'        => [
+        'success'   => 'Relación de :name actualizada.',
+        'title'     => 'Actualizar relaciones',
     ],
 ];

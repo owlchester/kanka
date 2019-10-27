@@ -2,6 +2,10 @@
 
 return [
     'campaign'          => [
+        'boost'         => [
+            'add'       => 'Tu campaña está siendo mejorada por :user.',
+            'remove'    => ':user ya no está mejorando la campaña :campaign.',
+        ],
         'export'        => 'Ya se ha exportado tu campaña. Puedes descargarla haciendo click en <a href=":link">aquí</a>. El enlace estará disponible durante 30 minutos.',
         'export_error'  => 'Ha ocurrido un error mientras se exportaba tu campaña. Por favor, contáctanos si el error persiste.',
         'join'          => ':user se ha unido a la campaña :campaign.',
