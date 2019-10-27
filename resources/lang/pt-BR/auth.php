@@ -32,7 +32,6 @@ return [
             'email'                 => 'Email',
             'name'                  => 'Usuário',
             'password'              => 'Senha',
-            'password_confirmation' => 'Confirme sua senha',
             'tos'                   => 'Eu concordo com <a href=":privacyUrl" target="_blank">Privacy Policy</a>.',
         ],
         'register_with_facebook'    => 'Cadastrar com o Facebook',
