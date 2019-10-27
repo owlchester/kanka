@@ -47,7 +47,7 @@ trait UserSetting
      */
     public function getPatreonFullnameAttribute()
     {
-        return $this->settings['patreon_fullname'];
+        return Arr::get($this->settings, 'patreon_fullname', '');
     }
 
     /**
@@ -55,7 +55,7 @@ trait UserSetting
      */
     public function getPatreonEmailAttribute()
     {
-        return $this->settings['patreon_email'];
+        return Arr::get($this->settings, 'patreon_email', '');
     }
 
     /**
