@@ -100,6 +100,7 @@ class AdminCrudController extends Controller
         $filters = $this->filters;
         $filterService = $this->filterService;
         $route = $this->route;
+        $trans = $this->trans;
         $createAction = $this->createAction;
 
         $models = $model

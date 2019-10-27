@@ -26,7 +26,7 @@ $isAdmin = Auth::user()->isAdmin();
 @endsection
 
 @section('content')
-    <div class="box">
+    <div class="box box-solid">
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-4">{{ trans('crud.attributes.fields.attribute') }}</div>

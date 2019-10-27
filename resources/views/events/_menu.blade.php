@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box box-solid">
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
         @include ('cruds._image')

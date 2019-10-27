@@ -12,7 +12,7 @@
     {!! Form::open(['url' => route('entities.attributes.saveMany', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => "1"]) !!}
     <div class="row">
         <div class="col-md-8">
-            <div class="box">
+            <div class="box box-solid">
 
                 <div class="box-body">
                     <div class="row">
