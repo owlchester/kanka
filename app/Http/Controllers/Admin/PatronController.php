@@ -38,7 +38,7 @@ class PatronController extends AdminCrudController
 
         $this->indexActions = [
           [
-              'params' => ['patreon_pledge' => '0'],
+              'params' => ['patreon_pledge' => '!!'],
               'icon' => 'fab fa-patreon',
               'text' => 'No-pledge set',
           ]
