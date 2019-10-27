@@ -33,7 +33,7 @@
         </div>
         <div class="box-footer">
             <div class="pull-right">
-                {{ $models->appends(request()->all())->links() }}
+                {{ $models->appends($filterService->pagination())->links() }}
             </div>
             {!! Form::hidden('entity', $name) !!}
         </div>
