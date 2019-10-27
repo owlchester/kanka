@@ -47,6 +47,11 @@ class PatronController extends AdminCrudController
         parent::__construct();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @throws \Exception
+     */
     public function index(\Illuminate\Http\Request $request)
     {
         $model = new $this->model;
@@ -55,13 +60,15 @@ class PatronController extends AdminCrudController
         $route = $this->route;
         $trans = $this->trans;
         $createAction = $this->createAction;
+        $this->filterService->make($this->view, request()->all(), $model);
+        $filterService = $this->filterService;
 
         $models = $model
             ->patron()
             ->with(['boosts', 'boosts.campaign'])
             ->filter(request()->all())
-            ->search(request()->get('search'))
-            ->paginate(1);
+            ->search($filterService->search())
+            ->paginate();
         return view('admin.cruds.index', compact(
             'models',
             'name',
@@ -69,6 +76,7 @@ class PatronController extends AdminCrudController
             'actions',
             'createAction',
             'route',
+            'filterService',
             'trans'
         ));
     }

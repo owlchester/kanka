@@ -191,7 +191,7 @@ class DiceRollController extends CrudController
 //        }
 
         $model = new DiceRollResult();
-        $this->filterService->prepare('dice_rolls-rolls', request()->all(), $model->filterableColumns());
+        $this->filterService->prepare('dice_rolls-rolls', request()->all(), $model->getFilterableColumns());
         $name = $this->view . '.rolls';
         $filterService = $this->filterService;
 

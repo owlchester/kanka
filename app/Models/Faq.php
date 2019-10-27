@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Sortable;
-use App\Traits\FilterableTrait;
-use App\Traits\SearchableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -13,7 +11,7 @@ class Faq extends Model
 {
     public $table = 'faq';
 
-    use FilterableTrait, SearchableTrait, Orderable, Sortable;
+    use  Orderable, Sortable;
 
     public function __construct(array $attributes = [])
     {

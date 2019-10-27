@@ -8,6 +8,14 @@ return [
         'more'                      => 'More options are available and explained on the dice roller plugin page.',
         'title'                     => 'Dice Rolls',
     ],
+    'filters' => [
+        'description' => 'You can use filters to limit the amount of results shown in lists. Text fields support various options to control in further detail what is filtered out.',
+        'starting_with' => 'By placing an :tag before your text, you can search for anything that doesn\'t contain the text in the field.',
+        'ending_with' => 'By placing an :tag at the end of your text, you can search for every entity with exactly this text in the field.',
+        'empty' => 'Writing :tag in a field will search for all entities where this field is empty.',
+        'session' => 'Filters and ordered columns set for an entity list are saved into your session, so as long as you stay connected you don\'t need to re-set them on every page.',
+        'title' => 'How to use filters'
+    ],
     'link'          => [
         'auto_update'   => 'Links to other entities will automatically be updated when the target\'s name or description is changed.',
         'description'   => 'You can easily link to other entities in your campaign using the following shorthands.',

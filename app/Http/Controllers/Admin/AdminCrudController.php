@@ -110,6 +110,7 @@ class AdminCrudController extends Controller
             ->order($this->filterService->order())
             ->admin()
             ->paginate();
+
         return view('admin.cruds.index', compact(
             'models',
             'name',

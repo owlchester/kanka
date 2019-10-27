@@ -52,10 +52,10 @@ class FilterService
         $this->data = $requestData;
         $this->crud = $crud;
 
-        if (!method_exists($model, 'filterableColumns')) {
+        if (!method_exists($model, 'getFilterableColumns')) {
             throw new \Exception('Model ' . $model . ' doesn\'t implement the Filterable trait.');
         }
-        $this->prepareFilters($model->filterableColumns())
+        $this->prepareFilters($model->getFilterableColumns())
             ->prepareOrder($model->sortableColumns())
             ->prepareSearch();
     }
@@ -69,7 +69,7 @@ class FilterService
     {
         // No point in doing any work if the model has no fields to filter.
         if (empty($availableFilters)) {
-            return [];
+            return $this;
         }
 
         $sessionKey = 'filterService-filter-' . $this->crud;
