@@ -34,6 +34,13 @@ class AdminCrudController extends Controller
     protected $route = '';
 
     /**
+     * The translation key for the resource
+     *
+     * @var string
+     */
+    protected $trans = '';
+
+    /**
      * @var Model
      */
     protected $model = null;
@@ -105,6 +112,7 @@ class AdminCrudController extends Controller
         return view('admin.cruds.index', compact(
             'models',
             'name',
+            'trans',
             'model',
             'actions',
             'createAction',
@@ -127,6 +135,7 @@ class AdminCrudController extends Controller
     {
         $params['ajax'] = request()->ajax();
         $params['route'] = $this->route;
+        $params['trans'] = $this->trans;
 
         return view('admin.cruds.create', array_merge(['name' => $this->view], $params));
     }
@@ -144,7 +153,7 @@ class AdminCrudController extends Controller
             $model = new $this->model;
             $new = $model->create($request->all());
 
-            $success = trans($this->view . '.create.success', [
+            $success = trans($this->trans . '.create.success', [
                 'name' => link_to_route(
                     $this->route . '.index',
                     e($new->name),
@@ -175,8 +184,9 @@ class AdminCrudController extends Controller
         $name = $this->view;
         $ajax = request()->ajax();
         $route = $this->route;
+        $trans = $this->trans;
 
-        return view('admin.cruds.edit', compact('model', 'name', 'ajax', 'route'));
+        return view('admin.cruds.edit', compact('model', 'name', 'ajax', 'route', 'trans'));
     }
 
     /**
@@ -191,7 +201,7 @@ class AdminCrudController extends Controller
     {
         try {
             $model->update(empty($fields) ? $request->all() : $request->only($fields));
-            $success = trans($this->view . '.edit.success', [
+            $success = trans($this->trans . '.edit.success', [
                 'name' => link_to_route(
                     $this->route . '.index',
                     e($model->name),
@@ -219,6 +229,6 @@ class AdminCrudController extends Controller
 
         $model->delete();
         return redirect()->route($this->route . '.index')
-            ->with('success', trans($this->view . '.destroy.success', ['name' => $model->name]));
+            ->with('success', trans($this->trans . '.destroy.success', ['name' => $model->name]));
     }
 }

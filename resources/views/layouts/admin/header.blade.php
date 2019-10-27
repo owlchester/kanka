@@ -8,6 +8,10 @@
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
+        </a>
+
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">

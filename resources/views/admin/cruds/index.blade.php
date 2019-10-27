@@ -1,8 +1,7 @@
 @extends('layouts.admin', [
-    'title' => trans($name . '.index.title'),
-    'description' => trans($name . '.index.description'),
+    'title' => trans($trans . '.index.title'),
     'breadcrumbs' => [
-        ['url' => route($route . '.index'), 'label' => trans($name . '.index.title')]
+        ['url' => route($route . '.index'), 'label' => trans($trans . '.index.title')]
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
@@ -34,7 +33,7 @@
         </div>
         <div class="box-footer">
             <div class="pull-right">
-                {{ $models->links() }}
+                {{ $models->appends(request()->all())->links() }}
             </div>
             {!! Form::hidden('entity', $name) !!}
         </div>

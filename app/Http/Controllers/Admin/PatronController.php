@@ -16,6 +16,7 @@ class PatronController extends AdminCrudController
      */
     protected $view = 'admin.patrons';
     protected $route = 'admin.patrons';
+    protected $trans = 'admin/patrons';
 
     /**
      * @var string
@@ -37,7 +38,7 @@ class PatronController extends AdminCrudController
 
         $this->indexActions = [
           [
-              'params' => ['patreon_pledge' => ''],
+              'params' => ['patreon_pledge' => '0'],
               'icon' => 'fab fa-patreon',
               'text' => 'No-pledge set',
           ]
@@ -52,6 +53,7 @@ class PatronController extends AdminCrudController
         $name = $this->view;
         $actions = $this->indexActions;
         $route = $this->route;
+        $trans = $this->trans;
         $createAction = $this->createAction;
 
         $models = $model
@@ -59,14 +61,15 @@ class PatronController extends AdminCrudController
             ->with(['boosts', 'boosts.campaign'])
             ->filter(request()->all())
             ->search(request()->get('search'))
-            ->paginate();
+            ->paginate(1);
         return view('admin.cruds.index', compact(
             'models',
             'name',
             'model',
             'actions',
             'createAction',
-            'route'
+            'route',
+            'trans'
         ));
     }
 
@@ -131,7 +134,7 @@ class PatronController extends AdminCrudController
         $user->roles()->detach($role->id);
 
         return redirect()->route($this->route . '.index')
-            ->with('success', trans($this->view . '.destroy.success', ['name' => $user->name]));
+            ->with('success', trans($this->trans . '.destroy.success', ['name' => $user->name]));
 
     }
 }
