@@ -31,7 +31,8 @@ use Exception;
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
  * @property Attribute[] $starredAttributes
- * @property Relation[] $starredRelations
+ * @property Relation[] $starredRelationss
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class MiscModel extends Model
 {

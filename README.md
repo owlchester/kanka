@@ -162,3 +162,21 @@ To backup your database in a gzip file, Kanka uses the [laravel backup manager](
 To restore a db, use the following
 
     php artisan db:restore
+
+# Testing
+
+The configuration for PHPUnit-Tests is in the file /phpunit.xml. 
+Before the first run you have to run
+```php
+php artisan setupTestDB --env=testing
+``` 
+to create and setUp the TestDatabase. Also if the Database-Schema changes or new migrations are added, you have to reset the Testing Database with this command.
+
+The Configuration for the TestEnvironment can be found in the File /phpunit.xml and .env.testing.
+The Environment-Variables in both files need to be the same.
+ 
+If everything is setup correctly you can run the tests by just calling
+```php
+phpunit
+``` 
+in the project directory.
