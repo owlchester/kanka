@@ -132,10 +132,15 @@ class CampaignService
 
     /**
      * Switch to the last campaign the user used
+     * @param null $userParam
      */
-    public static function switchToLast()
+    public static function switchToLast($userParam = null)
     {
-        $last = Auth::user()->lastCampaign;
+        $user = $userParam?:Auth::user();
+        if (!$user) {
+            return;
+        }
+        $last = $user->lastCampaign;
         if ($last) {
             self::switchCampaign($last);
         }

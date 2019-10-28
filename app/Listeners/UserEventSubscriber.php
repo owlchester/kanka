@@ -55,7 +55,7 @@ class UserEventSubscriber
         }
 
         // We want to register in the session a campaign_id
-        CampaignService::switchToLast();
+        CampaignService::switchToLast($event->user);
         return true;
     }
 
