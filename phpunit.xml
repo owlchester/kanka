@@ -24,8 +24,18 @@
     </filter>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="APP_URL" value="http://localhost"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="mysql" />
+        <env name="DB_DATABASE" value="kanka_test" />
+        <env name="DB_HOST" value="localhost" />
+        <env name="DB_PORT" value="33060" />
+        <env name="DB_USERNAME" value="homestead" />
+        <env name="DB_PASSWORD" value="secret" />
+        <env name="LOCALIZATION_HIDE_DEFAULT_LOCALE" value="true"/>
+        <env name="SKIP_DB_SETUP" value="true" />
+        <env name="LOAD_POLICIES" value="true" />
     </php>
 </phpunit>
