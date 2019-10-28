@@ -51,7 +51,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
     <style>
-{{ $campaign->css }}
+{!! $campaign->css !!}
     </style>
     @endif
 </head>
