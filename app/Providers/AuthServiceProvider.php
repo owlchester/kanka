@@ -75,6 +75,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     private function shouldLoadPolicies(): bool
     {
-        return (isset($_ENV['LOAD_POLICIES']) && ($_ENV['LOAD_POLICIES'] == 1 || $_ENV['LOAD_POLICIES'] == true));
+        return strtolower(getenv('APP_ENV')) !== 'testing';
     }
 }
