@@ -92,7 +92,7 @@ class MentionsService
     {
         // Advance mode will send back the "codes"
         if (Auth::user()->advancedMentions) {
-            return $model->$field;
+            return (string) $model->$field;
         }
 
         // Standard more we want to remap mentions
