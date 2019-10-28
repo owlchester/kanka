@@ -11,7 +11,7 @@
             'realdate' => $model->updated_at . 'UTC',
         ]) !!}
       @can('update', $model)
-          <a href="{{ route('entities.logs', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.logs', $model->entity) }}" title="{{ __('crud.history.view') }}">
+          <br /><a href="{{ route('entities.logs', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.logs', $model->entity) }}" title="{{ __('crud.history.view') }}">
               <i class="fas fa-history"></i> <span class="hidden-xs hidden-sm">{{ __('crud.history.view') }}</span>
           </a>
       @endcan

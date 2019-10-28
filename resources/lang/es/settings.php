@@ -28,6 +28,30 @@ return [
         'request_permission'    => 'Actualmente estamos construyendo una poderosa RESTful API para que aplicaciones terceras puedan conectarse a la app. Sin embargo, de momento limitamos el número de usuarios que pueden interactuar con la API mientras la pulimos. Si quieres acceder a la API y construir apps guays que interactúan con Kanka, contáctanos y te enviaremos toda la información que necesitas.',
         'title'                 => 'API',
     ],
+    'boost'     => [
+        'benefits'      => [
+            'first'     => 'Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante :patreon. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en :patreon. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.',
+            'header'    => 'Imágenes de cabecera para las entidades.',
+            'more'      => 'Más por llegar.',
+            'second'    => 'Mejorar una campaña activa los siguientes beneficios:',
+            'theme'     => 'Tema y estilo personalizado a nivel de campaña.',
+            'tooltip'   => 'Descripciones emergentes personalizadas para las entidades.',
+            'upload'    => 'Capacidad de subida de archivos ampliada para todos los miembros de la campaña.',
+        ],
+        'buttons'       => [
+            'boost' => 'Mejorar',
+        ],
+        'campaigns'     => 'Campañas mejoradas :count / :max',
+        'exceptions'    => [
+            'already_boosted'   => 'La campaña :name ya está mejorada.',
+            'exhausted_boosts'  => 'Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra.',
+        ],
+        'success'       => [
+            'boost' => 'Campaña :name mejorada.',
+            'delete'=> 'Tu mejora de :name se ha eliminado.',
+        ],
+        'title'         => 'Mejorar',
+    ],
     'layout'    => [
         'description'   => 'Actualizar opciones de diseño',
         'success'       => 'Opciones de diseño actualizadas.',
@@ -36,6 +60,7 @@ return [
     'menu'      => [
         'account'           => 'Cuenta',
         'api'               => 'API',
+        'boost'             => 'Mejorar',
         'layout'            => 'Diseño',
         'patreon'           => 'Patreon',
         'personal_settings' => 'Ajustes personales',

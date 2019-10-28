@@ -42,6 +42,16 @@ return [
             'link'          => 'Documentación API',
             'title'         => 'API',
         ],
+        'boosts'            => [
+            'boosted'       => 'Campaña mejorada',
+            'css'           => 'CSS personalizado de la campaña',
+            'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
+            'header_image'  => 'Imagen de cabecera para la entidad',
+            'theme'         => 'Tema de campaña fijo',
+            'title'         => 'Campañas mejoradas',
+            'tooltip'       => 'Descripciones emergentes personalizadas',
+            'upload'        => 'Capacidad de subida de archivos ampliada para todos los miembros',
+        ],
         'calendars'         => [
             'description'   => 'Crea calendarios personalizados y organiza tu campaña con ellos.',
             'title'         => 'Calendarios',
@@ -53,6 +63,7 @@ return [
         'description'       => '¡Las razones por las que creemos que te enamoraras de nuestra aplicación!',
         'description_full'  => 'Muestra de algunas de las mejores y más queridas funciones.',
         'free'              => [
+            'bonuses'       => 'Bonus',
             'description'   => 'Lo mejor de la vida es lo gratis. Sin anuncios, sin costes ocultos, sin suscripciones de pago.',
             'title'         => 'Uso Gratuito',
         ],
@@ -72,6 +83,22 @@ return [
         'notebook'          => [
             'description'   => '¡Prepara tu siguiente sesión o registra lo ocurrido con nuestro editor de Diarios!',
             'title'         => 'Diarios',
+        ],
+        'patreon'           => [
+            'api_calls'         => 'Llamadas a la API aumentadas (90)',
+            'boosts'            => 'Mejoras de campaña',
+            'curation'          => 'Ayuda a crear la lista mensual de votos',
+            'default_image'     => 'Imágenes bonitas por defecto para las entidades',
+            'description'       => 'Apoyar a Kanka en Patreon desbloquea los siguientes beneficios en una cuenta.',
+            'discord'           => 'Canal privado de Discord',
+            'free'              => 'Gratis',
+            'hall_of_fame'      => 'Nombre en el :link',
+            'impact'            => 'Influencia en futuras características',
+            'monthly_vote'      => 'Participación en la votación mensual de características',
+            'pagination'        => 'Aumento en los resultados por página (100)',
+            'title'             => 'Soporte de Patreon',
+            'upload_limit'      => 'Aumento del tamaño máximo de subida de archivos (8mb)',
+            'upload_limit_map'  => 'Aumento del tamaño máximo de subida de mapas (10mb)',
         ],
         'public'            => [
             'description'   => 'Se pueden establecer permisos en los módulos, o en cada entidad por separado. Las campañas también pueden hacerse públicas para que todo el mundo las vea.',
@@ -133,6 +160,11 @@ return [
     'meta'          => [
         'description'   => 'Kanka es un administrador flexible de campañas de rol online.',
         'title'         => 'Kanka - Gestiona tus sesiones y construye tus mundos.',
+    ],
+    'partners'      => [
+        'description'   => 'Nos hemos asociado con algunas herramientas asombrosas y con comunidades que comparten nuestros objetivos y valores.',
+        'inkarnate'     => 'Crea mapas increíbles con Inkarnate',
+        'title'         => 'Socios',
     ],
     'privacy'       => [
         'description'   => 'Fecha efectiva: 23 de mayo de 2018',

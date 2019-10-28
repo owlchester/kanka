@@ -85,6 +85,7 @@ return [
             'tab'       => 'El atributo se muestra solo en la pestaña de Atributos.',
         ],
     ],
+    'boosted'           => 'Mejorada',
     'bulk'              => [
         'errors'        => [
             'admin' => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
@@ -152,6 +153,7 @@ return [
         'excerpt'               => 'Extracto',
         'family'                => 'Familia',
         'files'                 => 'Archivos',
+        'header_image'          => 'Imagen de cabecera',
         'image'                 => 'Imagen',
         'is_private'            => 'Privado',
         'is_star'               => 'Fijada',
@@ -162,6 +164,7 @@ return [
         'race'                  => 'Raza',
         'tag'                   => 'Etiqueta',
         'tags'                  => 'Etiquetas',
+        'tooltip'               => 'Descripción emergente',
         'visibility'            => 'Visibilidad',
     ],
     'files'             => [
@@ -199,11 +202,13 @@ return [
     'hints'             => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
         'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
+        'header_image'          => 'Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.',
         'image_limitations'     => 'Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: :size.',
         'image_patreon'         => 'Aumenta el límite apoyándonos en Patreon',
         'is_private'            => 'Ocultar a los "Invitados"',
         'is_star'               => 'Los elementos fijados aparecerán en el menú principal de la entidad.',
         'map_limitations'       => 'Formatos soportados: jpg, png, gif y svg. Tamaño máximo del archivo: :size.',
+        'tooltip'               => 'Reemplaza la descripción emergente automática con uno de los siguientes contenidos.',
         'visibility'            => 'Al seleccionar "Administrador", solo los miembros con el rol de administrador podrán ver esto. "Solo yo" significa que solo tú puedes ver esto.',
     ],
     'history'           => [
@@ -257,8 +262,8 @@ return [
         'system'                => 'Sistema',
     ],
     'permissions'       => [
-        'action'    => 'Acción',
-        'actions'   => [
+        'action'        => 'Acción',
+        'actions'       => [
             'bulk'          => [
                 'add'       => 'Añadir',
                 'remove'    => 'Eliminar',
@@ -268,14 +273,16 @@ return [
             'entity_note'   => 'Notas de entidad',
             'read'          => 'Leer',
         ],
-        'allowed'   => 'Permitido',
-        'fields'    => [
+        'allowed'       => 'Permitido',
+        'fields'        => [
             'member'    => 'Miembro',
             'role'      => 'Rol',
         ],
-        'helper'    => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
-        'success'   => 'Permisos guardados.',
-        'title'     => 'Permisos',
+        'helper'        => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
+        'inherited'     => 'Este rol ya tiene este permiso en esta entidad.',
+        'inherited_by'  => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
+        'success'       => 'Permisos guardados.',
+        'title'         => 'Permisos',
     ],
     'placeholders'      => [
         'calendar'      => 'Escoge un calendario',
@@ -312,6 +319,7 @@ return [
     'select'            => 'Seleccionar',
     'tabs'              => [
         'attributes'    => 'Atributos',
+        'boost'         => 'Mejorar',
         'calendars'     => 'Calendarios',
         'default'       => 'Por defecto',
         'events'        => 'Eventos',
@@ -322,6 +330,7 @@ return [
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
         'relations'     => 'Relaciones',
+        'tooltip'       => 'Descripción emergente',
     ],
     'update'            => 'Actualizar',
     'users'             => [

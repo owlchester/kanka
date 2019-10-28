@@ -11,6 +11,7 @@ class CampaignController extends AdminCrudController
      */
     protected $view = 'admin.campaigns';
     protected $route = 'admin.campaigns';
+    protected $trans = 'admin/campaigns';
 
     /**
      * @var string

@@ -17,11 +17,12 @@ $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType :
             @endif{{ __('dashboard.widgets.recent.title') }}
         </h4>
     </div>
+    @if (!empty($widget->conf('singular')))
     <div class="panel-body widget-recent-body">
-        @if (!empty($widget->conf('singular')))
-            @include('dashboard.widgets._recent_singular', ['entities' => $entities])
-        @else
-            @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
-        @endif
+        @include('dashboard.widgets._recent_singular', ['entities' => $entities])
+    @else
+    <div class="panel-body widget-recent-list">
+        @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
+    @endif
     </div>
 </div>

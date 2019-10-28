@@ -82,21 +82,21 @@ trait UserScope
      * @param Builder $builder
      * @param array $options
      */
-    public function scopeFilter(Builder $query, array $options)
-    {
-        $valid = array('patreon_pledge');
-        foreach ($options as $option => $value) {
-            if (!in_array($option, $valid)) {
-                continue;
-            }
-
-            if (empty($value)) {
-                $query->where(function ($sub) use ($option) {
-                    $sub->whereNull($option)->orWhere($option, '');
-                });
-            } else {
-                $query->where($option, $value);
-            }
-        }
-    }
+//    public function scopeFilter(Builder $query, array $options)
+//    {
+//        $valid = array('patreon_pledge');
+//        foreach ($options as $option => $value) {
+//            if (!in_array($option, $valid)) {
+//                continue;
+//            }
+//
+//            if (empty($value)) {
+//                $query->where(function ($sub) use ($option) {
+//                    $sub->whereNull($option)->orWhere($option, '');
+//                });
+//            } else {
+//                $query->where($option, $value);
+//            }
+//        }
+//    }
 }

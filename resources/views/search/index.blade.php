@@ -10,7 +10,7 @@
 @section('content')
     {!! Form::open(array('route' => 'search', 'method'=>'GET')) !!}
 
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-body">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->get('q') }}">
@@ -33,7 +33,7 @@
                 @else
                     <div class="col-md-6">
                 @endif
-                    <div class="box">
+                    <div class="box box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">
                                 {{ trans('entities.' . $element) }}

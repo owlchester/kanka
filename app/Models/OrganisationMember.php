@@ -35,18 +35,14 @@ class OrganisationMember extends Model
 
     public $table = 'organisation_member';
 
+    protected $filterableColumns = ['organisation_id'];
+
     protected $fillable = [
         'organisation_id',
         'character_id',
         'role',
         'is_private'
     ];
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->filterableColumns = ['organisation_id'];
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

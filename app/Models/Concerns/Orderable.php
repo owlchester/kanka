@@ -2,6 +2,9 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 trait Orderable
 {
     /**
@@ -16,7 +19,7 @@ trait Orderable
      * @param $field
      * @return mixed
      */
-    public function scopeOrder($query, $data)
+    public function scopeOrder(Builder $query, $data)
     {
         // Default
         $field = $this->defaultOrderField;
@@ -42,12 +45,17 @@ trait Orderable
             if (count($segments) > 1) {
                 $relationName = $segments[0];
 
+                /** @var BelongsTo $relation */
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
                 return $query
                     ->select($this->getTable() . '.*')
                     ->with($relationName)
-                    ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
+                    ->leftJoin(
+                        $foreignName . ' as f',
+                        'f.id',
+                        $this->getTable() . '.' . $relation->getForeignKeyName()
+                    )
                     ->orderBy(str_replace($relationName, 'f', $field), $direction);
             } else {
                 // Order by related table? Yeah that's fun.

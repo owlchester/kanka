@@ -40,6 +40,8 @@ return [
         'title'         => 'Exportar campaña :name',
     ],
     'fields'                            => [
+        'boosted'                       => 'Mejorada por',
+        'css'                           => 'CSS',
         'description'                   => 'Descripción',
         'entity_count'                  => 'Número de entidades',
         'entity_personality_visibility' => 'Visibilidad de la personalidad',
@@ -52,10 +54,13 @@ return [
         'name'                          => 'Nombre',
         'rpg_system'                    => 'Sistemas RPG',
         'system'                        => 'Sistema',
+        'theme'                         => 'Tema',
         'visibility'                    => 'Visibilidad',
     ],
     'following'                         => 'Siguiendo',
     'helpers'                           => [
+        'boosted'                       => 'Algunas características están desbloqueadas porque esta campaña está mejorada. Para saber más sobre esto, echa un vistazo en la página de :settings.',
+        'css'                           => 'Escribe tu propio CSS para las páginas de tu campaña. Por favor, ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
         'entity_personality_visibility' => 'Al crear un nuevo personaje, la opción de "Personalidad visible" estará deseleccionada automáticamente.',
         'entity_visibility'             => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
         'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo.',
@@ -63,6 +68,7 @@ return [
         'name'                          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
         'system'                        => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
         'systems'                       => 'Para evitar líos, algunos elementos de Kanka solo están disponibles en sistemas RPG específicos (por ejemplo, el bloque de stats de monstruo de D&D 5e). Si eliges un sistema soportado, se activarán dichos elementos.',
+        'theme'                         => 'Establece un tema único para la campaña, anulando las preferencias de los usuarios.',
         'visibility'                    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'                             => [
@@ -174,6 +180,7 @@ return [
         'your_role'             => 'Tu eres un <i>:role</i>',
     ],
     'panels'                            => [
+        'boosted'   => 'Mejorada',
         'dashboard' => 'Tablero',
         'permission'=> 'Permisos',
         'sharing'   => 'Compartir',
@@ -284,6 +291,7 @@ return [
     ],
     'show'                              => [
         'actions'       => [
+            'boost' => 'Mejorar campaña',
             'leave' => 'Abandonar campaña',
         ],
         'description'   => 'Vista detallada de la campaña',

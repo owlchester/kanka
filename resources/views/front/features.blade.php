@@ -158,6 +158,7 @@
                 <div class="header-content mx-auto">
                     <h1 class="mb-5">{{ trans('front.features.patreon.title') }}</h1>
                     <p class="mb-5">{{ trans('front.features.patreon.description') }}</p>
+                    <p class="mb-5 landscape-helper">{{ __('front.features.landscape') }}</p>
                 </div>
             </div>
 
@@ -263,6 +264,7 @@
                 </tr>
                 </tbody>
             </table>
+
         </div>
     </section>
 
@@ -272,6 +274,7 @@
                 <div class="header-content mx-auto">
                     <h1 class="mb-5">{{ trans('front.features.boosts.title') }}</h1>
                     <p class="mb-5">{{ trans('front.features.boosts.description') }}</p>
+                    <p class="mb-5 landscape-helper">{{ __('front.features.landscape') }}</p>
                 </div>
             </div>
 
@@ -305,6 +308,7 @@
                 </tr>
                 </tbody>
             </table>
+
         </div>
     </section>
 @endsection

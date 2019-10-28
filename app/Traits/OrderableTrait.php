@@ -40,7 +40,7 @@ trait OrderableTrait
                 return $query
                     ->select($this->getTable() . '.*')
                     ->with($relationName)
-                    ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKey())
+                    ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKeyName())
                     ->orderBy(str_replace($relationName, 'f', $field), $direction);
             } else {
                 return $query->orderBy($this->getTable() . '.' . $field, $direction);

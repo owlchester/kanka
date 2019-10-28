@@ -36,6 +36,12 @@ class FilterService
     protected $crud = '';
 
     /**
+     * Search option
+     * @var string
+     */
+    protected $search = '';
+
+    /**
      * @param string $crud
      * @param array $requestData
      * @param Model $model
@@ -46,23 +52,24 @@ class FilterService
         $this->data = $requestData;
         $this->crud = $crud;
 
-        if (!method_exists($model, 'filterableColumns')) {
+        if (!method_exists($model, 'getFilterableColumns')) {
             throw new \Exception('Model ' . $model . ' doesn\'t implement the Filterable trait.');
         }
-        $this->prepareFilters($model->filterableColumns());
-        $this->prepareOrder($model->sortableColumns());
+        $this->prepareFilters($model->getFilterableColumns())
+            ->prepareOrder($model->sortableColumns())
+            ->prepareSearch();
     }
 
     /**
      * Prepare the filters
      * @param array $availableFilters
-     * @return array
+     * @return self
      */
-    protected function prepareFilters($availableFilters = [])
+    protected function prepareFilters($availableFilters = []): self
     {
         // No point in doing any work if the model has no fields to filter.
         if (empty($availableFilters)) {
-            return [];
+            return $this;
         }
 
         $sessionKey = 'filterService-filter-' . $this->crud;
@@ -90,21 +97,21 @@ class FilterService
         }
 
         // Reset the filters if requested, before saving it to the session.
-        if (array_has($this->data, 'reset-filter')) {
+        if (Arr::has($this->data, 'reset-filter')) {
             $this->filters = [];
         }
 
         // Save the new data into the session
         session()->put($sessionKey, $this->filters);
-        return $this->filters;
+        return $this;
     }
 
     /**
      * Prepare the Order By data
      * @property array $availableFields
-     * @return array
+     * @return self
      */
-    protected function prepareOrder(array $availableFields = [])
+    protected function prepareOrder(array $availableFields = []): self
     {
         // Get all of the posted data. We need to see if any of it is part of a filter.
         $field = Arr::get($this->data, 'order');
@@ -117,6 +124,10 @@ class FilterService
             $this->order = [
                 $field => empty($direction) ? 'ASC' : 'DESC'
             ];
+
+            if (!in_array($field, $availableFields)) {
+                $this->order = [];
+            }
         }
 
         // Reset the filters if requested, before saving it to the session.
@@ -124,13 +135,19 @@ class FilterService
             $this->order = [];
         }
 
-        if (!in_array($field, $availableFields)) {
-            $this->order = [];
-        }
-
         // Save the new data into the session
         session()->put($sessionKey, $this->order);
-        return $this->order;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function prepareSearch(): self
+    {
+        $search = Arr::get($this->data, 'search');
+        $this->search = strip_tags($search);
+        return $this;
     }
 
     /**
@@ -189,6 +206,15 @@ class FilterService
     }
 
     /**
+     * Get the search data
+     * @return null
+     */
+    public function search()
+    {
+        return $this->search;
+    }
+
+    /**
      * @param $field
      * @return bool
      */
@@ -221,5 +247,18 @@ class FilterService
     public function hasFilters(): bool
     {
         return !empty($this->filters);
+    }
+
+    /**
+     * Prepare data to append to the crud pagination
+     * @return array
+     */
+    public function pagination(): array
+    {
+        if (empty($this->search)) {
+            return [];
+        }
+
+        return ['search' => $this->search];
     }
 }

@@ -16,6 +16,7 @@ class PatronController extends AdminCrudController
      */
     protected $view = 'admin.patrons';
     protected $route = 'admin.patrons';
+    protected $trans = 'admin/patrons';
 
     /**
      * @var string
@@ -37,7 +38,7 @@ class PatronController extends AdminCrudController
 
         $this->indexActions = [
           [
-              'params' => ['patreon_pledge' => ''],
+              'params' => ['patreon_pledge' => '!!'],
               'icon' => 'fab fa-patreon',
               'text' => 'No-pledge set',
           ]
@@ -46,19 +47,27 @@ class PatronController extends AdminCrudController
         parent::__construct();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @throws \Exception
+     */
     public function index(\Illuminate\Http\Request $request)
     {
         $model = new $this->model;
         $name = $this->view;
         $actions = $this->indexActions;
         $route = $this->route;
+        $trans = $this->trans;
         $createAction = $this->createAction;
+        $this->filterService->make($this->view, request()->all(), $model);
+        $filterService = $this->filterService;
 
         $models = $model
             ->patron()
             ->with(['boosts', 'boosts.campaign'])
             ->filter(request()->all())
-            ->search(request()->get('search'))
+            ->search($filterService->search())
             ->paginate();
         return view('admin.cruds.index', compact(
             'models',
@@ -66,7 +75,9 @@ class PatronController extends AdminCrudController
             'model',
             'actions',
             'createAction',
-            'route'
+            'route',
+            'filterService',
+            'trans'
         ));
     }
 
@@ -131,7 +142,7 @@ class PatronController extends AdminCrudController
         $user->roles()->detach($role->id);
 
         return redirect()->route($this->route . '.index')
-            ->with('success', trans($this->view . '.destroy.success', ['name' => $user->name]));
+            ->with('success', trans($this->trans . '.destroy.success', ['name' => $user->name]));
 
     }
 }

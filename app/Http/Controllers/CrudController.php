@@ -119,7 +119,7 @@ class CrudController extends Controller
 
         $base = $model
             ->preparedWith()
-            ->search(request()->get('search'))
+            ->search($this->filterService->search())
             ->order($this->filterService->order())
         ;
 
@@ -134,7 +134,6 @@ class CrudController extends Controller
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->count();
         }
-
 
         return view('cruds.index', compact(
             'models',

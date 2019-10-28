@@ -5,7 +5,9 @@ namespace App;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignBoost;
+use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
 use App\Models\Patreon;
 use App\Models\Scopes\UserScope;
 use App\Models\UserSetting;
@@ -61,8 +63,10 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     public $searchableColumns = ['email', 'settings'];
+    public $sortableColumns = [];
+    public $filterableColumns = ['patreon_pledge'];
 
-    use Notifiable, HasApiTokens, UserScope, UserSetting, Searchable;
+    use Notifiable, HasApiTokens, UserScope, UserSetting, Searchable, Filterable, Sortable;
 
     /**
      * The attributes that are mass assignable.

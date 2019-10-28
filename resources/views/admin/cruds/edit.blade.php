@@ -1,8 +1,7 @@
 @extends('layouts.admin', [
-    'title' => trans($name . '.index.title'),
-    'description' => trans($name . '.index.description'),
+    'title' => trans($trans . '.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route($route . '.index'), 'label' => trans($name . '.index.title')],
+        ['url' => route($route . '.index'), 'label' => trans($trans . '.index.title')],
         $model->name,
         trans('crud.update'),
     ]
@@ -15,7 +14,7 @@
         <div class="col-md-12">
             @include('partials.errors')
 
-            {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$route . '.update', $model->id], 'data-shortcut' => "1"]) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$route . '.update', $model->id], 'data-shortcut' => '1']) !!}
             @include($name . '._form', ['source' => null])
             {!! Form::close() !!}
         </div>

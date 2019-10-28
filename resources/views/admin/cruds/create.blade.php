@@ -1,8 +1,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans($name . '.create.title'),
-    'description' => trans($name . '.create.description'),
+    'title' => trans($trans . '.create.title'),
     'breadcrumbs' => [
-        ['url' => route($route . '.index'), 'label' => trans($name . '.index.title')],
+        ['url' => route($route . '.index'), 'label' => trans($trans . '.index.title')],
         trans('crud.create'),
     ]
 ])
@@ -13,7 +12,7 @@
         <div class="col-md-12">
             @include('partials.errors')
 
-            {!! Form::open(['route' => $route . '.store', 'enctype' => 'multipart/form-data', 'method'=>'POST', 'data-shortcut' => '1']) !!}
+            {!! Form::open(['route' => $route . '.store', 'enctype' => 'multipart/form-data', 'method' => 'POST', 'data-shortcut' => '1']) !!}
             @include($name . '._form', ['cancel' => route($route . '.index')])
             {!! Form::close() !!}
         </div>

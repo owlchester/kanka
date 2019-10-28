@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'index'     => [
+    'hall_of_fame'  => 'Salón de la fama',
+    'index'         => [
         'core'          => 'Esencia',
         'description'   => 'Estas personas hacen que Kanka sea posible',
         'other'         => 'Otro',
@@ -10,8 +11,9 @@ return [
         'title'         => 'Equipo',
         'translations'  => 'Traducciones',
     ],
-    'patreon'   => [
+    'patreon'       => [
         'description'   => 'Estas personas maravillosas ayudan y apoyan a Kanka en Patreon.',
+        'learn_more'    => 'Saber más sobre los beneficios de Patreon',
         'title'         => 'Patreon',
     ],
 ];

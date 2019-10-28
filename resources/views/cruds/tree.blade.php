@@ -11,7 +11,7 @@
 @section('content')
     <div class="row margin-bottom">
         <div class="col-md-12">
-            @include('layouts.datagrid.search', ['route' => route($name . '.index')])
+            @include('layouts.datagrid.search', ['route' => route($name . '.tree')])
 
             @can('create', $model)
                 <a href="{{ route($name . '.create', $createOptions) }}" class="btn btn-primary pull-right">

@@ -37,6 +37,7 @@ return [
         'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
         'map'           => 'Al añadir un mapa a un lugar, podrás crear puntos en él y enlazar a otras entidades de la campaña.',
         'nested'        => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
+        'organisations' => 'Ver todas las organizaciones de esta localización y sus sublocalizaciones, o solo las que están directamente aquí.',
     ],
     'hints'         => [
         'is_map_private'    => 'Un mapa privado solo será visible para los miembros con el rol "Admin".',

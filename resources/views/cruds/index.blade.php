@@ -52,7 +52,7 @@
                 </p>
             @endif
             <div class="pull-right">
-                {{ $models->links() }}
+                {{ $models->appends($filterService->pagination())->links() }}
             </div>
             {!! Form::hidden('entity', $name) !!}
         </div>

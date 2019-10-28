@@ -40,7 +40,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Users (Logins)</h4>
                 </div>
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Themes</h4>
                 </div>
@@ -78,7 +78,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Campaigns (Entities)</h4>
                 </div>
@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Campaigns (Users)</h4>
                 </div>
@@ -115,7 +115,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Total Entities</h4>
                 </div>

@@ -474,8 +474,13 @@ class DatagridRenderer
         $filtersHtml = str_replace('"', '\'', $filtersHtml);
         $activeFilters = $this->filterService->activeFilters();
 
+        $route = route('helpers.filters');
         $html = '
-        <div class="table-filters" title="' . __('crud.filters.title') . '" data-toggle="popover" '
+        <div class="table-filters" title="' . __('crud.filters.title') . '
+            <a href=\'' . $route . '\' class=\'pull-right\' target=\'_blank\' title=\'' . __('helpers.filters.title') .'\'>
+                <i class=\'fa fa-question-circle\'></i>
+            </a>
+        " data-toggle="popover" '
             . 'data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
             <i class="fa fa-filter"></i>
             ' . (!empty($activeFilters) ? '<span class="label label-danger">' . $activeFilters . '</span>' : null) . '
