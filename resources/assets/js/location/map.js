@@ -318,10 +318,17 @@ function loadMapPoint(element) {
         // Closing the modal
         $('.entity-close').on('click', function(e) {
             //console.log('clicky');
-            mapPanel.addClass('hidden');
-            $('#location-map-main').removeClass('col-md-9 col-sm-8').addClass('col-md-12');
+            hideMapPointDetails();
         });
     });
+}
+
+/**
+ *
+ */
+function hideMapPointDetails() {
+    mapPanel.addClass('hidden');
+    $('#location-map-main').removeClass('col-md-9 col-sm-8').addClass('col-md-12');
 }
 
 /**
@@ -335,6 +342,7 @@ function initMapModeSwitch() {
         mapElement.addClass('map-admin-mode');
 
         activateMovePoints();
+        hideMapPointDetails();
     });
 
     mapViewMode.click(function(e) {
@@ -723,22 +731,6 @@ function formatState (state) {
  * @param state
  * @returns {jQuery|HTMLElement|*}
  */
-function formatColourState (state) {
-    if (state.id === 'none') {
-        return state.text;
-    }
-
-    var $state = $(
-        '<span><i class="fas fa-square-full" style="color: ' + state.id + ';"></i> ' + state.text + '</span>'
-    );
-    return $state;
-}
-
-/**
- * Shape state
- * @param state
- * @returns {jQuery|HTMLElement|*}
- */
 function formatShapeState (state) {
     if (state.id === 'none') {
         return state.text;
@@ -758,10 +750,11 @@ function initIconSelect() {
         templateSelection: formatState,
         language: $(this).data('language')
     });
-    $(".select2-colour").select2({
-        templateResult: formatColourState,
-        templateSelection: formatColourState,
-        language: $(this).data('language')
+    $(".spectrum").spectrum({
+        preferredFormat: "hex",
+        showInput: true,
+        showPalette: true,
+        allowEmpty:true
     });
     $(".select2-shape").select2({
         templateResult: formatShapeState,
