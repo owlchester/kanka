@@ -7,6 +7,7 @@ use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Support\Arr;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -254,7 +255,7 @@ class Tag extends MiscModel
      */
     public function attachEntity(array $request): bool
     {
-        $entityId = array_get($request, 'entity_id');
+        $entityId = Arr::get($request, 'entity_id');
         $entity = Entity::with('tags')->findOrFail($entityId);
 
         // Make sure the tag isn't already attached to the entity

@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 trait TreeControllerTrait
 {
@@ -38,7 +39,7 @@ trait TreeControllerTrait
             ->search(request()->get('search'))
             ->order($this->filterService->order());
 
-        $singularModel = str_singular($this->view);
+        $singularModel = Str::singular($this->view);
         $createOptions = [];
 
         /** @var Tag $model **/

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
 
 class GenerateMentions extends Command
 {
@@ -97,7 +98,7 @@ class GenerateMentions extends Command
 
         $fields = ['entry'];
         foreach ($fields as $field) {
-            if (array_has($attributes, $field)) {
+            if (Arr::has($attributes, $field)) {
                 if (strpos($model->$field, self::REDIRECT_WHAT) !== false) {
                     // Fix http to https & www to direct
                     $model->$field = str_replace(

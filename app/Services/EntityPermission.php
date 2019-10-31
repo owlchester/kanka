@@ -8,6 +8,7 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
+use Illuminate\Support\Arr;
 
 class EntityPermission
 {
@@ -90,7 +91,7 @@ class EntityPermission
      */
     public function entityIds(string $modelName)
     {
-        return array_get($this->cachedEntityIds, $modelName, [0]);
+        return Arr::get($this->cachedEntityIds, $modelName, [0]);
     }
 
     /**

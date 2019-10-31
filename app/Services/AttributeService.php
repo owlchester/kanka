@@ -24,11 +24,11 @@ class AttributeService
         }
 
         $order = 0;
-        $names = array_get($data, 'attr_name', []);
-        $values = array_get($data, 'attr_value', []);
-        $types = array_get($data, 'attr_type', []);
-        $privates = array_get($data, 'attr_is_private', []);
-        $stars = array_get($data, 'attr_is_star', []);
+        $names = Arr::get($data, 'attr_name', []);
+        $values = Arr::get($data, 'attr_value', []);
+        $types = Arr::get($data, 'attr_type', []);
+        $privates = Arr::get($data, 'attr_is_private', []);
+        $stars = Arr::get($data, 'attr_is_star', []);
 
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
@@ -190,12 +190,12 @@ class AttributeService
         }
 
         $order = 0;
-        $names = array_get($request, 'attr_name', []);
-        $values = array_get($request, 'attr_value', []);
-        $types = array_get($request, 'attr_type', []);
-        $privates = array_get($request, 'attr_is_private', []);
-        $stars = array_get($request, 'attr_is_star', []);
-        $templateId = array_get($request, 'template_id', null);
+        $names = Arr::get($request, 'attr_name', []);
+        $values = Arr::get($request, 'attr_value', []);
+        $types = Arr::get($request, 'attr_type', []);
+        $privates = Arr::get($request, 'attr_is_private', []);
+        $stars = Arr::get($request, 'attr_is_star', []);
+        $templateId = Arr::get($request, 'template_id', null);
 
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates

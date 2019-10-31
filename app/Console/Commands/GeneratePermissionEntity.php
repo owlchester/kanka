@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\CampaignPermission;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class GeneratePermissionEntity extends Command
 {
@@ -47,7 +48,7 @@ class GeneratePermissionEntity extends Command
                 $id = $permission->entityId();
                 if (is_numeric($id)) {
                     // Get the real entity?
-                    $type = str_singular($permission->table_name);
+                    $type = Str::singular($permission->table_name);
                     $entity = DB::table('entities')->where('type', $type)->where('entity_id', $id)->first();
                     if ($entity) {
                         $permission->entity_id = $entity->id;

@@ -1,10 +1,11 @@
 <?php
+use Illuminate\Support\Arr;
 /**
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
 $selectedOptions = [];
 
-$model = array_get($options, 'model', null);
+$model = Arr::get($options, 'model', null);
 $options = \App\Models\RpgSystem::ordered()->get();
 
 // Try to load what was sent with the form first, in case there was a form validation error
