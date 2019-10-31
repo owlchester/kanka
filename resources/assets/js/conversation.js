@@ -1,3 +1,21 @@
+import Conversation from "./components/Conversation";
+import Message from "./components/conversation/Message";
+import Messages from "./components/conversation/Messages";
+import Form from "./components/conversation/Form";
+
+window.Vue = require('vue');
+
+Vue.component('conversation', Conversation);
+Vue.component('conversation-messages', Messages);
+Vue.component('conversation-message', Message);
+Vue.component('conversation-form', Form);
+
+const app = new Vue({
+    el: '#conversation'
+});
+
+
+
 var conversationBody, conversationSend, conversationMessage, conversationContext;
 var conversationLoadPrevious;
 var conversationToggles, conversationBox;

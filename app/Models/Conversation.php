@@ -110,11 +110,16 @@ class Conversation extends MiscModel
             }
         }
 
-
         if (!$withNames) {
             return array_keys($participants);
         }
-        return $participants;
+    }
+
+    /**
+     * @return false|string
+     */
+    public function jsonParticipants() {
+        return json_encode($this->participantsList());
     }
 
     /**
@@ -132,5 +137,13 @@ class Conversation extends MiscModel
     public function entry()
     {
         return '';
+    }
+
+    /**
+     * @return bool
+     */
+    public function forCharacters(): bool
+    {
+        return $this->target == self::TARGET_CHARACTERS;
     }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConversationMessage;
+use App\Http\Resources\Conversation\ConversationResource;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class ConversationMessageController extends Controller
 {
@@ -14,14 +17,9 @@ class ConversationMessageController extends Controller
      */
     public function index(Conversation $conversation)
     {
-        $ajax = request()->ajax();
-
-        return view('conversations._latest', [
-            'model' => $conversation,
-            'oldest' => request()->get('oldest', null),
-            'newest' => null,
-            'ajax' => $ajax
-        ]);
+        return new ConversationResource(
+            $conversation
+        );
     }
 
     /**
@@ -35,21 +33,17 @@ class ConversationMessageController extends Controller
         $this->authorize('update', $conversation);
 
         $participant = new ConversationMessage();
-        $participant = $participant->create($request->all());
-
-        if (request()->ajax()) {
-            return view('conversations._latest', [
-                'model' => $conversation,
-                'oldest' => null,
-                'newest' => request()->get('newest')
-            ]);
+        $data = $request->only('message', 'character_id');
+        if (!$conversation->forCharacters()) {
+            $data['user_id'] = Auth::user()->id;
         }
+        $data['conversation_id'] = $conversation->id;
 
-        return redirect()
-            ->route('conversations.show', $conversation)
-            ->with('success', trans('conversations.messages.create.success', [
-                'name' => $conversation->name, 'entity' => $participant->author()
-            ]));
+        $participant = $participant->create($data);
+
+        return new ConversationResource(
+            $conversation
+        );
     }
 
     /**

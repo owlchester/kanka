@@ -3,14 +3,13 @@
  */
 .box-conversation {
   .box-comments {
+    max-height: 65vh;
+    overflow: auto;
     .box-comment {
       margin: 5px;
 
-      .entity-image {
-        float: left;
-      }
       .comment-text {
-        margin-left: 50px;
+        margin-left: 0;
       }
     }
   }
@@ -19,11 +18,5 @@
     margin: 10px 55px;
     cursor: pointer;
     text-align: center;
-  }
-
-
-  #conversation_body {
-    max-height: 400px;
-    overflow: auto;
   }
 }
