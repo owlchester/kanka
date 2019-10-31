@@ -15,12 +15,12 @@
 
         <div class="form-group required">
             <label>{{ trans('relations.fields.relation') }}</label>
-            {!! Form::text('relation', null, ['placeholder' => trans('relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('relation', null, ['placeholder' => trans('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
         <div class="form-group">
             <label>{{ trans('relations.fields.attitude') }}</label>
-            {!! Form::number('attitude', null, ['placeholder' => trans('relations.placeholders.attitude'), 'class' => 'form-control', 'min' => -100, 'max' => 100]) !!}
+            {!! Form::number('attitude', null, ['placeholder' => trans('entities/relations.placeholders.attitude'), 'class' => 'form-control', 'min' => -100, 'max' => 100]) !!}
         </div>
 
         @include('cruds.fields.visibility', ['model' => isset($relation) ? $relation : null])

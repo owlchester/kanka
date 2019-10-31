@@ -9,7 +9,7 @@
                 false,
                 'crud.fields.entity',
                 'search.tag-children',
-                'relations.placeholders.target'
+                'entities/relations.placeholders.target'
             ) !!}
         </div>
     </div>
