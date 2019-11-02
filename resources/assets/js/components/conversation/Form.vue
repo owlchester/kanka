@@ -27,6 +27,10 @@
 <script>
     import Event from '../event.js';
 
+    /**
+     * The form to send messages to a conversation.
+     * Messy party: we can have a list of characters that the user can edit, or send as the current user.
+     */
     export default {
         props: [
             'target',
@@ -42,12 +46,20 @@
             }
         },
         methods: {
+            /**
+             * We don't want a "send" button, so listen to the enter key. No multi-line support here.
+             * @param e
+             */
             typing(e) {
                 if (e.keyCode === 13 && !e.shiftKey) {
                     e.preventDefault();
                     this.sendMessage();
                 }
             },
+            /**
+             * Sending a message. This might be better off in Messages to keep all
+             * api requests in a single place.
+             */
             sendMessage() {
                 if (!this.body || this.body.trim() === '') {
                     return;
@@ -68,14 +80,7 @@
                 }).catch(() => {
                     this.sending = false;
                 });
-
             },
-            buildMessage() {
-                return {
-                    message: this.body,
-
-                }
-            }
         },
 
         computed: {
@@ -91,7 +96,6 @@
             },
             commentable: function() {
                 if (this.targetCharacter) {
-                    console.log(this.targets);
                     return this.targets !== null;
                 }
                 return true;
@@ -99,7 +103,6 @@
         },
 
         mounted() {
-            console.log('Component mounted.')
         }
     }
 </script>

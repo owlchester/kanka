@@ -109,10 +109,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/**
+ * This is just a placeholder that builds the convo module.
+ * All the juicy stuff is in Messages
+ */
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id', 'api', 'target', 'targets', 'send'],
-  mounted: function mounted() {// console.log('mounted conversation', this.api);
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -154,6 +158,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+/**
+ * The form to send messages to a conversation.
+ * Messy party: we can have a list of characters that the user can edit, or send as the current user.
+ */
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['target', 'api', 'targets'],
   data: function data() {
@@ -164,12 +173,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    /**
+     * We don't want a "send" button, so listen to the enter key. No multi-line support here.
+     * @param e
+     */
     typing: function typing(e) {
       if (e.keyCode === 13 && !e.shiftKey) {
         e.preventDefault();
         this.sendMessage();
       }
     },
+
+    /**
+     * Sending a message. This might be better off in Messages to keep all
+     * api requests in a single place.
+     */
     sendMessage: function sendMessage() {
       var _this = this;
 
@@ -193,11 +211,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         _this.sending = false;
       });
-    },
-    buildMessage: function buildMessage() {
-      return {
-        message: this.body
-      };
     }
   },
   computed: {
@@ -213,16 +226,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     commentable: function commentable() {
       if (this.targetCharacter) {
-        console.log(this.targets);
         return this.targets !== null;
       }
 
       return true;
     }
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -262,6 +272,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/**
+ * Don't do any of the heavy lifting here, just send some events to Messages for figuring stuff out
+ */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['message'],
@@ -322,20 +336,36 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 
+/**
+ * The core of the convo module. This is where the magic happens.
+ * Events are fired from Message (delete) and Form (sending)
+ */
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['api'],
   data: function data() {
     return {
+      // Our messages to be displayed
       messages: [],
+      // Show a small spinner below the messages
       sending: false,
+      // Not sure as of right now
       scrolledToBottom: false,
+      //
       chatBox: null,
+      // The highest message id
       newsest: null,
+      // The lowest message id
       previous: false,
+      // Show the "load previous" button above messages if there are previous entries on the server
       loadingPrevious: false
     };
   },
   methods: {
+    /**
+     * Our main loop to get messages.
+     * Using newest we just get what has been added since
+     */
     getMessages: function getMessages() {
       var _this = this;
 
@@ -355,6 +385,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.scrollToBottom();
       });
     },
+
+    /**
+     * When a new message comes, we want to scroll to the bottom of the messages
+     */
     scrollToBottom: function scrollToBottom() {
       var _this2 = this;
 
@@ -364,6 +398,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }, 50);
       this.newest = this.messages[this.messages.length - 1].id;
     },
+
+    /**
+     * Load previous messages that are on the server but not in memory.
+     * This might need some optimizing in the future for large datasets.
+     */
     getPrevious: function getPrevious() {
       var _this3 = this;
 
@@ -381,21 +420,22 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this3.loadingPrevious = false;
       });
     },
+
+    /**
+     * Delete a message from the dataset. This sends a delete request to the api and
+     * splices the message out of the dataset.
+     * @param message
+     */
     deleteMessage: function deleteMessage(message) {
       var _this4 = this;
 
-      console.log(',essage t deoetel', message);
       axios["delete"](message.delete_url).then(function () {
         var index = _this4.messages.findIndex(function (msg) {
           return msg.id === message.id;
         });
 
         _this4.messages.splice(index, 1);
-      }); // this.messages.forEach((msg) => {
-      //     if (msg.id === message.id) {
-      //         msg.delete();
-      //     }
-      // });
+      });
     }
   },
   mounted: function mounted() {
@@ -20525,138 +20565,6 @@ var app = new Vue({
   el: '#conversation',
   i18n: i18n
 });
-var conversationBody, conversationSend, conversationMessage, conversationContext;
-var conversationLoadPrevious;
-var conversationToggles, conversationBox;
-var conversationCurrentConversation;
-$(document).ready(function () {
-  conversationBody = $('#conversation_body');
-  conversationToggles = $('[data-toggle="conversation"]');
-
-  if (conversationToggles.length > 0) {
-    initConversations();
-  }
-
-  if (conversationBody.length === 1) {
-    initConversation();
-  }
-});
-/**
- *
- */
-
-function initConversations() {
-  conversationBox = $('#conversation_box');
-  conversationToggles.each(function (i) {
-    $(this).on('click', function (e) {
-      e.preventDefault(); // Don't re-load if already viewing
-
-      if (conversationCurrentConversation == $(this).attr('href')) {
-        return false;
-      }
-
-      conversationCurrentConversation = $(this).attr('href');
-      conversationBox.html('<i class="fa fa-spinner fa-spin"></i>');
-      $(this).parent().addClass('active');
-      $.ajax($(this).attr('href')).done(function (data) {
-        conversationBox.html(data);
-        initConversation();
-        window.crudInitAjaxModal();
-      });
-      return false;
-    });
-  });
-}
-/**
- *
- */
-
-
-function initConversation() {
-  // Save references
-  conversationBody = $('#conversation_body');
-  conversationSend = $('#conversation_send');
-  conversationContext = $("input[name='context']");
-  conversationMessage = $("input[name='message']"); // Load the first messages
-  // $.ajax(
-  //     conversationBody.data('url')
-  // ).done(function(data) {
-  //     conversationBody.html(data);
-  //     scrollToBottom(conversationBody);
-  //     initLoadPrevious();
-  // });
-
-  scrollToBottom(conversationBody);
-  initLoadPrevious();
-  registerActions();
-  conversationSend.on('submit', function (e) {
-    e.preventDefault();
-    var text = conversationContext.val();
-
-    if (!text || text.length === 0 || !text.trim()) {
-      return false;
-    }
-
-    var newest = $('.box-comment').last().data('id');
-    conversationMessage.val(text);
-    conversationContext.prop('disabled', true);
-    $.ajax({
-      type: "POST",
-      url: $(this).attr('action') + '?newest=' + newest,
-      data: $(this).serialize()
-    }).done(function (data) {
-      // Add new messages
-      conversationBody.append(data);
-      conversationContext.val('');
-      conversationMessage.val('');
-      conversationContext.prop('disabled', false);
-      conversationContext.focus(); // Scroll to bottom
-
-      scrollToBottom(conversationBody);
-      registerActions();
-    }).fail(function (data) {
-      console.error("Failed Post", data);
-    });
-    return false;
-  });
-}
-
-function initLoadPrevious() {
-  conversationLoadPrevious = $('#conversation_load_previous');
-
-  if (conversationLoadPrevious.length === 1) {
-    conversationLoadPrevious.on('click', function (e) {
-      //console.log('load previous url', $(this).data('url'));
-      conversationLoadPrevious.html('<i class="fa fa-spinner fa-spin"></i>');
-      $.ajax($(this).data('url')).done(function (data) {
-        conversationLoadPrevious.remove();
-        conversationBody.prepend(data);
-        initLoadPrevious();
-      });
-    });
-  }
-}
-/**
- * Scroll to the bottom of an element.
- * @param element
- */
-
-
-function scrollToBottom(element) {
-  element.scrollTop(element.prop('scrollHeight'));
-}
-
-function registerActions() {
-  // Delete confirm dialog
-  $.each($('.delete-message'), function (index) {
-    $(this).click(function (e) {
-      var name = $(this).data('name');
-      var target = $(this).data('delete-target');
-      $('#delete-confirm-name').text(name);
-      $('#delete-confirm-submit').data('target', target);
-    });
-  });
-}
 
 /***/ }),
 

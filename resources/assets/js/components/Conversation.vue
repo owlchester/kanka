@@ -13,6 +13,10 @@
 
 
 <script>
+    /**
+     * This is just a placeholder that builds the convo module.
+     * All the juicy stuff is in Messages
+     */
     export default {
         props: [
             'id',
@@ -23,7 +27,7 @@
         ],
 
         mounted() {
-            // console.log('mounted conversation', this.api);
+
         }
     }
 </script>

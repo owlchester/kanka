@@ -26,6 +26,9 @@
 <script>
     import Event from '../event.js';
 
+    /**
+     * Don't do any of the heavy lifting here, just send some events to Messages for figuring stuff out
+     */
     export default {
         props: [
             'message'
