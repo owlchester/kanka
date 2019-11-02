@@ -119,33 +119,6 @@
 }
 
 /**
- * Conversations
- */
-
-.box-conversation .box-comments .box-comment {
-  margin: 5px;
-}
-
-.box-conversation .box-comments .box-comment .entity-image {
-  float: left;
-}
-
-.box-conversation .box-comments .box-comment .comment-text {
-  margin-left: 50px;
-}
-
-.box-conversation .load-more {
-  margin: 10px 55px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.box-conversation #conversation_body {
-  max-height: 400px;
-  overflow: auto;
-}
-
-/**
  * SASS file for all that is print related.
  * This file contains all the stuff to hide when printing
  */
