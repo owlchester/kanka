@@ -63,10 +63,8 @@ class ConversationMessageController extends Controller
         }
 
         if (request()->ajax()) {
-            return view('conversations._latest', [
-                'model' => $conversation,
-                'oldest' => null,
-                'newest' => request()->get('newest')
+            return response()->json([
+                'success' => true
             ]);
         }
 

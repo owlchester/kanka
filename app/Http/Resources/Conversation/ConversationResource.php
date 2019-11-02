@@ -37,11 +37,20 @@ class ConversationResource extends JsonResource
                 'created_at' => $message->created_at->diffForHumans(),
                 'can_delete' => Auth::user()->can('delete', $message),
                 'can_edit' => Auth::user()->can('edit', $message),
+                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
             ];
         }
 
+        // Check if there are previous messages available
+        $first = $messages->first();
+        $previous = false;
+        if ($first) {
+            $previous = $this->messages()->where('id', '<', $first->id)->count() > 0;
+        }
+
         return [
-            'messages' => $data
+            'messages' => $data,
+            'previous' => $previous,
         ];
     }
 }

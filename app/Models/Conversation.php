@@ -113,6 +113,8 @@ class Conversation extends MiscModel
         if (!$withNames) {
             return array_keys($participants);
         }
+
+        return $participants;
     }
 
     /**

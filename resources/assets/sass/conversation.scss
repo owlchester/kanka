@@ -5,11 +5,24 @@
   .box-comments {
     max-height: 65vh;
     overflow: auto;
+    background-color: unset;
     .box-comment {
       margin: 5px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background-color: #f7f7f7;
 
+      .message-options {
+        display: none;
+      }
       .comment-text {
         margin-left: 0;
+      }
+
+      &:hover {
+        .message-options {
+          display: inline-block;
+        }
       }
     }
   }

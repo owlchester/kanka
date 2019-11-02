@@ -1,10 +1,10 @@
 <template>
-    <div class="box-footer">
+    <div class="box-footer" v-if="commentable">
         <div class="row">
             <div class="col-md-3" v-if="targetCharacter">
                 <select class="form-control" v-model="character_id">
-                    <option v-for="character in targets">
-                        {{ character.name }}
+                    <option v-for="(name, key) in targets" :value="key">
+                        {{ name }}
                     </option>
                 </select>
             </div>
@@ -37,7 +37,8 @@
         data() {
             return {
                 body: null,
-                sending: false
+                sending: false,
+                character_id: null
             }
         },
         methods: {
@@ -51,10 +52,11 @@
                 if (!this.body || this.body.trim() === '') {
                     return;
                 }
+                if (this.targetCharacter && this.character_id === null) {
+                    return;
+                }
                 this.sending = true;
                 Event.$emit('sending_message');
-
-                console.log('api', this.api);
 
                 axios.post(this.api, {
                     message: this.body.trim(),
@@ -78,6 +80,7 @@
 
         computed: {
             targetCharacter: function() {
+                console.log('targets', this.targets);
                 return this.target === 'character';
             },
             inputForm: function() {
@@ -85,6 +88,13 @@
             },
             inputFormDisabled: function() {
                 return this.sending;
+            },
+            commentable: function() {
+                if (this.targetCharacter) {
+                    console.log(this.targets);
+                    return this.targets !== null;
+                }
+                return true;
             }
         },
 

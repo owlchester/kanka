@@ -159,7 +159,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       body: null,
-      sending: false
+      sending: false,
+      character_id: null
     };
   },
   methods: {
@@ -176,9 +177,12 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      if (this.targetCharacter && this.character_id === null) {
+        return;
+      }
+
       this.sending = true;
       _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('sending_message');
-      console.log('api', this.api);
       axios.post(this.api, {
         message: this.body.trim(),
         character_id: this.character_id
@@ -198,6 +202,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     targetCharacter: function targetCharacter() {
+      console.log('targets', this.targets);
       return this.target === 'character';
     },
     inputForm: function inputForm() {
@@ -205,6 +210,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     inputFormDisabled: function inputFormDisabled() {
       return this.sending;
+    },
+    commentable: function commentable() {
+      if (this.targetCharacter) {
+        console.log(this.targets);
+        return this.targets !== null;
+      }
+
+      return true;
     }
   },
   mounted: function mounted() {
@@ -223,6 +236,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event.js */ "./resources/assets/js/components/event.js");
 //
 //
 //
@@ -234,6 +248,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['message'],
   computed: {
@@ -242,6 +271,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     isCharacter: function isCharacter() {
       return this.message.character !== null;
+    }
+  },
+  methods: {
+    deleteMessage: function deleteMessage(message) {
+      _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('delete_message', message);
     }
   }
 });
@@ -258,6 +292,24 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event.js */ "./resources/assets/js/components/event.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -275,28 +327,89 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       messages: [],
-      sending: false
+      sending: false,
+      scrolledToBottom: false,
+      chatBox: null,
+      newsest: null,
+      previous: false,
+      loadingPrevious: false
     };
   },
   methods: {
     getMessages: function getMessages() {
       var _this = this;
 
-      axios.get(this.api).then(function (response) {
-        _this.messages = response.data.data.messages;
+      axios.get(this.api, {
+        params: {
+          newest: this.newest
+        }
+      }).then(function (response) {
+        var _this$messages;
+
+        _this.sending = false;
+
+        (_this$messages = _this.messages).push.apply(_this$messages, _toConsumableArray(response.data.data.messages));
+
+        _this.previous = response.data.data.previous;
+
+        _this.scrollToBottom();
       });
+    },
+    scrollToBottom: function scrollToBottom() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        var messageBox = _this2.$refs.messagebox;
+        messageBox.scrollTop = messageBox.scrollHeight;
+      }, 50);
+      this.newest = this.messages[this.messages.length - 1].id;
+    },
+    getPrevious: function getPrevious() {
+      var _this3 = this;
+
+      this.loadingPrevious = true;
+      axios.get(this.api, {
+        params: {
+          oldest: this.messages[0].id
+        }
+      }).then(function (response) {
+        var _this3$messages;
+
+        (_this3$messages = _this3.messages).unshift.apply(_this3$messages, _toConsumableArray(response.data.data.messages));
+
+        _this3.previous = response.data.data.previous;
+        _this3.loadingPrevious = false;
+      });
+    },
+    deleteMessage: function deleteMessage(message) {
+      var _this4 = this;
+
+      console.log(',essage t deoetel', message);
+      axios["delete"](message.delete_url).then(function () {
+        var index = _this4.messages.findIndex(function (msg) {
+          return msg.id === message.id;
+        });
+
+        _this4.messages.splice(index, 1);
+      }); // this.messages.forEach((msg) => {
+      //     if (msg.id === message.id) {
+      //         msg.delete();
+      //     }
+      // });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this5 = this;
 
-    console.log('mounted convo-messages', this.api);
     this.getMessages();
     _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('sending_message', function () {
-      _this2.sending = true;
+      _this5.sending = true;
     });
     _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('sent_message', function () {
-      _this2.getMessages();
+      _this5.getMessages();
+    });
+    _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('delete_message', function (message) {
+      _this5.deleteMessage(message);
     });
   }
 });
@@ -771,6 +884,6925 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/uiv/dist/uiv.esm.js":
+/*!******************************************!*\
+  !*** ./node_modules/uiv/dist/uiv.esm.js ***!
+  \******************************************/
+/*! exports provided: Carousel, Slide, Collapse, Dropdown, Modal, Tab, Tabs, DatePicker, Affix, Alert, Pagination, Tooltip, Popover, TimePicker, Typeahead, ProgressBar, ProgressBarStack, Breadcrumbs, BreadcrumbItem, Btn, BtnGroup, BtnToolbar, MultiSelect, Navbar, NavbarNav, NavbarForm, NavbarText, tooltip, popover, scrollspy, MessageBox, Notification, install */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Carousel", function() { return Carousel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Slide", function() { return Slide; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Collapse", function() { return Collapse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dropdown", function() { return Dropdown; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Modal", function() { return Modal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tab", function() { return Tab; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tabs", function() { return Tabs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatePicker", function() { return DatePicker; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Affix", function() { return Affix; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Alert", function() { return Alert; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pagination", function() { return Pagination; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return Tooltip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Popover", function() { return Popover; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TimePicker", function() { return TimePicker; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Typeahead", function() { return Typeahead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProgressBar", function() { return ProgressBar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProgressBarStack", function() { return ProgressBarStack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Breadcrumbs", function() { return Breadcrumbs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BreadcrumbItem", function() { return BreadcrumbItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Btn", function() { return Btn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BtnGroup", function() { return BtnGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BtnToolbar", function() { return BtnToolbar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiSelect", function() { return MultiSelect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navbar", function() { return Navbar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarNav", function() { return NavbarNav; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarForm", function() { return NavbarForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarText", function() { return NavbarText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tooltip", function() { return tooltip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popover", function() { return popover; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrollspy", function() { return scrollspy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageBox", function() { return messageBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Notification", function() { return notification; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function isExist(obj) {
+  return typeof obj !== 'undefined' && obj !== null;
+}
+
+function isFunction(obj) {
+  return typeof obj === 'function';
+}
+
+function isNumber(obj) {
+  return typeof obj === 'number';
+}
+
+function isString(obj) {
+  return typeof obj === 'string';
+}
+
+function isBoolean(obj) {
+  return typeof obj === 'boolean';
+}
+
+function isPromiseSupported() {
+  return typeof window !== 'undefined' && isExist(window.Promise);
+}
+
+var Carousel = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "carousel slide", attrs: { "data-ride": "carousel" }, on: { "mouseenter": _vm.stopInterval, "mouseleave": _vm.startInterval } }, [_vm.indicators ? _vm._t("indicators", [_c('ol', { staticClass: "carousel-indicators" }, _vm._l(_vm.slides, function (slide, index) {
+      return _c('li', { class: { active: index === _vm.activeIndex }, on: { "click": function click($event) {
+            return _vm.select(index);
+          } } });
+    }), 0)], { "select": _vm.select, "activeIndex": _vm.activeIndex }) : _vm._e(), _vm._v(" "), _c('div', { staticClass: "carousel-inner", attrs: { "role": "listbox" } }, [_vm._t("default")], 2), _vm._v(" "), _vm.controls ? _c('a', { staticClass: "left carousel-control", attrs: { "href": "#", "role": "button" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.prev();
+        } } }, [_c('span', { class: _vm.iconControlLeft, attrs: { "aria-hidden": "true" } }), _vm._v(" "), _c('span', { staticClass: "sr-only" }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm.controls ? _c('a', { staticClass: "right carousel-control", attrs: { "href": "#", "role": "button" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.next();
+        } } }, [_c('span', { class: _vm.iconControlRight, attrs: { "aria-hidden": "true" } }), _vm._v(" "), _c('span', { staticClass: "sr-only" }, [_vm._v("Next")])]) : _vm._e()], 2);
+  }, staticRenderFns: [],
+  props: {
+    value: Number,
+    indicators: {
+      type: Boolean,
+      default: true
+    },
+    controls: {
+      type: Boolean,
+      default: true
+    },
+    interval: {
+      type: Number,
+      default: 5000
+    },
+    iconControlLeft: {
+      type: String,
+      default: 'glyphicon glyphicon-chevron-left'
+    },
+    iconControlRight: {
+      type: String,
+      default: 'glyphicon glyphicon-chevron-right'
+    }
+  },
+  data: function data() {
+    return {
+      slides: [],
+      activeIndex: 0, // Make v-model not required
+      timeoutId: 0,
+      intervalId: 0
+    };
+  },
+
+  watch: {
+    interval: function interval() {
+      this.startInterval();
+    },
+    value: function value(index, oldValue) {
+      this.run(index, oldValue);
+      this.activeIndex = index;
+    }
+  },
+  mounted: function mounted() {
+    if (isExist(this.value)) {
+      this.activeIndex = this.value;
+    }
+    if (this.slides.length > 0) {
+      this.$select(this.activeIndex);
+    }
+    this.startInterval();
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.stopInterval();
+  },
+
+  methods: {
+    run: function run(newIndex, oldIndex) {
+      var _this = this;
+
+      var currentActiveIndex = oldIndex || 0;
+      var direction = void 0;
+      if (newIndex > currentActiveIndex) {
+        direction = ['next', 'left'];
+      } else {
+        direction = ['prev', 'right'];
+      }
+      this.slides[newIndex].slideClass[direction[0]] = true;
+      this.$nextTick(function () {
+        _this.slides[newIndex].$el.offsetHeight;
+        _this.slides.forEach(function (slide, i) {
+          if (i === currentActiveIndex) {
+            slide.slideClass.active = true;
+            slide.slideClass[direction[1]] = true;
+          } else if (i === newIndex) {
+            slide.slideClass[direction[1]] = true;
+          }
+        });
+        _this.timeoutId = setTimeout(function () {
+          _this.$select(newIndex);
+          _this.$emit('change', newIndex);
+          _this.timeoutId = 0;
+        }, 600);
+      });
+    },
+    startInterval: function startInterval() {
+      var _this2 = this;
+
+      this.stopInterval();
+      if (this.interval > 0) {
+        this.intervalId = setInterval(function () {
+          _this2.next();
+        }, this.interval);
+      }
+    },
+    stopInterval: function stopInterval() {
+      clearInterval(this.intervalId);
+      this.intervalId = 0;
+    },
+    resetAllSlideClass: function resetAllSlideClass() {
+      this.slides.forEach(function (slide) {
+        slide.slideClass.active = false;
+        slide.slideClass.left = false;
+        slide.slideClass.right = false;
+        slide.slideClass.next = false;
+        slide.slideClass.prev = false;
+      });
+    },
+    $select: function $select(index) {
+      this.resetAllSlideClass();
+      this.slides[index].slideClass.active = true;
+    },
+    select: function select(index) {
+      if (this.timeoutId !== 0 || index === this.activeIndex) {
+        return;
+      }
+      if (isExist(this.value)) {
+        this.$emit('input', index);
+      } else {
+        this.run(index, this.activeIndex);
+        this.activeIndex = index;
+      }
+    },
+    prev: function prev() {
+      this.select(this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1);
+    },
+    next: function next() {
+      this.select(this.activeIndex === this.slides.length - 1 ? 0 : this.activeIndex + 1);
+    }
+  }
+};
+
+function spliceIfExist(arr, item) {
+  if (Array.isArray(arr)) {
+    var index = arr.indexOf(item);
+    if (index >= 0) {
+      arr.splice(index, 1);
+    }
+  }
+}
+
+function range(end) {
+  var start = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
+  var arr = [];
+  for (var i = start; i < end; i += step) {
+    arr.push(i);
+  }
+  return arr;
+}
+
+function nodeListToArray(nodeList) {
+  return Array.prototype.slice.call(nodeList || []);
+}
+
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+var Slide = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "item", class: _vm.slideClass }, [_vm._t("default")], 2);
+  }, staticRenderFns: [],
+  data: function data() {
+    return {
+      slideClass: {
+        active: false,
+        prev: false,
+        next: false,
+        left: false,
+        right: false
+      }
+    };
+  },
+  created: function created() {
+    try {
+      this.$parent.slides.push(this);
+    } catch (e) {
+      throw new Error('Slide parent must be Carousel.');
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    var slides = this.$parent && this.$parent.slides;
+    spliceIfExist(slides, this);
+  }
+};
+
+var EVENTS = {
+  MOUSE_ENTER: 'mouseenter',
+  MOUSE_LEAVE: 'mouseleave',
+  FOCUS: 'focus',
+  BLUR: 'blur',
+  CLICK: 'click',
+  INPUT: 'input',
+  KEY_DOWN: 'keydown',
+  KEY_UP: 'keyup',
+  KEY_PRESS: 'keypress',
+  RESIZE: 'resize',
+  SCROLL: 'scroll',
+  TOUCH_START: 'touchstart',
+  TOUCH_END: 'touchend'
+};
+
+var TRIGGERS = {
+  CLICK: 'click',
+  HOVER: 'hover',
+  FOCUS: 'focus',
+  HOVER_FOCUS: 'hover-focus',
+  OUTSIDE_CLICK: 'outside-click',
+  MANUAL: 'manual'
+};
+
+var PLACEMENTS = {
+  TOP: 'top',
+  RIGHT: 'right',
+  BOTTOM: 'bottom',
+  LEFT: 'left'
+};
+
+function isIE11() {
+  return !!window.MSInputMethodContext && !!document.documentMode;
+}
+
+function isIE10() {
+  return window.navigator.appVersion.indexOf('MSIE 10') !== -1;
+}
+
+function getComputedStyle(el) {
+  return window.getComputedStyle(el);
+}
+
+function getViewportSize() {
+  var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  return { width: width, height: height };
+}
+
+var scrollbarWidth = null;
+var savedScreenSize = null;
+
+function getScrollbarWidth() {
+  var recalculate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+  var screenSize = getViewportSize();
+  // return directly when already calculated & not force recalculate & screen size not changed
+  if (scrollbarWidth !== null && !recalculate && screenSize.height === savedScreenSize.height && screenSize.width === savedScreenSize.width) {
+    return scrollbarWidth;
+  }
+  if (document.readyState === 'loading') {
+    return null;
+  }
+  var div1 = document.createElement('div');
+  var div2 = document.createElement('div');
+  div1.style.width = div2.style.width = div1.style.height = div2.style.height = '100px';
+  div1.style.overflow = 'scroll';
+  div2.style.overflow = 'hidden';
+  document.body.appendChild(div1);
+  document.body.appendChild(div2);
+  scrollbarWidth = Math.abs(div1.scrollHeight - div2.scrollHeight);
+  document.body.removeChild(div1);
+  document.body.removeChild(div2);
+  // save new screen size
+  savedScreenSize = screenSize;
+  return scrollbarWidth;
+}
+
+function on(element, event, handler) {
+  element.addEventListener(event, handler);
+}
+
+function off(element, event, handler) {
+  element.removeEventListener(event, handler);
+}
+
+function isElement(el) {
+  return el && el.nodeType === Node.ELEMENT_NODE;
+}
+
+function removeFromDom(el) {
+  isElement(el) && isElement(el.parentNode) && el.parentNode.removeChild(el);
+}
+
+function ensureElementMatchesFunction() {
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
+      var matches = (this.document || this.ownerDocument).querySelectorAll(s);
+      var i = matches.length;
+      while (--i >= 0 && matches.item(i) !== this) {}
+      return i > -1;
+    };
+  }
+}
+
+function addClass(el, className) {
+  if (!isElement(el)) {
+    return;
+  }
+  if (el.className) {
+    var classes = el.className.split(' ');
+    if (classes.indexOf(className) < 0) {
+      classes.push(className);
+      el.className = classes.join(' ');
+    }
+  } else {
+    el.className = className;
+  }
+}
+
+function removeClass(el, className) {
+  if (!isElement(el)) {
+    return;
+  }
+  if (el.className) {
+    var classes = el.className.split(' ');
+    var newClasses = [];
+    for (var i = 0, l = classes.length; i < l; i++) {
+      if (classes[i] !== className) {
+        newClasses.push(classes[i]);
+      }
+    }
+    el.className = newClasses.join(' ');
+  }
+}
+
+function hasClass(el, className) {
+  if (!isElement(el)) {
+    return false;
+  }
+  var classes = el.className.split(' ');
+  for (var i = 0, l = classes.length; i < l; i++) {
+    if (classes[i] === className) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function setDropdownPosition(dropdown, trigger) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+  var doc = document.documentElement;
+  var containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+  var containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+  var rect = trigger.getBoundingClientRect();
+  var dropdownRect = dropdown.getBoundingClientRect();
+  dropdown.style.right = 'auto';
+  dropdown.style.bottom = 'auto';
+  if (options.menuRight) {
+    dropdown.style.left = containerScrollLeft + rect.left + rect.width - dropdownRect.width + 'px';
+  } else {
+    dropdown.style.left = containerScrollLeft + rect.left + 'px';
+  }
+  if (options.dropup) {
+    dropdown.style.top = containerScrollTop + rect.top - dropdownRect.height - 4 + 'px';
+  } else {
+    dropdown.style.top = containerScrollTop + rect.top + rect.height + 'px';
+  }
+}
+
+function isAvailableAtPosition(trigger, popup, placement) {
+  var triggerRect = trigger.getBoundingClientRect();
+  var popupRect = popup.getBoundingClientRect();
+  var viewPortSize = getViewportSize();
+  var top = true;
+  var right = true;
+  var bottom = true;
+  var left = true;
+  switch (placement) {
+    case PLACEMENTS.TOP:
+      top = triggerRect.top >= popupRect.height;
+      left = triggerRect.left + triggerRect.width / 2 >= popupRect.width / 2;
+      right = triggerRect.right - triggerRect.width / 2 + popupRect.width / 2 <= viewPortSize.width;
+      break;
+    case PLACEMENTS.BOTTOM:
+      bottom = triggerRect.bottom + popupRect.height <= viewPortSize.height;
+      left = triggerRect.left + triggerRect.width / 2 >= popupRect.width / 2;
+      right = triggerRect.right - triggerRect.width / 2 + popupRect.width / 2 <= viewPortSize.width;
+      break;
+    case PLACEMENTS.RIGHT:
+      right = triggerRect.right + popupRect.width <= viewPortSize.width;
+      top = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2;
+      bottom = triggerRect.bottom - triggerRect.height / 2 + popupRect.height / 2 <= viewPortSize.height;
+      break;
+    case PLACEMENTS.LEFT:
+      left = triggerRect.left >= popupRect.width;
+      top = triggerRect.top + triggerRect.height / 2 >= popupRect.height / 2;
+      bottom = triggerRect.bottom - triggerRect.height / 2 + popupRect.height / 2 <= viewPortSize.height;
+      break;
+  }
+  return top && right && bottom && left;
+}
+
+function setTooltipPosition(tooltip, trigger, placement, auto, appendToSelector, viewport) {
+  var isPopover = tooltip && tooltip.className && tooltip.className.indexOf('popover') >= 0;
+  var containerScrollTop = void 0;
+  var containerScrollLeft = void 0;
+  if (!isExist(appendToSelector) || appendToSelector === 'body') {
+    var doc = document.documentElement;
+    containerScrollLeft = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+    containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+  } else {
+    var container = document.querySelector(appendToSelector);
+    containerScrollLeft = container.scrollLeft;
+    containerScrollTop = container.scrollTop;
+  }
+  // auto adjust placement
+  if (auto) {
+    // Try: right -> bottom -> left -> top
+    // Cause the default placement is top
+    var placements = [PLACEMENTS.RIGHT, PLACEMENTS.BOTTOM, PLACEMENTS.LEFT, PLACEMENTS.TOP];
+    // The class switch helper function
+    var changePlacementClass = function changePlacementClass(placement) {
+      // console.log(placement)
+      placements.forEach(function (placement) {
+        removeClass(tooltip, placement);
+      });
+      addClass(tooltip, placement);
+    };
+    // No need to adjust if the default placement fits
+    if (!isAvailableAtPosition(trigger, tooltip, placement)) {
+      for (var i = 0, l = placements.length; i < l; i++) {
+        // Re-assign placement class
+        changePlacementClass(placements[i]);
+        // Break if new placement fits
+        if (isAvailableAtPosition(trigger, tooltip, placements[i])) {
+          placement = placements[i];
+          break;
+        }
+      }
+      changePlacementClass(placement);
+    }
+  }
+  // fix left and top for tooltip
+  var rect = trigger.getBoundingClientRect();
+  var tooltipRect = tooltip.getBoundingClientRect();
+  var top = void 0;
+  var left = void 0;
+  if (placement === PLACEMENTS.BOTTOM) {
+    top = containerScrollTop + rect.top + rect.height;
+    left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2;
+  } else if (placement === PLACEMENTS.LEFT) {
+    top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2;
+    left = containerScrollLeft + rect.left - tooltipRect.width;
+  } else if (placement === PLACEMENTS.RIGHT) {
+    top = containerScrollTop + rect.top + rect.height / 2 - tooltipRect.height / 2;
+    // https://github.com/wxsms/uiv/issues/272
+    // add 1px to fix above issue
+    left = containerScrollLeft + rect.left + rect.width + 1;
+  } else {
+    top = containerScrollTop + rect.top - tooltipRect.height;
+    left = containerScrollLeft + rect.left + rect.width / 2 - tooltipRect.width / 2;
+  }
+  var viewportEl = void 0;
+  // viewport option
+  if (isString(viewport)) {
+    viewportEl = document.querySelector(viewport);
+  } else if (isFunction(viewport)) {
+    viewportEl = viewport(trigger);
+  }
+  if (isElement(viewportEl)) {
+    var popoverFix = isPopover ? 11 : 0;
+    var viewportReact = viewportEl.getBoundingClientRect();
+    var viewportTop = containerScrollTop + viewportReact.top;
+    var viewportLeft = containerScrollLeft + viewportReact.left;
+    var viewportBottom = viewportTop + viewportReact.height;
+    var viewportRight = viewportLeft + viewportReact.width;
+    // fix top
+    if (top < viewportTop) {
+      top = viewportTop;
+    } else if (top + tooltipRect.height > viewportBottom) {
+      top = viewportBottom - tooltipRect.height;
+    }
+    // fix left
+    if (left < viewportLeft) {
+      left = viewportLeft;
+    } else if (left + tooltipRect.width > viewportRight) {
+      left = viewportRight - tooltipRect.width;
+    }
+    // fix for popover pointer
+    if (placement === PLACEMENTS.BOTTOM) {
+      top -= popoverFix;
+    } else if (placement === PLACEMENTS.LEFT) {
+      left += popoverFix;
+    } else if (placement === PLACEMENTS.RIGHT) {
+      left -= popoverFix;
+    } else {
+      top += popoverFix;
+    }
+  }
+  // set position finally
+  tooltip.style.top = top + 'px';
+  tooltip.style.left = left + 'px';
+}
+
+function hasScrollbar(el) {
+  var SCROLL = 'scroll';
+  var hasVScroll = el.scrollHeight > el.clientHeight;
+  var style = getComputedStyle(el);
+  return hasVScroll || style.overflow === SCROLL || style.overflowY === SCROLL;
+}
+
+function toggleBodyOverflow(enable) {
+  var MODAL_OPEN = 'modal-open';
+  var body = document.body;
+  if (enable) {
+    removeClass(body, MODAL_OPEN);
+    body.style.paddingRight = null;
+  } else {
+    var browsersWithFloatingScrollbar = isIE10() || isIE11();
+    var documentHasScrollbar = hasScrollbar(document.documentElement) || hasScrollbar(document.body);
+    if (documentHasScrollbar && !browsersWithFloatingScrollbar) {
+      body.style.paddingRight = getScrollbarWidth() + 'px';
+    }
+    addClass(body, MODAL_OPEN);
+  }
+}
+
+function getClosest(el, selector) {
+  ensureElementMatchesFunction();
+  var parent = void 0;
+  var _el = el;
+  while (_el) {
+    parent = _el.parentElement;
+    if (parent && parent.matches(selector)) {
+      return parent;
+    }
+    _el = parent;
+  }
+  return null;
+}
+
+function getParents(el, selector) {
+  var until = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  ensureElementMatchesFunction();
+  var parents = [];
+  var parent = el.parentElement;
+  while (parent) {
+    if (parent.matches(selector)) {
+      parents.push(parent);
+    } else if (until && (until === parent || parent.matches(until))) {
+      break;
+    }
+    parent = parent.parentElement;
+  }
+  return parents;
+}
+
+function focus(el) {
+  if (!isElement(el)) {
+    return;
+  }
+  el.getAttribute('tabindex') ? null : el.setAttribute('tabindex', '-1');
+  el.focus();
+}
+
+var COLLAPSE = 'collapse';
+var IN = 'in';
+var COLLAPSING = 'collapsing';
+
+var Collapse = {
+  render: function render(h) {
+    return h(this.tag, {}, this.$slots.default);
+  },
+
+  props: {
+    tag: {
+      type: String,
+      default: 'div'
+    },
+    value: {
+      type: Boolean,
+      default: false
+    },
+    transitionDuration: {
+      type: Number,
+      default: 350
+    }
+  },
+  data: function data() {
+    return {
+      timeoutId: 0
+    };
+  },
+
+  watch: {
+    value: function value(show) {
+      this.toggle(show);
+    }
+  },
+  mounted: function mounted() {
+    var el = this.$el;
+    addClass(el, COLLAPSE);
+    if (this.value) {
+      addClass(el, IN);
+    }
+  },
+
+  methods: {
+    toggle: function toggle(show) {
+      var _this = this;
+
+      clearTimeout(this.timeoutId);
+      var el = this.$el;
+      if (show) {
+        this.$emit('show');
+        removeClass(el, COLLAPSE);
+        el.style.height = 'auto';
+        var height = window.getComputedStyle(el).height;
+        el.style.height = null;
+        addClass(el, COLLAPSING);
+        el.offsetHeight; // force repaint
+        el.style.height = height;
+        this.timeoutId = setTimeout(function () {
+          removeClass(el, COLLAPSING);
+          addClass(el, COLLAPSE);
+          addClass(el, IN);
+          el.style.height = null;
+          _this.timeoutId = 0;
+          _this.$emit('shown');
+        }, this.transitionDuration);
+      } else {
+        this.$emit('hide');
+        el.style.height = window.getComputedStyle(el).height;
+        removeClass(el, IN);
+        removeClass(el, COLLAPSE);
+        el.offsetHeight;
+        el.style.height = null;
+        addClass(el, COLLAPSING);
+        this.timeoutId = setTimeout(function () {
+          addClass(el, COLLAPSE);
+          removeClass(el, COLLAPSING);
+          el.style.height = null;
+          _this.timeoutId = 0;
+          _this.$emit('hidden');
+        }, this.transitionDuration);
+      }
+    }
+  }
+};
+
+var DEFAULT_TAG = 'div';
+
+var Dropdown = {
+  render: function render(h) {
+    return h(this.tag, {
+      class: {
+        'btn-group': this.tag === DEFAULT_TAG,
+        dropdown: !this.dropup,
+        dropup: this.dropup,
+        open: this.show
+      }
+    }, [this.$slots.default, h('ul', {
+      class: {
+        'dropdown-menu': true,
+        'dropdown-menu-right': this.menuRight
+      },
+      ref: 'dropdown'
+    }, [this.$slots.dropdown])]);
+  },
+
+  props: {
+    tag: {
+      type: String,
+      default: DEFAULT_TAG
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    value: Boolean,
+    dropup: {
+      type: Boolean,
+      default: false
+    },
+    menuRight: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    notCloseElements: Array,
+    positionElement: null
+  },
+  data: function data() {
+    return {
+      show: false,
+      triggerEl: undefined
+    };
+  },
+
+  watch: {
+    value: function value(v) {
+      this.toggle(v);
+    }
+  },
+  mounted: function mounted() {
+    this.initTrigger();
+    if (this.triggerEl) {
+      on(this.triggerEl, EVENTS.CLICK, this.toggle);
+      on(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress);
+    }
+    on(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress);
+    on(window, EVENTS.CLICK, this.windowClicked);
+    on(window, EVENTS.TOUCH_END, this.windowClicked);
+    if (this.value) {
+      this.toggle(true);
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.removeDropdownFromBody();
+    if (this.triggerEl) {
+      off(this.triggerEl, EVENTS.CLICK, this.toggle);
+      off(this.triggerEl, EVENTS.KEY_DOWN, this.onKeyPress);
+    }
+    off(this.$refs.dropdown, EVENTS.KEY_DOWN, this.onKeyPress);
+    off(window, EVENTS.CLICK, this.windowClicked);
+    off(window, EVENTS.TOUCH_END, this.windowClicked);
+  },
+
+  methods: {
+    onKeyPress: function onKeyPress(event) {
+      if (this.show) {
+        var dropdownEl = this.$refs.dropdown;
+        var keyCode = event.keyCode || event.which;
+        if (keyCode === 27) {
+          this.toggle(false);
+          this.triggerEl && this.triggerEl.focus();
+        } else if (keyCode === 13) {
+          var currentFocus = dropdownEl.querySelector('li > a:focus');
+          currentFocus && currentFocus.click();
+        } else if (keyCode === 38 || keyCode === 40) {
+          event.preventDefault();
+          event.stopPropagation();
+          var _currentFocus = dropdownEl.querySelector('li > a:focus');
+          var items = dropdownEl.querySelectorAll('li:not(.disabled) > a');
+          if (!_currentFocus) {
+            focus(items[0]);
+          } else {
+            for (var i = 0; i < items.length; i++) {
+              if (_currentFocus === items[i]) {
+                if (keyCode === 38 && i < items.length > 0) {
+                  focus(items[i - 1]);
+                } else if (keyCode === 40 && i < items.length - 1) {
+                  focus(items[i + 1]);
+                }
+                break;
+              }
+            }
+          }
+        }
+      }
+    },
+    initTrigger: function initTrigger() {
+      var trigger = this.$el.querySelector('[data-role="trigger"]') || this.$el.querySelector('.dropdown-toggle') || this.$el.firstChild;
+      this.triggerEl = trigger && trigger !== this.$refs.dropdown ? trigger : null;
+    },
+    toggle: function toggle(show) {
+      if (this.disabled) {
+        return;
+      }
+      if (isBoolean(show)) {
+        this.show = show;
+      } else {
+        this.show = !this.show;
+      }
+      if (this.appendToBody) {
+        this.show ? this.appendDropdownToBody() : this.removeDropdownFromBody();
+      }
+      this.$emit('input', this.show);
+    },
+    windowClicked: function windowClicked(event) {
+      var target = event.target;
+      if (this.show && target) {
+        var targetInNotCloseElements = false;
+        if (this.notCloseElements) {
+          for (var i = 0, l = this.notCloseElements.length; i < l; i++) {
+            var isTargetInElement = this.notCloseElements[i].contains(target);
+            var shouldBreak = isTargetInElement;
+            if (this.appendToBody) {
+              var isTargetInDropdown = this.$refs.dropdown.contains(target);
+              var isElInElements = this.notCloseElements.indexOf(this.$el) >= 0;
+              shouldBreak = isTargetInElement || isTargetInDropdown && isElInElements;
+            }
+            if (shouldBreak) {
+              targetInNotCloseElements = true;
+              break;
+            }
+          }
+        }
+        var targetInDropdownBody = this.$refs.dropdown.contains(target);
+        var targetInTrigger = this.$el.contains(target) && !targetInDropdownBody;
+        // normally, a dropdown select event is handled by @click that trigger after @touchend
+        // then @touchend event have to be ignore in this case
+        var targetInDropdownAndIsTouchEvent = targetInDropdownBody && event.type === 'touchend';
+        if (!targetInTrigger && !targetInNotCloseElements && !targetInDropdownAndIsTouchEvent) {
+          this.toggle(false);
+        }
+      }
+    },
+    appendDropdownToBody: function appendDropdownToBody() {
+      try {
+        var el = this.$refs.dropdown;
+        el.style.display = 'block';
+        document.body.appendChild(el);
+        var positionElement = this.positionElement || this.$el;
+        setDropdownPosition(el, positionElement, this);
+      } catch (e) {
+        // Silent
+      }
+    },
+    removeDropdownFromBody: function removeDropdownFromBody() {
+      try {
+        var el = this.$refs.dropdown;
+        el.removeAttribute('style');
+        this.$el.appendChild(el);
+      } catch (e) {
+        // Silent
+      }
+    }
+  }
+};
+
+var defaultLang = {
+  uiv: {
+    datePicker: {
+      clear: 'Clear',
+      today: 'Today',
+      month: 'Month',
+      month1: 'January',
+      month2: 'February',
+      month3: 'March',
+      month4: 'April',
+      month5: 'May',
+      month6: 'June',
+      month7: 'July',
+      month8: 'August',
+      month9: 'September',
+      month10: 'October',
+      month11: 'November',
+      month12: 'December',
+      year: 'Year',
+      week1: 'Mon',
+      week2: 'Tue',
+      week3: 'Wed',
+      week4: 'Thu',
+      week5: 'Fri',
+      week6: 'Sat',
+      week7: 'Sun'
+    },
+    timePicker: {
+      am: 'AM',
+      pm: 'PM'
+    },
+    modal: {
+      cancel: 'Cancel',
+      ok: 'OK'
+    },
+    multiSelect: {
+      placeholder: 'Select...',
+      filterPlaceholder: 'Search...'
+    }
+  }
+};
+
+// https://github.com/ElemeFE/element/blob/dev/src/locale/index.js
+var lang = defaultLang;
+
+var i18nHandler = function i18nHandler() {
+  var vuei18n = Object.getPrototypeOf(this).$t;
+  if (isFunction(vuei18n)) {
+    try {
+      return vuei18n.apply(this, arguments);
+    } catch (err) {
+      //  vuei18n.apply doesn't work with 7.3.3 of vue-i18n
+      return this.$t.apply(this, arguments);
+    }
+  }
+};
+
+var t = function t(path, options) {
+  options = options || {};
+
+  var value = i18nHandler.apply(this, arguments);
+  if (isExist(value) && !options.$$locale) {
+    return value;
+  }
+  var array = path.split('.');
+  var current = options.$$locale || lang;
+
+  for (var i = 0, j = array.length; i < j; i++) {
+    var property = array[i];
+    value = current[property];
+    if (i === j - 1) return value;
+    if (!value) return '';
+    current = value;
+  }
+  return '';
+};
+
+var use = function use(l) {
+  lang = l || lang;
+};
+
+var i18n = function i18n(fn) {
+  i18nHandler = fn || i18nHandler;
+};
+
+var locale = { use: use, t: t, i18n: i18n };
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var Local = {
+  methods: {
+    t: function t$$1() {
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      args[1] = _extends({ $$locale: this.locale }, args[1]);
+      return t.apply(this, args);
+    }
+  },
+  props: {
+    locale: Object
+  }
+};
+
+function mergeData() {
+  for (var e, a, s = {}, t = arguments.length; t--;) {
+    for (var r = 0, c = Object.keys(arguments[t]); r < c.length; r++) {
+      switch (e = c[r]) {case "class":case "style":case "directives":
+          Array.isArray(s[e]) || (s[e] = []), s[e] = s[e].concat(arguments[t][e]);break;case "staticClass":
+          if (!arguments[t][e]) break;void 0 === s[e] && (s[e] = ""), s[e] && (s[e] += " "), s[e] += arguments[t][e].trim();break;case "on":case "nativeOn":
+          s[e] || (s[e] = {});for (var o = 0, n = Object.keys(arguments[t][e]); o < n.length; o++) {
+            a = n[o], s[e][a] ? s[e][a] = [].concat(s[e][a], arguments[t][e][a]) : s[e][a] = arguments[t][e][a];
+          }break;case "attrs":case "props":case "domProps":case "scopedSlots":case "staticStyle":case "hook":case "transition":
+          s[e] || (s[e] = {}), s[e] = __assign({}, arguments[t][e], s[e]);break;case "slot":case "key":case "ref":case "tag":case "show":case "keepAlive":default:
+          s[e] || (s[e] = arguments[t][e]);}
+    }
+  }return s;
+}var __assign = Object.assign || function (e) {
+  for (var a, s = 1, t = arguments.length; s < t; s++) {
+    a = arguments[s];for (var r in a) {
+      Object.prototype.hasOwnProperty.call(a, r) && (e[r] = a[r]);
+    }
+  }return e;
+};
+
+var linkMixin = {
+  props: {
+    // <a> props
+    href: String,
+    target: String,
+    // <router-link> props
+    to: null,
+    replace: {
+      type: Boolean,
+      default: false
+    },
+    append: {
+      type: Boolean,
+      default: false
+    },
+    exact: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
+
+var BtnGroup = {
+  functional: true,
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        children = _ref.children,
+        data = _ref.data;
+
+    return h('div', mergeData(data, {
+      class: defineProperty({
+        'btn-group': !props.vertical,
+        'btn-group-vertical': props.vertical,
+        'btn-group-justified': props.justified
+      }, 'btn-group-' + props.size, props.size),
+      attrs: {
+        role: 'group',
+        'data-toggle': 'buttons'
+      }
+    }), children);
+  },
+
+  props: {
+    size: String,
+    vertical: {
+      type: Boolean,
+      default: false
+    },
+    justified: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
+
+var INPUT_TYPE_CHECKBOX = 'checkbox';
+var INPUT_TYPE_RADIO = 'radio';
+
+var Btn = {
+  functional: true,
+  mixins: [linkMixin],
+  render: function render(h, _ref) {
+    var _classes;
+
+    var children = _ref.children,
+        props = _ref.props,
+        data = _ref.data;
+
+    // event listeners
+    var listeners = data.on || {};
+    // checkbox: model contain inputValue
+    // radio: model === inputValue
+    var isInputActive = props.inputType === INPUT_TYPE_CHECKBOX ? props.value.indexOf(props.inputValue) >= 0 : props.value === props.inputValue;
+    // button class
+    var classes = (_classes = {
+      btn: true,
+      active: props.inputType ? isInputActive : props.active,
+      disabled: props.disabled,
+      'btn-block': props.block
+    }, defineProperty(_classes, 'btn-' + props.type, Boolean(props.type)), defineProperty(_classes, 'btn-' + props.size, Boolean(props.size)), _classes);
+    // prevent event for disabled links
+    var on = {
+      click: function click(e) {
+        if (props.disabled && e instanceof Event) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    };
+    // render params
+    var tag = void 0,
+        options = void 0,
+        slot = void 0;
+
+    if (props.href) {
+      // is native link
+      tag = 'a';
+      slot = children;
+      options = mergeData(data, {
+        on: on,
+        class: classes,
+        attrs: {
+          role: 'button',
+          href: props.href,
+          target: props.target
+        }
+      });
+    } else if (props.to) {
+      // is vue router link
+      tag = 'router-link';
+      slot = children;
+      options = mergeData(data, {
+        nativeOn: on,
+        class: classes,
+        props: {
+          event: props.disabled ? '' : 'click', // prevent nav while disabled
+          to: props.to,
+          replace: props.replace,
+          append: props.append,
+          exact: props.exact
+        },
+        attrs: {
+          role: 'button'
+        }
+      });
+    } else if (props.inputType) {
+      // is input checkbox or radio
+      tag = 'label';
+      options = mergeData(data, {
+        on: on,
+        class: classes
+      });
+      slot = [h('input', {
+        attrs: {
+          autocomplete: 'off',
+          type: props.inputType,
+          checked: isInputActive ? 'checked' : null,
+          disabled: props.disabled
+        },
+        domProps: {
+          checked: isInputActive // required
+        },
+        on: {
+          input: function input(evt) {
+            evt.stopPropagation();
+          },
+          change: function change() {
+            if (props.inputType === INPUT_TYPE_CHECKBOX) {
+              var valueCopied = props.value.slice();
+              if (isInputActive) {
+                valueCopied.splice(valueCopied.indexOf(props.inputValue), 1);
+              } else {
+                valueCopied.push(props.inputValue);
+              }
+              listeners['input'](valueCopied);
+            } else {
+              listeners['input'](props.inputValue);
+            }
+          }
+        }
+      }), children];
+    } else if (props.justified) {
+      // is in justified btn-group
+      tag = BtnGroup;
+      options = {};
+      slot = [h('button', mergeData(data, {
+        on: on,
+        class: classes,
+        attrs: {
+          type: props.nativeType,
+          disabled: props.disabled
+        }
+      }), children)];
+    } else {
+      // is button
+      tag = 'button';
+      slot = children;
+      options = mergeData(data, {
+        on: on,
+        class: classes,
+        attrs: {
+          type: props.nativeType,
+          disabled: props.disabled
+        }
+      });
+    }
+
+    return h(tag, options, slot);
+  },
+
+  props: {
+    justified: {
+      type: Boolean,
+      default: false
+    },
+    type: {
+      type: String,
+      default: 'default'
+    },
+    nativeType: {
+      type: String,
+      default: 'button'
+    },
+    size: String,
+    block: {
+      type: Boolean,
+      default: false
+    },
+    active: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    // <input> props
+    value: null,
+    inputValue: null,
+    inputType: {
+      type: String,
+      validator: function validator(value) {
+        return value === INPUT_TYPE_CHECKBOX || value === INPUT_TYPE_RADIO;
+      }
+    }
+  }
+};
+
+var MODAL_BACKDROP = 'modal-backdrop';
+var IN$1 = 'in';
+var getOpenModals = function getOpenModals() {
+  return document.querySelectorAll('.' + MODAL_BACKDROP);
+};
+var getOpenModalNum = function getOpenModalNum() {
+  return getOpenModals().length;
+};
+
+var Modal = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "modal", class: { fade: _vm.transitionDuration > 0 }, attrs: { "tabindex": "-1", "role": "dialog" }, on: { "click": function click($event) {
+          if ($event.target !== $event.currentTarget) {
+            return null;
+          }return _vm.backdropClicked($event);
+        } } }, [_c('div', { ref: "dialog", staticClass: "modal-dialog", class: _vm.modalSizeClass, attrs: { "role": "document" } }, [_c('div', { staticClass: "modal-content" }, [_vm.header ? _c('div', { staticClass: "modal-header" }, [_vm._t("header", [_vm.dismissBtn ? _c('button', { staticClass: "close", staticStyle: { "position": "relative", "z-index": "1060" }, attrs: { "type": "button", "aria-label": "Close" }, on: { "click": function click($event) {
+          return _vm.toggle(false);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]) : _vm._e(), _vm._v(" "), _c('h4', { staticClass: "modal-title" }, [_vm._t("title", [_vm._v(_vm._s(_vm.title))])], 2)])], 2) : _vm._e(), _vm._v(" "), _c('div', { staticClass: "modal-body" }, [_vm._t("default")], 2), _vm._v(" "), _vm.footer ? _c('div', { staticClass: "modal-footer" }, [_vm._t("footer", [_c('btn', { attrs: { "type": _vm.cancelType }, on: { "click": function click($event) {
+          return _vm.toggle(false, 'cancel');
+        } } }, [_c('span', [_vm._v(_vm._s(_vm.cancelText || _vm.t('uiv.modal.cancel')))])]), _vm._v(" "), _c('btn', { attrs: { "type": _vm.okType, "data-action": "auto-focus" }, on: { "click": function click($event) {
+          return _vm.toggle(false, 'ok');
+        } } }, [_c('span', [_vm._v(_vm._s(_vm.okText || _vm.t('uiv.modal.ok')))])])])], 2) : _vm._e()])]), _vm._v(" "), _c('div', { ref: "backdrop", staticClass: "modal-backdrop", class: { fade: _vm.transitionDuration > 0 } })]);
+  }, staticRenderFns: [],
+  mixins: [Local],
+  components: { Btn: Btn },
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    title: String,
+    size: String,
+    backdrop: {
+      type: Boolean,
+      default: true
+    },
+    footer: {
+      type: Boolean,
+      default: true
+    },
+    header: {
+      type: Boolean,
+      default: true
+    },
+    cancelText: String,
+    cancelType: {
+      type: String,
+      default: 'default'
+    },
+    okText: String,
+    okType: {
+      type: String,
+      default: 'primary'
+    },
+    dismissBtn: {
+      type: Boolean,
+      default: true
+    },
+    transitionDuration: {
+      type: Number,
+      default: 150
+    },
+    autoFocus: {
+      type: Boolean,
+      default: false
+    },
+    keyboard: {
+      type: Boolean,
+      default: true
+    },
+    beforeClose: Function,
+    zOffset: {
+      type: Number,
+      default: 20
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    displayStyle: {
+      type: String,
+      default: 'block'
+    }
+  },
+  data: function data() {
+    return {
+      msg: '',
+      timeoutId: 0
+    };
+  },
+
+  computed: {
+    modalSizeClass: function modalSizeClass() {
+      return defineProperty({}, 'modal-' + this.size, Boolean(this.size));
+    }
+  },
+  watch: {
+    value: function value(v) {
+      this.$toggle(v);
+    }
+  },
+  mounted: function mounted() {
+    removeFromDom(this.$refs.backdrop);
+    on(window, EVENTS.KEY_UP, this.onKeyPress);
+    if (this.value) {
+      this.$toggle(true);
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    clearTimeout(this.timeoutId);
+    removeFromDom(this.$refs.backdrop);
+    removeFromDom(this.$el);
+    if (getOpenModalNum() === 0) {
+      toggleBodyOverflow(true);
+    }
+    off(window, EVENTS.KEY_UP, this.onKeyPress);
+  },
+
+  methods: {
+    onKeyPress: function onKeyPress(event) {
+      if (this.keyboard && this.value && event.keyCode === 27) {
+        var thisModal = this.$refs.backdrop;
+        var thisZIndex = thisModal.style.zIndex;
+        thisZIndex = thisZIndex && thisZIndex !== 'auto' ? parseInt(thisZIndex) : 0;
+        // Find out if this modal is the top most one.
+        var modals = getOpenModals();
+        var modalsLength = modals.length;
+        for (var i = 0; i < modalsLength; i++) {
+          if (modals[i] !== thisModal) {
+            var zIndex = modals[i].style.zIndex;
+            zIndex = zIndex && zIndex !== 'auto' ? parseInt(zIndex) : 0;
+            // if any existing modal has higher zIndex, ignore
+            if (zIndex > thisZIndex) {
+              return;
+            }
+          }
+        }
+        this.toggle(false);
+      }
+    },
+    toggle: function toggle(show, msg) {
+      var _this = this;
+
+      var shouldClose = true;
+      if (isFunction(this.beforeClose)) {
+        shouldClose = this.beforeClose(msg);
+      }
+
+      if (isPromiseSupported()) {
+        // Skip the hiding when beforeClose returning falsely value or returned Promise resolves to falsely value
+        // Use Promise.resolve to accept both Boolean values and Promises
+        Promise.resolve(shouldClose).then(function (shouldClose) {
+          // Skip the hiding while show===false
+          if (!show && shouldClose) {
+            _this.msg = msg;
+            _this.$emit('input', show);
+          }
+        });
+      } else {
+        // Fallback to old version if promise is not supported
+        // skip the hiding while show===false & beforeClose returning falsely value
+        if (!show && !shouldClose) {
+          return;
+        }
+
+        this.msg = msg;
+        this.$emit('input', show);
+      }
+    },
+    $toggle: function $toggle(show) {
+      var _this2 = this;
+
+      var modal = this.$el;
+      var backdrop = this.$refs.backdrop;
+      clearTimeout(this.timeoutId);
+      if (show) {
+        var alreadyOpenModalNum = getOpenModalNum();
+        document.body.appendChild(backdrop);
+        if (this.appendToBody) {
+          document.body.appendChild(modal);
+        }
+        modal.style.display = this.displayStyle;
+        modal.scrollTop = 0;
+        backdrop.offsetHeight; // force repaint
+        toggleBodyOverflow(false);
+        addClass(backdrop, IN$1);
+        addClass(modal, IN$1);
+        // fix z-index for nested modals
+        // no need to calculate if no modal is already open
+        if (alreadyOpenModalNum > 0) {
+          var modalBaseZ = parseInt(getComputedStyle(modal).zIndex) || 1050; // 1050 is default modal z-Index
+          var backdropBaseZ = parseInt(getComputedStyle(backdrop).zIndex) || 1040; // 1040 is default backdrop z-Index
+          var offset = alreadyOpenModalNum * this.zOffset;
+          modal.style.zIndex = '' + (modalBaseZ + offset);
+          backdrop.style.zIndex = '' + (backdropBaseZ + offset);
+        }
+        // z-index fix end
+        this.timeoutId = setTimeout(function () {
+          if (_this2.autoFocus) {
+            var btn = _this2.$el.querySelector('[data-action="auto-focus"]');
+            if (btn) {
+              btn.focus();
+            }
+          }
+          _this2.$emit('show');
+          _this2.timeoutId = 0;
+        }, this.transitionDuration);
+      } else {
+        removeClass(backdrop, IN$1);
+        removeClass(modal, IN$1);
+        this.timeoutId = setTimeout(function () {
+          modal.style.display = 'none';
+          removeFromDom(backdrop);
+          if (_this2.appendToBody) {
+            removeFromDom(modal);
+          }
+          if (getOpenModalNum() === 0) {
+            toggleBodyOverflow(true);
+          }
+          _this2.$emit('hide', _this2.msg || 'dismiss');
+          _this2.msg = '';
+          _this2.timeoutId = 0;
+          // restore z-index for nested modals
+          modal.style.zIndex = '';
+          backdrop.style.zIndex = '';
+          // z-index fix end
+        }, this.transitionDuration);
+      }
+    },
+    backdropClicked: function backdropClicked(event) {
+      if (this.backdrop) {
+        this.toggle(false);
+      }
+    }
+  }
+};
+
+var ACTIVE_CLASS = 'active';
+var IN_CLASS = 'in';
+
+var Tab = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "tab-pane", class: { fade: _vm.transition > 0 }, attrs: { "role": "tabpanel" } }, [_vm._t("default")], 2);
+  }, staticRenderFns: [],
+  props: {
+    title: {
+      type: String,
+      default: 'Tab Title'
+    },
+    htmlTitle: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    'tab-classes': {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    group: String,
+    pullRight: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      active: true,
+      transition: 150
+    };
+  },
+
+  watch: {
+    active: function active(_active) {
+      var _this = this;
+
+      if (_active) {
+        setTimeout(function () {
+          addClass(_this.$el, ACTIVE_CLASS);
+          _this.$el.offsetHeight;
+          addClass(_this.$el, IN_CLASS);
+          try {
+            _this.$parent.$emit('after-change', _this.$parent.activeIndex);
+          } catch (e) {
+            throw new Error('<tab> parent must be <tabs>.');
+          }
+        }, this.transition);
+      } else {
+        removeClass(this.$el, IN_CLASS);
+        setTimeout(function () {
+          removeClass(_this.$el, ACTIVE_CLASS);
+        }, this.transition);
+      }
+    }
+  },
+  created: function created() {
+    try {
+      this.$parent.tabs.push(this);
+    } catch (e) {
+      throw new Error('<tab> parent must be <tabs>.');
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    var tabs = this.$parent && this.$parent.tabs;
+    spliceIfExist(tabs, this);
+  },
+
+  methods: {
+    show: function show() {
+      var _this2 = this;
+
+      this.$nextTick(function () {
+        addClass(_this2.$el, ACTIVE_CLASS);
+        addClass(_this2.$el, IN_CLASS);
+      });
+    }
+  }
+};
+
+var BEFORE_CHANGE_EVENT = 'before-change';
+
+var Tabs = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('section', [_c('ul', { class: _vm.navClasses, attrs: { "role": "tablist" } }, [_vm._l(_vm.groupedTabs, function (tab, index) {
+      return [tab.tabs ? _c('dropdown', { class: _vm.getTabClasses(tab), attrs: { "role": "presentation", "tag": "li" } }, [_c('a', { staticClass: "dropdown-toggle", attrs: { "role": "tab", "href": "#" }, on: { "click": function click($event) {
+            $event.preventDefault();
+          } } }, [_vm._v(_vm._s(tab.group) + " "), _c('span', { staticClass: "caret" })]), _vm._v(" "), _c('template', { slot: "dropdown" }, _vm._l(tab.tabs, function (subTab) {
+        return _c('li', { class: _vm.getTabClasses(subTab, true) }, [_c('a', { attrs: { "href": "#" }, on: { "click": function click($event) {
+              $event.preventDefault();_vm.select(_vm.tabs.indexOf(subTab));
+            } } }, [_vm._v(_vm._s(subTab.title))])]);
+      }), 0)], 2) : _c('li', { class: _vm.getTabClasses(tab), attrs: { "role": "presentation" } }, [tab.htmlTitle ? _c('a', { attrs: { "role": "tab", "href": "#" }, domProps: { "innerHTML": _vm._s(tab.title) }, on: { "click": function click($event) {
+            $event.preventDefault();_vm.select(_vm.tabs.indexOf(tab));
+          } } }) : _c('a', { attrs: { "role": "tab", "href": "#" }, domProps: { "textContent": _vm._s(tab.title) }, on: { "click": function click($event) {
+            $event.preventDefault();_vm.select(_vm.tabs.indexOf(tab));
+          } } })])];
+    }), _vm._v(" "), !_vm.justified && _vm.$slots['nav-right'] ? _c('li', { staticClass: "pull-right" }, [_vm._t("nav-right")], 2) : _vm._e()], 2), _vm._v(" "), _c('div', { class: _vm.contentClasses }, [_vm._t("default")], 2)]);
+  }, staticRenderFns: [],
+  components: { Dropdown: Dropdown },
+  props: {
+    value: {
+      type: Number,
+      validator: function validator(v) {
+        return v >= 0;
+      }
+    },
+    transitionDuration: {
+      type: Number,
+      default: 150
+    },
+    justified: Boolean,
+    pills: Boolean,
+    stacked: Boolean,
+    customNavClass: null,
+    customContentClass: null
+  },
+  data: function data() {
+    return {
+      tabs: [],
+      activeIndex: 0 // Make v-model not required
+    };
+  },
+
+  watch: {
+    value: {
+      immediate: true,
+      handler: function handler(value) {
+        if (isNumber(value)) {
+          this.activeIndex = value;
+          this.selectCurrent();
+        }
+      }
+    },
+    tabs: function tabs(_tabs) {
+      var _this = this;
+
+      _tabs.forEach(function (tab, index) {
+        tab.transition = _this.transitionDuration;
+        if (index === _this.activeIndex) {
+          tab.show();
+        }
+      });
+      this.selectCurrent();
+    }
+  },
+  computed: {
+    navClasses: function navClasses() {
+      var tabClasses = {
+        'nav': true,
+        'nav-justified': this.justified,
+        'nav-tabs': !this.pills,
+        'nav-pills': this.pills,
+        'nav-stacked': this.stacked && this.pills
+      };
+      var customNavClass = this.customNavClass;
+      if (isExist(customNavClass)) {
+        if (isString(customNavClass)) {
+          return _extends({}, tabClasses, defineProperty({}, customNavClass, true));
+        } else {
+          return _extends({}, tabClasses, customNavClass);
+        }
+      } else {
+        return tabClasses;
+      }
+    },
+    contentClasses: function contentClasses() {
+      var contentClasses = {
+        'tab-content': true
+      };
+      var customContentClass = this.customContentClass;
+      if (isExist(customContentClass)) {
+        if (isString(customContentClass)) {
+          return _extends({}, contentClasses, defineProperty({}, customContentClass, true));
+        } else {
+          return _extends({}, contentClasses, customContentClass);
+        }
+      } else {
+        return contentClasses;
+      }
+    },
+    groupedTabs: function groupedTabs() {
+      var tabs = [];
+      var hash = {};
+      this.tabs.forEach(function (tab) {
+        if (tab.group) {
+          if (hash.hasOwnProperty(tab.group)) {
+            tabs[hash[tab.group]].tabs.push(tab);
+          } else {
+            tabs.push({
+              tabs: [tab],
+              group: tab.group
+            });
+            hash[tab.group] = tabs.length - 1;
+          }
+          if (tab.active) {
+            tabs[hash[tab.group]].active = true;
+          }
+          if (tab.pullRight) {
+            tabs[hash[tab.group]].pullRight = true;
+          }
+        } else {
+          tabs.push(tab);
+        }
+      });
+      return tabs;
+    }
+  },
+  methods: {
+    getTabClasses: function getTabClasses(tab) {
+      var isSubTab = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      var defaultClasses = {
+        active: tab.active,
+        disabled: tab.disabled,
+        'pull-right': tab.pullRight && !isSubTab
+
+        // return with new classes added to tab
+      };return _extends(defaultClasses, tab['tabClasses']);
+    },
+    selectCurrent: function selectCurrent() {
+      var _this2 = this;
+
+      var found = false;
+      this.tabs.forEach(function (tab, index) {
+        if (index === _this2.activeIndex) {
+          found = !tab.active;
+          tab.active = true;
+        } else {
+          tab.active = false;
+        }
+      });
+      if (found) {
+        this.$emit('change', this.activeIndex);
+      }
+    },
+    selectValidate: function selectValidate(index) {
+      var _this3 = this;
+
+      if (isFunction(this.$listeners[BEFORE_CHANGE_EVENT])) {
+        this.$emit(BEFORE_CHANGE_EVENT, this.activeIndex, index, function (result) {
+          if (!isExist(result)) {
+            _this3.$select(index);
+          }
+        });
+      } else {
+        this.$select(index);
+      }
+    },
+    select: function select(index) {
+      if (!this.tabs[index].disabled && index !== this.activeIndex) {
+        this.selectValidate(index);
+      }
+    },
+    $select: function $select(index) {
+      if (isNumber(this.value)) {
+        this.$emit('input', index);
+      } else {
+        this.activeIndex = index;
+        this.selectCurrent();
+      }
+    }
+  }
+};
+
+function pad(value, num) {
+  value = value + '';
+  for (var i = num - value.length; i > 0; i--) {
+    value = '0' + value;
+  }
+  return value;
+}
+
+var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+function daysInMonth(month, year) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+function stringify(date, format) {
+  try {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var monthName = monthNames[month - 1];
+    return format.replace(/yyyy/g, year).replace(/MMMM/g, monthName).replace(/MMM/g, monthName.substring(0, 3)).replace(/MM/g, pad(month, 2)).replace(/dd/g, pad(day, 2)).replace(/yy/g, year).replace(/M(?!a)/g, month).replace(/d/g, day);
+  } catch (e) {
+    return '';
+  }
+}
+
+function convertDateToUTC(date) {
+  return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+}
+
+/* https://stackoverflow.com/questions/6117814/get-week-of-year-in-javascript-like-in-php
+ *
+ * For a given date, get the ISO week number
+ *
+ * Based on information at:
+ *
+ *    http://www.merlyn.demon.co.uk/weekcalc.htm#WNR
+ *
+ * Algorithm is to find nearest thursday, it's year
+ * is the year of the week number. Then get weeks
+ * between that date and the first day of that year.
+ *
+ * Note that dates in one year can be weeks of previous
+ * or next year, overlap is up to 3 days.
+ *
+ * e.g. 2014/12/29 is Monday in week  1 of 2015
+ *      2012/1/1   is Sunday in week 52 of 2011
+ */
+function getWeekNumber(d) {
+  // Copy date so don't modify original
+  d = new Date(Date.UTC(d.year, d.month, d.date));
+  // Set to nearest Thursday: current date + 4 - current day number
+  // Make Sunday's day number 7
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  // Get first day of year
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  // Calculate full weeks to nearest Thursday
+  return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+}
+
+var DateView = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('table', { staticStyle: { "width": "100%" }, attrs: { "role": "grid" } }, [_c('thead', [_c('tr', [_c('td', [_c('btn', { staticClass: "uiv-datepicker-pager-prev", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.goPrevMonth } }, [_c('i', { class: _vm.iconControlLeft })])], 1), _vm._v(" "), _c('td', { attrs: { "colspan": _vm.weekNumbers ? 6 : 5 } }, [_c('btn', { staticClass: "uiv-datepicker-title", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.changeView } }, [_c('b', [_vm._v(_vm._s(_vm.yearMonthStr))])])], 1), _vm._v(" "), _c('td', [_c('btn', { staticClass: "uiv-datepicker-pager-next", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.goNextMonth } }, [_c('i', { class: _vm.iconControlRight })])], 1)]), _vm._v(" "), _c('tr', { attrs: { "align": "center" } }, [_vm.weekNumbers ? _c('td') : _vm._e(), _vm._v(" "), _vm._l(_vm.weekDays, function (day) {
+      return _c('td', { attrs: { "width": "14.2857142857%" } }, [_c('small', { staticClass: "uiv-datepicker-week" }, [_vm._v(_vm._s(_vm.tWeekName(day === 0 ? 7 : day)))])]);
+    })], 2)]), _vm._v(" "), _c('tbody', _vm._l(_vm.monthDayRows, function (row) {
+      return _c('tr', [_vm.weekNumbers ? _c('td', { staticClass: "text-center", staticStyle: { "border-right": "1px solid #eee" } }, [_c('small', { staticClass: "text-muted" }, [_vm._v(_vm._s(_vm.getWeekNumber(row[_vm.weekStartsWith])))])]) : _vm._e(), _vm._v(" "), _vm._l(row, function (date) {
+        return _c('td', [_c('btn', { class: date.classes, staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm", "data-action": "select", "type": _vm.getBtnType(date), "disabled": date.disabled }, on: { "click": function click($event) {
+              return _vm.select(date);
+            } } }, [_c('span', { class: { 'text-muted': _vm.month !== date.month }, attrs: { "data-action": "select" } }, [_vm._v(_vm._s(date.date))])])], 1);
+      })], 2);
+    }), 0)]);
+  }, staticRenderFns: [],
+  mixins: [Local],
+  props: {
+    month: Number,
+    year: Number,
+    date: Date,
+    today: Date,
+    limit: Object,
+    weekStartsWith: Number,
+    iconControlLeft: String,
+    iconControlRight: String,
+    dateClass: Function,
+    yearMonthFormatter: Function,
+    weekNumbers: Boolean
+  },
+  components: { Btn: Btn },
+  computed: {
+    weekDays: function weekDays() {
+      var days = [];
+      var firstDay = this.weekStartsWith;
+      while (days.length < 7) {
+        days.push(firstDay++);
+        if (firstDay > 6) {
+          firstDay = 0;
+        }
+      }
+      return days;
+    },
+    yearMonthStr: function yearMonthStr() {
+      if (this.yearMonthFormatter) {
+        return this.yearMonthFormatter(this.year, this.month);
+      } else {
+        return isExist(this.month) ? this.year + ' ' + this.t('uiv.datePicker.month' + (this.month + 1)) : this.year;
+      }
+    },
+    monthDayRows: function monthDayRows() {
+      var rows = [];
+      var firstDay = new Date(this.year, this.month, 1);
+      var prevMonthLastDate = new Date(this.year, this.month, 0).getDate();
+      var startIndex = firstDay.getDay();
+      // console.log(startIndex)
+      var daysNum = daysInMonth(this.month, this.year);
+      var weekOffset = 0;
+      if (this.weekStartsWith > startIndex) {
+        weekOffset = 7 - this.weekStartsWith;
+      } else {
+        weekOffset = 0 - this.weekStartsWith;
+      }
+      // console.log(prevMonthLastDate, startIndex, daysNum)
+      for (var i = 0; i < 6; i++) {
+        rows.push([]);
+        for (var j = 0 - weekOffset; j < 7 - weekOffset; j++) {
+          var currentIndex = i * 7 + j;
+          var date = { year: this.year, disabled: false
+            // date in and not in current month
+          };if (currentIndex < startIndex) {
+            date.date = prevMonthLastDate - startIndex + currentIndex + 1;
+            if (this.month > 0) {
+              date.month = this.month - 1;
+            } else {
+              date.month = 11;
+              date.year--;
+            }
+          } else if (currentIndex < startIndex + daysNum) {
+            date.date = currentIndex - startIndex + 1;
+            date.month = this.month;
+          } else {
+            date.date = currentIndex - startIndex - daysNum + 1;
+            if (this.month < 11) {
+              date.month = this.month + 1;
+            } else {
+              date.month = 0;
+              date.year++;
+            }
+          }
+          // process limit dates
+          var dateObj = new Date(date.year, date.month, date.date);
+          var afterFrom = true;
+          var beforeTo = true;
+          if (this.limit && this.limit.from) {
+            afterFrom = dateObj >= this.limit.from;
+          }
+          if (this.limit && this.limit.to) {
+            beforeTo = dateObj < this.limit.to;
+          }
+          date.disabled = !afterFrom || !beforeTo;
+          date.classes = isFunction(this.dateClass) ? this.dateClass(dateObj, {
+            currentMonth: this.month,
+            currentYear: this.year
+          }) : '';
+          rows[i].push(date);
+        }
+      }
+      return rows;
+    }
+  },
+  methods: {
+    getWeekNumber: getWeekNumber,
+    tWeekName: function tWeekName(index) {
+      return this.t('uiv.datePicker.week' + index);
+    },
+    getBtnType: function getBtnType(date) {
+      if (this.date && date.date === this.date.getDate() && date.month === this.date.getMonth() && date.year === this.date.getFullYear()) {
+        return 'primary';
+      } else if (date.date === this.today.getDate() && date.month === this.today.getMonth() && date.year === this.today.getFullYear()) {
+        return 'info';
+      } else {
+        return 'default';
+      }
+    },
+    select: function select(date) {
+      this.$emit('date-change', date);
+    },
+    goPrevMonth: function goPrevMonth() {
+      var month = this.month;
+      var year = this.year;
+      if (this.month > 0) {
+        month--;
+      } else {
+        month = 11;
+        year--;
+        this.$emit('year-change', year);
+      }
+      this.$emit('month-change', month);
+    },
+    goNextMonth: function goNextMonth() {
+      var month = this.month;
+      var year = this.year;
+      if (this.month < 11) {
+        month++;
+      } else {
+        month = 0;
+        year++;
+        this.$emit('year-change', year);
+      }
+      this.$emit('month-change', month);
+    },
+    changeView: function changeView() {
+      this.$emit('view-change', 'm');
+    }
+  }
+};
+
+var MonthView = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('table', { staticStyle: { "width": "100%" }, attrs: { "role": "grid" } }, [_c('thead', [_c('tr', [_c('td', [_c('btn', { staticClass: "uiv-datepicker-pager-prev", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.goPrevYear } }, [_c('i', { class: _vm.iconControlLeft })])], 1), _vm._v(" "), _c('td', { attrs: { "colspan": "4" } }, [_c('btn', { staticClass: "uiv-datepicker-title", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": function click($event) {
+          return _vm.changeView();
+        } } }, [_c('b', [_vm._v(_vm._s(_vm.year))])])], 1), _vm._v(" "), _c('td', [_c('btn', { staticClass: "uiv-datepicker-pager-next", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.goNextYear } }, [_c('i', { class: _vm.iconControlRight })])], 1)])]), _vm._v(" "), _c('tbody', _vm._l(_vm.rows, function (row, i) {
+      return _c('tr', _vm._l(row, function (month, j) {
+        return _c('td', { attrs: { "colspan": "2", "width": "33.333333%" } }, [_c('btn', { staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm", "type": _vm.getBtnClass(i * 3 + j) }, on: { "click": function click($event) {
+              return _vm.changeView(i * 3 + j);
+            } } }, [_c('span', [_vm._v(_vm._s(_vm.tCell(month)))])])], 1);
+      }), 0);
+    }), 0)]);
+  }, staticRenderFns: [],
+  components: { Btn: Btn },
+  mixins: [Local],
+  props: {
+    month: Number,
+    year: Number,
+    iconControlLeft: String,
+    iconControlRight: String
+  },
+  data: function data() {
+    return {
+      rows: []
+    };
+  },
+  mounted: function mounted() {
+    for (var i = 0; i < 4; i++) {
+      this.rows.push([]);
+      for (var j = 0; j < 3; j++) {
+        this.rows[i].push(i * 3 + j + 1);
+      }
+    }
+  },
+
+  methods: {
+    tCell: function tCell(cell) {
+      return this.t('uiv.datePicker.month' + cell);
+    },
+    getBtnClass: function getBtnClass(month) {
+      if (month === this.month) {
+        return 'primary';
+      } else {
+        return 'default';
+      }
+    },
+    goPrevYear: function goPrevYear() {
+      this.$emit('year-change', this.year - 1);
+    },
+    goNextYear: function goNextYear() {
+      this.$emit('year-change', this.year + 1);
+    },
+    changeView: function changeView(monthIndex) {
+      if (isExist(monthIndex)) {
+        this.$emit('month-change', monthIndex);
+        this.$emit('view-change', 'd');
+      } else {
+        this.$emit('view-change', 'y');
+      }
+    }
+  }
+};
+
+var YearView = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('table', { staticStyle: { "width": "100%" }, attrs: { "role": "grid" } }, [_c('thead', [_c('tr', [_c('td', [_c('btn', { staticClass: "uiv-datepicker-pager-prev", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.goPrevYear } }, [_c('i', { class: _vm.iconControlLeft })])], 1), _vm._v(" "), _c('td', { attrs: { "colspan": "3" } }, [_c('btn', { staticClass: "uiv-datepicker-title", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" } }, [_c('b', [_vm._v(_vm._s(_vm.yearStr))])])], 1), _vm._v(" "), _c('td', [_c('btn', { staticClass: "uiv-datepicker-pager-next", staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm" }, on: { "click": _vm.goNextYear } }, [_c('i', { class: _vm.iconControlRight })])], 1)])]), _vm._v(" "), _c('tbody', _vm._l(_vm.rows, function (row) {
+      return _c('tr', _vm._l(row, function (year) {
+        return _c('td', { attrs: { "width": "20%" } }, [_c('btn', { staticStyle: { "border": "none" }, attrs: { "block": "", "size": "sm", "type": _vm.getBtnClass(year) }, on: { "click": function click($event) {
+              return _vm.changeView(year);
+            } } }, [_c('span', [_vm._v(_vm._s(year))])])], 1);
+      }), 0);
+    }), 0)]);
+  }, staticRenderFns: [],
+  components: { Btn: Btn },
+  props: {
+    year: Number,
+    iconControlLeft: String,
+    iconControlRight: String
+  },
+  computed: {
+    rows: function rows() {
+      var rows = [];
+      var yearGroupStart = this.year - this.year % 20;
+      for (var i = 0; i < 4; i++) {
+        rows.push([]);
+        for (var j = 0; j < 5; j++) {
+          rows[i].push(yearGroupStart + i * 5 + j);
+        }
+      }
+      return rows;
+    },
+    yearStr: function yearStr() {
+      var start = this.year - this.year % 20;
+      return start + ' ~ ' + (start + 19);
+    }
+  },
+  methods: {
+    getBtnClass: function getBtnClass(year) {
+      if (year === this.year) {
+        return 'primary';
+      } else {
+        return 'default';
+      }
+    },
+    goPrevYear: function goPrevYear() {
+      this.$emit('year-change', this.year - 20);
+    },
+    goNextYear: function goNextYear() {
+      this.$emit('year-change', this.year + 20);
+    },
+    changeView: function changeView(year) {
+      this.$emit('year-change', year);
+      this.$emit('view-change', 'm');
+    }
+  }
+};
+
+var DatePicker = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { class: _vm.pickerClass, style: _vm.pickerStyle, attrs: { "data-role": "date-picker" }, on: { "click": _vm.onPickerClick } }, [_c('date-view', { directives: [{ name: "show", rawName: "v-show", value: _vm.view === 'd', expression: "view==='d'" }], attrs: { "month": _vm.currentMonth, "year": _vm.currentYear, "date": _vm.valueDateObj, "today": _vm.now, "limit": _vm.limit, "week-starts-with": _vm.weekStartsWith, "icon-control-left": _vm.iconControlLeft, "icon-control-right": _vm.iconControlRight, "date-class": _vm.dateClass, "year-month-formatter": _vm.yearMonthFormatter, "week-numbers": _vm.weekNumbers, "locale": _vm.locale }, on: { "month-change": _vm.onMonthChange, "year-change": _vm.onYearChange, "date-change": _vm.onDateChange, "view-change": _vm.onViewChange } }), _vm._v(" "), _c('month-view', { directives: [{ name: "show", rawName: "v-show", value: _vm.view === 'm', expression: "view==='m'" }], attrs: { "month": _vm.currentMonth, "year": _vm.currentYear, "icon-control-left": _vm.iconControlLeft, "icon-control-right": _vm.iconControlRight, "locale": _vm.locale }, on: { "month-change": _vm.onMonthChange, "year-change": _vm.onYearChange, "view-change": _vm.onViewChange } }), _vm._v(" "), _c('year-view', { directives: [{ name: "show", rawName: "v-show", value: _vm.view === 'y', expression: "view==='y'" }], attrs: { "year": _vm.currentYear, "icon-control-left": _vm.iconControlLeft, "icon-control-right": _vm.iconControlRight }, on: { "year-change": _vm.onYearChange, "view-change": _vm.onViewChange } }), _vm._v(" "), _vm.todayBtn || _vm.clearBtn ? _c('div', [_c('br'), _vm._v(" "), _c('div', { staticClass: "text-center" }, [_vm.todayBtn ? _c('btn', { attrs: { "data-action": "select", "type": "info", "size": "sm" }, domProps: { "textContent": _vm._s(_vm.t('uiv.datePicker.today')) }, on: { "click": _vm.selectToday } }) : _vm._e(), _vm._v(" "), _vm.clearBtn ? _c('btn', { attrs: { "data-action": "select", "size": "sm" }, domProps: { "textContent": _vm._s(_vm.t('uiv.datePicker.clear')) }, on: { "click": _vm.clearSelect } }) : _vm._e()], 1)]) : _vm._e()], 1);
+  }, staticRenderFns: [],
+  mixins: [Local],
+  components: { DateView: DateView, MonthView: MonthView, YearView: YearView, Btn: Btn },
+  props: {
+    value: null,
+    width: {
+      type: Number,
+      default: 270
+    },
+    todayBtn: {
+      type: Boolean,
+      default: true
+    },
+    clearBtn: {
+      type: Boolean,
+      default: true
+    },
+    closeOnSelected: {
+      type: Boolean,
+      default: true
+    },
+    limitFrom: null,
+    limitTo: null,
+    format: {
+      type: String,
+      default: 'yyyy-MM-dd'
+    },
+    initialView: {
+      type: String,
+      default: 'd'
+    },
+    dateParser: {
+      type: Function,
+      default: Date.parse
+    },
+    dateClass: Function,
+    yearMonthFormatter: Function,
+    weekStartsWith: {
+      type: Number,
+      default: 0,
+      validator: function validator(value) {
+        return value >= 0 && value <= 6;
+      }
+    },
+    weekNumbers: Boolean,
+    iconControlLeft: {
+      type: String,
+      default: 'glyphicon glyphicon-chevron-left'
+    },
+    iconControlRight: {
+      type: String,
+      default: 'glyphicon glyphicon-chevron-right'
+    }
+  },
+  data: function data() {
+    return {
+      show: false,
+      now: new Date(),
+      currentMonth: 0,
+      currentYear: 0,
+      view: 'd'
+    };
+  },
+
+  computed: {
+    valueDateObj: function valueDateObj() {
+      var ts = this.dateParser(this.value);
+      if (isNaN(ts)) {
+        return null;
+      } else {
+        var date = new Date(ts);
+        if (date.getHours() !== 0) {
+          date = new Date(ts + date.getTimezoneOffset() * 60 * 1000);
+        }
+        return date;
+      }
+    },
+    pickerStyle: function pickerStyle() {
+      return {
+        width: this.width + 'px'
+      };
+    },
+    pickerClass: function pickerClass() {
+      return {
+        'uiv-datepicker': true,
+        'uiv-datepicker-date': this.view === 'd',
+        'uiv-datepicker-month': this.view === 'm',
+        'uiv-datepicker-year': this.view === 'y'
+      };
+    },
+    limit: function limit() {
+      var limit = {};
+      if (this.limitFrom) {
+        var limitFrom = this.dateParser(this.limitFrom);
+        if (!isNaN(limitFrom)) {
+          limitFrom = convertDateToUTC(new Date(limitFrom));
+          limitFrom.setHours(0, 0, 0, 0);
+          limit.from = limitFrom;
+        }
+      }
+      if (this.limitTo) {
+        var limitTo = this.dateParser(this.limitTo);
+        if (!isNaN(limitTo)) {
+          limitTo = convertDateToUTC(new Date(limitTo));
+          limitTo.setHours(0, 0, 0, 0);
+          limit.to = limitTo;
+        }
+      }
+      return limit;
+    }
+  },
+  mounted: function mounted() {
+    if (this.value) {
+      this.setMonthAndYearByValue(this.value);
+    } else {
+      this.currentMonth = this.now.getMonth();
+      this.currentYear = this.now.getFullYear();
+      this.view = this.initialView;
+    }
+  },
+
+  watch: {
+    value: function value(val, oldVal) {
+      this.setMonthAndYearByValue(val, oldVal);
+    }
+  },
+  methods: {
+    setMonthAndYearByValue: function setMonthAndYearByValue(val, oldVal) {
+      var ts = this.dateParser(val);
+      if (!isNaN(ts)) {
+        var date = new Date(ts);
+        if (date.getHours() !== 0) {
+          date = new Date(ts + date.getTimezoneOffset() * 60 * 1000);
+        }
+        if (this.limit && (this.limit.from && date < this.limit.from || this.limit.to && date >= this.limit.to)) {
+          this.$emit('input', oldVal || '');
+        } else {
+          this.currentMonth = date.getMonth();
+          this.currentYear = date.getFullYear();
+        }
+      }
+    },
+    onMonthChange: function onMonthChange(month) {
+      this.currentMonth = month;
+    },
+    onYearChange: function onYearChange(year) {
+      this.currentYear = year;
+      this.currentMonth = undefined;
+    },
+    onDateChange: function onDateChange(date) {
+      if (date && isNumber(date.date) && isNumber(date.month) && isNumber(date.year)) {
+        var _date = new Date(date.year, date.month, date.date);
+        this.$emit('input', this.format ? stringify(_date, this.format) : _date);
+        // if the input event trigger nothing (same value)
+        // manually correct
+        this.currentMonth = date.month;
+        this.currentYear = date.year;
+      } else {
+        this.$emit('input', '');
+      }
+    },
+    onViewChange: function onViewChange(view) {
+      this.view = view;
+    },
+    selectToday: function selectToday() {
+      this.view = 'd';
+      this.onDateChange({
+        date: this.now.getDate(),
+        month: this.now.getMonth(),
+        year: this.now.getFullYear()
+      });
+    },
+    clearSelect: function clearSelect() {
+      this.currentMonth = this.now.getMonth();
+      this.currentYear = this.now.getFullYear();
+      this.view = this.initialView;
+      this.onDateChange();
+    },
+    onPickerClick: function onPickerClick(event) {
+      if (event.target.getAttribute('data-action') !== 'select' || !this.closeOnSelected) {
+        event.stopPropagation();
+      }
+    }
+  }
+};
+
+var HANDLER = '_uiv_scroll_handler';
+var events = [EVENTS.RESIZE, EVENTS.SCROLL];
+
+var bind = function bind(el, binding) {
+  var callback = binding.value;
+  if (!isFunction(callback)) {
+    return;
+  }
+  unbind(el);
+  el[HANDLER] = callback;
+  events.forEach(function (event) {
+    on(window, event, el[HANDLER]);
+  });
+};
+
+var unbind = function unbind(el) {
+  events.forEach(function (event) {
+    off(window, event, el[HANDLER]);
+  });
+  delete el[HANDLER];
+};
+
+var update = function update(el, binding) {
+  if (binding.value !== binding.oldValue) {
+    bind(el, binding);
+  }
+};
+
+var scroll = { bind: bind, unbind: unbind, update: update };
+
+var Affix = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "hidden-print" }, [_c('div', { directives: [{ name: "scroll", rawName: "v-scroll", value: _vm.onScroll, expression: "onScroll" }], class: _vm.classes, style: _vm.styles }, [_vm._t("default")], 2)]);
+  }, staticRenderFns: [],
+  directives: {
+    scroll: scroll
+  },
+  props: {
+    offset: {
+      type: Number,
+      default: 0
+    }
+  },
+  data: function data() {
+    return {
+      affixed: false
+    };
+  },
+
+  computed: {
+    classes: function classes() {
+      return {
+        affix: this.affixed
+      };
+    },
+    styles: function styles() {
+      return {
+        top: this.affixed ? this.offset + 'px' : null
+      };
+    }
+  },
+  methods: {
+    // from https://github.com/ant-design/ant-design/blob/master/components/affix/index.jsx#L20
+    onScroll: function onScroll() {
+      var _this = this;
+
+      // if is hidden don't calculate anything
+      if (!(this.$el.offsetWidth || this.$el.offsetHeight || this.$el.getClientRects().length)) {
+        return;
+      }
+      // get window scroll and element position to detect if have to be normal or affixed
+      var scroll$$1 = {};
+      var element = {};
+      var rect = this.$el.getBoundingClientRect();
+      var body = document.body;
+      var _arr = ['Top', 'Left'];
+      for (var _i = 0; _i < _arr.length; _i++) {
+        var type = _arr[_i];
+        var t = type.toLowerCase();
+        scroll$$1[t] = window['page' + (type === 'Top' ? 'Y' : 'X') + 'Offset'];
+        element[t] = scroll$$1[t] + rect[t] - (this.$el['client' + type] || body['client' + type] || 0);
+      }
+      var fix = scroll$$1.top > element.top - this.offset;
+      if (this.affixed !== fix) {
+        this.affixed = fix;
+        if (this.affixed) {
+          this.$emit('affix');
+          this.$nextTick(function () {
+            _this.$emit('affixed');
+          });
+        }
+      }
+    }
+  }
+};
+
+var Alert = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { class: _vm.alertClass, attrs: { "role": "alert" } }, [_vm.dismissible ? _c('button', { staticClass: "close", attrs: { "type": "button", "aria-label": "Close" }, on: { "click": _vm.closeAlert } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]) : _vm._e(), _vm._v(" "), _vm._t("default")], 2);
+  }, staticRenderFns: [],
+  props: {
+    dismissible: {
+      type: Boolean,
+      default: false
+    },
+    duration: {
+      type: Number,
+      default: 0
+    },
+    type: {
+      type: String,
+      default: 'info'
+    }
+  },
+  data: function data() {
+    return {
+      timeout: 0
+    };
+  },
+
+  computed: {
+    alertClass: function alertClass() {
+      var _ref;
+
+      return _ref = {
+        'alert': true
+      }, defineProperty(_ref, "alert-" + this.type, Boolean(this.type)), defineProperty(_ref, 'alert-dismissible', this.dismissible), _ref;
+    }
+  },
+  methods: {
+    closeAlert: function closeAlert() {
+      clearTimeout(this.timeout);
+      this.$emit('dismissed');
+    }
+  },
+  mounted: function mounted() {
+    if (this.duration > 0) {
+      this.timeout = setTimeout(this.closeAlert, this.duration);
+    }
+  },
+  destroyed: function destroyed() {
+    clearTimeout(this.timeout);
+  }
+};
+
+var Pagination = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('nav', { class: _vm.navClasses, attrs: { "aria-label": "Page navigation" } }, [_c('ul', { staticClass: "pagination", class: _vm.classes }, [_vm.boundaryLinks ? _c('li', { class: { disabled: _vm.value <= 1 || _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button", "aria-label": "First" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.onPageChange(1);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("«")])])]) : _vm._e(), _vm._v(" "), _vm.directionLinks ? _c('li', { class: { disabled: _vm.value <= 1 || _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button", "aria-label": "Previous" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.onPageChange(_vm.value - 1);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("‹")])])]) : _vm._e(), _vm._v(" "), _vm.sliceStart > 0 ? _c('li', { class: { disabled: _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button", "aria-label": "Previous group" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.toPage(1);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("…")])])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.sliceArray, function (item) {
+      return _c('li', { key: item, class: { active: _vm.value === item + 1, disabled: _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button" }, on: { "click": function click($event) {
+            $event.preventDefault();return _vm.onPageChange(item + 1);
+          } } }, [_vm._v(_vm._s(item + 1))])]);
+    }), _vm._v(" "), _vm.sliceStart < _vm.totalPage - _vm.maxSize ? _c('li', { class: { disabled: _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button", "aria-label": "Next group" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.toPage(0);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("…")])])]) : _vm._e(), _vm._v(" "), _vm.directionLinks ? _c('li', { class: { disabled: _vm.value >= _vm.totalPage || _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button", "aria-label": "Next" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.onPageChange(_vm.value + 1);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("›")])])]) : _vm._e(), _vm._v(" "), _vm.boundaryLinks ? _c('li', { class: { disabled: _vm.value >= _vm.totalPage || _vm.disabled } }, [_c('a', { attrs: { "href": "#", "role": "button", "aria-label": "Last" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.onPageChange(_vm.totalPage);
+        } } }, [_c('span', { attrs: { "aria-hidden": "true" } }, [_vm._v("»")])])]) : _vm._e()], 2)]);
+  }, staticRenderFns: [],
+  props: {
+    value: {
+      type: Number,
+      required: true,
+      validator: function validator(v) {
+        return v >= 1;
+      }
+    },
+    boundaryLinks: {
+      type: Boolean,
+      default: false
+    },
+    directionLinks: {
+      type: Boolean,
+      default: true
+    },
+    size: String,
+    align: String,
+    totalPage: {
+      type: Number,
+      required: true,
+      validator: function validator(v) {
+        return v >= 0;
+      }
+    },
+    maxSize: {
+      type: Number,
+      default: 5,
+      validator: function validator(v) {
+        return v >= 0;
+      }
+    },
+    disabled: Boolean
+  },
+  data: function data() {
+    return {
+      sliceStart: 0
+    };
+  },
+
+  computed: {
+    navClasses: function navClasses() {
+      return defineProperty({}, 'text-' + this.align, Boolean(this.align));
+    },
+    classes: function classes() {
+      return defineProperty({}, 'pagination-' + this.size, Boolean(this.size));
+    },
+    sliceArray: function sliceArray() {
+      return range(this.totalPage).slice(this.sliceStart, this.sliceStart + this.maxSize);
+    }
+  },
+  methods: {
+    calculateSliceStart: function calculateSliceStart() {
+      var currentPage = this.value;
+      var chunkSize = this.maxSize;
+      var currentChunkStart = this.sliceStart;
+      var currentChunkEnd = currentChunkStart + chunkSize;
+      if (currentPage > currentChunkEnd) {
+        var lastChunkStart = this.totalPage - chunkSize;
+        if (currentPage > lastChunkStart) {
+          this.sliceStart = lastChunkStart;
+        } else {
+          this.sliceStart = currentPage - 1;
+        }
+      } else if (currentPage < currentChunkStart + 1) {
+        if (currentPage > chunkSize) {
+          this.sliceStart = currentPage - chunkSize;
+        } else {
+          this.sliceStart = 0;
+        }
+      }
+    },
+    onPageChange: function onPageChange(page) {
+      if (!this.disabled && page > 0 && page <= this.totalPage && page !== this.value) {
+        this.$emit('input', page);
+        this.$emit('change', page);
+      }
+    },
+    toPage: function toPage(pre) {
+      if (this.disabled) {
+        return;
+      }
+      var chunkSize = this.maxSize;
+      var currentChunkStart = this.sliceStart;
+      var lastChunkStart = this.totalPage - chunkSize;
+      var start = pre ? currentChunkStart - chunkSize : currentChunkStart + chunkSize;
+      if (start < 0) {
+        this.sliceStart = 0;
+      } else if (start > lastChunkStart) {
+        this.sliceStart = lastChunkStart;
+      } else {
+        this.sliceStart = start;
+      }
+    }
+  },
+  created: function created() {
+    this.$watch(function (vm) {
+      return [vm.value, vm.maxSize, vm.totalPage].join();
+    }, this.calculateSliceStart, {
+      immediate: true
+    });
+  }
+};
+
+var SHOW_CLASS = 'in';
+
+var popupMixin = {
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    tag: {
+      type: String,
+      default: 'span'
+    },
+    placement: {
+      type: String,
+      default: PLACEMENTS.TOP
+    },
+    autoPlacement: {
+      type: Boolean,
+      default: true
+    },
+    appendTo: {
+      type: String,
+      default: 'body'
+    },
+    transitionDuration: {
+      type: Number,
+      default: 150
+    },
+    hideDelay: {
+      type: Number,
+      default: 0
+    },
+    showDelay: {
+      type: Number,
+      default: 0
+    },
+    enable: {
+      type: Boolean,
+      default: true
+    },
+    enterable: {
+      type: Boolean,
+      default: true
+    },
+    target: null,
+    viewport: null,
+    customClass: String
+  },
+  data: function data() {
+    return {
+      triggerEl: null,
+      hideTimeoutId: 0,
+      showTimeoutId: 0,
+      transitionTimeoutId: 0
+    };
+  },
+
+  watch: {
+    value: function value(v) {
+      v ? this.show() : this.hide();
+    },
+    trigger: function trigger() {
+      this.clearListeners();
+      this.initListeners();
+    },
+    target: function target(value) {
+      this.clearListeners();
+      this.initTriggerElByTarget(value);
+      this.initListeners();
+    },
+    allContent: function allContent(value) {
+      var _this = this;
+
+      // can not use value because it can not detect slot changes
+      if (this.isNotEmpty()) {
+        // reset position while content changed & is shown
+        // nextTick is required
+        this.$nextTick(function () {
+          if (_this.isShown()) {
+            _this.resetPosition();
+          }
+        });
+      } else {
+        this.hide();
+      }
+    },
+    enable: function enable(value) {
+      // hide if enable changed to false
+      if (!value) {
+        this.hide();
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    ensureElementMatchesFunction();
+    removeFromDom(this.$refs.popup);
+    this.$nextTick(function () {
+      _this2.initTriggerElByTarget(_this2.target);
+      _this2.initListeners();
+      if (_this2.value) {
+        _this2.show();
+      }
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.clearListeners();
+    removeFromDom(this.$refs.popup);
+  },
+
+  methods: {
+    initTriggerElByTarget: function initTriggerElByTarget(target) {
+      if (target) {
+        // target exist
+        if (isString(target)) {
+          // is selector
+          this.triggerEl = document.querySelector(target);
+        } else if (isElement(target)) {
+          // is element
+          this.triggerEl = target;
+        } else if (isElement(target.$el)) {
+          // is component
+          this.triggerEl = target.$el;
+        }
+      } else {
+        // find special element
+        var trigger = this.$el.querySelector('[data-role="trigger"]');
+        if (trigger) {
+          this.triggerEl = trigger;
+        } else {
+          // use the first child
+          var firstChild = this.$el.firstChild;
+          this.triggerEl = firstChild === this.$refs.popup ? null : firstChild;
+        }
+      }
+    },
+    initListeners: function initListeners() {
+      if (this.triggerEl) {
+        if (this.trigger === TRIGGERS.HOVER) {
+          on(this.triggerEl, EVENTS.MOUSE_ENTER, this.show);
+          on(this.triggerEl, EVENTS.MOUSE_LEAVE, this.hide);
+        } else if (this.trigger === TRIGGERS.FOCUS) {
+          on(this.triggerEl, EVENTS.FOCUS, this.show);
+          on(this.triggerEl, EVENTS.BLUR, this.hide);
+        } else if (this.trigger === TRIGGERS.HOVER_FOCUS) {
+          on(this.triggerEl, EVENTS.MOUSE_ENTER, this.handleAuto);
+          on(this.triggerEl, EVENTS.MOUSE_LEAVE, this.handleAuto);
+          on(this.triggerEl, EVENTS.FOCUS, this.handleAuto);
+          on(this.triggerEl, EVENTS.BLUR, this.handleAuto);
+        } else if (this.trigger === TRIGGERS.CLICK || this.trigger === TRIGGERS.OUTSIDE_CLICK) {
+          on(this.triggerEl, EVENTS.CLICK, this.toggle);
+        }
+      }
+      on(window, EVENTS.CLICK, this.windowClicked);
+    },
+    clearListeners: function clearListeners() {
+      if (this.triggerEl) {
+        off(this.triggerEl, EVENTS.FOCUS, this.show);
+        off(this.triggerEl, EVENTS.BLUR, this.hide);
+        off(this.triggerEl, EVENTS.MOUSE_ENTER, this.show);
+        off(this.triggerEl, EVENTS.MOUSE_LEAVE, this.hide);
+        off(this.triggerEl, EVENTS.CLICK, this.toggle);
+        off(this.triggerEl, EVENTS.MOUSE_ENTER, this.handleAuto);
+        off(this.triggerEl, EVENTS.MOUSE_LEAVE, this.handleAuto);
+        off(this.triggerEl, EVENTS.FOCUS, this.handleAuto);
+        off(this.triggerEl, EVENTS.BLUR, this.handleAuto);
+      }
+      off(window, EVENTS.CLICK, this.windowClicked);
+    },
+    resetPosition: function resetPosition() {
+      var popup = this.$refs.popup;
+      setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport);
+      popup.offsetHeight;
+    },
+    hideOnLeave: function hideOnLeave() {
+      if (this.trigger === TRIGGERS.HOVER || this.trigger === TRIGGERS.HOVER_FOCUS && !this.triggerEl.matches(':focus')) {
+        this.$hide();
+      }
+    },
+    toggle: function toggle() {
+      if (this.isShown()) {
+        this.hide();
+      } else {
+        this.show();
+      }
+    },
+    show: function show() {
+      var _this3 = this;
+
+      if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
+        var popup = this.$refs.popup;
+        var popUpAppendedContainer = this.hideTimeoutId > 0; // weird condition
+        if (popUpAppendedContainer) {
+          clearTimeout(this.hideTimeoutId);
+          this.hideTimeoutId = 0;
+        }
+        if (this.transitionTimeoutId > 0) {
+          clearTimeout(this.transitionTimeoutId);
+          this.transitionTimeoutId = 0;
+        }
+        this.showTimeoutId = setTimeout(function () {
+          // add to dom
+          if (!popUpAppendedContainer) {
+            popup.className = _this3.name + ' ' + _this3.placement + ' ' + (_this3.customClass ? _this3.customClass : '') + ' fade';
+            var container = document.querySelector(_this3.appendTo);
+            container.appendChild(popup);
+            _this3.resetPosition();
+          }
+          addClass(popup, SHOW_CLASS);
+          _this3.$emit('input', true);
+          _this3.$emit('show');
+        }, this.showDelay);
+      }
+    },
+    hide: function hide() {
+      var _this4 = this;
+
+      if (this.showTimeoutId > 0) {
+        clearTimeout(this.showTimeoutId);
+        this.showTimeoutId = 0;
+      }
+
+      if (!this.isShown()) {
+        return;
+      }
+      if (this.enterable && (this.trigger === TRIGGERS.HOVER || this.trigger === TRIGGERS.HOVER_FOCUS)) {
+        setTimeout(function () {
+          if (!_this4.$refs.popup.matches(':hover')) {
+            _this4.$hide();
+          }
+        }, 100);
+      } else {
+        this.$hide();
+      }
+    },
+    $hide: function $hide() {
+      var _this5 = this;
+
+      if (this.isShown()) {
+        clearTimeout(this.hideTimeoutId);
+        this.hideTimeoutId = setTimeout(function () {
+          _this5.hideTimeoutId = 0;
+          removeClass(_this5.$refs.popup, SHOW_CLASS);
+          // gives fade out time
+          _this5.transitionTimeoutId = setTimeout(function () {
+            _this5.transitionTimeoutId = 0;
+            removeFromDom(_this5.$refs.popup);
+            _this5.$emit('input', false);
+            _this5.$emit('hide');
+          }, _this5.transitionDuration);
+        }, this.hideDelay);
+      }
+    },
+    isShown: function isShown() {
+      return hasClass(this.$refs.popup, SHOW_CLASS);
+    },
+    windowClicked: function windowClicked(event) {
+      if (this.triggerEl && isFunction(this.triggerEl.contains) && !this.triggerEl.contains(event.target) && this.trigger === TRIGGERS.OUTSIDE_CLICK && !this.$refs.popup.contains(event.target) && this.isShown()) {
+        this.hide();
+      }
+    },
+    handleAuto: function handleAuto() {
+      var _this6 = this;
+
+      setTimeout(function () {
+        if (_this6.triggerEl.matches(':hover, :focus')) {
+          _this6.show();
+        } else {
+          _this6.hide();
+        }
+      }, 20); // 20ms make firefox happy
+    }
+  }
+};
+
+var Tooltip = {
+  mixins: [popupMixin],
+  data: function data() {
+    return {
+      name: 'tooltip'
+    };
+  },
+  render: function render(h) {
+    return h(this.tag, [this.$slots.default, h('div', {
+      ref: 'popup',
+      attrs: {
+        role: 'tooltip'
+      },
+      on: {
+        mouseleave: this.hideOnLeave
+      }
+    }, [h('div', { 'class': 'tooltip-arrow' }), h('div', {
+      'class': 'tooltip-inner',
+      domProps: { innerHTML: this.text }
+    })])]);
+  },
+
+  props: {
+    text: {
+      type: String,
+      default: ''
+    },
+    trigger: {
+      type: String,
+      default: TRIGGERS.HOVER_FOCUS
+    }
+  },
+  computed: {
+    allContent: function allContent() {
+      return this.text;
+    }
+  },
+  methods: {
+    isNotEmpty: function isNotEmpty() {
+      return this.text;
+    }
+  }
+};
+
+var Popover = {
+  mixins: [popupMixin],
+  data: function data() {
+    return {
+      name: 'popover'
+    };
+  },
+  render: function render(h) {
+    return h(this.tag, [this.$slots.default, h('div', {
+      style: {
+        display: 'block'
+      },
+      ref: 'popup',
+      on: {
+        mouseleave: this.hideOnLeave
+      }
+    }, [h('div', { 'class': 'arrow' }), h('h3', {
+      'class': 'popover-title',
+      directives: [{ name: 'show', value: this.title }]
+    }, this.title), h('div', { 'class': 'popover-content' }, [this.content || this.$slots.popover])])]);
+  },
+
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    trigger: {
+      type: String,
+      default: TRIGGERS.OUTSIDE_CLICK
+    }
+  },
+  computed: {
+    allContent: function allContent() {
+      return this.title + this.content;
+    }
+  },
+  methods: {
+    isNotEmpty: function isNotEmpty() {
+      return this.title || this.content || this.$slots.popover;
+    }
+  }
+};
+
+var maxHours = 23;
+var zero = 0;
+var maxMinutes = 59;
+var cutUpAmAndPm = 12;
+
+var TimePicker = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('section', { on: { "click": function click($event) {
+          $event.stopPropagation();
+        } } }, [_c('table', [_c('tbody', [_vm.controls ? _c('tr', { staticClass: "text-center" }, [_c('td', [_c('btn', { attrs: { "type": "link", "size": "sm", "disabled": _vm.readonly }, on: { "click": function click($event) {
+          return _vm.changeTime(1, 1);
+        } } }, [_c('i', { class: _vm.iconControlUp })])], 1), _vm._v(" "), _c('td', [_vm._v(" ")]), _vm._v(" "), _c('td', [_c('btn', { attrs: { "type": "link", "size": "sm", "disabled": _vm.readonly }, on: { "click": function click($event) {
+          return _vm.changeTime(0, 1);
+        } } }, [_c('i', { class: _vm.iconControlUp })])], 1), _vm._v(" "), _vm.showMeridian ? _c('td') : _vm._e()]) : _vm._e(), _vm._v(" "), _c('tr', [_c('td', { staticClass: "form-group" }, [_c('input', { directives: [{ name: "model", rawName: "v-model.lazy", value: _vm.hoursText, expression: "hoursText", modifiers: { "lazy": true } }], ref: "hoursInput", staticClass: "form-control text-center", style: _vm.inputStyles, attrs: { "type": "tel", "pattern": "\\d*", "placeholder": "HH", "readonly": _vm.readonly, "maxlength": "2", "size": "2" }, domProps: { "value": _vm.hoursText }, on: { "mouseup": _vm.selectInputValue, "keydown": [function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "up", 38, $event.key, ["Up", "ArrowUp"])) {
+            return null;
+          }$event.preventDefault();return _vm.changeTime(1, 1);
+        }, function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "down", 40, $event.key, ["Down", "ArrowDown"])) {
+            return null;
+          }$event.preventDefault();return _vm.changeTime(1, 0);
+        }], "wheel": function wheel($event) {
+          return _vm.onWheel($event, true);
+        }, "change": function change($event) {
+          _vm.hoursText = $event.target.value;
+        } } })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('td', { staticClass: "form-group" }, [_c('input', { directives: [{ name: "model", rawName: "v-model.lazy", value: _vm.minutesText, expression: "minutesText", modifiers: { "lazy": true } }], ref: "minutesInput", staticClass: "form-control text-center", style: _vm.inputStyles, attrs: { "type": "tel", "pattern": "\\d*", "placeholder": "MM", "readonly": _vm.readonly, "maxlength": "2", "size": "2" }, domProps: { "value": _vm.minutesText }, on: { "mouseup": _vm.selectInputValue, "keydown": [function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "up", 38, $event.key, ["Up", "ArrowUp"])) {
+            return null;
+          }$event.preventDefault();return _vm.changeTime(0, 1);
+        }, function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "down", 40, $event.key, ["Down", "ArrowDown"])) {
+            return null;
+          }$event.preventDefault();return _vm.changeTime(0, 0);
+        }], "wheel": function wheel($event) {
+          return _vm.onWheel($event, false);
+        }, "change": function change($event) {
+          _vm.minutesText = $event.target.value;
+        } } })]), _vm._v(" "), _vm.showMeridian ? _c('td', [_vm._v("   "), _c('btn', { attrs: { "data-action": "toggleMeridian", "disabled": _vm.readonly }, domProps: { "textContent": _vm._s(_vm.meridian ? _vm.t('uiv.timePicker.am') : _vm.t('uiv.timePicker.pm')) }, on: { "click": _vm.toggleMeridian } })], 1) : _vm._e()]), _vm._v(" "), _vm.controls ? _c('tr', { staticClass: "text-center" }, [_c('td', [_c('btn', { attrs: { "type": "link", "size": "sm", "disabled": _vm.readonly }, on: { "click": function click($event) {
+          return _vm.changeTime(1, 0);
+        } } }, [_c('i', { class: _vm.iconControlDown })])], 1), _vm._v(" "), _c('td', [_vm._v(" ")]), _vm._v(" "), _c('td', [_c('btn', { attrs: { "type": "link", "size": "sm", "disabled": _vm.readonly }, on: { "click": function click($event) {
+          return _vm.changeTime(0, 0);
+        } } }, [_c('i', { class: _vm.iconControlDown })])], 1), _vm._v(" "), _vm.showMeridian ? _c('td') : _vm._e()]) : _vm._e()])])]);
+  }, staticRenderFns: [function () {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('td', [_vm._v(" "), _c('b', [_vm._v(":")]), _vm._v(" ")]);
+  }],
+  components: { Btn: Btn },
+  mixins: [Local],
+  props: {
+    value: {
+      type: Date,
+      required: true
+    },
+    showMeridian: {
+      type: Boolean,
+      default: true
+    },
+    min: Date,
+    max: Date,
+    hourStep: {
+      type: Number,
+      default: 1
+    },
+    minStep: {
+      type: Number,
+      default: 1
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    controls: {
+      type: Boolean,
+      default: true
+    },
+    iconControlUp: {
+      type: String,
+      default: 'glyphicon glyphicon-chevron-up'
+    },
+    iconControlDown: {
+      type: String,
+      default: 'glyphicon glyphicon-chevron-down'
+    },
+    inputWidth: {
+      type: Number,
+      default: 50
+    }
+  },
+  data: function data() {
+    return {
+      hours: 0,
+      minutes: 0,
+      meridian: true,
+      hoursText: '',
+      minutesText: ''
+    };
+  },
+  mounted: function mounted() {
+    this.updateByValue(this.value);
+  },
+
+  computed: {
+    inputStyles: function inputStyles() {
+      return {
+        width: this.inputWidth + 'px'
+      };
+    }
+  },
+  watch: {
+    value: function value(_value) {
+      this.updateByValue(_value);
+    },
+    showMeridian: function showMeridian(value) {
+      this.setTime();
+    },
+    hoursText: function hoursText(value) {
+      if (this.hours === 0 && value === '') {
+        // Prevent a runtime reset from being overwritten
+        return;
+      }
+      var hour = parseInt(value);
+      if (this.showMeridian) {
+        if (hour >= 1 && hour <= cutUpAmAndPm) {
+          if (this.meridian) {
+            this.hours = hour === cutUpAmAndPm ? 0 : hour;
+          } else {
+            this.hours = hour === cutUpAmAndPm ? cutUpAmAndPm : hour + cutUpAmAndPm;
+          }
+        }
+      } else if (hour >= zero && hour <= maxHours) {
+        this.hours = hour;
+      }
+      this.setTime();
+    },
+    minutesText: function minutesText(value) {
+      if (this.minutes === 0 && value === '') {
+        // Prevent a runtime reset from being overwritten
+        return;
+      }
+      var minutesStr = parseInt(value);
+      if (minutesStr >= zero && minutesStr <= maxMinutes) {
+        this.minutes = minutesStr;
+      }
+      this.setTime();
+    }
+  },
+  methods: {
+    updateByValue: function updateByValue(value) {
+      if (isNaN(value.getTime())) {
+        this.hours = 0;
+        this.minutes = 0;
+        this.hoursText = '';
+        this.minutesText = '';
+        this.meridian = true;
+        return;
+      }
+      this.hours = value.getHours();
+      this.minutes = value.getMinutes();
+      if (!this.showMeridian) {
+        this.hoursText = pad(this.hours, 2);
+      } else {
+        if (this.hours >= cutUpAmAndPm) {
+          if (this.hours === cutUpAmAndPm) {
+            this.hoursText = this.hours + '';
+          } else {
+            this.hoursText = pad(this.hours - cutUpAmAndPm, 2);
+          }
+          this.meridian = false;
+        } else {
+          if (this.hours === zero) {
+            this.hoursText = cutUpAmAndPm.toString();
+          } else {
+            this.hoursText = pad(this.hours, 2);
+          }
+          this.meridian = true;
+        }
+      }
+      this.minutesText = pad(this.minutes, 2);
+      // lazy model won't update when using keyboard up/down
+      this.$refs.hoursInput.value = this.hoursText;
+      this.$refs.minutesInput.value = this.minutesText;
+    },
+    addHour: function addHour(step) {
+      step = step || this.hourStep;
+      this.hours = this.hours >= maxHours ? zero : this.hours + step;
+    },
+    reduceHour: function reduceHour(step) {
+      step = step || this.hourStep;
+      this.hours = this.hours <= zero ? maxHours : this.hours - step;
+    },
+    addMinute: function addMinute() {
+      if (this.minutes >= maxMinutes) {
+        this.minutes = zero;
+        this.addHour(1);
+      } else {
+        this.minutes += this.minStep;
+      }
+    },
+    reduceMinute: function reduceMinute() {
+      if (this.minutes <= zero) {
+        this.minutes = maxMinutes + 1 - this.minStep;
+        this.reduceHour(1);
+      } else {
+        this.minutes -= this.minStep;
+      }
+    },
+    changeTime: function changeTime(isHour, isPlus) {
+      if (!this.readonly) {
+        if (isHour && isPlus) {
+          this.addHour();
+        } else if (isHour && !isPlus) {
+          this.reduceHour();
+        } else if (!isHour && isPlus) {
+          this.addMinute();
+        } else {
+          this.reduceMinute();
+        }
+        this.setTime();
+      }
+    },
+    toggleMeridian: function toggleMeridian() {
+      this.meridian = !this.meridian;
+      if (this.meridian) {
+        this.hours -= cutUpAmAndPm;
+      } else {
+        this.hours += cutUpAmAndPm;
+      }
+      this.setTime();
+    },
+    onWheel: function onWheel(e, isHour) {
+      if (!this.readonly) {
+        e.preventDefault();
+        this.changeTime(isHour, e.deltaY < 0);
+      }
+    },
+    setTime: function setTime() {
+      var time = this.value;
+      if (isNaN(time.getTime())) {
+        time = new Date();
+        time.setHours(0);
+        time.setMinutes(0);
+      }
+      time.setHours(this.hours);
+      time.setMinutes(this.minutes);
+      if (this.max) {
+        var max = new Date(time);
+        max.setHours(this.max.getHours());
+        max.setMinutes(this.max.getMinutes());
+        time = time > max ? max : time;
+      }
+      if (this.min) {
+        var min = new Date(time);
+        min.setHours(this.min.getHours());
+        min.setMinutes(this.min.getMinutes());
+        time = time < min ? min : time;
+      }
+      this.$emit('input', new Date(time));
+    },
+    selectInputValue: function selectInputValue(e) {
+      // mouseup should be prevented!
+      // See various comments in https://stackoverflow.com/questions/3272089/programmatically-selecting-text-in-an-input-field-on-ios-devices-mobile-safari
+      e.target.setSelectionRange(0, 2);
+    }
+  }
+};
+
+function getRequest(url) {
+  var request = new window.XMLHttpRequest();
+  var data = {};
+  var p = {
+    then: function then(fn1, fn2) {
+      return p.done(fn1).fail(fn2);
+    },
+    catch: function _catch(fn) {
+      return p.fail(fn);
+    },
+    always: function always(fn) {
+      return p.done(fn).fail(fn);
+    }
+  };
+  var statuses = ['done', 'fail'];
+  statuses.forEach(function (name) {
+    data[name] = [];
+    p[name] = function (fn) {
+      if (fn instanceof Function) data[name].push(fn);
+      return p;
+    };
+  });
+  p.done(JSON.parse);
+  request.onreadystatechange = function () {
+    if (request.readyState === 4) {
+      var e = { status: request.status };
+      if (request.status === 200) {
+        var response = request.responseText;
+        for (var i in data.done) {
+          if (data.done.hasOwnProperty(i) && isFunction(data.done[i])) {
+            var value = data.done[i](response);
+            if (isExist(value)) {
+              response = value;
+            }
+          }
+        }
+      } else {
+        data.fail.forEach(function (fail) {
+          return fail(e);
+        });
+      }
+    }
+  };
+  request.open('GET', url);
+  request.setRequestHeader('Accept', 'application/json');
+  request.send();
+  return p;
+}
+
+var Typeahead = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('dropdown', { ref: "dropdown", attrs: { "tag": "section", "append-to-body": _vm.appendToBody, "not-close-elements": _vm.elements, "position-element": _vm.inputEl }, model: { value: _vm.open, callback: function callback($$v) {
+          _vm.open = $$v;
+        }, expression: "open" } }, [_c('template', { slot: "dropdown" }, [_vm._t("item", _vm._l(_vm.items, function (item, index) {
+      return _c('li', { class: { active: _vm.activeIndex === index } }, [_c('a', { attrs: { "href": "#" }, on: { "click": function click($event) {
+            $event.preventDefault();return _vm.selectItem(item);
+          } } }, [_c('span', { domProps: { "innerHTML": _vm._s(_vm.highlight(item)) } })])]);
+    }), { "items": _vm.items, "activeIndex": _vm.activeIndex, "select": _vm.selectItem, "highlight": _vm.highlight }), _vm._v(" "), !_vm.items || _vm.items.length === 0 ? _vm._t("empty") : _vm._e()], 2)], 2);
+  }, staticRenderFns: [],
+  components: { Dropdown: Dropdown },
+  props: {
+    value: {
+      required: true
+    },
+    data: Array,
+    itemKey: String,
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    ignoreCase: {
+      type: Boolean,
+      default: true
+    },
+    matchStart: {
+      type: Boolean,
+      default: false
+    },
+    forceSelect: {
+      type: Boolean,
+      default: false
+    },
+    forceClear: {
+      type: Boolean,
+      default: false
+    },
+    limit: {
+      type: Number,
+      default: 10
+    },
+    asyncSrc: String,
+    asyncKey: String,
+    asyncFunction: Function,
+    debounce: {
+      type: Number,
+      default: 200
+    },
+    openOnFocus: {
+      type: Boolean,
+      default: true
+    },
+    openOnEmpty: {
+      type: Boolean,
+      default: false
+    },
+    target: {
+      required: true
+    },
+    preselect: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data: function data() {
+    return {
+      inputEl: null,
+      items: [],
+      activeIndex: 0,
+      timeoutID: 0,
+      elements: [],
+      open: false,
+      dropdownMenuEl: null
+    };
+  },
+
+  computed: {
+    regexOptions: function regexOptions() {
+      var options = '';
+      if (this.ignoreCase) {
+        options += 'i';
+      }
+      if (!this.matchStart) {
+        options += 'g';
+      }
+      return options;
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    ensureElementMatchesFunction();
+    this.$nextTick(function () {
+      _this.initInputElByTarget(_this.target);
+      _this.initListeners();
+      _this.dropdownMenuEl = _this.$refs.dropdown.$el.querySelector('.dropdown-menu');
+      // set input text if v-model not empty
+      if (_this.value) {
+        _this.setInputTextByValue(_this.value);
+      }
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.removeListeners();
+  },
+
+  watch: {
+    target: function target(el) {
+      this.removeListeners();
+      this.initInputElByTarget(el);
+      this.initListeners();
+    },
+    value: function value(_value) {
+      this.setInputTextByValue(_value);
+    }
+  },
+  methods: {
+    setInputTextByValue: function setInputTextByValue(value) {
+      if (isString(value)) {
+        // direct
+        this.inputEl.value = value;
+      } else if (value) {
+        // is object
+        this.inputEl.value = this.itemKey ? value[this.itemKey] : value;
+      } else if (value === null) {
+        // is null or undefined or something else not valid
+        this.inputEl.value = '';
+      }
+    },
+    hasEmptySlot: function hasEmptySlot() {
+      return !!this.$slots['empty'] || !!this.$scopedSlots['empty'];
+    },
+    initInputElByTarget: function initInputElByTarget(target) {
+      if (!target) {
+        return;
+      }
+      if (isString(target)) {
+        // is selector
+        this.inputEl = document.querySelector(target);
+      } else if (isElement(target)) {
+        // is element
+        this.inputEl = target;
+      } else if (isElement(target.$el)) {
+        // is component
+        this.inputEl = target.$el;
+      }
+    },
+    initListeners: function initListeners() {
+      if (this.inputEl) {
+        this.elements = [this.inputEl];
+        on(this.inputEl, EVENTS.FOCUS, this.inputFocused);
+        on(this.inputEl, EVENTS.BLUR, this.inputBlured);
+        on(this.inputEl, EVENTS.INPUT, this.inputChanged);
+        on(this.inputEl, EVENTS.KEY_DOWN, this.inputKeyPressed);
+      }
+    },
+    removeListeners: function removeListeners() {
+      this.elements = [];
+      if (this.inputEl) {
+        off(this.inputEl, EVENTS.FOCUS, this.inputFocused);
+        off(this.inputEl, EVENTS.BLUR, this.inputBlured);
+        off(this.inputEl, EVENTS.INPUT, this.inputChanged);
+        off(this.inputEl, EVENTS.KEY_DOWN, this.inputKeyPressed);
+      }
+    },
+    prepareItems: function prepareItems(data) {
+      var disableFilters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      if (disableFilters) {
+        this.items = data.slice(0, this.limit);
+        return;
+      }
+      this.items = [];
+      this.activeIndex = this.preselect ? 0 : -1;
+      for (var i = 0, l = data.length; i < l; i++) {
+        var item = data[i];
+        var key = this.itemKey ? item[this.itemKey] : item;
+        key = key.toString();
+        var index = -1;
+        if (this.ignoreCase) {
+          index = key.toLowerCase().indexOf(this.inputEl.value.toLowerCase());
+        } else {
+          index = key.indexOf(this.inputEl.value);
+        }
+        if (this.matchStart ? index === 0 : index >= 0) {
+          this.items.push(item);
+        }
+        if (this.items.length >= this.limit) {
+          break;
+        }
+      }
+    },
+    fetchItems: function fetchItems(value, debounce) {
+      var _this2 = this;
+
+      clearTimeout(this.timeoutID);
+      if (value === '' && !this.openOnEmpty) {
+        this.open = false;
+      } else if (this.data) {
+        this.prepareItems(this.data);
+        this.open = this.hasEmptySlot() || Boolean(this.items.length);
+      } else if (this.asyncSrc) {
+        this.timeoutID = setTimeout(function () {
+          _this2.$emit('loading');
+          getRequest(_this2.asyncSrc + encodeURIComponent(value)).then(function (data) {
+            if (_this2.inputEl.matches(':focus')) {
+              _this2.prepareItems(_this2.asyncKey ? data[_this2.asyncKey] : data, true);
+              _this2.open = _this2.hasEmptySlot() || Boolean(_this2.items.length);
+            }
+            _this2.$emit('loaded');
+          }).catch(function (err) {
+            console.error(err);
+            _this2.$emit('loaded-error');
+          });
+        }, debounce);
+      } else if (this.asyncFunction) {
+        var cb = function cb(data) {
+          if (_this2.inputEl.matches(':focus')) {
+            _this2.prepareItems(data, true);
+            _this2.open = _this2.hasEmptySlot() || Boolean(_this2.items.length);
+          }
+          _this2.$emit('loaded');
+        };
+        this.timeoutID = setTimeout(function () {
+          _this2.$emit('loading');
+          _this2.asyncFunction(value, cb);
+        }, debounce);
+      }
+    },
+    inputChanged: function inputChanged() {
+      var value = this.inputEl.value;
+      this.fetchItems(value, this.debounce);
+      this.$emit('input', this.forceSelect ? undefined : value);
+    },
+    inputFocused: function inputFocused() {
+      if (this.openOnFocus) {
+        var value = this.inputEl.value;
+        this.fetchItems(value, 0);
+      }
+    },
+    inputBlured: function inputBlured() {
+      var _this3 = this;
+
+      if (!this.dropdownMenuEl.matches(':hover')) {
+        this.open = false;
+      }
+      if (this.inputEl && this.forceClear) {
+        this.$nextTick(function () {
+          if (typeof _this3.value === 'undefined') {
+            _this3.inputEl.value = '';
+          }
+        });
+      }
+    },
+    inputKeyPressed: function inputKeyPressed(event) {
+      event.stopPropagation();
+      if (this.open) {
+        switch (event.keyCode) {
+          case 13:
+            if (this.activeIndex >= 0) {
+              this.selectItem(this.items[this.activeIndex]);
+            } else {
+              this.open = false;
+            }
+            event.preventDefault();
+            break;
+          case 27:
+            this.open = false;
+            break;
+          case 38:
+            this.activeIndex = this.activeIndex > 0 ? this.activeIndex - 1 : 0;
+            break;
+          case 40:
+            var maxIndex = this.items.length - 1;
+            this.activeIndex = this.activeIndex < maxIndex ? this.activeIndex + 1 : maxIndex;
+            break;
+        }
+      }
+    },
+    selectItem: function selectItem(item) {
+      this.$emit('input', item);
+      this.open = false;
+    },
+    highlight: function highlight(item) {
+      var value = this.itemKey ? item[this.itemKey] : item;
+      var inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+      return value.replace(new RegExp('' + inputValue, this.regexOptions), '<b>$&</b>');
+    }
+  }
+};
+
+var ProgressBarStack = {
+  functional: true,
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        data = _ref.data;
+
+    return h('div', mergeData(data, {
+      class: defineProperty({
+        'progress-bar': true,
+        'progress-bar-striped': props.striped,
+        'active': props.striped && props.active
+      }, 'progress-bar-' + props.type, Boolean(props.type)),
+      style: {
+        minWidth: props.minWidth ? '2em' : null,
+        width: props.value + '%'
+      },
+      attrs: {
+        role: 'progressbar',
+        'aria-valuemin': 0,
+        'aria-valuenow': props.value,
+        'aria-valuemax': 100
+      }
+    }), props.label ? props.labelText ? props.labelText : props.value + '%' : null);
+  },
+
+  props: {
+    value: {
+      type: Number,
+      required: true,
+      validator: function validator(value) {
+        return value >= 0 && value <= 100;
+      }
+    },
+    labelText: String,
+    type: String,
+    label: {
+      type: Boolean,
+      default: false
+    },
+    minWidth: {
+      type: Boolean,
+      default: false
+    },
+    striped: {
+      type: Boolean,
+      default: false
+    },
+    active: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
+
+var ProgressBar = {
+  functional: true,
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        data = _ref.data,
+        children = _ref.children;
+
+    return h('div', mergeData(data, { class: 'progress' }), children && children.length ? children : [h(ProgressBarStack, { props: props })]);
+  }
+};
+
+var BreadcrumbItem = {
+  functional: true,
+  mixins: [linkMixin],
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        data = _ref.data,
+        children = _ref.children;
+
+    var slot = void 0;
+    if (props.active) {
+      slot = children;
+    } else if (props.to) {
+      slot = [h('router-link', {
+        props: {
+          to: props.to,
+          replace: props.replace,
+          append: props.append,
+          exact: props.exact
+        }
+      }, children)];
+    } else {
+      slot = [h('a', {
+        attrs: {
+          href: props.href,
+          target: props.target
+        }
+      }, children)];
+    }
+    return h('li', mergeData(data, { class: { active: props.active } }), slot);
+  },
+
+  props: {
+    active: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
+
+var Breadcrumbs = {
+  functional: true,
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        data = _ref.data,
+        children = _ref.children;
+
+    var slot = [];
+    if (children && children.length) {
+      slot = children;
+    } else if (props.items) {
+      slot = props.items.map(function (item, index) {
+        return h(BreadcrumbItem, {
+          key: item.hasOwnProperty('key') ? item.key : index,
+          props: {
+            active: item.hasOwnProperty('active') ? item.active : index === props.items.length - 1,
+            href: item.href,
+            target: item.target,
+            to: item.to,
+            replace: item.replace,
+            append: item.append,
+            exact: item.exact
+          }
+        }, item.text);
+      });
+    }
+    return h('ol', mergeData(data, { class: 'breadcrumb' }), slot);
+  },
+
+  props: {
+    items: Array
+  }
+};
+
+var BtnToolbar = {
+  functional: true,
+  render: function render(h, _ref) {
+    var children = _ref.children,
+        data = _ref.data;
+
+    return h('div', mergeData(data, {
+      class: {
+        'btn-toolbar': true
+      },
+      attrs: {
+        role: 'toolbar'
+      }
+    }), children);
+  }
+};
+
+var MultiSelect = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('dropdown', { ref: "dropdown", style: _vm.containerStyles, attrs: { "not-close-elements": _vm.els, "append-to-body": _vm.appendToBody, "disabled": _vm.disabled }, nativeOn: { "keydown": function keydown($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])) {
+            return null;
+          }_vm.showDropdown = false;
+        } }, model: { value: _vm.showDropdown, callback: function callback($$v) {
+          _vm.showDropdown = $$v;
+        }, expression: "showDropdown" } }, [_c('div', { staticClass: "form-control dropdown-toggle clearfix", class: _vm.selectClasses, attrs: { "disabled": _vm.disabled, "tabindex": "0", "data-role": "trigger" }, on: { "focus": function focus($event) {
+          return _vm.$emit('focus', $event);
+        }, "blur": function blur($event) {
+          return _vm.$emit('blur', $event);
+        }, "keydown": [function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "down", 40, $event.key, ["Down", "ArrowDown"])) {
+            return null;
+          }$event.preventDefault();$event.stopPropagation();return _vm.goNextOption($event);
+        }, function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "up", 38, $event.key, ["Up", "ArrowUp"])) {
+            return null;
+          }$event.preventDefault();$event.stopPropagation();return _vm.goPrevOption($event);
+        }, function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+            return null;
+          }$event.preventDefault();$event.stopPropagation();return _vm.selectOption($event);
+        }] } }, [_c('div', { class: _vm.selectTextClasses, staticStyle: { "display": "inline-block", "vertical-align": "middle" } }, [_vm._v(_vm._s(_vm.selectedText))]), _vm._v(" "), _c('div', { staticClass: "pull-right", staticStyle: { "display": "inline-block", "vertical-align": "middle" } }, [_c('span', [_vm._v(" ")]), _vm._v(" "), _c('span', { staticClass: "caret" })])]), _vm._v(" "), _c('template', { slot: "dropdown" }, [_vm.filterable ? _c('li', { staticStyle: { "padding": "4px 8px" } }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.filterInput, expression: "filterInput" }], ref: "filterInput", staticClass: "form-control input-sm", attrs: { "aria-label": "Filter...", "type": "text", "placeholder": _vm.filterPlaceholder || _vm.t('uiv.multiSelect.filterPlaceholder') }, domProps: { "value": _vm.filterInput }, on: { "keydown": [function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "down", 40, $event.key, ["Down", "ArrowDown"])) {
+            return null;
+          }$event.preventDefault();$event.stopPropagation();return _vm.goNextOption($event);
+        }, function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "up", 38, $event.key, ["Up", "ArrowUp"])) {
+            return null;
+          }$event.preventDefault();$event.stopPropagation();return _vm.goPrevOption($event);
+        }, function ($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+            return null;
+          }$event.preventDefault();$event.stopPropagation();return _vm.selectOption($event);
+        }], "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.filterInput = $event.target.value;
+        } } })]) : _vm._e(), _vm._v(" "), _vm._l(_vm.groupedOptions, function (item) {
+      return [item.$group ? _c('li', { staticClass: "dropdown-header", domProps: { "textContent": _vm._s(item.$group) } }) : _vm._e(), _vm._v(" "), _vm._l(item.options, function (_item) {
+        return [_c('li', { class: _vm.itemClasses(_item), staticStyle: { "outline": "0" }, on: { "keydown": [function ($event) {
+              if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "down", 40, $event.key, ["Down", "ArrowDown"])) {
+                return null;
+              }$event.preventDefault();$event.stopPropagation();return _vm.goNextOption($event);
+            }, function ($event) {
+              if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "up", 38, $event.key, ["Up", "ArrowUp"])) {
+                return null;
+              }$event.preventDefault();$event.stopPropagation();return _vm.goPrevOption($event);
+            }, function ($event) {
+              if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+                return null;
+              }$event.preventDefault();$event.stopPropagation();return _vm.selectOption($event);
+            }], "click": function click($event) {
+              $event.stopPropagation();return _vm.toggle(_item);
+            }, "mouseenter": function mouseenter($event) {
+              _vm.currentActive = -1;
+            } } }, [_vm.isItemSelected(_item) ? _c('a', { staticStyle: { "outline": "0" }, attrs: { "role": "button" } }, [_c('b', [_vm._v(_vm._s(_item[_vm.labelKey]))]), _vm._v(" "), _vm.selectedIcon ? _c('span', { class: _vm.selectedIconClasses }) : _vm._e()]) : _c('a', { staticStyle: { "outline": "0" }, attrs: { "role": "button" } }, [_c('span', [_vm._v(_vm._s(_item[_vm.labelKey]))])])])];
+      })];
+    })], 2)], 2);
+  }, staticRenderFns: [],
+  mixins: [Local],
+  components: { Dropdown: Dropdown },
+  props: {
+    value: {
+      type: Array,
+      required: true
+    },
+    options: {
+      type: Array,
+      required: true
+    },
+    labelKey: {
+      type: String,
+      default: 'label'
+    },
+    valueKey: {
+      type: String,
+      default: 'value'
+    },
+    limit: {
+      type: Number,
+      default: 0
+    },
+    size: String,
+    placeholder: String,
+    split: {
+      type: String,
+      default: ', '
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    collapseSelected: {
+      type: Boolean,
+      default: false
+    },
+    filterable: {
+      type: Boolean,
+      default: false
+    },
+    filterAutoFocus: {
+      type: Boolean,
+      default: true
+    },
+    filterFunction: Function,
+    filterPlaceholder: String,
+    selectedIcon: {
+      type: String,
+      default: 'glyphicon glyphicon-ok'
+    },
+    itemSelectedClass: String
+  },
+  data: function data() {
+    return {
+      showDropdown: false,
+      els: [],
+      filterInput: '',
+      currentActive: -1
+    };
+  },
+
+  computed: {
+    containerStyles: function containerStyles() {
+      return {
+        width: this.block ? '100%' : ''
+      };
+    },
+    filteredOptions: function filteredOptions() {
+      var _this = this;
+
+      if (this.filterable && this.filterInput) {
+        if (this.filterFunction) {
+          return this.filterFunction(this.filterInput);
+        } else {
+          var filterInput = this.filterInput.toLowerCase();
+          return this.options.filter(function (v) {
+            return v[_this.valueKey].toString().toLowerCase().indexOf(filterInput) >= 0 || v[_this.labelKey].toString().toLowerCase().indexOf(filterInput) >= 0;
+          });
+        }
+      } else {
+        return this.options;
+      }
+    },
+    groupedOptions: function groupedOptions() {
+      var _this2 = this;
+
+      return this.filteredOptions.map(function (v) {
+        return v.group;
+      }).filter(onlyUnique).map(function (v) {
+        return {
+          options: _this2.filteredOptions.filter(function (option) {
+            return option.group === v;
+          }),
+          $group: v
+        };
+      });
+    },
+    flatternGroupedOptions: function flatternGroupedOptions() {
+      if (this.groupedOptions && this.groupedOptions.length) {
+        var result = [];
+        this.groupedOptions.forEach(function (v) {
+          result = result.concat(v.options);
+        });
+        return result;
+      } else {
+        return [];
+      }
+    },
+    selectClasses: function selectClasses() {
+      return defineProperty({}, 'input-' + this.size, this.size);
+    },
+    selectedIconClasses: function selectedIconClasses() {
+      var _ref2;
+
+      return _ref2 = {}, defineProperty(_ref2, this.selectedIcon, true), defineProperty(_ref2, 'pull-right', true), _ref2;
+    },
+    selectTextClasses: function selectTextClasses() {
+      return {
+        'text-muted': this.value.length === 0
+      };
+    },
+    labelValue: function labelValue() {
+      var _this3 = this;
+
+      var optionsByValue = this.options.map(function (v) {
+        return v[_this3.valueKey];
+      });
+      return this.value.map(function (v) {
+        var index = optionsByValue.indexOf(v);
+        return index >= 0 ? _this3.options[index][_this3.labelKey] : v;
+      });
+    },
+    selectedText: function selectedText() {
+      if (this.value.length) {
+        var labelValue = this.labelValue;
+        if (this.collapseSelected) {
+          var str = labelValue[0];
+          str += labelValue.length > 1 ? this.split + '+' + (labelValue.length - 1) : '';
+          return str;
+        } else {
+          return labelValue.join(this.split);
+        }
+      } else {
+        return this.placeholder || this.t('uiv.multiSelect.placeholder');
+      }
+    }
+  },
+  watch: {
+    showDropdown: function showDropdown(v) {
+      var _this4 = this;
+
+      // clear filter input when dropdown toggles
+      this.filterInput = '';
+      this.currentActive = -1;
+      this.$emit('visible-change', v);
+      if (v && this.filterable && this.filterAutoFocus) {
+        this.$nextTick(function () {
+          _this4.$refs.filterInput.focus();
+        });
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.els = [this.$el];
+  },
+
+  methods: {
+    goPrevOption: function goPrevOption() {
+      if (!this.showDropdown) {
+        return;
+      }
+      this.currentActive > 0 ? this.currentActive-- : this.currentActive = this.flatternGroupedOptions.length - 1;
+    },
+    goNextOption: function goNextOption() {
+      if (!this.showDropdown) {
+        return;
+      }
+      this.currentActive < this.flatternGroupedOptions.length - 1 ? this.currentActive++ : this.currentActive = 0;
+    },
+    selectOption: function selectOption() {
+      var index = this.currentActive;
+      var options = this.flatternGroupedOptions;
+      if (!this.showDropdown) {
+        this.showDropdown = true;
+      } else if (index >= 0 && index < options.length) {
+        this.toggle(options[index]);
+      }
+    },
+    itemClasses: function itemClasses(item) {
+      var result = {
+        disabled: item.disabled,
+        active: this.currentActive === this.flatternGroupedOptions.indexOf(item)
+      };
+      if (this.itemSelectedClass) {
+        result[this.itemSelectedClass] = this.isItemSelected(item);
+      }
+      return result;
+    },
+    isItemSelected: function isItemSelected(item) {
+      return this.value.indexOf(item[this.valueKey]) >= 0;
+    },
+    toggle: function toggle(item) {
+      if (item.disabled) {
+        return;
+      }
+      var value = item[this.valueKey];
+      var index = this.value.indexOf(value);
+      if (this.limit === 1) {
+        var newValue = index >= 0 ? [] : [value];
+        this.$emit('input', newValue);
+        this.$emit('change', newValue);
+      } else {
+        if (index >= 0) {
+          var newVal = this.value.slice();
+          newVal.splice(index, 1);
+          this.$emit('input', newVal);
+          this.$emit('change', newVal);
+        } else if (this.limit === 0 || this.value.length < this.limit) {
+          var _newVal = this.value.slice();
+          _newVal.push(value);
+          this.$emit('input', _newVal);
+          this.$emit('change', _newVal);
+        } else {
+          this.$emit('limit-exceed');
+        }
+      }
+    }
+  }
+};
+
+var Navbar = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('nav', { class: _vm.navClasses }, [_c('div', { class: _vm.fluid ? 'container-fluid' : 'container' }, [_c('div', { staticClass: "navbar-header" }, [_vm._t("collapse-btn", [_c('button', { staticClass: "navbar-toggle collapsed", attrs: { "type": "button" }, on: { "click": _vm.toggle } }, [_c('span', { staticClass: "sr-only" }, [_vm._v("Toggle navigation")]), _vm._v(" "), _c('span', { staticClass: "icon-bar" }), _vm._v(" "), _c('span', { staticClass: "icon-bar" }), _vm._v(" "), _c('span', { staticClass: "icon-bar" })])]), _vm._v(" "), _vm._t("brand")], 2), _vm._v(" "), _vm._t("default"), _vm._v(" "), _c('collapse', { staticClass: "navbar-collapse", model: { value: _vm.show, callback: function callback($$v) {
+          _vm.show = $$v;
+        }, expression: "show" } }, [_vm._t("collapse")], 2)], 2)]);
+  }, staticRenderFns: [],
+  components: { Collapse: Collapse },
+  props: {
+    value: Boolean,
+    fluid: {
+      type: Boolean,
+      default: true
+    },
+    fixedTop: Boolean,
+    fixedBottom: Boolean,
+    staticTop: Boolean,
+    inverse: Boolean
+  },
+  data: function data() {
+    return {
+      show: false
+    };
+  },
+
+  computed: {
+    navClasses: function navClasses() {
+      return {
+        navbar: true,
+        'navbar-default': !this.inverse,
+        'navbar-inverse': this.inverse,
+        'navbar-static-top': this.staticTop,
+        'navbar-fixed-bottom': this.fixedBottom,
+        'navbar-fixed-top': this.fixedTop
+      };
+    }
+  },
+  mounted: function mounted() {
+    this.show = !!this.value;
+  },
+
+  watch: {
+    value: function value(v) {
+      this.show = v;
+    }
+  },
+  methods: {
+    toggle: function toggle() {
+      this.show = !this.show;
+      this.$emit('input', this.show);
+    }
+  }
+};
+
+var NavbarNav = {
+  functional: true,
+  render: function render(h, _ref) {
+    var children = _ref.children,
+        data = _ref.data,
+        props = _ref.props;
+
+    return h('ul', mergeData(data, {
+      class: {
+        nav: true,
+        'navbar-nav': true,
+        'navbar-left': props.left,
+        'navbar-right': props.right
+      }
+    }), children);
+  },
+
+  props: {
+    left: Boolean,
+    right: Boolean
+  }
+};
+
+var NavbarForm = {
+  functional: true,
+  render: function render(h, _ref) {
+    var children = _ref.children,
+        data = _ref.data,
+        props = _ref.props;
+
+    return h('form', mergeData(data, {
+      class: {
+        'navbar-form': true,
+        'navbar-left': props.left,
+        'navbar-right': props.right
+      }
+    }), children);
+  },
+
+  props: {
+    left: Boolean,
+    right: Boolean
+  }
+};
+
+var NavbarText = {
+  functional: true,
+  render: function render(h, _ref) {
+    var children = _ref.children,
+        data = _ref.data,
+        props = _ref.props;
+
+    return h('p', mergeData(data, {
+      class: {
+        'navbar-text': true,
+        'navbar-left': props.left,
+        'navbar-right': props.right
+      }
+    }), children);
+  },
+
+  props: {
+    left: Boolean,
+    right: Boolean
+  }
+};
+
+
+
+var components = Object.freeze({
+	Carousel: Carousel,
+	Slide: Slide,
+	Collapse: Collapse,
+	Dropdown: Dropdown,
+	Modal: Modal,
+	Tab: Tab,
+	Tabs: Tabs,
+	DatePicker: DatePicker,
+	Affix: Affix,
+	Alert: Alert,
+	Pagination: Pagination,
+	Tooltip: Tooltip,
+	Popover: Popover,
+	TimePicker: TimePicker,
+	Typeahead: Typeahead,
+	ProgressBar: ProgressBar,
+	ProgressBarStack: ProgressBarStack,
+	Breadcrumbs: Breadcrumbs,
+	BreadcrumbItem: BreadcrumbItem,
+	Btn: Btn,
+	BtnGroup: BtnGroup,
+	BtnToolbar: BtnToolbar,
+	MultiSelect: MultiSelect,
+	Navbar: Navbar,
+	NavbarNav: NavbarNav,
+	NavbarForm: NavbarForm,
+	NavbarText: NavbarText
+});
+
+var INSTANCE = '_uiv_tooltip_instance';
+
+var bind$1 = function bind(el, binding) {
+  // console.log('bind')
+  unbind$1(el);
+  var Constructor = vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend(Tooltip);
+  var vm = new Constructor({
+    propsData: {
+      target: el,
+      appendTo: binding.arg && '#' + binding.arg,
+      text: typeof binding.value === 'string' ? binding.value && binding.value.toString() : binding.value && binding.value.text && binding.value.text.toString(),
+      viewport: binding.value && binding.value.viewport && binding.value.viewport.toString(),
+      customClass: binding.value && binding.value.customClass && binding.value.customClass.toString()
+    }
+  });
+  var options = [];
+  for (var key in binding.modifiers) {
+    if (binding.modifiers.hasOwnProperty(key) && binding.modifiers[key]) {
+      options.push(key);
+    }
+  }
+  options.forEach(function (option) {
+    if (/(top)|(left)|(right)|(bottom)/.test(option)) {
+      vm.placement = option;
+    } else if (/(hover)|(focus)|(click)/.test(option)) {
+      vm.trigger = option;
+    } else if (/unenterable/.test(option)) {
+      vm.enterable = false;
+    }
+  });
+  vm.$mount();
+  el[INSTANCE] = vm;
+};
+
+var unbind$1 = function unbind(el) {
+  // console.log('unbind')
+  var vm = el[INSTANCE];
+  if (vm) {
+    vm.$destroy();
+  }
+  delete el[INSTANCE];
+};
+
+var update$1 = function update(el, binding) {
+  // console.log('update')
+  if (binding.value !== binding.oldValue) {
+    bind$1(el, binding);
+  }
+};
+
+var tooltip = { bind: bind$1, unbind: unbind$1, update: update$1 };
+
+var INSTANCE$1 = '_uiv_popover_instance';
+
+var bind$2 = function bind(el, binding) {
+  // console.log('bind')
+  unbind$2(el);
+  var Constructor = vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend(Popover);
+  var vm = new Constructor({
+    propsData: {
+      target: el,
+      appendTo: binding.arg && '#' + binding.arg,
+      title: binding.value && binding.value.title && binding.value.title.toString(),
+      content: binding.value && binding.value.content && binding.value.content.toString(),
+      viewport: binding.value && binding.value.viewport && binding.value.viewport.toString(),
+      customClass: binding.value && binding.value.customClass && binding.value.customClass.toString()
+    }
+  });
+  var options = [];
+  for (var key in binding.modifiers) {
+    if (binding.modifiers.hasOwnProperty(key) && binding.modifiers[key]) {
+      options.push(key);
+    }
+  }
+  options.forEach(function (option) {
+    if (/(top)|(left)|(right)|(bottom)/.test(option)) {
+      vm.placement = option;
+    } else if (/(hover)|(focus)|(click)/.test(option)) {
+      vm.trigger = option;
+    } else if (/unenterable/.test(option)) {
+      vm.enterable = false;
+    }
+  });
+  vm.$mount();
+  el[INSTANCE$1] = vm;
+};
+
+var unbind$2 = function unbind(el) {
+  // console.log('unbind')
+  var vm = el[INSTANCE$1];
+  if (vm) {
+    vm.$destroy();
+  }
+  delete el[INSTANCE$1];
+};
+
+var update$2 = function update(el, binding) {
+  // console.log('update')
+  if (binding.value !== binding.oldValue) {
+    bind$2(el, binding);
+  }
+};
+
+var popover = { bind: bind$2, unbind: unbind$2, update: update$2 };
+
+function ScrollSpy(element) {
+  var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'body';
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+  this.el = element;
+  this.opts = _extends({}, ScrollSpy.DEFAULTS, options);
+  this.opts.target = target;
+  if (target === 'body') {
+    this.scrollElement = window;
+  } else {
+    this.scrollElement = document.querySelector('[id=' + target + ']');
+  }
+  this.selector = 'li > a';
+  this.offsets = [];
+  this.targets = [];
+  this.activeTarget = null;
+  this.scrollHeight = 0;
+  if (this.scrollElement) {
+    this.refresh();
+    this.process();
+  }
+}
+
+ScrollSpy.DEFAULTS = {
+  offset: 10,
+  callback: function callback(ele) {
+    return 0;
+  }
+};
+
+ScrollSpy.prototype.getScrollHeight = function () {
+  return this.scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+};
+
+ScrollSpy.prototype.refresh = function () {
+  var _this = this;
+
+  this.offsets = [];
+  this.targets = [];
+  this.scrollHeight = this.getScrollHeight();
+  var list = nodeListToArray(this.el.querySelectorAll(this.selector));
+  var isWindow = this.scrollElement === window;
+  list.map(function (ele) {
+    var href = ele.getAttribute('href');
+    if (/^#./.test(href)) {
+      var doc = document.documentElement;
+      var rootEl = isWindow ? document : _this.scrollElement;
+      var hrefEl = rootEl.querySelector('[id=\'' + href.slice(1) + '\']');
+      var windowScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+      var offset = isWindow ? hrefEl.getBoundingClientRect().top + windowScrollTop : hrefEl.offsetTop + _this.scrollElement.scrollTop;
+      return [offset, href];
+    } else {
+      return null;
+    }
+  }).filter(function (item) {
+    return item;
+  }).sort(function (a, b) {
+    return a[0] - b[0];
+  }).forEach(function (item) {
+    _this.offsets.push(item[0]);
+    _this.targets.push(item[1]);
+  });
+  // console.log(this.offsets, this.targets)
+};
+
+ScrollSpy.prototype.process = function () {
+  var isWindow = this.scrollElement === window;
+  var scrollTop = (isWindow ? window.pageYOffset : this.scrollElement.scrollTop) + this.opts.offset;
+  var scrollHeight = this.getScrollHeight();
+  var scrollElementHeight = isWindow ? getViewportSize().height : this.scrollElement.getBoundingClientRect().height;
+  var maxScroll = this.opts.offset + scrollHeight - scrollElementHeight;
+  var offsets = this.offsets;
+  var targets = this.targets;
+  var activeTarget = this.activeTarget;
+  var i = void 0;
+  if (this.scrollHeight !== scrollHeight) {
+    this.refresh();
+  }
+  if (scrollTop >= maxScroll) {
+    return activeTarget !== (i = targets[targets.length - 1]) && this.activate(i);
+  }
+  if (activeTarget && scrollTop < offsets[0]) {
+    this.activeTarget = null;
+    return this.clear();
+  }
+  for (i = offsets.length; i--;) {
+    activeTarget !== targets[i] && scrollTop >= offsets[i] && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1]) && this.activate(targets[i]);
+  }
+};
+
+ScrollSpy.prototype.activate = function (target) {
+  this.activeTarget = target;
+  this.clear();
+  var selector = this.selector + '[data-target="' + target + '"],' + this.selector + '[href="' + target + '"]';
+  var activeCallback = this.opts.callback;
+  var active = nodeListToArray(this.el.querySelectorAll(selector));
+  active.forEach(function (ele) {
+    getParents(ele, 'li').forEach(function (item) {
+      addClass(item, 'active');
+      activeCallback(item);
+    });
+    if (getParents(ele, '.dropdown-menu').length) {
+      addClass(getClosest(ele, 'li.dropdown'), 'active');
+    }
+  });
+};
+
+ScrollSpy.prototype.clear = function () {
+  var _this2 = this;
+
+  var list = nodeListToArray(this.el.querySelectorAll(this.selector));
+  list.forEach(function (ele) {
+    getParents(ele, '.active', _this2.opts.target).forEach(function (item) {
+      removeClass(item, 'active');
+    });
+  });
+};
+
+var INSTANCE$2 = '_uiv_scrollspy_instance';
+var events$1 = [EVENTS.RESIZE, EVENTS.SCROLL];
+
+var bind$3 = function bind(el, binding) {
+  // console.log('bind')
+  unbind$3(el);
+};
+
+var inserted = function inserted(el, binding) {
+  var scrollSpy = new ScrollSpy(el, binding.arg, binding.value);
+  if (scrollSpy.scrollElement) {
+    scrollSpy.handler = function () {
+      scrollSpy.process();
+    };
+    events$1.forEach(function (event) {
+      on(scrollSpy.scrollElement, event, scrollSpy.handler);
+    });
+  }
+  el[INSTANCE$2] = scrollSpy;
+};
+
+var unbind$3 = function unbind(el) {
+  // console.log('unbind')
+  var instance = el[INSTANCE$2];
+  if (instance && instance.scrollElement) {
+    events$1.forEach(function (event) {
+      off(instance.scrollElement, event, instance.handler);
+    });
+    delete el[INSTANCE$2];
+  }
+};
+
+var update$3 = function update(el, binding) {
+  // console.log('update')
+  if (binding.value !== binding.oldValue) {
+    bind$3(el, binding);
+    inserted(el, binding);
+  }
+};
+
+var scrollspy = { bind: bind$3, unbind: unbind$3, update: update$3, inserted: inserted };
+
+
+
+var directives = Object.freeze({
+	tooltip: tooltip,
+	popover: popover,
+	scrollspy: scrollspy
+});
+
+var TYPES = {
+  ALERT: 0,
+  CONFIRM: 1,
+  PROMPT: 2
+};
+
+var MessageBox = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('modal', { ref: "modal", class: _vm.customClass, attrs: { "auto-focus": "", "size": _vm.size, "title": _vm.title, "header": !!_vm.title, "backdrop": _vm.closeOnBackdropClick, "cancel-text": _vm.cancelText, "ok-text": _vm.okText }, on: { "hide": _vm.cb }, model: { value: _vm.show, callback: function callback($$v) {
+          _vm.show = $$v;
+        }, expression: "show" } }, [_vm.html ? _c('div', { domProps: { "innerHTML": _vm._s(_vm.content) } }) : _c('p', [_vm._v(_vm._s(_vm.content))]), _vm._v(" "), _vm.type === _vm.TYPES.PROMPT ? _c('div', [_c('div', { staticClass: "form-group", class: { 'has-error': _vm.inputNotValid } }, [_vm.inputType === 'checkbox' ? _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.input, expression: "input" }], ref: "input", staticClass: "form-control", attrs: { "required": "", "data-action": "auto-focus", "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.input) ? _vm._i(_vm.input, null) > -1 : _vm.input }, on: { "change": [function ($event) {
+          var $$a = _vm.input,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
+            var $$v = null,
+                $$i = _vm._i($$a, $$v);if ($$el.checked) {
+              $$i < 0 && (_vm.input = $$a.concat([$$v]));
+            } else {
+              $$i > -1 && (_vm.input = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.input = $$c;
+          }
+        }, function ($event) {
+          _vm.dirty = true;
+        }], "keyup": function keyup($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+            return null;
+          }return _vm.validate($event);
+        } } }) : _vm.inputType === 'radio' ? _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.input, expression: "input" }], ref: "input", staticClass: "form-control", attrs: { "required": "", "data-action": "auto-focus", "type": "radio" }, domProps: { "checked": _vm._q(_vm.input, null) }, on: { "change": [function ($event) {
+          _vm.input = null;
+        }, function ($event) {
+          _vm.dirty = true;
+        }], "keyup": function keyup($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+            return null;
+          }return _vm.validate($event);
+        } } }) : _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.input, expression: "input" }], ref: "input", staticClass: "form-control", attrs: { "required": "", "data-action": "auto-focus", "type": _vm.inputType }, domProps: { "value": _vm.input }, on: { "change": function change($event) {
+          _vm.dirty = true;
+        }, "keyup": function keyup($event) {
+          if (!$event.type.indexOf('key') && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+            return null;
+          }return _vm.validate($event);
+        }, "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.input = $event.target.value;
+        } } }), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.inputNotValid, expression: "inputNotValid" }], staticClass: "help-block" }, [_vm._v(_vm._s(_vm.inputError))])])]) : _vm._e(), _vm._v(" "), _vm.type === _vm.TYPES.ALERT ? _c('template', { slot: "footer" }, [_c('btn', { attrs: { "type": _vm.okType, "data-action": _vm.autoFocus === 'ok' ? 'auto-focus' : '' }, domProps: { "textContent": _vm._s(_vm.okBtnText) }, on: { "click": function click($event) {
+          return _vm.toggle(false, 'ok');
+        } } })], 1) : _c('template', { slot: "footer" }, [_c('btn', { attrs: { "type": _vm.cancelType, "data-action": _vm.autoFocus === 'cancel' ? 'auto-focus' : '' }, domProps: { "textContent": _vm._s(_vm.cancelBtnText) }, on: { "click": function click($event) {
+          return _vm.toggle(false, 'cancel');
+        } } }), _vm._v(" "), _vm.type === _vm.TYPES.CONFIRM ? _c('btn', { attrs: { "type": _vm.okType, "data-action": _vm.autoFocus === 'ok' ? 'auto-focus' : '' }, domProps: { "textContent": _vm._s(_vm.okBtnText) }, on: { "click": function click($event) {
+          return _vm.toggle(false, 'ok');
+        } } }) : _c('btn', { attrs: { "type": _vm.okType }, domProps: { "textContent": _vm._s(_vm.okBtnText) }, on: { "click": _vm.validate } })], 1)], 2);
+  }, staticRenderFns: [],
+  mixins: [Local],
+  components: { Modal: Modal, Btn: Btn },
+  props: {
+    backdrop: null,
+    title: String,
+    content: String,
+    html: {
+      type: Boolean,
+      default: false
+    },
+    okText: String,
+    okType: {
+      type: String,
+      default: 'primary'
+    },
+    cancelText: String,
+    cancelType: {
+      type: String,
+      default: 'default'
+    },
+    type: {
+      type: Number,
+      default: TYPES.ALERT
+    },
+    size: {
+      type: String,
+      default: 'sm'
+    },
+    cb: {
+      type: Function,
+      required: true
+    },
+    validator: {
+      type: Function,
+      default: function _default() {
+        return null;
+      }
+    },
+    customClass: null,
+    defaultValue: String,
+    inputType: {
+      type: String,
+      default: 'text'
+    },
+    autoFocus: {
+      type: String,
+      default: 'ok'
+    }
+  },
+  data: function data() {
+    return {
+      TYPES: TYPES,
+      show: false,
+      input: '',
+      dirty: false
+    };
+  },
+  mounted: function mounted() {
+    if (this.defaultValue) {
+      this.input = this.defaultValue;
+    }
+  },
+
+  computed: {
+    closeOnBackdropClick: function closeOnBackdropClick() {
+      // use backdrop prop if exist
+      // otherwise, only not available if render as alert
+      return isExist(this.backdrop) ? Boolean(this.backdrop) : this.type !== TYPES.ALERT;
+    },
+    inputError: function inputError() {
+      return this.validator(this.input);
+    },
+    inputNotValid: function inputNotValid() {
+      return this.dirty && this.inputError;
+    },
+    okBtnText: function okBtnText() {
+      return this.okText || this.t('uiv.modal.ok');
+    },
+    cancelBtnText: function cancelBtnText() {
+      return this.cancelText || this.t('uiv.modal.cancel');
+    }
+  },
+  methods: {
+    toggle: function toggle(show, msg) {
+      this.$refs.modal.toggle(show, msg);
+    },
+    validate: function validate() {
+      this.dirty = true;
+      if (!isExist(this.inputError)) {
+        this.toggle(false, { value: this.input });
+      }
+    }
+  }
+};
+
+var queue = [];
+
+var destroy = function destroy(instance) {
+  // console.log('destroyModal')
+  removeFromDom(instance.$el);
+  instance.$destroy();
+  spliceIfExist(queue, instance);
+};
+
+// handel cancel or ok for confirm & prompt
+var shallResolve = function shallResolve(type, msg) {
+  if (type === TYPES.CONFIRM) {
+    // is confirm
+    return msg === 'ok';
+  } else {
+    // is prompt
+    return isExist(msg) && isString(msg.value);
+  }
+};
+
+var init = function init(type, options, _cb) {
+  var resolve = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  var reject = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+
+  var i18n = this.$i18n;
+  var instance = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+    extends: MessageBox,
+    i18n: i18n,
+    propsData: _extends({
+      type: type
+    }, options, {
+      cb: function cb(msg) {
+        destroy(instance);
+        if (isFunction(_cb)) {
+          if (type === TYPES.CONFIRM) {
+            shallResolve(type, msg) ? _cb(null, msg) : _cb(msg);
+          } else if (type === TYPES.PROMPT) {
+            shallResolve(type, msg) ? _cb(null, msg.value) : _cb(msg);
+          } else {
+            _cb(msg);
+          }
+        } else if (resolve && reject) {
+          if (type === TYPES.CONFIRM) {
+            shallResolve(type, msg) ? resolve(msg) : reject(msg);
+          } else if (type === TYPES.PROMPT) {
+            shallResolve(type, msg) ? resolve(msg.value) : reject(msg);
+          } else {
+            resolve(msg);
+          }
+        }
+      }
+    })
+  });
+  instance.$mount();
+  document.body.appendChild(instance.$el);
+  instance.show = true;
+  queue.push(instance);
+};
+
+var initModal = function initModal(type) {
+  var _this = this;
+
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var cb = arguments[2];
+
+  if (isPromiseSupported()) {
+    return new Promise(function (resolve, reject) {
+      init.apply(_this, [type, options, cb, resolve, reject]);
+    });
+  } else {
+    init.apply(this, [type, options, cb]);
+  }
+};
+
+var alert = function alert(options, cb) {
+  return initModal.apply(this, [TYPES.ALERT, options, cb]);
+};
+
+var confirm = function confirm(options, cb) {
+  return initModal.apply(this, [TYPES.CONFIRM, options, cb]);
+};
+
+var prompt = function prompt(options, cb) {
+  return initModal.apply(this, [TYPES.PROMPT, options, cb]);
+};
+
+var messageBox = { alert: alert, confirm: confirm, prompt: prompt };
+
+var TYPES$1 = {
+  SUCCESS: 'success',
+  INFO: 'info',
+  DANGER: 'danger',
+  WARNING: 'warning'
+};
+
+var PLACEMENTS$1 = {
+  TOP_LEFT: 'top-left',
+  TOP_RIGHT: 'top-right',
+  BOTTOM_LEFT: 'bottom-left',
+  BOTTOM_RIGHT: 'bottom-right'
+};
+
+var IN_CLASS$1 = 'in';
+var ICON = 'glyphicon';
+var WIDTH = 300;
+var TRANSITION_DURATION = 300;
+
+var Notification = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('alert', { staticClass: "fade", class: _vm.customClass, style: _vm.styles, attrs: { "type": _vm.type, "duration": _vm.duration, "dismissible": _vm.dismissible }, on: { "dismissed": _vm.onDismissed } }, [_c('div', { staticClass: "media", staticStyle: { "margin": "0" } }, [_vm.icons ? _c('div', { staticClass: "media-left" }, [_c('span', { class: _vm.icons, staticStyle: { "font-size": "1.5em" } })]) : _vm._e(), _vm._v(" "), _c('div', { staticClass: "media-body" }, [_vm.title ? _c('div', { staticClass: "media-heading" }, [_c('b', [_vm._v(_vm._s(_vm.title))])]) : _vm._e(), _vm._v(" "), _vm.html ? _c('div', { domProps: { "innerHTML": _vm._s(_vm.content) } }) : _c('div', [_vm._v(_vm._s(_vm.content))])])])]);
+  }, staticRenderFns: [],
+  components: { Alert: Alert },
+  props: {
+    title: String,
+    content: String,
+    html: {
+      type: Boolean,
+      default: false
+    },
+    duration: {
+      type: Number,
+      default: 5000
+    },
+    dismissible: {
+      type: Boolean,
+      default: true
+    },
+    type: String,
+    placement: String,
+    icon: String,
+    customClass: null,
+    cb: {
+      type: Function,
+      required: true
+    },
+    queue: {
+      type: Array,
+      required: true
+    },
+    offsetY: {
+      type: Number,
+      default: 15
+    },
+    offsetX: {
+      type: Number,
+      default: 15
+    },
+    offset: {
+      type: Number,
+      default: 15
+    }
+  },
+  data: function data() {
+    return {
+      height: 0,
+      top: 0,
+      horizontal: this.placement === PLACEMENTS$1.TOP_LEFT || this.placement === PLACEMENTS$1.BOTTOM_LEFT ? 'left' : 'right',
+      vertical: this.placement === PLACEMENTS$1.TOP_LEFT || this.placement === PLACEMENTS$1.TOP_RIGHT ? 'top' : 'bottom'
+    };
+  },
+  created: function created() {
+    // get prev notifications total height in the queue
+    this.top = this.getTotalHeightOfQueue(this.queue);
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var el = this.$el;
+    el.style[this.vertical] = this.top + 'px';
+    this.$nextTick(function () {
+      el.style[_this.horizontal] = '-' + WIDTH + 'px';
+      _this.height = el.offsetHeight;
+      el.style[_this.horizontal] = _this.offsetX + 'px';
+      addClass(el, IN_CLASS$1);
+    });
+  },
+
+  computed: {
+    styles: function styles() {
+      var _ref;
+
+      var queue = this.queue;
+      var thisIndex = queue.indexOf(this);
+      return _ref = {
+        position: 'fixed'
+      }, defineProperty(_ref, this.vertical, this.getTotalHeightOfQueue(queue, thisIndex) + 'px'), defineProperty(_ref, 'width', WIDTH + 'px'), defineProperty(_ref, 'transition', 'all ' + TRANSITION_DURATION / 1000 + 's ease-in-out'), _ref;
+    },
+    icons: function icons() {
+      if (isString(this.icon)) {
+        return this.icon;
+      }
+      switch (this.type) {
+        case TYPES$1.INFO:
+        case TYPES$1.WARNING:
+          return ICON + ' ' + ICON + '-info-sign';
+        case TYPES$1.SUCCESS:
+          return ICON + ' ' + ICON + '-ok-sign';
+        case TYPES$1.DANGER:
+          return ICON + ' ' + ICON + '-remove-sign';
+        default:
+          return null;
+      }
+    }
+  },
+  methods: {
+    getTotalHeightOfQueue: function getTotalHeightOfQueue(queue) {
+      var lastIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : queue.length;
+
+      var totalHeight = this.offsetY;
+      for (var i = 0; i < lastIndex; i++) {
+        totalHeight += queue[i].height + this.offset;
+      }
+      return totalHeight;
+    },
+    onDismissed: function onDismissed() {
+      removeClass(this.$el, IN_CLASS$1);
+      setTimeout(this.cb, TRANSITION_DURATION);
+    }
+  }
+};
+
+var _queues;
+
+var queues = (_queues = {}, defineProperty(_queues, PLACEMENTS$1.TOP_LEFT, []), defineProperty(_queues, PLACEMENTS$1.TOP_RIGHT, []), defineProperty(_queues, PLACEMENTS$1.BOTTOM_LEFT, []), defineProperty(_queues, PLACEMENTS$1.BOTTOM_RIGHT, []), _queues);
+
+var destroy$1 = function destroy(queue, instance) {
+  // console.log('destroyNotification')
+  removeFromDom(instance.$el);
+  instance.$destroy();
+  spliceIfExist(queue, instance);
+};
+
+var init$1 = function init(options, _cb) {
+  var resolve = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var reject = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  var placement = options.placement;
+  var queue = queues[placement];
+  // check if placement is valid
+  if (!isExist(queue)) {
+    return;
+  }
+  /* istanbul ignore else */
+  // `error` alias of `danger`
+  if (options.type === 'error') {
+    options.type = 'danger';
+  }
+  var instance = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+    extends: Notification,
+    propsData: _extends({
+      queue: queue,
+      placement: placement
+    }, options, {
+      cb: function cb(msg) {
+        destroy$1(queue, instance);
+        if (isFunction(_cb)) {
+          _cb(msg);
+        } else if (resolve && reject) {
+          resolve(msg);
+        }
+      }
+    })
+  });
+  instance.$mount();
+  document.body.appendChild(instance.$el);
+  queue.push(instance);
+};
+
+var _notify = function _notify() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var cb = arguments[1];
+
+  // simplify usage: pass string as option.content
+  if (isString(options)) {
+    options = {
+      content: options
+    };
+  }
+  // set default placement as top-right
+  if (!isExist(options.placement)) {
+    options.placement = PLACEMENTS$1.TOP_RIGHT;
+  }
+  if (isPromiseSupported()) {
+    return new Promise(function (resolve, reject) {
+      init$1(options, cb, resolve, reject);
+    });
+  } else {
+    init$1(options, cb);
+  }
+};
+
+function _notify2(type, args) {
+  if (isString(args)) {
+    _notify({
+      content: args,
+      type: type
+    });
+  } else {
+    _notify(_extends({}, args, {
+      type: type
+    }));
+  }
+}
+
+var notify = Object.defineProperties(_notify, {
+  success: {
+    configurable: false,
+    writable: false,
+    value: function value(args) {
+      _notify2('success', args);
+    }
+  },
+  info: {
+    configurable: false,
+    writable: false,
+    value: function value(args) {
+      _notify2('info', args);
+    }
+  },
+  warning: {
+    configurable: false,
+    writable: false,
+    value: function value(args) {
+      _notify2('warning', args);
+    }
+  },
+  danger: {
+    configurable: false,
+    writable: false,
+    value: function value(args) {
+      _notify2('danger', args);
+    }
+  },
+  error: {
+    configurable: false,
+    writable: false,
+    value: function value(args) {
+      _notify2('danger', args);
+    }
+  },
+  dismissAll: {
+    configurable: false,
+    writable: false,
+    value: function value() {
+      for (var key in queues) {
+        /* istanbul ignore else */
+        if (queues.hasOwnProperty(key)) {
+          queues[key].forEach(function (instance) {
+            instance.onDismissed();
+          });
+        }
+      }
+    }
+  }
+});
+
+var notification = { notify: notify };
+
+
+
+var services = Object.freeze({
+	MessageBox: messageBox,
+	Notification: notification
+});
+
+var install = function install(Vue$$1) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  // Setup language, en-US for default
+  locale.use(options.locale);
+  locale.i18n(options.i18n);
+  // Register components
+  Object.keys(components).forEach(function (key) {
+    var _key = options.prefix ? options.prefix + key : key;
+    Vue$$1.component(_key, components[key]);
+  });
+  // Register directives
+  Object.keys(directives).forEach(function (key) {
+    var _key = options.prefix ? options.prefix + '-' + key : key;
+    Vue$$1.directive(_key, directives[key]);
+  });
+  // Register services
+  Object.keys(services).forEach(function (key) {
+    var service = services[key];
+    Object.keys(service).forEach(function (serviceKey) {
+      var _key = options.prefix ? options.prefix + '_' + serviceKey : serviceKey;
+      Vue$$1.prototype['$' + _key] = service[serviceKey];
+    });
+  });
+};
+
+
+//# sourceMappingURL=uiv.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-i18n/dist/vue-i18n.esm.js":
+/*!****************************************************!*\
+  !*** ./node_modules/vue-i18n/dist/vue-i18n.esm.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+ * vue-i18n v8.15.0 
+ * (c) 2019 kazuya kawaguchi
+ * Released under the MIT License.
+ */
+/*  */
+
+/**
+ * constants
+ */
+
+var numberFormatKeys = [
+  'style',
+  'currency',
+  'currencyDisplay',
+  'useGrouping',
+  'minimumIntegerDigits',
+  'minimumFractionDigits',
+  'maximumFractionDigits',
+  'minimumSignificantDigits',
+  'maximumSignificantDigits',
+  'localeMatcher',
+  'formatMatcher'
+];
+
+/**
+ * utilities
+ */
+
+function warn (msg, err) {
+  if (typeof console !== 'undefined') {
+    console.warn('[vue-i18n] ' + msg);
+    /* istanbul ignore if */
+    if (err) {
+      console.warn(err.stack);
+    }
+  }
+}
+
+function error (msg, err) {
+  if (typeof console !== 'undefined') {
+    console.error('[vue-i18n] ' + msg);
+    /* istanbul ignore if */
+    if (err) {
+      console.error(err.stack);
+    }
+  }
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+var toString = Object.prototype.toString;
+var OBJECT_STRING = '[object Object]';
+function isPlainObject (obj) {
+  return toString.call(obj) === OBJECT_STRING
+}
+
+function isNull (val) {
+  return val === null || val === undefined
+}
+
+function parseArgs () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var locale = null;
+  var params = null;
+  if (args.length === 1) {
+    if (isObject(args[0]) || Array.isArray(args[0])) {
+      params = args[0];
+    } else if (typeof args[0] === 'string') {
+      locale = args[0];
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      locale = args[0];
+    }
+    /* istanbul ignore if */
+    if (isObject(args[1]) || Array.isArray(args[1])) {
+      params = args[1];
+    }
+  }
+
+  return { locale: locale, params: params }
+}
+
+function looseClone (obj) {
+  return JSON.parse(JSON.stringify(obj))
+}
+
+function remove (arr, item) {
+  if (arr.length) {
+    var index = arr.indexOf(item);
+    if (index > -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn (obj, key) {
+  return hasOwnProperty.call(obj, key)
+}
+
+function merge (target) {
+  var arguments$1 = arguments;
+
+  var output = Object(target);
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments$1[i];
+    if (source !== undefined && source !== null) {
+      var key = (void 0);
+      for (key in source) {
+        if (hasOwn(source, key)) {
+          if (isObject(source[key])) {
+            output[key] = merge(output[key], source[key]);
+          } else {
+            output[key] = source[key];
+          }
+        }
+      }
+    }
+  }
+  return output
+}
+
+function looseEqual (a, b) {
+  if (a === b) { return true }
+  var isObjectA = isObject(a);
+  var isObjectB = isObject(b);
+  if (isObjectA && isObjectB) {
+    try {
+      var isArrayA = Array.isArray(a);
+      var isArrayB = Array.isArray(b);
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every(function (e, i) {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = Object.keys(a);
+        var keysB = Object.keys(b);
+        return keysA.length === keysB.length && keysA.every(function (key) {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
+        /* istanbul ignore next */
+        return false
+      }
+    } catch (e) {
+      /* istanbul ignore next */
+      return false
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+/*  */
+
+function extend (Vue) {
+  if (!Vue.prototype.hasOwnProperty('$i18n')) {
+    // $FlowFixMe
+    Object.defineProperty(Vue.prototype, '$i18n', {
+      get: function get () { return this._i18n }
+    });
+  }
+
+  Vue.prototype.$t = function (key) {
+    var values = [], len = arguments.length - 1;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
+
+    var i18n = this.$i18n;
+    return i18n._t.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this ].concat( values ))
+  };
+
+  Vue.prototype.$tc = function (key, choice) {
+    var values = [], len = arguments.length - 2;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
+
+    var i18n = this.$i18n;
+    return i18n._tc.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this, choice ].concat( values ))
+  };
+
+  Vue.prototype.$te = function (key, locale) {
+    var i18n = this.$i18n;
+    return i18n._te(key, i18n.locale, i18n._getMessages(), locale)
+  };
+
+  Vue.prototype.$d = function (value) {
+    var ref;
+
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+    return (ref = this.$i18n).d.apply(ref, [ value ].concat( args ))
+  };
+
+  Vue.prototype.$n = function (value) {
+    var ref;
+
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+    return (ref = this.$i18n).n.apply(ref, [ value ].concat( args ))
+  };
+}
+
+/*  */
+
+var mixin = {
+  beforeCreate: function beforeCreate () {
+    var options = this.$options;
+    options.i18n = options.i18n || (options.__i18n ? {} : null);
+
+    if (options.i18n) {
+      if (options.i18n instanceof VueI18n) {
+        // init locale messages via custom blocks
+        if (options.__i18n) {
+          try {
+            var localeMessages = {};
+            options.__i18n.forEach(function (resource) {
+              localeMessages = merge(localeMessages, JSON.parse(resource));
+            });
+            Object.keys(localeMessages).forEach(function (locale) {
+              options.i18n.mergeLocaleMessage(locale, localeMessages[locale]);
+            });
+          } catch (e) {
+            if (true) {
+              warn("Cannot parse locale messages via custom blocks.", e);
+            }
+          }
+        }
+        this._i18n = options.i18n;
+        this._i18nWatcher = this._i18n.watchI18nData();
+      } else if (isPlainObject(options.i18n)) {
+        // component local i18n
+        if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+          options.i18n.root = this.$root;
+          options.i18n.formatter = this.$root.$i18n.formatter;
+          options.i18n.fallbackLocale = this.$root.$i18n.fallbackLocale;
+          options.i18n.formatFallbackMessages = this.$root.$i18n.formatFallbackMessages;
+          options.i18n.silentTranslationWarn = this.$root.$i18n.silentTranslationWarn;
+          options.i18n.silentFallbackWarn = this.$root.$i18n.silentFallbackWarn;
+          options.i18n.pluralizationRules = this.$root.$i18n.pluralizationRules;
+          options.i18n.preserveDirectiveContent = this.$root.$i18n.preserveDirectiveContent;
+        }
+
+        // init locale messages via custom blocks
+        if (options.__i18n) {
+          try {
+            var localeMessages$1 = {};
+            options.__i18n.forEach(function (resource) {
+              localeMessages$1 = merge(localeMessages$1, JSON.parse(resource));
+            });
+            options.i18n.messages = localeMessages$1;
+          } catch (e) {
+            if (true) {
+              warn("Cannot parse locale messages via custom blocks.", e);
+            }
+          }
+        }
+
+        var ref = options.i18n;
+        var sharedMessages = ref.sharedMessages;
+        if (sharedMessages && isPlainObject(sharedMessages)) {
+          options.i18n.messages = merge(options.i18n.messages, sharedMessages);
+        }
+
+        this._i18n = new VueI18n(options.i18n);
+        this._i18nWatcher = this._i18n.watchI18nData();
+
+        if (options.i18n.sync === undefined || !!options.i18n.sync) {
+          this._localeWatcher = this.$i18n.watchLocale();
+        }
+      } else {
+        if (true) {
+          warn("Cannot be interpreted 'i18n' option.");
+        }
+      }
+    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+      // root i18n
+      this._i18n = this.$root.$i18n;
+    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
+      // parent i18n
+      this._i18n = options.parent.$i18n;
+    }
+  },
+
+  beforeMount: function beforeMount () {
+    var options = this.$options;
+    options.i18n = options.i18n || (options.__i18n ? {} : null);
+
+    if (options.i18n) {
+      if (options.i18n instanceof VueI18n) {
+        // init locale messages via custom blocks
+        this._i18n.subscribeDataChanging(this);
+        this._subscribing = true;
+      } else if (isPlainObject(options.i18n)) {
+        this._i18n.subscribeDataChanging(this);
+        this._subscribing = true;
+      } else {
+        if (true) {
+          warn("Cannot be interpreted 'i18n' option.");
+        }
+      }
+    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+      this._i18n.subscribeDataChanging(this);
+      this._subscribing = true;
+    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
+      this._i18n.subscribeDataChanging(this);
+      this._subscribing = true;
+    }
+  },
+
+  beforeDestroy: function beforeDestroy () {
+    if (!this._i18n) { return }
+
+    var self = this;
+    this.$nextTick(function () {
+      if (self._subscribing) {
+        self._i18n.unsubscribeDataChanging(self);
+        delete self._subscribing;
+      }
+
+      if (self._i18nWatcher) {
+        self._i18nWatcher();
+        self._i18n.destroyVM();
+        delete self._i18nWatcher;
+      }
+
+      if (self._localeWatcher) {
+        self._localeWatcher();
+        delete self._localeWatcher;
+      }
+
+      self._i18n = null;
+    });
+  }
+};
+
+/*  */
+
+var interpolationComponent = {
+  name: 'i18n',
+  functional: true,
+  props: {
+    tag: {
+      type: String
+    },
+    path: {
+      type: String,
+      required: true
+    },
+    locale: {
+      type: String
+    },
+    places: {
+      type: [Array, Object]
+    }
+  },
+  render: function render (h, ref) {
+    var data = ref.data;
+    var parent = ref.parent;
+    var props = ref.props;
+    var slots = ref.slots;
+
+    var $i18n = parent.$i18n;
+    if (!$i18n) {
+      if (true) {
+        warn('Cannot find VueI18n instance!');
+      }
+      return
+    }
+
+    var path = props.path;
+    var locale = props.locale;
+    var places = props.places;
+    var params = slots();
+    var children = $i18n.i(
+      path,
+      locale,
+      onlyHasDefaultPlace(params) || places
+        ? useLegacyPlaces(params.default, places)
+        : params
+    );
+
+    var tag = props.tag || 'span';
+    return tag ? h(tag, data, children) : children
+  }
+};
+
+function onlyHasDefaultPlace (params) {
+  var prop;
+  for (prop in params) {
+    if (prop !== 'default') { return false }
+  }
+  return Boolean(prop)
+}
+
+function useLegacyPlaces (children, places) {
+  var params = places ? createParamsFromPlaces(places) : {};
+
+  if (!children) { return params }
+
+  // Filter empty text nodes
+  children = children.filter(function (child) {
+    return child.tag || child.text.trim() !== ''
+  });
+
+  var everyPlace = children.every(vnodeHasPlaceAttribute);
+  if ( true && everyPlace) {
+    warn('`place` attribute is deprecated in next major version. Please switch to Vue slots.');
+  }
+
+  return children.reduce(
+    everyPlace ? assignChildPlace : assignChildIndex,
+    params
+  )
+}
+
+function createParamsFromPlaces (places) {
+  if (true) {
+    warn('`places` prop is deprecated in next major version. Please switch to Vue slots.');
+  }
+
+  return Array.isArray(places)
+    ? places.reduce(assignChildIndex, {})
+    : Object.assign({}, places)
+}
+
+function assignChildPlace (params, child) {
+  if (child.data && child.data.attrs && child.data.attrs.place) {
+    params[child.data.attrs.place] = child;
+  }
+  return params
+}
+
+function assignChildIndex (params, child, index) {
+  params[index] = child;
+  return params
+}
+
+function vnodeHasPlaceAttribute (vnode) {
+  return Boolean(vnode.data && vnode.data.attrs && vnode.data.attrs.place)
+}
+
+/*  */
+
+var numberComponent = {
+  name: 'i18n-n',
+  functional: true,
+  props: {
+    tag: {
+      type: String,
+      default: 'span'
+    },
+    value: {
+      type: Number,
+      required: true
+    },
+    format: {
+      type: [String, Object]
+    },
+    locale: {
+      type: String
+    }
+  },
+  render: function render (h, ref) {
+    var props = ref.props;
+    var parent = ref.parent;
+    var data = ref.data;
+
+    var i18n = parent.$i18n;
+
+    if (!i18n) {
+      if (true) {
+        warn('Cannot find VueI18n instance!');
+      }
+      return null
+    }
+
+    var key = null;
+    var options = null;
+
+    if (typeof props.format === 'string') {
+      key = props.format;
+    } else if (isObject(props.format)) {
+      if (props.format.key) {
+        key = props.format.key;
+      }
+
+      // Filter out number format options only
+      options = Object.keys(props.format).reduce(function (acc, prop) {
+        var obj;
+
+        if (numberFormatKeys.includes(prop)) {
+          return Object.assign({}, acc, ( obj = {}, obj[prop] = props.format[prop], obj ))
+        }
+        return acc
+      }, null);
+    }
+
+    var locale = props.locale || i18n.locale;
+    var parts = i18n._ntp(props.value, locale, key, options);
+
+    var values = parts.map(function (part, index) {
+      var obj;
+
+      var slot = data.scopedSlots && data.scopedSlots[part.type];
+      return slot ? slot(( obj = {}, obj[part.type] = part.value, obj.index = index, obj.parts = parts, obj )) : part.value
+    });
+
+    return h(props.tag, {
+      attrs: data.attrs,
+      'class': data['class'],
+      staticClass: data.staticClass
+    }, values)
+  }
+};
+
+/*  */
+
+function bind (el, binding, vnode) {
+  if (!assert(el, vnode)) { return }
+
+  t(el, binding, vnode);
+}
+
+function update (el, binding, vnode, oldVNode) {
+  if (!assert(el, vnode)) { return }
+
+  var i18n = vnode.context.$i18n;
+  if (localeEqual(el, vnode) &&
+    (looseEqual(binding.value, binding.oldValue) &&
+     looseEqual(el._localeMessage, i18n.getLocaleMessage(i18n.locale)))) { return }
+
+  t(el, binding, vnode);
+}
+
+function unbind (el, binding, vnode, oldVNode) {
+  var vm = vnode.context;
+  if (!vm) {
+    warn('Vue instance does not exists in VNode context');
+    return
+  }
+
+  var i18n = vnode.context.$i18n || {};
+  if (!binding.modifiers.preserve && !i18n.preserveDirectiveContent) {
+    el.textContent = '';
+  }
+  el._vt = undefined;
+  delete el['_vt'];
+  el._locale = undefined;
+  delete el['_locale'];
+  el._localeMessage = undefined;
+  delete el['_localeMessage'];
+}
+
+function assert (el, vnode) {
+  var vm = vnode.context;
+  if (!vm) {
+    warn('Vue instance does not exists in VNode context');
+    return false
+  }
+
+  if (!vm.$i18n) {
+    warn('VueI18n instance does not exists in Vue instance');
+    return false
+  }
+
+  return true
+}
+
+function localeEqual (el, vnode) {
+  var vm = vnode.context;
+  return el._locale === vm.$i18n.locale
+}
+
+function t (el, binding, vnode) {
+  var ref$1, ref$2;
+
+  var value = binding.value;
+
+  var ref = parseValue(value);
+  var path = ref.path;
+  var locale = ref.locale;
+  var args = ref.args;
+  var choice = ref.choice;
+  if (!path && !locale && !args) {
+    warn('value type not supported');
+    return
+  }
+
+  if (!path) {
+    warn('`path` is required in v-t directive');
+    return
+  }
+
+  var vm = vnode.context;
+  if (choice) {
+    el._vt = el.textContent = (ref$1 = vm.$i18n).tc.apply(ref$1, [ path, choice ].concat( makeParams(locale, args) ));
+  } else {
+    el._vt = el.textContent = (ref$2 = vm.$i18n).t.apply(ref$2, [ path ].concat( makeParams(locale, args) ));
+  }
+  el._locale = vm.$i18n.locale;
+  el._localeMessage = vm.$i18n.getLocaleMessage(vm.$i18n.locale);
+}
+
+function parseValue (value) {
+  var path;
+  var locale;
+  var args;
+  var choice;
+
+  if (typeof value === 'string') {
+    path = value;
+  } else if (isPlainObject(value)) {
+    path = value.path;
+    locale = value.locale;
+    args = value.args;
+    choice = value.choice;
+  }
+
+  return { path: path, locale: locale, args: args, choice: choice }
+}
+
+function makeParams (locale, args) {
+  var params = [];
+
+  locale && params.push(locale);
+  if (args && (Array.isArray(args) || isPlainObject(args))) {
+    params.push(args);
+  }
+
+  return params
+}
+
+var Vue;
+
+function install (_Vue) {
+  /* istanbul ignore if */
+  if ( true && install.installed && _Vue === Vue) {
+    warn('already installed.');
+    return
+  }
+  install.installed = true;
+
+  Vue = _Vue;
+
+  var version = (Vue.version && Number(Vue.version.split('.')[0])) || -1;
+  /* istanbul ignore if */
+  if ( true && version < 2) {
+    warn(("vue-i18n (" + (install.version) + ") need to use Vue 2.0 or later (Vue: " + (Vue.version) + ")."));
+    return
+  }
+
+  extend(Vue);
+  Vue.mixin(mixin);
+  Vue.directive('t', { bind: bind, update: update, unbind: unbind });
+  Vue.component(interpolationComponent.name, interpolationComponent);
+  Vue.component(numberComponent.name, numberComponent);
+
+  // use simple mergeStrategies to prevent i18n instance lose '__proto__'
+  var strats = Vue.config.optionMergeStrategies;
+  strats.i18n = function (parentVal, childVal) {
+    return childVal === undefined
+      ? parentVal
+      : childVal
+  };
+}
+
+/*  */
+
+var BaseFormatter = function BaseFormatter () {
+  this._caches = Object.create(null);
+};
+
+BaseFormatter.prototype.interpolate = function interpolate (message, values) {
+  if (!values) {
+    return [message]
+  }
+  var tokens = this._caches[message];
+  if (!tokens) {
+    tokens = parse(message);
+    this._caches[message] = tokens;
+  }
+  return compile(tokens, values)
+};
+
+
+
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+
+function parse (format) {
+  var tokens = [];
+  var position = 0;
+
+  var text = '';
+  while (position < format.length) {
+    var char = format[position++];
+    if (char === '{') {
+      if (text) {
+        tokens.push({ type: 'text', value: text });
+      }
+
+      text = '';
+      var sub = '';
+      char = format[position++];
+      while (char !== undefined && char !== '}') {
+        sub += char;
+        char = format[position++];
+      }
+      var isClosed = char === '}';
+
+      var type = RE_TOKEN_LIST_VALUE.test(sub)
+        ? 'list'
+        : isClosed && RE_TOKEN_NAMED_VALUE.test(sub)
+          ? 'named'
+          : 'unknown';
+      tokens.push({ value: sub, type: type });
+    } else if (char === '%') {
+      // when found rails i18n syntax, skip text capture
+      if (format[(position)] !== '{') {
+        text += char;
+      }
+    } else {
+      text += char;
+    }
+  }
+
+  text && tokens.push({ type: 'text', value: text });
+
+  return tokens
+}
+
+function compile (tokens, values) {
+  var compiled = [];
+  var index = 0;
+
+  var mode = Array.isArray(values)
+    ? 'list'
+    : isObject(values)
+      ? 'named'
+      : 'unknown';
+  if (mode === 'unknown') { return compiled }
+
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break
+      case 'named':
+        if (mode === 'named') {
+          compiled.push((values)[token.value]);
+        } else {
+          if (true) {
+            warn(("Type of token '" + (token.type) + "' and format of value '" + mode + "' don't match!"));
+          }
+        }
+        break
+      case 'unknown':
+        if (true) {
+          warn("Detect 'unknown' type of token!");
+        }
+        break
+    }
+    index++;
+  }
+
+  return compiled
+}
+
+/*  */
+
+/**
+ *  Path parser
+ *  - Inspired:
+ *    Vue.js Path parser
+ */
+
+// actions
+var APPEND = 0;
+var PUSH = 1;
+var INC_SUB_PATH_DEPTH = 2;
+var PUSH_SUB_PATH = 3;
+
+// states
+var BEFORE_PATH = 0;
+var IN_PATH = 1;
+var BEFORE_IDENT = 2;
+var IN_IDENT = 3;
+var IN_SUB_PATH = 4;
+var IN_SINGLE_QUOTE = 5;
+var IN_DOUBLE_QUOTE = 6;
+var AFTER_PATH = 7;
+var ERROR = 8;
+
+var pathStateMachine = [];
+
+pathStateMachine[BEFORE_PATH] = {
+  'ws': [BEFORE_PATH],
+  'ident': [IN_IDENT, APPEND],
+  '[': [IN_SUB_PATH],
+  'eof': [AFTER_PATH]
+};
+
+pathStateMachine[IN_PATH] = {
+  'ws': [IN_PATH],
+  '.': [BEFORE_IDENT],
+  '[': [IN_SUB_PATH],
+  'eof': [AFTER_PATH]
+};
+
+pathStateMachine[BEFORE_IDENT] = {
+  'ws': [BEFORE_IDENT],
+  'ident': [IN_IDENT, APPEND],
+  '0': [IN_IDENT, APPEND],
+  'number': [IN_IDENT, APPEND]
+};
+
+pathStateMachine[IN_IDENT] = {
+  'ident': [IN_IDENT, APPEND],
+  '0': [IN_IDENT, APPEND],
+  'number': [IN_IDENT, APPEND],
+  'ws': [IN_PATH, PUSH],
+  '.': [BEFORE_IDENT, PUSH],
+  '[': [IN_SUB_PATH, PUSH],
+  'eof': [AFTER_PATH, PUSH]
+};
+
+pathStateMachine[IN_SUB_PATH] = {
+  "'": [IN_SINGLE_QUOTE, APPEND],
+  '"': [IN_DOUBLE_QUOTE, APPEND],
+  '[': [IN_SUB_PATH, INC_SUB_PATH_DEPTH],
+  ']': [IN_PATH, PUSH_SUB_PATH],
+  'eof': ERROR,
+  'else': [IN_SUB_PATH, APPEND]
+};
+
+pathStateMachine[IN_SINGLE_QUOTE] = {
+  "'": [IN_SUB_PATH, APPEND],
+  'eof': ERROR,
+  'else': [IN_SINGLE_QUOTE, APPEND]
+};
+
+pathStateMachine[IN_DOUBLE_QUOTE] = {
+  '"': [IN_SUB_PATH, APPEND],
+  'eof': ERROR,
+  'else': [IN_DOUBLE_QUOTE, APPEND]
+};
+
+/**
+ * Check if an expression is a literal value.
+ */
+
+var literalValueRE = /^\s?(?:true|false|-?[\d.]+|'[^']*'|"[^"]*")\s?$/;
+function isLiteral (exp) {
+  return literalValueRE.test(exp)
+}
+
+/**
+ * Strip quotes from a string
+ */
+
+function stripQuotes (str) {
+  var a = str.charCodeAt(0);
+  var b = str.charCodeAt(str.length - 1);
+  return a === b && (a === 0x22 || a === 0x27)
+    ? str.slice(1, -1)
+    : str
+}
+
+/**
+ * Determine the type of a character in a keypath.
+ */
+
+function getPathCharType (ch) {
+  if (ch === undefined || ch === null) { return 'eof' }
+
+  var code = ch.charCodeAt(0);
+
+  switch (code) {
+    case 0x5B: // [
+    case 0x5D: // ]
+    case 0x2E: // .
+    case 0x22: // "
+    case 0x27: // '
+      return ch
+
+    case 0x5F: // _
+    case 0x24: // $
+    case 0x2D: // -
+      return 'ident'
+
+    case 0x09: // Tab
+    case 0x0A: // Newline
+    case 0x0D: // Return
+    case 0xA0:  // No-break space
+    case 0xFEFF:  // Byte Order Mark
+    case 0x2028:  // Line Separator
+    case 0x2029:  // Paragraph Separator
+      return 'ws'
+  }
+
+  return 'ident'
+}
+
+/**
+ * Format a subPath, return its plain form if it is
+ * a literal string or number. Otherwise prepend the
+ * dynamic indicator (*).
+ */
+
+function formatSubPath (path) {
+  var trimmed = path.trim();
+  // invalid leading 0
+  if (path.charAt(0) === '0' && isNaN(path)) { return false }
+
+  return isLiteral(trimmed) ? stripQuotes(trimmed) : '*' + trimmed
+}
+
+/**
+ * Parse a string path into an array of segments
+ */
+
+function parse$1 (path) {
+  var keys = [];
+  var index = -1;
+  var mode = BEFORE_PATH;
+  var subPathDepth = 0;
+  var c;
+  var key;
+  var newChar;
+  var type;
+  var transition;
+  var action;
+  var typeMap;
+  var actions = [];
+
+  actions[PUSH] = function () {
+    if (key !== undefined) {
+      keys.push(key);
+      key = undefined;
+    }
+  };
+
+  actions[APPEND] = function () {
+    if (key === undefined) {
+      key = newChar;
+    } else {
+      key += newChar;
+    }
+  };
+
+  actions[INC_SUB_PATH_DEPTH] = function () {
+    actions[APPEND]();
+    subPathDepth++;
+  };
+
+  actions[PUSH_SUB_PATH] = function () {
+    if (subPathDepth > 0) {
+      subPathDepth--;
+      mode = IN_SUB_PATH;
+      actions[APPEND]();
+    } else {
+      subPathDepth = 0;
+      if (key === undefined) { return false }
+      key = formatSubPath(key);
+      if (key === false) {
+        return false
+      } else {
+        actions[PUSH]();
+      }
+    }
+  };
+
+  function maybeUnescapeQuote () {
+    var nextChar = path[index + 1];
+    if ((mode === IN_SINGLE_QUOTE && nextChar === "'") ||
+      (mode === IN_DOUBLE_QUOTE && nextChar === '"')) {
+      index++;
+      newChar = '\\' + nextChar;
+      actions[APPEND]();
+      return true
+    }
+  }
+
+  while (mode !== null) {
+    index++;
+    c = path[index];
+
+    if (c === '\\' && maybeUnescapeQuote()) {
+      continue
+    }
+
+    type = getPathCharType(c);
+    typeMap = pathStateMachine[mode];
+    transition = typeMap[type] || typeMap['else'] || ERROR;
+
+    if (transition === ERROR) {
+      return // parse error
+    }
+
+    mode = transition[0];
+    action = actions[transition[1]];
+    if (action) {
+      newChar = transition[2];
+      newChar = newChar === undefined
+        ? c
+        : newChar;
+      if (action() === false) {
+        return
+      }
+    }
+
+    if (mode === AFTER_PATH) {
+      return keys
+    }
+  }
+}
+
+
+
+
+
+var I18nPath = function I18nPath () {
+  this._cache = Object.create(null);
+};
+
+/**
+ * External parse that check for a cache hit first
+ */
+I18nPath.prototype.parsePath = function parsePath (path) {
+  var hit = this._cache[path];
+  if (!hit) {
+    hit = parse$1(path);
+    if (hit) {
+      this._cache[path] = hit;
+    }
+  }
+  return hit || []
+};
+
+/**
+ * Get path value from path string
+ */
+I18nPath.prototype.getPathValue = function getPathValue (obj, path) {
+  if (!isObject(obj)) { return null }
+
+  var paths = this.parsePath(path);
+  if (paths.length === 0) {
+    return null
+  } else {
+    var length = paths.length;
+    var last = obj;
+    var i = 0;
+    while (i < length) {
+      var value = last[paths[i]];
+      if (value === undefined) {
+        return null
+      }
+      last = value;
+      i++;
+    }
+
+    return last
+  }
+};
+
+/*  */
+
+
+
+var htmlTagMatcher = /<\/?[\w\s="/.':;#-\/]+>/;
+var linkKeyMatcher = /(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))/g;
+var linkKeyPrefixMatcher = /^@(?:\.([a-z]+))?:/;
+var bracketsMatcher = /[()]/g;
+var defaultModifiers = {
+  'upper': function (str) { return str.toLocaleUpperCase(); },
+  'lower': function (str) { return str.toLocaleLowerCase(); }
+};
+
+var defaultFormatter = new BaseFormatter();
+
+var VueI18n = function VueI18n (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #290
+  /* istanbul ignore if */
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  var locale = options.locale || 'en-US';
+  var fallbackLocale = options.fallbackLocale || 'en-US';
+  var messages = options.messages || {};
+  var dateTimeFormats = options.dateTimeFormats || {};
+  var numberFormats = options.numberFormats || {};
+
+  this._vm = null;
+  this._formatter = options.formatter || defaultFormatter;
+  this._modifiers = options.modifiers || {};
+  this._missing = options.missing || null;
+  this._root = options.root || null;
+  this._sync = options.sync === undefined ? true : !!options.sync;
+  this._fallbackRoot = options.fallbackRoot === undefined
+    ? true
+    : !!options.fallbackRoot;
+  this._formatFallbackMessages = options.formatFallbackMessages === undefined
+    ? false
+    : !!options.formatFallbackMessages;
+  this._silentTranslationWarn = options.silentTranslationWarn === undefined
+    ? false
+    : options.silentTranslationWarn;
+  this._silentFallbackWarn = options.silentFallbackWarn === undefined
+    ? false
+    : !!options.silentFallbackWarn;
+  this._dateTimeFormatters = {};
+  this._numberFormatters = {};
+  this._path = new I18nPath();
+  this._dataListeners = [];
+  this._preserveDirectiveContent = options.preserveDirectiveContent === undefined
+    ? false
+    : !!options.preserveDirectiveContent;
+  this.pluralizationRules = options.pluralizationRules || {};
+  this._warnHtmlInMessage = options.warnHtmlInMessage || 'off';
+
+  this._exist = function (message, key) {
+    if (!message || !key) { return false }
+    if (!isNull(this$1._path.getPathValue(message, key))) { return true }
+    // fallback for flat key
+    if (message[key]) { return true }
+    return false
+  };
+
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    Object.keys(messages).forEach(function (locale) {
+      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
+    });
+  }
+
+  this._initVM({
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    messages: messages,
+    dateTimeFormats: dateTimeFormats,
+    numberFormats: numberFormats
+  });
+};
+
+var prototypeAccessors = { vm: { configurable: true },messages: { configurable: true },dateTimeFormats: { configurable: true },numberFormats: { configurable: true },availableLocales: { configurable: true },locale: { configurable: true },fallbackLocale: { configurable: true },formatFallbackMessages: { configurable: true },missing: { configurable: true },formatter: { configurable: true },silentTranslationWarn: { configurable: true },silentFallbackWarn: { configurable: true },preserveDirectiveContent: { configurable: true },warnHtmlInMessage: { configurable: true } };
+
+VueI18n.prototype._checkLocaleMessage = function _checkLocaleMessage (locale, level, message) {
+  var paths = [];
+
+  var fn = function (level, locale, message, paths) {
+    if (isPlainObject(message)) {
+      Object.keys(message).forEach(function (key) {
+        var val = message[key];
+        if (isPlainObject(val)) {
+          paths.push(key);
+          paths.push('.');
+          fn(level, locale, val, paths);
+          paths.pop();
+          paths.pop();
+        } else {
+          paths.push(key);
+          fn(level, locale, val, paths);
+          paths.pop();
+        }
+      });
+    } else if (Array.isArray(message)) {
+      message.forEach(function (item, index) {
+        if (isPlainObject(item)) {
+          paths.push(("[" + index + "]"));
+          paths.push('.');
+          fn(level, locale, item, paths);
+          paths.pop();
+          paths.pop();
+        } else {
+          paths.push(("[" + index + "]"));
+          fn(level, locale, item, paths);
+          paths.pop();
+        }
+      });
+    } else if (typeof message === 'string') {
+      var ret = htmlTagMatcher.test(message);
+      if (ret) {
+        var msg = "Detected HTML in message '" + message + "' of keypath '" + (paths.join('')) + "' at '" + locale + "'. Consider component interpolation with '<i18n>' to avoid XSS. See https://bit.ly/2ZqJzkp";
+        if (level === 'warn') {
+          warn(msg);
+        } else if (level === 'error') {
+          error(msg);
+        }
+      }
+    }
+  };
+
+  fn(level, locale, message, paths);
+};
+
+VueI18n.prototype._initVM = function _initVM (data) {
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  this._vm = new Vue({ data: data });
+  Vue.config.silent = silent;
+};
+
+VueI18n.prototype.destroyVM = function destroyVM () {
+  this._vm.$destroy();
+};
+
+VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
+  this._dataListeners.push(vm);
+};
+
+VueI18n.prototype.unsubscribeDataChanging = function unsubscribeDataChanging (vm) {
+  remove(this._dataListeners, vm);
+};
+
+VueI18n.prototype.watchI18nData = function watchI18nData () {
+  var self = this;
+  return this._vm.$watch('$data', function () {
+    var i = self._dataListeners.length;
+    while (i--) {
+      Vue.nextTick(function () {
+        self._dataListeners[i] && self._dataListeners[i].$forceUpdate();
+      });
+    }
+  }, { deep: true })
+};
+
+VueI18n.prototype.watchLocale = function watchLocale () {
+  /* istanbul ignore if */
+  if (!this._sync || !this._root) { return null }
+  var target = this._vm;
+  return this._root.$i18n.vm.$watch('locale', function (val) {
+    target.$set(target, 'locale', val);
+    target.$forceUpdate();
+  }, { immediate: true })
+};
+
+prototypeAccessors.vm.get = function () { return this._vm };
+
+prototypeAccessors.messages.get = function () { return looseClone(this._getMessages()) };
+prototypeAccessors.dateTimeFormats.get = function () { return looseClone(this._getDateTimeFormats()) };
+prototypeAccessors.numberFormats.get = function () { return looseClone(this._getNumberFormats()) };
+prototypeAccessors.availableLocales.get = function () { return Object.keys(this.messages).sort() };
+
+prototypeAccessors.locale.get = function () { return this._vm.locale };
+prototypeAccessors.locale.set = function (locale) {
+  this._vm.$set(this._vm, 'locale', locale);
+};
+
+prototypeAccessors.fallbackLocale.get = function () { return this._vm.fallbackLocale };
+prototypeAccessors.fallbackLocale.set = function (locale) {
+  this._vm.$set(this._vm, 'fallbackLocale', locale);
+};
+
+prototypeAccessors.formatFallbackMessages.get = function () { return this._formatFallbackMessages };
+prototypeAccessors.formatFallbackMessages.set = function (fallback) { this._formatFallbackMessages = fallback; };
+
+prototypeAccessors.missing.get = function () { return this._missing };
+prototypeAccessors.missing.set = function (handler) { this._missing = handler; };
+
+prototypeAccessors.formatter.get = function () { return this._formatter };
+prototypeAccessors.formatter.set = function (formatter) { this._formatter = formatter; };
+
+prototypeAccessors.silentTranslationWarn.get = function () { return this._silentTranslationWarn };
+prototypeAccessors.silentTranslationWarn.set = function (silent) { this._silentTranslationWarn = silent; };
+
+prototypeAccessors.silentFallbackWarn.get = function () { return this._silentFallbackWarn };
+prototypeAccessors.silentFallbackWarn.set = function (silent) { this._silentFallbackWarn = silent; };
+
+prototypeAccessors.preserveDirectiveContent.get = function () { return this._preserveDirectiveContent };
+prototypeAccessors.preserveDirectiveContent.set = function (preserve) { this._preserveDirectiveContent = preserve; };
+
+prototypeAccessors.warnHtmlInMessage.get = function () { return this._warnHtmlInMessage };
+prototypeAccessors.warnHtmlInMessage.set = function (level) {
+    var this$1 = this;
+
+  var orgLevel = this._warnHtmlInMessage;
+  this._warnHtmlInMessage = level;
+  if (orgLevel !== level && (level === 'warn' || level === 'error')) {
+    var messages = this._getMessages();
+    Object.keys(messages).forEach(function (locale) {
+      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
+    });
+  }
+};
+
+VueI18n.prototype._getMessages = function _getMessages () { return this._vm.messages };
+VueI18n.prototype._getDateTimeFormats = function _getDateTimeFormats () { return this._vm.dateTimeFormats };
+VueI18n.prototype._getNumberFormats = function _getNumberFormats () { return this._vm.numberFormats };
+
+VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm, values) {
+  if (!isNull(result)) { return result }
+  if (this._missing) {
+    var missingRet = this._missing.apply(null, [locale, key, vm, values]);
+    if (typeof missingRet === 'string') {
+      return missingRet
+    }
+  } else {
+    if ( true && !this._isSilentTranslationWarn(key)) {
+      warn(
+        "Cannot translate the value of keypath '" + key + "'. " +
+        'Use the value of keypath as default.'
+      );
+    }
+  }
+
+  if (this._formatFallbackMessages) {
+    var parsedArgs = parseArgs.apply(void 0, values);
+    return this._render(key, 'string', parsedArgs.params, key)
+  } else {
+    return key
+  }
+};
+
+VueI18n.prototype._isFallbackRoot = function _isFallbackRoot (val) {
+  return !val && !isNull(this._root) && this._fallbackRoot
+};
+
+VueI18n.prototype._isSilentFallbackWarn = function _isSilentFallbackWarn (key) {
+  return this._silentFallbackWarn instanceof RegExp
+    ? this._silentFallbackWarn.test(key)
+    : this._silentFallbackWarn
+};
+
+VueI18n.prototype._isSilentFallback = function _isSilentFallback (locale, key) {
+  return this._isSilentFallbackWarn(key) && (this._isFallbackRoot() || locale !== this.fallbackLocale)
+};
+
+VueI18n.prototype._isSilentTranslationWarn = function _isSilentTranslationWarn (key) {
+  return this._silentTranslationWarn instanceof RegExp
+    ? this._silentTranslationWarn.test(key)
+    : this._silentTranslationWarn
+};
+
+VueI18n.prototype._interpolate = function _interpolate (
+  locale,
+  message,
+  key,
+  host,
+  interpolateMode,
+  values,
+  visitedLinkStack
+) {
+  if (!message) { return null }
+
+  var pathRet = this._path.getPathValue(message, key);
+  if (Array.isArray(pathRet) || isPlainObject(pathRet)) { return pathRet }
+
+  var ret;
+  if (isNull(pathRet)) {
+    /* istanbul ignore else */
+    if (isPlainObject(message)) {
+      ret = message[key];
+      if (typeof ret !== 'string') {
+        if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
+          warn(("Value of key '" + key + "' is not a string!"));
+        }
+        return null
+      }
+    } else {
+      return null
+    }
+  } else {
+    /* istanbul ignore else */
+    if (typeof pathRet === 'string') {
+      ret = pathRet;
+    } else {
+      if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
+        warn(("Value of key '" + key + "' is not a string!"));
+      }
+      return null
+    }
+  }
+
+  // Check for the existence of links within the translated string
+  if (ret.indexOf('@:') >= 0 || ret.indexOf('@.') >= 0) {
+    ret = this._link(locale, message, ret, host, 'raw', values, visitedLinkStack);
+  }
+
+  return this._render(ret, interpolateMode, values, key)
+};
+
+VueI18n.prototype._link = function _link (
+  locale,
+  message,
+  str,
+  host,
+  interpolateMode,
+  values,
+  visitedLinkStack
+) {
+  var ret = str;
+
+  // Match all the links within the local
+  // We are going to replace each of
+  // them with its translation
+  var matches = ret.match(linkKeyMatcher);
+  for (var idx in matches) {
+    // ie compatible: filter custom array
+    // prototype method
+    if (!matches.hasOwnProperty(idx)) {
+      continue
+    }
+    var link = matches[idx];
+    var linkKeyPrefixMatches = link.match(linkKeyPrefixMatcher);
+    var linkPrefix = linkKeyPrefixMatches[0];
+      var formatterName = linkKeyPrefixMatches[1];
+
+    // Remove the leading @:, @.case: and the brackets
+    var linkPlaceholder = link.replace(linkPrefix, '').replace(bracketsMatcher, '');
+
+    if (visitedLinkStack.includes(linkPlaceholder)) {
+      if (true) {
+        warn(("Circular reference found. \"" + link + "\" is already visited in the chain of " + (visitedLinkStack.reverse().join(' <- '))));
+      }
+      return ret
+    }
+    visitedLinkStack.push(linkPlaceholder);
+
+    // Translate the link
+    var translated = this._interpolate(
+      locale, message, linkPlaceholder, host,
+      interpolateMode === 'raw' ? 'string' : interpolateMode,
+      interpolateMode === 'raw' ? undefined : values,
+      visitedLinkStack
+    );
+
+    if (this._isFallbackRoot(translated)) {
+      if ( true && !this._isSilentTranslationWarn(linkPlaceholder)) {
+        warn(("Fall back to translate the link placeholder '" + linkPlaceholder + "' with root locale."));
+      }
+      /* istanbul ignore if */
+      if (!this._root) { throw Error('unexpected error') }
+      var root = this._root.$i18n;
+      translated = root._translate(
+        root._getMessages(), root.locale, root.fallbackLocale,
+        linkPlaceholder, host, interpolateMode, values
+      );
+    }
+    translated = this._warnDefault(
+      locale, linkPlaceholder, translated, host,
+      Array.isArray(values) ? values : [values]
+    );
+
+    if (this._modifiers.hasOwnProperty(formatterName)) {
+      translated = this._modifiers[formatterName](translated);
+    } else if (defaultModifiers.hasOwnProperty(formatterName)) {
+      translated = defaultModifiers[formatterName](translated);
+    }
+
+    visitedLinkStack.pop();
+
+    // Replace the link with the translated
+    ret = !translated ? ret : ret.replace(link, translated);
+  }
+
+  return ret
+};
+
+VueI18n.prototype._render = function _render (message, interpolateMode, values, path) {
+  var ret = this._formatter.interpolate(message, values, path);
+
+  // If the custom formatter refuses to work - apply the default one
+  if (!ret) {
+    ret = defaultFormatter.interpolate(message, values, path);
+  }
+
+  // if interpolateMode is **not** 'string' ('row'),
+  // return the compiled data (e.g. ['foo', VNode, 'bar']) with formatter
+  return interpolateMode === 'string' ? ret.join('') : ret
+};
+
+VueI18n.prototype._translate = function _translate (
+  messages,
+  locale,
+  fallback,
+  key,
+  host,
+  interpolateMode,
+  args
+) {
+  var res =
+    this._interpolate(locale, messages[locale], key, host, interpolateMode, args, [key]);
+  if (!isNull(res)) { return res }
+
+  res = this._interpolate(fallback, messages[fallback], key, host, interpolateMode, args, [key]);
+  if (!isNull(res)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to translate the keypath '" + key + "' with '" + fallback + "' locale."));
+    }
+    return res
+  } else {
+    return null
+  }
+};
+
+VueI18n.prototype._t = function _t (key, _locale, messages, host) {
+    var ref;
+
+    var values = [], len = arguments.length - 4;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 4 ];
+  if (!key) { return '' }
+
+  var parsedArgs = parseArgs.apply(void 0, values);
+  var locale = parsedArgs.locale || _locale;
+
+  var ret = this._translate(
+    messages, locale, this.fallbackLocale, key,
+    host, 'string', parsedArgs.params
+  );
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to translate the keypath '" + key + "' with root locale."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return (ref = this._root).$t.apply(ref, [ key ].concat( values ))
+  } else {
+    return this._warnDefault(locale, key, ret, host, values)
+  }
+};
+
+VueI18n.prototype.t = function t (key) {
+    var ref;
+
+    var values = [], len = arguments.length - 1;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
+  return (ref = this)._t.apply(ref, [ key, this.locale, this._getMessages(), null ].concat( values ))
+};
+
+VueI18n.prototype._i = function _i (key, locale, messages, host, values) {
+  var ret =
+    this._translate(messages, locale, this.fallbackLocale, key, host, 'raw', values);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key)) {
+      warn(("Fall back to interpolate the keypath '" + key + "' with root locale."));
+    }
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.i(key, locale, values)
+  } else {
+    return this._warnDefault(locale, key, ret, host, [values])
+  }
+};
+
+VueI18n.prototype.i = function i (key, locale, values) {
+  /* istanbul ignore if */
+  if (!key) { return '' }
+
+  if (typeof locale !== 'string') {
+    locale = this.locale;
+  }
+
+  return this._i(key, locale, this._getMessages(), null, values)
+};
+
+VueI18n.prototype._tc = function _tc (
+  key,
+  _locale,
+  messages,
+  host,
+  choice
+) {
+    var ref;
+
+    var values = [], len = arguments.length - 5;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 5 ];
+  if (!key) { return '' }
+  if (choice === undefined) {
+    choice = 1;
+  }
+
+  var predefined = { 'count': choice, 'n': choice };
+  var parsedArgs = parseArgs.apply(void 0, values);
+  parsedArgs.params = Object.assign(predefined, parsedArgs.params);
+  values = parsedArgs.locale === null ? [parsedArgs.params] : [parsedArgs.locale, parsedArgs.params];
+  return this.fetchChoice((ref = this)._t.apply(ref, [ key, _locale, messages, host ].concat( values )), choice)
+};
+
+VueI18n.prototype.fetchChoice = function fetchChoice (message, choice) {
+  /* istanbul ignore if */
+  if (!message && typeof message !== 'string') { return null }
+  var choices = message.split('|');
+
+  choice = this.getChoiceIndex(choice, choices.length);
+  if (!choices[choice]) { return message }
+  return choices[choice].trim()
+};
+
+/**
+ * @param choice {number} a choice index given by the input to $tc: `$tc('path.to.rule', choiceIndex)`
+ * @param choicesLength {number} an overall amount of available choices
+ * @returns a final choice index
+*/
+VueI18n.prototype.getChoiceIndex = function getChoiceIndex (choice, choicesLength) {
+  // Default (old) getChoiceIndex implementation - english-compatible
+  var defaultImpl = function (_choice, _choicesLength) {
+    _choice = Math.abs(_choice);
+
+    if (_choicesLength === 2) {
+      return _choice
+        ? _choice > 1
+          ? 1
+          : 0
+        : 1
+    }
+
+    return _choice ? Math.min(_choice, 2) : 0
+  };
+
+  if (this.locale in this.pluralizationRules) {
+    return this.pluralizationRules[this.locale].apply(this, [choice, choicesLength])
+  } else {
+    return defaultImpl(choice, choicesLength)
+  }
+};
+
+VueI18n.prototype.tc = function tc (key, choice) {
+    var ref;
+
+    var values = [], len = arguments.length - 2;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
+  return (ref = this)._tc.apply(ref, [ key, this.locale, this._getMessages(), null, choice ].concat( values ))
+};
+
+VueI18n.prototype._te = function _te (key, locale, messages) {
+    var args = [], len = arguments.length - 3;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 3 ];
+
+  var _locale = parseArgs.apply(void 0, args).locale || locale;
+  return this._exist(messages[_locale], key)
+};
+
+VueI18n.prototype.te = function te (key, locale) {
+  return this._te(key, this.locale, this._getMessages(), locale)
+};
+
+VueI18n.prototype.getLocaleMessage = function getLocaleMessage (locale) {
+  return looseClone(this._vm.messages[locale] || {})
+};
+
+VueI18n.prototype.setLocaleMessage = function setLocaleMessage (locale, message) {
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
+    if (this._warnHtmlInMessage === 'error') { return }
+  }
+  this._vm.$set(this._vm.messages, locale, message);
+};
+
+VueI18n.prototype.mergeLocaleMessage = function mergeLocaleMessage (locale, message) {
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
+    if (this._warnHtmlInMessage === 'error') { return }
+  }
+  this._vm.$set(this._vm.messages, locale, merge(this._vm.messages[locale] || {}, message));
+};
+
+VueI18n.prototype.getDateTimeFormat = function getDateTimeFormat (locale) {
+  return looseClone(this._vm.dateTimeFormats[locale] || {})
+};
+
+VueI18n.prototype.setDateTimeFormat = function setDateTimeFormat (locale, format) {
+  this._vm.$set(this._vm.dateTimeFormats, locale, format);
+};
+
+VueI18n.prototype.mergeDateTimeFormat = function mergeDateTimeFormat (locale, format) {
+  this._vm.$set(this._vm.dateTimeFormats, locale, merge(this._vm.dateTimeFormats[locale] || {}, format));
+};
+
+VueI18n.prototype._localizeDateTime = function _localizeDateTime (
+  value,
+  locale,
+  fallback,
+  dateTimeFormats,
+  key
+) {
+  var _locale = locale;
+  var formats = dateTimeFormats[_locale];
+
+  // fallback locale
+  if (isNull(formats) || isNull(formats[key])) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to '" + fallback + "' datetime formats from '" + locale + "' datetime formats."));
+    }
+    _locale = fallback;
+    formats = dateTimeFormats[_locale];
+  }
+
+  if (isNull(formats) || isNull(formats[key])) {
+    return null
+  } else {
+    var format = formats[key];
+    var id = _locale + "__" + key;
+    var formatter = this._dateTimeFormatters[id];
+    if (!formatter) {
+      formatter = this._dateTimeFormatters[id] = new Intl.DateTimeFormat(_locale, format);
+    }
+    return formatter.format(value)
+  }
+};
+
+VueI18n.prototype._d = function _d (value, locale, key) {
+  /* istanbul ignore if */
+  if ( true && !VueI18n.availabilities.dateTimeFormat) {
+    warn('Cannot format a Date value due to not supported Intl.DateTimeFormat.');
+    return ''
+  }
+
+  if (!key) {
+    return new Intl.DateTimeFormat(locale).format(value)
+  }
+
+  var ret =
+    this._localizeDateTime(value, locale, this.fallbackLocale, this._getDateTimeFormats(), key);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to datetime localization of root: key '" + key + "'."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.d(value, key, locale)
+  } else {
+    return ret || ''
+  }
+};
+
+VueI18n.prototype.d = function d (value) {
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+  var locale = this.locale;
+  var key = null;
+
+  if (args.length === 1) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    } else if (isObject(args[0])) {
+      if (args[0].locale) {
+        locale = args[0].locale;
+      }
+      if (args[0].key) {
+        key = args[0].key;
+      }
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    }
+    if (typeof args[1] === 'string') {
+      locale = args[1];
+    }
+  }
+
+  return this._d(value, locale, key)
+};
+
+VueI18n.prototype.getNumberFormat = function getNumberFormat (locale) {
+  return looseClone(this._vm.numberFormats[locale] || {})
+};
+
+VueI18n.prototype.setNumberFormat = function setNumberFormat (locale, format) {
+  this._vm.$set(this._vm.numberFormats, locale, format);
+};
+
+VueI18n.prototype.mergeNumberFormat = function mergeNumberFormat (locale, format) {
+  this._vm.$set(this._vm.numberFormats, locale, merge(this._vm.numberFormats[locale] || {}, format));
+};
+
+VueI18n.prototype._getNumberFormatter = function _getNumberFormatter (
+  value,
+  locale,
+  fallback,
+  numberFormats,
+  key,
+  options
+) {
+  var _locale = locale;
+  var formats = numberFormats[_locale];
+
+  // fallback locale
+  if (isNull(formats) || isNull(formats[key])) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to '" + fallback + "' number formats from '" + locale + "' number formats."));
+    }
+    _locale = fallback;
+    formats = numberFormats[_locale];
+  }
+
+  if (isNull(formats) || isNull(formats[key])) {
+    return null
+  } else {
+    var format = formats[key];
+
+    var formatter;
+    if (options) {
+      // If options specified - create one time number formatter
+      formatter = new Intl.NumberFormat(_locale, Object.assign({}, format, options));
+    } else {
+      var id = _locale + "__" + key;
+      formatter = this._numberFormatters[id];
+      if (!formatter) {
+        formatter = this._numberFormatters[id] = new Intl.NumberFormat(_locale, format);
+      }
+    }
+    return formatter
+  }
+};
+
+VueI18n.prototype._n = function _n (value, locale, key, options) {
+  /* istanbul ignore if */
+  if (!VueI18n.availabilities.numberFormat) {
+    if (true) {
+      warn('Cannot format a Number value due to not supported Intl.NumberFormat.');
+    }
+    return ''
+  }
+
+  if (!key) {
+    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
+    return nf.format(value)
+  }
+
+  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
+  var ret = formatter && formatter.format(value);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to number localization of root: key '" + key + "'."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.n(value, Object.assign({}, { key: key, locale: locale }, options))
+  } else {
+    return ret || ''
+  }
+};
+
+VueI18n.prototype.n = function n (value) {
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+  var locale = this.locale;
+  var key = null;
+  var options = null;
+
+  if (args.length === 1) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    } else if (isObject(args[0])) {
+      if (args[0].locale) {
+        locale = args[0].locale;
+      }
+      if (args[0].key) {
+        key = args[0].key;
+      }
+
+      // Filter out number format options only
+      options = Object.keys(args[0]).reduce(function (acc, key) {
+          var obj;
+
+        if (numberFormatKeys.includes(key)) {
+          return Object.assign({}, acc, ( obj = {}, obj[key] = args[0][key], obj ))
+        }
+        return acc
+      }, null);
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      key = args[0];
+    }
+    if (typeof args[1] === 'string') {
+      locale = args[1];
+    }
+  }
+
+  return this._n(value, locale, key, options)
+};
+
+VueI18n.prototype._ntp = function _ntp (value, locale, key, options) {
+  /* istanbul ignore if */
+  if (!VueI18n.availabilities.numberFormat) {
+    if (true) {
+      warn('Cannot format to parts a Number value due to not supported Intl.NumberFormat.');
+    }
+    return []
+  }
+
+  if (!key) {
+    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
+    return nf.formatToParts(value)
+  }
+
+  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
+  var ret = formatter && formatter.formatToParts(value);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key)) {
+      warn(("Fall back to format number to parts of root: key '" + key + "' ."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n._ntp(value, locale, key, options)
+  } else {
+    return ret || []
+  }
+};
+
+Object.defineProperties( VueI18n.prototype, prototypeAccessors );
+
+var availabilities;
+// $FlowFixMe
+Object.defineProperty(VueI18n, 'availabilities', {
+  get: function get () {
+    if (!availabilities) {
+      var intlDefined = typeof Intl !== 'undefined';
+      availabilities = {
+        dateTimeFormat: intlDefined && typeof Intl.DateTimeFormat !== 'undefined',
+        numberFormat: intlDefined && typeof Intl.NumberFormat !== 'undefined'
+      };
+    }
+
+    return availabilities
+  }
+});
+
+VueI18n.install = install;
+VueI18n.version = '8.15.0';
+
+/* harmony default export */ __webpack_exports__["default"] = (VueI18n);
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Conversation.vue?vue&type=template&id=01c0168c&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Conversation.vue?vue&type=template&id=01c0168c& ***!
@@ -821,84 +7853,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "box-footer" }, [
-    _c("div", { staticClass: "row" }, [
-      _vm.targetCharacter
-        ? _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "select",
-              {
-                directives: [
+  return _vm.commentable
+    ? _c("div", { staticClass: "box-footer" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm.targetCharacter
+            ? _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "select",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.character_id,
-                    expression: "character_id"
-                  }
-                ],
-                staticClass: "form-control",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.character_id = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.character_id,
+                        expression: "character_id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.character_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  _vm._l(_vm.targets, function(name, key) {
+                    return _c("option", { domProps: { value: key } }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(name) +
+                          "\n                "
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { class: _vm.inputForm }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.body,
+                  expression: "body"
                 }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "message",
+                maxlength: "1000",
+                autocomplete: "off",
+                disabled: _vm.inputFormDisabled
               },
-              _vm._l(_vm.targets, function(character) {
-                return _c("option", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(character.name) +
-                      "\n                "
-                  )
-                ])
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { class: _vm.inputForm }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.body,
-              expression: "body"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "message",
-            maxlength: "1000",
-            autocomplete: "off",
-            disabled: _vm.inputFormDisabled
-          },
-          domProps: { value: _vm.body },
-          on: {
-            keydown: _vm.typing,
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              domProps: { value: _vm.body },
+              on: {
+                keydown: _vm.typing,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.body = $event.target.value
+                }
               }
-              _vm.body = $event.target.value
-            }
-          }
-        })
+            })
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -923,23 +7957,66 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "box-comment" }, [
+    _c(
+      "span",
+      { staticClass: "text-right pull-right" },
+      [
+        _vm.message.can_delete
+          ? _c(
+              "dropdown",
+              {
+                staticClass: "message-options",
+                attrs: { tag: "a", "menu-right": "" }
+              },
+              [
+                _c(
+                  "a",
+                  { staticClass: "dropdown-toggle", attrs: { role: "button" } },
+                  [_c("span", { staticClass: "caret" })]
+                ),
+                _vm._v(" "),
+                _c("template", { slot: "dropdown" }, [
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { role: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteMessage(_vm.message)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.$t("crud.remove")))]
+                    )
+                  ])
+                ])
+              ],
+              2
+            )
+          : _vm._e(),
+        _c("br")
+      ],
+      1
+    ),
+    _vm._v(" "),
     _vm.isUser
       ? _c("strong", { staticClass: "user" }, [
           _vm._v(_vm._s(_vm.message.user))
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.isCharacter
+      : _vm.isCharacter
       ? _c("strong", { staticClass: "character" }, [
-          _vm._v(_vm._s(_vm.message.character))
+          _c("span", [_vm._v(_vm._s(_vm.message.character))])
         ])
-      : _vm._e(),
+      : _c("strong", { staticClass: "unknown" }, [
+          _vm._v("\n        " + _vm._s(_vm.$t("crud.users.unknown")) + "\n    ")
+        ]),
     _vm._v(" "),
     _c("div", { staticClass: "comment-text" }, [
-      _c("span", { staticClass: "text-muted pull-right" }, [
+      _vm._v("\n        " + _vm._s(_vm.message.message) + "\n        "),
+      _c("span", { staticClass: "pull-right text-muted" }, [
         _vm._v(_vm._s(_vm.message.created_at))
-      ]),
-      _vm._v("\n        " + _vm._s(_vm.message.message) + "\n    ")
+      ])
     ])
   ])
 }
@@ -967,14 +8044,42 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "box-comments" },
-    _vm._l(_vm.messages, function(message) {
-      return _c("conversation-message", {
-        key: message.id,
-        attrs: { message: message }
-      })
-    }),
-    1
+    { ref: "messagebox", staticClass: "box-comments" },
+    [
+      _vm.previous && !_vm.loadingPrevious
+        ? _c(
+            "div",
+            { staticClass: "load-more", on: { click: _vm.getPrevious } },
+            [
+              _vm._v(
+                "\n        " +
+                  _vm._s(_vm.$t("conversations.messages.load_previous")) +
+                  "\n    "
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.loadingPrevious
+        ? _c("div", { staticClass: "load more text-center" }, [
+            _c("i", { staticClass: "fa fa-spin fa-spinner" })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.messages, function(message) {
+        return _c("conversation-message", {
+          key: message.id,
+          attrs: { message: message }
+        })
+      }),
+      _vm._v(" "),
+      _vm.sending
+        ? _c("div", { staticClass: "text-center" }, [
+            _c("i", { staticClass: "fa fa-spin fa-spinner" })
+          ])
+        : _vm._e()
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -13392,6 +20497,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_conversation_Message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/conversation/Message */ "./resources/assets/js/components/conversation/Message.vue");
 /* harmony import */ var _components_conversation_Messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/conversation/Messages */ "./resources/assets/js/components/conversation/Messages.vue");
 /* harmony import */ var _components_conversation_Form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/conversation/Form */ "./resources/assets/js/components/conversation/Form.vue");
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var _vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./vue-i18n-locales.generated */ "./resources/assets/js/vue-i18n-locales.generated.js");
+/* harmony import */ var uiv__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uiv */ "./node_modules/uiv/dist/uiv.esm.js");
+
+
+
 
 
 
@@ -13400,9 +20511,19 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('conversation', _components_Conversation__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('conversation-messages', _components_conversation_Messages__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('conversation-message', _components_conversation_Message__WEBPACK_IMPORTED_MODULE_1__["default"]);
-Vue.component('conversation-form', _components_conversation_Form__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('conversation-form', _components_conversation_Form__WEBPACK_IMPORTED_MODULE_3__["default"]); // Boostrap
+
+Vue.use(uiv__WEBPACK_IMPORTED_MODULE_6__); // Translations
+
+Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_4__["default"]);
+var lang = document.documentElement.lang.substr(0, 2);
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_4__["default"]({
+  locale: lang,
+  messages: _vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_5__["default"]
+});
 var app = new Vue({
-  el: '#conversation'
+  el: '#conversation',
+  i18n: i18n
 });
 var conversationBody, conversationSend, conversationMessage, conversationContext;
 var conversationLoadPrevious;
@@ -13476,7 +20597,7 @@ function initConversation() {
       return false;
     }
 
-    newest = $('.box-comment').last().data('id');
+    var newest = $('.box-comment').last().data('id');
     conversationMessage.val(text);
     conversationContext.prop('disabled', true);
     $.ajax({
@@ -13536,6 +20657,2806 @@ function registerActions() {
     });
   });
 }
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue-i18n-locales.generated.js":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/vue-i18n-locales.generated.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "ar": [],
+  "de": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Erstelle eine neue Unterhaltung",
+        "success": "Unterhaltung {name} erstellt.",
+        "title": "Neue Unterhaltung"
+      },
+      "destroy": {
+        "success": "Unterhaltung {name} gelöscht."
+      },
+      "edit": {
+        "description": "Aktualisiere die Unterhaltung",
+        "success": "Unterhaltung '{name}' aktualisiert.",
+        "title": "Unterhaltung {name}"
+      },
+      "fields": {
+        "messages": "Nachrichten",
+        "name": "Name",
+        "participants": "Teilnehmer",
+        "target": "Ziel",
+        "type": "Typ"
+      },
+      "hints": {
+        "participants": "Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das {icon} Symbol oben rechts drückst."
+      },
+      "index": {
+        "add": "Neue Unterhaltung",
+        "description": "Verwalte die Kategorie von {name}.",
+        "header": "Unterhaltungen in {name}",
+        "title": "Unterhaltungen"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Nachricht gelöscht."
+        },
+        "load_previous": "Lade vorherige Nachrichten",
+        "placeholders": {
+          "message": "Deine Nachricht"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "Teilnehmer {entity} zu Unterhaltung hinzugefügt."
+        },
+        "description": "Entferne oder füge Teilnehmer einer Unterhaltung hinzu",
+        "destroy": {
+          "success": "Teilnehmer {entity} von Unterhaltung entfernt."
+        },
+        "modal": "Teilnehmer",
+        "title": "Teilnehmer von {name}"
+      },
+      "placeholders": {
+        "name": "Name der Unterhaltung",
+        "type": "Im Spiel, Vorbereitung, Handlung"
+      },
+      "show": {
+        "description": "Eine Detailansicht einer Unterhaltung",
+        "title": "Unterhaltung {name}"
+      },
+      "tabs": {
+        "conversation": "Unterhaltung",
+        "participants": "Teilnehmer"
+      },
+      "targets": {
+        "characters": "Charaktere",
+        "members": "Mitglieder"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Übernehmen",
+        "back": "Zurück",
+        "copy": "Kopieren",
+        "copy_to_campaign": "Kopiere zu Kampagne",
+        "explore_view": "Verschachtelte Ansicht",
+        "export": "Exportieren",
+        "find_out_more": "Mehr erfahren",
+        "go_to": "Gehe zu {name}",
+        "more": "Mehr Aktionen",
+        "move": "Verschieben",
+        "new": "Neu",
+        "next": "Weiter",
+        "private": "Privat",
+        "public": "Öffentlich"
+      },
+      "add": "Hinzufügen",
+      "attributes": {
+        "actions": {
+          "add": "Attribut hinzufügen",
+          "add_block": "Block hinzufügen",
+          "add_checkbox": "Checkbox hinzufügen.",
+          "add_text": "Text hinzufügen",
+          "apply_template": "Eine Attributvorlage anwenden",
+          "manage": "Verwalten",
+          "remove_all": "Alles löschen"
+        },
+        "create": {
+          "description": "Erstelle ein neues Attribut",
+          "success": "Attribut {name} zu {entity} hinzugefügt",
+          "title": "Neues Attribute für {name}"
+        },
+        "destroy": {
+          "success": "Attribut {name} für {entity} entfernt"
+        },
+        "edit": {
+          "description": "Aktualisiere ein bestehendes Attribut",
+          "success": "Attribut {name} für {entity} aktualisiert",
+          "title": "Aktualisiere Attribut für {name}"
+        },
+        "fields": {
+          "attribute": "Attribut",
+          "community_templates": "Community Vorlagen",
+          "is_star": "Angepinnt",
+          "template": "Vorlage",
+          "value": "Wert"
+        },
+        "index": {
+          "success": "Attribute für {entity} aktualisiert",
+          "title": "Attribute für {name}"
+        },
+        "placeholders": {
+          "attribute": "Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung",
+          "block": "Blockname",
+          "checkbox": "Checkbox Name",
+          "template": "Wähle eine Vorlage",
+          "value": "Wert des Attributs"
+        },
+        "template": {
+          "success": "Attributvorlage {name} wird auf {entity} angewendet",
+          "title": "Wende eine Attributvorlage auf {name} an"
+        },
+        "types": {
+          "attribute": "Attribute",
+          "block": "Block",
+          "checkbox": "Checkbox",
+          "text": "Mehrzeiliger Text"
+        },
+        "visibility": {
+          "entry": "Das Attribut wird im Objektmenü angezeigt.",
+          "private": "Attribut nur für Mitglieder der Rolle \"Admin\" sichtbar.",
+          "public": "Attribut für alle Mitglieder sichtbar.",
+          "tab": "Das Attribut wird nur im Attribute-Reiter angezeigt."
+        }
+      },
+      "bulk": {
+        "errors": {
+          "admin": "Nur Kampagnenadmins können den \"Privat\" Status eines Objektes ändern."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Überschreiben"
+          },
+          "helpers": {
+            "override": "Wenn ausgewählt, werden die Berechtigungen der ausgewählten Objekte mit diesen überschrieben. Wenn das Kontrollkästchen deaktiviert ist, werden die ausgewählten Berechtigungen zu den vorhandenen Berechtigungen hinzugefügt."
+          },
+          "title": "Ändert die Berechtigungen für mehrere Objekte"
+        },
+        "success": {
+          "permissions": "Berechtigungen für {count} Objekt geändert.|Berechtigungen für {count} Objekte geändert.",
+          "private": "{count} Objekt ist jetzt privat.|{count} Objekte sind jetzt privat.",
+          "public": "{count} Objekt ist jetzt sichtbar.|{count} Objekte sind jetzt sichtbar."
+        }
+      },
+      "cancel": "Abbrechen",
+      "click_modal": {
+        "close": "Schließen",
+        "confirm": "Bestätigen",
+        "title": "Bestätige deine Aktion"
+      },
+      "copy_to_campaign": {
+        "panel": "Kopieren",
+        "title": "Kopiere {name} in eine andere Kampagne"
+      },
+      "create": "Erstellen",
+      "datagrid": {
+        "empty": "Nichts zu sehen bisher."
+      },
+      "delete_modal": {
+        "close": "Schließen",
+        "delete": "Löschen",
+        "description": "Bist du sicher das du {tag} entfernen möchtest?",
+        "mirrored": "Entferne gespiegelte Beziehung.",
+        "title": "Löschen bestätigen"
+      },
+      "destroy_many": {
+        "success": "{count} Objekt gelöscht|{count} Objekte gelöscht"
+      },
+      "edit": "Bearbeiten",
+      "errors": {
+        "node_must_not_be_a_descendant": "Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein."
+      },
+      "events": {
+        "hint": "Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt."
+      },
+      "export": "Exportieren",
+      "fields": {
+        "attribute_template": "Attributsvorlage",
+        "calendar": "Kalender",
+        "calendar_date": "Datum",
+        "character": "Charakter",
+        "copy_attributes": "Kopiere Attribute",
+        "copy_notes": "Kopiere Objektnotizen",
+        "creator": "Ersteller",
+        "dice_roll": "Würfelwürf",
+        "entity": "Objekt",
+        "entity_type": "Objekttyp",
+        "entry": "Eintrag",
+        "event": "Ereignis",
+        "excerpt": "Auszug",
+        "family": "Familie",
+        "files": "Dateien",
+        "image": "Bild",
+        "is_private": "Privat",
+        "is_star": "Angepinnt",
+        "item": "Gegenstand",
+        "location": "Ort",
+        "name": "Name",
+        "organisation": "Organisation",
+        "race": "Rasse",
+        "tag": "Tag",
+        "tags": "Tags",
+        "visibility": "Sichtbarkeit"
+      },
+      "files": {
+        "actions": {
+          "drop": "Klicken zum Hinzufügen oder Datei hierher ziehen (Drag & Drop).",
+          "manage": "Verwalte Objektdateien"
+        },
+        "errors": {
+          "max": "Du hast die maximale Anzahl ({max}) von Dateien in diesem Objekt erreicht."
+        },
+        "files": "Hochgeladene Dateien",
+        "hints": {
+          "limit": "In jedem Objekt kann eine maximale Anzahl von {max} Dateien hochgeladen werden.",
+          "limitations": "Unterstütze Formate: jpg, png, gif, und pdf. Max. Dateigröße: {size}"
+        },
+        "title": "Objektdateien für {name}"
+      },
+      "filter": "Filter",
+      "filters": {
+        "all": "Filter um alle Unterobjekte zu sehen",
+        "clear": "Filter zurücksetzen",
+        "direct": "Filter um nur direkte Unterobjekte zu sehen",
+        "filtered": "Zeige {count} von {total} {entity}.",
+        "hide": "Verstecken",
+        "show": "Zeigen",
+        "title": "Filter"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Füge Datum hinzu"
+        },
+        "copy_options": "Kopiere Optionen"
+      },
+      "hidden": "Versteckt",
+      "hints": {
+        "attribute_template": "Wende eine Attributsvorlage direkt beim erstellen des Objektes an.",
+        "calendar_date": "Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.",
+        "image_limitations": "Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: {size}.",
+        "image_patreon": "Erhöhe das Limit indem du uns bei Patreon unterstützt.",
+        "is_private": "Vor 'Zuschauern' verbergen",
+        "is_star": "Angepinnte Objekte erscheinen im Objektmenü.",
+        "map_limitations": "Unterstützte Formate: jpg, png, gif und svg. Max Dateigröße: {size}.",
+        "visibility": "Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf \"Selbst\" gesetzt, kannst es nur du sehen."
+      },
+      "history": {
+        "created": "Erstellt von <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Unbekannt",
+        "updated": "Zuletzt aktualisiert von <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "Zeige Objektprotokoll"
+      },
+      "image": {
+        "error": "Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist."
+      },
+      "is_private": "Dieses Objekt ist privat und nicht von Zuschauern einsehbar.",
+      "linking_help": "Wie kann ich zu anderen Objekten verlinken?",
+      "manage": "Verwalten",
+      "move": {
+        "description": "Verschiebe diese Objekt an einen anderen Ort",
+        "errors": {
+          "permission": "Du hast keine Berechtigung, Objekte diesen Typs in dieser Kampagne zu erstellen.",
+          "same_campaign": "Du musst eine andere Kampagne auswählen, in welche du das Objekt verschieben willst.",
+          "unknown_campaign": "Unbekannte Kampagne."
+        },
+        "fields": {
+          "campaign": "Neue Kampagne",
+          "copy": "Erstelle Kopie",
+          "target": "Neuer Typ"
+        },
+        "hints": {
+          "campaign": "Du kannst auch versuchen, diese Objekt in eine andere Kampagne zu verschieben.",
+          "copy": "Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.",
+          "target": "Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird."
+        },
+        "success": "Objekt '{name}' verschoben",
+        "success_copy": "Objekt '{name}' kopiert",
+        "title": "Verschiebe {name} an einen anderen Ort"
+      },
+      "new_entity": {
+        "error": "Bitte überprüfe deine Eingabe.",
+        "fields": {
+          "name": "Name"
+        },
+        "title": "Neues Objekt"
+      },
+      "or_cancel": "oder <a href=\"{url}\">abbrechen</a>",
+      "panels": {
+        "appearance": "Aussehen",
+        "attribute_template": "Attributsvorlage",
+        "calendar_date": "Datum",
+        "entry": "Eintrag",
+        "general_information": "Allgemeine Informationen",
+        "move": "Verschieben",
+        "system": "System"
+      },
+      "permissions": {
+        "action": "Aktion",
+        "actions": {
+          "bulk": {
+            "add": "Hinzufügen",
+            "remove": "Entfernen"
+          },
+          "delete": "Löschen",
+          "edit": "Bearbeiten",
+          "entity_note": "Objektnotizen",
+          "read": "Lesen"
+        },
+        "allowed": "Erlaubt",
+        "fields": {
+          "member": "Mitglied",
+          "role": "Rolle"
+        },
+        "helper": "Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.",
+        "success": "Berechtigungen gespeichert.",
+        "title": "Berechtigungen"
+      },
+      "placeholders": {
+        "calendar": "Wähle einen Kalender",
+        "character": "Wähle einen Character",
+        "entity": "Objekt",
+        "event": "Wähle ein Ereignis",
+        "family": "Wähle eine Familie",
+        "image_url": "Du kannst ein Bild auch von einer URL hochladen",
+        "item": "Wähle einen Gegenstand",
+        "location": "Wähle einen Ort",
+        "organisation": "Wähle eine Organisation",
+        "race": "Wähle eine Rasse",
+        "tag": "Wähle ein Tag"
+      },
+      "relations": {
+        "actions": {
+          "add": "Füge eine Beziehung hinzu"
+        },
+        "fields": {
+          "location": "Ort",
+          "name": "Name",
+          "relation": "Beziehung"
+        },
+        "hint": "Beziehungen zwischen Objekten können erstellt werden, um deren Verbindung darzustellen."
+      },
+      "remove": "Löschen",
+      "rename": "Umbenennen",
+      "save": "Speichern",
+      "save_and_close": "Speichern und schließen",
+      "save_and_new": "Speichern und neu",
+      "save_and_update": "Speichern und aktualisieren",
+      "save_and_view": "Speichern und ansehen",
+      "search": "Suchen",
+      "select": "Auswählen",
+      "tabs": {
+        "attributes": "Attribute",
+        "calendars": "Kalender",
+        "default": "Standard",
+        "events": "Ereignisse",
+        "inventory": "Inventar",
+        "map-points": "Kartenmarker",
+        "mentions": "Erwähnungen",
+        "menu": "Menü",
+        "notes": "Notizen",
+        "permissions": "Berechtigungen",
+        "relations": "Beziehungen"
+      },
+      "update": "Bearbeiten",
+      "users": {
+        "unknown": "Unbekannt"
+      },
+      "view": "Ansehen",
+      "visibilities": {
+        "admin": "Admin",
+        "all": "Jeder",
+        "self": "Selbst"
+      }
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "en": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Create a new conversation",
+        "success": "Conversation '{name}' created.",
+        "title": "New Conversation"
+      },
+      "destroy": {
+        "success": "Conversation '{name}' removed."
+      },
+      "edit": {
+        "description": "Update the conversation",
+        "success": "Conversation '{name}' updated.",
+        "title": "Conversation {name}"
+      },
+      "fields": {
+        "messages": "Messages",
+        "name": "Name",
+        "participants": "Participants",
+        "target": "Target",
+        "type": "Type"
+      },
+      "hints": {
+        "participants": "Please add participants to your conversation by pressing on the {icon} icon on the upper-right."
+      },
+      "index": {
+        "add": "New Conversation",
+        "description": "Manage the category of {name}.",
+        "header": "Conversations in {name}",
+        "title": "Conversations"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Message removed."
+        },
+        "load_previous": "Load previous messages",
+        "placeholders": {
+          "message": "Your message"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "Participant {entity} added to the conversation."
+        },
+        "description": "Add or remove participants of a conversation",
+        "destroy": {
+          "success": "Participant {entity} removed from the conversation."
+        },
+        "modal": "Participants",
+        "title": "Participants of {name}"
+      },
+      "placeholders": {
+        "name": "Name of the conversation",
+        "type": "In Game, Prep, Plot"
+      },
+      "show": {
+        "description": "A detailed view of a conversation",
+        "title": "Conversation {name}"
+      },
+      "tabs": {
+        "conversation": "Conversation",
+        "participants": "Participants"
+      },
+      "targets": {
+        "characters": "Characters",
+        "members": "Members"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Apply",
+        "back": "Back",
+        "copy": "Copy",
+        "copy_to_campaign": "Copy to Campaign",
+        "explore_view": "Nested View",
+        "export": "Export",
+        "find_out_more": "Find out more",
+        "go_to": "Go to {name}",
+        "more": "More Actions",
+        "move": "Move",
+        "new": "New",
+        "next": "Next",
+        "private": "Private",
+        "public": "Public"
+      },
+      "add": "Add",
+      "attributes": {
+        "actions": {
+          "add": "Add an attribute",
+          "add_block": "Add a block",
+          "add_checkbox": "Add a checkbox",
+          "add_text": "Add a text",
+          "apply_template": "Apply an Attribute Template",
+          "manage": "Manage",
+          "remove_all": "Delete All"
+        },
+        "create": {
+          "description": "Create a new attribute",
+          "success": "Attribute {name} added to {entity}.",
+          "title": "New Attribute for {name}"
+        },
+        "destroy": {
+          "success": "Attribute {name} for {entity} removed."
+        },
+        "edit": {
+          "description": "Update an existing attribute",
+          "success": "Attribute {name} for {entity} updated.",
+          "title": "Update attribute for {name}"
+        },
+        "fields": {
+          "attribute": "Attribute",
+          "community_templates": "Community Templates",
+          "is_private": "Private Attributes",
+          "is_star": "Pinned",
+          "template": "Template",
+          "value": "Value"
+        },
+        "helpers": {
+          "delete_all": "Are you sure you want to delete all of this entity's attributes?"
+        },
+        "hints": {
+          "is_private": "You can hide all the attributes of an entity for all members outside of the admin role by making it private."
+        },
+        "index": {
+          "success": "Attributes for {entity} updated.",
+          "title": "Attributes for {name}"
+        },
+        "placeholders": {
+          "attribute": "Number of conquests, Challenge Rating, Initiative, Population",
+          "block": "Block name",
+          "checkbox": "Checkbox name",
+          "section": "Section name",
+          "template": "Select a template",
+          "value": "Value of the attribute"
+        },
+        "template": {
+          "success": "Attribute Template {name} applied to {entity}",
+          "title": "Apply an Attribute Template for {name}"
+        },
+        "types": {
+          "attribute": "Attribute",
+          "block": "Block",
+          "checkbox": "Checkbox",
+          "section": "Section",
+          "text": "Multiline Text"
+        },
+        "visibility": {
+          "entry": "Attribute is displayed on the entity menu.",
+          "private": "Attribute only visible to members of the \"Admin\" role.",
+          "public": "Attribute visible to all members.",
+          "tab": "Attribute is displayed only on the Attributes tab."
+        }
+      },
+      "boosted": "Boosted",
+      "bulk": {
+        "errors": {
+          "admin": "Only campaign admins can change the private status of entities."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Override"
+          },
+          "helpers": {
+            "override": "If selected, permissions of the selected entities will be overwritten with these. If unchecked, the selected permissions will be added to the existing ones."
+          },
+          "title": "Change permissions for several entities"
+        },
+        "success": {
+          "permissions": "Permissions changed for {count} entity.|Permissions changed for {count} entities.",
+          "private": "{count} entity is now private|{count} entities are now private.",
+          "public": "{count} entity is now visible|{count} entities are now visible."
+        }
+      },
+      "cancel": "Cancel",
+      "click_modal": {
+        "close": "Close",
+        "confirm": "Confirm",
+        "title": "Confirm your action"
+      },
+      "copy_to_campaign": {
+        "panel": "Copy",
+        "title": "Copy '{name}' to another campaign"
+      },
+      "create": "Create",
+      "datagrid": {
+        "empty": "Nothing to show yet."
+      },
+      "delete_modal": {
+        "close": "Close",
+        "delete": "Delete",
+        "description": "Are you sure you want to remove {tag}?",
+        "mirrored": "Remove mirrored relation.",
+        "title": "Delete confirmation"
+      },
+      "destroy_many": {
+        "success": "Deleted {count} entity|Deleted {count} entities."
+      },
+      "edit": "Edit",
+      "errors": {
+        "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself."
+      },
+      "events": {
+        "hint": "Shown below is a list of all the Calendars in which this entity was added using the \"Add an event to a calendar\" interface."
+      },
+      "export": "Export",
+      "fields": {
+        "attribute_template": "Attribute Template",
+        "calendar": "Calendar",
+        "calendar_date": "Calendar Date",
+        "character": "Character",
+        "copy_attributes": "Copy Attributes",
+        "copy_notes": "Copy Entity Notes",
+        "creator": "Creator",
+        "dice_roll": "Dice Roll",
+        "entity": "Entity",
+        "entity_type": "Entity Type",
+        "entry": "Entry",
+        "event": "Event",
+        "excerpt": "Excerpt",
+        "family": "Family",
+        "files": "Files",
+        "header_image": "Header Image",
+        "image": "Image",
+        "is_private": "Private",
+        "is_star": "Pinned",
+        "item": "Item",
+        "location": "Location",
+        "name": "Name",
+        "organisation": "Organisation",
+        "race": "Race",
+        "tag": "Tag",
+        "tags": "Tags",
+        "tooltip": "Tooltip",
+        "visibility": "Visibility"
+      },
+      "files": {
+        "actions": {
+          "drop": "Click to Add or Drop a file",
+          "manage": "Manage Entity Files"
+        },
+        "errors": {
+          "max": "You have reached the maximum number ({max}) of files for this entity."
+        },
+        "files": "Uploaded Files",
+        "hints": {
+          "limit": "Each entity can have a maximum of {max} files uploaded to it.",
+          "limitations": "Supported formats: jpg, png, gif, and pdf. Max file size: {size}"
+        },
+        "title": "Entity Files for {name}"
+      },
+      "filter": "Filter",
+      "filters": {
+        "all": "Filter to all descendants",
+        "clear": "Clear Filters",
+        "direct": "Filter to direct descendants",
+        "filtered": "Showing {count} of {total} {entity}.",
+        "hide": "Hide Filters",
+        "show": "Show Filters",
+        "title": "Filters"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Add a calendar date"
+        },
+        "copy_options": "Copy Options"
+      },
+      "hidden": "Hidden",
+      "hints": {
+        "attribute_template": "Apply an attribute template directly when creating this entity.",
+        "calendar_date": "A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.",
+        "header_image": "This image is placed above the entity. For best results, use a wide image.",
+        "image_limitations": "Supported formats: jpg, png and gif. Max file size: {size}.",
+        "image_patreon": "Increase file size limit?",
+        "is_private": "If set to private, this entity will only be visible to members who are in the campaign's \"Admin\" role.",
+        "is_star": "Pinned elements will appear on the entity's menu",
+        "map_limitations": "Supported formats: jpg, png, gif and svg. Max file size: {size}.",
+        "tooltip": "Replace the automatically generated tooltip with the following contents.",
+        "visibility": "Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this."
+      },
+      "history": {
+        "created": "Created by <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Unknown",
+        "updated": "Last modified by <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "View entity log"
+      },
+      "image": {
+        "error": "We weren't able to get the image you requested. It could be that the website doesn't allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn't larger than {size}."
+      },
+      "is_private": "This entity is private and not visible by non-admin users.",
+      "linking_help": "How can I link to other entries?",
+      "manage": "Manage",
+      "move": {
+        "description": "Move this entity to another place",
+        "errors": {
+          "permission": "You aren't allowed to create entities of that type in the target campaign.",
+          "same_campaign": "You need to select another campaign to move the entity to.",
+          "unknown_campaign": "Unknown campaign."
+        },
+        "fields": {
+          "campaign": "New campaign",
+          "copy": "Make a copy",
+          "target": "New type"
+        },
+        "hints": {
+          "campaign": "You can also try to move this entity to another campaign.",
+          "copy": "Select this option if you want to create copy in the new campaign.",
+          "target": "Please be aware that some data might be lost when moving an element from one type to another."
+        },
+        "success": "Entity '{name}' moved.",
+        "success_copy": "Entity '{name}' copied.",
+        "title": "Move {name}"
+      },
+      "new_entity": {
+        "error": "Please review your values.",
+        "fields": {
+          "name": "Name"
+        },
+        "title": "New entity"
+      },
+      "or_cancel": "or <a href=\"{url}\">cancel</a>",
+      "panels": {
+        "appearance": "Appearance",
+        "attribute_template": "Attribute Template",
+        "calendar_date": "Calendar Date",
+        "entry": "Entry",
+        "general_information": "General Information",
+        "move": "Move",
+        "system": "System"
+      },
+      "permissions": {
+        "action": "Action",
+        "actions": {
+          "bulk": {
+            "add": "Add",
+            "remove": "Remove"
+          },
+          "delete": "Delete",
+          "edit": "Edit",
+          "entity_note": "Entity Notes",
+          "read": "Read"
+        },
+        "allowed": "Allowed",
+        "fields": {
+          "member": "Member",
+          "role": "Role"
+        },
+        "helper": "Use this interface to fine-tune which users and roles that can interact with this entity.",
+        "inherited": "This role already has this permission set for this entity type.",
+        "inherited_by": "This user is part of the '{role}' role which grants this permissions on this entity type.",
+        "success": "Permissions saved.",
+        "title": "Permissions"
+      },
+      "placeholders": {
+        "calendar": "Choose a calendar",
+        "character": "Choose a character",
+        "entity": "Entity",
+        "event": "Choose an event",
+        "family": "Choose a family",
+        "image_url": "You can upload an image from a URL instead",
+        "item": "Choose an item",
+        "location": "Choose a location",
+        "organisation": "Choose an organisation",
+        "race": "Choose a race",
+        "tag": "Choose a tag"
+      },
+      "relations": {
+        "actions": {
+          "add": "Add a relation"
+        },
+        "fields": {
+          "location": "Location",
+          "name": "Name",
+          "relation": "Relation"
+        },
+        "hint": "Relations between entities can be set up to represent their connections."
+      },
+      "remove": "Remove",
+      "rename": "Rename",
+      "save": "Save",
+      "save_and_close": "Save and Close",
+      "save_and_new": "Save and New",
+      "save_and_update": "Save and Update",
+      "save_and_view": "Save and View",
+      "search": "Search",
+      "select": "Select",
+      "tabs": {
+        "attributes": "Attributes",
+        "boost": "Boost",
+        "calendars": "Calendars",
+        "default": "Default",
+        "events": "Events",
+        "inventory": "Inventory",
+        "map-points": "Map Points",
+        "mentions": "Mentions",
+        "menu": "Menu",
+        "notes": "Entity Notes",
+        "permissions": "Permissions",
+        "relations": "Relations",
+        "tooltip": "Tooltip"
+      },
+      "update": "Update",
+      "users": {
+        "unknown": "Unknown"
+      },
+      "view": "View",
+      "visibilities": {
+        "admin": "Admin",
+        "all": "All",
+        "self": "Self"
+      }
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "en-US": {
+    "crud": {
+      "fields": {
+        "organisation": "Organization"
+      },
+      "placeholders": {
+        "organisation": "Choose an organization"
+      }
+    },
+    "randomisers": []
+  },
+  "es": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Crear nueva conversación",
+        "success": "Conversación '{name}' creada.",
+        "title": "Nueva Conversación"
+      },
+      "destroy": {
+        "success": "Conversación '{name}' eliminada."
+      },
+      "edit": {
+        "description": "Actualizar la conversación",
+        "success": "Conversación '{name}' actualizada.",
+        "title": "Conversación {name}"
+      },
+      "fields": {
+        "messages": "Mensajes",
+        "name": "Nombre",
+        "participants": "Participantes",
+        "target": "Objetivo",
+        "type": "Tipo"
+      },
+      "hints": {
+        "participants": "Por favor, añade participantes a la conversación."
+      },
+      "index": {
+        "add": "Nueva Conversación",
+        "description": "Gestiona las conversaciones de {name}.",
+        "header": "Conversaciones en {name}",
+        "title": "Conversaciones"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Mensaje eliminado."
+        },
+        "load_previous": "Cargar mensajes previos",
+        "placeholders": {
+          "message": "Tu mensaje"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "El participante {entity} se ha añadido a la conversación."
+        },
+        "description": "Añadir o eliminar participantes de una conversación",
+        "destroy": {
+          "success": "El participante {entity} se ha eliminado de la conversación."
+        },
+        "modal": "Participantes",
+        "title": "Participantes de {name}"
+      },
+      "placeholders": {
+        "name": "Nombre de la conversación",
+        "type": "Dentro del juego, Preparación, Argumento"
+      },
+      "show": {
+        "description": "Vista detallada de conversación",
+        "title": "Conversación {name}"
+      },
+      "tabs": {
+        "conversation": "Conversación",
+        "participants": "Participantes"
+      },
+      "targets": {
+        "characters": "Personajes",
+        "members": "Miembros"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Aplicar",
+        "back": "Atrás",
+        "copy": "Copiar",
+        "copy_to_campaign": "Copiar a campaña",
+        "explore_view": "Vista anidada",
+        "export": "Exportar",
+        "find_out_more": "Saber más",
+        "go_to": "Ir a {name}",
+        "more": "Más acciones",
+        "move": "Mover",
+        "new": "Nuevo",
+        "next": "Siguiente",
+        "private": "Privado",
+        "public": "Público"
+      },
+      "add": "Añadir",
+      "attributes": {
+        "actions": {
+          "add": "Añadir atributo",
+          "add_block": "Añadir un bloque",
+          "add_checkbox": "Añadir una casilla",
+          "add_text": "Añadir texto",
+          "apply_template": "Aplicar una plantilla de atributos",
+          "manage": "Administrar",
+          "remove_all": "Eliminar todos"
+        },
+        "create": {
+          "description": "Crear nuevo atributo",
+          "success": "Atributo {name} añadido a {entity}.",
+          "title": "Nuevo atributo para {name}"
+        },
+        "destroy": {
+          "success": "Atributo {name} de {entity} eliminado."
+        },
+        "edit": {
+          "description": "Actualizar un atributo existente",
+          "success": "Atributo {name} de {entity} actualizado.",
+          "title": "Actualizar atributo a {name}"
+        },
+        "fields": {
+          "attribute": "Atributo",
+          "community_templates": "Plantillas de la comunidad",
+          "is_private": "Atributos privados",
+          "is_star": "Fijado",
+          "template": "Plantilla",
+          "value": "Valor"
+        },
+        "helpers": {
+          "delete_all": "¿Seguro que quieres eliminar todos los atributos de esta entidad?"
+        },
+        "hints": {
+          "is_private": "Puedes ocultar todos los atributos de una entidad a todos los miembros no administradores haciéndola privada."
+        },
+        "index": {
+          "success": "Atributos de {entity} actualizados.",
+          "title": "Atributos de {name}"
+        },
+        "placeholders": {
+          "attribute": "Número de conquistas, Iniciativa, Población",
+          "block": "Nombre del bloque",
+          "checkbox": "Nombre de la casilla",
+          "section": "Nombre de la sección",
+          "template": "Seleccionar plantilla",
+          "value": "Valor del atributo"
+        },
+        "template": {
+          "success": "Plantilla de atributos {name} aplicada en {entity}",
+          "title": "Aplicar plantilla de atributos a {name}"
+        },
+        "types": {
+          "attribute": "Atributo",
+          "block": "Bloque",
+          "checkbox": "Casilla",
+          "section": "Sección",
+          "text": "Texto multilínea"
+        },
+        "visibility": {
+          "entry": "El atributo se muestra en el menú de la entidad.",
+          "private": "Atributo visible solo para miembros con el rol \"Admin\".",
+          "public": "Atributo visible por todos los miembros.",
+          "tab": "El atributo se muestra solo en la pestaña de Atributos."
+        }
+      },
+      "boosted": "Mejorada",
+      "bulk": {
+        "errors": {
+          "admin": "Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Ignorar"
+          },
+          "helpers": {
+            "override": "Si está seleccionado, los permisos de las entidades seleccionadas serán ignorados y en cambio usarán estos ajustes. Si no está seleccionado, los estos permisos se añadirán a los existentes."
+          },
+          "title": "Cambiar permisos a varias entidades"
+        },
+        "success": {
+          "permissions": "Permisos cambiados en {count} entidad.|Permisos cambiados en {count} entidades.",
+          "private": "{count} entidad es ahora privada|{count} entidades son ahora privadas.",
+          "public": "{count} entidad es ahora visible|{count} son ahora visibles."
+        }
+      },
+      "cancel": "Cancelar",
+      "click_modal": {
+        "close": "Cerrar",
+        "confirm": "Confirmar",
+        "title": "Confirmar acción"
+      },
+      "copy_to_campaign": {
+        "panel": "Copiar",
+        "title": "Copiar '{name}' a otra campaña"
+      },
+      "create": "Crear",
+      "datagrid": {
+        "empty": "Aún no hay nada que mostrar."
+      },
+      "delete_modal": {
+        "close": "Cerrar",
+        "delete": "Eliminar",
+        "description": "¿Seguro que quieres eliminar {tag}?",
+        "mirrored": "Eliminar relación reflejada",
+        "title": "Eliminar"
+      },
+      "destroy_many": {
+        "success": "{count} entidad eliminada|{count} entidades eliminadas."
+      },
+      "edit": "Editar",
+      "errors": {
+        "node_must_not_be_a_descendant": "Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo."
+      },
+      "events": {
+        "hint": "Los eventos del calendario asociados a esta entidad se muestran aquí."
+      },
+      "export": "Exportar",
+      "fields": {
+        "attribute_template": "Plantilla de atributos",
+        "calendar": "Calendario",
+        "calendar_date": "Fecha del calendario",
+        "character": "Personaje",
+        "copy_attributes": "Copiar atributos",
+        "copy_notes": "Copiar notas de la entidad",
+        "creator": "Creador",
+        "dice_roll": "Tirada de dados",
+        "entity": "Entidad",
+        "entity_type": "Tipo de entidad",
+        "entry": "Entrada",
+        "event": "Evento",
+        "excerpt": "Extracto",
+        "family": "Familia",
+        "files": "Archivos",
+        "header_image": "Imagen de cabecera",
+        "image": "Imagen",
+        "is_private": "Privado",
+        "is_star": "Fijada",
+        "item": "Objeto",
+        "location": "Localización",
+        "name": "Nombre",
+        "organisation": "Organización",
+        "race": "Raza",
+        "tag": "Etiqueta",
+        "tags": "Etiquetas",
+        "tooltip": "Descripción emergente",
+        "visibility": "Visibilidad"
+      },
+      "files": {
+        "actions": {
+          "drop": "Haz clic para añadir o arrastra un archivo",
+          "manage": "Administrar archivos de la entidad"
+        },
+        "errors": {
+          "max": "Has alcanzado el número máximo ({max}) de archivos para esta entidad."
+        },
+        "files": "Archivos subidos",
+        "hints": {
+          "limit": "Cada entidad puede tener un máximo de {max} archivos.",
+          "limitations": "Formatos soportados: jpg, png, gif y pdf. Tamaño máximo de archivo: {size}"
+        },
+        "title": "Archivos de {name}"
+      },
+      "filter": "Filtrar",
+      "filters": {
+        "all": "Mostrar todos los descendientes",
+        "clear": "Quitar filtros",
+        "direct": "Filtrar solo los descendientes directos",
+        "filtered": "Mostrando {count} de {total} {entity}.",
+        "hide": "Ocultar filtros",
+        "show": "Mostrar filtros",
+        "title": "Filtros"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Añadir fecha de calendario"
+        },
+        "copy_options": "Opciones de copia"
+      },
+      "hidden": "Oculto",
+      "hints": {
+        "attribute_template": "Aplica una plantilla de atributos directamente al crear esta entidad.",
+        "calendar_date": "Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.",
+        "header_image": "Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.",
+        "image_limitations": "Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: {size}.",
+        "image_patreon": "Aumenta el límite apoyándonos en Patreon",
+        "is_private": "Ocultar a los \"Invitados\"",
+        "is_star": "Los elementos fijados aparecerán en el menú principal de la entidad.",
+        "map_limitations": "Formatos soportados: jpg, png, gif y svg. Tamaño máximo del archivo: {size}.",
+        "tooltip": "Reemplaza la descripción emergente automática con uno de los siguientes contenidos.",
+        "visibility": "Al seleccionar \"Administrador\", solo los miembros con el rol de administrador podrán ver esto. \"Solo yo\" significa que solo tú puedes ver esto."
+      },
+      "history": {
+        "created": "Creado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Desconocido",
+        "updated": "Última modificación por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "Historial de cambios de la entidad"
+      },
+      "image": {
+        "error": "No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no es válido."
+      },
+      "is_private": "Esta entidad es privada y no será visible por los usuarios Invitados.",
+      "linking_help": "¿Como puedo enlazar otras entradas?",
+      "manage": "Administrar",
+      "move": {
+        "description": "Mover esta entidad a otro lugar",
+        "errors": {
+          "permission": "No tienes permiso para crear entidades de este tipo en la campaña seleccionada.",
+          "same_campaign": "Debes seleccionar otra campaña donde mover la entidad.",
+          "unknown_campaign": "Campaña desconocida."
+        },
+        "fields": {
+          "campaign": "Nueva campaña",
+          "copy": "Hacer una copia",
+          "target": "Nuevo tipo"
+        },
+        "hints": {
+          "campaign": "También puedes intentar mover esta entidad a otra campaña.",
+          "copy": "Selecciona esta opción si quieres crear una copia en la nueva campaña.",
+          "target": "Por favor ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro."
+        },
+        "success": "Entidad '{name}' movida.",
+        "success_copy": "Entidad '{name}' copiada.",
+        "title": "Mover {name}"
+      },
+      "new_entity": {
+        "error": "Por favor revisa lo introducido.",
+        "fields": {
+          "name": "Nombre"
+        },
+        "title": "Nueva entidad"
+      },
+      "or_cancel": "o <a href=\"{url}\">Cancelar</a>",
+      "panels": {
+        "appearance": "Apariencia",
+        "attribute_template": "Plantilla de atributos",
+        "calendar_date": "Fecha de calendario",
+        "entry": "Presentación",
+        "general_information": "Información general",
+        "move": "Mover",
+        "system": "Sistema"
+      },
+      "permissions": {
+        "action": "Acción",
+        "actions": {
+          "bulk": {
+            "add": "Añadir",
+            "remove": "Eliminar"
+          },
+          "delete": "Eliminar",
+          "edit": "Editar",
+          "entity_note": "Notas de entidad",
+          "read": "Leer"
+        },
+        "allowed": "Permitido",
+        "fields": {
+          "member": "Miembro",
+          "role": "Rol"
+        },
+        "helper": "Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.",
+        "inherited": "Este rol ya tiene este permiso en esta entidad.",
+        "inherited_by": "Este usuario forma parte del rol \"{role}\", que le otorga este permiso en esta entidad.",
+        "success": "Permisos guardados.",
+        "title": "Permisos"
+      },
+      "placeholders": {
+        "calendar": "Escoge un calendario",
+        "character": "Escoge un personaje",
+        "entity": "Entidad",
+        "event": "Elige un evento",
+        "family": "Elige una familia",
+        "image_url": "Puedes subir una imagen desde una URL",
+        "item": "Elige un objeto",
+        "location": "Escoge una localización",
+        "organisation": "Elige una organización",
+        "race": "Elige una raza",
+        "tag": "Elige una etiqueta"
+      },
+      "relations": {
+        "actions": {
+          "add": "Añadir una relación"
+        },
+        "fields": {
+          "location": "Localización",
+          "name": "Nombre",
+          "relation": "Relación"
+        },
+        "hint": "Se pueden relacionar entidades para representar sus conexiones."
+      },
+      "remove": "Eliminar",
+      "rename": "Renombrar",
+      "save": "Guardar",
+      "save_and_close": "Guardar y Cerrar",
+      "save_and_new": "Guardar y Crear nuevo",
+      "save_and_update": "Guardar y Seguir editando",
+      "save_and_view": "Guardar y Ver",
+      "search": "Buscar",
+      "select": "Seleccionar",
+      "tabs": {
+        "attributes": "Atributos",
+        "boost": "Mejorar",
+        "calendars": "Calendarios",
+        "default": "Por defecto",
+        "events": "Eventos",
+        "inventory": "Inventario",
+        "map-points": "Puntos del mapa",
+        "mentions": "Menciones",
+        "menu": "Menú",
+        "notes": "Notas",
+        "permissions": "Permisos",
+        "relations": "Relaciones",
+        "tooltip": "Descripción emergente"
+      },
+      "update": "Actualizar",
+      "users": {
+        "unknown": "Desconocido"
+      },
+      "view": "Ver",
+      "visibilities": {
+        "admin": "Admin",
+        "all": "Todos",
+        "self": "Solo yo"
+      }
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "fr": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Créer une nouvelle conversation",
+        "success": "Conversation '{name}' créée.",
+        "title": "Nouvelle Conversation"
+      },
+      "destroy": {
+        "success": "Conversation '{name}' supprimée."
+      },
+      "edit": {
+        "description": "Modifier la conversation",
+        "success": "Conversation '{name}' modifiée.",
+        "title": "Conversation {name}"
+      },
+      "fields": {
+        "messages": "Messages",
+        "name": "Nom",
+        "participants": "Participants",
+        "target": "CIble",
+        "type": "Type"
+      },
+      "hints": {
+        "participants": "Ajoute des participants à la conversation."
+      },
+      "index": {
+        "add": "Nouvelle Conversation",
+        "description": "Gérer les conversations de {name}.",
+        "header": "Conversations dans {name}",
+        "title": "Conversations"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Message supprimé."
+        },
+        "load_previous": "Messages précédants",
+        "placeholders": {
+          "message": "Ton message"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "Participant {entity} ajouté à la conversation."
+        },
+        "description": "Ajouter ou retirer des participants à une conversation",
+        "destroy": {
+          "success": "Participant {entity} retiré de la conversation."
+        },
+        "modal": "Participants",
+        "title": "Participants de {name}"
+      },
+      "placeholders": {
+        "name": "Nom de la conversation",
+        "type": "In Game, Préparation, Quête"
+      },
+      "show": {
+        "description": "Vue détaillée d'une conversation",
+        "title": "Conversation {name}"
+      },
+      "tabs": {
+        "conversation": "Conversation",
+        "participants": "Participants"
+      },
+      "targets": {
+        "characters": "Personnages",
+        "members": "Membres"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Appliquer",
+        "back": "Retour",
+        "copy": "Copier",
+        "copy_to_campaign": "Copier vers une campagne",
+        "explore_view": "Vue Imbriquée",
+        "export": "Export",
+        "find_out_more": "En savoir plus",
+        "go_to": "Aller à {name}",
+        "more": "Autres Actions",
+        "move": "Déplacer",
+        "new": "Nouveau",
+        "next": "Prochain",
+        "private": "Privé",
+        "public": "Publique"
+      },
+      "add": "Ajouter",
+      "attributes": {
+        "actions": {
+          "add": "Ajouter un attribut",
+          "add_block": "Ajouter un block",
+          "add_checkbox": "Ajouter une case à docher",
+          "add_text": "Ajouter un text",
+          "apply_template": "Appliquer un modèle d'attribut",
+          "manage": "Gérer",
+          "remove_all": "Tout supprimer"
+        },
+        "create": {
+          "description": "Créer un nouvel attribut",
+          "success": "Attribut {name} ajouté à {entity}.",
+          "title": "Nouvel attribut pour {name}"
+        },
+        "destroy": {
+          "success": "Attribut {name} supprimé de {entity}."
+        },
+        "edit": {
+          "description": "Modifier un attribut existant",
+          "success": "Attribut {name} modifié pour {entity}.",
+          "title": "Modifier l'attribut pour {name}"
+        },
+        "fields": {
+          "attribute": "Attribut",
+          "community_templates": "Modèles Communautaire",
+          "is_private": "Attributs privés",
+          "is_star": "Épinglé",
+          "template": "Modèle",
+          "value": "Valeur"
+        },
+        "helpers": {
+          "delete_all": "Es-tu certain de vouloir supprimer tous les attributs de cette entité?"
+        },
+        "hints": {
+          "is_private": "Tous les attributs d'une entité peuvent être cachés des membres non-admin."
+        },
+        "index": {
+          "success": "Attributs modifiés pour {entity}.",
+          "title": "Attributs pour {name}"
+        },
+        "placeholders": {
+          "attribute": "Nombre de quêtes, niveau de difficulté, initiative, population",
+          "block": "Nom du bloque",
+          "checkbox": "Nom de la case à cocher",
+          "section": "Nom de la section",
+          "template": "Sélectionner un modèle",
+          "value": "Valeur de l'attribut"
+        },
+        "template": {
+          "success": "Modèle d'attribut {name} appliqué pour {entity}.",
+          "title": "Appliquer un modèle d'attribut pour {name}"
+        },
+        "types": {
+          "attribute": "Attribut",
+          "block": "Block",
+          "checkbox": "Case à cocher",
+          "section": "Section",
+          "text": "Texte multiligne"
+        },
+        "visibility": {
+          "entry": "Attribut affiché sur le menu d'entité.",
+          "private": "Attribut seulement visible aux membres du rôle \"Admin\".",
+          "public": "Attribut visible par tous les membres.",
+          "tab": "Attribut visible sous l'onglet Attributs."
+        }
+      },
+      "boosted": "Boosté",
+      "bulk": {
+        "errors": {
+          "admin": "Seulement les membres administrateur de la campagne peuvent changer le status des entités."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Remplacer"
+          },
+          "helpers": {
+            "override": "Si sélectionné, les permissions des entités sélectionnées seront remplacer par ceux-ci. Si non-sélectionné, les permissions sélectionnées seront ajoutées à celles existantes."
+          },
+          "title": "Changer les permissions pour plusieurs entités"
+        },
+        "success": {
+          "permissions": "Permissions changées pour {count} entité. |Permissions changées pour {count} entités.",
+          "private": "{count} entité est maintenant privée.|{count} entitées sont maintenant privées.",
+          "public": "{count} entité est maintenant visible.|{count} entitées sont maintenant visibles."
+        }
+      },
+      "cancel": "Annuler",
+      "click_modal": {
+        "close": "Fermer",
+        "confirm": "Confirmer",
+        "title": "Confirme ton action"
+      },
+      "copy_to_campaign": {
+        "panel": "Copier",
+        "title": "Copier '{name}' vers une autre campagne"
+      },
+      "create": "Créer",
+      "datagrid": {
+        "empty": "Rien à afficher."
+      },
+      "delete_modal": {
+        "close": "Fermer",
+        "delete": "Supprimer",
+        "description": "Est-tu sûr de vouloir supprimer {tag}?",
+        "mirrored": "Supprimer la relation liée.",
+        "title": "Confirmation la suppression"
+      },
+      "destroy_many": {
+        "success": "{count} élément supprimé.|{count} éléments supprimés."
+      },
+      "edit": "Modifier",
+      "errors": {
+        "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même."
+      },
+      "events": {
+        "hint": "Les événements de calendrier peuvent être associé à cette entité et être affiché ici."
+      },
+      "export": "Export",
+      "fields": {
+        "attribute_template": "Modèle d'attribut",
+        "calendar": "Calendrier",
+        "calendar_date": "Date calendrier",
+        "character": "Personnage",
+        "copy_attributes": "Copier les attributs",
+        "copy_notes": "Copier les notes d'entité",
+        "creator": "Créateur",
+        "dice_roll": "Jet de dés",
+        "entity": "Entité",
+        "entity_type": "Type d'entité",
+        "entry": "Entrée",
+        "event": "Evénement",
+        "excerpt": "Extrait",
+        "family": "Famille",
+        "files": "Fichiers",
+        "header_image": "Image d'en-tête",
+        "image": "Image",
+        "is_private": "Privé",
+        "is_star": "Epinglé",
+        "item": "Objet",
+        "location": "Lieu",
+        "name": "Nom",
+        "organisation": "Organisation",
+        "race": "Race",
+        "tag": "Etiquette",
+        "tags": "Etiquettes",
+        "tooltip": "Infobulle",
+        "visibility": "Visibilité"
+      },
+      "files": {
+        "actions": {
+          "drop": "Ajouter un fichier en cliquant ou en glissant déposant",
+          "manage": "Gérer les fichiers d'entité"
+        },
+        "errors": {
+          "max": "Nombre maximal de fichier ({max}) atteint pour cette entité."
+        },
+        "files": "Fichiers uploadé",
+        "hints": {
+          "limit": "Chaque entité peut avoir un nombre maximal de {max} fichiers uploadé.",
+          "limitations": "Formats supportés: jpg, png, gif et pdf. Taille maximale: {size}"
+        },
+        "title": "Fichiers d'entité pour {name}"
+      },
+      "filter": "Filtre",
+      "filters": {
+        "all": "Afficher tous les descendants",
+        "clear": "Effacer les filtres",
+        "direct": "Affichier seulement descendants directs",
+        "filtered": "Affichant {count} de {total} {entity}.",
+        "hide": "Cacher les filtres",
+        "show": "Afficher les filtres",
+        "title": "Filtres"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Ajouter une date de calendrier"
+        },
+        "copy_options": "Option de copie"
+      },
+      "hidden": "Caché",
+      "hints": {
+        "attribute_template": "Appliquer un modèl d'attribut lors de la création de cette entité.",
+        "calendar_date": "Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.",
+        "header_image": "Cette image s'affiche au dela de l'entité. Les images larges mènent a un meilleur résultat.",
+        "image_limitations": "Formats supportés: jpg, png et gif. Taille max: {size}.",
+        "image_patreon": "Augmenter la taille limite?",
+        "is_private": "Cacher des membres de type non-Admin",
+        "is_star": "Les éléments épinglés sont affichés sur le menu de l'entité.",
+        "map_limitations": "Formats supportés: jpg, png, gif et svg. Taille maximale: {size}.",
+        "tooltip": "Remplace l'infobulle automatiquement généré avec le text ci-dessous.",
+        "visibility": "Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité \"Soit-même\" signifie que seulement tu peux le voir."
+      },
+      "history": {
+        "created": "Créé par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Inconnu",
+        "updated": "Dernière modification par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "Visionner les journaux de l'entité"
+      },
+      "image": {
+        "error": "Impossible de récupérer l'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n'est plus valide."
+      },
+      "is_private": "Cet élément est privé et pas visible.",
+      "linking_help": "Comment lier vers d'autres éléments?",
+      "manage": "Gérer",
+      "move": {
+        "description": "Déplacer cet élément à un nouveau endroit",
+        "errors": {
+          "permission": "Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.",
+          "same_campaign": "Une autre campagne doit être sélectionnée pour y déplacer l'entité.",
+          "unknown_campaign": "Campagne inconnue."
+        },
+        "fields": {
+          "campaign": "Nouvelle campagne",
+          "copy": "Créer une copie",
+          "target": "Nouveau type"
+        },
+        "hints": {
+          "campaign": "Il est aussi possible de déplacer cette entité vers une autre campagne.",
+          "copy": "Activer cette option créé une copie dans la nouvelle campagne.",
+          "target": "Attention! Certaines informations peuvent être perdues lors du déplacement d'un élément."
+        },
+        "success": "Elément {name} déplacé.",
+        "success_copy": "Entité '{name}' copiée.",
+        "title": "Déplacer {name} autre part"
+      },
+      "new_entity": {
+        "error": "Vérifier les valeures.",
+        "fields": {
+          "name": "Nom"
+        },
+        "title": "Nouvel élément"
+      },
+      "or_cancel": "ou <a href=\"{url}\">annuler</a>",
+      "panels": {
+        "appearance": "Apparence",
+        "attribute_template": "Modèle d'attribut",
+        "calendar_date": "Date Calendrier",
+        "entry": "Entrée",
+        "general_information": "Information Generale",
+        "move": "Déplacer",
+        "system": "Système"
+      },
+      "permissions": {
+        "action": "Action",
+        "actions": {
+          "bulk": {
+            "add": "Ajouter",
+            "remove": "Retirer"
+          },
+          "delete": "Supprimer",
+          "edit": "Modifier",
+          "entity_note": "Notes d'entité",
+          "read": "Lire"
+        },
+        "allowed": "Permis",
+        "fields": {
+          "member": "Membre",
+          "role": "Rôle"
+        },
+        "helper": "En utilisant cette interface, il est possible d'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.",
+        "inherited": "Ce rôle a déjà cette permission pour ce type d'entité.",
+        "inherited_by": "Cet utilisateur fait partie du rôle {role} qui permet cette permission pour ce type d'entité.",
+        "success": "Permissions enregistrées.",
+        "title": "Permissions"
+      },
+      "placeholders": {
+        "calendar": "Choix du calendrier",
+        "character": "Choix du personnage",
+        "entity": "Entité",
+        "event": "Choix de l'événement",
+        "family": "Choix de la famille",
+        "image_url": "Ou depuis une URL",
+        "item": "Choix d'un objet",
+        "location": "Choix du lieu",
+        "organisation": "Choix d'une organisation",
+        "race": "Choix d'une race",
+        "tag": "Choix d'une étiquette"
+      },
+      "relations": {
+        "actions": {
+          "add": "Ajouter une relation"
+        },
+        "fields": {
+          "location": "Lieu",
+          "name": "Nom",
+          "relation": "Relation"
+        },
+        "hint": "Des relations entre les entités peuvent être définies pour représenter leur connexion."
+      },
+      "remove": "Supprimer",
+      "rename": "Renommer",
+      "save": "Enregistrer",
+      "save_and_close": "Enregistrer et Fermer",
+      "save_and_new": "Enregistrer et Nouveau",
+      "save_and_update": "Enregistrer et continuer la modification",
+      "save_and_view": "Enregistrer et Afficher",
+      "search": "Rechercher",
+      "select": "Sélection",
+      "tabs": {
+        "attributes": "Attributs",
+        "boost": "Boost",
+        "calendars": "Calendriers",
+        "default": "Défaut",
+        "events": "Événements",
+        "inventory": "Inventaire",
+        "map-points": "Points de carte",
+        "mentions": "Mentions",
+        "menu": "Menu",
+        "notes": "Notes",
+        "permissions": "Permissions",
+        "relations": "Relations",
+        "tooltip": "Infobulle"
+      },
+      "update": "Modifier",
+      "users": {
+        "unknown": "Inconnu"
+      },
+      "view": "Voir",
+      "visibilities": {
+        "admin": "Admin",
+        "all": "Tous",
+        "self": "Sois-même"
+      }
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "hu": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Új beszélgetés létrehozása",
+        "success": "'{name}' beszélgetést létrehoztuk.",
+        "title": "Új beszélgetés"
+      },
+      "destroy": {
+        "success": "'{name}' beszélgetést eltávolítottuk."
+      },
+      "edit": {
+        "description": "A beszélgetés frissítése",
+        "success": "'{name}' beszélgetést frissítettük.",
+        "title": "{name} beszélgetés"
+      },
+      "fields": {
+        "messages": "Üzenetek",
+        "name": "Megnevezés",
+        "participants": "Résztvevők",
+        "target": "Célpont",
+        "type": "Típus"
+      },
+      "hints": {
+        "participants": "Kérjük, adj résztvevőket a beszélgetésedhez az {icon} ikonra kattintva a jobb felső részen."
+      },
+      "index": {
+        "add": "Új beszélgetés",
+        "description": "{name} kategória kezelése",
+        "header": "Beszélgetés itt: {name}",
+        "title": "Beszélgetés"
+      },
+      "messages": {
+        "load_previous": "Előző üzenet betöltése",
+        "placeholders": {
+          "message": "Üzeneted"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "{entity} résztvevőt hozzáadtuk a beszélgetéshez."
+        },
+        "description": "Résztvevők hozzáadása vagy eltávolítása a beszélgetésből",
+        "destroy": {
+          "success": "{entity} résztvevőt eltávolítottuk a beszélgetésből."
+        },
+        "modal": "Résztvevők",
+        "title": "{name} résztvevői"
+      },
+      "placeholders": {
+        "name": "A beszélgetés megnevezése",
+        "type": "Játékbeli, előkészület, cselekmény"
+      },
+      "show": {
+        "description": "Egy beszélgetés részletes megjelenítése",
+        "title": "{name} beszélgetés"
+      },
+      "tabs": {
+        "conversation": "Beszélgetés",
+        "participants": "Résztvevők"
+      },
+      "targets": {
+        "characters": "Karakterek",
+        "members": "Tagok"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Alkalmaz",
+        "back": "Vissza",
+        "copy": "Másolás",
+        "explore_view": "Hierarchikus nézet",
+        "export": "Export",
+        "find_out_more": "Tudj meg többet!",
+        "go_to": "Ugrás {name} entitáshoz",
+        "more": "Több művelet",
+        "move": "Mozgatás",
+        "new": "Új",
+        "next": "Következő",
+        "private": "Privát",
+        "public": "Nyilvános"
+      },
+      "add": "Hozzáadás",
+      "attributes": {
+        "actions": {
+          "add": "Tulajdonság hozzáadása",
+          "add_block": "Blokk hozzáadása",
+          "add_checkbox": "Jelölőnégyzet hozzáadása",
+          "add_text": "Szöveg hozzáadása",
+          "apply_template": "Tulajdonságsablon alkalmazása",
+          "manage": "Kezelés"
+        },
+        "create": {
+          "description": "Új tulajdonság létrehozása",
+          "success": "{name} tulajdonságot hozzáadtuk {entity} entitáshoz.",
+          "title": "{name} entitáshoz új tulajdonság hozzáadása"
+        },
+        "destroy": {
+          "success": "{entity} {name} tulajdonságát eltávolítottuk."
+        },
+        "edit": {
+          "description": "Létező entitás frissítése",
+          "success": "{entity} {name} tulajdonságát frissítettük.",
+          "title": "{name} tulajdonságnak frissítése"
+        },
+        "fields": {
+          "attribute": "Tulajdonság",
+          "community_templates": "Közösségi sablonok",
+          "template": "Sablon",
+          "value": "Érték"
+        },
+        "index": {
+          "success": "{entity} számára frissítettük a tulajdonságokat.",
+          "title": "Tulajdonságok {name} számára"
+        },
+        "placeholders": {
+          "attribute": "Hódítások száma, Kihívási érték, kezdeményezés, népesség",
+          "block": "Blokk megnevezése",
+          "checkbox": "Jelölőnégyzet megnevezése",
+          "template": "Válassz ki egy sablont!",
+          "value": "A tulajdonság értéke"
+        },
+        "template": {
+          "success": "{name} tulajdonságsablont alkalmaztuk {entity} entátáshoz.",
+          "title": "{name} számára tulajdonságsablon alkalmazása"
+        },
+        "types": {
+          "attribute": "Tulajdonság",
+          "block": "Blokk",
+          "checkbox": "Jelölőnégyzet",
+          "text": "Többsoros szöveg"
+        },
+        "visibility": {
+          "private": "A tulajdonság csak az \"Admin\" szerepű tagok számára látható.",
+          "public": "A tulajdonság minden tag számára látható."
+        }
+      },
+      "bulk": {
+        "errors": {
+          "admin": "Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát."
+        },
+        "success": {
+          "private": "{count} entitás most már privát|{count} entitás most már privát.",
+          "public": "{count} entitás most már látható|{count} entitás most már látható."
+        }
+      },
+      "cancel": "Mégse",
+      "click_modal": {
+        "close": "Bezárás",
+        "confirm": "Megerősítés",
+        "title": "Igazold vissza az akciódat!"
+      },
+      "create": "Létrehozás",
+      "datagrid": {
+        "empty": "Nincs megjeleníthető adat"
+      },
+      "delete_modal": {
+        "close": "Bezárás",
+        "delete": "Törlés",
+        "description": "Biztos, hogy eltávolítod?",
+        "title": "Törlés megerősítése"
+      },
+      "destroy_many": {
+        "success": "{count} entitást töröltünk|{count} entitást töröltünk."
+      },
+      "edit": "Szerkesztés",
+      "errors": {
+        "node_must_not_be_a_descendant": "Érvénytelen csomópont (címke, előd helyszín): saját maga leszármazottja lehet."
+      },
+      "events": {
+        "hint": "Ez egy lista minden naptárról, amihez ezt az entitást hozzáadták az \"Esemény hozzáadása a naptárhoz\" felületen."
+      },
+      "export": "Export",
+      "fields": {
+        "attribute_template": "Tulajdonságsablon",
+        "calendar": "Naptár",
+        "calendar_date": "Naptári dátum",
+        "character": "Karakter",
+        "copy_attributes": "Tulajdonság másolása",
+        "copy_notes": "Entitásjegyzetek másolása",
+        "creator": "Létrehozó",
+        "dice_roll": "Dobás",
+        "entity": "Entitás",
+        "entry": "Bejegyzés",
+        "event": "Esemény",
+        "excerpt": "Kivonat",
+        "family": "Család",
+        "files": "Állományok",
+        "image": "Kép",
+        "is_private": "Privát",
+        "item": "Tárgy",
+        "location": "Helyszín",
+        "name": "Név",
+        "organisation": "Szervezet",
+        "race": "Faj",
+        "tag": "Címke",
+        "tags": "Címkék"
+      },
+      "files": {
+        "actions": {
+          "drop": "Klikkelj ide egy állomány hozzáadásához vagy kidobásához",
+          "manage": "Az entitás állományainak kezelése"
+        },
+        "errors": {
+          "max": "Elérted az entitáshoz rendelhető állományok maximális számát ({max})."
+        },
+        "files": "Feltöltött állomány",
+        "hints": {
+          "limit": "Minden entitáshoz maximum {max} állomány tölthető fel.",
+          "limitations": "Támogatott formátumok: jpg, png, gif és pdf. Maximális méret: {size}"
+        },
+        "title": "{name} állományai"
+      },
+      "filter": "Szűrő",
+      "filters": {
+        "all": "Szűrés minden leszármazottra",
+        "clear": "Szűrők törlése",
+        "direct": "Szűrés közvetlen leszármazottakra",
+        "hide": "Szűrők elrejtése",
+        "show": "Szűrők megmutatása",
+        "title": "Szűrők"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Naptári dátum hozzáadása"
+        },
+        "copy_options": "Másolási lehetőségek"
+      },
+      "hidden": "Rejtett",
+      "hints": {
+        "attribute_template": "Közvetlenül is alkalmazhatsz egy tulajdonságsablont, amikor létrehozod ezt az entitást.",
+        "calendar_date": "Egy naptári dátum könnyű szűrést tesz lehetővé a listákban, és fenntart egy naptári eseményt is a választott naptárban.",
+        "image_limitations": "Támogatott formátumok: jpg, png és gif. Maximális állományméret: {size}.",
+        "image_patreon": "Megnöveled az állományméret korlátját?",
+        "is_private": "Ha privátnak állítod be, ezt az entitást csak a kampány \"Admin\" szereplői fogják látni.",
+        "map_limitations": "Támogatott formátumok: jpg, png, gif és svg. Maximális állományméret: {size}."
+      },
+      "history": {
+        "created": "Létrehozás: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Ismeretlen",
+        "updated": "Utolsó módosítás: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "Entitásnapló megtekintése"
+      },
+      "image": {
+        "error": "Nem érjük el a kívánt képet. Lehet, hogy a honlap nem engedi, hogy letöltsük a képet (ilyen a Squarespace és a DeviantArt), vagy a link nem érvényes már. Kérjük, arról is bizonyosodj meg, hogy a kép nem nagyobb, mint {size}."
+      },
+      "is_private": "Ez az entitás privát, így nem látható a nem-admin felhasználók számára.",
+      "linking_help": "Hogyan hozhatok létre linket más entitásokhoz?",
+      "manage": "Kezelés",
+      "move": {
+        "description": "Az entitás más helyre mozgatása",
+        "errors": {
+          "permission": "Nincs engedélyed ilyen tipusú entitás létrehozására ebben a kampányban.",
+          "same_campaign": "Ki kell választanod egy másik kampányt, ahová az entitás szeretnéd mozgatni.",
+          "unknown_campaign": "Ismeretlen kampány."
+        },
+        "fields": {
+          "campaign": "Új kampány",
+          "target": "Új típus"
+        },
+        "hints": {
+          "campaign": "Megpróbálhatod egy másik kampányba mozgatni ezt az entitást.",
+          "target": "Kérjük, ne felejtsd el, hogy néhány adat elveszhet, amikor egy elemet az egyik típusból egy másikban mozgatod."
+        },
+        "success": "'{name}' entitást átmozgattuk.",
+        "title": "{name} mozgatása"
+      },
+      "new_entity": {
+        "error": "Kérjük, nézd meg jól az értékeket!",
+        "fields": {
+          "name": "Név"
+        },
+        "title": "Új entitás"
+      },
+      "or_cancel": "vagy <a href=\"{url}\">mégse</a>",
+      "panels": {
+        "appearance": "Megjelenés",
+        "attribute_template": "Tulajdonságsablon",
+        "calendar_date": "Naptári dátum",
+        "entry": "Bejegyzés",
+        "general_information": "Általános információ",
+        "move": "Mozgatás",
+        "system": "Rendszer"
+      },
+      "permissions": {
+        "action": "Akció",
+        "actions": {
+          "delete": "Törlés",
+          "edit": "Szerkesztés",
+          "read": "Olvasás"
+        },
+        "allowed": "Engedélyezett",
+        "fields": {
+          "member": "Tag",
+          "role": "Szerep"
+        },
+        "helper": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.",
+        "success": "Engedélyeket elmentettük.",
+        "title": "Engedélyek"
+      },
+      "placeholders": {
+        "calendar": "Válassz egy naptárat!",
+        "character": "Válassz egy karaktert!",
+        "entity": "Entitás",
+        "event": "Válassz egy eseményt!",
+        "family": "Válassz egy családot!",
+        "image_url": "Egy URL-címről is feltölthetsz képet",
+        "item": "Válassz egy tárgyat!",
+        "location": "Válassz egy helyszínt!",
+        "organisation": "Válassz egy szervezetet!",
+        "race": "Válassz egy fajt!",
+        "tag": "Válassz egy címkét!"
+      },
+      "relations": {
+        "actions": {
+          "add": "Hozz létre egy kapcsolatot"
+        },
+        "fields": {
+          "location": "Helyszín",
+          "name": "Név",
+          "relation": "Kapcsolat"
+        },
+        "hint": "Az entitások közötti kapcsolatok segítenek meghatározni a viszonyukat."
+      },
+      "remove": "Eltávolítás",
+      "rename": "Átnevezés",
+      "save": "Mentés",
+      "save_and_close": "Mentés és bezárás",
+      "save_and_new": "Mentés és új",
+      "save_and_update": "Mentés és frissítés",
+      "save_and_view": "Mentés és megtekintés",
+      "search": "Keresés",
+      "select": "Kiválasztás",
+      "tabs": {
+        "attributes": "Tulajdonságok",
+        "calendars": "Naptárak",
+        "default": "Alapértelmezett",
+        "events": "Események",
+        "map-points": "Térképi pontok",
+        "mentions": "Említések",
+        "menu": "Menü",
+        "notes": "Jegyzetek",
+        "permissions": "Engedélyek",
+        "relations": "Kapcsolatok"
+      },
+      "update": "Frissítés",
+      "users": {
+        "unknown": "Ismeretlen"
+      },
+      "view": "Megtekintés"
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "it": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Crea una nuova conversazione",
+        "success": "Conversazione '{name}' creata.",
+        "title": "Nuova conversazione"
+      },
+      "destroy": {
+        "success": "Conversazione '{name}' rimossa."
+      },
+      "edit": {
+        "description": "Aggiorna la conversazione",
+        "success": "Conversazione '{name}' aggiornata.",
+        "title": "Conversazione {name}"
+      },
+      "fields": {
+        "messages": "Messaggi",
+        "name": "Nome",
+        "participants": "Partecipanti",
+        "target": "Bersaglio",
+        "type": "Tipo"
+      },
+      "hints": {
+        "participants": "Per favore aggiungi partecipanti alla tua conversazione premendo l'icona {icon} in altro a destra."
+      },
+      "index": {
+        "add": "Nuova conversazione",
+        "description": "Gestisci la categoria di {name}.",
+        "header": "Conversazioni in {name}",
+        "title": "Conversazioni"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Messaggio rimosso."
+        },
+        "load_previous": "Carica i messaggi precedenti",
+        "placeholders": {
+          "message": "Il tuo messaggio"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "Partecipante {entity} aggiunto alla conversazione."
+        },
+        "description": "Aggiungi o rimuovi partecipanti di una conversazione",
+        "destroy": {
+          "success": "Partecipante {entity} rimosso dalla conversazione."
+        },
+        "modal": "Partecipanti",
+        "title": "Partecipanti di {name}"
+      },
+      "placeholders": {
+        "name": "Nome della conversazione",
+        "type": "In Gioco, Preparazione, Trama"
+      },
+      "show": {
+        "description": "Una vista dettagliata della conversazione",
+        "title": "Conversazione {name}"
+      },
+      "tabs": {
+        "conversation": "Conversazione",
+        "participants": "Partecipanti"
+      },
+      "targets": {
+        "characters": "Personaggi",
+        "members": "Membri"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Applica",
+        "back": "Indietro",
+        "copy": "Copia",
+        "copy_to_campaign": "Copia nella Campagna",
+        "explore_view": "Vista annidata",
+        "export": "Esporta",
+        "find_out_more": "Scopri di più",
+        "go_to": "Vai a {name}",
+        "more": "Più Azioni",
+        "move": "Muovi",
+        "new": "Nuovo",
+        "next": "Prossimo",
+        "private": "Privato",
+        "public": "Pubblico"
+      },
+      "add": "Aggiungi",
+      "attributes": {
+        "actions": {
+          "add": "Aggiungi un attributo",
+          "add_block": "Aggiungi un blocco",
+          "add_checkbox": "Aggiungi un checkbox",
+          "add_text": "Aggiungi un testo",
+          "apply_template": "Applica un Template per gli Attributi",
+          "manage": "Gestisci"
+        },
+        "create": {
+          "description": "Crea un nuovo attributo",
+          "success": "L'Attributo {name} è stato aggiunto a {entity}",
+          "title": "Nuovo Attributo per {name}"
+        },
+        "destroy": {
+          "success": "L'attributo {name} è stato rimosso da {entity}"
+        },
+        "edit": {
+          "description": "Aggiorna un attributo esistente",
+          "success": "L'attributo {name} per {entity} è stato aggiornato.",
+          "title": "Aggiorna l'attributo per {name}"
+        },
+        "fields": {
+          "attribute": "Attributo",
+          "community_templates": "Templates della Community",
+          "is_star": "Fissato",
+          "template": "Template",
+          "value": "Valore"
+        },
+        "index": {
+          "success": "Attributo aggiornato per {entity}.",
+          "title": "Attributi per {name}"
+        },
+        "placeholders": {
+          "attribute": "Numero di conquiste, Grado di Sfida, Iniziativa, Popolazione",
+          "block": "Nome del blocco",
+          "checkbox": "Nome del checkbox",
+          "template": "Seleziona un template",
+          "value": "Valore dell'attributo"
+        },
+        "template": {
+          "success": "Il Template di Attributi {name} si applica su {entity}",
+          "title": "Applica un Template degli Attributi per {name}"
+        },
+        "types": {
+          "attribute": "Attributo",
+          "block": "Blocco",
+          "checkbox": "Checkbox",
+          "text": "Testo multilinea"
+        },
+        "visibility": {
+          "entry": "Gli Attributi sono mostrati nella tab Principale.",
+          "private": "Attributo visibile solamente ai membri del ruolo \"Admin\".",
+          "public": "Attributo visibile a tutti i membri.",
+          "tab": "Gli attributi sono visualizzati solamente nella tab degli Attributi."
+        }
+      },
+      "bulk": {
+        "errors": {
+          "admin": "Solo gli amministratori della campagna possono cambiare lo stato di visibilità delle entità."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Sovrascrivi"
+          },
+          "helpers": {
+            "override": "Se selezionato, i permessi delle entità selezionate saranno sovrascritti con questi. Se non selezionato i permessi selezionati saranno aggiunti a quelli già assegnati."
+          },
+          "title": "Cambia i permessi a più entità"
+        },
+        "success": {
+          "permissions": "Permessi modificati a {count} entità.|Permessi modificati a {count} entità.",
+          "private": "{count} entità è adesso privata|{count} entità sono adesso private.",
+          "public": "{count} entità è adesso visibile|{count} entità sono adesso visibili."
+        }
+      },
+      "cancel": "Annulla",
+      "click_modal": {
+        "close": "Chiudi",
+        "confirm": "Conferma",
+        "title": "Conferma la tua azione"
+      },
+      "copy_to_campaign": {
+        "panel": "Copia",
+        "title": "Copia '{name}' in una'ltra campagna"
+      },
+      "create": "Crea",
+      "datagrid": {
+        "empty": "Ancora non c'è nulla da mostrare."
+      },
+      "delete_modal": {
+        "close": "Chiudi",
+        "delete": "Cancella",
+        "description": "Sei sicuro di vole rimuovere {tag}?",
+        "mirrored": "Rimuove relazioni speculari.",
+        "title": "Conferma di cancellazione"
+      },
+      "destroy_many": {
+        "success": "Cancellata {count} entità|Cancellate {count} entità."
+      },
+      "edit": "Modifica",
+      "errors": {
+        "node_must_not_be_a_descendant": "Nodo non valido (tag, luogo padre): sarebbe un discendente di se stesso."
+      },
+      "events": {
+        "hint": "Quella visualizzata sotto è una lista di tutti i Calendari in cui questa entità è stata aggiunta usando \"Aggiungi un evento ad un calendario\"."
+      },
+      "export": "Esporta",
+      "fields": {
+        "attribute_template": "Template di Attributi",
+        "calendar": "Calendario",
+        "calendar_date": "Data del Calendario",
+        "character": "Personaggio",
+        "copy_attributes": "Copia Attributo",
+        "copy_notes": "Copia le Note dell'Entità",
+        "creator": "Creatore",
+        "dice_roll": "Tiro di dado",
+        "entity": "Entità",
+        "entity_type": "Tipo di Entità",
+        "entry": "Dato inserito",
+        "event": "Evento",
+        "excerpt": "Estratto",
+        "family": "Famiglia",
+        "files": "Files",
+        "image": "Immagine",
+        "is_private": "Privato",
+        "is_star": "Fissato",
+        "item": "Oggetto",
+        "location": "Luogo",
+        "name": "Nome",
+        "organisation": "Organizzazione",
+        "race": "Razza",
+        "tag": "Tag",
+        "tags": "Tags",
+        "visibility": "Visibilità"
+      },
+      "files": {
+        "actions": {
+          "drop": "Premi per Aggiungere o Trascina un file",
+          "manage": "Gestisci i file dell'entità"
+        },
+        "errors": {
+          "max": "Hai raggiunto il numero massimo di file ({max}) per questa entità."
+        },
+        "files": "Files Caricati",
+        "hints": {
+          "limit": "Ogni entità può avere un massimo di {max} files caricati.",
+          "limitations": "Formati supportati: jpg, png, gif, and pdf. Dimensione massima del file: {size}"
+        },
+        "title": "File dell'entità {name}"
+      },
+      "filter": "Filtra",
+      "filters": {
+        "all": "Filtra includendo tutti i discendenti",
+        "clear": "Pulisci i Filtri",
+        "direct": "Filtra includendo solamente i discendenti diretti",
+        "filtered": "Visualizzati {count} di {total} {entity}.",
+        "hide": "Nascondi i Filtri",
+        "show": "Visualizza i Filtri",
+        "title": "Filtri"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Aggiungi una data del calendario"
+        },
+        "copy_options": "Copia opzioni"
+      },
+      "hidden": "Nascosto",
+      "hints": {
+        "attribute_template": "Applica un template per gli attributi direttamente quando si crea questa entità.",
+        "calendar_date": "La data di un calendario permette un semplice filtro nelle lista ed inoltre mantiene un evento nel calendario selezionato.",
+        "image_limitations": "Formati supportati: jpg, png and gif. Dimensione massima del file: {size}.",
+        "image_patreon": "Aumentare la dimensione massima dei file?",
+        "is_private": "Nascondi dalle utenze non \"Admin\".",
+        "is_star": "Gli elementi fissati appariranno nel menù dell'entità",
+        "map_limitations": "Formati supportati{jpg}, png, gif e svg. Dimensione massima del file: {size}.",
+        "visibility": "Impostare la visibilità agli amministratori significa che solamente i membri del ruolo \"Proprietario\" della campagna potranno visualizzarlo. Impostarlo a \"Te stesso\" significa che solo tu potrai vederlo."
+      },
+      "history": {
+        "created": "Creato da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Sconosciuto",
+        "updated": "Ultima modifica da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "Visualizza i log dell'entità"
+      },
+      "image": {
+        "error": "Noi non siamo stati in gradi di recuperare l'immagine richiesta. Potrebbe essere che il sito web non ci permetta di scaricare l'immagine (solitamente per Squarespace e DeviantArt) o che il link non sia più valido. Per favore controlla anche che la dimensione dell'immagine non sia maggiore di {size}."
+      },
+      "is_private": "Questa entità è privata e non visibile alle utenze non amministratrici.",
+      "linking_help": "Come posso creare un collegamento ad altre entità inserite?",
+      "manage": "Gestisci",
+      "move": {
+        "description": "Muovi questa entità in un'altro posto",
+        "errors": {
+          "permission": "Non sei autorizzato a creare entità di questo tipo nella campagna selezionata.",
+          "same_campaign": "Devi selezionare un'altra campagna dove muore l'entità.",
+          "unknown_campaign": "Campagna sconosciuta"
+        },
+        "fields": {
+          "campaign": "Nuova campagna",
+          "copy": "Crea una Copia",
+          "target": "Nuovo tipo"
+        },
+        "hints": {
+          "campaign": "Puoi anche provare a muovere questa entità in un'altra campagna",
+          "copy": "Seleziona questa opzione se vuoi crearne una copia nella nuova campagna.",
+          "target": "Per favore considera che alcuni dati potrebbero andare perso nel caso si muovesse un elemento da un tipo ad un'altro."
+        },
+        "success": "Entità '{name}' spostata.",
+        "success_copy": "Entità '{name}' copiata.",
+        "title": "Sposta {name}"
+      },
+      "new_entity": {
+        "error": "Per favore controlla i tuoi valori.",
+        "fields": {
+          "name": "Nome"
+        },
+        "title": "Nuova entità"
+      },
+      "or_cancel": "o <a href=\"{url}\">annulla</a>",
+      "panels": {
+        "appearance": "Aspetto",
+        "attribute_template": "Template di attributi",
+        "calendar_date": "Data del Calendario",
+        "entry": "Elemento",
+        "general_information": "Informazioni Generali",
+        "move": "Sposta",
+        "system": "Sistema"
+      },
+      "permissions": {
+        "action": "Azione",
+        "actions": {
+          "bulk": {
+            "add": "Aggiungi",
+            "remove": "Rimuovi"
+          },
+          "delete": "Cancellazione",
+          "edit": "Modifica",
+          "entity_note": "Note dell'Entità",
+          "read": "Lettura"
+        },
+        "allowed": "Permesso",
+        "fields": {
+          "member": "Membro",
+          "role": "Ruolo"
+        },
+        "helper": "Utilizza questa interfaccia per specificare quali utenti e ruoli possono interagire con questa entità.",
+        "success": "Permessi salvati.",
+        "title": "Permessi"
+      },
+      "placeholders": {
+        "calendar": "Seleziona un calendario",
+        "character": "Seleziona un personaggio",
+        "entity": "Entità",
+        "event": "Seleziona un evento",
+        "family": "Seleziona una famiglia",
+        "image_url": "Altrimenti puoi caricare un'immagine da un URL",
+        "item": "Seleziona un'oggetto",
+        "location": "Seleziona un luogo",
+        "organisation": "Seleziona un'organizzazione",
+        "race": "Seleziona una razza",
+        "tag": "Seleziona un tag"
+      },
+      "relations": {
+        "actions": {
+          "add": "Aggiungi una relazione"
+        },
+        "fields": {
+          "location": "Luogo",
+          "name": "Nomi",
+          "relation": "Relazioni"
+        },
+        "hint": "Le relazioni fra gli elementi possono essere impostate per rappresentare le loro connessioni."
+      },
+      "remove": "Rimuovi",
+      "rename": "Rinomina",
+      "save": "Salva",
+      "save_and_close": "Salva e Chiudi",
+      "save_and_new": "Salva e Nuovo",
+      "save_and_update": "Salve ed Aggiorna",
+      "save_and_view": "Salva e Visualizza",
+      "search": "Cerca",
+      "select": "Seleziona",
+      "tabs": {
+        "attributes": "Attributi",
+        "calendars": "Calendari",
+        "default": "Default",
+        "events": "Eventi",
+        "inventory": "Inventario",
+        "map-points": "Punti della Mappa",
+        "mentions": "Menzioni",
+        "menu": "Menù",
+        "notes": "Note",
+        "permissions": "Permessi",
+        "relations": "Relazioni"
+      },
+      "update": "Aggiorna",
+      "users": {
+        "unknown": "Sconosciuto"
+      },
+      "view": "Visualizza",
+      "visibilities": {
+        "admin": "Proprietario",
+        "all": "Tutti",
+        "self": "Te stesso"
+      }
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "nl": {
+    "admin": []
+  },
+  "pt": [],
+  "pt-BR": {
+    "admin": [],
+    "crud": {
+      "actions": {
+        "back": "Voltar",
+        "copy": "Copiar",
+        "export": "Exportar",
+        "more": "Mais Ações",
+        "move": "Mover",
+        "new": "Novo",
+        "private": "Privado",
+        "public": "Público"
+      },
+      "add": "Adicionar",
+      "attributes": {
+        "actions": {
+          "add": "Adicionar um atributo",
+          "apply_template": "Aplicar um Modelo de Atributo",
+          "manage": "Gerenciar"
+        },
+        "create": {
+          "description": "Criar um novo atributo",
+          "success": "Atributo {name} adicionado a {entity}",
+          "title": "Novo Atributo para {name}"
+        },
+        "destroy": {
+          "success": "Atributo {name} para {entity} removido"
+        },
+        "edit": {
+          "description": "Atualizar um atributo existente",
+          "success": "Atributo {name} para {entity} atualizado",
+          "title": "Atualizar atributo para {name}"
+        },
+        "fields": {
+          "attribute": "Atributo",
+          "template": "Modelo",
+          "value": "Valor"
+        },
+        "index": {
+          "success": "Atributos de {entity} atualizados.",
+          "title": "Atributos de {name}"
+        },
+        "placeholders": {
+          "attribute": "Número de conquistas, Nível de Desafio, Iniciativa, População",
+          "template": "Selecione um modelo",
+          "value": "Valor do atributo"
+        },
+        "template": {
+          "success": "Modelo de Atributo {name} aplicado em {entity}",
+          "title": "Aplicar um Modelo de Atributo a {name}"
+        }
+      },
+      "bulk": {
+        "errors": {
+          "admin": "Apenas administradores de campanha podem mudar o status privado de entidades"
+        }
+      },
+      "cancel": "Cancelar",
+      "click_modal": {
+        "close": "Fechar",
+        "confirm": "Confirmar",
+        "title": "Confirmar sua ação"
+      },
+      "create": "Criar",
+      "delete_modal": {
+        "close": "Fechar",
+        "delete": "Deletar",
+        "description": "Tem certeza que deseja remover {tag}?",
+        "title": "Confirmação de apagamento"
+      },
+      "destroy_many": {
+        "success": "Deletado {count} entity|Deletado {count} entities."
+      },
+      "edit": "Editar",
+      "fields": {
+        "character": "Personagem",
+        "creator": "Criador",
+        "dice_roll": "Rolagem de Dados",
+        "entity": "Entidade",
+        "entry": "Entrada",
+        "event": "Evento",
+        "image": "Imagem",
+        "is_private": "Privado",
+        "location": "Local"
+      },
+      "filter": "Filtro",
+      "hidden": "Esconder",
+      "hints": {
+        "is_private": "Esconder de \"Espectadores\""
+      },
+      "image": {
+        "error": "Nós não fomos capazes de conseguir a imagem requisitada. Pode ser que o site não autorize o download da imagem por nós (tipicamente para Squarespace e DeviantArt), ou o link não está mais válido."
+      },
+      "is_private": "Essa entidade é privada e não visível para usuários espectadores.",
+      "linking_help": "Como eu posso vincular a outras entidades?",
+      "manage": "Gerenciar",
+      "move": {
+        "description": "Mover a entidade para outro lugar",
+        "fields": {
+          "target": "Novo tipo"
+        },
+        "hints": {
+          "target": "Esteja ciente que alguns dados podem ser perdidos ao mudar um elemento de um tipo para outro."
+        },
+        "success": "Entidade {name} movida.",
+        "title": "Mover {name} para outro lugar"
+      },
+      "new_entity": {
+        "error": "Por favor cheque seus valores",
+        "fields": {
+          "name": "Nome"
+        },
+        "title": "Nova entidade"
+      },
+      "or_cancel": "ou <a href=\"{url}\">cancel</a>",
+      "panels": {
+        "appearance": "Aparência",
+        "general_information": "Informações Gerais",
+        "move": "Mover"
+      },
+      "permissions": {
+        "action": "Ação",
+        "actions": {
+          "delete": "Deletar",
+          "edit": "Editar",
+          "read": "Ler"
+        },
+        "allowed": "Permitido",
+        "fields": {
+          "member": "Membro",
+          "role": "Cargo"
+        },
+        "helper": "Use essa interface para escolher quais usuários e cargos podem interagir com essa entidade.",
+        "success": "Permissões salvas.",
+        "title": "Permissões"
+      },
+      "placeholders": {
+        "character": "Escolha um personagem",
+        "event": "Escolha um evento",
+        "family": "Escolha uma família",
+        "image_url": "Você também pode dar upload de uma imagem por uma URL",
+        "location": "Escolha um local"
+      },
+      "relations": {
+        "actions": {
+          "add": "Adicionar uma relação"
+        },
+        "fields": {
+          "location": "Local",
+          "name": "Nome",
+          "relation": "Relação"
+        }
+      },
+      "remove": "Remover",
+      "save": "Salvar",
+      "save_and_new": "Salvar e Novo",
+      "search": "Buscar",
+      "select": "Selecionar",
+      "tabs": {
+        "attributes": "Atributos",
+        "calendars": "Calendários",
+        "permissions": "Permissões",
+        "relations": "Relações"
+      },
+      "update": "Atualizar",
+      "view": "Ver"
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "ru": {
+    "admin": [],
+    "crud": {
+      "actions": {
+        "back": "Back"
+      }
+    }
+  },
+  "sk": {
+    "admin": [],
+    "conversations": {
+      "create": {
+        "description": "Vytvoriť novú diskusiu",
+        "success": "Diskusia {name} vytvorená.",
+        "title": "Nová diskusia"
+      },
+      "destroy": {
+        "success": "Diskusia {name} odstránená."
+      },
+      "edit": {
+        "description": "Upraviť diskusiu",
+        "success": "Diskusia {name} upravená.",
+        "title": "Diskusia {name}"
+      },
+      "fields": {
+        "messages": "Správy",
+        "name": "Meno",
+        "participants": "Účastníci",
+        "target": "Cieľ",
+        "type": "Typ"
+      },
+      "hints": {
+        "participants": "Prosím, pridaj do diskusiu účastníkov tým, že klikneš na symbol {icon} hore vpravo."
+      },
+      "index": {
+        "add": "Nová diskusia",
+        "description": "Spravovať kategóriu {name}.",
+        "header": "Diskusie v {name}",
+        "title": "Diskusie"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Správa odstránená."
+        },
+        "load_previous": "Nahrať predchádzajúce správy",
+        "placeholders": {
+          "message": "Tvoja správa"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "Účastník {entity} pridaný do diskusie."
+        },
+        "description": "Pridať alebo odstrániť účastníkov z diskusie",
+        "destroy": {
+          "success": "Účastník {entity} odstránený z diskusie."
+        },
+        "modal": "Účastníci",
+        "title": "Účastníci {name}"
+      },
+      "placeholders": {
+        "name": "Názov diskusie",
+        "type": "V hre, príprave, deji"
+      },
+      "show": {
+        "description": "Detailné zobrazenie diskusie",
+        "title": "Diskusia {name}"
+      },
+      "tabs": {
+        "conversation": "Diskusia",
+        "participants": "Účastníci"
+      },
+      "targets": {
+        "characters": "Postavy",
+        "members": "Členovia"
+      }
+    },
+    "crud": {
+      "actions": {
+        "apply": "Použiť",
+        "back": "Naspäť",
+        "copy": "Kopírovať",
+        "copy_to_campaign": "Kopírovať do kampane",
+        "explore_view": "Vložené zobrazenie",
+        "export": "Exportovať",
+        "find_out_more": "Dozvedieť sa viac",
+        "go_to": "Prejsť na {name}",
+        "more": "Ďalšie akcie",
+        "move": "Premiestniť",
+        "new": "Nový",
+        "next": "Ďalej",
+        "private": "Súkromný",
+        "public": "Verejný"
+      },
+      "add": "Pridať",
+      "attributes": {
+        "actions": {
+          "add": "Pridať atribúť",
+          "add_block": "Pridať blok",
+          "add_checkbox": "Pridať zaškrtávacie políčko",
+          "add_text": "Pridať text",
+          "apply_template": "Použiť šablónu atribútov",
+          "manage": "Spravovať",
+          "remove_all": "Odstrániť všetko"
+        },
+        "create": {
+          "description": "Vytvoriť nový atribút",
+          "success": "Atribút {name} pridaný k {entity}.",
+          "title": "Nový atribút pre {name}"
+        },
+        "destroy": {
+          "success": "Atribút {name} odstránený z {entity}."
+        },
+        "edit": {
+          "description": "Upraviť existujúci atribút",
+          "success": "Atribút {name} upravený pre {entity}.",
+          "title": "Upraviť atribút pre {name}"
+        },
+        "fields": {
+          "attribute": "Atribút",
+          "community_templates": "Komunitné šablóny",
+          "is_private": "Súkromné atribúty",
+          "is_star": "Pripnutý",
+          "template": "Šablóna",
+          "value": "Hodnota"
+        },
+        "helpers": {
+          "delete_all": "Naozaj chceš odstrániť všetky atribúty tohto objektu?"
+        },
+        "hints": {
+          "is_private": "Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ich ho nastavíš ako súkromný."
+        },
+        "index": {
+          "success": "Atribúty pre {entity} upravené.",
+          "title": "Atribúty pre {name}"
+        },
+        "placeholders": {
+          "attribute": "Počet dobytí, úroveň obtiažnosti výzvy, iniciatíva, obyvateľstvo",
+          "block": "Názov bloku",
+          "checkbox": "Názov zaškrtávacieho políčka",
+          "section": "Názov sekcie",
+          "template": "Vybrať šablónu",
+          "value": "Hodnota atribútu"
+        },
+        "template": {
+          "success": "Šablóna atribútov {name} použitá na {entity}",
+          "title": "Použiť šablónu atribútov na {name}"
+        },
+        "types": {
+          "attribute": "Atribút",
+          "block": "Blok",
+          "checkbox": "Zaškrtávacie políčko",
+          "section": "Sekcia",
+          "text": "Viacriadkový text"
+        },
+        "visibility": {
+          "entry": "Atribút je zobrazený v menu objektu.",
+          "private": "Atribút viditeľný len pre členov s rolou Admin.",
+          "public": "Atribút viditeľný pre všetkých členov.",
+          "tab": "Atribút je zobrazený len v karte atribútov."
+        }
+      },
+      "bulk": {
+        "errors": {
+          "admin": "Iba administrátori kampane vedia zmeniť súkromný štatút objektu."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Prepísať"
+          },
+          "helpers": {
+            "override": "Ak aktivované, oprávnenia vybratých objektov budú týmito prepísané. Ak deaktivované, vybrané oprávnenia budú pridané k predchádzajúcim."
+          },
+          "title": "Zmeniť oprávnenia pre viaceré objekty"
+        },
+        "success": {
+          "permissions": "Oprávnenia zmenené pre {count} objekt.|Oprávnenia zmenené pre {count} objektov.",
+          "private": "{count} objekt je teraz súkromný.|{count} objektov je teraz súkromných.",
+          "public": "{count} objekt je teraz viditeľný.|{count} objektov je teraz viditeľných."
+        }
+      },
+      "cancel": "Zrušiť",
+      "click_modal": {
+        "close": "Zavrieť",
+        "confirm": "Potvrdiť",
+        "title": "Potvrdiť akciu"
+      },
+      "copy_to_campaign": {
+        "panel": "Kopírovať",
+        "title": "Kopírovať {name} do inej kampane"
+      },
+      "create": "Vytvoriť",
+      "datagrid": {
+        "empty": "Zatiaľ je tu prázdno."
+      },
+      "delete_modal": {
+        "close": "Zatvoriť",
+        "delete": "Odstrániť",
+        "description": "Naozaj chceš odstrániť {tag}?",
+        "mirrored": "Odstrániť zrkadlený vzťah.",
+        "title": "Potvrdiť odstránenie"
+      }
+    },
+    "entities": [],
+    "randomisers": []
+  },
+  "tr": [],
+  "zh_CN": []
+});
 
 /***/ }),
 

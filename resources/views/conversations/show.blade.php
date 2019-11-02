@@ -24,11 +24,11 @@
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }} box-conversation" id="conversation">
 
                     <conversation
-                        :id="{{ $model->id }}"
-                        :api="'{{ route('conversations.conversation_messages.index', $model) }}'"
-                        :target="'{{ $model->target == \App\Models\Conversation::TARGET_CHARACTERS ? 'character' : 'user'}}'"
+                        id="{{ $model->id }}"
+                        api="{{ route('conversations.conversation_messages.index', $model) }}"
+                        target="{{ $model->target == \App\Models\Conversation::TARGET_CHARACTERS ? 'character' : 'user'}}"
                         :targets="{{ $model->jsonParticipants() }}"
-                        :send="'{{ route('conversations.conversation_messages.store', $model) }}'"
+                        send="{{ route('conversations.conversation_messages.store', $model) }}"
                     >
                     </conversation>
 
