@@ -2,7 +2,7 @@ FROM php:7.2-apache
 
 RUN apt-get update \
     && apt-get install -y git zip authbind vim libpng-dev\
-    && docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd\
+    && docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd mysqli \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
