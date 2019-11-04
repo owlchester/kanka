@@ -4,7 +4,7 @@
             'organisation_id',
             (isset($model) && $model->organisation ? $model->organisation : FormCopy::field('organisation')->select()),
             App\Models\Organisation::class,
-            true
+            isset($enableNew) ? $enableNew : true
         ) !!}
     </div>
 @endif

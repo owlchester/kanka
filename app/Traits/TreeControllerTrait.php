@@ -83,6 +83,7 @@ trait TreeControllerTrait
 
         $view = $this->view;
         $route = $this->route;
+        $bulk = $this->bulkModel();
 
         return view('cruds.tree', compact(
             'models',
@@ -93,6 +94,7 @@ trait TreeControllerTrait
             'filterService',
             'view',
             'route',
+            'bulk',
             'unfilteredCount',
             'filteredCount',
             'createOptions'

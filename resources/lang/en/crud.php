@@ -87,6 +87,17 @@ return [
     ],
     'boosted' => 'Boosted',
     'bulk'              => [
+        'actions' => [
+            'edit' => 'Bulk Edit & Tagging',
+        ],
+        'edit' => [
+            'title' => 'Editing multiple entities',
+            'tagging' => 'Action for tags',
+            'tags' => [
+                'add' => 'Add',
+                'remove' => 'Remove',
+            ]
+        ],
         'errors'        => [
             'admin' => 'Only campaign admins can change the private status of entities.',
         ],

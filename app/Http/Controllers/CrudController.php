@@ -8,15 +8,17 @@ use App\Http\Resources\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
 use App\Services\FilterService;
+use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use LogicException;
 
 class CrudController extends Controller
 {
-    use GuestAuthTrait;
+    use GuestAuthTrait, BulkControllerTrait;
 
     /**
      * The view where to find the resources
@@ -116,6 +118,7 @@ class CrudController extends Controller
         $filterService = $this->filterService;
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
+        $bulk = $this->bulkModel();
 
         $base = $model
             ->preparedWith()
@@ -145,7 +148,8 @@ class CrudController extends Controller
             'nestedView',
             'route',
             'filteredCount',
-            'unfilteredCount'
+            'unfilteredCount',
+            'bulk'
         ));
     }
 
