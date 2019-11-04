@@ -13,7 +13,12 @@ class CharacterBulk extends Bulk
         'location_id',
         'race_id',
         'type',
+        'dead_choice',
         'tags',
         'private_choice',
+    ];
+
+    protected $mappings = [
+        'is_dead'
     ];
 }

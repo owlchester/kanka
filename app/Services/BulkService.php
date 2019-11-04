@@ -160,10 +160,17 @@ class BulkService
             }
         }
 
+        foreach ($bulk->mappings() as $field) {
+            if (Arr::has($fields, $field)) {
+                $filledFields[$field] = Arr::get($fields, $field);
+            }
+        }
+
         // Private
         if (isset($fields['is_private']) && $fields['is_private'] !== null) {
             $filledFields['is_private'] = $fields['is_private'] === "0";
         }
+
 
         // Handle tags differently
         unset($filledFields['tags']);

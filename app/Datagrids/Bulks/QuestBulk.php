@@ -15,4 +15,8 @@ class QuestBulk extends Bulk
         'tags',
         'private_choice',
     ];
+
+    protected $mappings = [
+        'is_completed'
+    ];
 }

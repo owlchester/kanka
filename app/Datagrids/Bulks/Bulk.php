@@ -24,6 +24,18 @@ abstract class Bulk
     /**
      * @return array
      */
+    public function mappings(): array
+    {
+        if (isset($this->mappings)) {
+            return $this->mappings;
+        }
+
+        return [];
+    }
+
+    /**
+     * @return array
+     */
     protected function defaults(): array
     {
         return [
