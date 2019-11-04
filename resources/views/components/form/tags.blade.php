@@ -13,7 +13,7 @@ if (!empty($previous)) {
     //dd($previous);
 }
 // If we didn't get anything, and there is a model sent, use that
-elseif(!empty($model)) {
+elseif(!empty($model) && !empty($model->entity)) {
     foreach ($model->entity->tags as $tag) {
         if (\App\Facades\EntityPermission::canView($tag->entity)) {
             $selectedOption[$tag->id] = $tag->name;

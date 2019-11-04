@@ -13,6 +13,11 @@
                 <a href="#" class="btn btn-default bulk-permissions" data-toggle="modal" data-target="#bulk-permissions.modal">
                     <i class="fa fa-cog"></i> {{ __('crud.tabs.permissions') }}
                 </a>
+                @if (isset($bulk))
+                <a href="#" class="btn btn-default bulk-edit" data-toggle="modal" data-target="#bulk-edit.modal">
+                    <i class="fa fa-edit"></i> {{ __('crud.bulk.actions.edit') }}
+                </a>
+                @endif
             @endif
         </div>
 

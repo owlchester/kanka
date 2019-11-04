@@ -2,7 +2,11 @@
 
 namespace App\Services;
 
+use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Models\Tag;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MiscModel;
 use Exception;
@@ -138,6 +142,71 @@ class BulkService
                 $count++;
             }
         }
+
+        return $count;
+    }
+
+    public function editing(array $fields, Bulk $bulk): int
+    {
+        $count = 0;
+        $model = $this->getEntity();
+
+        // Only get fields that can be bulk edited and with content
+        $fillableFields = Arr::only($fields, $bulk->fields());
+        $filledFields = [];
+        foreach ($fillableFields as $field => $value) {
+            if (!empty($value)) {
+                $filledFields[$field] = $value;
+            }
+        }
+
+        // Private
+        if (isset($fields['is_private']) && $fields['is_private'] !== null) {
+            $filledFields['is_private'] = $fields['is_private'] === "0";
+        }
+
+        // Handle tags differently
+        unset($filledFields['tags']);
+        $tagIds = Arr::get($fields, 'tags', []);
+
+        foreach ($this->ids as $id) {
+            /** @var MiscModel $entity */
+            $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
+            if (Auth::user()->can('update', $entity)) {
+                $entity->savingObserver = false;
+                $entity->update($filledFields);
+                $count++;
+
+                // Tags?
+                if (!empty($fields['tags'])) {
+                    /** @var Collection $existingTags */
+                    $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
+                    if ($tagAction === 'remove') {
+                        $entity->entity->tags()->detach($tagIds);
+                    } else {
+                        $existingTags = $entity->entity->tags->pluck('id')->toArray();
+                        $addTagIds = $tagIds;
+                        // Exclude existing tags to avoid adding a tag several times
+                        if (!empty($existingTags)) {
+                            $addTagIds = [];
+                            foreach ($tagIds as $tag) {
+                                if (!in_array($tag, $existingTags)) {
+                                    $addTagIds[] = $tag;
+                                }
+                            }
+                        }
+                        // If we have tags to add
+                        if (!empty($tagIds)) {
+                            $entity->entity->tags()->attach($addTagIds);
+                        }
+                    }
+                }
+            }
+        }
+
+//        dump($fields);
+//        dump($filledFields);
+//        dd($count);
 
         return $count;
     }

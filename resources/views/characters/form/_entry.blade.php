@@ -13,10 +13,7 @@ if (request()->route()->getName() == 'characters.random') {
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'characters'])
-        <div class="form-group">
-            <label>{{ trans('characters.fields.title') }}</label>
-            {!! Form::text('title', ($isRandom ? $random->generate('title') : FormCopy::field('title')->string()), ['placeholder' => trans('characters.placeholders.title'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
+        @include('cruds.fields.title')
         @include('cruds.fields.family')
         @include('cruds.fields.race')
         @include('cruds.fields.location')

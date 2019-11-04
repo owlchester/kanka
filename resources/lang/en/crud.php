@@ -87,6 +87,17 @@ return [
     ],
     'boosted' => 'Boosted',
     'bulk'              => [
+        'actions' => [
+            'edit' => 'Bulk Edit & Tagging',
+        ],
+        'edit' => [
+            'title' => 'Editing multiple entities',
+            'tagging' => 'Action for tags',
+            'tags' => [
+                'add' => 'Add',
+                'remove' => 'Remove',
+            ]
+        ],
         'errors'        => [
             'admin' => 'Only campaign admins can change the private status of entities.',
         ],
@@ -103,6 +114,7 @@ return [
             'permissions'   => 'Permissions changed for :count entity.|Permissions changed for :count entities.',
             'private'       => ':count entity is now private|:count entities are now private.',
             'public'        => ':count entity is now visible|:count entities are now visible.',
+            'editing'       => ':count entity was updated.|:count entities were updated.',
         ],
     ],
     'cancel'            => 'Cancel',
