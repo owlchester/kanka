@@ -73,28 +73,28 @@
                                     {!! Form::select(
                                     'user[' . $member->user_id . '][read]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                                 <td>
                                     {!! Form::select(
                                     'user[' . $member->user_id . '][edit]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                                 <td>
                                     {!! Form::select(
                                     'user[' . $member->user_id . '][delete]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                                 <td>
                                     {!! Form::select(
                                     'user[' . $member->user_id . '][entity-notes]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                             </tr>
@@ -102,16 +102,6 @@
                     @endforeach
                     </tbody>
                 </table>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="permission-override">
-                        {{ __('crud.bulk.permissions.fields.override') }}
-                    </label>
-                    <p class="help-block">
-                        {{ __('crud.bulk.permissions.helpers.override') }}
-                    </p>
-                </div>
             </div>
             <div class="modal-footer">
                 <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
