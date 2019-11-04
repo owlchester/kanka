@@ -277,6 +277,7 @@ return [
         'action'    => 'Action',
         'actions'   => [
             'bulk'          => [
+                'ignore'    => 'Ignore',
                 'add'       => 'Add',
                 'remove'    => 'Remove',
             ],
