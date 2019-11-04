@@ -3,7 +3,7 @@ $(document).ready(function() {
         $.each($('.form-tags'), function (index) {
 
             $(this).select2({
-                tags: true,
+                tags: $(this).data('allow-new'),
                 allowClear: true,
                 minimumInputLength: 0,
                 ajax: {

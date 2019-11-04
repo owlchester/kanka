@@ -1,10 +1,1 @@
----
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
----
-
-**Please submit requests through the [Discord](https://discord.gg/rhsyZJ4)**
+Please report bugs in Discord [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4). This github isn't used for feature requests. 

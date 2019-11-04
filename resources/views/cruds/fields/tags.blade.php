@@ -3,7 +3,8 @@
         {!! Form::tags(
             'tag_id',
             [
-                'model' => isset($model) ? $model : FormCopy::model()
+                'model' => isset($model) ? $model : FormCopy::model(),
+                'enableNew' => isset($enableNew) ? $enableNew : true
             ]
         ) !!}
     </div>
