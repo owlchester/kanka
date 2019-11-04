@@ -114,6 +114,7 @@ return [
             'permissions'   => 'Permissions changed for :count entity.|Permissions changed for :count entities.',
             'private'       => ':count entity is now private|:count entities are now private.',
             'public'        => ':count entity is now visible|:count entities are now visible.',
+            'editing'       => ':count entity was updated.|:count entities were updated.',
         ],
     ],
     'cancel'            => 'Cancel',
