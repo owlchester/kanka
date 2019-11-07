@@ -22,6 +22,7 @@ return [
         'relation'  => 'Relation',
         'size'      => 'Size',
         'type'      => 'Type',
+        'weight'    => 'Weight',
     ],
     'index'         => [
         'add'           => 'New Item',
@@ -40,6 +41,7 @@ return [
         'price'     => 'Price of the item',
         'size'      => 'Size, Weight, Dimensions',
         'type'      => 'Weapon, Potion, Artefact',
+        'weight'    => '5 kg, 2 lb, 7 stones, 12.9 dwarves'
     ],
     'quests'        => [
         'description'   => 'Quests the item is a part of.',
