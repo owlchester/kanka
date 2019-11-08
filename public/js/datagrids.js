@@ -81,57 +81,53 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/organisation.js":
-/*!*********************************************!*\
-  !*** ./resources/assets/js/organisation.js ***!
-  \*********************************************/
+/***/ "./resources/assets/js/datagrids.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/datagrids.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+// id="datagrids-bulk-actions-permissions"
+// id="datagrids-bulk-actions-edit
 $(document).ready(function () {
-  $.each($('.form-members'), function (index) {
-    $(this).select2({
-      tags: true,
-      allowClear: true,
-      minimumInputLength: 0,
-      ajax: {
-        quietMillis: 200,
-        url: $(this).attr('data-url'),
-        dataType: 'json',
-        data: function data(params) {
-          return {
-            q: $.trim(params.term)
-          };
-        },
-        processResults: function processResults(data) {
-          return {
-            results: data
-          };
-        },
-        cache: true
-      },
-      createTag: function createTag(params) {
-        return undefined;
-      }
-    });
+  $('#datagrids-bulk-actions-permissions').on('click', function () {
+    setDatagridAction('permissions');
+  });
+  $('#datagrids-bulk-actions-batch').on('click', function () {
+    setDatagridAction('batch');
+  });
+  $('#datagrids-bulk-actions-delete').on('click', function () {
+    setDatagridAction('delete');
+  });
+  $('#datagrids-bulk-actions-export').on('click', function () {
+    setDatagridAction('export');
   });
 });
+/**
+ * Set the datagrid action
+ * @param action
+ */
+
+function setDatagridAction(action) {
+  $('#datagrid-bulk-action').val(action);
+}
 
 /***/ }),
 
-/***/ 7:
-/*!************************************************!*\
-  !*** multi ./resources/assets/js/organisation ***!
-  \************************************************/
+/***/ 11:
+/*!*********************************************!*\
+  !*** multi ./resources/assets/js/datagrids ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\organisation */"./resources/assets/js/organisation.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\datagrids */"./resources/assets/js/datagrids.js");
 
 
 /***/ })

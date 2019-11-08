@@ -44,7 +44,7 @@
         </div>
         <div class="box-footer">
 
-            @include('cruds.datagrids.bulk_actions')
+            @include('cruds.datagrids.bulks.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">
@@ -59,3 +59,9 @@
         {!! Form::close() !!}
     </div>
 @endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/datagrids.js') }}" defer></script>
+@endsection
+

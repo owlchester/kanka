@@ -42,7 +42,7 @@
         </div>
         <div class="box-footer">
 
-            @include('cruds.datagrids.bulk_actions')
+            @include('cruds.datagrids.bulk.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">
@@ -58,4 +58,9 @@
     </div>
 
     <input type="hidden" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/datagrids.js') }}" defer></script>
 @endsection

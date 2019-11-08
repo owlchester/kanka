@@ -39,6 +39,7 @@ class BulkController extends Controller
     {
         $entity = $request->get('entity');
         $models = $request->get('model');
+        $action = $request->get('datagrid-action');
         $subroute = 'index';
         if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($entity . '.tree')) {
             $subroute = 'tree';
@@ -46,30 +47,22 @@ class BulkController extends Controller
 
         $this->bulkService->entity($entity)->entities($models);
 
-        if ($request->has('delete')) {
+        if ($action === 'delete') {
             $count = $this->bulkService->delete();
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
-        } elseif ($request->has('export')) {
+        } elseif ($action === 'export') {
             $pdf = \App::make('dompdf.wrapper');
             $entities = $this->bulkService->export();
             $name = $entity;
             return $pdf
                 ->loadView('cruds.export', compact('entity', 'entities', 'name'))
                 ->download('kanka ' . $entity . ' export.pdf');
-        } elseif ($request->has('private')) {
-            $count = $this->bulkService->makePrivate();
-            return redirect()->route($entity . '.' . $subroute)
-                ->with('success', trans_choice('crud.bulk.success.private', $count, ['count' => $count]));
-        } elseif ($request->has('public')) {
-            $count = $this->bulkService->makePublic();
-            return redirect()->route($entity . '.' . $subroute)
-                ->with('success', trans_choice('crud.bulk.success.public', $count, ['count' => $count]));
-        } elseif ($request->has('bulk-permissions')) {
+        } elseif ($action === 'permissions') {
             $count = $this->bulkService->permissions($request->only('user', 'role'), $request->has('permission-override'));
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
-        } elseif ($request->has('bulk-edit')) {
+        } elseif ($action === 'batch') {
             $entityClass = $this->entityService->getClass($entity);
             $entityObj = new $entityClass;
             $count = $this->bulkService->editing($request->all(), $this->bulkModel($entityObj));
