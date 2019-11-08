@@ -42,7 +42,7 @@
         </div>
         <div class="box-footer">
 
-            @include('cruds.datagrids.bulk.actions')
+            @include('cruds.datagrids.bulks.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">

@@ -55,7 +55,6 @@ function setDatagridAction(action, modelField) {
     });
 
     $(modelField).val(values.toString());
-    console.log('models', values);
 }
 
 
