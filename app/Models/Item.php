@@ -77,6 +77,14 @@ class Item extends MiscModel
     ];
 
     /**
+     * Casting for order by
+     * @var array
+     */
+    protected $orderCasting = [
+        'price' => 'unsigned'
+    ];
+
+    /**
      * Nullable values (foreign keys)
      * @var array
      */
