@@ -42,7 +42,7 @@ class Item extends MiscModel
      * Searchable fields
      * @var array
      */
-    protected $searchableColumns  = ['name', 'type', 'entry', 'price'];
+    protected $searchableColumns  = ['name', 'type', 'entry', 'price', 'size'];
 
     /**
      * Entity type
@@ -71,8 +71,17 @@ class Item extends MiscModel
      */
     protected $sortableColumns = [
         'price',
+        'size',
         'location.name',
         'character.name',
+    ];
+
+    /**
+     * Casting for order by
+     * @var array
+     */
+    protected $orderCasting = [
+        'price' => 'unsigned'
     ];
 
     /**
