@@ -13,6 +13,7 @@
         'name',
         'type',
         'price',
+        'size',
         // Location
         [
             'type' => 'avatar',

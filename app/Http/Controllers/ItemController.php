@@ -33,6 +33,7 @@ class ItemController extends CrudController
             'name',
             'type',
             'price',
+            'size',
             [
                 'field' => 'location_id',
                 'label' => trans('crud.fields.location'),
