@@ -27,7 +27,8 @@ class BulkRequest extends FormRequest
     {
         return [
             'entity' => 'required',
-            'model' => 'required'
+            'model' => 'required_without:models',
+            'models' => 'required_without:model',
         ];
     }
 }

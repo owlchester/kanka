@@ -2,7 +2,7 @@
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'items'])
         @include('cruds.fields.type', ['base' => \App\Models\Item::class, 'trans' => 'items'])
-        @include('cruds.fields.price')
+        @include('cruds.fields.price', ['trans' => 'items'])
         <div class="form-group">
             <label>{{ trans('items.fields.size') }}</label>
             {!! Form::text('size', FormCopy::field('size')->string(), ['placeholder' => trans('items.placeholders.size'), 'class' => 'form-control', 'maxlength' => 191]) !!}

@@ -58,6 +58,9 @@
         </div>
         {!! Form::close() !!}
     </div>
+
+
+    @include('cruds.datagrids.bulks.modals')
 @endsection
 
 @section('scripts')

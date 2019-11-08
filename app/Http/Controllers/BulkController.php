@@ -38,7 +38,7 @@ class BulkController extends Controller
     public function process(BulkRequest $request)
     {
         $entity = $request->get('entity');
-        $models = $request->get('model');
+        $models = $request->get('model', []);
         $action = $request->get('datagrid-action');
         $subroute = 'index';
         if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($entity . '.tree')) {
@@ -59,13 +59,20 @@ class BulkController extends Controller
                 ->loadView('cruds.export', compact('entity', 'entities', 'name'))
                 ->download('kanka ' . $entity . ' export.pdf');
         } elseif ($action === 'permissions') {
-            $count = $this->bulkService->permissions($request->only('user', 'role'), $request->has('permission-override'));
+            $models = explode(',', $request->get('models'));
+            $count = $this
+                ->bulkService
+                ->entities($models)
+                ->permissions($request->only('user', 'role'), $request->has('permission-override'));
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
         } elseif ($action === 'batch') {
             $entityClass = $this->entityService->getClass($entity);
             $entityObj = new $entityClass;
-            $count = $this->bulkService->editing($request->all(), $this->bulkModel($entityObj));
+            $count = $this
+                ->bulkService
+                ->entities(explode(',', $request->get('models')))
+                ->editing($request->all(), $this->bulkModel($entityObj));
             return redirect()->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.editing', $count, ['count' => $count]));
         }
