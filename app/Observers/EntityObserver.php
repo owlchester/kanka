@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
+use App\Facades\UserPermission;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\AttributeTemplate;
 use App\Models\CampaignPermission;
@@ -14,6 +15,7 @@ use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class EntityObserver
@@ -32,6 +34,11 @@ class EntityObserver
      * @var AttributeService
      */
     protected $attributeService;
+
+    /**
+     * @var bool
+     */
+    protected $permissionGrantSelf = false;
 
     /**
      * PermissionController constructor.
@@ -103,7 +110,22 @@ class EntityObserver
         if (!Auth::user()->can('permission', $entity->child)) {
             return;
         }
-        $this->permissionService->saveEntity(request()->only('role', 'user', 'is_attributes_private'), $entity);
+
+        $data = request()->only('role', 'user', 'is_attributes_private');
+
+        // If the user granted themselves read/write permissions on the entity, we need to make sure they
+        // still have them even if not checked in the UI.
+        if (EntityPermission::granted()) {
+            $user = auth()->user()->id;
+            if (!in_array('edit', $data['user'][$user])) {
+                $data['user'][$user][] = 'edit';
+            }
+            if (!in_array('read', $data['user'][$user])) {
+                $data['user'][$user][] = 'read';
+            }
+        }
+
+        $this->permissionService->saveEntity($data, $entity);
     }
 
     /**
@@ -142,6 +164,8 @@ class EntityObserver
             $permission->key = $entity->type . '_read_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
             $permission->save();
+            EntityPermission::grant($entity);
+            $this->permissionGrantSelf = true;
         }
         if (!auth()->user()->can('update', $entity->child)) {
             $permission = new CampaignPermission();
@@ -150,7 +174,15 @@ class EntityObserver
             $permission->key = $entity->type . '_edit_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
             $permission->save();
+            $this->permissionGrantSelf = true;
         }
+
+        // Refresh the model because adding permissions to the child means we have a new relation
+        if ($this->permissionGrantSelf) {
+            $entity->unsetRelation('child');
+            $entity->reloadChild();
+        }
+
 
         // Creation log
         $log = new EntityLog();
@@ -182,6 +214,9 @@ class EntityObserver
         EntityUpdatedJob::dispatch($entity);
     }
 
+    /**
+     * @param Entity $entity
+     */
     public function saveBoosted(Entity $entity): void
     {
         // No changed for non-boosted campaigns

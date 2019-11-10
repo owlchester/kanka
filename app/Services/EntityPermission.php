@@ -58,6 +58,12 @@ class EntityPermission
     protected $loadedCampaignId = 0;
 
     /**
+     * True if the user granted themselves permissions
+     * @var bool
+     */
+    public $granted = false;
+
+    /**
      * Creates new instance.
      *
      * @throws UnsupportedLocaleException
@@ -203,6 +209,27 @@ class EntityPermission
         }
 
         return false;
+    }
+
+    /**
+     * Grant a permission ad-hoc
+     * @param Entity $entity
+     * @param string $action
+     * @return $this
+     */
+    public function grant(Entity $entity, string $action = 'read'): self
+    {
+        $this->granted = true;
+        $this->cachedEntityIds[$entity->type][] = $entity->entity_id;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function granted(): bool
+    {
+        return $this->granted;
     }
 
     /**
