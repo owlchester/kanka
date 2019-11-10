@@ -15,18 +15,6 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Takes place every year',
     ],
-    'colours'       => [
-        'black'     => 'Black',
-        'blue'      => 'Blue',
-        'default'   => 'Default',
-        'green'     => 'Green',
-        'maroon'    => 'Maroon',
-        'navy'      => 'Navy Blue',
-        'orange'    => 'Orange',
-        'purple'    => 'Purple',
-        'red'       => 'Red',
-        'teal'      => 'Teal',
-    ],
     'create'        => [
         'description'   => 'Create a new calendar',
         'success'       => 'Calendar \':name\' created.',

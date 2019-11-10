@@ -3138,6 +3138,16 @@ td.breakable {
   margin-top: 25px;
 }
 
+.bg-pink {
+  color: #fff !important;
+  background-color: #ebbde9 !important;
+}
+
+.bg-brown {
+  color: #fff !important;
+  background-color: #a35831 !important;
+}
+
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;

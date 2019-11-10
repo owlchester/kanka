@@ -15,18 +15,6 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'A lieu chaque année',
     ],
-    'colours'       => [
-        'black'     => 'Noir',
-        'blue'      => 'Bleu',
-        'default'   => 'Défaut',
-        'green'     => 'Vert',
-        'maroon'    => 'Bordeaux',
-        'navy'      => 'Bleu Marin',
-        'orange'    => 'Orange',
-        'purple'    => 'Violet',
-        'red'       => 'Rouge',
-        'teal'      => 'Sarcelle',
-    ],
     'create'        => [
         'description'   => 'Créer un nouveau calendrier',
         'success'       => 'Nouveau calendrier \':name\' créé.',
