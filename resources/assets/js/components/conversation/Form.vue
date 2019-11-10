@@ -42,7 +42,9 @@
             return {
                 body: null,
                 sending: false,
-                character_id: null
+                character_id: null,
+                message_id: null,
+                edit_message: null
             }
         },
         methods: {
@@ -55,6 +57,12 @@
                     e.preventDefault();
                     this.sendMessage();
                 }
+            },
+            editMessage(message) {
+                this.message_id = message.id;
+                this.edit_message = message;
+                this.body = message.message;
+                document.getElementById("message").focus();
             },
             /**
              * Sending a message. This might be better off in Messages to keep all
@@ -70,22 +78,40 @@
                 this.sending = true;
                 Event.$emit('sending_message');
 
-                axios.post(this.api, {
+                var url = this.api;
+                var data = {
                     message: this.body.trim(),
-                    character_id: this.character_id
-                }).then(() => {
-                    this.sending = false;
-                    this.body = null;
-                    Event.$emit('sent_message');
-                }).catch(() => {
-                    this.sending = false;
-                });
+                };
+                if (this.targetCharacter) {
+                    data.character_id = this.character_id;
+                }
+                if (this.message_id) {
+                    url += '/' + this.message_id;
+
+                    axios.put(url, data).then((res) => {
+                        Event.$emit('edited_message', res.data.data);
+                        this.messageHandler();
+                    }).catch(() => {
+                        this.sending = false;
+                    });
+                } else {
+                    axios.post(url, data).then(() => {
+                        this.messageHandler();
+                    }).catch(() => {
+                        this.sending = false;
+                    });
+                }
             },
+            messageHandler() {
+                this.sending = false;
+                this.body = null;
+                this.message_id = null;
+                Event.$emit('sent_message');
+            }
         },
 
         computed: {
             targetCharacter: function() {
-                console.log('targets', this.targets);
                 return this.target === 'character';
             },
             inputForm: function() {
@@ -103,6 +129,9 @@
         },
 
         mounted() {
+            Event.$on('edit_message', (message, body) => {
+                this.editMessage(message, body);
+            });
         }
     }
 </script>

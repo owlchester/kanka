@@ -320,6 +320,7 @@ export default {
                 "action": "Aktion",
                 "actions": {
                     "bulk": {
+                        "ignore": "Ignorieren",
                         "add": "Hinzufügen",
                         "remove": "Entfernen"
                     },
@@ -436,7 +437,8 @@ export default {
                 "load_previous": "Load previous messages",
                 "placeholders": {
                     "message": "Your message"
-                }
+                },
+                "is_updated": "Updated"
             },
             "participants": {
                 "create": {
@@ -553,6 +555,17 @@ export default {
             },
             "boosted": "Boosted",
             "bulk": {
+                "actions": {
+                    "edit": "Bulk Edit & Tagging"
+                },
+                "edit": {
+                    "title": "Editing multiple entities",
+                    "tagging": "Action for tags",
+                    "tags": {
+                        "add": "Add",
+                        "remove": "Remove"
+                    }
+                },
                 "errors": {
                     "admin": "Only campaign admins can change the private status of entities."
                 },
@@ -568,7 +581,8 @@ export default {
                 "success": {
                     "permissions": "Permissions changed for {count} entity.|Permissions changed for {count} entities.",
                     "private": "{count} entity is now private|{count} entities are now private.",
-                    "public": "{count} entity is now visible|{count} entities are now visible."
+                    "public": "{count} entity is now visible|{count} entities are now visible.",
+                    "editing": "{count} entity was updated.|{count} entities were updated."
                 }
             },
             "cancel": "Cancel",
@@ -631,6 +645,7 @@ export default {
                 "tag": "Tag",
                 "tags": "Tags",
                 "tooltip": "Tooltip",
+                "type": "Type",
                 "visibility": "Visibility"
             },
             "files": {
@@ -731,6 +746,7 @@ export default {
                 "action": "Action",
                 "actions": {
                     "bulk": {
+                        "ignore": "Ignore",
                         "add": "Add",
                         "remove": "Remove"
                     },
@@ -813,6 +829,7 @@ export default {
         "randomisers": []
     },
     "en-US": {
+        "admin": [],
         "crud": {
             "fields": {
                 "organisation": "Organization"
@@ -821,6 +838,7 @@ export default {
                 "organisation": "Choose an organization"
             }
         },
+        "entities": [],
         "randomisers": []
     },
     "es": {
@@ -1157,6 +1175,7 @@ export default {
                 "action": "Acción",
                 "actions": {
                     "bulk": {
+                        "ignore": "Ignorar",
                         "add": "Añadir",
                         "remove": "Eliminar"
                     },
@@ -1572,6 +1591,7 @@ export default {
                 "action": "Action",
                 "actions": {
                     "bulk": {
+                        "ignore": "Ignorer",
                         "add": "Ajouter",
                         "remove": "Retirer"
                     },
@@ -2326,6 +2346,7 @@ export default {
                 "action": "Azione",
                 "actions": {
                     "bulk": {
+                        "ignore": "Ignorare",
                         "add": "Aggiungi",
                         "remove": "Rimuovi"
                     },

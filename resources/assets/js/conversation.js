@@ -1,4 +1,4 @@
-import Conversation from "./components/Conversation"
+import Conversation from "./components/conversation/Conversation"
 import Message from "./components/conversation/Message"
 import Messages from "./components/conversation/Messages"
 import Form from "./components/conversation/Form"

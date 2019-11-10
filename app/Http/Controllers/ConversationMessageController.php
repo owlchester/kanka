@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConversationMessage;
+use App\Http\Resources\Conversation\ConversationMessageResource;
 use App\Http\Resources\Conversation\ConversationResource;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
@@ -44,6 +45,19 @@ class ConversationMessageController extends Controller
         return new ConversationResource(
             $conversation
         );
+    }
+
+    public function update(StoreConversationMessage $request, Conversation $conversation, ConversationMessage $conversationMessage)
+    {
+        $this->authorize('update', $conversation);
+        $this->authorize('edit', $conversationMessage);
+
+        $conversationMessage->update($request->only('message'));
+
+        if (request()->ajax()) {
+            return new ConversationMessageResource($conversationMessage);
+        }
+
     }
 
     /**

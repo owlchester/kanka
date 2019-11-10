@@ -38,6 +38,7 @@ return [
         'placeholders'  => [
             'message'   => 'Your message',
         ],
+        'is_updated'    => 'Updated',
     ],
     'participants'  => [
         'create'        => [

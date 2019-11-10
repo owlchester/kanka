@@ -6,6 +6,9 @@
         <div class="load more text-center" v-if="loadingPrevious">
             <i class="fa fa-spin fa-spinner"></i>
         </div>
+        <div class="load more text-center" v-if="initializing">
+            <i class="fa fa-spin fa-spinner fa-4x"></i>
+        </div>
         <conversation-message
             v-for="message in messages"
             :key="message.id"
@@ -46,6 +49,8 @@
                 previous: false,
                 // Show the "load previous" button above messages if there are previous entries on the server
                 loadingPrevious: false,
+                // Show a spinner while getting the first messages
+                initializing: true,
             }
         },
         methods: {
@@ -58,6 +63,7 @@
                     this.sending = false;
                     this.messages.push(...response.data.data.messages);
                     this.previous = response.data.data.previous;
+                    this.initializing = false;
                     this.scrollToBottom();
                 });
             },
@@ -109,8 +115,14 @@
                 this.getMessages();
             });
 
-            Event.$on('delete_message', (message) => {
-                this.deleteMessage(message);
+            Event.$on('edited_message', (message) => {
+                console.log('edited_message', message);
+                let index = this.messages.findIndex(msg => msg.id === message.id);
+                this.messages[index] = message;
+            });
+
+            Event.$on('delete_message', (message, body) => {
+                this.deleteMessage(message, body);
             });
 
         }

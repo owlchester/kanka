@@ -4,6 +4,7 @@
             <dropdown tag="a" menu-right class="message-options" v-if="message.can_delete">
                 <a class="dropdown-toggle" role="button"><span class="caret"></span></a>
                 <template slot="dropdown">
+                  <li><a role="button" v-on:click="editMessage(message)">{{ $t('crud.edit') }}</a></li>
                   <li><a role="button" v-on:click="deleteMessage(message)">{{ $t('crud.remove') }}</a></li>
                 </template>
             </dropdown><br />
@@ -18,7 +19,9 @@
         </strong>
         <div class="comment-text">
             {{ message.message }}
-            <span class="pull-right text-muted">{{ message.created_at }}</span>
+            <span class="pull-right text-muted">
+                <em v-if="message.is_updated" v-bind:title="message.updated_at">{{ $t('conversations.messages.is_updated') }},</em> {{ message.created_at }}
+            </span>
         </div>
     </div>
 </template>
@@ -46,7 +49,10 @@
         methods: {
             deleteMessage: function(message) {
                 Event.$emit('delete_message', message);
+            },
+            editMessage: function(message) {
+                Event.$emit('edit_message', message);
             }
-        }
+        },
     }
 </script>

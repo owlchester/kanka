@@ -29,16 +29,18 @@ class ConversationResource extends JsonResource
         $data = [];
         /** @var ConversationMessage $message */
         foreach ($messages as $message) {
-            $data[] = [
-                'id' => $message->id,
-                'user' => $message->user ? $message->user->name : null,
-                'character' => $message->character ? $message->character->name : null,
-                'message' => $message->message,
-                'created_at' => $message->created_at->diffForHumans(),
-                'can_delete' => Auth::user()->can('delete', $message),
-                'can_edit' => Auth::user()->can('edit', $message),
-                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
-            ];
+            $data[] = new ConversationMessageResource($message);
+//            [
+//                'id' => $message->id,
+//                'user' => $message->user ? $message->user->name : null,
+//                'character' => $message->character ? $message->character->name : null,
+//                'message' => $message->message,
+//                'created_at' => $message->created_at->diffForHumans(),
+//                'can_delete' => Auth::user()->can('delete', $message),
+//                'can_edit' => Auth::user()->can('edit', $message),
+//                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
+//                'is_updated' => $message->updated_at !== $message->created_at
+//            ];
         }
 
         // Check if there are previous messages available

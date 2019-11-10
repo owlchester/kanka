@@ -10,9 +10,24 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ConversationMessagePolicy
 {
-    public function delete(?User $user, ConversationMessage $message)
+    /**
+     * @param User|null $user
+     * @param ConversationMessage $message
+     * @return bool
+     */
+    public function delete(?User $user, ConversationMessage $message): bool
     {
         $elapsed = $message->created_at->diffInHours(Carbon::now());
         return $message->created_by == $user->id && ($elapsed < 1);
+    }
+
+    /**
+     * @param User|null $user
+     * @param ConversationMessage $message
+     * @return bool
+     */
+    public function edit(?User $user, ConversationMessage $message): bool
+    {
+        return $this->delete($user, $message);
     }
 }
