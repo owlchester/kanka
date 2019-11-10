@@ -210,17 +210,16 @@ function initDashboardRecent() {
       url: $(this).data('url'),
       context: this
     }).done(function (data) {
-      $(this).closest('.widget-recent-body').append(data);
+      $(this).closest('.widget-recent-list').append(data);
       $(this).remove();
-      initDashboardRecent(); // Reload tooltips
+      initDashboardRecent();
+      window.ajaxTooltip(); // Reload tooltips
       // Inject the isMobile variable into the window. We don't want ALL of the javascript
       // for mobiles, namely the tooltip tool.
-
-      window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-
-      if (!window.kankaIsMobile.matches) {
-        $('[data-toggle="tooltip"]').tooltip();
-      }
+      // window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
+      // if (!window.kankaIsMobile.matches) {
+      //     $('[data-toggle="tooltip"]').tooltip();
+      // }
     });
   });
 }
