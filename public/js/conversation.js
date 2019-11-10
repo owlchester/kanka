@@ -495,8 +495,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       _this5.getMessages();
     });
     _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edited_message', function (message) {
-      console.log('edited_message', message);
-
       var index = _this5.messages.findIndex(function (msg) {
         return msg.id === message.id;
       });

@@ -116,7 +116,6 @@
             });
 
             Event.$on('edited_message', (message) => {
-                console.log('edited_message', message);
                 let index = this.messages.findIndex(msg => msg.id === message.id);
                 this.messages[index] = message;
             });
