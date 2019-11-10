@@ -25,7 +25,7 @@ class StoreOrganisation extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'max:191',
+            'type' => 'nullable|max:191',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'location_id' => 'nullable|integer|exists:locations,id',
             'organisation_id' => 'nullable|exists:organisations,id',

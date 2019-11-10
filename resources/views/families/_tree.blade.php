@@ -13,6 +13,7 @@
         ],
         // Name
         'name',
+        'type',
         [
             'label' => trans('families.fields.families'),
             'render' => function($model) {

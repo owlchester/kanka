@@ -20,6 +20,7 @@
                     <br class="clear" />
                 </li>
             @endif
+            @include('cruds.lists.type')
 
             @include('cruds.lists.location')
             @include('entities.components.relations')

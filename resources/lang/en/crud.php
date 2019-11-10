@@ -177,6 +177,7 @@ return [
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
         'tooltip'               => 'Tooltip',
+        'type'                  => 'Type',
         'visibility'            => 'Visibility',
     ],
     'files'             => [

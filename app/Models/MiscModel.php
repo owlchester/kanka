@@ -22,6 +22,7 @@ use Exception;
  * @property integer $id
  * @property integer $campaign_id
  * @property string $name
+ * @property string $type
  * @property string $slug
  * @property Entity $entity
  * @property string $entry

@@ -37,6 +37,7 @@ class FamilyController extends CrudController
         parent::__construct();
         $this->filters = [
             'name',
+            'type',
             [
                 'field' => 'family_id',
                 'label' => trans('crud.fields.family'),
