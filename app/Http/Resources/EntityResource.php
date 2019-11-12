@@ -22,6 +22,7 @@ class EntityResource extends JsonResource
             'image' => $this->image,
             'image_full' => $this->getImageUrl(),
             'image_thumb' => $this->getImageUrl(true),
+            'has_custom_image' => !empty($this->image),
 
             'is_private' => (bool) $this->is_private,
             'entity_id' => $this->entity->id,
