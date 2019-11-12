@@ -49,6 +49,7 @@ class EntityResource extends JsonResource
             $merged['entity_events'] = new AttributeCollection($this->entity->events);
             $merged['entity_files'] = new EntityFileCollection($this->entity->files);
             $merged['relations'] = new RelationCollection($this->entity->relationships);
+            $merged['inventory'] = new RelationCollection($this->entity->inventories);
         }
 
         $final = array_merge($merged, $prepared);

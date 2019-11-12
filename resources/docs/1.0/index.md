@@ -35,6 +35,7 @@
     - [Entity Notes](/docs/{{version}}/entity-notes)
     - [Entity Tags](/docs/{{version}}/entity-tags)
     - [Relations](/docs/{{version}}/relations)
+    - [Inventory](/docs/{{version}}/entity-inventory)
         
 - ## Search
     - [Search](/docs/{{version}}/search)
