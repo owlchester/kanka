@@ -105,8 +105,11 @@ class MentionsService
      * @param string $text
      * @return string
      */
-    public function codify(string $text): string
+    public function codify($text): string
     {
+        if (empty($text)) {
+            $text = '';
+        }
         $text = preg_replace(
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
             '$1',
