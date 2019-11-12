@@ -1,14 +1,14 @@
-# Entity Tags
+# Entity Inventory
 
 ---
 
-- [All Entity Tags](#all-entity-inventory)
-- [Create an Entity Tag](#create-inventory)
-- [Update an Entity Tag](#update-inventory)
-- [Delete an Entity Tag](#delete-inventory)
+- [All Entity Inventorys](#all-entity-inventory)
+- [Create an Entity Inventory](#create-inventory)
+- [Update an Entity Inventory](#update-inventory)
+- [Delete an Entity Inventory](#delete-inventory)
 
 <a name="all-entity-inventory"></a>
-## All Entity Tags
+## All Entity Inventorys
 
 You can get a list of all items of an entity's inventory by using the following endpoint.
 
@@ -64,7 +64,7 @@ To create an inventory, use the following endpoint.
 
 
 <a name="update-inventory"></a>
-## Update an Entity Tag
+## Update an Entity Inventory
 
 To update an inventory, use the following endpoint.
 
