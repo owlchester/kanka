@@ -15,7 +15,7 @@ class Inventory extends EntityChild
     public function toArray($request)
     {
         return $this->entity([
-            'item' => $this->item,
+            'item_id' => $this->item_id,
             'position' => $this->position,
             'amount' => $this->amount,
             'visibility' => $this->visibility
