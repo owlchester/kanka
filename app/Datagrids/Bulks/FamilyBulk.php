@@ -8,6 +8,7 @@ class FamilyBulk extends Bulk
 {
     protected $fields = [
         'name',
+        'type',
         'family_id',
         'location_id',
         'tags',
