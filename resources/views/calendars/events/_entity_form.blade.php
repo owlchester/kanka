@@ -73,7 +73,7 @@ $onlyOneCalendar = count($calendars) == 1;
         <div class="col-md-6">
             <div class="form-group">
                 <label>{{ trans('calendars.fields.colour') }}</label>
-                {!! Form::select('colour', trans('calendars.colours'), null, ['class' => 'form-control']) !!}
+                {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control']) !!}
             </div>
         </div>
     </div>
