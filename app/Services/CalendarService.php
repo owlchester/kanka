@@ -9,6 +9,7 @@ use App\Models\EntityEvent;
 use App\Models\Event;
 use App\Observers\PurifiableTrait;
 use Exception;
+use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
 
 class CalendarService
@@ -31,9 +32,9 @@ class CalendarService
             $link->day = $data['day'];
             $link->length = $data['length'];
             $link->comment = Purify::clean($data['comment']);
-            $link->is_recurring = array_get($data, 'is_recurring', false);
-            $link->colour = array_get($data, 'colour', null);
-            $link->recurring_until = array_get($data, 'recurring_until', null);
+            $link->is_recurring = Arr::get($data, 'is_recurring', false);
+            $link->colour = Arr::get($data, 'colour', null);
+            $link->recurring_until = Arr::get($data, 'recurring_until', null);
             if ($link->save()) {
                 return $link;
             }

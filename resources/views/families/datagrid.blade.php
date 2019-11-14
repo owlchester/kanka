@@ -11,6 +11,7 @@
         ],
         // Name
         'name',
+        'type',
         [
             'label' => trans('families.fields.family'),
             'field' => 'family.name',

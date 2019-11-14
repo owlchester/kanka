@@ -27,28 +27,6 @@ var toggablePanels;
 var validEntityForm = false, validRelationForm = false;
 
 $(document).ready(function () {
-    // Multi-delete
-    var crudDelete = $('#datagrid-select-all');
-    if (crudDelete.length > 0) {
-        crudDelete.click(function (e) {
-            if ($(this).prop('checked')) {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                $.each($("input[name='model[]']"), function () {
-                    $(this).prop('checked', false);
-                });
-            }
-            toggleCrudMultiDelete();
-        });
-    }
-    $.each($("input[name='model[]']"), function () {
-        $(this).change(function (e) {
-            toggleCrudMultiDelete();
-            e.preventDefault();
-        });
-    });
 
     characterSortPersonality = $('.character-personality');
     characterSortAppearance = $('.character-appearance');
@@ -107,26 +85,6 @@ function registerModalLoad() {
         registerRelationFormSubmit();
         registerEntityCalendarModal();
     });
-}
-
-/**
- *
- */
-function toggleCrudMultiDelete()
-{
-    var hide = true;
-
-    $.each($("input[name='model[]']"), function () {
-        if ($(this).prop('checked')) {
-            hide = false;
-        }
-    });
-
-    if (hide) {
-        $('.datagrid-bulk-actions').hide();
-    } else {
-        $('.datagrid-bulk-actions').show();
-    }
 }
 
 /**

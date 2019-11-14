@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'pledges' => [
-        'kobold' => 'Kobold',
-        'goblin' => 'Goblin',
-        'owlbear' => 'Owlbear',
+    'pledges'   => [
         'elemental' => 'Elemental',
+        'goblin'    => 'Goblin',
+        'kobold'    => 'Kobold',
+        'owlbear'   => 'Owlbear',
     ],
 ];

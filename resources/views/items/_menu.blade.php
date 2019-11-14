@@ -39,6 +39,12 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if ($model->weight)
+                <li class="list-group-item">
+                    <b>{{ trans('items.fields.weight') }}</b> <span class="pull-right">{{ $model->weight }}</span>
+                    <br class="clear" />
+                </li>
+            @endif
             @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')

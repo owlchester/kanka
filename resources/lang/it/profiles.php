@@ -42,11 +42,13 @@ return [
     ],
     'settings'      => [
         'fields'    => [
+            'advanced_mentions' => 'Menzioni avanzate',
             'date_format'       => 'Formato della data',
             'default_nested'    => 'Vista Nidificata come Predefinita',
             'pagination'        => 'Paginazione (elementi per pagina)',
         ],
         'hints'     => [
+            'advanced_mentions' => 'Se attivata, le menzioni saranno sempre mostrate come [entity:123] quando si modifica un\'entità.',
             'default_nested'    => 'Attiva questa opzione se desideri che la vista nidificzata sia utilizzata come vista di default (quando disponibile).',
         ],
         'success'   => 'Impostazioni aggiornate.',

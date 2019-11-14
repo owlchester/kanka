@@ -140,40 +140,8 @@
     font-size: 108px;
   }
 
-  .red {
-    background-color: red;
-    border-color: rgba(255, 0, 0, 0.5);
-    box-shadow: 0 0 10px red;
-  }
-  .blue {
-    background-color: blue;
-    border-color: rgba(0, 0, 255, 0.5);
-    box-shadow: 0 0 10px blue;
-  }
-  .yellow {
-    background-color: yellow;
-    border-color: rgba(255, 255, 0, 0.5);
-    box-shadow: 0 0 10px yellow;
-  }
-  .green {
-    background-color: green;
-    border-color: rgba(0, 128, 0, 0.5);
-    box-shadow: 0 0 10px green;
-  }
-  .white {
-    background-color: white;
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px white;
-  }
-  .black {
-    background-color: black;
-    border-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 10px black;
-  }
-  .grey {
-    background-color: grey;
-    border-color: rgba(128, 128, 128, 0.7);
-    box-shadow: 0 0 10px grey;
+  .coloured {
+
   }
   .none {
     background: none;
@@ -261,6 +229,13 @@
 .entity-close {
   cursor: pointer;
 }
+
+.select2-results__option {
+  .fa, .ra {
+    font-size: 1.8em;
+  }
+}
+
 
 @-webkit-keyframes ping {
   from {

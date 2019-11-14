@@ -28,7 +28,7 @@ class StoreMapPoint extends FormRequest
             'name' => 'nullable|string|required_without_all:target_entity_id',
             'axis_x' => 'required|integer',
             'axis_y' => 'required|integer',
-            'colour' => 'required',
+            'colour' => 'max:7',
             'size' => 'required',
             'shape' => 'required',
             'icon' => 'required',

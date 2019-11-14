@@ -12,7 +12,6 @@
 
 // Other stylings
 @import "calendar";
-@import "conversation";
 @import "print";
 @import "../components/rpg/scss/rpg-awesome";
 
@@ -829,6 +828,16 @@ td.breakable {
 .margin-top {
   margin-top: 25px;
 }
+
+.bg-pink {
+  color: #fff !important;
+  background-color: #ebbde9 !important;
+}
+.bg-brown {
+  color: #fff !important;
+  background-color: #a35831 !important;
+}
+
 
 @import "mobile";
 @import "boosted";

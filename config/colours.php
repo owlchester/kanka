@@ -14,6 +14,8 @@ return [
         'orange',
         'maroon',
         'black',
+        'pink',
+        'brown',
     ],
     'mappings' => [
         //'blue' => 'primary',

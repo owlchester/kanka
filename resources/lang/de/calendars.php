@@ -15,18 +15,6 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Wiederholt sich jedes Jahr',
     ],
-    'colours'       => [
-        'black'     => 'Schwarz',
-        'blue'      => 'Blau',
-        'default'   => 'Standard',
-        'green'     => 'Grün',
-        'maroon'    => 'Kastanie',
-        'navy'      => 'Marineblau',
-        'orange'    => 'Orange',
-        'purple'    => 'Lila',
-        'red'       => 'Rot',
-        'teal'      => 'Grünblau',
-    ],
     'create'        => [
         'description'   => 'Einen neuen Kalender erstellen',
         'success'       => 'Kalender \':name\' erstellt.',

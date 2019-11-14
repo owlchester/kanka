@@ -6,6 +6,7 @@ use App\Traits\AclTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 /**
  * Class CampaignDashboardWidget
@@ -92,6 +93,6 @@ class CampaignDashboardWidget extends Model
     public function conf($value)
     {
         $data = json_decode($this->config, true);
-        return array_get($data, $value, null);
+        return Arr::get($data, $value, null);
     }
 }

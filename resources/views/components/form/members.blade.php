@@ -1,11 +1,12 @@
 <?php
+use Illuminate\Support\Arr;
 /**
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
 $selectedOption = [];
 
-$model = array_get($options, 'model', null);
-$source = array_get($options, 'source', null);
+$model = Arr::get($options, 'model', null);
+$source = Arr::get($options, 'source', null);
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);

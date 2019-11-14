@@ -22,6 +22,7 @@ class EntityResource extends JsonResource
             'image' => $this->image,
             'image_full' => $this->getImageUrl(),
             'image_thumb' => $this->getImageUrl(true),
+            'has_custom_image' => !empty($this->image),
 
             'is_private' => (bool) $this->is_private,
             'entity_id' => $this->entity->id,
@@ -49,6 +50,7 @@ class EntityResource extends JsonResource
             $merged['entity_events'] = new AttributeCollection($this->entity->events);
             $merged['entity_files'] = new EntityFileCollection($this->entity->files);
             $merged['relations'] = new RelationCollection($this->entity->relationships);
+            $merged['inventory'] = new RelationCollection($this->entity->inventories);
         }
 
         $final = array_merge($merged, $prepared);

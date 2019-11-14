@@ -24,6 +24,13 @@ trait OrderableTrait
                 $defaultField = $this->orderDefaultField;
             }
             $defaultDir = isset($this->orderDefaultDir) ? $this->orderDefaultDir : 'asc';
+
+            if ($defaultField == 'events/date') {
+                return $query
+                    ->orderBy('year', $defaultDir)
+                    ->orderBy('month', $defaultDir)
+                    ->orderBy('day', $defaultDir);
+            }
             return $query->orderBy($defaultField, $defaultDir);
         }
 
@@ -42,10 +49,16 @@ trait OrderableTrait
                     ->with($relationName)
                     ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKeyName())
                     ->orderBy(str_replace($relationName, 'f', $field), $direction);
+            } elseif ($data == 'events/date') {
+                return $query
+                    ->orderBy($this->getTable() . '.year', $direction)
+                    ->orderBy($this->getTable() . '.month', $direction)
+                    ->orderBy($this->getTable() . '.day', $direction);
             } else {
                 return $query->orderBy($this->getTable() . '.' . $field, $direction);
             }
         }
+
 
         return $query;
     }

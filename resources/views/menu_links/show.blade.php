@@ -47,7 +47,7 @@
                         <li class="list-group-item">
                             <b>{{ trans('menu_links.fields.type') }}</b>
                             <span  class="pull-right">
-                            {{ __('entities.' . str_plural($model->type)) }}
+                            {{ __('entities.' . \Illuminate\Support\Str::plural($model->type)) }}
                         </span>
                             <br class="clear" />
                         </li>

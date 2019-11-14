@@ -90,6 +90,7 @@ To get the details of a single character, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "has_custom_image": true,
         "is_private": true,
         "entity_id": 4,
         "tags": [],

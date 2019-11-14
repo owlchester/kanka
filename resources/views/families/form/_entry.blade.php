@@ -2,6 +2,7 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'families'])
+        @include('cruds.fields.type', ['base' => \App\Models\Family::class, 'trans' => 'families'])
         <div class="form-group">
             {!! Form::select2(
                 'family_id',

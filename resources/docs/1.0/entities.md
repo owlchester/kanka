@@ -50,6 +50,7 @@ There are several models in Kanka which represent objects attached to `entities`
 * [Entity Notes](/docs/{{version}}/entity-notes)
 * [Entity Tags](/docs/{{version}}/entity-tags)
 * [Entity Relations](/docs/{{version}}/entity-relations)
+* [Entity Inventory](/docs/{{version}}/entity-inventory)
 
 With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Bulks\FamilyBulk;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreFamily;
@@ -24,7 +25,7 @@ class FamilyController extends CrudController
     protected $route = 'families';
 
     /**
-     * @var string
+     * Crud models
      */
     protected $model = \App\Models\Family::class;
 
@@ -36,6 +37,7 @@ class FamilyController extends CrudController
         parent::__construct();
         $this->filters = [
             'name',
+            'type',
             [
                 'field' => 'family_id',
                 'label' => trans('crud.fields.family'),

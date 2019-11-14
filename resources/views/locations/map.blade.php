@@ -118,8 +118,10 @@
 @section('scripts')
     <script src="{{ mix('js/location/map.js') }}" defer></script>
     <script src="{{ asset('js/vendor/jquery.ui.touch-punch.min.js') }}" defer></script>
+    <script src="/vendor/spectrum/spectrum.js" defer></script>
 @endsection
 
 @section('styles')
     <link href="{{ mix('css/map.css') }}" rel="stylesheet">
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 @endsection

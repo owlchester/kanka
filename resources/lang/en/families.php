@@ -24,6 +24,7 @@ return [
         'members'   => 'Members',
         'name'      => 'Name',
         'relation'  => 'Relation',
+        'type'      => 'Type',
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all families which are descendants of this family, and not only those directly under it.',
@@ -48,6 +49,7 @@ return [
     'placeholders'  => [
         'location'  => 'Choose a location',
         'name'      => 'Name of the family',
+        'type'      => 'Royal, Noble, Extinct',
     ],
     'show'          => [
         'description'   => 'A detailed view of a family',

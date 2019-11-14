@@ -25,6 +25,7 @@ class StoreFamily extends FormRequest
     {
         $rules = [
             'name' => 'required',
+            'type' => 'nullable:max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
             'family_id' => 'nullable|exists:families,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),

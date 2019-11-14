@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\EntityPermission;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * Class MapPoint
@@ -97,8 +98,23 @@ class MapPoint extends Model
             }
         }
 
-        return '<a id="map-point-' . $this->id . '" class="point ' . e($this->size) . ' ' . e($this->shape) . ' '
-            . e($this->colour) . '" '
+        $class = ['point', e($this->size), e($this->shape)];
+        if (!empty($this->colour) && $this->colour != 'none') {
+            if (Str::startsWith($this->colour, '#')) {
+                $style .= 'background-color: ' . $this->colour . ';';
+                $style .= 'border-color: rgba(' . hexdec(substr($this->colour, 1, 2)) . ', ' . hexdec(substr($this->colour, 3, 2)) . ', ' . hexdec(substr($this->colour, 5, 2)) . ', 0.5);';
+                $style .= 'box-shadow: 0 0 10px ' . $this->colour . ';';
+            } else {
+                $style .= 'background-color: ' . $this->colour . ';';
+                $style .= 'box-shadow: 0 0 10px ' . $this->colour . ';';
+            }
+
+            $class[] = 'coloured';
+        } else {
+            $class[] = 'none';
+        }
+
+        return '<a id="map-point-' . $this->id . '" class="' . implode(' ', $class) . '"'
             . 'style="' . $style . '" href="' . $url . '" data-url-show="' . $dataUrl . '" '
             . 'data-url-modal="' . $dataUpdateUrl . '" '
             . $title

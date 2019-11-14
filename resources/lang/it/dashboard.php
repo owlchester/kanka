@@ -88,13 +88,26 @@ TEXT
         'delete'    => [
             'success'   => 'Widget rimosso dalla dashboard',
         ],
+        'fields'    => [
+            'width' => 'Larghezza',
+        ],
         'recent'    => [
+            'full'      => 'Intero',
             'help'      => 'Visualizza solamente l\'ultima entità aggiornata, ma visualizza un\'antemprima completa per la stessa.',
+            'helpers'   => [
+                'full'  => 'Visualizza l\'intera entità in maniera predefinita invece di un\'anteprima.',
+            ],
             'singular'  => 'Singola',
             'title'     => 'Modificati di recente',
         ],
         'update'    => [
             'success'   => 'Widget modificato.',
+        ],
+        'widths'    => [
+            '0' => 'Auto',
+            '12'=> 'Intera',
+            '4' => 'Piccola',
+            '6' => 'Metà',
         ],
     ],
 ];

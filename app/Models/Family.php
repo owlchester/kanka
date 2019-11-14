@@ -26,7 +26,7 @@ class Family extends MiscModel
         'location_id',
         'family_id',
         'is_private',
-        //'type',
+        'type',
     ];
 
     /**
@@ -41,6 +41,7 @@ class Family extends MiscModel
      */
     protected $filterableColumns = [
         'name',
+        'type',
         'location_id',
         'family_id',
         'tag_id',

@@ -3,14 +3,26 @@
  */
 .box-conversation {
   .box-comments {
+    max-height: 65vh;
+    overflow: auto;
+    background-color: unset;
     .box-comment {
       margin: 5px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background-color: #f7f7f7;
 
-      .entity-image {
-        float: left;
+      .message-options {
+        display: none;
       }
       .comment-text {
-        margin-left: 50px;
+        margin-left: 0;
+      }
+
+      &:hover {
+        .message-options {
+          display: inline-block;
+        }
       }
     }
   }
@@ -19,11 +31,5 @@
     margin: 10px 55px;
     cursor: pointer;
     text-align: center;
-  }
-
-
-  #conversation_body {
-    max-height: 400px;
-    overflow: auto;
   }
 }

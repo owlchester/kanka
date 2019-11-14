@@ -40,6 +40,8 @@ return [
         'title'         => 'Esportazione della Campagna :name',
     ],
     'fields'                            => [
+        'boosted'                       => 'Potenziata da',
+        'css'                           => 'CSS',
         'description'                   => 'Descrizione',
         'entity_count'                  => 'Numero di Entità',
         'entity_personality_visibility' => 'Visibilità della Personalità del Personaggio',
@@ -52,10 +54,13 @@ return [
         'name'                          => 'Nome',
         'rpg_system'                    => 'Sistema RPG',
         'system'                        => 'Sistema',
+        'theme'                         => 'Tema',
         'visibility'                    => 'Visibilità',
     ],
     'following'                         => 'Che Segui',
     'helpers'                           => [
+        'boosted'                       => 'Alcune caratteristiche sono sbloccate perché questa campagna è stata potenziata. Scopri di più nella pagine dei :settings.',
+        'css'                           => 'Scrivi i tuoi CSS che saranno caricati all\'interno della pagina della tua campagna. Considera che qualsiasi abuso di questa funzionalità può portare alla rimozione dei tuoi CSS personalizzati.',
         'entity_personality_visibility' => 'Quando si crea un nuovo personaggio, l\'opzione "Visibilità della Personalità" sarà automaticamente deselezionata.',
         'entity_visibility'             => 'Quando creerai una nuova entità, l\'opzione "Privato" sarà selezionato automaticamente.',
         'excerpt'                       => 'L\'estratto della campagna sarà mostrato sulla dashboard quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato.',
@@ -63,6 +68,7 @@ return [
         'name'                          => 'Il tuo mondo/campagna può avere qualsiasi nome, basta che contenga almeno 4 lettere o numeri.',
         'system'                        => 'Se la tua campagna è visibile pubblicamente il sistema sarà visualizzato nella pagina :link.',
         'systems'                       => 'Per evitare di far confusione alle utenze, alcune funzionalità saranno disponibili per specifici sistemi RPG (per esempio il blocco con le caratteristiche dei mostri di D&D 5). Aggiungere un sistema supportato qui abiliterà queste caratteristiche.',
+        'theme'                         => 'Forza il tema della campagna, sovrascrivendo le preferenze delle utenze.',
         'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                             => [
@@ -174,6 +180,7 @@ return [
         'your_role'             => 'Il tuo ruolo: <i>:role</i>',
     ],
     'panels'                            => [
+        'boosted'   => 'Potenziata',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permessi',
         'sharing'   => 'Condividi',
@@ -284,6 +291,7 @@ return [
     ],
     'show'                              => [
         'actions'       => [
+            'boost' => 'Potenzia campagna',
             'leave' => 'Abbandona campagna',
         ],
         'description'   => 'Una vista dettagliata di una campagna',

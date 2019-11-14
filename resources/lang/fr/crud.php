@@ -87,6 +87,17 @@ return [
     ],
     'boosted'           => 'Boosté',
     'bulk'              => [
+        'actions'       => [
+            'edit'  => 'Opération de masse',
+        ],
+        'edit'          => [
+            'tagging'   => 'Action pour les étiquettes',
+            'tags'      => [
+                'add'       => 'Ajouter',
+                'remove'    => 'Retirer',
+            ],
+            'title'     => 'Modifications de plusieurs entités',
+        ],
         'errors'        => [
             'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
         ],
@@ -100,6 +111,7 @@ return [
             'title'     => 'Changer les permissions pour plusieurs entités',
         ],
         'success'       => [
+            'editing'       => ':count entité modifiée.|:count entités modifiées.',
             'permissions'   => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
             'private'       => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
             'public'        => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
@@ -165,6 +177,7 @@ return [
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
         'tooltip'               => 'Infobulle',
+        'type'                  => 'Type',
         'visibility'            => 'Visibilité',
     ],
     'files'             => [
@@ -266,6 +279,7 @@ return [
         'actions'       => [
             'bulk'          => [
                 'add'       => 'Ajouter',
+                'ignore'    => 'Ignorer',
                 'remove'    => 'Retirer',
             ],
             'delete'        => 'Supprimer',

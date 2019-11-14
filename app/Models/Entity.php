@@ -31,6 +31,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
+ * @property Conversation $conversation
  * @property Tag[] $tags
  * @property EntityTag[] $entityTags
  * @property EntityNote[] $notes
@@ -85,6 +86,12 @@ class Entity extends Model
     ];
 
     /**
+     * True if the user granted themselves permission to read/write when creating the entity
+     * @var bool
+     */
+    public $permissionGrantSelf = false;
+
+    /**
      * Get the child entity
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -97,6 +104,20 @@ class Entity extends Model
         }
 
         return $this->{$this->type}();
+    }
+
+    /**
+     * @return Entity
+     */
+    public function reloadChild()
+    {
+        if ($this->type == 'attribute_template') {
+            return $this->load('attributeTemplate');
+        } elseif ($this->type == 'dice_roll') {
+            return $this->load('diceRoll');
+        }
+
+        return $this->load($this->type);
     }
 
     /**

@@ -34,6 +34,7 @@ class EntityEvent extends MiscModel
      * @var string
      */
     protected $orderTrigger = 'events/';
+    protected $orderDefaultDir = 'desc';
 
     /**
      * @var string

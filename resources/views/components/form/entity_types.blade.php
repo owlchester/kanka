@@ -1,11 +1,12 @@
 <?php
+use Illuminate\Support\Arr;
 /**
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
 $types = \App\Models\EntityType::all();
 
-$showEmpty = array_get($options, 'show-empty', true);
-$model = array_get($options, 'model', null);
+$showEmpty = Arr::get($options, 'show-empty', true);
+$model = Arr::get($options, 'model', null);
 ?>
 
 <label>{{ trans('crud.fields.entity_type') }}</label>

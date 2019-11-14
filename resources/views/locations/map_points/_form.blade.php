@@ -75,13 +75,8 @@ $sizeOptions = [
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group required">
-                <label>{{ trans('locations.map.points.fields.colour') }}</label>
-                <select name="colour" class="form-control select2-colour" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
-                    <option value="none">{{ __('colours.none') }}</option>
-                    @foreach ($colourOptions as $colour => $text)
-                        <option value="{{ $colour }}" @if (isset($model) && $model->colour == $colour) selected="selected" @endif>{{ $text }}</option>
-                    @endforeach
-                </select>
+                <label>{{ trans('locations.map.points.fields.colour') }}</label><br />
+                {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 20] ) !!}
             </div>
         </div>
 

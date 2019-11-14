@@ -7,7 +7,7 @@ $r = $model
     ->events()
     ->has('calendar')
     ->with(['calendar', 'calendar.entity', 'entity'])
-    ->order(request()->get('order'), 'date')
+    ->order(request()->get('order'), 'events/date')
     ->paginate(); ?>
 <p class="export-hidden">
     @can('events', $model)

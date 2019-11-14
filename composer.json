@@ -41,14 +41,15 @@
         "vsch/laravel-translation-manager": "^2.5"
     },
     "require-dev": {
+        "ext-mysqli": "*",
         "barryvdh/laravel-debugbar": "^3.1",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "laravel/homestead": "^7.0",
+        "martinlindhe/laravel-vue-i18n-generator": "^0.1.42",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "^7.0",
-        "squizlabs/php_codesniffer": "^3.4",
-        "ext-mysqli": "*"
+        "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
         "classmap": [
