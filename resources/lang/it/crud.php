@@ -26,6 +26,7 @@ return [
             'add_text'          => 'Aggiungi un testo',
             'apply_template'    => 'Applica un Template per gli Attributi',
             'manage'            => 'Gestisci',
+            'remove_all'        => 'Cancella tutti',
         ],
         'create'        => [
             'description'   => 'Crea un nuovo attributo',
@@ -43,9 +44,16 @@ return [
         'fields'        => [
             'attribute'             => 'Attributo',
             'community_templates'   => 'Templates della Community',
+            'is_private'            => 'Attributi Privati',
             'is_star'               => 'Fissato',
             'template'              => 'Template',
             'value'                 => 'Valore',
+        ],
+        'helpers'       => [
+            'delete_all'    => 'Sei sicuro di voler cancellare tutti gli attributi di questa entità?',
+        ],
+        'hints'         => [
+            'is_private'    => 'Puoi nascondere tutti gli attributi di un\'entità per tutti i membri al di fuori del gruppo degli amministratori rendendoli privati.',
         ],
         'index'         => [
             'success'   => 'Attributo aggiornato per :entity.',
@@ -55,6 +63,7 @@ return [
             'attribute' => 'Numero di conquiste, Grado di Sfida, Iniziativa, Popolazione',
             'block'     => 'Nome del blocco',
             'checkbox'  => 'Nome del checkbox',
+            'section'   => 'Nome della sezione',
             'template'  => 'Seleziona un template',
             'value'     => 'Valore dell\'attributo',
         ],
@@ -66,6 +75,7 @@ return [
             'attribute' => 'Attributo',
             'block'     => 'Blocco',
             'checkbox'  => 'Checkbox',
+            'section'   => 'Sezione',
             'text'      => 'Testo multilinea',
         ],
         'visibility'    => [
@@ -75,6 +85,7 @@ return [
             'tab'       => 'Gli attributi sono visualizzati solamente nella tab degli Attributi.',
         ],
     ],
+    'boosted'           => 'Potenziata',
     'bulk'              => [
         'errors'        => [
             'admin' => 'Solo gli amministratori della campagna possono cambiare lo stato di visibilità delle entità.',
@@ -142,6 +153,7 @@ return [
         'excerpt'               => 'Estratto',
         'family'                => 'Famiglia',
         'files'                 => 'Files',
+        'header_image'          => 'Immagine dell\'intestazione',
         'image'                 => 'Immagine',
         'is_private'            => 'Privato',
         'is_star'               => 'Fissato',
@@ -152,6 +164,7 @@ return [
         'race'                  => 'Razza',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'tooltip'               => 'Tooltip',
         'visibility'            => 'Visibilità',
     ],
     'files'             => [
@@ -189,11 +202,13 @@ return [
     'hints'             => [
         'attribute_template'    => 'Applica un template per gli attributi direttamente quando si crea questa entità.',
         'calendar_date'         => 'La data di un calendario permette un semplice filtro nelle lista ed inoltre mantiene un evento nel calendario selezionato.',
+        'header_image'          => 'Questa immagine è posizionata sopra alle entità. Per un miglior risultato utilizza un\'immagine larga.',
         'image_limitations'     => 'Formati supportati: jpg, png and gif. Dimensione massima del file: :size.',
         'image_patreon'         => 'Aumentare la dimensione massima dei file?',
         'is_private'            => 'Nascondi dalle utenze non "Admin".',
         'is_star'               => 'Gli elementi fissati appariranno nel menù dell\'entità',
         'map_limitations'       => 'Formati supportati:jpg, png, gif e svg. Dimensione massima del file: :size.',
+        'tooltip'               => 'Sostituisci il tooltip generato automaticamente con il seguente contenuto.',
         'visibility'            => 'Impostare la visibilità agli amministratori significa che solamente i membri del ruolo "Proprietario" della campagna potranno visualizzarlo. Impostarlo a "Te stesso" significa che solo tu potrai vederlo.',
     ],
     'history'           => [
@@ -247,10 +262,9 @@ return [
         'system'                => 'Sistema',
     ],
     'permissions'       => [
-        'action'    => 'Azione',
-        'actions'   => [
+        'action'        => 'Azione',
+        'actions'       => [
             'bulk'          => [
-                'ignore'    => 'Ignorare',
                 'add'       => 'Aggiungi',
                 'remove'    => 'Rimuovi',
             ],
@@ -259,14 +273,16 @@ return [
             'entity_note'   => 'Note dell\'Entità',
             'read'          => 'Lettura',
         ],
-        'allowed'   => 'Permesso',
-        'fields'    => [
+        'allowed'       => 'Permesso',
+        'fields'        => [
             'member'    => 'Membro',
             'role'      => 'Ruolo',
         ],
-        'helper'    => 'Utilizza questa interfaccia per specificare quali utenti e ruoli possono interagire con questa entità.',
-        'success'   => 'Permessi salvati.',
-        'title'     => 'Permessi',
+        'helper'        => 'Utilizza questa interfaccia per specificare quali utenti e ruoli possono interagire con questa entità.',
+        'inherited'     => 'Questo ruolo ha già questo permesso impostato per questa tipologia di entità.',
+        'inherited_by'  => 'Questo utente fa parte del ruolo \':role\' che gli conferisce questo permesso su questa tipologia di entità.',
+        'success'       => 'Permessi salvati.',
+        'title'         => 'Permessi',
     ],
     'placeholders'      => [
         'calendar'      => 'Seleziona un calendario',
@@ -303,6 +319,7 @@ return [
     'select'            => 'Seleziona',
     'tabs'              => [
         'attributes'    => 'Attributi',
+        'boost'         => 'Potenzia',
         'calendars'     => 'Calendari',
         'default'       => 'Default',
         'events'        => 'Eventi',
@@ -313,6 +330,7 @@ return [
         'notes'         => 'Note',
         'permissions'   => 'Permessi',
         'relations'     => 'Relazioni',
+        'tooltip'       => 'Tooltip',
     ],
     'update'            => 'Aggiorna',
     'users'             => [

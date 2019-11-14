@@ -9,10 +9,6 @@ return [
     'destroy'       => [
         'success'   => 'Relación de :name eliminada.',
     ],
-    'update'          => [
-        'success'   => 'Relación de :name actualizada.',
-        'title'     => 'Actualizar relaciones',
-    ],
     'fields'        => [
         'attitude'  => 'Actitud',
         'is_star'   => 'Fijada',

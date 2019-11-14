@@ -28,29 +28,29 @@ return [
         'request_permission'    => 'We are currently building a powerful RESTful API so that third-party apps can connect to the app. However, we are currently limiting the number of users who can interact with the API while we polish it. If you want to get access to the API and build cools apps that talk with Kanka, please contact us and we\'ll send you all the information you need.',
         'title'                 => 'API',
     ],
-    'boost' => [
-        'title' => 'Boost',
-        'benefits' => [
-            'first' => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign reminds boosted as long as a user is boosting the campaign and they continue supporting Kanka on :patreon. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
-            'second' => 'Boosting a campaign enables the following benefits:',
-            'theme' => 'Campaign level theme and custom styling.',
-            'tooltip' => 'Custom tooltips for entities.',
-            'header' => 'Entity header images.',
-            'upload' => 'Increased upload size for every member in the campaign.',
-            'more' => 'Find out more about all features.'
+    'boost'     => [
+        'benefits'      => [
+            'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign reminds boosted as long as a user is boosting the campaign and they continue supporting Kanka on :patreon. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
+            'header'    => 'Entity header images.',
+            'more'      => 'Find out more about all features.',
+            'second'    => 'Boosting a campaign enables the following benefits:',
+            'theme'     => 'Campaign level theme and custom styling.',
+            'tooltip'   => 'Custom tooltips for entities.',
+            'upload'    => 'Increased upload size for every member in the campaign.',
         ],
-        'campaigns' => 'Boosted Campaigns :count / :max',
-        'buttons' => [
-            'boost' => 'Boost'
+        'buttons'       => [
+            'boost' => 'Boost',
         ],
-        'success' => [
+        'campaigns'     => 'Boosted Campaigns :count / :max',
+        'exceptions'    => [
+            'already_boosted'   => 'Campaign :name is already boosted.',
+            'exhausted_boosts'  => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
+        ],
+        'success'       => [
             'boost' => 'Campaign :name boosted.',
-            'delete' => 'Removed your boost from :name.'
+            'delete'=> 'Removed your boost from :name.',
         ],
-        'exceptions' => [
-            'already_boosted' => 'Campaign :name is already boosted.',
-            'exhausted_boosts' => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
-        ]
+        'title'         => 'Boost',
     ],
     'layout'    => [
         'description'   => 'Update your layout options',

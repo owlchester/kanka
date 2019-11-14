@@ -15,18 +15,6 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Opakuje sa ročne',
     ],
-    'colours'       => [
-        'black'     => 'Čierna',
-        'blue'      => 'Modrá',
-        'default'   => 'Štandardná',
-        'green'     => 'Zelená',
-        'maroon'    => 'Gaštanová',
-        'navy'      => 'Tmavomodrá',
-        'orange'    => 'Oranžová',
-        'purple'    => 'Fialová',
-        'red'       => 'Červená',
-        'teal'      => 'Tyrkysová',
-    ],
     'create'        => [
         'description'   => 'Vytvoriť nový kalendár',
         'success'       => 'Kalendár ":name" vytvorený.',

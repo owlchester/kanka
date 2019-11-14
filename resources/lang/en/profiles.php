@@ -42,14 +42,14 @@ return [
     ],
     'settings'      => [
         'fields'    => [
+            'advanced_mentions' => 'Advanced Mentions',
             'date_format'       => 'Date Formatting',
             'default_nested'    => 'Nested Views as Default',
             'pagination'        => 'Pagination (elements per page)',
-            'advanced_mentions' => 'Advanced Mentions',
         ],
         'hints'     => [
+            'advanced_mentions' => 'If activated, mentions will always render as [entity:123] when editing an entity.',
             'default_nested'    => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
-            'advanced_mentions' => 'If activated, mentions will always render as [entity:123] when editing an entity.'
         ],
         'success'   => 'Settings changed.',
     ],

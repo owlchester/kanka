@@ -8,6 +8,14 @@ return [
         'more'                      => 'D\'autres options sont expliquées sur le site du plugin.',
         'title'                     => 'Jets de dés',
     ],
+    'filters'       => [
+        'description'   => 'Utilises les filtres pour limiter le nombre de résultats. Les champs de texte supportent plusieurs fonctionalités pour plus de granularité.',
+        'empty'         => 'Le code :tag: dans un champs cherche pour toutes les entités ou ce champs est vide.',
+        'ending_with'   => 'En placant un :tag à la fin du text, seuls les résultats avec exactement ce term seront affichés.',
+        'session'       => 'Les filtres et colonnes ordonnées sont enregistrés dans ta session. Du moment que tu restes connecté, il n\'est pas nécessaire de les redéfinir sur chaque page.',
+        'starting_with' => 'En placant un :tag au début du text, seuls les résultats ne contenant pas ce text seront affichés.',
+        'title'         => 'Comment utiliser les filtres',
+    ],
     'link'          => [
         'auto_update'       => 'Les liens vers d\'autres entités seront automatiquement mis à jour lorsque le nom ou la description de l\'entitée cible est modifié.',
         'description'       => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',

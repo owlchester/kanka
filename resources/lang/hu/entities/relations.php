@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'       => ':name új kapcsolatát létrehoztuk.',
-        'title'         => 'Kapcsolatok létrehozása',
+        'success'   => ':name új kapcsolatát létrehoztuk.',
+        'title'     => 'Kapcsolatok létrehozása',
     ],
     'destroy'       => [
         'success'   => ':name kapcsolatát eltávolítottuk.',
-    ],
-    'update'          => [
-        'success'   => ':name kapcsolatát frissítettük.',
-        'title'     => 'Kapcsolatok módosítása',
     ],
     'fields'        => [
         'relation'  => 'Kapcsolat',
@@ -23,5 +19,9 @@ return [
     'placeholders'  => [
         'relation'  => 'A kapcsolat jellege',
         'target'    => 'Válassz ki egy entitást!',
+    ],
+    'update'        => [
+        'success'   => ':name kapcsolatát frissítettük.',
+        'title'     => 'Kapcsolatok módosítása',
     ],
 ];

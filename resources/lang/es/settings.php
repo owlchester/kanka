@@ -32,7 +32,7 @@ return [
         'benefits'      => [
             'first'     => 'Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante :patreon. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en :patreon. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.',
             'header'    => 'Imágenes de cabecera para las entidades.',
-            'more'      => 'Más por llegar.',
+            'more'      => 'Saber más sobre todas las características.',
             'second'    => 'Mejorar una campaña activa los siguientes beneficios:',
             'theme'     => 'Tema y estilo personalizado a nivel de campaña.',
             'tooltip'   => 'Descripciones emergentes personalizadas para las entidades.',

@@ -34,6 +34,7 @@ return [
         'destroy'       => [
             'success'   => 'Message supprimé.',
         ],
+        'is_updated'    => 'Modifié',
         'load_previous' => 'Messages précédants',
         'placeholders'  => [
             'message'   => 'Ton message',

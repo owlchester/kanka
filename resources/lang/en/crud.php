@@ -85,18 +85,18 @@ return [
             'tab'       => 'Attribute is displayed only on the Attributes tab.',
         ],
     ],
-    'boosted' => 'Boosted',
+    'boosted'           => 'Boosted',
     'bulk'              => [
-        'actions' => [
-            'edit' => 'Bulk Edit & Tagging',
+        'actions'       => [
+            'edit'  => 'Bulk Edit & Tagging',
         ],
-        'edit' => [
-            'title' => 'Editing multiple entities',
-            'tagging' => 'Action for tags',
-            'tags' => [
-                'add' => 'Add',
-                'remove' => 'Remove',
-            ]
+        'edit'          => [
+            'tagging'   => 'Action for tags',
+            'tags'      => [
+                'add'       => 'Add',
+                'remove'    => 'Remove',
+            ],
+            'title'     => 'Editing multiple entities',
         ],
         'errors'        => [
             'admin' => 'Only campaign admins can change the private status of entities.',
@@ -111,10 +111,10 @@ return [
             'title'     => 'Change permissions for several entities',
         ],
         'success'       => [
+            'editing'       => ':count entity was updated.|:count entities were updated.',
             'permissions'   => 'Permissions changed for :count entity.|Permissions changed for :count entities.',
             'private'       => ':count entity is now private|:count entities are now private.',
             'public'        => ':count entity is now visible|:count entities are now visible.',
-            'editing'       => ':count entity was updated.|:count entities were updated.',
         ],
     ],
     'cancel'            => 'Cancel',
@@ -275,11 +275,11 @@ return [
         'system'                => 'System',
     ],
     'permissions'       => [
-        'action'    => 'Action',
-        'actions'   => [
+        'action'        => 'Action',
+        'actions'       => [
             'bulk'          => [
-                'ignore'    => 'Ignore',
                 'add'       => 'Add',
+                'ignore'    => 'Ignore',
                 'remove'    => 'Remove',
             ],
             'delete'        => 'Delete',
@@ -287,16 +287,16 @@ return [
             'entity_note'   => 'Entity Notes',
             'read'          => 'Read',
         ],
-        'allowed'   => 'Allowed',
-        'fields'    => [
+        'allowed'       => 'Allowed',
+        'fields'        => [
             'member'    => 'Member',
             'role'      => 'Role',
         ],
-        'helper'    => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
-        'inherited' => 'This role already has this permission set for this entity type.',
-        'inherited_by' => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
-        'success'   => 'Permissions saved.',
-        'title'     => 'Permissions',
+        'helper'        => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
+        'inherited'     => 'This role already has this permission set for this entity type.',
+        'inherited_by'  => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
+        'success'       => 'Permissions saved.',
+        'title'         => 'Permissions',
     ],
     'placeholders'      => [
         'calendar'      => 'Choose a calendar',

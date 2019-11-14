@@ -15,18 +15,6 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Accade ogni anno',
     ],
-    'colours'       => [
-        'black'     => 'Nero',
-        'blue'      => 'Blu',
-        'default'   => 'Default',
-        'green'     => 'Verde',
-        'maroon'    => 'Marrone',
-        'navy'      => 'Blu Marina',
-        'orange'    => 'Arancione',
-        'purple'    => 'Viola',
-        'red'       => 'Rosso',
-        'teal'      => 'Verde Acqua',
-    ],
     'create'        => [
         'description'   => 'Crea un nuovo calendario',
         'success'       => 'Calendario \':name\' creato.',

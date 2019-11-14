@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'       => 'Relation :target added to :entity.',
-        'title'         => 'New relation for :name',
+        'success'   => 'Relation :target added to :entity.',
+        'title'     => 'New relation for :name',
     ],
     'destroy'       => [
         'success'   => 'Relation :target removed for :entity.',
-    ],
-    'update'          => [
-        'success'   => 'Relation :target updated for :entity.',
-        'title'     => 'Update relations for :name',
     ],
     'fields'        => [
         'attitude'  => 'Attitude',
@@ -19,7 +15,7 @@ return [
         'target'    => 'Target',
         'two_way'   => 'Create mirror relation',
     ],
-    'helper' => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entitiy\'s menu.',
+    'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entitiy\'s menu.',
     'hints'         => [
         'mirrored'  => [
             'text'  => 'This relation is mirrored with :link.',
@@ -32,7 +28,11 @@ return [
         'relation'  => 'Nature of the relation',
         'target'    => 'Choose an entity',
     ],
-    'show' => [
+    'show'          => [
         'title' => 'Relations for :name',
-    ]
+    ],
+    'update'        => [
+        'success'   => 'Relation :target updated for :entity.',
+        'title'     => 'Update relations for :name',
+    ],
 ];

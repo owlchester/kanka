@@ -72,12 +72,12 @@ return [
         'visibility'                    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'New Campaign',
+                'title' => 'New Campaign',
             ],
         ],
-        'title'         => 'Campaign',
+        'title'     => 'Campaign',
     ],
     'invites'                           => [
         'actions'       => [
@@ -286,8 +286,8 @@ return [
     ],
     'show'                              => [
         'actions'       => [
+            'boost' => 'Boost campaign',
             'leave' => 'Leave campaign',
-            'boost' => 'Boost campaign'
         ],
         'description'   => 'A detailed view of a campaign',
         'tabs'          => [

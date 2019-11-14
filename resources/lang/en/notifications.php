@@ -2,6 +2,10 @@
 
 return [
     'campaign'          => [
+        'boost'         => [
+            'add'       => 'Campaign :campaign is being boosted by :user.',
+            'remove'    => ':user is no longer boosting the :campaign campaign.',
+        ],
         'export'        => 'An export of a campaign is available. You can download it by clicking <a href=":link">here</a>. The link is available for 30 minutes.',
         'export_error'  => 'An error occurred while exporting your campaign. Please contact us if this problem persists.',
         'join'          => ':user joined the campaign :campaign.',
@@ -10,10 +14,6 @@ return [
             'add'       => 'You have been added to the :role role in the :campaign campaign.',
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
         ],
-        'boost' => [
-            'remove' => ':user is no longer boosting the :campaign campaign.',
-            'add' => 'Campaign :campaign is being boosted by :user.'
-        ]
     ],
     'header'            => 'You have :count notifications',
     'index'             => [

@@ -2,15 +2,11 @@
 
 return [
     'create'        => [
-        'success'       => 'Relazione aggiunta per :name.',
-        'title'         => 'Crea le relazioni',
+        'success'   => 'Relazione aggiunta per :name.',
+        'title'     => 'Crea le relazioni',
     ],
     'destroy'       => [
         'success'   => 'Relazione rimossa per :name.',
-    ],
-    'update'          => [
-        'success'   => 'Relazione aggiornata per :name.',
-        'title'     => 'Aggiorna le relazioni',
     ],
     'fields'        => [
         'attitude'  => 'Attitudine',
@@ -19,6 +15,7 @@ return [
         'target'    => 'Bersaglio',
         'two_way'   => 'Crea anche la relazione speculare',
     ],
+    'helper'        => 'Imposta le relazioni fra due entità con atteggiamento e visibilitò. Le relazioni possono anche essere fissate nel menù dell\'entità.',
     'hints'         => [
         'mirrored'  => [
             'text'  => 'Questa relazione è speculare con :link.',
@@ -30,5 +27,12 @@ return [
         'attitude'  => 'da -100 a 100, 100 vuol dire essere molto positivo.',
         'relation'  => 'Natura della relazione',
         'target'    => 'Seleziona un\'entità',
+    ],
+    'show'          => [
+        'title' => 'Relazioni per :name',
+    ],
+    'update'        => [
+        'success'   => 'Relazione aggiornata per :name.',
+        'title'     => 'Aggiorna le relazioni',
     ],
 ];

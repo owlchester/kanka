@@ -49,7 +49,7 @@ return [
     'placeholders'  => [
         'location'  => 'Choose a location',
         'name'      => 'Name of the family',
-        'type'      => 'Royal, Noble, Extinct'
+        'type'      => 'Royal, Noble, Extinct',
     ],
     'show'          => [
         'description'   => 'A detailed view of a family',

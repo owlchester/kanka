@@ -42,6 +42,16 @@ return [
             'link'          => 'Documentation d\'API',
             'title'         => 'API',
         ],
+        'boosts'            => [
+            'boosted'       => 'Campagne Boostée',
+            'css'           => 'CSS personnalisé pour la campagne',
+            'description'   => 'Certains niveau de support donnent les utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Cela active les bénéfices suivants.',
+            'header_image'  => 'Image d\'entête pour entité',
+            'theme'         => 'Thème de campagne fix',
+            'title'         => 'Campagnes Boostées',
+            'tooltip'       => 'Tooltip d\'entité personnalisé',
+            'upload'        => 'Augmentation de la taille de fichier téléversé pour tous les membres',
+        ],
         'calendars'         => [
             'description'   => 'Créer des calendriers personnalisés et organiser la campagne autour de ceux-ci.',
             'title'         => 'Calendriers',
@@ -53,9 +63,11 @@ return [
         'description'       => 'Voici quelques éléments de notre application que vous allez adorer!',
         'description_full'  => 'Une vitrine de certaines de nos fonctionnalités les plus aimées.',
         'free'              => [
+            'bonuses'       => 'bonus',
             'description'   => 'Nous sommes convaincus que les meilleures choses dans la vie sont gratuites.',
             'title'         => 'Gratuit un jour, gratuit toujours',
         ],
+        'landscape'         => 'Contenu lisible seulement en mode paysage.',
         'layers'            => [
             'description'   => 'Organisez vos personnages, leurs familles, leur emplacement et bien plus à tout moment.',
             'title'         => 'Personnages, Familles, Lieux',
@@ -72,6 +84,22 @@ return [
         'notebook'          => [
             'description'   => 'Préparez votre prochaine session ou gardez trace de ce qu\'il s\'est passé avec les journaux!',
             'title'         => 'Journaux',
+        ],
+        'patreon'           => [
+            'api_calls'         => 'Limite de requête API (90)',
+            'boosts'            => 'Boosters de campagne',
+            'curation'          => 'Aide à l\'établissement des votes Patreon',
+            'default_image'     => 'Images par défaut pour les entités',
+            'description'       => 'Soutenir Kanka sur Patreon débloque pour un compte les fonctionalités suivantes.',
+            'discord'           => 'Canal Discord privé',
+            'free'              => 'Gratuit',
+            'hall_of_fame'      => 'Nom dans la :link',
+            'impact'            => 'Impact sur les futures fonctionalités',
+            'monthly_vote'      => 'Participation dans les votes Patreon',
+            'pagination'        => 'Augmentation de la limite des résultats paginés (100)',
+            'title'             => 'Support Patreon',
+            'upload_limit'      => 'Taille des fichiers augmentés (8mb)',
+            'upload_limit_map'  => 'Taille des cartes augmentées (10mb)',
         ],
         'public'            => [
             'description'   => 'Les autorisations peuvent être définies pour les modules ou pour chaque entité. Les campagnes peuvent également être publiques pour un accès à tous.',
@@ -133,6 +161,10 @@ return [
     'meta'          => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
         'title'         => 'Kanka - Gestionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
+    ],
+    'partners'      => [
+        'description'   => 'Nous sommes en partenariat avec des outils et communautés incroyables qui partagent nos objectifes et valeures.',
+        'title'         => 'Partenaires',
     ],
     'privacy'       => [
         'description'   => 'Veuillez lire notre politique de confidentialité.',
