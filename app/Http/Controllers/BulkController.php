@@ -64,7 +64,8 @@ class BulkController extends Controller
                 ->bulkService
                 ->entities($models)
                 ->permissions($request->only('user', 'role'), $request->has('permission-override'));
-            return redirect()->route($entity . '.' . $subroute)
+            return redirect()
+                ->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
         } elseif ($action === 'batch') {
             $entityClass = $this->entityService->getClass($entity);
@@ -73,7 +74,8 @@ class BulkController extends Controller
                 ->bulkService
                 ->entities(explode(',', $request->get('models')))
                 ->editing($request->all(), $this->bulkModel($entityObj));
-            return redirect()->route($entity . '.' . $subroute)
+            return redirect()
+                ->route($entity . '.' . $subroute)
                 ->with('success', trans_choice('crud.bulk.success.editing', $count, ['count' => $count]));
         }
 

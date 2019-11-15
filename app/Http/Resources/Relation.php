@@ -19,6 +19,7 @@ class Relation extends JsonResource
             'target_id' => $this->target_id,
             'relation' => $this->relation,
             'is_private' => (bool) $this->is_private,
+            'attitude' => $this->attitude,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

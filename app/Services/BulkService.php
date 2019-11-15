@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MiscModel;
 use Exception;
+use Illuminate\Support\Str;
 
 class BulkService
 {
@@ -105,26 +106,6 @@ class BulkService
     }
 
     /**
-     * @param string $entityName
-     * @param array $ids
-     * @return int
-     */
-    public function makePrivate()
-    {
-        return $this->switchPrivate(true);
-    }
-
-    /**
-     * @param string $entityName
-     * @param array $ids
-     * @return int
-     */
-    public function makePublic()
-    {
-        return $this->switchPrivate(false);
-    }
-
-    /**
      * Set permissions for several entities
      * @param array $users
      * @param array $roles
@@ -146,6 +127,12 @@ class BulkService
         return $count;
     }
 
+    /**
+     * @param array $fields
+     * @param Bulk $bulk
+     * @return int
+     * @throws Exception
+     */
     public function editing(array $fields, Bulk $bulk): int
     {
         $count = 0;
@@ -162,7 +149,12 @@ class BulkService
 
         foreach ($bulk->mappings() as $field) {
             if (Arr::has($fields, $field)) {
-                $filledFields[$field] = Arr::get($fields, $field);
+                $value = Arr::get($fields, $field);
+                if (Str::startsWith($field, 'is_') && $value === null) {
+                    // Do nothing
+                } else {
+                    $filledFields[$field] = $value;
+                }
             }
         }
 
@@ -208,41 +200,6 @@ class BulkService
                         }
                     }
                 }
-            }
-        }
-
-//        dump($fields);
-//        dump($filledFields);
-//        dd($count);
-
-        return $count;
-    }
-
-    /**
-     * @param bool $private
-     * @return int
-     * @throws TranslatableException
-     */
-    protected function switchPrivate(bool $private = true)
-    {
-        if (!Auth::user()->isAdmin()) {
-            throw new TranslatableException("crud.bulk.errors.admin");
-        }
-
-        // Don't want other stuff happening while saving
-        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
-
-        $model = $this->getEntity();
-        $count = 0;
-        foreach ($this->ids as $id) {
-            /** @var MiscModel $entity */
-            $entity = $model->findOrFail($id);
-            if (Auth::user()->can('update', $entity) && $entity->is_private != $private) {
-                // Todo: still needed?
-                //$entity->savingObserver = false;
-                $entity->is_private = $private;
-                $entity->save();
-                $count++;
             }
         }
 
