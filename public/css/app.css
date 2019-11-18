@@ -3148,6 +3148,10 @@ td.breakable {
   background-color: #a35831 !important;
 }
 
+.widget-user-username a {
+  color: white;
+}
+
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;

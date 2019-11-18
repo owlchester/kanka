@@ -838,6 +838,12 @@ td.breakable {
   background-color: #a35831 !important;
 }
 
+.widget-user-username {
+  a {
+    color: white;
+  }
+}
+
 
 @import "mobile";
 @import "boosted";

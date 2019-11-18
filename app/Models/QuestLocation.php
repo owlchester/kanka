@@ -13,6 +13,8 @@ use App\Traits\VisibleTrait;
  * @property Location $location
  * @property string $description
  * @property string $role
+ * @property string $colour
+ * @property integer $impact
  */
 class QuestLocation extends MiscModel
 {
@@ -41,6 +43,8 @@ class QuestLocation extends MiscModel
         'location_id',
         'description',
         'role',
+        'colour',
+        'impact',
         'is_private'
     ];
 

@@ -13,9 +13,15 @@
             <label>{{ trans('quests.fields.role') }}</label>
             {!! Form::text('role', null, ['placeholder' => trans('quests.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
+
         <div class="form-group">
             <label>{{ trans('quests.organisations.fields.description') }}</label>
             {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+        </div>
+
+        <div class="form-group">
+            <label>{{ trans('calendars.fields.colour') }}</label>
+            {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control']) !!}
         </div>
 
         @if (Auth::user()->isAdmin())
