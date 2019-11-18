@@ -25,6 +25,25 @@
                     </h2>
 
                     <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @include('cruds.datagrids.sorters.simple-sorter')
+                        </div>
+                        <div class="col-md-6 text-right">
+                            @can('inventory', $entity->child)
+                                <th class="text-right">
+                                    <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-primary btn-sm"
+                                       data-toggle="ajax-modal" data-target="#entity-modal"
+                                       data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
+                                    >
+                                        <i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/inventories.actions.add') }}</span>
+                                    </a>
+                                </th>
+                            @endcan
+                        </div>
+                    </div>
+
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -35,16 +54,6 @@
                             <th>{{ __('entities/inventories.fields.description') }}</th>
                             @if (Auth::check())
                             <th>{{ __('crud.fields.visibility') }}</th>
-                                @can('inventory', $entity->child)
-                                    <th class="text-right">
-                                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-primary btn-sm"
-                                           data-toggle="ajax-modal" data-target="#entity-modal"
-                                           data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
-                                        >
-                                            <i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/inventories.actions.add') }}</span>
-                                        </a>
-                                    </th>
-                                @endcan
                             @endif
                         </tr>
                         </thead>

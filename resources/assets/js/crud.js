@@ -75,6 +75,7 @@ $(document).ready(function () {
     registerEntityFormSubmit();
     registerEntityCalendarModal();
     registerModalLoad();
+    registerDatagridSorter();
 });
 
 /**
@@ -694,7 +695,7 @@ function registerRelationFormSubmit()
  */
 function resetRelationFormSubmitAnimation()
 {
-    submit = $('#relation-form').find('.btn-success');
+    var submit = $('#relation-form').find('.btn-success');
     if (submit.length > 0) {
         $.each(submit, function (su) {
             $(this).removeAttr('disabled');
@@ -703,4 +704,17 @@ function resetRelationFormSubmitAnimation()
             }
         });
     }
+}
+
+/**
+ * Datagrid Sorter field
+ */
+function registerDatagridSorter() {
+    $('#datagrid-simple-sorter').change(function () {
+        var options = '';
+        if (this.value) {
+            options = '?' + this.name + '=' + this.value;
+        }
+        window.location = $(this).data('url') + options;
+    });
 }

@@ -4,17 +4,22 @@
             {{ trans('characters.show.tabs.organisations') }}
         </h2>
 
-        <?php  $r = $model->organisations()->orderBy('role', 'ASC')->has('organisation')->with(['organisation', 'organisation.location'])->paginate(); ?>
+        <?php  $r = $model->organisations()->simpleSort($datagridSorter)->has('organisation')->with(['organisation', 'organisation.location'])->paginate(); ?>
 
-        @can('organisation', [$model, 'add'])
-            <p class="text-right">
-            <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
-               class="btn btn-primary btn-sm" data-toggle="ajax-modal"
-               data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
-                <i class="fa fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
-            </a>
-            </p>
-        @endcan
+        <div class="row hidden-export">
+            <div class="col-md-6">
+                @include('cruds.datagrids.sorters.simple-sorter')
+            </div>
+            <div class="col-md-6 text-right">
+                @can('organisation', [$model, 'add'])
+                    <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
+                       class="btn btn-primary btn-sm" data-toggle="ajax-modal"
+                       data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
+                        <i class="fa fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
+                    </a>
+                @endcan
+            </div>
+        </div>
         <table id="character-organisations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

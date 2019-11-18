@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -84,11 +85,7 @@ class Tag extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use NodeTrait;
-    use ExportableTrait;
-    use TagScopes;
+    use CampaignTrait, VisibleTrait, NodeTrait, ExportableTrait, TagScopes, SimpleSortableTrait;
 
     /**
      * Parent

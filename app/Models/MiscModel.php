@@ -328,7 +328,7 @@ abstract class MiscModel extends Model
         if (empty($this->entity)) {
             return e($this->name);
         }
-        return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '"' .
+        return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
             'data-url="' . route('entities.tooltip', $this->entity->id). '" href="' .
             $this->getLink() . '">' .
             e($this->name) .

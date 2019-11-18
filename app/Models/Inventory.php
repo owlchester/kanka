@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\UserPermission;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\EntityAclTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +38,7 @@ class Inventory extends Model
         'created_by',
     ];
 
-    use VisibilityTrait;
+    use VisibilityTrait, SimpleSortableTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

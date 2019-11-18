@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -85,10 +86,7 @@ class Location extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait;
-    use VisibleTrait;
-    use NodeTrait;
-    use ExportableTrait;
+    use CampaignTrait, VisibleTrait, NodeTrait, ExportableTrait, SimpleSortableTrait;
 
     /**
      * @return string
@@ -180,7 +178,8 @@ class Location extends MiscModel
             $locationIds[] = $descendant->id;
         };
 
-        return Character::whereIn('location_id', $locationIds)->with('location');
+        $table = new Character();
+        return Character::whereIn($table->getTable() . '.location_id', $locationIds)->with('location');
     }
 
     /**

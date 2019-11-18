@@ -2,6 +2,7 @@
 
 namespace App\Models\Pivots;
 
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -18,7 +19,7 @@ class QuestCharacter extends Pivot
     /**
      * Traits
      */
-    use VisibleTrait;
+    use VisibleTrait, SimpleSortableTrait;
 
     /**
      * ACL Trait config

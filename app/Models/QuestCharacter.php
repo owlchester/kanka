@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibleTrait;
 
 /**
@@ -18,7 +19,7 @@ class QuestCharacter extends MiscModel
     /**
      * Traits
      */
-    use VisibleTrait;
+    use VisibleTrait, SimpleSortableTrait;
 
     /**
      * ACL Trait config

@@ -159,7 +159,7 @@ if (Auth::check()) {
                     </ul>
                 </li>
 
-                <? /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
+                <?php /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions">

@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\DB;
  * @property string $theme
  * @property integer $visible_entity_count
  * @property EntityMention[] $mentions
+ * @property CampaignSetting $setting
  */
 class Campaign extends MiscModel
 {

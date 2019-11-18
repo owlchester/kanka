@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Datagrids\Sorters\EntityInventorySorter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
 use App\Models\Entity;
@@ -43,21 +44,23 @@ class InventoryController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
+
+        $datagridSorter = new EntityInventorySorter();
+        $datagridSorter->request(request()->all());
+
         $ajax = request()->ajax();
         $inventory = $entity
             ->inventories()
-            ->select('inventories.*')
             ->with('item')
-            ->leftJoin('items as i', 'i.id', '=', 'inventories.item_id')
             ->acl()
-            ->orderBy('position', 'ASC')
-            ->orderBy('i.name', 'ASC')
+            ->simpleSort($datagridSorter)
             ->paginate();
 
         return view('entities.pages.inventory.index', compact(
             'ajax',
             'entity',
-            'inventory'
+            'inventory',
+            'datagridSorter'
         ));
     }
 

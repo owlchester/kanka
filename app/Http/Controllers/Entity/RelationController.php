@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Datagrids\Sorters\EntityRelationSorter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
@@ -43,6 +44,9 @@ class RelationController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
+        $datagridSorter = new EntityRelationSorter();
+        $datagridSorter->request(request()->all());
+
         $ajax = request()->ajax();
         $relations = $entity
             ->relationships()
@@ -50,13 +54,15 @@ class RelationController extends Controller
             ->with('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->acl()
-            ->order(request()->get('order'))
+            ->simpleSort($datagridSorter)
             ->paginate();
+
 
         return view('entities.pages.relations.index', compact(
             'ajax',
             'entity',
-            'relations'
+            'relations',
+            'datagridSorter'
         ));
     }
 

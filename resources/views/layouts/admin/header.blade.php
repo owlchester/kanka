@@ -43,7 +43,7 @@
                     </ul>
                 </li>
 
-                <? /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
+                <?php /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ trans('header.avatar') }}"/>

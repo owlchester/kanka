@@ -25,40 +25,40 @@
                     </h2>
 
                     <p class="help-block export-hidden">
-                        @can('relation', [$entity->child, 'add'])
-                            <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm pull-right" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
-                                <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">
-                        {{ __('crud.relations.actions.add') }}
-                        </span></a>
-                        @endcan
                         {{ __('entities/relations.helper') }}
                     </p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @include('cruds.datagrids.sorters.simple-sorter')
+                        </div>
+                        <div class="col-md-6 text-right">
+                            @can('relation', [$entity->child, 'add'])
+                                <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
+                                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">
+                        {{ __('crud.relations.actions.add') }}
+                        </span></a>
+                            @endcan
+                        </div>
+                    </div>
 
                     <table id="entity_relations" class="table table-hover {{ ($relations->count() === 0 ? 'export-hidden' : '') }}">
                         <thead>
                         <tr>
                             <th>
-                                <a href="{{ route('entities.relations.index', [$entity, 'order' => 'relations/relation']) }}">
-                                    {{ __('entities/relations.fields.relation') }}@if (request()->get('order') == 'relations/relation') <i class="fa fa-long-arrow-down"></i>@endif
-                                </a>
+                                {{ __('entities/relations.fields.relation') }}
                             </th>
                             <th>
-                                <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/attitude']) }}">
-                                    {{ __('entities/relations.fields.attitude') }}@if (request()->get('order') == 'relations/attitude') <i class="fa fa-long-arrow-down"></i>@endif
-                                </a>
+                                {{ __('entities/relations.fields.attitude') }}
                             </th>
                             <th class="avatar"><br></th>
                             <th>
-                                <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/target.name']) }}">
-                                    {{ __('crud.relations.fields.name') }}@if (request()->get('order') == 'relations/target.name') <i class="fa fa-long-arrow-down"></i>@endif
-                                </a>
+                                {{ __('crud.relations.fields.name') }}
                             </th>
                             @if ($campaign->enabled('locations'))<th>{{ __('crud.relations.fields.location') }}</th>@endif
                             @if (Auth::check())
                                 <th>
-                                    <a href="{{ route('entities.relations.index', [$entity,  'order' => 'relations/visibility']) }}">
-                                        {{ __('crud.fields.visibility') }}@if (request()->get('order') == 'relations/visibility') <i class="fa fa-long-arrow-down"></i>@endif
-                                    </a>
+                                    {{ __('crud.fields.visibility') }}
                                 </th>
                             @endif
                             <th class="text-right">
