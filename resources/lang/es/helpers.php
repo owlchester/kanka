@@ -8,6 +8,14 @@ return [
         'more'                      => 'Para ver más opciones disponibles, puedes buscar en la página web del plugin de dados.',
         'title'                     => 'Tiradas de dados',
     ],
+    'filters'       => [
+        'description'   => 'Puedes usar los filtros para limitar la cantidad de resultados que se muestra en las listas. Los campos de textos soportan varias opciones para controlar detalladamente qué se excluye con los filtros.',
+        'empty'         => 'Si escribes :tag en un campo, se buscarán todas las entidades donde este campo esté vacío.',
+        'ending_with'   => 'Poniendo una :tag al final del texto, puedes buscar todas las demás entidades con este texto en ese campo.',
+        'session'       => 'Los filtros y el orden de las columnas en la lista de entidades se guardan en tu sesión, así que mientras te mantengas conectado no necesitarás volverlas a configurar en cada página.',
+        'starting_with' => 'Añadiendo un :tag antes del texto, puedes buscar cualquier entidad que no contenga el texto en ese campo.',
+        'title'         => 'Cómo usar los filtros',
+    ],
     'link'          => [
         'auto_update'       => 'Los enlaces a otras entidades se actualizarán automáticamente cuando se cambie el nombre o la descripción de éstas.',
         'description'       => 'Puedes enlazar fácilmente otras entidades usando los siguientes atajos.',

@@ -24,6 +24,7 @@ return [
         'members'   => 'Miembros',
         'name'      => 'Nombre',
         'relation'  => 'Relación',
+        'type'      => 'Tipo',
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contiene todas las familias que son descendientes de esta familia, no solo las que están directamente bajo ella.',
@@ -48,6 +49,7 @@ return [
     'placeholders'  => [
         'location'  => 'Elegir una procedencia',
         'name'      => 'Nombre de la familia',
+        'type'      => 'Real, noble, extinguida...',
     ],
     'show'          => [
         'description'   => 'Vista detallada de la familia',

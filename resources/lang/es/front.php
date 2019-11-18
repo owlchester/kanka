@@ -67,6 +67,7 @@ return [
             'description'   => 'Lo mejor de la vida es lo gratis. Sin anuncios, sin costes ocultos, sin suscripciones de pago.',
             'title'         => 'Uso Gratuito',
         ],
+        'landscape'         => 'Por favor, pon tu dispositivo en modo apaisado para mostrar toda la lista de características.',
         'layers'            => [
             'description'   => 'Monitoriza tus personajes, sus familias su situación y mucho más en cualquier momento.',
             'title'         => 'Personajes, Familias, Localizaciones',

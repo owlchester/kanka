@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'black' => 'Fekete',
-    'blue'  => 'Kék',
-    'green' => 'Zöld',
+    'black'     => 'Fekete',
+    'blue'      => 'Kék',
     'default'   => 'Alapértelmezett',
-    'grey'  => 'Szürke',
+    'green'     => 'Zöld',
+    'grey'      => 'Szürke',
     'maroon'    => 'Gesztenyebarna',
     'navy'      => 'Tengerkék',
-    'none'  => 'Nincs',
+    'none'      => 'Nincs',
     'orange'    => 'Narancssárga',
     'purple'    => 'Lila',
-    'red'   => 'Vörös',
+    'red'       => 'Vörös',
     'teal'      => 'Kékeszöld',
-    'white' => 'Fehér',
-    'yellow'=> 'Sárga',
+    'white'     => 'Fehér',
+    'yellow'    => 'Sárga',
 ];

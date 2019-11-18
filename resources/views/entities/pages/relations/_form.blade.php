@@ -37,7 +37,7 @@
 
         <div class="form-group">
             {!! Form::hidden('is_star', 0) !!}
-            <label>{!! Form::checkbox('is_star', 1, !empty($model) ? $model->is_star : 0) !!}
+            <label>{!! Form::checkbox('is_star', 1, !empty($relation) ? $relation->is_star : 0) !!}
                 {{ trans('crud.fields.is_star') }}
             </label>
             <p class="help-block">{{ trans('crud.hints.is_star') }}</p>

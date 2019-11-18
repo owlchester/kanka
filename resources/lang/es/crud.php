@@ -87,6 +87,17 @@ return [
     ],
     'boosted'           => 'Mejorada',
     'bulk'              => [
+        'actions'       => [
+            'edit'  => 'Editar y etiquetar en masa',
+        ],
+        'edit'          => [
+            'tagging'   => 'Acción para las etiquetas',
+            'tags'      => [
+                'add'       => 'Añadir',
+                'remove'    => 'Eliminar',
+            ],
+            'title'     => 'Editando múltiples entidades',
+        ],
         'errors'        => [
             'admin' => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
         ],
@@ -100,6 +111,7 @@ return [
             'title'     => 'Cambiar permisos a varias entidades',
         ],
         'success'       => [
+            'editing'       => ':count entidad se ha actualizado.|:count entidades se han actualizado.',
             'permissions'   => 'Permisos cambiados en :count entidad.|Permisos cambiados en :count entidades.',
             'private'       => ':count entidad es ahora privada|:count entidades son ahora privadas.',
             'public'        => ':count entidad es ahora visible|:count son ahora visibles.',
@@ -165,6 +177,7 @@ return [
         'tag'                   => 'Etiqueta',
         'tags'                  => 'Etiquetas',
         'tooltip'               => 'Descripción emergente',
+        'type'                  => 'Tipo',
         'visibility'            => 'Visibilidad',
     ],
     'files'             => [
@@ -266,6 +279,7 @@ return [
         'actions'       => [
             'bulk'          => [
                 'add'       => 'Añadir',
+                'ignore'    => 'Ignorar',
                 'remove'    => 'Eliminar',
             ],
             'delete'        => 'Eliminar',

@@ -17,14 +17,14 @@ return array(
     'locales' => [
         'en',
         'en-US',
-        'fr',
         'de',
         'es',
-        //'nl',
+        'fr',
+        'hu',
         'it',
+        'nl',
         'pt-BR',
         //'ru',
-        'hu',
         'sk',
     ],
     /**
@@ -41,7 +41,8 @@ return array(
         'pt-br',
         'es',
         'it',
-        'hu'
+        'hu',
+        'nl',
     ],
     /**
      * Specify the prefix used for all cookies, session data and cache persistence.
