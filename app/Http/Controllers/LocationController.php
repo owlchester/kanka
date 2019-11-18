@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Sorters\LocationCharacterSorter;
+use App\Datagrids\Sorters\LocationFamilySorter;
 use App\Datagrids\Sorters\LocationLocationSorter;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
@@ -207,8 +208,22 @@ class LocationController extends CrudController
      */
     public function locations(Location $location)
     {
-        return $this->datagridSorter(LocationLocationSorter::class)
-         ->menuView($location, 'locations');
+        return $this
+            ->datagridSorter(LocationLocationSorter::class)
+            ->menuView($location, 'locations');
+    }
+
+
+    /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function families(Location $location)
+    {
+        return $this
+            ->datagridSorter(LocationFamilySorter::class)
+            ->menuView($location, 'families');
     }
 
     /**

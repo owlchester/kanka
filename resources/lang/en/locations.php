@@ -21,6 +21,9 @@ return [
         'description'   => 'Events which took place at the location.',
         'title'         => 'Location :name Events',
     ],
+    'families' => [
+        'title'         => 'Location :name Families',
+    ],
     'fields'        => [
         'characters'        => 'Characters',
         'image'             => 'Image',
@@ -34,6 +37,7 @@ return [
     ],
     'helpers'       => [
         'characters'    => 'View all characters in this location and its children locations, or just those directly located here.',
+        'families'      => 'Locations can be the seat of powerful families.',
         'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
         'map'           => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
         'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
@@ -210,6 +214,7 @@ return [
         'tabs'          => [
             'characters'    => 'Characters',
             'events'        => 'Events',
+            'families'      => 'Families',
             'information'   => 'Information',
             'items'         => 'Items',
             'journals'      => 'Journals',
