@@ -19,3 +19,9 @@
         </div>
     </div>
 @endsection
+
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/campaign.js') }}" defer></script>
+@endsection

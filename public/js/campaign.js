@@ -95,6 +95,7 @@
 
 $(document).ready(function () {
   initRpgSystems();
+  registerModules();
 });
 /**
  * Form Rpg Systems field
@@ -109,6 +110,20 @@ function initRpgSystems() {
     });
   });
 }
+/**
+ * Register Modules change for campaign settings
+ */
+
+
+function registerModules() {
+  $('.content :checkbox').change(function () {
+    if (this.checked) {
+      $(this).closest('div.box').removeClass('box-danger').addClass('box-success');
+    } else {
+      $(this).closest('div.box').removeClass('box-success').addClass('box-danger');
+    }
+  });
+}
 
 /***/ }),
 
@@ -119,7 +134,7 @@ function initRpgSystems() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\campaign.js */"./resources/assets/js/campaign.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\campaign.js */"./resources/assets/js/campaign.js");
 
 
 /***/ })
