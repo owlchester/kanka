@@ -10,12 +10,14 @@
 
         <?php $r = $model->descendants()->simpleSort($datagridSorter)->with('parent')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('families.show.tabs.families') }}</p>
-        <table id="families" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="families" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('families.fields.name') }}</th>
                 <th>{{ trans('crud.fields.family') }}</th>
+                @if ($campaign->enabled('locations'))
                 <th>{{ trans('crud.fields.location') }}</th>
+                @endif
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $family)

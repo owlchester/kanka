@@ -6,11 +6,11 @@ $r = null;
 $addEntityUrl = route('tags.entity-add', $model);
 if (request()->has('tag_id')) {
     $filters['tag_id'] = request()->get('tag_id');
-    $r = $model->entities()->acl()->orderBy('name', 'ASC')->paginate();
+    $r = $model->entities()->acl()->simpleSort($datagridSorter)->paginate();
 
     $addEntityUrl = route('tags.entity-add', ['tag' => $model, 'from-children' => true]);
 } else {
-    $r = $model->allChildren()->acl()->orderBy('name', 'ASC')->paginate();
+    $r = $model->allChildren()->acl()->simpleSort($datagridSorter)->paginate();
 }
 
 ?>
@@ -21,17 +21,25 @@ if (request()->has('tag_id')) {
         </h2>
 
         <p class="help-block export-hidden">
-            @if (request()->has('tag_id'))
-                <a href="{{ route('tags.children', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
-                </a>
-            @else
-                <a href="{{ route('tags.children', [$model, 'tag_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
-                </a>
-            @endif
-                {{ trans('tags.hints.children') }}
+            {{ trans('tags.hints.children') }}
         </p>
+
+        <div class="row export-hidden">
+            <div class="col-md-6">
+                @include('cruds.datagrids.sorters.simple-sorter')
+            </div>
+            <div class="col-md-6 text-right">
+                @if (request()->has('tag_id'))
+                    <a href="{{ route('tags.children', $model) }}" class="btn btn-default btn-sm pull-right">
+                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
+                    </a>
+                @else
+                    <a href="{{ route('tags.children', [$model, 'tag_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
+                    </a>
+                @endif
+            </div>
+        </div>
         <table id="section-children" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>

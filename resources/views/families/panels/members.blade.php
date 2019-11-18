@@ -9,7 +9,7 @@
 
         @include('cruds.datagrids.sorters.simple-sorter')
 
-        <table id="family-characters" class="table table-hover">
+        <table id="family-characters" class="table table-hover margin-top">
             <thead><tr>
                 <th class="avatar"><br></th>
                 <th>{{ trans('characters.fields.name') }}</th>

@@ -3,16 +3,23 @@
         <h2 class="page-header with-border">
             {{ trans('quests.show.tabs.items') }}
         </h2>
-        @can('update', $model)
-        <p class="text-right">
-            <a href="{{ route('quests.quest_items.create', ['quest' => $model->id]) }}" class="btn btn-primary">
-                <i class="fa fa-plus"></i> {{ trans('quests.show.actions.add_item') }}
-            </a>
-        </p>
-        @endcan
+
+        <div class="row export-hidden">
+            <div class="col-md-6">
+                @include('cruds.datagrids.sorters.simple-sorter')
+            </div>
+            <div class="col-md-6 text-right">
+                @can('update', $model)
+                    <a href="{{ route('quests.quest_items.create', ['quest' => $model->id]) }}" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> {{ trans('quests.show.actions.add_item') }}
+                    </a>
+                @endcan
+            </div>
+        </div>
+        <br />
 
         <div class="row">
-            @foreach ($model->items()->with('item')->has('item')->get() as $item)
+            @foreach ($model->items()->with('item')->has('item')->simpleSort($datagridSorter)->get() as $item)
                 <div class="col-md-6">
                     <div class="box box-widget widget-user-2">
                         <!-- Add the bg color to the header using any of the bg-* classes -->

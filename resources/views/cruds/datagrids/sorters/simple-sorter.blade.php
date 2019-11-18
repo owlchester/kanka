@@ -6,7 +6,7 @@
     </div>
     <select id="datagrid-simple-sorter" name="{{ $datagridSorter->fieldname() }}" class="form-control" data-url="{{ url()->current() }}">
         <option value=""></option>
-        @foreach ($datagridSorter->options() as $key => $val)
+        @foreach ($datagridSorter->options(\App\Facades\CampaignLocalization::getCampaign()) as $key => $val)
         <option value="{{ $key . $datagridSorter->direction() }}" @if($datagridSorter->isSelected($key)) selected="selected" @endif>
             {{ __('crud.filters.sorting.asc', ['field' => __($val)]) }}
         </option>

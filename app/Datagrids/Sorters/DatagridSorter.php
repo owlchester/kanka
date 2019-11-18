@@ -2,6 +2,7 @@
 
 namespace App\Datagrids\Sorters;
 
+use App\Models\Campaign;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -65,11 +66,20 @@ abstract class DatagridSorter
     }
 
     /**
+     * Build the list of filters
+     * @param Campaign|null $campaign
      * @return array
      */
-    public function options(): array
+    public function options(Campaign $campaign = null): array
     {
-        return $this->options;
+        // Clean up options that don't make sense for this campaign
+        $options = [];
+        foreach ($this->options as $key => $option) {
+            if ($this->validOption($key, $campaign)) {
+                $options[$key] = $option;
+            }
+        }
+        return $options;
     }
 
     /**
@@ -195,5 +205,23 @@ abstract class DatagridSorter
         }
 
         return $this;
+    }
+
+    /**
+     * @param string $key
+     * @param Campaign|null $campaign
+     */
+    protected function validOption(string $key, Campaign $campaign = null)
+    {
+        $whitelist = ['tag.name'];
+        if (strpos($key, '.name') === false || in_array($key, $whitelist)) {
+            return true;
+        }
+
+        // If it's a foreign key, it can probably be a module
+        $module = str_replace('.name', '', $key);
+        $module = Str::plural($module);
+
+        return $campaign->enabled($module);
     }
 }
