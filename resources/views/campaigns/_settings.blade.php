@@ -6,126 +6,68 @@
         </h2>
 
         <p class="help-block">{{ trans('campaigns.settings.helper') }}</p>
-
-        {!! Form::model($campaign->setting, ['method' => 'POST', 'route' => ['campaigns.settings.save', $campaign->id]]) !!}
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    {!! Form::hidden('calendars', 0) !!}
-                    <label>{!! Form::checkbox('calendars') !!}
-                        {{ trans('entities.calendars') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.calendars') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('characters', 0) !!}
-                    <label>{!! Form::checkbox('characters') !!}
-                        {{ trans('entities.characters') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.characters') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('events', 0) !!}
-                    <label>{!! Form::checkbox('events') !!}
-                        {{ trans('entities.events') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.events') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('families', 0) !!}
-                    <label>{!! Form::checkbox('families') !!}
-                        {{ trans('entities.families') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.families') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('menu_links', 0) !!}
-                    <label>{!! Form::checkbox('menu_links') !!}
-                        {{ trans('entities.menu_links') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.menu_links') }}</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    {!! Form::hidden('items', 0) !!}
-                    <label>{!! Form::checkbox('items') !!}
-                        {{ trans('entities.items') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.items') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('journals', 0) !!}
-                    <label>{!! Form::checkbox('journals') !!}
-                        {{ trans('entities.journals') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.journals') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('locations', 0) !!}
-                    <label>{!! Form::checkbox('locations') !!}
-                        {{ trans('entities.locations') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.locations') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('notes', 0) !!}
-                    <label>{!! Form::checkbox('notes') !!}
-                        {{ trans('entities.notes') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.notes') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('races', 0) !!}
-                    <label>{!! Form::checkbox('races') !!}
-                        {{ trans('entities.races') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.races') }}</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    {!! Form::hidden('organisations', 0) !!}
-                    <label>{!! Form::checkbox('organisations') !!}
-                        {{ trans('entities.organisations') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.organisations') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('quests', 0) !!}
-                    <label>{!! Form::checkbox('quests') !!}
-                        {{ trans('entities.quests') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.quests') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('tags', 0) !!}
-                    <label>{!! Form::checkbox('tags') !!}
-                        {{ trans('entities.tags') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.tags') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('dice_rolls', 0) !!}
-                    <label>{!! Form::checkbox('dice_rolls') !!}
-                        {{ trans('entities.dice_rolls') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.dice_rolls') }}</p>
-                </div>
-                <div class="form-group">
-                    {!! Form::hidden('conversations', 0) !!}
-                    <label>{!! Form::checkbox('conversations') !!}
-                        {{ trans('entities.conversations') }}
-                    </label>
-                    <p class="help-block">{{ trans('campaigns.settings.helpers.conversations') }}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <button class="btn btn-success">{{ trans('crud.save') }}</button>
-        </div>
-
-        {!! Form::close() !!}
     </div>
 </div>
+
+{!! Form::model($campaign->setting, ['method' => 'POST', 'route' => ['campaigns.settings.save', $campaign->id]]) !!}
+<div class="row">
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-moon-sun', 'module' => 'calendars'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'fa fa-user', 'module' => 'characters'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'fa fa-calendar', 'module' => 'events'])
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-double-team', 'module' => 'families'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'fa fa-link', 'module' => 'menu_links'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-gem-pendant', 'module' => 'items'])
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-scroll-unfurled', 'module' => 'journals'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-tower', 'module' => 'locations'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-quill-ink', 'module' => 'notes'])
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-dragon', 'module' => 'races'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-hood', 'module' => 'organisations'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-wooden-sign', 'module' => 'quests'])
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'fa fa-tags', 'module' => 'tags'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-dice-five', 'module' => 'dice_rolls'])
+    </div>
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations'])
+    </div>
+</div>
+
+<div class="form-group">
+    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+</div>
+
+{!! Form::close() !!}

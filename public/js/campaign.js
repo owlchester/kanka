@@ -95,6 +95,7 @@
 
 $(document).ready(function () {
   initRpgSystems();
+  registerModules();
 });
 /**
  * Form Rpg Systems field
@@ -107,6 +108,20 @@ function initRpgSystems() {
       allowClear: true,
       minimumInputLength: 0
     });
+  });
+}
+/**
+ * Register Modules change for campaign settings
+ */
+
+
+function registerModules() {
+  $('.content :checkbox').change(function () {
+    if (this.checked) {
+      $(this).closest('div.box').removeClass('box-danger').addClass('box-success');
+    } else {
+      $(this).closest('div.box').removeClass('box-success').addClass('box-danger');
+    }
   });
 }
 
