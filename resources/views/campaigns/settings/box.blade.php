@@ -1,4 +1,4 @@
-<div class="box box-solid @if ($campaign->enabled($module)) box-success @else box-danger @endif ">
+<div class="box box-solid @if ($campaign->enabled($module)) box-success @else box-default @endif ">
     <div class="box-header with-border">
         <h3 class="box-title">
             <i class="{{ $icon }}"></i> {{ __('entities.' . $module) }}

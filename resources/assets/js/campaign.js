@@ -22,9 +22,9 @@ function initRpgSystems() {
 function registerModules() {
     $('.content :checkbox').change(function () {
         if (this.checked) {
-            $(this).closest('div.box').removeClass('box-danger').addClass('box-success');
+            $(this).closest('div.box').removeClass('box-default').addClass('box-success');
         } else {
-            $(this).closest('div.box').removeClass('box-success').addClass('box-danger');
+            $(this).closest('div.box').removeClass('box-success').addClass('box-default');
         }
     });
 }
