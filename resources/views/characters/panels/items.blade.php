@@ -1,10 +1,13 @@
+<?php /** @var \App\Models\Character $model */?>
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header">
             {{ trans('characters.show.tabs.items') }}
         </h2>
 
-        <?php  $r = $model->items()->orderBy('name', 'ASC')->with(['location', 'entity', 'entity.tags'])->paginate(); ?>
+        @include('cruds.datagrids.sorters.simple-sorter')
+
+        <?php  $r = $model->items()->simpleSort($datagridSorter)->with(['location', 'entity', 'entity.tags'])->paginate(); ?>
         <table id="character-items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

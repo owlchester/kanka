@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Sorters\QuestCharacterSorter;
+use App\Datagrids\Sorters\QuestItemSorter;
+use App\Datagrids\Sorters\QuestLocationSorter;
+use App\Datagrids\Sorters\QuestOrganisationSorter;
 use App\Http\Requests\StoreQuest;
 use App\Models\Character;
 use App\Models\Quest;
 use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class QuestController extends CrudController
 {
@@ -126,7 +129,9 @@ class QuestController extends CrudController
      */
     public function characters(Quest $quest)
     {
-        return $this->menuView($quest, 'characters');
+        return $this
+            ->datagridSorter(QuestCharacterSorter::class)
+            ->menuView($quest, 'characters');
     }
 
     /**
@@ -136,7 +141,9 @@ class QuestController extends CrudController
      */
     public function locations(Quest $quest)
     {
-        return $this->menuView($quest, 'locations');
+        return $this
+            ->datagridSorter(QuestLocationSorter::class)
+            ->menuView($quest, 'locations');
     }
 
     /**
@@ -146,7 +153,9 @@ class QuestController extends CrudController
      */
     public function items(Quest $quest)
     {
-        return $this->menuView($quest, 'items');
+        return $this
+            ->datagridSorter(QuestItemSorter::class)
+            ->menuView($quest, 'items');
     }
 
     /**
@@ -156,7 +165,9 @@ class QuestController extends CrudController
      */
     public function organisations(Quest $quest)
     {
-        return $this->menuView($quest, 'organisations');
+        return $this
+            ->datagridSorter(QuestOrganisationSorter::class)
+            ->menuView($quest, 'organisations');
     }
 
     /**

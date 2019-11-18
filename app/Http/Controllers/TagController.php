@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Sorters\TagChildrenSorter;
+use App\Datagrids\Sorters\TagTagSorter;
 use App\Http\Requests\StoreTagEntity;
 use App\Models\Character;
 use App\Http\Requests\StoreTag;
@@ -113,7 +115,9 @@ class TagController extends CrudController
      */
     public function tags(Tag $tag)
     {
-        return $this->menuView($tag, 'tags');
+        return $this
+            ->datagridSorter(TagTagSorter::class)
+            ->menuView($tag, 'tags');
     }
 
     /**
@@ -123,7 +127,9 @@ class TagController extends CrudController
      */
     public function children(Tag $tag)
     {
-        return $this->menuView($tag, 'children');
+        return $this
+            ->datagridSorter(TagChildrenSorter::class)
+            ->menuView($tag, 'children');
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Sorters\RaceCharacterSorter;
+use App\Datagrids\Sorters\RaceRaceSorter;
 use App\Http\Requests\StoreRace;
 use App\Models\Race;
 use App\Models\Tag;
@@ -112,7 +114,9 @@ class RaceController extends CrudController
      */
     public function characters(Race $race)
     {
-        return $this->menuView($race, 'characters');
+        return $this
+            ->datagridSorter(RaceCharacterSorter::class)
+            ->menuView($race, 'characters');
     }
 
     /**
@@ -121,7 +125,9 @@ class RaceController extends CrudController
      */
     public function races(Race $race)
     {
-        return $this->menuView($race, 'races');
+        return $this
+            ->datagridSorter(RaceRaceSorter::class)
+            ->menuView($race, 'races');
     }
 
     /**

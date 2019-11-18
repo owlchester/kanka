@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Sorters\LocationCharacterSorter;
+use App\Datagrids\Sorters\LocationLocationSorter;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreLocation;
@@ -183,7 +185,8 @@ class LocationController extends CrudController
      */
     public function characters(Location $location)
     {
-        return $this->menuView($location, 'characters');
+        return $this->datagridSorter(LocationCharacterSorter::class)
+            ->menuView($location, 'characters');
     }
 
 
@@ -204,7 +207,8 @@ class LocationController extends CrudController
      */
     public function locations(Location $location)
     {
-        return $this->menuView($location, 'locations');
+        return $this->datagridSorter(LocationLocationSorter::class)
+         ->menuView($location, 'locations');
     }
 
     /**

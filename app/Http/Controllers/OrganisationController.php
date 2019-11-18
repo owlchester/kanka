@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Sorters\OrganisationCharacterSorter;
+use App\Datagrids\Sorters\OrganisationOrganisationSorter;
 use App\Http\Requests\StoreOrganisation;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -132,7 +134,9 @@ class OrganisationController extends CrudController
      */
     public function organisations(Organisation $organisation)
     {
-        return $this->menuView($organisation, 'organisations');
+        return $this
+            ->datagridSorter(OrganisationOrganisationSorter::class)
+            ->menuView($organisation, 'organisations');
     }
 
     /**
@@ -142,7 +146,8 @@ class OrganisationController extends CrudController
      */
     public function members(Organisation $organisation)
     {
-        return $this->menuView($organisation, 'members');
+        return $this->datagridSorter(OrganisationCharacterSorter::class)
+            ->menuView($organisation, 'members');
     }
 
     /**
@@ -152,7 +157,9 @@ class OrganisationController extends CrudController
      */
     public function allMembers(Organisation $organisation)
     {
-        return $this->menuView($organisation, 'all_members');
+        return $this
+            ->datagridSorter(OrganisationCharacterSorter::class)
+            ->menuView($organisation, 'all_members');
     }
 
     /**

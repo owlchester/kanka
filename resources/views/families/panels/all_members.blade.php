@@ -6,7 +6,9 @@
 
         <p class="help-block">{{ trans('families.members.helpers.all_members') }}</p>
 
-        <table id="family-characters" class="table table-hover">
+        @include('cruds.datagrids.sorters.simple-sorter')
+
+        <table id="family-characters" class="table table-hover margin-top">
             <thead><tr>
                 <th class="avatar"><br></th>
                 <th>{{ trans('characters.fields.name') }}</th>
@@ -21,7 +23,7 @@
                 <th>{{ trans('characters.fields.is_dead') }}</th>
             </tr></thead>
             <tbody>
-            <?php $r = $model->allMembers()->with(['race', 'location'])->paginate();?>
+            <?php $r = $model->allMembers()->with(['race', 'location'])->simpleSort($datagridSorter)->paginate();?>
             @foreach ($r->sortBy('character.name') as $member)
                 <tr>
                     <td>

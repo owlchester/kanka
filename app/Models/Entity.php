@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Mentions;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\EntityAclTrait;
@@ -67,7 +68,8 @@ class Entity extends Model
         EntityScopes,
         Searchable,
         TooltipTrait,
-        Picture;
+        Picture,
+        SimpleSortableTrait;
 
     /**
      * Searchable fields

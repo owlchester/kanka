@@ -4,8 +4,11 @@
             {{ trans('races.show.tabs.races') }}
         </h2>
 
-        <?php  $r = $model->races()->orderBy('name', 'ASC')->with(['characters'])->paginate(); ?>
+        <?php  $r = $model->races()->simpleSort($datagridSorter)->with(['characters'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('races.show.tabs.races') }}</p>
+
+        @include('cruds.datagrids.sorters.simple-sorter')
+
         <table id="races" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

@@ -72,6 +72,7 @@ class QuestForeignController extends Controller
         $route = $this->route;
         $tab = $this->menu;
         $parentRoute = explode('.', $this->view)[0];
+        $model = new $this->model;
 
         return view('quests.foreign.create', compact(
             'parent',

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -77,7 +78,7 @@ class Family extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait, SimpleSortableTrait;
 
     /**
      * Entity type
