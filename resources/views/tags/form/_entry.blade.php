@@ -5,7 +5,7 @@
 
         <div class="form-group">
             <label>{{ trans('calendars.fields.colour') }}</label>
-            {!! Form::select('colour', FormCopy::colours(), FormCopy::field('colour'), ['class' => 'form-control']) !!}
+            {!! Form::select('colour', FormCopy::colours(), FormCopy::field('colour')->string(), ['class' => 'form-control']) !!}
         </div>
         @include('cruds.fields.tag', ['parent' => true])
 @include('cruds.fields.private')
