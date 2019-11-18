@@ -18,6 +18,11 @@
             {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
         </div>
 
+        <div class="form-group">
+            <label>{{ trans('calendars.fields.colour') }}</label>
+            {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control']) !!}
+        </div>
+
         @if (Auth::user()->isAdmin())
         <div class="form-group">
             {!! Form::hidden('is_private', 0) !!}

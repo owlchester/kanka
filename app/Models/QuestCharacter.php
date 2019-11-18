@@ -13,6 +13,8 @@ use App\Traits\VisibleTrait;
  * @property Character $character
  * @property string $description
  * @property string $role
+ * @property string $colour
+ * @property integer $impact
  */
 class QuestCharacter extends MiscModel
 {
@@ -41,6 +43,8 @@ class QuestCharacter extends MiscModel
         'character_id',
         'description',
         'role',
+        'colour',
+        'impact',
         'is_private'
     ];
 

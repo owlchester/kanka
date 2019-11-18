@@ -20616,9 +20616,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_conversation_Message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/conversation/Message */ "./resources/assets/js/components/conversation/Message.vue");
 /* harmony import */ var _components_conversation_Messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/conversation/Messages */ "./resources/assets/js/components/conversation/Messages.vue");
 /* harmony import */ var _components_conversation_Form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/conversation/Form */ "./resources/assets/js/components/conversation/Form.vue");
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
 /* harmony import */ var _vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./vue-i18n-locales.generated */ "./resources/assets/js/vue-i18n-locales.generated.js");
-/* harmony import */ var uiv__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! uiv */ "./node_modules/uiv/dist/uiv.esm.js");
+/* harmony import */ var uiv__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uiv */ "./node_modules/uiv/dist/uiv.esm.js");
 
 
 
@@ -20632,11 +20632,11 @@ Vue.component('conversation-messages', _components_conversation_Messages__WEBPAC
 Vue.component('conversation-message', _components_conversation_Message__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('conversation-form', _components_conversation_Form__WEBPACK_IMPORTED_MODULE_3__["default"]); // Boostrap
 
-Vue.use(uiv__WEBPACK_IMPORTED_MODULE_7__); // Translations
+Vue.use(uiv__WEBPACK_IMPORTED_MODULE_6__); // Translations
 
-Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var lang = document.documentElement.lang.substr(0, 2);
-var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_6__["default"]({
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_4__["default"]({
   locale: lang,
   messages: _vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
@@ -23475,7 +23475,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\conversation */"./resources/assets/js/conversation.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\conversation */"./resources/assets/js/conversation.js");
 
 
 /***/ })
