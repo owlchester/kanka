@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\CharacterItemFilter;
+use App\Datagrids\Sorters\CharacterItemSorter;
+use App\Datagrids\Sorters\CharacterOrganisationSorter;
+use App\Datagrids\Sorters\CharacterQuestSorter;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Family;
@@ -27,7 +31,8 @@ class CharacterSubController extends CharacterController
      */
     public function quests(Character $character)
     {
-        return $this->menuView($character, 'quests');
+        return $this->datagridSorter(CharacterQuestSorter::class)
+            ->menuView($character, 'quests');
     }
 
     /**
@@ -37,7 +42,8 @@ class CharacterSubController extends CharacterController
      */
     public function organisations(Character $character)
     {
-        return $this->menuView($character, 'organisations');
+        return $this->datagridSorter(CharacterOrganisationSorter::class)
+            ->menuView($character, 'organisations');
     }
 
     /**
@@ -47,7 +53,8 @@ class CharacterSubController extends CharacterController
      */
     public function items(Character $character)
     {
-        return $this->menuView($character, 'items');
+        return $this->datagridSorter(CharacterItemSorter::class)
+            ->menuView($character, 'items');
     }
 
     /**

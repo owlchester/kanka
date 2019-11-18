@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\DatagridFilter;
+use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
 use App\Http\Resources\Attribute;
@@ -73,6 +75,12 @@ class CrudController extends Controller
      * @var bool
      */
     protected $tabBoosted = true;
+
+    /**
+     * A sorter object for subviews
+     * @var null|DatagridSorter
+     */
+    protected $datagridSorter = null;
 
     /**
      * Create a new controller instance.
@@ -433,6 +441,7 @@ class CrudController extends Controller
         }
 
         $data = [];
+        $datagridSorter = $this->datagridSorter;
 
         if ($view == 'map-points') {
             $data = $model
@@ -448,6 +457,7 @@ class CrudController extends Controller
             'fullview',
             'model',
             'name',
+            'datagridSorter',
             'data'
         ));
     }
@@ -494,5 +504,17 @@ class CrudController extends Controller
         }
 
         return $attributeTemplates;
+    }
+
+    /**
+     * Set the datagrid sorter for sub views
+     * @param string $datagridFilter
+     * @return $this
+     */
+    protected function datagridSorter(string $datagridSorter): self
+    {
+        $this->datagridSorter = new $datagridSorter;
+        $this->datagridSorter->request(request()->all());
+        return $this;
     }
 }

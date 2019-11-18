@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
 use App\Traits\VisibilityTrait;
@@ -32,15 +33,7 @@ class Relation extends Model
     /**
      * Traits
      */
-    use VisibilityTrait, OrderableTrait, Starred, Paginatable, Blameable;
-
-    /**
-     * Trigger for filtering based on the order request.
-     * @var string
-     */
-    protected $orderTrigger = 'relations/';
-    protected $orderDefaultField = 'attitude';
-    protected $orderDefaultDir = 'desc';
+    use VisibilityTrait, Starred, Paginatable, Blameable, SimpleSortableTrait;
 
     /**
      * @var array

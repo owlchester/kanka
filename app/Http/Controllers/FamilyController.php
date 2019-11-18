@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Bulks\FamilyBulk;
+use App\Datagrids\Sorters\FamilyCharacterSorter;
+use App\Datagrids\Sorters\FamilyFamilySorter;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreFamily;
@@ -128,7 +130,8 @@ class FamilyController extends CrudController
      */
     public function families(Family $family)
     {
-        return $this->menuView($family, 'families');
+        return $this->datagridSorter(FamilyFamilySorter::class)
+            ->menuView($family, 'families');
     }
 
     /**
@@ -138,7 +141,8 @@ class FamilyController extends CrudController
      */
     public function members(Family $family)
     {
-        return $this->menuView($family, 'members');
+        return $this->datagridSorter(FamilyCharacterSorter::class)
+            ->menuView($family, 'members');
     }
 
     /**
@@ -148,7 +152,8 @@ class FamilyController extends CrudController
      */
     public function allMembers(Family $family)
     {
-        return $this->menuView($family, 'all_members');
+        return $this->datagridSorter(FamilyCharacterSorter::class)
+            ->menuView($family, 'all_members');
     }
 
     /**

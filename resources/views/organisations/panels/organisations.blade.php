@@ -6,7 +6,9 @@
 
         <p class="help-block">{{ trans('organisations.helpers.descendants') }}</p>
 
-        <?php $r = $model->descendants()->with('parent')->orderBy('name', 'ASC')->paginate(); ?>
+        @include('cruds.datagrids.sorters.simple-sorter')
+
+    <?php $r = $model->descendants()->with('parent')->simpleSort($datagridSorter)->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('organisations.show.tabs.organisations') }}</p>
         <table id="organisations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

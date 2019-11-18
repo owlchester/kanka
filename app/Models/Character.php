@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -77,7 +78,7 @@ class Character extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait, VisibleTrait, ExportableTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, SimpleSortableTrait;
 
     /**
      * Entity type
@@ -194,7 +195,6 @@ class Character extends MiscModel
     public function relatedQuests()
     {
         $query = $this->quests()
-            ->orderBy('name', 'ASC')
             ->with(['characters', 'locations', 'quests']);
 
         if (!auth()->check() || !auth()->user()->isAdmin()) {

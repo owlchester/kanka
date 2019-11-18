@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -88,7 +89,7 @@ class Quest extends MiscModel
     /**
      * Traits
      */
-    use CampaignTrait, VisibleTrait, ExportableTrait, CalendarDateTrait;
+    use CampaignTrait, VisibleTrait, ExportableTrait, CalendarDateTrait, SimpleSortableTrait;
 
     /**
      * Searchable fields

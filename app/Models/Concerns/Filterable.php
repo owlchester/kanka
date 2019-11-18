@@ -32,6 +32,7 @@ trait Filterable
      */
     public function scopeFilter($query, $params)
     {
+        dd('yo');
         $fields = $this->getFilterableColumns();
         if (!is_array($params) or empty($params) or empty($fields)) {
             return $query;

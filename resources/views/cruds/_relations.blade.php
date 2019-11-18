@@ -15,8 +15,6 @@ $r = $model->entity->relationships()->has('target')->with(['target', 'target.tag
 </p>
 <p class="export-{{ ($r->count() === 0 ? 'visible export-hidden' : 'visible') }}">{{ trans('crud.tabs.relations') }}</p>
 
-
-
 <table id="crud_families" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <thead>
         <tr>

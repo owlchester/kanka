@@ -16,17 +16,25 @@ $hasOrg = request()->has('organisation_id');
         </h2>
 
         <p class="help-block">
-            @if ($hasOrg)
-                <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
-                </a>
-            @else
-                <a href="{{ route('organisations.members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
-                </a>
-            @endif
             {{ __('organisations.members.helpers.members') }}
         </p>
+
+        <div class="row export-hidden">
+            <div class="col-md-6">
+                @include('cruds.datagrids.sorters.simple-sorter')
+            </div>
+            <div class="col-md-6 text-right">
+                @if ($hasOrg)
+                    <a href="{{ route('organisations.members', $model) }}" class="btn btn-default btn-sm">
+                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
+                    </a>
+                @else
+                    <a href="{{ route('organisations.members', [$model, 'organisation_id' => $model->id]) }}" class="btn btn-default btn-sm">
+                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
+                    </a>
+                @endif
+            </div>
+        </div>
 
         <table id="organisation-characters" class="table table-hover">
             <tbody><tr>
@@ -58,8 +66,9 @@ $hasOrg = request()->has('organisation_id');
                     'character', 'character.race', 'character.location', 'character.family', 'organisation',
                     'character.entity', 'character.entity.tags'
                 ])
+                ->simpleSort($datagridSorter)
                 ->paginate();?>
-            @foreach ($r->sortBy('character.name') as $relation)
+            @foreach ($r as $relation)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
