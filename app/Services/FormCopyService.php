@@ -183,6 +183,7 @@ class FormCopyService
             $colours[$colour] = trans('colours.' . $colour);
         }
 
+        asort($colours);
         return $colours;
     }
 
