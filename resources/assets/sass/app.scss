@@ -1,4 +1,3 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -7,13 +6,19 @@
   font-display: fallback;
 }
 
+// This requires the most time to parse
+//@font-face {
+//  font-family: 'Dubai';
+//  src: url('/fonts/dubai/DubaiW23-Light.eot'); /* IE9 Compat Modes */
+//  src: url('/fonts/dubai/DubaiW23-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//  url('/fonts/dubai/DubaiW23-Light.woff2') format('woff2'), /* Super Modern Browsers */
+//  url('/fonts/dubai/DubaiW23-Light.woff') format('woff'), /* Pretty Modern Browsers */
+//  url('/fonts/dubai/DubaiW23-Light.ttf')  format('truetype'); /* Safari, Android, iOS */
+//}
+
 // Variables
 @import "variables";
 
-// Other stylings
-@import "calendar";
-@import "print";
-@import "../components/rpg/scss/rpg-awesome";
 
 img.profile-user-img {
   width: 200px;
@@ -89,14 +94,6 @@ img.profile-user-img {
   border: 3px solid;
   border-color: transparent;
   border-color: rgba(255, 255, 255, 0.2);
-}
-@font-face {
-  font-family: 'Dubai';
-  src: url('/fonts/dubai/DubaiW23-Light.eot'); /* IE9 Compat Modes */
-  src: url('/fonts/dubai/DubaiW23-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('/fonts/dubai/DubaiW23-Light.woff2') format('woff2'), /* Super Modern Browsers */
-  url('/fonts/dubai/DubaiW23-Light.woff') format('woff'), /* Pretty Modern Browsers */
-  url('/fonts/dubai/DubaiW23-Light.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
 
 /** required form fields **/
@@ -829,6 +826,13 @@ td.breakable {
   margin-top: 25px;
 }
 
+
+// Quest panels
+.widget-user-username {
+  a {
+    color: white;
+  }
+}
 .bg-pink {
   color: #fff !important;
   background-color: #ebbde9 !important;
@@ -837,13 +841,21 @@ td.breakable {
   color: #fff !important;
   background-color: #a35831 !important;
 }
+.bg-none {
+  background-color: #eaeaea;
+}
 
-.widget-user-username {
-  a {
-    color: white;
+.bg-none, .bg-gray {
+  .widget-user-username {
+    a {
+      color: #000;
+    }
   }
 }
 
-
+// Other stylings
+@import "calendar";
+@import "print";
 @import "mobile";
 @import "boosted";
+@import "../components/rpg/scss/rpg-awesome";

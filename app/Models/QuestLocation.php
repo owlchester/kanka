@@ -16,13 +16,8 @@ use App\Traits\VisibleTrait;
  * @property string $colour
  * @property integer $impact
  */
-class QuestLocation extends MiscModel
+class QuestLocation extends QuestElement
 {
-    /**
-     * Traits
-     */
-    use VisibleTrait, SimpleSortableTrait;
-
     /**
      * ACL Trait config
      * Tell the ACL trait that we aren't looking on this model but on locations.
@@ -51,24 +46,8 @@ class QuestLocation extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function quest()
-    {
-        return $this->belongsTo('App\Models\Quest', 'quest_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function entry()
-    {
-        return Mentions::map($this, 'description');
     }
 }

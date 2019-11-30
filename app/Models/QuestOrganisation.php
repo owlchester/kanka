@@ -16,13 +16,8 @@ use App\Traits\VisibleTrait;
  * @property string $colour
  * @property integer $impact
  */
-class QuestOrganisation extends MiscModel
+class QuestOrganisation extends QuestElement
 {
-    /**
-     * Traits
-     */
-    use VisibleTrait, SimpleSortableTrait;
-
     /**
      * ACL Trait config
      * Tell the ACL trait that we aren't looking on this model but on organisations.
@@ -51,24 +46,8 @@ class QuestOrganisation extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function quest()
-    {
-        return $this->belongsTo('App\Models\Quest', 'quest_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function organisation()
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function entry()
-    {
-        return Mentions::map($this, 'description');
     }
 }

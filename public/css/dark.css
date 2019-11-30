@@ -149,6 +149,8 @@ input[type=checkbox] {
   outline: 0;
   width: 16px;
   height: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 input[type=checkbox]:after {
@@ -348,6 +350,11 @@ blockquote {
   background: #222 !important;
 }
 
+.main-header .campaign-selector,
+.navbar .campaign-selector {
+  color: white !important;
+}
+
 /**
  * Quests
  */
@@ -445,6 +452,38 @@ footer .footer {
 
 .cover-background .campaign-link:hover {
   background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/**
+ * Quest Elements
+ */
+
+.box-quest-element .widget-user-username a {
+  color: #fff !important;
+}
+
+.box-quest-element .bg-none .widget-user-desc,
+.box-quest-element .bg-gray .widget-user-desc {
+  color: #000 !important;
+}
+
+.box-quest-element .bg-none .widget-user-username a,
+.box-quest-element .bg-gray .widget-user-username a {
+  color: #000 !important;
+}
+
+/**
+ * Conversation
+ */
+
+.box-conversation .box-comment {
+  background-color: #222 !important;
+  border-bottom: 1px solid #333;
+}
+
+.box-conversation .box-footer {
+  border: none !important;
+  background: none !important;
 }
 
 body {

@@ -3,6 +3,10 @@
  * @var \App\Models\Location $model
  * @var \App\Models\Family $family
  */
+$filters = [];
+if (request()->has('location_id')) {
+    $filters['location_id'] = request()->get('location_id');
+}
 ?>
 <div class="box box-solid">
     <div class="box-body">
@@ -15,9 +19,26 @@
             {{ trans('locations.helpers.families') }}
         </p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
 
-        <?php  $r = $model->families()->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
+        <div class="row export-hidden">
+            <div class="col-md-6">
+                @include('cruds.datagrids.sorters.simple-sorter')
+            </div>
+            <div class="col-md-6 text-right">
+
+                @if (request()->has('location_id'))
+                    <a href="{{ route('locations.families', $model) }}" class="btn btn-default btn-sm pull-right">
+                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allFamilies()->count() }})
+                    </a>
+                @else
+                    <a href="{{ route('locations.families', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->families()->count() }})
+                    </a>
+                @endif
+            </div>
+        </div>
+
+        <?php  $r = $model->allFamilies()->filter($filters)->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
         <table id="characters" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>

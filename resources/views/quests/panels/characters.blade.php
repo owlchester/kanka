@@ -14,8 +14,8 @@
 <div class="row margin-top">
     @foreach ($model->characters()->with(['character', 'character.entity', 'character.entity.tags'])->has('character')->simpleSort($datagridSorter)->get() as $character)
         <div class="col-md-6">
-            <div class="box box-widget widget-user-2">
-                <div class="widget-user-header bg-{{ $character->colour ?? 'gray' }}">
+            <div class="box box-widget widget-user-2 box-quest-element">
+                <div class="widget-user-header {{ $character->colourClass() }}">
                     <div class="widget-user-image">
                         <div class="entity-image" style="background: url({{ $character->character->getImageUrl(true) }})" title="{{ $character->character->name }}">
                         </div>

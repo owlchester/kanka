@@ -129,6 +129,8 @@ input, textarea, .select2, select  {
     color: white;
   }
 }
+
+// Fancy checkboxes
 input[type=checkbox] {
   -webkit-appearance: none !important;
   -moz-appearance: none;
@@ -136,16 +138,25 @@ input[type=checkbox] {
   outline: 0;
   width: 16px;
   height: 16px;
-}
-input[type=checkbox]:after {
-  background-color: $Detail !important;
-  border: 1px solid $Hard !important;
-}
-input[type="checkbox"]:checked {
-  background: $Hard !important;
-}
-input[type="checkbox"]:checked:after {
-  display: block;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover {
+    //border-radius: 3px;
+  }
+
+  &:after {
+    background-color: $Detail !important;
+    border: 1px solid $Hard !important;
+  }
+
+  &:checked {
+    background: $Hard !important;
+  }
+
+  &:checked:after {
+    display: block;
+  }
 }
 
 .main-footer {
@@ -282,6 +293,10 @@ pre, blockquote {
       background: $Detail !important;
     }
   }
+
+  .campaign-selector {
+    color: white !important;
+  }
 }
 
 /**
@@ -381,5 +396,40 @@ footer {
     &:hover {
       background: rgba(0, 0, 0, 0.9) !important;
     }
+  }
+}
+
+/**
+ * Quest Elements
+ */
+.box-quest-element {
+  .widget-user-username {
+    a {
+      color: #fff !important;
+    }
+  }
+  .bg-none, .bg-gray {
+    .widget-user-desc {
+      color: #000 !important;
+    }
+    .widget-user-username {
+      a {
+        color: #000 !important;
+      }
+    }
+  }
+}
+
+/**
+ * Conversation
+ */
+.box-conversation {
+  .box-comment {
+    background-color: $Detail !important;
+    border-bottom: 1px solid $Soft;
+  }
+  .box-footer {
+    border: none !important;
+    background: none !important;
   }
 }

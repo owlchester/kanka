@@ -16,12 +16,8 @@ use App\Traits\VisibleTrait;
  * @property string $colour
  * @property integer $impact
  */
-class QuestCharacter extends MiscModel
+class QuestCharacter extends QuestElement
 {
-    /**
-     * Traits
-     */
-    use VisibleTrait, SimpleSortableTrait;
 
     /**
      * ACL Trait config
@@ -51,24 +47,8 @@ class QuestCharacter extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function quest()
-    {
-        return $this->belongsTo('App\Models\Quest', 'quest_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function character()
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function entry()
-    {
-        return Mentions::map($this, 'description');
     }
 }

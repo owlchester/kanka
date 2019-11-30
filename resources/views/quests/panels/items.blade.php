@@ -16,8 +16,8 @@
 <div class="row">
     @foreach ($model->items()->with('item')->has('item')->simpleSort($datagridSorter)->get() as $item)
         <div class="col-md-6">
-            <div class="box box-widget widget-user-2">
-                <div class="widget-user-header bg-{{ $item->colour ?? 'gray' }}">
+            <div class="box box-widget widget-user-2 box-quest-element">
+                <div class="widget-user-header {{ $item->colourClass() }}">
                         <div class="widget-user-image">
                             <div class="entity-image" style="background: url({{ $item->item->getImageUrl(true) }})" title="{{ $item->item->name }}">
                             </div>

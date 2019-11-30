@@ -16,7 +16,11 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::open(array('route' => [$route . '.store', $parent->id], 'method'=>'POST')) !!}
+                    {!! Form::open([
+                        'route' => [$route . '.store', $parent->id],
+                        'method'=>'POST',
+                        'data-shortcut' => 1,
+                    ]) !!}
                     @include($name . '._form', ['mirror' => false])
 
                     {!! Form::hidden('quest_id', $parent->id) !!}

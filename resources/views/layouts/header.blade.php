@@ -84,7 +84,7 @@ if (Auth::check()) {
                                             <li>
                                                 <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
                                                    class="campaign-selector
-                                                   @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}" @else placeholder-background" @endif >
+                                                   @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}) !important" @else placeholder-background" @endif >
                                                     {{ $campaign->name }}
                                                 </a>
                                             </li>
@@ -95,7 +95,7 @@ if (Auth::check()) {
                                                 <li>
                                                     <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
                                                        class="campaign-selector
-                                                       @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}" @else placeholder-background" @endif >
+                                                       @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}) !important;" @else placeholder-background" @endif >
                                                         <i class="fa fa-star pull-right" title="{{ __('campaigns.following')  }}"></i>
                                                         {{ $campaign->name }}
                                                     </a>

@@ -191,6 +191,20 @@ class Location extends MiscModel
     }
 
     /**
+     * Get all families in the location and descendants
+     */
+    public function allFamilies()
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        $table = new Family();
+        return Family::whereIn($table->getTable() . '.location_id', $locationIds)->with('location');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function journals()
@@ -341,7 +355,7 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->families()->count();
+        $count = $this->allFamilies()->count();
         if ($campaign->enabled('families') && $count > 0) {
             $items['families'] = [
                 'name' => 'locations.show.tabs.families',
