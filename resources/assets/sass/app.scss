@@ -841,11 +841,8 @@ td.breakable {
   color: #fff !important;
   background-color: #a35831 !important;
 }
-.bg-none {
-  background-color: #eaeaea;
-}
 
-.bg-none, .bg-gray {
+.bg-gray, .bg-none {
   .widget-user-username {
     a {
       color: #000;

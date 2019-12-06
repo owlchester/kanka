@@ -462,12 +462,10 @@ footer .footer {
   color: #fff !important;
 }
 
-.box-quest-element .bg-none .widget-user-desc,
 .box-quest-element .bg-gray .widget-user-desc {
   color: #000 !important;
 }
 
-.box-quest-element .bg-none .widget-user-username a,
 .box-quest-element .bg-gray .widget-user-username a {
   color: #000 !important;
 }
