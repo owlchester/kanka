@@ -14,7 +14,7 @@
         <div class="col-md-3">
             @include('campaigns._menu', ['active' => 'settings'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 campaign-settings">
             @include('campaigns._settings')
         </div>
     </div>
