@@ -21,6 +21,9 @@ return [
         'description'   => 'Evénements qui se sont déroulé dans ce lieu.',
         'title'         => 'Evénements du lieu :name',
     ],
+    'families'      => [
+        'title' => 'Familles du lieu :name',
+    ],
     'fields'        => [
         'characters'        => 'Personnages',
         'image'             => 'Image',
@@ -35,6 +38,7 @@ return [
     'helpers'       => [
         'characters'    => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou simplement ceux directement ceux qui sont ici.',
         'descendants'   => 'Cette liste contient tous les lieux qui sont descendants de celui-ci, pas uniquement ceux directes.',
+        'families'      => 'Un lien peut être le siège d\'une puissante famille.',
         'map'           => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
         'nested'        => 'Ce mode de navigation permet d\'afficher tes lieux de manière imbriquée. Les lieux sans lieu parent seront affichés par défaut. Les lieux possédant des sous-lieux peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
         'organisations' => 'Afficher toutes les organisations dans ce lieu et sous-lieux, ou seulement ceux directement ici.',
@@ -210,6 +214,7 @@ return [
         'tabs'          => [
             'characters'    => 'Personnages',
             'events'        => 'Evénements',
+            'families'      => 'Familles',
             'information'   => 'Information',
             'items'         => 'Objets',
             'journals'      => 'Journaux',

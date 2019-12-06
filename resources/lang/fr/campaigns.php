@@ -260,6 +260,9 @@ return [
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Activer',
+        ],
         'description'   => 'Activer ou désactiver des modules de la campagne.',
         'edit'          => [
             'success'   => 'Campagne modifiée.',

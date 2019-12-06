@@ -204,9 +204,9 @@ return [
         'hide'      => 'Hide Filters',
         'show'      => 'Show Filters',
         'sorting'   => [
-            'helper' => 'Control in which order results appear.',
-            'asc' => ':field Ascending',
-            'desc' => ':field Descending',
+            'asc'       => ':field Ascending',
+            'desc'      => ':field Descending',
+            'helper'    => 'Control in which order results appear.',
         ],
         'title'     => 'Filters',
     ],

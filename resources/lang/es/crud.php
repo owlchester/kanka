@@ -88,7 +88,7 @@ return [
     'boosted'           => 'Mejorada',
     'bulk'              => [
         'actions'       => [
-            'edit'  => 'Editar y etiquetar en masa',
+            'edit'  => 'Editar y etiquetar en lote',
         ],
         'edit'          => [
             'tagging'   => 'Acción para las etiquetas',

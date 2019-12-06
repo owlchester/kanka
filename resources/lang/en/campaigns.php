@@ -260,6 +260,9 @@ return [
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Enable',
+        ],
         'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',
@@ -283,9 +286,6 @@ return [
             'tags'          => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
         ],
         'title'         => 'Campaign :name Modules',
-        'actions' => [
-            'enable' => 'Enable',
-        ]
     ],
     'show'                              => [
         'actions'       => [

@@ -203,6 +203,11 @@ return [
         'filtered'  => 'Affichant :count de :total :entity.',
         'hide'      => 'Cacher les filtres',
         'show'      => 'Afficher les filtres',
+        'sorting'   => [
+            'asc'       => ':field ascendant',
+            'desc'      => ':field descendant',
+            'helper'    => 'Controler l\'ordre d\'affichage des résultats.',
+        ],
         'title'     => 'Filtres',
     ],
     'forms'             => [
