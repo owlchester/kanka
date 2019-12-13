@@ -295,7 +295,7 @@ abstract class MiscModel extends Model
         return $this
             ->groupBy('type')
             ->whereNotNull('type')
-            ->orderBy('type', 'ASC')
+            ->orderBy('updated_at', 'DESC')
             ->limit(20)
             ->pluck('type')
             ->all();
