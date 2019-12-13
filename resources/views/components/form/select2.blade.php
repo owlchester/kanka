@@ -49,7 +49,7 @@ if ($allowNew) {
     $selectedOption,
     [],
     [
-        'id' => $fieldId,
+        'id' => $fieldId . '_' . uniqid(),
         'class' => 'form-control select2',
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName),
