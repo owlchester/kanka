@@ -88,13 +88,19 @@ class EntityController extends Controller
         $name = $realEntity->pluralType();
         $entity = $realEntity->pluralType();
         $exporting = true; // This can be used in views to know we are exporting
+        $datagridSorter = null;
 
         if (request()->has('html')) {
-            return view('cruds.export', compact('entity', 'name', 'entities', 'exporting'));
+            return view('cruds.export', compact(
+                'entity',
+                'name',
+                'entities',
+                'exporting',
+            ));
         }
 
         return $pdf
-            ->loadView('cruds.export', compact('entity', 'name', 'entities', 'exporting'))
+            ->loadView('cruds.export', compact('entity', 'name', 'entities', 'exporting', 'datagridSorter'))
             ->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
     }
 

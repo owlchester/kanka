@@ -17,8 +17,13 @@ trait SimpleSortableTrait
      * @param DatagridSorter $datagridSorter
      * @return Builder
      */
-    public function scopeSimpleSort(Builder $builder, DatagridSorter $datagridSorter)
+    public function scopeSimpleSort(Builder $builder, ?DatagridSorter $datagridSorter)
     {
+        // DatagridSorter can be empty on exports
+        if (empty($datagridSorter)) {
+            return $builder;
+        }
+
         $columns = $datagridSorter->column();
         if (!is_array($columns)) {
             $columns = array($columns);
