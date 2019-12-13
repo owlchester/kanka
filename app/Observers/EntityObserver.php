@@ -115,7 +115,7 @@ class EntityObserver
 
         // If the user granted themselves read/write permissions on the entity, we need to make sure they
         // still have them even if not checked in the UI.
-        if (EntityPermission::granted()) {
+        if (EntityPermission::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
             if (!in_array('edit', $data['user'][$user])) {
                 $data['user'][$user][] = 'edit';
