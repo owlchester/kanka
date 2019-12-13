@@ -16,6 +16,7 @@ class Event extends MiscModel
         'name',
         'slug',
         'type',
+        'image',
         'date',
         'entry',
         'is_private',
