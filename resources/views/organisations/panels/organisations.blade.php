@@ -1,4 +1,9 @@
-<div class="box box-solid">
+<?php
+/**
+ * @var \App\Models\Organisation $model
+ * @var \App\Models\Organisation $r
+ */
+?><div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('organisations.show.tabs.organisations') }}
