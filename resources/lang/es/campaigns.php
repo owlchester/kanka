@@ -265,6 +265,9 @@ return [
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Habilitar',
+        ],
         'description'   => 'Habilitar o deshabilitar módulos de la campaña.',
         'edit'          => [
             'success'   => 'Ajustes de campaña actualizados.',
