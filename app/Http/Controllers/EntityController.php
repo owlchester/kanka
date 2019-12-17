@@ -95,7 +95,7 @@ class EntityController extends Controller
                 'entity',
                 'name',
                 'entities',
-                'exporting',
+                'exporting'
             ));
         }
 
