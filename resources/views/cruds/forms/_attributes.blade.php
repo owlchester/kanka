@@ -3,7 +3,12 @@
  * @var Attribute $attribute
  * @var \App\Models\AttributeTemplate $attributeTemplate
  */
-$attributes = isset($model) ? $model->entity->attributes()->orderBy('default_order', 'ASC')->get() : (isset($source) ? $source->entity->attributes: []);
+$attributes = [];
+if (isset($model)) {
+    $attributes = $model->entity->attributes()->orderBy('default_order', 'ASC')->get();
+} elseif (isset($source)) {
+    $attributes = $source->entity->attributes()->orderBy('default_order', 'ASC')->get();
+}
 $isAdmin = Auth::user()->isAdmin();
 $existingAttributeNames = [];
 foreach ($attributes as $attribute) {
