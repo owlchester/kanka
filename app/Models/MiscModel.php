@@ -12,6 +12,7 @@ use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
 
@@ -293,9 +294,10 @@ abstract class MiscModel extends Model
     public function entityTypeList()
     {
         return $this
+            ->select(DB::raw('type, MAX(created_at) as cmat'))
             ->groupBy('type')
             ->whereNotNull('type')
-            ->orderBy('updated_at', 'DESC')
+            ->orderBy('cmat', 'DESC')
             ->limit(20)
             ->pluck('type')
             ->all();
