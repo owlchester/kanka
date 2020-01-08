@@ -226,6 +226,7 @@ class SvgAllowedAttributes implements AttributeInterface
             'rx',
             'ry',
             'radius',
+            'rescale',
             'refx',
             'refy',
             'repeatcount',
