@@ -39,6 +39,8 @@ $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRou
 if ($allowNew) {
     $allowNew = auth()->user()->can('create', new $prefillModel);
 }
+
+$fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
 <label>{{ trans($labelKey) }}</label>
 @if ($allowNew)
@@ -49,7 +51,7 @@ if ($allowNew) {
     $selectedOption,
     [],
     [
-        'id' => $fieldId . '_' . uniqid(),
+        'id' => $fieldUniqIdentifier,
         'class' => 'form-control select2',
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName),
@@ -60,7 +62,7 @@ if ($allowNew) {
 
 @if ($allowNew)
     <div class="input-group-btn">
-        <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="{{ $fieldId }}" data-entity="{{ $pluralField }}">
+        <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="{{ $fieldUniqIdentifier }}" data-entity="{{ $pluralField }}">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
