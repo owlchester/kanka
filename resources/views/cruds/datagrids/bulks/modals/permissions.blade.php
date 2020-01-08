@@ -25,16 +25,15 @@
                                 {!! Form::select(
                                 'role[' . $role->id . '][read]',
                                 __('crud.permissions.actions.bulk'),
-                                null,
+                                'ignore',
                                 ['class' => 'form-control']) !!}
                             </td>
                             @if (!$role->is_public)
                                 <td>
-
                                     {!! Form::select(
                                     'role[' . $role->id . '][edit]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                                 <td>
@@ -42,14 +41,14 @@
                                     {!! Form::select(
                                     'role[' . $role->id . '][delete]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                                 <td>
                                     {!! Form::select(
-                                    'role[' . $role->id . '][entity-notes]',
+                                    'role[' . $role->id . '][entity-note]',
                                     __('crud.permissions.actions.bulk'),
-                                    null,
+                                    'ignore',
                                     ['class' => 'form-control']) !!}
                                 </td>
                             @else
@@ -94,7 +93,7 @@
                                 </td>
                                 <td>
                                     {!! Form::select(
-                                    'user[' . $member->user_id . '][entity-notes]',
+                                    'user[' . $member->user_id . '][entity-note]',
                                     __('crud.permissions.actions.bulk'),
                                     'ignore',
                                     ['class' => 'form-control']) !!}
