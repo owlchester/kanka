@@ -3,23 +3,23 @@
 return [
     'characters'    => [
         'create'    => [
-            'description'   => 'Lier un personnage à la quête',
-            'success'       => 'Personnage ajouté à :name.',
-            'title'         => 'Nouveau personnage pour :name',
+            'description'   => 'Lier une personne à la quête',
+            'success'       => 'Personne ajoutée à :name.',
+            'title'         => 'Nouvelle personne pour :name',
         ],
         'destroy'   => [
-            'success'   => 'Personnage pour :name supprimé.',
+            'success'   => 'Personne pour :name supprimé.',
         ],
         'edit'      => [
-            'description'   => 'Modifier le personnage d\'une quête',
-            'success'       => 'Personnage pour :name modifié.',
-            'title'         => 'Modifier un personnage pour :name',
+            'description'   => 'Modifier la personne d\'une quête',
+            'success'       => 'Personne pour :name modifié.',
+            'title'         => 'Modifier une personne pour :name',
         ],
         'fields'    => [
-            'character'     => 'Personnage',
+            'character'     => 'Personne',
             'description'   => 'Description',
         ],
-        'title'     => 'Personnages dans :name',
+        'title'     => 'Personnes dans :name',
     ],
     'create'        => [
         'description'   => 'Créer une nouvelle quête',
@@ -36,7 +36,7 @@ return [
     ],
     'fields'        => [
         'character'     => 'Auteur',
-        'characters'    => 'Personnages',
+        'characters'    => 'Personnes',
         'description'   => 'Description',
         'image'         => 'Image',
         'is_completed'  => 'Completée',
@@ -125,18 +125,18 @@ return [
         'name'  => 'Nom de la quête',
         'quest' => 'Quête Parentale',
         'role'  => 'Le rôle de l\'entité dans la quête.',
-        'type'  => 'Principale, side quest, personnage',
+        'type'  => 'Principale, side quest, personne',
     ],
     'show'          => [
         'actions'       => [
-            'add_character'     => 'Ajouter un personnage',
+            'add_character'     => 'Ajouter une personne',
             'add_item'          => 'Ajouter un objet',
             'add_location'      => 'Ajouter un lieu',
             'add_organisation'  => 'Ajouter une organisation',
         ],
         'description'   => 'Détail de la quête',
         'tabs'          => [
-            'characters'    => 'Personnages',
+            'characters'    => 'Personnes',
             'information'   => 'Information',
             'items'         => 'Objets',
             'locations'     => 'Lieux',

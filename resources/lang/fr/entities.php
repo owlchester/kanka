@@ -7,8 +7,8 @@ return [
     'calendars'             => 'Calendriers',
     'campaign'              => 'Campagne',
     'campaigns'             => 'Campagnes',
-    'character'             => 'Personnage',
-    'characters'            => 'Personnages',
+    'character'             => 'Personne',
+    'characters'            => 'Personnes',
     'conversation'          => 'Conversation',
     'conversations'         => 'Conversations',
     'creator'               => [

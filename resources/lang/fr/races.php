@@ -2,8 +2,8 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personnages de la race.',
-        'title'         => 'Personnages de :name',
+        'description'   => 'Personnes de la race.',
+        'title'         => 'Personnes de :name',
     ],
     'create'        => [
         'description'   => 'Créer une nouvelle race',
@@ -18,7 +18,7 @@ return [
         'title'     => 'Modifier la race :name',
     ],
     'fields'        => [
-        'characters'    => 'Personnages',
+        'characters'    => 'Personnes',
         'name'          => 'Nom',
         'races'         => 'Sous-races',
         'type'          => 'Type',
@@ -43,7 +43,7 @@ return [
     'show'          => [
         'description'   => 'Détails d\'une race',
         'tabs'          => [
-            'characters'    => 'Personnages',
+            'characters'    => 'Personnes',
             'menu'          => 'Menu',
             'races'         => 'Sous-races',
         ],

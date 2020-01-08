@@ -153,7 +153,7 @@ return [
         'attribute_template'    => 'Modèle d\'attribut',
         'calendar'              => 'Calendrier',
         'calendar_date'         => 'Date calendrier',
-        'character'             => 'Personnage',
+        'character'             => 'Personnes',
         'copy_attributes'       => 'Copier les attributs',
         'copy_notes'            => 'Copier les notes d\'entité',
         'creator'               => 'Créateur',
@@ -305,7 +305,7 @@ return [
     ],
     'placeholders'      => [
         'calendar'      => 'Choix du calendrier',
-        'character'     => 'Choix du personnage',
+        'character'     => 'Choix de la personne',
         'entity'        => 'Entité',
         'event'         => 'Choix de l\'événement',
         'family'        => 'Choix de la famille',

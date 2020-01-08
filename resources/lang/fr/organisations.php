@@ -50,15 +50,15 @@ return [
             'title'     => 'Modifier Member pour :name',
         ],
         'fields'        => [
-            'character'     => 'Personnage',
+            'character'     => 'Personne',
             'organisation'  => 'Organisation',
             'role'          => 'Rôle',
         ],
         'helpers'       => [
-            'members'   => 'Cette liste contient tous les personnages dans l\'organisation ainsi que ces descendants. Il est possible d\'afficher que les membres directs en utilisant le filtre.',
+            'members'   => 'Cette liste contient toutes les personnes dans l\'organisation ainsi que ces descendants. Il est possible d\'afficher que les membres directs en utilisant le filtre.',
         ],
         'placeholders'  => [
-            'character' => 'Choix du personnage',
+            'character' => 'Choix de la personne',
             'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
         ],
         'title'         => 'Organisation :name Membres',

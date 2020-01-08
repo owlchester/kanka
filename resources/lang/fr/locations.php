@@ -2,8 +2,8 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personnages qui se trouvent dans ce lieu.',
-        'title'         => 'Personnages situé dans :name',
+        'description'   => 'Personnes qui se trouvent dans ce lieu.',
+        'title'         => 'Personnes situé dans :name',
     ],
     'create'        => [
         'description'   => 'Créer un nouveau lieu',
@@ -25,7 +25,7 @@ return [
         'title' => 'Familles du lieu :name',
     ],
     'fields'        => [
-        'characters'        => 'Personnages',
+        'characters'        => 'Personnes',
         'image'             => 'Image',
         'is_map_private'    => 'Carte Privée',
         'location'          => 'Lieu',
@@ -36,7 +36,7 @@ return [
         'type'              => 'Type',
     ],
     'helpers'       => [
-        'characters'    => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou simplement ceux directement ceux qui sont ici.',
+        'characters'    => 'Afficher tous les personnes dans ce lieu et sous-lieux, ou simplement ceux directement ceux qui sont ici.',
         'descendants'   => 'Cette liste contient tous les lieux qui sont descendants de celui-ci, pas uniquement ceux directes.',
         'families'      => 'Un lien peut être le siège d\'une puissante famille.',
         'map'           => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
@@ -145,7 +145,7 @@ return [
                 'palm-tree'     => 'Palmier',
                 'pin'           => 'Point',
                 'pine-tree'     => 'Pin',
-                'player'        => 'Personnage',
+                'player'        => 'Personne',
                 'potion'        => 'Potion',
                 'reactor'       => 'Réacteur',
                 'repair'        => 'Réparature',
@@ -212,7 +212,7 @@ return [
     'show'          => [
         'description'   => 'Détail d\'un lieu',
         'tabs'          => [
-            'characters'    => 'Personnages',
+            'characters'    => 'Personnes',
             'events'        => 'Evénements',
             'families'      => 'Familles',
             'information'   => 'Information',

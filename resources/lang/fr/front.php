@@ -57,7 +57,7 @@ return [
             'title'         => 'Calendriers',
         ],
         'collaborative'     => [
-            'description'   => 'Vous êtes une équipe? Pas de problème! Vous pouvez inviter vos amis ou co-contributeur pour vous aidez dans vos campagnes.',
+            'description'   => 'Vous êtes une équipe? Pas de problème! Vous pouvez inviter vos amis ou co-contributeurs pour vous aidez dans vos campagnes.',
             'title'         => 'Collaboratif',
         ],
         'description'       => 'Voici quelques éléments de notre application que vous allez adorer!',
@@ -69,8 +69,8 @@ return [
         ],
         'landscape'         => 'Contenu lisible seulement en mode paysage.',
         'layers'            => [
-            'description'   => 'Organisez vos personnages, leurs familles, leur emplacement et bien plus à tout moment.',
-            'title'         => 'Personnages, Familles, Lieux',
+            'description'   => 'Organisez vos personnes, leurs familles, leur emplacement et bien plus à tout moment.',
+            'title'         => 'Personnes, Familles, Lieux',
         ],
         'learn_more'        => 'En savoir plus sur les fonctionnalités de Kanka',
         'maps'              => [
@@ -78,7 +78,7 @@ return [
             'title'         => 'Cartes',
         ],
         'modular'           => [
-            'description'   => 'Chaque module (personnage, lieu) peut être activé ou désactivé à tout moment, ce qui facilite la personnalisation de la campagne.',
+            'description'   => 'Chaque module (personne, lieu) peut être activé ou désactivé à tout moment, ce qui facilite la personnalisation de la campagne.',
             'title'         => 'Modulaire',
         ],
         'notebook'          => [
@@ -135,7 +135,7 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Inscrivez-vous maintenant, c\'est gratuit!',
-        'description'       => 'Kanka est un outil en ligne flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créez et organisez des personnages, localités, organisations, événements et bien plus.',
+        'description'       => 'Kanka est un outil en ligne flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créez et organisez des personnes, lieux, organisations, événements et bien plus.',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -150,7 +150,7 @@ return [
         'features'  => 'Fonctionnalités',
         'help'      => 'Aide',
         'home'      => 'Accueil',
-        'login'     => 'Login',
+        'login'     => 'Connexion',
         'privacy'   => 'Politique de confidentialité',
         'register'  => 'Inscription',
         'releases'  => 'Mises à jour',
@@ -188,7 +188,7 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Commençons!',
-        'title'             => 'Laissez libre à votre créativité.',
+        'title'             => 'Laissez libre cours à votre créativité.',
     ],
     'team'          => [
         'coffee'    => 'Achète-moi un café!',
