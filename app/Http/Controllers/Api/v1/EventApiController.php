@@ -49,6 +49,7 @@ class EventApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Event::class);
         $model = Event::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -63,6 +64,7 @@ class EventApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $event);
         $event->update($request->all());
+        $this->crudSave($event);
 
         return new Resource($event);
     }

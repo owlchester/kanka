@@ -50,14 +50,7 @@ class CharacterApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Character::class);
         $model = Character::create($request->all());
-
-        // Fire an event for the Entity Observer.
-        $model->crudSaved();
-
-        // MenuLink have no entity attached to them.
-        if ($model->entity) {
-            $model->entity->crudSaved();
-        }
+        $this->crudSave($model);
 
         return new Resource($model);
     }
@@ -73,14 +66,7 @@ class CharacterApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $character);
         $character->update($request->all());
-
-        // Fire an event for the Entity Observer.
-        $character->crudSaved();
-
-        // MenuLink have no entity attached to them.
-        if ($character->entity) {
-            $character->entity->crudSaved();
-        }
+        $this->crudSave($character);
 
         return new Resource($character);
     }

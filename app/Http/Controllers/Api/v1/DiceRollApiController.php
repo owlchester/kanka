@@ -51,6 +51,7 @@ class DiceRollApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', DiceRoll::class);
         $model = DiceRoll::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -65,6 +66,7 @@ class DiceRollApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $diceRoll);
         $diceRoll->update($request->all());
+        $this->crudSave($diceRoll);
 
         return new Resource($diceRoll);
     }

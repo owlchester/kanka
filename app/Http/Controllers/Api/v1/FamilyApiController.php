@@ -49,6 +49,7 @@ class FamilyApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Family::class);
         $model = Family::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -63,6 +64,7 @@ class FamilyApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $family);
         $family->update($request->all());
+        $this->crudSave($family);
 
         return new Resource($family);
     }

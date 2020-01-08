@@ -49,6 +49,7 @@ class OrganisationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Organisation::class);
         $model = Organisation::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -63,6 +64,7 @@ class OrganisationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation);
         $organisation->update($request->all());
+        $this->crudSave($organisation);
 
         return new Resource($organisation);
     }

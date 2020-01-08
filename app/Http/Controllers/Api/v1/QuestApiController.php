@@ -49,6 +49,7 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Quest::class);
         $model = Quest::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -63,6 +64,7 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest);
         $quest->update($request->all());
+        $this->crudSave($quest);
 
         return new Resource($quest);
     }

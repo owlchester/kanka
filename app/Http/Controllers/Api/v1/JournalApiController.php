@@ -49,6 +49,7 @@ class JournalApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Journal::class);
         $model = Journal::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -63,6 +64,7 @@ class JournalApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $journal);
         $journal->update($request->all());
+        $this->crudSave($journal);
 
         return new Resource($journal);
     }

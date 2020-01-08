@@ -46,8 +46,9 @@ class ConversationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Tag::class);
-        $model = Tag::create($request->all());
+        $this->authorize('create', Conversation::class);
+        $model = Conversation::create($request->all());
+        $this->crudSave($model);
         return new Resource($model);
     }
 
@@ -62,6 +63,7 @@ class ConversationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $conversation);
         $conversation->update($request->all());
+        $this->crudSave($conversation);
 
         return new Resource($conversation);
     }

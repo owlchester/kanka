@@ -49,6 +49,8 @@ class LocationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Location::class);
         $model = Location::create($request->all());
+        $this->crudSave($model);
+
         return new Resource($model);
     }
 
@@ -63,6 +65,7 @@ class LocationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $location);
         $location->update($request->all());
+        $this->crudSave($location);
 
         return new Resource($location);
     }
