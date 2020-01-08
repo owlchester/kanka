@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Sanitizers\SvgAllowedAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -54,6 +55,11 @@ class ImageService
                 // Sanitize SVGs to avoid any XSS attacks
                 if ($file->getMimeType() == 'image/svg+xml') {
                     $sanitizer = new Sanitizer();
+
+                    // Custom allowed attributes for AFMG
+                    $allowedAttributes = new SvgAllowedAttributes();
+                    $sanitizer->setAllowedAttrs($allowedAttributes);
+
                     $dirtySVG = file_get_contents($file);
                     $cleanSVG = $sanitizer->sanitize($dirtySVG);
                     file_put_contents($file, $cleanSVG);
