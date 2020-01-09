@@ -34,7 +34,7 @@ You can get a list of all the entity-notes of an entity by using the following e
             "entity_id": 69,
             "entry": "Lorem Ipsum",
             "id": 31,
-            "is_private": true,
+            "visibility": "all",
             "name": "Secret Note",
             "updated_at": {
                 "date": "2019-01-28 19:42:33.000000",
@@ -70,7 +70,7 @@ To get the details of a single entity-note, use the following endpoint.
         "entity_id": 69,
         "entry": "Lorem Ipsum",
         "id": 31,
-        "is_private": true,
+        "visibility": "all",
         "name": "Secret Note",
         "updated_at": {
             "date": "2019-01-28 19:42:33.000000",
@@ -99,7 +99,7 @@ To create an entity-note, use the following endpoint.
 | `name` | `string` (Required) | Name of the entity-note |
 | `entry` | `string` | The entity-note's entry (html) |
 | `entity_id` | `integer` (Required) | The entity-note's parent entity |
-| `is_private` | `boolean` | If the entity-note is only visible to `admin` members of the campaign |
+| `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
 
 ### Results
 
