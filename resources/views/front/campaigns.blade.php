@@ -44,6 +44,11 @@
                                     @if (!empty($camp->system))
                                         <span class="label label-default" title="{{ __('campaigns.fields.system') }}">{{ $camp->system }}</span>
                                     @endif
+                                    @if ($camp->boosted())
+                                        <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}">
+                                            <i class="fa fa-rocket"></i>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <h4 class="campaign-title">
@@ -82,6 +87,11 @@
                                             @if (!empty($camp->system))
                                                 <span class="label label-default" title="{{ __('campaigns.fields.system') }}">
                                                     {{ $camp->system }}
+                                                </span>
+                                            @endif
+                                            @if ($camp->boosted())
+                                                <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}">
+                                                    <i class="fa fa-rocket"></i>
                                                 </span>
                                             @endif
                                         </div>

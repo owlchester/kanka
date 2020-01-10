@@ -111,7 +111,9 @@ trait CampaignScopes
      */
     public function scopeFront($query)
     {
-        return $query->where('visible_entity_count', '>', 0)
+        return $query
+            ->with('boosts')
+            ->where('visible_entity_count', '>', 0)
             ->orderBy('visible_entity_count', 'desc')
             ->orderBy('name', 'asc');
     }

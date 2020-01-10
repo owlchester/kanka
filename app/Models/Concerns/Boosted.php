@@ -26,7 +26,7 @@ trait Boosted
     public function boosted(): bool
     {
         if ($this->cachedBoosted === null) {
-            $this->cachedBoosted = $this->boosts()->count() > 0;
+            $this->cachedBoosted = $this->boosts->count() > 0;
         }
         return $this->cachedBoosted;
     }
