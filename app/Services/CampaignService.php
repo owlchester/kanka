@@ -73,16 +73,9 @@ class CampaignService
     }
 
     /**
-     * @param Campaign $campaign
-     */
-    public static function generateBoilerplate(Campaign $campaign)
-    {
-        // Do nothing
-    }
-
-    /**
      * Leave a campaign
      * @param Campaign $campaign
+     * @throws Exception
      */
     public function leave(Campaign $campaign)
     {

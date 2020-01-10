@@ -30,12 +30,19 @@ class CampaignObserver
     protected $entityMappingService;
 
     /**
+     * @var StarterService
+     */
+    protected $starterService;
+
+    /**
      * CharacterObserver constructor.
      * @param EntityMappingService $entityMappingService
+     * @param StarterService $starterService
      */
-    public function __construct(EntityMappingService $entityMappingService)
+    public function __construct(EntityMappingService $entityMappingService, StarterService $starterService)
     {
         $this->entityMappingService = $entityMappingService;
+        $this->starterService = $starterService;
     }
 
     /**
@@ -116,8 +123,9 @@ class CampaignObserver
         ]);
         $setting->save();
 
+        // If it's the first campaign for the user, generate some boilerplate content
         if ($first) {
-            StarterService::generateBoilerplate($campaign);
+            $this->starterService->generateBoilerplate($campaign);
         }
     }
 

@@ -52,20 +52,6 @@
         </div>
     @endif
 
-    @if (auth()->check() && !empty(auth()->user()->welcome_campaign_id) && auth()->user()->welcome_campaign_id == $campaign->id)
-        <div class="alert alert-info alert-dismissible fade in">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.welcome') }}">×</button>
-            <h4>{{ __('dashboard.welcome.header') }}</h4>
-            <p>
-                {!! nl2br(__('dashboard.welcome.body', [
-                    'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
-                    'faq' => link_to_route('faq.index', __('front.faq.title')),
-                    'discord' => link_to(config('discord.url'), 'Discord'),
-                ])) !!}
-            </p>
-        </div>
-    @endif
-
     <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
             <div class="title">

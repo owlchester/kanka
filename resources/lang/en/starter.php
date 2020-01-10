@@ -37,4 +37,7 @@ return [
         'name'          => 'Ulyss (example)',
         'type'          => 'Capital',
     ],
+    'note1' => [
+        'name' => 'Welcome Note',
+    ]
 ];

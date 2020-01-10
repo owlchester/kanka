@@ -3,17 +3,26 @@
 namespace App\Services;
 
 use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
 use App\Models\Item;
 use App\Models\Location;
+use App\Models\Note;
 
 class StarterService
 {
     /**
+     * @var Campaign
+     */
+    protected $campaign;
+
+    /**
      * @param Campaign $campaign
      */
-    public static function generateBoilerplate(Campaign $campaign)
+    public function generateBoilerplate(Campaign $campaign)
     {
+        $this->campaign = $campaign;
+
         // Generate locations
         $kingdom = new Location([
             'name' => trans('starter.kingdom1.name'),
@@ -32,10 +41,9 @@ class StarterService
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
-        // Make sure we skip observers to be able to save parent_location_id properly.
-        //$city->savingObserver = false;
         $city->save();
 
+        // Generate characters
         $james = new Character([
             'name' => trans('starter.character1.name'),
             'title' => trans('starter.character1.title'),
@@ -48,8 +56,6 @@ class StarterService
             'traits' => trans('starter.character1.traits'),
             'is_private' => false,
         ]);
-        // Make sure we skip observers to be able to save foreign ids properly.
-        //$james->savingObserver = false;
         $james->save();
 
         $irwie = new Character([
@@ -64,10 +70,9 @@ class StarterService
             'traits' => trans('starter.character2.traits'),
             'is_private' => false,
         ]);
-        // Make sure we skip observers to be able to save foreign ids properly.
-        //$irwie->savingObserver = false;
         $irwie->save();
 
+        // One item for good measure
         $item = new Item([
             'name' => trans('starter.item1.name'),
             'campaign_id' => $campaign->id,
@@ -77,8 +82,47 @@ class StarterService
             'location_id' => $kingdom->id,
             'is_private' => false,
         ]);
-        // Make sure we skip observers to be able to save foreign ids properly.
-        //$item->savingObserver = false;
         $item->save();
+
+
+        $this->dashboard();
+    }
+
+    /**
+     * Setup the new campaign's dashboard
+     */
+    protected function dashboard()
+    {
+        // Note for the dashboard
+        $entry = nl2br(__('dashboard.welcome.body', [
+            'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
+            'faq' => link_to_route('faq.index', __('front.faq.title')),
+            'discord' => link_to(config('discord.url'), 'Discord'),
+        ]));
+        $note = new Note([ 'name' => trans('starter.note1.name'),
+            'campaign_id' => $this->campaign->id,
+            'entry' => $entry,
+            'is_private' => false,
+        ]);
+        $note->save();
+
+        $widget = new CampaignDashboardWidget([
+            'campaign_id' => $this->campaign->id,
+            'entity_id' => $note->entity->id,
+            'widget' => CampaignDashboardWidget::WIDGET_PREVIEW,
+            'width' => 6, // half
+            'config' => '{"full":"1"}',
+            'position' => 1,
+        ]);
+        $widget->save();
+
+        // Recent widget
+        $widget = new CampaignDashboardWidget([
+            'campaign_id' => $this->campaign->id,
+            'widget' => CampaignDashboardWidget::WIDGET_RECENT,
+            'width' => 0,
+            'position' => 2,
+        ]);
+        $widget->save();
     }
 }
