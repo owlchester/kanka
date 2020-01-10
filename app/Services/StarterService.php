@@ -94,10 +94,12 @@ class StarterService
     protected function dashboard()
     {
         // Note for the dashboard
-        $entry = nl2br(__('dashboard.welcome.body', [
+        $entry = nl2br(__('starter.note1.entry', [
             'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
             'faq' => link_to_route('faq.index', __('front.faq.title')),
             'discord' => link_to(config('discord.url'), 'Discord'),
+            'public' => link_to_route('public_campaigns', __('front.menu.campaigns')),
+            'patreon' => link_to(config('patreon.url'), 'Patreon'),
         ]));
         $note = new Note([ 'name' => trans('starter.note1.name'),
             'campaign_id' => $this->campaign->id,
