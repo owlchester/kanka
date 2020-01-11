@@ -37,9 +37,8 @@ return [
         'name'          => 'Ulyss (example)',
         'type'          => 'Capital',
     ],
-    'note1' => [
-        'name' => 'Welcome Note',
-        'entry'      => <<<'TEXT'
+    'note1'         => [
+        'entry' => <<<'TEXT'
 Welcome to Kanka! Your first campaign has been created and we have included a couple of example entities as inspiration (you can delete them whenever).
 
 You'll probably want to get started by adding some entities of your own, so chose a category from the left and get started. You can disable unneeded categories of entity from the campaign settings, this will hide them from the menu.
@@ -55,6 +54,7 @@ Last but not least:
 - If you have questions, suggestions or just want to chat, join us on :discord.
 - Loving the app and want to support it's growth? Head over to our :patreon.
 TEXT
-        ,
-    ]
+,
+        'name'  => 'Welcome Note',
+    ],
 ];
