@@ -40,23 +40,35 @@ return [
         'title'         => ':name kampány exportálása',
     ],
     'fields'                            => [
+        'boosted'                       => 'A kampány boost-olója:',
+        'css'                           => 'CSS',
         'description'                   => 'Leírás',
         'entity_count'                  => 'Entitások száma',
         'entity_personality_visibility' => 'Karakter személyiségének láthatósága',
         'entity_visibility'             => 'Entitás láthatósága',
+        'excerpt'                       => 'Kivonat',
+        'followers'                     => 'Követők',
         'header_image'                  => 'Fejléc képe',
         'image'                         => 'Kép',
         'locale'                        => 'Nyelv',
         'name'                          => 'Név',
+        'rpg_system'                    => 'Szerepjáték rendszerek',
         'system'                        => 'Rendszer',
+        'theme'                         => 'Téma',
         'visibility'                    => 'Láthatóság',
     ],
+    'following'                         => 'Követve',
     'helpers'                           => [
+        'boosted'                       => 'Néhány funkció elérhetővé vált, mivel a kampány boost-olva van. További információk a :settings oldalon olvashatóak.',
+        'css'                           => 'Írj saját CSS kódot, amely a kampányod oldalaira applikálódik majd. Kérlek vedd figyelembe, hogy az ezzel a funkcióval kapcsolatos bármiféle visszaélés az egyedi CSS törléséhez vezethet! Többszöri, vagy súlyos visszaélés esetén a teljes kampányod törlésre kerülhet.',
         'entity_personality_visibility' => 'Amikor új karaktert hozol létre, a "személyiség látható" opciót automatikusan kikapcsoljuk.',
         'entity_visibility'             => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
+        'excerpt'                       => 'A kampány kivonata a főoldalon jelenik meg, írj hát pár mondatot, világod bemutatására! Fogalmazz tömören a legjobb eredmény érdekében.',
         'locale'                        => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
         'name'                          => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
         'system'                        => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
+        'systems'                       => 'Hogy elkerüljük a felhasználók elárasztását szükségtelen opciókkal, néhány funkció csak adott szerepjáték rendszerek esetén érhető el (ilyen például a D&D 5e szörny harcérték blokk, a tulajdonságblokkok között). Támogatott rendszerek hozzáadásával engedélyezheted ezeket a funkciókat.',
+        'theme'                         => 'Adott téma rögzítése a kampányhoz, amely minden esetben felülbírálja a felhasználók saját preferenciáját.',
         'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                             => [
@@ -135,14 +147,16 @@ return [
             'title'         => ':name nevű tag kezelése',
         ],
         'fields'                => [
-            'joined'    => 'Csalatkozott',
-            'name'      => 'Felhasználó',
-            'role'      => 'Szerep',
-            'roles'     => 'Szerep',
+            'joined'        => 'Csalatkozott',
+            'last_login'    => 'Utoljára bejelentkezve',
+            'name'          => 'Felhasználó',
+            'role'          => 'Szerep',
+            'roles'         => 'Szerep',
         ],
         'help'                  => 'Nincs korlátozva, hogy hány tagja lehet egy kampánynak, és mint a kampány Adminja, el is távolíthatod azokat a tagokat, akik már nem aktívak.',
         'helpers'               => [
-            'switch'    => 'Válts erre a felhasználóra',
+            'admin' => 'A kampány Adminjaként lehetőséged van meghívni új felhasználókat, eltávolítani inaktívakat, valamint a jogosultságaikat szerkeszteni. Hogy letesztelhesd egy tag jogosultságait, használd a Váltás gombot. További információt erről a funkcióról az alábbi linken olvashatsz :link',
+            'switch'=> 'Válts erre a felhasználóra',
         ],
         'impersonating'         => [
             'message'   => 'Jelenleg úgy látod ezt a kampányt, mintha egy másik felhasználó lennél. Néhány funkció nem elérhető, de a többi pontosan úgy viselkedik, ahogy a felhasználó látná. A visszalépéshez kattints a "Vissza a saját felhasználómhoz" gombra, ami a Kijelentkezés gomb helyén található.',
@@ -150,11 +164,14 @@ return [
         ],
         'invite'                => [
             'description'   => 'Meghívhatod a barátaidat az email-címük megadásával, hogy csatlakozzanak a kampányodhoz. Ha elfogadják a meghívást, tagok lesznek az igénylet szerepben. A kiküldött meghívókat bármikor visszavonhatod.',
+            'more'          => 'További szerepeket adhatsz hozzá itt :link',
+            'roles_page'    => 'Szerepek oldal',
             'title'         => 'Meghívó',
         ],
         'roles'                 => [
             'member'    => 'Tag',
             'owner'     => 'Tulajdonos',
+            'player'    => 'Játékos',
             'public'    => 'Nyilvános',
             'viewer'    => 'Megjelenítés',
         ],
@@ -163,8 +180,11 @@ return [
         'your_role'             => 'A szereped: <i>:role</i>',
     ],
     'panels'                            => [
-        'permission'    => 'Jogosultság',
-        'sharing'       => 'Megosztás',
+        'boosted'   => 'Boost-olva',
+        'dashboard' => 'Főoldal',
+        'permission'=> 'Jogosultság',
+        'sharing'   => 'Megosztás',
+        'systems'   => 'Rendszerek',
     ],
     'placeholders'                      => [
         'description'   => 'A kampányod rövid összefoglalása.',
@@ -209,6 +229,7 @@ return [
                 'add'           => 'Létrehozás',
                 'delete'        => 'Törlés',
                 'edit'          => 'Szerkesztés',
+                'entity-note'   => 'Entitás jegyzet',
                 'permission'    => 'Engedélyek kezelése',
                 'read'          => 'Megtekintés',
             ],
@@ -244,6 +265,9 @@ return [
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Engedélyezés',
+        ],
         'description'   => 'A kampány moduljainak ki- és bekapcsolása.',
         'edit'          => [
             'success'   => 'A kampány beállításait frissítettük.',
@@ -270,6 +294,7 @@ return [
     ],
     'show'                              => [
         'actions'       => [
+            'boost' => 'Kampány boost-olása',
             'leave' => 'Kilépés a kampányból',
         ],
         'description'   => 'Egy kampány részleteinek megjelenítése',

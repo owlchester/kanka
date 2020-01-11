@@ -28,6 +28,30 @@ return [
         'request_permission'    => 'Jelenleg is dolgozunk egy REST API-n amivel harmadik féltől származó alkalmazások is csatlakozhatnak a Kankához, azonban amíg az utolsó simításokat végezzük rajta, addig korlátozzuk a hozzáférések számát. Ha szeretnél hozzáférni az APIhoz és király alkalmazásokat fejleszteni, amelyek a Kankával kommunikálnak, kérjük, hogy lépj kapcsolatba velünk, és elküldünk minden információt, amire szükséged lehet.',
         'title'                 => 'API',
     ],
+    'boost'     => [
+        'benefits'      => [
+            'first'     => 'Hogy biztosítsuk a Kanka folyamatos fejlődését, bizonyos funkciók az adott kampány boost-olása után válnak elérhetővé. A boost-olás lehetőségégének megszerzése :patreon-on keresztül történik. Egy kampányt akárki boost-olhatja is, ha van joga megtekinteni azt, így nem minden esetben a Mesélőnek kell állnia a cehhet. Egy kampány addig marad boost-olva, amíg egy felhasználó fenntartja rajta a boost-ját, valamint a támogatását is :patreon-on keresztül. Ha egy kampány boost-olása megszűnik, az adatok nem vesznek el, csupán eltűnnek szem elől, amíg ismét nem kerül boost-olásra.',
+            'header'    => 'Entitás fejléc képek.',
+            'more'      => 'Tudj meg többet a funkciókról.',
+            'second'    => 'Egy kampány Boost-olása az alábbi előnyöket biztosítja:',
+            'theme'     => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
+            'tooltip'   => 'Egyedi entitás tooltip-ek.',
+            'upload'    => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
+        ],
+        'buttons'       => [
+            'boost' => 'Boost',
+        ],
+        'campaigns'     => 'Boost-olt kapányok száma: :count / :max',
+        'exceptions'    => [
+            'already_boosted'   => ':name kampány már boost-olva van.',
+            'exhausted_boosts'  => 'Elfogytak a kiosztható Boost-jaid. Vond vissza egy boost-od valamelyik kampányról, mielőtt egy újnak adnál egyet.',
+        ],
+        'success'       => [
+            'boost' => ':name kampány boost-olva lett.',
+            'delete'=> 'Boost visszavonva innen: :name',
+        ],
+        'title'         => 'Boost',
+    ],
     'layout'    => [
         'description'   => 'Elrendezési beállítások frissítése',
         'success'       => 'Az elrendezési beállításokat frissítettük.',
@@ -36,6 +60,7 @@ return [
     'menu'      => [
         'account'           => 'Fiók',
         'api'               => 'API',
+        'boost'             => 'Boost',
         'layout'            => 'Elrendezés',
         'patreon'           => 'Patreon',
         'personal_settings' => 'Személyes beállítások',

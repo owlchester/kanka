@@ -57,6 +57,7 @@ return [
         'helpers'       => [
             'all_members'       => 'Ez a lista minden karaktert tartalmaz, mely tagja ennek a szervezetnek vagy bármelyik leszármazott szervezetének',
             'direct_members'    => 'A legtöbb szervezetnek tagokra van szüksége a sikeres működéshez. Ez a lista azokat a karaktereket sorolja fel, akik közvetlenül a szervezet tagjai.',
+            'members'           => 'Az alábbi listában azok a karakterek szerepelnek, akik vagy tagjai ennek a szervezetnek, vagy tagjai ezen szervezet valamelyik leszármazott szervezetének. Lehetőség van csak a közvetlen tagokra is szűrni.',
         ],
         'placeholders'  => [
             'character' => 'Válassz ki egy karaktert',

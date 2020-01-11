@@ -31,6 +31,10 @@ return [
         'title'         => 'Beszélgetés',
     ],
     'messages'      => [
+        'destroy'       => [
+            'success'   => 'Üzenet eltávolítva.',
+        ],
+        'is_updated'    => 'Frissítve',
         'load_previous' => 'Előző üzenet betöltése',
         'placeholders'  => [
             'message'   => 'Üzeneted',

@@ -3,7 +3,7 @@
 return [
     'character1'    => [
         'fears'     => 'James a peur du bruit et des explosions.',
-        'history'   => 'Ceci est un exemple de personne.',
+        'history'   => 'Ceci est un exemple de personnage.',
         'name'      => 'James Owlchester (exemple)',
         'race'      => 'Humain',
         'sex'       => 'Male',
@@ -12,7 +12,7 @@ return [
     ],
     'character2'    => [
         'fears'     => 'Créer la plus grande explosion possible.',
-        'history'   => 'Ceci est un exemple de personne.',
+        'history'   => 'Ceci est un exemple de personnage.',
         'name'      => 'Irwie Gemstone (exemple)',
         'race'      => 'Gnome',
         'sex'       => 'Femelle',
@@ -26,7 +26,7 @@ return [
         'type'          => 'Arme',
     ],
     'kingdom1'      => [
-        'description'   => 'Ceci est un exemple d\'un lieu.',
+        'description'   => 'Ceci est un exemple d\'une localité.',
         'history'       => '(exemple) Le royaume de Genory était fondé par la tribu des Genoriens durant le 5ème sciècle.',
         'name'          => 'Genory (exemple)',
         'type'          => 'Royaume',

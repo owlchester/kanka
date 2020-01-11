@@ -7,8 +7,8 @@ return [
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
     'conversations' => [
-        'description'   => 'Conversations auxquelles la personne participe.',
-        'title'         => 'Conversations de la personne :name',
+        'description'   => 'Conversations auxquelles le personnage participe.',
+        'title'         => 'Conversations du personnage :name',
     ],
     'create'        => [
         'description'   => 'Créer une nouvelle personne',
@@ -19,8 +19,8 @@ return [
         'success'   => 'Personne \':name\' supprimée.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Jet de dés attribué à la personne.',
-        'hint'          => 'Les jets de dés peuvent être assigné à des personnes.',
+        'description'   => 'Jet de dés attribué au personnage.',
+        'hint'          => 'Les jets de dés peuvent être assigné à des personnages.',
         'title'         => 'Jet de dés de :name',
     ],
     'edit'          => [
@@ -45,11 +45,11 @@ return [
         'type'                      => 'Type',
     ],
     'helpers'       => [
-        'free'  => 'Où est passé le champ "Texte Libre"? Si la personne en avait un, il a été déplacé sur le nouvel onglet "Notes".',
+        'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',
     ],
     'hints'         => [
-        'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de cette personne.',
-        'is_dead'                   => 'Cette personne est morte.',
+        'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de ce personnage.',
+        'is_dead'                   => 'Ce personnage est mort.',
         'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type non Admin.',
     ],
     'index'         => [
@@ -62,16 +62,16 @@ return [
         'title'         => 'Personnes',
     ],
     'items'         => [
-        'description'   => 'Objets tenus ou apparenant à la personne.',
-        'hint'          => 'Des objets peuvent être assignés à des personnes et seront affichés ici.',
+        'description'   => 'Objets tenus ou apparenant au personnage.',
+        'hint'          => 'Des objets peuvent être assigné à des personnages et seront affichés ici.',
         'title'         => 'Objets de :name',
     ],
     'journals'      => [
-        'description'   => 'Journaux dont l\'auteur est la personne.',
+        'description'   => 'Journaux dont l\'auteur est le personnage.',
         'title'         => 'Journaux de :name',
     ],
     'maps'          => [
-        'description'   => 'Visualisations des relations de la personne.',
+        'description'   => 'Visualisations des relations du personnage.',
         'title'         => 'Carte relationnelle de :name',
     ],
     'organisations' => [
@@ -83,9 +83,9 @@ return [
             'success'       => 'Personne ajoutée à l\'organisation.',
             'title'         => 'Nouvelle Organisation pour :name',
         ],
-        'description'   => 'Organisations dont la personne est un membre.',
+        'description'   => 'Organisations dont le personnage est un membre.',
         'destroy'       => [
-            'success'   => 'Organisation de la personne supprimée.',
+            'success'   => 'Organisation de personne supprimée.',
         ],
         'edit'          => [
             'description'   => 'Modifier l\'organisation d\'une personne',
@@ -96,7 +96,7 @@ return [
             'organisation'  => 'Organisation',
             'role'          => 'Rôle',
         ],
-        'hint'          => 'Des personnes peuvent faire partie de nombreuses organisations, représentant leur employeur ou les sociétés auxquelles ils appartiennent.',
+        'hint'          => 'Des personnages peuvent faire partie de nombreuses organisations, représentant leur employeur ou les sociétés auxquelles ils appartiennent.',
         'placeholders'  => [
             'organisation'  => 'Choix d\'une organisation...',
         ],
@@ -120,10 +120,10 @@ return [
         'type'              => 'PNJ, Joueurs, Autre',
     ],
     'quests'        => [
-        'description'   => 'Quêtes auxquelles la personne est liée.',
+        'description'   => 'Quêtes auxquelles le personnage est lié.',
         'helpers'       => [
-            'quest_giver'   => 'Quêtes dont la personne est l\'auteur.',
-            'quest_member'  => 'Quêtes dont la persone est membre.',
+            'quest_giver'   => 'Quêtes dont le personnage est l\'auteur.',
+            'quest_member'  => 'Quêtes dont le personnage est membre.',
         ],
         'title'         => 'Quêtes de :name',
     ],
@@ -147,6 +147,6 @@ return [
         'title'         => 'Personne :name',
     ],
     'warnings'      => [
-        'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de cette personne.',
+        'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',
     ],
 ];

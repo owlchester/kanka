@@ -42,6 +42,16 @@ return [
             'link'          => 'API dokumentáció',
             'title'         => 'API',
         ],
+        'boosts'            => [
+            'boosted'       => 'Boost-olt kampány',
+            'css'           => 'Kampány-függő egyedi CSS',
+            'description'   => 'Bizonyos adományozási szintek adott számú boosterrel látják el a felhasználót, amellyel kampányt tud boostolni. Ezek az alábbi előnyöket biztosítják.',
+            'header_image'  => 'Entitás fejléc kép',
+            'theme'         => 'Rögzített kampány megjelenítési téma.',
+            'title'         => 'Boost-olt kampányok',
+            'tooltip'       => 'Egyedi entitás tooltip-ek.',
+            'upload'        => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
+        ],
         'calendars'         => [
             'description'   => 'Készíts egyedi naptárakat, és szervezd köréjük a kampányodat',
             'title'         => 'Naptárak',
@@ -53,9 +63,11 @@ return [
         'description'       => 'Néhány dolog, ami szerintünk tetszene neked az alkalmazásunkban!',
         'description_full'  => 'A legjobb és legkedveltebb funkcióink bemutatása',
         'free'              => [
+            'bonuses'       => 'bónuszok',
             'description'   => 'Az életben a legjobb dolgok ingyen vannak. Nincsenek hirdetések, nincsenek rejtett költségek, nincs pay wall.',
             'title'         => 'Ingyenes használat',
         ],
+        'landscape'         => 'Kérlek állítsd a képernyőd fekvő tájolásúra, hogy megjelenjen a funkciók listája.',
         'layers'            => [
             'description'   => 'Kövesd a karaktereket, a családjaikat, a hollétüket és még ennél is többet, mindig!',
             'title'         => 'Karakterek, családok, helyszínek',
@@ -72,6 +84,22 @@ return [
         'notebook'          => [
             'description'   => 'Készítsd elő a következő játékalkalmad, vagy naplózd a történteket a rich-text napló funkciónkkal!',
             'title'         => 'Naplók',
+        ],
+        'patreon'           => [
+            'api_calls'         => 'Megnövelt API hívás szám (90)',
+            'boosts'            => 'Kampány Booster-ek',
+            'curation'          => 'Részt vehetsz a Patreon szavazási lista összeállításában',
+            'default_image'     => 'Jópofa alapértelmezett entitás képek',
+            'description'       => 'A Kanka támogatásával a Patreon-on az alábbi előnyökhez juthatsz:',
+            'discord'           => 'Privát Discord csatorna',
+            'free'              => 'Ingyenes',
+            'hall_of_fame'      => 'A neved bekerül a :link-ba.',
+            'impact'            => 'A jövőbeli funkciók befolyásolása',
+            'monthly_vote'      => 'Részvétel az új funkciókról történő rendszeres szavazásban',
+            'pagination'        => 'Megnövelt megjelenített elemek száma oldalanként (100)',
+            'title'             => 'Patreon támogatás',
+            'upload_limit'      => 'Megnövelt feltöltési méret (8MB)',
+            'upload_limit_map'  => 'Megnövelt térkép feltöltési méret (10MB)',
         ],
         'public'            => [
             'description'   => 'Beállíthatsz jogosultságokat a különböző modulokhoz, vagy akár egy-egy entitáshoz is. A kampányaidat nyilvánossá is teheted, hogy <a href=":url">az egész világ láthassa</a>.',
@@ -133,6 +161,10 @@ return [
     'meta'          => [
         'description'   => 'A Kanka egy rugalmas digitális világépítő és online szerepjátékos kampánykezelő',
         'title'         => 'Kanka - Online szerepjátékos kampánykezelő és világépítő eszköz',
+    ],
+    'partners'      => [
+        'description'   => 'Összefogtunk néhány lenyűgöző eszközzel, és közösséggel, akikel közös célokat, és értékrendet vallunk.',
+        'title'         => 'Partnerek',
     ],
     'privacy'       => [
         'description'   => 'Érvényes 2018. május 25-től.',

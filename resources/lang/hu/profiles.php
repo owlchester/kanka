@@ -11,6 +11,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Profilkép',
         'email'                     => 'Email',
+        'last_login_share'          => 'Engedélyezd a többi kampány tag számára, hogy láthassák, hogy mikor jelentkeztem be utoljára.',
         'name'                      => 'Név',
         'new_password'              => 'Új jelszó',
         'new_password_confirmation' => 'Új jelszó megerősítése',
@@ -41,11 +42,13 @@ return [
     ],
     'settings'      => [
         'fields'    => [
+            'advanced_mentions' => 'Haladó Említések',
             'date_format'       => 'Dátumformátum',
             'default_nested'    => 'Alapértelmezetten hierarchikus nézet',
             'pagination'        => 'Lapméret (elemek száma egy lapon)',
         ],
         'hints'     => [
+            'advanced_mentions' => 'Kapcsold be, ha szeretnéd, hogy az említések miden esetben [entity:123] formában jelenjenek meg az entitás szerkesztése közben.',
             'default_nested'    => 'Kapcsold be, ha alapértelmezetten Hierarchikus Nézetben szeretnéd látni az entitásaidat (amikor lehetséges)',
         ],
         'success'   => 'A beállításokat megváltoztattuk.',

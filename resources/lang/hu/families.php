@@ -24,6 +24,7 @@ return [
         'members'   => 'Tagok',
         'name'      => 'Név',
         'relation'  => 'Kapcsolatok',
+        'type'      => 'Típus',
     ],
     'helpers'       => [
         'descendants'   => 'Ez a lista a család minden leszármazott családját tartalmazza, nem csak a közvetlenül alatta levőket.',
@@ -48,6 +49,7 @@ return [
     'placeholders'  => [
         'location'  => 'Válassz ki egy helyszínt!',
         'name'      => 'A család neve',
+        'type'      => 'Uralkodói ház, Nemesi ház, Kihalt, stb.',
     ],
     'show'          => [
         'description'   => 'Egy család részletes nézete',

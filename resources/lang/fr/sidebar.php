@@ -6,7 +6,7 @@ return [
     'calendars'             => 'Calendriers',
     'campaign'              => 'Campagne',
     'campaigns'             => 'Campagnes',
-    'characters'            => 'Personnes',
+    'characters'            => 'Personnages',
     'conversations'         => 'Conversations',
     'custom_links'          => 'Liens personnalisés',
     'dashboard'             => 'Tableau de bord',

@@ -12,6 +12,14 @@ TEXT
 ,
         'question'  => 'Mik azok a tulajdonságsablonok?',
     ],
+    'conversations'         => [
+        'answer'    => 'A Beszélgetések modulban párbeszéd bejegyzéseket jegyezhetsz fel Karakterek vagy a kampány Tagjai között. Amennyiben szeretnél egy fontos beszélgetést rögzíteni NJK-k, és JK-k között, akkor használd ezt a modult. Szükség esetén akár "Fórumos szerepjátékra" is használhatod a funkciót, ahol a mesélő és játékosok csak írásban játszanak.',
+        'question'  => 'Mi a Beszélgetések?',
+    ],
+    'entity-notes'          => [
+        'answer'    => 'Minden entitás rendelkezik egy \'Entitás jegyzet\' füllel, amelyek aprócska szöveges bejegyzések, amelyek egyenként beállíthatóak, hogy csak Te lásd őket, (praktikus, amikor több mesélős játékról van szó) vagy csak az Admin jogú felhasználók, eset bárki láthassa ezeket. Ezen felül beállítható, hogy a játékosok létrehozhassanak, és módosíthassanak ilyen Entitás jegyzeteket anélkül, hogy joguk lenne a teljes entitás szerkesztéséhez.',
+        'question'  => 'Hogyan kezeli a Kanka a részlegesen rejtett információkat?',
+    ],
     'fields'                => [
         'answer'    => 'Válasz',
         'category'  => 'Kategória',
@@ -32,6 +40,19 @@ TEXT
         'answer'    => 'Először is, köszönjük, hogy segíteni szeretnél! Mindig szükségünk van emberekre, akik segítenek nekünk a fordításokkal, az új funkciók kipróbálásával vagy az új felhasználók útbaigazításával. Örülünk annak is, ha meséltek másoknak a Kankáról, elősegítve, hogy új felhasználókat érjünk el ott, ahol nem is gondoltuk volna. A legjobb első lépés az, hogy csatlakozol a közösésgünkhöz a Discordon, ahol egy csatorna kifejezetten a segítőknek van fenntartva. Ha szeretnéd, támogass minket a Patreonon is, hogy hozzáférhess annak bónuszaihoz is!',
         'question'  => 'Szeretnék segíteni! Mit tehetek?',
     ],
+    'map'                   => [
+        'answer'    => <<<'TEXT'
+Minden helyszín tartalmazhat egy térképet (amely png, jpg vagy svg kiterjesztésű lehet) a térkép pedig rendelkezhet "Térkép pontokkal", amelyeknek a mérete, formája, ikonja, és színe állítható. A térkép pontok egy entitásra, vagy egy egyszerű címkére mutathatnak.
+
+Kérlek vedd figyelembe, hogy a térképek a népszerű Azgaar vagy Mediveal Fantasy Town Generator készítőitől tömörítve vannak, így sajnos inkompatibilisek a Kankával. Megoldást jelenthet erre a problémára, ha Inkscape vagy Photoshopban megnyitod, és újra lemented az SVG fájlokat, mielőtt feltöltenéd őket a Kankára.
+TEXT
+,
+        'question'  => 'Tölthetek fel térképeket a Kankára?',
+    ],
+    'mobile'                => [
+        'answer'    => 'Jelenleg nincs dedikált mobilos applikáció a Kankára, de a honlap legtöbb funkciója mobil eszközön is működik. Az egyetlen limitáció az Említések funkció, amely nem működik a mobilos szövegszerkesztőben. Ha a Patreon-os támogatások megengedik majd, remélem meg tudok bízni egy szakembert az app elkészítésével, de nem hinném, hogy a közeli jövőben sor kerülne erre.',
+        'question'  => 'Létezik mobil app a Kankához? Tervben van esetleg?',
+    ],
     'multiworld'            => [
         'answer'    => 'Nem! Annyi “kampányt” hozhatsz létre az alkalmazásban amennyit szeretnél, mindegyik jelképezhet egy önálló világot, környezetet vagy amit szeretnél. A kampányaid között egyazon fiókon belül könnyűszerrel váltogathatsz.',
         'question'  => 'Több világot építek több különböző környezetben. Külön fiókra van szükségem mindegyikükhöz?',
@@ -40,10 +61,23 @@ TEXT
         'answer'    => 'Teljességgel, ezért hoztuk létre a Kankát! Minden játékosodat meghívhatod a kampányaidba, és szerepeket és jogosultságokat adhatsz neki. Rendkívül rugalmasra építettük a rendszert (egyaránt használhatsz kizáró és megengedő jogosultságrendszereket), hogy lefedhessünk annyiféle helyzetet, amennyit csak lehet.',
         'question'  => 'A szerepjátékos világom építésére akarom használni a Kankát, de szeretném, hogy a játékosaim hozzáférhessenek néhány entitáshoz, és szerkeszthessék a karakterüket. Lehetséges ez?',
     ],
+    'plans'                 => [
+        'answer'    => <<<'TEXT'
+A hosszútávú terv, hogy egy létrejöjjön egy sokoldalú világépítő, és kampánymenedzsment eszköz, amely rendszerfüggetlen, olyan rendszerfüggő tartalmakkal, amelyet a közösség kezel a "Közösségi Sablonok" létrehozásával. Egy távoli cél, hogy olyan eszközök készüljenek el, amelyek beépülnek olyan platformokba, mint például a Virtuális Szerepjátékfelület appok (Virtual Table Top, VTT) hogy ezek a felületek összekapcsolódhassanak a Kanka világaival.
+
+A második kérdésre reflektálva jellemző, hogy a legtöbb hobby projekt általában kiég, az alkotói magára hagyják őket. A Patreon pont azzal a céllal lett létrehozva, hogy csökkentse a céges munkaóráim számát, így több időt tudok szentelni a Kanka fejlesztésére anélkül, hogy kockára tenném a családom anyagi biztonságát, illetve, hogy fedezze a szerverek költségeit. A projekt emellett nyílt forráskódú, és a közösség tovább is fejlesztheti, ha történne velem valami. Emellett minden egyes kampány adata ki is exportálható naponta egyszer a kampány adminjai által, ha esetleg aggódnál ezek elvesztése miatt.
+TEXT
+,
+        'question'  => 'Mik a hosszútávú tervek? Mi lesz, ha Ilestis ráun dolgozni a Kankán?',
+    ],
     'show'                  => [
         'return'    => 'Vissza a GYIK-hez',
         'timestamp' => 'Utolsó frissítés: :date',
         'title'     => 'GYIK :name',
+    ],
+    'user-switch'           => [
+        'answer'    => 'A jogosultságok trükkösek tudnak lenni, főleg a nagy kampányok esetén. Kampány adminként felkeresheted a kampány Tagjainak felületét, és rákattinthatsz a "Váltás" gombra, amelyek minden nem-admin szerepű felhasználó mellett megjelenik. Ekkor, annak a felhasználónak a nevében jelentkezel be, és úgy látod a kampányod részeit, ahogy az a felhasználó látná. Ez a legegyszerűbb módja a felhasználói jogosultságok ellenőrzésének.',
+        'question'  => 'Beállítottam a kampányomra vonatkozó jogosultságokat. Hogyan tesztelhetném őket?',
     ],
     'visibility'            => [
         'answer'    => 'Csak az általad meghívott személyek láthatják az alkotásod és léphetnek vele bármilyen interakcióba. Az adataid privátok, és mindig te rendelkezel velük.',

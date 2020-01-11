@@ -13,7 +13,7 @@ TEXT
         'question'  => 'Que sont les Modèles d\'Attributs?',
     ],
     'conversations'         => [
-        'answer'    => 'Des conversations peuvent être établiées entre des Personnes ou entre les membres d\'une campagne. Si par example tu souhaites documenter une conversation importante entre des NPCs et les joueurs, tu peux le faire en utilisant ce module. Celui-ci peut aussi être utilisé pour des campagnes de type "play-by-post".',
+        'answer'    => 'Des conversations peuvent être établiées entre des Personnages ou entre les membres d\'une campagne. Si par example tu souhaites documenter une conversation importante entre des NPCs et les joueurs, tu peux le faire en utilisant ce module. Celui-ci peut aussi être utilisé pour des campagnes de type "play-by-post".',
         'question'  => 'Que sont les Conversations?',
     ],
     'entity-notes'          => [
@@ -59,7 +59,7 @@ TEXT
     ],
     'permissions'           => [
         'answer'    => 'Absolument, c\'est ce pourquoi nous avons fait Kanka! Vous pouvez inviter tous les joueurs à votre campagne, et leurs donner des rôles et des permissions. Nous avons réalisé un système extrêmement flexible (vous pouvez à la fois utiliser des options de configuration de permission et de restriction) pour couvrir toutes les situations possibles dont vous pourriez avoir besoin.',
-        'question'  => 'Je veux utiliser Kanka pour concevoir mon propre univers JDR, mais je souhaiterais que mes joueurs puissent avoir accès à certains éléments et modifier leurs personnes. Est-ce possible ?',
+        'question'  => 'Je veux utiliser Kanka pour concevoir mon propre univers JDR, mais je souhaiterais que mes joueurs puissent avoir accès à certains éléments et modifier leurs personnages. Est-ce possible ?',
     ],
     'plans'                 => [
         'answer'    => <<<'TEXT'

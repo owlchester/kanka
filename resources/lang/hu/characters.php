@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Megjelenés hozzáadása',
+        'add_organisation'  => 'Szervezet hozzáadása',
         'add_personality'   => 'Személyiség hozzáadása',
     ],
     'conversations' => [
@@ -144,5 +145,8 @@ return [
             'quests'        => 'Küldetések',
         ],
         'title'         => ':name karakter',
+    ],
+    'warnings'      => [
+        'personality_hidden'    => 'Nincs jogosultságod szerkeszteni ennek a karakternek a Személyiség jellemzőit.',
     ],
 ];

@@ -14,7 +14,7 @@ return [
         'title'     => 'Modifier Objet :name',
     ],
     'fields'        => [
-        'character' => 'Personne',
+        'character' => 'Personnage',
         'image'     => 'Image',
         'location'  => 'Lieu',
         'name'      => 'Nom',
@@ -34,7 +34,7 @@ return [
         'title'         => 'Inventaires de l\'objet :name',
     ],
     'placeholders'  => [
-        'character' => 'Choix d\'une personne',
+        'character' => 'Choix dun personnage',
         'location'  => 'Choix d\'un lieu',
         'name'      => 'Nom de l\'objet',
         'price'     => 'Prix de l\'objet',

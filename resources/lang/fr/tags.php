@@ -24,7 +24,7 @@ return [
         'title'     => 'Modifier l\'étiquette :name',
     ],
     'fields'        => [
-        'characters'    => 'Personnes',
+        'characters'    => 'Personnages',
         'children'      => 'Enfants',
         'name'          => 'Nom',
         'tag'           => 'Etiquette',

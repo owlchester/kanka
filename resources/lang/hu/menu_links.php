@@ -19,8 +19,12 @@ return [
         'filters'   => 'Szűrők',
         'menu'      => 'Menü',
         'name'      => 'Név',
+        'position'  => 'Elhelyezés',
         'tab'       => 'Lapfül',
         'type'      => 'Entitás típusa',
+    ],
+    'helpers'       => [
+        'position'  => 'Használd ezt a mezőt, a menühivatkozások sorrendjének meghatározásához. A rendezés az itt beállított számok alapján, növekvő sorrendben történik majd.',
     ],
     'index'         => [
         'add'           => 'Új menühivatkozás',

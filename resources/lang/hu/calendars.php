@@ -9,6 +9,7 @@ return [
         'add_season'        => 'Évszak hozzáadása',
         'add_weekday'       => 'Hétköznap hozzáadása',
         'add_year'          => 'Egy év nevének hozzáadása',
+        'set_today'         => 'Legyen ez a mai nap!',
         'today'             => 'Ma',
     ],
     'checkboxes'    => [
@@ -38,6 +39,7 @@ return [
         'description'   => 'Naptár frissítése',
         'success'       => '\':name\' naptárat frissítettük',
         'title'         => ':name naptár szerkesztése',
+        'today'         => 'Naptár dátum frissítve.',
     ],
     'event'         => [
         'actions'   => [
@@ -91,12 +93,14 @@ return [
         'parameters'        => 'Paraméterek',
         'recurring_until'   => 'Ismétlődik az év végéig',
         'seasons'           => 'Évszakok',
+        'start_offset'      => 'Kezdő offszet',
         'suffix'            => 'Előtag',
         'type'              => 'Típus',
         'weekdays'          => 'Hétköznapok',
     ],
     'helpers'       => [
         'month_type'    => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
+        'start_offset'  => 'Alapértelmezés szerint a naptár a 0-ik év első hétköznapjával kezdődik. Ezen mező értékének megváltoztatásával beállítható, hogy a naptár első napja hova essen.',
     ],
     'hints'         => [
         'intercalary'   => 'Napok, melyek a standard hónapokon és heteken kívül esnek. Nincsenek hatással a hét napjaira, de a holdfázisokra igen.',
@@ -140,6 +144,7 @@ return [
         'moon'          => [
             'fullmoon'  => 'Telihold ennyi naponta',
             'name'      => 'Hold neve',
+            'offset'    => 'Első telihold offszet',
         ],
         'seasons'       => [
             'day'   => 'Nappal kezdete',

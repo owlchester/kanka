@@ -30,7 +30,7 @@ return [
         'password_forgotten'    => 'Mot de passe oublié?',
         'remember_me'           => 'Se souvenir de moi',
         'submit'                => 'Se connecter',
-        'title'                 => 'Connexion',
+        'title'                 => 'Login',
     ],
     'register'  => [
         'already_account'           => 'Vous avez déjà un compte',

@@ -18,7 +18,9 @@ return [
         'image'     => 'Kép',
         'location'  => 'Helyszín',
         'name'      => 'Név',
+        'price'     => 'Ár',
         'relation'  => 'Kapcsolat',
+        'size'      => 'Méret',
         'type'      => 'Típus',
     ],
     'index'         => [
@@ -27,10 +29,16 @@ return [
         'header'        => ':name tárgyai',
         'title'         => 'Tárgyak',
     ],
+    'inventories'   => [
+        'description'   => 'Entitás Felszerelések, amelyben ez a tárgy szerepel',
+        'title'         => ':name tárgy Felszerelései',
+    ],
     'placeholders'  => [
         'character' => 'Válassz ki egy karaktert!',
         'location'  => 'Válassz ki egy helyszínt!',
         'name'      => 'A tárgy neve',
+        'price'     => 'A tárgy ára',
+        'size'      => 'Méret, Súly, Térfogat',
         'type'      => 'Fegyver, bájital, ereklye',
     ],
     'quests'        => [
@@ -41,6 +49,7 @@ return [
         'description'   => 'Egy tárgy részletei',
         'tabs'          => [
             'information'   => 'Információ',
+            'inventories'   => 'Felszerelések',
             'quests'        => 'Küldetések',
         ],
         'title'         => ':name tárgy',

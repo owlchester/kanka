@@ -2,6 +2,12 @@
 
 return [
     'children'      => [
+        'actions'       => [
+            'add'   => 'Új címke hozzáadása',
+        ],
+        'create'        => [
+            'title' => 'Új címke hozzárendelése ehhez: :name',
+        ],
         'description'   => 'A címkéhez tartozó entitások',
         'title'         => ':name címke entitásai',
     ],

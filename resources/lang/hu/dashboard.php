@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'           => [
+        'follow'    => 'Követés',
+        'unfollow'  => 'Követés visszavonása',
+    ],
     'campaigns'         => [
         'manage'    => 'Kampány kezelése',
         'tabs'      => [
@@ -11,7 +15,8 @@ return [
     ],
     'description'       => 'Otthon a kreativitásod számára',
     'helpers'           => [
-        'setup' => 'Állítsd be a kampányod főoldalát!',
+        'follow'    => 'Egy kampány követése esetén megjelenik majd a kampányválasztó menüben (jobbra fent) a saját kampányaid alatt.',
+        'setup'     => 'Állítsd be a kampányod főoldalát!',
     ],
     'latest_release'    => 'Legutóbbi frissítések',
     'notifications'     => [
@@ -81,13 +86,26 @@ TEXT
         'delete'    => [
             'success'   => 'Eltávolítottuk a widget-et a főoldalról.',
         ],
+        'fields'    => [
+            'width' => 'Szélesség',
+        ],
         'recent'    => [
+            'full'      => 'Teljes',
             'help'      => 'Csak az utoljára frissített entitást mutasd, de teljes előnézettel',
+            'helpers'   => [
+                'full'  => 'Az entitás teljes bejegyzését jelenítsd meg, az előnézet helyett.',
+            ],
             'singular'  => 'Csak az utolsót',
             'title'     => 'Mostanában módosított',
         ],
         'update'    => [
             'success'   => 'Módosítottuk a widget-et.',
+        ],
+        'widths'    => [
+            '0' => 'Auto',
+            '12'=> 'Teljes',
+            '4' => 'Apró',
+            '6' => 'Fél',
         ],
     ],
 ];

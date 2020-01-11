@@ -46,6 +46,7 @@ return [
         'organisations' => 'Szervezetek',
         'quest'         => 'Főküldetés',
         'quests'        => 'Alküldetések',
+        'role'          => 'Szerep',
         'type'          => 'Típus',
     ],
     'helpers'       => [
@@ -123,6 +124,7 @@ return [
     'placeholders'  => [
         'name'  => 'A küldetés neve',
         'quest' => 'Főküldetés',
+        'role'  => 'Az entitás szerepe a küldetésben',
         'type'  => 'Karaktertörténet, mellékszál, főszál',
     ],
     'show'          => [
