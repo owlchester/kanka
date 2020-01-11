@@ -63,7 +63,7 @@
                     @endif
                 </ul>
 
-                @include('.cruds._actions', ['disableMove' => true])
+                @include('.cruds._actions', ['disableMove' => true, 'disableCopyCampaign' => true])
             </div>
         </div>
     </div>
