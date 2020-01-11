@@ -57,8 +57,8 @@ return [
     'values'                        => [
         'ability_1'             => 'Teleport. {name} magically teleports, along with any equipment they are wearing and carrying, up to 120 feet to an unoccupied space they can see.',
         'armor_class'           => '19 (natural armor)',
-        'attack_1'              => 'Claws. Melee Weapon Attack: +1 to hit, reach 15 ft., one target. it: 14 (2d6 + 4) slashing damage.',
-        'attack_2'              => 'Stinger. Melee Weapon Attack: +1 to hit, reach 5 ft., one target. it: 5 (1d4 + 2) piercing damage.',
+        'attack_1'              => 'Claws. Melee Weapon Attack: +1 to hit, reach 15 ft., one target. Hit: 14 (2d6 + 4) slashing damage.',
+        'attack_2'              => 'Stinger. Melee Weapon Attack: +1 to hit, reach 5 ft., one target. Hit: 5 (1d4 + 2) piercing damage.',
         'cha'                   => '14 (+2)',
         'challenge_rating'      => '5 (300 xp)',
         'con'                   => '10 (+0)',

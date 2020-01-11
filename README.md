@@ -1,6 +1,6 @@
 # Miscellany
 
-[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
 [![Patreon](https://img.shields.io/badge/Patreon-Support-orange.svg)](https://patreon.com/kankaio)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
 
