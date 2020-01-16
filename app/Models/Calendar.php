@@ -14,6 +14,13 @@ use Illuminate\Support\Arr;
  *
  * @property string $date
  * @property integer $start_offset
+ * @property string $months
+ * @property string $years
+ * @property string $weekdays
+ * @property string $week_names
+ * @property string $month_aliases
+ * @property string $seasons
+ * @property string $moons
  */
 class Calendar extends MiscModel
 {
@@ -37,6 +44,10 @@ class Calendar extends MiscModel
         'date',
         'suffix',
         'epochs',
+        'month_aliases',
+        'week_names',
+        'reset',
+        'is_incrementing',
 
         // Leap year
         'has_leap_year',
@@ -76,6 +87,16 @@ class Calendar extends MiscModel
      * @var bool
      */
     protected $loadedMoons = false;
+
+    /**
+     * @var bool
+     */
+    protected $loadedWeeks = false;
+
+    /**
+     * @var bool
+     */
+    protected $loadedMonthAliases = false;
 
     /**
      * @var bool
@@ -251,6 +272,30 @@ class Calendar extends MiscModel
             $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
         }
         return $this->loadedSeasons;
+    }
+
+    /**
+     * Get the weeks
+     * @return null
+     */
+    public function weeks()
+    {
+        if ($this->loadedWeeks === false) {
+            $this->loadedWeeks = json_decode(empty($this->week_names) ? '[]' : strip_tags($this->week_names), true);
+        }
+        return $this->loadedWeeks;
+    }
+
+    /**
+     * Get the month aliases
+     * @return null
+     */
+    public function monthAliases()
+    {
+        if ($this->loadedMonthAliases === false) {
+            $this->loadedMonthAliases = json_decode(empty($this->month_aliases) ? '[]' : strip_tags($this->month_aliases), true);
+        }
+        return $this->loadedMonthAliases;
     }
 
     /**

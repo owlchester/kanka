@@ -93,62 +93,6 @@
                 </div>
             </div>
         </div>
-
-
-        <hr>
-        <div class="form-group required">
-            <label>{{ trans('calendars.fields.weekdays') }}</label>
-            <p class="help-block">{{ __('calendars.hints.weekdays') }}</p>
-            <input type="hidden" name="weekday" />
-        </div>
-        <?php
-        $weekdays = [];
-        $names = old('weekday');
-        if (!empty($names)) {
-            foreach ($names as $name) {
-                if (!empty($name)) {
-                    $weekdays[] = $name;
-                }
-            }
-        } elseif (isset($model)) {
-            $weekdays = $model->weekdays();
-        } elseif (isset($source)) {
-            $weekdays = $source->weekdays();
-        } ?>
-        <div class="calendar-weekdays">
-            @foreach ($weekdays as $weekday)
-                <div class="form-group">
-                    <div class="input-group">
-                            <span class="input-group-addon">
-                                <span class="fa fa-arrows-alt-v"></span>
-                            </span>
-                        {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
-                        <span class="input-group-btn">
-                                <span class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                    <i class="fa fa-trash"></i>
-                                </span>
-                            </span>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <a class="btn btn-default" id="add_weekday" href="#" title="{{ trans('calendars.actions.add_weekday') }}">
-            <i class="fa fa-plus"></i> {{ trans('calendars.actions.add_weekday') }}
-        </a>
-
-        <div class="form-group" id="template_weekday" style="display: none">
-            <div class="input-group">
-                        <span class="input-group-addon">
-                            <span class="fa fa-arrows-alt-v"></span>
-                        </span>
-                {!! Form::text('weekday[]', null, ['class' => 'form-control']) !!}
-                <span class="input-group-btn">
-                            <span href="#" class="month-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                <i class="fa fa-trash"></i>
-                            </span>
-                        </span>
-            </div>
-        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">

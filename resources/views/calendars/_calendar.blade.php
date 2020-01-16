@@ -8,6 +8,7 @@ if ($model->missingDetails()): ?>
     </div>
 <?php return;
 endif;
+$weekNumber = 1;
 ?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
@@ -59,12 +60,31 @@ endif;
         @foreach ($renderer->weeks() as $key => $day)
             @if($key % count($model->weekdays()) == 0)
                 </tr><tr>
+
+                @if (!empty($day) && !empty($day['week']))
+
+                    @if ($renderer->isNamedWeek($day['week']))
+                    <tr class="named_week">
+                        <td colspan="{{ count($model->weekdays()) }}">
+                            {{ $renderer->namedWeek($day['week']) }}
+                        </td>
+                    </tr>
+                    @endif
+                @endif
             @endif
+
             @include('calendars._day', ['showMonth' => true])
         @endforeach
         </tr>
     @else
         @foreach ($renderer->month() as $week => $days)
+            @if ($renderer->isNamedWeek($week))
+                <tr class="named_week">
+                    <td colspan="{{ count($model->weekdays()) }}">
+                        {{ $renderer->namedWeek($week) }}
+                    </td>
+                </tr>
+            @endif
             <tr>
             @foreach ($days as $day)
                 @include('calendars._day')

@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Calendar;
 use App\Models\MiscModel;
 use Illuminate\Support\Facades\Session;
 
@@ -13,6 +14,7 @@ class CalendarObserver extends MiscObserver
      */
     public function saving(MiscModel $model)
     {
+        /** @var Calendar $model */
         parent::saving($model);
 
         // Only go further if we have a name field (coming from the calendar's form)
@@ -70,6 +72,23 @@ class CalendarObserver extends MiscObserver
             }
         }
         $model->years = json_encode($years);
+
+        // Handle week names
+        $weeks = [];
+        $weekCount = 0;
+        $weekValues = request()->post('week_number');
+        $weekNames = request()->post('week_name');
+        if ($weekValues && !empty($weekValues)) {
+            foreach ($weekValues as $week) {
+                if (empty($week)) {
+                    continue;
+                }
+                // Save the leap year
+                $weeks[$week] = $weekNames[$weekCount];
+                $weekCount++;
+            }
+        }
+        $model->week_names = json_encode($weeks);
 
         // Handle moons
         $moons = [];

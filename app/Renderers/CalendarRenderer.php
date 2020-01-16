@@ -48,6 +48,12 @@ class CalendarRenderer
     protected $seasons = [];
 
     /**
+     * Named Weeks
+     * @var array
+     */
+    protected $weeks = [];
+
+    /**
      * Layout option
      * @var string
      */
@@ -171,11 +177,16 @@ class CalendarRenderer
         $month = $months[$this->getMonth()-1];
         $data = [];
 
-        $offset = $this->weekStartoffset();
-        if ($this->calendar->start_offset > 0) {
-            $offset += $this->calendar->start_offset;
-        } elseif ($this->calendar->start_offset < 0) {
-            $offset += count($weekdays) + $this->calendar->start_offset;
+        // If weeks reset on the first day of the week, skip the offset
+        $offset = 0;
+        if (!$this->calendar->reset) {
+            $offset = $this->weekStartoffset();
+
+            if ($this->calendar->start_offset > 0) {
+                $offset += $this->calendar->start_offset;
+            } elseif ($this->calendar->start_offset < 0) {
+                $offset += count($weekdays) + $this->calendar->start_offset;
+            }
         }
         $events = $this->events();
 
@@ -198,6 +209,21 @@ class CalendarRenderer
         if ($offset >= count($weekdays)) {
             $offset -= count($weekdays);
         }
+
+        // Define the week number from the start of the year
+        $daysInAYear = 0;
+        foreach ($months as $monthNumber => $monthData) {
+            // If we've reached the current month, break
+            if ($monthNumber == $this->getMonth()-1) {
+                break;
+            }
+            if (Arr::get($monthData, 'type') == 'intercalary') {
+                continue;
+            }
+            $daysInAYear += $monthData['length'];
+        }
+        //$daysInAYear += $offset;
+        $weekNumber = ceil($daysInAYear / count($weekdays)) + 1;
 
         $monthLength = $month['length'];
         $weekLength = 0;
@@ -238,8 +264,9 @@ class CalendarRenderer
             $weekLength++;
 
             if (count($week) >= count($weekdays)) {
-                $data[] = $week;
+                $data[$weekNumber] = $week;
                 $week = [];
+                $weekNumber++;
             }
         }
 
@@ -254,7 +281,8 @@ class CalendarRenderer
             }
         }
 
-        $data[] = $week;
+
+        $data[$weekNumber] = $week;
 
         return $data;
     }
@@ -270,7 +298,7 @@ class CalendarRenderer
         $data = [];
 
         $events = $this->events();
-        $offset = $this->weekStartoffset();
+        $offset = $this->calendar->reset ? 0 : $this->weekStartoffset();
 
         // Add empty days for the beginning of the year
         for ($i = $offset; $i>0; $i--) {
@@ -279,6 +307,7 @@ class CalendarRenderer
 
         $weekLength = count($weekdays);
         $monthNumber = 1;
+        $weekNumber = $offset > 0 && !$this->calendar->reset ? 2 : 1;
         $totalDay = 1;
         foreach ($months as $month) {
             $month = $months[$monthNumber-1];
@@ -320,6 +349,7 @@ class CalendarRenderer
                     'date' => $exact,
                     'isToday' => false,
                     'month' => $month['name'],
+                    'week' => Arr::get($month, 'type') == 'intercalary' ? null : $weekNumber
                 ];
 
                 if (isset($events[$exact])) {
@@ -341,6 +371,10 @@ class CalendarRenderer
                 $data[] = $dayData;
 
                 $totalDay++;
+
+                if ($totalDay % $weekLength == 0 && Arr::get($month, 'type') != 'intercalary') {
+                    $weekNumber++;
+                }
             }
 
 
@@ -348,24 +382,22 @@ class CalendarRenderer
             if (Arr::get($month, 'type') == 'intercalary') {
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
+
                 for ($d = 0; $d < $emptyDaysToFill; $d++) {
                     $data[] = [];
                 }
                 // Fill out the next month beginning if needed
-                for ($d = 0; $d < $currentPosition; $d++) {
-                    $data[] = [];
+                // Only add at the beginning if we don't reset on first day of the week
+                if (!$this->calendar->reset) {
+                    for ($d = 0; $d < $currentPosition; $d++) {
+                        $data[] = [];
+                    }
+                } else {
+                    $weekNumber++;
                 }
+
             }
 
-            // Fill in the last week?
-//            $lastWeekDiff = count($week) - count($weekdays);
-//            if ($lastWeekDiff < 0) {
-//                for ($day = $lastWeekDiff; $day < 0; $day++) {
-//                    $week[] = null;
-//                }
-//            }
-
-//            $data[] = $week;
             $monthNumber++;
         }
 
@@ -453,6 +485,7 @@ class CalendarRenderer
 
             $this->buildFullmoons();
             $this->buildSeasons();
+            $this->buildWeeks();
         }
     }
 
@@ -661,6 +694,22 @@ class CalendarRenderer
     }
 
     /**
+     * @param int $week
+     * @return bool
+     */
+    public function isNamedWeek(int $week): bool {
+        return !empty($this->weeks[$week]) && !$this->isIntercalaryMonth();
+    }
+
+    /**
+     * @param int $week
+     * @return string
+     */
+    public function namedWeek(int $week): string {
+        return $this->weeks[$week] . '';
+    }
+
+    /**
      *
      */
     protected function buildFullmoons()
@@ -787,6 +836,19 @@ class CalendarRenderer
         foreach ($this->calendar->seasons() as $season) {
             $date = $season['month'] . '-' . $season['day'];
             $this->seasons[$date] = $season['name'];
+        }
+    }
+
+    /**
+     *
+     */
+    protected function buildWeeks()
+    {
+        foreach ($this->calendar->weeks() as $number => $week) {
+            if ($number <= 0) {
+                continue;
+            }
+            $this->weeks[$number] = $week;
         }
     }
 }

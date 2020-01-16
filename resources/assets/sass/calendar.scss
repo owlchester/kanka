@@ -85,6 +85,14 @@
         visibility: visible;
       }
     }
+
+    tr.named_week {
+      td {
+        height: 1em;
+        font-style: italic;
+        background-color: #FFFDE2;
+      }
+    }
   }
 }
 
