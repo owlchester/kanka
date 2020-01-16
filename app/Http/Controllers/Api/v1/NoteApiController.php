@@ -64,7 +64,7 @@ class NoteApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $note);
         $note->update($request->all());
-        $this->crudSave($node);
+        $this->crudSave($note);
 
         return new Resource($note);
     }
