@@ -53,5 +53,7 @@ class CalendarAdvancer extends Command
         });
 
         $this->info("Advanced {$this->count} calendars.");
+
+        return true;
     }
 }
