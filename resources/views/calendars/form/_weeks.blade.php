@@ -55,15 +55,6 @@
                         </span>
             </div>
         </div>
-
-        <hr>
-        <div class="form-group checkbox">
-            {!! Form::hidden('reset', 0) !!}
-            <label>{!! Form::checkbox('reset', 1, FormCopy::field('reset')->string()) !!}
-                {{ trans('calendars.fields.reset') }}
-            </label>
-            <p class="help-block">{{ __('calendars.hints.reset') }}</p>
-        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">

@@ -70,6 +70,7 @@ return [
         'has_leap_year'     => 'Has leap years',
         'intercalary'       => 'Intercalary Days',
         'is_recurring'      => 'Recurring',
+        'is_incrementing'   => 'Advancing Date',
         'leap_year_amount'  => 'Add Days',
         'leap_year_month'   => 'Month',
         'leap_year_offset'  => 'Every',
@@ -96,6 +97,7 @@ return [
     'hints'         => [
         'intercalary'   => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
+        'is_incrementing' => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
         'months'        => 'Your calendar should have at least 2 months.',
         'moons'         => 'Adding moons will make them show up in the calendar on every full moon.',
         'reset'         => 'Always start the beginning of the month on the first week day.',

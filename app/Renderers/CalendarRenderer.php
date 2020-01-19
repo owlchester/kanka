@@ -762,9 +762,11 @@ class CalendarRenderer
             $this->addMoonPhase($newMoon, $moon['name'], 'new', 'fas fa-circle');
 
             // Waning and Waxing
-            $quarterMonth = ceil($fullmoon / 4);
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
+            if ($fullmoon > 10) {
+                $quarterMonth = ceil($fullmoon / 4);
+                $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
+                $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
+            }
 
 
             // Now the full moon will appear several times on this month/year.
@@ -778,10 +780,11 @@ class CalendarRenderer
                 $this->addMoonPhase($newMoon, $moon['name'], 'new', 'fas fa-circle');
 
                 // Waning and Waxing
-                $quarterMonth = ceil($fullmoon / 4);
-                $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
-                $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
-
+                if ($fullmoon > 10) {
+                    $quarterMonth = ceil($fullmoon / 4);
+                    $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
+                    $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
+                }
             }
         }
     }

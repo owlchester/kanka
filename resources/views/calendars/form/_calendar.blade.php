@@ -2,6 +2,20 @@
 <div class="row">
     <div class="col-md-6">
 
+        <div class="form-group">
+            <label>{{ trans('calendars.fields.start_offset') }}</label>
+            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
+            <p class="help-block">{{ __('calendars.helpers.start_offset') }}</p>
+        </div>
+
+        <hr />
+        <div class="form-group checkbox">
+            {!! Form::hidden('is_incrementing', 0) !!}
+            <label>{!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
+                {{ trans('calendars.fields.is_incrementing') }}
+            </label>
+            <p class="help-block">{{ __('calendars.hints.is_incrementing') }}</p>
+        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -82,12 +96,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <hr >
-        <div class="form-group">
-            <label>{{ trans('calendars.fields.start_offset') }}</label>
-            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
-            <p class="help-block">{{ __('calendars.helpers.start_offset') }}</p>
         </div>
         <hr>
         <div class="form-group">
