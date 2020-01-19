@@ -109,6 +109,13 @@
       float: left;
     }
   }
+
+  .month-alias {
+    display: block;
+    clear: both;
+    font-size: 1.8em;
+    font-style: italic;
+  }
 }
 
 .calendar-event-action {

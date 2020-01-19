@@ -110,7 +110,7 @@ class CalendarRenderer
      * Get current year-month
      * @return string
      */
-    public function current()
+    public function current(): string
     {
         $month = $this->getMonth();
         $year = $this->getYear();
@@ -120,11 +120,30 @@ class CalendarRenderer
         $names = $this->calendar->years();
         $hasYearName = isset($names[$year]) ? $names[$year] : null;
 
+        $month = $months[$this->getMonth(-1)];
 
-        $monthName = $months[$this->getMonth(-1)]['name']
-            . ($hasYearName ? ', ' : ' ');
-        return ($this->isYearlyLayout() ? null : e($monthName))
+        $monthName = e(Arr::get($month, 'name', ''));
+        if ($hasYearName) {
+            $monthName .= ', ';
+        }
+        return ($this->isYearlyLayout() ? null : $monthName)
             . '<a href="#" id="calendar-year-switcher">' . e(isset($names[$year]) ? $names[$year] : $year) . '</a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function monthAlias(): string
+    {
+        $months = $this->calendar->months();
+        $month = $months[$this->getMonth(-1)];
+        $alias = Arr::get($month, 'alias', '');
+
+        if (empty($alias)) {
+            return '';
+        }
+
+        return e($alias);
     }
 
     /**

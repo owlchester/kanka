@@ -27,6 +27,7 @@ class CalendarObserver extends MiscObserver
         $monthCount = 0;
         $monthNames = request()->post('month_name');
         $monthLengths = request()->post('month_length');
+        $monthAliases= request()->post('month_alias');
         $monthTypes = request()->post('month_type');
         foreach ($monthNames as $name) {
             if (empty($name)) {
@@ -39,6 +40,7 @@ class CalendarObserver extends MiscObserver
                 'name' => $name,
                 'length' => $length < 1 ? 1 : $length,
                 'type' => $monthTypes[$monthCount],
+                'alias' => $monthAliases[$monthCount],
             ];
             $monthCount++;
         }

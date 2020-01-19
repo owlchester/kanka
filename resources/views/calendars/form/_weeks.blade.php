@@ -67,7 +67,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ trans('calendars.fields.weeks') }}</label>
+            <label>{{ trans('calendars.fields.week_names') }}</label>
             <p class="help-block">{{ __('calendars.hints.weeks') }}</p>
         </div>
         <div class="form-group">

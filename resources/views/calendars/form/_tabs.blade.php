@@ -3,6 +3,10 @@
         {{ trans('crud.fields.calendar') }}
     </a>
 </li>
+<li class="{{ (request()->get('tab') == 'form-months' ? ' active' : '') }}">
+    <a href="#form-months" title="{{ trans('calendars.panels.months') }}" data-toggle="tooltip">
+        {{ trans('calendars.panels.months') }}
+    </a>
 <li class="{{ (request()->get('tab') == 'form-weeks' ? ' active' : '') }}">
     <a href="#form-weeks" title="{{ trans('calendars.panels.weeks') }}" data-toggle="tooltip">
         {{ trans('calendars.panels.weeks') }}

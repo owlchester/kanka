@@ -87,7 +87,7 @@ return [
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
-        'weeks'             => 'Week Names',
+        'week_names'        => 'Week Names',
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
@@ -121,6 +121,7 @@ return [
     'panels'        => [
         'intercalary'   => 'Intercalary Days',
         'leap_year'     => 'Leap Year',
+        'months'        => 'Months',
         'weeks'         => 'Weeks',
         'years'         => 'Named Years',
     ],
@@ -131,6 +132,7 @@ return [
             'name'      => 'Name of intercalation',
         ],
         'month'         => [
+            'alias'     => 'Month Alias',
             'length'    => 'Days',
             'name'      => 'Month Name',
             'type'      => 'Type',

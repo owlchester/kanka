@@ -37,11 +37,12 @@ $weekNumber = 1;
         <h2>{!! $renderer->current() !!}</h2>
         {!! Form::text('year', null, ['class' => 'form-input form-input-sm', 'id' => 'calendar-year-switcher-field', 'style' => 'display:none']) !!}
     </div>
+    <div class="month-alias">{!! $renderer->monthAlias() !!}</div>
 </div>
 @if ($renderer->isYearlyLayout())
-    <input type="hidden" name="layout" value="yearly">
+<input type="hidden" name="layout" value="yearly">
 @else
-    {!! Form::hidden('month', $renderer->currentMonthId()) !!}
+{!! Form::hidden('month', $renderer->currentMonthId()) !!}
 @endif
 {!! Form::close() !!}
 

@@ -180,7 +180,7 @@ function toggleCrudMultiDelete() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\datagrids */"./resources/assets/js/datagrids.js");
+module.exports = __webpack_require__(/*! C:\Users\Jeremy\Projects\Php\miscellany\resources\assets\js\datagrids */"./resources/assets/js/datagrids.js");
 
 
 /***/ })
