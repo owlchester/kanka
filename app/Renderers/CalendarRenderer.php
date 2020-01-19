@@ -755,13 +755,33 @@ class CalendarRenderer
 //                dump("next full moon: $nextFullMoon");
 //            }
 
-            $this->addFullMoon($nextFullMoon, $moon['name']);
+            $this->addMoonPhase($nextFullMoon, $moon['name'], 'full', 'far fa-circle');
+
+            // New Moon
+            $newMoon = $nextFullMoon + ceil($fullmoon / 2);
+            $this->addMoonPhase($newMoon, $moon['name'], 'new', 'fas fa-circle');
+
+            // Waning and Waxing
+            $quarterMonth = ceil($fullmoon / 4);
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
+
 
             // Now the full moon will appear several times on this month/year.
             $fullMoonsPerYear = ceil($daysInAYear / $fullmoon);
             for ($i = 0; $i < $fullMoonsPerYear; $i++) {
                 $nextFullMoon += $fullmoon;
-                $this->addFullMoon($nextFullMoon, $moon['name']);
+                $this->addMoonPhase($nextFullMoon, $moon['name'], 'full', 'far fa-circle');
+
+                // New moon
+                $newMoon = $nextFullMoon + ceil($fullmoon / 2);
+                $this->addMoonPhase($newMoon, $moon['name'], 'new', 'fas fa-circle');
+
+                // Waning and Waxing
+                $quarterMonth = ceil($fullmoon / 4);
+                $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
+                $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
+
             }
         }
     }
@@ -827,15 +847,22 @@ class CalendarRenderer
     }
 
     /**
-     * @param $nextFullMoon
-     * @param $name
+     * @param string $nextFullMoon
+     * @param string $name
+     * @param string $type
      */
-    protected function addFullMoon($nextFullMoon, $name)
+    protected function addMoonPhase(string $nextFullMoon, string $name, string $type = 'full', string $class = 'far fa-circle')
     {
         if (!isset($this->moons[$nextFullMoon])) {
             $this->moons[$nextFullMoon] = [];
         }
-        $this->moons[$nextFullMoon][] = $name;
+        $this->moons[$nextFullMoon][] = [
+            'name' => $name,
+            'type' => $type,
+            'class' => $class
+        ];
+
+        //dump($nextFullMoon . ':' . $type);
     }
 
     /**
