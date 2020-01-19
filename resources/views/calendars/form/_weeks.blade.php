@@ -57,19 +57,17 @@
         </div>
 
         <hr>
-        <div class="form-group">
-            <label>{{ trans('calendars.panels.reset') }}</label>
-        </div>
         <div class="form-group checkbox">
             {!! Form::hidden('reset', 0) !!}
             <label>{!! Form::checkbox('reset', 1, FormCopy::field('reset')->string()) !!}
                 {{ trans('calendars.fields.reset') }}
             </label>
+            <p class="help-block">{{ __('calendars.hints.reset') }}</p>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ trans('calendars.panels.weeks') }}</label>
+            <label>{{ trans('calendars.fields.weeks') }}</label>
             <p class="help-block">{{ __('calendars.hints.weeks') }}</p>
         </div>
         <div class="form-group">

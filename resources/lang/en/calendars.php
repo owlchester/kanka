@@ -8,6 +8,7 @@ return [
         'add_moon'          => 'Add a moon',
         'add_season'        => 'Add a season',
         'add_weekday'       => 'Add a week day',
+        'add_week'          => 'Add a named week',
         'add_year'          => 'Add a year name',
         'set_today'         => 'Set as current day',
         'today'             => 'Today',
@@ -80,11 +81,13 @@ return [
         'name'              => 'Name',
         'parameters'        => 'Parameters',
         'recurring_until'   => 'Recurring Until Year',
+        'reset'             => 'Monthly Weekly Reset',
         'seasons'           => 'Seasons',
         'start_offset'      => 'Start Offset',
         'suffix'            => 'Suffix',
         'type'              => 'Type',
         'weekdays'          => 'Week Days',
+        'weeks'             => 'Week Names',
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
@@ -95,8 +98,10 @@ return [
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'        => 'Your calendar should have at least 2 months.',
         'moons'         => 'Adding moons will make them show up in the calendar on every full moon.',
+        'reset'         => 'Always start the beginning of the month on the first week day.',
         'seasons'       => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'      => 'Set your weekday names. At least 2 weekdays are required.',
+        'weeks'         => 'Define some names for the more important weeks of your calendar.',
         'years'         => 'Some years are so important that they have their own name.',
     ],
     'index'         => [
@@ -116,6 +121,7 @@ return [
     'panels'        => [
         'intercalary'   => 'Intercalary Days',
         'leap_year'     => 'Leap Year',
+        'weeks'         => 'Weeks',
         'years'         => 'Named Years',
     ],
     'parameters'    => [
@@ -138,6 +144,10 @@ return [
             'day'   => 'Day start',
             'month' => 'Month start',
             'name'  => 'Season Name',
+        ],
+        'weeks'         => [
+            'number' => 'Number',
+            'name'   => 'Week Name',
         ],
         'year'          => [
             'name'      => 'Year Name',

@@ -4,8 +4,8 @@
     </a>
 </li>
 <li class="{{ (request()->get('tab') == 'form-weeks' ? ' active' : '') }}">
-    <a href="#form-weeks" title="{{ trans('crud.fields.weeks') }}" data-toggle="tooltip">
-        {{ trans('crud.fields.weeks') }}
+    <a href="#form-weeks" title="{{ trans('calendars.panels.weeks') }}" data-toggle="tooltip">
+        {{ trans('calendars.panels.weeks') }}
     </a>
 </li>
 <li class="{{ (request()->get('tab') == 'form-moons' ? ' active' : '') }}">

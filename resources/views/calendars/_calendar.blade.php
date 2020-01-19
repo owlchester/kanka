@@ -78,7 +78,7 @@ $weekNumber = 1;
         </tr>
     @else
         @foreach ($renderer->month() as $week => $days)
-            @if ($renderer->isNamedWeek($week))
+            @if (!empty($days) && $renderer->isNamedWeek($week))
                 <tr class="named_week">
                     <td colspan="{{ count($model->weekdays()) }}">
                         {{ $renderer->namedWeek($week) }}

@@ -211,19 +211,7 @@ class CalendarRenderer
         }
 
         // Define the week number from the start of the year
-        $daysInAYear = 0;
-        foreach ($months as $monthNumber => $monthData) {
-            // If we've reached the current month, break
-            if ($monthNumber == $this->getMonth()-1) {
-                break;
-            }
-            if (Arr::get($monthData, 'type') == 'intercalary') {
-                continue;
-            }
-            $daysInAYear += $monthData['length'];
-        }
-        //$daysInAYear += $offset;
-        $weekNumber = ceil($daysInAYear / count($weekdays)) + 1;
+        $weekNumber = $this->startingWeekNumber();
 
         $monthLength = $month['length'];
         $weekLength = 0;
@@ -379,7 +367,8 @@ class CalendarRenderer
 
 
             // If the month is intercalary, we need to fill out the rest of the "week" until where it starts again
-            if (Arr::get($month, 'type') == 'intercalary') {
+            // Or iff we have resets on the end of the month, we need to fill in some empty days
+            if (Arr::get($month, 'type') == 'intercalary' || $this->calendar->reset) {
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
 
@@ -395,6 +384,8 @@ class CalendarRenderer
                 } else {
                     $weekNumber++;
                 }
+
+
 
             }
 
@@ -850,5 +841,48 @@ class CalendarRenderer
             }
             $this->weeks[$number] = $week;
         }
+    }
+
+    /**
+     * Calculate the starting week number
+     * @return int
+     */
+    protected function startingWeekNumber(): int
+    {
+        $months = $this->calendar->months();
+        $weekdays = $this->calendar->weekdays();
+        $daysInAYear = 0;
+        $weekNumber = 0;
+        $weekdaysCount = count($weekdays);
+
+        foreach ($months as $monthNumber => $monthData) {
+            // If we've reached the current month, break
+            if ($monthNumber == $this->getMonth()-1) {
+                break;
+            }
+            if (Arr::get($monthData, 'type') == 'intercalary') {
+                continue;
+            }
+
+            // If we reset months on the week, we need
+            if ($this->calendar->reset) {
+                //dump($monthData['name']);
+                $weekNumber += floor($monthData['length'] / $weekdaysCount) + 1;
+                //dump($weekNumber);
+            }
+            $daysInAYear += $monthData['length'];
+        }
+
+
+        // If we reset months on the week, we need
+        if ($this->calendar->reset) {
+            return $weekNumber;
+        }
+
+        // We have the total number of days from the previous months, so we can figure out when the current
+        // week starts
+        $weekNumber = floor($daysInAYear / $weekdaysCount) + 1;
+
+        return $weekNumber;
     }
 }
