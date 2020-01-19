@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Sorters\CalendarEventSorter;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
@@ -176,7 +177,9 @@ class CalendarController extends CrudController
      */
     public function events(Calendar $calendar)
     {
-        return $this->menuView($calendar, 'events');
+        return $this
+            ->datagridSorter(CalendarEventSorter::class)
+            ->menuView($calendar, 'events');
     }
 
     /**

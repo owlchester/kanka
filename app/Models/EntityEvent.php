@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\OrderableTrait;
 
 /**
@@ -27,7 +28,7 @@ class EntityEvent extends MiscModel
      * Traits
      */
     //use VisibleTrait;
-    use OrderableTrait;
+    use OrderableTrait, SimpleSortableTrait;
 
     /**
      * Trigger for filtering based on the order request.

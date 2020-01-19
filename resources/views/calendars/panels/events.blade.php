@@ -8,7 +8,10 @@
             {{ trans('calendars.show.tabs.events') }}
         </h2>
 
-        <?php  $r = $model->calendarEvents()->with('entity')->entityAcl()->orderByRaw('date(`date`) DESC')->paginate(); ?>
+
+        @include('cruds.datagrids.sorters.simple-sorter')
+
+        <?php  $r = $model->calendarEvents()->with('entity')->entityAcl()->simpleSort($datagridSorter)->paginate(); ?>
         <table id="calendar-events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <thead>
                 <tr>

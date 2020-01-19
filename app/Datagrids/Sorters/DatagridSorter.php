@@ -55,6 +55,12 @@ abstract class DatagridSorter
     public $orderCasting = [];
 
     /**
+     * Raw operations for order by (ex age)
+     * @var array
+     */
+    public $orderRaw = [];
+
+    /**
      * DatagridSorter constructor.
      */
     public function __construct()
@@ -161,6 +167,24 @@ abstract class DatagridSorter
     }
 
     /**
+     * @param string $column
+     * @return bool
+     */
+    public function hasOrderRaw(string $column): bool
+    {
+        return isset($this->orderRaw[$column]);
+    }
+
+    /**
+     * @param string $column
+     * @return mixed
+     */
+    public function orderRaw(string $column)
+    {
+        return Arr::get($this->orderRaw, $column, null);
+    }
+
+    /**
      * @return string
      */
     public function order(): string
@@ -215,6 +239,9 @@ abstract class DatagridSorter
     {
         $whitelist = ['tag.name'];
         if (strpos($key, '.name') === false || in_array($key, $whitelist)) {
+            return true;
+        }
+        if ($key === 'entity.name') {
             return true;
         }
 

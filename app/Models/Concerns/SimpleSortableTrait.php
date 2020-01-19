@@ -57,6 +57,10 @@ trait SimpleSortableTrait
                     'cast(' . $this->getTable() . '.' . $column . ' as ' . $datagridSorter->orderCasting($column) . ')'
                     . $order
                 );
+            } elseif ($datagridSorter->hasOrderRaw($column)) {
+                $builder->orderByRaw(
+                    $datagridSorter->orderRaw($column) . ' ' . $order
+                );
             } else {
                 $builder->orderBy($this->getTable() . '.' . $column, $order);
             }
