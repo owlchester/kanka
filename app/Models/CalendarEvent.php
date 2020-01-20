@@ -2,6 +2,18 @@
 
 namespace App\Models;
 
+/**
+ * Class CalendarEvent
+ * @package App\Models
+ *
+ * @property int $id
+ * @property int $event_id
+ * @property int $calendar_id
+ * @property int $length
+ * @property string $date
+ *
+ * @property Calendar $calendar
+ */
 class CalendarEvent extends MiscModel
 {
     /**

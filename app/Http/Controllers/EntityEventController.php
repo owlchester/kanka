@@ -62,6 +62,12 @@ class EntityEventController extends Controller
         ));
     }
 
+    /**
+     * @param AddCalendarEvent $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function store(AddCalendarEvent $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -69,7 +75,6 @@ class EntityEventController extends Controller
         $reminder = new EntityEvent($request->all());
         $reminder->entity_id = $entity->id;
         $reminder->save();
-
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->entity_id, '#calendars'])

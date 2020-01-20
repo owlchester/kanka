@@ -81,6 +81,7 @@ return [
         'moons'             => 'Moons',
         'name'              => 'Name',
         'parameters'        => 'Parameters',
+        'recurring_periodicity'   => 'Recurring Periodicity',
         'recurring_until'   => 'Recurring Until Year',
         'reset'             => 'Monthly Weekly Reset',
         'seasons'           => 'Seasons',
@@ -119,6 +120,14 @@ return [
     'month_types'   => [
         'intercalary'   => 'Intercalary',
         'standard'      => 'Standard',
+    ],
+    'options' => [
+        'events' => [
+            'recurring_periodicity' => [
+                'month' => 'Monthly',
+                'year' => 'Yearly'
+            ]
+        ]
     ],
     'panels'        => [
         'intercalary'   => 'Intercalary Days',

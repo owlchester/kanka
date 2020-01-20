@@ -32,6 +32,7 @@ class AddCalendarEvent extends FormRequest
             'length' => 'required|integer|min:1',
             'is_recurring' => 'nullable',
             'recurring_until' => 'nullable',
+            'recurring_periodicity' => 'nullable|max:5',
             'colour' => 'nullable|string',
             'comment' => 'nullable|max:191',
         ];

@@ -6,6 +6,7 @@ use App\Facades\EntityPermission;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
 use App\Models\CalendarWeather;
+use App\Models\EntityEvent;
 use App\Models\Event;
 use Collective\Html\HtmlFacade;
 use Illuminate\Support\Arr;
@@ -65,6 +66,13 @@ class CalendarRenderer
      * @var string
      */
     protected $layout = 'year';
+
+    /**
+     * Events displayed on the calendar view
+     * @var array
+     */
+    protected $events = [];
+
     /**
      * Initializer
      * @param Calendar $calendar
@@ -539,8 +547,8 @@ class CalendarRenderer
      */
     protected function events()
     {
-        /** @var CalendarEvent $event */
-        $events = [];
+        /** @var EntityEvent $event */
+        $this->events = [];
         $datePattern = $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%';
         $reminders = $this->calendar->calendarEvents()
             ->has('entity')
@@ -573,6 +581,8 @@ class CalendarRenderer
                             ->where('length', '>', 1);
                     });
             });
+
+        $totalMonths = count($this->calendar->months());
         foreach ($reminders->get() as $event) {
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
@@ -588,25 +598,45 @@ class CalendarRenderer
                 }
                 $date = $this->getYear() . '-' . $event->month . '-' . $event->day;
             }
-            if (!isset($events[$date])) {
-                $events[$date] = [];
+            if (!isset($this->events[$date])) {
+                $this->events[$date] = [];
             }
 
             // Make sure the user can actually see the requested event
             if ($event->entity->child && EntityPermission::canView($event->entity, $this->calendar->campaign)) {
-                $events[$date][] = $event;
-
-                // Does the day go over a few days?
-                if ($event->length > 1) {
-                    $extraDate = $date;
-                    for ($extra = 1; $extra < $event->length; $extra++) {
-                        $extraDate = $this->addDay($extraDate);
-                        $events[$extraDate][] = $event;
+                // If the event reoccurs each month, let's add it everywhere
+                if ($event->is_recurring && $event->recurring_periodicity === 'month') {
+                    $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
+                    for ($month = $startingMonth; $month <= $totalMonths; $month++) {
+                        $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
+                        $this->events[$recurringDate][] = $event;
+                        $this->addMultidayEvent($event, $recurringDate);
                     }
+                } else {
+                    // Only add it once
+                    $this->events[$date][] = $event;
+                    $this->addMultidayEvent($event, $date);
                 }
             }
         }
-        return $events;
+        return $this->events;
+    }
+
+    /**
+     * @param EntityEvent $event
+     * @param string $date
+     */
+    protected function addMultidayEvent(EntityEvent $event, string $date)
+    {
+        // Does the day go over a few days?
+        if ($event->length == 1) {
+            return;
+        }
+        $extraDate = $date;
+        for ($extra = 1; $extra < $event->length; $extra++) {
+            $extraDate = $this->addDay($extraDate);
+            $this->events[$extraDate][] = $event;
+        }
     }
 
     /**

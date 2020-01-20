@@ -20,6 +20,7 @@ use App\Traits\OrderableTrait;
  * @property integer $year
  * @property boolean $is_recurring
  * @property integer $recurring_until
+ * @property integer $recurring_periodicity
  * @property boolean $is_private
  */
 class EntityEvent extends MiscModel
@@ -66,6 +67,7 @@ class EntityEvent extends MiscModel
         'comment',
         'is_recurring',
         'recurring_until',
+        'recurring_periodicity',
         'colour',
         'day',
         'month',

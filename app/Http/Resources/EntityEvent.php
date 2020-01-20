@@ -24,6 +24,7 @@ class EntityEvent extends EntityChild
             'comment' => $this->comment,
             'is_recurring' => (bool) $this->is_recurring,
             'recurring_until' => $this->recurring_until,
+            'recurring_periodicity' => $this->recurring_periodicity,
             'colour' => $this->colour,
         ]);
     }
