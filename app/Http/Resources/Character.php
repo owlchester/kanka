@@ -14,7 +14,7 @@ class Character extends EntityResource
      */
     public function toArray($request)
     {
-        return $this->entity([
+        $character = [
             'title' => $this->title,
             'age' => $this->age,
             'sex' => $this->sex,
@@ -25,6 +25,11 @@ class Character extends EntityResource
 
             'is_dead' => (bool) $this->is_dead,
             'traits' => new CharacterTraitCollection($this->characterTraits),
-        ]);
+        ];
+
+        if (request()->get('related', false)) {
+            $character['organisations'] = new CharacterOrganisationCollection($this->organisations);
+        }
+        return $this->entity($character);
     }
 }
