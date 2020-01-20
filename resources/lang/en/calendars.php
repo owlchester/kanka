@@ -185,6 +185,7 @@ return [
         'tabs'              => [
             'events'        => 'Calendar Events',
             'information'   => 'Information',
+            'weather'       => 'Weather',
         ],
         'title'             => 'Calendar :name',
     ],

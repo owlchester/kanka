@@ -863,9 +863,14 @@ td.breakable {
   clear: both;
 }
 
-.calendar tbody td .calendar-season {
+.calendar tbody td .calendar-season,
+.calendar tbody td .weather {
   width: 100%;
   display: block;
+}
+
+.calendar tbody td .weather {
+  background-color: #ddd;
 }
 
 .calendar tbody td .reminder-entity {

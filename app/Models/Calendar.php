@@ -21,6 +21,9 @@ use Illuminate\Support\Arr;
  * @property string $month_aliases
  * @property string $seasons
  * @property string $moons
+ *
+ * @property CalendarEvent[] $calendarEvents
+ * @property CalendarWeather[] $calendarWeather
  */
 class Calendar extends MiscModel
 {
@@ -150,7 +153,7 @@ class Calendar extends MiscModel
     {
         return $this->hasManyThrough(
             'App\Models\Event',
-            'App\Models\EntityEvent',
+            EntityEvent::class,
             'calendar_id',
             'entity_id'
         );
@@ -161,7 +164,15 @@ class Calendar extends MiscModel
      */
     public function calendarEvents()
     {
-        return $this->hasMany('App\Models\EntityEvent', 'calendar_id');
+        return $this->hasMany(EntityEvent::class, 'calendar_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function calendarWeather()
+    {
+        return $this->hasMany(CalendarWeather::class, 'calendar_id');
     }
 
     /**

@@ -10,6 +10,11 @@
                        class="add btn btn-xs btn-default calendar-set-today" data-date="{{ $day['date'] }}" title="{{ __('calendars.actions.set_today') }}">
                         <i class="fa fa-check"></i>
                     </a>
+                    <a href="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
+                       data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}"
+                       class="add btn btn-xs btn-default" data-date="{{ $day['date'] }}">
+                        <i class="fa fa-cloud"></i>
+                    </a>
                     <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
                        data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
                        class="add btn btn-xs btn-default" data-date="{{ $day['date'] }}">
@@ -28,7 +33,14 @@
             @if (!empty($day['season']))
                 <div class="label label-default calendar-season" title="{{ __('calendars.parameters.seasons.name') }}">{{ $day['season'] }}</div>
             @endif
+
             <p class="text-left">
+                @if (!empty($day['weather']))
+                    <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" title="{!! $day['weather']->tooltip() !!}">
+                        <i class="fas fa-{{ $day['weather']->weather }}"></i>
+                        {{ __('calendars/weather.options.weather.' . $day['weather']->weather) }}
+                    </div>
+                @endif
                 @if (!empty($day['events']))
                     @foreach ($day['events'] as $event)
                         <?php /** @var \App\Models\EntityEvent $event */?>

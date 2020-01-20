@@ -5,6 +5,7 @@ namespace App\Renderers;
 use App\Facades\EntityPermission;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
+use App\Models\CalendarWeather;
 use App\Models\Event;
 use Collective\Html\HtmlFacade;
 use Illuminate\Support\Arr;
@@ -40,6 +41,12 @@ class CalendarRenderer
      * @var array
      */
     protected $moons = [];
+
+    /**
+     * Weather
+     * @var array
+     */
+    protected $weather = [];
 
     /**
      * Season Changes
@@ -260,6 +267,9 @@ class CalendarRenderer
                 if (isset($this->moons[$day])) {
                     $dayData['moons'] = $this->moons[$day];
                 }
+                if (isset($this->weather[$exact])) {
+                    $dayData['weather'] = $this->weather[$exact];
+                }
 
                 $monthday = $this->getMonth() . '-' . $day;
                 if (isset($this->seasons[$monthday])) {
@@ -369,6 +379,9 @@ class CalendarRenderer
 
                 if (isset($this->moons[$totalDay])) {
                     $dayData['moons'] = $this->moons[$totalDay];
+                }
+                if (isset($this->weather[$exact])) {
+                    $dayData['weather'] = $this->weather[$exact];
                 }
 
                 $monthday = $monthNumber . '-' . $day;
@@ -496,6 +509,7 @@ class CalendarRenderer
             $this->buildFullmoons();
             $this->buildSeasons();
             $this->buildWeeks();
+            $this->buildWeather();
         }
     }
 
@@ -786,6 +800,19 @@ class CalendarRenderer
                     $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
                 }
             }
+        }
+    }
+
+    /**
+     * Build the weather for the year
+     */
+    public function buildWeather()
+    {
+        $weathers = $this->calendar->calendarWeather()->year($this->currentYear())->get();
+
+        /** @var CalendarWeather $weather */
+        foreach ($weathers as $weather) {
+            $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
         }
     }
 

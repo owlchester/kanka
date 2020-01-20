@@ -20,9 +20,13 @@
         clear: both;
       }
 
-      .calendar-season {
+      .calendar-season, .weather {
         width: 100%;
         display: block;
+      }
+
+      .weather {
+        background-color: #ddd;
       }
 
       .reminder-entity {

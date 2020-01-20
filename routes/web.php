@@ -178,6 +178,9 @@ Route::group([
         Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
         Route::get('/calendars/{calendar}/map-points', 'CalendarController@mapPoints')->name('calendars.map-points');
 
+//        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
+//        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
+
         // Conversations
         Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');
 
@@ -195,6 +198,7 @@ Route::group([
         Route::resources([
             'calendars' => 'CalendarController',
             'calendar_event' => 'CalendarEventController',
+            'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
             //'calendars.relations' => 'CalendarRelationController',
             'campaigns' => 'CampaignController',
             'campaign_users' => 'CampaignUserController',

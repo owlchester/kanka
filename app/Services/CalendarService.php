@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
 use App\Models\CalendarEvent;
+use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\Event;
@@ -40,6 +42,59 @@ class CalendarService
             }
         }
         return false;
+    }
+
+    /**
+     * @param Calendar $calendar
+     * @param AddCalendarWeather $request
+     * @return CalendarWeather
+     */
+    public function saveWeather(Calendar $calendar, AddCalendarWeather $request): CalendarWeather
+    {
+        // Make sure we don't already have a weather effect on this date
+        $weather = $this->findWeather(
+            $calendar,
+            $request->post('year'),
+            $request->post('month'),
+            $request->post('day')
+        );
+
+        if (!$weather) {
+            $weather = new CalendarWeather([
+                'calendar_id' => $calendar->id,
+                'year' => $request->post('year'),
+                'month' => $request->post('month'),
+                'day' => $request->post('day'),
+            ]);
+        }
+
+        $weather->fill([
+            'weather' => $request->post('weather'),
+            'temperature' => $request->post('temperature'),
+            'precipitation' => $request->post('precipitation'),
+            'wind' => $request->post('wind'),
+            'effect' => $request->post('effect'),
+        ]);
+        $weather->save();
+
+        return $weather;
+    }
+
+    /**
+     * @param Calendar $calendar
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return mixed
+     */
+    public function findWeather(Calendar $calendar, int $year, int $month, int $day)
+    {
+        return CalendarWeather::dated(
+            $calendar->id,
+            $year,
+            $month,
+            $day
+        )->first();
     }
 
     /**
