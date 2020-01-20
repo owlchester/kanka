@@ -9,6 +9,17 @@
         </div>
 
         <hr />
+
+        <div class="form-group">
+            <label>
+                {{ trans('calendars.fields.reset') }}
+            </label>
+            {!! Form::select('reset', __('calendars.options.resets'), null, ['class' => 'form-control']) !!}
+            <p class="help-block">{{ __('calendars.hints.reset') }}</p>
+        </div>
+
+        <hr />
+
         <div class="form-group checkbox">
             {!! Form::hidden('is_incrementing', 0) !!}
             <label>{!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}

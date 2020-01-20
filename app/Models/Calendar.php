@@ -21,6 +21,7 @@ use Illuminate\Support\Arr;
  * @property string $month_aliases
  * @property string $seasons
  * @property string $moons
+ * @property string $reset
  *
  * @property CalendarEvent[] $calendarEvents
  * @property CalendarWeather[] $calendarWeather

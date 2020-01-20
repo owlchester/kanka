@@ -127,6 +127,11 @@ return [
                 'month' => 'Monthly',
                 'year' => 'Yearly'
             ]
+        ],
+        'resets' => [
+            '' => 'None',
+            'month' => 'Monthly',
+            'year' => 'Yearly'
         ]
     ],
     'panels'        => [

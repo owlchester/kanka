@@ -213,7 +213,7 @@ class CalendarRenderer
 
         // If weeks reset on the first day of the week, skip the offset
         $offset = 0;
-        if (!$this->calendar->reset) {
+        if (empty($this->calendar->reset) || ($this->calendar->reset === 'year' && $this->getMonth() != 1)) {
             $offset = $this->weekStartoffset();
 
             if ($this->calendar->start_offset > 0) {
@@ -323,7 +323,7 @@ class CalendarRenderer
         $data = [];
 
         $events = $this->events();
-        $offset = $this->calendar->reset ? 0 : $this->weekStartoffset();
+        $offset = !empty($this->calendar->reset) ? 0 : $this->weekStartoffset();
 
         // Add empty days for the beginning of the year
         for ($i = $offset; $i>0; $i--) {
@@ -332,7 +332,7 @@ class CalendarRenderer
 
         $weekLength = count($weekdays);
         $monthNumber = 1;
-        $weekNumber = $offset > 0 && !$this->calendar->reset ? 2 : 1;
+        $weekNumber = $offset > 0 && empty($this->calendar->reset) ? 2 : 1;
         $totalDay = 1;
         foreach ($months as $month) {
             $month = $months[$monthNumber-1];
@@ -408,7 +408,7 @@ class CalendarRenderer
 
             // If the month is intercalary, we need to fill out the rest of the "week" until where it starts again
             // Or iff we have resets on the end of the month, we need to fill in some empty days
-            if (Arr::get($month, 'type') == 'intercalary' || $this->calendar->reset) {
+            if (Arr::get($month, 'type') == 'intercalary' || $this->calendar->reset === 'month') {
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
 
@@ -417,7 +417,7 @@ class CalendarRenderer
                 }
                 // Fill out the next month beginning if needed
                 // Only add at the beginning if we don't reset on first day of the week
-                if (!$this->calendar->reset) {
+                if (!$this->calendar->reset === 'month') {
                     for ($d = 0; $d < $currentPosition; $d++) {
                         $data[] = [];
                     }
@@ -971,17 +971,15 @@ class CalendarRenderer
             }
 
             // If we reset months on the week, we need
-            if ($this->calendar->reset) {
-                //dump($monthData['name']);
+            if ($this->calendar->reset === 'month') {
                 $weekNumber += floor($monthData['length'] / $weekdaysCount) + 1;
-                //dump($weekNumber);
             }
             $daysInAYear += $monthData['length'];
         }
 
 
         // If we reset months on the week, we need
-        if ($this->calendar->reset) {
+        if ($this->calendar->reset === 'month') {
             return $weekNumber;
         }
 
