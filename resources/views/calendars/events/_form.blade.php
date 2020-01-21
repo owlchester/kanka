@@ -96,7 +96,7 @@
         {{ __('calendars.fields.is_recurring') }}
     </label>
 </div>
-<div class="row"  style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
+<div class="row" style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
     <div class="col-md-6">
         <div class="form-group" >
             <label>{{ __('calendars.fields.recurring_periodicity') }}</label>

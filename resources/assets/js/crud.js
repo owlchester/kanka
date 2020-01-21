@@ -361,7 +361,7 @@ function registerFormSubmitAnimation()
 function registerEntityCalendarForm()
 {
     entityCalendarAdd = $('#entity-calendar-form-add');
-    entityCalendarField = $('select[name="calendar_id"]');
+    entityCalendarField = $('[name="calendar_id"]');
     entityCalendarModalForm = $('.entity-calendar-modal-form');
     entityCalendarSubForm = $('.entity-calendar-subform');
     entityCalendarCancel = $('#entity-calendar-form-cancel');
@@ -418,7 +418,7 @@ function registerEntityCalendarModal()
         return;
     }
     entityCalendarAdd = $('input[name=calendar-data-url]');
-    entityCalendarField = $('select[name="calendar_id"]');
+    entityCalendarField = $('[name="calendar_id"]');
     entityCalendarYearField = $('input[name="year"]');
     entityCalendarMonthField = $('select[name="month"]');
     entityCalendarDayField = $('input[name="day"]');

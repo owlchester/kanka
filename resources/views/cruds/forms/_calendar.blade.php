@@ -6,6 +6,7 @@ $calendar = null;
 if (!empty($oldCalendarID)) {
     $calendar = \App\Models\Calendar::findOrFail($oldCalendarID);
 }
+
 ?>
 <div class="form-group">
     <p class="help-block">{{ __('crud.hints.calendar_date') }}</p>
@@ -18,7 +19,7 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
         @if (count($calendars) == 1)
-            <input type="hidden" id="calendar_id" name="calendar_id" value="{{ (isset($model) && $model->hasCalendar() ? $model->calendar->id : null) }}">
+            <input type="hidden" id="calendar_id" name="calendar_id" value="{{ (isset($model) && $model->hasCalendar() ? $model->calendar->id : $calendars[0]->id) }}">
         @else
             <div class="form-group entity-calendar-selector">
                 {!! Form::select2(
@@ -57,17 +58,19 @@ if (!empty($oldCalendarID)) {
                         {!! Form::number('length', FormCopy::field('length')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label>
+                        {!! Form::checkbox('is_recurring') !!}
+                        {{ __('calendars.fields.is_recurring') }}
+                    </label>
+                </div>
+            </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>
-                            {{ trans('calendars.fields.is_recurring') }}
-                        </label>
-                        <div class="checkbox no-margin">
-                            <label>
-                                {!! Form::checkbox('is_recurring') !!}
-                                {{ trans('calendars.checkboxes.is_recurring') }}
-                            </label>
-                        </div>
+                        <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
+                         {!! Form::select('recurring_periodicity', __('calendars.options.events.recurring_periodicity'), null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             @endif

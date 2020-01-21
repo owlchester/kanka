@@ -349,6 +349,7 @@ return [
         'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
         'relations'     => 'Relations',
+        'reminders'     => 'Reminders',
         'tooltip'       => 'Tooltip',
     ],
     'update'            => 'Update',

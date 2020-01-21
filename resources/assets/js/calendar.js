@@ -53,6 +53,9 @@ $(document).ready(function() {
     $(document).on('shown.bs.modal', function() {
         initCalendarEventModal();
     });
+    if ($('input[name="is_recurring"]').length === 1) {
+        initCalendarEventModal();
+    }
 });
 
 /**

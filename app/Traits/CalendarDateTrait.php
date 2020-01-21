@@ -88,8 +88,9 @@ trait CalendarDateTrait
             . $this->getOriginal('calendar_month') . '-'
             . $this->getOriginal('calendar_day');
 
+
         // If the calendar data changed, we need to update a related entity.
-        if ($this->isDirty(['calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'])) {
+        if ($this->isDirty(['calendar_id']) || $this->isDirty(['calendar_year', 'calendar_month', 'calendar_day'])) {
             // We already had this event linked
             /** @var EntityEvent $event */
             $event = EntityEvent::where([
@@ -119,6 +120,7 @@ trait CalendarDateTrait
                     'day' => $this->calendar_day,
                     'length' => request()->post('length', 1),
                     'is_recurring' => request()->post('is_recurring', false),
+                    'recurring_periodicity' => request()->post('recurring_periodicity', null)
                 ]);
             }
         }
