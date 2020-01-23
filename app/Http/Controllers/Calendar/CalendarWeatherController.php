@@ -70,11 +70,9 @@ class CalendarWeatherController extends Controller
         $this->authorize('update', $calendar);
         $weather = $this->calendarService->saveWeather($calendar, $request);
 
-        $routeOptions = [$calendar->id, 'year' => $request->post('year')];
+        $routeOptions = [$calendar->id, 'year' => $weather->year, 'month' => $weather->month];
         if ($request->has('layout')) {
             $routeOptions['layout'] = 'year';
-        } else {
-            $routeOptions['month'] = $request->post('month');
         }
         return redirect()->route('calendars.show', $routeOptions)
             ->with('success', __('calendars/weather.create.success'));
@@ -85,7 +83,7 @@ class CalendarWeatherController extends Controller
         $this->authorize('update', $calendar);
 
         $weather = $this->calendarService->saveWeather($calendar, $request);
-        $routeOptions = [$calendar->id, 'year' => $weather->year];
+        $routeOptions = [$calendar->id, 'year' => $weather->year, 'month' => $weather->month];
 
         return redirect()->route('calendars.show', $routeOptions)
             ->with('success', __('calendars/weather.edit.success'));
