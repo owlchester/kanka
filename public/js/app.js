@@ -52913,7 +52913,6 @@ $(document).ready(function () {
   if (calendarYearSwitcher.length === 1) {
     calendarYearSwitcherField = $('#calendar-year-switcher-field');
     calendarEventModal = $('#add-calendar-event');
-    initCalendarYearSwitcher();
     initCalendarEventBlock();
   }
 
@@ -53008,14 +53007,6 @@ function calendarDeleteRowHandler() {
   calendarSortSeasons.sortable();
   calendarSortIntercalary.sortable();
   calendarSortWeek.sortable();
-}
-
-function initCalendarYearSwitcher() {
-  calendarYearSwitcher.on('click', function () {
-    $(this).hide();
-    year = calendarYearSwitcherField.val();
-    calendarYearSwitcherField.show().focus().val('').val(year);
-  });
 }
 
 function initCalendarEventBlock() {

@@ -3,8 +3,9 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-6">{{ __('calendars.parameters.moon.name') }}</div>
-        <div class="col-md-3">{{ __('calendars.parameters.moon.fullmoon') }}</div>
-        <div class="col-md-3">{{ __('calendars.parameters.moon.offset') }}</div>
+        <div class="col-md-2">{{ __('calendars.parameters.moon.fullmoon') }}</div>
+        <div class="col-md-2">{{ __('crud.fields.colour') }}</div>
+        <div class="col-md-2">{{ __('calendars.parameters.moon.offset') }}</div>
     </div>
 </div>
 <?php
@@ -12,6 +13,7 @@ $moons = [];
 $moonNames = old('moon_name');
 $moonFullmoons = old('moon_fullmoon');
 $moonOffsets = old('moon_offset');
+$moonColours = old('moon_colour');
 if (!empty($moonNames)) {
     $cpt = 0;
     foreach ($moonNames as $name) {
@@ -19,7 +21,8 @@ if (!empty($moonNames)) {
             $moons[] = [
                 'name' => $name,
                 'fullmoon' => $moonFullmoons[$cpt],
-                'offset' => $moonOffsets[$cpt]
+                'offset' => $moonOffsets[$cpt],
+                'colour' => $moonColours[$cpt],
             ];
         }
         $cpt++;
@@ -41,10 +44,13 @@ if (!empty($moonNames)) {
                         {!! Form::text('moon_name[]', $fullmoon['name'], ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), \Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey'), ['class' => 'form-control']) !!}
+                </div>
+                <div class="col-md-2">
                     <div class="input-group">
                         {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
@@ -72,10 +78,13 @@ if (!empty($moonNames)) {
                 {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.name')]) !!}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon')]) !!}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
+            {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-md-2">
             <div class="input-group">
                 {!! Form::number('moon_offset[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset')]) !!}
                 <span class="input-group-btn">

@@ -101,24 +101,16 @@
 }
 
 .calendar-toolbar {
-  margin-bottom: 1em;
-  text-align: center;
-  padding: 10px;
+  padding: 10px 0;
 
   .calendar-center {
     display: inline-block;
-
-    h2 {
-      margin: 0;
-      float: left;
-    }
   }
 
-  .month-alias {
-    display: block;
-    clear: both;
-    font-size: 1.8em;
-    font-style: italic;
+  .calendar-current {
+    margin: 0 0 10px 0;
+    display: inline;
+    font-size: 1.2em;
   }
 }
 

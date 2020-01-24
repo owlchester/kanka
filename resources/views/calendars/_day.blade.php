@@ -27,7 +27,7 @@
             @endif
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
-                    <i class="moon {{ $moon['class'] }}" title="{{ __('calendars.show.moon_' . $moon['type'] . '_moon', ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
+                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" title="{{ __('calendars.show.moon_' . $moon['type'] . '_moon', ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
                 @endforeach
             @endif
             @if (!empty($day['season']))

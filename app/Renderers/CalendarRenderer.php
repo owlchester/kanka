@@ -127,22 +127,23 @@ class CalendarRenderer
      */
     public function current(): string
     {
-        $month = $this->getMonth();
         $year = $this->getYear();
         $months = $this->calendar->months();
-        $options = '';
-        // Year name?
-        $names = $this->calendar->years();
-        $hasYearName = isset($names[$year]) ? $names[$year] : null;
 
         $month = $months[$this->getMonth(-1)];
-
         $monthName = e(Arr::get($month, 'name', ''));
-        if ($hasYearName) {
-            $monthName .= ', ';
+
+        // Year name
+        $names = $this->calendar->years();
+        $yearText = $year;
+        if (isset($names[$year])) {
+            $safeName = e($names[$year]);
+            $yearText = "<span title=\"$year\">$safeName</span>";
         }
         return ($this->isYearlyLayout() ? null : $monthName)
-            . '<a href="#" id="calendar-year-switcher">' . e(isset($names[$year]) ? $names[$year] : $year) . '</a>';
+            . ' <a href="#" data-toggle="modal" data-target="#calendar-year-switcher">'
+            . $yearText
+            . '</a>';
     }
 
     /**
@@ -791,44 +792,25 @@ class CalendarRenderer
             // Next full moon? If it's 0, we want it today.
             $nextFullMoon = (1 + $moon['offset']) + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
 
-//            if (true) {
-//                dump("$name");
+//            if ($moon['name'] === 'Fourth 11/1') {
+//                dump($moon['name']);
 //                dump("number of full moons: $numberOfFullMoons");
 //                dump("last full moon: $lastFullMoon");
 //                dump("days since last full moon: $daysSinceLastFullMoon");
 //                dump("next full moon: $nextFullMoon");
 //            }
 
-            $this->addMoonPhase($nextFullMoon, $moon['name'], 'full', 'far fa-circle');
+            // Previous cycle
+            $this->addMoonPhases($nextFullMoon - $moon['fullmoon'], $moon);
 
-            // New Moon
-            $newMoon = $nextFullMoon + ceil($fullmoon / 2);
-            $this->addMoonPhase($newMoon, $moon['name'], 'new', 'fas fa-circle');
-
-            // Waning and Waxing
-            if ($fullmoon > 10) {
-                $quarterMonth = ceil($fullmoon / 4);
-                $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
-                $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
-            }
-
+            // Current cycle
+            $this->addMoonPhases($nextFullMoon, $moon);
 
             // Now the full moon will appear several times on this month/year.
             $fullMoonsPerYear = ceil($daysInAYear / $fullmoon);
             for ($i = 0; $i < $fullMoonsPerYear; $i++) {
                 $nextFullMoon += $fullmoon;
-                $this->addMoonPhase($nextFullMoon, $moon['name'], 'full', 'far fa-circle');
-
-                // New moon
-                $newMoon = $nextFullMoon + ceil($fullmoon / 2);
-                $this->addMoonPhase($newMoon, $moon['name'], 'new', 'fas fa-circle');
-
-                // Waning and Waxing
-                if ($fullmoon > 10) {
-                    $quarterMonth = ceil($fullmoon / 4);
-                    $this->addMoonPhase($newMoon - $quarterMonth, $moon['name'], 'waning', 'far fa-moon');
-                    $this->addMoonPhase($newMoon + $quarterMonth, $moon['name'], 'waxing', 'fas fa-moon');
-                }
+                $this->addMoonPhases($nextFullMoon, $moon);
             }
         }
     }
@@ -907,19 +889,39 @@ class CalendarRenderer
     }
 
     /**
-     * @param string $nextFullMoon
-     * @param string $name
-     * @param string $type
+     * @param int $start
+     * @param array $moon
      */
-    protected function addMoonPhase(string $nextFullMoon, string $name, string $type = 'full', string $class = 'far fa-circle')
+    protected function addMoonPhases(int $start, array $moon)
+    {
+        // Full & New Moon
+        $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
+        $newMoon = $start + ceil($moon['fullmoon'] / 2);
+        $this->addMoonPhase($newMoon, $moon, 'new', 'fas fa-circle');
+
+        if ($moon['fullmoon'] > 10) {
+            $quarterMonth = ceil($moon['fullmoon'] / 4);
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'far fa-moon');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fas fa-moon');
+        }
+    }
+
+    /**
+     * @param string $nextFullMoon
+     * @param array $moon
+     * @param string $type = 'full
+     * @param string $class = 'far fa-circle'
+     */
+    protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'far fa-circle')
     {
         if (!isset($this->moons[$nextFullMoon])) {
             $this->moons[$nextFullMoon] = [];
         }
         $this->moons[$nextFullMoon][] = [
-            'name' => $name,
+            'name' => $moon['name'],
             'type' => $type,
-            'class' => $class
+            'class' => $class,
+            'colour' => Arr::get($moon, 'colour', 'grey')
         ];
 
         //dump($nextFullMoon . ':' . $type);

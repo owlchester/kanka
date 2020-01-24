@@ -154,6 +154,7 @@ return [
         'calendar'              => 'Calendar',
         'calendar_date'         => 'Calendar Date',
         'character'             => 'Character',
+        'colour'                => 'Colour',
         'copy_attributes'       => 'Copy Attributes',
         'copy_notes'            => 'Copy Entity Notes',
         'creator'               => 'Creator',

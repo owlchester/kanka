@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string(string $default = ''): string
  * @method static select(bool $checkForParent = false, string $parentClass = null)
  * @method static boolean(bool $default = false): bool
- * @method static colours(): array
+ * @method static colours(bool $withNull = true): array
  *
  * @see FormCopyService
  */

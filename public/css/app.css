@@ -835,6 +835,18 @@ td.breakable {
   background-color: #a35831 !important;
 }
 
+.text-pink {
+  color: #ebbde9 !important;
+}
+
+.text-brown {
+  color: #a35831 !important;
+}
+
+.text-black {
+  color: #000 !important;
+}
+
 .bg-gray .widget-user-username a,
 .bg-none .widget-user-username a {
   color: #000;
@@ -932,25 +944,17 @@ td.breakable {
 }
 
 .calendar-toolbar {
-  margin-bottom: 1em;
-  text-align: center;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .calendar-toolbar .calendar-center {
   display: inline-block;
 }
 
-.calendar-toolbar .calendar-center h2 {
-  margin: 0;
-  float: left;
-}
-
-.calendar-toolbar .month-alias {
-  display: block;
-  clear: both;
-  font-size: 1.8em;
-  font-style: italic;
+.calendar-toolbar .calendar-current {
+  margin: 0 0 10px 0;
+  display: inline;
+  font-size: 1.2em;
 }
 
 .calendar-event-action {

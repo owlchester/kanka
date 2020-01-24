@@ -100,7 +100,7 @@ return [
         'is_recurring'  => 'An event can be set to recurring. It will reappear every year on the same date.',
         'is_incrementing' => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
         'months'        => 'Your calendar should have at least 2 months.',
-        'moons'         => 'Adding moons will make them show up in the calendar on every full moon.',
+        'moons'         => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, waning and waxing moons will also be displayed.',
         'reset'         => 'Always start the beginning of the month or year on the first week day.',
         'seasons'       => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'      => 'Set your weekday names. At least 2 weekdays are required.',
@@ -116,6 +116,11 @@ return [
     'layouts'       => [
         'month' => 'Month',
         'year'  => 'Year',
+    ],
+    'modals' => [
+        'switcher' => [
+            'title' => 'Year Switcher',
+        ]
     ],
     'month_types'   => [
         'intercalary'   => 'Intercalary',

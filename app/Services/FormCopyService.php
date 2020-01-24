@@ -171,13 +171,14 @@ class FormCopyService
     }
 
     /**
+     * @param bool $withNull include "none" option
      * @return array
      */
-    public function colours(): array
+    public function colours(bool $withNull = true): array
     {
-        $colours = [
+        $colours = $withNull ? [
             '' => __('colours.none')
-        ];
+        ] : [];
         $colourKeys = config('colours.keys');
         foreach ($colourKeys as $colour) {
             $colours[$colour] = trans('colours.' . $colour);
