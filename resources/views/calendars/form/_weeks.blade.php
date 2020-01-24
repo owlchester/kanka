@@ -121,12 +121,12 @@
                         <span class="input-group-addon">
                             <span class="fa fa-arrows-alt-v"></span>
                         </span>
-                        {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.week.number')]) !!}
+                        {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="input-group">
-                        {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.week.name')]) !!}
+                        {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
                         <span class="input-group-btn">
                             <span class="month-delete btn btn-danger" data-remove="4" title="{{ trans('crud.remove') }}">
                                 <i class="fa fa-trash"></i>

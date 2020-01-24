@@ -111,11 +111,11 @@ $weekNumber = 1;
                 @else
                     {!! Form::hidden('month', $renderer->currentMonthId()) !!}
                 @endif
-                {!! Form::close() !!}
             </div>
             <div class="modal-footer">
+                <button type="submit" class="btn btn-success"> {{ __('crud.click_modal.confirm') }}</button>
+                {!! Form::close() !!}
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                <button type="button" class="btn btn-success"> {{ __('crud.click_modal.confirm') }}</button>
             </div>
         </div>
     </div>

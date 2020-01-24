@@ -53501,7 +53501,7 @@ function registerEntityCalendarForm() {
   entityCalendarYearField = $('input[name="calendar_year"]');
   entityCalendarMonthField = $('select[name="calendar_month"]');
   entityCalendarDayField = $('input[name="calendar_day"]');
-  entityCalendarLoading = $('.entity-calendar-loading');
+  entityCalendarLoading = $('#entity-calendar-loading');
 
   if (entityCalendarAdd.length === 1) {
     entityCalendarAdd.on('click', function (e) {
@@ -53519,6 +53519,15 @@ function registerEntityCalendarForm() {
 
       return false;
     });
+    entityCalendarCancel.on('click', function (e) {
+      e.preventDefault();
+      entityCalendarField.val(null);
+      entityCalendarCancel.hide();
+      calendarHideSubform();
+    });
+  }
+
+  if (entityCalendarField.length === 1) {
     entityCalendarField.on('change', function () {
       entityCalendarSubForm.hide(); // No new calendar selected? hide everything again
 
@@ -53531,13 +53540,14 @@ function registerEntityCalendarForm() {
       entityCalendarYearField = $('input[name="calendar_year"]');
       entityCalendarDayField = $('input[name="calendar_day"]');
       entityCalendarMonthField = $('select[name="calendar_month"]');
+
+      if (entityCalendarYearField.length === 0 && $('input[name="year"]').length === 1) {
+        entityCalendarYearField = $('input[name="year"]');
+        entityCalendarMonthField = $('select[name="month"]');
+        entityCalendarDayField = $('input[name="day"]');
+      }
+
       loadCalendarDates(entityCalendarField.val());
-    });
-    entityCalendarCancel.on('click', function (e) {
-      e.preventDefault();
-      entityCalendarField.val(null);
-      entityCalendarCancel.hide();
-      calendarHideSubform();
     });
   }
 }
@@ -53548,11 +53558,11 @@ function registerEntityCalendarModal() {
   }
 
   entityCalendarAdd = $('input[name=calendar-data-url]');
-  entityCalendarField = $('[name="calendar_id"]');
+  entityCalendarField = $('select[name="calendar_id"]');
   entityCalendarYearField = $('input[name="year"]');
   entityCalendarMonthField = $('select[name="month"]');
   entityCalendarDayField = $('input[name="day"]');
-  entityCalendarLoading = $('.entity-calendar-loading');
+  entityCalendarLoading = $('#entity-calendar-loading');
   entityCalendarSubForm = $('.entity-calendar-subform');
   entityCalendarField.on('change', function () {
     entityCalendarSubForm.hide(); // No new calendar selected? hide everything again

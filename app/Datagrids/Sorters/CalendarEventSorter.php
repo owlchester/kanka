@@ -23,7 +23,7 @@ class CalendarEventSorter extends DatagridSorter
     /**
      * @var array
      */
-    public $orderRaw = [
-        'date' => 'date(`date`)'
+    public $orderMultiple = [
+        'date' => ['year', 'month', 'day']
     ];
 }

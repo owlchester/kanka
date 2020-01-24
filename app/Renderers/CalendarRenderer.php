@@ -580,10 +580,18 @@ class CalendarRenderer
                         $sub->where('year', $year)
                             ->where('month', $month)
                             ->where('length', '>', 1);
+                    })
+                    // Monthly recurring events
+                    ->orWhere(function ($sub) {
+                        $sub->where('is_recurring', true)
+                            ->where('recurring_periodicity', 'month');
                     });
             });
 
         $totalMonths = count($this->calendar->months());
+        if (!$this->isYearlyLayout()) {
+            $totalMonths = $this->getMonth();
+        }
         foreach ($reminders->get() as $event) {
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
@@ -620,6 +628,7 @@ class CalendarRenderer
                 }
             }
         }
+//        dump($this->events);
         return $this->events;
     }
 

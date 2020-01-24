@@ -16,7 +16,7 @@ class CreateCalendarWeather extends Migration
         Schema::create('calendar_weather', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('calendar_id');
-            $table->string('weather', 12);
+            $table->string('weather', 20);
             $table->string('temperature', 45)->nullable();
             $table->string('precipitation', 45)->nullable();
             $table->string('wind', 45)->nullable();

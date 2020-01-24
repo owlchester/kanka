@@ -96,6 +96,7 @@ class EntityEvent extends MiscModel
     public function getDate()
     {
         // Replace month with real month, and year maybe
+        return $this->year .'-' . $this->month . '-' . $this->day;
         $months = $this->calendar->months();
         $years = $this->calendar->years();
 

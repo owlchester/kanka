@@ -61,6 +61,10 @@ trait SimpleSortableTrait
                 $builder->orderByRaw(
                     $datagridSorter->orderRaw($column) . ' ' . $order
                 );
+            } elseif ($datagridSorter->hasMultipleOrder($column)) {
+                foreach ($datagridSorter->orderMultiple($column) as $multiple) {
+                    $builder->orderBy($this->getTable() . '.' . $multiple, $order);
+                }
             } else {
                 $builder->orderBy($this->getTable() . '.' . $column, $order);
             }

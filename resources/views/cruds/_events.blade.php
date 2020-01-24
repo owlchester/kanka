@@ -52,11 +52,11 @@ $r = $model
             <td class="text-right">
                 @can('events', $relation->calendar)
                 <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id]) }}" class="btn btn-xs btn-primary">
-                    <i class="fa fa-edit"></i> {{ trans('crud.edit') }}
+                    <i class="fa fa-edit"></i>
                 </a>
-                {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $relation->entity, $relation->id], 'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $relation->entity, $relation->id], 'style' => 'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                    <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
                 {!! Form::close() !!}
                 @endcan

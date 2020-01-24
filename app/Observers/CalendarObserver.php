@@ -37,10 +37,10 @@ class CalendarObserver extends MiscObserver
             // We want a month length of at least 1 day
             $length = (int) $monthLengths[$monthCount];
             $months[] = [
-                'name' => $name,
+                'name' => e($name),
                 'length' => $length < 1 ? 1 : $length,
                 'type' => $monthTypes[$monthCount],
-                'alias' => $monthAliases[$monthCount],
+                'alias' => e($monthAliases[$monthCount]),
             ];
             $monthCount++;
         }
@@ -69,7 +69,7 @@ class CalendarObserver extends MiscObserver
                     continue;
                 }
                 // Save the leap year
-                $years[$year] = $yearNames[$yearCount];
+                $years[$year] = e($yearNames[$yearCount]);
                 $yearCount++;
             }
         }
@@ -86,7 +86,7 @@ class CalendarObserver extends MiscObserver
                     continue;
                 }
                 // Save the leap year
-                $weeks[$week] = $weekNames[$weekCount];
+                $weeks[$week] = e($weekNames[$weekCount]);
                 $weekCount++;
             }
         }
@@ -106,10 +106,10 @@ class CalendarObserver extends MiscObserver
                 }
 
                 $moons[] = [
-                    'name' => $moonNames[$moonCount],
+                    'name' => e($moonNames[$moonCount]),
                     'fullmoon' => $moon,
                     'offset' => (int) $moonOffsets[$moonCount],
-                    'colour' => $moonColours[$moonCount],
+                    'colour' => e($moonColours[$moonCount]),
                 ];
                 $moonCount++;
             }
@@ -131,7 +131,7 @@ class CalendarObserver extends MiscObserver
             $month = (int) $seasonMonths[$seasonCount];
             $day = (int) $seasonDays[$seasonCount];
             $seasons[] = [
-                'name' => $name,
+                'name' => e($name),
                 'month' => $month < 1 ? 1 : $month,
                 'day' => $day,
             ];

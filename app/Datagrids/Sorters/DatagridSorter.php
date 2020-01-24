@@ -61,6 +61,12 @@ abstract class DatagridSorter
     public $orderRaw = [];
 
     /**
+     * Sort options where one field orders several behind the scenes (typically for dates)
+     * @var array
+     */
+    public $orderMultiple = [];
+
+    /**
      * DatagridSorter constructor.
      */
     public function __construct()
@@ -182,6 +188,25 @@ abstract class DatagridSorter
     public function orderRaw(string $column)
     {
         return Arr::get($this->orderRaw, $column, null);
+    }
+
+
+    /**
+     * @param string $column
+     * @return bool
+     */
+    public function hasMultipleOrder(string $column): bool
+    {
+        return isset($this->orderMultiple[$column]);
+    }
+
+    /**
+     * @param string $column
+     * @return array
+     */
+    public function orderMultiple(string $column)
+    {
+        return Arr::get($this->orderMultiple, $column, []);
     }
 
     /**
