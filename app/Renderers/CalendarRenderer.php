@@ -159,7 +159,8 @@ class CalendarRenderer
             return '';
         }
 
-        return e($alias);
+        // Month alias is already escaped on saving so let's skip it here
+        return $alias;
     }
 
     /**
