@@ -109,11 +109,12 @@
 
   .calendar-current {
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 25px;
     .month {
       display: inline-block;
       padding-top: 6px;
       font-size: 1.2em;
+      margin-right: 5px;
     }
   }
 }
