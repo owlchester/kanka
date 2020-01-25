@@ -79,6 +79,11 @@ abstract class MiscObserver
      */
     public function saved(MiscModel $model)
     {
+        // If we're from the "move" service, we can skip this part.
+        if ($model->savingObserver === false) {
+            return;
+        }
+
         // Whenever an misc model is saved, we need to make sure it has an associated entity with it.
         // If none exists, we need to create one. Otherwise, we need to update it.
         $entity = $model->entity;
@@ -102,6 +107,11 @@ abstract class MiscObserver
 
     public function created(MiscModel $model)
     {
+        // If we're from the "move" service, we can skip this part.
+        if ($model->savingObserver === false) {
+            return;
+        }
+
         // Created a new sub entity? Create the parent entity.
         $entity = Entity::create([
             'entity_id' => $model->id,
@@ -111,15 +121,6 @@ abstract class MiscObserver
             'type' => $model->getEntityType()
         ]);
 
-        // Copy attributes from source?
-//        if (request()->has('copy_source_attributes') && request()->filled('copy_source_attributes')) {
-//            $sourceId = request()->post('copy_source_id');
-//            /** @var Entity $source */
-//            $source = Entity::findOrFail($sourceId);
-//            foreach ($source->attributes as $attribute) {
-//                $attribute->copyTo($model->entity);
-//            }
-//        }
         // Copy attributes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
             $sourceId = request()->post('copy_source_id');

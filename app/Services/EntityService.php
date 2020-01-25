@@ -358,6 +358,7 @@ class EntityService
 
         // Finally, we can save. Should be all good. But tell the app not to create the entity
         define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+        $new->savingObserver = false;
         $new->save();
 
         // If switching from an organisation to a family, we need to move the members?

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Facade;
  * @package App\Facades
  *
  * @method static Campaign getCampaign()
+ * @method static void forceCampaign(Campaign $campaign)
+ *
+ * @see \App\Services\CampaignLocalization
  */
 class CampaignLocalization extends Facade
 {

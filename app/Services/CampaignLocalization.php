@@ -173,7 +173,7 @@ class CampaignLocalization
      * Force the campaign. This is use for moving entities between campaigns.
      * @param Campaign $campaign
      */
-    public function forceCampaign(Campaign $campaign)
+    public function forceCampaign(Campaign $campaign): void
     {
         $this->campaign = $campaign;
     }
