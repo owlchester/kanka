@@ -55,6 +55,11 @@ class EntityEvent extends MiscModel
      */
     public $aclUseEntityID = true;
 
+    /**
+     * @var string Cached readable date
+     */
+    protected $readableDate;
+
 
     /**
      * @var array
@@ -93,21 +98,40 @@ class EntityEvent extends MiscModel
     /**
      * @return string
      */
-    public function getDate()
+    public function readableDate(): string
     {
-        // Replace month with real month, and year maybe
-        return $this->year .'-' . $this->month . '-' . $this->day;
-        $months = $this->calendar->months();
-        $years = $this->calendar->years();
+        if ($this->readableDate === null) {
+            // Replace month with real month, and year maybe
+            $months = $this->calendar->months();
+            $years = $this->calendar->years();
 
-        try {
-            return $this->day . ' ' .
-                (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
-                (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
-                $this->calendar->suffix;
-        } catch (\Exception $e) {
-            return $this->date;
+            try {
+                $this->readableDate = $this->day . ' ' .
+                    (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
+                    (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
+                    $this->calendar->suffix;
+            } catch (\Exception $e) {
+                $this->readableDate = $this->date();
+            }
         }
+        return $this->readableDate;
+    }
+
+    /**
+     * @param Calendar $calendar
+     * @return bool
+     */
+    public function isToday(Calendar $calendar): bool
+    {
+        return $this->date() === $calendar->date;
+    }
+
+    /**
+     * @return string
+     */
+    public function date(): string
+    {
+        return $this->year . '-' . $this->month . '-' . $this->day;
     }
 
     /**

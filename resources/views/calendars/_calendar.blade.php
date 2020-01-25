@@ -24,7 +24,16 @@ $weekNumber = 1;
             <i class="fa fa-angle-right"></i>
         </a>
     </div>
-    <h2 class="calendar-current">{!! $renderer->current() !!}</h2>
+    <div class="calendar-current">
+        @if (!$renderer->isYearlyLayout())
+            <span class="month">{!! $renderer->currentMonthName() !!}</span>
+        @endif
+        <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
+            class="btn btn-default">
+            {!! $renderer->currentYearName() !!}
+        </div>
+    </div>
+
     <div class="pull-right">
         <div class="btn-group">
             <a href="{{ route('calendars.show', [$model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-left"<?=($renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.year') }}</a>
@@ -84,14 +93,6 @@ $weekNumber = 1;
     </tbody>
 </table>
 
-{!! Form::hidden('date', '', ['id' => 'date']) !!}
-@if($renderer->isYearlyLayout())
-    <input type="hidden" name="layout" value="year">
-@endif
-{{ csrf_field() }}
-{!! Form::close() !!}
-
-
 <!-- Modal -->
 <div class="modal fade" id="calendar-year-switcher" tabindex="-1" role="dialog" aria-labelledby="deleteYearSwitcherLabel">
     <div class="modal-dialog" role="document">
@@ -102,6 +103,7 @@ $weekNumber = 1;
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label>{{ __('calendars.fields.current_year') }}</label>
                     {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}

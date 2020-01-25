@@ -38,7 +38,7 @@
                     <td>
                         {!! $event->entity->tooltipedLink() !!}
                     </td>
-                    <td>{{ $event->getDate() }}</td>
+                    <td>{{ $event->readableDate() }}</td>
                     <td>{{ trans_choice('calendars.fields.length_days', $event->length, ['count' => $event->length]) }}</td>
                     <td>@if ($event->comment)
                         <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip"></i>

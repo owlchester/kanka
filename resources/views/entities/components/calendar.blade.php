@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\MiscModel $model */ ?>
 @inject('dateRenderer', 'App\Renderers\DateRenderer')
 @if ($model->hasCalendar())
     <li class="list-group-item">

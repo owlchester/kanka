@@ -108,9 +108,13 @@
   }
 
   .calendar-current {
-    margin: 0 0 10px 0;
-    display: inline;
-    font-size: 1.2em;
+    display: inline-block;
+    margin-left: 15px;
+    .month {
+      display: inline-block;
+      padding-top: 6px;
+      font-size: 1.2em;
+    }
   }
 }
 

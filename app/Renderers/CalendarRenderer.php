@@ -125,25 +125,27 @@ class CalendarRenderer
      * Get current year-month
      * @return string
      */
-    public function current(): string
+    public function currentMonthName(): string
     {
-        $year = $this->getYear();
         $months = $this->calendar->months();
-
         $month = $months[$this->getMonth(-1)];
         $monthName = e(Arr::get($month, 'name', ''));
+        $monthName = '' . $monthName . '';
 
+        return ($this->isYearlyLayout() ? null : $monthName);
+    }
+
+    public function currentYearName(): string
+    {
         // Year name
+        $year = $this->getYear();
         $names = $this->calendar->years();
         $yearText = $year;
         if (isset($names[$year])) {
             $safeName = e($names[$year]);
             $yearText = "<span title=\"$year\">$safeName</span>";
         }
-        return ($this->isYearlyLayout() ? null : $monthName)
-            . ' <a href="#" data-toggle="modal" data-target="#calendar-year-switcher">'
-            . $yearText
-            . '</a>';
+        return $yearText;
     }
 
     /**

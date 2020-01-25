@@ -41,7 +41,7 @@ $r = $model
             </td>
             <td>
                 <a href="{{ $relation->calendar->getLink() }}?year={{ $relation->year }}&month={{ $relation->month }}">
-                {{ $relation->getDate() }}
+                {{ $relation->readableDate() }}
                 </a>
             </td>
             <td>{{ trans_choice('calendars.fields.length_days', $relation->length, ['count' => $relation->length]) }}</td>

@@ -96,7 +96,7 @@ $shownUpcomingEvents = 0;
                             @if (!empty($reminder->comment))
                                 <i class="fa fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                             @endif
-                            <i class="fa fa-calendar" title="{{ $reminder->getDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            <i class="fa fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                         </div>
                         {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
                     </li>
@@ -117,12 +117,12 @@ $shownUpcomingEvents = 0;
                                 @if (!empty($event->comment))
                                     <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
-                                @if ($event->date == $calendar->date)
-                                    <span class="label label-default" title="{{ $event->getDate() }}">
-                                {{ __('calendars.actions.today') }}
-                                </span>
+                                @if ($event->isToday($calendar))
+                                    <span class="label label-default" title="{{ $event->readableDate() }}">
+                                        {{ __('calendars.actions.today') }}
+                                    </span>
                                 @else
-                                    <i class="fa fa-calendar" title="{{ $event->getDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                    <i class="fa fa-calendar" title="{{ $event->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                                 @endif
                             </div>
                             {{ link_to($event->entity->url(), $event->entity->name, ['title' => $event->comment, 'data-toggle' => 'tooltip']) }}
