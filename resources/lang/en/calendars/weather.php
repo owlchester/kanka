@@ -1,43 +1,43 @@
 <?php
 
 return [
-    'create' => [
-        'title' => 'New Weather Effect',
-        'success' => 'Weather added.',
+    'create'        => [
+        'success'   => 'Weather added.',
+        'title'     => 'New Weather Effect',
     ],
-    'destroy' => [
-        'success' => 'Weather removed.',
+    'destroy'       => [
+        'success'   => 'Weather removed.',
     ],
-    'fields' => [
-        'weather' => 'Weather',
-        'temperature' => 'Temperature',
+    'edit'          => [
+        'success'   => 'Weather updated.',
+        'title'     => 'Update Weather',
+    ],
+    'fields'        => [
+        'effect'        => 'Effect',
         'precipitation' => 'Precipitation',
-        'wind' => 'Wind',
-        'effect' => 'Effect',
+        'temperature'   => 'Temperature',
+        'weather'       => 'Weather',
+        'wind'          => 'Wind',
     ],
-    'placeholders' => [
-        'temperature' => 'Daily high and low',
+    'options'       => [
+        'weather'   => [
+            'bolt'                  => 'Thunder',
+            'cloud'                 => 'Cloudy',
+            'cloud-rain'            => 'Rainy',
+            'cloud-showers-heavy'   => 'Heavy Rain',
+            'cloud-sun'             => 'Cloudy and Sunny',
+            'cloud-sun-rain'        => 'Cloud, Sun and Rain',
+            'meteor'                => 'Meteor',
+            'smog'                  => 'Smog',
+            'snowflake'             => 'Snow',
+            'sun'                   => 'Sunny',
+            'wind'                  => 'Windy',
+        ],
+    ],
+    'placeholders'  => [
+        'effect'        => 'Magical or natural effect',
         'precipitation' => 'Amount of water',
-        'wind' => 'Wind speeds',
-        'effect' => 'Magical or natural effect'
+        'temperature'   => 'Daily high and low',
+        'wind'          => 'Wind speeds',
     ],
-    'options' => [
-        'weather' => [
-            'cloud' => 'Cloudy',
-            'smog' => 'Smog',
-            'wind' => 'Windy',
-            'bolt' => 'Thunder',
-            'sun' => 'Sunny',
-            'cloud-sun' => 'Cloudy and Sunny',
-            'cloud-sun-rain' => 'Cloud, Sun and Rain',
-            'cloud-showers-heavy' => 'Heavy Rain',
-            'cloud-rain' => 'Rainy',
-            'meteor' => 'Meteor',
-            'snowflake' => 'Snow',
-        ]
-    ],
-    'edit' => [
-        'title' => 'Update Weather',
-        'success' => 'Weather updated.',
-    ]
 ];
