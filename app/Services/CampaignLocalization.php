@@ -154,12 +154,17 @@ class CampaignLocalization
     }
 
     /**
-     * @return string
+     * Get the campaign
+     * @return Campaign|null
      */
     public function getCampaign()
     {
         if ($this->campaign == false) {
-            $this->campaign = Campaign::find($this->campaignId);
+            // Some pages like helper pages don't have a campaign in the url
+            $this->campaign = null;
+            if (is_numeric($this->campaignId)) {
+                $this->campaign = Campaign::find((int) $this->campaignId);
+            }
         }
         return $this->campaign;
     }
