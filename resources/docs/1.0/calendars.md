@@ -7,6 +7,7 @@
 - [Create a Calendar](#create-calendar)
 - [Update a Calendar](#update-calendar)
 - [Delete a Calendar](#delete-calendar)
+- [Weather](#weather)
 
 <a name="all-calendars"></a>
 ## All Calendars
@@ -217,3 +218,8 @@ To delete a calendar, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON.
+
+<a name="weather"></a>
+## Weather
+
+You can control the weather of the calendar with the following docs: [Calendar Weather](/docs/{{version}}/calendar-weathers)
