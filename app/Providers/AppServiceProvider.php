@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\EntityPermission;
+use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignRoleUser;
@@ -35,6 +36,7 @@ use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Observers\CalendarObserver;
+use App\Observers\CalendarWeatherObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\CharacterObserver;
@@ -76,6 +78,7 @@ class AppServiceProvider extends ServiceProvider
             // Observers
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
             Calendar::observe(CalendarObserver::class);
+            CalendarWeather::observe(CalendarWeatherObserver::class);
             Campaign::observe(CampaignObserver::class);
             CampaignUser::observe(CampaignUserObserver::class);
             CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
