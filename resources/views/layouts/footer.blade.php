@@ -17,7 +17,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ config('discord.url') }}" target="discord" title="Discord" rel="noreferrer"><i class="fab fa-discord"></i></a>
+                        <a href="{{ config('discord.url') }}" target="discord" title="Discord" rel="noreferrer">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="//www.facebook.com/kanka.io.ch" target="facebook" title="Facebook" rel="noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="//www.instagram.com/kanka.io/" target="instagram" title="Instagram" rel="noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </li>
                     <li>
                         <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
