@@ -157,7 +157,7 @@ return [
         'Filter.YouTube' => true,
 
         "HTML.SafeIframe" => true,
-        "URI.SafeIframeRegexp" => "%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%",
+        "URI.SafeIframeRegexp" => "%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/|open\.spotify\.com/embed/)%",
     ],
 
 ];
