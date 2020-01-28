@@ -75,6 +75,16 @@ class MenuLink extends MiscModel
     public $hasRelations = false;
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    public $sortableColumns = [
+        'position',
+        'menu',
+        'tab',
+    ];
+
+    /**
      * Performance with for datagrids
      * @param $query
      * @return mixed
