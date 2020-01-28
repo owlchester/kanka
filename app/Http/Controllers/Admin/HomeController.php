@@ -8,6 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.home.index');
+        $advanced = request()->has('advanced');
+        return view('admin.home.index', compact('advanced'));
     }
 }
