@@ -37,4 +37,24 @@ return [
         'name'          => 'Ulyss (ejemplo)',
         'type'          => 'Capital',
     ],
+    'note1'         => [
+        'entry' => <<<'TEXT'
+¡Bienvenido a Kanka! Tu primera campaña ha sido creada y hemos incluido un par de entidades de ejemplo como inspiración (puedes borrarlas cuando quieras).
+
+Seguramente querrás ir empezando a crear algunas entidades propias, así que elige una categoría en el menú de la izquierda y da rienda suelta a tu imaginación. Puedes deshabilitar categorías innecesarias desde la configuración de la campaña: así las esconderás del menú.
+
+Un par de consejos para empezar:
+- Puedes escribir @nombreEntidad para enlazar a entidades específicas. El texto del enlace se actualizará automáticamente si renombras o cambias la entidad enlazada.
+- Puedes configurar ajustes de tu cuenta como los temas, la cantidad de entidades por página, etc. desde el botón de arriba a la derecha.
+- Puedes ajustar los permisos para tipos de entidades, así como individualmente en cada entidad.
+- Tenemos una creciente lista de tutoriales en :youtube, que incluyen los atributos y cómo compartir tu campaña con otras personas. Las :faq también te serán útiles.
+
+Por último, pero no menos importante:
+- Echa un vistazo a las :public para inspirarte viendo como otros usan Kanka.
+- Si tienes preguntas, sugerencias o solo quieres charlar, únete a nosotros en :discord.
+- ¿Te encanta la app y quieres apoyarla para que crezca? Puedes dirigirte a nuestro :patreon.
+TEXT
+,
+        'name'  => 'Nota de bienvenida',
+    ],
 ];
