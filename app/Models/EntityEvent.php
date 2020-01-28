@@ -50,6 +50,11 @@ class EntityEvent extends MiscModel
     public $aclFieldName = 'entity_events.entity_id';
 
     /**
+     * @var bool tell the AclTrait that this entity has no is_private field
+     */
+    public $aclIsPrivate = false;
+
+    /**
      * If the ACL engine should use the "real" entity id (entities.id) or the
      * @var bool
      */

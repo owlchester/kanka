@@ -18,6 +18,12 @@ use App\Scopes\VisibleScope;
 trait AclTrait
 {
     /**
+     * Set to false on the model if the model doesn't have an is_private field (ie entity_events)
+     * @var bool
+     */
+    public $aclIsPrivate = true;
+
+    /**
      * Scope a query to only include elements that are visible
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -128,14 +134,19 @@ trait AclTrait
         }
 
         //dd($service->entityIds());
-        return $query
+        $query = $query
             ->select($this->getTable() . '.*')
             ->leftJoin('entities', 'entities.id', $this->getTable() . '.entity_id')
-            ->where('is_private', false)
             ->where(function ($subquery) use ($service, $primaryKey) {
                 return $subquery
                     ->whereIn('entities.id', $service->entityIds())
                     ->orWhereIn('entities.type', $service->entityTypes());
             });
+
+        if ($this->aclIsPrivate) {
+            $query = $query->where('is_private', false);
+        }
+
+        return $query;
     }
 }

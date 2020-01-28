@@ -34,7 +34,15 @@
                         </tr>
                         @foreach ($r = $role->users()->with('user')->paginate() as $relation)
                             <tr>
-                                <td>{{ $relation->user->name }}</td>
+                                <td>
+                                    @if (getenv('APP_ENV') === 'dev')
+                                        <span title="{{ $relation->user->email }}">
+                                            {{ $relation->user->name }}
+                                        </span>
+                                    @else
+                                        {{ $relation->user->name }}
+                                    @endif
+                                </td>
                                 <td class="text-right">
                                     @can('removeUser', $role)
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id], 'style'=>'display:inline']) !!}
