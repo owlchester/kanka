@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -51,6 +52,18 @@ class MentionsService
     public function mapEntityNote(EntityNote $entityNote)
     {
         $this->text = $entityNote->entry;
+        return $this->extractAndReplace();
+    }
+
+    /**
+     * Map the mentions in an attribute
+     * @param Attribute $attribute
+     * @param string $field = 'value'
+     * @return string|string[]|null
+     */
+    public function mapAttribute(Attribute $attribute, string $field = 'value')
+    {
+        $this->text = e($attribute->{$field});
         return $this->extractAndReplace();
     }
 

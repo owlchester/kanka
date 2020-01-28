@@ -38,9 +38,9 @@ $inSection = false;
                     <i class="fa fa-check"></i>
                 @endif
             @elseif ($attribute->isText())
-                {!! nl2br(e($attribute->value)) !!}
+                {!! nl2br($attribute->mappedValue()) !!}
             @else
-                {{ $attribute->value }}
+                {!! $attribute->mappedValue() !!}
             @endif
         </dd>
 @endforeach

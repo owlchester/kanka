@@ -4,6 +4,7 @@
 namespace App\Facades;
 
 
+use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static map(MiscModel $model, string $field = 'entry')
  * @method static mapEntityNote(EntityNote $entityNote)
+ * @method static mapAttribute(Attribute $attribute, string $field = 'value')
  * @method static mapCampaign(Campaign $campaign, string $field = 'entry')
  * @method static mapEntity(Entity $entity, string $field = 'tooltip')
  * @method static edit(Entity $entity, string $field = 'entry'): string

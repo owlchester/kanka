@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
@@ -103,6 +104,14 @@ class Attribute extends Model
     public function isText(): bool
     {
         return $this->type == self::TYPE_TEXT;
+    }
+
+    /**
+     * @return string
+     */
+    public function mappedValue(): string
+    {
+        return Mentions::mapAttribute($this);
     }
 
     /**
