@@ -7,7 +7,7 @@ return [
     'cha'                           => 'CAR',
     'challenge_rating'              => 'Desafío',
     'con'                           => 'CON',
-    'condition_immunities'          => 'Inmunidad a las Condiciones',
+    'condition_immunities'          => 'Inmunidad a las condiciones',
     'damage_immunities'             => 'Inmunidad al daño',
     'damage_resistance'             => 'Resistencia al daño',
     'dex'                           => 'DES',
