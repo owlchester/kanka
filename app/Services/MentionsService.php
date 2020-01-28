@@ -58,12 +58,11 @@ class MentionsService
     /**
      * Map the mentions in an attribute
      * @param Attribute $attribute
-     * @param string $field = 'value'
      * @return string|string[]|null
      */
-    public function mapAttribute(Attribute $attribute, string $field = 'value')
+    public function mapAttribute(Attribute $attribute)
     {
-        $this->text = e($attribute->{$field});
+        $this->text = e($attribute->value);
         return $this->extractAndReplace();
     }
 
