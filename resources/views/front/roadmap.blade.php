@@ -1,9 +1,5 @@
 @extends('layouts.front', [
     'title' => trans('front.menu.roadmap'),
-    'menus' => [
-        'roadmap',
-    ],
-    'menu_js' => false,
 ])
 @section('content')
 

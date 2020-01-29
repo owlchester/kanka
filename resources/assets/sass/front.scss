@@ -13,9 +13,10 @@ header.masthead {
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
 }
 header.reduced-masthead {
-  min-height: 375px;
-  height: 40vh;
-  padding-top: 40px;
+  min-height: 325px;
+  height: unset;
+  padding-bottom: 20px;
+  padding-top: 90px;
 }
 .bg-primary {
   background: linear-gradient(#FFFFFF, $KankaGrey) !important;
