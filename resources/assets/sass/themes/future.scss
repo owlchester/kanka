@@ -115,6 +115,10 @@ a {
   td.today {
     background-color: #1C2828;
   }
+  .weather {
+    color: $White;
+    background-color: $Unfocused !important;
+  }
 }
 
 .panel-body {

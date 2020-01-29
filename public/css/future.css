@@ -598,6 +598,11 @@ a:hover {
   background-color: #1C2828;
 }
 
+.calendar .weather {
+  color: #eee;
+  background-color: #157778 !important;
+}
+
 .panel-body .preview {
   background: none;
 }
