@@ -96,6 +96,10 @@ img.profile-user-img {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+.sidebar-menu > li > a {
+  padding: 8px 5px 8px 15px;
+}
+
 /** required form fields **/
 div.required label:after {
   content: " *";
