@@ -37,10 +37,10 @@ class CalendarObserver extends MiscObserver
             // We want a month length of at least 1 day
             $length = (int) $monthLengths[$monthCount];
             $months[] = [
-                'name' => e($name),
+                'name' => $this->purify($name),
                 'length' => $length < 1 ? 1 : $length,
                 'type' => $monthTypes[$monthCount],
-                'alias' => e($monthAliases[$monthCount]),
+                'alias' => $this->purify($monthAliases[$monthCount]),
             ];
             $monthCount++;
         }
@@ -54,7 +54,7 @@ class CalendarObserver extends MiscObserver
                 continue;
             }
 
-            $weekdays[] = $name;
+            $weekdays[] = $this->purify($name);
         }
         $model->weekdays = json_encode($weekdays);
 
@@ -69,7 +69,7 @@ class CalendarObserver extends MiscObserver
                     continue;
                 }
                 // Save the leap year
-                $years[$year] = e($yearNames[$yearCount]);
+                $years[$year] = $this->purify($yearNames[$yearCount]);
                 $yearCount++;
             }
         }
@@ -86,7 +86,7 @@ class CalendarObserver extends MiscObserver
                     continue;
                 }
                 // Save the leap year
-                $weeks[$week] = e($weekNames[$weekCount]);
+                $weeks[$week] = $this->purify($weekNames[$weekCount]);
                 $weekCount++;
             }
         }
@@ -106,10 +106,10 @@ class CalendarObserver extends MiscObserver
                 }
 
                 $moons[] = [
-                    'name' => e($moonNames[$moonCount]),
+                    'name' => $this->purify($moonNames[$moonCount]),
                     'fullmoon' => $moon,
                     'offset' => (int) $moonOffsets[$moonCount],
-                    'colour' => e($moonColours[$moonCount]),
+                    'colour' => $this->purify($moonColours[$moonCount]),
                 ];
                 $moonCount++;
             }
@@ -131,7 +131,7 @@ class CalendarObserver extends MiscObserver
             $month = (int) $seasonMonths[$seasonCount];
             $day = (int) $seasonDays[$seasonCount];
             $seasons[] = [
-                'name' => e($name),
+                'name' => $this->purify($name),
                 'month' => $month < 1 ? 1 : $month,
                 'day' => $day,
             ];
