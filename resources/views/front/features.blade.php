@@ -1,13 +1,9 @@
 @extends('layouts.front', [
     'title' => trans('front.menu.features'),
-    'menus' => [
-        'features',
-    ],
-    'menu_js' => false,
 ])
 @section('content')
 
-    <header class="masthead reduced-masthead">
+    <header class="masthead">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-12 my-auto">
@@ -87,7 +83,7 @@
                                     <div class="feature-item">
                                         <i class="icon-lock text-primary"></i>
                                         <h3>{{ trans('front.features.public.title') }}</h3>
-                                        <p class="text-muted">{!! trans('front.features.public.description', ['url' => route('public_campaigns')]) !!}</p>
+                                        <p class="text-muted">{!! trans('front.features.public.description', ['url' => route('front.public_campaigns')]) !!}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -207,7 +203,7 @@
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
-                    <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('about', __('teams.hall_of_fame'), ['#patreon'])]) !!}</td>
+                    <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) !!}</td>
                     <td></td>
                     <td></td>
                     <td><i class="fa fa-check-circle"></i></td>

@@ -26,7 +26,7 @@
                     'autocomplete' => 'off'
                 ]) !!}
                 <p class="help-block">{!! __('campaigns.helpers.system', [
-                        'link' => link_to_route('public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank'])
+                        'link' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank'])
                     ]) !!}</p>
             </div>
 

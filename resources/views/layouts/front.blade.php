@@ -1,16 +1,25 @@
+@php
+$menus = [
+        'features',
+        'pricing',
+        'about',
+        'news',
+        'contact'
+    ];
+@endphp
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ trans('front.meta.description') }}">
+    <meta name="description" content="{{ __('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @yield('og')
-    <title>{{ $title ?? trans('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{{ $title ?? __('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -36,36 +45,65 @@
 </noscript>
 
 <!-- Navigation -->
+<div class="topbar">
+    <div class="container">
+        <ul class="topbar-list">
+            <li class="login">
+                <a href="{{ route('login') }}">
+                    {{ __('front.menu.login') }}
+                </a>
+            </li>
+            @auth
+                <li>
+                    <a class="nav-link" href="{{ route('home') }}">{{ __('front.menu.dashboard') }}</a>
+                </li>
+            @else
+                <li>
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
+                </li>
+            @endauth
+            <li>
+                <a href="{{ config('patreon.url') }}" target="patreon" title="Patreon" rel="noreferrer">
+                    <i class="fab fa-patreon"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            {{ trans('front.menu.title') }}
             <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 @foreach ($menus as $menu)
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#{{ $menu }}">{{ trans('front.menu.' . $menu) }}</a>
+                    <a class="nav-link" href="{{ route("front.$menu") }}">{{ __('front.menu.' . $menu) }}</a>
                 </li>
                 @endforeach
-                @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ trans('front.menu.dashboard') }}</a>
-                    </li>
-                @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ trans('front.menu.login') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
-                </li>
-                @endauth
 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-globe"></i>
                         {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu navbar-nar" aria-labelledby="drop3">
@@ -134,9 +172,9 @@
             },
             "theme": "classic",
             "content": {
-                "message": "{{ trans('front.cookie.message') }}",
-                "dismiss": "{{ trans('front.cookie.dismiss') }}",
-                "link": "{{ trans('front.cookie.link') }}"
+                "message": "{{ __('front.cookie.message') }}",
+                "dismiss": "{{ __('front.cookie.dismiss') }}",
+                "link": "{{ __('front.cookie.link') }}"
             }
         })});
 </script>

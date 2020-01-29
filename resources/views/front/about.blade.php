@@ -1,13 +1,9 @@
 @extends('layouts.front', [
     'title' => trans('front.menu.about'),
-    'menus' => [
-        'about',
-    ],
-    'menu_js' => false,
 ])
 @section('content')
 
-    <header class="masthead reduced-masthead" id="about">
+    <header class="masthead" id="about">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
@@ -93,7 +89,7 @@
                 <h1>{{ trans('teams.hall_of_fame') }}</h1>
                 <p class="text-muted">{{ trans('teams.patreon.description') }}
                     <a href="{{ config('patreon.url') }}" class="" target="_blank">{{ __('footer.patreon') }}</a>.
-                    <a href="{{ route('features', ['#patreon']) }}">{{ __('teams.patreon.learn_more') }}</a>.
+                    <a href="{{ route('front.features', ['#patreon']) }}">{{ __('teams.patreon.learn_more') }}</a>.
                 </p>
 
                     @foreach ($patrons as $pledge => $users)

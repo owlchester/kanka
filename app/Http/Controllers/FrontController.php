@@ -80,6 +80,23 @@ class FrontController extends Controller
         return view('front.roadmap');
     }
 
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pricing()
+    {
+        return view('front.pricing');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contact()
+    {
+        return view('front.contact');
+    }
+
     /**
      * Public Campaigns
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

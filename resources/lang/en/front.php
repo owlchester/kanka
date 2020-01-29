@@ -20,12 +20,17 @@ return [
     'community'     => [
         'description'   => 'Kanka isn\'t only an app, it\'s also a thriving community of world builders, dungeon masters, role players and creative enthusiasts.',
         'discord'       => 'The Kanka Discord is the most active place for talking about the app, bugs, features, asking for help and helping out.',
+        'facebook'      => 'Stay up to date with all our updates over on our facebook page.',
+        'instagram'     => 'Want to see more behind the scenes pictures of us working on Kanka or playing? Instagram is the place to follow us!',
         'join'          => 'Join us!',
         'reddit'        => 'The Kanka subreddit is a quieter place where things can be discussed during a longer period of time.',
         'title'         => 'Community',
     ],
     'contact'       => [
-        'title' => 'We :icon new friends!',
+        'description' => 'Need help, have a suggestion, or just want to share your love for Kanka? Our team will reply whatever the occasion!',
+        'email' => 'Send all inquieries to our email:',
+        'other' => 'Or contact us one of the following social media platforms:',
+        'title' => 'Contact us for all of your needs',
     ],
     'cookie'        => [
         'dismiss'   => 'Got it!',
@@ -60,11 +65,11 @@ return [
             'description'   => 'Not alone? We\'ve got you covered! You can invite your friends and co-dungeon master to help you build your campaign together!',
             'title'         => 'Collaborative',
         ],
-        'description'       => 'Here are but a few things that we think you will love with our app!',
-        'description_full'  => 'A showcase of some of our best and most loved features.',
+        'description'       => 'Kanka has a large number of features. Keep track of your world\'s Characters and their relation, Locations and their history, Quests and their objectives, Calendars and their events and weather effects, and many more. Best of all, Kanka received several updates every month based on user feedback.',
+        'description_full'  => 'We are constantly adding new features and improvements to Kanka, and the majority of our features are included in the free tier.',
         'free'              => [
             'bonuses'       => 'bonuses',
-            'description'   => 'All core features of Kanka are free with no artificial limitations, with :bonuses for :patreon supporters.',
+            'description'   => 'All core features of Kanka are absolutely free, with :bonuses for :patreon supporters.',
             'title'         => 'Free to Use',
         ],
         'landscape'         => 'Please switch your device to landscape mode to display the list of features.',
@@ -90,7 +95,7 @@ return [
             'boosts'            => 'Campaign Boosters',
             'curation'          => 'Help curate the Patreon vote list',
             'default_image'     => 'Nice default images for entities',
-            'description'       => 'Supporting Kanka on Patreon unlocks the following benefits for an account.',
+            'description'       => 'Supporting Kanka with a small monthly fee allows us to keep working on Kanka and unlocks the following benefits for an account.',
             'discord'           => 'Private Discord channel',
             'free'              => 'Free',
             'hall_of_fame'      => 'Name in the :link',
@@ -109,15 +114,15 @@ return [
             'description'   => 'Every entity can have a complex web of relations with other entities, including secret relations invisible to your players.',
             'title'         => 'Relations',
         ],
-        'title'             => 'Unlimited Features, Unlimited Fun',
+        'title'             => 'Powerful features with incredible flexibility',
         'updates'           => [
             'description'   => 'Kanka goes through frequent updates that are submitted by the community.',
             'title'         => 'Frequent Updates',
         ],
     ],
     'first_block'   => [
-        'description'   => 'Our app is available on any mobile device and browser! No need to install anything, it\'s all in your browser. Best of all, it\'s completely free!',
-        'title'         => 'A new way to keep track of your campaigns.',
+        'description'   => 'Kanka is available on any mobile device and browser. There is no need to install anything, and you always have the latest version with new features and bug fixes. Forget about loosing track of your notes scattered across paper and other digital tools, in Kanka everything is in one place and easy to find.',
+        'title'         => 'A novel way to keep track of your worlds and campaigns.',
     ],
     'footer'        => [
         'app'       => 'App',
@@ -135,7 +140,7 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Register now, it\'s free!',
-        'description'       => 'Kanka is an easy and flexible tool to worldbuild and manage your RPG campaign online. Create and organize people, places, organisations, events and much more.',
+        'description'       => 'Kanka is an easy to use and flexible tool for worldbuilders, authors, story tellers and RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more.',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -151,6 +156,8 @@ return [
         'help'      => 'Help',
         'home'      => 'Home',
         'login'     => 'Login',
+        'news'      => 'News',
+        'pricing'   => 'Pricing',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Register',
         'releases'  => 'Releases',
@@ -170,6 +177,24 @@ return [
         'description'   => 'Effective date: May 25th, 2018',
         'title'         => 'Privacy Policy',
     ],
+    'pricing' => [
+        'title' => 'Pricing Overview',
+        'description' => 'While all core features are free, supporting Kanka helps us keep improving the application for all users.',
+        'actions' => [
+            'support' => 'Support',
+        ],
+        'tier' => [
+            'month' => 'Month',
+            'free' => 'Free',
+        ],
+        'benefits' => [
+            'unlimited' => 'Unlimited campaigns, unlimited uploads',
+            'core' => 'Access to all core features',
+            'updates' => 'Get all updates at the same time as everyone else',
+            'higher_uploads' => 'Higher file upload sizes',
+            'boosters' => 'Campaign Boosters',
+        ]
+    ],
     'release'       => [
         'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',
         'title'         => 'Releases',
@@ -187,8 +212,8 @@ return [
         'title'         => 'Roadmap',
     ],
     'second_block'  => [
-        'call_to_action'    => 'Let\'s Get Started!',
-        'title'             => 'Stop waiting.<br />Start building.',
+        'call_to_action'    => 'Register a free account!',
+        'title'             => 'Spend more time worldbuilding.',
     ],
     'team'          => [
         'coffee'    => 'Buy me a coffee!',

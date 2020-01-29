@@ -2,10 +2,6 @@
 /** @var \App\Models\Campaign $camp */
 ?>@extends('layouts.front', [
     'title' => trans('front.menu.campaigns'),
-    'menus' => [
-        'campaigns',
-    ],
-    'menu_js' => false,
 ])
 @section('content')
 

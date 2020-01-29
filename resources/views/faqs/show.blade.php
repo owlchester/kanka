@@ -12,7 +12,7 @@
         <div class="container">
             <h2>{!! __("faq.$key.question", [
                 'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
-                'discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])
+                'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])
             ]) !!}</h2>
 
             {{--<p class="text-muted">--}}

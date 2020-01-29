@@ -1,22 +1,61 @@
 // This is kind of a mess, since the plugin uses bootstrap 4.0.0, but adminlte still uses the previous bootstrap.
 // will have to reevaluate when adminlte supports b-4.0.0
 
+$KankaBlue: #2828A1;
+$KankaDarkBlue: #0D0D65;
+$KankaGrey: #EDEDED;
+
 @import "~simple-line-icons/scss/simple-line-icons";
 body {
   background-color: #222;
 }
 header.masthead {
-  background: linear-gradient(to left, #2e8893,#0E2231) !important;
+  background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
 }
 header.reduced-masthead {
   min-height: 375px;
-  height: 50vh;
+  height: 40vh;
+  padding-top: 40px;
 }
 .bg-primary {
-  background: linear-gradient(#FFF0BC, #FFF0BC) !important;
+  background: linear-gradient(#FFFFFF, $KankaGrey) !important;
 }
-#mainNav .navbar-brand {
-  color: #73a6c0 !important;
+#mainNav {
+  top: 34px;
+  .navbar-brand {
+    color: #73a6c0 !important;
+    font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+  }
+}
+
+.topbar {
+  display: block;
+  position: fixed;
+  z-index: 1030;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: $KankaGrey;
+  text-align: right;
+  padding: 5px 25px;
+  height: 36px;
+
+  .topbar-list {
+    list-style-type: none;
+    margin-bottom: 0;
+    li {
+      display: inline-block;
+      margin: 0px 10px;
+      line-height: 12px;
+      a {
+        color: $KankaBlue;
+      }
+    }
+
+    .login {
+      margin-right: 15px;
+    }
+  }
 }
 
 @font-face {
@@ -31,10 +70,15 @@ header.reduced-masthead {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
 }
-#mainNav .navbar-brand {
-  font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
-}
 
+section.contact-us {
+  p {
+    font-size: 24px;
+  }
+  a {
+    margin: 0 10px;
+  }
+}
 section.contact ul.list-social li.social-discord a{
   background-color:#7289da;
 
@@ -163,6 +207,16 @@ footer {
   padding-top: 50px;
 }
 
+h4 {
+  a {
+    font-size: 28px;
+  }
+}
+
+h2 {
+  font-size: 44px !important;
+}
+
 ul.pagination {
   li {
     a {
@@ -260,6 +314,63 @@ ul.pagination {
   padding: 15px;
 }
 
+
+.pricing .card {
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}.pricing hr {
+   margin: 1.5rem 0;
+ }
+
+.pricing .card-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+}
+
+.pricing .card-price {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.pricing .card-price .period {
+  font-size: 0.8rem;
+}
+
+.pricing ul li {
+  margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+  opacity: 0.7;
+}
+
+.pricing .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .pricing .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+  .pricing .card:hover .btn {
+    opacity: 1;
+  }
+}
+
 @media screen and (orientation:portrait) {
   .minimal-padding {
     table {
@@ -277,6 +388,28 @@ ul.pagination {
     }
     .landscape-helper {
       display: none;
+    }
+  }
+}
+
+@media (max-width:991px) {
+  .topbar {
+    padding: 0 15px;
+
+
+    .container {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .topbar-list {
+      li {
+        margin: 0px 6px;
+      }
+
+      .login {
+        margin-right: 5px;
+      }
     }
   }
 }

@@ -50,7 +50,7 @@
                     <label>{{ __('campaigns.fields.system') }}</label>
                     {!! Form::text('system', null, ['placeholder' => __('campaigns.placeholders.system'), 'class' => 'form-control']) !!}
                     <p class="help-block">{!! __('campaigns.helpers.system', [
-                        'link' => link_to_route('public_campaigns', __('front.menu.campaigns'), ['target' => '_blank'])
+                        'link' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), ['target' => '_blank'])
                     ]) !!}</p>
                 </div>
             </div>

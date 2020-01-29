@@ -30,7 +30,7 @@
                         <li>{{ __('settings.boost.benefits.tooltip') }}</li>
                         <li>{{ __('settings.boost.benefits.header') }}</li>
                         <li>{{ __('settings.boost.benefits.upload') }}</li>
-                        <li><a href="{{ route('features', '#boost') }}">
+                        <li><a href="{{ route('front.features', '#boost') }}">
                             {{ __('settings.boost.benefits.more') }}
                             </a></li>
                     </ul>

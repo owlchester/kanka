@@ -56,7 +56,7 @@
                     <p class="mb-5">{{ trans('errors.' . $error . '.body') }}</p>
                     @endif
 
-                    <p>{!! trans('errors.footer', ['discord' => link_to(config('discord.url'), 'Discord')]) !!}</p>
+                    <p>{!! trans('errors.footer', ['discord' => link_to(config('social.discord'), 'Discord')]) !!}</p>
 
                     <p><a href="/">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>.</p>
                 </div>

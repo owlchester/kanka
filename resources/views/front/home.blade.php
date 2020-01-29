@@ -1,6 +1,9 @@
 @extends('layouts.front', [
     'menus' => [
         'features',
+        'pricing',
+        'about',
+        'news',
         'contact'
     ]
 ])
@@ -13,6 +16,19 @@
                 <div class="col-md-8 mx-auto">
                     <h2 class="section-heading">{{ trans('front.first_block.title') }}</h2>
                     <p>{{ trans('front.first_block.description') }}</p>
+                </div>
+            </div>
+            <div class="device-container">
+                <div class="device-mockup iphone6_plus portrait white">
+                    <div class="device">
+                        <div class="screen">
+                            <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                            <img src="/images/front/dashboard.png" class="img-fluid" alt="{{ config('app.name') }} dashboard">
+                        </div>
+                        <div class="button">
+                            <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,7 +80,10 @@
                                 <div class="feature-item">
                                     <i class="icon-present text-primary"></i>
                                     <h3>{{ trans('front.features.free.title') }}</h3>
-                                    <p class="text-muted">{{ trans('front.features.free.description') }}</p>
+                                    <p class="text-muted">{!! trans('front.features.free.description', [
+                                                'bonuses' => link_to(route('front.features', '#patreon'), __('front.features.free.bonuses')),
+                                                'patreon' => link_to(config('patreon.url'), 'Patreon', ['rel' => 'nofollow', 'target' => '_blank'])
+                                            ]) !!}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -80,7 +99,9 @@
             </div>
             <div class="text-center">
                 <h4>
-                    <a href="{{ route('features') }}">{{ trans('front.features.learn_more') }}</a>
+                    <a href="{{ route('front.features') }}">{{ trans('front.features.learn_more') }}
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
                 </h4>
             </div>
         </div>
@@ -96,23 +117,5 @@
             </div>
         </div>
         <div class="overlay"></div>
-    </section>
-
-    <section class="contact bg-primary" id="contact">
-        <div class="container">
-            <h2>{!! trans('front.contact.title', ['icon' => '<i class="fa fa-heart"></i>']) !!}</h2>
-            <ul class="list-inline list-social">
-                <li class="list-inline-item social-google-plus">
-                    <a href="https://reddit.com/r/kanka" title="Reddit" rel="noreferrer" target="_blank">
-                        <i class="fab fa-reddit"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item social-discord">
-                    <a href="{{ config('discord.url') }}" title="Discord">
-                        <img src="/images/thirdparty/discord-logo-white.png" alt="Discord" rel="noreferrer" target="_blank">
-                    </a>
-                </li>
-            </ul>
-        </div>
     </section>
 @endsection

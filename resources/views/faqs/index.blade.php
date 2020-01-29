@@ -68,7 +68,7 @@
                             <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
                         </h4>
                         <p class="text-muted">{!! nl2br(__('faq.help.answer', [
-                            'discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])
+                            'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])
                         ])) !!}</p>
                     </div>
                     <div class="col-md-6">

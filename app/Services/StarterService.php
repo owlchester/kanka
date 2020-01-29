@@ -97,7 +97,7 @@ class StarterService
         $entry = nl2br(__('starter.note1.entry', [
             'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
             'faq' => link_to_route('faq.index', __('front.faq.title')),
-            'discord' => link_to(config('discord.url'), 'Discord'),
+            'discord' => link_to(config('social.discord'), 'Discord'),
             'public' => link_to_route('public_campaigns', __('front.menu.campaigns')),
             'patreon' => link_to(config('patreon.url'), 'Patreon'),
         ]));

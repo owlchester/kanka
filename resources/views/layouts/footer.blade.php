@@ -17,22 +17,22 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ config('discord.url') }}" target="discord" title="Discord" rel="noreferrer">
+                        <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
                             <i class="fab fa-discord"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="//www.facebook.com/kanka.io.ch" target="facebook" title="Facebook" rel="noreferrer">
+                        <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="//www.instagram.com/kanka.io/" target="instagram" title="Instagram" rel="noreferrer">
+                        <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="//reddit.com/r/kanka" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
+                        <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
                     </li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@
                         <a href="{{ route('home') }}">{{ trans('front.menu.home') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
+                        <a href="{{ route('front.public_campaigns') }}">{{ trans('front.menu.campaigns') }}</a>
                     </li>
                 </ul>
             </div>
@@ -53,16 +53,16 @@
                 <h4>{{ __('front.footer.resources') }}</h4>
                 <ul>
                     <li>
-                        <a href="{{ route('community') }}">{{ trans('front.menu.community') }}</a>
+                        <a href="{{ route('front.community') }}">{{ trans('front.menu.community') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('faq.index') }}">{{ trans('front.menu.faq') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('help') }}">{{ trans('front.menu.help') }}</a>
+                        <a href="{{ route('front.help') }}">{{ trans('front.menu.help') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('privacy') }}">{{ trans('front.menu.privacy') }}</a>
+                        <a href="{{ route('front.privacy') }}">{{ trans('front.menu.privacy') }}</a>
                     </li>
                 </ul>
             </div>
@@ -70,13 +70,13 @@
                 <h4>{{ __('front.footer.app') }}</h4>
                 <ul>
                     <li>
-                        <a href="{{ route('about') }}">{{ trans('front.menu.about') }}</a>
+                        <a href="{{ route('front.about') }}">{{ trans('front.menu.about') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('releases.index') }}">{{ trans('front.menu.releases') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
+                        <a href="{{ route('front.roadmap') }}">{{ trans('front.menu.roadmap') }}</a>
                     </li>
                     <li>
                         <a href="/docs/1.0">{{ trans('front.menu.api') }}</a>
