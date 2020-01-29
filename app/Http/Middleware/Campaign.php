@@ -30,7 +30,7 @@ class Campaign
             abort(404);
         }
 
-        $campaign = CampaignModel::findOrFail($campaignId);
+        $campaign = CampaignModel::findOrFail((int) $campaignId);
 
         // If we are impersonating someone
         if (Auth::check() && Identity::isImpersonating()) {
