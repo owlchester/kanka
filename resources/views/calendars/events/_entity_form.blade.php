@@ -22,7 +22,7 @@ $onlyOneCalendar = count($calendars) == 1;
     @include('calendars.events._subform')
 </div>
 
-<div id="entity-calendar-loading" style="display: none">
+<div class="entity-calendar-loading" style="display: none">
     <p class="text-center">
         <i class="fa fa-spin fa-spinner"></i>
     </p>

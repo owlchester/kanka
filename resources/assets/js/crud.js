@@ -369,7 +369,7 @@ function registerEntityCalendarForm()
     entityCalendarYearField = $('input[name="calendar_year"]');
     entityCalendarMonthField = $('select[name="calendar_month"]');
     entityCalendarDayField = $('input[name="calendar_day"]');
-    entityCalendarLoading = $('#entity-calendar-loading');
+    entityCalendarLoading = $('.entity-calendar-loading');
 
     if (entityCalendarAdd.length === 1) {
         entityCalendarAdd.on('click', function (e) {
@@ -429,7 +429,7 @@ function registerEntityCalendarModal()
     entityCalendarYearField = $('input[name="year"]');
     entityCalendarMonthField = $('select[name="month"]');
     entityCalendarDayField = $('input[name="day"]');
-    entityCalendarLoading = $('#entity-calendar-loading');
+    entityCalendarLoading = $('.entity-calendar-loading');
     entityCalendarSubForm = $('.entity-calendar-subform');
 
     entityCalendarField.on('change', function () {
