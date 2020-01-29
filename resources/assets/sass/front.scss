@@ -2,7 +2,7 @@
 // will have to reevaluate when adminlte supports b-4.0.0
 
 $KankaBlue: #2828A1;
-$KankaDarkBlue: #0D0D65;
+$KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
 
 @import "~simple-line-icons/scss/simple-line-icons";
@@ -101,9 +101,10 @@ hr {
 }
 
 footer {
-  padding-top: 90px;
+  padding-top: 40px;
   padding-bottom: 30px;
   text-align: left;
+  background-color: $KankaDarkBlue;
 
   ul {
     list-style-type: none;
@@ -112,10 +113,12 @@ footer {
     li {
       padding: 0;
       display: block;
-      margin: 12px 0;
+      margin: 2px 0;
       a {
-        padding: 5px 15px;
+        padding: 2px 12px;
+        display: block;
         font-size: 16px !important;
+        width: 100%;
       }
     }
   }
@@ -123,21 +126,17 @@ footer {
     margin: 0 15px 10px;
     font-size: 20px;
     font-weight: 700;
+    color: #ddd;
   }
 
 
   p {
-    padding: 15px 25px;
-    font-size: 16px !important;
     &:hover {
       color: #eee;
     }
   }
-  p.first {
-    margin-top: -15px;
-  }
 
-  p, a {
+  p, a, span {
     border-radius: 4px;
     &:hover {
       transition: all 0.2s ease;
@@ -147,12 +146,28 @@ footer {
   }
 
   .footer-social {
+    text-align: center;
     a {
-      font-size: 20px !important;
+      font-size: 28px !important;
+      margin: 0 3px;
+      color: #ccc;
       &:hover {
         background: none;
         color: #c09853;
       }
+    }
+  }
+
+  .footer-main {
+    color: #ccc;
+    span {
+      padding: 15px 25px;
+      font-size: 16px !important;
+      display: block;
+    }
+
+    .first {
+      margin-top: -15px;
     }
   }
 }
@@ -315,30 +330,35 @@ ul.pagination {
   padding: 15px;
 }
 
+.pricing {
+  margin-bottom: 25px;
 
-.pricing .card {
-  border: none;
-  border-radius: 1rem;
-  transition: all 0.2s;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}.pricing hr {
-   margin: 1.5rem 0;
- }
+  .card {
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  }
 
-.pricing .card-title {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-  letter-spacing: .1rem;
-  font-weight: bold;
-}
+  hr {
+    margin: 1.5rem 0;
+  }
 
-.pricing .card-price {
-  font-size: 3rem;
-  margin: 0;
-}
+  .card-title {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+  }
 
-.pricing .card-price .period {
-  font-size: 0.8rem;
+  .card-price {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  .card-price .period {
+    font-size: 0.8rem;
+  }
 }
 
 .pricing ul li {

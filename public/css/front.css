@@ -970,7 +970,7 @@ body {
 }
 
 header.masthead {
-  background: linear-gradient(to left, #3f44a1, #0D0D65) !important;
+  background: linear-gradient(to left, #3f44a1, #08083c) !important;
 }
 
 header.reduced-masthead {
@@ -1073,9 +1073,10 @@ hr {
 }
 
 footer {
-  padding-top: 90px;
+  padding-top: 40px;
   padding-bottom: 30px;
   text-align: left;
+  background-color: #08083c;
 }
 
 footer ul {
@@ -1087,52 +1088,68 @@ footer ul {
 footer ul li {
   padding: 0;
   display: block;
-  margin: 12px 0;
+  margin: 2px 0;
 }
 
 footer ul li a {
-  padding: 5px 15px;
+  padding: 2px 12px;
+  display: block;
   font-size: 16px !important;
+  width: 100%;
 }
 
 footer h4 {
   margin: 0 15px 10px;
   font-size: 20px;
   font-weight: 700;
-}
-
-footer p {
-  padding: 15px 25px;
-  font-size: 16px !important;
+  color: #ddd;
 }
 
 footer p:hover {
   color: #eee;
 }
 
-footer p.first {
-  margin-top: -15px;
-}
-
 footer p,
-footer a {
+footer a,
+footer span {
   border-radius: 4px;
 }
 
 footer p:hover,
-footer a:hover {
+footer a:hover,
+footer span:hover {
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.4);
   text-decoration: none;
 }
 
+footer .footer-social {
+  text-align: center;
+}
+
 footer .footer-social a {
-  font-size: 20px !important;
+  font-size: 28px !important;
+  margin: 0 3px;
+  color: #ccc;
 }
 
 footer .footer-social a:hover {
   background: none;
   color: #c09853;
+}
+
+footer .footer-main {
+  color: #ccc;
+}
+
+footer .footer-main span {
+  padding: 15px 25px;
+  font-size: 16px !important;
+  display: block;
+}
+
+footer .footer-main .first {
+  margin-top: -15px;
 }
 
 .campaign {
@@ -1293,6 +1310,10 @@ ul.pagination li span {
   border: 1px solid #dc2430;
   border-radius: 10px;
   padding: 15px;
+}
+
+.pricing {
+  margin-bottom: 25px;
 }
 
 .pricing .card {

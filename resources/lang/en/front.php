@@ -93,14 +93,14 @@ return [
         'patreon'           => [
             'api_calls'         => 'Increased API calls (90)',
             'boosts'            => 'Campaign Boosters',
-            'curation'          => 'Help curate the Patreon vote list',
+            'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Nice default images for entities',
             'description'       => 'Supporting Kanka with a small monthly fee allows us to keep working on Kanka and unlocks the following benefits for an account.',
             'discord'           => 'Private Discord channel',
             'free'              => 'Free',
             'hall_of_fame'      => 'Name in the :link',
             'impact'            => 'Impact future features',
-            'monthly_vote'      => 'Participation in the frequent feature vote',
+            'monthly_vote'      => 'Participation in the community feature vote',
             'pagination'        => 'Increased pagination results (100)',
             'title'             => 'Patreon Support',
             'upload_limit'      => 'Increased upload sizes (8mb)',
@@ -182,6 +182,7 @@ return [
         'description' => 'While all core features are free, supporting Kanka helps us keep improving the application for all users.',
         'actions' => [
             'support' => 'Support',
+            'more' => 'Learn more about all the features unlocked by supporting Kanka'
         ],
         'tier' => [
             'month' => 'Month',
@@ -190,10 +191,10 @@ return [
         'benefits' => [
             'unlimited' => 'Unlimited campaigns, unlimited uploads',
             'core' => 'Access to all core features',
-            'updates' => 'Get all updates at the same time as everyone else',
+            'updates' => 'Frequent updates and improvements',
             'higher_uploads' => 'Higher file upload sizes',
             'boosters' => 'Campaign Boosters',
-        ]
+        ],
     ],
     'release'       => [
         'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',

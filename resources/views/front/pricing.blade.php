@@ -30,8 +30,8 @@
                     <div class="col-lg-4 ">
                         <div class="card mb-5 mb-lg-0">
                             <div class="card-body">
-                                <h5 class="card-title text-muted text-uppercase text-center">{{ __('front.pricing.tier.free') }}</h5>
-                                <h6 class="card-price text-center">$0<span class="period">/{{ __('front.pricing.tier.month') }}</span></h6>
+                                <h5 class="card-title text-muted text-uppercase text-center">Kobold</h5>
+                                <h6 class="card-price text-center">{{ __('front.pricing.tier.free') }}</h6>
                                 <hr>
                                 <ul class="fa-ul">
                                     <li>
@@ -131,6 +131,10 @@
                         </div>
                     </div>
                 </div>
+
+                <a href="{{ route('front.features') }}" class="lead">
+                    {{ __('front.pricing.actions.more') }} <i class="fa fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>

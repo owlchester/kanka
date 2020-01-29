@@ -348,7 +348,13 @@ class User extends \TCG\Voyager\Models\User
         $campaign = CampaignLocalization::getCampaign();
         if ($this->isPatron() || ($campaign && $campaign->boosted())) {
             if ($what == 'map') {
+                if ($this->isElementalPatreon()) {
+                    return $readable ? '25MB' : 25600;
+                }
                 return $readable ? '10MB' : 10240;
+            }
+            if ($this->isElementalPatreon()) {
+                return $readable ? '25MB' : 25600;
             }
             return $readable ? '8MB' : 8192;
         }
@@ -367,12 +373,20 @@ class User extends \TCG\Voyager\Models\User
     /**
      * @return bool
      */
-    public function isGoblinPatron()
+    public function isGoblinPatron(): bool
     {
         return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
                 && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
            || $this->hasRole('admin')
         ;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isElementalPatreon(): bool
+    {
+        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL;
     }
 
 
@@ -421,7 +435,7 @@ class User extends \TCG\Voyager\Models\User
             Patreon::PLEDGE_KOBOLD => 0,
             Patreon::PLEDGE_GOBLIN => 1,
             Patreon::PLEDGE_OWLBEAR => 3,
-            Patreon::PLEDGE_ELEMENTAL => 5,
+            Patreon::PLEDGE_ELEMENTAL => 10,
         ];
 
         // Default 3 for admins and owlbears
