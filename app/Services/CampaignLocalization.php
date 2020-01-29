@@ -102,8 +102,6 @@ class CampaignLocalization
 
     /**
      * Creates new instance.
-     *
-     * @throws UnsupportedLocaleException
      */
     public function __construct()
     {
@@ -164,6 +162,10 @@ class CampaignLocalization
             $this->campaign = null;
             if (is_numeric($this->campaignId)) {
                 $this->campaign = Campaign::find((int) $this->campaignId);
+                // If we're looking for a campaign that doesn't exist, just 404
+                if (empty($this->campaign)) {
+                    abort(404);
+                }
             }
         }
         return $this->campaign;
@@ -180,7 +182,8 @@ class CampaignLocalization
 
     /**
      * Get the url of the campaign
-     * @param $campaignId
+     * @param int $campaignId
+     * @param string $with = null
      * @return string
      */
     public function getUrl($campaignId, $with = null)
