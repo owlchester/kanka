@@ -205,7 +205,7 @@ return [
             'description'   => 'This Trello board contains all the requested features that have been submitted by the community, as well as all the planned features and improvements that will one day make it to the app.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Our amazing Patrons vote once a month on what features will be worked on, so while we don\'t have a multi-month roadmap, it is easy to follow what has been requested and what is being currently worked on.',
+        'description'   => 'Our community votes shape the work that is being done on Kanka, so while we don\'t have a multi-month roadmap, it is easy to follow what has been requested and what is being currently worked on.',
         'next'          => [
             'description'   => 'This Trello board contains all the features and improvements that are currently being worked on.',
             'title'         => 'Next',
