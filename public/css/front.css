@@ -977,7 +977,11 @@ header.reduced-masthead {
   min-height: 325px;
   height: unset;
   padding-bottom: 20px;
-  padding-top: 90px;
+  padding-top: 60px;
+}
+
+header.reduced-masthead .header-content {
+  margin-top: 40px;
 }
 
 .bg-primary {
@@ -991,6 +995,12 @@ header.reduced-masthead {
 #mainNav .navbar-brand {
   color: #73a6c0 !important;
   font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
+}
+
+#mainNav .nav-active,
+#mainNav .nav-link:hover {
+  transition: all 0.2s ease-in-out;
+  text-decoration: underline;
 }
 
 .topbar {
@@ -1099,23 +1109,17 @@ footer ul li a {
 }
 
 footer h4 {
-  margin: 0 15px 10px;
+  margin: 0 12px 10px;
   font-size: 20px;
   font-weight: 700;
   color: #ddd;
 }
 
-footer p:hover {
-  color: #eee;
-}
-
-footer p,
 footer a,
 footer span {
   border-radius: 4px;
 }
 
-footer p:hover,
 footer a:hover,
 footer span:hover {
   transition: all 0.2s ease;
@@ -1138,18 +1142,22 @@ footer .footer-social a:hover {
   color: #c09853;
 }
 
-footer .footer-main {
-  color: #ccc;
+footer .footer-social .email {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding: 15px 25px;
 }
 
-footer .footer-main span {
-  padding: 15px 25px;
-  font-size: 16px !important;
+footer .footer-social .email:hover {
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
   display: block;
 }
 
-footer .footer-main .first {
-  margin-top: -15px;
+footer .copyright {
+  margin-top: 20px;
+  font-size: 12px;
 }
 
 .campaign {
@@ -1312,6 +1320,32 @@ ul.pagination li span {
   padding: 15px;
 }
 
+.team .card {
+  height: 100%;
+}
+
+.team .card .card-body {
+  padding-bottom: 40px;
+}
+
+.card .pull-bottom {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 20px;
+}
+
+.card .card-image {
+  margin-top: -75px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .pricing {
   margin-bottom: 25px;
 }
@@ -1359,6 +1393,14 @@ ul.pagination li span {
   padding: 1rem;
   opacity: 0.7;
   transition: all 0.2s;
+}
+
+.pricing a.feature {
+  text-decoration: underline;
+}
+
+.patreons .card {
+  margin-top: 4em;
 }
 
 /* Hover Effects on Card */

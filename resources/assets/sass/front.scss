@@ -16,7 +16,10 @@ header.reduced-masthead {
   min-height: 325px;
   height: unset;
   padding-bottom: 20px;
-  padding-top: 90px;
+  padding-top: 60px;
+  .header-content {
+    margin-top: 40px;
+  }
 }
 .bg-primary {
   background: linear-gradient(#FFFFFF, $KankaGrey) !important;
@@ -26,6 +29,10 @@ header.reduced-masthead {
   .navbar-brand {
     color: #73a6c0 !important;
     font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+  }
+  .nav-active, .nav-link:hover {
+    transition: all 0.2s ease-in-out;
+    text-decoration: underline;
   }
 }
 
@@ -123,20 +130,13 @@ footer {
     }
   }
   h4 {
-    margin: 0 15px 10px;
+    margin: 0 12px 10px;
     font-size: 20px;
     font-weight: 700;
     color: #ddd;
   }
 
-
-  p {
-    &:hover {
-      color: #eee;
-    }
-  }
-
-  p, a, span {
+  a, span {
     border-radius: 4px;
     &:hover {
       transition: all 0.2s ease;
@@ -156,19 +156,23 @@ footer {
         color: #c09853;
       }
     }
+
+    .email {
+      margin-bottom: 20px;
+      border-radius: 4px;
+      padding: 15px 25px;
+      &:hover {
+        transition: all 0.2s ease;
+        background: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        display: block;
+      }
+    }
   }
 
-  .footer-main {
-    color: #ccc;
-    span {
-      padding: 15px 25px;
-      font-size: 16px !important;
-      display: block;
-    }
-
-    .first {
-      margin-top: -15px;
-    }
+  .copyright {
+    margin-top: 20px;
+    font-size: 12px;
   }
 }
 
@@ -330,6 +334,34 @@ ul.pagination {
   padding: 15px;
 }
 
+.team {
+  .card {
+    height: 100%;
+    .card-body {
+      padding-bottom: 40px;
+    }
+  }
+}
+
+.card {
+  .pull-bottom {
+    margin-top: 10px;
+    position:absolute;
+    bottom:20px;
+  }
+
+  .card-image {
+    margin-top: -75px;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
 .pricing {
   margin-bottom: 25px;
 
@@ -343,6 +375,7 @@ ul.pagination {
   hr {
     margin: 1.5rem 0;
   }
+
 
   .card-title {
     margin: 0.5rem 0;
@@ -359,24 +392,32 @@ ul.pagination {
   .card-price .period {
     font-size: 0.8rem;
   }
+
+  ul li {
+    margin-bottom: 1rem;
+  }
+  .text-muted {
+    opacity: 0.7;
+  }
+  .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    opacity: 0.7;
+    transition: all 0.2s;
+  }
+
+  a.feature {
+    text-decoration: underline;
+  }
 }
 
-.pricing ul li {
-  margin-bottom: 1rem;
-}
-
-.pricing .text-muted {
-  opacity: 0.7;
-}
-
-.pricing .btn {
-  font-size: 80%;
-  border-radius: 5rem;
-  letter-spacing: .1rem;
-  font-weight: bold;
-  padding: 1rem;
-  opacity: 0.7;
-  transition: all 0.2s;
+.patreons {
+  .card {
+    margin-top: 4em;
+  }
 }
 
 /* Hover Effects on Card */

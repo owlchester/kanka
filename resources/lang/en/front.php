@@ -2,7 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka was born out of the desire of two passionnate RPG players to build and manage a world together in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way we wanted, we set out to build our own tool during the fall of 2017.',
+        'description'   => 'Kanka was born out of the desire of a passionnate RPG player wanting to build and manage a world with their players in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way that was wanted, development on Kanka started in the fall of 2017.',
         'title'         => 'About',
     ],
     'campaigns'     => [
@@ -179,7 +179,7 @@ return [
     ],
     'pricing' => [
         'title' => 'Pricing Overview',
-        'description' => 'While all core features are free, supporting Kanka helps us keep improving the application for all users.',
+        'description' => 'While all core features are free, supporting Kanka helps us deliver frequent updates and improvements for all users.',
         'actions' => [
             'support' => 'Support',
             'more' => 'Learn more about all the features unlocked by supporting Kanka'

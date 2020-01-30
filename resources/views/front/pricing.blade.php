@@ -1,19 +1,16 @@
 @extends('layouts.front', [
-    'title' => trans('front.menu.pricing'),
+    'title' => __('front.menu.pricing'),
+    'active' => 'pricing'
 ])
 @section('content')
 
-    <header class="masthead reduced-masthead" id="about">
+    <header class="masthead reduced-masthead" id="pricing-head">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front.pricing.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.pricing.description') }}</p>
-
-                        <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
-                            {{ trans('front.master.call_to_action') }}
-                        </a>
+                        <h1 class="mb-5">{{ __('front.pricing.title') }}</h1>
+                        <p class="mb-5">{{ __('front.pricing.description') }}</p>
                     </div>
                 </div>
             </div>
@@ -23,13 +20,14 @@
     <section class="features" id="pricing">
         <div class="container">
             <div class="section-body">
-{{--                <h1>{{ trans('front.pricing.index.title') }}</h1>--}}
-{{--                <p class="text-muted">{{ trans('front.index.description') }}</p>--}}
+{{--                <h1>{{ __('front.pricing.index.title') }}</h1>--}}
+{{--                <p class="text-muted">{{ __('front.index.description') }}</p>--}}
 
                 <div class="row pricing">
                     <div class="col-lg-4 ">
                         <div class="card mb-5 mb-lg-0">
                             <div class="card-body">
+                                <div class="card-image" style="background-image: url(/images/tiers/kobold.png);"></div>
                                 <h5 class="card-title text-muted text-uppercase text-center">Kobold</h5>
                                 <h6 class="card-price text-center">{{ __('front.pricing.tier.free') }}</h6>
                                 <hr>
@@ -62,13 +60,16 @@
                     <div class="col-lg-4 ">
                         <div class="card mb-5 mb-lg-0">
                             <div class="card-body">
+                                <div class="card-image" style="background-image: url(/images/tiers/owlbear.png);"></div>
                                 <h5 class="card-title text-muted text-uppercase text-center">Owlbear</h5>
                                 <h6 class="card-price text-center">$5<span class="period">/{{ __('front.pricing.tier.month') }}</span></h6>
                                 <hr>
                                 <ul class="fa-ul">
                                     <li>
                                         <span class="fa-li"><i class="fas fa-check"></i></span>
-                                        <strong> 3 {{ __('front.pricing.benefits.boosters') }}</strong>
+                                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                                            <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
+                                        </a>
                                     </li>
                                     <li>
                                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.higher_uploads') }} (8mb)
@@ -99,13 +100,16 @@
                     <div class="col-lg-4 ">
                         <div class="card mb-5 mb-lg-0">
                             <div class="card-body">
+                                <div class="card-image" style="background-image: url(/images/tiers/elemental.png);"></div>
                                 <h5 class="card-title text-muted text-uppercase text-center">Elementals</h5>
                                 <h6 class="card-price text-center">$25<span class="period">/{{ __('front.pricing.tier.month') }}</span></h6>
                                 <hr>
                                 <ul class="fa-ul">
                                     <li>
                                         <span class="fa-li"><i class="fas fa-check"></i></span>
-                                        <strong> 10 {{ __('front.pricing.benefits.boosters') }}</strong>
+                                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                                            <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
+                                        </a>
                                     </li>
                                     <li>
                                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.higher_uploads') }} (25mb)

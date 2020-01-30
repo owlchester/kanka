@@ -1,5 +1,6 @@
 @extends('layouts.front', [
     'title' => trans('front.menu.features'),
+    'active' => 'features',
 ])
 @section('content')
 

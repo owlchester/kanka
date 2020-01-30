@@ -98,7 +98,7 @@ $menus = [
             <ul class="navbar-nav ml-auto">
                 @foreach ($menus as $menu)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("front.$menu") }}">{{ __('front.menu.' . $menu) }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == $menu) nav-active @endif" href="{{ route("front.$menu") }}">{{ __('front.menu.' . $menu) }}</a>
                 </li>
                 @endforeach
 

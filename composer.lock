@@ -7147,23 +7147,23 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.2.7",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "015c517a1e52ee93a6f83a24a601f50cb0b92cf1"
+                "reference": "7739740269ec87303ccb139f8024e948f67f8e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/015c517a1e52ee93a6f83a24a601f50cb0b92cf1",
-                "reference": "015c517a1e52ee93a6f83a24a601f50cb0b92cf1",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/7739740269ec87303ccb139f8024e948f67f8e01",
+                "reference": "7739740269ec87303ccb139f8024e948f67f8e01",
                 "shasum": ""
             },
             "require": {
                 "arrilot/laravel-widgets": "^3.7",
                 "doctrine/dbal": "^2.5",
                 "ext-json": "*",
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.5|~6.0",
                 "intervention/image": "^2.4",
                 "larapack/doctrine-support": "~0.1.4",
                 "larapack/voyager-hooks": "~1.2.1",
@@ -7171,9 +7171,9 @@
             },
             "require-dev": {
                 "laravel/browser-kit-testing": "~2.0.0|~3.0.0|~4.0.0|~5.0.0|~5.1",
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "orchestra/testbench": "~3.0",
-                "orchestra/testbench-browser-kit": "~3.5|~3.6|~3.7|~3.8",
+                "laravel/framework": "~5.5|~6.0",
+                "orchestra/testbench": "~3.0|~4.0",
+                "orchestra/testbench-browser-kit": "~3.5|~3.6|~3.7|~3.8|~4.0.0",
                 "phpunit/phpcov": "~4.0|~5.0|~6.0",
                 "phpunit/phpunit": "~5.7.14|~6.1|~7.0|~8.0"
             },
@@ -7208,7 +7208,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2019-09-06T15:03:29+00:00"
+            "time": "2019-12-23T21:54:04+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

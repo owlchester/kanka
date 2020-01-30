@@ -2,8 +2,7 @@
 <?php $position = 0; ?>
 
 @extends('layouts.app', [
-    'title' => trans('dashboard.title') . ' ' . $campaign->name,
-    'description' => trans('dashboard.description'),
+    'title' => __('dashboard.title') . ' ' . $campaign->name,
     'breadcrumbs' => false,
     'canonical' => true,
 ])

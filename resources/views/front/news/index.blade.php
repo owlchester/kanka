@@ -1,6 +1,7 @@
 @extends('layouts.front', [
-    'title' => trans('front/news.index.title'),
-    'description' => trans('front/news.index.description'),
+    'title' => __('front/news.index.title'),
+    'description' => __('front/news.index.description'),
+    'active' => 'news'
 ])
 
 @section('content')
@@ -9,8 +10,8 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front/news.title') }}</h1>
-                        <p class="mb-5">{{ trans('front/news.description') }}</p>
+                        <h1 class="mb-5">{{ __('front/news.title') }}</h1>
+                        <p class="mb-5">{{ __('front/news.description') }}</p>
                     </div>
                 </div>
             </div>
@@ -19,23 +20,19 @@
 
     <section class="features" id="news">
         <div class="container">
-            @foreach ($models as $model)
-                <h4>
-                    <a href="{{ route('front.news.show', $model->getSlug()) }}">
-                        {{ $model->title }}
-                    </a>
-                </h4>
+            <div class="row">
+                <div class="col-3">
+                    @include('front.news._recent')
+                </div>
+                <div class="col-9">
+                    <?php /** @var \TCG\Voyager\Models\Post $model */ ?>
+                    @foreach ($models as $model)
+                        @include('front.news._article', ['preview' => true])
+                    @endforeach
 
-                <p class="text-muted">
-                    {{ trans('front/news.post.footer', ['date' => $model->updated_at->diffForHumans(), 'name' => $model->authorId->name]) }}
-                </p>
-                <p>
-                    {!! $model->excerpt !!}
-                </p>
-                <hr>
-            @endforeach
-
-            {{ $models->appends('order', request()->get('order'))->links() }}
+                    {{ $models->appends('order', request()->get('order'))->links() }}
+                </div>
+            </div>
         </div>
     </section>
 @endsection

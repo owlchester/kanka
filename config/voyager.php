@@ -13,7 +13,6 @@ return [
     'user' => [
         'add_default_role_on_register' => true,
         'default_role'                 => 'user',
-        'namespace'                    => App\User::class,
         'default_avatar'               => 'users/default.png',
     ],
 
@@ -66,7 +65,7 @@ return [
     */
 
     'storage' => [
-        'disk' => 'public',
+        'disk' => 's3-assets',
     ],
 
     /*
@@ -133,6 +132,8 @@ return [
          */
         'locales' => [
             'en',
+            'fr',
+            'de',
 //            'fr',
 //            'de',
 //            'es'
