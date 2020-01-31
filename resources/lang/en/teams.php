@@ -25,9 +25,9 @@ In early 2020 I took a leap of faith to work full time on Kanka thanks to the su
         ],
         'jon' => [
             'title' => 'Co-Founder & Business Manager',
-            'text' => 'I joined Jay and Kanka in early 2020 to help set up the business side of things and help him work full time on the project.
+            'text' => 'Jay and I have been friends for almost a decade, and it has been exciting to see him develop Kanka over the past couple years.
             
-I like big ass, lots and lots of ass.',
+Since early 2020, I have been helping by taking care of the business side of things, and I hope that we can continue to offer a unique tool that is useful for world-builders and players everywhere!',
         ],
         'ryan' => [
             'title' => 'Community Manager & Lead QA',
