@@ -21,81 +21,119 @@
     </header>
 
     <section class="features" id="faq">
-        <div class="container">
+        <div class="container"fr>
             <div class="section-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'free', 'slug' => Str::slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.free.answer', [
-                            'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
-                        ])) !!}</p>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'free', 'slug' => Str::slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
+                                </h5>
+                                <p class="card-text">
+                                    {!! nl2br(__('faq.free.answer', [
+                                        'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
+                                    ])) !!}
+                                </p>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => Str::slug(__('faq.multiworld.question'))]) }}">{{ __('faq.multiworld.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.multiworld.answer')) !!}</p>
-                        <hr>
+                                <a href="{{ route('front.pricing') }}">{{ __('front.pricing.actions.more') }}</a>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => Str::slug(__('faq.visibility.question'))]) }}">{{ __('faq.visibility.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.visibility.answer')) !!}</p>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => Str::slug(__('faq.multiworld.question'))]) }}">{{ __('faq.multiworld.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.multiworld.answer')) !!}</p>
+                            </div>
+                        </div>
 
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => Str::slug(__('faq.visibility.question'))]) }}">{{ __('faq.visibility.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.visibility.answer')) !!}</p>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'map', 'slug' => Str::slug(__('faq.map.question'))]) }}">{{ __('faq.map.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.map.answer')) !!}</p>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'map', 'slug' => Str::slug(__('faq.map.question'))]) }}">{{ __('faq.map.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.map.answer')) !!}</p>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">{{ __('faq.conversations.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.conversations.answer')) !!}</p>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">{{ __('faq.conversations.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.conversations.answer')) !!}</p>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => Str::slug(__('faq.entity-notes.question'))]) }}">{{ __('faq.entity-notes.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.entity-notes.answer')) !!}</p>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => Str::slug(__('faq.entity-notes.question'))]) }}">{{ __('faq.entity-notes.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.entity-notes.answer')) !!}</p>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.help.answer', [
-                            'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])
-                        ])) !!}</p>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.help.answer', [
+                                    'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])
+                                ])) !!}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => Str::slug(__('faq.permissions.question'))]) }}">{{ __('faq.permissions.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.permissions.answer')) !!}</p>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ikNPzNgjYmg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => Str::slug(__('faq.permissions.question'))]) }}">{{ __('faq.permissions.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.permissions.answer')) !!}</p>
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/ikNPzNgjYmg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">{{ __('faq.attribute-templates.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.attribute-templates.answer')) !!}</p>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/qKnTpuePqUA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">{{ __('faq.attribute-templates.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.attribute-templates.answer')) !!}</p>
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/qKnTpuePqUA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">{{ __('faq.mobile.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.mobile.answer')) !!}</p>
-                        <hr>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">{{ __('faq.mobile.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.mobile.answer')) !!}</p>
+                            </div>
+                        </div>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">{{ __('faq.plans.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.plans.answer')) !!}</p>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">{{ __('faq.plans.question') }}</a>
+                                </h5>
+                                <p class="card-text">{!! nl2br(__('faq.plans.answer')) !!}</p>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

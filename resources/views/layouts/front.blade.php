@@ -48,16 +48,16 @@ $menus = [
 <div class="topbar">
     <div class="container">
         <ul class="topbar-list">
-            <li class="login">
-                <a href="{{ route('login') }}">
-                    {{ __('front.menu.login') }}
-                </a>
-            </li>
             @auth
                 <li>
                     <a class="nav-link" href="{{ route('home') }}">{{ __('front.menu.dashboard') }}</a>
                 </li>
             @else
+                <li class="login">
+                    <a href="{{ route('login') }}">
+                        {{ __('front.menu.login') }}
+                    </a>
+                </li>
                 <li>
                     <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
                 </li>

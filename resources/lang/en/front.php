@@ -8,7 +8,7 @@ return [
     'campaigns'     => [
         'description_full'  => 'Many campaigns in Kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
         'featured'          => [
-            'description'   => 'Our community builds amazing things that we love to showcase as Featured Campaigns. We change this list fairly frequently so be sure to come back every now and then for more campaigns to check out.',
+            'description'   => 'Our community builds amazing things that we love to showcase as Featured Campaigns. Be sure to come back every now and then for more featured campaigns to check out.',
             'title'         => 'Featured Campaigns',
         ],
         'public'            => [
