@@ -23,7 +23,7 @@
                 <h1>{{ __('teams.index.title') }}</h1>
 
                 <div class="row">
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-4 col-sm-6 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="/images/team/jay.jpg" alt="Jay">
                             <div class="card-body">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-4 col-sm-6 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="/images/team/jon.jpg" alt="Jonathan">
                             <div class="card-body">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-4 col-sm-6 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="/images/team/ryan.jpg" alt="Ryan">
                             <div class="card-body">
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-lg-3 col-4">
+                    <div class="col-lg-3 col-sm-4 col-6 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="/images/team/iz.jpg" alt="Iz Groceman">
                             <div class="card-body">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-4">
+                    <div class="col-lg-3 col-sm-4 col-6 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="/images/team/joseph.jpg" alt="ChaosOS">
                             <div class="card-body">
@@ -85,8 +85,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="row mt-5">
+    <section class="translators bg-primary " id="translators">
+        <div class="container">
+            <div class="section-body">
+                <div class="row">
                     <div class="col-6 my-auto">
                         <h2>{{ __('teams.index.translations') }}</h2>
                         <p>
@@ -124,7 +130,6 @@
                     <a href="{{ config('patreon.url') }}" class="" target="_blank">{{ __('footer.patreon') }}</a>.
                     <a href="{{ route('front.features', ['#patreon']) }}">{{ __('teams.patreon.learn_more') }}</a>.
                 </p>
-
 
                 <div class="card">
                     <div class="card-body">
