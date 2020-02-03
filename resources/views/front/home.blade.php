@@ -107,6 +107,16 @@
         </div>
     </section>
 
+    <section id="pricing">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>{{ trans('front.pricing.title') }}</h2>
+                <p class="text-muted">{{ trans('front.pricing.description') }}</p>
+            </div>
+            @include('front._pricing')
+        </div>
+    </section>
+
     <section class="cta">
         <div class="cta-content">
             <div class="container">
