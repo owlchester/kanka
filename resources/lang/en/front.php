@@ -190,7 +190,7 @@ return [
             'free' => 'Free',
         ],
         'benefits' => [
-            'unlimited' => 'Unlimited campaigns, unlimited uploads',
+            'unlimited' => 'Unlimited campaigns & uploads',
             'core' => 'Access to all core features',
             'updates' => 'Frequent updates and improvements',
             'higher_uploads' => 'Higher file upload sizes',
