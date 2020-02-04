@@ -1346,6 +1346,10 @@ ul.pagination li span {
   margin-left: auto;
 }
 
+#pricing {
+  padding: 50px 0;
+}
+
 .pricing {
   margin-bottom: 25px;
 }

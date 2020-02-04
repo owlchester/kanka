@@ -11,8 +11,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6 my-auto">
-                <iframe style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;" src="https://www.youtube.com/embed/TUAMJf22XeM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="col-lg-6 text-center my-auto">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/TUAMJf22XeM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
