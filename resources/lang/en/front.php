@@ -2,7 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka was born out of the desire of a passionnate RPG player wanting to build and manage a world with their players in the summer of 2017. After trying out a few available options at the time, and concluding that none of them fit quite the way that was wanted, development on Kanka started in the fall of 2017.',
+        'description'   => 'Kanka was born in 2017 out of the desire of a passionate RPG player wanting to build and manage a world with his players. After trying out a few available options at the time and concluding that none of them fit quite right, development on Kanka started in the fall of 2017.',
         'title'         => 'About',
     ],
     'campaigns'     => [
@@ -28,7 +28,7 @@ return [
     ],
     'contact'       => [
         'description' => 'Need help, have a suggestion, or just want to share your love for Kanka? Our team will reply whatever the occasion!',
-        'email' => 'Send all inquieries to our email:',
+        'email' => 'Send all inquiries to our email:',
         'other' => 'Or contact us one of the following social media platforms:',
         'title' => 'We\'re here for you',
     ],
@@ -62,11 +62,11 @@ return [
             'title'         => 'Calendars',
         ],
         'collaborative'     => [
-            'description'   => 'Not alone? We\'ve got you covered! You can invite your friends and co-dungeon master to help you build your campaign together!',
+            'description'   => 'Not alone? We\'ve got you covered! You can invite your friends and co-dungeon master to help you build your campaign!',
             'title'         => 'Collaborative',
         ],
-        'description'       => 'Kanka has a large number of features. Keep track of your world\'s Characters and their relation, Locations and their history, Quests and their objectives, Calendars and their events and weather effects, and many more. Best of all, Kanka received several updates every month based on user feedback.',
-        'description_full'  => 'We are constantly adding new features and improvements to Kanka, and the majority of our features are included in the free tier.',
+        'description'       => 'Kanka has a large number of features. Keep track of your world\'s Characters and their relations, Locations and their history, Quests and their objectives, Calendars and their events and weather effects, and many more. Best of all, Kanka receives several updates every month based on user feedback.',
+        'description_full'  => 'We are constantly adding new features and improvements to Kanka, and all core features are free.',
         'free'              => [
             'bonuses'       => 'bonuses',
             'description'   => 'All core features of Kanka are absolutely free, with :bonuses for :patreon supporters.',
@@ -87,7 +87,7 @@ return [
             'title'         => 'Modular',
         ],
         'notebook'          => [
-            'description'   => 'Prepare your next session or log what happened with our rich-text journal feature!',
+            'description'   => 'Prepare your next session or log events with our advanced journaling feature!',
             'title'         => 'Journals',
         ],
         'patreon'           => [
@@ -103,11 +103,11 @@ return [
             'monthly_vote'      => 'Participation in the community feature vote',
             'pagination'        => 'Increased pagination results (100)',
             'title'             => 'Patreon Support',
-            'upload_limit'      => 'Increased upload sizes (8mb)',
-            'upload_limit_map'  => 'Increased map upload sizes (10mb)',
+            'upload_limit'      => 'Upload sizes',
+            'upload_limit_map'  => 'Map upload sizes',
         ],
         'public'            => [
-            'description'   => 'Permissions can be set for modules, or on each single entity. Campaigns can also be public for the <a href=":url">whole world to see</a>.',
+            'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be public for the <a href=":url">whole world to see</a>.',
             'title'         => 'Permissions',
         ],
         'relations'         => [
@@ -116,12 +116,12 @@ return [
         ],
         'title'             => 'Powerful features with incredible flexibility',
         'updates'           => [
-            'description'   => 'Kanka goes through frequent updates that are submitted by the community.',
+            'description'   => 'Kanka goes through frequent community driven updates.',
             'title'         => 'Frequent Updates',
         ],
     ],
     'first_block'   => [
-        'description'   => 'Kanka is available on any mobile device and browser. There is no need to install anything, and you always have the latest version with new features and bug fixes. Forget about loosing track of your notes scattered across paper and other digital tools, in Kanka everything is in one place and easy to find.',
+        'description'   => 'Kanka is available on any mobile device and browser. There is no need to install anything, and you always have the latest version and new features. Forget about losing track of your scattered notes, in Kanka everything is in one place and easy to find.',
         'title'         => 'A novel way to keep track of your worlds and campaigns.',
     ],
     'footer'        => [
@@ -135,6 +135,7 @@ return [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
         'discord'       => 'Join the community on Discord',
         'email'         => 'Send us an email',
+        'facebook'      => 'Contact us on Facebook',
         'title'         => 'Help',
         'twitter'       => 'Tweet at us on Twitter',
     ],
@@ -193,7 +194,9 @@ return [
             'core' => 'Access to all core features',
             'updates' => 'Frequent updates and improvements',
             'higher_uploads' => 'Higher file upload sizes',
+            'huge_uploads' => 'Huge file upload sizes',
             'boosters' => 'Campaign Boosters',
+            'no_boosters' => 'No Campaign Boosters',
         ],
     ],
     'release'       => [
@@ -205,7 +208,7 @@ return [
             'description'   => 'This Trello board contains all the requested features that have been submitted by the community, as well as all the planned features and improvements that will one day make it to the app.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Our community votes shape the work that is being done on Kanka, so while we don\'t have a multi-month roadmap, it is easy to follow what has been requested and what is being currently worked on.',
+        'description'   => 'Our community votes shape our work, so while we don\'t have a multi-month roadmap, it is easy to stay up to date with what has been requested and what is currently being worked on.',
         'next'          => [
             'description'   => 'This Trello board contains all the features and improvements that are currently being worked on.',
             'title'         => 'Next',

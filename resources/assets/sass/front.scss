@@ -384,6 +384,11 @@ ul.pagination {
     font-weight: bold;
   }
 
+  .card-body {
+    ul {
+      min-height: 330px;
+    }
+  }
   .card-price {
     font-size: 3rem;
     margin: 0;

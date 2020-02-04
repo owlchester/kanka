@@ -1,5 +1,5 @@
 <div class="row pricing">
-    <div class="col-lg-4 ">
+    <div class="col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image" style="background-image: url(/images/tiers/kobold.png);"></div>
@@ -7,6 +7,12 @@
                 <h6 class="card-price text-center">{{ __('front.pricing.tier.free') }}</h6>
                 <hr>
                 <ul class="fa-ul">
+                    <li>
+                        <span class="fa-li"><i class="fas fa-times"></i></span>
+                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                            <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
+                        </a>
+                    </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.unlimited') }}
                     </li>
@@ -17,12 +23,12 @@
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.updates') }}
                     </li>
 
-                    <li class="text-muted">
-                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.higher_uploads') }}
-                    </li>
-                    <li class="text-muted">
-                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.boosters') }}
-                    </li>
+{{--                    <li class="text-muted">--}}
+{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.higher_uploads') }}--}}
+{{--                    </li>--}}
+{{--                    <li class="text-muted">--}}
+{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.boosters') }}--}}
+{{--                    </li>--}}
                 </ul>
 
                 <a href="{{ route('register') }}" class="btn btn-block btn-primary text-uppercase">
@@ -32,7 +38,7 @@
         </div>
     </div>
 
-    <div class="col-lg-4 ">
+    <div class="col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image" style="background-image: url(/images/tiers/owlbear.png);"></div>
@@ -55,13 +61,16 @@
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.default_image') }}
+                    </li>
 
-                    <li class="text-muted">
-                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.curation') }}
-                    </li>
-                    <li class="text-muted">
-                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.impact') }}
-                    </li>
+{{--                    <li class="text-muted">--}}
+{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.curation') }}--}}
+{{--                    </li>--}}
+{{--                    <li class="text-muted">--}}
+{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.impact') }}--}}
+{{--                    </li>--}}
                 </ul>
 
                 <a href="{{ config('patreon.url') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
@@ -72,7 +81,7 @@
     </div>
 
 
-    <div class="col-lg-4 ">
+    <div class="col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image" style="background-image: url(/images/tiers/elemental.png);"></div>
@@ -87,7 +96,7 @@
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.higher_uploads') }} (25mb)
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.huge_uploads') }} (25mb)
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}

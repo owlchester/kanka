@@ -123,7 +123,7 @@
                                         <p class="text-muted">{{ trans('front.features.relations.description') }}</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 offset-lg-4">
                                     <div class="feature-item">
                                         <i class="icon-chemistry text-primary"></i>
                                         <h3>{{ trans('front.features.api.title') }}</h3>
@@ -172,23 +172,23 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="text">{{ __('front.features.patreon.discord') }}</td>
-                    <td></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                </tr>
-                <tr>
                     <td class="text">{{ __('front.features.patreon.upload_limit') }}</td>
-                    <td></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                    <td><i class="fa fa-check-circle"></i></td>
+                    <td>1mb </td>
+                    <td>8mb</td>
+                    <td>8mb</td>
+                    <td>8mb</td>
+                    <td>25mb</td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.patreon.upload_limit_map') }}</td>
+                    <td>1mb </td>
+                    <td>10mb</td>
+                    <td>10mb</td>
+                    <td>10mb</td>
+                    <td>25mb</td>
+                </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.patreon.discord') }}</td>
                     <td></td>
                     <td><i class="fa fa-check-circle"></i></td>
                     <td><i class="fa fa-check-circle"></i></td>

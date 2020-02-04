@@ -9,7 +9,7 @@ return [
         'title' => 'Latest News',
     ],
     'title' => 'News',
-    'description' => 'Stay up to date on Kanka\'s constant evolutions by reading our articles.',
+    'description' => 'Stay up to date on Kanka\'s constant evolutions.',
     'show' => [
         'title'     => 'Release :name',
     ]
