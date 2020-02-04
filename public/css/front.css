@@ -1403,6 +1403,16 @@ ul.pagination li span {
   margin-top: 4em;
 }
 
+.faqs ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.faqs ul li {
+  margin: 0 0 20px 0;
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {
