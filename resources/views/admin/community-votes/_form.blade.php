@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label>{{ trans('community-votes.fields.published_at') }}</label>
                     <div class="input-group">
-                        {!! Form::text('published_dt', old('published_at'), ['placeholder' => trans('community-votes.fields.published_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
+                        {!! Form::text('published_at', old('published_at'), ['placeholder' => trans('community-votes.fields.published_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>

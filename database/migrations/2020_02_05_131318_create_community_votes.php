@@ -36,7 +36,7 @@ class CreateCommunityVotes extends Migration
             $table->increments('id');
             $table->unsignedInteger('community_vote_id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedTinyInteger('vote');
+            $table->string('vote', 191);
             $table->timestamps();
 
             $table->foreign('community_vote_id')->references('id')->on('community_votes')->onDelete('cascade');

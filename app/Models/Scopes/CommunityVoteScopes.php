@@ -27,7 +27,7 @@ trait CommunityVoteScopes
     public function scopeVoting(Builder $builder)
     {
         return $builder
-            ->where('visible_at', '>=', Carbon::now())
-            ->where('published_at', '<=', Carbon::now());
+            ->where('visible_at', '<=', Carbon::now())
+            ->where('published_at', '>=', Carbon::now());
     }
 }

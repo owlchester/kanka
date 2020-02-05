@@ -1,11 +1,7 @@
-<?php /** @var \App\Models\Release $model */?>
+<?php /** @var \App\Models\CommunityVote $model */?>
 @extends('layouts.front', [
-    'title' => trans('releases.show.title', ['name' => $model->title]),
+    'title' => trans('front/community-votes.show.title', ['name' => $model->name]),
     'description' => '',
-    'menus' => [
-        'releases'
-    ],
-    'menu_js' => false,
 ])
 
 @section('og')
@@ -27,21 +23,50 @@
         </div>
     </header>
 
-    <section class="features" id="releases">
+    <section class="community-vote">
         <div class="container">
-            @admin
-            <a href="{{ route('voyager.posts.edit', $model) }}" style="float: right;" title="{{ __('crud.edit') }}">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
-            @endadmin
-            <h2>{{ $model->title }}</h2>
+            <h5 class="text-muted">
+                <a href="{{ route('community-votes.show', $model->getSlug()) }}">
+                    {{ $model->visible_at->isoFormat('MMMM D, Y') }}
+                </a>
+            </h5>
+            <h2>
+                {{ $model->name }}
+            </h2>
 
-            <p class="text-muted" title="{{ $model->updated_at }} UTC">
-                {{ trans('releases.post.footer', ['date' => $model->updated_at->diffForHumans(), 'name' => $model->authorId->name]) }}
-            </p>
+            <div class="vote-content">
+                {!! $model->content !!}
+            </div>
 
-            {!! $model->body !!}
-            <p><a href="{{ route('releases.index') }}">{{ trans('releases.show.return') }}</a></p>
+            <div class="vote-options @if ($model->isVoting()) vote-ongoing @endif">
+            @foreach ($model->options() as $key => $text)
+                <div class="vote-option">
+                    <div class="vote-container">
+                        <div class="vote-body @if ($model->votedFor($key)) vote-selected @endif" data-option="{{ $key }}">
+                            <div class="vote-progress" data-width="{{ $key }}" style="width: {{ $model->ballotWidth($key) }}%"></div>
+                            <div class="vote-name">{{ $text }}</div>
+                        </div>
+                    </div>
+                    <div class="vote-result"  data-result="{{ $key }}">
+                        {{ $model->ballotWidth($key) }}%
+                    </div>
+                </div>
+            @endforeach
+            </div>
         </div>
     </section>
+
+    @if ($model->isVoting())
+    <input type="hidden" id="community-vote-url" value="{{ route('community-votes.vote', $model->id) }}">
+    @endif
+@endsection
+
+
+
+@section('scripts')
+    <script src="{{ mix('js/community-votes.js') }}" defer></script>
+@endsection
+
+@section('styles')
+    <link href="{{ mix('css/community-votes.css') }}" rel="stylesheet">
 @endsection

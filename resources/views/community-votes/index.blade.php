@@ -1,12 +1,11 @@
 <?php
 /**
  * @var \App\Models\CommunityVote $model
- * @var \App\Models\Scopes\CommunityVoteScopes $voting
  */
 ?>
 @extends('layouts.front', [
-    'title' => trans('community-votes.index.title'),
-    'description' => trans('community-votes.index.description'),
+    'title' => trans('front/community-votes.index.title'),
+    'description' => trans('front/community-votes.index.description'),
 ])
 
 @section('content')
@@ -15,8 +14,8 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front.community-votes.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.community-votes.description') }}</p>
+                        <h1 class="mb-5">{{ trans('front/community-votes.title') }}</h1>
+                        <p class="mb-5">{{ trans('front/community-votes.description') }}</p>
                     </div>
                 </div>
             </div>
@@ -25,17 +24,14 @@
 
     <section class="community-votes">
         <div class="container">
+            @if ($voting)
+                <h1>{{ __('front/community-votes.index.voting') }}</h1>
+                @include('community-votes._vote', ['model' => $voting, 'voting' => true])
+            @endif
+
             @foreach ($models as $model)
-                <div class="card">
-                    <h4 class="card-title">
-                        <a href="{{ route('community-votes.show', $model->getSlug()) }}">
-                            {{ $model->title }}
-                        </a>
-                    </h4>
-                    <div class="card-body">
-                        {!! $model->excerpt !!}
-                    </div>
-                </div>
+                <h1>{{ __('front/community-votes.index.past') }}</h1>
+                @include('community-votes._vote', ['voting' => false])
             @endforeach
 
             {{ $models->links() }}

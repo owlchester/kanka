@@ -72739,7 +72739,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-           window.location.href =
+            window.location.href =
       });
   });*/
 
@@ -74444,6 +74444,17 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/community-votes.scss":
+/*!****************************************************!*\
+  !*** ./resources/assets/sass/community-votes.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/conversation.scss":
 /*!*************************************************!*\
   !*** ./resources/assets/sass/conversation.scss ***!
@@ -74577,27 +74588,28 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/front.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/front.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\conversation.scss */"./resources/assets/sass/conversation.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\settings.scss */"./resources/assets/sass/settings.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\tinymce.scss */"./resources/assets/sass/tinymce.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\conversation.scss */"./resources/assets/sass/conversation.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\community-votes.scss */"./resources/assets/sass/community-votes.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\settings.scss */"./resources/assets/sass/settings.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\tinymce.scss */"./resources/assets/sass/tinymce.scss");
 
 
 /***/ }),

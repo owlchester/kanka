@@ -34,6 +34,7 @@ $menus = [
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    @yield('styles')
 </head>
 
 <body id="page-top">
@@ -178,5 +179,6 @@ $menus = [
             }
         })});
 </script>
+@yield('scripts')
 </body>
 </html>

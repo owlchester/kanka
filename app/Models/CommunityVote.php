@@ -11,6 +11,9 @@ use App\Models\Concerns\Sortable;
 use App\Models\Scopes\CommunityVoteScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 /**
@@ -24,7 +27,8 @@ use Illuminate\Support\Str;
  * @property string $options
  * @property Carbon $published_at
  * @property Carbon $visible_at
- * @property CommunityVote[] $ballots
+ *
+ * @property Collection $ballots
  */
 class CommunityVote extends Model
 {
@@ -39,6 +43,9 @@ class CommunityVote extends Model
     public $sortableColumns = [];
     public $filterableColumns = ['name'];
 
+    protected $cachedStatus = false;
+    protected $cachedResults = false;
+
     public $dates = [
         'visible_at',
         'published_at'
@@ -47,6 +54,7 @@ class CommunityVote extends Model
     public $fillable = [
         'name',
         'content',
+        'excerpt',
         'options',
         'published_at',
         'visible_at',
@@ -66,14 +74,19 @@ class CommunityVote extends Model
      */
     public function status(): string
     {
-        if (empty($this->visible_at)) {
-            return self::STATUS_DRAFT;
-        } elseif ($this->visible_at->isFuture()) {
-            return self::STATUS_SCHEDULED;
-        } elseif (empty($this->published_at) || $this->published_at->isFuture()) {
-            return self::STATUS_VOTING;
+        if ($this->cachedStatus === false) {
+            if (empty($this->visible_at)) {
+                $this->cachedStatus = self::STATUS_DRAFT;
+            } elseif ($this->visible_at->isFuture()) {
+                $this->cachedStatus = self::STATUS_SCHEDULED;
+            } elseif (empty($this->published_at) || $this->published_at->isFuture()) {
+                $this->cachedStatus = self::STATUS_VOTING;
+            } else {
+                $this->cachedStatus = self::STATUS_PUBLISHED;
+            }
         }
-        return self::STATUS_PUBLISHED;
+
+        return $this->cachedStatus;
     }
 
 
@@ -83,5 +96,77 @@ class CommunityVote extends Model
     public function getSlug(): string
     {
         return $this->id . '-' . Str::slug($this->name);
+    }
+
+    /**
+     * Get the options as an array expression
+     * @return array
+     */
+    public function options(): array
+    {
+        if (empty($this->options)) {
+            return [];
+        }
+
+        $options = json_decode($this->options, true);
+        if (is_array($options)) {
+            return $options;
+        }
+
+        return [];
+    }
+
+    /**
+     * @return int
+     */
+    public function ballotWidth(string $option): int
+    {
+        return Arr::get($this->voteStats(), $option, 0);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVoting(): bool
+    {
+        return $this->status() === self::STATUS_VOTING;
+    }
+
+    /**
+     * Returns if a user casted a ballot for this vote
+     * @return bool
+     */
+    public function votedFor(string $option): bool
+    {
+        if (Auth::guest()) {
+            return false;
+        }
+
+        $user = Auth::user();
+        return $this->ballots->contains(function ($ballot) use ($user, $option) {
+            return $ballot->user_id === $user->id && $ballot->vote === $option;
+        });
+    }
+
+    /**
+     * @return array
+     */
+    public function voteStats(): array
+    {
+        if ($this->cachedResults === false) {
+            // Prepare null results
+            $this->cachedResults = [];
+            foreach ($this->options() as $key => $name) {
+                $this->cachedResults[$key] = 0;
+            }
+
+            $totalBallots = $this->ballots->count();
+            $votes = $this->ballots()->groupBy('vote')->select('vote', \DB::raw('count(*) as total'))->get();
+
+            foreach ($votes as $vote) {
+                $this->cachedResults[$vote->vote] = floor(($vote->total / $totalBallots) * 100);
+            }
+        }
+        return $this->cachedResults;
     }
 }

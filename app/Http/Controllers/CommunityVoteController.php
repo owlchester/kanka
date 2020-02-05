@@ -3,10 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\CommunityVote;
+use App\Services\CommunityVoteService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityVoteController extends Controller
 {
+    /**
+     * @var CommunityVoteService
+     */
+    protected $service;
+
+    /**
+     * CommunityVoteController constructor.
+     * @param CommunityVoteService $service
+     */
+    public function __construct(CommunityVoteService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -49,6 +65,7 @@ class CommunityVoteController extends Controller
      */
     public function show($id, $slug = '')
     {
+        $this->middleware(['identity']);
         $vote = CommunityVote::where('id', $id)->firstOrFail();
         $this->authorize('show', $vote);
 
@@ -87,5 +104,23 @@ class CommunityVoteController extends Controller
     public function destroy(Release $post)
     {
         //
+    }
+
+    public function vote(Request $request, CommunityVote $communityVote)
+    {
+        $this->middleware(['auth', 'identity']);
+        $this->authorize('vote', $communityVote);
+
+        $data = $this->service->cast(
+            $communityVote,
+            Auth::user(),
+            $request->post('vote', null)
+        );
+
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+
     }
 }

@@ -18,7 +18,9 @@ Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.
 // Slug
 Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
+Route::post('/community-votes/{community_vote}/vote', 'CommunityVoteController@vote')->name('community-votes.vote');
 Route::resources([
     'releases' => 'ReleaseController',
     'community-votes' => 'CommunityVoteController'
 ]);
+
