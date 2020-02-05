@@ -29,6 +29,7 @@
         "bloodhound-js": "^1.2.3",
         "bootstrap": "^4.3.1",
         "corejs-typeahead": "^1.2.1",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
         "grunt": "^1.0.3",
         "postcss-import": "^12.0.1",
         "sass-loader": "7.1.0",

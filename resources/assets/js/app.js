@@ -51,6 +51,16 @@ $(document).ready(function() {
         });
     }
 
+    if ($('.datetime-picker').length > 0) {
+        $.each($('.datetime-picker'), function (index) {
+            // instance, using default configuration.
+            $(this).datetimepicker({
+                sideBySide: true,
+                format: 'YYYY-MM-DD HH:mm:00'
+            });
+        });
+    }
+
     $.each($('.img-delete'), function (index) {
         $(this).click(function (e) {
             e.preventDefault();

@@ -20,4 +20,5 @@ Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
 Route::resources([
     'releases' => 'ReleaseController',
+    'community-votes' => 'CommunityVoteController'
 ]);

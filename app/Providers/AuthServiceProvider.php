@@ -49,6 +49,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\CampaignRole' => 'App\Policies\CampaignRolePolicy',
         'App\Models\CampaignRoleUser' => 'App\Policies\CampaignRoleUserPolicy',
         'App\Models\CampaignPermission' => 'App\Policies\CampaignPermission',
+        'App\Models\CommunityVote' => 'App\Policies\CommunityVotePolicy',
         'App\Models\Character' => 'App\Policies\CharacterPolicy',
         'App\Models\Conversation' => 'App\Policies\ConversationPolicy',
         'App\Models\ConversationMessage' => 'App\Policies\ConversationMessagePolicy',

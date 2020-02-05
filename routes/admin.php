@@ -11,6 +11,7 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
         'faqs' => 'FaqController',
         'patrons' => 'PatronController',
         'campaigns' => 'CampaignController',
+        'community-votes' => 'CommunityVoteController'
     ]);
 
     Route::model('patron', \App\User::class);

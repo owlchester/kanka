@@ -11,6 +11,7 @@ use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
+use App\Models\CommunityVote;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
 use App\Models\DiceRoll;
@@ -86,6 +87,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
+            CommunityVote::observe('App\Observers\CommunityVoteObserver');
             Conversation::observe('App\Observers\ConversationObserver');
             ConversationMessage::observe('App\Observers\ConversationMessageObserver');
             DiceRoll::observe('App\Observers\DiceRollObserver');
