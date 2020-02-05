@@ -6,7 +6,7 @@
         <h3 class="card-title">
             <a href="{{ route('front.news.show', $model->getSlug()) }}">{{ $model->title }}</a>
         </h3>
-        <div class="text-muted">{{ $model->updated_at->isoFormat('MMMM D, Y') }}</div>
+        <div class="text-muted mb-2">{{ $model->updated_at->isoFormat('MMMM D, Y') }}</div>
 
         @if (!empty($preview))
             <p class="card-text">{!! nl2br($model->excerpt) !!}</p>
@@ -15,7 +15,6 @@
             <div class="card-text">
                 {!! nl2br($model->body) !!}
             </div>
-            <a href="{{ route('front.news') }}">{{ __('front/news.actions.return') }}</a>
         @endif
     </div>
 </div>

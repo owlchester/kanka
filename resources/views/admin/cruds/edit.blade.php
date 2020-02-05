@@ -20,3 +20,5 @@
         </div>
     </div>
 @endsection
+
+@include('editors.editor')

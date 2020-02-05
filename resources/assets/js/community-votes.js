@@ -58,6 +58,6 @@ function vote(element) {
 function updateStats(results) {
     for (const [key, value] of Object.entries(results)) {
         $(".vote-progress[data-width='" + key + "']").width(value + '%');
-        $(".vote-result[data-result='" + key + "']").width(value + '%');
+        $(".vote-result[data-result='" + key + "']").html(value + '%');
     }
 }

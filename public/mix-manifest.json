@@ -2,6 +2,7 @@
     "/js/api.js": "/js/api.js?id=11839099e7f9f3e77ea8",
     "/js/app.js": "/js/app.js?id=9360c7278e3008d45d99",
     "/css/bootstrap.css": "/css/bootstrap.css?id=fb65dc6b3a03598dfbfe",
+    "/css/vendor.css": "/css/vendor.css?id=244d384e213ecef80399",
     "/css/app.css": "/css/app.css?id=768a92ca23f5b446fae5",
     "/css/export.css": "/css/export.css?id=7efe967765ecd8c6469c",
     "/css/map.css": "/css/map.css?id=5a93ef549d1d601ade45",
@@ -18,7 +19,7 @@
     "/js/attributes.js": "/js/attributes.js?id=7674899d36a8c750ea90",
     "/js/campaign.js": "/js/campaign.js?id=e0b92eb1d15a9e51ada8",
     "/js/character-map.js": "/js/character-map.js?id=f008e7a4dfa73695a2af",
-    "/js/community-votes.js": "/js/community-votes.js?id=95296f560028ddbd889f",
+    "/js/community-votes.js": "/js/community-votes.js?id=ad94ed9335ce3ecd5a7b",
     "/js/conversation.js": "/js/conversation.js?id=55d679e9265d9979339e",
     "/js/dashboard.js": "/js/dashboard.js?id=2c5fdc6e2e0e13cb39e6",
     "/js/datagrids.js": "/js/datagrids.js?id=7f24321f421a470089a6",
@@ -27,6 +28,5 @@
     "/js/organisation.js": "/js/organisation.js?id=eed625109de4b77c2f1f",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
-    "/css/vendor.css": "/css/vendor.css?id=244d384e213ecef80399"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
 }

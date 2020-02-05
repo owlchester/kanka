@@ -22,12 +22,18 @@ class CommunityVotePolicy
      * @param User $user
      * @param CommunityVote $communityVote
      */
-    public function show(User $user, CommunityVote $communityVote): bool
+    public function show(?User $user, CommunityVote $communityVote): bool
     {
         $status = $communityVote->status();
         if ($status == CommunityVote::STATUS_PUBLISHED) {
             return true;
-        } elseif ($status == CommunityVote::STATUS_VOTING) {
+        }
+        // If it's not published and we aren't logged in, nope nope nope
+        if (empty($user)) {
+            return false;
+        }
+
+        if ($status == CommunityVote::STATUS_VOTING) {
             return $user->isGoblinPatron();
         }
 

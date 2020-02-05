@@ -18,7 +18,7 @@ trait CommunityVoteScopes
      */
     public function scopePublished(Builder $builder)
     {
-        return $builder->where('published_at', '>=', Carbon::now());
+        return $builder->where('published_at', '<=', Carbon::now());
     }
 
     /**
@@ -27,7 +27,15 @@ trait CommunityVoteScopes
     public function scopeVoting(Builder $builder)
     {
         return $builder
-            ->where('visible_at', '<=', Carbon::now())
-            ->where('published_at', '>=', Carbon::now());
+            ->where('published_at', '>=', Carbon::now())
+            ->where('visible_at', '<=', Carbon::now());
+    }
+
+    public function scopeRecent(Builder $builder)
+    {
+        return $builder
+            ->published()
+            ->orderBy('published_at', 'DESC')
+            ->take(5);
     }
 }

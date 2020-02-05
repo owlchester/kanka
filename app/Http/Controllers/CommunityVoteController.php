@@ -33,7 +33,9 @@ class CommunityVoteController extends Controller
         $models = CommunityVote::published()
             ->orderBy('visible_at', 'DESC')
             ->paginate();
-        return view('community-votes.index', compact('voting', 'models'));
+
+        $recent = CommunityVote::recent()->get();
+        return view('community-votes.index', compact('voting', 'models', 'recent'));
     }
 
     /**
@@ -69,7 +71,12 @@ class CommunityVoteController extends Controller
         $vote = CommunityVote::where('id', $id)->firstOrFail();
         $this->authorize('show', $vote);
 
-        return view('community-votes.show', ['model' => $vote]);
+        $recent = CommunityVote::recent()->get();
+
+        return view('community-votes.show', [
+            'model' => $vote,
+            'recent' => $recent
+        ]);
     }
 
     /**

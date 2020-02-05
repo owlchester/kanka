@@ -38,6 +38,12 @@
                     @endadmin
                     </h4>
                     @include('front.news._article')
+
+                    <div class="mt-3">
+                        <a href="{{ route('front.news') }}">
+                            <i class="fa fa-arrow-left"></i> {{ __('front/news.actions.return') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

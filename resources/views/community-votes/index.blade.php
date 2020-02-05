@@ -4,8 +4,8 @@
  */
 ?>
 @extends('layouts.front', [
-    'title' => trans('front/community-votes.index.title'),
-    'description' => trans('front/community-votes.index.description'),
+    'title' => trans('front/community-votes.title'),
+    'description' => trans('front/community-votes.description'),
 ])
 
 @section('content')
@@ -24,17 +24,24 @@
 
     <section class="community-votes">
         <div class="container">
-            @if ($voting)
-                <h1>{{ __('front/community-votes.index.voting') }}</h1>
-                @include('community-votes._vote', ['model' => $voting, 'voting' => true])
-            @endif
+            <div class="row">
+                <div class="col-3">
+                    @include('community-votes._recent')
+                </div>
+                <div class="col-9">
+                    @if ($voting)
+                        <h4>{{ __('front/community-votes.index.voting') }}</h4>
+                        @include('community-votes._vote', ['model' => $voting, 'voting' => true])
+                    @endif
 
-            @foreach ($models as $model)
-                <h1>{{ __('front/community-votes.index.past') }}</h1>
-                @include('community-votes._vote', ['voting' => false])
-            @endforeach
+                    @foreach ($models as $model)
+                        <h4>{{ __('front/community-votes.index.past') }}</h4>
+                        @include('community-votes._vote', ['voting' => false])
+                    @endforeach
 
-            {{ $models->links() }}
+                    {{ $models->links() }}
+                </div>
+            </div>
         </div>
     </section>
 @endsection
