@@ -123,10 +123,14 @@
     <section class="cta">
         <div class="cta-content">
             <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-5 offset-6 offset-md-7">
                 <h2>{!! trans('front.second_block.title') !!}</h2>
                 <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
                     {{ trans('front.second_block.call_to_action') }}
                 </a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="overlay"></div>
