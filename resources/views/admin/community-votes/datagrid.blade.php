@@ -2,9 +2,9 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>{{ __('community-vote.fields.name') }}</th>
-        <th>{{ __('community-vote.fields.status') }}</th>
-        <th>{{ __('community-vote.fields.votes') }}</th>
+        <th>{{ __('admin/community-votes.fields.name') }}</th>
+        <th>{{ __('admin/community-votes.fields.status') }}</th>
+        <th>{{ __('admin/community-votes.fields.votes') }}</th>
         <th></th>
     </tr>
     </thead>
