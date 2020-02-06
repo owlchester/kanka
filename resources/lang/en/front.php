@@ -217,7 +217,7 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Register a free account!',
-        'title'             => 'Spend more time worldbuilding.',
+        'title'             => 'Spend less time organising and more time worldbuilding.',
     ],
     'team'          => [
         'coffee'    => 'Buy me a coffee!',
