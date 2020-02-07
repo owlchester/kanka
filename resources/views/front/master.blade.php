@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center my-auto">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/TUAMJf22XeM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" class="embed-responsive" src="https://www.youtube.com/embed/TUAMJf22XeM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>

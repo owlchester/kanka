@@ -38,6 +38,7 @@
                             <div class="text-muted mb-2">{{ $model->visible_at->isoFormat('MMMM D, Y') }}</div>
 
                             <div class="card-text">
+                                @can('vote', $model)
                                 {!! $model->content !!}
 
 
@@ -68,6 +69,18 @@
                                         ]) !!}
                                     @endif
                                 </p>
+                                @else
+                                {!! nl2br($model->excerpt) !!}
+
+                                    <div class="alert alert-light mt-3">
+                                        <p>{{ __('front/community-votes.show.restricted') }}</p>
+
+                                        <a href="{{ route('front.pricing') }}">
+                                            {{ __('front/community-votes.actions.pricing_info')}}
+                                        </a>
+                                    </div>
+
+                                @endif
 
                             </div>
                         </div>

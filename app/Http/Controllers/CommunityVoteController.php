@@ -69,7 +69,6 @@ class CommunityVoteController extends Controller
     {
         $this->middleware(['identity']);
         $vote = CommunityVote::where('id', $id)->firstOrFail();
-        $this->authorize('show', $vote);
 
         $recent = CommunityVote::recent()->get();
 
