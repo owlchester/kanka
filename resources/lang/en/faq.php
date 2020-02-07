@@ -1,13 +1,6 @@
 <?php
 
 return [
-    'sections' => [
-        'general' => 'General',
-        'permissions' => 'Permissions',
-        'community' => 'Community',
-        'other' => 'Other',
-        'pricing' => 'Pricing',
-    ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
 The best way we can explain Attribute Templates is with an example. Let's imagine that your world has lots of Locations, and on many of those locations, you want to remember to create a custom Attribute for "Population", "Climate", "Crime Level". 
@@ -19,25 +12,25 @@ TEXT
 ,
         'question'  => 'Attribute Templates, what are they?',
     ],
-    'backup' =>  [
-        'answer' => 'Once a day, you can export all of your campaign\'s data as a ZIP file. In the app, click on "Campaign" on the left menu, and click on "Export". This will create an export that is available for 30 minutes. You can\'t upload this export to Kanka, it is only intended for your own peace of mind or if you no longer plan to use the app.',
-        'question' => 'How can I backup or export my campaign?',
+    'backup'                => [
+        'answer'    => 'Once a day, you can export all of your campaign\'s data as a ZIP file. In the app, click on "Campaign" on the left menu, and click on "Export". This will create an export that is available for 30 minutes. You can\'t upload this export to Kanka, it is only intended for your own peace of mind or if you no longer plan to use the app.',
+        'question'  => 'How can I backup or export my campaign?',
     ],
-    'bugs' => [
-        'answer' => 'Simply join our :discord server and report your bug in the #error-and-bugs channel.',
-        'question' => 'How can I report a bug?',
+    'bugs'                  => [
+        'answer'    => 'Simply join our :discord server and report your bug in the #error-and-bugs channel.',
+        'question'  => 'How can I report a bug?',
     ],
     'conversations'         => [
         'answer'    => 'Conversations can be set up as talks between Characters or between Campaign Members. If for example you wish to document an important talk between NPCs and the PCs, you can do so using this module. You can also use them for play-by-post campaigns.',
         'question'  => 'What are Conversations?',
     ],
-    'custom' => [
-        'answer' => 'Kanka comes with a set of predefined entity types that interact with each other. Allowing custom entity types would require rebuilding the app from scratch and defeat the purpose of a tool with predefined types to help out people worldbuild rather than figure out how to organise things. Furthermore, Kanka is flexible with Tags that can represent most custom entity type scenarios.',
-        'question' => 'Can I create custom entity types?'
+    'custom'                => [
+        'answer'    => 'Kanka comes with a set of predefined entity types that interact with each other. Allowing custom entity types would require rebuilding the app from scratch and defeat the purpose of a tool with predefined types to help out people worldbuild rather than figure out how to organise things. Furthermore, Kanka is flexible with Tags that can represent most custom entity type scenarios.',
+        'question'  => 'Can I create custom entity types?',
     ],
-    'delete-campaign' => [
-        'answer' => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are the only admin in the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
-        'question' => 'How can I delete a campaign?',
+    'delete-campaign'       => [
+        'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are the only admin in the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
+        'question'  => 'How can I delete a campaign?',
     ],
     'entity-notes'          => [
         'answer'    => 'All entities have an \'Entity Notes\' tab that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit entity notes on entities without having to allow them editing a whole entity.',
@@ -64,10 +57,7 @@ TEXT
         'question'  => 'I want to help! What can I do?',
     ],
     'map'                   => [
-        'answer'    => <<<'TEXT'
-Every location can contain a map (png, jpg or svg) that itself has "map points" that can be placed with control over size, shape, icon and colour, and as links to entities or simple labels.
-TEXT
-,
+        'answer'    => 'Every location can contain a map (png, jpg or svg) that itself has "map points" that can be placed with control over size, shape, icon and colour, and as links to entities or simple labels.',
         'question'  => 'Can I upload maps to Kanka?',
     ],
     'mobile'                => [
@@ -91,9 +81,16 @@ TEXT
 ,
         'question'  => 'What are the long term plans?',
     ],
-    'public-campaigns' => [
-        'answer' => 'You can browse the :public-campaigns page to see how others use Kanka for their campaigns.',
-        'question' => 'How do others use Kanka?'
+    'public-campaigns'      => [
+        'answer'    => 'You can browse the :public-campaigns page to see how others use Kanka for their campaigns.',
+        'question'  => 'How do others use Kanka?',
+    ],
+    'sections'              => [
+        'community'     => 'Community',
+        'general'       => 'General',
+        'other'         => 'Other',
+        'permissions'   => 'Permissions',
+        'pricing'       => 'Pricing',
     ],
     'show'                  => [
         'return'    => 'Return to the FAQ',

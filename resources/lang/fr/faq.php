@@ -12,9 +12,30 @@ TEXT
 ,
         'question'  => 'Que sont les Modèles d\'Attributs?',
     ],
+    'backup'                => [
+        'answer'    => <<<'TEXT'
+Les données d'une campagne peuvent être exportées une fois par jour dans un fichier ZIP. Dans l'application, cliques sur "Campagne" sur la gauche puis "Export" dans le sous-menu. Cette action va crérer un export disponnible pendant 30 minutes.
+
+Il n'est pas possible d'uploadé cet export dans Kanka. Cette fonctionalité est seulement pour ceux qui souhaitent quitter Kanka tout en conservant leurs données.
+TEXT
+,
+        'question'  => 'Puis-je faire un backup ou un export de ma campagne?',
+    ],
+    'bugs'                  => [
+        'answer'    => 'Rejoins simplement le server :discord et écrit un rapport dans le canal #error-and-bugs.',
+        'question'  => 'Comment signaler un problème?',
+    ],
     'conversations'         => [
         'answer'    => 'Des conversations peuvent être établiées entre des Personnages ou entre les membres d\'une campagne. Si par example tu souhaites documenter une conversation importante entre des NPCs et les joueurs, tu peux le faire en utilisant ce module. Celui-ci peut aussi être utilisé pour des campagnes de type "play-by-post".',
         'question'  => 'Que sont les Conversations?',
+    ],
+    'custom'                => [
+        'answer'    => 'Kanka a été créé avec un nombre de types d\'entités prédéfinis qui interagissent les uns avec les autres. Autoriser des types d\'entités personnalisés nécessiterait de complètement changer le coeur de l\'application et de contrecarrer l\'objectif d\'un outil avec des types prédéfinis qui aide les gens à ne pas perdre du temps sur l\'organisation. De plus, Kanka est flexible avec des Etiquettes qui peuvent représenter la plupart des scénarios de type d\'entité personnalisés.',
+        'question'  => 'Puis-je crérer mes propres types d\'entités?',
+    ],
+    'delete-campaign'       => [
+        'answer'    => 'Accèdes au tableau de bord de ta campagne et cliques sur "Campagne" dans le menu de gauche. Un bouton de campagne "Supprimer" apparaîtra si tu es le seul administrateur de la campagne. La suppression d\'une campagne est une action permanente qui supprimera toutes les données stockées sur nos serveurs, y compris les images.',
+        'question'  => 'Comment supprimer une campagne?',
     ],
     'entity-notes'          => [
         'answer'    => 'Chaque entité a une section "Note d\'entité" qui peuvent contenir des informations cachées des autres membres de la campagne. Il est aussi possible de permettre des membres de gérer les notes d\'entité sans leur donner les droits de modifié l\'entité.',
@@ -69,6 +90,17 @@ Concernant le second point, la plupart des projets hobby finissent en burnout po
 TEXT
 ,
         'question'  => 'Quelles sont les objectifs long terms? Que ce passe-t-il si Ilestis ne souhaite plus travailler sur Kanka?',
+    ],
+    'public-campaigns'      => [
+        'answer'    => 'La page des :public-campaigns affiche toutes les campagnes publiques.',
+        'question'  => 'Comment utilisent les gens Kanka?',
+    ],
+    'sections'              => [
+        'community'     => 'Communauté',
+        'general'       => 'Général',
+        'other'         => 'Autre',
+        'permissions'   => 'Permission',
+        'pricing'       => 'Prix',
     ],
     'show'                  => [
         'return'    => 'Retour à la FAQ',

@@ -20,12 +20,17 @@ return [
     'community'     => [
         'description'   => 'Kanka n\'est pas seulement une application, c\'est aussi une riche communauté de constructeurs de monde, maître de jeu, joueur et créateur enthousiaste.',
         'discord'       => 'Le Discord de Kanka est l\'endroit le plus actif pour parler de l\'application, des bugs, nouvelles fonctionnalités, demander de l\'aide et aider les autres.',
+        'facebook'      => 'Restes au courant de nos modifications sur notre page Facebook.',
+        'instagram'     => 'Envie de nous voir travailler sur Kanka depuis les coulisses ou nos sessions de jeux? Suis nous sur Instagram!',
         'join'          => 'Rejoins nous!',
         'reddit'        => 'Le subreddit Kanka est un endroit plus calme où les sujets peuvent être discuté pendant de longues périodes.',
         'title'         => 'Communauté',
     ],
     'contact'       => [
-        'title' => 'Nous :icon de nouveaux amis!',
+        'description'   => 'T\'as besoin d\'aide, une amélioration à suggérer, ou envie de nous dire que t\'adores Kanka? Notre équipe répond à tous les emails.',
+        'email'         => 'Envois toutes demandes à notre email:',
+        'other'         => 'Ou contactes nous à travers notre présences sur les réseaux sociaux.',
+        'title'         => 'Nous :icon de nouveaux amis!',
     ],
     'cookie'        => [
         'dismiss'   => 'Compris!',
@@ -64,8 +69,8 @@ return [
         'description_full'  => 'Une vitrine de certaines de nos fonctionnalités les plus aimées.',
         'free'              => [
             'bonuses'       => 'bonus',
-            'description'   => 'Nous sommes convaincus que les meilleures choses dans la vie sont gratuites.',
-            'title'         => 'Gratuit un jour, gratuit toujours',
+            'description'   => 'Toutes les fonctionalités coeurs dans Kanka sont gratuites, avec des :bonuses pour ceux qui nous soutiennent sur :patreon.',
+            'title'         => 'Gratuit d\'utilisation',
         ],
         'landscape'         => 'Contenu lisible seulement en mode paysage.',
         'layers'            => [
@@ -130,11 +135,12 @@ return [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacteront aussi rapidement que possible.',
         'discord'       => 'Joins la communauté sur Discord',
         'email'         => 'Envois nous un email',
+        'facebook'      => 'Contactes-nous sur Facebook',
         'title'         => 'Aide',
         'twitter'       => 'Tweet-nous sur Twitter',
     ],
     'master'        => [
-        'call_to_action'    => 'Inscrivez-vous maintenant, c\'est gratuit!',
+        'call_to_action'    => 'Inscris-toi maintenant, c\'est gratuit!',
         'description'       => 'Kanka est un outil en ligne flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créez et organisez des personnages, localités, organisations, événements et bien plus.',
         'title'             => 'Kanka',
     ],
@@ -151,6 +157,8 @@ return [
         'help'      => 'Aide',
         'home'      => 'Accueil',
         'login'     => 'Login',
+        'news'      => 'Nouvelles',
+        'pricing'   => 'Prix',
         'privacy'   => 'Politique de confidentialité',
         'register'  => 'Inscription',
         'releases'  => 'Mises à jour',
@@ -165,6 +173,27 @@ return [
     'partners'      => [
         'description'   => 'Nous sommes en partenariat avec des outils et communautés incroyables qui partagent nos objectifes et valeures.',
         'title'         => 'Partenaires',
+    ],
+    'pricing'       => [
+        'actions'       => [
+            'more'      => 'Plus d\'info sur les fonctionalités débloquées en nous soutenant',
+            'support'   => 'Soutenir',
+        ],
+        'benefits'      => [
+            'boosters'          => 'Booster de Campagne',
+            'core'              => 'Accès à toutes les fonctionalités coeur',
+            'higher_uploads'    => 'Taille de fichier plus élevée',
+            'huge_uploads'      => 'Taille de fichier géante',
+            'no_boosters'       => 'Aucun booster de campagne',
+            'unlimited'         => 'Nombre de campagne et upload illimité',
+            'updates'           => 'Mises à jour et améliorations fréquentes',
+        ],
+        'description'   => 'Toutes les fonctionalités coeurs sont gratuites, mais nous soutenir nous aide à travailer et améliorer le produit de façon continue.',
+        'tier'          => [
+            'free'  => 'Gratuit',
+            'month' => 'Mois',
+        ],
+        'title'         => 'Apercu des prix',
     ],
     'privacy'       => [
         'description'   => 'Veuillez lire notre politique de confidentialité.',

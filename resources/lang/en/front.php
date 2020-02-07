@@ -27,10 +27,10 @@ return [
         'title'         => 'Community',
     ],
     'contact'       => [
-        'description' => 'Need help, have a suggestion, or just want to share your love for Kanka? Our team will reply whatever the occasion!',
-        'email' => 'Send all inquiries to our email:',
-        'other' => 'Or contact us one of the following social media platforms:',
-        'title' => 'We\'re here for you',
+        'description'   => 'Need help, have a suggestion, or just want to share your love for Kanka? Our team will reply whatever the occasion!',
+        'email'         => 'Send all inquiries to our email:',
+        'other'         => 'Or contact us one of the following social media platforms:',
+        'title'         => 'We\'re here for you',
     ],
     'cookie'        => [
         'dismiss'   => 'Got it!',
@@ -174,30 +174,30 @@ return [
         'description'   => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',
         'title'         => 'Partners',
     ],
+    'pricing'       => [
+        'actions'       => [
+            'more'      => 'Learn more about all the features unlocked by supporting Kanka',
+            'support'   => 'Support',
+        ],
+        'benefits'      => [
+            'boosters'          => 'Campaign Boosters',
+            'core'              => 'Access to all core features',
+            'higher_uploads'    => 'Higher file upload sizes',
+            'huge_uploads'      => 'Huge file upload sizes',
+            'no_boosters'       => 'No Campaign Boosters',
+            'unlimited'         => 'Unlimited campaigns & uploads',
+            'updates'           => 'Frequent updates and improvements',
+        ],
+        'description'   => 'While all core features are free, supporting Kanka helps us deliver frequent updates and improvements for all users.',
+        'tier'          => [
+            'free'  => 'Free',
+            'month' => 'Month',
+        ],
+        'title'         => 'Pricing Overview',
+    ],
     'privacy'       => [
         'description'   => 'Effective date: May 25th, 2018',
         'title'         => 'Privacy Policy',
-    ],
-    'pricing' => [
-        'title' => 'Pricing Overview',
-        'description' => 'While all core features are free, supporting Kanka helps us deliver frequent updates and improvements for all users.',
-        'actions' => [
-            'support' => 'Support',
-            'more' => 'Learn more about all the features unlocked by supporting Kanka'
-        ],
-        'tier' => [
-            'month' => 'Month',
-            'free' => 'Free',
-        ],
-        'benefits' => [
-            'unlimited' => 'Unlimited campaigns & uploads',
-            'core' => 'Access to all core features',
-            'updates' => 'Frequent updates and improvements',
-            'higher_uploads' => 'Higher file upload sizes',
-            'huge_uploads' => 'Huge file upload sizes',
-            'boosters' => 'Campaign Boosters',
-            'no_boosters' => 'No Campaign Boosters',
-        ],
     ],
     'release'       => [
         'description'   => 'Kanka is constantly growing and improving, and we want the world to know about all the awesome things we are adding to the app.',
