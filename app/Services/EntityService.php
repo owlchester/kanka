@@ -266,6 +266,7 @@ class EntityService
             $newModel->savingObserver = false;
             $newModel->saveObserver = false;
             $newModel->save();
+            $newModel->createEntity();
 
             // Copy entity notes over
             foreach ($entity->notes as $note) {
@@ -341,11 +342,6 @@ class EntityService
         }
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
             $new->parent_location_id = $old->location_id;
-        }
-
-        // If moving to a menu_link, remove the type field
-        if ($new->getEntityType() == 'menu_link') {
-            $new->type = null;
         }
 
         // Copy file
