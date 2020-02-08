@@ -1,7 +1,7 @@
 @if (empty($day))
     <td class=""></td>
 @else
-    <td class="{{ $day['isToday'] ? 'today' : null}} text-center">
+    <td class="{{ $day['isToday'] ? 'today' : null}} text-center" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
         @if ($day['day'])
             <h5 class="pull-left{{ $day['isToday'] ? " label label-primary" : null}}">{{ $day['day'] }}</h5>
             @if ($canEdit)

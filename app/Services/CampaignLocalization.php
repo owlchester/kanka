@@ -84,6 +84,9 @@ class CampaignLocalization
      */
     protected $campaignId = false;
 
+    /**
+     * @var bool|Campaign
+     */
     protected $campaign = false;
 
     /**

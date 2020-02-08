@@ -113,13 +113,7 @@ abstract class MiscObserver
         }
 
         // Created a new sub entity? Create the parent entity.
-        $entity = Entity::create([
-            'entity_id' => $model->id,
-            'campaign_id' => $model->campaign_id,
-            'is_private' => $model->is_private,
-            'name' => $model->name,
-            'type' => $model->getEntityType()
-        ]);
+        $entity = $model->createEntity();
 
         // Copy attributes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {

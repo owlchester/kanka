@@ -19,7 +19,7 @@ $attributes = $model->entity->starredAttributes;
             @if ($attribute->isText())
                 <p>{!! nl2br(e($attribute->value)) !!}</p>
             @elseif (!$attribute->isCheckbox())
-                <span class="pull-right">{{ $attribute->value }}</span>
+                <span class="pull-right">{!! $attribute->mappedValue() !!}</span>
                 <br class="clear" />
             @endif
         </li>

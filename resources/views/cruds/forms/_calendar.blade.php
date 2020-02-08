@@ -22,7 +22,7 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
         @if (count($calendars) == 1)
-            <input type="hidden" id="calendar_id" name="calendar_id" value="{{ (isset($model) && $model->hasCalendar() ? $model->calendar->id : $calendars[0]->id) }}">
+            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendar->id : null, ['id' => 'calendar_id']) !!}
         @else
             <div class="form-group entity-calendar-selector">
                 {!! Form::select2(
@@ -64,7 +64,7 @@ if (!empty($oldCalendarID)) {
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.colour') }}</label>
-                        {!! Form::select('calendar_colour', FormCopy::colours(false), null, ['class' => 'form-control']) !!}
+                        {!! Form::select('calendar_colour', FormCopy::colours(false), !empty($model) && $model->hasCalendar() ? null : 'grey', ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>

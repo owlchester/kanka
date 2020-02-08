@@ -34,7 +34,7 @@ class EntityController extends Controller
     {
         $this->authorize('move', $entity->child);
 
-        $entities = $this->entityService->labelledEntities(true, $entity->pluralType(), true);
+        $entities = $this->entityService->labelledEntities(true, [$entity->pluralType(), 'menu_links'], true);
         return view('cruds.move', ['entity' => $entity, 'entities' => $entities]);
     }
 

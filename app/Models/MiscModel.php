@@ -331,7 +331,7 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', $this->entity->id). '" href="' .
+            'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
             e($this->name) .
             '</a>';
@@ -346,5 +346,22 @@ abstract class MiscModel extends Model
             return $this->entity->tooltip;
         }
         return null;
+    }
+
+    /**
+     * Create the model's Entity
+     * @return Entity
+     */
+    public function createEntity(): Entity
+    {
+        $entity = Entity::create([
+            'entity_id' => $this->id,
+            'campaign_id' => $this->campaign_id,
+            'is_private' => $this->is_private,
+            'name' => $this->name,
+            'type' => $this->getEntityType()
+        ]);
+
+        return $entity;
     }
 }

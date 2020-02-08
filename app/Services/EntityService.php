@@ -73,10 +73,10 @@ class EntityService
      * Get labelled entities
      *
      * @param bool $singular
-     * @param null $ignore
+     * @param array $ignore
      * @return array
      */
-    public function labelledEntities($singular = true, $ignore = null, $includeNull = false)
+    public function labelledEntities($singular = true, array $ignore = [], $includeNull = false)
     {
         $labels = [];
         if ($includeNull) {
@@ -93,8 +93,11 @@ class EntityService
             }
         }
 
-        if (!empty($ignore) && !empty($labels[$ignore])) {
-            unset($labels[$ignore]);
+        // Removed options
+        if (!empty($ignore)) {
+            foreach ($ignore as $unset) {
+                unset($labels[$unset]);
+            }
         }
 
         return $labels;
@@ -263,6 +266,7 @@ class EntityService
             $newModel->savingObserver = false;
             $newModel->saveObserver = false;
             $newModel->save();
+            $newModel->createEntity();
 
             // Copy entity notes over
             foreach ($entity->notes as $note) {

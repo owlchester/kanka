@@ -364,6 +364,12 @@ class CalendarRenderer
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
                 $currentPosition = $weekLength - $emptyDaysToFill; // On which week day we currently are
+
+                // Don't fill a whole empty week
+                if ($emptyDaysToFill == $weekLength) {
+                    $emptyDaysToFill = 0;
+                }
+
                 for ($d = 0; $d < $emptyDaysToFill; $d++) {
                     $data[] = [];
                 }
@@ -416,9 +422,15 @@ class CalendarRenderer
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
 
+                // Don't fill a whole empty week
+                if ($emptyDaysToFill == $weekLength) {
+                    $emptyDaysToFill = 0;
+                }
+
                 for ($d = 0; $d < $emptyDaysToFill; $d++) {
                     $data[] = [];
                 }
+
                 // Fill out the next month beginning if needed
                 // Only add at the beginning if we don't reset on first day of the week
                 if (!$this->calendar->reset === 'month') {
@@ -428,9 +440,6 @@ class CalendarRenderer
                 } else {
                     $weekNumber++;
                 }
-
-
-
             }
 
             $monthNumber++;
@@ -553,14 +562,12 @@ class CalendarRenderer
     {
         /** @var EntityEvent $event */
         $this->events = [];
-        $datePattern = $this->getYear() . (!$this->isYearlyLayout() ? '-' . $this->getMonth() : null) . '%';
         $reminders = $this->calendar->calendarEvents()
             ->has('entity')
             ->with(['entity', 'entity.tags'])
-            ->where(function ($query) use ($datePattern) {
+            ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month
-                    //->where('date', 'like', $datePattern)
                     ->where(function ($sub) {
                         $sub->where('year', $this->getYear());
 
@@ -577,11 +584,12 @@ class CalendarRenderer
                                 ->where('is_recurring', true);
                         }
                     })
-                    // Events from previous month that spills over
+                    // Events from previous year that spills over
                     ->orWhere(function ($sub) {
-                        list($year, $month) = $this->subMonth($this->getYear(), $this->getMonth());
-                        $sub->where('year', $year)
-                            ->where('month', $month)
+                        $previousYear = $this->getYear(-1);
+//                        list($year, $month) = $this->subMonth($this->getYear(), $this->getMonth());
+                        $sub->where('year', $previousYear)
+//                            ->where('month', $month)
                             ->where('length', '>', 1);
                     })
                     // Monthly recurring events
@@ -663,8 +671,9 @@ class CalendarRenderer
 
         // Day longer than month?
         $months = $this->calendar->months();
-        $previousMonth = $month > 1 ? $months[$month-1] : last($months);
-        if ($day > $previousMonth['length']) {
+        $currentMonth = $months[$month - 1];
+        //$previousMonth = $month > 1 ? $months[$month-1] : last($months);
+        if ($day > $currentMonth['length']) {
             $day = 1;
             $month++;
         }

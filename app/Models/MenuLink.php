@@ -169,7 +169,12 @@ class MenuLink extends MiscModel
     protected function getIndexRoute()
     {
         $filters = $this->filters . '&_clean=true';
-        return route(str_plural($this->type) . '.index', $filters);
+        try {
+            return route(Str::plural($this->type) . '.index', $filters);
+        }
+        catch (\Exception $e) {
+            return '';
+        }
     }
 
     /**
