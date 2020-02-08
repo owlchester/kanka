@@ -73,10 +73,10 @@ class EntityService
      * Get labelled entities
      *
      * @param bool $singular
-     * @param null $ignore
+     * @param array $ignore
      * @return array
      */
-    public function labelledEntities($singular = true, $ignore = null, $includeNull = false)
+    public function labelledEntities($singular = true, array $ignore = [], $includeNull = false)
     {
         $labels = [];
         if ($includeNull) {
@@ -93,8 +93,11 @@ class EntityService
             }
         }
 
-        if (!empty($ignore) && !empty($labels[$ignore])) {
-            unset($labels[$ignore]);
+        // Removed options
+        if (!empty($ignore)) {
+            foreach ($ignore as $unset) {
+                unset($labels[$unset]);
+            }
         }
 
         return $labels;
@@ -338,6 +341,11 @@ class EntityService
         }
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
             $new->parent_location_id = $old->location_id;
+        }
+
+        // If moving to a menu_link, remove the type field
+        if ($new->getEntityType() == 'menu_link') {
+            $new->type = null;
         }
 
         // Copy file

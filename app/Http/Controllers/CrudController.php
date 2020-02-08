@@ -83,6 +83,11 @@ class CrudController extends Controller
     protected $datagridSorter = null;
 
     /**
+     * @var null
+     */
+    protected $datagrid = null;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -128,6 +133,8 @@ class CrudController extends Controller
         $route = $this->route;
         $bulk = $this->bulkModel();
 
+        $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
+
         $base = $model
             ->preparedWith()
             ->search($this->filterService->search())
@@ -157,7 +164,8 @@ class CrudController extends Controller
             'route',
             'filteredCount',
             'unfilteredCount',
-            'bulk'
+            'bulk',
+            'datagrid'
         ));
     }
 

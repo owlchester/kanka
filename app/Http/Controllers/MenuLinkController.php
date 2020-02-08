@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\MenuLinkDatagrid;
 use App\Http\Requests\StoreMenuLink;
 use App\Models\MenuLink;
 use Illuminate\Http\Request;
@@ -23,6 +24,11 @@ class MenuLinkController extends CrudController
      * @var string
      */
     protected $model = \App\Models\MenuLink::class;
+
+    /**
+     * @var string
+     */
+    protected $datagrid = MenuLinkDatagrid::class;
 
     /**
      * ItemController constructor.

@@ -8,9 +8,12 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu {{ isset($disableCancel) ? 'dropdown-menu-right' : '' }}" role="menu">
+                <li><a href="#" class="form-submit-actions">
+                        {{ trans('crud.save') }}
+                        <span class="shortcut">CTRL+S</span>
+                    </a></li>
                 <li><a href="#" class="form-submit-actions" data-action="submit-new">
                         {{ trans('crud.save_and_new') }}
-                        <span class="shortcut">CTRL+S</span>
                 </a></li>
                 <li><a href="#" class="form-submit-actions" data-action="submit-update">{{ trans('crud.save_and_update') }}</a></li>
                 @if (empty($model))
