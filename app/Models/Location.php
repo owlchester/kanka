@@ -7,7 +7,9 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Support\Facades\Storage;
 use Kalnoy\Nestedset\NodeTrait;
+use Exception;
 
 /**
  * Class Location
@@ -318,10 +320,33 @@ class Location extends MiscModel
      * Quick check to see if the image might be an svg
      * @return bool
      */
-    public function isMapSvg()
+    public function isMapSvg(): bool
     {
         return (substr(strtolower($this->map), -4) == '.svg');
     }
+
+    /**
+     * Get the size of the svg image
+     * @return int
+     */
+    public function mapWidth(): int
+    {
+        if (empty($this->map) || !$this->isMapSvg()) {
+            dd('not svg');
+            return 0;
+        }
+        try {
+            $content = Storage::get($this->map);
+            $xml = simplexml_load_string($content);
+
+            return (int) $xml->attributes()->width;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+
+        return 100;
+    }
+
 
     /**
      * @return array

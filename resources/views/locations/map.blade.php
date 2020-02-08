@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Location $location */ ?>
 @extends('layouts.app', [
     'title' => trans('locations.map.points.title', ['name' => $location->name]),
     'description' => '',
@@ -49,7 +50,7 @@
 
                     <div id="draggable-map">
                         <div class="map-container">
-                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: 100%;" @endif />
+                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: {{ $location->mapWidth()}};" @endif />
                             @foreach ($location->mapPoints()->with(['targetEntity', 'location'])->get() as $point)
                                 <?php /** @var \App\Models\MapPoint $point */?>
                                 @if ($point->visible())
