@@ -38,48 +38,39 @@
                             <div class="text-muted mb-2">{{ $model->visible_at->isoFormat('MMMM D, Y') }}</div>
 
                             <div class="card-text">
-                                @can('vote', $model)
-                                {!! $model->content !!}
+                                @if ($model->isVoting() && (auth()->guest() || !auth()->user()->can('show', $model)))
+                                    @include('community-votes._support')
+                                @else
+                                    {!! $model->content !!}
 
 
-                                <div class="vote-options mt-3 @if ($model->isVoting()) vote-ongoing @endif">
-                                    @foreach ($model->options() as $key => $text)
-                                        <div class="vote-option">
-                                            <div class="vote-container">
-                                                <div class="vote-body @if ($model->votedFor($key)) vote-selected @endif" data-option="{{ $key }}">
-                                                    <div class="vote-progress" data-width="{{ $key }}" style="width: {{ $model->ballotWidth($key) }}%"></div>
-                                                    <div class="vote-name">{{ $text }}</div>
+                                    <div class="vote-options mt-3 @if ($model->isVoting()) vote-ongoing @endif">
+                                        @foreach ($model->options() as $key => $text)
+                                            <div class="vote-option">
+                                                <div class="vote-container">
+                                                    <div class="vote-body @if ($model->votedFor($key)) vote-selected @endif" data-option="{{ $key }}">
+                                                        <div class="vote-progress" data-width="{{ $key }}" style="width: {{ $model->ballotWidth($key) }}%"></div>
+                                                        <div class="vote-name">{{ $text }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="vote-result"  data-result="{{ $key }}">
+                                                    {{ $model->ballotWidth($key) }}%
                                                 </div>
                                             </div>
-                                            <div class="vote-result"  data-result="{{ $key }}">
-                                                {{ $model->ballotWidth($key) }}%
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <p class="text-muted mt-3">
-                                    @if ($model->isVoting())
-                                        {!! __('front/community-votes.show.voting_until', [
-                                            'until' => $model->published_at->isoFormat('MMMM D, Y')
-                                        ]) !!}
-                                    @else
-                                        {!! __('front/community-votes.show.voted_lasted', [
-                                            'from' => $model->visible_at->isoFormat('MMMM D, Y'),
-                                            'until' => $model->published_at->isoFormat('MMMM D, Y')
-                                        ]) !!}
-                                    @endif
-                                </p>
-                                @else
-                                {!! nl2br($model->excerpt) !!}
-
-                                    <div class="alert alert-light mt-3">
-                                        <p>{{ __('front/community-votes.show.restricted') }}</p>
-
-                                        <a href="{{ route('front.pricing') }}">
-                                            {{ __('front/community-votes.actions.pricing_info')}}
-                                        </a>
+                                        @endforeach
                                     </div>
-
+                                    <p class="text-muted mt-3">
+                                        @if ($model->isVoting())
+                                            {!! __('front/community-votes.show.voting_until', [
+                                                'until' => $model->published_at->isoFormat('MMMM D, Y')
+                                            ]) !!}
+                                        @else
+                                            {!! __('front/community-votes.show.voted_lasted', [
+                                                'from' => $model->visible_at->isoFormat('MMMM D, Y'),
+                                                'until' => $model->published_at->isoFormat('MMMM D, Y')
+                                            ]) !!}
+                                        @endif
+                                    </p>
                                 @endif
 
                             </div>

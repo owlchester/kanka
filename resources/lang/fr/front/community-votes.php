@@ -7,10 +7,10 @@ return [
         'show'          => 'Afficher les résultats',
         'vote'          => 'Voter',
     ],
-    'description'   => 'Les utilisateurs qui supportent Kanka aident à façonné l\'évolution de l\'application en participant fréquement à des votes communautaires.',
+    'description'   => 'Les utilisateurs qui soutiennent Kanka aident à façonner l\'évolution de l\'application en participant fréquemment à des votes communautaires.',
     'index'         => [
         'past'      => 'Votes clos',
-        'voting'    => 'Votes activs',
+        'voting'    => 'Votes actifs',
     ],
     'latest'        => [
         'title' => 'Votes récents',
