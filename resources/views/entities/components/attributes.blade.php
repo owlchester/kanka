@@ -7,7 +7,7 @@ $attributes = $model->entity->starredAttributes;
 ?>
 @if (count($attributes) > 0)
     @foreach ($attributes as $attribute)
-        <li class="list-group-item">
+        <li class="list-group-item @if ($attribute->isSection()) text-center @endif">
             @if ($attribute->isCheckbox())
                 @if ($attribute->value)
                     <i class="fa fa-check pull-right"></i>
