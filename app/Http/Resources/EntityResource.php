@@ -18,7 +18,7 @@ class EntityResource extends JsonResource
         $merged = [
             'id' => $this->id,
             'name' => $this->name,
-            'entry' => $this->entry,
+            'entry' => $this->getEntityType() == 'dice_roll' ? null : $this->entry,
             'image' => $this->image,
             'image_full' => $this->getImageUrl(),
             'image_thumb' => $this->getImageUrl(true),
