@@ -244,6 +244,12 @@ class EntityPermission
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
         if (empty($campaign)) {
             $campaign = \App\Facades\CampaignLocalization::getCampaign();
+            // Our Campaign middleware takes care of this, but to load the campaign it's going to get perms first
+            // so we have to add this abort here to handle calling the permission engine on campaigns which
+            // no longer exist.
+            if (empty($campaign)) {
+                abort(404);
+            }
         }
 
         if ($this->loadedAll === true && $campaign->id == $this->loadedCampaignId) {

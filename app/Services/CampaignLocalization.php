@@ -167,9 +167,6 @@ class CampaignLocalization
             $this->campaign = null;
             if (is_numeric($this->campaignId)) {
                 $this->campaign = Campaign::find((int) $this->campaignId);
-                if (empty($this->campaign)) {
-                    //abort(404);
-                }
             }
         }
         return $this->campaign;
