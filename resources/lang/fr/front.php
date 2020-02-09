@@ -28,8 +28,8 @@ return [
     ],
     'contact'       => [
         'description'   => 'T\'as besoin d\'aide, une amélioration à suggérer, ou envie de nous dire que t\'adores Kanka? Notre équipe répond à tous les emails.',
-        'email'         => 'Envois toutes demandes à notre email:',
-        'other'         => 'Ou contactes nous à travers notre présences sur les réseaux sociaux.',
+        'email'         => 'Envoie toutes demandes à notre email:',
+        'other'         => 'Ou contacte nous à travers les réseaux sociaux.',
         'title'         => 'Nous :icon de nouveaux amis!',
     ],
     'cookie'        => [
@@ -50,15 +50,15 @@ return [
         'boosts'            => [
             'boosted'       => 'Campagne Boostée',
             'css'           => 'CSS personnalisé pour la campagne',
-            'description'   => 'Certains niveau de support donnent les utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Cela active les bénéfices suivants.',
+            'description'   => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
             'header_image'  => 'Image d\'entête pour entité',
-            'theme'         => 'Thème de campagne fix',
+            'theme'         => 'Thème de campagne fixe',
             'title'         => 'Campagnes Boostées',
             'tooltip'       => 'Tooltip d\'entité personnalisé',
-            'upload'        => 'Augmentation de la taille de fichier téléversé pour tous les membres',
+            'upload'        => 'Augmentation de la taille de fichier uploadé pour tous les membres',
         ],
         'calendars'         => [
-            'description'   => 'Créer des calendriers personnalisés et organiser la campagne autour de ceux-ci.',
+            'description'   => 'Créer des calendriers personnalisés pour organiser ta campagne.',
             'title'         => 'Calendriers',
         ],
         'collaborative'     => [
@@ -66,20 +66,20 @@ return [
             'title'         => 'Collaboratif',
         ],
         'description'       => 'Voici quelques éléments de notre application que vous allez adorer!',
-        'description_full'  => 'Une vitrine de certaines de nos fonctionnalités les plus aimées.',
+        'description_full'  => 'Un aperçu de certaines de nos fonctionnalités les plus aimées.',
         'free'              => [
             'bonuses'       => 'bonus',
-            'description'   => 'Toutes les fonctionalités coeurs dans Kanka sont gratuites, avec des :bonuses pour ceux qui nous soutiennent sur :patreon.',
+            'description'   => 'Toutes les fonctionnalités essentielles dans Kanka sont gratuites, avec des bonus pour ceux qui nous soutiennent sur :patreon.',
             'title'         => 'Gratuit d\'utilisation',
         ],
         'landscape'         => 'Contenu lisible seulement en mode paysage.',
         'layers'            => [
-            'description'   => 'Organisez vos personnages, leurs familles, leur emplacement et bien plus à tout moment.',
+            'description'   => 'Organise tes personnages, leurs familles, leurs emplacements, et bien plus.',
             'title'         => 'Personnages, Familles, Lieux',
         ],
         'learn_more'        => 'En savoir plus sur les fonctionnalités de Kanka',
         'maps'              => [
-            'description'   => 'Télécharger des cartes des mondes, villes et grottes et ajouter des marqueurs et des liens utiles.',
+            'description'   => 'Télécharger les cartes des mondes, villes et donjons et ajouter des marqueurs et des liens.',
             'title'         => 'Cartes',
         ],
         'modular'           => [
@@ -107,21 +107,21 @@ return [
             'upload_limit_map'  => 'Taille des cartes augmentées (10mb)',
         ],
         'public'            => [
-            'description'   => 'Les autorisations peuvent être définies pour les modules ou pour chaque entité. Les campagnes peuvent également être publiques pour un accès à tous.',
+            'description'   => 'Les autorisations peuvent être définies par modules ou pour chaque entité. Les campagnes peuvent également être publiques ou privées.',
             'title'         => 'Permissions',
         ],
         'relations'         => [
-            'description'   => 'Chaque entité peut avoir un réseau complexe de relations avec d\'autres entités, y compris des relations secrètes et invisibles des joueurs.',
+            'description'   => 'Chaque entité peut avoir un réseau complexe de relations avec d\'autres entités, y compris des relations secrètes et invisibles aux joueurs.',
             'title'         => 'Relations',
         ],
-        'title'             => 'Nos forces',
+        'title'             => 'Beaucoup de fonctionnalités avec une flexibilité sans pareil',
         'updates'           => [
-            'description'   => 'Kanka bénéficie de mises à jour fréquentes qui sont issues par la communauté.',
+            'description'   => 'Kanka bénéficie de mises à jour régulières choisies par la communauté.',
             'title'         => 'Mise à jour Fréquentes',
         ],
     ],
     'first_block'   => [
-        'description'   => 'Notre application est disponible depuis n\'importe quel appareil mobile et navigateur! Rien à installer, tout ce dont vous avez besoin est votre navigateur. Et en plus, c\'est complètement gratuit!',
+        'description'   => 'Notre application est disponible depuis n\'importe quel appareil mobile et navigateur, tu n’as rien besoin d’installer. Et en plus, c\'est complètement gratuit!',
         'title'         => 'Une nouvelle manière d\'organiser vos campagnes.',
     ],
     'footer'        => [
@@ -133,15 +133,15 @@ return [
     ],
     'help'          => [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacteront aussi rapidement que possible.',
-        'discord'       => 'Joins la communauté sur Discord',
-        'email'         => 'Envois nous un email',
-        'facebook'      => 'Contactes-nous sur Facebook',
+        'discord'       => 'Rejoins-nous Discord',
+        'email'         => 'Envoie nous un email',
+        'facebook'      => 'Contacte-nous sur Facebook',
         'title'         => 'Aide',
         'twitter'       => 'Tweet-nous sur Twitter',
     ],
     'master'        => [
-        'call_to_action'    => 'Inscris-toi maintenant, c\'est gratuit!',
-        'description'       => 'Kanka est un outil en ligne flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créez et organisez des personnages, localités, organisations, événements et bien plus.',
+        'call_to_action'    => 'Créé un compte, c\'est gratuit!',
+        'description'       => 'Kanka est un outil flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créé et organise des personnages, localités, organisations, événements et bien plus.',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -188,7 +188,7 @@ return [
             'unlimited'         => 'Nombre de campagne et upload illimité',
             'updates'           => 'Mises à jour et améliorations fréquentes',
         ],
-        'description'   => 'Toutes les fonctionalités coeurs sont gratuites, mais nous soutenir nous aide à travailer et améliorer le produit de façon continue.',
+        'description'   => 'Toutes les fonctionnalités essentielles sont gratuites, mais nous soutenir nous permet de travailler et d’améliorer le produit de façon continue.',
         'tier'          => [
             'free'  => 'Gratuit',
             'month' => 'Mois',
@@ -208,7 +208,7 @@ return [
             'description'   => 'Ce Trello continent toutes les requêtes de la communauté, ainsi que les améliorations planifiées et nouvelles fonctionnalités qui seront un jour ajouté à l\'application.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Nos incroyables Patrons votent une fois par mois sur les nouvelles fonctionnalités à prioritiser, significant que nous n\'avons pas de roadmap sur plusieurs mois, mais il est facile de suivre les requêtes qui sont en cours d\'être implémentées.',
+        'description'   => 'Nos incroyables Patrons votent une fois par mois sur les nouvelles fonctionnalités à prioritiser, ce qui veut dire que nous n\'avons pas de roadmap sur plusieurs mois, mais qu’il est facile de suivre les requêtes qui sont en cours d’implémentation.',
         'next'          => [
             'description'   => 'Ce Trello contient toutes les améliorations et nouvelles fonctionnalités qui sont en cours de développement.',
             'title'         => 'Prochain',
@@ -216,8 +216,8 @@ return [
         'title'         => 'Roadmap',
     ],
     'second_block'  => [
-        'call_to_action'    => 'Commençons!',
-        'title'             => 'Laissez libre à votre créativité.',
+        'call_to_action'    => 'C\'est parti!',
+        'title'             => 'Laisse libre cours à ta créativité.',
     ],
     'team'          => [
         'coffee'    => 'Achète-moi un café!',

@@ -22,18 +22,18 @@ return [
         ],
         'jay'       => [
             'text'  => <<<'TEXT'
-J'ai créé Kanka en octobre 2017 car il n'y avait à l'époque aucun outil qui me permettait de façilement créer mon monde et de le partager avec mes joueurs tout en contrôlant qui peut voir quoi.
+J'ai créé Kanka en octobre 2017 car il n'y avait aucun outil qui me permettait de facilement créer mon monde et de le partager avec mes joueurs tout en ayant le contrôle des permissions.
 
-Ensuite j'ai pris le paris de bosser à plein temps sur Kanka au début de 2020 grace ou soutient d'amis et de la communauté.
+J’ai pris le pari de bosser à plein temps sur Kanka au début de 2020 grâce au soutien de mes amis et de la communauté.
 TEXT
 ,
             'title' => 'Fondateur & Lead Developer',
         ],
         'jon'       => [
             'text'  => <<<'TEXT'
-Jay et moi sommes amis depuis près d'une décennie, et ça a excitant de le voir développer Kanka au cours des deux dernières années.
+Jay et moi sommes amis depuis près d'une décennie, et ça  a été une joie de le voir développer Kanka au cours des deux dernières années.
 
-Depuis le début de 2020, j'aide en prenant soin de l'aspect commercial des choses, et j'espère que nous pourrons continuer à offrir un outil unique qui sera utile aux autheurs et aux joueurs du monde entier!
+Depuis le début de 2020, je m’occupe de l'aspect commercial des choses, et j’ai pour ambition de continuer à offrir un outil unique qui sera utile aux auteurs ainsi que aux joueurs du monde entier!
 TEXT
 ,
             'title' => 'Co-Foundateur & Business Manager',

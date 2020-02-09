@@ -5,7 +5,7 @@ return [
         'read'      => 'Lire l\'article',
         'return'    => 'Retour aux articles',
     ],
-    'description'   => 'Rester à jour sur les fréquentes évolutions de Kanka.',
+    'description'   => 'Rester à jour sur les évolutions fréquentes de Kanka.',
     'latest'        => [
         'title' => 'Dernières nouvelles',
     ],
