@@ -10,7 +10,7 @@ return [
         'action'    => 'Acción',
         'date'      => 'Fecha',
     ],
-    'impersonated'  => 'Usurpado por :name',
+    'impersonated'  => 'Hecho pasar por :name',
     'show'          => [
         'title' => 'Historial de :name',
     ],

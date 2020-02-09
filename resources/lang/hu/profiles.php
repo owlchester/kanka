@@ -48,7 +48,7 @@ return [
             'pagination'        => 'Lapméret (elemek száma egy lapon)',
         ],
         'hints'     => [
-            'advanced_mentions' => 'Kapcsold be, ha szeretnéd, hogy az említések miden esetben [entity:123] formában jelenjenek meg az entitás szerkesztése közben.',
+            'advanced_mentions' => 'Kapcsold be, ha szeretnéd, hogy az említések minden esetben [entity:123] formában jelenjenek meg az entitás szerkesztése közben.',
             'default_nested'    => 'Kapcsold be, ha alapértelmezetten Hierarchikus Nézetben szeretnéd látni az entitásaidat (amikor lehetséges)',
         ],
         'success'   => 'A beállításokat megváltoztattuk.',

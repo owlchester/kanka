@@ -80,7 +80,7 @@ return [
         ],
         'link'          => 'Nyomd meg ezt a gombot, ha jelenleg támogatod a Kankát a Patreonon, aktiválva a bónuszaid.',
         'linked'        => 'Köszönjük, hogy támogatsz minket a Patreonon! A fiókjaid összekapcsoltuk.',
-        'pledge'        => ':name támogatása',
+        'pledge'        => ':name támogatási szint',
         'success'       => 'Köszönjük, hogy támogatsz minket a Patreonon!',
         'title'         => 'Patreon',
         'wrong_pledge'  => 'A támogatási szintedet manuálisan állítjuk be, így kérjük, adj nekünk pár napot, hogy megfelelően beállíthassuk. Ha továbbra is helytelennek látod, lépj velünk kapcsolatba.',
