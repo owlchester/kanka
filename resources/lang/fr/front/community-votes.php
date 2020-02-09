@@ -9,7 +9,7 @@ return [
     ],
     'description'   => 'Les utilisateurs qui soutiennent Kanka aident à façonner l\'évolution de l\'application en participant fréquemment à des votes communautaires.',
     'index'         => [
-        'past'      => 'Votes clos',
+        'past'      => 'Votes terminés',
         'voting'    => 'Votes actifs',
     ],
     'latest'        => [
