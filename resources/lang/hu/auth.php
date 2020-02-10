@@ -26,7 +26,7 @@ return [
         'login_with_twitter'    => 'Bejelentkezés Twitter segítségével',
         'new_account'           => 'Új felhasználói fiók regisztrálása',
         'or'                    => 'VAGY',
-        'password_forgotten'    => 'Elfejetetted a jelszvadat?',
+        'password_forgotten'    => 'Elfelejtetted a jelszavadat?',
         'remember_me'           => 'Emlékezz rám',
         'submit'                => 'Bejelentkezés',
         'title'                 => 'Bejelentkezés',

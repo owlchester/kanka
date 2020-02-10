@@ -147,20 +147,20 @@ return [
         'contact_us'=> 'Contáctanos',
         'dashboard' => 'Tablero',
         'faq'       => 'Preguntas Frecuentes',
-        'features'  => 'Caracteristicas',
+        'features'  => 'Características',
         'help'      => 'Ayuda',
         'home'      => 'Inicio',
         'login'     => 'Iniciar sesión',
         'privacy'   => 'Política de Privacidad',
         'register'  => 'Registrarse',
-        'releases'  => 'Publicaciones',
+        'releases'  => 'Lanzamientos',
         'roadmap'   => 'Hoja de ruta',
         'title'     => 'Menú',
         'tos'       => 'Términos de servicio',
     ],
     'meta'          => [
         'description'   => 'Kanka es un administrador flexible de campañas de rol online.',
-        'title'         => 'Kanka - Gestiona tus sesiones y construye tus mundos.',
+        'title'         => 'Kanka - Gestiona partidas de rol y crea mundos online',
     ],
     'partners'      => [
         'description'   => 'Nos hemos asociado con algunas herramientas asombrosas y con comunidades que comparten nuestros objetivos y valores.',
@@ -173,7 +173,7 @@ return [
     ],
     'release'       => [
         'description'   => 'Kanka está creciendo y mejorando constantemente, y queremos que el mundo conozca todas las cosas increíbles que estamos añadiendo a la aplicación.',
-        'title'         => 'Publicaciones',
+        'title'         => 'Lanzamientos',
     ],
     'roadmap'       => [
         'backlog'       => [
