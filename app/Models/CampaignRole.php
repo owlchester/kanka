@@ -7,6 +7,7 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Attribute
@@ -120,5 +121,16 @@ class CampaignRole extends Model
                 $permission->delete();
             }
         }
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string|null $search
+     * @return Builder
+     */
+    public function scopeSearch(Builder $builder, string $search = null)
+    {
+        return $builder
+            ->where('name', 'like', "%$search%");
     }
 }

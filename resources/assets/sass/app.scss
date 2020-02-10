@@ -420,6 +420,11 @@ tr.entity-hidden {
     padding-top: 8px
   }
 }
+.entity-name-img {
+  line-height: 2.8em;
+  margin-left: 8px;
+  display: inline-block;
+}
 
 /**
  * vendor layout fix for ckeditor full screen mode
@@ -850,6 +855,16 @@ td.breakable {
     a {
       color: #000;
     }
+  }
+}
+
+.float-left {
+  float: left;
+}
+
+.crud_permissions {
+  label {
+    cursor: pointer;
   }
 }
 

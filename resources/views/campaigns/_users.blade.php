@@ -20,7 +20,11 @@
             <?php /** @var \App\Models\CampaignUser $relation */?>
             @foreach ($r = $campaign->members()->with(['user', 'campaign'])->paginate() as $relation)
                 <tr>
-                    <td>{{ $relation->user->name }}</td>
+                    <td>
+                        <div class="entity-image float-left" style="background-image: url({{ $relation->user->getAvatarUrl(true) }})" title="{{ $relation->user->name }}">
+                        </div>
+                        <div class="entity-name-img">{{ $relation->user->name }}</div>
+                    </td>
                     <td>{{ $relation->user->rolesList($campaign->id) }}</td>
                     <td class="hidden-xs hidden-md">
                         @if (!empty($relation->created_at))

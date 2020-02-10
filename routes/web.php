@@ -282,6 +282,9 @@ Route::group([
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
 
+        Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');
+        Route::get('/search/roles', 'Search\CampaignSearchController@roles')->name('find.campaign.roles');
+
         // Entity Search
         Route::get('/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');
 

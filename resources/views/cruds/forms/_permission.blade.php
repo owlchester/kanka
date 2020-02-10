@@ -1,6 +1,11 @@
 @inject('permissionService', 'App\Services\PermissionService')
 @php
-/** @var \App\Services\PermissionService $permissionService */
+/**
+ * @var \App\Services\PermissionService $permissionService
+ * @var \App\Models\CampaignUser $member
+ * @var \App\Models\CampaignRole $role
+ * @var \App\Models\Campaign $campaign
+ */
 $permissions = isset($model) ? $permissionService->entityPermissions($model->entity) : [];
 if (isset($model)) {
     $permissionService->type($entityType);
@@ -11,7 +16,7 @@ if (isset($model)) {
 
 <p class="help-block">{{ __('crud.permissions.helper') }}</p>
 
-<table id="crud_permissions" class="table table-hover export-hidden">
+<table id="crud_permissions" class="crud_permissions table table-hover export-hidden">
     <tbody>
     <tr>
         <th>{{ __('crud.permissions.fields.role') }}</th>
@@ -78,7 +83,11 @@ if (isset($model)) {
     @foreach ($campaign->campaign()->members()->with('user')->get() as $member)
         @if (!$member->isAdmin())
             <tr>
-                <td>{{ $member->user->name }}</td>
+                <td>
+                    <div class="entity-image float-left" style="background-image: url({{ $member->user->getAvatarUrl(true) }})" title="{{ $member->user->name }}">
+                    </div>
+                    <div class="entity-name-img">{{ $member->user->name }}</div>
+                </td>
                 <td>
                     <label>
                         {!! Form::checkbox('user[' . $member->user_id . '][]', 'read', !empty($permissions['user'][$member->user_id]['read'])) !!}

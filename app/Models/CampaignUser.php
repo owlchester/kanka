@@ -6,6 +6,7 @@ use App\Models\Concerns\Paginatable;
 use App\Scopes\CampaignScope;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class CampaignUser
@@ -68,5 +69,18 @@ class CampaignUser extends Model
     public function isAdmin()
     {
         return $this->roles()->where(['is_admin' => true])->count() > 0;
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string|null $search
+     * @return Builder
+     */
+    public function scopeSearch(Builder $builder, string $search = null)
+    {
+        return $builder
+            ->select($this->getTable() . '.*')
+            ->leftJoin('users as u', 'u.id', $this->getTable() . '.user_id')
+            ->where('u.name', 'like', "%$search%");
     }
 }
