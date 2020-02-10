@@ -7,6 +7,7 @@ $selectedOption = [];
 
 $model = Arr::get($options, 'model', null);
 $enableNew = Arr::get($options, 'enableNew', true);
+$label = Arr::get($options, 'label', true);
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
@@ -22,9 +23,11 @@ elseif(!empty($model) && !empty($model->entity)) {
     }
 }
 ?>
+@if ($label)
 <label>{{ trans('crud.fields.tags') }}</label>
+@endif
 
-<select multiple="multiple" name="tags[]" id="tags" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-new-tag="{{ trans('tags.new_tag') }}">
+<select multiple="multiple" name="tags[]" id="{{ 'tags_' . uniqid() }}" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-new-tag="{{ trans('tags.new_tag') }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach

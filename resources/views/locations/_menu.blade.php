@@ -26,8 +26,7 @@
                     </b>
 
                     <span class="pull-right">
-                        {!! $model->parentLocation->tooltipedLink() !!}
-                        @if ($model->parentLocation->parentLocation),
+                        {!! $model->parentLocation->tooltipedLink() !!}@if ($model->parentLocation->parentLocation),
                         {!! $model->parentLocation->parentLocation->tooltipedLink() !!}
                         @endif
                             </span>

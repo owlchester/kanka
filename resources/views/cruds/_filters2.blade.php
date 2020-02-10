@@ -12,7 +12,17 @@
                     $modelclass = new $field['model'];
                     $model = $modelclass->find($value);
                 }?>
-                @if ($field['type'] == 'select')
+                @if ($field['type'] == 'tag')
+                    {!! Form::tags(
+                        $field['field'],
+                        [
+                            'id' => $field['field'],
+                            'model' => null,
+                            'enableNew' => false,
+                            'label' => false
+                        ]
+                    ) !!}
+                @elseif ($field['type'] == 'select')
                     {!! Form::select(
                     $field['field'],
                     array_merge(['' => ''], $field['data']), // Add an empty option
