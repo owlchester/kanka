@@ -855,6 +855,24 @@ td.breakable {
   cursor: pointer;
 }
 
+.datagrid-filters .box-header {
+  cursor: pointer;
+}
+
+.datagrid-filters .box-header .active-filter {
+  padding: 3px;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.widget-patron .img-circle {
+  border: none !important;
+}
+
+.widget-patron .box-body {
+  padding-top: 37px;
+}
+
 .calendar {
   table-layout: fixed;
 }

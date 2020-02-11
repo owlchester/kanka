@@ -2,7 +2,7 @@
     <div class="col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
-                <div class="card-image" style="background-image: url(/images/tiers/kobold.png);"></div>
+                <div class="card-image" style="background-image: url(/images/tiers/kobold-325.png);"></div>
                 <h5 class="card-title text-muted text-uppercase text-center">Kobold</h5>
                 <h6 class="card-price text-center">{{ __('front.pricing.tier.free') }}</h6>
                 <hr>
@@ -41,7 +41,7 @@
     <div class="col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
-                <div class="card-image" style="background-image: url(/images/tiers/owlbear.png);"></div>
+                <div class="card-image" style="background-image: url(/images/tiers/owlbear-325.png);"></div>
                 <h5 class="card-title text-muted text-uppercase text-center">Owlbear</h5>
                 <h6 class="card-price text-center">$5<span class="period">/{{ __('front.pricing.tier.month') }}</span></h6>
                 <hr>
@@ -84,7 +84,7 @@
     <div class="col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
-                <div class="card-image" style="background-image: url(/images/tiers/elemental.png);"></div>
+                <div class="card-image" style="background-image: url(/images/tiers/elemental-325.png);"></div>
                 <h5 class="card-title text-muted text-uppercase text-center">Elementals</h5>
                 <h6 class="card-price text-center">$25<span class="period">/{{ __('front.pricing.tier.month') }}</span></h6>
                 <hr>

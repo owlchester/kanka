@@ -2,6 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 trait Filterable
@@ -30,7 +32,7 @@ trait Filterable
      * @param $params
      * @return mixed
      */
-    public function scopeFilter($query, $params)
+    public function scopeFilter(Builder $query, $params)
     {
         $fields = $this->getFilterableColumns();
         if (!is_array($params) or empty($params) or empty($fields)) {
@@ -40,18 +42,19 @@ trait Filterable
         foreach ($params as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 // It's possible to request "not" values
-
                 $operator = 'like';
                 $filterValue = $value;
-                if ($value == '!!') {
-                    $operator = 'IS NULL';
-                    $filterValue = null;
-                } elseif (Str::startsWith($value, '!')) {
-                    $operator = 'not like';
-                    $filterValue = ltrim($value, '!');
-                } elseif (Str::endsWith($value, '!')) {
-                    $operator = '=';
-                    $filterValue = rtrim($value, '!');
+                if ($key !== 'tags') {
+                    if ($value == '!!') {
+                        $operator = 'IS NULL';
+                        $filterValue = null;
+                    } elseif (Str::startsWith($value, '!')) {
+                        $operator = 'not like';
+                        $filterValue = ltrim($value, '!');
+                    } elseif (Str::endsWith($value, '!')) {
+                        $operator = '=';
+                        $filterValue = rtrim($value, '!');
+                    }
                 }
 
                 $segments = explode('-', $key);
@@ -72,6 +75,15 @@ trait Filterable
                 } else {
                     if (in_array($key, $this->explicitFilters)) {
                         $query->where($this->getTable() . '.' . $key, $operator, "$filterValue");
+                    } elseif ($key == 'tags') {
+                        $query
+                            ->distinct()
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('entities as e', 'e.entity_id', $this->getTable() . '.id')
+                            ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
+                            ->whereIn('et.tag_id', $value)
+                            ->having(DB::raw('count(distinct et.tag_id)'), count($value))
+                        ;
                     } elseif ($key == 'tag_id') {
                         $query
                             ->select($this->getTable() . '.*')

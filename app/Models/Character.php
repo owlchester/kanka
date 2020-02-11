@@ -52,6 +52,7 @@ class Character extends MiscModel
         'is_private',
         'tag_id',
         'race_id',
+        'tags',
     ];
 
     /**

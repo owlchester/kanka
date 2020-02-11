@@ -868,6 +868,30 @@ td.breakable {
   }
 }
 
+.datagrid-filters {
+  .box-header {
+    cursor: pointer;
+
+    .active-filter {
+      padding: 3px;
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
+}
+
+.widget-patron {
+  .img-circle {
+    border: none !important;
+    //width: 130px !important;
+    //height: 130px !important;
+    //margin-top: -40px;
+  }
+  .box-body {
+    padding-top: 37px;
+  }
+}
+
 // Other stylings
 @import "calendar";
 @import "print";

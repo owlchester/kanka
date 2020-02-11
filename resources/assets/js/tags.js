@@ -4,7 +4,7 @@ $(document).ready(function() {
 
             $(this).select2({
                 tags: $(this).data('allow-new'),
-                allowClear: true,
+                allowClear: $(this).data('allow-clear'),
                 minimumInputLength: 0,
                 ajax: {
                     quietMillis: 200,
