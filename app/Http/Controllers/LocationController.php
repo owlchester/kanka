@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\LocationFilter;
 use App\Datagrids\Sorters\LocationCharacterSorter;
 use App\Datagrids\Sorters\LocationFamilySorter;
 use App\Datagrids\Sorters\LocationLocationSorter;
@@ -43,6 +44,11 @@ class LocationController extends CrudController
     protected $locationService;
 
     /**
+     * @var string
+     */
+    protected $filter = LocationFilter::class;
+
+    /**
      * LocationController constructor.
      */
     public function __construct(LocationService $locationService)
@@ -50,27 +56,6 @@ class LocationController extends CrudController
         parent::__construct();
 
         $this->locationService = $locationService;
-
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'parent_location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
     }
 
     /**

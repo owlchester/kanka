@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\CharacterFilter;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Family;
@@ -26,6 +27,11 @@ class CharacterController extends CrudController
     protected $model = \App\Models\Character::class;
 
     /**
+     * @var string
+     */
+    protected $filter = CharacterFilter::class;
+
+    /**
      * @var RandomCharacterService
      */
     protected $random;
@@ -43,47 +49,6 @@ class CharacterController extends CrudController
             'route' => route('characters.random'),
             'class' => 'default',
             'policy' => 'random'
-        ];
-
-        $this->filters = [
-            'name',
-            'title',
-            [
-                'field' => 'family_id',
-                'label' => trans('characters.fields.family'),
-                'type' => 'select2',
-                'route' => route('families.find'),
-                'placeholder' =>  trans('crud.placeholders.family'),
-                'model' => Family::class,
-            ],
-            [
-                'field' => 'location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'race_id',
-                'label' => trans('characters.fields.race'),
-                'type' => 'select2',
-                'route' => route('races.find'),
-                'placeholder' =>  trans('crud.placeholders.race'),
-                'model' => Race::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-            'type',
-            'age',
-            'sex',
-            'is_dead',
         ];
 
         parent::__construct();

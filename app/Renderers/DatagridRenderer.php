@@ -458,6 +458,8 @@ class DatagridRenderer
      */
     protected function renderFilters()
     {
+        return '';
+
         if (empty($this->filters)) {
             return '';
         }
@@ -483,7 +485,7 @@ class DatagridRenderer
         " data-toggle="popover" '
             . 'data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
             <i class="fa fa-filter"></i>
-            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . $activeFilters . '</span>' : null) . '
+            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . count($activeFilters) . '</span>' : null) . '
             <i class="fa fa-caret-down"></i>
         </div>';
 
