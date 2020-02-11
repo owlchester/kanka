@@ -12,7 +12,7 @@
     "devDependencies": {
         "admin-lte": "^2.4.17",
         "axios": "^0.19",
-        "bootstrap-sass": "^3.3.7",
+        "bootstrap-sass": "^3.4.1",
         "cross-env": "^5.1",
         "jquery": "^3.4.1",
         "jquery-ui": "^1.12.1",
