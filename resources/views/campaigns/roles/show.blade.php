@@ -19,19 +19,14 @@
                     <h3 class="box-title">{{ trans('campaigns.roles.members') }}</h3>
                 </div>
                 <div class="box-body">
-                    @if (Auth::user()->can('user', $role))
-                        <p class="text-right">
-                            <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}" class="btn btn-primary">
-                                <i class="fa fa-plus"></i>
-                                {{ trans('campaigns.roles.users.actions.add') }}
-                            </a>
-                        </p>
-                    @endif
                     <table id="users" class="table table-hover">
-                        <tbody><tr>
+                        <thead>
+                        <tr>
                             <th>{{ trans('campaigns.roles.users.fields.name') }}</th>
                             <th><br /></th>
                         </tr>
+                        </thead>
+                        <tbody>
                         @foreach ($r = $role->users()->with('user')->paginate() as $relation)
                             <tr>
                                 <td>
@@ -45,16 +40,32 @@
                                 </td>
                                 <td class="text-right">
                                     @can('removeUser', $role)
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id], 'style'=>'display:inline']) !!}
-                                        <button class="btn btn-xs btn-danger">
+                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->user->name }}"
+                                        data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}">
                                             <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                                         </button>
+                                        {!! Form::open([
+                                            'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
+                                            'style' => 'display:inline',
+                                            'id' => 'campaign-role-member-' . $relation->id
+
+                                        ]) !!}
                                         {!! Form::close() !!}
                                     @endcan
                                 </td>
                             </tr>
                         @endforeach
                         </tbody></table>
+
+                    @if (Auth::user()->can('user', $role))
+                        <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}" class="btn btn-primary btn-block"
+                           data-toggle="ajax-modal" data-target="#entity-modal"
+                           data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
+                            <i class="fa fa-plus"></i>
+                            {{ trans('campaigns.roles.users.actions.add') }}
+                        </a>
+                    @endif
+
                     {{ $r->links() }}
                 </div>
             </div>
@@ -70,7 +81,6 @@
                     <p class="help-block">{{ trans('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
                     @if ($role->is_public)
                         <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}<br />
-
                             <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
                         </p>
                     @endif

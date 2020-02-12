@@ -245,7 +245,7 @@ return [
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Add',
+                'add'   => 'Add a member',
             ],
             'create'    => [
                 'success'   => 'User added to the role.',

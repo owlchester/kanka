@@ -18,7 +18,7 @@
                     @include('campaigns.roles._form')
 
                     {!! Form::hidden('campaign_id', CampaignLocalization::getCampaign()->id) !!}
-                    
+
                     {!! Form::close() !!}
                 </div>
             </div>
