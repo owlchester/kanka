@@ -2,7 +2,7 @@
 
 namespace App\Datagrids\Filters;
 
-class CalendarFilter extends DatagridFilter
+class NoteFilter extends DatagridFilter
 {
     /**
      * CharacterFilter constructor.

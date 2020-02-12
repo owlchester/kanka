@@ -2,7 +2,7 @@
 
 namespace App\Datagrids\Filters;
 
-class CalendarFilter extends DatagridFilter
+class JournalFilter extends DatagridFilter
 {
     /**
      * CharacterFilter constructor.
@@ -12,6 +12,9 @@ class CalendarFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
+            ->add('date')
+            ->character()
+            ->location()
             ->isPrivate()
             ->tags()
         ;

@@ -21,7 +21,7 @@ $count = 0;
 
     </div>
 
-    {!! Form::open(['url' => route($route . '.index'), 'method' => 'GET', 'id' => 'crud-filters-form', 'class' => '']) !!}
+    {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
     <div class="collapse out" id="datagrid-filters">
         <div class="box-body">
             <div class="row">
@@ -93,9 +93,25 @@ $count = 0;
                     </div>
                 @endforeach
             </div>
-
         </div>
         <div class="box-footer text-center">
+            <div class="pull-left hidden-xs">
+                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default">
+                    <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
+                </a>
+                <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
+                    {{ __('helpers.filters.title') }} <i class="fa fa-question-circle"></i>
+                </a>
+            </div>
+
+            <div class="visible-xs pull-left block">
+                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default margin-r-5">
+                    <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
+                </a>
+                <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
+                    <i class="fa fa-question-circle"></i>
+                </a>
+            </div>
 
             <button class="btn btn-primary pull-right">
                 <i class="fa fa-filter"></i> {{ __('crud.filter') }}
@@ -105,9 +121,6 @@ $count = 0;
                 <i class="fa fa-chevron-up"></i>
             </a>
 
-            <a href="{{ route($route . '.index', ['reset-filter' => 'true']) }}" class="btn btn-default pull-left">
-                <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
-            </a>
         </div>
         {!! Form::close() !!}
     </div>

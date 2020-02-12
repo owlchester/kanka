@@ -26,6 +26,7 @@ trait TreeControllerTrait
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;
+        $filter = !empty($this->filter) ? new $this->filter : null;
 
         $actions = [[
             'route' => route($this->route . '.index'),
@@ -92,6 +93,7 @@ trait TreeControllerTrait
             'actions',
             'filters',
             'filterService',
+            'filter',
             'view',
             'route',
             'bulk',

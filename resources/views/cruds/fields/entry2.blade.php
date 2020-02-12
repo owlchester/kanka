@@ -10,6 +10,8 @@
         ]
     ) !!}
     <div class="text-right">
-        <a href="{{ route('helpers.link') }}" data-toggle="tooltip" title="{{ __('helpers.link.description') }}" target="_blank">{{ __('crud.linking_help') }}</a>
+        <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
+            {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
+        </a>
     </div>
 </div>

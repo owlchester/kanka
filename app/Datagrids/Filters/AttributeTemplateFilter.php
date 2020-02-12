@@ -4,8 +4,6 @@ namespace App\Datagrids\Filters;
 
 
 use App\Models\AttributeTemplate;
-use App\Models\Location;
-use App\Models\Tag;
 
 class AttributeTemplateFilter extends DatagridFilter
 {

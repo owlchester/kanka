@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\EventFilter;
 use App\Http\Requests\StoreEvent;
 use App\Models\Event;
 use App\Models\Tag;
@@ -16,31 +17,11 @@ class EventController extends CrudController
     protected $view = 'events';
     protected $route = 'events';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\Event::class;
 
-    /**
-     * EventController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            'date',
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = EventFilter::class;
 
     /**
      * Store a newly created resource in storage.

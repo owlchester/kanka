@@ -3,9 +3,6 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Family;
-use App\Models\Location;
-use App\Models\Race;
-use App\Models\Tag;
 
 class CharacterFilter extends DatagridFilter
 {

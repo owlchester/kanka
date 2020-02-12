@@ -3,7 +3,6 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Location;
-use App\Models\Tag;
 
 class LocationFilter extends DatagridFilter
 {

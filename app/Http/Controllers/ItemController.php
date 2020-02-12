@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\ItemFilter;
 use App\Models\Character;
 use App\Http\Requests\StoreItem;
 use App\Models\Item;
@@ -18,48 +19,11 @@ class ItemController extends CrudController
     protected $view = 'items';
     protected $route = 'items';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\Item::class;
 
-    /**
-     * ItemController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            'price',
-            'size',
-            [
-                'field' => 'location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'character_id',
-                'label' => trans('crud.fields.character'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  trans('crud.placeholders.character'),
-                'model' => Character::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = ItemFilter::class;
 
     /**
      * Store a newly created resource in storage.

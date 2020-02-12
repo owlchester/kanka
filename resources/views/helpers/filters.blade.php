@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('helpers.title'),
     'description' => __('helpers.description'),
     'breadcrumbs' => [
@@ -7,29 +7,25 @@
 ])
 
 @section('content')
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h4>{{ __('helpers.filters.title') }}</h4>
-                </div>
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h4>{{ __('helpers.filters.title') }}</h4>
+        </div>
 
-                <div class="box-body">
-                    <p>{{ __('helpers.filters.description') }}</p>
-                    <dl class="dl-horizontal">
-                        <dt><code>!...</code></dt>
-                        <dd>{!! __('helpers.filters.starting_with', ['tag' => '<code>!</code>']) !!}</dd>
+        <div class="box-body">
+            <p>{{ __('helpers.filters.description') }}</p>
+            <dl class="dl-horizontal">
+                <dt><code>!...</code></dt>
+                <dd>{!! __('helpers.filters.starting_with', ['tag' => '<code>!</code>']) !!}</dd>
 
-                        <dt><code>...!</code></dt>
-                        <dd>{!! __('helpers.filters.ending_with', ['tag' => '<code>!</code>']) !!}</dd>
+                <dt><code>...!</code></dt>
+                <dd>{!! __('helpers.filters.ending_with', ['tag' => '<code>!</code>']) !!}</dd>
 
-                        <dt><code>!!</code></dt>
-                        <dd>{!! __('helpers.filters.empty', ['tag' => '<code>!!</code>']) !!}</dd>
-                    </dl>
+                <dt><code>!!</code></dt>
+                <dd>{!! __('helpers.filters.empty', ['tag' => '<code>!!</code>']) !!}</dd>
+            </dl>
 
-                    <p>{{ __('helpers.filters.session') }}</p>
-                </div>
-            </div>
+            <p>{{ __('helpers.filters.session') }}</p>
         </div>
     </div>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\TagFilter;
 use App\Datagrids\Sorters\TagChildrenSorter;
 use App\Datagrids\Sorters\TagTagSorter;
 use App\Http\Requests\StoreTagEntity;
@@ -26,31 +27,11 @@ class TagController extends CrudController
     protected $view = 'tags';
     protected $route = 'tags';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\Tag::class;
 
-    /**
-     * TagController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = TagFilter::class;
 
     /**
      * Store a newly created resource in storage.
@@ -107,7 +88,7 @@ class TagController extends CrudController
     {
         return $this->crudDestroy($tag);
     }
-    
+
     /**
      * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

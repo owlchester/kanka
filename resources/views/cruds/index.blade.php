@@ -38,7 +38,7 @@
     @include('partials.errors')
 
     @if ($filter)
-        @include('cruds.datagrids.filters.datagrid-filter')
+        @include('cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
     @endif
 
     <div class="box no-border">

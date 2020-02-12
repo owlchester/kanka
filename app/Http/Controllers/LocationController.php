@@ -33,19 +33,13 @@ class LocationController extends CrudController
     protected $view = 'locations';
     protected $route = 'locations';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\Location::class;
 
-    /**
-     * @var LocationService
-     */
+    /** @var LocationService */
     protected $locationService;
 
-    /**
-     * @var string
-     */
+    /** @var string Filter */
     protected $filter = LocationFilter::class;
 
     /**
