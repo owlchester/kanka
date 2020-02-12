@@ -35,6 +35,7 @@ class DiceRoll extends MiscModel
         'character_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

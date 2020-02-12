@@ -79,7 +79,10 @@ trait Filterable
                         $query
                             ->distinct()
                             ->select($this->getTable() . '.*')
-                            ->leftJoin('entities as e', 'e.entity_id', $this->getTable() . '.id')
+                            ->leftJoin('entities as e', function ($join) {
+                                $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                                $join->on('e.campaign_id', '=', $this->getTable() . '.campaign_id');
+                            })
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->whereIn('et.tag_id', $value)
                             ->having(DB::raw('count(distinct et.tag_id)'), count($value))
@@ -87,7 +90,10 @@ trait Filterable
                     } elseif ($key == 'tag_id') {
                         $query
                             ->select($this->getTable() . '.*')
-                            ->leftJoin('entities as e', 'e.entity_id', $this->getTable() . '.id')
+                            ->leftJoin('entities as e', function ($join) {
+                                $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                                $join->on('e.campaign_id', '=', $this->getTable() . '.campaign_id');
+                            })
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
                     } elseif ($operator == 'IS NULL') {

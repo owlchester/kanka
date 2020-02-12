@@ -34,6 +34,7 @@ class Event extends MiscModel
         'location_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

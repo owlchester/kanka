@@ -47,6 +47,7 @@ class Race extends MiscModel
         'race_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     protected $sortableColumns = [

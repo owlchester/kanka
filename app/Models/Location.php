@@ -58,6 +58,7 @@ class Location extends MiscModel
         'parent_location_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

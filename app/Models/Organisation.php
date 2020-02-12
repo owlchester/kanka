@@ -48,6 +48,7 @@ class Organisation extends MiscModel
         'organisation_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

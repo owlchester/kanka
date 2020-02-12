@@ -103,11 +103,6 @@ class Calendar extends MiscModel
     protected $loadedMonthAliases = false;
 
     /**
-     * @var bool
-     */
-    protected $loadedIntercalaries = false;
-
-    /**
      * Fields that can be filtered on
      * @var array
      */
@@ -116,6 +111,7 @@ class Calendar extends MiscModel
         'type',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

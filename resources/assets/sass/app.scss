@@ -892,6 +892,11 @@ td.breakable {
   }
 }
 
+#entry td, #entry th {
+  padding:2px;
+}
+
+
 // Other stylings
 @import "calendar";
 @import "print";

@@ -45,6 +45,7 @@ class Conversation extends MiscModel
         'target',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

@@ -35,6 +35,7 @@ class Note extends MiscModel
         'type',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**

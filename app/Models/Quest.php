@@ -63,6 +63,7 @@ class Quest extends MiscModel
         'character_id',
         'is_completed',
         'is_private',
+        'tags',
     ];
 
     /**
