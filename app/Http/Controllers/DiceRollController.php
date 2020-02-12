@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\DiceRollFilter;
 use App\Models\Character;
 use App\Models\DiceRoll;
 use App\Http\Requests\StoreDiceRoll;
@@ -20,10 +21,11 @@ class DiceRollController extends CrudController
     protected $view = 'dice_rolls';
     protected $route = 'dice_rolls';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\DiceRoll::class;
+
+    /** @var string Filter */
+    protected $filter = DiceRollFilter::class;
 
     /**
      * SectionController constructor.
@@ -36,26 +38,6 @@ class DiceRollController extends CrudController
             'route' => route('dice_roll_results.index'),
             'class' => 'default',
             'label' => '<i class="fa fa-list"></i> ' . trans('dice_rolls.index.actions.results')
-        ];
-
-        $this->filters = [
-            'name',
-            [
-                'field' => 'character_id',
-                'label' => trans('crud.fields.character'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  trans('crud.placeholders.character'),
-                'model' => Character::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
         ];
     }
 

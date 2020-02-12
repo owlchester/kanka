@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\OrganisationFilter;
 use App\Datagrids\Sorters\OrganisationCharacterSorter;
 use App\Datagrids\Sorters\OrganisationOrganisationSorter;
 use App\Http\Requests\StoreOrganisation;
@@ -20,46 +21,11 @@ class OrganisationController extends CrudController
     protected $view = 'organisations';
     protected $route = 'organisations';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $model = \App\Models\Organisation::class;
 
-    /**
-     * OrganisationController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'organisation_id',
-                'label' => trans('crud.fields.organisation'),
-                'type' => 'select2',
-                'route' => route('organisations.find'),
-                'placeholder' =>  trans('crud.placeholders.organisation'),
-                'model' => Organisation::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = OrganisationFilter::class;
 
     /**
      * Store a newly created resource in storage.

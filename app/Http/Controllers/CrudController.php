@@ -52,6 +52,7 @@ class CrudController extends Controller
      * @var array
      */
     protected $filters = [];
+    protected $filter;
 
     /**
      * @var FilterService
@@ -118,16 +119,12 @@ class CrudController extends Controller
     {
         //$this->authorize('browse', $this->model);
 
-        // Add the is_private filter only for admins.
-        if (Auth::check() && Auth::user()->isAdmin()) {
-            $this->filters[] = 'is_private';
-        }
-
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;
+        $filter = !empty($this->filter) ? new $this->filter : null;
         $filterService = $this->filterService;
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
@@ -158,6 +155,7 @@ class CrudController extends Controller
             'name',
             'model',
             'actions',
+            'filter',
             'filters',
             'filterService',
             'nestedView',

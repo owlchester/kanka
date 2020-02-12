@@ -4,6 +4,7 @@
 namespace App\Datagrids\Filters;
 
 
+use App\Models\Character;
 use App\Models\Location;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,6 @@ abstract class DatagridFilter
         return $this;
     }
 
-
     /**
      * Add the location filters
      * @return $this
@@ -48,6 +48,23 @@ abstract class DatagridFilter
             'route' => route('locations.find'),
             'placeholder' =>  trans('crud.placeholders.location'),
             'model' => Location::class,
+        ];
+        return $this;
+    }
+
+    /**
+     * Add the character filters
+     * @return $this
+     */
+    protected function character(): self
+    {
+        $this->filters[] = [
+            'field' => 'character_id',
+            'label' => trans('crud.fields.character'),
+            'type' => 'select2',
+            'route' => route('characters.find'),
+            'placeholder' =>  trans('crud.placeholders.character'),
+            'model' => Character::class,
         ];
         return $this;
     }

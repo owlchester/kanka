@@ -225,21 +225,21 @@ class FilterService
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function activeFilters()
+    public function activeFilters(): array
     {
         if (empty($this->filters)) {
-            return 0;
+            return [];
         }
 
-        $count = 0;
+        $filters = [];
         foreach ($this->filters as $key => $val) {
             if ($val !== null) {
-                $count++;
+                $filters[$key] = $val;
             }
         }
-        return $count;
+        return $filters;
     }
 
     /**

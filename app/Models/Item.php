@@ -64,6 +64,7 @@ class Item extends MiscModel
         'is_private',
         'price',
         'size',
+        'tags',
     ];
 
     /**

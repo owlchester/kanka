@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\ConversationFilter;
 use App\Http\Requests\StoreConversation;
 use App\Models\Conversation;
-use App\Models\Tag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
 
 class ConversationController extends CrudController
 {
@@ -17,38 +14,11 @@ class ConversationController extends CrudController
     protected $view = 'conversations';
     protected $route = 'conversations';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\Conversation::class;
 
-    /**
-     * CalendarController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'target',
-                'label' => trans('conversations.fields.target'),
-                'valueKey' => 'conversations.targets.',
-                'type' => 'select',
-                'placeholder' =>  trans('conversations.placeholders.target'),
-                'data' => trans('conversations.targets')
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = ConversationFilter::class;
 
     /**
      * Store a newly created resource in storage.

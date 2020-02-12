@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\AttributeTemplateFilter;
 use App\Models\AttributeTemplate;
 use App\Http\Requests\StoreAttributeTemplate;
 use App\Services\RandomAttributeTemplateService;
@@ -20,6 +21,9 @@ class AttributeTemplateController extends CrudController
      * @var string
      */
     protected $model = \App\Models\AttributeTemplate::class;
+
+    /** @var string */
+    protected $filter = AttributeTemplateFilter::class;
 
     /**
      * Store a newly created resource in storage.

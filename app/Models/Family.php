@@ -47,6 +47,7 @@ class Family extends MiscModel
         'family_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**
