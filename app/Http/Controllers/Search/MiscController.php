@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Response;
 
 class MiscController extends Controller
@@ -167,10 +168,15 @@ class MiscController extends Controller
         $formatted = [];
 
         foreach ($models as $model) {
-            $formatted[] = [
+            $format = [
                 'id' => $model->id,
                 'text' => $model->name
             ];
+            if ($class === 'App\Models\Tag' && $model->hasColour()) {
+                $format['colour'] = $model->colourClass();
+            }
+
+            $formatted[] = $format;
         }
 
         return Response::json($formatted);

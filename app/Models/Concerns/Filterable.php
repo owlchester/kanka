@@ -81,12 +81,18 @@ trait Filterable
                             ->select($this->getTable() . '.*')
                             ->leftJoin('entities as e', function ($join) {
                                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                                $join->on('e.campaign_id', '=', $this->getTable() . '.campaign_id');
+                                $join->where('e.type', '=', $this->getEntityType());
                             })
-                            ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
-                            ->whereIn('et.tag_id', $value)
-                            ->having(DB::raw('count(distinct et.tag_id)'), count($value))
+                            //->having(DB::raw('count(distinct et.tag_id)'), count($value))
                         ;
+
+                        foreach ($value as $v) {
+                            $v = (int) $v;
+                            $query
+                                ->leftJoin('entity_tags as et' . $v, "et$v.entity_id", 'e.id')
+                                ->where("et$v.tag_id", $v)
+                            ;
+                        }
                     } elseif ($key == 'tag_id') {
                         $query
                             ->select($this->getTable() . '.*')

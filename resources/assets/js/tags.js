@@ -35,9 +35,16 @@ $(document).ready(function() {
                         newTag: true // add additional parameters
                     }
                 },
-                templateSelection : function (state) {
+                templateSelection : function (state, container) {
                     if (state.newTag) {
                         return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+                    }
+
+                    let el = $(state.element);
+                    if (state.colour) {
+                        $(container).addClass(state.colour);
+                    } else if(el.data('colour')) {
+                        $(container).addClass(el.data('colour'));
                     }
                     return state.text;
                 },

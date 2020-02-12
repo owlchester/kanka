@@ -19,14 +19,14 @@ if (!empty($previous)) {
 elseif(!empty($model) && !empty($model->entity)) {
     foreach ($model->entity->tags as $tag) {
         if (\App\Facades\EntityPermission::canView($tag->entity)) {
-            $selectedOption[$tag->id] = $tag->name;
+            $selectedOption[$tag->id] = $tag;
         }
     }
 } elseif (!empty($filterOptions)) {
     foreach ($filterOptions as $tagId) {
         $tag = \App\Models\Tag::find($tagId);
         if ($tag && \App\Facades\EntityPermission::canView($tag->entity)) {
-            $selectedOption[$tag->id] = $tag->name;
+            $selectedOption[$tag->id] = $tag;
         }
     }
 }
@@ -36,7 +36,7 @@ elseif(!empty($model) && !empty($model->entity)) {
 @endif
 
 <select multiple="multiple" name="tags[]" id="{{ Arr::get($options, 'id', 'tags') }}" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ trans('tags.new_tag') }}">
-    @foreach ($selectedOption as $key => $val)
-        <option value="{{ $key }}" selected="selected">{{ $val }}</option>
+    @foreach ($selectedOption as $key => $tag)
+        <option value="{{ $key }}" data-colour="{{ $tag->colourClass() }}" selected="selected">{{ $tag->name }}</option>
     @endforeach
 </select>

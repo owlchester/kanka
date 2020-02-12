@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Tag $section */?>
 @if ($campaign->enabled('tags') && $model->entity->tags()->count() > 0)
     <li class="list-group-item">
         <b>{{ trans('crud.fields.tags') }}</b>

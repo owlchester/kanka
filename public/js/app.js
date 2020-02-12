@@ -74406,9 +74406,17 @@ $(document).ready(function () {
 
           };
         },
-        templateSelection: function templateSelection(state) {
+        templateSelection: function templateSelection(state, container) {
           if (state.newTag) {
             return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa fa-plus-circle"></i></span>');
+          }
+
+          var el = $(state.element);
+
+          if (state.colour) {
+            $(container).addClass(state.colour);
+          } else if (el.data('colour')) {
+            $(container).addClass(el.data('colour'));
           }
 
           return state.text;
