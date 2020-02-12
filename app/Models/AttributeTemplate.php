@@ -66,6 +66,17 @@ class AttributeTemplate extends MiscModel
     public $tooltipField = 'name';
 
     /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = [
+        'name',
+        'attribute_template_id',
+        'tags',
+        'is_private',
+    ];
+
+    /**
      * Parent
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
