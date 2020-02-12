@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Release $model */?>
 <div class="card mb-4">
     @if (!empty($model->image))
         <img class="card-img-top" src="{{ Voyager::image($model->image) }}" alt="{{ $model->title }}">

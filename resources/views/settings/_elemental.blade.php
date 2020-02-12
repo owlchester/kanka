@@ -4,7 +4,7 @@
         <h5 class="widget-user-desc">$25 / {{ __('front.pricing.tier.month') }}</h5>
     </div>
     <div class="widget-user-image">
-        <img class="img-circle" src="/images/tiers/elemental-325.png" alt="Elemental">
+        <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental">
     </div>
     <div class="box-body">
         <div class="row">

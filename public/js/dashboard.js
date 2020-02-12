@@ -121,7 +121,7 @@ $(document).ready(function () {
       $(this).removeClass('pinned-entity preview');
     }
   });
-  $.each($('[data-dismiss="alert"]'), function (i) {
+  $.each($('[data-widget="remove"]'), function (i) {
     $(this).click(function (e) {
       $.post({
         url: $(this).data('url'),
@@ -300,7 +300,7 @@ function initFollow() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\dashboard */"./resources/assets/js/dashboard.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\dashboard */"./resources/assets/js/dashboard.js");
 
 
 /***/ })

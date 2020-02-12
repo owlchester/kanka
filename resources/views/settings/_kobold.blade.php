@@ -4,7 +4,7 @@
         <h5 class="widget-user-desc">$1 / {{ __('front.pricing.tier.month') }}</h5>
     </div>
     <div class="widget-user-image">
-        <img class="img-circle" src="/images/tiers/kobold-325.png" alt="Kobold">
+        <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold">
     </div>
     <div class="box-body">
         <div class="row">
