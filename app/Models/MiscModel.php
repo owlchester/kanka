@@ -244,8 +244,12 @@ abstract class MiscModel extends Model
     /**
      * @return bool
      */
-    public function hasEntry()
+    public function hasEntry(): bool
     {
+        $excludedTypes = ['dice_roll', 'conversation'];
+        if (in_array($this->getEntityType(), $excludedTypes)) {
+            return false;
+        }
         // If all that's in the entry is two \n, then there is no real content
         return strlen($this->entry) > 2;
     }
