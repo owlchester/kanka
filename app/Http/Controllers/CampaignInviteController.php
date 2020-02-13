@@ -58,7 +58,7 @@ class CampaignInviteController extends Controller
 
         $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type', 'validity'));
 
-        return redirect()->route('campaigns.index', ['#member'])
+        return redirect()->route('campaign_users.index')
             ->with(
                 'success_raw',
                 trans(
@@ -79,7 +79,7 @@ class CampaignInviteController extends Controller
         $this->authorize('delete', $campaignInvite);
 
         $campaignInvite->delete();
-        return redirect()->route('campaigns.index', ['#member'])
+        return redirect()->route('campaign_users.index')
             ->with('success', trans('campaigns.invites.destroy.success'));
     }
 }

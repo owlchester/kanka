@@ -35,7 +35,7 @@ class StoreCampaignInvite extends FormRequest
             $rules['email'] = 'required|email|unique:campaign_invites,email,NULL,id,campaign_id,'
                 . Auth::user()->campaign->id.',is_active,1';
         } else {
-            $rules['validity'] = 'required|integer';
+            $rules['validity'] = 'nullable|integer';
         }
 
         return $rules;

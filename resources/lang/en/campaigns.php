@@ -82,6 +82,7 @@ return [
     'invites'                           => [
         'actions'       => [
             'add'   => 'Invite',
+            'copy'  => 'Copy the link to your clipboard',
             'link'  => 'New Link',
         ],
         'create'        => [
@@ -113,7 +114,7 @@ return [
             'validity'  => 'Validity',
         ],
         'helpers'       => [
-            'validity'  => 'How many users can use this link before it is deactivated.',
+            'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
         ],
         'placeholders'  => [
             'email' => 'Email address of the person you wish to invite',
@@ -122,6 +123,7 @@ return [
             'email' => 'Email',
             'link'  => 'Link',
         ],
+        'unlimited_validity' => 'Unlimited',
     ],
     'leave'                             => [
         'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',

@@ -28,8 +28,10 @@ $(document).ready(function() {
         sanitize: false,
     });
 
+
     initSelect2();
     initCheckboxSwitch();
+    initCopyToClipboard();
 
     // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
     // binded once.
@@ -413,6 +415,20 @@ function refreshNotificationList() {
             setTimeout(refreshNotificationList, notificationRefreshTimeout);
         }
     );
+}
+
+/**
+ * Handler for copying content to the clipboard
+ */
+function initCopyToClipboard() {
+    $('[data-clipboard]').click(function (e) {
+        e.preventDefault();
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(this).data('clipboard')).select();
+        document.execCommand("copy");
+        $temp.remove();
+    });
 }
 
 /**

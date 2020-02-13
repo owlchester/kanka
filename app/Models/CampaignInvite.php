@@ -2,6 +2,19 @@
 
 namespace App\Models;
 
+/**
+ * Class CampaignInvite
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $email
+ * @property int $role_id
+ * @property int $campaign_id
+ * @property string $token
+ * @property bool $is_active
+ * @property string $type
+ * @property int $validity
+ */
 class CampaignInvite extends MiscModel
 {
     /**

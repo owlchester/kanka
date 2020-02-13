@@ -113,7 +113,7 @@ return [
             'validity'  => 'Validité',
         ],
         'helpers'       => [
-            'validity'  => 'Nombre de fois que le lie peut être utilisé avant d\'être désactivé.',
+            'validity'  => 'Nombre de fois que le lie peut être utilisé avant d\'être désactivé. Laisser vide pour illimité.',
         ],
         'placeholders'  => [
             'email' => 'L\'adresse email de ton ami',

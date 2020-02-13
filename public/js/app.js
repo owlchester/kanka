@@ -72616,7 +72616,8 @@ $(document).ready(function () {
     sanitize: false
   });
   initSelect2();
-  initCheckboxSwitch(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
+  initCheckboxSwitch();
+  initCopyToClipboard(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
   // binded once.
 
   $(document).on('focus', '.select2.select2-container', function (e) {
@@ -72739,7 +72740,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -72979,6 +72980,21 @@ function refreshNotificationList() {
     }
 
     setTimeout(refreshNotificationList, notificationRefreshTimeout);
+  });
+}
+/**
+ * Handler for copying content to the clipboard
+ */
+
+
+function initCopyToClipboard() {
+  $('[data-clipboard]').click(function (e) {
+    e.preventDefault();
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(this).data('clipboard')).select();
+    document.execCommand("copy");
+    $temp.remove();
   });
 }
 /**
