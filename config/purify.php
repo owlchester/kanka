@@ -68,11 +68,12 @@ return [
         */
 
         'HTML.Allowed' =>
-            'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],div[style],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
+            'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],'
+            . 'div[class|style],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
             . 'strong,em,b,ul[style],ol[style],li[style],p,i,br,'
             . 'img[src|style|alt|width|height|class|title],'
             . 'a[href|target|rel|title|data-toggle|data-html|id],'
-            . 'p[class|style|id],span[style],'
+            . 'p[class|style|id],span[class|style],'
             . 'table[class|summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[class|style],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
             . 'iframe[src|width|height]', // only use this with HTML.SafeIframe
@@ -108,6 +109,7 @@ return [
 
         'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
             'color,background-color,text-align,width,border,border-collapse,max-width,max-height,' .
+            'border-style, border-color,' .
             'list-style-type',
 
         /*
