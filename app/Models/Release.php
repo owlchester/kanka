@@ -27,7 +27,7 @@ class Release extends Post
      */
     public function getSlug()
     {
-        return $this->id . '-' . Str::slug($this->title);
+        return ['id' => $this->id, 'slug' => Str::slug($this->title)];
     }
 
     /**
