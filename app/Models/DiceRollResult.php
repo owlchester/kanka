@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Filterable;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 
 class DiceRollResult extends MiscModel
 {
+    use Filterable;
+
     //
     protected $fillable = [
         'dice_roll_id',

@@ -30,7 +30,7 @@
                     @include('front.news._recent')
                 </div>
                 <div class="col-9">
-                    <h4>{{ __('front/news.show.title', ['name' => $model->title]) }}
+                    <h4>{{ $model->title }}
                     @admin
                     <a href="{{ route('voyager.posts.edit', $model) }}" style="float: right;" title="{{ __('crud.edit') }}">
                         <i class="fas fa-pencil-alt fa-xs"></i>
