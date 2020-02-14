@@ -9,6 +9,9 @@ return [
     'latest'        => [
         'title' => 'Latest News',
     ],
+    'index' => [
+        'title' => 'Latest News',
+    ],
     'show'          => [
         'title' => 'Release :name',
     ],
