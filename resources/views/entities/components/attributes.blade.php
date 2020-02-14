@@ -17,7 +17,7 @@ $attributes = $model->entity->starredAttributes;
             @endif
             <strong title="{{ __('crud.attributes.fields.is_star') }}">{{ $attribute->name }}</strong>
             @if ($attribute->isText())
-                <p>{!! nl2br(e($attribute->value)) !!}</p>
+                <p>{!! nl2br($attribute->mappedValue()) !!}</p>
             @elseif (!$attribute->isCheckbox())
                 <span class="pull-right">{!! $attribute->mappedValue() !!}</span>
                 <br class="clear" />
