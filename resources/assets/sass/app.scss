@@ -21,7 +21,8 @@
 
 
 img.profile-user-img {
-  width: 200px;
+  border: none;
+  width: 100%;
 }
 
 .content-header {
@@ -35,6 +36,7 @@ img.profile-user-img {
 
   h1 {
     display: block;
+    font-size: 1.3em;
   }
 }
 
@@ -174,7 +176,9 @@ table {
 }
 
 .profile-username {
+  font-size: 1.3em;
   word-wrap: break-word;
+  margin-bottom: 5px;
 }
 
 .preview {
@@ -809,6 +813,7 @@ td.breakable {
 
   h1 {
     margin: 5px;
+    font-size: 1.4em;
     align-self: flex-end;
     text-shadow: $text-shadow;
     color: white;
@@ -902,4 +907,6 @@ td.breakable {
 @import "print";
 @import "mobile";
 @import "boosted";
+@import "entity";
+
 @import "../components/rpg/scss/rpg-awesome";
