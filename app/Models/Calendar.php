@@ -342,7 +342,7 @@ class Calendar extends MiscModel
         } elseif ($value == 'month') {
             return $this->cachedCurrentDate[1] ?: 1;
         } elseif ($value == 'date') {
-            return $this->cachedCurrentDate[2] ?: 1;
+            return $this->cachedCurrentDate[2] ?? 1;
         }
         return null;
     }
@@ -405,21 +405,32 @@ class Calendar extends MiscModel
      */
     public function addDay()
     {
-        list($year, $month, $day) = explode('-', $this->date);
+        $segments = explode('-', ltrim($this->date, '-'));
+        $year = ($this->date[0] == '-' ? '-' : null) . $segments[0];
+        $month = $segments[1] ?? 1;
+        $day = false;
 
-        $day++;
         // Day is longer than month max length?
         $months = $this->months();
-        if ($day > $months[$month-1]['length']) {
-            $day = 1;
-            $month++;
-            if ($month > count($months)) {
-                $month = 1;
-                $year++;
+
+        if (!empty($segments[2])) {
+            $day = $segments[2]++;
+
+            if ($day > $months[$month-1]['length']) {
+                $day = 1;
+                $month++;
             }
+        } else {
+            $month++;
         }
 
-        $this->date = $year . '-' . $month . '-' . $day;
+        // Reset month and increment year
+        if ($month > count($months)) {
+            $month = 1;
+            $year++;
+        }
+
+        $this->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
         return $this->save();
     }
 
