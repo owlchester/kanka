@@ -7,7 +7,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @include('layouts._tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title ?? '' }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{!! $title ?? '' !!} - {{ config('app.name', 'Kanka') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -105,7 +105,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @if (!View::hasSection('entity-header'))
                 <h1>
                     @yield('header-extra')
-                    {{ $title ?? "Page Title" }}
+                    {!! $title ?? "Page Title" !!}
                     <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
                     @if (!empty($headerExtra))
                         {!! $headerExtra !!}

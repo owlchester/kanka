@@ -1,4 +1,7 @@
-<?php /** @var \App\Models\Campaign $campaign */ ?>
+<?php /**
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\Release $release
+ */ ?>
 <?php $position = 0; ?>
 
 @extends('layouts.app', [
@@ -41,13 +44,29 @@
 
     @include('partials.errors')
 
-    @if (!empty($release) && (!auth()->check() || auth()->user()->release != $release->id))
-        <div class="alert alert-info alert-dismissible fade in">
-            @auth
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.release', $release) }}">×</button>
-            @endauth
-            <h4><i class="icon fa fa-info"></i> <a href="{{ route('releases.show', $release->getSlug()) }}">{{ $release->title }}</a></h4>
-            {{ $release->excerpt }}
+    @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
+        <div class="box box-widget">
+            <div class="box-header with-border">
+                <div class="user-block">
+                    @if ($release->author && $release->author->avatar)
+                        <img class="img-circle" src="{{ $release->author->getAvatarUrl(true) }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
+                    @endif
+                    <span class="username">
+                        <a href="{{ route('front.news.show', $release->getSlug()) }}">{{ $release->title }}</a>
+                    </span>
+                    <span class="description">{{ $release->updated_at->isoFormat('MMMM D, Y') }}</span>
+                </div>
+                <div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                @auth
+                @endauth
+            </div>
+            <div class="box-body">
+                {{ $release->excerpt }}
+            </div>
         </div>
     @endif
 

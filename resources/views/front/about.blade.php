@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-2">
                         <div class="card">
-                            <img class="card-img-top" src="/images/team/jay.jpg" alt="Jay">
+                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/jay.jpg" alt="Jay">
                             <div class="card-body">
                                 <h5 class="card-title">Jay</h5>
                                 <p class="text-muted">{{ __('teams.people.jay.title') }}</p>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-2">
                         <div class="card">
-                            <img class="card-img-top" src="/images/team/jon.jpg" alt="Jonathan">
+                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/jon.jpg" alt="Jonathan">
                             <div class="card-body">
                                 <h5 class="card-title">Jonathan</h5>
                                 <p class="text-muted">{{ __('teams.people.jon.title') }}</p>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-2">
                         <div class="card">
-                            <img class="card-img-top" src="/images/team/ryan.jpg" alt="Ryan">
+                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/ryan.jpg" alt="Ryan">
                             <div class="card-body">
                                 <h5 class="card-title">Ryan</h5>
                                 <p class="text-muted">{{ __('teams.people.ryan.title') }}</p>
@@ -64,7 +64,7 @@
                 <div class="row mt-5">
                     <div class="col-lg-3 col-sm-4 col-6 mb-2">
                         <div class="card">
-                            <img class="card-img-top" src="/images/team/iz.jpg" alt="Iz Groceman">
+                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/iz.jpg" alt="Iz Groceman">
                             <div class="card-body">
                                 <h5 class="card-title">Iz Groceman <a href="mailto:dm@timeraverse.com"><i class="fas fa-envelope"></i></a></h5>
                                 <p class="text-muted">{{ __('teams.people.iz.title') }}</p>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-lg-3 col-sm-4 col-6 mb-2">
                         <div class="card">
-                            <img class="card-img-top" src="/images/team/joseph.jpg" alt="ChaosOS">
+                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/joseph.jpg" alt="ChaosOS">
                             <div class="card-body">
                                 <h5 class="card-title">ChaosOS</h5>
                                 <p class="text-muted">{{ __('teams.people.joseph.title') }}</p>
@@ -133,7 +133,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-image" style="background-image: url(/images/tiers/elemental.png);"></div>
+                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png);"></div>
                         <h5 class="card-title text-muted text-uppercase text-center">Elemental</h5>
 
                         <div class="row text-center">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-image" style="background-image: url(/images/tiers/owlbear.png);"></div>
+                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png);"></div>
                         <h5 class="card-title text-muted text-uppercase text-center">Owlbear</h5>
 
                         <div class="row text-center">
@@ -157,7 +157,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-image" style="background-image: url(/images/tiers/goblin.png);"></div>
+                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/goblin-325.png);"></div>
                         <h5 class="card-title text-muted text-uppercase text-center">Goblin</h5>
 
                         <div class="row text-center">
