@@ -14,7 +14,7 @@
             <a href="{{ route('front.news.show', $model->getSlug()) }}" class="btn btn-primary">{{ __('front/news.actions.read') }}</a>
         @else
             <div class="card-text">
-                {!! nl2br($model->body) !!}
+                {!! $model->body !!}
             </div>
         @endif
     </div>
