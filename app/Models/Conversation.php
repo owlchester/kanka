@@ -106,7 +106,7 @@ class Conversation extends MiscModel
     {
         $participants = [];
         foreach ($this->participants as $participant) {
-            if (auth()->user()->can('update', $participant->character)) {
+            if (auth()->check() && auth()->user()->can('update', $participant->character)) {
                 $participants[$participant->id()] = $participant->name();
             }
         }
