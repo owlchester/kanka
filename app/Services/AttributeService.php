@@ -36,8 +36,8 @@ class AttributeService
                 continue;
             }
 
-            $value = $values[$id];
-            $type = $types[$id];
+            $value = isset($values[$id]) ? $values[$id] : null ;
+            $type = isset($types[$id]) ? $types[$id] : null;
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
 
