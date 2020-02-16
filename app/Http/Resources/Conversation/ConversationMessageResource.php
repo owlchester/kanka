@@ -22,8 +22,8 @@ class ConversationMessageResource extends JsonResource
             'message' => $this->message,
             'created_at' => $this->created_at->diffForHumans(),
             'updated_at' => $this->updated_at->diffForHumans(),
-            'can_delete' => Auth::user()->can('delete', $this->resource),
-            'can_edit' => Auth::user()->can('edit', $this->resource),
+            'can_delete' => auth()->check() && Auth::user()->can('delete', $this->resource),
+            'can_edit' => auth()->check() && Auth::user()->can('edit', $this->resource),
             'delete_url' => route('conversations.conversation_messages.destroy', [$this, $this]),
             'is_updated' => $this->updated_at != $this->created_at
         ];
