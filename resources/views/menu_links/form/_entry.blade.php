@@ -20,11 +20,7 @@ $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type
 ?>
 
 @include('cruds.fields.name', ['trans' => 'menu_links'])
-<div class="form-group">
-    <label>{{ trans('menu_links.fields.position') }}</label>
-    {!! Form::number('position', FormCopy::field('position')->string(), ['class' => 'form-control', 'maxlength' => 1]) !!}
-    <p class="help-block">{{ __('menu_links.helpers.position') }}</p>
-</div>
+@include('cruds.fields.position', ['trans' => 'menu_links'])
 
 <div class="nav-tabs-custom menu-link-tabs">
     <ul class="nav nav-tabs">
