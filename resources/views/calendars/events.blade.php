@@ -6,7 +6,8 @@
         ['url' => route('calendars.show', $model), 'label' => $model->name],
         trans('calendars.show.tabs.events')
     ],
-    'canonical' => true
+    'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

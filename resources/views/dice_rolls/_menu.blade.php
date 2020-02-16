@@ -3,7 +3,7 @@
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
 
-            <h3 class="profile-username text-center">{{ $model->name }}</h3>
+            <h1 class="profile-username text-center">{{ $model->name }}</h1>
         @endif
 
         <ul class="list-group list-group-unbordered">

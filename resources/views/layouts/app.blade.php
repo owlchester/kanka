@@ -102,7 +102,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 </ol>
                 @endif
 
-                @if (!View::hasSection('entity-header'))
+                @if (!View::hasSection('entity-header') && !isset($mainTitle))
                 <h1>
                     @yield('header-extra')
                     {!! $title ?? "Page Title" !!}

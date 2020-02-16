@@ -6,6 +6,7 @@
         ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ],
+    'mainTitle' => false,
 ])
 
 @section('header-extra')

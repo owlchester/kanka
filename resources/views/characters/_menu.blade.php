@@ -3,14 +3,14 @@
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
-            <h3 class="profile-username text-center">{{ $model->name }}
+            <h1 class="profile-username text-center">{{ $model->name }}
                 @if ($model->is_private)
                     <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
                 @endif
                 @if ($model->is_dead)
                     <span class="ra ra-skull" title="{{ __('characters.hints.is_dead') }}"></span>
                 @endif
-            </h3>
+            </h1>
             @if ($model->title)
                 <p class="text-muted text-center">{{ $model->title }}</p>
             @endif

@@ -5,7 +5,8 @@
         ['url' => route('characters.index'), 'label' => __('characters.index.title')],
         ['url' => route('characters.show', $model), 'label' => $model->name],
         trans('characters.show.tabs.items')
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

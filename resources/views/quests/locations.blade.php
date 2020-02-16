@@ -5,7 +5,8 @@
         ['url' => Breadcrumb::index('quests'), 'label' => __('quests.index.title')],
         ['url' => route('quests.show', $model), 'label' => $model->name],
         trans('quests.show.tabs.locations')
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

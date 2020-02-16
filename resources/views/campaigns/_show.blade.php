@@ -10,7 +10,7 @@
                     </a>
                 @endif
 
-                <h3 class="profile-username text-center">{{ $campaign->name }}</h3>
+                <h1 class="profile-username text-center">{{ $campaign->name }}</h1>
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">

@@ -6,7 +6,7 @@
                 <h1>{!! $campaign->name !!}</h1>
             </div>
         @else
-            <h3 class="profile-username text-center">{!! $campaign->name !!}</h3>
+            <h1 class="profile-username text-center">{!! $campaign->name !!}</h1>
         @endif
 
         <ul class="list-group list-group-unbordered">

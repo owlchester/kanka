@@ -5,7 +5,8 @@
         ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
         ['url' => route('locations.show', $model), 'label' => $model->name],
         trans('locations.show.tabs.locations')
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @section('content')

@@ -73,10 +73,17 @@
                     <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="{{ config('patreon.url') }}" target="patreon" title="Patreon" rel="noreferrer">
-                        <i class="fab fa-patreon"></i>
+{{--                    <a href="{{ config('patreon.url') }}" target="patreon" title="Patreon" rel="noreferrer">--}}
+{{--                        <i class="fab fa-patreon"></i>--}}
+{{--                    </a>--}}
+                </div>
+
+                <div class="copyright">
+                    <a href="https://www.patreon.com/bePatron?u=8417223" data-patreon-widget-type="become-patron-button">
+                        Become a Patron!
                     </a>
                 </div>
+                <script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
 
 
                 <p class="copyright">
