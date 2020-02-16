@@ -93,6 +93,9 @@ class DiceRollResult extends MiscModel
         return $this->belongsTo('App\Models\DiceRoll', 'dice_roll_id');
     }
 
+    /**
+     * @return mixed
+     */
     public function character()
     {
         return $this->diceRoll->character();

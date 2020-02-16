@@ -26,7 +26,7 @@
         ],
         [
             'label' => trans('crud.fields.character'),
-            'field' => 'character.name',
+            'field' => 'diceRoll.character.name',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {
