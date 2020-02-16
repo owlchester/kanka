@@ -71,7 +71,8 @@ return [
             'link'  => 'Link Account',
             'view'  => 'Visit Kanka on Patreon',
         ],
-        'benefits'      => 'Supporting us on Patreon allows you to upload bigger images, helps us cover the server bills, and helps us dedicate more time working on Kanka.',
+        'benefits'      => 'Supporting us on :patreon unlocks all sorts of :features for you and your campaigns, and also helps us spend more time working on improving Kanka.',
+        'benefits_features' => 'amazing features',
         'description'   => 'Syncing with Patreon',
         'errors'        => [
             'invalid_token' => 'Invalid token! Patreon couldn\'t validate your request.',

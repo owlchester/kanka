@@ -71,7 +71,8 @@ return [
             'link'  => 'Lier le compte',
             'view'  => 'Visiter Kanka sur Patreon',
         ],
-        'benefits'      => 'Nous supporter sur Patreon te permets d\'uploader des fichiers plus gros, nous aide à couvrir les frais des serveurs, et nous permet de dédié plus de temps à travailler sur Kanka.',
+        'benefits'      => 'Nous supporter sur :patreon active plein de :features pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.',
+        'benefits_features' => 'fonctionalités sympas',
         'description'   => 'Synchronisation avec Patreon',
         'errors'        => [
             'invalid_token' => 'Token invalid! Patreon n\'a pas validé la requête.',

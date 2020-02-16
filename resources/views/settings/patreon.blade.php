@@ -18,11 +18,14 @@
                     </h2>
 
                     <p>
-                        {{ __('settings.patreon.benefits') }}
+                        {!! __('settings.patreon.benefits', [
+                            'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
+                            'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#patreon', ['target' => '_blank'])
+                        ]) !!}
                     </p>
                     <p>
                         <a href="{{ config('patreon.url') }}" target="_blank">
-                            {{ __('settings.patreon.actions.view') }} <i class="fas fa-external-link"></i>
+                            {{ __('settings.patreon.actions.view') }} <i class="fa fa-external-link-alt"></i>
                         </a>
                     </p>
                 </div>
