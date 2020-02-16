@@ -414,8 +414,7 @@ class Calendar extends MiscModel
         $months = $this->months();
 
         if (!empty($segments[2])) {
-            $day = $segments[2]++;
-
+            $day = $segments[2] + 1;
             if ($day > $months[$month-1]['length']) {
                 $day = 1;
                 $month++;
