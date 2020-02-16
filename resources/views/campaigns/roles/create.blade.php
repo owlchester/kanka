@@ -3,8 +3,10 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => $model->name],
-        ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')]
-    ]
+        ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')],
+        __('campaigns.roles.actions.add')
+    ],
+    'mainTitle' => false,
 ])
 
 @section('content')

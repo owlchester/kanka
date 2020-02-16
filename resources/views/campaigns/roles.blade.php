@@ -6,6 +6,7 @@
         trans('campaigns.show.tabs.roles')
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('content')

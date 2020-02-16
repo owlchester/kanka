@@ -9,10 +9,10 @@ use App\Models\MiscModel;
  * Trait CalendarDateTrait
  * @package App\Traits
  *
- * @var integer $calendar_year
- * @var integer $calendar_month
- * @var integer $calendar_day
- * @var integer $calendar_id
+ * @property integer $calendar_year
+ * @property integer $calendar_month
+ * @property integer $calendar_day
+ * @property integer $calendar_id
  */
 trait CalendarDateTrait
 {
@@ -32,7 +32,7 @@ trait CalendarDateTrait
 //        static::saving(function (MiscModel $model) {
 //            $model->fillCalendarFieldsOnSave();
 //        });
-        
+
         static::saved(function (MiscModel $model) {
             $model->syncEntityEventOnSaved();
         });
@@ -126,7 +126,7 @@ trait CalendarDateTrait
 
         return $this->cachedCalendarEntityEvent;
     }
-    
+
     /**
      * Sync the entity event if the model has the calendar date trait
      * @param $model

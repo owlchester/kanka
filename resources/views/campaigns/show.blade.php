@@ -4,6 +4,7 @@
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')]
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('og')

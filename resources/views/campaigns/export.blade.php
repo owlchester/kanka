@@ -6,6 +6,7 @@
         trans('campaigns.show.tabs.export')
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('content')

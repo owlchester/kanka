@@ -102,15 +102,16 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 </ol>
                 @endif
 
-                @if (!View::hasSection('entity-header') && !isset($mainTitle))
-                <h1>
-                    @yield('header-extra')
-                    {!! $title ?? "Page Title" !!}
-                    <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
-                    @if (!empty($headerExtra))
-                        {!! $headerExtra !!}
+                @if (!View::hasSection('entity-header'))
+                    @if (isset($mainTitle))
+                        @yield('header-extra')
+                    @else
+                        <h1>
+                            @yield('header-extra')
+                            {!! $title ?? "Page Title" !!}
+                            <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
+                        </h1>
                     @endif
-                </h1>
                 @endif
             </section>
 
