@@ -86,6 +86,11 @@ trait Filterable
                             //->having(DB::raw('count(distinct et.tag_id)'), count($value))
                         ;
 
+                        // Make sure we always have an array
+                        if (!is_array($value)) {
+                            $value = [$value];
+                        }
+
                         foreach ($value as $v) {
                             $v = (int) $v;
                             $query

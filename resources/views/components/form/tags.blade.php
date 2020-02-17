@@ -9,6 +9,9 @@ $model = Arr::get($options, 'model', null);
 $enableNew = Arr::get($options, 'enableNew', true);
 $label = Arr::get($options, 'label', true);
 $filterOptions = Arr::get($options, 'filterOptions', []);
+if (!is_array($filterOptions)) {
+    $filterOptions = [$filterOptions];
+}
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
