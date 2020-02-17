@@ -18,7 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'Community Votes are only available for users who support Kanka.',
         'title'         => 'Community Vote - :name',
-        'voted_lasted'  => 'Voting lasted from :from GTM until :until GTM.',
+        'voted_lasted'  => 'Voting lasted from :from GMT until :until GMT.',
         'voting_until'  => 'Voting is open until :until GMT.',
     ],
     'title'         => 'Community Votes',

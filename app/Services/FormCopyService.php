@@ -171,6 +171,20 @@ class FormCopyService
     }
 
     /**
+     * Prefill model for custom blade directives
+     * @param null $entity
+     * @return null
+     */
+    public function related()
+    {
+        // Only copy on MiscModel (entity) models
+        if ($this->valid()) {
+            return $this->source->{$this->field};
+        }
+        return null;
+    }
+
+    /**
      * @param bool $withNull include "none" option
      * @return array
      */
