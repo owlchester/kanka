@@ -505,10 +505,10 @@ class CalendarRenderer
             $this->setMonth($segments[1]);
             $this->setYear($segments[0]);
 
-            if (request()->has('month')) {
+            if (request()->filled('month')) {
                 $this->setMonth(request()->input('month'));
             }
-            if (request()->has('year')) {
+            if (request()->filled('year') ) {
                 $this->setYear(request()->input('year'));
             }
 
@@ -764,7 +764,7 @@ class CalendarRenderer
     /**
      * @return int
      */
-    public function currentYear()
+    public function currentYear(): int
     {
         return $this->year;
     }
