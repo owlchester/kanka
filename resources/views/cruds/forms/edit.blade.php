@@ -42,7 +42,7 @@
             @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}" data-toggle="tooltip">
-                        <i class="fa fa-rocket"></i> {{ __('crud.tabs.boost') }}
+                        <i class="fa fa-rocket"></i> <span class="hidden-xs">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
             @endif

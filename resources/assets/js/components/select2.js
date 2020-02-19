@@ -10,7 +10,8 @@ export default function select2() {
                 language: $(this).data('language'),
                 minimumInputLength: 0,
                 ajax: {
-                    quietMillis: 200,
+                    delay: 500,
+                    quietMillis: 500,
                     url: $(this).data('url'),
                     dataType: 'json',
                     data: function (params) {
