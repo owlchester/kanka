@@ -8,7 +8,8 @@ window.initSelect2 = function() {
                 allowClear: true,
                 minimumInputLength: 0,
                 ajax: {
-                    quietMillis: 200,
+                    quietMillis: 500,
+                    delay: 500,
                     url: $(this).attr('data-url'),
                     dataType: 'json',
                     data: function (params) {

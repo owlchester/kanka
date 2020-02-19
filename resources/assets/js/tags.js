@@ -7,7 +7,8 @@ $(document).ready(function() {
                 allowClear: $(this).data('allow-clear'),
                 minimumInputLength: 0,
                 ajax: {
-                    quietMillis: 200,
+                    quietMillis: 500,
+                    delay: 500,
                     url: $(this).attr('data-url'),
                     dataType: 'json',
                     data: function (params) {
