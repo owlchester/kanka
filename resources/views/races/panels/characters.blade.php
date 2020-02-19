@@ -46,7 +46,7 @@
                     @endif
                     <td>{{ $character->age }}</td>
                     <td class="text-right">
-                        <a href="{{ route('characters.show', ['id' => $character->id]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('characters.show', [$character]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>

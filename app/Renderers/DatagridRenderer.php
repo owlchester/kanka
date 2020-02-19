@@ -295,7 +295,7 @@ class DatagridRenderer
         if (is_string($column)) {
             // Just for name, a link to the view
             if ($column == 'name') {
-                $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
+                $route = route($this->getOption('baseRoute') . '.show', [$model]);
                 $content = $model->tooltipedLink();
             } else {
                 // Handle boolean values (has, is)
@@ -330,7 +330,7 @@ class DatagridRenderer
                             ? $column['parent_route']
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
-                    $route = route($whoRoute . '.show', ['id' => $who->id]);
+                    $route = route($whoRoute . '.show', [$who]);
                     $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(true) .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -417,14 +417,14 @@ class DatagridRenderer
     private function renderActionRow(Model $model)
     {
         $content = '
-        <a href="' . route($this->getOption('baseRoute') . '.show', ['id' => $model->id]) .
+        <a href="' . route($this->getOption('baseRoute') . '.show', [$model]) .
             '" title="' . trans('crud.view') . '">
             <i class="fa fa-eye" aria-hidden="true"></i>
         </a>';
 
         if ($this->user && $this->user->can('update', $model)) {
             $content .= ' <a href="'
-                . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id])
+                . route($this->getOption('baseRoute') . '.edit', [$model])
                 . '" title="' . trans('crud.edit') . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>';

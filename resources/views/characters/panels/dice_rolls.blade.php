@@ -26,7 +26,7 @@
                     <td class="visible-sm">{{ $dice_roll->parameters }}</td>
                     <td>{{ $dice_roll->diceRollResults()->count() }}</td>
                     <td class="text-right">
-                        <a href="{{ route('dice_rolls.show', ['id' => $dice_roll->id]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('dice_rolls.show', [$dice_roll]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
                         </a>
                     </td>

@@ -44,7 +44,7 @@
                 @if ($quest->is_completed) <i class="fa fa-check-circle"></i> @endif
             </td>
             <td class="text-right">
-                <a href="{{ route('quests.show', ['id' => $quest->id]) }}" class="btn btn-xs btn-primary">
+                <a href="{{ route('quests.show', [$quest]) }}" class="btn btn-xs btn-primary">
                     <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
                 </a>
             </td>

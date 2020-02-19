@@ -31,7 +31,7 @@
                         {{ $template->entity->attributes->count() }}
                     </td>
                     <td class="text-right">
-                        <a href="{{ route('characters.show', ['id' => $template->id]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('characters.show', [$template]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>
