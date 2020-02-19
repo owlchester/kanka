@@ -201,8 +201,13 @@ class DatagridRenderer
             $label = $this->trans($field);
         }
 
+        // If we are in public mode (bots) don't make this links
+        if (!auth()->check()) {
+            return $label;
+        }
+
         $routeOptions = [
-            'order' => $field,
+            'order' => $field ,
             'page' => request()->get('page')
         ];
 

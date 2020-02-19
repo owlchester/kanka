@@ -8,10 +8,18 @@
 <table id="crud_notes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th>
+            @if (auth()->check())
             <a href="{{ route($name . '.show', [$model, 'order' => 'notes/name', '#notes']) }}">{{ __('entities/notes.fields.name') }}@if (request()->get('order') == 'notes/name') <i class="fa fa-long-arrow-down"></i>@endif</a>
+            @else
+            {{ __('entities/notes.fields.name') }}
+            @endif
         </th>
         <th class="visible-lg">
+            @if (auth()->check())
             <a href="{{ route($name . '.show', [$model, 'order' => 'notes/creator.name', '#notes']) }}">{{ __('entities/notes.fields.creator') }}@if (request()->get('order') == 'notes/creator.name') <i class="fa fa-long-arrow-down"></i>@endif</a>
+            @else
+                {{ __('entities/notes.fields.creator') }}
+            @endif
         </th>
         @if (Auth::check())
             <th>
