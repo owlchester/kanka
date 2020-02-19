@@ -6,9 +6,17 @@ return array(
     // capture release as git sha
     // 'release' => trim(exec('git log --pretty="%h" -n1 HEAD')),
 
-    // Capture bindings on SQL queries
-    'breadcrumbs.sql_bindings' => true,
+    'breadcrumbs' => [
+        // Capture Laravel logs in breadcrumbs
+        'logs' => true,
 
-    // Capture default user context
-    'user_context' => true,
+        // Capture SQL queries in breadcrumbs
+        'sql_queries' => true,
+
+        // Capture bindings on SQL queries logged in breadcrumbs
+        'sql_bindings' => true,
+
+        // Capture queue job information in breadcrumbs
+        'queue_info' => true,
+    ],
 );

@@ -185,7 +185,6 @@ return [
         Sofa\Eloquence\BaseServiceProvider::class,
         Stevebauman\Purify\PurifyServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         //Ilestis\LaravelElasticEmail\LaravelElasticEmailServiceProvider::class,
@@ -193,7 +192,6 @@ return [
         Vsch\TranslationManager\TranslationServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         RichanFongdasen\EloquentBlameable\ServiceProvider::class,
-        Chumper\Zipper\ZipperServiceProvider::class,
 
         /*
          * Application Service Providers...

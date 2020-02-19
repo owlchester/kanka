@@ -14,7 +14,7 @@ $tabs = [
 ];
 $entityTypes = ['' => ''];
 foreach ($entityService->getEnabledEntities($campaign->campaign()) as $entity) {
-    $entityTypes[$entity] = __('entities.' . str_plural($entity));
+    $entityTypes[$entity] = __('entities.' . \Illuminate\Support\Str::plural($entity));
 }
 $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type';
 ?>

@@ -1,6 +1,6 @@
 @if(Auth::check() && !isset($exporting))
     @can('update', $model)
-        <a href="{{ route($name . '.edit', ['id' => $model->id]) }}" class="btn btn-primary btn-sm">
+        <a href="{{ route($name . '.edit', [$model]) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-edit" aria-hidden="true"></i> {{ trans('crud.update') }}
         </a>
     @endcan
