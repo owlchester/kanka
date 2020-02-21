@@ -1,4 +1,6 @@
-@extends('layouts.login', ['title' => trans('auth.register.title')])
+@extends('layouts.login', [
+    'title' => __('auth.register.title')
+])
 
 @section('content')
     <h3>{{ trans('auth.register.title') }}</h3>

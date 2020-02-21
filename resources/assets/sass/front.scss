@@ -279,6 +279,9 @@ ul.pagination {
 // Login / Register
 .login-page, .register-page {
   background-color: #eef1f4;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   h1 {
     img {
@@ -289,7 +292,6 @@ ul.pagination {
   }
 
   .login-box, .register-box {
-    width: 420px;
 
     .login-box-body, .register-box-body {
       box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
@@ -451,6 +453,15 @@ ul.pagination {
   .pricing .card:hover .btn {
     opacity: 1;
   }
+
+
+  .login-box, .register-box {
+    width: 420px;
+  }
+
+  .login-page, .register-page {
+    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
+  }
 }
 
 @media screen and (orientation:portrait) {
@@ -493,5 +504,9 @@ ul.pagination {
         margin-right: 5px;
       }
     }
+  }
+
+  .login-page, .register-page {
+    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-mobile.jpg);
   }
 }
