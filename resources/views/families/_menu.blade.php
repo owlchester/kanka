@@ -21,17 +21,13 @@
                 </li>
             @endif
             @include('cruds.lists.type')
-
             @include('cruds.lists.location')
             @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')
-            @include('entities.components.files')
         </ul>
-
-        @include('.cruds._actions')
     </div>
 </div>
 
-
 @include('entities.components.menu')
+@include('entities.components.actions')

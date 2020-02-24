@@ -428,6 +428,15 @@ function initCopyToClipboard() {
         $temp.val($(this).data('clipboard')).select();
         document.execCommand("copy");
         $temp.remove();
+
+        var post = $(this).data('success');
+        if (post) {
+            $(post).fadeIn();
+            setTimeout(function() {
+                console.log('post', post);
+                $(post).fadeOut();
+            }, 3000);
+        }
     });
 }
 

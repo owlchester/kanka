@@ -45,12 +45,10 @@
             @include('entities.components.calendar')
             @include('entities.components.relations')
             @include('entities.components.attributes')
-            @include('entities.components.tags')
-            @include('entities.components.files')
+                @include('entities.components.tags')
         </ul>
-
-        @include('.cruds._actions', ['disableMove' => true])
     </div>
 </div>
 
 @include('entities.components.menu')
+@include('entities.components.actions', ['disableMove' => true])

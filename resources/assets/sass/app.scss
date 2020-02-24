@@ -25,6 +25,10 @@ img.profile-user-img {
   width: 100%;
 }
 
+.content {
+  padding-top: 5px;
+}
+
 .content-header {
   .breadcrumb {
     position: relative;
@@ -617,14 +621,11 @@ div.mce-fullscreen {
     margin-right: -20px;
   }
 }
-.entity-file-rename, .entity-file-ui {
+.entity-file-rename {
   cursor: pointer;
   &:hover {
     color: rgba(0, 0, 0, 0.7);
   }
-}
-.entity-file-ui {
-  padding: 5px;
 }
 
 .entity-file {

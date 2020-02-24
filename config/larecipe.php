@@ -55,12 +55,6 @@ return [
 
     'settings' => [
         'auth'  => false,
-        'auth_links' => [
-            [
-                'name' => '',
-                'url' => '',
-            ],
-        ],
         'ga_id' => ''
     ],
 
@@ -79,7 +73,7 @@ return [
 
     'cache'       => [
         'enabled' => false,
-        'period'  => 5
+        'period'  => 60
     ],
 
     /*
@@ -140,24 +134,19 @@ return [
     */
 
     'ui'                 => [
-        'show_app_name'  => true,
-        'logo'           => '/images/kanka_transparent.png', // e.g.: /images/logo.svg
         'fav'            => '/favicon.ico', // e.g.: /fav.png
         'theme'          => 'light',
-        'code'           => 'dark',
+        'code_theme'     => 'dark',
         'back_to_top'    => true,
         'show_side_bar'  => true,
+        'fa_v4_shims'    => true, // Add FontAwesome v4 shims prevent BC break
         'colors'         => [
             'primary'    => '#787AF6',
             'secondary'  => '#2b9cf2',
             'selection'  => '#f4f5f7'
         ],
-        'additional_css' => [
-            //'css/custom.css',
-        ],
-        'additional_js'  => [
-            //'js/custom.js',
-        ],
+
+        'theme_order'    => null // ['LaRecipeDarkTheme', 'customTheme']
     ],
 
     /*
@@ -206,5 +195,20 @@ return [
                 'site_name' => '', // yoursite.disqus.com
             ]
         ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Components and Packages
+    |--------------------------------------------------------------------------
+    |
+    | Once you create a new asset or theme, its directory will be
+    | published under `larecipe-components` folder. However, If
+    | you want a different location, feel free to change it.
+    |
+    |
+    */
+    'packages' => [
+        'path' => 'larecipe-components',
     ]
 ];

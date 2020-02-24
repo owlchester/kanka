@@ -3,7 +3,7 @@
 return [
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
-The best way we can explain Attribute Templates is with an example. Let's imagine that your world has lots of Locations, and on many of those locations, you want to remember to create a custom Attribute for "Population", "Climate", "Crime Level". 
+The best way we can explain Attribute Templates is with an example. Let's imagine that your world has lots of Locations, and on many of those locations, you want to remember to create a custom Attribute for "Population", "Climate", "Crime Level".
 
 Now, you could easily do that on every Location, but it can get tedious, and you might forget sometimes to create the attribute "Crime Level". This is where Attribute Templates come into play.
 
@@ -29,7 +29,7 @@ TEXT
         'question'  => 'Can I create custom entity types?',
     ],
     'delete-campaign'       => [
-        'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are the only admin in the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
+        'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are last member of the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
         'question'  => 'How can I delete a campaign?',
     ],
     'entity-notes'          => [
@@ -46,11 +46,15 @@ TEXT
     'free'                  => [
         'answer'    => <<<'TEXT'
 Yes! We believe that your financial situation shouldn't impact your enjoyment of role playing games or world building, and such will always keep the app free. Thanks to our generous Patrons on :patreon, we are able to cover the monthly server costs and keep the app ad free!
-        
+
 Supporting us on Patreon however allows you to increase file size upload limits, adds your name to the Patreon wall of fame, have nicer default icons, vote on prioritising what gets works on and more!
 TEXT
 ,
         'question'  => 'Will the app stay free?',
+    ],
+    'gods-and-religions' => [
+        'answer' => 'We recommend creating Gods as Characters, and creating religions as Organisations. If you want to quickly find your deities, we recommend tagging them with an appropriate Tag.',
+        'question' => 'Where to create Gods and religions?',
     ],
     'help'                  => [
         'answer'    => 'Firstly, thank you for wanting to help out! We are always interested in people who can help out with translations, testing new features, or who can help out new users. We also love when people promote Kanka to reach new users in places we hadn\'t thought of. Your best course of action is to join us on the :discord where a channel is dedicated to helping out. We also love our patrons on :patreon if you wish to support us and get access to some perks!',
@@ -75,7 +79,7 @@ TEXT
     'plans'                 => [
         'answer'    => <<<'TEXT'
 The long term plans for Kanka are to build a versatile worldbuilding and campaign management tool that is system agnostic with system specific content managed by the community in the form of "Community Templates". A longer goal is to build tools that integrate with other platforms like Virtual Table Top apps to link those with the worlds of Kanka.
-        
+
 As for the second part, most hobby projects end up in burnout and the creator abandoning them. The :patreon is set up with the goal of us being able to work full time on Kanka without sacrificing our families' financial security, as well as covering the server costs. The project is also open source and can be picked up by the community if something were to ever happen to us.
 TEXT
 ,
@@ -91,6 +95,7 @@ TEXT
         'other'         => 'Other',
         'permissions'   => 'Permissions',
         'pricing'       => 'Pricing',
+        'worldbuilding' => 'Worldbuilding',
     ],
     'show'                  => [
         'return'    => 'Return to the FAQ',

@@ -128,6 +128,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     </div>
                 @endif
                 @include('partials.success')
+                @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')
             </section><!-- /.content -->

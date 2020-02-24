@@ -22,7 +22,7 @@
                 if ($model->target) {
                     return $model->target->tooltipedLink();
                 }
-                return __('entities.' . str_plural($model->type));
+                return __('entities.' . \Illuminate\Support\Str::plural($model->type));
             },
             'disableSort' => true,
         ],

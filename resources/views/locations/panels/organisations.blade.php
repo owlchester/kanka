@@ -49,7 +49,7 @@ if (request()->has('location_id')) {
                         {{ $org->members()->count() }}
                     </td>@endif
                     <td class="text-right">
-                        <a href="{{ route('organisations.show', ['id' => $org->id]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('organisations.show', [$org]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>

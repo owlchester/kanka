@@ -43,7 +43,7 @@
             <div class="col-xs-8">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input type="checkbox" class="minimal" name="remember" {{ old('remember') ? 'checked' : '' }}>
                         {{ trans('auth.login.remember_me') }}
                     </label>
                 </div>
@@ -80,15 +80,32 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-6 text-center">
-            <a class="btn btn-link" href="{{ route('password.request') }}">
-                {{ trans('auth.login.password_forgotten') }}
-            </a>
+    </div>
+    <div class="row">
+        <div class="hidden-xs hidden-sm">
+            <div class="col-md-6">
+                <a class="btn btn-link" href="{{ route('password.request') }}">
+                    {{ trans('auth.login.password_forgotten') }}
+                </a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-link" href="{{ route('register') }}">
+                    {{ trans('auth.login.new_account') }}
+                </a>
+            </div>
         </div>
-        <div class="col-md-6 text-center">
-            <a class="btn btn-link" href="{{ route('register') }}">
-                {{ trans('auth.login.new_account') }}
-            </a>
+        <div class="visible-xs visible-sm">
+
+            <div class="col-md-12 text-center">
+                <a class="btn btn-link" href="{{ route('password.request') }}">
+                    {{ trans('auth.login.password_forgotten') }}
+                </a>
+            </div>
+            <div class="col-md-12 text-center">
+                <a class="btn btn-link" href="{{ route('register') }}">
+                    {{ trans('auth.login.new_account') }}
+                </a>
+            </div>
         </div>
     </div>
 @endsection

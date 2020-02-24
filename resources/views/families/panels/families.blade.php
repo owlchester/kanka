@@ -18,7 +18,6 @@
                 @if ($campaign->enabled('locations'))
                 <th>{{ trans('crud.fields.location') }}</th>
                 @endif
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $family)
                 <tr>

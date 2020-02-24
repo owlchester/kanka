@@ -11,3 +11,28 @@
     text-align: center;
   }
 }
+
+.entity-actions {
+  margin-bottom: 4px;
+  //margin-top: -25px;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6em;
+    display: inline-block;
+    padding-top: 6px;
+  }
+
+  .actions {
+    .btn-group {
+      margin-left: 8px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  //.entity-actions {
+  //  margin-top: 0;
+  //}
+}

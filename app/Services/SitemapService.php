@@ -82,10 +82,11 @@ class SitemapService
                 'help',
                 'faq',
                 'features',
+                'pricing',
                 'roadmap',
                 'community',
                 'public-campaigns',
-                'releases',
+                'news',
             ];
 
             foreach ($base as $link) {

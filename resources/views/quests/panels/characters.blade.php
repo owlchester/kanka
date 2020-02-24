@@ -34,7 +34,7 @@
                 </div>
                 <div class="box-footer text-right">
                     @can('update', $model)
-                        <a href="{{ route('quests.quest_characters.edit', ['quest' => $model, 'questCharacter' => $character]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('quests.quest_characters.edit', [$model, $character]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-edit" title="{{ trans('crud.edit') }}"></i>
                         </a>
                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $character->character->name }}"
@@ -46,8 +46,8 @@
                             'method' => 'DELETE',
                             'route' => [
                                 'quests.quest_characters.destroy',
-                                'quest' => $model,
-                                'questCharacter' => $character
+                                $model,
+                                $character
                             ],
                             'style'=>'display:inline',
                             'id' => 'delete-form-' . $character->id

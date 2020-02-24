@@ -8,6 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="robots" content="noindex">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- Ionicons -->
@@ -31,7 +32,7 @@
     <div class="login-box">
         <div class="login-logo">
             <h1>
-                <a href="{{ route('home') }}"><img src="/images/logo_solo.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/> {{ config('app.name') }}</a>
+                <a href="{{ route('home') }}"><img src="/images/kanka_transparent_small.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/> {{ config('app.name') }}</a>
             </h1>
         </div>
 
@@ -39,10 +40,7 @@
         <div class="login-box-body">
             @yield('content')
         </div>
-
     </div>
-
-
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}" defer></script>
 @yield('scripts')

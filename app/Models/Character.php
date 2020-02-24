@@ -12,7 +12,12 @@ use Stevebauman\Purify\Facades\Purify;
 /**
  * Class Character
  * @package App\Models
+ * @property string $title
+ * @property string $age
+ * @property string $sex
+ * @property bool $is_dead
  * @property Family $family
+ * @property Location $location
  * @property Race $race
  */
 class Character extends MiscModel

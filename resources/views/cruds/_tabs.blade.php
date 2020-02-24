@@ -20,10 +20,3 @@
     </a>
 </li>
 @endcan
-@can('permission', $model)
-    <li class="pull-right" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
-        <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.permissions', $model->entity) }}">
-            <i class="fa fa-cog"></i>
-        </a>
-    </li>
-@endcan

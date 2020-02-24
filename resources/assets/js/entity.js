@@ -6,6 +6,13 @@ $(document).ready(function () {
     entityFileUi = $('.entity-file-ui');
     entityFileModal = $('#entity-modal');
 
+    // Allow ajax requests
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     if (entityFileUi.length === 1) {
         entityFileUi.on('click', function(e) {
             openingEntityFileModal = true;
@@ -18,6 +25,8 @@ $(document).ready(function () {
             });
         });
     }
+
+    registerPrivacyToggle();
 });
 
 /**
@@ -43,12 +52,6 @@ function initEntityFileModal() {
     });
 
 
-    // Allow ajax requests
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     $('#entity-file-upload').fileupload({
         dropZone: entityFileDrop,
@@ -285,6 +288,34 @@ function refreshEntityFileList() {
             if (data) {
                 $(this).html(data);
             }
+        });
+    });
+}
+
+/**
+ * Toggle the privacy of an entity
+ */
+function registerPrivacyToggle() {
+    $('.entity-private-toggle').click(function() {
+        $(this).addClass('disabled');
+
+        let child = $(this).children('i.fa');
+        child.removeClass().addClass('fa fa-spin fa-spinner');
+
+        $.post({
+            url: $(this).data('url'),
+            data: {},
+            context: this
+        }).done(function (res) {
+            if (!res.success) {
+                return;
+            }
+
+            let child = $(this).children('i.fa');
+            let cssClass = res.status ? $(child).data('off') : $(child).data('on');
+            child.removeClass().addClass('fa').addClass('fa-' + cssClass);
+
+            $(this).removeClass('disabled');
         });
     });
 }

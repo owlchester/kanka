@@ -31,7 +31,6 @@
                 </li>
             @endif
         </ul>
-        @include('.cruds._actions')
     </div>
 </div>
 
@@ -61,3 +60,5 @@
         </div>
     </div>
 @endif
+
+@include('entities.components.actions')

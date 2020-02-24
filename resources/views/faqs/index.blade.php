@@ -99,11 +99,20 @@
                                 </a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
                 <hr />
                 <div class="row">
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.worldbuilding') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'gods-and-religions', 'slug' => Str::slug(__('faq.gods-and-religions.question'))]) }}">
+                                    {{ __('faq.gods-and-religions.question') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="col-md-4">
                         <h2>{{ __('faq.sections.pricing') }}</h2>
                         <ul>
