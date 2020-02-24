@@ -72943,7 +72943,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -73198,6 +73198,15 @@ function initCopyToClipboard() {
     $temp.val($(this).data('clipboard')).select();
     document.execCommand("copy");
     $temp.remove();
+    var post = $(this).data('success');
+
+    if (post) {
+      $(post).fadeIn();
+      setTimeout(function () {
+        console.log('post', post);
+        $(post).fadeOut();
+      }, 3000);
+    }
   });
 }
 /**
@@ -74456,7 +74465,7 @@ window.ajaxTooltip = function () {
   // });
   $('[data-toggle="tooltip-ajax"]').tooltip({
     title: entityTooltip,
-    delay: 250,
+    delay: 750,
     trigger: 'hover',
     placement: 'auto',
     template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner tooltip-ajax"></div>' + '</div>',

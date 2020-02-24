@@ -1,5 +1,8 @@
 <?php
-/** @var \App\Models\Location $model*/
+/**
+ * @var \App\Models\Location $model
+ * @var \App\Models\Character $character
+ */
 $filters = [];
 if (request()->has('location_id')) {
     $filters['location_id'] = request()->get('location_id');
@@ -56,7 +59,8 @@ if (request()->has('location_id')) {
                         <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(true) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
                     </td>
                     <td>
-                        {!! $character->tooltipedLink() !!}
+                        {!! $character->tooltipedLink() !!}<br />
+                        <i>{{ $character->title }}</i>
                     </td>
                     @if ($campaign->enabled('families'))
                         <td>

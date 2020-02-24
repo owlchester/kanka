@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Character $member */?>
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
@@ -30,7 +31,8 @@
                         <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(true) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>
                     <td>
-                        {!! $member->tooltipedLink() !!}
+                        {!! $member->tooltipedLink() !!}<br />
+                        <i>{{ $member->title }}</i>
                     </td>
                     @if ($campaign->enabled('locations'))
                         <td>

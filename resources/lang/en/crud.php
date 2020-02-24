@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
         'copy'              => 'Copy',
+        'copy_mention'      => 'Copy [ ] mention',
         'copy_to_campaign'  => 'Copy to Campaign',
         'explore_view'      => 'Nested View',
         'export'            => 'Export',
@@ -18,6 +20,9 @@ return [
         'public'            => 'Public',
     ],
     'add'               => 'Add',
+    'alerts' => [
+        'copy_mention' => 'The entity\'s advanced mention was copied to your clipboard.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Add an attribute',
@@ -188,6 +193,7 @@ return [
         ],
         'errors'    => [
             'max'   => 'You have reached the maximum number (:max) of files for this entity.',
+            'no_files' => 'No files.',
         ],
         'files'     => 'Uploaded Files',
         'hints'     => [
@@ -239,7 +245,7 @@ return [
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
     ],
-    'is_private'        => 'This entity is private and not visible by non-admin users.',
+    'is_private'        => 'This entity is private and only visible to members of the Admin role.',
     'linking_help'      => 'How can I link to other entries?',
     'manage'            => 'Manage',
     'move'              => [

@@ -29,7 +29,7 @@ TEXT
         'question'  => 'Can I create custom entity types?',
     ],
     'delete-campaign'       => [
-        'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are the only admin in the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
+        'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are last member of the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
         'question'  => 'How can I delete a campaign?',
     ],
     'entity-notes'          => [

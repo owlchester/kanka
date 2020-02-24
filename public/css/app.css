@@ -10,6 +10,10 @@ img.profile-user-img {
   width: 100%;
 }
 
+.content {
+  padding-top: 5px;
+}
+
 .content-header .breadcrumb {
   position: relative;
   float: none;
@@ -621,18 +625,12 @@ div.mce-fullscreen {
   margin-right: -20px;
 }
 
-.entity-file-rename,
-.entity-file-ui {
+.entity-file-rename {
   cursor: pointer;
 }
 
-.entity-file-rename:hover,
-.entity-file-ui:hover {
+.entity-file-rename:hover {
   color: rgba(0, 0, 0, 0.7);
-}
-
-.entity-file-ui {
-  padding: 5px;
 }
 
 .entity-file {
@@ -1183,6 +1181,22 @@ td.breakable {
   font-size: 1.2em;
   margin: 8px;
   text-align: center;
+}
+
+.entity-actions {
+  margin-bottom: 4px;
+}
+
+.entity-actions h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6em;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+.entity-actions .actions .btn-group {
+  margin-left: 8px;
 }
 
 /*!

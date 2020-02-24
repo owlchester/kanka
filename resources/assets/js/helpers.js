@@ -110,7 +110,7 @@ window.ajaxTooltip = function() {
     // });
     $('[data-toggle="tooltip-ajax"]').tooltip({
         title: entityTooltip,
-        delay: 250,
+        delay: 750,
         trigger: 'hover',
         placement: 'auto',
         template: '<div class="tooltip" role="tooltip">' +

@@ -535,4 +535,13 @@ class Entity extends Model
 
         return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
     }
+
+    /**
+     * If an entity has entity files
+     * @return bool
+     */
+    public function hasFiles(): bool
+    {
+        return $this->type != 'menu_links';
+    }
 }

@@ -27,4 +27,14 @@ class EntityPolicy
         }
         return $entity->is_attributes_private ? Auth::user()->isAdmin() : true;
     }
+
+    /**
+     * @param User $user
+     * @param Entity $entity
+     * @return bool
+     */
+    public function privacy(User $user, Entity $entity)
+    {
+        return $user->isAdmin();
+    }
 }
