@@ -44,8 +44,9 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('create', CampaignRole::class);
         $campaign = CampaignLocalization::getCampaign();
+        $ajax = request()->ajax();
 
-        return view($this->view . '.create', ['model' => $campaign]);
+        return view($this->view . '.create', ['model' => $campaign, 'ajax' => $ajax]);
     }
 
     /**
@@ -89,10 +90,12 @@ class CampaignRoleController extends Controller
     {
         $this->authorize('update', $campaignRole);
         $campaign = CampaignLocalization::getCampaign();
+        $ajax = request()->ajax();
 
         return view($this->view . '.edit', [
             'model' => $campaign,
-            'role' => $campaignRole
+            'role' => $campaignRole,
+            'ajax' => $ajax
         ]);
     }
 

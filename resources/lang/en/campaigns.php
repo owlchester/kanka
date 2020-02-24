@@ -227,8 +227,9 @@ return [
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
                 'entity-note'   => 'Entity Note',
-                'permission'    => 'Manage Permissions',
+                'permission'    => 'Permissions',
                 'read'          => 'View',
+                'toggle'          => 'Change for all'
             ],
             'hint'      => 'This role automatically has access to everything.',
         ],

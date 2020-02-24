@@ -76,6 +76,7 @@ $(document).ready(function () {
     registerEntityCalendarModal();
     registerModalLoad();
     registerDatagridSorter();
+    registerPermissionToggler();
 });
 
 /**
@@ -724,5 +725,18 @@ function registerDatagridSorter() {
             options = '?' + this.name + '=' + this.value;
         }
         window.location = $(this).data('url') + options;
+    });
+}
+
+function registerPermissionToggler()
+{
+    $('.permission-toggle').change(function() {
+        let action = $(this).data('action');
+        let selector = "input[data-action=" + action + "]";
+        if ($(this).prop('checked')) {
+            $(selector).prop("checked", true);
+        } else {
+            $(selector).prop("checked", false);
+        }
     });
 }

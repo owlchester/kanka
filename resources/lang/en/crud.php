@@ -292,6 +292,7 @@ return [
             'edit'          => 'Edit',
             'entity_note'   => 'Entity Notes',
             'read'          => 'Read',
+            'toggle'        => 'Toggle',
         ],
         'allowed'       => 'Allowed',
         'fields'        => [
