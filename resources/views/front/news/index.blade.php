@@ -21,10 +21,10 @@
     <section class="features" id="news">
         <div class="container">
             <div class="row">
-                <div class="col-3">
+                <div class="col-3 d-none d-md-block">
                     @include('front.news._recent')
                 </div>
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <?php /** @var \TCG\Voyager\Models\Post $model */ ?>
                     @foreach ($models as $model)
                         @include('front.news._article', ['preview' => true])
