@@ -261,6 +261,7 @@ class EntityPermission
         $this->loadedCampaignId = $campaign->id;
         $this->cached = [];
         $this->roleIds = false;
+        $this->userIsAdmin = false;
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         $roleIds = $this->getRoleIds($campaign, $user);
