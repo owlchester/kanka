@@ -657,6 +657,9 @@ div.mce-fullscreen {
 .select2-container--open {
   z-index: 9961;
 }
+.select2-selection__rendered .color-white {
+  color: #000 !important;
+}
 .datepicker {
   z-index: 1062 !important;
 }

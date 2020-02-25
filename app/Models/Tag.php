@@ -225,7 +225,7 @@ class Tag extends MiscModel
     public function colourClass()
     {
         if (!$this->hasColour()) {
-            return '';
+            return 'color-white';
         }
 
         $mappings = config('colours.mappings');
