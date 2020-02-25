@@ -370,6 +370,7 @@ class DatagridRenderer
                     '<i class="fa fa-lock" title="' . trans('crud.is_private') . '"></i>' :
                     '<br />';
             } elseif ($type == 'calendar_date') {
+                $class = 'hidden-xs hidden-sm';
                 if ($model->hasCalendar()) {
                     $content = $this->dateRenderer->render($model->getDate());
                 }
