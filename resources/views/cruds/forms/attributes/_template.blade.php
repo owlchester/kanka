@@ -9,7 +9,7 @@
             'link' => link_to($attributeTemplate->getLink(), e($attributeTemplate->name))
         ]) !!}
     </p>
-    @foreach ($attributeTemplate->entity->attributes as $attribute)
+    @foreach ($attributeTemplate->entity->attributes()->ordered()->get() as $attribute)
         @if (!in_array($attribute->name, $existingAttributeNames))
             @include('cruds.forms.attributes._attribute', ['resetAttributeId' => true])
         @endif

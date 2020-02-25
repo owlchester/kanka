@@ -5,9 +5,9 @@
  */
 $attributes = [];
 if (isset($model)) {
-    $attributes = $model->entity->attributes()->orderBy('default_order', 'ASC')->get();
+    $attributes = $model->entity->attributes()->ordered()->get();
 } elseif (isset($source)) {
-    $attributes = $source->entity->attributes()->orderBy('default_order', 'ASC')->get();
+    $attributes = $source->entity->attributes()->ordered()->get();
 }
 $isAdmin = Auth::user()->isAdmin();
 $existingAttributeNames = [];
