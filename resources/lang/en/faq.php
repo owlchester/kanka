@@ -53,7 +53,7 @@ TEXT
         'question'  => 'Will the app stay free?',
     ],
     'gods-and-religions' => [
-        'answer' => 'We recommend creating Gods as Characters, and creating religions as Organisations. If you want to quickly find your deities, we recommend tagging them with an appropriate Tag.',
+        'answer' => 'We recommend creating Gods as Characters, and creating religions as Organisations. If you want to quickly find your deities, we recommend tagging them with an appropriate Tag and/or type.',
         'question' => 'Where to create Gods and religions?',
     ],
     'help'                  => [

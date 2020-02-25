@@ -4,7 +4,7 @@
         @if (auth()->check() && !isset($exporting))
         <div class="actions text-right">
             <h1 class="hidden-xs pull-left">
-                {!! $model->name !!}
+                {{ $model->name }}
             </h1>
 
             @if ($model->entity)
