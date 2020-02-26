@@ -87,10 +87,12 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return mixed
+     * @param User|null $user
+     * @param $entity
+     * @param string $subAction
+     * @return bool
      */
-    public function attribute(User $user, $entity, $subAction = 'browse')
+    public function attribute(?User $user, $entity, $subAction = 'browse')
     {
         return $this->relatedElement($user, $entity, $subAction);
     }
@@ -101,12 +103,12 @@ class MiscPolicy
      * @param string $subAction
      * @return bool
      */
-    public function relatedElement(User $user, $entity, $subAction = 'browse')
+    public function relatedElement(?User $user, $entity, $subAction = 'browse')
     {
         if ($subAction == 'browse') {
-            return Auth::check() && $this->view($user, $entity);
+            return $user && $this->view($user, $entity);
         } else {
-            return Auth::check() && $this->update($user, $entity) && !$this->shadow();
+            return $user && $this->update($user, $entity) && !$this->shadow();
         }
     }
 

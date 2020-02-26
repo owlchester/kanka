@@ -146,4 +146,6 @@ if (isset($model)) {
             </tr>
         @endif
     @endforeach
+    </tbody>
+</table>
 @endif

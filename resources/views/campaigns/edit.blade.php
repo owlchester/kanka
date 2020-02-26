@@ -18,12 +18,6 @@
     ]) !!}
 @endsection
 
-@section('header-extra')
-    <div class="pull-right">
-        @include('cruds.fields.save', ['onlySave' => true, 'disableCancel' => true, 'target' => 'entity-form'])
-    </div>
-@endsection
-
 @section('content')
     @include('partials.errors')
     @include('campaigns.forms.' . ($start ? 'start' : 'standard'))

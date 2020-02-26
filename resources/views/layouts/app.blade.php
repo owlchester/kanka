@@ -68,7 +68,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         @yield('fullpage-form')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 @if (!isset($breadcrumbs) || $breadcrumbs !== false)

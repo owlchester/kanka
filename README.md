@@ -1,6 +1,6 @@
 # Miscellany
 
-[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
 [![Patreon](https://img.shields.io/badge/Patreon-Support-orange.svg)](https://patreon.com/kankaio)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
 
@@ -79,7 +79,7 @@ The app revolves around the concept of `Entities`. This are for example:
 
 ## Structure
 
-Each entity is split between two tables: 
+Each entity is split between two tables:
 
 * The `entity` table which contains some generic information available to all entities (name, id)
 * A table for the specific data of the entity.
@@ -106,7 +106,7 @@ The following will produce assets for development
 
 The following will produce assets for production
 
-> npm run prod  
+> npm run prod
 
 # Development
 
@@ -165,18 +165,18 @@ To restore a db, use the following
 
 # Testing
 
-The configuration for PHPUnit-Tests is in the file /phpunit.xml. 
+The configuration for PHPUnit-Tests is in the file /phpunit.xml.
 Before the first run you have to run
 ```php
 php artisan setupTestDB --env=testing
-``` 
+```
 to create and setUp the TestDatabase. Also if the Database-Schema changes or new migrations are added, you have to reset the Testing Database with this command.
 
 The Configuration for the TestEnvironment can be found in the File /phpunit.xml and .env.testing.
 The Environment-Variables in both files need to be the same.
- 
+
 If everything is setup correctly you can run the tests by just calling
 ```php
 phpunit
-``` 
+```
 in the project directory.

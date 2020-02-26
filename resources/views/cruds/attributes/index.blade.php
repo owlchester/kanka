@@ -16,18 +16,20 @@ $isAdmin = Auth::user()->isAdmin();
 ])
 
 @section('fullpage-form')
-    {!! Form::open(['url' => route('entities.attributes.saveMany', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => "1"]) !!}
-@endsection
-
-@section('header-extra')
-    <div class="pull-right">
-        <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    </div>
+    {!! Form::open(['url' => route('entities.attributes.saveMany', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
 @endsection
 
 @section('content')
-    <div class="box box-solid">
-        <div class="box-body">
+    <div class="nav-tabs-custom">
+        <button class="btn btn-success pull-right">{{ trans('crud.save') }}</button>
+        <ul class="nav nav-tabs">
+            <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+                <a href="#form-entry" title="{{ __('crud.tabs.attributes') }}" data-toggle="tooltip">
+                    {{ __('crud.tabs.attributes') }}
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
             <div class="row">
                 <div class="col-sm-4">{{ trans('crud.attributes.fields.attribute') }}</div>
                 <div class="col-sm-4">{{ trans('crud.attributes.fields.value') }}</div>
@@ -49,7 +51,7 @@ $isAdmin = Auth::user()->isAdmin();
         </div>
 
         <div class="box-footer">
-            @include('cruds.forms.attributes._buttons')
+            @include('cruds.forms.attributes._buttons', ['model' => $entity->child])
         </div>
     </div>
 @endsection

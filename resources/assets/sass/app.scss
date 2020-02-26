@@ -41,11 +41,6 @@ img.profile-user-img {
   h1 {
     display: block;
     font-size: 1.3em;
-
-    .pull-right {
-      margin-top: 28px;
-      margin-right: 3px;
-    }
   }
 }
 
@@ -638,9 +633,19 @@ div.mce-fullscreen {
   padding: 3px 6px;
 }
 
+.list-group-unbordered {
+  margin-bottom: 0;
+  .list-group-item {
+    word-break: break-word;
 
-.list-group-item {
-  word-break: break-word;
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 
 .input-error {
