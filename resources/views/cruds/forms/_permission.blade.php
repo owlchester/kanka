@@ -81,7 +81,7 @@ if (isset($model)) {
     <tr>
         <th colspan="5">{{ __('crud.permissions.fields.member') }}</th>
     </tr>
-@if ($campaign->campaign()->members->count() > 2)
+@if ($campaign->campaign()->members->count() > 10)
     </tbody>
 </table>
 <p class="help-block">{{ __('crud.permissions.too_many_members') }}</p>
