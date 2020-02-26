@@ -741,10 +741,6 @@ td.breakable {
   word-break: break-word;
 }
 
-.btn-group .dropdown-toggle {
-  height: 36px;
-}
-
 .entity-form .nav-tabs-custom {
   min-height: 0;
   background-color: unset;
