@@ -3,6 +3,7 @@
     "/js/app.js": "/js/app.js?id=86633350b4c0efdaa18c",
     "/css/bootstrap.css": "/css/bootstrap.css?id=f28aeee238326cd7c477",
     "/css/vendor.css": "/css/vendor.css?id=86f3141dc39a1f0e35d5",
+    "/css/app.css": "/css/app.css?id=45dba8166d43443cdefc",
     "/css/export.css": "/css/export.css?id=7efe967765ecd8c6469c",
     "/css/map.css": "/css/map.css?id=5a93ef549d1d601ade45",
     "/css/map-v2.css": "/css/map-v2.css?id=49855f3dc67c0a68ae04",
@@ -11,9 +12,9 @@
     "/css/community-votes.css": "/css/community-votes.css?id=08ffdecff8953ea91483",
     "/css/dashboard.css": "/css/dashboard.css?id=7f976b10c40626f0ab33",
     "/css/settings.css": "/css/settings.css?id=f059e44c1ca83ffa1aa9",
-    "/css/future.css": "/css/future.css?id=12b39b364058369fc8af",
-    "/css/dark.css": "/css/dark.css?id=957707551b39cd02b6ea",
-    "/css/midnight.css": "/css/midnight.css?id=d9c6d25ca8a1ddbe7ba2",
+    "/css/future.css": "/css/future.css?id=7eb2823bd59986de5c2e",
+    "/css/dark.css": "/css/dark.css?id=80d13d307250437f044b",
+    "/css/midnight.css": "/css/midnight.css?id=2ed9e89e326627a3141c",
     "/css/tinymce.css": "/css/tinymce.css?id=4c1d1b478c24a77c7444",
     "/js/attributes.js": "/js/attributes.js?id=7674899d36a8c750ea90",
     "/js/campaign.js": "/js/campaign.js?id=e0b92eb1d15a9e51ada8",
@@ -27,6 +28,5 @@
     "/js/organisation.js": "/js/organisation.js?id=4f30fa80ceea3690d550",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
-    "/css/app.css": "/css/app.css?id=45dba8166d43443cdefc"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
 }
