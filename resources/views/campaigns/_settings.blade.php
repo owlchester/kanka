@@ -66,8 +66,12 @@
     </div>
 </div>
 
-<div class="form-group text-center">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <button class="btn btn-success btn-block">
+            <i class="fa fa-check"></i> {{ trans('crud.save') }}
+        </button>
+    </div>
 </div>
 
 {!! Form::close() !!}

@@ -2,11 +2,15 @@
 @extends('layouts.front', [
     'title' => trans('front/news.show.title', ['name' => $model->title]),
     'description' => '',
+    'englishCanonical' => true,
+    'alternate' => false,
 ])
 
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('front.news.show', $model->getSlug()) }}" />
+    @if ($model->image)<meta property="og:image" content="{{ Voyager::image($model->image)  }}" />
+@endif
 @endsection
 
 @section('content')

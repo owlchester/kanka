@@ -310,6 +310,7 @@ return [
         'inherited_by'  => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
         'success'       => 'Permissions saved.',
         'title'         => 'Permissions',
+        'too_many_members' => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.'
     ],
     'placeholders'      => [
         'calendar'      => 'Choose a calendar',

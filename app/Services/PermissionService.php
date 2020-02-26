@@ -198,7 +198,13 @@ class PermissionService
             }
         }
 
+        // Delete remaining permissions
+        $skipUsers = Arr::has($request, 'permissions_too_many');
         foreach ($permissions as $type => $data) {
+            // Skip users if there are too many users in the UI
+            if ($type === 'user' && $skipUsers) {
+                continue;
+            }
             foreach ($data as $user => $actions) {
                 foreach ($actions as $action => $perm) {
                     $perm->delete();

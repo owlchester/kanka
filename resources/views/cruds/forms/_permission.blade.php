@@ -74,12 +74,19 @@ if (isset($model)) {
             </tr>
         @endif
     @endforeach
+
     <tr>
         <td colspan="5">&nbsp;</td>
     </tr>
     <tr>
         <th colspan="5">{{ __('crud.permissions.fields.member') }}</th>
     </tr>
+@if ($campaign->campaign()->members->count() > 2)
+    </tbody>
+</table>
+<p class="help-block">{{ __('crud.permissions.too_many_members') }}</p>
+<input type="hidden" name="permissions_too_many" value="1" />
+@else
     @foreach ($campaign->campaign()->members()->with('user')->get() as $member)
         @if (!$member->isAdmin())
             <tr>
@@ -139,5 +146,4 @@ if (isset($model)) {
             </tr>
         @endif
     @endforeach
-    </tbody>
-</table>
+@endif

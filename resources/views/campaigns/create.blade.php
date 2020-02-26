@@ -12,7 +12,8 @@
         'route' => ($start ? 'start' : 'campaigns.store'),
         'enctype' => 'multipart/form-data',
         'method' => 'POST',
-        'data-shortcut' => '1'
+        'data-shortcut' => '1',
+        'class' => 'entity-form',
     ]) !!}
 @endsection
 

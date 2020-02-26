@@ -14,7 +14,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(array('route' => ['campaign_roles.store'], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+            {!! Form::open(['route' => ['campaign_roles.store'], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
             @include('campaigns.roles._form')
 
             {!! Form::hidden('campaign_id', CampaignLocalization::getCampaign()->id) !!}

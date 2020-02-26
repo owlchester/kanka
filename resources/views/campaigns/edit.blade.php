@@ -13,7 +13,8 @@
         'method' => 'PATCH',
         'enctype' => 'multipart/form-data',
         'route' => ['campaigns.update', $model->id],
-        'data-shortcut' => '1'
+        'data-shortcut' => '1',
+        'class' => 'entity-form',
     ]) !!}
 @endsection
 

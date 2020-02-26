@@ -14,7 +14,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($role, ['method' => 'PATCH', 'route' => ['campaign_roles.update', $role->id], 'data-shortcut' => "1"]) !!}
+            {!! Form::model($role, ['method' => 'PATCH', 'route' => ['campaign_roles.update', $role->id], 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
             @include('campaigns.roles._form')
 
             {!! Form::hidden('campaign_id', $model->id) !!}

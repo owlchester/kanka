@@ -47,6 +47,11 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+
+      .pull-right {
+        margin: 0px;
+      }
     }
 
     .breadcrumb {

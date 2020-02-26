@@ -192,11 +192,12 @@ class CrudController extends Controller
         }
         $model = new $this->model;
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
+        $campaign = CampaignLocalization::getCampaign();
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
-        $params['tabBoosted'] = $this->tabBoosted && CampaignLocalization::getCampaign()->boosted();
+        $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
 
@@ -308,13 +309,15 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
 
+        $campaign = CampaignLocalization::getCampaign();
+
         $params = [
             'model' => $model,
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
-            'tabBoosted' => $this->tabBoosted && CampaignLocalization::getCampaign()->boosted(),
+            'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
             'entityType' => $model->getEntityType()
         ];
 

@@ -27,10 +27,14 @@ $menus = [
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
+@if (isset($englishCanonical) && $englishCanonical)
+    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, 'en') }}" />
+@else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
-@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
     <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
-@endforeach
+    @endforeach
+@endif
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">

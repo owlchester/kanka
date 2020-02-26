@@ -111,7 +111,7 @@ class EntityObserver
             return;
         }
 
-        $data = request()->only('role', 'user', 'is_attributes_private');
+        $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
 
         // If the user granted themselves read/write permissions on the entity, we need to make sure they
         // still have them even if not checked in the UI.

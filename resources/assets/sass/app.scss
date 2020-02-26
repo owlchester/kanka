@@ -41,6 +41,11 @@ img.profile-user-img {
   h1 {
     display: block;
     font-size: 1.3em;
+
+    .pull-right {
+      margin-top: 28px;
+      margin-right: 3px;
+    }
   }
 }
 
