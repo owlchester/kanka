@@ -57,6 +57,10 @@ TEXT
 ,
         'question'  => 'Est-ce que l\'application restera gratuite ?',
     ],
+    'gods-and-religions'    => [
+        'answer'    => 'Les Dieux sont des personnage, et les religions sont des organisations dans Kanka. Pour rapidement trouver les dieux, nous recommandons aussi d\'utiliser des étiquettes.',
+        'question'  => 'Où crérer les Dieux et religions?',
+    ],
     'help'                  => [
         'answer'    => 'Premièrement, merci de vouloir donner un coup de main! Nous sommes toujours ravis d\'accueillir des personnes motivées pour aider avec les traductions, tester les nouvelles fonctionnalités, ou aider les nouveaux utilisateurs. Rejoins-nous simplement sur :discord. Nous apprécions aussi chacun de nos Patrons sur :patreon si tu veux nous soutenir et avoir accès à quelques bonus.',
         'question'  => 'Je veux aider! Que puis-je faire?',
@@ -71,8 +75,11 @@ TEXT
         'question'  => 'Puis-je uploader des cartes sur Kanka?',
     ],
     'mobile'                => [
-        'answer'    => 'Il n\'y a actuellement pas d\'application mobile pour Kanka, mais la majorité des fonctionnalités marchent sur un browser mobile. Une des limites est l\'outil de mention qui ne fonctionne pas dans l\'éditeur de texte. Si le soutien :patreon le permet, j\'espère un jour pouvoir construire et maintenir une application mobile.
-',
+        'answer'    => <<<'TEXT'
+Il n'y a actuellement pas d'application mobile pour Kanka, mais la majorité des fonctionnalités marchent sur un browser mobile. Une des limites est l'outil de mention qui ne fonctionne pas dans l'éditeur de texte. Si le soutien :patreon le permet, j'espère un jour pouvoir construire et maintenir une application mobile.
+
+TEXT
+,
         'question'  => 'Qu\'en est-t-il d\'une application mobile?',
     ],
     'multiworld'            => [
@@ -102,6 +109,7 @@ TEXT
         'other'         => 'Autre',
         'permissions'   => 'Permission',
         'pricing'       => 'Prix',
+        'worldbuilding' => 'Worldbuilding',
     ],
     'show'                  => [
         'return'    => 'Retour à la FAQ',

@@ -20,8 +20,8 @@ return [
         'public'            => 'Public',
     ],
     'add'               => 'Add',
-    'alerts' => [
-        'copy_mention' => 'The entity\'s advanced mention was copied to your clipboard.',
+    'alerts'            => [
+        'copy_mention'  => 'The entity\'s advanced mention was copied to your clipboard.',
     ],
     'attributes'        => [
         'actions'       => [
@@ -192,8 +192,8 @@ return [
             'manage'    => 'Manage Entity Files',
         ],
         'errors'    => [
-            'max'   => 'You have reached the maximum number (:max) of files for this entity.',
-            'no_files' => 'No files.',
+            'max'       => 'You have reached the maximum number (:max) of files for this entity.',
+            'no_files'  => 'No files.',
         ],
         'files'     => 'Uploaded Files',
         'hints'     => [
@@ -287,8 +287,8 @@ return [
         'system'                => 'System',
     ],
     'permissions'       => [
-        'action'        => 'Action',
-        'actions'       => [
+        'action'            => 'Action',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Add',
                 'ignore'    => 'Ignore',
@@ -300,17 +300,17 @@ return [
             'read'          => 'Read',
             'toggle'        => 'Toggle',
         ],
-        'allowed'       => 'Allowed',
-        'fields'        => [
+        'allowed'           => 'Allowed',
+        'fields'            => [
             'member'    => 'Member',
             'role'      => 'Role',
         ],
-        'helper'        => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
-        'inherited'     => 'This role already has this permission set for this entity type.',
-        'inherited_by'  => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
-        'success'       => 'Permissions saved.',
-        'title'         => 'Permissions',
-        'too_many_members' => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.'
+        'helper'            => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
+        'inherited'         => 'This role already has this permission set for this entity type.',
+        'inherited_by'      => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
+        'success'           => 'Permissions saved.',
+        'title'             => 'Permissions',
+        'too_many_members'  => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.',
     ],
     'placeholders'      => [
         'calendar'      => 'Choose a calendar',

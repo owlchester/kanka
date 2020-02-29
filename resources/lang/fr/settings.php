@@ -67,24 +67,24 @@ return [
         'profile'           => 'Profil',
     ],
     'patreon'   => [
-        'actions'       => [
+        'actions'           => [
             'link'  => 'Lier le compte',
             'view'  => 'Visiter Kanka sur Patreon',
         ],
-        'benefits'      => 'Nous supporter sur :patreon active plein de :features pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.',
+        'benefits'          => 'Nous supporter sur :patreon active plein de :features pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.',
         'benefits_features' => 'fonctionalités sympas',
-        'description'   => 'Synchronisation avec Patreon',
-        'errors'        => [
+        'description'       => 'Synchronisation avec Patreon',
+        'errors'            => [
             'invalid_token' => 'Token invalid! Patreon n\'a pas validé la requête.',
             'missing_code'  => 'Code manquant! Patreon n\'a pas envoyé de code d\'authentification pour ton compte.',
             'no_pledge'     => 'Pas de pledge! Patreon a identifié ton compte, mais ne croit pas que tu nous supportes.',
         ],
-        'link'          => 'Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!',
-        'linked'        => 'Merci pour ton support sur Patreon! Ton comptes est d\'orénavant lié.',
-        'pledge'        => 'Pledge: :name',
-        'success'       => 'Merci pour ton support sur Patreon!',
-        'title'         => 'Patreon',
-        'wrong_pledge'  => 'Ton pledge est inséré manuellement par nous, du coups ça peut prendre quelques jours pour être actualisé. Si ça reste faux longtemps, n\'hésites pas à nous contacter.',
+        'link'              => 'Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!',
+        'linked'            => 'Merci pour ton support sur Patreon! Ton comptes est d\'orénavant lié.',
+        'pledge'            => 'Pledge: :name',
+        'success'           => 'Merci pour ton support sur Patreon!',
+        'title'             => 'Patreon',
+        'wrong_pledge'      => 'Ton pledge est inséré manuellement par nous, du coups ça peut prendre quelques jours pour être actualisé. Si ça reste faux longtemps, n\'hésites pas à nous contacter.',
     ],
     'profile'   => [
         'actions'       => [

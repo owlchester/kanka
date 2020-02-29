@@ -80,48 +80,50 @@ return [
         'title'     => 'Campagnes',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Inviter',
+            'copy'  => 'Copier le liens dans le presse-papier.',
             'link'  => 'Nouveau Lien',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Inviter',
             'description'   => 'Invite tes amis à ta campagne',
             'link'          => 'Lien créé: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation envoyée.',
             'title'         => 'Invite un ami à la campagne',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Invitation annulée.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Joindre la campagne de :name</a>',
             'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' on kanka.io! Utilises ce lien pour accepter leur invitation.',
             'title'     => 'Invitation de :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Tu es déjà un membre de cette campagne.',
             'inactive_token'    => 'Ce code d\'activation a déjà été utilisé, ou la campagne n\'existe plus.',
             'invalid_token'     => 'Ce code d\'activation n\'est plus valide.',
             'login'             => 'Connectes toi ou créé un compte pour joindre la campagne.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Envoyé',
             'email'     => 'Email',
             'role'      => 'Rôle',
             'type'      => 'Type',
             'validity'  => 'Validité',
         ],
-        'helpers'       => [
+        'helpers'               => [
             'validity'  => 'Nombre de fois que le lie peut être utilisé avant d\'être désactivé. Laisser vide pour illimité.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'L\'adresse email de ton ami',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Email',
             'link'  => 'Lien',
         ],
+        'unlimited_validity'    => 'Illimité',
     ],
     'leave'                             => [
         'confirm'   => 'Est-tu sûr de vouloir quitter :name? Tu n\'aura plus accès aux données, sauf si un Proprio de la campagne t\'invites à nouveau.',
@@ -227,6 +229,7 @@ return [
                 'entity-note'   => 'Note d\'entité',
                 'permission'    => 'Gérer les permissions',
                 'read'          => 'Voir',
+                'toggle'        => 'Changer pour tous',
             ],
             'hint'      => 'Ce rôle a automatiquement accès à tout.',
         ],

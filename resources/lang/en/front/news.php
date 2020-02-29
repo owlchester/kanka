@@ -6,10 +6,10 @@ return [
         'return'    => 'Back to article list',
     ],
     'description'   => 'Stay up to date on Kanka\'s constant evolutions.',
-    'latest'        => [
+    'index'         => [
         'title' => 'Latest News',
     ],
-    'index' => [
+    'latest'        => [
         'title' => 'Latest News',
     ],
     'show'          => [

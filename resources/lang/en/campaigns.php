@@ -80,50 +80,50 @@ return [
         'title'     => 'Campaign',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Invite',
             'copy'  => 'Copy the link to your clipboard',
             'link'  => 'New Link',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Invite',
             'description'   => 'Invite a friend to your campaign',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation sent.',
             'title'         => 'Invite someone to your campaign',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Invitation removed.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Join :name\'s campaign</a>',
             'subject'   => ':name has invited you to join their campaign \':campaign\' on kanka.io! Use the following link to accept their invitation.',
             'title'     => 'Invitation from :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'You are already a member of that campaign.',
             'inactive_token'    => 'This token has already been used, or the campaign no longer exists.',
             'invalid_token'     => 'This token is no longer valid.',
             'login'             => 'Please log in or register to join the campaign.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Sent',
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
             'validity'  => 'Validity',
         ],
-        'helpers'       => [
+        'helpers'               => [
             'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Email address of the person you wish to invite',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Email',
             'link'  => 'Link',
         ],
-        'unlimited_validity' => 'Unlimited',
+        'unlimited_validity'    => 'Unlimited',
     ],
     'leave'                             => [
         'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
@@ -229,7 +229,7 @@ return [
                 'entity-note'   => 'Entity Note',
                 'permission'    => 'Permissions',
                 'read'          => 'View',
-                'toggle'          => 'Change for all'
+                'toggle'        => 'Change for all',
             ],
             'hint'      => 'This role automatically has access to everything.',
         ],

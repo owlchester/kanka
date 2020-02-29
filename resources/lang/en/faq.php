@@ -52,9 +52,9 @@ TEXT
 ,
         'question'  => 'Will the app stay free?',
     ],
-    'gods-and-religions' => [
-        'answer' => 'We recommend creating Gods as Characters, and creating religions as Organisations. If you want to quickly find your deities, we recommend tagging them with an appropriate Tag and/or type.',
-        'question' => 'Where to create Gods and religions?',
+    'gods-and-religions'    => [
+        'answer'    => 'We recommend creating Gods as Characters, and creating religions as Organisations. If you want to quickly find your deities, we recommend tagging them with an appropriate Tag and/or type.',
+        'question'  => 'Where to create Gods and religions?',
     ],
     'help'                  => [
         'answer'    => 'Firstly, thank you for wanting to help out! We are always interested in people who can help out with translations, testing new features, or who can help out new users. We also love when people promote Kanka to reach new users in places we hadn\'t thought of. Your best course of action is to join us on the :discord where a channel is dedicated to helping out. We also love our patrons on :patreon if you wish to support us and get access to some perks!',
