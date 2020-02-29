@@ -18,6 +18,7 @@
                         <th>{{ __('crud.permissions.actions.delete') }}</th>
                         <th>{{ __('crud.permissions.actions.entity_note') }}</th>
                     </tr>
+                    <?php /** @var \App\Models\CampaignRole $role */ ?>
                     @foreach ($campaign->campaign()->roles()->withoutAdmin()->get() as $role)
                         <tr>
                             <td>{{ $role->name }}</td>
@@ -66,8 +67,9 @@
                         <th>{{ __('crud.permissions.actions.delete') }}</th>
                         <th>{{ __('crud.permissions.actions.entity_note') }}</th>
                     </tr>
-                    @foreach ($campaign->campaign()->members()->with('user')->get() as $member)
-                        @if (!$member->isAdmin())
+                    <?php /** @var \App\Models\CampaignUser $member */ ?>
+                    @foreach ($campaign->campaign()->members()->with('user')->withoutAdmins()->get() as $member)
+
                             <tr>
                                 <td>{{ $member->user->name }}</td>
                                 <td>
@@ -99,7 +101,6 @@
                                     ['class' => 'form-control']) !!}
                                 </td>
                             </tr>
-                        @endif
                     @endforeach
                     </tbody>
                 </table>
