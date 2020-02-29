@@ -12,9 +12,29 @@ TEXT
 ,
         'question'  => 'Mik azok a tulajdonságsablonok?',
     ],
+    'backup'                => [
+        'answer'    => 'Napi egy alkalommal, kiexportálhatod a kampányod összes adatát egy ZIP fájlba. Kattints a "Kampány" linkre a bal menüsoron, majd az "Export" gombra. Ezzel létrehozol egy exportálási lehetőséget, amely 30 percen belül indíthatsz meg. Ezt a lementett csomagot nem tudod visszatölteni a Kankára, a célja, hogy megőrizhesd az adataid, ha már nem tervezed tovább használni a Kankát a jövőben.',
+        'question'  => 'Hogyan hozhatok létre biztonsági másolatot, vagy hogyan exportálhatom a kampányomat?',
+    ],
+    'bugs'                  => [
+        'answer'    => 'Egyszerűen csatlakozz :discord szerverünkhöz, és jelentsd be a hibát a #error-and-bugs csatornában.',
+        'question'  => 'Hogyan jelenthetek be egy hibát?',
+    ],
     'conversations'         => [
         'answer'    => 'A Beszélgetések modulban párbeszéd bejegyzéseket jegyezhetsz fel Karakterek vagy a kampány Tagjai között. Amennyiben szeretnél egy fontos beszélgetést rögzíteni NJK-k, és JK-k között, akkor használd ezt a modult. Szükség esetén akár "Fórumos szerepjátékra" is használhatod a funkciót, ahol a mesélő és játékosok csak írásban játszanak.',
         'question'  => 'Mi a Beszélgetések?',
+    ],
+    'custom'                => [
+        'answer'    => <<<'TEXT'
+A Kanka számos előre definiált entitás típussal rendelkezik, amelyek kapcsolatban vannak egymással. Egyedi entitások engedélyezéséhez újra kellene írni az appot az alapjairól. Az egyedi entitások szervezésének bonyolítása pedig éppen ellentétes lenne azzal a céllal, hogy egy egyszerű megoldást nyújtsunk a világépítéshez.
+Emellett a Kanka rendelkezik egy rugalmas Címke-rendszerrel is, amely képes lehet kielégíteni az egyedi entitástípus igényeket.
+TEXT
+,
+        'question'  => 'Hozhatok létre egyedi entitás típusokat?',
+    ],
+    'delete-campaign'       => [
+        'answer'    => 'Navigálj a kampány főoldalára, majd kattints a "Kampány" gombra a baloldali menüsoron. Egy "Eltávolítás" gomb jelenik meg amennyiben te vagy az egyetlen tagja az adott kampánynak. A kampány törlése végleges, amely a kampány minden tárolt adatát is törli, beleértve a képeket is!',
+        'question'  => 'Hogyan tudom törölni a kampányomat?',
     ],
     'entity-notes'          => [
         'answer'    => 'Minden entitás rendelkezik egy \'Entitás jegyzet\' füllel, amelyek aprócska szöveges bejegyzések, amelyek egyenként beállíthatóak, hogy csak Te lásd őket, (praktikus, amikor több mesélős játékról van szó) vagy csak az Admin jogú felhasználók, eset bárki láthassa ezeket. Ezen felül beállítható, hogy a játékosok létrehozhassanak, és módosíthassanak ilyen Entitás jegyzeteket anélkül, hogy joguk lenne a teljes entitás szerkesztéséhez.',
@@ -69,6 +89,17 @@ A második kérdésre reflektálva jellemző, hogy a legtöbb hobby projekt ált
 TEXT
 ,
         'question'  => 'Mik a hosszútávú tervek? Mi lesz, ha Ilestis ráun dolgozni a Kankán?',
+    ],
+    'public-campaigns'      => [
+        'answer'    => 'Böngészd a :public-campaigns oldalt ötletekért, hogy mások hogyan használják a Kankát a kampányukhoz.',
+        'question'  => 'Hogyan használják a Kankát mások?',
+    ],
+    'sections'              => [
+        'community'     => 'Közösség',
+        'general'       => 'Általános',
+        'other'         => 'Egyebek',
+        'permissions'   => 'Jogosultságok',
+        'pricing'       => 'Árak',
     ],
     'show'                  => [
         'return'    => 'Vissza a GYIK-hez',

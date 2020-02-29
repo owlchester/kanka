@@ -37,4 +37,24 @@ return [
         'name'          => 'Ulyss (esempio)',
         'type'          => 'Capitale',
     ],
+    'note1'         => [
+        'entry' => <<<'TEXT'
+Benvenuto in Kanka! La tua prima campagna è stata creata e vi abbiamo inserito un po' di entità di esempio come ispirazione (le potrai cancellare in qualsiasi momento).
+
+Vorrai probabilmente iniziale aggiungendo qualche tua entità, quindi seleziona una categoria da sinistra ed iniziamo.
+Puoi disabilitare le tipologie di entità non necessarie dalle impostazioni della campagna, questo le nasconderà dal menù.
+
+Alcuni consigli per iniziare:
+- Puoi digitare @nomeEntità per colleghare specifiche entità. Il testo del link mostrato sarà automaticamente aggiornato se rinominerai od aggiornerai l'entità collegata.
+- Puoi configurare i settaggi specifici per l'account come il tema o gli elementi da mostrare per ogni pagina dal tuo profilo accessibile da in alto a destra.
+- C'è una lista crescente di tutorial su :youtube. I tutotial includono esempi sugli attributi e come condividere la tua campagna con le altre persone. Anche le :faq possono esserti utili.
+
+Ultimo ma non meno importante:
+- Guarda :public per un'ispirazione su come gli altri usano Kanka.
+- Se ha delle domande, dei suggerimento o vuoi solamente chattare unisciti a noi su :discord.
+- Ami l'app e vuoi supportare la sua crescita? Recati sul nostro :patreon.
+TEXT
+,
+        'name'  => 'Nota di Benvenuto',
+    ],
 ];

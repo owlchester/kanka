@@ -142,6 +142,7 @@ return [
         'calendar'              => 'Calendario',
         'calendar_date'         => 'Data del Calendario',
         'character'             => 'Personaggio',
+        'colour'                => 'Colore',
         'copy_attributes'       => 'Copia Attributo',
         'copy_notes'            => 'Copia le Note dell\'Entità',
         'creator'               => 'Creatore',

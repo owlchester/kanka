@@ -85,48 +85,50 @@ return [
         'title'         => 'Campañas',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Invitar',
+            'copy'  => 'Copiar el enlace al portapapeles',
             'link'  => 'Nuevo enlace',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Invitar',
             'description'   => 'Invita a un amigo a tu campaña',
             'link'          => 'Enlace creado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitación enviada.',
             'title'         => 'Invita a alguien a tu campaña',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Invitación eliminada.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Unirse a la campaña de :name </a>',
             'subject'   => '¡:name te ha invitado a que te unas a su campaña ":campaign" en kanka.io! Usa el siguiente enlace para aceptar su invitación.',
             'title'     => 'Invitación de :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Ya eres un miembro de esta campaña.',
             'inactive_token'    => 'Este identificador ya ha sido usado o la campaña ya no existe.',
             'invalid_token'     => 'El identificador ya no es valido.',
             'login'             => 'Por favor inicia sesión o registrate para unirte a la campaña.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Enviado',
             'email'     => 'Correo electrónico',
             'role'      => 'Rol',
             'type'      => 'Tipo',
             'validity'  => 'Validez',
         ],
-        'helpers'       => [
+        'helpers'               => [
             'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Correo electrónico de la persona a la que quieres invitar',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Correo electrónico',
             'link'  => 'Enlace',
         ],
+        'unlimited_validity'    => 'Ilimitado',
     ],
     'leave'                             => [
         'confirm'   => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que el dueño de la campaña te invite de nuevo.',
