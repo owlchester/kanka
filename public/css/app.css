@@ -7,7 +7,8 @@
 
 img.profile-user-img {
   border: none;
-  width: 100%;
+  width: auto;
+  max-height: 400px;
 }
 
 .content {
@@ -1227,7 +1228,7 @@ td.breakable {
 @font-face {
   font-family: "RPGAwesome";
   src: url(/fonts/rpgawesome-webfont.eot?cbfd0298f008558557418d19abfc2f42);
-  src: url(/fonts/rpgawesome-webfont.eot?cbfd0298f008558557418d19abfc2f42) format("embedded-opentype"), url(/fonts/rpgawesome-webfont.woff?e31a701aa9b88125d36119acb8a10482) format("woff"), url(/fonts/rpgawesome-webfont.ttf?bc54396771c64863193f7a3fe93d9cff) format("truetype"), url(/fonts/rpgawesome-webfont.svg?c243adb601cb0e965344851b1c46194f) format("svg");
+  src: url(/fonts/rpgawesome-webfont.eot?cbfd0298f008558557418d19abfc2f42) format("embedded-opentype"), url(/fonts/rpgawesome-webfont.woff?e31a701aa9b88125d36119acb8a10482) format("woff"), url(/fonts/rpgawesome-webfont.ttf?bc54396771c64863193f7a3fe93d9cff) format("truetype"), url(/fonts/rpgawesome-webfont.svg?3545f0c0e7c01650959acf24695fe78c) format("svg");
   font-weight: normal;
   font-style: normal;
 }

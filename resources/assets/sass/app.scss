@@ -22,7 +22,8 @@
 
 img.profile-user-img {
   border: none;
-  width: 100%;
+  width: auto;
+  max-height: 400px;
 }
 
 .content {
