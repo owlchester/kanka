@@ -10,7 +10,37 @@ body {
   background-color: #222;
 }
 header.masthead {
+  //background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
+  background-color: $KankaDarkBlue;
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
+  background-position: top left;
+  background-size: cover;
+  //color: $KankaGrey;
+
+  .container {
+    z-index: 1;
+    position: relative;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+  }
+
+  p {
+    font-size: 22px;
+  }
+}
+section.cta {
+
   background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
+  //background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
+  //background-position: top left;
+  //background-size: cover;
 }
 header.reduced-masthead {
   min-height: 325px;
@@ -459,7 +489,7 @@ ul.pagination {
     width: 420px;
   }
 
-  .login-page, .register-page {
+  .login-page, .register-page, header.masthead {
     background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
   }
 }
@@ -506,7 +536,7 @@ ul.pagination {
     }
   }
 
-  .login-page, .register-page {
+  .login-page, .register-page, header.masthead {
     background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-mobile.jpg);
   }
 }

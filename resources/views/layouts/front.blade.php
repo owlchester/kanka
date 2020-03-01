@@ -58,12 +58,12 @@ $menus = [
                     <a class="nav-link" href="{{ route('home') }}">{{ __('front.menu.dashboard') }}</a>
                 </li>
             @else
-                <li class="login">
+                <li class="login d-none d-sm-inline-block">
                     <a href="{{ route('login') }}">
                         {{ __('front.menu.login') }}
                     </a>
                 </li>
-                <li>
+                <li class="d-none d-sm-inline-block">
                     <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
                 </li>
             @endauth
@@ -96,6 +96,15 @@ $menus = [
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
+        @auth
+        @else
+            <a href="{{ route('login') }}" class="d-sm-none">
+                {{ __('front.menu.login') }}
+            </a>
+            <a class="d-sm-none" href="{{ route('register') }}">
+                {{ __('front.menu.register') }}
+            </a>
+        @endauth
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
         </button>

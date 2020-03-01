@@ -1,7 +1,7 @@
 <header class="masthead">
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-lg-6 my-auto">
+            <div class="col-lg-7 my-auto">
                 <div class="header-content mx-auto">
                     <h1 class="mb-5">{{ trans('front.master.title') }}</h1>
                     <p class="mb-5">{{ trans('front.master.description') }}</p>
@@ -11,9 +11,12 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6 text-center my-auto">
-                <iframe width="560" height="315" class="embed-responsive" src="https://www.youtube.com/embed/TUAMJf22XeM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="col-lg-5 text-center my-auto">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TUAMJf22XeM" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
+    <div class="overlay"></div>
 </header>
