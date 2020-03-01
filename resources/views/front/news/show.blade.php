@@ -30,7 +30,7 @@
     <section class="features" id="releases">
         <div class="container">
             <div class="row">
-                <div class="col-3">
+                <div class="col-3 d-none d-md-block">
                     @include('front.news._recent')
                 </div>
                 <div class="col-9">
