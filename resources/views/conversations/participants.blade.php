@@ -23,7 +23,7 @@
                     @if ($participant->target() == \App\Models\Conversation::TARGET_USERS || auth()->user()->can('view', $participant->entity()))
                     <li class="list-group-item">
                         @can('update', $model)
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', 'conversation' => $model, 'participant' => $participant], 'style'=>'display:inline']) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'style'=>'display:inline']) !!}
                         @endcan
 
                         @if ($participant->target() == \App\Models\Conversation::TARGET_USERS)

@@ -107,9 +107,9 @@ $hasOrg = request()->has('organisation_id');
                     </td>
                     <td class="text-right">
                         @can('member', $model)
-                            <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}"
+                            <a href="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
                                class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal"
-                               data-url="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}"
+                               data-url="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
                                title=" {{ __('crud.edit') }}"
                             >
                                 <i class="fa fa-edit"></i>
