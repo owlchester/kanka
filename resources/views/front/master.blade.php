@@ -1,4 +1,4 @@
-<header class="masthead">
+<header class="masthead masthead-img">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-lg-7 my-auto">

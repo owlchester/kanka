@@ -10,12 +10,13 @@ body {
   background-color: #222;
 }
 header.masthead {
-  //background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
+  background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
+}
+header.masthead-img {
   background-color: $KankaDarkBlue;
-  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg) !important;
   background-position: top left;
   background-size: cover;
-  //color: $KankaGrey;
 
   .container {
     z-index: 1;
