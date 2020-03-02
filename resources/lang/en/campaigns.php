@@ -115,6 +115,7 @@ return [
         ],
         'helpers'               => [
             'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
+            'email' => 'Our emails are often flagged as spam and can take up to a few hours before appearing in your inbox.'
         ],
         'placeholders'          => [
             'email' => 'Email address of the person you wish to invite',
@@ -160,7 +161,7 @@ return [
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
+            'description'   => 'You can invite friends to join your campaign by providing them with an Invite Link. Upon accepting their invitation, they will be added as a member in the requested role. You can also send them a request by email as long as it\'s not a Hotmail address, as they always reject Kanka\'s emails.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',

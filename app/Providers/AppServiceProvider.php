@@ -118,6 +118,7 @@ class AppServiceProvider extends ServiceProvider
             Paginator::useBootstrapThree();
 
             $this->addBladeDirectives();
+            $this->addValidators();
         }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
@@ -170,5 +171,10 @@ class AppServiceProvider extends ServiceProvider
 //        Blade::if('campaigns', function () {
 //            return auth()->check() && auth()->user()->hasCampaigns();
 //        });
+    }
+
+    protected function addValidators(): void
+    {
+        Validator::extend('not_hotmail', '\App\Rules\NotHotmail@passes');
     }
 }

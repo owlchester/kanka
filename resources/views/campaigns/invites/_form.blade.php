@@ -3,6 +3,7 @@
 @if ($type == 'email')
     <label>{{ trans('campaigns.invites.fields.email') }}</label>
     {!! Form::text('email', null, ['placeholder' => trans('campaigns.invites.placeholders.email'), 'class' => 'form-control']) !!}
+        <p class="help-block">{{  __('campaigns.invites.helpers.email')}}</p>
 @else
     <label>{{ trans('campaigns.invites.fields.validity') }}</label>
     {!! Form::text('validity', null, ['class' => 'form-control', 'maxlength' => 3]) !!}
@@ -17,7 +18,9 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ trans('campaigns.invites.create.button') }}</button>
+    @if (!request()->ajax())
     {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+    @endif
 </div>
 
 {!! Form::hidden('type', $type) !!}
