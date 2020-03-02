@@ -38,18 +38,26 @@
                     </td>
 
                     <td class="text-right">
-                        @can('switch', $relation)
-                            <a href="{{ route('identity.switch', $relation) }}" class="btn btn-default btn-xs" title="{{ __('campaigns.members.helpers.switch') }}">
-                                <i class="fa fa-user"></i> <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.switch') }}</span>
-                            </a>
-                        @endcan
-                        @can('delete', $relation)
-                        {!! Form::open(['method' => 'DELETE','route' => ['campaign_users.destroy', $relation->id],'style'=>'display:inline']) !!}
-                            <button class="btn btn-xs btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
-                            </button>
+                    @can('switch', $relation)
+                        <a href="{{ route('identity.switch', $relation) }}" class="btn btn-default btn-xs" title="{{ __('campaigns.members.helpers.switch') }}">
+                            <i class="fa fa-user"></i> <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.switch') }}</span>
+                        </a>
+                    @endcan
+                    @can('delete', $relation)
+                        <button class="btn btn-xs btn-danger delete-confirm"
+                                data-toggle="modal" data-name="{{ $relation->user->name }}"
+                                data-target="#delete-confirm" data-delete-target="campaign-user-{{ $relation->id }}"
+                        >
+                            <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
+                        </button>
+                        {!! Form::open([
+                            'method' => 'DELETE',
+                            'route' => ['campaign_users.destroy', $relation->id],
+                            'style' => 'display:inline',
+                            'id' => 'campaign-user-' . $relation->id]) !!}
+
                         {!! Form::close() !!}
-                        @endcan
+                    @endcan
                     </td>
                 </tr>
             @endforeach
