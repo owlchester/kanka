@@ -25,7 +25,6 @@
     </style>
 </head>
 <body>
-<h1><i class="fa fa-check-circle"></i> fa check circle</h1>
 @inject('campaign', 'App\Services\CampaignService')
     <?php $cpt = 0; ?>
     @foreach ($entities as $model)
