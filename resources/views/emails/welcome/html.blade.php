@@ -51,7 +51,7 @@
         }
     </style>
     <div class="header">
-        <a href="{{ route('home') }}">
+        <a href="{{ route('home', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) }}">
         <img src="https://kanka-app-assets.s3.amazonaws.com/emails/kanka_transparent.png" alt="Kanka logo" title="Kanka logo">
         </a>
     </div>
@@ -61,7 +61,7 @@
             'name' => $user->name
         ]) }}</b></p>
         <p>{!! __('auth.register.welcome_email.header_sub', [
-            'kanka' => link_to_route('home', 'Kanka')
+            'kanka' => link_to_route('home', 'Kanka', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding'])
         ]) !!}</p>
 
         <p><b>{{ __('auth.register.welcome_email.section_1') }}</b></p>
@@ -86,7 +86,7 @@
             'patrons' => link_to(config('patreon.url'), __('auth.register.welcome_email.section_10')),
         ]) !!}</p>
 
-        <p><b>{!! link_to_route('home', __('auth.register.welcome_email.section_11')) !!}</b></p>
+        <p><b>{!! link_to_route('home', __('auth.register.welcome_email.section_11'), ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) !!}</b></p>
 
         <i>Jay & Jon</i>
     </div>
