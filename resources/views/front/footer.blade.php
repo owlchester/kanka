@@ -50,6 +50,9 @@
                             <li>
                                 <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>
                             </li>
+                            <li>
+                                <a href="{{ route('front.terms') }}">{{ __('front.menu.terms') }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

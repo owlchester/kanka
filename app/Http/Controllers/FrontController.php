@@ -51,6 +51,14 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function terms()
+    {
+        return view('front.terms');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function help()
     {
         return view('front.help');

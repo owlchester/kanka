@@ -3,6 +3,7 @@
 Route::get('/about', 'FrontController@about')->name('front.about');
 //Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
 Route::get('/privacy-policy', 'FrontController@privacy')->name('front.privacy');
+Route::get('/terms-and-conditions', 'FrontController@terms')->name('front.terms');
 Route::get('/help', 'FrontController@help')->name('front.help');
 Route::get('/faq', 'FaqController@index')->name('faq.index');
 Route::get('/faq/{key}/{slug?}', 'FaqController@show')->name('faq.show');
