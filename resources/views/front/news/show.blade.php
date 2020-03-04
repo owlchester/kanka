@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Release $model */?>
 @extends('layouts.front', [
-    'title' => trans('front/news.show.title', ['name' => $model->title]),
+    'title' => $model->title,
     'description' => '',
     'englishCanonical' => true,
     'alternate' => false,
@@ -33,7 +33,7 @@
                 <div class="col-3 d-none d-md-block">
                     @include('front.news._recent')
                 </div>
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <h4>{{ $model->title }}
                     @admin
                     <a href="{{ route('voyager.posts.edit', $model) }}" style="float: right;" title="{{ __('crud.edit') }}">

@@ -333,7 +333,6 @@ class Location extends MiscModel
     public function mapWidth(): int
     {
         if (empty($this->map) || !$this->isMapSvg()) {
-            dd('not svg');
             return 0;
         }
         try {
