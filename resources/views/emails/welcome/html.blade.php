@@ -14,7 +14,7 @@
             right: 0;
         }
         .header {
-            height: 420px;
+            height: 420px !important;
         }
         @media(max-width: 992px) {
             .content {
