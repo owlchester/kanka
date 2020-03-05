@@ -13,6 +13,9 @@
             left: 0;
             right: 0;
         }
+        .header {
+            height: 420px;
+        }
         @media(max-width: 992px) {
             .content {
                 width: auto;
@@ -26,15 +29,15 @@
             }
         }
     </style>
-    <div style="font-family: 'Open Sans', sans-serif; background-color: #eee; padding: 0 0 20px 0; margin: 0;">
+    <div style="font-family: 'Open Sans', sans-serif; background-color: #eee; margin: 0 0 20px 0;">
 
-        <div style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg); background-position: top center; background-size: cover; width: 100%; height: 420px; text-align: center;">
+        <div class="header" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg); background-position: top center; background-size: cover; width: 100%; height: 220px; text-align: center;">
             <a href="{{ route('home', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) }}">
             <img src="https://kanka-app-assets.s3.amazonaws.com/emails/kanka_transparent.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
             </a>
         </div>
 
-        <div class="content" style="border-radius: 15px; max-width: 700px; background-color: #fff; padding: 20px; margin: -200px auto 60px auto; left: 0; right: 0;">
+        <div class="content" style="background-color: #fff; padding: 20px;">
             <p><b>{{ __('auth.register.welcome_email.header', [
                 'name' => $user->name
             ]) }}</b></p>
