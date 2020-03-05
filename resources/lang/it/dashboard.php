@@ -70,7 +70,6 @@ Alcuni consigli per iniziare:
 - Se ha delle domande, dei suggerimento o vuoi solamente chattare unisciti a noi su :discord
 TEXT
 ,
-        'header'    => 'Benvenuto',
     ],
     'widgets'           => [
         'calendar'  => [

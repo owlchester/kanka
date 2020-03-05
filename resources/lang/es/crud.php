@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Acciones',
         'apply'             => 'Aplicar',
         'back'              => 'Atrás',
         'copy'              => 'Copiar',
+        'copy_mention'      => 'Copiar mención [ ]',
         'copy_to_campaign'  => 'Copiar a campaña',
         'explore_view'      => 'Vista anidada',
         'export'            => 'Exportar',
@@ -18,6 +20,9 @@ return [
         'public'            => 'Público',
     ],
     'add'               => 'Añadir',
+    'alerts'            => [
+        'copy_mention'  => 'La mención avanzada de la entidad se ha copiado a tu portapapeles.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Añadir atributo',
@@ -187,7 +192,8 @@ return [
             'manage'    => 'Administrar archivos de la entidad',
         ],
         'errors'    => [
-            'max'   => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+            'max'       => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+            'no_files'  => 'No hay archivos.',
         ],
         'files'     => 'Archivos subidos',
         'hints'     => [
@@ -281,8 +287,8 @@ return [
         'system'                => 'Sistema',
     ],
     'permissions'       => [
-        'action'        => 'Acción',
-        'actions'       => [
+        'action'            => 'Acción',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Añadir',
                 'ignore'    => 'Ignorar',
@@ -293,16 +299,17 @@ return [
             'entity_note'   => 'Notas de entidad',
             'read'          => 'Leer',
         ],
-        'allowed'       => 'Permitido',
-        'fields'        => [
+        'allowed'           => 'Permitido',
+        'fields'            => [
             'member'    => 'Miembro',
             'role'      => 'Rol',
         ],
-        'helper'        => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
-        'inherited'     => 'Este rol ya tiene este permiso en esta entidad.',
-        'inherited_by'  => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
-        'success'       => 'Permisos guardados.',
-        'title'         => 'Permisos',
+        'helper'            => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
+        'inherited'         => 'Este rol ya tiene este permiso en esta entidad.',
+        'inherited_by'      => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
+        'success'           => 'Permisos guardados.',
+        'title'             => 'Permisos',
+        'too_many_members'  => 'Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente.',
     ],
     'placeholders'      => [
         'calendar'      => 'Escoge un calendario',

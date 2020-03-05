@@ -114,6 +114,7 @@ return [
             'validity'  => 'Validité',
         ],
         'helpers'               => [
+            'email'     => 'Les emails de Kanka sont souvent traité comme du spam et peuvent prendre jusqu\'à quelques heures avant d\'apparaître dans ta boîte aux lettres.',
             'validity'  => 'Nombre de fois que le lie peut être utilisé avant d\'être désactivé. Laisser vide pour illimité.',
         ],
         'placeholders'          => [

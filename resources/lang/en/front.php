@@ -222,7 +222,7 @@ return [
     'team'          => [
         'coffee'    => 'Buy me a coffee!',
     ],
-    'terms'       => [
+    'terms'         => [
         'description'   => 'Effective date: March 4th, 2020',
         'title'         => 'Terms & Conditions',
     ],

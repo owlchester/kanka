@@ -63,7 +63,6 @@ return [
         'register'      => 'Registrar',
         'releases'      => 'Atualizações',
         'title'         => 'Menu',
-        'tos'           => 'Termos de Serviço',
     ],
     'meta'          => [
         'description'   => 'Kanka é um criador flexível de mundos digitais e gerenciador online de campanhas de rpg',

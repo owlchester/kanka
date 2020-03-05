@@ -68,7 +68,6 @@ Néhány tipp az induláshoz:
 - Ha további kérdéseid vannak, vagy csak csevegni szeretnél, lépj be a :discord szerverünkre!
 TEXT
 ,
-        'header'    => 'Üdvözlünk',
     ],
     'widgets'           => [
         'calendar'  => [

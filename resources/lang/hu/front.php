@@ -164,7 +164,6 @@ return [
         'releases'  => 'Verziók',
         'roadmap'   => 'Fejlesztési terv',
         'title'     => 'Menü',
-        'tos'       => 'Szolgáltatási feltételek',
     ],
     'meta'          => [
         'description'   => 'A Kanka egy rugalmas digitális világépítő és online szerepjátékos kampánykezelő',

@@ -33,7 +33,6 @@ return [
     'show'          => [
         'description'   => 'Uma visão detalhada de uma família',
         'tabs'          => [
-            'member'    => 'Membros',
             'relation'  => 'Relações',
         ],
         'title'         => 'Família :name',

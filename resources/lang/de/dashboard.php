@@ -69,7 +69,6 @@ Ein paar Tipps für den Anfang:
 - Wenn du Fragen oder Vorschläge hast - oder einfach nur plaudern willst -, dann schau vorbei auf unserem :discord.
 TEXT
 ,
-        'header'    => 'Willkommen',
     ],
     'widgets'           => [
         'calendar'  => [

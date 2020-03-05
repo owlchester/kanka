@@ -12,15 +12,15 @@
 */
 use Vsch\TranslationManager\Translator;
 
-Route::get('/mail', function () {
-    return new App\Mail\WelcomeEmail(Auth::user());
-});
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime' ]
 ], function () {
 
+//    Route::get('/mail', function () {
+////        return new App\Mail\WelcomeEmail(Auth::user());
+////    });
     Route::get('/', 'HomeController@index')->name('home');
 
     // Frontend stuff

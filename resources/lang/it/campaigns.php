@@ -74,14 +74,9 @@ return [
     'index'                             => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Crea una nuova campagna',
                 'title'         => 'Nuova Campagna',
             ],
         ],
-        'add'           => 'Nuova Campagna',
-        'description'   => 'Gestisci le tue campagne',
-        'list'          => 'Le tue campagne',
-        'select'        => 'Seleziona una campagna',
         'title'         => 'Campagne',
     ],
     'invites'                           => [

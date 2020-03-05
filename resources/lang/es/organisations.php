@@ -55,11 +55,8 @@ return [
             'role'          => 'Rol',
         ],
         'helpers'       => [
-            'all_members'       => 'Esta lista contiene todos los personajes que forman parte de esta organización y de todas las organizaciones inferiores.',
-            'direct_members'    => 'Las organizaciones necesitan miembros para funcionar bien. Esta lista contiene todos los personajes que forman parte de esta organización.',
             'members'           => 'Esta lista muestra todos los personajes que pertenecen a esta organización y a todas las organizaciones descendientes de esta. Puedes filtrar la página para que solo muestre los miembros directos.',
         ],
-        'hint'          => 'Muchas organizaciones necesitan miembros para funcionar bien.',
         'placeholders'  => [
             'character' => 'Elegir personaje',
             'role'      => 'Líder, Miembro, Maestro de Espías, Septón Supremo...',
@@ -81,8 +78,6 @@ return [
     'show'          => [
         'description'   => 'Vista detallada de la organización',
         'tabs'          => [
-            'all_members'   => 'Todos los miembros',
-            'members'       => 'Miembros directos',
             'organisations' => 'Organizaciones',
             'quests'        => 'Misiones',
             'relations'     => 'Relaciones',
