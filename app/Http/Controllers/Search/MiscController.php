@@ -145,6 +145,16 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
+    public function abilities(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Ability::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function attributeTemplates(Request $request)
     {
         $term = trim($request->q);

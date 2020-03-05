@@ -13,6 +13,7 @@
     </a>
 </li>
 
+@if (!isset($disableAttributes))
 @can('attributes', $model->entity)
 <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
     <a href="#attribute" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
@@ -20,3 +21,4 @@
     </a>
 </li>
 @endcan
+@endif

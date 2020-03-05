@@ -43,6 +43,7 @@ class AuthServiceProvider extends ServiceProvider
         CampaignUser::class => CampaignUserPolicy::class,
         Campaign::class => CampaignPolicy::class,
         CampaignBoost::class => CampaignBoostPolicy::class,
+        'App\Models\Ability' => 'App\Policies\AbilityPolicy',
         'App\Models\AttributeTemplate' => 'App\Policies\AttributeTemplatePolicy',
         'App\Models\Calendar' => 'App\Policies\CalendarPolicy',
         'App\Models\CampaignInvite' => 'App\Policies\CampaignInvitePolicy',

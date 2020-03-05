@@ -149,6 +149,9 @@ $(document).ready(function() {
     if ($('#races').length > 0) {
         treeViewInit('races');
     }
+    if ($('#abilities').length > 0) {
+        treeViewInit('abilities');
+    }
 
     manageTabs();
     manageDashboardNotifications();

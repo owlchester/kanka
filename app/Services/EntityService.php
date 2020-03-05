@@ -30,6 +30,7 @@ class EntityService
     public function __construct()
     {
         $this->entities = [
+            'abilities' => 'App\Models\Ability',
             'characters' => 'App\Models\Character',
             'calendars' => 'App\Models\Calendar',
             'conversations' => 'App\Models\Conversation',
@@ -124,6 +125,9 @@ class EntityService
         $singular = rtrim($entity, 's');
         if ($entity == 'families') {
             $singular = 'family';
+        }
+        elseif ($entity == 'abilities') {
+            $singular = 'ability';
         }
         return $singular;
     }

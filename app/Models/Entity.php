@@ -137,6 +137,13 @@ class Entity extends Model
     {
         return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function ability()
+    {
+        return $this->hasOne('App\Models\Ability', 'id', 'entity_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -389,6 +396,9 @@ class Entity extends Model
     {
         if ($this->type == 'family') {
             return 'families';
+        }
+        elseif ($this->type == 'ability') {
+            return 'abilities';
         }
         return $this->type . 's';
     }

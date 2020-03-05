@@ -83,6 +83,11 @@ Route::group([
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
 
+        // Abilities
+        Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
+        Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
+        Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
+
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
         Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
@@ -201,6 +206,7 @@ Route::group([
 
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
+            'abilities' => 'AbilityController',
             'calendars' => 'CalendarController',
             'calendar_event' => 'CalendarEventController',
             'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
@@ -285,6 +291,7 @@ Route::group([
         Route::get('/search/quests', 'Search\MiscController@quests')->name('quests.find');
         Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
+        Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
 
         Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');

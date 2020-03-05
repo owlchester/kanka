@@ -155,6 +155,7 @@ return [
     ],
     'export'            => 'Export',
     'fields'            => [
+        'ability'               => 'Ability',
         'attribute_template'    => 'Attribute Template',
         'calendar'              => 'Calendar',
         'calendar_date'         => 'Calendar Date',
@@ -313,6 +314,7 @@ return [
         'too_many_members'  => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.',
     ],
     'placeholders'      => [
+        'ability'       => 'Choose an ability',
         'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
         'entity'        => 'Entity',
