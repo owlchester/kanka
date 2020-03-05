@@ -7,9 +7,8 @@
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #eee;
-            padding: 0;
+            padding: 0 0 20px 0;
             margin: 0;
-            padding-bottom: 20px;
         }
         .header {
             background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg);
