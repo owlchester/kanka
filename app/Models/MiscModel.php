@@ -288,6 +288,14 @@ abstract class MiscModel extends Model
             'entity' => true,
         ];
 
+        // Each entity can have abilities
+        $items['abilities'] = [
+            'name' => 'crud.tabs.abilities',
+            'route' => 'entities.entity_abilities.index',
+            'count' => $this->entity->abilities()->count(),
+            'entity' => true,
+        ];
+
         return $items;
     }
 

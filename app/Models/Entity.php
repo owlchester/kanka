@@ -39,6 +39,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property EntityMention[] $mentions
  * @property Inventory[] $inventories
  * @property EntityMention[] $targetMentions
+ * @property EntityAbility[] $abilities
  * @property CampaignDashboardWidget[] $widgets
  * @property MiscModel $child
  */
@@ -270,6 +271,14 @@ class Entity extends Model
     public function inventories()
     {
         return $this->hasMany('App\Models\Inventory', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function abilities()
+    {
+        return $this->hasMany('App\Models\EntityAbility', 'entity_id');
     }
 
     /**

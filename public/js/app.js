@@ -74679,6 +74679,17 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/abilities.scss":
+/*!**********************************************!*\
+  !*** ./resources/assets/sass/abilities.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/app.scss":
 /*!****************************************!*\
   !*** ./resources/assets/sass/app.scss ***!
@@ -74845,9 +74856,9 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/front.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/front.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -74855,6 +74866,7 @@ __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\app.js */".
 __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
 __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
 __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\abilities.scss */"./resources/assets/sass/abilities.scss");
 __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
 __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
 __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");

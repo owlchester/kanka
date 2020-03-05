@@ -348,6 +348,7 @@ return [
     'search'            => 'Search',
     'select'            => 'Select',
     'tabs'              => [
+        'abilities'     => 'Abilities',
         'attributes'    => 'Attributes',
         'boost'         => 'Boost',
         'calendars'     => 'Calendars',

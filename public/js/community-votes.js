@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -167,7 +167,7 @@ function updateStats(results) {
 
 /***/ }),
 
-/***/ 10:
+/***/ 11:
 /*!***************************************************!*\
   !*** multi ./resources/assets/js/community-votes ***!
   \***************************************************/

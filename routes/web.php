@@ -255,6 +255,7 @@ Route::group([
 
             // Entities
             'entities.attributes' => 'AttributeController',
+            'entities.entity_abilities' => 'Entity\AbilityController',
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
@@ -342,6 +343,9 @@ Route::group([
 
         // Inventory
         Route::get('/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
+
+        // Entity Abilities API
+        Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
