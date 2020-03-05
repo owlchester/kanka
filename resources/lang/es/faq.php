@@ -50,6 +50,10 @@ TEXT
 ,
         'question'  => '¿La app seguirá siendo gratis?',
     ],
+    'gods-and-religions'    => [
+        'answer'    => 'Recomendamos que crees los dioses como Personajes y las religiones como Organizaciones. Para encontrar a tus deidades rápidamente, puedes etiquetarlas con la Etiqueta o el tipo apropiados.',
+        'question'  => '¿Dónde puedo crear dioses y religiones?',
+    ],
     'help'                  => [
         'answer'    => 'Antes de nada, ¡gracias por ofrecerte! Siempre estamos interesados en aceptar ayuda con las traducciones, probar nuevas funciones, o ayudar a nuevos usuarios. También nos encanta cuando la gente promociona Kanka para que llegue a nuevos usuarios en lugares que nunca habíamos pensado. Tu mejor curso de acción es unirte a nosotros en el :discord, donde hay un canal dedicado a ofrecer ayuda. ¡También amamos a nuestros patrones en :patreon, si quieres apoyarnos y acceder a algunos beneficios!',
         'question'  => '¡Quiero ayudar! ¿Qué puedo hacer?',
@@ -89,6 +93,7 @@ TEXT
         'other'         => 'Otros',
         'permissions'   => 'Permisos',
         'pricing'       => 'Tarifas',
+        'worldbuilding' => 'Creación de mundos',
     ],
     'show'                  => [
         'return'    => 'Volver a las FAQ',

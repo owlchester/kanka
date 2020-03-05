@@ -67,23 +67,24 @@ return [
         'profile'           => 'Perfil',
     ],
     'patreon'   => [
-        'actions'       => [
+        'actions'           => [
             'link'  => 'Enlazar cuenta',
             'view'  => 'Visita la página de Patreon de Kanka',
         ],
-        'benefits'      => 'Si nos ayudas en Patreon podrás subir imágenes más pesadas, y así nos ayudarás a cubrir los costes del servidor y a dedicarle más tiempo a trabajar en Kanka.',
-        'description'   => 'Sincronizando con Patreon',
-        'errors'        => [
+        'benefits'          => 'Si nos ayudas en Patreon podrás subir imágenes más pesadas, y así nos ayudarás a cubrir los costes del servidor y a dedicarle más tiempo a trabajar en Kanka.',
+        'benefits_features' => 'Funciones increíbles',
+        'description'       => 'Sincronizando con Patreon',
+        'errors'            => [
             'invalid_token' => '¡Token no válido! Patreon no ha podido validar tu petición.',
             'missing_code'  => '¡Falta el código! Patreon no ha enviado un código para identificar tu cuenta.',
             'no_pledge'     => '¡Sin "pledge"! Patreon ha identificado tu cuenta, pero no detecta ningún "pledge" activo.',
         ],
-        'link'          => 'Usa el siguiente botón si estás apoyando a Kanka en Patreon actualmente. ¡Esto te dará acceso a más cosas fantásticas extras!',
-        'linked'        => '¡Gracias por apoyar a Kanka en Patreon! Se ha enlazado tu cuenta.',
-        'pledge'        => 'Pledge :name',
-        'success'       => '¡Gracias por apoyar a Kanka en Patreon!',
-        'title'         => 'Patreon',
-        'wrong_pledge'  => 'Añadimos manualmente tu nivel de "pledge", así que ten en cuenta que podemos tardar unos pocos días. Si al cabo de un tiempo sigue sin estar bien, contáctanos por favor.',
+        'link'              => 'Usa el siguiente botón si estás apoyando a Kanka en Patreon actualmente. ¡Esto te dará acceso a más cosas fantásticas extras!',
+        'linked'            => '¡Gracias por apoyar a Kanka en Patreon! Se ha enlazado tu cuenta.',
+        'pledge'            => 'Pledge :name',
+        'success'           => '¡Gracias por apoyar a Kanka en Patreon!',
+        'title'             => 'Patreon',
+        'wrong_pledge'      => 'Añadimos manualmente tu nivel de "pledge", así que ten en cuenta que podemos tardar unos pocos días. Si al cabo de un tiempo sigue sin estar bien, contáctanos por favor.',
     ],
     'profile'   => [
         'actions'       => [

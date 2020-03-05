@@ -29,14 +29,9 @@ return [
     'index'         => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Criar uma nova campanha',
                 'title'         => 'Nova Campanha',
             ],
         ],
-        'add'           => 'Nova Campanha',
-        'description'   => 'Gerenciar suas campanhas',
-        'list'          => 'Suas Campanhas',
-        'select'        => 'Selecione uma Campanha',
         'title'         => 'Campanhas',
     ],
     'invites'       => [

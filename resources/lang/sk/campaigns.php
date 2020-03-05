@@ -68,14 +68,9 @@ return [
     'index'                             => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Vytvoriť novú kampaň',
                 'title'         => 'Nová kampaň',
             ],
         ],
-        'add'           => 'Nová kampaň',
-        'description'   => 'Spravovať tvoje kampane.',
-        'list'          => 'Tvoje kampane',
-        'select'        => 'Vybrať kampaň',
         'title'         => 'Kampane',
     ],
     'invites'                           => [

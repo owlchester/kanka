@@ -164,7 +164,6 @@ return [
         'releases'  => 'Lanzamientos',
         'roadmap'   => 'Hoja de ruta',
         'title'     => 'Menú',
-        'tos'       => 'Términos de servicio',
     ],
     'meta'          => [
         'description'   => 'Kanka es un administrador flexible de campañas de rol online.',
@@ -172,7 +171,6 @@ return [
     ],
     'partners'      => [
         'description'   => 'Nos hemos asociado con algunas herramientas asombrosas y con comunidades que comparten nuestros objetivos y valores.',
-        'inkarnate'     => 'Crea mapas increíbles con Inkarnate',
         'title'         => 'Socios',
     ],
     'pricing'       => [

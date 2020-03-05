@@ -126,7 +126,6 @@ return [
         'releases'  => 'Versionen',
         'roadmap'   => 'Roadmap',
         'title'     => 'Menü',
-        'tos'       => 'Nutzungsbedingungen',
     ],
     'meta'          => [
         'description'   => 'Kanka ist ein flexibles digitales Tool zum weltenbauen und verwalten deiner Rollenspielkampagnen',

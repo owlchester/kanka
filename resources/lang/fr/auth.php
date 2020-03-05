@@ -52,8 +52,8 @@ return [
         'register_with_facebook'    => 'S\'enregister avec Facebook',
         'register_with_google'      => 'S\'enregister avec Google',
         'register_with_twitter'     => 'S\'enregister avec Twitter',
-        'submit'                    => 'S\'enregistrer',
-        'title'                     => 'Register',
+        'submit'                    => 'S\'inscrire',
+        'title'                     => 'Inscription',
     ],
     'reset'     => [
         'fields'    => [

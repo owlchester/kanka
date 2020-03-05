@@ -114,8 +114,8 @@ return [
             'validity'  => 'Validity',
         ],
         'helpers'               => [
+            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in your inbox.',
             'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
-            'email' => 'Our emails are often flagged as spam and can take up to a few hours before appearing in your inbox.'
         ],
         'placeholders'          => [
             'email' => 'Email address of the person you wish to invite',

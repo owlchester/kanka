@@ -55,11 +55,8 @@ return [
             'role'          => 'Rolle',
         ],
         'helpers'       => [
-            'all_members'       => 'Diese Liste enthält alle Charaktere, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
-            'direct_members'    => 'Diese Liste enthält alle Charaktere, die direkt in dieser Organisation sind und keiner Unterorganisation.',
             'members'           => 'Die folgende Liste enthält alle Charaktere in dieser Organisation und alle untergeordneten Organisationen der Organisation. Du kannst die Seite filtern, um nur direkte Mitglieder anzuzeigen.',
         ],
-        'hint'          => 'Die meisten Organisationen brauchen Mitglieder um erfolgreich zu sein.',
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',
             'role'      => 'Anführer, Mitglied, Hoher Septon, Meisterspion',
@@ -81,8 +78,6 @@ return [
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht einer Organisation',
         'tabs'          => [
-            'all_members'   => 'Alle Mitglieder',
-            'members'       => 'Direkte Mitglieder',
             'organisations' => 'Organisationen',
             'quests'        => 'Quests',
             'relations'     => 'Beziehungen',

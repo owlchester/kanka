@@ -68,14 +68,9 @@ return [
     'index'                             => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Neue Kampagne erstellen',
                 'title'         => 'Neue Kampagne',
             ],
         ],
-        'add'           => 'Neue Kampagne',
-        'description'   => 'Verwalte deine Kampagnen',
-        'list'          => 'Deine Kampagnen',
-        'select'        => 'Wähle eine Kampagne',
         'title'         => 'Kampagnen',
     ],
     'invites'                           => [

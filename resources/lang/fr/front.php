@@ -163,8 +163,8 @@ return [
         'register'  => 'Inscription',
         'releases'  => 'Mises à jour',
         'roadmap'   => 'Roadmap',
+        'terms'     => 'Termes & Conditions',
         'title'     => 'Menu',
-        'tos'       => 'Conditions d\'utilisation',
     ],
     'meta'          => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
@@ -196,7 +196,7 @@ return [
         'title'         => 'Apercu des prix',
     ],
     'privacy'       => [
-        'description'   => 'Veuillez lire notre politique de confidentialité.',
+        'description'   => 'Date effective: 25 Mai 2018',
         'title'         => 'Politique de confidentialité',
     ],
     'release'       => [
@@ -221,5 +221,9 @@ return [
     ],
     'team'          => [
         'coffee'    => 'Achète-moi un café!',
+    ],
+    'terms'         => [
+        'description'   => 'Date effective: 4 Mars 2020',
+        'title'         => 'Termes & Conditions',
     ],
 ];

@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva relación',
         'success'       => 'Relación de :name añadida.',
         'title'         => 'Crear Relación',
     ],

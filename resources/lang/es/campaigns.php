@@ -74,14 +74,9 @@ return [
     'index'                             => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Crear nueva campaña',
                 'title'         => 'Nueva campaña',
             ],
         ],
-        'add'           => 'Nueva campaña',
-        'description'   => 'Gestionar tus campañas.',
-        'list'          => 'Tus campañas',
-        'select'        => 'Seleccionar una campaña',
         'title'         => 'Campañas',
     ],
     'invites'                           => [
@@ -172,7 +167,7 @@ return [
         ],
         'roles'                 => [
             'member'    => 'Miembro',
-            'owner'     => 'Administrador',
+            'owner'     => 'Admin',
             'player'    => 'Jugador',
             'public'    => 'Público',
             'viewer'    => 'Invitado',
@@ -234,6 +229,7 @@ return [
                 'entity-note'   => 'Notas de entidad',
                 'permission'    => 'Administrar permisos',
                 'read'          => 'Ver',
+                'toggle'        => 'Cambiar para todos',
             ],
             'hint'      => 'Este rol tiene acceso automático a todo.',
         ],

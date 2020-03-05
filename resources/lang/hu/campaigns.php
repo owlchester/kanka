@@ -74,14 +74,9 @@ return [
     'index'                             => [
         'actions'       => [
             'new'   => [
-                'description'   => 'Új kapmány létrehozása',
                 'title'         => 'Új kampány',
             ],
         ],
-        'add'           => 'Új kampány',
-        'description'   => 'A kampányaid kezelése.',
-        'list'          => 'Kampányaid',
-        'select'        => 'Válassz egy kampányt!',
         'title'         => 'Kampányok',
     ],
     'invites'                           => [
