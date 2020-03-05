@@ -33,7 +33,7 @@ return [
         'title'                 => 'Login',
     ],
     'register'  => [
-        'already_account'           => 'Vous avez déjà un compte',
+        'already_account'           => 'Tu as déjà un compte',
         'email'                     => [
             'body'  => '<p>Bienvenue sur kanka.io!</p><p>Ton compte a bien été créé avec cette adresse email.</p>',
             'login' => 'Se connecter',
