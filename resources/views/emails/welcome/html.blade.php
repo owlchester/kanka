@@ -9,6 +9,7 @@
             background-color: #eee;
             padding: 0;
             margin: 0;
+            padding-bottom: 20px;
         }
         .header {
             background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg);
@@ -16,7 +17,6 @@
             background-size: cover;
             width: 100%;
             height: 420px;
-            position: relative;
             text-align: center;
         }
         .header img {
@@ -29,13 +29,9 @@
             max-width: 700px;
             background-color: #fff;
             padding: 20px;
-            position: absolute;
-            top: 220px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: -200px auto 60px auto;
             left: 0;
             right: 0;
-            margin-bottom: 30px;
         }
         @media(max-width: 992px) {
             .content {
