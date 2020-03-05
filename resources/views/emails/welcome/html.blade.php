@@ -52,7 +52,7 @@
     </style>
     <div class="header">
         <a href="{{ route('home', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) }}">
-        <img src="https://kanka-app-assets.s3.amazonaws.com/emails/kanka_transparent.png" alt="Kanka logo" title="Kanka logo">
+        <img src="https://kanka-app-assets.s3.amazonaws.com/emails/kanka_transparent.png" alt="Kanka logo" title="Kanka logo" width="120px" height="120px">
         </a>
     </div>
 
