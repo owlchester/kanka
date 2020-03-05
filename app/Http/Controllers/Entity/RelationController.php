@@ -10,6 +10,7 @@ use App\Models\Relation;
 use App\Models\MiscModel;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,9 @@ class RelationController extends Controller
      */
     public function index(Entity $entity)
     {
+        if (empty($entity->child)) {
+            abort(404);
+        }
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
             $this->authorize('view', $entity->child);

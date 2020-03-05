@@ -163,8 +163,8 @@ return [
         'register'  => 'Register',
         'releases'  => 'Releases',
         'roadmap'   => 'Roadmap',
+        'terms'     => 'Terms & Conditions',
         'title'     => 'Menu',
-        'tos'       => 'Terms of Service',
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
@@ -221,5 +221,9 @@ return [
     ],
     'team'          => [
         'coffee'    => 'Buy me a coffee!',
+    ],
+    'terms'       => [
+        'description'   => 'Effective date: March 4th, 2020',
+        'title'         => 'Terms & Conditions',
     ],
 ];
