@@ -18,6 +18,7 @@ class CreateEntityAbilities extends Migration
             $table->unsignedInteger('entity_id');
             $table->unsignedInteger('ability_id');
             $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedTinyInteger('position')->default(0);
             $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
             $table->timestamps();
 
@@ -25,6 +26,8 @@ class CreateEntityAbilities extends Migration
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('ability_id')->references('id')->on('abilities')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+
+            $table->index(['position', 'visibility']);
         });
     }
 

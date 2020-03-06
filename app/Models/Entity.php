@@ -401,15 +401,15 @@ class Entity extends Model
     /**
      * @return string
      */
-    public function pluralType()
+    public function pluralType(): string
     {
-        if ($this->type == 'family') {
-            return 'families';
-        }
-        elseif ($this->type == 'ability') {
-            return 'abilities';
-        }
-        return $this->type . 's';
+//        if ($this->type == 'family') {
+//            return 'families';
+//        }
+//        elseif ($this->type == 'ability') {
+//            return 'abilities';
+//        }
+        return Str::plural($this->type); // . 's';
     }
 
     /**
