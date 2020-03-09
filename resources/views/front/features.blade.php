@@ -155,7 +155,6 @@
                 <div class="header-content mx-auto">
                     <h1 class="mb-5">{{ trans('front.features.patreon.title') }}</h1>
                     <p class="mb-5">{{ trans('front.features.patreon.description') }}</p>
-                    <p class="mb-5 landscape-helper">{{ __('front.features.landscape') }}</p>
                 </div>
             </div>
 
@@ -247,7 +246,6 @@
                 <div class="header-content mx-auto">
                     <h1 class="mb-5">{{ trans('front.features.boosts.title') }}</h1>
                     <p class="mb-5">{{ trans('front.features.boosts.description') }}</p>
-                    <p class="mb-5 landscape-helper">{{ __('front.features.landscape') }}</p>
                 </div>
             </div>
 
@@ -282,6 +280,12 @@
                 </tbody>
             </table>
 
+
+            <div class="col-lg-6 my-auto">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
     </section>
 @endsection
