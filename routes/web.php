@@ -204,6 +204,10 @@ Route::group([
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
         Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
 
+
+        // Entity Abilities API
+        Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
+
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
             'abilities' => 'AbilityController',
@@ -343,9 +347,6 @@ Route::group([
 
         // Inventory
         Route::get('/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
-
-        // Entity Abilities API
-        Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');

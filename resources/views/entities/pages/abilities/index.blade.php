@@ -19,22 +19,36 @@
         </div>
         <div class="col-md-9">
             <div class="box box-solid">
-                <div class="box-body" id="abilities">
+                <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ trans('crud.tabs.abilities') }}
                     </h2>
 
-                    <p class="help-block">{{ __('entities/abilities.show.helper') }}</p>
+                    <p class="help-block">
 
-                    <abilities
-                        id="{{ $entity->id }}"
-                        api="{{ route('entities.entity_abilities.api', $entity) }}"
-                    ></abilities>
+
+                        @can('update', $entity->child)
+                            <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-primary pull-right"
+                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
+                                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
+                            </a>
+                        @endcan
+                        {{ __('entities/abilities.show.helper') }}
+                    </p>
 
                 </div>
             </div>
+
+            <div  id="abilities">
+                <abilities
+                    id="{{ $entity->id }}"
+                    api="{{ route('entities.entity_abilities.api', $entity) }}"
+                    permission="{{ Auth::check() && Auth::user()->can('update', $entity->child) }}"
+                ></abilities>
+            </div>
         </div>
     </div>
+
 @endsection
 
 

@@ -12,6 +12,7 @@ use Kalnoy\Nestedset\NodeTrait;
 /**
  * Class Ability
  * @package App\Models
+ * @property int $ability_id
  * @property Ability $ability
  * @property Ability[] $abilities
  */

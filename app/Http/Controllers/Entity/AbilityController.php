@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityInventorySorter;
+use App\Datagrids\Sorters\EntityEntityAbilitySorter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreInventory;
+use App\Http\Requests\StoreEntityAbility;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\MiscModel;
+use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -20,15 +21,17 @@ class AbilityController extends Controller
      */
     use GuestAuthTrait;
 
-    /**
-     * @var
-     */
-    protected $transKey;
+    /** @var AbilityService */
+    protected $service;
 
     /**
-     * @var
+     * AbilityController constructor.
+     * @param AbilityService $service
      */
-    protected $viewPath;
+    public function __construct(AbilityService $service)
+    {
+        $this->service = $service;
+    }
 
     /**
      * @param Entity $entity
@@ -58,11 +61,8 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $ajax = request()->ajax();
-
-        return view('entities.pages.inventory.create', compact(
-            'entity',
-            'ajax'
+        return view('entities.pages.abilities.create', compact(
+            'entity'
         ));
     }
 
@@ -71,20 +71,21 @@ class AbilityController extends Controller
      * @param Model $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreInventory $request, Entity $entity)
+    public function store(StoreEntityAbility $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'description', 'visibility']);
-        $ajax = $request->ajax();
+        $data = $request->only(['ability_id', 'visibility']);
+        $data['entity_id'] = $entity->id;
 
-        $inventory = new Inventory();
-        $inventory = $inventory->create($data);
+        /** @var EntityAbility $entityAbility */
+        $entityAbility = new EntityAbility();
+        $entityAbility = $entityAbility->create($data);
 
         return redirect()
-            ->route('entities.inventory', $entity)
+            ->route('entities.entity_abilities.index', $entity)
             ->with('success', trans('entities/inventories.create.success', [
-                'item' => $inventory->item->name,
+                'item' => $entityAbility->ability->name,
                 'entity' => $entity->name
             ]));
     }
@@ -94,16 +95,13 @@ class AbilityController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Entity $entity, Inventory $inventory)
+    public function edit(Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
 
-        $ajax = request()->ajax();
-
-        return view('entities.pages.inventory.update', compact(
+        return view('entities.pages.abilities.update', compact(
             'entity',
-            'inventory',
-            'ajax'
+            'entityAbility'
         ));
     }
 
@@ -112,20 +110,19 @@ class AbilityController extends Controller
      * @param Model $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreInventory $request, Entity $entity, Inventory $inventory)
+    public function update(StoreEntityAbility $request, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'description', 'visibility']);
-        $ajax = $request->ajax();
+        $data = $request->only(['ability_id', 'visibility']);
 
-        $inventory->update($data);
-        $inventory->refresh();
+        $entityAbility->update($data);
+        $entityAbility->refresh();
 
         return redirect()
-            ->route('entities.inventory', $entity)
-            ->with('success', trans('entities/inventories' . '.update.success', [
-                'item' => $inventory->item->name,
+            ->route('entities.entity_abilities.index', $entity)
+            ->with('success', trans('entities/abilities' . '.update.success', [
+                'item' => $entityAbility->ability->name,
                 'entity' => $entity->name
             ]));
     }
@@ -135,17 +132,28 @@ class AbilityController extends Controller
      * @param Model $relation
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Entity $entity, Inventory $inventory)
+    public function destroy(Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
 
-        $inventory->delete();
+        $entityAbility->delete();
 
         return redirect()
-            ->route('entities.inventory', [$entity->id])
-            ->with('success', trans('entities/inventories.destroy.success', [
-                'item' => $inventory->item->name,
+            ->route('entities.entity_abilities', [$entity->id])
+            ->with('success', trans('entities/abilities.destroy.success', [
+                'item' => $entityAbility->ability->name,
                 'entity' => $entity->name
             ]));
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function api(Entity $entity)
+    {
+        return response()->json([
+            'data' => $this->service->entity($entity)->abilities()
+        ]);
     }
 }
