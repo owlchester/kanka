@@ -14,7 +14,7 @@ class UpdateCampaignInvitedForeigns extends Migration
     public function up()
     {
         Schema::table('campaign_invites', function (Blueprint $table) {
-            //$table->dropForeign('campaign_invites_created_by_foreign');
+            $table->dropForeign('campaign_invites_created_by_foreign');
 
             $table->foreign('created_by')
                 ->references('id')
