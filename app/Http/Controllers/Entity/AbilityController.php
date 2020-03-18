@@ -117,14 +117,12 @@ class AbilityController extends Controller
         $data = $request->only(['ability_id', 'visibility']);
 
         $entityAbility->update($data);
-        $entityAbility->refresh();
 
-        return redirect()
-            ->route('entities.entity_abilities.index', $entity)
-            ->with('success', trans('entities/abilities' . '.update.success', [
-                'item' => $entityAbility->ability->name,
-                'entity' => $entity->name
-            ]));
+        if (request()->ajax()) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
     }
 
     /**
@@ -136,14 +134,15 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $entityAbility->delete();
+        if (!$entityAbility->delete()) {
+            abort(500);
+        }
 
-        return redirect()
-            ->route('entities.entity_abilities', [$entity->id])
-            ->with('success', trans('entities/abilities.destroy.success', [
-                'item' => $entityAbility->ability->name,
-                'entity' => $entity->name
-            ]));
+        if (request()->ajax()) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
     }
 
     /**

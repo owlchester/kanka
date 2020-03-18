@@ -5,18 +5,30 @@
         <div class="box box-solid">
             <div class="box-header with-border">
                 <span class="box-title">
+                    <dropdown tag="a" menu-left class="message-options" v-if="permission">
+                        <a class="dropdown-toggle" role="button">
+                            <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="$t('crud.visibilities.admin')"></i>
+                            <i class="fas fa-user-lock" v-if="ability.visibility === 'self'" v-bind:title="$t('crud.visibilities.self')"></i>
+                            <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="$t('crud.visibilities.all')"></i>
+                        </a>
+                        <template slot="dropdown">
+                            <li>
+                                <a role="button" v-on:click="setVisibility('all')">{{ $t('crud.visibilities.all') }}</a>
+                            </li>
+                            <li v-if="meta.is_admin">
+                                <a role="button" v-on:click="setVisibility('admin')">{{ $t('crud.visibilities.admin') }}</a>
+                            </li>
+                            <li v-if="this.isSelf">
+                                <a role="button" v-on:click="setVisibility('self')">{{ $t('crud.visibilities.self') }}</a>
+                            </li>
+                        </template>
+                    </dropdown>
                     {{ ability.name }}
                 </span>
-                <i class="fas fa-lock pull-right" v-if="ability.visibility === 'admin'"></i>
-                <i class="fas fa-user-lock pull-right" v-if="ability.visibility === 'self'"></i>
 
-                <dropdown tag="a" menu-right class="message-options pull-right" v-if="permission">
-                    <a class="dropdown-toggle" role="button"><span class="caret"></span></a>
-                    <template slot="dropdown">
-                        <li><a role="button" v-on:click="editMessage(ability)">{{ $t('crud.edit') }}</a></li>
-                        <li><a role="button" v-on:click="deleteMessage(ability)">{{ $t('crud.remove') }}</a></li>
-                    </template>
-                </dropdown>
+                <a role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" class="pull-right">
+                    <i class="fa fa-trash"></i> {{ $t('crud.remove') }}
+                </a>
             </div>
             <div class="box-body">
                 <span class="help-block">{{ ability.type }}</span>
@@ -52,6 +64,7 @@
         props: [
             'ability',
             'permission',
+            'meta',
         ],
 
         data() {
@@ -62,11 +75,13 @@
 
         computed: {
             hasAttribute: function() {
-                console.log('attr', this.ability.attributes.length);
                 return this.ability.attributes.length > 0;
             },
-            canChange: function() {
+            canDelete: function() {
                 return this.permission;
+            },
+            isSelf: function() {
+                return this.meta.user_id == this.ability.created_by;
             }
         },
 
@@ -74,8 +89,21 @@
             click: function(ability) {
                 this.details = !this.details;
             },
-            delete: function(ability) {
+            deleteAbility: function(ability) {
                 Event.$emit('delete_ability', ability);
+            },
+            setVisibility: function(visibility) {
+                var data = {
+                    visibility: visibility,
+                    ability_id: this.ability.ability_id,
+                };
+                axios.patch(this.ability.actions.edit, data).then(response => {
+                    this.ability.visibility = visibility;
+                    Event.$emit('edited_ability', ability);
+                })
+                        .catch(() => {
+
+                        });
             },
         }
     }

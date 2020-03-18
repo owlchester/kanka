@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
@@ -265,7 +266,8 @@ abstract class MiscModel extends Model
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',
                 'route' => $this->entity->pluralType() . '.map-points',
-                'count' => $mapPoints
+                'count' => $mapPoints,
+                'icon' => 'fa fa-map-marked',
             ];
         }
 
@@ -276,6 +278,7 @@ abstract class MiscModel extends Model
                 'route' => 'entities.relations.index',
                 'count' => $this->entity->relationships()->count(),
                 'entity' => true,
+                'icon' => 'fa fa-users',
             ];
         }
 
@@ -286,15 +289,20 @@ abstract class MiscModel extends Model
             'route' => 'entities.inventory',
             'count' => $this->entity->inventories()->count(),
             'entity' => true,
+            'icon' => 'ra ra-round-bottom-flask',
         ];
 
         // Each entity can have abilities
-        $items['abilities'] = [
-            'name' => 'crud.tabs.abilities',
-            'route' => 'entities.entity_abilities.index',
-            'count' => $this->entity->abilities()->count(),
-            'entity' => true,
-        ];
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->enabled('abilities')) {
+            $items['abilities'] = [
+                'name' => 'crud.tabs.abilities',
+                'route' => 'entities.entity_abilities.index',
+                'count' => $this->entity->abilities()->count(),
+                'entity' => true,
+                'icon' => 'ra ra-fire-symbol',
+            ];
+        }
 
         return $items;
     }

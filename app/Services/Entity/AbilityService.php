@@ -9,6 +9,7 @@ use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAbility;
+use Illuminate\Support\Facades\Auth;
 
 class AbilityService
 {
@@ -19,6 +20,7 @@ class AbilityService
     protected $abilities = [
         'parents' => [],
         'abilities' => [],
+        'meta' => []
     ];
 
     /**
@@ -42,6 +44,13 @@ class AbilityService
             $this->add($ability);
         }
 
+        // Meta
+        $this->abilities['meta'] = [
+            'add_url' => route('entities.entity_abilities.create', $this->entity),
+            'user_id' => Auth::check() ? Auth::user()->id : 0,
+            'is_admin' => Auth::check() && Auth::user()->isAdmin(),
+        ];
+
         return $this->abilities;
     }
 
@@ -61,7 +70,7 @@ class AbilityService
                     'type' => $parent->type,
                     'image' => $parent->getImageUrl(),
                     'parent' => true,
-                    'abilities' => []
+                    'abilities' => [],
                 ];
             }
 
@@ -78,11 +87,17 @@ class AbilityService
     protected function format(EntityAbility $entityAbility): array
     {
         return [
+            'ability_id' => $entityAbility->ability_id,
             'name' => $entityAbility->ability->name,
             'entry' => Mentions::map($entityAbility->ability),
             'type' => $entityAbility->ability->type,
             'visibility' => $entityAbility->visibility,
-            'attributes' => $this->attributes($entityAbility->ability->entity)
+            'created_by' => $entityAbility->created_by,
+            'attributes' => $this->attributes($entityAbility->ability->entity),
+            'actions' => [
+                'edit' => route('entities.entity_abilities.update', [$this->entity, $entityAbility]),
+                'delete' => route('entities.entity_abilities.destroy', [$this->entity, $entityAbility]),
+            ],
         ];
     }
 

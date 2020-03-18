@@ -25,8 +25,6 @@
                     </h2>
 
                     <p class="help-block">
-
-
                         @can('update', $entity->child)
                             <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-primary pull-right"
                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
