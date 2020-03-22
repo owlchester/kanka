@@ -78,8 +78,6 @@ Route::group([
         'middleware' => ['campaign']
     ], function() {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
-        Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
 

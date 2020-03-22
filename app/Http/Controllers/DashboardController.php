@@ -3,17 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
-use App\Http\Requests\StoreUserDashboardSetting;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Character;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Note;
-use App\Models\Organisation;
 use App\Models\Release;
 
 class DashboardController extends Controller
@@ -52,28 +44,6 @@ class DashboardController extends Controller
             'release',
             'widgets'
         ));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit()
-    {
-        return view('dashboard.settings.setting');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Family $family
-     * @return \Illuminate\Http\Response
-     */
-    public function update(StoreUserDashboardSetting $request)
-    {
-        $setting = Auth::user()->dashboardSetting;
-        $setting->update($request->all());
-        return redirect()->route('home')->with('success', trans('dashboard.settings.edit.success'));
     }
 
     /**
