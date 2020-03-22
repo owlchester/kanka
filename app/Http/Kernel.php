@@ -71,6 +71,7 @@ class Kernel extends HttpKernel
         'campaign' => '\App\Http\Middleware\Campaign',
         'campaign.member' => \App\Http\Middleware\CampaignMember::class,
         'campaign.owner' => \App\Http\Middleware\CampaignOwner::class,
+        'campaign.boosted' => \App\Http\Middleware\CampaignBoosted::class,
 
         'translator' => \App\Http\Middleware\Translator::class,
         'moderator' => \App\Http\Middleware\Moderator::class,

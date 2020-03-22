@@ -91,6 +91,7 @@ return [
         ],
     ],
     'boosted'           => 'Boosted',
+    'boosted_campaigns' => 'Boosted Campaigns',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Bulk Edit & Tagging',
@@ -149,6 +150,7 @@ return [
     'edit'              => 'Edit',
     'errors'            => [
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
+        'boosted'   => 'This feature is only available to boosted campaigns.',
     ],
     'events'            => [
         'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',

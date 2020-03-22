@@ -48,6 +48,7 @@ return [
             'title'         => 'API',
         ],
         'boosts'            => [
+            'beta'          => 'Get beta access to some new features for 30 days before general release. This allows us to test new features in a controlled environment and work on any bugs that our QA team may have missed.',
             'boosted'       => 'Boosted campaign',
             'css'           => 'Custom campaign css',
             'description'   => 'Certain pledge levels provide users with boosters that they can use to boost campaigns. These provide the following benefits.',

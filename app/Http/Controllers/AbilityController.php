@@ -28,6 +28,18 @@ class AbilityController extends CrudController
     /** @var string Filter */
     protected $filter = AbilityFilter::class;
 
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('campaign.boosted');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -119,7 +119,9 @@ class CampaignObserver
 
         // Settings
         $setting = new CampaignSetting([
-            'campaign_id' => $campaign->id
+            'campaign_id' => $campaign->id,
+            'dice_rolls' => 0,
+            'conversations' => 0,
         ]);
         $setting->save();
 
