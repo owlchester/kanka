@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'abilities' => [
+        'title' => 'Child abilities of :name',
+    ],
     'create'        => [
         'success'       => 'Ability \':name\' created.',
         'title'         => 'New Ability',
