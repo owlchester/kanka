@@ -1,11 +1,12 @@
 <?php
+use App\Models\Scopes\VisibilityScope;
 /** @var \App\Models\EntityNote $model */
 $live = isset($live) && $live;
-if (!$live && $model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
+if (!$live && $model->visibility == VisibilityScope::VISIBILITY_ALL) {
     return;
 }
 
-$icon = "fas fa-" . ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_SELF ? 'user-' : '') . 'lock';
+$icon = "fas fa-" . (in_array($model->visibility, [VisibilityScope::VISIBILITY_SELF, VisibilityScope::VISIBILITY_ADMIN_SELF]) ? 'user-' : '') . 'lock';
 if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
     $icon =  "far fa-eye";
 }

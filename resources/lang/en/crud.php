@@ -373,5 +373,6 @@ return [
         'admin' => 'Admin',
         'all'   => 'All',
         'self'  => 'Self',
+        'admin-self'  => 'Self & Admin',
     ],
 ];

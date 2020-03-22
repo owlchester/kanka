@@ -10,6 +10,12 @@ if (auth()->user()->isAdmin()) {
 }
 if (!isset($model) || ($model->created_by == auth()->user()->id)) {
     $options['self'] = __('crud.visibilities.self');
+    $options['admin-self'] = __('crud.visibilities.admin-self');
+}
+
+// If it's a visibility self & admin and we're not the creator, we can't change this
+if (isset($model) && $model->visibility === \App\Models\Scopes\VisibilityScope::VISIBILITY_ADMIN_SELF && $model->created_by !== auth()->user()->id) {
+    $options = ['admin-self' => __('crud.visibilities.admin-self')];
 }
 ?>
 <div class="form-group">
