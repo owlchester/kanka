@@ -182,11 +182,11 @@ abstract class MiscModel extends Model
      * @param bool $thumb
      * @return string
      */
-    public function getImageUrl($thumb = false, $field = 'image')
+    public function getImageUrl(bool $thumb = false, string $field = 'image')
     {
         if (empty($this->$field)) {
             // Patreons have nicer icons
-            if (auth()->check() && auth()->user()->isGoblinPatron()) {
+            if (!$thumb && auth()->check() && auth()->user()->isGoblinPatron()) {
                 return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');
             }
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
@@ -287,7 +287,7 @@ abstract class MiscModel extends Model
         $items['inventory'] = [
             'name' => 'crud.tabs.inventory',
             'route' => 'entities.inventory',
-            'count' => $this->entity->inventories()->count(),
+            'count' => $this->entity->inventories()->has('item')->count(),
             'entity' => true,
             'icon' => 'ra ra-round-bottom-flask',
         ];
@@ -298,7 +298,7 @@ abstract class MiscModel extends Model
             $items['abilities'] = [
                 'name' => 'crud.tabs.abilities',
                 'route' => 'entities.entity_abilities.index',
-                'count' => $this->entity->abilities()->count(),
+                'count' => $this->entity->abilities()->has('ability')->count(),
                 'entity' => true,
                 'icon' => 'ra ra-fire-symbol',
             ];

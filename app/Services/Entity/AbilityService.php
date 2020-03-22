@@ -39,7 +39,11 @@ class AbilityService
     public function abilities(): array
     {
         /** @var EntityAbility $ability */
-        foreach ($this->entity->abilities()->with(['ability', 'ability.entity', 'ability.ability', 'ability.ability.entity'])->get() as $ability) {
+        foreach ($this->entity->abilities()->with(['ability', 'ability.entity', 'ability.entity.attributes', 'ability.ability', 'ability.ability.entity'])->get() as $ability) {
+            // Can't read the ability? skip
+            if (empty($ability->ability)) {
+                continue;
+            }
             // If this ability has a parent ability, save it there
             $this->add($ability);
         }
@@ -69,6 +73,8 @@ class AbilityService
                     'name' => $parent->name,
                     'type' => $parent->type,
                     'image' => $parent->getImageUrl(),
+                    'has_image' => !empty($parent->image),
+                    'entry' => $parent->entry(),
                     'parent' => true,
                     'abilities' => [],
                 ];
@@ -89,7 +95,7 @@ class AbilityService
         return [
             'ability_id' => $entityAbility->ability_id,
             'name' => $entityAbility->ability->name,
-            'entry' => Mentions::map($entityAbility->ability),
+            'entry' => $entityAbility->ability->entry(),
             'type' => $entityAbility->ability->type,
             'visibility' => $entityAbility->visibility,
             'created_by' => $entityAbility->created_by,
@@ -105,7 +111,7 @@ class AbilityService
     {
         $attributes = [];
         /** @var Attribute $attr */
-        foreach ($entity->attributes()->ordered()->get() as $attr) {
+        foreach ($entity->attributes->sortBy('default_order') as $attr) {
             $attributes[] = [
                 'id' => $attr->id,
                 'name' => $attr->name,

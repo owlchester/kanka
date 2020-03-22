@@ -135,6 +135,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id', 'api', 'permission'],
@@ -404,6 +414,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['ability'],
@@ -411,6 +423,17 @@ __webpack_require__.r(__webpack_exports__);
     return {
       active: false
     };
+  },
+  computed: {
+    backgroundImage: function backgroundImage() {
+      if (this.ability.has_image) {
+        return {
+          backgroundImage: 'url(' + this.ability.image + ')'
+        };
+      }
+
+      return {};
+    }
   },
   methods: {
     click: function click(ability) {
@@ -7852,17 +7875,38 @@ var render = function() {
       _vm.show_parent
         ? _c(
             "div",
-            _vm._l(_vm.parent.abilities, function(ability) {
-              return _c("ability", {
-                key: ability.id,
-                attrs: {
-                  ability: ability,
-                  permission: _vm.permission,
-                  meta: _vm.meta
-                }
+            [
+              _vm.parent.entry
+                ? _c("div", { staticClass: "box box-solid" }, [
+                    _c("div", { staticClass: "box-header" }, [
+                      _c("span", { staticClass: "box-title" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.parent.name) +
+                            "\n                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "box-body",
+                      domProps: { innerHTML: _vm._s(_vm.parent.entry) }
+                    })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.parent.abilities, function(ability) {
+                return _c("ability", {
+                  key: ability.id,
+                  attrs: {
+                    ability: ability,
+                    permission: _vm.permission,
+                    meta: _vm.meta
+                  }
+                })
               })
-            }),
-            1
+            ],
+            2
           )
         : _vm._e(),
       _vm._v(" "),
@@ -8170,13 +8214,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-4 text-center" }, [
+  return _c("div", { staticClass: "col-xs-4 col-sm-3 col-lg-2 text-center" }, [
     _c(
       "div",
       {
         staticClass: "ability-parent",
-        class: { active: _vm.active },
-        style: { backgroundImage: "url(" + _vm.ability.image + ")" },
+        class: { active: _vm.active, without: !_vm.ability.has_image },
+        style: _vm.backgroundImage,
         on: {
           click: function($event) {
             return _vm.click(_vm.ability)
@@ -8185,7 +8229,11 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "ability-name" }, [
-          _vm._v("\n            " + _vm._s(_vm.ability.name) + "\n        ")
+          _c("div", { staticClass: "name" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.ability.name) + "\n            "
+            )
+          ])
         ])
       ]
     )

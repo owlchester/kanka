@@ -78,7 +78,11 @@ class CampaignPermission extends Model
     public function action()
     {
         $segments = $this->segments();
-        return $segments[count($segments)-(empty($this->entity_id) ? 1 : 2)];
+        $segment = count($segments)-(empty($this->entity_id) ? 1 : 2);
+        if (!isset($segments[$segment])) {
+            return null;
+        }
+        return $segments[$segment];
     }
 
     /**

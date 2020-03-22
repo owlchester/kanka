@@ -12,6 +12,16 @@
         </div>
 
         <div v-if="show_parent">
+            <div v-if="parent.entry" class="box box-solid">
+                <div class="box-header">
+                    <span class="box-title">
+                        {{ parent.name }}
+                    </span>
+                </div>
+                <div class="box-body" v-html="parent.entry">
+
+                </div>
+            </div>
             <ability v-for="ability in parent.abilities"
                 :key="ability.id"
                 :ability="ability"

@@ -16,6 +16,7 @@ return [
         'name' => 'Name',
         'type' => 'Type',
         'ability' => 'Ability',
+        'abilities' => 'Abilities',
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all abilities which are descendants of this ability, and not only those directly under it.',
@@ -31,6 +32,7 @@ return [
         'type' => 'Spell, Feat, Attack',
     ],
     'show' => [
+        'title' => 'Ability :name',
         'tabs' => [
             'abilities' => 'Abilities',
         ]

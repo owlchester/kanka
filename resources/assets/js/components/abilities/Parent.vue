@@ -1,14 +1,16 @@
 
 
 <template>
-    <div class="col-md-4 text-center">
+    <div class="col-xs-4 col-sm-3 col-lg-2 text-center">
         <div class="ability-parent"
-             v-bind:style="{ backgroundImage: 'url(' + ability.image + ')' }"
+             v-bind:style="backgroundImage"
              v-on:click="click(ability)"
-             v-bind:class="{ active: active }"
+             v-bind:class="{ active: active, without: !ability.has_image }"
         >
             <div class="ability-name">
-                {{ ability.name }}
+                <div class="name">
+                    {{ ability.name }}
+                </div>
             </div>
         </div>
     </div>
@@ -26,6 +28,17 @@
             return {
                 active: false,
             };
+        },
+
+        computed: {
+            backgroundImage: function() {
+                if (this.ability.has_image) {
+                    return {
+                        backgroundImage: 'url(' + this.ability.image + ')'
+                    }
+                }
+                return {}
+            }
         },
 
         methods: {

@@ -133,7 +133,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             @endif
             @if ($campaign->enabled('abilities'))
                 <li class="{{ $sidebar->active('abilities') }}">
-                    <a href="{{ route('abilities.index') }}"><i class="ra ra-fire-symbol"></i> <span>{{ trans('sidebar.abilities') }}</span></a>
+                    <a href="{{ route('abilities.' . $defaultIndex) }}"><i class="ra ra-fire-symbol"></i> <span>{{ trans('sidebar.abilities') }}</span></a>
                 </li>
             @endif
             <li class="{{ $sidebar->active('attribute_templates') }}">
