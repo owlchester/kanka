@@ -73,7 +73,6 @@ $(document).ready(function () {
     registerEntityCalendarForm();
     registerToggablePanels();
     registerEntityFormSubmit();
-    registerEntityNoteFormSubmit();
     registerEntityCalendarModal();
     registerModalLoad();
     registerDatagridSorter();
