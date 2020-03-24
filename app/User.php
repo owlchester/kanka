@@ -135,15 +135,6 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * Get the user's campaign
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function dashboardSetting()
-    {
-        return $this->hasOne('App\Models\UserDashboardSetting', 'user_id', 'id');
-    }
-
-    /**
      * Get a list of campaigns the user is in
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */

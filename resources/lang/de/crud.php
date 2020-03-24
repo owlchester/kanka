@@ -222,7 +222,7 @@ return [
             'target'    => 'Neuer Typ',
         ],
         'hints'         => [
-            'campaign'  => 'Du kannst auch versuchen, diese Objekt in eine andere Kampagne zu verschieben.',
+            'campaign'  => 'Du kannst auch versuchen, dieses Objekt in eine andere Kampagne zu verschieben.',
             'copy'      => 'Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.',
             'target'    => 'Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird.',
         ],

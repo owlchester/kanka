@@ -48,6 +48,7 @@ return [
             'title'         => 'API',
         ],
         'boosts'            => [
+            'beta'          => 'Accès beta à certaines fonctionnalités 30 jours avant leur sortie générale.',
             'boosted'       => 'Campagne Boostée',
             'css'           => 'CSS personnalisé pour la campagne',
             'description'   => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',

@@ -37,4 +37,24 @@ return [
         'name'          => 'Ulyss (Príklad)',
         'type'          => 'Hlavné mesto',
     ],
+    'note1'         => [
+        'entry' => <<<'TEXT'
+Vitaj v Kanke! Tvoja prvá kampaň bola vytvorená a my sme do nej pre inšpiráciu pridali pár objektov ako príklad (pokojne ich ale môžeš vymazať).
+
+Asi chceš začať s pridávaním tvojich vlastných objektov, takže si vyber kategóriu vľavo a pusť sa do toho. Nepotrebné kategórie objektov vieš deaktivovať v nastaveniach kampane, následne sa stratia aj z tohto menu.
+
+Niekoľko tipov na začiatok:
+- Vložením @MenoObjektu do textu vytvoríš prepojenie s daným objektom. Zobrazený text sa automaticky upraví, ak prepojený objekt premenuješ alebo upravíš.
+- Vpravo hore máš prístup do tvojho profilu, v ktorom môžeš nastaviť špecificky pre tvoje konto tému alebo počet objektov na stránke.
+- Nastaviť môžeš aj oprávnenia pre kategórie objektov alebo ich upraviť jednotlivo na každom objekte.
+- Na :youtube nájdeš stále sa rozširujúcu ponuku návodov, napr. návody o atribútoch alebo o tom, ako kampaň zdieľať s ďalšími ľuďmi. Aj :faq môžu byť užitočné.
+
+No a nakoniec:
+- Inšpiruj sa na :public ako iní užívatelia pracujú s Kankou.
+- Ak máš nejaké otázky, nápady alebo si chceš len pokecať, pridaj sa k nám na :discord.
+- Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :patreon.
+TEXT
+,
+        'name'  => 'Uvítacia správa',
+    ],
 ];

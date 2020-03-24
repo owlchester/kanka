@@ -91,6 +91,7 @@ return [
         ],
     ],
     'boosted'           => 'Boosted',
+    'boosted_campaigns' => 'Boosted Campaigns',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Bulk Edit & Tagging',
@@ -148,6 +149,7 @@ return [
     ],
     'edit'              => 'Edit',
     'errors'            => [
+        'boosted'                       => 'This feature is only available to boosted campaigns.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
     'events'            => [
@@ -155,6 +157,7 @@ return [
     ],
     'export'            => 'Export',
     'fields'            => [
+        'ability'               => 'Ability',
         'attribute_template'    => 'Attribute Template',
         'calendar'              => 'Calendar',
         'calendar_date'         => 'Calendar Date',
@@ -313,6 +316,7 @@ return [
         'too_many_members'  => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.',
     ],
     'placeholders'      => [
+        'ability'       => 'Choose an ability',
         'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
         'entity'        => 'Entity',
@@ -346,6 +350,7 @@ return [
     'search'            => 'Search',
     'select'            => 'Select',
     'tabs'              => [
+        'abilities'     => 'Abilities',
         'attributes'    => 'Attributes',
         'boost'         => 'Boost',
         'calendars'     => 'Calendars',
@@ -367,8 +372,9 @@ return [
     ],
     'view'              => 'View',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'All',
-        'self'  => 'Self',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Self & Admin',
+        'all'           => 'All',
+        'self'          => 'Self',
     ],
 ];

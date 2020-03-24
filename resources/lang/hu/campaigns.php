@@ -72,12 +72,12 @@ return [
         'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Új kampány',
+                'title' => 'Új kampány',
             ],
         ],
-        'title'         => 'Kampányok',
+        'title'     => 'Kampányok',
     ],
     'invites'                           => [
         'actions'               => [
@@ -114,6 +114,7 @@ return [
             'validity'  => 'Érvényesség',
         ],
         'helpers'               => [
+            'email'     => 'A leveleinket gyakran spamként (szemétként) azonosítják, és eltelhet pár óra, amíg megjelenik a bejövő üzenetek között.',
             'validity'  => 'Hány felhasználó tudja használni ezt a linket, mielőtt deaktviálódik.',
         ],
         'placeholders'          => [
@@ -229,6 +230,7 @@ return [
                 'entity-note'   => 'Entitás jegyzet',
                 'permission'    => 'Engedélyek kezelése',
                 'read'          => 'Megtekintés',
+                'toggle'        => 'Váltás mindnél',
             ],
             'hint'      => 'Ez a szerep automatikusan hozzáférst biztosít mindenhez.',
         ],

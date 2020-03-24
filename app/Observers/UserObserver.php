@@ -5,15 +5,10 @@ namespace App\Observers;
 use App\Jobs\Emails\GoodbyeEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Models\CampaignUser;
-use App\Mail\UserDeleted;
-use App\Mail\UserRegistered;
-use App\Mail\WelcomeEmail;
-use App\Models\UserDashboardSetting;
 use App\Models\UserLog;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -64,11 +59,6 @@ class UserObserver
      */
     public function created(User $user)
     {
-        // Create dashboard settings
-        $dashboard = new UserDashboardSetting();
-        $dashboard->user_id = $user->id;
-        $dashboard->save();
-
         WelcomeEmailJob::dispatch($user, app()->getLocale());
     }
 
@@ -105,8 +95,5 @@ class UserObserver
         foreach ($user->logs as $log) {
             $log->delete();
         }
-
-        // Remove dashboard
-        $user->dashboardSetting->delete();
     }
 }

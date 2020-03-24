@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class VisibilityScope implements Scope
 {
@@ -16,6 +15,7 @@ class VisibilityScope implements Scope
     const VISIBILITY_ALL = 'all';
     const VISIBILITY_ADMIN = 'admin';
     const VISIBILITY_SELF = 'self';
+    const VISIBILITY_ADMIN_SELF = 'admin-self';
 
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -35,12 +35,15 @@ class VisibilityScope implements Scope
                 // Either mine (self && created_by = me) or (if admin: !self, else: all)
                 $builder->where(function ($sub) use ($model) {
                     $visibilities = auth()->user()->isAdmin()
-                        ? [self::VISIBILITY_ALL, self::VISIBILITY_ADMIN]
+                        ? [self::VISIBILITY_ALL, self::VISIBILITY_ADMIN, self::VISIBILITY_ADMIN_SELF]
                         : [self::VISIBILITY_ALL];
                     $sub
                         ->where(function ($self) use ($model) {
                             $self
-                                ->where($model->getTable() . '.visibility', self::VISIBILITY_SELF)
+                                ->whereIn($model->getTable() . '.visibility', [
+                                    self::VISIBILITY_SELF,
+                                    self::VISIBILITY_ADMIN_SELF,
+                                ])
                                 ->where($model->getTable() . '.created_by', auth()->user()->id);
                         })
                         ->orWhereIn($model->getTable() . '.visibility', $visibilities);

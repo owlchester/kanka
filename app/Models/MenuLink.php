@@ -143,9 +143,13 @@ class MenuLink extends MiscModel
     /**
      * @return string
      */
-    protected function getEntityRoute()
+    protected function getEntityRoute(): string
     {
-        $route = $this->target->pluralType() . '.show';
+        $plural = $this->target->pluralType();
+        if (empty($plural)) {
+            return '';
+        }
+        $route = $plural . '.show';
         if (!empty($this->menu)) {
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
 

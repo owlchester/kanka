@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.entity_notes.update', $entity->id, $model->id], 'data-shortcut' => "1"]) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.entity_notes.update', $entity->id, $model->id], 'data-shortcut' => '1', 'id' => 'entity-form']) !!}
                     @include('cruds.notes._form')
 
                     <div class="form-group">

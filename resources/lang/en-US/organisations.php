@@ -37,9 +37,6 @@ return [
         'edit'      => [
             'success'   => 'Organization member updated.',
         ],
-        'helpers'   => [
-
-        ],
         'title'     => 'Organization :name Members',
     ],
     'organisations' => [

@@ -267,16 +267,18 @@ return [
         'actions'       => [
             'enable'    => 'Enable',
         ],
+        'boosted'       => 'This feature is in beta and currently only available for :boosted.',
         'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
         'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
         'helpers'       => [
+            'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',
             'characters'    => 'The people who inhabit your world.',
-            'conversations' => 'Fictional conversations between characters or between campaign users.',
-            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
+            'conversations' => 'Fictional conversations between characters or between campaign users. This module is deprecated.',
+            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls. This module is deprecated.',
             'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'      => 'Clans or families, their relations and their members.',
             'items'         => 'Weapons, vehicles, relics, potions.',

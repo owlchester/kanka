@@ -78,6 +78,9 @@ class SidebarService
         'races' => [
             'races',
         ],
+        'abilities' => [
+            'abilities',
+        ],
     ];
 
     /**

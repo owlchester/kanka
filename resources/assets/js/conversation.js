@@ -22,6 +22,7 @@ const lang = document.documentElement.lang.substr(0, 2);
 
 const i18n = new VueInternationalization({
     locale: lang,
+    fallbackLocale: 'en',
     messages: Locale
 });
 

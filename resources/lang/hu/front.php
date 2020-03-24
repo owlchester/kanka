@@ -163,6 +163,7 @@ return [
         'register'  => 'Regisztráció',
         'releases'  => 'Verziók',
         'roadmap'   => 'Fejlesztési terv',
+        'terms'     => 'Felhasználási feltételek',
         'title'     => 'Menü',
     ],
     'meta'          => [
@@ -220,5 +221,9 @@ return [
     ],
     'team'          => [
         'coffee'    => 'Hívj meg egy kávéra!',
+    ],
+    'terms'         => [
+        'description'   => 'Jelenlegi dátum: 2020. március 4.',
+        'title'         => 'Felhasználási feltételek',
     ],
 ];

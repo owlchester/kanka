@@ -55,7 +55,7 @@ return [
             'role'          => 'Rolle',
         ],
         'helpers'       => [
-            'members'           => 'Die folgende Liste enthält alle Charaktere in dieser Organisation und alle untergeordneten Organisationen der Organisation. Du kannst die Seite filtern, um nur direkte Mitglieder anzuzeigen.',
+            'members'   => 'Die folgende Liste enthält alle Charaktere in dieser Organisation und alle untergeordneten Organisationen der Organisation. Du kannst die Seite filtern, um nur direkte Mitglieder anzuzeigen.',
         ],
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',

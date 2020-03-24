@@ -277,6 +277,10 @@
                     <td class="text">{{ __('front.features.boosts.upload') }}</td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.boosts.beta') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
                 </tbody>
             </table>
 

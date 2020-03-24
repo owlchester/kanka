@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'abilities'             => 'Pouvoirs',
     'admin'                 => 'Admin',
     'attribute_templates'   => 'Modèles d\'attributs',
     'calendars'             => 'Calendriers',

@@ -267,12 +267,14 @@ return [
         'actions'       => [
             'enable'    => 'Activer',
         ],
+        'boosted'       => 'Cette fonctionalité est actuellement en beta et seulement accessible pour les :boosted.',
         'description'   => 'Activer ou désactiver des modules de la campagne.',
         'edit'          => [
             'success'   => 'Campagne modifiée.',
         ],
         'helper'        => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
         'helpers'       => [
+            'abilities'     => 'Créer des pouvoirs, compétences, sorts et exploits qui peuvent être assigné aux entités.',
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
             'characters'    => 'Les peuples de ton monde.',
             'conversations' => 'Conversations fictives entre des personnages ou entre membres de la campagne.',

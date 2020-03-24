@@ -78,10 +78,13 @@ Route::group([
         'middleware' => ['campaign']
     ], function() {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
-        Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
+
+        // Abilities
+        Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
+        Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
+        Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
@@ -199,8 +202,13 @@ Route::group([
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
         Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
 
+
+        // Entity Abilities API
+        Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
+
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
+            'abilities' => 'AbilityController',
             'calendars' => 'CalendarController',
             'calendar_event' => 'CalendarEventController',
             'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
@@ -249,6 +257,7 @@ Route::group([
 
             // Entities
             'entities.attributes' => 'AttributeController',
+            'entities.entity_abilities' => 'Entity\AbilityController',
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
@@ -285,6 +294,7 @@ Route::group([
         Route::get('/search/quests', 'Search\MiscController@quests')->name('quests.find');
         Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
+        Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
 
         Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');

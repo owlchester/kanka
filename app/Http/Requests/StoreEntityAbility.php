@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class StoreUserDashboardSetting extends FormRequest
+class StoreEntityAbility extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +24,8 @@ class StoreUserDashboardSetting extends FormRequest
     public function rules()
     {
         return [
-            'recent_count' => 'required|numeric|min:5|max:15',
+            'ability_id' => 'required|exists:abilities,id',
+            'visibility' => 'string',
         ];
     }
 }

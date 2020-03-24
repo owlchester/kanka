@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Akciók',
         'apply'             => 'Alkalmaz',
         'back'              => 'Vissza',
         'copy'              => 'Másolás',
+        'copy_mention'      => 'Említett [ ] másolása',
         'copy_to_campaign'  => 'Másolás Kampányba',
         'explore_view'      => 'Hierarchikus nézet',
         'export'            => 'Export',
@@ -18,6 +20,9 @@ return [
         'public'            => 'Nyilvános',
     ],
     'add'               => 'Hozzáadás',
+    'alerts'            => [
+        'copy_mention'  => 'Az entitás említését átmásoltuk a vágólapodra.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Tulajdonság hozzáadása',
@@ -187,7 +192,8 @@ return [
             'manage'    => 'Az entitás állományainak kezelése',
         ],
         'errors'    => [
-            'max'   => 'Elérted az entitáshoz rendelhető állományok maximális számát (:max).',
+            'max'       => 'Elérted az entitáshoz rendelhető állományok maximális számát (:max).',
+            'no_files'  => 'Nincs állomány.',
         ],
         'files'     => 'Feltöltött állomány',
         'hints'     => [
@@ -281,8 +287,8 @@ return [
         'system'                => 'Rendszer',
     ],
     'permissions'       => [
-        'action'        => 'Akció',
-        'actions'       => [
+        'action'            => 'Akció',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Hozzáadás',
                 'ignore'    => 'Figyelmen kívül hagyás',
@@ -292,17 +298,19 @@ return [
             'edit'          => 'Szerkesztés',
             'entity_note'   => 'Entitás jegyzetek',
             'read'          => 'Olvasás',
+            'toggle'        => 'Átkapcsolás',
         ],
-        'allowed'       => 'Engedélyezett',
-        'fields'        => [
+        'allowed'           => 'Engedélyezett',
+        'fields'            => [
             'member'    => 'Tag',
             'role'      => 'Szerep',
         ],
-        'helper'        => 'Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.',
-        'inherited'     => 'Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.',
-        'inherited_by'  => 'Ez a felhasználó tagja a \':role\' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.',
-        'success'       => 'Engedélyeket elmentettük.',
-        'title'         => 'Engedélyek',
+        'helper'            => 'Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.',
+        'inherited'         => 'Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.',
+        'inherited_by'      => 'Ez a felhasználó tagja a \':role\' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.',
+        'success'           => 'Engedélyeket elmentettük.',
+        'title'             => 'Engedélyek',
+        'too_many_members'  => 'A kampánynak túl sok tagja (>10) van ahhoz, hogy kijelezzük ezen a felületen. Kérjük, használd az entitás nézetben az Engedély gombot, hogy kezeld az engedélyek részleteit.',
     ],
     'placeholders'      => [
         'calendar'      => 'Válassz egy naptárat!',

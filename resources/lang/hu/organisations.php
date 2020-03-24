@@ -55,7 +55,7 @@ return [
             'role'          => 'Szerep',
         ],
         'helpers'       => [
-            'members'           => 'Az alábbi listában azok a karakterek szerepelnek, akik vagy tagjai ennek a szervezetnek, vagy tagjai ezen szervezet valamelyik leszármazott szervezetének. Lehetőség van csak a közvetlen tagokra is szűrni.',
+            'members'   => 'Az alábbi listában azok a karakterek szerepelnek, akik vagy tagjai ennek a szervezetnek, vagy tagjai ezen szervezet valamelyik leszármazott szervezetének. Lehetőség van csak a közvetlen tagokra is szűrni.',
         ],
         'placeholders'  => [
             'character' => 'Válassz ki egy karaktert',

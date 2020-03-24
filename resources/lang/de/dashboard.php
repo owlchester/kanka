@@ -57,7 +57,7 @@ return [
     ],
     'title'             => 'Dashboard',
     'welcome'           => [
-        'body'      => <<<'TEXT'
+        'body'  => <<<'TEXT'
 Willkommen bei Kanka! Deine erste Kampagne wurde erstellt und wir haben zur Inspiration ein paar Beispielobjekte mit angelegt (kannst du jederzeit löschen).
 
 Du willst wahrscheinlich mit ein paar eigenen Objekten starten, also such dir links eine Kategorie aus und leg los. Kategorien, die du nicht brauchst lassen sich in den Kampagnen Einstellungen ausblenden.

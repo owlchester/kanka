@@ -1,5 +1,8 @@
 <?php
-/** @var \App\Models\Campaign $currentCampaign */
+/**
+ * @var \App\Models\Campaign $currentCampaign
+ * @var \App\Models\Campaign $campaign
+ */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 ?>
@@ -115,6 +118,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             <li class="{{ $sidebar->active('journals') }}">
                 <a href="{{ route('journals.index') }}"><i class="ra ra-scroll-unfurled"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
+            @endif
+            @if ($campaign->enabled('abilities') && $currentCampaign->boosted())
+                <li class="{{ $sidebar->active('abilities') }}">
+                    <a href="{{ route('abilities.' . $defaultIndex) }}"><i class="ra ra-fire-symbol"></i> <span>{{ trans('sidebar.abilities') }}</span></a>
+                </li>
             @endif
             @if ($campaign->enabled('tags'))
                 <li class="{{ $sidebar->active('tags') }}">

@@ -27,12 +27,12 @@ return [
         'name'          => 'Nome',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Nova Campanha',
+                'title' => 'Nova Campanha',
             ],
         ],
-        'title'         => 'Campanhas',
+        'title'     => 'Campanhas',
     ],
     'invites'       => [
         'actions'       => [

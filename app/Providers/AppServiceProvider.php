@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\EntityPermission;
+use App\Models\Ability;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -77,6 +78,7 @@ class AppServiceProvider extends ServiceProvider
 
         if (!app()->runningInConsole()) {
             // Observers
+            Ability::observe('App\Observers\AbilityObserver');
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
             Calendar::observe(CalendarObserver::class);
             CalendarWeather::observe(CalendarWeatherObserver::class);

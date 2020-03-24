@@ -27,7 +27,7 @@ if (empty($selectedOption) && !empty($prefill)) {
 
 // Assume placeholder key
 $singularFieldName = str_replace('_id', '', $fieldId);
-$pluralField = ($singularFieldName == 'family' ? 'families' : $singularFieldName . 's');
+$pluralField = \Illuminate\Support\Str::plural($singularFieldName);
 if ($pluralField == 'parent_locations') {
     $pluralField = 'locations';
 }

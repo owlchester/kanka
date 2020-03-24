@@ -1,14 +1,14 @@
 - ## Get Started
     - [Overview](/docs/{{version}}/overview)
     - [Setup](/docs/{{version}}/setup)
-    
-    
+
+
 - ## User
     - [Profile](/docs/{{version}}/profile)
-    
+
 - ## Campaigns
     - [Campaigns](/docs/{{version}}/campaigns)
-    
+
 - ## Core Objects
     - [Entities](/docs/{{version}}/entities)
     - [Characters](/docs/{{version}}/characters)
@@ -25,7 +25,7 @@
     - [Tags](/docs/{{version}}/tags)
     - [Conversations](/docs/{{version}}/conversations)
     - [Dice Rolls](/docs/{{version}}/dice-rolls)
-    
+
 - ## Entities
     - [Attributes](/docs/{{version}}/attributes)
     - [Entity Events](/docs/{{version}}/entity-events)
@@ -36,11 +36,11 @@
     - [Entity Tags](/docs/{{version}}/entity-tags)
     - [Relations](/docs/{{version}}/relations)
     - [Inventory](/docs/{{version}}/entity-inventory)
-        
+    - [Entity Abilities](/docs/{{version}}/entity-abilities)
+
 - ## Search
     - [Search](/docs/{{version}}/search)
-    
+
 - ## Other Concepts
     - [Last Sync](/docs/{{version}}/last-sync)
     - [Pagination](/docs/{{version}}/pagination)
-    

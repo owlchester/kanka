@@ -72,12 +72,12 @@ return [
         'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Nuova Campagna',
+                'title' => 'Nuova Campagna',
             ],
         ],
-        'title'         => 'Campagne',
+        'title'     => 'Campagne',
     ],
     'invites'                           => [
         'actions'               => [
@@ -114,6 +114,7 @@ return [
             'validity'  => 'Validità',
         ],
         'helpers'               => [
+            'email'     => 'Le nostre mail sono spesso marcate come spam e possono impiegare fino a qualche ora prima che appaiano nella tua casella di posta.',
             'validity'  => 'Quanti utenti possono usare questo link prima che sia disattivato.',
         ],
         'placeholders'          => [
@@ -229,6 +230,7 @@ return [
                 'entity-note'   => 'Note dell\'Entità',
                 'permission'    => 'Gestisci Permessi',
                 'read'          => 'Visualizza',
+                'toggle'        => 'Cambia per tutte',
             ],
             'hint'      => 'Questo ruolo ha automaticamente accesso a tutto.',
         ],
