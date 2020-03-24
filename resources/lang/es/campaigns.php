@@ -72,12 +72,12 @@ return [
         'visibility'                    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Nueva campaña',
+                'title' => 'Nueva campaña',
             ],
         ],
-        'title'         => 'Campañas',
+        'title'     => 'Campañas',
     ],
     'invites'                           => [
         'actions'               => [

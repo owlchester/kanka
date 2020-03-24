@@ -66,12 +66,12 @@ return [
         'visibility'                    => 'Ak nastavíte kampaň ako verejnú, bude ju vidieť každý, kto k nej bude mať link.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Nová kampaň',
+                'title' => 'Nová kampaň',
             ],
         ],
-        'title'         => 'Kampane',
+        'title'     => 'Kampane',
     ],
     'invites'                           => [
         'actions'       => [

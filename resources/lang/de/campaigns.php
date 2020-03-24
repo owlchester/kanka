@@ -66,12 +66,12 @@ return [
         'visibility'                    => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Neue Kampagne',
+                'title' => 'Neue Kampagne',
             ],
         ],
-        'title'         => 'Kampagnen',
+        'title'     => 'Kampagnen',
     ],
     'invites'                           => [
         'actions'       => [

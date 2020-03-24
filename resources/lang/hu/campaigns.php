@@ -72,12 +72,12 @@ return [
         'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Új kampány',
+                'title' => 'Új kampány',
             ],
         ],
-        'title'         => 'Kampányok',
+        'title'     => 'Kampányok',
     ],
     'invites'                           => [
         'actions'               => [

@@ -72,12 +72,12 @@ return [
         'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'title'         => 'Nuova Campagna',
+                'title' => 'Nuova Campagna',
             ],
         ],
-        'title'         => 'Campagne',
+        'title'     => 'Campagne',
     ],
     'invites'                           => [
         'actions'               => [

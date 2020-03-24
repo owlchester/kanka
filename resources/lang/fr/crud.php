@@ -91,6 +91,7 @@ return [
         ],
     ],
     'boosted'           => 'Boosté',
+    'boosted_campaigns' => 'Campagnes Boostées',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Opération de masse',
@@ -148,6 +149,7 @@ return [
     ],
     'edit'              => 'Modifier',
     'errors'            => [
+        'boosted'                       => 'Cette fonctionalité n\'est que accessible pour aux campagnes boostées..',
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
     ],
     'events'            => [
@@ -155,6 +157,7 @@ return [
     ],
     'export'            => 'Export',
     'fields'            => [
+        'ability'               => 'Pouvoirs',
         'attribute_template'    => 'Modèle d\'attribut',
         'calendar'              => 'Calendrier',
         'calendar_date'         => 'Date calendrier',
@@ -313,6 +316,7 @@ return [
         'too_many_members'  => 'Cette campagne a trop de members (>10) pour afficher cette interface correctement. Prière d\'utiliser le boutton Permission sur la vue de l\'entité pour gérer les permissions.',
     ],
     'placeholders'      => [
+        'ability'       => 'Choix d\'un pouvoir',
         'calendar'      => 'Choix du calendrier',
         'character'     => 'Choix du personnage',
         'entity'        => 'Entité',
@@ -346,6 +350,7 @@ return [
     'search'            => 'Rechercher',
     'select'            => 'Sélection',
     'tabs'              => [
+        'abilities'     => 'Pouvoirs',
         'attributes'    => 'Attributs',
         'boost'         => 'Boost',
         'calendars'     => 'Calendriers',
@@ -367,8 +372,9 @@ return [
     ],
     'view'              => 'Voir',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Tous',
-        'self'  => 'Sois-même',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Sois-même & Admin',
+        'all'           => 'Tous',
+        'self'          => 'Sois-même',
     ],
 ];

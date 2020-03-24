@@ -55,7 +55,7 @@ return [
             'role'          => 'Rol',
         ],
         'helpers'       => [
-            'members'           => 'Esta lista muestra todos los personajes que pertenecen a esta organización y a todas las organizaciones descendientes de esta. Puedes filtrar la página para que solo muestre los miembros directos.',
+            'members'   => 'Esta lista muestra todos los personajes que pertenecen a esta organización y a todas las organizaciones descendientes de esta. Puedes filtrar la página para que solo muestre los miembros directos.',
         ],
         'placeholders'  => [
             'character' => 'Elegir personaje',

@@ -149,8 +149,8 @@ return [
     ],
     'edit'              => 'Edit',
     'errors'            => [
+        'boosted'                       => 'This feature is only available to boosted campaigns.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
-        'boosted'   => 'This feature is only available to boosted campaigns.',
     ],
     'events'            => [
         'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',
@@ -372,9 +372,9 @@ return [
     ],
     'view'              => 'View',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'All',
-        'self'  => 'Self',
-        'admin-self'  => 'Self & Admin',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Self & Admin',
+        'all'           => 'All',
+        'self'          => 'Self',
     ],
 ];

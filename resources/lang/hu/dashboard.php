@@ -57,7 +57,7 @@ return [
     ],
     'title'             => 'Főoldal',
     'welcome'           => [
-        'body'      => <<<'TEXT'
+        'body'  => <<<'TEXT'
 Üdvözlünk a Kankában! Létrehoztuk az első kampányodat és bedobtunk pár példa-entitást inspirációként (törölheted őket, amikor csak szeretnéd).
 
 Valószínűleg először hozzá akarsz adni pár saját entitást. Ehhez válassz ki egy kategóriát balról. Azokat a kategóriákat, melyekre nincs szükséged, kikapcsolhatod a kampány beállításainál, elrejtve őket a menüből.
