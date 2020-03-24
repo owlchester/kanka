@@ -151,6 +151,11 @@ When you are finished, export your changes.
 php artisan translations:export *
 ```
 
+## Vue translations
+
+To generate the vue translations
+
+    php artisan vue-i18n:generate
 
 # Database Backup
 

@@ -30,7 +30,7 @@
             </ability>
         </div>
 
-        <ability v-for="ability in abilities"
+        <ability v-if="!show_parent" v-for="ability in abilities"
                  :key="ability.id"
                  :ability="ability"
                  :permission="permission"
@@ -87,6 +87,7 @@
                     }
                 });
             },
+            //
             showParent: function (parent) {
                 this.show_parent = !!parent;
             },

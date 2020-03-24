@@ -21,6 +21,9 @@
                             <li v-if="this.isSelf">
                                 <a role="button" v-on:click="setVisibility('self')">{{ $t('crud.visibilities.self') }}</a>
                             </li>
+                            <li v-if="this.isSelf">
+                                <a role="button" v-on:click="setVisibility('admin.self')">{{ $t('crud.visibilities.admin-self') }}</a>
+                            </li>
                         </template>
                     </dropdown>
                     {{ ability.name }}

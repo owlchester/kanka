@@ -36,17 +36,22 @@
 }
 .ability-parent.without {
   .ability-name {
-    background-color: white;
+    background-color: #888;
     background-image: none;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.7);
     }
   }
 }
 .ability-parent.active {
   .ability-name {
     background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+.ability-parent.active.without {
+  .ability-name {
+    background-color: rgba(0, 0, 0, 0.7);
   }
 }
 
