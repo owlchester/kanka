@@ -56,6 +56,10 @@ TEXT
 ,
         'question'  => 'Később is ingyenesek maradtok?',
     ],
+    'gods-and-religions'    => [
+        'answer'    => 'Ajánljuk, hogy hozd létre az isteneket mint karakterek, és alkosd meg az egyházakat mint szervezetek. Ha gyorsan meg szeretnéd találni az istenségeidet, ajánljuk, hogy használj címkét vagy típust.',
+        'question'  => 'Hol lehet létrehozni az isteneket és az egyházakat?',
+    ],
     'help'                  => [
         'answer'    => 'Először is, köszönjük, hogy segíteni szeretnél! Mindig szükségünk van emberekre, akik segítenek nekünk a fordításokkal, az új funkciók kipróbálásával vagy az új felhasználók útbaigazításával. Örülünk annak is, ha meséltek másoknak a Kankáról, elősegítve, hogy új felhasználókat érjünk el ott, ahol nem is gondoltuk volna. A legjobb első lépés az, hogy csatlakozol a közösésgünkhöz a Discordon, ahol egy csatorna kifejezetten a segítőknek van fenntartva. Ha szeretnéd, támogass minket a Patreonon is, hogy hozzáférhess annak bónuszaihoz is!',
         'question'  => 'Szeretnék segíteni! Mit tehetek?',
@@ -100,6 +104,7 @@ TEXT
         'other'         => 'Egyebek',
         'permissions'   => 'Jogosultságok',
         'pricing'       => 'Árak',
+        'worldbuilding' => 'Világépítés',
     ],
     'show'                  => [
         'return'    => 'Vissza a GYIK-hez',
