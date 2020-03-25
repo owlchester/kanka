@@ -115,7 +115,8 @@ class AbilityService
             $attributes[] = [
                 'id' => $attr->id,
                 'name' => $attr->name,
-                'value' => $attr->value,
+                'value' => Mentions::mapAttribute($attr),
+                'type' => $attr->type,
             ];
         }
         return $attributes;
