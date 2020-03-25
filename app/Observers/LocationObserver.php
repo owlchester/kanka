@@ -42,7 +42,20 @@ class LocationObserver extends MiscObserver
 
         // We need to refresh our foreign relations to avoid deleting our children nodes again
         $location->refresh();
+    }
 
-        ImageService::cleanup($location, 'map');
+    /**
+     * Delete the map when the entity is deleted
+     * @param MiscModel $model
+     */
+    public function deleted(MiscModel $model)
+    {
+        parent::deleted($model);
+
+        if ($model->trashed()) {
+            return;
+        }
+
+        ImageService::cleanup($model, 'map');
     }
 }

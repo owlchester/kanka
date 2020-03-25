@@ -28,7 +28,7 @@ class TagObserver extends MiscObserver
             }
         }
 
-        // Update sub tags to clean them  up
+        // Update sub tags to clean them up
         foreach ($model->tags as $child) {
             $child->tag_id = null;
             $child->save();

@@ -8,6 +8,7 @@ use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Kalnoy\Nestedset\NodeTrait;
 
@@ -19,6 +20,14 @@ use Kalnoy\Nestedset\NodeTrait;
  */
 class Tag extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        NodeTrait,
+        ExportableTrait,
+        TagScopes,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * Searchable fields
      * @var array
@@ -81,11 +90,6 @@ class Tag extends MiscModel
     public $nullableForeignKeys = [
         'tag_id',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, NodeTrait, ExportableTrait, TagScopes, SimpleSortableTrait;
 
     /**
      * Parent

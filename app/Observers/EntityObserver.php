@@ -239,17 +239,9 @@ class EntityObserver
     /**
      * @param Entity $entity
      */
-    public function deleting(Entity $entity)
-    {
-        // Delete permissions related to this entity
-        $entity->permissions()->delete();
-    }
-
-    /**
-     * @param Entity $entity
-     */
     public function deleted(Entity $entity)
     {
+        $entity->permissions()->delete();
         $entity->widgets()->delete();
     }
 }

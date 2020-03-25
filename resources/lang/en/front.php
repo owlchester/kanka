@@ -53,6 +53,7 @@ return [
             'css'           => 'Custom campaign css',
             'description'   => 'Certain pledge levels provide users with boosters that they can use to boost campaigns. These provide the following benefits.',
             'header_image'  => 'Entity header image',
+            'recovery'      => 'Entity recovery for up to 30 days',
             'theme'         => 'Fixed campaign theme',
             'title'         => 'Boosted Campaigns',
             'tooltip'       => 'Custom entity tooltips',

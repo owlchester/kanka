@@ -134,6 +134,13 @@
                     {{ __('campaigns.show.tabs.export') }}
                 </a>
             </li>
+            @if ($campaign->boosted())
+                <li>
+                    <a href="{{ route('recovery') }}">
+                        {{ __('campaigns.show.tabs.recovery') }}
+                    </a>
+                </li>
+            @endif
             @endcan
         </ul>
     </div>

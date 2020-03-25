@@ -202,6 +202,10 @@ Route::group([
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
         Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
 
+        // Recovery
+        Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
+        Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
+
 
         // Entity Abilities API
         Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');

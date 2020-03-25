@@ -132,6 +132,16 @@ abstract class MiscObserver
      */
     public function deleted(MiscModel $model)
     {
+        // Soft-delete the entity
+        if ($model->entity) {
+            $model->entity->delete();
+        }
+
+        // If soft deleting, don't really delete the image
+        if ($model->trashed()) {
+            return;
+        }
+
         ImageService::cleanup($model);
     }
 
@@ -147,17 +157,6 @@ abstract class MiscObserver
         // Check if the entity exists, because it won't while moving an entity from one type to another.
         if ($model->entity) {
             $model->entity->touch();
-        }
-    }
-
-    /**
-     * @param MiscModel $model
-     */
-    public function deleting(MiscModel $model)
-    {
-        // Delete the entity
-        if ($model->entity) {
-            $model->entity->delete();
         }
     }
 

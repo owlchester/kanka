@@ -7,6 +7,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Kalnoy\Nestedset\NodeTrait;
 use Exception;
@@ -25,6 +26,13 @@ use Exception;
  */
 class Location extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        NodeTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * Searchable fields
      * @var array
@@ -85,11 +93,6 @@ class Location extends MiscModel
     ];
 
     public $cachedImageFields = ['map'];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, NodeTrait, ExportableTrait, SimpleSortableTrait;
 
     /**
      * @return string

@@ -7,6 +7,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Stevebauman\Purify\Facades\Purify;
 
 /**
@@ -22,6 +23,12 @@ use Stevebauman\Purify\Facades\Purify;
  */
 class Character extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     //
     protected $fillable = [
         'name',
@@ -80,11 +87,6 @@ class Character extends MiscModel
      */
     protected $hidden = [
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, SimpleSortableTrait;
 
     /**
      * Entity type

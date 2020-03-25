@@ -7,6 +7,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -18,6 +19,13 @@ use Kalnoy\Nestedset\NodeTrait;
  */
 class Ability extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        NodeTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -64,11 +72,6 @@ class Ability extends MiscModel
     public $nullableForeignKeys = [
         'ability_id',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait, SimpleSortableTrait;
 
     /**
      * Entity type

@@ -12,6 +12,7 @@ use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -70,7 +71,8 @@ class Entity extends Model
         Searchable,
         TooltipTrait,
         Picture,
-        SimpleSortableTrait;
+        SimpleSortableTrait,
+        SoftDeletes;
 
     /**
      * Searchable fields

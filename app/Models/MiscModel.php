@@ -13,6 +13,7 @@ use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -46,7 +47,8 @@ abstract class MiscModel extends Model
         Filterable,
         Tooltip,
         Sortable,
-        SubEntityScopes;
+        SubEntityScopes
+    ;
 
     /**
      * If set to false, the saving observer in MiscObserver will be skipped
@@ -186,7 +188,7 @@ abstract class MiscModel extends Model
     {
         if (empty($this->$field)) {
             // Patreons have nicer icons
-            if (!$thumb && auth()->check() && auth()->user()->isGoblinPatron()) {
+            if (auth()->check() && auth()->user()->isGoblinPatron()) {
                 return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');
             }
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');

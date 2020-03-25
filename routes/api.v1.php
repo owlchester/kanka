@@ -57,4 +57,5 @@ Route::apiResources([
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
 Route::get('profile', 'ProfileApiController@index');
+
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');

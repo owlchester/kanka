@@ -103,6 +103,16 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
+    public function recover(User $user, Campaign $campaign): bool
+    {
+        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
+    }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
     public function dashboard(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && $this->isAdmin($user);

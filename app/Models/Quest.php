@@ -8,6 +8,7 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Quest
@@ -24,6 +25,13 @@ use App\Traits\VisibleTrait;
  */
 class Quest extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        CalendarDateTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -86,11 +94,6 @@ class Quest extends MiscModel
         'quest_id',
         'calendar_id'
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, CalendarDateTrait, SimpleSortableTrait;
 
     /**
      * Searchable fields

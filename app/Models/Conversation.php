@@ -6,9 +6,15 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Conversation extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SoftDeletes;
+
     //
     protected $fillable = [
         'name',
@@ -62,11 +68,6 @@ class Conversation extends MiscModel
      * @var bool
      */
     public $hasRelations = false;
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait;
 
     /**
      * Field used for tooltips

@@ -6,9 +6,16 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Journal extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        CalendarDateTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -77,11 +84,6 @@ class Journal extends MiscModel
         'character_id',
         'calendar_id',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, CalendarDateTrait;
 
     /**
      * Performance with for datagrids

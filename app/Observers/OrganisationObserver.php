@@ -32,6 +32,7 @@ class OrganisationObserver extends MiscObserver
             $child->organisation_id = null;
             $child->save();
         }
+        // Even if we soft delete, we need to clean this up
         foreach ($organisation->members as $child) {
             $child->delete();
         }
