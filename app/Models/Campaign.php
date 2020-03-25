@@ -222,6 +222,14 @@ class Campaign extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany$
      */
+    public function abilities()
+    {
+        return $this->hasMany('App\Models\Ability');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     */
     public function tags()
     {
         return $this->hasMany('App\Models\Tag');
