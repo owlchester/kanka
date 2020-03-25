@@ -43,7 +43,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                @include('cruds.fields.visibility', ['model' => $inventory])
+                @include('cruds.fields.visibility', ['model' => isset($inventory) ? $inventory : null])
             </div>
         </div>
     </div>
