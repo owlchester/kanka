@@ -43,11 +43,20 @@
                     <i class="fa fa-chevron-down" v-if="!details"></i>
                 </div>
                 <div v-if="details && hasAttribute">
-                    <hr />
                     <dl class="dl-horizontal">
                         <div v-for="att in ability.attributes">
-                            <dt>{{ att.name}}</dt>
-                            <dd v-html="att.value"></dd>
+                            <div v-if="att.type == 'section'" class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">{{ att.name}}</h4>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <dt>{{ att.name}}</dt>
+                                <dd v-if="att.type == 'checkbox'">
+                                    <i v-if="att.value == 1" class="fa fa-check"></i>
+                                </dd>
+                                <dd v-else v-html="att.value"></dd>
+                            </div>
                         </div>
                     </dl>
                 </div>

@@ -142,7 +142,7 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Register now, it\'s free!',
-        'description'       => 'Kanka is an easy to use and flexible tool for worldbuilders, authors, story tellers and RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more.',
+        'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more.',
         'title'             => 'Kanka',
     ],
     'menu'          => [
