@@ -163,6 +163,8 @@ class BulkService
             $filledFields['is_private'] = $fields['is_private'] === "0";
         }
 
+        // Mathable fields
+        $maths = $bulk->maths();
 
         // Handle tags differently
         unset($filledFields['tags']);
@@ -173,7 +175,23 @@ class BulkService
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
             if (Auth::user()->can('update', $entity)) {
                 $entity->savingObserver = false;
-                $entity->update($filledFields);
+                $entityFields = $filledFields;
+
+                // Handle math fields
+                foreach ($maths as $math) {
+                    $mathField = Arr::get($entityFields, $math, false);
+                    if ($mathField !== false && Str::startsWith($mathField, ['+', '-'])) {
+                        if (Str::startsWith($mathField, '+')) {
+                            $entityFields[$math] = $entity->{$math} + (int) Str::after($mathField, '+');
+                        } else {
+                            $entityFields[$math] = $entity->{$math} - (int)Str::after($mathField, '-');
+                        }
+                    }
+                }
+
+                // Age can be manage differently (math)
+
+                $entity->update($entityFields);
                 $count++;
 
                 // Tags?

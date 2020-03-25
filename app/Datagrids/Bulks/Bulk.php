@@ -34,6 +34,19 @@ abstract class Bulk
     }
 
     /**
+     * Attributes that can support basic math
+     * @return array
+     */
+    public function maths(): array
+    {
+        if (isset($this->maths)) {
+            return $this->maths;
+        }
+
+        return [];
+    }
+
+    /**
      * @return array
      */
     protected function defaults(): array
