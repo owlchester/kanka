@@ -11,8 +11,8 @@
     ) !!}
 
     @if (isset($bulk) && $bulk)
-        <p class="help-block">
+        <span class="help-block">
             {{ __('crud.bulk.age.helper') }}
-        </p>
+        </span>
     @endif
 </div>
