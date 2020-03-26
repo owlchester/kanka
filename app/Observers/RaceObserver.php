@@ -12,8 +12,6 @@ class RaceObserver extends MiscObserver
      */
     public function deleting(MiscModel $model)
     {
-        parent::deleting($model);
-
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
          * all descendants when deleting the parent, which is stupid.

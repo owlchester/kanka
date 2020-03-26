@@ -29,8 +29,6 @@ class LocationObserver extends MiscObserver
      */
     public function deleting(MiscModel $location)
     {
-        parent::deleting($location);
-
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
          * all descendants when deleting the parent, which is stupid.

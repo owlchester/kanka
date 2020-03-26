@@ -5,9 +5,7 @@ namespace App\Observers;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
-use App\Facades\UserPermission;
 use App\Jobs\EntityUpdatedJob;
-use App\Models\AttributeTemplate;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -15,7 +13,6 @@ use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class EntityObserver

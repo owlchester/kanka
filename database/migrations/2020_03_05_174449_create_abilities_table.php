@@ -68,6 +68,7 @@ class CreateAbilitiesTable extends Migration
                 'dice_roll',
                 'conversation',
                 'race',
+                'tag',
                 'ability'
             ])->change();
         });
@@ -103,7 +104,8 @@ class CreateAbilitiesTable extends Migration
                 'section',
                 'dice_roll',
                 'conversation',
-                'race'
+                'race',
+                'tag',
             ])->change();
         });
     }

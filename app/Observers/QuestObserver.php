@@ -12,14 +12,12 @@ class QuestObserver extends MiscObserver
      */
     public function deleting(MiscModel $model)
     {
-        parent::deleting($model);
-
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
          * all descendants when deleting the parent, which is stupid.
          * @var Quest $sub
          */
-        foreach ($model->races as $sub) {
+        foreach ($model->quests as $sub) {
             $sub->quest_id = null;
             $sub->save();
         }

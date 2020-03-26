@@ -51,6 +51,7 @@ class RecoveryService
             $count++;
         }
 
+        return $count;
     }
 
     /**
