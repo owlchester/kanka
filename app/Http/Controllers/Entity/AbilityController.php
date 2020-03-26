@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityEntityAbilitySorter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAbility;
 use App\Models\Entity;
 use App\Models\EntityAbility;
-use App\Models\MiscModel;
 use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;

@@ -34,6 +34,12 @@ class EntityAbility extends Model
     use VisibilityTrait, SimpleSortableTrait;
 
     /**
+     * Set to false to skip save observers
+     * @var bool
+     */
+    public $savedObserver = true;
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
