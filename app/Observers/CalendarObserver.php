@@ -25,10 +25,10 @@ class CalendarObserver extends MiscObserver
         // Handle months
         $months = [];
         $monthCount = 0;
-        $monthNames = request()->post('month_name');
-        $monthLengths = request()->post('month_length');
-        $monthAliases= request()->post('month_alias');
-        $monthTypes = request()->post('month_type');
+        $monthNames = request()->post('month_name', []);
+        $monthLengths = request()->post('month_length', []);
+        $monthAliases= request()->post('month_alias', []);
+        $monthTypes = request()->post('month_type', []);
         foreach ($monthNames as $name) {
             if (empty($name)) {
                 continue;
@@ -39,8 +39,8 @@ class CalendarObserver extends MiscObserver
             $months[] = [
                 'name' => $this->purify($name),
                 'length' => $length < 1 ? 1 : $length,
-                'type' => $monthTypes[$monthCount],
-                'alias' => $this->purify($monthAliases[$monthCount]),
+                'type' => $monthTypes[$monthCount] ?? 'standard',
+                'alias' => $this->purify($monthAliases[$monthCount] ?? ''),
             ];
             $monthCount++;
         }
@@ -48,7 +48,7 @@ class CalendarObserver extends MiscObserver
 
         // Handle weekdays
         $weekdays = [];
-        $weekdayNames = request()->post('weekday');
+        $weekdayNames = request()->post('weekday', []);
         foreach ($weekdayNames as $name) {
             if (empty($name)) {
                 continue;
@@ -61,8 +61,8 @@ class CalendarObserver extends MiscObserver
         // Handle year names
         $years = [];
         $yearCount = 0;
-        $yearValues = request()->post('year_number');
-        $yearNames = request()->post('year_name');
+        $yearValues = request()->post('year_number', []);
+        $yearNames = request()->post('year_name', []);
         if ($yearValues && !empty($yearValues)) {
             foreach ($yearValues as $year) {
                 if (empty($year)) {
@@ -78,8 +78,8 @@ class CalendarObserver extends MiscObserver
         // Handle week names
         $weeks = [];
         $weekCount = 0;
-        $weekValues = request()->post('week_number');
-        $weekNames = request()->post('week_name');
+        $weekValues = request()->post('week_number', []);
+        $weekNames = request()->post('week_name', []);
         if ($weekValues && !empty($weekValues)) {
             foreach ($weekValues as $week) {
                 if (empty($week)) {
@@ -95,10 +95,10 @@ class CalendarObserver extends MiscObserver
         // Handle moons
         $moons = [];
         $moonCount = 0;
-        $moonValues = request()->post('moon_fullmoon');
-        $moonNames = request()->post('moon_name');
-        $moonOffsets = request()->post('moon_offset');
-        $moonColours = request()->post('moon_colour');
+        $moonValues = request()->post('moon_fullmoon', []);
+        $moonNames = request()->post('moon_name', []);
+        $moonOffsets = request()->post('moon_offset', []);
+        $moonColours = request()->post('moon_colour', []);
         if ($moonValues) {
             foreach ($moonValues as $moon) {
                 if (empty($moon)) {
@@ -119,9 +119,9 @@ class CalendarObserver extends MiscObserver
         // Handle seasons
         $seasons = [];
         $seasonCount = 0;
-        $seasonNames = request()->post('season_name');
-        $seasonMonths = request()->post('season_month');
-        $seasonDays = request()->post('season_day');
+        $seasonNames = request()->post('season_name', []);
+        $seasonMonths = request()->post('season_month', []);
+        $seasonDays = request()->post('season_day', []);
         foreach ($seasonNames as $name) {
             if (empty($name)) {
                 continue;
