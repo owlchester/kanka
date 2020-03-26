@@ -39,7 +39,13 @@ class AbilityService
     public function abilities(): array
     {
         /** @var EntityAbility $ability */
-        foreach ($this->entity->abilities()->with(['ability', 'ability.entity', 'ability.entity.attributes', 'ability.ability', 'ability.ability.entity'])->get() as $ability) {
+        $abilities = $this->entity->abilities()
+            ->select('entity_abilities.*')
+            ->with(['ability', 'ability.entity', 'ability.entity.attributes', 'ability.ability', 'ability.ability.entity'])
+            ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
+            ->orderBy('a.type')
+            ->get();
+        foreach ($abilities as $ability) {
             // Can't read the ability? skip
             if (empty($ability->ability)) {
                 continue;
