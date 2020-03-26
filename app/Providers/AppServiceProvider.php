@@ -18,6 +18,7 @@ use App\Models\ConversationMessage;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
+use App\Models\EntityAbility;
 use App\Models\EntityFile;
 use App\Models\EntityNote;
 use App\Models\Family;
@@ -97,6 +98,7 @@ class AppServiceProvider extends ServiceProvider
             Event::observe(EventObserver::class);
             Entity::observe('App\Observers\EntityObserver');
             EntityNote::observe('App\Observers\EntityNoteObserver');
+            EntityAbility::observe('App\Observers\EntityAbilityObserver');
             EntityFile::observe('App\Observers\EntityFileObserver');
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
