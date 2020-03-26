@@ -48,6 +48,9 @@ class AbilityService
             $this->add($ability);
         }
 
+        // Reorder parents
+        usort($this->abilities['parents'], function ($a, $b) { return strtoupper($a['name']) > strtoupper($b['name']); });
+
         // Meta
         $this->abilities['meta'] = [
             'add_url' => route('entities.entity_abilities.create', $this->entity),
