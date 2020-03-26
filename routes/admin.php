@@ -7,6 +7,8 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
     Route::get('/home', 'HomeController@index')->name('home');
     //Route::resourc('/faqs', 'Admin\FaqController@index')->name('admin.faqs.index');
 
+    Route::get('/test-email', 'TestEmailController@index');
+
     Route::resources([
         'faqs' => 'FaqController',
         'patrons' => 'PatronController',

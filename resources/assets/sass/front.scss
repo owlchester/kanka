@@ -496,27 +496,6 @@ ul.pagination {
   }
 }
 
-@media screen and (orientation:portrait) {
-  .minimal-padding {
-    table {
-      display: none;
-    }
-    .landscape-helper {
-      display: block;
-    }
-  }
-}
-@media screen and (orientation:landscape) {
-  .minimal-padding {
-    table {
-      display: table;
-    }
-    .landscape-helper {
-      display: none;
-    }
-  }
-}
-
 @media (max-width:991px) {
   .topbar {
     padding: 0 15px;
