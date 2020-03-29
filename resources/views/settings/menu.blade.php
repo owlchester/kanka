@@ -39,3 +39,20 @@
         </ul>
     </div>
 </div>
+
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            {{ __('settings.menu.subscription') }}
+        </h3>
+    </div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="@if(!empty($active) && $active == 'subscription')active @endif">
+                <a href="{{ route('settings.subscription') }}">
+                    {{ __('settings.menu.subscription_status') }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

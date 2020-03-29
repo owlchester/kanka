@@ -20,6 +20,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -46,6 +47,15 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends \TCG\Voyager\Models\User
 {
+    use Notifiable,
+        HasApiTokens,
+        UserScope,
+        UserSetting,
+        Searchable,
+        Filterable,
+        Sortable,
+        Billable;
+
     /**
      * Cached calculation if the user is an admin of the current campaign he is viewing
      * @var null
@@ -65,8 +75,6 @@ class User extends \TCG\Voyager\Models\User
     public $searchableColumns = ['email', 'settings'];
     public $sortableColumns = [];
     public $filterableColumns = ['patreon_pledge'];
-
-    use Notifiable, HasApiTokens, UserScope, UserSetting, Searchable, Filterable, Sortable;
 
     /**
      * The attributes that are mass assignable.

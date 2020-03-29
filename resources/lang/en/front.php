@@ -180,6 +180,7 @@ return [
         'actions'       => [
             'more'      => 'Learn more about all the features unlocked by supporting Kanka',
             'support'   => 'Support',
+            'subscribe' => 'Subscribe'
         ],
         'benefits'      => [
             'boosters'          => 'Campaign Boosters',

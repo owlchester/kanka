@@ -65,6 +65,9 @@ return [
         'patreon'           => 'Patreon',
         'personal_settings' => 'Personal Settings',
         'profile'           => 'Profile',
+        'subscription'      => 'Subscription',
+        'subscription_status' => 'Subscription Status',
+        'payment_options' => 'Payment Options',
     ],
     'patreon'   => [
         'actions'           => [
@@ -95,4 +98,41 @@ return [
         'success'       => 'Profile updated.',
         'title'         => 'Personal Profile',
     ],
+    'subscription' => [
+        'manage_subscription' => 'Manage your subscription',
+        'benefits'          => 'By supporting us, you can unlock some new :features and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use :strip to handle all billing.',
+        'sub_status' => 'Subscription status',
+        'fields' => [
+            'plan' => 'Current plan',
+            'price' => 'Price',
+            'active_since' => 'Active since',
+            'active_until' => 'Active until',
+        ],
+        'actions' => [
+            'cancel_sub' => 'Cancel subscription',
+        ],
+        'payment_method' => [
+            'card' => 'Card',
+            'card_name' => 'Card Holder Name',
+            'new_card' => 'New Card',
+            'add_one' => 'Please add at least one payment method before being able to continue.',
+            'actions' => [
+                'save' => 'Save payment method',
+                'add_new' => 'Add a new payment method',
+            ],
+            'select' => 'Select a method payment',
+            'ending' => 'Ending in',
+        ],
+        'subscription' => [
+            'select' => 'Select subscription',
+            'actions' => [
+                'subscribe' => 'Subscribe',
+                'processing' => 'Processing',
+            ],
+        ],
+        'success' => [
+            'cancel' => 'Your subscription was cancelled.',
+            'subscribed' => 'Your subscription was successful.',
+        ]
+    ]
 ];

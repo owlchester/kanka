@@ -73,8 +73,8 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ config('patreon.url') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
-                    {{ __('front.pricing.actions.support') }}
+                <a href="{{ route('settings.subscription') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
+                    {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
         </div>
@@ -112,8 +112,8 @@
                     </li>
                 </ul>
 
-                <a href="{{ config('patreon.url') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
-                    {{ __('front.pricing.actions.support') }}
+                <a href="{{ route('settings.subscription') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
+                    {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
         </div>

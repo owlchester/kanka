@@ -905,6 +905,18 @@ td.breakable {
     padding-top: 37px;
   }
 }
+.box-active {
+  box-shadow: $box-shadow;
+  transition: all 0.3s ease;
+}
+.box-green {
+  .box-body {
+    background-color: #c0d9bf;
+  }
+}
+.box-hover {
+  cursor: pointer;
+}
 
 #entry td, #entry th {
   padding:2px;

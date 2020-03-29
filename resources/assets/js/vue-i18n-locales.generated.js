@@ -37,6 +37,7 @@ export default {
                 "destroy": {
                     "success": "Nachricht gelöscht."
                 },
+                "is_updated": "Aktualisiert",
                 "load_previous": "Lade vorherige Nachrichten",
                 "placeholders": {
                     "message": "Deine Nachricht"
@@ -292,7 +293,7 @@ export default {
                     "target": "Neuer Typ"
                 },
                 "hints": {
-                    "campaign": "Du kannst auch versuchen, diese Objekt in eine andere Kampagne zu verschieben.",
+                    "campaign": "Du kannst auch versuchen, dieses Objekt in eine andere Kampagne zu verschieben.",
                     "copy": "Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.",
                     "target": "Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird."
                 },
@@ -396,11 +397,82 @@ export default {
             }
         },
         "entities": [],
-        "randomisers": []
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Zu Kanka Login wechseln",
+                    "update_email": "Email aktualisieren",
+                    "update_password": "Passwort aktualisieren"
+                },
+                "description": "Deinen Account aktualisieren",
+                "email": "Email ändern",
+                "email_success": "Email aktualisiert.",
+                "password": "Passwort ändern",
+                "password_success": "Passwort aktualisiert.",
+                "social": {
+                    "error": "Du benutzt bereits das Kanka Login für dieses Konto.",
+                    "helper": "Dein Konto ist momentan von {provider}. Du kannst aufhören dieses zu benutzen und auf ein Standard Kanka Login wechseln, indem du ein Kennwort setzt.",
+                    "success": "Dein Konto benutzt jetzt das Kanka Login.",
+                    "title": "Social Konto"
+                },
+                "title": "Account"
+            },
+            "api": {
+                "description": "Aktualisiere deine API Einstellungen",
+                "experimental": "Willkommen zur API von Kanka! Diese Features sind noch experimentell, aber sollten stabil genug sein, um mit API zu kommunizieren. Erstelle ein persönliches Access Token, welches in deinem API Request genutzt wird, oder nutze das Client Token wenn du möchtest, dass deine App Zugriff auf Nutzerdaten hat.",
+                "help": "Kanka wird bald eine RESTful API zur Verfügung stellen, so dass Drittanbieter-Apps mit Kanka kommunizieren können. Details, wie du deine API Keys verwaltest, wirst du bald hier finden.",
+                "link": "Lies die API Dokumentation",
+                "request_permission": "Wir bauen zurzeit eine mächtige RESTful API, so das Drittanbieter-Apps sich zu Kanka verbinden können. Allerdings limitieren wir aktuell noch die Anzahl der Nutzer, die die API nutzen können, solange wir noch daran arbeiten. Wenn du Zugriff auf die API haben möchtest und coole Apps bauen möchtest, die mit Kanka kommunizieren, bitte kontaktiere uns und wir senden dir die Informationen, die du brauchst.",
+                "title": "API"
+            },
+            "layout": {
+                "description": "Aktualisiere deine Layout Optionen",
+                "success": "Layout Optionen aktualisiert.",
+                "title": "Layout"
+            },
+            "menu": {
+                "account": "Account",
+                "api": "API",
+                "layout": "Layout",
+                "patreon": "Patreon",
+                "personal_settings": "Persönliche Einstellungen",
+                "profile": "Profil"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Account verlinken",
+                    "view": "Besuche Kanka auf Patreon"
+                },
+                "benefits": "Eure Unterstützung auf Patreon erlaubt es euch größere Bilder hochzuladen, hilft uns die Serverkosten zu begleichen und mehr Arbeitszeit in Kanka zu stecken.",
+                "description": "Synchronisierung mit Patreon",
+                "errors": {
+                    "invalid_token": "Ungültiger Token! Patreon konnte die Anfrage nicht validieren.",
+                    "missing_code": "Fehlender Code! Patreon hat keinen Code zurück geschickt, um deinen Account zu verifizieren.",
+                    "no_pledge": "Kein Pledge! Patreon hat deinen Account verifiziert, aber konnte keinen aktiven Pledge feststellen."
+                },
+                "link": "Benutze diesen Button, wenn du aktuell Kanka auf Patreon unterstützt. Das gibt dir Zugriff auf einige tolle Extras.",
+                "linked": "Danke, dass du Kanka auf Patreon unterstützt! Dein Account wurde verlinkt.",
+                "pledge": "Pledge {name}",
+                "success": "Danke, dass du Kanka auf Patreon unterstützt.",
+                "title": "Patreon",
+                "wrong_pledge": "Euer Patreon Tier wird manuell von uns gesetzt. Daher kann es sein, dass es bis zu ein paar Tagen dauert bis es korrekt hinterlegt wird. Wenn es länger falsch ist, kontaktiert uns bitte."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Aktualisiere dein Profil"
+                },
+                "avatar": "Profilbild",
+                "description": "Aktualisiere dein Profil",
+                "success": "Profil aktualisiert.",
+                "title": "Persönliches Profil"
+            }
+        }
     },
     "en": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Create a new conversation",
@@ -565,6 +637,9 @@ export default {
                 "actions": {
                     "edit": "Bulk Edit & Tagging"
                 },
+                "age": {
+                    "helper": "You can use + and - before the number to update the age by that amount."
+                },
                 "edit": {
                     "tagging": "Action for tags",
                     "tags": {
@@ -618,8 +693,8 @@ export default {
             },
             "edit": "Edit",
             "errors": {
-                "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself.",
-                "boosted": "This feature is only available to boosted campaigns."
+                "boosted": "This feature is only available to boosted campaigns.",
+                "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself."
             },
             "events": {
                 "hint": "Shown below is a list of all the Calendars in which this entity was added using the \"Add an event to a calendar\" interface."
@@ -842,14 +917,146 @@ export default {
             "view": "View",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Self & Admin",
                 "all": "All",
-                "self": "Self",
-                "admin-self": "Self & Admin"
+                "self": "Self"
             }
         },
         "entities": [],
         "front": [],
-        "randomisers": []
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Switch to Kanka Login",
+                    "update_email": "Update email",
+                    "update_password": "Update password"
+                },
+                "description": "Update your account",
+                "email": "Change email",
+                "email_success": "Email updated.",
+                "password": "Change password",
+                "password_success": "Password updated.",
+                "social": {
+                    "error": "You are already using the Kanka login for this account.",
+                    "helper": "Your account is currently managed by {provider}. You can stop using it and switch to the standard Kanka login by setting up a password.",
+                    "success": "Your account now uses the Kanka login.",
+                    "title": "Social to Kanka"
+                },
+                "title": "Account"
+            },
+            "api": {
+                "description": "Update your API settings",
+                "experimental": "Welcome to the Kanka APIs! These features are still experimental but should be stable enough for you to start communicating with the APIs. Create a Personal Access Token to use in your api requests, or use the Client token if you want your app to have access to user data.",
+                "help": "Kanka will soon provide an RESTful API so that third-party apps can connect to the app. Details on how to manage your API keys will be shown here.",
+                "link": "Read the API documentation",
+                "request_permission": "We are currently building a powerful RESTful API so that third-party apps can connect to the app. However, we are currently limiting the number of users who can interact with the API while we polish it. If you want to get access to the API and build cools apps that talk with Kanka, please contact us and we'll send you all the information you need.",
+                "title": "API"
+            },
+            "boost": {
+                "benefits": {
+                    "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through {patreon}. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka on {patreon}. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
+                    "header": "Entity header images.",
+                    "more": "Find out more about all features.",
+                    "second": "Boosting a campaign enables the following benefits:",
+                    "theme": "Campaign level theme and custom styling.",
+                    "tooltip": "Custom tooltips for entities.",
+                    "upload": "Increased upload size for every member in the campaign."
+                },
+                "buttons": {
+                    "boost": "Boost"
+                },
+                "campaigns": "Boosted Campaigns {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "Campaign {name} is already boosted.",
+                    "exhausted_boosts": "You are out of boosts to give. Remove your boost from a campaign before giving it to another."
+                },
+                "success": {
+                    "boost": "Campaign {name} boosted.",
+                    "delete": "Removed your boost from {name}."
+                },
+                "title": "Boost"
+            },
+            "layout": {
+                "description": "Update your layout options",
+                "success": "Layout options updated.",
+                "title": "Layout"
+            },
+            "menu": {
+                "account": "Account",
+                "api": "API",
+                "boost": "Boost",
+                "layout": "Layout",
+                "patreon": "Patreon",
+                "personal_settings": "Personal Settings",
+                "profile": "Profile",
+                "subscription": "Subscription",
+                "subscription_status": "Subscription Status",
+                "payment_options": "Payment Options"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Link Account",
+                    "view": "Visit Kanka on Patreon"
+                },
+                "benefits": "Supporting us on {patreon} unlocks all sorts of {features} for you and your campaigns, and also helps us spend more time working on improving Kanka.",
+                "benefits_features": "amazing features",
+                "description": "Syncing with Patreon",
+                "errors": {
+                    "invalid_token": "Invalid token! Patreon couldn't validate your request.",
+                    "missing_code": "Missing code! Patreon didn't send back a code identifying your account.",
+                    "no_pledge": "No pledge! Patreon identified your account, but doesn't know of any active pledge."
+                },
+                "link": "Use the following button if you are currently supporting Kanka on {patreon}. This will unlock the bonuses",
+                "linked": "Thank you for supporting Kanka on Patreon! Your account is linked.",
+                "pledge": "Pledge: {name}",
+                "success": "Thank you for supporting Kanka on Patreon!",
+                "title": "Patreon",
+                "wrong_pledge": "Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Update profile"
+                },
+                "avatar": "Profile Picture",
+                "description": "Update your profile",
+                "success": "Profile updated.",
+                "title": "Personal Profile"
+            },
+            "subscription": {
+                "manage_subscription": "Manage your subscription",
+                "benefits": "By supporting us, you can unlock some new {features} and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use {strip} to handle all billing.",
+                "sub_status": "Subscription status",
+                "fields": {
+                    "plan": "Current plan",
+                    "price": "Price",
+                    "active_since": "Active since",
+                    "active_until": "Active until"
+                },
+                "actions": {
+                    "cancel_sub": "Cancel subscription"
+                },
+                "payment_method": {
+                    "card": "Card",
+                    "card_name": "Card Holder Name",
+                    "new_card": "New Card",
+                    "add_one": "Please add at least one payment method before being able to continue.",
+                    "actions": {
+                        "save": "Save payment method",
+                        "add_new": "Add a new payment method"
+                    },
+                    "select": "Select a method payment",
+                    "ending": "Ending in"
+                },
+                "subscription": {
+                    "select": "Select subscription",
+                    "actions": {
+                        "subscribe": "Subscribe",
+                        "processing": "Processing"
+                    }
+                }
+            }
+        }
     },
     "en-US": {
         "calendars": [],
@@ -1307,7 +1514,103 @@ export default {
             }
         },
         "entities": [],
-        "randomisers": []
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Cambiar a inicio de sesión en Kanka",
+                    "update_email": "Actualizar email",
+                    "update_password": "Actualizar contraseña"
+                },
+                "description": "Actualizar cuenta",
+                "email": "Cambiar email",
+                "email_success": "Email actualizado.",
+                "password": "Cambiar contraseña",
+                "password_success": "Contraseña actualizada.",
+                "social": {
+                    "error": "Ya estás utilizando el inicio de sesión de Kanka con esta cuenta.",
+                    "helper": "Tu cuenta está vinculada con {provider}. Puedes dejar de usarla y cambiar al inicio de sesión estándar de Kanka escribiendo una contraseña.",
+                    "success": "Tu cuenta ahora usa el inicio de sesión de Kanka.",
+                    "title": "De social a Kanka"
+                },
+                "title": "Cuenta"
+            },
+            "api": {
+                "description": "Actualizar configuración de API",
+                "experimental": "¡Bienvenido a las APIs de Kanka! Estas prestaciones aún son experimentales pero deberían ser lo suficientemente estables para que puedas comunicarte con las APIs. Crea un Token de Acceso Personal para usar en tus solicitudes de API, o usa el Token Cliente si quieres que tu app tenga acceso a datos de usuario.",
+                "help": "Kanka ofrecerá próximamente una RESTful API para que aplicaciones terceras puedan conectarse a la app. Aquí se irán mostrando los detalles sobre cómo gestionar tus claves API.",
+                "link": "Leer la documentación de la API",
+                "request_permission": "Actualmente estamos construyendo una poderosa RESTful API para que aplicaciones terceras puedan conectarse a la app. Sin embargo, de momento limitamos el número de usuarios que pueden interactuar con la API mientras la pulimos. Si quieres acceder a la API y construir apps guays que interactúan con Kanka, contáctanos y te enviaremos toda la información que necesitas.",
+                "title": "API"
+            },
+            "boost": {
+                "benefits": {
+                    "first": "Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante {patreon}. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en {patreon}. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.",
+                    "header": "Imágenes de cabecera para las entidades.",
+                    "more": "Saber más sobre todas las características.",
+                    "second": "Mejorar una campaña activa los siguientes beneficios:",
+                    "theme": "Tema y estilo personalizado a nivel de campaña.",
+                    "tooltip": "Descripciones emergentes personalizadas para las entidades.",
+                    "upload": "Capacidad de subida de archivos ampliada para todos los miembros de la campaña."
+                },
+                "buttons": {
+                    "boost": "Mejorar"
+                },
+                "campaigns": "Campañas mejoradas {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "La campaña {name} ya está mejorada.",
+                    "exhausted_boosts": "Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra."
+                },
+                "success": {
+                    "boost": "Campaña {name} mejorada.",
+                    "delete": "Tu mejora de {name} se ha eliminado."
+                },
+                "title": "Mejorar"
+            },
+            "layout": {
+                "description": "Actualizar opciones de diseño",
+                "success": "Opciones de diseño actualizadas.",
+                "title": "Diseño"
+            },
+            "menu": {
+                "account": "Cuenta",
+                "api": "API",
+                "boost": "Mejorar",
+                "layout": "Diseño",
+                "patreon": "Patreon",
+                "personal_settings": "Ajustes personales",
+                "profile": "Perfil"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Enlazar cuenta",
+                    "view": "Visita la página de Patreon de Kanka"
+                },
+                "benefits": "Si nos ayudas en Patreon podrás subir imágenes más pesadas, y así nos ayudarás a cubrir los costes del servidor y a dedicarle más tiempo a trabajar en Kanka.",
+                "benefits_features": "Funciones increíbles",
+                "description": "Sincronizando con Patreon",
+                "errors": {
+                    "invalid_token": "¡Token no válido! Patreon no ha podido validar tu petición.",
+                    "missing_code": "¡Falta el código! Patreon no ha enviado un código para identificar tu cuenta.",
+                    "no_pledge": "¡Sin \"pledge\"! Patreon ha identificado tu cuenta, pero no detecta ningún \"pledge\" activo."
+                },
+                "link": "Usa el siguiente botón si estás apoyando a Kanka en Patreon actualmente. ¡Esto te dará acceso a más cosas fantásticas extras!",
+                "linked": "¡Gracias por apoyar a Kanka en Patreon! Se ha enlazado tu cuenta.",
+                "pledge": "Pledge {name}",
+                "success": "¡Gracias por apoyar a Kanka en Patreon!",
+                "title": "Patreon",
+                "wrong_pledge": "Añadimos manualmente tu nivel de \"pledge\", así que ten en cuenta que podemos tardar unos pocos días. Si al cabo de un tiempo sigue sin estar bien, contáctanos por favor."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Actualizar perfil"
+                },
+                "avatar": "Foto de perfil",
+                "description": "Actualizar perfil",
+                "success": "Perfil actualizado.",
+                "title": "Perfil personal"
+            }
+        }
     },
     "fr": {
         "admin": [],
@@ -1471,6 +1774,7 @@ export default {
                 }
             },
             "boosted": "Boosté",
+            "boosted_campaigns": "Campagnes Boostées",
             "bulk": {
                 "actions": {
                     "edit": "Opération de masse"
@@ -1528,6 +1832,7 @@ export default {
             },
             "edit": "Modifier",
             "errors": {
+                "boosted": "Cette fonctionalité n'est que accessible pour aux campagnes boostées..",
                 "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même."
             },
             "events": {
@@ -1535,6 +1840,7 @@ export default {
             },
             "export": "Export",
             "fields": {
+                "ability": "Pouvoirs",
                 "attribute_template": "Modèle d'attribut",
                 "calendar": "Calendrier",
                 "calendar_date": "Date calendrier",
@@ -1693,6 +1999,7 @@ export default {
                 "too_many_members": "Cette campagne a trop de members (>10) pour afficher cette interface correctement. Prière d'utiliser le boutton Permission sur la vue de l'entité pour gérer les permissions."
             },
             "placeholders": {
+                "ability": "Choix d'un pouvoir",
                 "calendar": "Choix du calendrier",
                 "character": "Choix du personnage",
                 "entity": "Entité",
@@ -1726,6 +2033,7 @@ export default {
             "search": "Rechercher",
             "select": "Sélection",
             "tabs": {
+                "abilities": "Pouvoirs",
                 "attributes": "Attributs",
                 "boost": "Boost",
                 "calendars": "Calendriers",
@@ -1748,13 +2056,110 @@ export default {
             "view": "Voir",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Sois-même & Admin",
                 "all": "Tous",
                 "self": "Sois-même"
             }
         },
         "entities": [],
         "front": [],
-        "randomisers": []
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Changer au login Kanka",
+                    "update_email": "Modifier l'email",
+                    "update_password": "Modifier le mot de passe"
+                },
+                "description": "Modification du compte",
+                "email": "Modification de l'email",
+                "email_success": "Email modifié.",
+                "password": "Modification du mot de passe",
+                "password_success": "Mot de passe modifié.",
+                "social": {
+                    "error": "Tu utilises déjà le login Kanka pour ce compte.",
+                    "helper": "Ton compte est géré par {provider}. Tu peux changer au login Kanka en fournissant un login et un mot de passe.",
+                    "success": "Ton compte utilise d'orénavant le login Kanka.",
+                    "title": "Social à Kanka"
+                },
+                "title": "Compte"
+            },
+            "api": {
+                "description": "Modifier les options d'API",
+                "experimental": "Bienvenus aux API de Kanka! Ces fonctionalités sont encore experimental mais assez stable que tu puisses intéragire avec les APIs. Créé un jeton personnel pour utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d'accéder à tes données.",
+                "help": "Kanka va prochainement mettre à disposition une API.",
+                "link": "Lire la documentation",
+                "request_permission": "Nous construisons en ce moment des API RESTful pour que des applications tièrces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d'utilisateurs qui peuvent intéragire avec nos API, du moins jusqu'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donneront les infos dont tu as besoin!",
+                "title": "API"
+            },
+            "boost": {
+                "benefits": {
+                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionalités de l'application sont débloquées lorsqu'une campagne est boostée. Des boosts sont débloqués au travers de {patreon}. Une campagne peut être boostée par peu importe qui, du moment que le compte peut lire la campagne. Une campagne est boostée tant que le compte soutient Kanka sur {patreon}. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais simplement invisible jusqu'à ce que la campagne devienne à nouveau boostée.",
+                    "header": "Image d'en-tête pour entité.",
+                    "more": "En savoir plus sur toutes les fonctionalités.",
+                    "second": "Booster une campagne débloques les bénéfices suivants:",
+                    "theme": "Thème de campagne et style personnalisé.",
+                    "tooltip": "Infobulles personnalisés pour les entités.",
+                    "upload": "Tailles de fichiers téléversés plus grand pour tous les membres de la campagne."
+                },
+                "buttons": {
+                    "boost": "Boost"
+                },
+                "campaigns": "Campagnes boostées {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "La campagne {name} est déjà boostée.",
+                    "exhausted_boosts": "Tu n'as plus de boost disponnible. Retire un boost d'une campagne avant de pouvoir l'attribuer à une autre."
+                },
+                "success": {
+                    "boost": "Campagne {name} boostée.",
+                    "delete": "Boost retiré de {name}."
+                },
+                "title": "Boost"
+            },
+            "layout": {
+                "description": "Modifier les options de mise en page",
+                "success": "Options de mise en page modifiées.",
+                "title": "Mise en page"
+            },
+            "menu": {
+                "account": "Compte",
+                "api": "API",
+                "boost": "Boost",
+                "layout": "Mise en Page",
+                "patreon": "Patreon",
+                "personal_settings": "Paramètres Personnels",
+                "profile": "Profil"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Lier le compte",
+                    "view": "Visiter Kanka sur Patreon"
+                },
+                "benefits": "Nous supporter sur {patreon} active plein de {features} pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.",
+                "benefits_features": "fonctionalités sympas",
+                "description": "Synchronisation avec Patreon",
+                "errors": {
+                    "invalid_token": "Token invalid! Patreon n'a pas validé la requête.",
+                    "missing_code": "Code manquant! Patreon n'a pas envoyé de code d'authentification pour ton compte.",
+                    "no_pledge": "Pas de pledge! Patreon a identifié ton compte, mais ne croit pas que tu nous supportes."
+                },
+                "link": "Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!",
+                "linked": "Merci pour ton support sur Patreon! Ton comptes est d'orénavant lié.",
+                "pledge": "Pledge: {name}",
+                "success": "Merci pour ton support sur Patreon!",
+                "title": "Patreon",
+                "wrong_pledge": "Ton pledge est inséré manuellement par nous, du coups ça peut prendre quelques jours pour être actualisé. Si ça reste faux longtemps, n'hésites pas à nous contacter."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Mettre à jour le profil"
+                },
+                "avatar": "Image de profil",
+                "description": "Mettre à jour le profil",
+                "success": "Mise à jour effectuée.",
+                "title": "Profil personnel"
+            }
+        }
     },
     "hu": {
         "admin": [],
@@ -1829,9 +2234,11 @@ export default {
         },
         "crud": {
             "actions": {
+                "actions": "Akciók",
                 "apply": "Alkalmaz",
                 "back": "Vissza",
                 "copy": "Másolás",
+                "copy_mention": "Említett [ ] másolása",
                 "copy_to_campaign": "Másolás Kampányba",
                 "explore_view": "Hierarchikus nézet",
                 "export": "Export",
@@ -1845,6 +2252,9 @@ export default {
                 "public": "Nyilvános"
             },
             "add": "Hozzáadás",
+            "alerts": {
+                "copy_mention": "Az entitás említését átmásoltuk a vágólapodra."
+            },
             "attributes": {
                 "actions": {
                     "add": "Tulajdonság hozzáadása",
@@ -2014,7 +2424,8 @@ export default {
                     "manage": "Az entitás állományainak kezelése"
                 },
                 "errors": {
-                    "max": "Elérted az entitáshoz rendelhető állományok maximális számát ({max})."
+                    "max": "Elérted az entitáshoz rendelhető állományok maximális számát ({max}).",
+                    "no_files": "Nincs állomány."
                 },
                 "files": "Feltöltött állomány",
                 "hints": {
@@ -2118,7 +2529,8 @@ export default {
                     "delete": "Törlés",
                     "edit": "Szerkesztés",
                     "entity_note": "Entitás jegyzetek",
-                    "read": "Olvasás"
+                    "read": "Olvasás",
+                    "toggle": "Átkapcsolás"
                 },
                 "allowed": "Engedélyezett",
                 "fields": {
@@ -2129,7 +2541,8 @@ export default {
                 "inherited": "Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.",
                 "inherited_by": "Ez a felhasználó tagja a '{role}' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.",
                 "success": "Engedélyeket elmentettük.",
-                "title": "Engedélyek"
+                "title": "Engedélyek",
+                "too_many_members": "A kampánynak túl sok tagja (>10) van ahhoz, hogy kijelezzük ezen a felületen. Kérjük, használd az entitás nézetben az Engedély gombot, hogy kezeld az engedélyek részleteit."
             },
             "placeholders": {
                 "calendar": "Válassz egy naptárat!",
@@ -2192,7 +2605,103 @@ export default {
             }
         },
         "entities": [],
-        "randomisers": []
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Kanka bejelentkezésre váltás",
+                    "update_email": "E-mail megváltoztatása",
+                    "update_password": "Jelszó megváltoztatása"
+                },
+                "description": "Fiók szerkesztése",
+                "email": "Email-cím megváltoztatása",
+                "email_success": "Az email-címet sikeresen megváltoztattuk",
+                "password": "Jelszó megváltoztatása",
+                "password_success": "A jelszót sikeresen megváltoztattuk",
+                "social": {
+                    "error": "Ehhez a fiókhoz már Kanka bejelentkezést használsz.",
+                    "helper": "A fiókodat jelenleg a(z) {provider} kezeli. Hagyományos Kanka bejelentkezésre válthatsz egy jelszó megadásával.",
+                    "success": "A fiókod mostantól a Kanka bejelentkezést használja.",
+                    "title": "Közösségiről Kanka"
+                },
+                "title": "Fiók"
+            },
+            "api": {
+                "description": "API beállítások frissítése",
+                "experimental": "Üdvözlünk a Kanka APIkban! Ezek a funkciók még kísérleti állapotban vannak, de elég stabilak kell, hogy legyenek ahhoz, hogy elkezdhess kommunikálni a Kanka APIval. Hozz létre egy Személyes Hozzáférés Tokent, amit az api hívásaidban használhatsz, vagy használd a Kliens Tokent, ha azt szeretnéd, hogy az alkalmazásod hozzáférjen a felhasználó adataihoz.",
+                "help": "A Kanka rövidesen egy teljes REST API-t fog biztosítani, hogy harmadik féltől származó alkalmazások tudjanak csatlakozni hozzá. Az API kulcsok kezelésének részleteiről rövidesen itt olvashatsz.",
+                "link": "Olvasd el az API dokumentációt",
+                "request_permission": "Jelenleg is dolgozunk egy REST API-n amivel harmadik féltől származó alkalmazások is csatlakozhatnak a Kankához, azonban amíg az utolsó simításokat végezzük rajta, addig korlátozzuk a hozzáférések számát. Ha szeretnél hozzáférni az APIhoz és király alkalmazásokat fejleszteni, amelyek a Kankával kommunikálnak, kérjük, hogy lépj kapcsolatba velünk, és elküldünk minden információt, amire szükséged lehet.",
+                "title": "API"
+            },
+            "boost": {
+                "benefits": {
+                    "first": "Hogy biztosítsuk a Kanka folyamatos fejlődését, bizonyos funkciók az adott kampány boost-olása után válnak elérhetővé. A boost-olás lehetőségégének megszerzése {patreon}-on keresztül történik. Egy kampányt akárki boost-olhatja is, ha van joga megtekinteni azt, így nem minden esetben a Mesélőnek kell állnia a cehhet. Egy kampány addig marad boost-olva, amíg egy felhasználó fenntartja rajta a boost-ját, valamint a támogatását is {patreon}-on keresztül. Ha egy kampány boost-olása megszűnik, az adatok nem vesznek el, csupán eltűnnek szem elől, amíg ismét nem kerül boost-olásra.",
+                    "header": "Entitás fejléc képek.",
+                    "more": "Tudj meg többet a funkciókról.",
+                    "second": "Egy kampány Boost-olása az alábbi előnyöket biztosítja:",
+                    "theme": "Kampány-szintű téma, és egyedi megjelenítési stílus.",
+                    "tooltip": "Egyedi entitás tooltip-ek.",
+                    "upload": "Megnövelt fájlfeltöltési korlát az összes Tag számára."
+                },
+                "buttons": {
+                    "boost": "Boost"
+                },
+                "campaigns": "Boost-olt kapányok száma: {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "{name} kampány már boost-olva van.",
+                    "exhausted_boosts": "Elfogytak a kiosztható Boost-jaid. Vond vissza egy boost-od valamelyik kampányról, mielőtt egy újnak adnál egyet."
+                },
+                "success": {
+                    "boost": "{name} kampány boost-olva lett.",
+                    "delete": "Boost visszavonva innen: {name}"
+                },
+                "title": "Boost"
+            },
+            "layout": {
+                "description": "Elrendezési beállítások frissítése",
+                "success": "Az elrendezési beállításokat frissítettük.",
+                "title": "Elrendezés"
+            },
+            "menu": {
+                "account": "Fiók",
+                "api": "API",
+                "boost": "Boost",
+                "layout": "Elrendezés",
+                "patreon": "Patreon",
+                "personal_settings": "Személyes beállítások",
+                "profile": "Profil"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Fiókok összekapcsolása",
+                    "view": "Látogasd meg a Kankát a Patreonon!"
+                },
+                "benefits": "A Patreon támogatóink nagyobb képeket tölthetnek fel, segítenek nekünk fedezni a szerverköltségeket, valamint lehetővé teszik, hogy több időt fordíthassunk a Kankán végzett munkánkra.",
+                "benefits_features": "csodálatos képességek",
+                "description": "Szinkronizálás a Patreonnal",
+                "errors": {
+                    "invalid_token": "Érvénytelen token! A Patreon nem tudta érvényesíteni a kérésed.",
+                    "missing_code": "Hiányzó kód! A Patreon nem küldött vissza kódot, amely a fiókodat azonosítja.",
+                    "no_pledge": "Nincs támogatás! A Patreon azonosította a fiókodat, de nem tud aktív támogatásról."
+                },
+                "link": "Nyomd meg ezt a gombot, ha jelenleg támogatod a Kankát a Patreonon, aktiválva a bónuszaid.",
+                "linked": "Köszönjük, hogy támogatsz minket a Patreonon! A fiókjaid összekapcsoltuk.",
+                "pledge": "{name} támogatási szint",
+                "success": "Köszönjük, hogy támogatsz minket a Patreonon!",
+                "title": "Patreon",
+                "wrong_pledge": "A támogatási szintedet manuálisan állítjuk be, így kérjük, adj nekünk pár napot, hogy megfelelően beállíthassuk. Ha továbbra is helytelennek látod, lépj velünk kapcsolatba."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Profil módosítása"
+                },
+                "avatar": "Profilkép",
+                "description": "Profil módosítása",
+                "success": "A profilodat sikeresen módosítottuk.",
+                "title": "Személyes profil"
+            }
+        }
     },
     "it": {
         "admin": [],
@@ -2610,7 +3119,77 @@ export default {
             }
         },
         "entities": [],
-        "randomisers": []
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Vai al Login Kanka",
+                    "update_email": "Aggiorna e-mail",
+                    "update_password": "Aggiorna password"
+                },
+                "description": "Aggiorna il tuo account",
+                "email": "Cambia e-mail",
+                "email_success": "E-Mail aggiornata.",
+                "password": "Cambia password",
+                "password_success": "Password aggiornata.",
+                "social": {
+                    "error": "Stai già utilizzando il login Kanka per questo account.",
+                    "helper": "Il tuo account è attualmente gestito da {provider}. Puoi smettere di utilizzarlo e passare al login standard di Kanka impostando una password.",
+                    "success": "Il tuo account ora utilizza il login Kanka.",
+                    "title": "Social a Kanka"
+                },
+                "title": "Account"
+            },
+            "api": {
+                "description": "Aggiorna le impostazioni delle tue API",
+                "experimental": "Benvenuto alle API di Kanka! Queste caratteristiche sono ancora in fase di sperimentazione ma dovrebbero essere abbastanza stabili per permetterti di incominciare a comunicare con le APIs. Crea un Token di Accesso Personale da utilizzare nelle tue richieste api o utilizza il Token del Client se vuoi che la tua app abbia accesso ai dati utente.",
+                "help": "Kanka fornirà presto una RESTful API in modo che applicazioni di terze parti possano connettervisi. I dettagli su come gestire le tue chiavi API saranno mostrati qui.",
+                "link": "Leggi la documentazione delle API",
+                "request_permission": "Stiamo attualmente creando una potente RESTful API in modo che applicazioni di terze parti possano connettervisi. Stiamo attualmente limitando il numero di utenti che possono interagire con le API mentre le miglioriamo. Se vuoi avere accesso alle API e creare eccezionali apps che comunichino con Kanka, per favore contattaci e noi ti invieremo tutte le informazioni di cui hai bisogno.",
+                "title": "API"
+            },
+            "layout": {
+                "description": "Aggiorna le tue impostazioni di layout",
+                "success": "Impostazioni di layout aggiornate.",
+                "title": "Layout"
+            },
+            "menu": {
+                "account": "Account",
+                "api": "API",
+                "layout": "Layout",
+                "patreon": "Patreon",
+                "personal_settings": "Impostazioni Personali",
+                "profile": "Profilo"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Collega Account",
+                    "view": "Visita Kanka su Patreon"
+                },
+                "benefits": "Supportarci su Patreon fa si che tu possa caricare immagini più grandi, aiuti noi a coprire i costi del server e ci permetti di dedicare più tempo a lavorare su Kanka.",
+                "description": "Connetti con Patreon",
+                "errors": {
+                    "invalid_token": "Token non valido! Patreon non può verificare la tua richiesta.",
+                    "missing_code": "Codice mancante! Patreon non ha ritornato un codice per l'identificazione del tuo account.",
+                    "no_pledge": "Nessun pledge! Patreon ha riconosciuto il tuo account my non è a conoscenza di nessun pledge attivo."
+                },
+                "link": "Usa questo bottone se stai attualmente supportando Kanka su {patreon}. Questo sbloccherà i bonus",
+                "linked": "Grazie per supportare Kanka su Patreon! Il tuo account è stato collegato.",
+                "pledge": "Pledge: {name}",
+                "success": "Grazie per supportare Kanka su Patreon!",
+                "title": "Patreon",
+                "wrong_pledge": "Il livello del tuo pledge è settato manualmente da noi, quindi per favore daccia fino a qualche giorno per settarlo correttamente. Se resta sbagliato per diverso tempo ti preghiamo di contattarci."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Aggiorna profilo"
+                },
+                "avatar": "Immagine del profilo",
+                "description": "Aggiorna il tuo profilo",
+                "success": "Profilo aggiornato.",
+                "title": "Profilo Personale"
+            }
+        }
     },
     "nl": {
         "admin": []
@@ -2832,6 +3411,7 @@ export default {
                 "destroy": {
                     "success": "Správa odstránená."
                 },
+                "is_updated": "Upravená",
                 "load_previous": "Nahrať predchádzajúce správy",
                 "placeholders": {
                     "message": "Tvoja správa"
@@ -2918,7 +3498,7 @@ export default {
                     "delete_all": "Naozaj chceš odstrániť všetky atribúty tohto objektu?"
                 },
                 "hints": {
-                    "is_private": "Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ich ho nastavíš ako súkromný."
+                    "is_private": "Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ho nastavíš ako súkromný."
                 },
                 "index": {
                     "success": "Atribúty pre {entity} upravené.",
@@ -2951,6 +3531,12 @@ export default {
                 }
             },
             "bulk": {
+                "edit": {
+                    "tags": {
+                        "add": "Pridať",
+                        "remove": "Odstrániť"
+                    }
+                },
                 "errors": {
                     "admin": "Iba administrátori kampane vedia zmeniť súkromný štatút objektu."
                 },
@@ -2989,6 +3575,219 @@ export default {
                 "description": "Naozaj chceš odstrániť {tag}?",
                 "mirrored": "Odstrániť zrkadlený vzťah.",
                 "title": "Potvrdiť odstránenie"
+            },
+            "destroy_many": {
+                "success": "{count} objekt zmazaný|{count} objekty zmazané"
+            },
+            "edit": "Upraviť",
+            "errors": {
+                "node_must_not_be_a_descendant": "Neplatný objekt (kategória, miesto): bol by potomok samého seba."
+            },
+            "events": {
+                "hint": "Kalendárne udalosti, ktoré sú prepojené s týmto objektom, sa zobrazujú na tomto mieste."
+            },
+            "export": "Exportovať",
+            "fields": {
+                "attribute_template": "Šablóna atribútov",
+                "calendar": "Kalendár",
+                "calendar_date": "Dátum",
+                "character": "Postava",
+                "colour": "Farba",
+                "copy_attributes": "Kopírovať atribúty",
+                "copy_notes": "Kopírovať poznámky objektu",
+                "creator": "Autor",
+                "dice_roll": "Hod kockou",
+                "entity": "Objekt",
+                "entity_type": "Typ objektu",
+                "entry": "Záznam",
+                "event": "Udalosť",
+                "excerpt": "Výpis",
+                "family": "Rod",
+                "files": "Súbory",
+                "header_image": "Obrázok záhlavia",
+                "image": "Obrázok",
+                "is_private": "Súkromný",
+                "is_star": "Pripnutý",
+                "item": "Predmet",
+                "location": "Miesto",
+                "name": "Názov",
+                "organisation": "Organizácia",
+                "race": "Rasa",
+                "tag": "Deň",
+                "tags": "Štítky",
+                "visibility": "Viditeľnosť"
+            },
+            "files": {
+                "actions": {
+                    "drop": "Kliknutím pridať alebo súbor pretiahnuť na toto miesto (Drag & Drop).",
+                    "manage": "Spravovať súbory objektov"
+                },
+                "errors": {
+                    "max": "Max. počet ({max}) súborov v tomto objekte dosiahnutý."
+                },
+                "files": "Nahraté súbory",
+                "hints": {
+                    "limit": "Do každého objektu môže byť nahratých maximálne {max} súborov.",
+                    "limitations": "Podporované formáty: jpg, png, gif a pdf. Max. veľkosť súboru: {size}."
+                },
+                "title": "Súbory objektu {name}"
+            },
+            "filter": "Filter",
+            "filters": {
+                "all": "Filter zobrazenia všetkých podobjektov",
+                "clear": "Resetovať filter",
+                "direct": "Filter zobrazenia iba priamych podobjektov",
+                "filtered": "Zobraziť {count} z {total} {entity}.",
+                "hide": "Skryť",
+                "show": "Zobraziť",
+                "title": "Filter"
+            },
+            "forms": {
+                "actions": {
+                    "calendar": "Doplniť dátum"
+                },
+                "copy_options": "Kopírovať nastavenia"
+            },
+            "hidden": "Skrytý",
+            "hints": {
+                "attribute_template": "Aplikovať šablónu atribútov automaticky pri vytvorení objektu.",
+                "calendar_date": "Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.",
+                "image_limitations": "Podporované formáty: jpg, png a gif. Max. veľkosť súboru: {size}.",
+                "image_patreon": "Zvýš svoj limit tým, že nás podporíš na Patreone.",
+                "is_private": "Nastaviť ako súkromný.",
+                "is_star": "Pripnuté objekty sa zobrazia v menu objektu.",
+                "map_limitations": "Podporované formáty: jpg, png, gif a svg. Max. veľkosť súboru: {size}.",
+                "visibility": "Ak je viditeľnosť nastavená na \"Admin\", vidia to len členovia a členky roly Admin. Ak je nastavená na \"Vlastník\", môže to vidieť len ty."
+            },
+            "history": {
+                "created": "Vytvorené: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "unknown": "Neznámy",
+                "updated": "Posledná úprava: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "view": "Zobraziť protokol objektu"
+            },
+            "image": {
+                "error": "Požadovaný obrázok nebolo možné stiahnuť. Zdá sa, že daná webová stránka nepovoľuje sťahovanie obrázkov (typické správanie Squarescape a DeviantArt) alebo že link už nie je platný."
+            },
+            "is_private": "Tento objekt je súkromný a neviditeľný pre divákov.",
+            "linking_help": "Ako môžem prepojiť ďalšie objekty?",
+            "manage": "Spravovať",
+            "move": {
+                "description": "Premiestniť objekt na iné miesto",
+                "errors": {
+                    "permission": "Nemáš oprávnenie vytvoriť objekty tohto typu v tejto kampani.",
+                    "same_campaign": "Musíš vybrať inú kampaň, do ktorej chceš daný objekt premiestniť.",
+                    "unknown_campaign": "Neznáma kampaň"
+                },
+                "fields": {
+                    "campaign": "Nová kampaň",
+                    "copy": "Vytvoriť kópiu",
+                    "target": "Nový typ"
+                },
+                "hints": {
+                    "campaign": "Môžeš tiež skúsiť premiestniť tento objekt do inej kampane.",
+                    "copy": "Vyber si túto možnosť, ak chceš vytvoriť kópiu v novej kampani.",
+                    "target": "Prosím, uvedom si, že niektoré dáta môžu zmiznúť, ak sa objekt premiestni do iného typu."
+                },
+                "success": "Objekt {name} premiestnený",
+                "success_copy": "Objekt {name} skopírovaný",
+                "title": "Premiestniť {name} na iné miesto"
+            },
+            "new_entity": {
+                "error": "Prosím, prekontroluj tvoje zadanie.",
+                "fields": {
+                    "name": "Názov"
+                },
+                "title": "Nový objekt"
+            },
+            "or_cancel": "alebo <a href=\"{url}\">Zrušiť</a>",
+            "panels": {
+                "appearance": "Výzor",
+                "attribute_template": "Šablóna atribútov",
+                "calendar_date": "Dátum",
+                "entry": "Záznam",
+                "general_information": "Všeobecné informácie",
+                "move": "Premiestniť",
+                "system": "Systém"
+            },
+            "permissions": {
+                "action": "Akcie",
+                "actions": {
+                    "bulk": {
+                        "add": "Pridať",
+                        "ignore": "Ignorovať",
+                        "remove": "Odstrániť"
+                    },
+                    "delete": "Zmazať",
+                    "edit": "Upraviť",
+                    "entity_note": "Poznámky objektu",
+                    "read": "Čítať",
+                    "toggle": "Prepnúť"
+                },
+                "allowed": "Povolené",
+                "fields": {
+                    "member": "Člen",
+                    "role": "Rola"
+                },
+                "helper": "Použi toto rozhranie na nastavenie oprávnení pre užívateľov a role pre daný objekt.",
+                "success": "Oprávnenia uložené.",
+                "title": "Oprávnenia"
+            },
+            "placeholders": {
+                "calendar": "Vybrať kalendár",
+                "character": "Vybrať postavu",
+                "entity": "Objekt",
+                "event": "Vybrať udalosť",
+                "family": "Vybrať rod",
+                "image_url": "Obrázok je možné pridať aj nahratím cez URL.",
+                "item": "Vybrať predmet",
+                "location": "Vybrať miesto",
+                "organisation": "Vybrať organizáciu",
+                "race": "Vybrať rasu",
+                "tag": "Vybrať deň"
+            },
+            "relations": {
+                "actions": {
+                    "add": "Pridať vzťah"
+                },
+                "fields": {
+                    "location": "Miesto",
+                    "name": "Názov",
+                    "relation": "Vzťah"
+                },
+                "hint": "Vzťahy je možné vytvoriť medzi objektami a zobraziť tak ich prepojenie."
+            },
+            "remove": "Zmazať",
+            "rename": "Premenovať",
+            "save": "Uložiť",
+            "save_and_close": "Uložiť a zavrieť",
+            "save_and_new": "Uložiť a nový",
+            "save_and_update": "Uložiť a upraviť",
+            "save_and_view": "Uložiť a zobraziť",
+            "search": "Hľadať",
+            "select": "Vybrať",
+            "tabs": {
+                "attributes": "Atribúty",
+                "calendars": "Kalendáre",
+                "default": "Štandardný",
+                "events": "Udalosti",
+                "inventory": "Inventár",
+                "map-points": "Značky na mape",
+                "mentions": "Referencie",
+                "menu": "Menu",
+                "notes": "Poznámky",
+                "permissions": "Oprávnenia",
+                "relations": "Vzťahy",
+                "reminders": "Pripomenutia"
+            },
+            "update": "Upraviť",
+            "users": {
+                "unknown": "Neznámy"
+            },
+            "view": "Zobraziť",
+            "visibilities": {
+                "admin": "Admin",
+                "all": "Všetci",
+                "self": "Vlastník"
             }
         },
         "entities": [],

@@ -51,6 +51,9 @@ Route::group([
     Route::get('/settings/layout', 'Settings\LayoutController@index')->name('settings.layout');
     Route::patch('/settings/layout', 'Settings\LayoutController@update')->name('settings.layout');
 
+    Route::get('/settings/subscription', 'Settings\SubscriptionController@index')->name('settings.subscription');
+    Route::delete('/settings/subscription', 'Settings\SubscriptionController@cancel')->name('settings.subscription.cancel');
+
     Route::resources([
         'campaign_boost' => 'CampaignBoostController',
     ]);
@@ -398,6 +401,15 @@ Route::group([
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
 
+});
+
+Route::group(['prefix' => 'subscription-api'], function () {
+    Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
+    Route::get('plans', 'Settings\SubscriptionApiController@getPlans');
+    Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
+    Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
+    Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
+    Route::put('subscription', 'Settings\SubscriptionApiController@updateSubscription');
 });
 
 Route::group(['prefix' => 'admin'], function () {
