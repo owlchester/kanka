@@ -8,7 +8,7 @@ return [
     'fields' => [
         'deleted' => 'Deleted',
     ],
-    'helper' => 'Deleted entities are recoverable for up to 30 days when using this interface.',
+    'helper' => 'Deleted entities are recoverable for up to :count days when using this interface.',
     'success' => '{1} :count entity was recovered.|[2,*] :count entities were recovered.',
     'error' => 'An error occurred trying to recover entities.',
 
