@@ -91,6 +91,7 @@ return [
         ],
     ],
     'boosted'           => 'Mejorada',
+    'boosted_campaigns' => 'Campañas mejoradas',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Editar y etiquetar en lote',
@@ -148,6 +149,7 @@ return [
     ],
     'edit'              => 'Editar',
     'errors'            => [
+        'boosted'                       => 'Esta función solo está disponible para las campañas mejoradas.',
         'node_must_not_be_a_descendant' => 'Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo.',
     ],
     'events'            => [
@@ -155,6 +157,7 @@ return [
     ],
     'export'            => 'Exportar',
     'fields'            => [
+        'ability'               => 'Habilidad',
         'attribute_template'    => 'Plantilla de atributos',
         'calendar'              => 'Calendario',
         'calendar_date'         => 'Fecha del calendario',
@@ -298,6 +301,7 @@ return [
             'edit'          => 'Editar',
             'entity_note'   => 'Notas de entidad',
             'read'          => 'Leer',
+            'toggle'        => 'Cambiar',
         ],
         'allowed'           => 'Permitido',
         'fields'            => [
@@ -312,6 +316,7 @@ return [
         'too_many_members'  => 'Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente.',
     ],
     'placeholders'      => [
+        'ability'       => 'Escoge una habilidad',
         'calendar'      => 'Escoge un calendario',
         'character'     => 'Escoge un personaje',
         'entity'        => 'Entidad',
@@ -345,6 +350,7 @@ return [
     'search'            => 'Buscar',
     'select'            => 'Seleccionar',
     'tabs'              => [
+        'abilities'     => 'Habilidades',
         'attributes'    => 'Atributos',
         'boost'         => 'Mejorar',
         'calendars'     => 'Calendarios',
@@ -366,8 +372,9 @@ return [
     ],
     'view'              => 'Ver',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Todos',
-        'self'  => 'Solo yo',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Yo + Admin',
+        'all'           => 'Todos',
+        'self'          => 'Solo yo',
     ],
 ];

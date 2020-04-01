@@ -48,6 +48,7 @@ return [
             'title'         => 'API',
         ],
         'boosts'            => [
+            'beta'          => 'Acceso beta a algunas funciones nuevas 30 días antes del lanzamiento general.',
             'boosted'       => 'Campaña mejorada',
             'css'           => 'CSS personalizado de la campaña',
             'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
@@ -163,6 +164,7 @@ return [
         'register'  => 'Registrarse',
         'releases'  => 'Lanzamientos',
         'roadmap'   => 'Hoja de ruta',
+        'terms'     => 'Términos y condiciones',
         'title'     => 'Menú',
     ],
     'meta'          => [
@@ -220,5 +222,9 @@ return [
     ],
     'team'          => [
         'coffee'    => '¡Invítame a un café!',
+    ],
+    'terms'         => [
+        'description'   => 'Fecha efectiva: 4 de marzo de 2020',
+        'title'         => 'Términos y condiciones',
     ],
 ];
