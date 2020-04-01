@@ -22,7 +22,7 @@ When calling the API, add the following headers:
 
 ```json
     Authorization: Bearer user_token_here
-    Accept: application/json
+    Content-type: application/json
 ```
 
 <a name="endpoints"></a>
@@ -36,5 +36,5 @@ The API is set up to allow a maximum of 30 requests per minute per client. When 
 
 You can increase this limit to 90 requests per minute by becoming a [Patreon](https://patreon.com/kankaio).
 
---- 
+---
 Next up: [Profile](/docs/{{version}}/profile)
