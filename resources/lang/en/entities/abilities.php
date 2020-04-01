@@ -4,7 +4,7 @@ return [
     'actions'   => [
         'add'   => 'Add an ability',
     ],
-    'create' => [
+    'create'    => [
         'title' => 'Add an ability to :name',
     ],
     'show'      => [

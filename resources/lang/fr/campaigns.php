@@ -304,6 +304,7 @@ return [
             'information'   => 'Information',
             'members'       => 'Membres',
             'menu'          => 'Menu',
+            'recovery'      => 'Récupération',
             'roles'         => 'Rôles',
             'settings'      => 'Modules',
         ],

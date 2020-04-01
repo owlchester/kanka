@@ -96,6 +96,9 @@ return [
         'actions'       => [
             'edit'  => 'Opération de masse',
         ],
+        'age'           => [
+            'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'age dynamiquement.',
+        ],
         'edit'          => [
             'tagging'   => 'Action pour les étiquettes',
             'tags'      => [

@@ -53,6 +53,7 @@ return [
             'css'           => 'CSS personnalisé pour la campagne',
             'description'   => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
             'header_image'  => 'Image d\'entête pour entité',
+            'recovery'      => 'Récupération d\'entité pendant 30 jours',
             'theme'         => 'Thème de campagne fixe',
             'title'         => 'Campagnes Boostées',
             'tooltip'       => 'Tooltip d\'entité personnalisé',
