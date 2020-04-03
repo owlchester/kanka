@@ -120,7 +120,6 @@ Route::group([
 
         // Organisation menu
         Route::get('/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
-        Route::get('/organisations/{organisation}/all-members', 'OrganisationController@allMembers')->name('organisations.all-members');
         Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
         Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
         Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
@@ -128,7 +127,6 @@ Route::group([
 
         // Families menu
         Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
-        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
         Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
         Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');

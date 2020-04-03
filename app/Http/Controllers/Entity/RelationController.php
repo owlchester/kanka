@@ -56,11 +56,11 @@ class RelationController extends Controller
             ->relationships()
             ->select('relations.*')
             ->with('target')
+            ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->acl()
             ->simpleSort($datagridSorter)
             ->paginate();
-
 
         return view('entities.pages.relations.index', compact(
             'ajax',
