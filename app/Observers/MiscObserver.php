@@ -4,13 +4,10 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Jobs\EntityMentionJob;
 use App\Models\Entity;
-use App\Models\EntityEvent;
 use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver

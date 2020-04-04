@@ -1,6 +1,7 @@
 <?php
 /**
  * View used in Quest and Journals form "calendar" tab
+ * @var \App\Models\Journal $model
  */
 $calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
@@ -64,7 +65,7 @@ if (!empty($oldCalendarID)) {
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.colour') }}</label>
-                        {!! Form::select('calendar_colour', FormCopy::colours(false), !empty($model) && $model->hasCalendar() ? null : 'grey', ['class' => 'form-control']) !!}
+                        {!! Form::select('calendar_colour', FormCopy::colours(false), !empty($model) && $model->hasCalendar() ? $model->calendarColour : 'grey', ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>
