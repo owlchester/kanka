@@ -126,7 +126,8 @@ Route::group([
         Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
         // Families menu
-        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
+        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
+
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
         Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
         Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');
