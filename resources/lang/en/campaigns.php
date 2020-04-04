@@ -220,6 +220,7 @@ return [
         'hints'         => [
             'public'            => 'The Public role is used when someone browses your public campaign. :more',
             'role_permissions'  => 'Enable the \':name\' role to do the following actions on all entities.',
+            'campaign_not_public' => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.'
         ],
         'members'       => 'Members',
         'permissions'   => [

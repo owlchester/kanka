@@ -1,6 +1,6 @@
 <?php
 /** @var \App\Models\Attribute $attribute */
-$id = isset($resetAttributeId) ? null : $attribute->id;
+$id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
 ?>
 
 <div class="form-group">

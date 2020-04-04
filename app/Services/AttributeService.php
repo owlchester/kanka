@@ -197,16 +197,28 @@ class AttributeService
         $stars = Arr::get($request, 'attr_is_star', []);
         $templateId = Arr::get($request, 'template_id', null);
 
+        dump($names);
+        dump($values);
+        dump($types);
+
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
-            if (empty($name)) {
+            if (empty($name) || $name == '$TMP_ID') {
                 continue;
             }
 
-            $value = $values[$id];
+            $value = $values[$id] ?? '';
             $type = $types[$id];
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
+
+            if ($id == -1002) {
+                dump($name);
+                dump($value);
+                dump($type);
+                dump($isPrivate);
+                dump($isStar);
+            }
 
             if (!empty($existing[$id])) {
                 // Edit an existing attribute
@@ -248,6 +260,7 @@ class AttributeService
             $order = $template->apply($entity, $order);
         }
 
+//        dd('a');
         return $order;
     }
 

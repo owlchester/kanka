@@ -76,9 +76,6 @@
                     <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
-{{--                    <a href="{{ config('patreon.url') }}" target="patreon" title="Patreon" rel="noreferrer">--}}
-{{--                        <i class="fab fa-patreon"></i>--}}
-{{--                    </a>--}}
                 </div>
 
                 <div class="copyright">

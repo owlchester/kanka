@@ -10,10 +10,10 @@
     @include('partials.errors')
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-lg-2">
             @include('campaigns._menu', ['active' => 'recovery'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-lg-10">
             {{ Form::open(['route' => ['recovery']]) }}
             <div class="box no-border">
                 <div class="box-body">
@@ -21,7 +21,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 40px">
                                 </th>
                                 <th class="avatar"></th>
                                 <th>{{ __('crud.fields.name') }}</th>
