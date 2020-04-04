@@ -60,7 +60,7 @@ trait CalendarDateTrait
      */
     public function hasCalendar()
     {
-        return !empty($this->calendar_id);
+        return !empty($this->calendar_id) && $this->calendar;
     }
 
     /**

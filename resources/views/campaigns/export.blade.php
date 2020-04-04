@@ -12,10 +12,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3 col-lg-2">
+        <div class="col-md-3">
             @include('campaigns._menu', ['active' => 'export'])
         </div>
-        <div class="col-md-9 col-lg-10">
+        <div class="col-md-9">
             <div class="box box-solid">
                 <div class="box-body">
                     @include('campaigns._export')
