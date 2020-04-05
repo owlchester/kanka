@@ -88,8 +88,8 @@ class FilterService
         }
 
         // Foreign keys that are not set might have been cleared. If so, remove them from the filters.
-        // However only do this if not ordering
-        if (!empty($this->data) && !array_key_exists('order', $this->data)) {
+        // However only do this if not ordering or changing pages
+        if (!empty($this->data) && !array_key_exists('order', $this->data) && !array_key_exists('page', $this->data)) {
             foreach ($availableFilters as $filter) {
                 if (!isset($this->data[$filter]) && Str::endsWith($filter, '_id')) {
                     $this->filters[$filter] = null;
