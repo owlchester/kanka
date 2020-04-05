@@ -3,6 +3,7 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Family;
+use App\Models\Race;
 
 class CharacterFilter extends DatagridFilter
 {
@@ -29,7 +30,7 @@ class CharacterFilter extends DatagridFilter
                 'type' => 'select2',
                 'route' => route('races.find'),
                 'placeholder' =>  __('crud.placeholders.race'),
-                'model' => Family::class,
+                'model' => Race::class,
             ])
             ->add('type')
             ->add('age')
