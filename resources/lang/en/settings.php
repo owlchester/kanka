@@ -60,6 +60,7 @@ return [
     'menu'      => [
         'account'           => 'Account',
         'api'               => 'API',
+        'billing'           => 'Payment Method',
         'boost'             => 'Boost',
         'layout'            => 'Layout',
         'patreon'           => 'Patreon',
@@ -99,29 +100,43 @@ return [
         'title'         => 'Personal Profile',
     ],
     'subscription' => [
+        'billing' => [
+            'title' => 'Edit Payment Method',
+            'helper' => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
+            'saved' => 'Saved payment method',
+        ],
+        'currencies' => [
+            'eur' => 'Euro',
+            'usd' => 'USD',
+        ],
         'manage_subscription' => 'Manage your subscription',
         'benefits'          => 'By supporting us, you can unlock some new :features and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use :strip to handle all billing.',
-        'sub_status' => 'Subscription status',
+        'sub_status' => 'Subscription information',
         'fields' => [
+            'currency' => 'Billing Currency',
             'plan' => 'Current plan',
-            'price' => 'Price',
+            'billed_monthly' => 'Billed monthly',
             'active_since' => 'Active since',
             'active_until' => 'Active until',
+            'payment_method' => 'Payment method',
         ],
         'actions' => [
             'cancel_sub' => 'Cancel subscription',
+            'update_currency' => 'Save prefered currency'
         ],
         'payment_method' => [
             'card' => 'Card',
-            'card_name' => 'Card Holder Name',
-            'new_card' => 'New Card',
-            'add_one' => 'Please add at least one payment method before being able to continue.',
+            'card_name' => 'Name on card',
+            'new_card' => 'Add a new payment method',
+            'add_one' => 'You currently have no payment method saved.',
             'actions' => [
                 'save' => 'Save payment method',
                 'add_new' => 'Add a new payment method',
             ],
+            'helper' => 'This card will be used for all of your subscriptions.',
             'select' => 'Select a method payment',
             'ending' => 'Ending in',
+            'saved' => ':brand ending with :last4'
         ],
         'subscription' => [
             'select' => 'Select subscription',
@@ -131,6 +146,7 @@ return [
             ],
         ],
         'success' => [
+            'currency' => 'Your prefered currency setting was updated.',
             'cancel' => 'Your subscription was cancelled.',
             'subscribed' => 'Your subscription was successful.',
         ]

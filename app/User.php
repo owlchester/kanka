@@ -427,4 +427,16 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->isGoblinPatron() ? 90 : 30;
     }
+
+    /**
+     * Currency symbol
+     * @return string
+     */
+    public function currencySymbol(): string
+    {
+        if ($this->currency === 'eur') {
+            return '€';
+        }
+        return '$';
+    }
 }

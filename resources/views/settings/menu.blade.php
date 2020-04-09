@@ -48,6 +48,11 @@
     </div>
     <div class="box-body no-padding">
         <ul class="nav nav-pills nav-stacked">
+            <li class="@if(!empty($active) && $active == 'billing')active @endif">
+                <a href="{{ route('settings.billing') }}">
+                    {{ __('settings.menu.billing') }}
+                </a>
+            </li>
             <li class="@if(!empty($active) && $active == 'subscription')active @endif">
                 <a href="{{ route('settings.subscription') }}">
                     {{ __('settings.menu.subscription_status') }}

@@ -25,12 +25,14 @@ class SubscriptionController extends Controller
         $status = $this->subscription->user(Auth::user())->status();
         $currentPlan = $this->subscription->currentPlan();
         $user = Auth::user();
+        $currency = $user->currencySymbol();
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
             'status',
             'currentPlan',
-            'user'
+            'user',
+            'currency'
         ));
     }
 

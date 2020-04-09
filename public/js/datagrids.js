@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -173,7 +173,7 @@ function toggleCrudMultiDelete() {
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /*!*********************************************!*\
   !*** multi ./resources/assets/js/datagrids ***!
   \*********************************************/

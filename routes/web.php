@@ -52,6 +52,8 @@ Route::group([
     Route::patch('/settings/layout', 'Settings\LayoutController@update')->name('settings.layout');
 
     Route::get('/settings/subscription', 'Settings\SubscriptionController@index')->name('settings.subscription');
+    Route::get('/settings/billing-information', 'Settings\BillingController@index')->name('settings.billing');
+    Route::patch('/settings/billing-information', 'Settings\BillingController@save')->name('settings.billing.save');
     Route::delete('/settings/subscription', 'Settings\SubscriptionController@cancel')->name('settings.subscription.cancel');
 
     Route::resources([

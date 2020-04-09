@@ -63,7 +63,11 @@ class SubscriptionService
             return $plans[1];
         }
 
-        return [];
+        // Free user?
+        return [
+            'name' => 'Kobold',
+            'price' => 'Free'
+        ];
     }
 
     /**
@@ -81,7 +85,7 @@ class SubscriptionService
      */
     public function owlbearPlanID(): string
     {
-        return 'plan_GpUqLFK2wNkwwD';
+        return $this->user->currency === 'eur' ? 'plan_GpUrfPuJGBQGbx' : 'plan_GpUqLFK2wNkwwD';
     }
 
     /**
@@ -89,7 +93,7 @@ class SubscriptionService
      */
     public function elementalPlanID(): string
     {
-        return 'plan_GpUs553mkmyDpA';
+        return $this->user->currency === 'eur' ? 'plan_GpUrfPuJGBQGbx' : 'plan_GpUs553mkmyDpA';
     }
 
     /**
@@ -104,14 +108,39 @@ class SubscriptionService
                 'name' => 'Owlbear',
                 'colour' => 'green',
                 'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png',
-                'price' => '5 / ' . __('front.pricing.tier.month')
+                'price' => '5 / ' . __('front.pricing.tier.month'),
+                'benefits' => [
+                    __('front.features.patreon.upload_limit') => "8 mb",
+                    __('front.features.patreon.upload_limit_map') => "10 mb",
+                    __('front.features.patreon.discord') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.default_image')  => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.api_calls')  => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.pagination')  => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.monthly_vote')  => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.boosts')  => "3",
+                ],
             ],
             [
                 'key' => $this->elementalPlanID(),
                 'name' => 'Elemental',
                 'colour' => 'red',
                 'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png',
-                'price' => '25 / ' . __('front.pricing.tier.month')
+                'price' => '25 / ' . __('front.pricing.tier.month'),
+                'benefits' => [
+                    __('front.features.patreon.upload_limit') => '25 mb',
+                    __('front.features.patreon.upload_limit_map') => '25 mb',
+                    __('front.features.patreon.discord') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.default_image') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.api_calls') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.pagination') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.monthly_vote') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.boosts') => '10',
+                    __('front.features.patreon.curation') => '<i class="fa fa-check-circle"></i>',
+                    __('front.features.patreon.impact') => '<i class="fa fa-check-circle"></i>',
+
+                ],
             ]
         ];
     }

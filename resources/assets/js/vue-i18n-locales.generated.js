@@ -1024,6 +1024,11 @@ export default {
                 "title": "Personal Profile"
             },
             "subscription": {
+                "billing": {
+                    "title": "Edit Payment Method",
+                    "helper": "Your billing information is processed and stored safely through {stripe}. This payment method is used for all of your subscriptions.",
+                    "saved": "Saved payment method"
+                },
                 "manage_subscription": "Manage your subscription",
                 "benefits": "By supporting us, you can unlock some new {features} and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use {strip} to handle all billing.",
                 "sub_status": "Subscription status",
@@ -1038,13 +1043,14 @@ export default {
                 },
                 "payment_method": {
                     "card": "Card",
-                    "card_name": "Card Holder Name",
-                    "new_card": "New Card",
-                    "add_one": "Please add at least one payment method before being able to continue.",
+                    "card_name": "Name on card",
+                    "new_card": "Add a new payment method",
+                    "add_one": "You currently have no payment method saved.",
                     "actions": {
                         "save": "Save payment method",
                         "add_new": "Add a new payment method"
                     },
+                    "helper": "This card will be used for all of your subscriptions.",
                     "select": "Select a method payment",
                     "ending": "Ending in"
                 },
@@ -1054,6 +1060,10 @@ export default {
                         "subscribe": "Subscribe",
                         "processing": "Processing"
                     }
+                },
+                "success": {
+                    "cancel": "Your subscription was cancelled.",
+                    "subscribed": "Your subscription was successful."
                 }
             }
         }
