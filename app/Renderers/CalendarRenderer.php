@@ -671,7 +671,7 @@ class CalendarRenderer
 
         // Day longer than month?
         $months = $this->calendar->months();
-        $currentMonth = $months[$month - 1];
+        $currentMonth = $months[max($month - 1, 0)];
         //$previousMonth = $month > 1 ? $months[$month-1] : last($months);
         if ($day > $currentMonth['length']) {
             $day = 1;

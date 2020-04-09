@@ -74,6 +74,7 @@ class RecoveryService
         $entity->restore();
 
         // Refresh the child first to not re-trigger the entity creation on save
+        $child->savingObserver = false;
         $child->refresh();
         $child->restore();
         return true;

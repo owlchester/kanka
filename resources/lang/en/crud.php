@@ -247,6 +247,8 @@ return [
         'unknown'   => 'Unknown',
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'      => 'View entity log',
+        'created_date' => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date' => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',

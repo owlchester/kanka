@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\Mentions;
 use App\Models\QuestLocation;
 
 class QuestLocationObserver
@@ -16,6 +17,6 @@ class QuestLocationObserver
      */
     public function saving(QuestLocation $questLocation)
     {
-        $questLocation->description = $this->purify($questLocation->description);
+        $questLocation->description = $this->purify(Mentions::codify($questLocation->description));
     }
 }

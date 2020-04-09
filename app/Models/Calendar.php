@@ -188,7 +188,9 @@ class Calendar extends MiscModel
                     $sub->orWhere(function ($subsub) {
                         $subsub
                             ->where('is_recurring', true)
-                            ->where('year', '<=', Arr::get($this->cachedCurrentDate, 0, 1))
+                            // We want recurring events that will start in the future, just in case. Limit it to +2
+                            // years to avoid performance drop
+                            ->where('year', '<=', Arr::get($this->cachedCurrentDate, 0, 1) + 2)
                             ->where(function ($datesub) {
                                 $datesub->whereNull('recurring_until')
                                     ->orWhereRaw("recurring_until >= '" . $this->currentDate('year') . "'");

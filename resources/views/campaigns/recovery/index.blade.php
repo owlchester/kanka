@@ -21,7 +21,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 40px">
                                 </th>
                                 <th class="avatar"></th>
                                 <th>{{ __('crud.fields.name') }}</th>
