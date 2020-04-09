@@ -37,6 +37,7 @@ export default {
                 "destroy": {
                     "success": "Nachricht gelöscht."
                 },
+                "is_updated": "Aktualisiert",
                 "load_previous": "Lade vorherige Nachrichten",
                 "placeholders": {
                     "message": "Deine Nachricht"
@@ -292,7 +293,7 @@ export default {
                     "target": "Neuer Typ"
                 },
                 "hints": {
-                    "campaign": "Du kannst auch versuchen, diese Objekt in eine andere Kampagne zu verschieben.",
+                    "campaign": "Du kannst auch versuchen, dieses Objekt in eine andere Kampagne zu verschieben.",
                     "copy": "Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.",
                     "target": "Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird."
                 },
@@ -401,6 +402,7 @@ export default {
     "en": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Create a new conversation",
@@ -565,6 +567,9 @@ export default {
                 "actions": {
                     "edit": "Bulk Edit & Tagging"
                 },
+                "age": {
+                    "helper": "You can use + and - before the number to update the age by that amount."
+                },
                 "edit": {
                     "tagging": "Action for tags",
                     "tags": {
@@ -618,8 +623,8 @@ export default {
             },
             "edit": "Edit",
             "errors": {
-                "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself.",
-                "boosted": "This feature is only available to boosted campaigns."
+                "boosted": "This feature is only available to boosted campaigns.",
+                "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself."
             },
             "events": {
                 "hint": "Shown below is a list of all the Calendars in which this entity was added using the \"Add an event to a calendar\" interface."
@@ -842,9 +847,9 @@ export default {
             "view": "View",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Self & Admin",
                 "all": "All",
-                "self": "Self",
-                "admin-self": "Self & Admin"
+                "self": "Self"
             }
         },
         "entities": [],
@@ -852,6 +857,7 @@ export default {
         "randomisers": []
     },
     "en-US": {
+        "admin": [],
         "calendars": [],
         "crud": {
             "fields": {
@@ -862,6 +868,7 @@ export default {
                 "organisation": "Choose an organization"
             }
         },
+        "entities": [],
         "randomisers": []
     },
     "es": {
@@ -1026,9 +1033,13 @@ export default {
                 }
             },
             "boosted": "Mejorada",
+            "boosted_campaigns": "Campañas mejoradas",
             "bulk": {
                 "actions": {
                     "edit": "Editar y etiquetar en lote"
+                },
+                "age": {
+                    "helper": "Puedes usar + y - antes del número para actualizar la edad en dicha cantidad."
                 },
                 "edit": {
                     "tagging": "Acción para las etiquetas",
@@ -1083,6 +1094,7 @@ export default {
             },
             "edit": "Editar",
             "errors": {
+                "boosted": "Esta función solo está disponible para las campañas mejoradas.",
                 "node_must_not_be_a_descendant": "Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo."
             },
             "events": {
@@ -1090,6 +1102,7 @@ export default {
             },
             "export": "Exportar",
             "fields": {
+                "ability": "Habilidad",
                 "attribute_template": "Plantilla de atributos",
                 "calendar": "Calendario",
                 "calendar_date": "Fecha del calendario",
@@ -1232,7 +1245,8 @@ export default {
                     "delete": "Eliminar",
                     "edit": "Editar",
                     "entity_note": "Notas de entidad",
-                    "read": "Leer"
+                    "read": "Leer",
+                    "toggle": "Cambiar"
                 },
                 "allowed": "Permitido",
                 "fields": {
@@ -1247,6 +1261,7 @@ export default {
                 "too_many_members": "Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente."
             },
             "placeholders": {
+                "ability": "Escoge una habilidad",
                 "calendar": "Escoge un calendario",
                 "character": "Escoge un personaje",
                 "entity": "Entidad",
@@ -1280,6 +1295,7 @@ export default {
             "search": "Buscar",
             "select": "Seleccionar",
             "tabs": {
+                "abilities": "Habilidades",
                 "attributes": "Atributos",
                 "boost": "Mejorar",
                 "calendars": "Calendarios",
@@ -1302,6 +1318,7 @@ export default {
             "view": "Ver",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Yo + Admin",
                 "all": "Todos",
                 "self": "Solo yo"
             }
@@ -1471,9 +1488,13 @@ export default {
                 }
             },
             "boosted": "Boosté",
+            "boosted_campaigns": "Campagnes Boostées",
             "bulk": {
                 "actions": {
                     "edit": "Opération de masse"
+                },
+                "age": {
+                    "helper": "Il est possible de préfixer le numéro avec + ou - pour modifier l'age dynamiquement."
                 },
                 "edit": {
                     "tagging": "Action pour les étiquettes",
@@ -1528,6 +1549,7 @@ export default {
             },
             "edit": "Modifier",
             "errors": {
+                "boosted": "Cette fonctionalité n'est que accessible pour aux campagnes boostées..",
                 "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même."
             },
             "events": {
@@ -1535,6 +1557,7 @@ export default {
             },
             "export": "Export",
             "fields": {
+                "ability": "Pouvoirs",
                 "attribute_template": "Modèle d'attribut",
                 "calendar": "Calendrier",
                 "calendar_date": "Date calendrier",
@@ -1693,6 +1716,7 @@ export default {
                 "too_many_members": "Cette campagne a trop de members (>10) pour afficher cette interface correctement. Prière d'utiliser le boutton Permission sur la vue de l'entité pour gérer les permissions."
             },
             "placeholders": {
+                "ability": "Choix d'un pouvoir",
                 "calendar": "Choix du calendrier",
                 "character": "Choix du personnage",
                 "entity": "Entité",
@@ -1726,6 +1750,7 @@ export default {
             "search": "Rechercher",
             "select": "Sélection",
             "tabs": {
+                "abilities": "Pouvoirs",
                 "attributes": "Attributs",
                 "boost": "Boost",
                 "calendars": "Calendriers",
@@ -1748,6 +1773,7 @@ export default {
             "view": "Voir",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Sois-même & Admin",
                 "all": "Tous",
                 "self": "Sois-même"
             }
@@ -1829,9 +1855,11 @@ export default {
         },
         "crud": {
             "actions": {
+                "actions": "Akciók",
                 "apply": "Alkalmaz",
                 "back": "Vissza",
                 "copy": "Másolás",
+                "copy_mention": "Említett [ ] másolása",
                 "copy_to_campaign": "Másolás Kampányba",
                 "explore_view": "Hierarchikus nézet",
                 "export": "Export",
@@ -1845,6 +1873,9 @@ export default {
                 "public": "Nyilvános"
             },
             "add": "Hozzáadás",
+            "alerts": {
+                "copy_mention": "Az entitás említését átmásoltuk a vágólapodra."
+            },
             "attributes": {
                 "actions": {
                     "add": "Tulajdonság hozzáadása",
@@ -1912,10 +1943,14 @@ export default {
                     "tab": "A tulajdonság csak a Tulajdonságok fülön jelenik meg."
                 }
             },
-            "boosted": "Boost-olt",
+            "boosted": "Kiemelt",
+            "boosted_campaigns": "Kiemelt kampányok",
             "bulk": {
                 "actions": {
                     "edit": "Tömeges szerkesztés, és címkézés"
+                },
+                "age": {
+                    "helper": "Használhatod a + és - gombokat a szám előtt, hogy frissítsd a korát az adott számmal."
                 },
                 "edit": {
                     "tagging": "Címkézési esemény",
@@ -1970,6 +2005,7 @@ export default {
             },
             "edit": "Szerkesztés",
             "errors": {
+                "boosted": "Ez a lehetőség csak a kiemelt kampányokban érhető el.",
                 "node_must_not_be_a_descendant": "Érvénytelen csomópont (címke, előd helyszín): saját maga leszármazottja lehet."
             },
             "events": {
@@ -1977,6 +2013,7 @@ export default {
             },
             "export": "Export",
             "fields": {
+                "ability": "Képesség",
                 "attribute_template": "Tulajdonságsablon",
                 "calendar": "Naptár",
                 "calendar_date": "Naptári dátum",
@@ -2014,7 +2051,8 @@ export default {
                     "manage": "Az entitás állományainak kezelése"
                 },
                 "errors": {
-                    "max": "Elérted az entitáshoz rendelhető állományok maximális számát ({max})."
+                    "max": "Elérted az entitáshoz rendelhető állományok maximális számát ({max}).",
+                    "no_files": "Nincs állomány."
                 },
                 "files": "Feltöltött állomány",
                 "hints": {
@@ -2118,7 +2156,8 @@ export default {
                     "delete": "Törlés",
                     "edit": "Szerkesztés",
                     "entity_note": "Entitás jegyzetek",
-                    "read": "Olvasás"
+                    "read": "Olvasás",
+                    "toggle": "Átkapcsolás"
                 },
                 "allowed": "Engedélyezett",
                 "fields": {
@@ -2129,9 +2168,11 @@ export default {
                 "inherited": "Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.",
                 "inherited_by": "Ez a felhasználó tagja a '{role}' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.",
                 "success": "Engedélyeket elmentettük.",
-                "title": "Engedélyek"
+                "title": "Engedélyek",
+                "too_many_members": "A kampánynak túl sok tagja (>10) van ahhoz, hogy kijelezzük ezen a felületen. Kérjük, használd az entitás nézetben az Engedély gombot, hogy kezeld az engedélyek részleteit."
             },
             "placeholders": {
+                "ability": "Válassz egy képességet",
                 "calendar": "Válassz egy naptárat!",
                 "character": "Válassz egy karaktert!",
                 "entity": "Entitás",
@@ -2165,6 +2206,7 @@ export default {
             "search": "Keresés",
             "select": "Kiválasztás",
             "tabs": {
+                "abilities": "Képességek",
                 "attributes": "Tulajdonságok",
                 "boost": "Boost",
                 "calendars": "Naptárak",
@@ -2187,6 +2229,7 @@ export default {
             "view": "Megtekintés",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Magam és az admin",
                 "all": "Mindenki",
                 "self": "Magam"
             }
@@ -2832,6 +2875,7 @@ export default {
                 "destroy": {
                     "success": "Správa odstránená."
                 },
+                "is_updated": "Upravená",
                 "load_previous": "Nahrať predchádzajúce správy",
                 "placeholders": {
                     "message": "Tvoja správa"
@@ -2918,7 +2962,7 @@ export default {
                     "delete_all": "Naozaj chceš odstrániť všetky atribúty tohto objektu?"
                 },
                 "hints": {
-                    "is_private": "Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ich ho nastavíš ako súkromný."
+                    "is_private": "Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ho nastavíš ako súkromný."
                 },
                 "index": {
                     "success": "Atribúty pre {entity} upravené.",
@@ -2951,6 +2995,12 @@ export default {
                 }
             },
             "bulk": {
+                "edit": {
+                    "tags": {
+                        "add": "Pridať",
+                        "remove": "Odstrániť"
+                    }
+                },
                 "errors": {
                     "admin": "Iba administrátori kampane vedia zmeniť súkromný štatút objektu."
                 },
@@ -2989,6 +3039,219 @@ export default {
                 "description": "Naozaj chceš odstrániť {tag}?",
                 "mirrored": "Odstrániť zrkadlený vzťah.",
                 "title": "Potvrdiť odstránenie"
+            },
+            "destroy_many": {
+                "success": "{count} objekt zmazaný|{count} objekty zmazané"
+            },
+            "edit": "Upraviť",
+            "errors": {
+                "node_must_not_be_a_descendant": "Neplatný objekt (kategória, miesto): bol by potomok samého seba."
+            },
+            "events": {
+                "hint": "Kalendárne udalosti, ktoré sú prepojené s týmto objektom, sa zobrazujú na tomto mieste."
+            },
+            "export": "Exportovať",
+            "fields": {
+                "attribute_template": "Šablóna atribútov",
+                "calendar": "Kalendár",
+                "calendar_date": "Dátum",
+                "character": "Postava",
+                "colour": "Farba",
+                "copy_attributes": "Kopírovať atribúty",
+                "copy_notes": "Kopírovať poznámky objektu",
+                "creator": "Autor",
+                "dice_roll": "Hod kockou",
+                "entity": "Objekt",
+                "entity_type": "Typ objektu",
+                "entry": "Záznam",
+                "event": "Udalosť",
+                "excerpt": "Výpis",
+                "family": "Rod",
+                "files": "Súbory",
+                "header_image": "Obrázok záhlavia",
+                "image": "Obrázok",
+                "is_private": "Súkromný",
+                "is_star": "Pripnutý",
+                "item": "Predmet",
+                "location": "Miesto",
+                "name": "Názov",
+                "organisation": "Organizácia",
+                "race": "Rasa",
+                "tag": "Deň",
+                "tags": "Štítky",
+                "visibility": "Viditeľnosť"
+            },
+            "files": {
+                "actions": {
+                    "drop": "Kliknutím pridať alebo súbor pretiahnuť na toto miesto (Drag & Drop).",
+                    "manage": "Spravovať súbory objektov"
+                },
+                "errors": {
+                    "max": "Max. počet ({max}) súborov v tomto objekte dosiahnutý."
+                },
+                "files": "Nahraté súbory",
+                "hints": {
+                    "limit": "Do každého objektu môže byť nahratých maximálne {max} súborov.",
+                    "limitations": "Podporované formáty: jpg, png, gif a pdf. Max. veľkosť súboru: {size}."
+                },
+                "title": "Súbory objektu {name}"
+            },
+            "filter": "Filter",
+            "filters": {
+                "all": "Filter zobrazenia všetkých podobjektov",
+                "clear": "Resetovať filter",
+                "direct": "Filter zobrazenia iba priamych podobjektov",
+                "filtered": "Zobraziť {count} z {total} {entity}.",
+                "hide": "Skryť",
+                "show": "Zobraziť",
+                "title": "Filter"
+            },
+            "forms": {
+                "actions": {
+                    "calendar": "Doplniť dátum"
+                },
+                "copy_options": "Kopírovať nastavenia"
+            },
+            "hidden": "Skrytý",
+            "hints": {
+                "attribute_template": "Aplikovať šablónu atribútov automaticky pri vytvorení objektu.",
+                "calendar_date": "Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.",
+                "image_limitations": "Podporované formáty: jpg, png a gif. Max. veľkosť súboru: {size}.",
+                "image_patreon": "Zvýš svoj limit tým, že nás podporíš na Patreone.",
+                "is_private": "Nastaviť ako súkromný.",
+                "is_star": "Pripnuté objekty sa zobrazia v menu objektu.",
+                "map_limitations": "Podporované formáty: jpg, png, gif a svg. Max. veľkosť súboru: {size}.",
+                "visibility": "Ak je viditeľnosť nastavená na \"Admin\", vidia to len členovia a členky roly Admin. Ak je nastavená na \"Vlastník\", môže to vidieť len ty."
+            },
+            "history": {
+                "created": "Vytvorené: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "unknown": "Neznámy",
+                "updated": "Posledná úprava: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "view": "Zobraziť protokol objektu"
+            },
+            "image": {
+                "error": "Požadovaný obrázok nebolo možné stiahnuť. Zdá sa, že daná webová stránka nepovoľuje sťahovanie obrázkov (typické správanie Squarescape a DeviantArt) alebo že link už nie je platný."
+            },
+            "is_private": "Tento objekt je súkromný a neviditeľný pre divákov.",
+            "linking_help": "Ako môžem prepojiť ďalšie objekty?",
+            "manage": "Spravovať",
+            "move": {
+                "description": "Premiestniť objekt na iné miesto",
+                "errors": {
+                    "permission": "Nemáš oprávnenie vytvoriť objekty tohto typu v tejto kampani.",
+                    "same_campaign": "Musíš vybrať inú kampaň, do ktorej chceš daný objekt premiestniť.",
+                    "unknown_campaign": "Neznáma kampaň"
+                },
+                "fields": {
+                    "campaign": "Nová kampaň",
+                    "copy": "Vytvoriť kópiu",
+                    "target": "Nový typ"
+                },
+                "hints": {
+                    "campaign": "Môžeš tiež skúsiť premiestniť tento objekt do inej kampane.",
+                    "copy": "Vyber si túto možnosť, ak chceš vytvoriť kópiu v novej kampani.",
+                    "target": "Prosím, uvedom si, že niektoré dáta môžu zmiznúť, ak sa objekt premiestni do iného typu."
+                },
+                "success": "Objekt {name} premiestnený",
+                "success_copy": "Objekt {name} skopírovaný",
+                "title": "Premiestniť {name} na iné miesto"
+            },
+            "new_entity": {
+                "error": "Prosím, prekontroluj tvoje zadanie.",
+                "fields": {
+                    "name": "Názov"
+                },
+                "title": "Nový objekt"
+            },
+            "or_cancel": "alebo <a href=\"{url}\">Zrušiť</a>",
+            "panels": {
+                "appearance": "Výzor",
+                "attribute_template": "Šablóna atribútov",
+                "calendar_date": "Dátum",
+                "entry": "Záznam",
+                "general_information": "Všeobecné informácie",
+                "move": "Premiestniť",
+                "system": "Systém"
+            },
+            "permissions": {
+                "action": "Akcie",
+                "actions": {
+                    "bulk": {
+                        "add": "Pridať",
+                        "ignore": "Ignorovať",
+                        "remove": "Odstrániť"
+                    },
+                    "delete": "Zmazať",
+                    "edit": "Upraviť",
+                    "entity_note": "Poznámky objektu",
+                    "read": "Čítať",
+                    "toggle": "Prepnúť"
+                },
+                "allowed": "Povolené",
+                "fields": {
+                    "member": "Člen",
+                    "role": "Rola"
+                },
+                "helper": "Použi toto rozhranie na nastavenie oprávnení pre užívateľov a role pre daný objekt.",
+                "success": "Oprávnenia uložené.",
+                "title": "Oprávnenia"
+            },
+            "placeholders": {
+                "calendar": "Vybrať kalendár",
+                "character": "Vybrať postavu",
+                "entity": "Objekt",
+                "event": "Vybrať udalosť",
+                "family": "Vybrať rod",
+                "image_url": "Obrázok je možné pridať aj nahratím cez URL.",
+                "item": "Vybrať predmet",
+                "location": "Vybrať miesto",
+                "organisation": "Vybrať organizáciu",
+                "race": "Vybrať rasu",
+                "tag": "Vybrať deň"
+            },
+            "relations": {
+                "actions": {
+                    "add": "Pridať vzťah"
+                },
+                "fields": {
+                    "location": "Miesto",
+                    "name": "Názov",
+                    "relation": "Vzťah"
+                },
+                "hint": "Vzťahy je možné vytvoriť medzi objektami a zobraziť tak ich prepojenie."
+            },
+            "remove": "Zmazať",
+            "rename": "Premenovať",
+            "save": "Uložiť",
+            "save_and_close": "Uložiť a zavrieť",
+            "save_and_new": "Uložiť a nový",
+            "save_and_update": "Uložiť a upraviť",
+            "save_and_view": "Uložiť a zobraziť",
+            "search": "Hľadať",
+            "select": "Vybrať",
+            "tabs": {
+                "attributes": "Atribúty",
+                "calendars": "Kalendáre",
+                "default": "Štandardný",
+                "events": "Udalosti",
+                "inventory": "Inventár",
+                "map-points": "Značky na mape",
+                "mentions": "Referencie",
+                "menu": "Menu",
+                "notes": "Poznámky",
+                "permissions": "Oprávnenia",
+                "relations": "Vzťahy",
+                "reminders": "Pripomenutia"
+            },
+            "update": "Upraviť",
+            "users": {
+                "unknown": "Neznámy"
+            },
+            "view": "Zobraziť",
+            "visibilities": {
+                "admin": "Admin",
+                "all": "Všetci",
+                "self": "Vlastník"
             }
         },
         "entities": [],

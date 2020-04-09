@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'abilities'             => 'Képességek',
+    'ability'               => 'Képesség',
     'attribute_template'    => 'Tulajdonságsablon',
     'attribute_templates'   => 'Tulajdonságsablonok',
     'calendar'              => 'Naptár',
