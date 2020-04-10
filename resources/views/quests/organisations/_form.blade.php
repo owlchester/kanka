@@ -16,7 +16,7 @@
 
         <div class="form-group">
             <label>{{ trans('quests.organisations.fields.description') }}</label>
-            {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+            {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'description', 'name' => 'description']) !!}
         </div>
 
         <div class="form-group">

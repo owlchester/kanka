@@ -48,4 +48,13 @@ abstract class QuestElement extends MiscModel
     {
         return Mentions::map($this, 'description');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEntryForEditionAttribute()
+    {
+        $text = Mentions::edit($this, 'description');
+        return $text;
+    }
 }

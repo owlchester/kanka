@@ -13,9 +13,10 @@
             <label>{{ trans('quests.fields.role') }}</label>
             {!! Form::text('role', null, ['placeholder' => trans('quests.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
+
         <div class="form-group">
             <label>{{ trans('quests.items.fields.description') }}</label>
-            {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
+            {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'description', 'name' => 'description']) !!}
         </div>
 
         <div class="form-group">

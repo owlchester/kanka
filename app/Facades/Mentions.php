@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static mapEntity(Entity $entity, string $field = 'tooltip')
  * @method static edit(Entity $entity, string $field = 'entry'): string
  * @method static editEntityNote(EntityNote $entityNote, string $field = 'entry'): string
+ * @method static editMisc(MiscModel $model, string $field = 'entry'): string
  * @method static editCampaign(Campaign $campaign, string $field = 'entry'): string
  * @method static codify(string $text): string
  *
