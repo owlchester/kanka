@@ -47,7 +47,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Yes! We believe that your financial situation shouldn't impact your enjoyment of role playing games or world building, and such will always keep the app free. Thanks to our generous Patrons on :patreon, we are able to cover the monthly server costs and keep the app ad free!
 
-Supporting us on Patreon however allows you to increase file size upload limits, adds your name to the Patreon wall of fame, have nicer default icons, vote on prioritising what gets works on and more!
+Supporting us however allows you to increase file size upload limits, adds your name to the Hall of fame, have nicer default icons, vote on prioritising what gets works on and more!
 TEXT
 ,
         'question'  => 'Will the app stay free?',

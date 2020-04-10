@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Subscription\Admin;
 
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class WelcomeEmail extends Mailable
+class FailedSubscriptionMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -35,9 +35,8 @@ class WelcomeEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Support'])
-            ->subject(__('auth.register.email.title'))
-            ->view('emails.welcome.html')
-            ->text('emails.welcome.text');
+            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Admin'])
+            ->subject('Subscription: Failed ' . $this->user->patreon_pledge)
+            ->view('emails.subscriptions.failed.html');
     }
 }

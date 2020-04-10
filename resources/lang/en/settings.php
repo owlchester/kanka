@@ -30,7 +30,7 @@ return [
     ],
     'boost'     => [
         'benefits'      => [
-            'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka on :patreon. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
+            'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
             'header'    => 'Entity header images.',
             'more'      => 'Find out more about all features.',
             'second'    => 'Boosting a campaign enables the following benefits:',
@@ -105,6 +105,9 @@ return [
             'helper' => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved' => 'Saved payment method',
         ],
+        'cancel' => [
+            'text' => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
+        ],
         'currencies' => [
             'eur' => 'Euro',
             'usd' => 'USD',
@@ -119,10 +122,14 @@ return [
             'active_since' => 'Active since',
             'active_until' => 'Active until',
             'payment_method' => 'Payment method',
+            'reason' => 'Reason',
         ],
         'actions' => [
             'cancel_sub' => 'Cancel subscription',
             'update_currency' => 'Save prefered currency'
+        ],
+        'placeholders' => [
+            'reason' => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?'
         ],
         'payment_method' => [
             'card' => 'Card',
@@ -149,6 +156,9 @@ return [
             'currency' => 'Your prefered currency setting was updated.',
             'cancel' => 'Your subscription was cancelled.',
             'subscribed' => 'Your subscription was successful.',
+        ],
+        'errors' => [
+            'subscribed' => 'Couldn\'t process your subscription. Stripe provided the following hint.',
         ]
     ]
 ];

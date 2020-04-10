@@ -4,7 +4,7 @@
  */
 ?>
 @extends('layouts.app', [
-    'title' => '',
+    'title' => __('settings.subscription.billing.title'),
     'breadcrumbs' => false
 ])
 

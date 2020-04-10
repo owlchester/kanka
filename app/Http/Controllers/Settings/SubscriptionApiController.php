@@ -3,9 +3,13 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\Services\SubscriptionService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use TCG\Voyager\Facades\Voyager;
 
 class SubscriptionApiController extends Controller
 {
@@ -32,7 +36,7 @@ class SubscriptionApiController extends Controller
     public function getPlans()
     {
         return response()->json(
-            $this->service->plans()
+            $this->service->user(Auth::user())->plans()
         );
     }
 
@@ -115,15 +119,21 @@ class SubscriptionApiController extends Controller
         $planID = $request->get('plan');
         $paymentID = $request->get('payment');
 
-        if (!$user->subscribed('kanka')) {
-            $user->newSubscription('kanka', $planID)
-                ->create($paymentID);
-        } else {
-            $user->subscription('kanka')->swap($planID);
-        }
+        try {
+            $this->service->user($user)->subscribe($planID, $paymentID);
 
-        return response()->json([
-            'subscription_updated' => true
-        ]);
+            session()->flash('success', __('settings.subscription.success.subscribed'));
+
+            return response()->json([
+                'subscription_updated' => true,
+                'path' => route('settings.subscription')
+            ]);
+        } catch(\Exception $e) {
+            return response()->json([
+                'subscription_updated' => false,
+                'title' => __('settings.subscription.errors.subscribed'),
+                'text' => $e->getMessage()
+            ]);
+        }
     }
 }

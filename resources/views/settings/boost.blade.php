@@ -22,7 +22,7 @@
                     </h2>
 
                     <p>
-                        {!! __('settings.boost.benefits.first', ['patreon' => link_to_route('settings.patreon', __('settings.patreon.title'))]) !!}
+                        {!! __('settings.boost.benefits.first', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
                     </p>
                     <p>{{ __('settings.boost.benefits.second') }}</p>
                     <ul>

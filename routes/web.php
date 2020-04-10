@@ -403,19 +403,26 @@ Route::group([
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
 
+
+    Route::group(['prefix' => 'subscription-api'], function () {
+        Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
+        Route::get('plans', 'Settings\SubscriptionApiController@getPlans');
+        Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
+        Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
+        Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
+        Route::put('subscription', 'Settings\SubscriptionApiController@updateSubscription');
+    });
 });
 
-Route::group(['prefix' => 'subscription-api'], function () {
-    Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
-    Route::get('plans', 'Settings\SubscriptionApiController@getPlans');
-    Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
-    Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
-    Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
-    Route::put('subscription', 'Settings\SubscriptionApiController@updateSubscription');
-});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 Route::get('/sitemap', 'Front\SitemapController@index')->name('front.sitemap');
+
+// Stripe
+Route::post(
+    'stripe/webhook',
+    '\App\Http\Controllers\WebhookController@handleWebhook'
+);

@@ -104,7 +104,7 @@ return [
             'impact'            => 'Impact future features',
             'monthly_vote'      => 'Participation in the community feature vote',
             'pagination'        => 'Increased pagination results (100)',
-            'title'             => 'Patreon Support',
+            'title'             => 'Paid Features',
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',
         ],

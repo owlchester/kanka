@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Services\SubscriptionService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
@@ -24,6 +25,7 @@ class SubscriptionController extends Controller
         $stripeApiToken = getenv('STRIPE_KEY', null);
         $status = $this->subscription->user(Auth::user())->status();
         $currentPlan = $this->subscription->currentPlan();
+        $service = $this->subscription;
         $user = Auth::user();
         $currency = $user->currencySymbol();
 
@@ -32,15 +34,16 @@ class SubscriptionController extends Controller
             'status',
             'currentPlan',
             'user',
-            'currency'
+            'currency',
+            'service'
         ));
     }
 
-    public function cancel()
+    public function cancel(Request $request)
     {
         $this->middleware('subscribed');
 
-        $this->subscription->user(Auth::user())->cancel();
+        $this->subscription->user(Auth::user())->cancel($request->get('reason'));
 
 
         return redirect()

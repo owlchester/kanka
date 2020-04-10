@@ -15,7 +15,7 @@ class LocaleChange
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::guest() && $request->isMethod('get')) {
+        if (!Auth::guest() && $request->isMethod('get') && !$request->ajax()) {
             $change = $request->query('updateLocale');
             $locale = LaravelLocalization::getCurrentLocale();
             $user = Auth::user();

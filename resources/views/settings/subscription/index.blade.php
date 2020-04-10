@@ -5,7 +5,7 @@
  */
 ?>
 @extends('layouts.app', [
-    'title' => '',
+    'title' => __('settings.subscription.manage_subscription'),
     'breadcrumbs' => false
 ])
 
@@ -60,46 +60,84 @@
 
                     @if ($user->subscribed('kanka') && !$user->subscription('kanka')->cancelled())
                     <div class="text-right">
-                        <button class="btn btn-danger delete-confirm" data-toggle="modal" data-name="{{ $currentPlan['name'] }}"
-                                data-target="#delete-confirm" data-delete-target="cancel-subscription"
+                        <button class="btn btn-danger delete-confirm" data-toggle="modal"
+                                data-target="#cancel-confirm"
                                 title="{{ __('crud.remove') }}">
                             <i class="fa fa-trash" aria-hidden="true"></i> {{ __('settings.subscription.actions.cancel_sub') }}
                         </button>
                     </div>
-                    {!! Form::open([
-                        'method' => 'DELETE',
-                        'route' => [
-                            'settings.subscription.cancel'
-                        ],
-                        'style' => 'display:inline',
-                        'id' => 'cancel-subscription'
-                    ]) !!}
-                    {!! Form::close() !!}
                     @endif
                 </div>
             </div>
 
-            @if (!$user->subscribed('kanka'))
-            <div id="subscription">
-                <subscription-management
-                        api_token="{{ $stripeApiToken }}"
-                        currency="{{ $currency }}"
-                ></subscription-management>
-            </div>
-            @else
+            @if ($user->subscribed('kanka'))
                 <h4>{{ __('settings.subscription.fields.plan') }}</h4>
                 @include('settings._' . $currentPlan['name'])
+            @else
+                <div id="subscription">
+                    <subscription-management
+                            api_token="{{ $stripeApiToken }}"
+                            currency="{{ $currency }}"
+                    ></subscription-management>
+                </div>
             @endif
         </div>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="cancel-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+
+            {!! Form::open([
+                'method' => 'DELETE',
+                'route' => [
+                    'settings.subscription.cancel'
+                ],
+            ]) !!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.actions.cancel_sub') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="help-block">
+                        {!! __('settings.subscription.cancel.text')!!}
+                    </p>
+
+                    <div class="form-group">
+                        <label>{{ __('settings.subscription.fields.reason') }}</label>
+                        {!! Form::textarea(
+                            'reason',
+                            null,
+                            [
+                                'placeholder' => __('settings.subscription.placeholders.reason'),
+                                'class' => 'form-control',
+                                'rows' => 4,
+                            ]
+                        ) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span> {{ trans('crud.click_modal.confirm') }}</button>
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+
+    <div class="modal">
     </div>
 @endsection
 
 
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/subscription.js') }}" defer></script>
-@endsection
+
+@if (!$user->subscribed('kanka'))
+    @section('scripts')
+        @parent
+        <script src="{{ mix('js/subscription.js') }}" defer></script>
+    @endsection
+@endif
 
 @section('styles')
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">

@@ -12,9 +12,8 @@ return [
         'translations'  => 'Translations',
     ],
     'patreon'       => [
-        'description'   => 'These amazing people help and support Kanka on Patreon.',
-        'learn_more'    => 'Lean more about Patreon benefits',
-        'title'         => 'Patreon',
+        'description'   => 'These amazing people help and support Kanka on through Patreon or directly in the app.',
+        'learn_more'    => 'Lean more about Subscription benefits',
     ],
     'people'        => [
         'iz'        => [

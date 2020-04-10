@@ -52,9 +52,10 @@ A few tips to get you started:
 Last but not least:
 - Have a look at :public for inspiration on how others use Kanka.
 - If you have questions, suggestions or just want to chat, join us on :discord.
-- Loving the app and want to support it's growth? Head over to our :patreon.
+- Loving the app and want to support it's growth? Consider supporting Kanka through :subscriptions.
 TEXT
 ,
         'name'  => 'Welcome Note',
+        'subscriptions' => 'Subscriptions'
     ],
 ];
