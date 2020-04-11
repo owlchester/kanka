@@ -33,13 +33,6 @@ class SubscriptionApiController extends Controller
         return $request->user()->createSetupIntent();
     }
 
-    public function getPlans()
-    {
-        return response()->json(
-            $this->service->user(Auth::user())->plans()
-        );
-    }
-
     /**
      * Adds a payment method to the current user.
      *
@@ -106,34 +99,5 @@ class SubscriptionApiController extends Controller
         }
 
         return response()->json(null, 204);
-    }
-
-    /**
-     * Updates a subscription for the user
-     *
-     * @param Request $request The request containing subscription update info.
-     */
-    public function updateSubscription( Request $request )
-    {
-        $user = $request->user();
-        $planID = $request->get('plan');
-        $paymentID = $request->get('payment');
-
-        try {
-            $this->service->user($user)->subscribe($planID, $paymentID);
-
-            session()->flash('success', __('settings.subscription.success.subscribed'));
-
-            return response()->json([
-                'subscription_updated' => true,
-                'path' => route('settings.subscription')
-            ]);
-        } catch(\Exception $e) {
-            return response()->json([
-                'subscription_updated' => false,
-                'title' => __('settings.subscription.errors.subscribed'),
-                'text' => $e->getMessage()
-            ]);
-        }
     }
 }

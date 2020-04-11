@@ -57,16 +57,6 @@
                             @endif
                         </dd>
                     </dl>
-
-                    @if ($user->subscribed('kanka') && !$user->subscription('kanka')->cancelled())
-                    <div class="text-right">
-                        <button class="btn btn-danger delete-confirm" data-toggle="modal"
-                                data-target="#cancel-confirm"
-                                title="{{ __('crud.remove') }}">
-                            <i class="fa fa-trash" aria-hidden="true"></i> {{ __('settings.subscription.actions.cancel_sub') }}
-                        </button>
-                    </div>
-                    @endif
                 </div>
             </div>
 
@@ -233,49 +223,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="cancel-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-
-            {!! Form::open([
-                'method' => 'DELETE',
-                'route' => [
-                    'settings.subscription.cancel'
-                ],
-            ]) !!}
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.actions.cancel_sub') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="help-block">
-                        {!! __('settings.subscription.cancel.text')!!}
-                    </p>
-
-                    <div class="form-group">
-                        <label>{{ __('settings.subscription.fields.reason') }}</label>
-                        {!! Form::textarea(
-                            'reason',
-                            null,
-                            [
-                                'placeholder' => __('settings.subscription.placeholders.reason'),
-                                'class' => 'form-control',
-                                'rows' => 4,
-                            ]
-                        ) !!}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
-                    <button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span> {{ trans('crud.click_modal.confirm') }}</button>
-                </div>
-            </div>
-            {!! Form::close() !!}
-        </div>
-    </div>
-
 
     <div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">

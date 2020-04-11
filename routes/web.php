@@ -56,7 +56,6 @@ Route::group([
     Route::post('/settings/subscription/change', 'Settings\SubscriptionController@subscribe')->name('settings.subscription.subscribe');
     Route::get('/settings/billing-information', 'Settings\BillingController@index')->name('settings.billing');
     Route::patch('/settings/billing-information', 'Settings\BillingController@save')->name('settings.billing.save');
-    Route::delete('/settings/subscription', 'Settings\SubscriptionController@cancel')->name('settings.subscription.cancel');
 
     Route::get('/settings/apps', 'Settings\AppsController@index')->name('settings.apps');
     Route::get('/settings/discord-me', 'Settings\Apps\DiscordController@me');
@@ -414,11 +413,9 @@ Route::group([
 
 Route::group(['prefix' => 'subscription-api'], function () {
     Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
-    Route::get('plans', 'Settings\SubscriptionApiController@getPlans');
     Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
     Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
     Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
-    Route::put('subscription', 'Settings\SubscriptionApiController@updateSubscription');
 });
 
 Route::group(['prefix' => 'admin'], function () {

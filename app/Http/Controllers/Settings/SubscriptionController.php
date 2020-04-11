@@ -96,16 +96,4 @@ class SubscriptionController extends Controller
             ]);
         }
     }
-
-    public function cancel(Request $request)
-    {
-        $this->middleware('subscribed');
-
-        $this->subscription->user(Auth::user())->cancel($request->get('reason'));
-
-
-        return redirect()
-            ->route('settings.subscription')
-            ->withSuccess(__('settings.subscription.success.cancel'));
-    }
 }
