@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class LocaleChange
@@ -13,9 +15,9 @@ class LocaleChange
      * @param Closure $next
      * @return \Illuminate\Http\RedirectResponse|mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guest() && $request->isMethod('get') && !$request->ajax()) {
+        if (!$request->is('subscription-api/*') && !Auth::guest() && $request->isMethod('get')) {
             $change = $request->query('updateLocale');
             $locale = LaravelLocalization::getCurrentLocale();
             $user = Auth::user();

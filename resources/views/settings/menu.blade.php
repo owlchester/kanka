@@ -31,6 +31,11 @@
                     {{ __('settings.menu.layout') }}
                 </a>
             </li>
+            <li class="@if(!empty($active) && $active == 'apps')active @endif">
+                <a href="{{ route('settings.apps') }}">
+                    {{ __('settings.menu.apps') }}
+                </a>
+            </li>
             <li class="@if(!empty($active) && $active == 'api')active @endif">
                 <a href="{{ route('settings.api') }}">
                     {{ __('settings.menu.api') }}

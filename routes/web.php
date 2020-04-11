@@ -56,6 +56,11 @@ Route::group([
     Route::patch('/settings/billing-information', 'Settings\BillingController@save')->name('settings.billing.save');
     Route::delete('/settings/subscription', 'Settings\SubscriptionController@cancel')->name('settings.subscription.cancel');
 
+    Route::get('/settings/apps', 'Settings\AppsController@index')->name('settings.apps');
+    Route::get('/settings/discord-me', 'Settings\Apps\DiscordController@me');
+    Route::get('/settings/discord-callback', 'Settings\Apps\DiscordController@callback')->name('settings.discord.callback');
+    Route::get('/settings/discord-setup', 'Settings\Apps\DiscordController@seup');
+
     Route::resources([
         'campaign_boost' => 'CampaignBoostController',
     ]);
@@ -402,18 +407,16 @@ Route::group([
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
-
-
-    Route::group(['prefix' => 'subscription-api'], function () {
-        Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
-        Route::get('plans', 'Settings\SubscriptionApiController@getPlans');
-        Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
-        Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
-        Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
-        Route::put('subscription', 'Settings\SubscriptionApiController@updateSubscription');
-    });
 });
 
+Route::group(['prefix' => 'subscription-api'], function () {
+    Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
+    Route::get('plans', 'Settings\SubscriptionApiController@getPlans');
+    Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
+    Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
+    Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
+    Route::put('subscription', 'Settings\SubscriptionApiController@updateSubscription');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

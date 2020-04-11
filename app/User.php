@@ -10,6 +10,7 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Patreon;
 use App\Models\Scopes\UserScope;
+use App\Models\UserApp;
 use App\Models\UserSetting;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -218,6 +219,14 @@ class User extends \TCG\Voyager\Models\User
     public function logs()
     {
         return $this->hasMany('App\Models\UserLog', 'user_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function apps()
+    {
+        return $this->hasMany(UserApp::class, 'user_id', 'id');
     }
 
     /**

@@ -28,6 +28,15 @@ return [
         'request_permission'    => 'We are currently building a powerful RESTful API so that third-party apps can connect to the app. However, we are currently limiting the number of users who can interact with the API while we polish it. If you want to get access to the API and build cools apps that talk with Kanka, please contact us and we\'ll send you all the information you need.',
         'title'                 => 'API',
     ],
+    'apps' => [
+        'discord' => [
+            'text' => 'Access your subscription roles automatically.',
+            'success' => 'Your Discord account has been linked with Kanka.',
+            'error' => 'An error occured linking up your Discord account with Kanka. Please try again.',
+        ],
+        'title' => 'App Integration',
+        'benefits' => 'Kanka provides a few integration to third party services. More third party integrations are planned for the future.',
+    ],
     'boost'     => [
         'benefits'      => [
             'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
@@ -60,6 +69,7 @@ return [
     'menu'      => [
         'account'           => 'Account',
         'api'               => 'API',
+        'apps'              => 'Apps',
         'billing'           => 'Payment Method',
         'boost'             => 'Boost',
         'layout'            => 'Layout',

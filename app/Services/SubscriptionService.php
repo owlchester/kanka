@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use App\Jobs\DiscordRoleJob;
+use App\Jobs\SubscriptionEndJob;
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\User;
@@ -60,6 +62,9 @@ class SubscriptionService
         if ($role && !$this->user->hasRole('patreon')) {
             $this->user->roles()->attach($role->id);
         }
+
+        DiscordRoleJob::dispatch($this->user);
+
 
         // Notify owner
         Mail::to('no-reply@kanka.io')
@@ -118,10 +123,7 @@ class SubscriptionService
     {
         $this->user->subscription('kanka')->cancel();
 
-        Mail::to('no-reply@kanka.io')
-            ->send(
-                new CancelledSubscriptionMail($this->user, $reason)
-            );
+        SubscriptionEndJob::dispatch($this->user, $reason);
 
         return true;
     }
@@ -139,7 +141,7 @@ class SubscriptionService
      */
     public function elementalPlanID(): string
     {
-        return $this->user->currency === 'eur' ? 'plan_GpUrfPuJGBQGbx' : 'plan_GpUs553mkmyDpA';
+        return $this->user->currency === 'eur' ? 'plan_GpUtSHiFLIlQbt' : 'plan_GpUs553mkmyDpA';
     }
 
     /**
