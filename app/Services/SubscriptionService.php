@@ -5,11 +5,11 @@ namespace App\Services;
 
 
 use App\Jobs\DiscordRoleJob;
+use App\Jobs\Emails\SubscriptionCancelEmailJob;
+use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use TCG\Voyager\Facades\Voyager;
 
@@ -63,14 +63,9 @@ class SubscriptionService
             $this->user->roles()->attach($role->id);
         }
 
+        // Anything that can fail, send to the queue
         DiscordRoleJob::dispatch($this->user);
-
-
-        // Notify owner
-        Mail::to('no-reply@kanka.io')
-            ->send(
-                new NewSubscriptionMail($this->user, $new)
-            );
+        SubscriptionCreatedEmailJob::dispatch($this->user, $new);
 
         return true;
     }
@@ -123,7 +118,14 @@ class SubscriptionService
     {
         $this->user->subscription('kanka')->cancel();
 
-        SubscriptionEndJob::dispatch($this->user, $reason);
+        // Anything that can fail, send to a queue
+        SubscriptionCancelEmailJob::dispatch($this->user, $reason);
+
+        // Dispatch the job when the subscription actually ends
+        SubscriptionEndJob::dispatch($this->user)
+            ->delay(
+                $this->user->subscription('kanka')->ends_at
+            );
 
         return true;
     }
@@ -133,7 +135,7 @@ class SubscriptionService
      */
     public function owlbearPlanID(): string
     {
-        return $this->user->currency === 'eur' ? 'plan_GpUrfPuJGBQGbx' : 'plan_GpUqLFK2wNkwwD';
+        return $this->user->currency === 'eur' ? getenv('STRIPE_OWLBEAR_EUR') : getenv('STRIPE_OWLBEAR_USD');
     }
 
     /**
@@ -141,7 +143,7 @@ class SubscriptionService
      */
     public function elementalPlanID(): string
     {
-        return $this->user->currency === 'eur' ? 'plan_GpUtSHiFLIlQbt' : 'plan_GpUs553mkmyDpA';
+        return $this->user->currency === 'eur' ? getenv('STRIPE_ELEMENTAL_EUR') : getenv('STRIPE_ELEMENTAL_USD');
     }
 
     /**
@@ -149,7 +151,8 @@ class SubscriptionService
      */
     public function owlbearPlans(): array
     {
-        return ['plan_GpUrfPuJGBQGbx', 'plan_GpUqLFK2wNkwwD'];
+        // eur: plan_GpVbGxVYKmmnp8 usd: plan_GpVZhf8C9bMAt4
+        return [getenv('STRIPE_OWLBEAR_EUR'), getenv('STRIPE_OWLBEAR_USD')];
     }
 
     /**
@@ -157,7 +160,8 @@ class SubscriptionService
      */
     public function elementalPlans(): array
     {
-        return ['plan_GpUrfPuJGBQGbx', 'plan_GpUs553mkmyDpA'];
+        // eur: plan_GpYTOMLzQzBo6K usd: plan_GpYTfsbyHMlUEk
+        return [getenv('STRIPE_ELEMENTAL_EUR'), getenv('STRIPE_ELEMENTAL_USD')];
     }
 
     /**

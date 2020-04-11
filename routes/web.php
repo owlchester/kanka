@@ -58,6 +58,7 @@ Route::group([
 
     Route::get('/settings/apps', 'Settings\AppsController@index')->name('settings.apps');
     Route::get('/settings/discord-me', 'Settings\Apps\DiscordController@me');
+    Route::delete('/settings/discord', 'Settings\Apps\DiscordController@destroy')->name('settings.discord.destroy');
     Route::get('/settings/discord-callback', 'Settings\Apps\DiscordController@callback')->name('settings.discord.callback');
     Route::get('/settings/discord-setup', 'Settings\Apps\DiscordController@seup');
 

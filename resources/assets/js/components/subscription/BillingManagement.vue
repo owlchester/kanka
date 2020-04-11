@@ -19,7 +19,7 @@
                             {{ $t('settings.subscription.payment_method.ending' )}}: {{ method.last_four }} Exp: {{ method.exp_month }} / {{ method.exp_year }}
                         </div>
                         <div class="col-xs-3 text-right">
-                            <span v-on:click.stop="removePaymentMethod( method.id )" title="Remove">
+                            <span v-on:click.stop="removePaymentMethod( method.id )" title="Remove" class="text-red">
                                 <i class="fa fa-trash"></i>
                             </span>
                         </div>

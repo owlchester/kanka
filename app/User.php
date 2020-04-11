@@ -28,6 +28,7 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App
  *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property integer $last_campaign_id

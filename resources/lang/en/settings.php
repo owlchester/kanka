@@ -29,10 +29,20 @@ return [
         'title'                 => 'API',
     ],
     'apps' => [
+        'actions' => [
+            'connect' => 'Connect',
+            'remove' => 'Remove',
+        ],
         'discord' => [
             'text' => 'Access your subscription roles automatically.',
-            'success' => 'Your Discord account has been linked with Kanka.',
-            'error' => 'An error occured linking up your Discord account with Kanka. Please try again.',
+            'success' => [
+                'add' => 'Your Discord account has been linked.',
+                'remove' => 'Your Discord account has been unlinked.',
+            ],
+            'errors' => [
+                'add' => 'An error occurred linking up your Discord account with Kanka. Please try again.',
+                'remove' >= 'An error occurred disconnected your Discord account with Kanka.',
+            ],
         ],
         'title' => 'App Integration',
         'benefits' => 'Kanka provides a few integration to third party services. More third party integrations are planned for the future.',

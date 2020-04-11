@@ -21,19 +21,15 @@ class SubscriptionEndJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /** @var User  */
-    public $user;
+    public $userId;
 
     /** @var bool */
     public $cancelled;
 
-    /** @var string the user's reason for cancelling */
-    public $reason;
-
-    public function __construct(User $user, string $reason = '', bool $cancelled = false)
+    public function __construct(User $user, bool $cancelled = false)
     {
-        $this->user = $user;
+        $this->userId = $user->id;
         $this->cancelled = $cancelled;
-        $this->reason = $reason;
     }
 
     /**
@@ -42,6 +38,12 @@ class SubscriptionEndJob implements ShouldQueue
      */
     public function handle()
     {
+        $this->user = User::find($this->userId);
+        if (empty($this->user)) {
+            // User deleted their account already.
+            return;
+        }
+
         // Cleanup the user
         $this->user->patreon_pledge = '';
         $this->user->save();
@@ -64,12 +66,6 @@ class SubscriptionEndJob implements ShouldQueue
                 'orange'
             )
         );
-
-        // Send an email to the admins
-        Mail::to('no-reply@kanka.io')
-            ->send(
-                new CancelledSubscriptionMail($this->user, $this->reason)
-            );
 
         // Lastly, cleanup any discord stuff
         /** @var DiscordService $discord */

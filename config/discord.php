@@ -16,7 +16,6 @@ return [
     'bot_token' => getenv('DISCORD_BOT_TOKEN'),
 
     'roles' => [
-        'patreon' => 431547159217963020,
         'owlbear' => 435813101506527233,
         'elemental' => 501452722273386496,
     ]

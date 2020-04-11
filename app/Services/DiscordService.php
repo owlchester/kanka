@@ -28,6 +28,9 @@ class DiscordService
     /** @var string  */
     protected $url = 'https://discordapp.com/api/v6/';
 
+    /** @var mixed */
+    protected $me = false;
+
     /**
      * @param User $user
      * @return $this
@@ -63,12 +66,15 @@ class DiscordService
     }
 
     /**
-     * Add the user to the server
+     * Add the user to the server.
+     * We don't need to worry about re-adding a user twice, Discord's api will provide
+     * a success message back with the info.
      * @return $this
      */
-    public function addToGuild(): self
+    public function addServer(): self
     {
         $me = $this->me();
+
         $headers = [
             'Authorization' => 'Bot ' . config('discord.bot_token'),
             'Content-Type' => 'application/json',
@@ -76,7 +82,7 @@ class DiscordService
         $body = [
             'access_token' => $this->app->access_token,
         ];
-        $this->post('guilds/' . config('discord.channel_id') . '/members/' . $me->id, $body, $headers);
+        $this->call('put', 'guilds/' . config('discord.channel_id') . '/members/' . $me->id, $body, $headers);
 
         return $this;
     }
@@ -86,6 +92,11 @@ class DiscordService
      */
     public function me()
     {
+        // Cache the response during a single process
+        if ($this->me !== false) {
+            return $this->me;
+        }
+
         $this->refresh();
         $client = new Client();
         $url = $this->url . 'users/@me';
@@ -94,9 +105,9 @@ class DiscordService
         ];
 
         $response = $client->get($url, ['headers' => $headers]);
-        $content = json_decode($response->getBody());
+        $this->me = json_decode($response->getBody());
 
-        return $content;
+        return $this->me;
     }
 
     /**
@@ -146,11 +157,21 @@ class DiscordService
     }
 
     /**
-     * Add the roles to the discord user
-     * @param int $role
+     * Add the user to the discord roles
+     * @return $this
      */
-    public function addRoles()
+    public function addRoles(): self
     {
+        // Don't add roles if the user isn't connected
+        if (empty($this->app)) {
+            return $this;
+        }
+
+        // Only add roles if the user is a subscriber
+        if (!$this->user->subscribed('kanka')) {
+            return $this;
+        }
+
         $me = $this->me();
 
         $headers = [
@@ -161,29 +182,30 @@ class DiscordService
             'access_token' => $this->app->access_token,
         ];
 
-        dump($this->user->isElementalPatreon());
         $roles = [
-            config('discord.roles.patreon'),
             config('discord.roles.' . ($this->user->isElementalPatreon() ? 'elemental' : 'owlbear')),
         ];
-
-        dd($roles);
 
        foreach ($roles as $id) {
            $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
            $this->call('put', $url, $body, $headers);
        }
+
+        return $this;
     }
 
     /**
      * Remove all bonus discord roles for the user
      */
-    public function removeRoles()
+    public function removeRoles(): self
     {
+        // Don't remove if the user is already disconnected
+        if (empty($this->app)) {
+            return $this;
+        }
+
         $me = $this->me();
 
-        // First add them to the patrons role
-        $patreonRoleID = 431547159217963020;
 
         $headers = [
             'Authorization' => 'Bot ' . config('discord.bot_token'),
@@ -197,6 +219,28 @@ class DiscordService
             $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
             $this->call('delete', $url, $body, $headers);
         }
+
+        return $this;
+    }
+
+    /**
+     * Remove a user's discord integration
+     * @throws Exception
+     */
+    public function remove(): self
+    {
+        // Don't remove if the user is already disconnected
+        if (empty($this->app)) {
+            return $this;
+        }
+
+        // Remove any roles the user might have had
+        $this->removeRoles();
+
+        // Delete the discord app
+        $this->app->delete();
+
+        return $this;
     }
 
     /**
@@ -238,7 +282,12 @@ class DiscordService
         }
 
         $url = $this->url . ltrim($api, '/');
-        $response = $client->{$action}($url, ['form_params' => $body, 'headers' => $headers]);
+
+        if ($action === 'put') {
+            $response = $client->{$action}($url, ['json' => $body, 'headers' => $headers]);
+        } else {
+            $response = $client->{$action}($url, ['form_params' => $body, 'headers' => $headers]);
+        }
 
         return json_decode($response->getBody());
     }

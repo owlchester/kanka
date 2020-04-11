@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Jobs\Emails\SubscriptionFailedEmailJob;
+use App\Jobs\SubscriptionEndJob;
 use App\Mail\Subscription\Admin\FailedSubscriptionMail;
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\Mail\WelcomeEmail;
@@ -32,10 +34,12 @@ class WebhookController  extends CashierController
             ));
 
             // Notify admin
-            Mail::to('no-reply@kanka.io')
-                ->send(
-                    new FailedSubscriptionMail($user)
-                );
+            SubscriptionFailedEmailJob::dispatch($user);
+
+            // Set the subscription to end when it's supposed to end (admittedly, this is already passed)
+            SubscriptionEndJob::dispatch($user)->delay(
+                $user->subscription('kanka')->ends_at
+            );
         }
 
         return $response;
