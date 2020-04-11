@@ -125,6 +125,7 @@ return [
             'helper' => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved' => 'Saved payment method',
         ],
+        'cancelled' => 'Your subscription has been cancelled. You can renew a subscription when your current subscription is over.',
         'cancel' => [
             'text' => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],
@@ -144,9 +145,14 @@ return [
             'payment_method' => 'Payment method',
             'reason' => 'Reason',
         ],
+        'change' => [
+            'title' => 'Change Subscription Tier',
+            'text' => 'You are subscribing at the :tier tier, billed monthly for :amount. ',
+        ],
         'actions' => [
             'cancel_sub' => 'Cancel subscription',
-            'update_currency' => 'Save prefered currency'
+            'update_currency' => 'Save prefered currency',
+            'subscribe' => 'Subscribe',
         ],
         'placeholders' => [
             'reason' => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?'
@@ -168,8 +174,10 @@ return [
         'subscription' => [
             'select' => 'Select subscription',
             'actions' => [
-                'subscribe' => 'Subscribe',
+                'subscribe' => 'Change to :tier monthly',
+                'rollback' => 'Change to Kobold',
                 'processing' => 'Processing',
+                'downgrading' => 'Please contact us for downgrading.',
             ],
         ],
         'success' => [
@@ -177,8 +185,25 @@ return [
             'cancel' => 'Your subscription was cancelled.',
             'subscribed' => 'Your subscription was successful.',
         ],
+        'upgrade_downgrade' => [
+            'button' => 'Upgrade & Downgrade Information',
+            'upgrade' => [
+                'title' => 'When upgrading to a higher tier',
+                'bullets' => [
+                    'immediate' => 'Your payment method will be billed immediately and you will have access to your new tier.',
+                    'prorate' => 'When upgrading from Owlbear to Elemental, you will only be billed the difference to your new tier.',
+                ],
+            ],
+            'downgrade' => [
+                'title' => 'When downgrading to a lower tier',
+                'bullets' => [
+                    'end' => 'Your current tier will stay active until the end of your current billing cycle, after which you will be downgraded to your new tier.',
+                ],
+            ],
+        ],
         'errors' => [
             'subscribed' => 'Couldn\'t process your subscription. Stripe provided the following hint.',
-        ]
+        ],
+        'tiers' => 'Subscription Tiers',
     ]
 ];

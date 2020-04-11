@@ -376,6 +376,14 @@ class User extends \TCG\Voyager\Models\User
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL;
     }
 
+    /**
+     * @return bool
+     */
+    public function isOwlbear(): bool
+    {
+        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
+    }
+
 
     /**
      * List of boosts the user is giving

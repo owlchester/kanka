@@ -4,13 +4,13 @@
 namespace App\Services;
 
 
+use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Mail\Subscription\Admin\NewSubscriptionMail;
+use App\Models\Patreon;
 use App\User;
-use Illuminate\Support\Facades\Mail;
 use TCG\Voyager\Facades\Voyager;
 
 class SubscriptionService
@@ -23,6 +23,9 @@ class SubscriptionService
     /** @var User */
     protected $user;
 
+    /** @var string */
+    protected $tier;
+
     /**
      * @param User $user
      * @return $this
@@ -30,6 +33,49 @@ class SubscriptionService
     public function user(User $user): self
     {
         $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @param string $tier
+     * @return $this
+     * @throws \Exception
+     */
+    public function tier(string $tier): self
+    {
+        $this->tier = $tier;
+        if (!in_array($tier, Patreon::pledges())) {
+            throw new \Exception("Unknown tier level '$tier'.");
+        }
+        return $this;
+    }
+
+    /**
+     * Change plans
+     *
+     * @param UserSubscribeStore $request
+     * @return $this
+     */
+    public function change(UserSubscribeStore $request): self
+    {
+        // Get the correct plan
+        $plan = null;
+        if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
+            $plan = $this->owlbearPlanID();
+        } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
+            $plan = $this->elementalPlanID();
+        }
+
+        // Switching to kobold?
+        if (empty($plan)) {
+            $this->cancel($request->get('reason'));
+            return $this;
+        }
+
+        // Note: We don't need to worry about charging the difference, stripe takes care of it.
+
+        // Subscribe
+        $this->subscribe($plan, $request->get('payment-id'));
         return $this;
     }
 
@@ -88,6 +134,21 @@ class SubscriptionService
         return self::STATUS_SUBSCRIBED;
     }
 
+    /**
+     * Get the tier amount
+     * @return string
+     */
+    public function amount(): string
+    {
+        $amount = 0;
+        if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
+            $amount = 5;
+        } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
+            $amount = 25;
+        }
+
+        return $this->user->currencySymbol() . ' ' . $amount . '.00';
+    }
     /**
      * Get the user's current plan
      * @return array
