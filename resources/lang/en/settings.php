@@ -149,8 +149,11 @@ return [
         'cancel' => [
             'text' => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],
+        'currency' => [
+            'title' => 'Change your preferred billing currency',
+        ],
         'currencies' => [
-            'eur' => 'Euro',
+            'eur' => 'EUR',
             'usd' => 'USD',
         ],
         'manage_subscription' => 'Manage your subscription',
@@ -193,7 +196,7 @@ return [
             'actions' => [
                 'subscribe' => 'Change to :tier monthly',
                 'rollback' => 'Change to Kobold',
-                'downgrading' => 'Please contact us for downgrading.',
+                'downgrading' => 'Please contact us for downgrading',
             ],
         ],
         'success' => [

@@ -45,8 +45,10 @@ class BillingController extends Controller
         $user->currency = $request->get('currency') ?? null;
         $user->save();
 
+        $from = $request->get('from', 'settings.billing');
+
         return redirect()
-            ->route('settings.billing')
+            ->route($from)
             ->with('success', trans('settings.subscription.success.currency'));
     }
 }

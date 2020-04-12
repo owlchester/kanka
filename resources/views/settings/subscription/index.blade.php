@@ -38,6 +38,14 @@
                                 <dd>{{ $currentPlan['name'] }}</dd>
                                 <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
                                 <dd>@if ($currentPlan['name'] != 'Kobold'){{ $currency }}@endif{{ $currentPlan['price'] }}</dd>
+                                <dt>{{ __('settings.subscription.fields.currency') }}</dt>
+                                <dd>
+                                    <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#change-currency">
+                                        <i class="fa fa-pencil-alt"></i> {{ __('crud.edit') }}
+                                    </a>
+                                </dd>
 
 
                                 @if ($user->subscribed('kanka'))
@@ -273,6 +281,31 @@
                             <li>{{ $text }}</li>
                         @endforeach
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.currency.title') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
+                    <div class="form-group">
+                        <label>{{ trans('settings.subscription.fields.currency') }}</label>
+                        {!! Form::select('currency', ['' => trans('settings.subscription.currencies.usd'), 'eur' => trans('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <button class="btn btn-primary margin-bottom">
+                        {{ trans('settings.subscription.actions.update_currency') }}
+                    </button>
+                    <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
