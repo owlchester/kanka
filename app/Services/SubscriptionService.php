@@ -11,6 +11,7 @@ use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
 use App\User;
+use Illuminate\Support\Arr;
 use TCG\Voyager\Facades\Voyager;
 
 class SubscriptionService
@@ -53,10 +54,10 @@ class SubscriptionService
     /**
      * Change plans
      *
-     * @param UserSubscribeStore $request
+     * @param array $request
      * @return $this
      */
-    public function change(UserSubscribeStore $request): self
+    public function change(array $request): self
     {
         // Get the correct plan
         $plan = null;
@@ -68,14 +69,14 @@ class SubscriptionService
 
         // Switching to kobold?
         if (empty($plan)) {
-            $this->cancel($request->get('reason'));
+            $this->cancel(Arr::get($request, 'reason'));
             return $this;
         }
 
         // Note: We don't need to worry about charging the difference, stripe takes care of it.
 
         // Subscribe
-        $this->subscribe($plan, $request->get('payment-id'));
+        $this->subscribe($plan, Arr::get($request, 'payment-id'));
         return $this;
     }
 
@@ -87,19 +88,29 @@ class SubscriptionService
      * @throws \Laravel\Cashier\Exceptions\PaymentFailure
      * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
-    public function subscribe($planID, $paymentID): bool
+    public function subscribe($planID, $paymentID): self
     {
-        $new = true;
         if (!$this->user->subscribed('kanka')) {
             $this->user->newSubscription('kanka', $planID)
                 ->create($paymentID);
         } else {
-            $this->user->subscription('kanka')->swap($planID);
-            $new = false;
+            $this->user->subscription('kanka')->swapAndInvoice($planID);
         }
 
+        return $this;
+    }
+
+    /**
+     * Setup the user's pledge, role, discord
+     * @param $planID
+     * @return $this
+     */
+    public function finish($planID): self
+    {
+        $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL : Patreon::PLEDGE_OWLBEAR;
+        $new = $this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && $plan == Patreon::PLEDGE_ELEMENTAL;
+
         // Add the necessary roles and patreon data
-        $plan = in_array($planID, $this->elementalPlans()) ? 'Elemental' : 'Owlbear';
         $this->user->patreon_pledge = $plan;
         $this->user->update(['patreon_pledge']);
 
@@ -113,7 +124,7 @@ class SubscriptionService
         DiscordRoleJob::dispatch($this->user);
         SubscriptionCreatedEmailJob::dispatch($this->user, $new);
 
-        return true;
+        return $this;
     }
 
     /**

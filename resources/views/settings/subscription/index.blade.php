@@ -28,47 +28,73 @@
                 </div>
             </div>
 
-            <div class="box box-solid">
-                <div class="box-body">
-                    <h3 class="page-header with-border">{{ __('settings.subscription.sub_status') }}</h3>
-                    <dl class="dl-horizontal">
-                        <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                        <dd>{{ $currentPlan['name'] }}</dd>
-                        <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
-                        <dd>@if ($currentPlan['name'] != 'Kobold'){{ $currency }}@endif{{ $currentPlan['price'] }}</dd>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-solid">
+                        <div class="box-body">
+                            <h3 class="page-header with-border">{{ __('settings.subscription.sub_status') }}</h3>
+                            <dl class="dl-horizontal">
+                                <dt>{{ __('settings.subscription.fields.plan') }}</dt>
+                                <dd>{{ $currentPlan['name'] }}</dd>
+                                <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
+                                <dd>@if ($currentPlan['name'] != 'Kobold'){{ $currency }}@endif{{ $currentPlan['price'] }}</dd>
 
 
-                        @if ($user->subscribed('kanka'))
-                            <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                            <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                            @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                                <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                                <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
-                            @endif
-                        @endif
-                        <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
-                        <dd>
-                            @if ($user->hasPaymentMethod())
-                                @php $method = $user->defaultPaymentMethod(); @endphp
-                                {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
+                                @if ($user->subscribed('kanka'))
+                                    <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
+                                    <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
+                                    @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+                                        <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
+                                        <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
+                                    @endif
+                                @endif
+                                <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
+                                <dd>
+                                    @if ($user->hasPaymentMethod())
+                                        @php $method = $user->defaultPaymentMethod(); @endphp
+                                        {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
+                                    @else
+                                        {{ __('settings.subscription.payment_method.add_one' ) }}
+                                        {{ link_to_route('settings.billing', __('settings.subscription.payment_method.actions.add_new' )) }}
+                                    @endif
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-solid">
+                        <div class="box-body">
+                            <h3 class="page-header with-border">{{ __('settings.invoices.title') }}</h3>
+                            @if (!empty($invoices))
+                                <dl class="dl-horizontal">
+                                @foreach ($invoices as $invoice)
+                                    <dt>{{ $invoice->date()->toFormattedDateString() }}</dt>
+                                    <dd>
+                                        {{ $invoice->total() }}
+                                    </dd>
+                                @endforeach
+                                </dl>
+                                <div class="text-center">
+                                    {{ link_to_route('settings.invoices', __('settings.invoices.actions.view_all')) }}
+                                </div>
                             @else
-                                {{ __('settings.subscription.payment_method.add_one' ) }}
-                                {{ link_to_route('settings.billing', __('settings.subscription.payment_method.actions.add_new' )) }}
+                                <p class="text-muted">
+                                    {{ __('settings.invoices.empty') }}
+                                </p>
                             @endif
-                        </dd>
-                    </dl>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="box box-solid">
-                <div class="box-header">
+                <div class="box-body">
                     <button class="btn btn-secondary btn-sm pull-right" data-toggle="modal"
                             data-target="#change-information">
                         <i class="fas fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
                     </button>
                     <h3 class="page-header with-border">{{ __('settings.subscription.tiers') }}</h3>
-                </div>
-                <div class="box-body">
                     <table class="table table-bordered tiers">
                         <thead>
                         <tr>

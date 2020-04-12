@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Models\Patreon;
 use App\Services\SubscriptionService;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller
 {
@@ -23,7 +25,7 @@ class SubscriptionController extends Controller
      */
     public function __construct(SubscriptionService $service)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'identity', 'shadow']);
         $this->subscription = $service;
     }
 
@@ -36,8 +38,10 @@ class SubscriptionController extends Controller
         $status = $this->subscription->user(Auth::user())->status();
         $currentPlan = $this->subscription->currentPlan();
         $service = $this->subscription;
+        /** @var User $user */
         $user = Auth::user();
         $currency = $user->currencySymbol();
+        $invoices = $user->invoices(true, ['limit' => 3]);
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -45,7 +49,8 @@ class SubscriptionController extends Controller
             'currentPlan',
             'user',
             'currency',
-            'service'
+            'service',
+            'invoices'
         ));
     }
 
@@ -84,16 +89,50 @@ class SubscriptionController extends Controller
         try {
             $this->subscription->user($request->user())
                 ->tier($request->get('tier'))
-                ->change($request);
+                ->change($request->all())
+                ->finish($request->get('payment_id'));
 
             return redirect()
                 ->route('settings.subscription')
                 ->withSuccess(__('settings.subscription.success.subscribed'));
-        } catch (\Exception $e) {
+        } catch(IncompletePayment $exception) {
+            session()->put('subscription_callback', $request->get('payment_id'));
+            return redirect()->route(
+                'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
+            );
+        }
+        catch (\Exception $e) {
             // Error? json
             return response()->json([
                 'error' => 'error_message',
             ]);
         }
+    }
+
+    /**
+     * Stripe secure 3d callback page handler
+     * @param Request $request
+     * @return mixed
+     */
+    public function callback(Request $request)
+    {
+        // Not expecting a callback
+        if (!session()->has('subscription_callback')) {
+            return redirect()
+                ->route('settings.subscription');
+        }
+
+        // This contains our original request
+        session()->remove('subscription_callback');
+
+        if ($request->get('success')) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withSuccess(__('settings.subscription.success.callback'));
+        }
+        return redirect()
+            ->route('settings.subscription')
+            ->withError(__('settings.subscription.errors.callback'));
     }
 }

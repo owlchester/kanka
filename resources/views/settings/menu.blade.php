@@ -63,6 +63,11 @@
                     {{ __('settings.menu.subscription_status') }}
                 </a>
             </li>
+            <li class="@if(!empty($active) && $active == 'invoices')active @endif">
+                <a href="{{ route('settings.invoices') }}">
+                    {{ __('settings.menu.invoices') }}
+                </a>
+            </li>
         </ul>
     </div>
 </div>

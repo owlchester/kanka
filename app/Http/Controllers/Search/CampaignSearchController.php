@@ -22,7 +22,10 @@ class CampaignSearchController extends Controller
     public function __construct(CampaignSearchService $searchService)
     {
         $this->search = $searchService;
-        $this->search->campaign(CampaignLocalization::getCampaign());
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign) {
+            $this->search->campaign($campaign);
+        }
     }
 
     /**

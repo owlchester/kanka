@@ -45,9 +45,9 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Yes! We believe that your financial situation shouldn't impact your enjoyment of role playing games or world building, and such will always keep the app free. Thanks to our generous Patrons on :patreon, we are able to cover the monthly server costs and keep the app ad free!
+Yes! We strongly believe that your financial situation shouldn't impact your enjoyment of RPGs or world building and we will always keep the core app free. However, if you wish to take a more active role in this journey, support us, and vote on the features that matter the most to you, you can do so either through our website or on :patreon.
 
-Supporting us however allows you to increase file size upload limits, adds your name to the Hall of fame, have nicer default icons, vote on prioritising what gets works on and more!
+In addition to voting on the direction that Kanka takes, supporting us allows you to gain access to :boosters, increase file size upload limits, add your name to the hall of fame, have nicer default icons, and more!
 TEXT
 ,
         'question'  => 'Will the app stay free?',

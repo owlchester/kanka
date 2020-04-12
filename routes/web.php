@@ -53,9 +53,13 @@ Route::group([
 
     Route::get('/settings/subscription', 'Settings\SubscriptionController@index')->name('settings.subscription');
     Route::get('/settings/subscription/change', 'Settings\SubscriptionController@change')->name('settings.subscription.change');
+    Route::get('/settings/subscription/callback', 'Settings\SubscriptionController@callback')->name('settings.subscription.callback');
     Route::post('/settings/subscription/change', 'Settings\SubscriptionController@subscribe')->name('settings.subscription.subscribe');
     Route::get('/settings/billing-information', 'Settings\BillingController@index')->name('settings.billing');
     Route::patch('/settings/billing-information', 'Settings\BillingController@save')->name('settings.billing.save');
+
+    Route::get('/settings/invoices', 'Settings\InvoiceController@index')->name('settings.invoices');
+    Route::get('/settings/invoices/download/{invoice}', 'Settings\InvoiceController@download')->name('settings.invoices.download');
 
     Route::get('/settings/apps', 'Settings\AppsController@index')->name('settings.apps');
     Route::get('/settings/discord-me', 'Settings\Apps\DiscordController@me');

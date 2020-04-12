@@ -71,6 +71,25 @@ return [
         ],
         'title'         => 'Boost',
     ],
+    'invoices' => [
+        'actions' => [
+            'download' => 'Download PDF',
+            'view_all' => 'View all',
+        ],
+        'header' => 'Below is a list of your last 24 invoices which can be downloaded.',
+        'fields' => [
+            'date' => 'Date',
+            'amount' => 'Amount',
+            'status' => 'Status',
+            'invoice' => 'Invoice',
+        ],
+        'empty' => '',
+        'title' => 'Invoices',
+        'status' => [
+            'paid' => 'Paid',
+            'pending' => 'Pending',
+        ],
+    ],
     'layout'    => [
         'description'   => 'Update your layout options',
         'success'       => 'Layout options updated.',
@@ -89,6 +108,7 @@ return [
         'subscription'      => 'Subscription',
         'subscription_status' => 'Subscription Status',
         'payment_options' => 'Payment Options',
+        'invoices'          => 'Invoices',
     ],
     'patreon'   => [
         'actions'           => [
@@ -125,7 +145,7 @@ return [
             'helper' => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved' => 'Saved payment method',
         ],
-        'cancelled' => 'Your subscription has been cancelled. You can renew a subscription when your current subscription is over.',
+        'cancelled' => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends.',
         'cancel' => [
             'text' => 'Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
         ],
@@ -164,19 +184,15 @@ return [
             'add_one' => 'You currently have no payment method saved.',
             'actions' => [
                 'save' => 'Save payment method',
-                'add_new' => 'Add a new payment method',
             ],
             'helper' => 'This card will be used for all of your subscriptions.',
-            'select' => 'Select a method payment',
             'ending' => 'Ending in',
             'saved' => ':brand ending with :last4'
         ],
         'subscription' => [
-            'select' => 'Select subscription',
             'actions' => [
                 'subscribe' => 'Change to :tier monthly',
                 'rollback' => 'Change to Kobold',
-                'processing' => 'Processing',
                 'downgrading' => 'Please contact us for downgrading.',
             ],
         ],
@@ -184,6 +200,7 @@ return [
             'currency' => 'Your prefered currency setting was updated.',
             'cancel' => 'Your subscription was cancelled.',
             'subscribed' => 'Your subscription was successful.',
+            'callback' => 'Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).',
         ],
         'upgrade_downgrade' => [
             'button' => 'Upgrade & Downgrade Information',
@@ -203,6 +220,7 @@ return [
         ],
         'errors' => [
             'subscribed' => 'Couldn\'t process your subscription. Stripe provided the following hint.',
+            'callback' => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
         ],
         'tiers' => 'Subscription Tiers',
     ]

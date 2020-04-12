@@ -127,7 +127,7 @@
             <div class="section-body">
                 <h1>{{ __('teams.hall_of_fame') }}</h1>
                 <p class="text-muted">{{ __('teams.patreon.description') }}
-                    <a href="{{ config('patreon.url') }}" class="" target="_blank">{{ __('footer.patreon') }}</a>.
+                    <a href="{{ route('settings.subscription') }}">{{ __('footer.subscribe') }}</a>.
                     <a href="{{ route('front.features', ['#patreon']) }}">{{ __('teams.patreon.learn_more') }}</a>.
                 </p>
 
@@ -138,7 +138,7 @@
 
                         <div class="row text-center">
                         @foreach (\Illuminate\Support\Arr::get($patrons, 'Elemental', []) as $user)
-                            <div class="col-md-4 col-6">{{ $user->patreon_fullname }}</div>
+                            <div class="col-md-4 col-6">{{ $user->name }}</div>
                         @endforeach
                         </div>
                     </div>
@@ -150,7 +150,7 @@
 
                         <div class="row text-center">
                             @foreach (\Illuminate\Support\Arr::get($patrons, 'Owlbear', []) as $user)
-                                <div class="col-md-4 col-6 ">{{ $user->patreon_fullname }}</div>
+                                <div class="col-md-4 col-6 ">{{ $user->name }}</div>
                             @endforeach
                         </div>
                     </div>
@@ -162,7 +162,7 @@
 
                         <div class="row text-center">
                             @foreach (\Illuminate\Support\Arr::get($patrons, 'Goblin', []) as $user)
-                                <div class="col-md-4 col-6">{{ $user->patreon_fullname }}</div>
+                                <div class="col-md-4 col-6">{{ $user->name }}</div>
                             @endforeach
                         </div>
                     </div>

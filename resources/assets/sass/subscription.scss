@@ -23,6 +23,14 @@ table.tiers {
     }
   }
 
+  .btn-block {
+    white-space:normal !important;
+    word-wrap: break-word;
+  }
+  .align-middle {
+    vertical-align: middle !important;
+  }
+
   .fa-check {
     color: green;
   }
@@ -47,3 +55,15 @@ table.tiers {
 
 }
 
+@media (max-width: 991px) {
+  table.tiers {
+    .tier {
+      text-align: center;
+      display: block;
+      .img {
+        text-align: center;
+        justify-content: unset;
+      }
+    }
+  }
+}

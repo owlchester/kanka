@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class BillingController extends Controller
 {
-
+    /**
+     * BillingController constructor.
+     * @param SubscriptionService $service
+     */
     public function __construct(SubscriptionService $service)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'identity', 'shadow']);
         $this->subscription = $service;
     }
 

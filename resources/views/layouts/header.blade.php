@@ -38,6 +38,9 @@ if (Auth::check()) {
 
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
+            @if (Auth::check())
+            <a class="btn-nav btn btn-warning btn-sm pull-left hidden-xs" href="{{ route('settings.subscription') }}">{{ __('settings.subscription.manage_subscription') }}</a>
+            @endif
             <ul class="nav navbar-nav">
                 @if (!empty($currentCampaign))
                     <li class="visible-xs visible-sm">

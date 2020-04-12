@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Settings;
 
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\Services\SubscriptionService;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use TCG\Voyager\Facades\Voyager;
 
 class SubscriptionApiController extends Controller
@@ -40,6 +42,7 @@ class SubscriptionApiController extends Controller
      */
     public function paymentMethods(Request $request)
     {
+        /** @var User $user */
         $user = $request->user();
         $paymentMethodID = $request->get('payment_method');
 
