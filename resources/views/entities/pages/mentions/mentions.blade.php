@@ -50,7 +50,7 @@
                                         @else
                                             <i>{{ trans('crud.hidden') }}</i>
                                         @endviewentity
-                                    @else
+                                    @elseif ($mention->entity)
                                         @viewentity($mention->entity)
                                             <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
                                         @else
