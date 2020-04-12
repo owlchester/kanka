@@ -8,13 +8,6 @@ require('./bootstrap');
 import select2 from './components/select2.js';
 import deleteConfirm from './components/delete-confirm.js';
 
-/**
- * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
- * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
- * Todo: workaround to only run timeout if the window is active
- */
-var notificationList, notificationCount, notificationRefreshTimeout = 60 * 10000;
-
 $(document).ready(function() {
 
     // Inject the isMobile variable into the window. We don't want ALL of the javascript
@@ -169,7 +162,6 @@ $(document).ready(function() {
     deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
-    initNotifications();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -395,32 +387,6 @@ function initAjaxPagination() {
 }
 
 /**
- * Check if there are new notifiations for the user
- */
-function initNotifications() {
-    notificationList = $('#header-notification-list');
-    notificationCount = $('#header-notification-count');
-    if (notificationList.length === 1) {
-        setTimeout(refreshNotificationList, notificationRefreshTimeout);
-    }
-}
-
-function refreshNotificationList() {
-    // console.log('refresh notification list');
-    $.ajax(notificationList.data('url'))
-        .done(function(result) {
-            if (result.count > 0) {
-                notificationList.html(result.body);
-                notificationCount.html(result.count).show();
-            } else {
-                notificationCount.hide();
-            }
-            setTimeout(refreshNotificationList, notificationRefreshTimeout);
-        }
-    );
-}
-
-/**
  * Handler for copying content to the clipboard
  */
 function initCopyToClipboard() {
@@ -461,3 +427,4 @@ require('./crud.js');
 require('./calendar.js');
 require('./search.js');
 require('./tags.js');
+require('./notification');

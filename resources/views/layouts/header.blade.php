@@ -1,12 +1,5 @@
 <?php
 $currentCampaign = CampaignLocalization::getCampaign();
-
-$notifications = [];
-$unreadNotifications = 0;
-if (Auth::check()) {
-    $unreadNotifications = count(Auth::user()->unreadNotifications);
-    $notifications = Auth::user()->notifications()->take(5)->get();
-}
 ?>
 <!-- Main Header -->
 <header class="main-header">
@@ -54,14 +47,13 @@ if (Auth::check()) {
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
                             <i class="far fa-bell"></i>
-                            <span id="header-notification-count" class="label label-warning" style="{{ ($unreadNotifications == 0 ? 'display:none' : '') }}">{{ $unreadNotifications }}</span>
+                            <span id="header-notification-count" class="label label-warning" style="display:none"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">{{ trans('header.notifications.header', ['count' => $unreadNotifications]) }}</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
-                                    @include('notifications.list', ['notifications' => $notifications])
+                                    <li class="text-center"><i class="fa fa-spin fa-spinner"></i></li>
                                 </ul>
                             </li>
                             <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>

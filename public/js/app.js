@@ -72921,15 +72921,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
 
-/**
- * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
- * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
- * Todo: workaround to only run timeout if the window is active
- */
-
-var notificationList,
-    notificationCount,
-    notificationRefreshTimeout = 60 * 10000;
 $(document).ready(function () {
   // Inject the isMobile variable into the window. We don't want ALL of the javascript
   // for mobiles, namely the tooltip tool.
@@ -73071,14 +73062,13 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
   Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
   initTogglePasswordFields();
   initAjaxPagination();
-  initNotifications();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -73287,33 +73277,6 @@ function initAjaxPagination() {
   });
 }
 /**
- * Check if there are new notifiations for the user
- */
-
-
-function initNotifications() {
-  notificationList = $('#header-notification-list');
-  notificationCount = $('#header-notification-count');
-
-  if (notificationList.length === 1) {
-    setTimeout(refreshNotificationList, notificationRefreshTimeout);
-  }
-}
-
-function refreshNotificationList() {
-  // console.log('refresh notification list');
-  $.ajax(notificationList.data('url')).done(function (result) {
-    if (result.count > 0) {
-      notificationList.html(result.body);
-      notificationCount.html(result.count).show();
-    } else {
-      notificationCount.hide();
-    }
-
-    setTimeout(refreshNotificationList, notificationRefreshTimeout);
-  });
-}
-/**
  * Handler for copying content to the clipboard
  */
 
@@ -73359,6 +73322,8 @@ __webpack_require__(/*! ./calendar.js */ "./resources/assets/js/calendar.js");
 __webpack_require__(/*! ./search.js */ "./resources/assets/js/search.js");
 
 __webpack_require__(/*! ./tags.js */ "./resources/assets/js/tags.js");
+
+__webpack_require__(/*! ./notification */ "./resources/assets/js/notification.js");
 
 /***/ }),
 
@@ -74635,6 +74600,72 @@ function initSaveKeyboardShortcut(form) {
       $(form).submit();
       return false;
     }
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/notification.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/notification.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
+ * Refresh the ui every minute, while the ajax call for new content is done once every 2 minutes
+ * for all open tabs.
+ */
+var notificationList,
+    notificationCount,
+    notificationRefreshTimeout = 60 * 1000;
+$(document).ready(function () {
+  notificationList = $('#header-notification-list');
+  notificationCount = $('#header-notification-count');
+
+  if (notificationList.length === 1) {
+    // Every thirty seconds, we check if the storage was changed.
+    updateNotificationUI();
+  }
+});
+
+function updateNotificationUI() {
+  console.log('updateNotificationUI', new Date()); // Only do an ajax call if we haven't done one in a while by looking at the local storage
+
+  var last = localStorage.getItem('last_notification');
+  var now = new Date().getTime();
+  var delay = now - 60 * 2000;
+
+  if (!last || last < delay) {
+    localStorage.setItem('last_notification', now);
+    refreshNotifications();
+  } else {
+    // If we have up to date info, show it
+    var count = localStorage.getItem('notification-count');
+    var body = localStorage.getItem('notification-body');
+
+    if (count > 0) {
+      notificationList.html(body);
+      notificationCount.html(count).show();
+    } else {
+      notificationCount.hide();
+    }
+
+    setTimeout(updateNotificationUI, notificationRefreshTimeout);
+  }
+}
+/**
+ * Get new data for notifications
+ */
+
+
+function refreshNotifications() {
+  console.log('refreshNotifications', new Date());
+  $.ajax(notificationList.data('url')).done(function (result) {
+    localStorage.setItem('notification-body', result.body);
+    localStorage.setItem('notification-count', result.count);
+    updateNotificationUI();
   });
 }
 
