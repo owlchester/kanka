@@ -73,10 +73,13 @@ class SubscriptionService
             return $this;
         }
 
-        // Note: We don't need to worry about charging the difference, stripe takes care of it.
+        // Update the user's payment plan
+        $paymentMethodID = Arr::get($request, 'payment_id');
+        $this->user->addPaymentMethod($paymentMethodID);
+        $this->user->updateDefaultPaymentMethod($paymentMethodID);
 
         // Subscribe
-        $this->subscribe($plan, Arr::get($request, 'payment-id'));
+        $this->subscribe($plan, $paymentMethodID);
         return $this;
     }
 

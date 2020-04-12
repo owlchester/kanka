@@ -41,7 +41,7 @@ class SubscriptionController extends Controller
         /** @var User $user */
         $user = Auth::user();
         $currency = $user->currencySymbol();
-        $invoices = $user->invoices(true, ['limit' => 3]);
+        $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -66,6 +66,9 @@ class SubscriptionController extends Controller
         $tier = $request->get('tier');
         $amount = $this->subscription->user($request->user())->tier($tier)->amount();
         $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()): null;
+        if (empty($request->user()->stripe_id)) {
+            $request->user()->createAsStripeCustomer();
+        }
         $intent = $request->user()->createSetupIntent();
         $cancel = $tier == Patreon::PLEDGE_KOBOLD;
 
@@ -105,7 +108,8 @@ class SubscriptionController extends Controller
         catch (\Exception $e) {
             // Error? json
             return response()->json([
-                'error' => 'error_message',
+                'error' => true,
+                'message' => $e->getMessage(),
             ]);
         }
     }

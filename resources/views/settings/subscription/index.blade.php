@@ -55,7 +55,7 @@
                                         {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
                                     @else
                                         {{ __('settings.subscription.payment_method.add_one' ) }}
-                                        {{ link_to_route('settings.billing', __('settings.subscription.payment_method.actions.add_new' )) }}
+                                        {{ link_to_route('settings.billing', __('settings.subscription.payment_method.new_card' )) }}
                                     @endif
                                 </dd>
                             </dl>

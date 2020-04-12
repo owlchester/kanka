@@ -26,6 +26,15 @@ table.tiers .tier .text .price {
   display: block;
 }
 
+table.tiers .btn-block {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+table.tiers .align-middle {
+  vertical-align: middle !important;
+}
+
 table.tiers .fa-check {
   color: green;
 }
@@ -45,5 +54,17 @@ table.tiers .fa-check {
   background-color: white;
   padding: 9px 12px;
   line-height: 1.6;
+}
+
+@media (max-width: 991px) {
+  table.tiers .tier {
+    text-align: center;
+    display: block;
+  }
+
+  table.tiers .tier .img {
+    text-align: center;
+    justify-content: unset;
+  }
 }
 
