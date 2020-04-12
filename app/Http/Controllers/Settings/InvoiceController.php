@@ -12,7 +12,7 @@ class InvoiceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', 'identity', 'shadow');
+        $this->middleware(['auth', 'identity', 'shadow']);
     }
 
     /**
@@ -21,7 +21,8 @@ class InvoiceController extends Controller
      */
     public function index(Request $request)
     {
-        $invoices = $request->user()->invoicesIncludingPending();
+        $user = $request->user();
+        $invoices = !empty($user->stripe_id) ? $user->invoicesIncludingPending() : [];
 
         return view('settings.invoices', compact(
             'invoices'
