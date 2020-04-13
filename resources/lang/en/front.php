@@ -200,7 +200,7 @@ return [
         'title'         => 'Pricing Overview',
     ],
     'privacy'       => [
-        'description'   => 'Effective date: May 25th, 2018',
+        'description'   => 'Effective date: :date',
         'title'         => 'Privacy Policy',
     ],
     'release'       => [
