@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 function updateNotificationUI() {
-    console.log('updateNotificationUI', new Date());
+    //console.log('updateNotificationUI', new Date());
 
     // Only do an ajax call if we haven't done one in a while by looking at the local storage
     let last = localStorage.getItem('last_notification');
@@ -45,7 +45,7 @@ function updateNotificationUI() {
  * Get new data for notifications
  */
 function refreshNotifications() {
-    console.log('refreshNotifications', new Date());
+    //console.log('refreshNotifications', new Date());
     $.ajax(notificationList.data('url'))
         .done(function(result) {
             localStorage.setItem('notification-body', result.body);
