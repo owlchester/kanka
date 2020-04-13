@@ -1,6 +1,6 @@
 @extends('layouts.app', [
-    'title' => trans('settings.profile.title'),
-    'description' => trans('settings.profile.description'),
+    'title' => __('settings.profile.title'),
+    'description' => __('settings.profile.description'),
     'breadcrumbs' => false
 ])
 
@@ -17,33 +17,47 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h2 class="page-header with-border">
-                                {{ trans('settings.profile.title') }}
+                                {{ __('settings.profile.title') }}
                             </h2>
 
                             <div class="form-group required">
-                                <label>{{ trans('profiles.fields.name') }}</label>
-                                {!! Form::text('name', null, ['placeholder' => trans('profiles.placeholders.name'), 'class' => 'form-control']) !!}
+                                <label>{{ __('profiles.fields.name') }}</label>
+                                {!! Form::text('name', null, ['placeholder' => __('profiles.placeholders.name'), 'class' => 'form-control']) !!}
+                            </div>
+
+                            <h2 class="page-header with-border">
+                                {{ __('profiles.newsletter.title') }}
+                            </h2>
+                            <div class="form-group checkbox">
+                                <label>
+                                    {!! Form::hidden('mail_newsletter', 0) !!}
+                                    {!! Form::checkbox('mail_newsletter') !!}
+                                    {{ __('profiles.newsletter.settings.newsletter') }}</label>
+                            </div>
+                            <div class="form-group checkbox">
+                                <label>
+                                    {!! Form::hidden('mail_vote', 0) !!}
+                                    {!! Form::checkbox('mail_vote') !!}
+                                    {!! __('profiles.newsletter.settings.votes', ['vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}</label>
+                            </div>
+                            <div class="form-group checkbox">
+                                <label>
+                                    {!! Form::hidden('mail_release', 0) !!}
+                                    {!! Form::checkbox('mail_release') !!}
+                                    {!! __('profiles.newsletter.settings.releases', ['release' => link_to_route('releases.index', __('profiles.newsletter.links.release'))]) !!}</label>
                             </div>
 
                             <hr />
-
-                            <div class="form-group checkbox">
-                                <label>
-                                    {!! Form::hidden('newsletter', 0) !!}
-                                    {!! Form::checkbox('newsletter') !!}
-                                    {{ trans('profiles.fields.newsletter') }}</label>
-                            </div>
-
                             <div class="form-group checkbox">
                                 <label>
                                     {!! Form::hidden('has_last_login_sharing', 0) !!}
                                     {!! Form::checkbox('has_last_login_sharing') !!}
-                                    {{ trans('profiles.fields.last_login_share') }}</label>
+                                    {{ __('profiles.fields.last_login_share') }}</label>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-2">
                             <h2 class="page-header with-border">
-                                {{ trans('settings.profile.avatar') }}
+                                {{ __('settings.profile.avatar') }}
                             </h2>
 
 
@@ -54,8 +68,8 @@
                                 <div class="preview">
                                     <div class="image">
                                         <img src="{{ Storage::url(auth()->user()->avatar) }}"/>
-                                        <a href="#" class="img-delete" data-target="remove-avatar" title="{{ trans('crud.remove') }}">
-                                            <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
+                                        <a href="#" class="img-delete" data-target="remove-avatar" title="{{ __('crud.remove') }}">
+                                            <i class="fa fa-trash"></i> {{ __('crud.remove') }}
                                         </a>
                                     </div>
                                     <br class="clear">
@@ -66,7 +80,7 @@
                     </div>
 
                     <button class="btn btn-primary">
-                        {{ trans('settings.profile.actions.update_profile') }}
+                        {{ __('settings.profile.actions.update_profile') }}
                     </button>
                 </div>
             </div>

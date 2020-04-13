@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsProfile;
+use App\Jobs\Emails\MailSettingsChangeJob;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -32,7 +33,11 @@ class ProfileController extends Controller
      */
     public function update(StoreSettingsProfile $request)
     {
-        Auth::user()->update($request->only('name', 'newsletter', 'has_last_login_sharing', 'avatar'));
+        Auth::user()
+            ->saveSettings($request->only([ 'mail_newsletter', 'mail_release', 'mail_vote']))
+            ->update($request->only('name', 'has_last_login_sharing', 'avatar'));
+
+        MailSettingsChangeJob::dispatch($request->user());
 
         return redirect()
             ->route('settings.profile')

@@ -28,6 +28,7 @@ Route::group([
 
     Auth::routes();
 
+    Route::get('/settings', 'Settings\ProfileController@index')->name('settings');
     Route::get('/settings/profile', 'Settings\ProfileController@index')->name('settings.profile');
     Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 

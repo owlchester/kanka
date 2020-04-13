@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a81d65c98a67ebf5705e17dd8a91b81",
+    "content-hash": "237ac07bcf80ad112b693911e5e7ac9e",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1742,6 +1742,50 @@
                 "schedule"
             ],
             "time": "2019-03-31T00:38:28+00:00"
+        },
+        {
+            "name": "drewm/mailchimp-api",
+            "version": "v2.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drewm/mailchimp-api.git",
+                "reference": "c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a",
+                "reference": "c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.0.*",
+                "vlucas/phpdotenv": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DrewM\\MailChimp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drew McLellan",
+                    "email": "drew.mclellan@gmail.com",
+                    "homepage": "http://allinthehead.com/"
+                }
+            ],
+            "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
+            "homepage": "https://github.com/drewm/mailchimp-api",
+            "time": "2019-08-06T09:24:58+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -6762,6 +6806,72 @@
                 }
             ],
             "time": "2020-03-02T17:01:46+00:00"
+        },
+        {
+            "name": "spatie/laravel-newsletter",
+            "version": "4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-newsletter.git",
+                "reference": "ac00cbe4662e64bde4f2f732935047e917919215"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-newsletter/zipball/ac00cbe4662e64bde4f2f732935047e917919215",
+                "reference": "ac00cbe4662e64bde4f2f732935047e917919215",
+                "shasum": ""
+            },
+            "require": {
+                "drewm/mailchimp-api": "^2.4",
+                "illuminate/support": "~5.8.0|^6.0|^7.0",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Newsletter\\NewsletterServiceProvider"
+                    ],
+                    "aliases": {
+                        "Newsletter": "Spatie\\Newsletter\\NewsletterFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Newsletter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Manage newsletters in Laravel",
+            "homepage": "https://github.com/spatie/laravel-newsletter",
+            "keywords": [
+                "laravel",
+                "mailchimp",
+                "newsletter"
+            ],
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-03-03T12:49:27+00:00"
         },
         {
             "name": "stevebauman/purify",

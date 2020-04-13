@@ -53,6 +53,18 @@ return [
         ],
         'success'   => 'Settings changed.',
     ],
+    'newsletter' => [
+        'title' => 'Newsletters',
+        'settings' => [
+            'newsletter' => 'Newsletter - receive the Kanka newsletter.',
+            'votes' => 'Community Votes - be notified as soon as a new :vote is available.',
+            'releases' => 'Releases - be notified as soon as a new :release.',
+        ],
+        'links' => [
+            'community-vote' => 'Community Vote',
+            'release' => 'Release',
+        ],
+    ],
     'theme'         => [
         'success'   => 'Theme changed.',
         'themes'    => [

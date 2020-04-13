@@ -40,6 +40,7 @@
         "sergej-kurakin/diceroller": "^2.0",
         "sofa/eloquence": "^6.0",
         "spatie/laravel-feed": "^2.6",
+        "spatie/laravel-newsletter": "^4.8",
         "stevebauman/purify": "^3.0",
         "tcg/voyager": "^1.1",
         "vsch/laravel-translation-manager": "^6.0"
