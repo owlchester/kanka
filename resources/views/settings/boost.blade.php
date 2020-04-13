@@ -47,10 +47,10 @@
                                     <a href="{{ url(App::getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}">{!! $boost->campaign->name !!}</a><br />
 
                                     @can('destroy', $boost)
-                                    <a href="#" class="delete-confirm btn btn-danger" data-name="{{ $boost->campaign->name }}" data-toggle="modal" data-target="#delete-confirm">
+                                    <a href="#" class="delete-confirm btn btn-danger" data-name="{{ $boost->campaign->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}">
                                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                                     </a>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boost.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form']) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boost.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
                                     {!! Form::close() !!}
                                     @endif
                                     </div>
