@@ -44,6 +44,7 @@ class AbilityService
             ->with(['ability', 'ability.entity', 'ability.entity.attributes', 'ability.ability', 'ability.ability.entity'])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->orderBy('a.type')
+            ->orderBy('a.name')
             ->get();
         foreach ($abilities as $ability) {
             // Can't read the ability? skip
