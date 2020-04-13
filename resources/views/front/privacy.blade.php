@@ -4,6 +4,12 @@
         'privacy',
     ],
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ trans('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}" />
+    <meta property="og:url" content="{{ route('front.privacy') }}" />
+@endsection
+
 @section('content')
     <header class="masthead reduced-masthead">
         <div class="container h-100">

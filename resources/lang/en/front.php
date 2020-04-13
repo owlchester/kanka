@@ -227,7 +227,7 @@ return [
         'coffee'    => 'Buy me a coffee!',
     ],
     'terms'         => [
-        'description'   => 'Effective date: March 4th, 2020',
+        'description'   => 'Effective date: :date',
         'title'         => 'Terms & Conditions',
     ],
 ];

@@ -1,6 +1,12 @@
 @extends('layouts.front', [
     'title' => trans('front.menu.terms'),
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ trans('front.terms.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}" />
+    <meta property="og:url" content="{{ route('front.terms') }}" />
+@endsection
+
 @section('content')
     <header class="masthead reduced-masthead">
         <div class="container h-100">
@@ -8,7 +14,7 @@
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">{{ trans('front.terms.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.terms.description') }}</p>
+                        <p class="mb-5">{{ trans('front.terms.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}</p>
                     </div>
                 </div>
             </div>
