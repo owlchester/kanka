@@ -37,7 +37,7 @@
 
                     {{ $models->appends('order', request()->get('order'))->links() }}
 
-                    @include('partials.newsletter')
+                        @include('partials.newsletter', ['source' => 'news'])
                 </div>
             </div>
         </div>

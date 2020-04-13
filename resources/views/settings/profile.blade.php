@@ -83,7 +83,7 @@
                     <div class="form-group checkbox">
                         <label>
                             {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                            {!! __('profiles.newsletter.settings.releases', ['release' => link_to_route('releases.index', __('profiles.newsletter.links.release'))]) !!}</label>
+                            {!! __('profiles.newsletter.settings.news', ['news' => link_to_route('front.news', __('profiles.newsletter.links.news'))]) !!}</label>
                     </div>
 
                     <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />

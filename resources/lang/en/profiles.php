@@ -58,11 +58,11 @@ return [
         'settings' => [
             'newsletter' => 'Newsletter - receive the Kanka newsletter.',
             'votes' => 'Community Votes - be notified as soon as a new :vote is available.',
-            'releases' => 'Releases - be notified when there\'s a new :release.',
+            'news' => 'News - be notified when there\'s :news.',
         ],
         'links' => [
             'community-vote' => 'Community Vote',
-            'release' => 'Release',
+            'news' => 'News',
         ],
     ],
     'theme'         => [

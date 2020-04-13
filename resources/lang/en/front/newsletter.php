@@ -5,7 +5,7 @@ return [
         'subscribe' => 'Subscribe',
         'learn_more' => 'Learn more',
     ],
-    'title' => 'Newsletter',
+    'title' => 'Email Updates',
     'headline' => 'Subscribe to one or all of our newsletters to stay up to date with Kanka.',
     'fields' => [
         'firstname' => 'First Name',
@@ -14,7 +14,7 @@ return [
     ],
     'groups' => [
         'newsletter' => 'Newsletter',
-        'releases' => 'Releases',
+        'news' => 'News',
         'community-votes' => 'Community Votes',
     ],
 ];

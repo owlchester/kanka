@@ -47,7 +47,7 @@
                     {{ $models->links() }}
 
 
-                    @include('partials.newsletter')
+                    @include('partials.newsletter', ['source' => 'vote'])
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@
                         </a>
                     </div>
 
-                    @include('partials.newsletter')
+                    @include('partials.newsletter', ['source' => 'news'])
                 </div>
             </div>
         </div>
