@@ -95,7 +95,7 @@
 
                 <h2 class="mb-2">OPTIONS REGARDING YOUR INFORMATION</h2>
 
-                <h3 class="mb-2">[Account Information]</h3>
+                <h3 class="mb-2">Account Information</h3>
                 <p class="mb-2">You may at any time review or change the information in your account or terminate your account by:</p>
                 <ul class="mb-2">
                     <li>Logging into your account settings and updating your account</li>
