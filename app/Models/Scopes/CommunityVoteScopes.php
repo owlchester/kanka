@@ -1,18 +1,31 @@
 <?php
-/**
- * Description of
- *
- * @author Jeremy Payne it@watson.ch
- * 05/02/2020
- */
 
 namespace App\Models\Scopes;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Trait CommunityVoteScopes
+ * @package App\Models\Scopes
+ *
+ * @method self published()
+ * @method self voting()
+ * @method self recent()
+ * @method self visible()
+ */
 trait CommunityVoteScopes
 {
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeVisible(Builder $builder)
+    {
+        return $builder
+            ->where('visible_at', '<=', Carbon::now());
+    }
+
     /**
      * @param Builder $builder
      */
@@ -28,9 +41,13 @@ trait CommunityVoteScopes
     {
         return $builder
             ->where('published_at', '>=', Carbon::now())
-            ->where('visible_at', '<=', Carbon::now());
+            ->visible();
     }
 
+    /**
+     * @param Builder $builder
+     * @return mixed
+     */
     public function scopeRecent(Builder $builder)
     {
         return $builder

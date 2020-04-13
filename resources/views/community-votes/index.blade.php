@@ -4,8 +4,8 @@
  */
 ?>
 @extends('layouts.front', [
-    'title' => trans('front/community-votes.title'),
-    'description' => trans('front/community-votes.description'),
+    'title' => __('front/community-votes.title'),
+    'description' => __('front/community-votes.description'),
 ])
 
 @section('og')
@@ -19,8 +19,8 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front/community-votes.title') }}</h1>
-                        <p class="mb-5">{{ trans('front/community-votes.description') }}</p>
+                        <h1 class="mb-5">{{ __('front/community-votes.title') }}</h1>
+                        <p class="mb-5">{{ __('front/community-votes.description') }}</p>
                     </div>
                 </div>
             </div>

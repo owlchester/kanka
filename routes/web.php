@@ -433,3 +433,6 @@ Route::post(
     'stripe/webhook',
     '\App\Http\Controllers\WebhookController@handleWebhook'
 );
+
+// Rss feeds
+Route::feeds();
