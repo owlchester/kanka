@@ -30,7 +30,7 @@
                     @include('community-votes._recent')
                 </div>
                 <div class="col-9">
-                    <div class="card">
+                    <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title mb-1">
                                 <a href="{{ route('community-votes.show', $model->getSlug()) }}">{{ $model->name }}</a>
@@ -77,11 +77,13 @@
                         </div>
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mb-4">
                         <a href="{{ route('community-votes.index') }}">
                             <i class="fa fa-arrow-left"></i> {{ __('front/community-votes.actions.return')}}
                         </a>
                     </div>
+
+                    @include('partials.newsletter')
                 </div>
             </div>
 

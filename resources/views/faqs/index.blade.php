@@ -5,6 +5,12 @@
         'faq',
     ],
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ __("front.faq.description") }}" />
+    <meta property="og:url" content="{{ route('faq.index') }}" />
+@endsection
+
 <?php /** @var \App\Models\Faq $faq */ ?>
 @section('content')
     <header class="masthead reduced-masthead">

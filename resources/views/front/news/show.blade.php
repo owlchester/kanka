@@ -43,11 +43,13 @@
                     </h4>
                     @include('front.news._article')
 
-                    <div class="mt-3">
+                    <div class="mb-4">
                         <a href="{{ route('front.news') }}">
                             <i class="fa fa-arrow-left"></i> {{ __('front/news.actions.return') }}
                         </a>
                     </div>
+
+                    @include('partials.newsletter')
                 </div>
             </div>
         </div>

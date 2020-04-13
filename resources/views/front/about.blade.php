@@ -2,8 +2,13 @@
     'title' => __('front.menu.about'),
     'active' => 'about'
 ])
-@section('content')
 
+@section('og')
+    <meta property="og:description" content="{{ __('front.about.description') }}" />
+    <meta property="og:url" content="{{ route('front.about') }}" />
+@endsection
+
+@section('content')
     <header class="masthead reduced-masthead" id="about">
         <div class="container h-100">
             <div class="row h-100">

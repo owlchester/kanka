@@ -8,6 +8,11 @@
     'description' => trans('front/community-votes.description'),
 ])
 
+@section('og')
+    <meta property="og:description" content="{{ __('front/community-votes.description') }}" />
+    <meta property="og:url" content="{{ route('community-votes.index') }}" />
+@endsection
+
 @section('content')
     <header class="masthead reduced-masthead">
         <div class="container h-100">
@@ -40,6 +45,9 @@
                     @endforeach
 
                     {{ $models->links() }}
+
+
+                    @include('partials.newsletter')
                 </div>
             </div>
         </div>

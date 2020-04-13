@@ -3,6 +3,11 @@
     'description' => '',
 ])
 
+@section('og')
+    <meta property="og:description" content="{{ __("faq.$key.answer") }}" />
+    <meta property="og:url" content="{{ route('faq.show', ['key' => $key, 'slug' => \Illuminate\Support\Str::slug(__('faq.' . $key . '.question'))]) }}" />
+@endsection
+
 @section('content')
 
     <header class="masthead reduced-masthead">

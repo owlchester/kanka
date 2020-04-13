@@ -14,6 +14,7 @@ Route::get('/public-campaigns', 'FrontController@campaigns')->name('front.public
 Route::get('/contact', 'FrontController@contact')->name('front.contact');
 Route::get('/pricing', 'FrontController@pricing')->name('front.pricing');
 Route::get('/news', 'Front\NewsController@index')->name('front.news');
+Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsletter');
 Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.news.show');
 
 // Slug

@@ -160,6 +160,7 @@ return [
         'home'      => 'Home',
         'login'     => 'Login',
         'news'      => 'News',
+        'newsletter' => 'Newsletter',
         'pricing'   => 'Pricing',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Register',
