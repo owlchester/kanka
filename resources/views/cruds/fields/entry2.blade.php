@@ -1,8 +1,12 @@
+<?php
+$old = old('entry');
+?>
+
 <div class="form-group">
     <label>{{ __('crud.panels.entry') }}</label>
     {!! Form::textarea(
         'entryForEdition',
-        FormCopy::field('entryForEdition')->string(),
+        !empty($old) ? $old : FormCopy::field('entryForEdition')->string(),
         [
             'class' => 'form-control html-editor',
             'id' => 'entry',
