@@ -22,6 +22,9 @@
                                 <a href="{{ route('front.news') }}">{{ __('front.menu.news') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                             </li>
                         </ul>
@@ -36,6 +39,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('front.help') }}">{{ __('front.menu.help') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                             </li>
                         </ul>
                     </div>

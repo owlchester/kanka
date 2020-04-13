@@ -23,6 +23,9 @@
                                 <a href="{{ route('front.news') }}">{{ __('front.menu.news') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                             </li>
                         </ul>
