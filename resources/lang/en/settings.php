@@ -202,7 +202,7 @@ return [
         'success' => [
             'currency' => 'Your prefered currency setting was updated.',
             'cancel' => 'Your subscription was cancelled.',
-            'subscribed' => 'Your subscription was successful.',
+            'subscribed' => 'Your subscription was successful. Don\'t forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page.',
             'callback' => 'Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).',
         ],
         'upgrade_downgrade' => [

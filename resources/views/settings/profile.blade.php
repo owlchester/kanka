@@ -1,3 +1,4 @@
+<?php /** @var \App\User $user */?>
 @extends('layouts.app', [
     'title' => __('settings.profile.title'),
     'description' => __('settings.profile.description'),
@@ -11,7 +12,7 @@
             @include('settings.menu')
         </div>
         <div class="col-lg-10 col-sm-8">
-            {!! Form::model(auth()->user(), ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile']]) !!}
+            {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile']]) !!}
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="row">
@@ -23,28 +24,6 @@
                             <div class="form-group required">
                                 <label>{{ __('profiles.fields.name') }}</label>
                                 {!! Form::text('name', null, ['placeholder' => __('profiles.placeholders.name'), 'class' => 'form-control']) !!}
-                            </div>
-
-                            <h2 class="page-header with-border">
-                                {{ __('profiles.newsletter.title') }}
-                            </h2>
-                            <div class="form-group checkbox">
-                                <label>
-                                    {!! Form::hidden('mail_newsletter', 0) !!}
-                                    {!! Form::checkbox('mail_newsletter') !!}
-                                    {{ __('profiles.newsletter.settings.newsletter') }}</label>
-                            </div>
-                            <div class="form-group checkbox">
-                                <label>
-                                    {!! Form::hidden('mail_vote', 0) !!}
-                                    {!! Form::checkbox('mail_vote') !!}
-                                    {!! __('profiles.newsletter.settings.votes', ['vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}</label>
-                            </div>
-                            <div class="form-group checkbox">
-                                <label>
-                                    {!! Form::hidden('mail_release', 0) !!}
-                                    {!! Form::checkbox('mail_release') !!}
-                                    {!! __('profiles.newsletter.settings.releases', ['release' => link_to_route('releases.index', __('profiles.newsletter.links.release'))]) !!}</label>
                             </div>
 
                             <hr />
@@ -85,6 +64,36 @@
                 </div>
             </div>
             {!! Form::close() !!}
+
+            <div class="box box-solid">
+                <div class="box-body">
+                    <h2 class="page-header with-border">
+                        {{ __('profiles.newsletter.title') }}
+                    </h2>
+                    <div class="form-group checkbox">
+                        <label>
+                            {!! Form::checkbox('mail_newsletter', 1, $user->mail_newsletter) !!}
+                            {{ __('profiles.newsletter.settings.newsletter') }}</label>
+                    </div>
+                    <div class="form-group checkbox">
+                        <label>
+                            {!! Form::checkbox('mail_vote', 1, $user->mail_vote) !!}
+                            {!! __('profiles.newsletter.settings.votes', ['vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}</label>
+                    </div>
+                    <div class="form-group checkbox">
+                        <label>
+                            {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
+                            {!! __('profiles.newsletter.settings.releases', ['release' => link_to_route('releases.index', __('profiles.newsletter.links.release'))]) !!}</label>
+                    </div>
+
+                    <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
+                </div>
+            </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/profile.js') }}" defer></script>
 @endsection

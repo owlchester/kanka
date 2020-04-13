@@ -201,13 +201,24 @@ trait UserSetting
             unset($this->attributes['settings']['advanced_mentions']);
         }
 
-        $mails = ['mail_newsletter', 'mail_vote', 'mail_release'];
-        foreach ($mails as $mail) {
-            $this->$mail = Arr::get($data, $mail, null);
-            if (empty($this->$mail)) {
-                unset($this->attributes['settings'][$mail]);
+
+        return $this;
+    }
+
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function updateSettings($data): self
+    {
+        $fields = ['mail_newsletter', 'mail_vote', 'mail_release'];
+        foreach ($fields as $field) {
+            if (!Arr::has($data, $field)) {
+                continue;
             }
+            $this->$field = Arr::get($data, $field, null);
         }
+
         return $this;
     }
 }
