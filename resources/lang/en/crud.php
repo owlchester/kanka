@@ -18,6 +18,7 @@ return [
         'next'              => 'Next',
         'private'           => 'Private',
         'public'            => 'Public',
+        'reset'             => 'Reset',
     ],
     'add'               => 'Add',
     'alerts'            => [

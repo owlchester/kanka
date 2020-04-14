@@ -126,7 +126,7 @@
                         });
             },
             useCharge: function(ability, charge) {
-                if (charge >= ability.used_charges) {
+                if (charge > ability.used_charges) {
                     ability.used_charges += 1;
                 } else {
                     ability.used_charges -= 1;

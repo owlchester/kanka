@@ -244,7 +244,7 @@ footer ul li {
 }
 
 footer ul li a {
-  padding: 5px 15px;
+  padding: 5px 15px 5px 0;
   font-size: 14px !important;
   line-height: 26px;
 }
@@ -256,7 +256,7 @@ footer h4 {
 
 footer h4,
 footer span {
-  margin: 0 15px 10px;
+  margin: 0 15px 10px 0;
 }
 
 footer a {

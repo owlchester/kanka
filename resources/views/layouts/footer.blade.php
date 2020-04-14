@@ -1,5 +1,8 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
+    <div class="translator-call text-center hidden-xs">
+        <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
+    </div>
     <div class="footer">
         <div class="row">
             <div class="col-md-8 col-lg-6 col-12">
