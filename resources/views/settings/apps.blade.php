@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\UserApp $discord */?>
 @extends('layouts.app', [
     'title' => __('settings.apps.title'),
     'description' => '',
@@ -24,11 +25,11 @@
                     <hr />
                     <div class="row">
                         <div class="col-xs-12">
-                            @if(auth()->user()->apps()->app('discord')->first())
+                            @if($discord = auth()->user()->apps()->app('discord')->first())
                                 <button class="pull-right btn btn-default delete-confirm" data-toggle="modal" data-name="Discord"
                                         data-target="#delete-confirm" data-delete-target="delete-form-discord"
                                         title="{{ __('settings.apps.actions.remove') }}">
-                                    {{ __('settings.apps.actions.remove') }}
+                                    {{ __('settings.apps.actions.remove') }} @if (!empty($discord->settings)) {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }} @endif
                                 </button>
                                 {!! Form::open([
                                     'method' => 'DELETE',
