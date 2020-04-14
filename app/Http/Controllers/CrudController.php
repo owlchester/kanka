@@ -251,6 +251,9 @@ class CrudController extends Controller
             } elseif ($request->has('submit-view')) {
                 $route = route($this->route . '.show', $new);
                 return response()->redirectTo($route);
+            } elseif ($request->has('submit-copy')) {
+                $route = route($this->route . '.create', ['copy' => $new->id]);
+                return response()->redirectTo($route);
             }
 
             if ($redirectToCreated) {
@@ -372,6 +375,9 @@ class CrudController extends Controller
                     $subroute = 'tree';
                 }
                 $route = route($this->route . '.' . $subroute);
+            } elseif ($request->has('submit-copy')) {
+                $route = route($this->route . '.create', ['copy' => $model->id]);
+                return response()->redirectTo($route);
             }
             return response()->redirectTo($route);
         } catch (LogicException $exception) {

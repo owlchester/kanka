@@ -17,7 +17,9 @@
                 'data-live' => route('search.live'),
                 'data-type' => $singularType
             ]) !!}
-            <p class="text-yellow duplicate-entity-warning" style="display: none">{{ __('entities.creator.duplicate') }}</p>
+            <p class="text-yellow duplicate-entity-warning" style="display: none">
+                {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>
+            </p>
         </div>
 
         @include('entities.creator.forms.' . $singularType)

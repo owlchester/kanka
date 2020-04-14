@@ -358,6 +358,8 @@ function initEntityCreatorDuplicateName() {
             $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')
         ).done(function (res) {
             if (res.length > 0) {
+                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'}).join(', ');
+                $('#duplicate-entities').html(entities);
                 entityCreatorDuplicateWarning.fadeIn();
             } else {
                 entityCreatorDuplicateWarning.hide();

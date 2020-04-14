@@ -15,6 +15,15 @@ function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function(e) {
         if ((e.ctrlKey || e.metaKey) && e.which === 83) {
             window.entityFormHasUnsavedChanges = false;
+
+            // Shift? save and update
+            if (e.shiftKey) {
+                let entityFormDefaultAction = $('#form-submit-main');
+                if (entityFormDefaultAction) {
+                    entityFormDefaultAction
+                        .attr('name', 'submit-update');
+                }
+            }
             $(form).submit();
             return false;
         }
