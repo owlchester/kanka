@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\DB;
  * @property string $excerpt
  * @property string $css
  * @property string $theme
+ * @property int $boost_count
  * @property integer $visible_entity_count
  * @property EntityMention[] $mentions
  * @property CampaignSetting $setting

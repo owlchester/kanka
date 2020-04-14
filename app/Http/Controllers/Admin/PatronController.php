@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\StorePatron;
 use App\Http\Requests\StoreFaq;
 use App\Models\Faq;
+use App\Services\CampaignBoostService;
 use App\User;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Role;
@@ -25,11 +26,16 @@ class PatronController extends AdminCrudController
 
     public $createAction = false;
 
+    /** @var CampaignBoostService */
+    protected $boostService;
+
     /**
      * CharacterController constructor.
      */
-    public function __construct()
+    public function __construct(CampaignBoostService $boostService)
     {
+        $this->boostService = $boostService;
+
         $this->filters = [
             'question',
             'locale',
@@ -131,10 +137,8 @@ class PatronController extends AdminCrudController
         $user->patreon_fullname = null;
         $user->save();
 
-        foreach ($user->boosts as $boost) {
-            // Notify campaign owners?
-
-            $boost->delete();
+        foreach ($user->boosts()->with('campaign')->get() as $boost) {
+            $this->boostService->campaign($boost->campaign)->unboost($boost);
         }
 
         /** @var Role $role */

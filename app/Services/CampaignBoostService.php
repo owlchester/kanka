@@ -11,17 +11,29 @@ use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostService
 {
+    /** @var Campaign */
+    protected $campaign;
+
     /**
      * @param Campaign $campaign
+     * @return $this
+     */
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
      * @param User|null $user
      * @return CampaignBoost
      * @throws AlreadyBoostedException
      * @throws ExhaustedBoostsException
      */
-    public function boost(Campaign $campaign, User $user = null): CampaignBoost
+    public function boost(User $user = null): CampaignBoost
     {
-        if ($campaign->boosted()) {
-            throw new AlreadyBoostedException($campaign);
+        if ($this->campaign->boosted()) {
+            throw new AlreadyBoostedException($this->campaign);
         }
 
         if ($user === null) {
@@ -33,10 +45,29 @@ class CampaignBoostService
         }
 
         $boost = CampaignBoost::create([
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'user_id' => $user->id
         ]);
 
+        $this->campaign->boost_count = $this->campaign->boosts()->count();
+        $this->campaign->save();
+
         return $boost;
+    }
+
+    /**
+     * Unboost a campaign
+     * @param CampaignBoost $campaignBoost
+     * @return $this
+     * @throws \Exception
+     */
+    public function unboost(CampaignBoost $campaignBoost): self
+    {
+        $campaignBoost->delete();
+
+        $this->campaign->boost_count = $this->campaign->boosts()->count();
+        $this->campaign->save();
+
+        return $this;
     }
 }

@@ -49,8 +49,9 @@ class SubscriptionEndJob implements ShouldQueue
         $this->user->save();
 
         // Cleanup the campaign boosts
-        foreach ($this->user->boosts as $boost) {
-            $boost->delete();
+        $boostService = app()->make('App\Services\CampaignBoostService');
+        foreach ($this->user->boosts()->with('campaign')->get() as $boost) {
+            $boostService->campaign($boost->campaign)->unboost($boost);
         }
 
         // Cleanup the patreon role

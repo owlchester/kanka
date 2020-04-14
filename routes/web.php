@@ -146,6 +146,7 @@ Route::group([
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
+        Route::get('/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
         // Attribute Templates Menu
         Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');

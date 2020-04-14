@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
 use App\Services\BulkService;
 use App\Services\EntityService;
@@ -80,5 +81,21 @@ class BulkController extends Controller
         }
 
         return redirect()->route($entity . '.' . $subroute);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
+    public function modal(Request $request)
+    {
+        if (!$request->has('view') || !in_array($request->get('view'), ['permissions'])) {
+            return response()->json(['error' => 'invalid view']);
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
+            'campaign'
+        ));
     }
 }
