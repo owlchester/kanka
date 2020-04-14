@@ -26,10 +26,15 @@
 
                     <p class="help-block">
                         @can('update', $entity->child)
-                            <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-primary pull-right"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
-                                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
-                            </a>
+                            <div class="pull-right">
+                                <a href="{{ route('entities.entity_abilities.reset', $entity) }}" class="btn btn-default">
+                                    {{ __('entities/abilities.actions.reset') }}
+                                </a>
+                                <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-primary"
+                                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
+                                    <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
+                                </a>
+                            </div>
                         @endcan
                         {{ __('entities/abilities.show.helper') }}
                     </p>

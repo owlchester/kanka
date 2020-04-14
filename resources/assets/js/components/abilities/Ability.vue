@@ -38,6 +38,14 @@
 
                 <div v-html="ability.entry"></div>
 
+                <div v-if="ability.charges">
+                    <div class="charges">
+                        <div class="charge" v-for="n in ability.charges" v-on:click="useCharge(ability, n)"
+                             v-bind:class="{ used: ability.used_charges >= n }">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="text-center more-available" v-if="hasAttribute"
                      v-on:click="click(ability)">
                     <i class="fa fa-chevron-down" v-if="!details"></i>
@@ -117,6 +125,23 @@
 
                         });
             },
+            useCharge: function(ability, charge) {
+                if (charge >= ability.used_charges) {
+                    ability.used_charges += 1;
+                } else {
+                    ability.used_charges -= 1;
+                }
+
+                axios.post(ability.actions.use, {'used': ability.used_charges})
+                    .then((res) => {
+                        if (!res.data.success) {
+                            ability.used_charges -= 1;
+                        }
+                    })
+                    .catch(() => {
+                        ability.used_charges -= 1;
+                    });
+            }
         }
     }
 </script>

@@ -18,6 +18,7 @@ return [
     'fields'        => [
         'abilities' => 'Abilities',
         'ability'   => 'Ability',
+        'charges' => 'Charges',
         'name'      => 'Name',
         'type'      => 'Type',
     ],
@@ -32,6 +33,7 @@ return [
         'title'         => 'Abilities',
     ],
     'placeholders'  => [
+        'charges' => 'Amount of charges. Reference attributes with {Level}*{CHA}',
         'name'  => 'Fireball, Alert, Cunning Strike',
         'type'  => 'Spell, Feat, Attack',
     ],

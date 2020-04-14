@@ -12,6 +12,19 @@
                 'crud.fields.ability'
             ) !!}
         </div>
+        <div class="form-group">
+            <label>{{ __('abilities.fields.charges') }}</label>
+            {!! Form::text(
+                'charges',
+                FormCopy::field('charges')->string(),
+                [
+                    'placeholder' => trans('abilities.placeholders.charges'),
+                    'class' => 'form-control',
+                    'maxlength' => 120,
+                    'autocomplete' => 'off'
+                ]
+            ) !!}
+        </div>
         @include('cruds.fields.tags')
 
         @include('cruds.fields.private')

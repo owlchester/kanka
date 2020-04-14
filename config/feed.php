@@ -4,9 +4,9 @@ return [
     'feeds' => [
         'main' => [
             'items' => 'App\Models\Release@getFeedItems',
-            'url' => '/feeds/releases.rss',
-            'title' => 'Kanka Releases',
-            'description' => 'New releases for Kanka.io',
+            'url' => '/feeds/news.rss',
+            'title' => 'Kanka News',
+            'description' => 'News for Kanka.io',
             'language' => 'en-UK',
             'view' => 'feed::atom',
             'type' => 'application/atom+xml',

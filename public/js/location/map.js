@@ -854,7 +854,7 @@ function initMapLegend() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\location\map.js */"./resources/assets/js/location/map.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\location\map.js */"./resources/assets/js/location/map.js");
 
 
 /***/ })

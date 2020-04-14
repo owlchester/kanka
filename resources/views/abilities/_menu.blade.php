@@ -21,6 +21,12 @@
                 </li>
             @endif
             @include('cruds.lists.type')
+            @if ($model->charges)
+                <li class="list-group-item">
+                    <b>{{ trans('abilities.fields.charges') }}</b> <span class="pull-right">{{ $model->charges }}</span>
+                    <br class="clear" />
+                </li>
+            @endif
             @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')

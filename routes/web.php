@@ -189,6 +189,8 @@ Route::group([
 
         // Entity Abilities API
         Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
+        Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
+        Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([

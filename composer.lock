@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "237ac07bcf80ad112b693911e5e7ac9e",
+    "content-hash": "b003751cff1cf244e78b2f30e3d3c433",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -670,6 +670,51 @@
                 "widget"
             ],
             "time": "2019-07-22T13:10:51+00:00"
+        },
+        {
+            "name": "chriskonnertz/string-calc",
+            "version": "v1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chriskonnertz/string-calc.git",
+                "reference": "bddc5aaea1c1c0a270e6c96f3719c48afa6cb7f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chriskonnertz/string-calc/zipball/bddc5aaea1c1c0a270e6c96f3719c48afa6cb7f0",
+                "reference": "bddc5aaea1c1c0a270e6c96f3719c48afa6cb7f0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ChrisKonnertz\\StringCalc": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Konnertz"
+                }
+            ],
+            "description": "StringCalc is a PHP calculator library for mathematical terms (expressions) passed as strings.",
+            "keywords": [
+                "calculation",
+                "expression",
+                "math",
+                "parser",
+                "string calc",
+                "string-calc",
+                "stringcalc",
+                "term"
+            ],
+            "time": "2019-09-03T14:09:20+00:00"
         },
         {
             "name": "clue/stream-filter",
