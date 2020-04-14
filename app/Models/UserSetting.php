@@ -14,6 +14,10 @@ use Illuminate\Support\Arr;
  * @property bool $mail_newsletter
  * @property bool $mail_vote
  * @property bool $mail_release
+ * @property string $patreon_email
+ * @property string $patreon_fullname
+ * @property int $patreon_pledge
+ * @property int $pledge
  */
 trait UserSetting
 {

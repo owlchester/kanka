@@ -14,7 +14,7 @@
 
             @if ($createAction)
                 <a href="{{ route($route . '.create') }}" class="btn btn-primary pull-right">
-                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($trans . '.index.add') }}</span>
                 </a>
             @endif
             @foreach ($actions as $action)

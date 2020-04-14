@@ -358,6 +358,15 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Determine if a user has a patreon-synced set up
+     * @return bool
+     */
+    public function hasPatreonSync(): bool
+    {
+        return $this->hasRole('patreon') && !empty($this->patreon_email);
+    }
+
+    /**
      * @return bool
      */
     public function isGoblinPatron(): bool

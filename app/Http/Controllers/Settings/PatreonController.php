@@ -52,4 +52,12 @@ class PatreonController extends Controller
                 );
         }
     }
+
+    public function unlink(Request $request)
+    {
+        $this->patreon->user($request->user())->unlink();
+        return redirect()->route('settings.patreon')
+            ->with('success', trans('settings.patreon.unlink.success'));
+
+    }
 }

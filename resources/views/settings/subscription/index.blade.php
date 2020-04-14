@@ -146,6 +146,15 @@
                                 </div>
                             </th>
                         </tr>
+                        @if ($user->hasPatreonSync())
+                            <tr>
+                                <th class="text-center" colspan="3">
+                                    <div class="alert alert-warning">
+                                        {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
+                                    </div>
+                                </th>
+                            </tr>
+                        @else
                         <tr>
                             @if ($status != \App\Services\SubscriptionService::STATUS_GRACE)
                             <th class="align-middle">
@@ -193,6 +202,7 @@
                                 </td>
                             @endif
                         </tr>
+                        @endif
                         </thead>
                         <tbody>
                         <tr>

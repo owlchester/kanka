@@ -115,6 +115,7 @@ return [
             'link'  => 'Link Account',
             'view'  => 'Visit Kanka on Patreon',
         ],
+        'deprecated'        => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
         'benefits'          => 'Supporting us on :patreon unlocks all sorts of :features for you and your campaigns, and also helps us spend more time working on improving Kanka.',
         'benefits_features' => 'amazing features',
         'description'       => 'Syncing with Patreon',
@@ -126,6 +127,11 @@ return [
         'link'              => 'Use the following button if you are currently supporting Kanka on :patreon. This will unlock the bonuses',
         'linked'            => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
         'pledge'            => 'Pledge: :name',
+        'remove' => [
+            'button' => 'Unlink your Patreon account',
+            'title' => 'Unlink your Patreon account with Kanka',
+            'text' => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your data will be lost.',
+        ],
         'success'           => 'Thank you for supporting Kanka on Patreon!',
         'title'             => 'Patreon',
         'wrong_pledge'      => 'Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us.',
@@ -226,5 +232,8 @@ return [
             'callback' => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
         ],
         'tiers' => 'Subscription Tiers',
+        'warnings' => [
+            'patreon' => 'Your account is currently linked with Patreon. Please unlink your account in your :patreon settings before switching to a Kanka subscription.'
+        ]
     ]
 ];

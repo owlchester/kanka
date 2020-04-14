@@ -95,17 +95,25 @@ class PatreonService
 
     /**
      * Remove a user from the patreon role
-     * @return $this
+     * @return bool
      */
-    public function unlink()
+    public function unlink(): bool
     {
+        if (!$this->user->hasPatreonSync()) {
+            return false;
+        }
+
         if ($this->user->hasRole($this->patreonRoleName)) {
             $this->user->roles()->detach($this->getRole()->id);
-
-            $this->user->pledge = null;
-            $this->user->update(['settings']);
         }
-        return $this;
+
+        $this->user->pledge = null;
+        $this->user->patreon_email = null;
+        $this->user->patreon_fullname = null;
+        $this->user->patreon_pledge = null;
+        $this->user->update(['settings', 'patreon_pledge']);
+
+        return true;
     }
 
     /**

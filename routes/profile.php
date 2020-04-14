@@ -17,7 +17,8 @@ Route::patch('/settings/account/destroy', 'Settings\AccountController@destroy')-
 Route::patch('/settings/account/social', 'Settings\AccountController@social')->name('settings.account.social');
 
 Route::get('/settings/patreon', 'Settings\PatreonController@index')->name('settings.patreon');
-Route::get('/settings/patreon-callback', 'Settings\PatreonController@callback')->name('settings.patreon.callback');
+//Route::get('/settings/patreon-callback', 'Settings\PatreonController@callback')->name('settings.patreon.callback');
+Route::delete('/settings/patreon-unlink', 'Settings\PatreonController@unlink')->name('settings.patreon.unlink');
 
 Route::get('/settings/api', 'Settings\ApiController@index')->name('settings.api');
 
