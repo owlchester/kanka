@@ -128,6 +128,11 @@ class DiscordService
         $this->app->expires_at = Carbon::now()->addSeconds($data->expires_in);
         $this->app->save();
 
+        // Get me for data
+        $me = $this->me();
+        $this->app->settings = ['username' => $me->username, 'discriminator' => $me->discriminator];
+        $this->app->save();
+
         return $this;
     }
 

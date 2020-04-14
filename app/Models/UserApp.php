@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $access_token
  * @property string $refresh_token
  * @property Carbon $expires_at
+ * @property string $identifier
+ * @property string $settings
  *
  * @property User $user
  *
@@ -30,11 +32,17 @@ class UserApp extends Model
         'app',
         'access_token',
         'refresh_token',
-        'expires_at'
+        'expires_at',
+        'identifier',
+        'settings',
     ];
 
     public $dates = [
         'expires_at'
+    ];
+
+    public $casts = [
+        'settings' => 'array'
     ];
 
     /**
