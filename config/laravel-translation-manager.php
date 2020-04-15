@@ -26,6 +26,7 @@ return array(
         'pt-BR',
         //'ru',
         'sk',
+        'he',
     ],
     /**
      * Specify locales that you want to show in the web interface, if empty or not provided then all locales in the database
