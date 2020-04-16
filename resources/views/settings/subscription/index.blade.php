@@ -206,24 +206,19 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>2mb {{ __('tiers.features.file_size') }}</td>
-                            <td>8mb {{ __('tiers.features.file_size') }}</td>
-                            <td>25mb {{ __('tiers.features.file_size') }}</td>
+                            <td>{{ __('tiers.features.file_size', ['size' => '2mb']) }}</td>
+                            <td>{{ __('tiers.features.file_size', ['size' => '8mb']) }}</td>
+                            <td>{{ __('tiers.features.file_size', ['size' => '25mb']) }}</td>
                         </tr>
                         <tr>
-                            <td>2mb {{ __('tiers.features.map_size') }}</td>
-                            <td>10mb {{ __('tiers.features.map_size') }}</td>
-                            <td>25mb {{ __('tiers.features.map_size') }}</td>
+                            <td>{{ __('tiers.features.map_size', ['size' => '2mb']) }}</td>
+                            <td>{{ __('tiers.features.map_size', ['size' => '10mb']) }}</td>
+                            <td>{{ __('tiers.features.map_size', ['size' => '25mb']) }}</td>
                         </tr>
                         <tr>
-                            <td>30 {{ __('tiers.features.api_requests') }}</td>
-                            <td>90 {{ __('tiers.features.api_requests') }}</td>
-                            <td>90 {{ __('tiers.features.api_requests') }}</td>
-                        </tr>
-                        <tr>
-                            <td>45 {{ __('tiers.features.pagination') }}</td>
-                            <td>100 {{ __('tiers.features.pagination') }}</td>
-                            <td>100 {{ __('tiers.features.pagination') }}</td>
+                            <td>{{ __('tiers.features.pagination', ['amount' => 45]) }}</td>
+                            <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
+                            <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -259,6 +254,11 @@
                             <td></td>
                             <td></td>
                             <td><i class="fa fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('tiers.features.api_requests', ['amount' => 30]) }}</td>
+                            <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
+                            <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
                         </tr>
                         </tbody>
                     </table>

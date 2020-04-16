@@ -193,6 +193,7 @@ return [
             'add_one' => 'You currently have no payment method saved.',
             'actions' => [
                 'save' => 'Save payment method',
+                'change' => 'Change payment method',
             ],
             'helper' => 'This card will be used for all of your subscriptions.',
             'ending' => 'Ending in',
