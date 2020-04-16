@@ -56,6 +56,7 @@ return [
         'system'                        => 'System',
         'theme'                         => 'Theme',
         'visibility'                    => 'Visibility',
+        'tooltip_family'                => 'Disable family names from tooltips',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
@@ -181,6 +182,7 @@ return [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permission',
+        'ui' => 'UI',
         'sharing'   => 'Sharing',
         'systems'   => 'Systems',
     ],
@@ -309,6 +311,9 @@ return [
             'settings'      => 'Modules',
         ],
         'title'         => 'Campaign :name',
+    ],
+    'ui' => [
+        'helper' => 'Use tese settings to change the way some elements will be displayed in your campaign.',
     ],
     'visibilities'                      => [
         'private'   => 'Private',

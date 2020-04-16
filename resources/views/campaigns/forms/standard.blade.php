@@ -13,6 +13,7 @@
         @include('campaigns.forms.panes.dashboard')
         @include('campaigns.forms.panes.permission')
         @include('campaigns.forms.panes.public')
+        @include('campaigns.forms.panes.ui')
         @if(isset($model) && $model->boosted())
             @include('campaigns.forms.panes.boosted')
         @endif

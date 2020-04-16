@@ -6,6 +6,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\DB;
  * @property string $theme
  * @property int $boost_count
  * @property integer $visible_entity_count
+ * @property string $ui_settings
  * @property EntityMention[] $mentions
  * @property CampaignSetting $setting
  * @property CampaignUser[] $members
@@ -63,7 +65,12 @@ class Campaign extends MiscModel
         'header_image',
         'system',
         'theme_id',
-        'css'
+        'css',
+        'ui_settings'
+    ];
+
+    protected $casts = [
+        'ui_settings' => 'array'
     ];
 
     use CampaignScopes;
@@ -502,5 +509,10 @@ class Campaign extends MiscModel
     public function dashboard(): string
     {
         return link_to(App::getLocale() . '/' . $this->getMiddlewareLink(), e($this->name));
+    }
+
+    public function getTooltipFamilyAttribute()
+    {
+        return Arr::get($this->ui_settings, 'tooltip_family', false);
     }
 }
