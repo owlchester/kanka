@@ -10,26 +10,26 @@
             ) !!}
         </div>
         <div class="form-group">
-            <label>{{ trans('quests.fields.role') }}</label>
-            {!! Form::text('role', null, ['placeholder' => trans('quests.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+            <label>{{ __('quests.fields.role') }}</label>
+            {!! Form::text('role', null, ['placeholder' => __('quests.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
         <div class="form-group">
-            <label>{{ trans('quests.characters.fields.description') }}</label>
+            <label>{{ __('quests.characters.fields.description') }}</label>
             {!! Form::textarea('description', null, ['class' => 'form-control html-editor', 'id' => 'description']) !!}
         </div>
 
         <div class="form-group">
-            <label>{{ trans('calendars.fields.colour') }}</label>
+            <label>{{ __('calendars.fields.colour') }}</label>
             {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control']) !!}
         </div>
 
         @if (Auth::user()->isAdmin())
         <div class="form-group">
             {!! Form::hidden('is_private', 0) !!}
-            <label>{!! Form::checkbox('is_private') !!}
-                {{ trans('crud.fields.is_private') }}
+            <label>{!! Form::checkbox('is_private', 1, CampaignLocalization::getCampaign()->entity_visibility) !!}
+                {{ __('crud.fields.is_private') }}
             </label>
-            <p class="help-block">{{ trans('crud.hints.is_private') }}</p>
+            <p class="help-block">{{ __('crud.hints.is_private') }}</p>
         </div>
         @endif
     </div>
