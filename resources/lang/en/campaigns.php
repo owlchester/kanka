@@ -80,48 +80,51 @@ return [
         'title'     => 'Campaign',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Invite',
+            'copy'  => 'Copy the link to your clipboard',
             'link'  => 'New Link',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Invite',
             'description'   => 'Invite a friend to your campaign',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation sent.',
             'title'         => 'Invite someone to your campaign',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Invitation removed.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Join :name\'s campaign</a>',
             'subject'   => ':name has invited you to join their campaign \':campaign\' on kanka.io! Use the following link to accept their invitation.',
             'title'     => 'Invitation from :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'You are already a member of that campaign.',
             'inactive_token'    => 'This token has already been used, or the campaign no longer exists.',
             'invalid_token'     => 'This token is no longer valid.',
             'login'             => 'Please log in or register to join the campaign.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Sent',
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
             'validity'  => 'Validity',
         ],
-        'helpers'       => [
-            'validity'  => 'How many users can use this link before it is deactivated.',
+        'helpers'               => [
+            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in your inbox.',
+            'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Email address of the person you wish to invite',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Email',
             'link'  => 'Link',
         ],
+        'unlimited_validity'    => 'Unlimited',
     ],
     'leave'                             => [
         'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
@@ -158,7 +161,7 @@ return [
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'You can invite friends to join your campaign by providing their email address. Upon accepting their invitation, they will be added as a member in the requested role. Sent invitation can be cancelled at any time.',
+            'description'   => 'You can invite friends to join your campaign by providing them with an Invite Link. Upon accepting their invitation, they will be added as a member in the requested role. You can also send them a request by email as long as it\'s not a Hotmail address, as they always reject Kanka\'s emails.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',
@@ -217,6 +220,7 @@ return [
         'hints'         => [
             'public'            => 'The Public role is used when someone browses your public campaign. :more',
             'role_permissions'  => 'Enable the \':name\' role to do the following actions on all entities.',
+            'campaign_not_public' => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.'
         ],
         'members'       => 'Members',
         'permissions'   => [
@@ -225,8 +229,9 @@ return [
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
                 'entity-note'   => 'Entity Note',
-                'permission'    => 'Manage Permissions',
+                'permission'    => 'Permissions',
                 'read'          => 'View',
+                'toggle'        => 'Change for all',
             ],
             'hint'      => 'This role automatically has access to everything.',
         ],
@@ -245,7 +250,7 @@ return [
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Add',
+                'add'   => 'Add a member',
             ],
             'create'    => [
                 'success'   => 'User added to the role.',
@@ -263,16 +268,18 @@ return [
         'actions'       => [
             'enable'    => 'Enable',
         ],
+        'boosted'       => 'This feature is in beta and currently only available for :boosted.',
         'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
         'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
         'helpers'       => [
+            'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',
             'characters'    => 'The people who inhabit your world.',
-            'conversations' => 'Fictional conversations between characters or between campaign users.',
-            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
+            'conversations' => 'Fictional conversations between characters or between campaign users. This module is deprecated.',
+            'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls. This module is deprecated.',
             'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'      => 'Clans or families, their relations and their members.',
             'items'         => 'Weapons, vehicles, relics, potions.',
@@ -298,6 +305,7 @@ return [
             'information'   => 'Information',
             'members'       => 'Members',
             'menu'          => 'Menu',
+            'recovery'      => 'Recovery',
             'roles'         => 'Roles',
             'settings'      => 'Modules',
         ],

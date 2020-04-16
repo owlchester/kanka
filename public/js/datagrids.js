@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -173,14 +173,14 @@ function toggleCrudMultiDelete() {
 
 /***/ }),
 
-/***/ 11:
+/***/ 13:
 /*!*********************************************!*\
   !*** multi ./resources/assets/js/datagrids ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\datagrids */"./resources/assets/js/datagrids.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\datagrids */"./resources/assets/js/datagrids.js");
 
 
 /***/ })

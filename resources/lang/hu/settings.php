@@ -67,23 +67,24 @@ return [
         'profile'           => 'Profil',
     ],
     'patreon'   => [
-        'actions'       => [
+        'actions'           => [
             'link'  => 'Fiókok összekapcsolása',
             'view'  => 'Látogasd meg a Kankát a Patreonon!',
         ],
-        'benefits'      => 'A Patreon támogatóink nagyobb képeket tölthetnek fel, segítenek nekünk fedezni a szerverköltségeket, valamint lehetővé teszik, hogy több időt fordíthassunk a Kankán végzett munkánkra.',
-        'description'   => 'Szinkronizálás a Patreonnal',
-        'errors'        => [
+        'benefits'          => 'A Patreon támogatóink nagyobb képeket tölthetnek fel, segítenek nekünk fedezni a szerverköltségeket, valamint lehetővé teszik, hogy több időt fordíthassunk a Kankán végzett munkánkra.',
+        'benefits_features' => 'csodálatos képességek',
+        'description'       => 'Szinkronizálás a Patreonnal',
+        'errors'            => [
             'invalid_token' => 'Érvénytelen token! A Patreon nem tudta érvényesíteni a kérésed.',
             'missing_code'  => 'Hiányzó kód! A Patreon nem küldött vissza kódot, amely a fiókodat azonosítja.',
             'no_pledge'     => 'Nincs támogatás! A Patreon azonosította a fiókodat, de nem tud aktív támogatásról.',
         ],
-        'link'          => 'Nyomd meg ezt a gombot, ha jelenleg támogatod a Kankát a Patreonon, aktiválva a bónuszaid.',
-        'linked'        => 'Köszönjük, hogy támogatsz minket a Patreonon! A fiókjaid összekapcsoltuk.',
-        'pledge'        => ':name támogatása',
-        'success'       => 'Köszönjük, hogy támogatsz minket a Patreonon!',
-        'title'         => 'Patreon',
-        'wrong_pledge'  => 'A támogatási szintedet manuálisan állítjuk be, így kérjük, adj nekünk pár napot, hogy megfelelően beállíthassuk. Ha továbbra is helytelennek látod, lépj velünk kapcsolatba.',
+        'link'              => 'Nyomd meg ezt a gombot, ha jelenleg támogatod a Kankát a Patreonon, aktiválva a bónuszaid.',
+        'linked'            => 'Köszönjük, hogy támogatsz minket a Patreonon! A fiókjaid összekapcsoltuk.',
+        'pledge'            => ':name támogatási szint',
+        'success'           => 'Köszönjük, hogy támogatsz minket a Patreonon!',
+        'title'             => 'Patreon',
+        'wrong_pledge'      => 'A támogatási szintedet manuálisan állítjuk be, így kérjük, adj nekünk pár napot, hogy megfelelően beállíthassuk. Ha továbbra is helytelennek látod, lépj velünk kapcsolatba.',
     ],
     'profile'   => [
         'actions'       => [

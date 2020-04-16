@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\CalendarFilter;
 use App\Datagrids\Sorters\CalendarEventSorter;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
@@ -23,30 +24,19 @@ class CalendarController extends CrudController
 
     protected $calendarService;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $model = \App\Models\Calendar::class;
+
+    /** @var string */
+    protected $filter = CalendarFilter::class;
 
     /**
      * CalendarController constructor.
+     * @param CalendarService $calendarService
      */
     public function __construct(CalendarService $calendarService)
     {
         parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-
         $this->calendarService = $calendarService;
     }
 

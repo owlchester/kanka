@@ -62,12 +62,14 @@ a {
 
 .nav-tabs-custom {
   border: none;
-  background-color: $Detail;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+
+  .pull-right {
+    margin: 5px 5px 0 0;
+  }
 
   .nav-tabs {
     border-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 100% !important;
 
     li {
       background-color: $Detail !important;
@@ -80,7 +82,7 @@ a {
     }
   }
   .tab-content {
-    background: none;
+    background: unset;
   }
 }
 .nav-stacked {

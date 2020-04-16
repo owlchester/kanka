@@ -12,9 +12,25 @@ TEXT
 ,
         'question'  => '¿Qué son las “Plantillas de atributos”?',
     ],
+    'backup'                => [
+        'answer'    => 'Una vez al día, puedes exportar todos los datos de tu campaña en un archivo ZIP. En la app, haz clic en "Campaña", en el menú de la izquierda, y dale a "Exportar". No podrás subir este archivo a Kanka, sino que está pensado para que estés tranquilo si no vas a usar más la app.',
+        'question'  => '¿Cómo puedo hacer una copia de seguridad o exportar mi campaña?',
+    ],
+    'bugs'                  => [
+        'answer'    => 'Simplemente únete a nuestro :discord e informa del error en el canal #errors-and-bugs.',
+        'question'  => '¿Cómo puedo informar de un error?',
+    ],
     'conversations'         => [
         'answer'    => 'Se pueden crear conversaciones entre personajes o entre miembros de la campaña. Por ejemplo, si quieres documentar una charla importante entre PNJs y PJs, puedes hacerlo en este módulo. También se puede usar para jugar campañas online.',
         'question'  => '¿Qué son las conversaciones?',
+    ],
+    'custom'                => [
+        'answer'    => 'Kanka viene con un conjunto de entidades predefinidas que interactúan entre ellas. Permitir tipos de entidad personalizados requeriría volver a reconstruir la app desde cero y le quitaría su propósito como herramienta de creación. Además, la flexibilidad de Kanka permite que puedas representar cualquier tipo de entidad con las Etiquetas.',
+        'question'  => '¿Puedo crear tipos de entidad personalizados?',
+    ],
+    'delete-campaign'       => [
+        'answer'    => 'Ve al tablero de campaña y haz clic en "Campaña" en el menú de la izquierda. Si eres el administrador de la campaña, te aparecerá el botón de "Eliminar". Ten en cuenta que eliminar una campaña es una acción permanente que eliminará todos los datos almacenados en nuestros servidores, incluyendo las imágenes.',
+        'question'  => '¿Cómo puedo eliminar una campaña?',
     ],
     'entity-notes'          => [
         'answer'    => 'Todas las entidades tienen una pestaña de "Notas", que son pequeños fragmentos de texto que se pueden configurar para que solo sean visibles para ti (genial para los co-másters), solo para administradores o visibles para todos. También puedes dar permiso a tus jugadores para crear y editar estas notas sin darles acceso también a editar la entidad completa.',
@@ -26,20 +42,24 @@ TEXT
         'question'  => 'Pregunta',
     ],
     'free'                  => [
-        'answer'    => '¡Sí! Creemos que tu situación económica no debería impedir que disfrutes de los juegos de rol y de la creación de mundos, y por eso siempre mantendremos gratis la aplicación. ¡Gracias a nuestros generosos mecenas en Patreon podemos cubrir los gastos mensuales del servidor y mantener la app libre de anuncios!',
+        'answer'    => <<<'TEXT'
+¡Sí! Creemos que tu situación económica no debería impedir que disfrutes de los juegos de rol y de la creación de mundos, y por eso siempre mantendremos gratis la aplicación. ¡Gracias a nuestros generosos mecenas en Patreon podemos cubrir los gastos mensuales del servidor y mantener la app libre de anuncios!
+
+Si decides apoyarnos en Patreon, obtendrás un aumento en el tamaño de los archivos que puedes subir, añadiremos tu nombre en el muro de la fama de Patreon, recibirás bonitos iconos predefinidos, podrás votar qué funciones se priorizan y mucho más.
+TEXT
+,
         'question'  => '¿La app seguirá siendo gratis?',
+    ],
+    'gods-and-religions'    => [
+        'answer'    => 'Recomendamos que crees los dioses como Personajes y las religiones como Organizaciones. Para encontrar a tus deidades rápidamente, puedes etiquetarlas con la Etiqueta o el tipo apropiados.',
+        'question'  => '¿Dónde puedo crear dioses y religiones?',
     ],
     'help'                  => [
         'answer'    => 'Antes de nada, ¡gracias por ofrecerte! Siempre estamos interesados en aceptar ayuda con las traducciones, probar nuevas funciones, o ayudar a nuevos usuarios. También nos encanta cuando la gente promociona Kanka para que llegue a nuevos usuarios en lugares que nunca habíamos pensado. Tu mejor curso de acción es unirte a nosotros en el :discord, donde hay un canal dedicado a ofrecer ayuda. ¡También amamos a nuestros patrones en :patreon, si quieres apoyarnos y acceder a algunos beneficios!',
         'question'  => '¡Quiero ayudar! ¿Qué puedo hacer?',
     ],
     'map'                   => [
-        'answer'    => <<<'TEXT'
-Cada localización puede contener un mapa (png, jpg o svg) al que se pueden añadir puntos, personalizando su tamaño, forma, icono y color; y que enlacen a otras entidades o que simplemente sean etiquetas.
-
-Los archivos SVG de Azgaar :azgaar y watabou :watabou son compatibles con Kanka. Otras herramientas de creación de mapas comprimen el archivo SVG generado, haciendo que sea incompatible con la app. Puedes arreglar este problema abriendo el archivo en Inkscape o Photoshop y volviéndolo a guardar antes de subirlo a la localización.
-TEXT
-,
+        'answer'    => 'Cada localización puede contener un mapa (png, jpg o svg) al que se pueden añadir puntos, personalizando su tamaño, forma, icono y color; y que enlacen a otras entidades o que simplemente sean etiquetas.',
         'question'  => '¿Puedo subir mapas a Kanka?',
     ],
     'mobile'                => [
@@ -63,6 +83,18 @@ TEXT
 ,
         'question'  => '¿Qué planes hay a largo plazo? ¿Qué pasa si Ilestis se aburre de trabajar en Kanka?',
     ],
+    'public-campaigns'      => [
+        'answer'    => 'Puedes ojear las :public-campaigns para ver cómo los demás usan Kanka en sus campañas.',
+        'question'  => '¿Cómo usan Kanka otras personas?',
+    ],
+    'sections'              => [
+        'community'     => 'Comunidad',
+        'general'       => 'General',
+        'other'         => 'Otros',
+        'permissions'   => 'Permisos',
+        'pricing'       => 'Tarifas',
+        'worldbuilding' => 'Creación de mundos',
+    ],
     'show'                  => [
         'return'    => 'Volver a las FAQ',
         'timestamp' => 'Última actualización el :date',
@@ -73,7 +105,7 @@ TEXT
         'question'  => 'Los permisos de mi campaña ya están configurados, ¿cómo puedo comprobarlos?',
     ],
     'visibility'            => [
-        'answer'    => 'Solo las personas que invites a tu campaña pueden verla e interactuar con ella. Tus datos son privados y siempre están bajo tu control.',
+        'answer'    => 'Solo las personas que invites a tu campaña pueden verla e interactuar con ella. Tus datos son privados y siempre están bajo tu control. Por otro lado, puedes configurar tu campaña como pública para que la vean los usuarios no registrados.',
         'question'  => '¿Quién puede ver mi mundo?',
     ],
 ];

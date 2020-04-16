@@ -6,7 +6,7 @@
                 <h1>{!! $campaign->name !!}</h1>
             </div>
         @else
-            <h3 class="profile-username text-center">{!! $campaign->name !!}</h3>
+            <h1 class="profile-username text-center">{!! $campaign->name !!}</h1>
         @endif
 
         <ul class="list-group list-group-unbordered">
@@ -134,6 +134,13 @@
                     {{ __('campaigns.show.tabs.export') }}
                 </a>
             </li>
+            @if ($campaign->boosted())
+                    <li class="@if(!empty($active) && $active == 'recovery')active @endif">
+                    <a href="{{ route('recovery') }}">
+                        {{ __('campaigns.show.tabs.recovery') }}
+                    </a>
+                </li>
+            @endif
             @endcan
         </ul>
     </div>

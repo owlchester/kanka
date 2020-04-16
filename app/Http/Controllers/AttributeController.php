@@ -53,6 +53,15 @@ class AttributeController extends CrudAttributeController
     }
 
     /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Entity $entity)
+    {
+        return response()->redirectToRoute('entities.attributes.index', $entity);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

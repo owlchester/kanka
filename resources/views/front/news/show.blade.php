@@ -1,12 +1,16 @@
 <?php /** @var \App\Models\Release $model */?>
 @extends('layouts.front', [
-    'title' => trans('front/news.show.title', ['name' => $model->title]),
+    'title' => $model->title,
     'description' => '',
+    'englishCanonical' => true,
+    'alternate' => false,
 ])
 
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('front.news.show', $model->getSlug()) }}" />
+    @if ($model->image)<meta property="og:image" content="{{ Voyager::image($model->image)  }}" />
+@endif
 @endsection
 
 @section('content')
@@ -25,19 +29,27 @@
 
     <section class="features" id="releases">
         <div class="container">
-            @admin
-            <a href="{{ route('voyager.posts.edit', $model) }}" style="float: right;" title="{{ __('crud.edit') }}">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
-            @endadmin
-            <h2>{{ $model->title }}</h2>
+            <div class="row">
+                <div class="col-3 d-none d-md-block">
+                    @include('front.news._recent')
+                </div>
+                <div class="col-12 col-md-9">
+                    <h4>{{ $model->title }}
+                    @admin
+                    <a href="{{ route('voyager.posts.edit', $model) }}" style="float: right;" title="{{ __('crud.edit') }}">
+                        <i class="fas fa-pencil-alt fa-xs"></i>
+                    </a>
+                    @endadmin
+                    </h4>
+                    @include('front.news._article')
 
-            <p class="text-muted" title="{{ $model->updated_at }} UTC">
-                {{ trans('front/news.post.footer', ['date' => $model->updated_at->diffForHumans(), 'name' => $model->authorId->name]) }}
-            </p>
-
-            {!! $model->body !!}
-            <p><a href="{{ route('front.news.index') }}">{{ trans('front/news.show.return') }}</a></p>
+                    <div class="mt-3">
+                        <a href="{{ route('front.news') }}">
+                            <i class="fa fa-arrow-left"></i> {{ __('front/news.actions.return') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 @endsection

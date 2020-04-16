@@ -23,11 +23,19 @@ $r = $model
 <table id="entity-event-list" class="table table-hover {{ ($r->count() == 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th class="avatar"></th>
+        @if (auth()->check())
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/calendar.name', '#calendars']) }}">{{ trans('calendars.fields.name') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/date', '#calendars']) }}">{{ trans('events.fields.date') }}@if (request()->get('order') == 'events/date') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/length', '#calendars']) }}">{{ trans('calendars.fields.length') }}@if (request()->get('order') == 'events/length') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/comment', '#calendars']) }}">{{ trans('calendars.fields.comment') }}@if (request()->get('order') == 'events/comment') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#calendars']) }}">{{ trans('calendars.fields.is_recurring') }}@if (request()->get('order') == 'events/is_recurring') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        @else
+        <th>{{ trans('calendars.fields.name') }}</th>
+        <th>{{ trans('calendars.fields.date') }}</th>
+        <th>{{ trans('calendars.fields.length') }}</th>
+        <th>{{ trans('calendars.fields.comment') }}</th>
+        <th>{{ trans('calendars.fields.is_recurring') }}</th>
+        @endif
         <th>&nbsp;</th>
     </tr>
     @foreach ($r as $relation)

@@ -34,6 +34,7 @@ return [
         'destroy'       => [
             'success'   => 'Správa odstránená.',
         ],
+        'is_updated'    => 'Upravená',
         'load_previous' => 'Nahrať predchádzajúce správy',
         'placeholders'  => [
             'message'   => 'Tvoja správa',

@@ -6,6 +6,7 @@
         trans('campaigns.show.tabs.members')
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('content')

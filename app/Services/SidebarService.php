@@ -15,6 +15,7 @@ class SidebarService
             'campaign_user',
             'campaign_roles',
             'campaign_invites',
+            'recovery',
         ],
         'characters' => [
             'characters',
@@ -77,6 +78,9 @@ class SidebarService
         ],
         'races' => [
             'races',
+        ],
+        'abilities' => [
+            'abilities',
         ],
     ];
 

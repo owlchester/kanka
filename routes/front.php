@@ -3,6 +3,7 @@
 Route::get('/about', 'FrontController@about')->name('front.about');
 //Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
 Route::get('/privacy-policy', 'FrontController@privacy')->name('front.privacy');
+Route::get('/terms-and-conditions', 'FrontController@terms')->name('front.terms');
 Route::get('/help', 'FrontController@help')->name('front.help');
 Route::get('/faq', 'FaqController@index')->name('faq.index');
 Route::get('/faq/{key}/{slug?}', 'FaqController@show')->name('faq.show');
@@ -18,6 +19,9 @@ Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.
 // Slug
 Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
+Route::post('/community-votes/{community_vote}/vote', 'CommunityVoteController@vote')->name('community-votes.vote');
 Route::resources([
     'releases' => 'ReleaseController',
+    'community-votes' => 'CommunityVoteController'
 ]);
+

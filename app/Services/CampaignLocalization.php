@@ -84,6 +84,9 @@ class CampaignLocalization
      */
     protected $campaignId = false;
 
+    /**
+     * @var bool|Campaign
+     */
     protected $campaign = false;
 
     /**
@@ -160,7 +163,7 @@ class CampaignLocalization
         if ($this->campaign == false) {
             // Some pages like helper pages don't have a campaign in the url
             $this->campaign = null;
-            if (is_numeric($this->campaignId)) {
+            if (is_numeric($this->campaignId) && !empty($this->campaignId)) {
                 $this->campaign = Campaign::find((int) $this->campaignId);
                 // If we're looking for a campaign that doesn't exist, just 404
                 if (empty($this->campaign)) {

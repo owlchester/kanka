@@ -1,4 +1,11 @@
 <?php /** @var \App\Models\Campaign $model */?>
+
+@if (!$start)
+    <div class="pull-right">
+        @include('cruds.fields.save', ['onlySave' => 'true', 'disableCancel' => true, 'target' => 'entity-form'])
+    </div>
+@endif
+
 <ul class="nav nav-tabs">
     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
         <a href="#form-entry" title="{{ __('crud.panels.entry') }}" data-toggle="tooltip">

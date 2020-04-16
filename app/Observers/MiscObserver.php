@@ -4,13 +4,10 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Jobs\EntityMentionJob;
 use App\Models\Entity;
-use App\Models\EntityEvent;
 use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver
@@ -42,6 +39,7 @@ abstract class MiscObserver
     {
         $model->slug = Str::slug($model->name, '');
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
+        //$model->name = strip_tags($model->name);
 
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
@@ -113,13 +111,7 @@ abstract class MiscObserver
         }
 
         // Created a new sub entity? Create the parent entity.
-        $entity = Entity::create([
-            'entity_id' => $model->id,
-            'campaign_id' => $model->campaign_id,
-            'is_private' => $model->is_private,
-            'name' => $model->name,
-            'type' => $model->getEntityType()
-        ]);
+        $entity = $model->createEntity();
 
         // Copy attributes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
@@ -137,6 +129,16 @@ abstract class MiscObserver
      */
     public function deleted(MiscModel $model)
     {
+        // Soft-delete the entity
+        if ($model->entity) {
+            $model->entity->delete();
+        }
+
+        // If soft deleting, don't really delete the image
+        if ($model->trashed()) {
+            return;
+        }
+
         ImageService::cleanup($model);
     }
 
@@ -152,17 +154,6 @@ abstract class MiscObserver
         // Check if the entity exists, because it won't while moving an entity from one type to another.
         if ($model->entity) {
             $model->entity->touch();
-        }
-    }
-
-    /**
-     * @param MiscModel $model
-     */
-    public function deleting(MiscModel $model)
-    {
-        // Delete the entity
-        if ($model->entity) {
-            $model->entity->delete();
         }
     }
 

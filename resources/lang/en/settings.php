@@ -30,7 +30,7 @@ return [
     ],
     'boost'     => [
         'benefits'      => [
-            'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign reminds boosted as long as a user is boosting the campaign and they continue supporting Kanka on :patreon. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
+            'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through :patreon. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka on :patreon. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
             'header'    => 'Entity header images.',
             'more'      => 'Find out more about all features.',
             'second'    => 'Boosting a campaign enables the following benefits:',
@@ -67,23 +67,24 @@ return [
         'profile'           => 'Profile',
     ],
     'patreon'   => [
-        'actions'       => [
+        'actions'           => [
             'link'  => 'Link Account',
             'view'  => 'Visit Kanka on Patreon',
         ],
-        'benefits'      => 'Supporting us on Patreon allows you to upload bigger images, helps us cover the server bills, and helps us dedicate more time working on Kanka.',
-        'description'   => 'Syncing with Patreon',
-        'errors'        => [
+        'benefits'          => 'Supporting us on :patreon unlocks all sorts of :features for you and your campaigns, and also helps us spend more time working on improving Kanka.',
+        'benefits_features' => 'amazing features',
+        'description'       => 'Syncing with Patreon',
+        'errors'            => [
             'invalid_token' => 'Invalid token! Patreon couldn\'t validate your request.',
             'missing_code'  => 'Missing code! Patreon didn\'t send back a code identifying your account.',
             'no_pledge'     => 'No pledge! Patreon identified your account, but doesn\'t know of any active pledge.',
         ],
-        'link'          => 'Use the following button if you are currently supporting Kanka on :patreon. This will unlock the bonuses',
-        'linked'        => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
-        'pledge'        => 'Pledge: :name',
-        'success'       => 'Thank you for supporting Kanka on Patreon!',
-        'title'         => 'Patreon',
-        'wrong_pledge'  => 'Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us.',
+        'link'              => 'Use the following button if you are currently supporting Kanka on :patreon. This will unlock the bonuses',
+        'linked'            => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
+        'pledge'            => 'Pledge: :name',
+        'success'           => 'Thank you for supporting Kanka on Patreon!',
+        'title'             => 'Patreon',
+        'wrong_pledge'      => 'Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us.',
     ],
     'profile'   => [
         'actions'       => [

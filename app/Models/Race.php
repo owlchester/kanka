@@ -7,10 +7,18 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Race extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        NodeTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -47,6 +55,7 @@ class Race extends MiscModel
         'race_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     protected $sortableColumns = [
@@ -60,11 +69,6 @@ class Race extends MiscModel
     public $nullableForeignKeys = [
         'race_id',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait, SimpleSortableTrait;
 
     /**
      * @return string

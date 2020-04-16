@@ -48,7 +48,7 @@
                             <div class="device">
                                 <div class="screen">
                                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="/images/front/home-image.png" class="img-fluid" alt="{{ config('app.name') }} dashboard">
+                                    <img src="/images/front/home-image.png?v=2" class="img-fluid" alt="{{ config('app.name') }} dashboard">
                                 </div>
                                 <div class="button">
                                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mt-5">
                 <h4>
                     <a href="{{ route('front.features') }}">{{ trans('front.features.learn_more') }}
                         <i class="fa fa-arrow-right"></i>
@@ -107,13 +107,32 @@
         </div>
     </section>
 
+    <section id="pricing">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>{{ trans('front.pricing.title') }}</h2>
+                <p class="text-muted">{{ trans('front.pricing.description') }}</p>
+            </div>
+            <div class="mb-3"><br /></div>
+            <div class="mt-5">
+            @include('front._pricing')
+            </div>
+        </div>
+    </section>
+
     <section class="cta">
         <div class="cta-content">
             <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-5 offset-md-7">
                 <h2>{!! trans('front.second_block.title') !!}</h2>
+                        <div class="text-center text-sm-left">
                 <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
                     {{ trans('front.second_block.call_to_action') }}
                 </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="overlay"></div>

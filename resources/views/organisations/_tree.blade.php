@@ -15,18 +15,25 @@
         'name',
         'type',
         [
-            'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
-        ],
-        [
             'label' => trans('organisations.fields.organisations'),
             'render' => function($model) {
                 return $model->organisations->count();
             },
             'disableSort' => true,
         ],
+        // location
         [
-            'label' => trans('organisations.fields.members'),
+            'type' => 'avatar',
+            'parent' => 'location',
+            'parent_route' => 'locations',
+            'visible' => $campaign->enabled('locations'),
+        ],
+        [
+            'type' => 'location',
+            'visible' => $campaign->enabled('locations'),
+        ],
+        [
+            'label' => '<i class="fa fa-users" title="' . trans('organisations.fields.members') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->members->count();

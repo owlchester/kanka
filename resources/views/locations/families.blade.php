@@ -7,6 +7,7 @@
         trans('locations.show.tabs.families')
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('content')

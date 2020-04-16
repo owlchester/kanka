@@ -20,12 +20,17 @@ return [
     'community'     => [
         'description'   => 'Kanka no es solamente una app: también es una próspera comunidad de creadores de mundos, másters y jugadores de rol y entusiastas creativos.',
         'discord'       => 'El Discord de Kanka es el lugar más activo para hablar de la app, errores, características, pedir ayuda y echar una mano.',
+        'facebook'      => 'Mantente al tanto de nuestras actualizaciones en nuestra página de Facebook.',
+        'instagram'     => '¿Quieres ver fotos de cómo trabajamos en Kanka o jugamos? ¡Instagram es el lugar perfecto!',
         'join'          => 'Únete!',
         'reddit'        => 'El subreddit de Kanka es un lugar más tranquilo donde se puede hablar de las cosas durante un período de tiempo más largo.',
         'title'         => 'Comunidad',
     ],
     'contact'       => [
-        'title' => '¡Nos gusta hacer nuevas amistades :icon !',
+        'description'   => '¿Necesitas ayuda, tienes una sugerencia o simplemente quieres compartir tu amor por Kanka? ¡Nuestro equipo te responderá en cualquier momento!',
+        'email'         => 'Envía cualquier consulta a nuestro correo:',
+        'other'         => 'O contáctanos en una de nuestras redes sociales:',
+        'title'         => '¡Nos gusta hacer nuevas amistades :icon !',
     ],
     'cookie'        => [
         'dismiss'   => '¡Entendido!',
@@ -43,6 +48,7 @@ return [
             'title'         => 'API',
         ],
         'boosts'            => [
+            'beta'          => 'Acceso beta a algunas funciones nuevas 30 días antes del lanzamiento general.',
             'boosted'       => 'Campaña mejorada',
             'css'           => 'CSS personalizado de la campaña',
             'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
@@ -130,6 +136,7 @@ return [
         'description'   => 'Estamos aquí para echarte una mano. Contáctanos usando por una de las siguientes vías, y te responderemos lo más rápido posible.',
         'discord'       => 'Únete a la comunidad en Discord',
         'email'         => 'Envíanos un mail',
+        'facebook'      => 'Contáctanos en Facebook',
         'title'         => 'Ayuda',
         'twitter'       => 'Tuitéanos en Twitter',
     ],
@@ -147,25 +154,47 @@ return [
         'contact_us'=> 'Contáctanos',
         'dashboard' => 'Tablero',
         'faq'       => 'Preguntas Frecuentes',
-        'features'  => 'Caracteristicas',
+        'features'  => 'Características',
         'help'      => 'Ayuda',
         'home'      => 'Inicio',
         'login'     => 'Iniciar sesión',
+        'news'      => 'Novedades',
+        'pricing'   => 'Tarifas',
         'privacy'   => 'Política de Privacidad',
         'register'  => 'Registrarse',
-        'releases'  => 'Publicaciones',
+        'releases'  => 'Lanzamientos',
         'roadmap'   => 'Hoja de ruta',
+        'terms'     => 'Términos y condiciones',
         'title'     => 'Menú',
-        'tos'       => 'Términos de servicio',
     ],
     'meta'          => [
         'description'   => 'Kanka es un administrador flexible de campañas de rol online.',
-        'title'         => 'Kanka - Gestiona tus sesiones y construye tus mundos.',
+        'title'         => 'Kanka - Gestiona partidas de rol y crea mundos online',
     ],
     'partners'      => [
         'description'   => 'Nos hemos asociado con algunas herramientas asombrosas y con comunidades que comparten nuestros objetivos y valores.',
-        'inkarnate'     => 'Crea mapas increíbles con Inkarnate',
         'title'         => 'Socios',
+    ],
+    'pricing'       => [
+        'actions'       => [
+            'more'      => 'Saber más sobre las funciones que se desbloquean apoyando a Kanka',
+            'support'   => 'Apoyar',
+        ],
+        'benefits'      => [
+            'boosters'          => 'Mejoras de campaña',
+            'core'              => 'Acceso a todas las funciones principales',
+            'higher_uploads'    => 'Subir archivos grandes',
+            'huge_uploads'      => 'Subir archivos enormes',
+            'no_boosters'       => 'Sin mejoras de campaña',
+            'unlimited'         => 'Campañas y archivos subidos ilimitados',
+            'updates'           => 'Actualizaciones y mejoras frecuentes',
+        ],
+        'description'   => 'A pesar de que todas las funciones principales son gratuitas, al apoyar a Kanka nos ayudas a mantenerla actualizada con frecuencia y mejorarla para todos los usuarios.',
+        'tier'          => [
+            'free'  => 'Gratis',
+            'month' => 'Mes',
+        ],
+        'title'         => 'Resumen de tarifas',
     ],
     'privacy'       => [
         'description'   => 'Fecha efectiva: 23 de mayo de 2018',
@@ -173,7 +202,7 @@ return [
     ],
     'release'       => [
         'description'   => 'Kanka está creciendo y mejorando constantemente, y queremos que el mundo conozca todas las cosas increíbles que estamos añadiendo a la aplicación.',
-        'title'         => 'Publicaciones',
+        'title'         => 'Lanzamientos',
     ],
     'roadmap'       => [
         'backlog'       => [
@@ -193,5 +222,9 @@ return [
     ],
     'team'          => [
         'coffee'    => '¡Invítame a un café!',
+    ],
+    'terms'         => [
+        'description'   => 'Fecha efectiva: 4 de marzo de 2020',
+        'title'         => 'Términos y condiciones',
     ],
 ];

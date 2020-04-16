@@ -1,4 +1,6 @@
-@extends('layouts.login', ['title' => trans('auth.register.title')])
+@extends('layouts.login', [
+    'title' => __('auth.register.title')
+])
 
 @section('content')
     <h3>{{ trans('auth.register.title') }}</h3>
@@ -48,7 +50,7 @@
             <div class="checkbox">
                 <label for="tos">
                     <input id="tos" type="checkbox" name="tos" value="1" required>
-                    {!! trans('auth.register.fields.tos', ['privacyUrl' => route('privacy')]) !!}
+                    {!! trans('auth.register.fields.tos', ['privacyUrl' => route('front.privacy')]) !!}
                 </label>
 
                 @if ($errors->has('tos'))

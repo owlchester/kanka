@@ -5,9 +5,9 @@
  */
 $attributes = [];
 if (isset($model)) {
-    $attributes = $model->entity->attributes()->orderBy('default_order', 'ASC')->get();
+    $attributes = $model->entity->attributes()->ordered()->get();
 } elseif (isset($source)) {
-    $attributes = $source->entity->attributes()->orderBy('default_order', 'ASC')->get();
+    $attributes = $source->entity->attributes()->ordered()->get();
 }
 $isAdmin = Auth::user()->isAdmin();
 $existingAttributeNames = [];
@@ -36,7 +36,6 @@ foreach ($attributes as $attribute) {
         @endif
         <div id="add_attribute_target"></div>
     </div>
-    <div id="add_unsortable_attribute_target"></div>
 </div>
 
 @include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])

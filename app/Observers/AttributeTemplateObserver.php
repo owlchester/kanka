@@ -12,8 +12,6 @@ class AttributeTemplateObserver extends MiscObserver
      */
     public function deleting(MiscModel $attributeTemplate)
     {
-        parent::deleting($attributeTemplate);
-
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
          * all descendants when deleting the parent, which is stupid.

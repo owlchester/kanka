@@ -71,10 +71,10 @@ a {
 }
 
 .nav-tabs-custom {
-  border: 1px solid $Hard;
   background: none;
 
   .tab-content {
+    border: 1px solid $Hard;
     background: none;
   }
 }

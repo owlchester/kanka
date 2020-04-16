@@ -7,6 +7,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Item
@@ -22,6 +23,12 @@ use App\Traits\VisibleTrait;
  */
 class Item extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -64,6 +71,7 @@ class Item extends MiscModel
         'is_private',
         'price',
         'size',
+        'tags',
     ];
 
     /**
@@ -102,14 +110,6 @@ class Item extends MiscModel
     protected $foreignExport = [
         'quests',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
-    use SimpleSortableTrait;
 
     public function tooltip($limit = 250, $stripSpecial = true)
     {
@@ -213,7 +213,7 @@ class Item extends MiscModel
             ];
         }
 
-        $inventoryCount = $this->inventories()->with('item')->count();
+        $inventoryCount = $this->inventories()->with('item')->acl()->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['inventories'] = [
                 'name' => 'items.show.tabs.inventories',

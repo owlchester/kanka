@@ -20,11 +20,21 @@ class EntityPolicy
      * @param  \App\Models\Entity  $entity
      * @return mixed
      */
-    public function attributes(User $user, Entity $entity)
+    public function attributes(?User $user, Entity $entity)
     {
         if ($entity->exists === false) {
             return true;
         }
-        return $entity->is_attributes_private ? Auth::user()->isAdmin() : true;
+        return $entity->is_attributes_private ? ($user && $user->isAdmin()) : true;
+    }
+
+    /**
+     * @param User $user
+     * @param Entity $entity
+     * @return bool
+     */
+    public function privacy(User $user, Entity $entity)
+    {
+        return $user->isAdmin();
     }
 }

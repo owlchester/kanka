@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -41,9 +42,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+            //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
-            \Barryvdh\Cors\HandleCors::class,
         ],
     ];
 
@@ -71,6 +71,7 @@ class Kernel extends HttpKernel
         'campaign' => '\App\Http\Middleware\Campaign',
         'campaign.member' => \App\Http\Middleware\CampaignMember::class,
         'campaign.owner' => \App\Http\Middleware\CampaignOwner::class,
+        'campaign.boosted' => \App\Http\Middleware\CampaignBoosted::class,
 
         'translator' => \App\Http\Middleware\Translator::class,
         'moderator' => \App\Http\Middleware\Moderator::class,

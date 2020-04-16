@@ -12,16 +12,13 @@
     {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => [$name . '.store'], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}
 @endsection
 
-@section('header-extra')
-    <div class="pull-right">
-        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
-    </div>
-@endsection
-
 @section('content')
     @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
+        <div class="pull-right">
+            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+        </div>
         <ul class="nav nav-tabs">
             <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                 <a href="#form-entry" title="{{ trans('crud.panels.entry') }}" data-toggle="tooltip">
@@ -33,7 +30,7 @@
             @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}" data-toggle="tooltip">
-                        <i class="fa fa-rocket"></i> {{ __('crud.tabs.boost') }}
+                        <i class="fa fa-rocket"></i> <span class="hidden-xs">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
             @endif

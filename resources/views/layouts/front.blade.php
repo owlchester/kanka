@@ -27,13 +27,18 @@ $menus = [
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
+@if (isset($englishCanonical) && $englishCanonical)
+    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, 'en') }}" />
+@else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
-@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
     <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
-@endforeach
+    @endforeach
+@endif
 
     <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
+    @yield('styles')
 </head>
 
 <body id="page-top">
@@ -48,17 +53,17 @@ $menus = [
 <div class="topbar">
     <div class="container">
         <ul class="topbar-list">
-            <li class="login">
-                <a href="{{ route('login') }}">
-                    {{ __('front.menu.login') }}
-                </a>
-            </li>
             @auth
                 <li>
                     <a class="nav-link" href="{{ route('home') }}">{{ __('front.menu.dashboard') }}</a>
                 </li>
             @else
-                <li>
+                <li class="login d-none d-sm-inline-block">
+                    <a href="{{ route('login') }}">
+                        {{ __('front.menu.login') }}
+                    </a>
+                </li>
+                <li class="d-none d-sm-inline-block">
                     <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
                 </li>
             @endauth
@@ -91,6 +96,15 @@ $menus = [
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
+        @auth
+        @else
+            <a href="{{ route('login') }}" class="d-sm-none">
+                {{ __('front.menu.login') }}
+            </a>
+            <a class="d-sm-none" href="{{ route('register') }}">
+                {{ __('front.menu.register') }}
+            </a>
+        @endauth
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
         </button>
@@ -98,7 +112,7 @@ $menus = [
             <ul class="navbar-nav ml-auto">
                 @foreach ($menus as $menu)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("front.$menu") }}">{{ __('front.menu.' . $menu) }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == $menu) nav-active @endif" href="{{ route("front.$menu") }}">{{ __('front.menu.' . $menu) }}</a>
                 </li>
                 @endforeach
 
@@ -178,5 +192,6 @@ $menus = [
             }
         })});
 </script>
+@yield('scripts')
 </body>
 </html>

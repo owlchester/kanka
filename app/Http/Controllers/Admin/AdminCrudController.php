@@ -170,6 +170,7 @@ class AdminCrudController extends Controller
             return redirect()->route($this->route . '.index')
                 ->with('success_raw', $success);
         } catch (LogicException $exception) {
+            dd($exception);
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
             return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
         }

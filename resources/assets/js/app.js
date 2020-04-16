@@ -13,7 +13,7 @@ import deleteConfirm from './components/delete-confirm.js';
  * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
  * Todo: workaround to only run timeout if the window is active
  */
-var notificationList, notificationCount, notificationRefreshTimeout = 60 * 5000;
+var notificationList, notificationCount, notificationRefreshTimeout = 60 * 10000;
 
 $(document).ready(function() {
 
@@ -28,8 +28,10 @@ $(document).ready(function() {
         sanitize: false,
     });
 
+
     initSelect2();
     initCheckboxSwitch();
+    initCopyToClipboard();
 
     // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
     // binded once.
@@ -47,6 +49,16 @@ $(document).ready(function() {
                 autoclose: true,
                 format: 'yyyy-mm-dd',
                 todayHighlight: true
+            });
+        });
+    }
+
+    if ($('.datetime-picker').length > 0) {
+        $.each($('.datetime-picker'), function (index) {
+            // instance, using default configuration.
+            $(this).datetimepicker({
+                sideBySide: true,
+                format: 'YYYY-MM-DD HH:mm:00'
             });
         });
     }
@@ -136,6 +148,9 @@ $(document).ready(function() {
     }
     if ($('#races').length > 0) {
         treeViewInit('races');
+    }
+    if ($('#abilities').length > 0) {
+        treeViewInit('abilities');
     }
 
     manageTabs();
@@ -403,6 +418,29 @@ function refreshNotificationList() {
             setTimeout(refreshNotificationList, notificationRefreshTimeout);
         }
     );
+}
+
+/**
+ * Handler for copying content to the clipboard
+ */
+function initCopyToClipboard() {
+    $('[data-clipboard]').click(function (e) {
+        e.preventDefault();
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(this).data('clipboard')).select();
+        document.execCommand("copy");
+        $temp.remove();
+
+        var post = $(this).data('success');
+        if (post) {
+            $(post).fadeIn();
+            setTimeout(function() {
+                console.log('post', post);
+                $(post).fadeOut();
+            }, 3000);
+        }
+    });
 }
 
 /**

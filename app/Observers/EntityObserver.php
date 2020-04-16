@@ -5,9 +5,7 @@ namespace App\Observers;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
-use App\Facades\UserPermission;
 use App\Jobs\EntityUpdatedJob;
-use App\Models\AttributeTemplate;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -15,7 +13,6 @@ use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class EntityObserver
@@ -111,7 +108,7 @@ class EntityObserver
             return;
         }
 
-        $data = request()->only('role', 'user', 'is_attributes_private');
+        $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
 
         // If the user granted themselves read/write permissions on the entity, we need to make sure they
         // still have them even if not checked in the UI.
@@ -239,17 +236,14 @@ class EntityObserver
     /**
      * @param Entity $entity
      */
-    public function deleting(Entity $entity)
-    {
-        // Delete permissions related to this entity
-        $entity->permissions()->delete();
-    }
-
-    /**
-     * @param Entity $entity
-     */
     public function deleted(Entity $entity)
     {
+        // If soft deleting, don't really delete the image
+        if ($entity->trashed()) {
+            return;
+        }
+
+        $entity->permissions()->delete();
         $entity->widgets()->delete();
     }
 }

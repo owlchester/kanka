@@ -7,16 +7,28 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Stevebauman\Purify\Facades\Purify;
 
 /**
  * Class Character
  * @package App\Models
+ * @property string $title
+ * @property string $age
+ * @property string $sex
+ * @property bool $is_dead
  * @property Family $family
+ * @property Location $location
  * @property Race $race
  */
 class Character extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     //
     protected $fillable = [
         'name',
@@ -52,6 +64,7 @@ class Character extends MiscModel
         'is_private',
         'tag_id',
         'race_id',
+        'tags',
     ];
 
     /**
@@ -74,11 +87,6 @@ class Character extends MiscModel
      */
     protected $hidden = [
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, SimpleSortableTrait;
 
     /**
      * Entity type

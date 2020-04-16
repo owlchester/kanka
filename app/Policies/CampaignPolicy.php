@@ -20,7 +20,7 @@ class CampaignPolicy
      * @param  Campaign  $campaign
      * @return mixed
      */
-    public function view(User $user, Campaign $campaign)
+    public function view(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id;
     }
@@ -32,7 +32,7 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
-    public function access(User $user, Campaign $campaign)
+    public function access(User $user, Campaign $campaign): bool
     {
         if ($campaign->visibility == 'public') {
             return true;
@@ -46,7 +46,7 @@ class CampaignPolicy
      * @param  User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return !Identity::isImpersonating() && !$this->shadow();
     }
@@ -58,7 +58,7 @@ class CampaignPolicy
      * @param  Campaign  $campaign
      * @return mixed
      */
-    public function update(User $user, Campaign $campaign)
+    public function update(User $user, Campaign $campaign): bool
     {
         return
             $user->campaign->id == $campaign->id && $this->isAdmin($user) && !$this->shadow();
@@ -71,7 +71,7 @@ class CampaignPolicy
      * @param  Campaign  $campaign
      * @return mixed
      */
-    public function delete(User $user, Campaign $campaign)
+    public function delete(User $user, Campaign $campaign): bool
     {
         return
             !$this->shadow() &&
@@ -83,7 +83,7 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
-    public function invite(User $user, Campaign $campaign)
+    public function invite(User $user, Campaign $campaign): bool
     {
         return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
@@ -93,7 +93,7 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
-    public function setting(User $user, Campaign $campaign)
+    public function setting(User $user, Campaign $campaign): bool
     {
         return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }
@@ -103,7 +103,27 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
-    public function dashboard(User $user, Campaign $campaign)
+    public function recover(User $user, Campaign $campaign): bool
+    {
+        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
+    }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function dashboard(User $user, Campaign $campaign): bool
+    {
+        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+    }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function search(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && $this->isAdmin($user);
     }

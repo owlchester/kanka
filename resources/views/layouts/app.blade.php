@@ -7,7 +7,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @include('layouts._tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title ?? '' }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{!! $title ?? '' !!} - {{ config('app.name', 'Kanka') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -68,13 +68,13 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         @yield('fullpage-form')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 @if (!isset($breadcrumbs) || $breadcrumbs !== false)
                 <ol class="breadcrumb">
                     @if ($campaign)
-                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-globe"></i> {{ $campaign->name }}</a></li>
+                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-globe"></i> {!! $campaign->name !!}</a></li>
                     @else
                         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @endif
@@ -103,14 +103,15 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @endif
 
                 @if (!View::hasSection('entity-header'))
-                <h1>
-                    @yield('header-extra')
-                    {{ $title ?? "Page Title" }}
-                    <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
-                    @if (!empty($headerExtra))
-                        {!! $headerExtra !!}
+                    @if (isset($mainTitle))
+                        @yield('header-extra')
+                    @else
+                        <h1>
+                            @yield('header-extra')
+                            {!! $title ?? "Page Title" !!}
+                            <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
+                        </h1>
                     @endif
-                </h1>
                 @endif
             </section>
 
@@ -127,6 +128,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     </div>
                 @endif
                 @include('partials.success')
+                @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')
             </section><!-- /.content -->

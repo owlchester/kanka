@@ -80,10 +80,11 @@ class PermissionService
     }
 
     /**
+     * Get the campaign role permissions. First key is the entity type
      * @param CampaignRole $role
      * @return array
      */
-    public function permissions(CampaignRole $role)
+    public function permissions(CampaignRole $role): array
     {
         $permissions = [];
 
@@ -93,6 +94,32 @@ class PermissionService
         }
 
         $entityActions = ['read', 'edit', 'add', 'delete', 'entity-note', 'permission'];
+        $icons = [
+            'read' => [
+                'fa fa-eye',
+                'fa fa-eye-slash',
+            ],
+            'edit' => [
+                'fa fa-pen',
+                'fa fa-pen',
+            ],
+            'add' => [
+                'fas fa-plus-square',
+                'far fa-plus-square',
+            ],
+            'delete' => [
+                'fas fa-trash-alt',
+                'far fa-trash-alt',
+            ],
+            'entity-note' => [
+                'fas fa-file',
+                'far fa-file',
+            ],
+            'permission' => [
+                'fa fa-cog',
+                'fa fa-cog',
+            ],
+        ];
         //$actions = ['read', 'edit', 'add', 'delete'];
 
         // Public actions
@@ -110,13 +137,16 @@ class PermissionService
             $singularEntity = $this->entityService->singular($entity);
 
             foreach ($entityActions as $action) {
+                if (!isset($permissions[$entity])) {
+                    $permissions[$entity] = [];
+                }
                 $key = "{$singularEntity}_{$action}";
                 $table = $key;
-                $permissions[] = [
-                    'entity' => $entity,
+                $permissions[$entity][] = [
                     'action' => $action,
                     'table' => $table,
                     'key' => $key,
+                    'icons' => $icons[$action],
                     'enabled' => isset($campaignRolePermissions[$key]),
                 ];
             }
@@ -168,7 +198,13 @@ class PermissionService
             }
         }
 
+        // Delete remaining permissions
+        $skipUsers = Arr::has($request, 'permissions_too_many');
         foreach ($permissions as $type => $data) {
+            // Skip users if there are too many users in the UI
+            if ($type === 'user' && $skipUsers) {
+                continue;
+            }
             foreach ($data as $user => $actions) {
                 foreach ($actions as $action => $perm) {
                     $perm->delete();

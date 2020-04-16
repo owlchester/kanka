@@ -37,10 +37,6 @@ return [
         'edit'      => [
             'success'   => 'Organization member updated.',
         ],
-        'helpers'   => [
-            'all_members'       => 'The following list are all characters that are in this organization and all of the organization\'s descendant organizations.',
-            'direct_members'    => 'Most organizations require members to run successfully. The following list are characters that are directly in this organization.',
-        ],
         'title'     => 'Organization :name Members',
     ],
     'organisations' => [

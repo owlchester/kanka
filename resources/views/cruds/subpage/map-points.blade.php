@@ -6,7 +6,8 @@
         ['url' => route($name . '.index'), 'label' => __($name . '.index.title')],
         ['url' => route($name . '.show', $model), 'label' => $model->name],
         trans('crud.tabs.map-points')
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @section('content')

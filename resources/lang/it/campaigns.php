@@ -72,61 +72,59 @@ return [
         'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Crea una nuova campagna',
-                'title'         => 'Nuova Campagna',
+                'title' => 'Nuova Campagna',
             ],
         ],
-        'add'           => 'Nuova Campagna',
-        'description'   => 'Gestisci le tue campagne',
-        'list'          => 'Le tue campagne',
-        'select'        => 'Seleziona una campagna',
-        'title'         => 'Campagne',
+        'title'     => 'Campagne',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Invita',
+            'copy'  => 'Copia il collegamento nei tuoi appunti',
             'link'  => 'Nuovo collegamento',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Invita',
             'description'   => 'Invita un amico alla tua campagna',
             'link'          => 'Collegamento creato: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invito inviato.',
             'title'         => 'Invita qualcuno nella tua campagna',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Invito rimosso.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Unisciti alla campagna di :name</a>',
             'subject'   => ':name ti ha invitato ad unirti alla sua campagna \':campaign\' su kanka.io! Usa il seguente link per accettare il suo invito.',
             'title'     => 'Invito da parte di :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Sei già un membro di questa campagna.',
             'inactive_token'    => 'Questo token è già stato utilizzato o la campagna non esiste più.',
             'invalid_token'     => 'Questo token non è più valido.',
             'login'             => 'Per favore accedi o registrati per unirti alla campagna.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Inviato',
             'email'     => 'E-Mail',
             'role'      => 'Ruolo',
             'type'      => 'Tipo',
             'validity'  => 'Validità',
         ],
-        'helpers'       => [
+        'helpers'               => [
+            'email'     => 'Le nostre mail sono spesso marcate come spam e possono impiegare fino a qualche ora prima che appaiano nella tua casella di posta.',
             'validity'  => 'Quanti utenti possono usare questo link prima che sia disattivato.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Indirizzo e-mail della persona che vorresti invitare',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'E-Mail',
             'link'  => 'Collegamento',
         ],
+        'unlimited_validity'    => 'Infinita',
     ],
     'leave'                             => [
         'confirm'   => 'Sei sicuro di voler lasciare la campagna :name? Non potrai più accedere, a meno che il proprietario della campagna ti inviti di nuovo.',
@@ -232,6 +230,7 @@ return [
                 'entity-note'   => 'Note dell\'Entità',
                 'permission'    => 'Gestisci Permessi',
                 'read'          => 'Visualizza',
+                'toggle'        => 'Cambia per tutte',
             ],
             'hint'      => 'Questo ruolo ha automaticamente accesso a tutto.',
         ],
@@ -265,6 +264,9 @@ return [
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Abilita',
+        ],
         'description'   => 'Abilita o disabilita moduli della campagna.',
         'edit'          => [
             'success'   => 'Impostazioni della campagna aggiornate.',

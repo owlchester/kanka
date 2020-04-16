@@ -25,16 +25,15 @@ class OrganisationObserver extends MiscObserver
      */
     public function deleting(MiscModel $organisation)
     {
-        parent::deleting($organisation);
-
         // Update sub orgs and members to clean them  up
         foreach ($organisation->organisations as $child) {
             $child->organisation_id = null;
             $child->save();
         }
-        foreach ($organisation->members as $child) {
-            $child->delete();
-        }
+        // Even if we soft delete, we need to clean this up
+//        foreach ($organisation->members as $child) {
+//            $child->delete();
+//        }
 
         // Refresh the model to make sure we have new foreign keys?
         $organisation->refresh();

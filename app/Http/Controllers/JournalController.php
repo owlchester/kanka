@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\JournalFilter;
 use App\Models\Character;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
@@ -18,47 +19,11 @@ class JournalController extends CrudController
     protected $view = 'journals';
     protected $route = 'journals';
 
-    /**
-     * @var string
-     */
+    /** @var string Model*/
     protected $model = \App\Models\Journal::class;
 
-    /**
-     * JournalController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            'date',
-            [
-                'field' => 'character_id',
-                'label' => trans('journals.fields.author'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  trans('crud.placeholders.character'),
-                'model' => Character::class,
-            ],
-            [
-                'field' => 'location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = JournalFilter::class;
 
     /**
      * Store a newly created resource in storage.

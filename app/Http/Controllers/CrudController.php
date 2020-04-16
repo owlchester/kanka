@@ -52,6 +52,7 @@ class CrudController extends Controller
      * @var array
      */
     protected $filters = [];
+    protected $filter;
 
     /**
      * @var FilterService
@@ -81,6 +82,11 @@ class CrudController extends Controller
      * @var null|DatagridSorter
      */
     protected $datagridSorter = null;
+
+    /**
+     * @var null
+     */
+    protected $datagrid = null;
 
     /**
      * Create a new controller instance.
@@ -113,20 +119,18 @@ class CrudController extends Controller
     {
         //$this->authorize('browse', $this->model);
 
-        // Add the is_private filter only for admins.
-        if (Auth::check() && Auth::user()->isAdmin()) {
-            $this->filters[] = 'is_private';
-        }
-
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
         $filters = $this->filters;
+        $filter = !empty($this->filter) ? new $this->filter : null;
         $filterService = $this->filterService;
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
+
+        $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
 
         $base = $model
             ->preparedWith()
@@ -151,13 +155,15 @@ class CrudController extends Controller
             'name',
             'model',
             'actions',
+            'filter',
             'filters',
             'filterService',
             'nestedView',
             'route',
             'filteredCount',
             'unfilteredCount',
-            'bulk'
+            'bulk',
+            'datagrid'
         ));
     }
 
@@ -186,11 +192,12 @@ class CrudController extends Controller
         }
         $model = new $this->model;
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
+        $campaign = CampaignLocalization::getCampaign();
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
-        $params['tabBoosted'] = $this->tabBoosted && CampaignLocalization::getCampaign()->boosted();
+        $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
 
@@ -302,13 +309,15 @@ class CrudController extends Controller
     {
         $this->authorize('update', $model);
 
+        $campaign = CampaignLocalization::getCampaign();
+
         $params = [
             'model' => $model,
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
-            'tabBoosted' => $this->tabBoosted && CampaignLocalization::getCampaign()->boosted(),
+            'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
             'entityType' => $model->getEntityType()
         ];
 

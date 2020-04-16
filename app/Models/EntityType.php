@@ -43,4 +43,12 @@ class EntityType extends Model
     {
         return trans('entities.' . $this->code);
     }
+
+    /**
+     * @return string
+     */
+    public function getNameAttribute(): string
+    {
+        return $this->name();
+    }
 }

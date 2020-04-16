@@ -12,6 +12,7 @@ use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -39,6 +40,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property EntityMention[] $mentions
  * @property Inventory[] $inventories
  * @property EntityMention[] $targetMentions
+ * @property EntityAbility[] $abilities
  * @property CampaignDashboardWidget[] $widgets
  * @property MiscModel $child
  */
@@ -69,7 +71,8 @@ class Entity extends Model
         Searchable,
         TooltipTrait,
         Picture,
-        SimpleSortableTrait;
+        SimpleSortableTrait,
+        SoftDeletes;
 
     /**
      * Searchable fields
@@ -136,6 +139,13 @@ class Entity extends Model
     public function attributeTemplate()
     {
         return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function ability()
+    {
+        return $this->hasOne('App\Models\Ability', 'id', 'entity_id');
     }
 
     /**
@@ -268,6 +278,14 @@ class Entity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
+    public function abilities()
+    {
+        return $this->hasMany('App\Models\EntityAbility', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
     public function conversation()
     {
         return $this->hasOne('App\Models\Conversation', 'id', 'entity_id');
@@ -385,12 +403,15 @@ class Entity extends Model
     /**
      * @return string
      */
-    public function pluralType()
+    public function pluralType(): string
     {
-        if ($this->type == 'family') {
-            return 'families';
-        }
-        return $this->type . 's';
+//        if ($this->type == 'family') {
+//            return 'families';
+//        }
+//        elseif ($this->type == 'ability') {
+//            return 'abilities';
+//        }
+        return Str::plural($this->type); // . 's';
     }
 
     /**
@@ -534,5 +555,14 @@ class Entity extends Model
         }
 
         return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
+    }
+
+    /**
+     * If an entity has entity files
+     * @return bool
+     */
+    public function hasFiles(): bool
+    {
+        return $this->type != 'menu_links';
     }
 }

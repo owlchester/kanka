@@ -6,6 +6,7 @@
         trans('campaigns.show.tabs.settings')
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('content')

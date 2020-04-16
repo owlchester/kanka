@@ -98,7 +98,13 @@ var entityFileDrop, entityFileProgress, entityFileMax;
 var openingEntityFileModal = false;
 $(document).ready(function () {
   entityFileUi = $('.entity-file-ui');
-  entityFileModal = $('#entity-modal');
+  entityFileModal = $('#entity-modal'); // Allow ajax requests
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
   if (entityFileUi.length === 1) {
     entityFileUi.on('click', function (e) {
@@ -112,6 +118,8 @@ $(document).ready(function () {
       });
     });
   }
+
+  registerPrivacyToggle();
 });
 /**
  *
@@ -133,12 +141,6 @@ function initEntityFileModal() {
   }).on('click', function (e) {
     console.log('clicked');
     $('#entity-file-upload').trigger('click');
-  }); // Allow ajax requests
-
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
   });
   $('#entity-file-upload').fileupload({
     dropZone: entityFileDrop,
@@ -363,6 +365,32 @@ function refreshEntityFileList() {
     });
   });
 }
+/**
+ * Toggle the privacy of an entity
+ */
+
+
+function registerPrivacyToggle() {
+  $('.entity-private-toggle').click(function () {
+    $(this).addClass('disabled');
+    var child = $(this).children('i.fa');
+    child.removeClass().addClass('fa fa-spin fa-spinner');
+    $.post({
+      url: $(this).data('url'),
+      data: {},
+      context: this
+    }).done(function (res) {
+      if (!res.success) {
+        return;
+      }
+
+      var child = $(this).children('i.fa');
+      var cssClass = res.status ? $(child).data('off') : $(child).data('on');
+      child.removeClass().addClass('fa').addClass('fa-' + cssClass);
+      $(this).removeClass('disabled');
+    });
+  });
+}
 
 /***/ }),
 
@@ -373,7 +401,7 @@ function refreshEntityFileList() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\entity */"./resources/assets/js/entity.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\entity */"./resources/assets/js/entity.js");
 
 
 /***/ })

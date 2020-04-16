@@ -1,8 +1,19 @@
 
 // Variables
 @import "variables";
+.campaign-dashboard {
+  .content-header {
+    min-height: 28px;
+  }
+}
+.dashboard-actions {
+  display: inline-block;
+  float: right;
+  margin-top: -7px;
+}
 
 .campaign {
+  margin-top: 10px;
   padding: 40px;
   margin-bottom: 15px;
 
@@ -389,5 +400,13 @@
         }
       }
     }
+  }
+}
+
+.box {
+  .box-tools {
+    position: absolute;
+    right: 10px;
+    top: 5px;
   }
 }

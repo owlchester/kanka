@@ -33,6 +33,9 @@ class MentionController extends Controller
      */
     public function index(Entity $entity)
     {
+        if (empty($entity->child)) {
+            abort(404);
+        }
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
             $this->authorize('view', $entity->child);

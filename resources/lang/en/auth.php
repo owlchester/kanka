@@ -37,7 +37,7 @@ return [
         'email'                     => [
             'body'  => '<p>Welcome to kanka.io!</p><p>Your account has been created using your email address.</p>',
             'login' => 'Log in',
-            'title' => 'Welcome to kanka.io!',
+            'title' => 'Getting Started with Kanka',
         ],
         'errors'                    => [
             'email_already_taken'   => 'An account with this email is already registered.',
@@ -54,6 +54,22 @@ return [
         'register_with_twitter'     => 'Register with Twitter',
         'submit'                    => 'Register',
         'title'                     => 'Register',
+        'welcome_email'             => [
+            'header'        => 'Welcome to Kanka :name!',
+            'header_sub'    => 'Congratulations, you have taken the first step in the creation of your world on :kanka!',
+            'section_1'     => 'Where to now?',
+            'section_10'    => 'Patrons',
+            'section_11'    => 'Create your world,',
+            'section_2'     => 'The most important resource is :discord, where you will find plenty of our dedicated users, an onboarding team, as well as the founder of Kanka, who can answer any questions that you may have.',
+            'section_3'     => 'Our :faq also covers the most recurring questions.',
+            'section_4'     => 'Our :youtube has videos covering the basics of Kanka. While not all topics are covered yet, we regularly add new videos.',
+            'section_5'     => 'Youtube Channel',
+            'section_6'     => 'Contact us',
+            'section_7'     => 'If you haven’t found an answer to your questions, or simply want to get in touch, you can find us on :facebook, or you can email us at :email. We are a small team of 2 friends, but we make sure to answer every email we receive, so please do not hesitate!',
+            'section_8'     => 'One last thing',
+            'section_9'     => 'We have made sure that all the core features in Kanka are free, and we will always keep it that way. However, if you want to support us in this project, you can join our ranks of :patrons, and gain access to additional features, as well as our eternal gratitude!',
+            'title'         => 'Getting started with Kanka',
+        ],
     ],
     'reset'     => [
         'fields'    => [

@@ -20,7 +20,7 @@ return [
         'dice_roll' => 13,
         'conversation' => 14,
         'attribute_template' => 15,
-//        '' => 16,
+        'ability' => 16,
 //        '' => 17,
 //        '' => 18,
 //        '' => 19,

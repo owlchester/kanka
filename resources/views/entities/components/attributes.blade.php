@@ -7,7 +7,7 @@ $attributes = $model->entity->starredAttributes;
 ?>
 @if (count($attributes) > 0)
     @foreach ($attributes as $attribute)
-        <li class="list-group-item">
+        <li class="list-group-item @if ($attribute->isSection()) text-center @endif">
             @if ($attribute->isCheckbox())
                 @if ($attribute->value)
                     <i class="fa fa-check pull-right"></i>
@@ -17,9 +17,9 @@ $attributes = $model->entity->starredAttributes;
             @endif
             <strong title="{{ __('crud.attributes.fields.is_star') }}">{{ $attribute->name }}</strong>
             @if ($attribute->isText())
-                <p>{!! nl2br(e($attribute->value)) !!}</p>
+                <p>{!! nl2br($attribute->mappedValue()) !!}</p>
             @elseif (!$attribute->isCheckbox())
-                <span class="pull-right">{{ $attribute->value }}</span>
+                <span class="pull-right">{!! $attribute->mappedValue() !!}</span>
                 <br class="clear" />
             @endif
         </li>

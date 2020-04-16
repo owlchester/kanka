@@ -47,6 +47,7 @@
 .panel .panel-heading {
   border: none !important;
   background-color: transparent !important;
+  color: #999 !important;
 }
 
 .box .with-border,
@@ -182,7 +183,6 @@ input[type=checkbox]:checked:after {
 .help-block {
   color: #bbb;
   font-style: italic;
-  text-align: justify;
 }
 
 p {
@@ -539,13 +539,15 @@ a:hover {
 
 .nav-tabs-custom {
   border: none;
-  background-color: #0a121b;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.nav-tabs-custom .pull-right {
+  margin: 5px 5px 0 0;
 }
 
 .nav-tabs-custom .nav-tabs {
   border-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 100% !important;
 }
 
 .nav-tabs-custom .nav-tabs li {
@@ -558,7 +560,7 @@ a:hover {
 }
 
 .nav-tabs-custom .tab-content {
-  background: none;
+  background: unset;
 }
 
 .nav-stacked li {

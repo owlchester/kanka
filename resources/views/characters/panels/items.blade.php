@@ -35,7 +35,7 @@
                         </td>
                     @endif
                     <td class="text-right">
-                        <a href="{{ route('items.show', ['id' => $item->id]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('items.show', [$item]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>

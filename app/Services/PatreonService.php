@@ -70,7 +70,9 @@ class PatreonService
 
             $this->user->patreonEmail = $patron->attribute('email');
             $this->user->patreonFullname = $patron->attribute('full_name');
-            $this->user->update(['settings']);
+            // Lowest tier is owlbear, elementals get a manual switch
+            $this->user->patreon_pledge = 'Owlbear';
+            $this->user->update(['settings', 'patreon_pledge']);
 
             // We're so far, good. Let's add the user to the Patreon group
             if ($pledge && !$this->user->hasRole($this->patreonRoleName)) {

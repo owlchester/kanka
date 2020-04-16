@@ -19,7 +19,7 @@
             <div class="box box-widget widget-user-2 box-quest-element">
                 <div class="widget-user-header {{ $organisation->colourClass() }}">
                         <div class="widget-user-image">
-                            <div class="entity-image" style="background: url({{ $organisation->organisation->getImageUrl(true) }})" title="{{ $organisation->organisation->name }}">
+                            <div class="entity-image" style="background-image: url({{ $organisation->organisation->getImageUrl(true) }})" title="{{ $organisation->organisation->name }}">
                             </div>
                         </div>
                     <!-- /.widget-user-image -->
@@ -36,7 +36,7 @@
                 </div>
                 <div class="box-footer text-right">
                     @can('update', $model)
-                        <a href="{{ route('quests.quest_organisations.edit', ['quest' => $model, 'questOrganisation' => $organisation]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('quests.quest_organisations.edit', [$model, $organisation]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-edit" title="{{ trans('crud.edit') }}"></i>
                         </a>
                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $organisation->organisation->name }}"
@@ -48,8 +48,8 @@
                             'method' => 'DELETE',
                             'route' => [
                                 'quests.quest_organisations.destroy',
-                                'quest' => $model,
-                                'questOrganisation' => $organisation
+                                $model,
+                                $organisation
                             ],
                             'style'=>'display:inline',
                             'id' => 'delete-form-' . $organisation->id

@@ -19,7 +19,8 @@ class NewsController extends Controller
             ->published()
             ->orderBy('created_at', 'DESC')
             ->paginate();
-        return view('front.news.index', compact('models'));
+        $recent = Release::published()->orderBy('created_at', 'DESC')->take(5)->get();
+        return view('front.news.index', compact('models', 'recent'));
     }
 
 
@@ -32,6 +33,7 @@ class NewsController extends Controller
     public function show($id, $slug = '')
     {
         $post = Release::where('id', $id)->firstOrFail();
-        return view('front.news.show', ['model' => $post]);
+        $recent = Release::published()->where('id', '!=', $post->id)->orderBy('created_at', 'DESC')->take(5)->get();
+        return view('front.news.show', ['model' => $post, 'recent' => $recent]);
     }
 }

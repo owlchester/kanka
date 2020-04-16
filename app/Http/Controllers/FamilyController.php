@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Bulks\FamilyBulk;
+use App\Datagrids\Filters\FamilyFilter;
 use App\Datagrids\Sorters\FamilyCharacterSorter;
 use App\Datagrids\Sorters\FamilyFamilySorter;
 use App\Models\Character;
@@ -31,41 +32,8 @@ class FamilyController extends CrudController
      */
     protected $model = \App\Models\Family::class;
 
-    /**
-     * FamilyController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'family_id',
-                'label' => trans('crud.fields.family'),
-                'type' => 'select2',
-                'route' => route('families.find'),
-                'placeholder' =>  trans('crud.placeholders.family'),
-                'model' => Family::class,
-            ],
-            [
-                'field' => 'location_id',
-                'label' => trans('crud.fields.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  trans('crud.placeholders.location'),
-                'model' => Location::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = FamilyFilter::class;
 
     /**
      * Store a newly created resource in storage.

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -15,8 +16,13 @@ use Kalnoy\Nestedset\NodeTrait;
  */
 class AttributeTemplate extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        NodeTrait,
+        SoftDeletes;
+
     /**
-     * Fields that can be filtered on
+     * Fields that can be mass-assigned
      * @var array
      */
     protected $fillable = [
@@ -27,11 +33,6 @@ class AttributeTemplate extends MiscModel
         'entity_type_id',
         'is_private',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, NodeTrait;
 
     /**
      * Entity type
@@ -64,6 +65,17 @@ class AttributeTemplate extends MiscModel
     ];
 
     public $tooltipField = 'name';
+
+    /**
+     * Fields that can be filtered on
+     * @var array
+     */
+    protected $filterableColumns = [
+        'name',
+        'attribute_template_id',
+        'tags',
+        'is_private',
+    ];
 
     /**
      * Parent

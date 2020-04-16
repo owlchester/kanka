@@ -5,9 +5,15 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -34,6 +40,7 @@ class Event extends MiscModel
         'location_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**
@@ -52,13 +59,6 @@ class Event extends MiscModel
     public $nullableForeignKeys = [
         'location_id',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
 
     /**
      * Performance with for datagrids

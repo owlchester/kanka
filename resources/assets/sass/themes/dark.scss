@@ -60,11 +60,11 @@ a {
   color: $Hard !important;
 }
 .nav-tabs-custom {
-  border: 1px solid $Hard;
   background: none;
 
   .tab-content {
     background: none;
+    border: 1px solid $Hard;
   }
 }
 
@@ -72,22 +72,18 @@ a {
   border: none !important;
 
   li {
-    border: none;
     &:hover {
-      background: $Detail;
-      border: none;
-      border-bottom: none;
+      background-color: $Unfocused !important;
       a {
         background: none;
       }
     }
   }
   li.active {
-    border: none;
+    border-top-color: $Unfocused !important;
     a {
       color: $Soft !important;
       background-color: $Hard !important;
-      border: none !important;
     }
   }
 }

@@ -128,7 +128,6 @@ return [
         'releases'  => 'Rilasci',
         'roadmap'   => 'Roadmap',
         'title'     => 'Menù',
-        'tos'       => 'Termini di Servizio',
     ],
     'meta'          => [
         'description'   => 'Kanka è un flessibile costruttore di mondi digitali e gestore on-line di campagne RPG',

@@ -970,14 +970,47 @@ body {
 }
 
 header.masthead {
-  background: linear-gradient(to left, #3f44a1, #0D0D65) !important;
+  background: linear-gradient(to left, #3f44a1, #08083c) !important;
+}
+
+header.masthead-img {
+  background-color: #08083c;
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg) !important;
+  background-position: top left;
+  background-size: cover;
+}
+
+header.masthead-img .container {
+  z-index: 1;
+  position: relative;
+}
+
+header.masthead-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+header.masthead-img p {
+  font-size: 22px;
+}
+
+section.cta {
+  background: linear-gradient(to left, #3f44a1, #08083c) !important;
 }
 
 header.reduced-masthead {
   min-height: 325px;
   height: unset;
   padding-bottom: 20px;
-  padding-top: 90px;
+  padding-top: 60px;
+}
+
+header.reduced-masthead .header-content {
+  margin-top: 40px;
 }
 
 .bg-primary {
@@ -991,6 +1024,12 @@ header.reduced-masthead {
 #mainNav .navbar-brand {
   color: #73a6c0 !important;
   font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
+}
+
+#mainNav .nav-active,
+#mainNav .nav-link:hover {
+  transition: all 0.2s ease-in-out;
+  text-decoration: underline;
 }
 
 .topbar {
@@ -1073,9 +1112,10 @@ hr {
 }
 
 footer {
-  padding-top: 90px;
+  padding-top: 40px;
   padding-bottom: 30px;
   text-align: left;
+  background-color: #08083c;
 }
 
 footer ul {
@@ -1087,52 +1127,66 @@ footer ul {
 footer ul li {
   padding: 0;
   display: block;
-  margin: 12px 0;
+  margin: 2px 0;
 }
 
 footer ul li a {
-  padding: 5px 15px;
+  padding: 2px 12px;
+  display: block;
   font-size: 16px !important;
+  width: 100%;
 }
 
 footer h4 {
-  margin: 0 15px 10px;
+  margin: 0 12px 10px;
   font-size: 20px;
   font-weight: 700;
+  color: #ddd;
 }
 
-footer p {
-  padding: 15px 25px;
-  font-size: 16px !important;
-}
-
-footer p:hover {
-  color: #eee;
-}
-
-footer p.first {
-  margin-top: -15px;
-}
-
-footer p,
-footer a {
+footer a,
+footer span {
   border-radius: 4px;
 }
 
-footer p:hover,
-footer a:hover {
+footer a:hover,
+footer span:hover {
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.4);
   text-decoration: none;
 }
 
+footer .footer-social {
+  text-align: center;
+}
+
 footer .footer-social a {
-  font-size: 20px !important;
+  font-size: 28px !important;
+  margin: 0 3px;
+  color: #ccc;
 }
 
 footer .footer-social a:hover {
   background: none;
   color: #c09853;
+}
+
+footer .footer-social .email {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding: 15px 25px;
+}
+
+footer .footer-social .email:hover {
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  display: block;
+}
+
+footer .copyright {
+  margin-top: 20px;
+  font-size: 12px;
 }
 
 .campaign {
@@ -1234,6 +1288,10 @@ ul.pagination li span {
 .login-page,
 .register-page {
   background-color: #eef1f4;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .login-page h1 img,
@@ -1241,13 +1299,6 @@ ul.pagination li span {
   display: inline-block;
   width: 40px;
   margin-top: -8px;
-}
-
-.login-page .login-box,
-.login-page .register-box,
-.register-page .login-box,
-.register-page .register-box {
-  width: 420px;
 }
 
 .login-page .login-box .login-box-body,
@@ -1295,6 +1346,41 @@ ul.pagination li span {
   padding: 15px;
 }
 
+.team .card {
+  height: 100%;
+}
+
+.team .card .card-body {
+  padding-bottom: 40px;
+}
+
+.card .pull-bottom {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 20px;
+}
+
+.card .card-image {
+  margin-top: -75px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#pricing,
+#news {
+  padding: 50px 0;
+}
+
+.pricing {
+  margin-bottom: 25px;
+}
+
 .pricing .card {
   border: none;
   border-radius: 1rem;
@@ -1311,6 +1397,10 @@ ul.pagination li span {
   font-size: 0.9rem;
   letter-spacing: 0.1rem;
   font-weight: bold;
+}
+
+.pricing .card-body ul {
+  min-height: 330px;
 }
 
 .pricing .card-price {
@@ -1340,6 +1430,24 @@ ul.pagination li span {
   transition: all 0.2s;
 }
 
+.pricing a.feature {
+  text-decoration: underline;
+}
+
+.patreons .card {
+  margin-top: 4em;
+}
+
+.faqs ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.faqs ul li {
+  margin: 0 0 20px 0;
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {
@@ -1352,25 +1460,16 @@ ul.pagination li span {
   .pricing .card:hover .btn {
     opacity: 1;
   }
-}
 
-@media screen and (orientation: portrait) {
-  .minimal-padding table {
-    display: none;
+  .login-box,
+  .register-box {
+    width: 420px;
   }
 
-  .minimal-padding .landscape-helper {
-    display: block;
-  }
-}
-
-@media screen and (orientation: landscape) {
-  .minimal-padding table {
-    display: table;
-  }
-
-  .minimal-padding .landscape-helper {
-    display: none;
+  .login-page,
+  .register-page,
+  header.masthead {
+    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
   }
 }
 
@@ -1390,6 +1489,12 @@ ul.pagination li span {
 
   .topbar .topbar-list .login {
     margin-right: 5px;
+  }
+
+  .login-page,
+  .register-page,
+  header.masthead {
+    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-mobile.jpg);
   }
 }
 

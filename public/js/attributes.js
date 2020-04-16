@@ -93,6 +93,11 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/**
+ * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
+ * @type {number}
+ */
+var attribute_id_count = -1000;
 $(document).ready(function () {
   if ($('#add_attribute_target').length > 0) {
     initAttributeUI();
@@ -108,43 +113,55 @@ function initAttributeUI() {
   initAttributeHandlers();
   $('#attribute_add').on('click', function (e) {
     e.preventDefault();
-    var realTarget = $(this).data('sortable') ? targetNew : target;
-    $('#attribute_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    attribute_id_count -= 1;
+    var body = $('#attribute_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
     initAttributeHandlers();
     return false;
   });
   $('#block_add').click(function (e) {
     e.preventDefault();
-    var realTarget = $(this).data('sortable') ? targetNew : target;
-    $('#block_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    attribute_id_count -= 1;
+    var body = $('#block_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
     initAttributeHandlers();
     return false;
   });
   $('#text_add').click(function (e) {
     e.preventDefault();
-    var realTarget = $(this).data('sortable') ? targetNew : target;
-    $('#text_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    attribute_id_count -= 1;
+    var body = $('#text_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
     initAttributeHandlers();
     return false;
   });
   $('#checkbox_add').click(function (e) {
     e.preventDefault();
-    var realTarget = $(this).data('sortable') ? targetNew : target;
-    $('#checkbox_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    attribute_id_count -= 1;
+    var body = $('#checkbox_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
     initAttributeHandlers();
     return false;
   });
   $('#section_add').click(function (e) {
     e.preventDefault();
-    var realTarget = $(this).data('sortable') ? targetNew : target;
-    $('#section_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    attribute_id_count -= 1;
+    var body = $('#section_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
     initAttributeHandlers();
     return false;
   });
   $('#entity_add').click(function (e) {
     e.preventDefault();
-    var realTarget = $(this).data('sortable') ? targetNew : target;
-    $('#entity_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+    attribute_id_count -= 1;
+    var body = $('#entity_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
     initAttributeHandlers();
     return false;
   }); // Delete all visible attributes
@@ -212,7 +229,7 @@ function initAttributeHandlers() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
 
 
 /***/ })

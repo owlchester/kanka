@@ -100,7 +100,8 @@ $(document).ready(function () {
       allowClear: true,
       minimumInputLength: 0,
       ajax: {
-        quietMillis: 200,
+        quietMillis: 500,
+        delay: 500,
         url: $(this).attr('data-url'),
         dataType: 'json',
         data: function data(params) {
@@ -131,7 +132,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\organisation */"./resources/assets/js/organisation.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\organisation */"./resources/assets/js/organisation.js");
 
 
 /***/ })

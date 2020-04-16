@@ -6,7 +6,13 @@
 }
 
 img.profile-user-img {
-  width: 200px;
+  border: none;
+  width: auto;
+  max-height: 400px;
+}
+
+.content {
+  padding-top: 5px;
 }
 
 .content-header .breadcrumb {
@@ -19,6 +25,7 @@ img.profile-user-img {
 
 .content-header h1 {
   display: block;
+  font-size: 1.3em;
 }
 
 .navbar-nav .campaign-menu .campaign-image {
@@ -78,6 +85,11 @@ img.profile-user-img {
 
 .sidebar-menu > li > a {
   padding: 8px 5px 8px 15px;
+}
+
+.sidebar-menu > li > a .ra {
+  display: inline-block;
+  width: 20px;
 }
 
 /** required form fields **/
@@ -140,7 +152,9 @@ table label {
 }
 
 .profile-username {
+  font-size: 1.3em;
   word-wrap: break-word;
+  margin-bottom: 5px;
 }
 
 .preview {
@@ -212,10 +226,6 @@ footer .footer {
   padding: 15px;
 }
 
-footer .footer .row {
-  margin-bottom: 15px;
-}
-
 footer ul {
   list-style-type: none;
   margin: 0;
@@ -244,44 +254,28 @@ footer span {
   margin: 0 15px 10px;
 }
 
-footer p {
-  padding: 15px 25px;
-  font-size: 16px !important;
-}
-
-footer p:hover {
-  color: #eee;
-}
-
-footer p,
 footer a {
   border-radius: 4px;
 }
 
-footer p:hover,
 footer a:hover {
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.2);
   text-decoration: none;
 }
 
-footer .social {
-  margin-left: 10px;
+footer .footer-social {
+  text-align: center;
+  font-size: 22px !important;
 }
 
-footer .social li {
-  margin: 0;
-  display: inline-block;
+footer .footer-social .email {
+  margin-bottom: 20px;
 }
 
-footer .social li a {
-  font-size: 16px !important;
-  padding: 10px 4px;
-}
-
-footer .social li a:hover {
-  background: none;
-  color: #eee;
+footer .footer-social .copyright {
+  margin-top: 40px;
+  font-size: 12px;
 }
 
 .main-header .sidebar-toggle {
@@ -437,6 +431,12 @@ tr.entity-hidden td {
 .entity-title .entity-name {
   vertical-align: top;
   padding-top: 8px;
+}
+
+.entity-name-img {
+  line-height: 2.8em;
+  margin-left: 8px;
+  display: inline-block;
 }
 
 /**
@@ -626,18 +626,12 @@ div.mce-fullscreen {
   margin-right: -20px;
 }
 
-.entity-file-rename,
-.entity-file-ui {
+.entity-file-rename {
   cursor: pointer;
 }
 
-.entity-file-rename:hover,
-.entity-file-ui:hover {
+.entity-file-rename:hover {
   color: rgba(0, 0, 0, 0.7);
-}
-
-.entity-file-ui {
-  padding: 5px;
 }
 
 .entity-file {
@@ -645,8 +639,20 @@ div.mce-fullscreen {
   padding: 3px 6px;
 }
 
-.list-group-item {
-  word-break: break-all;
+.list-group-unbordered {
+  margin-bottom: 0;
+}
+
+.list-group-unbordered .list-group-item {
+  word-break: break-word;
+}
+
+.list-group-unbordered .list-group-item:first-child {
+  border-top: none;
+}
+
+.list-group-unbordered .list-group-item:last-child {
+  border-bottom: none;
 }
 
 .input-error {
@@ -667,6 +673,10 @@ div.mce-fullscreen {
 
 .select2-container--open {
   z-index: 9961;
+}
+
+.select2-selection__rendered .color-white {
+  color: #000 !important;
 }
 
 .datepicker {
@@ -730,10 +740,6 @@ div.mce-fullscreen {
 
 td.breakable {
   word-break: break-word;
-}
-
-.btn-group .dropdown-toggle {
-  height: 36px;
 }
 
 .entity-form .nav-tabs-custom {
@@ -812,6 +818,7 @@ td.breakable {
 
 .full-sized-image h1 {
   margin: 5px;
+  font-size: 1.4em;
   align-self: flex-end;
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
   color: white;
@@ -854,6 +861,37 @@ td.breakable {
 .bg-gray .widget-user-username a,
 .bg-none .widget-user-username a {
   color: #000;
+}
+
+.float-left {
+  float: left;
+}
+
+.crud_permissions label {
+  cursor: pointer;
+}
+
+.datagrid-filters .box-header {
+  cursor: pointer;
+}
+
+.datagrid-filters .box-header .active-filter {
+  padding: 3px;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.widget-patron .img-circle {
+  border: none !important;
+}
+
+.widget-patron .box-body {
+  padding-top: 37px;
+}
+
+#entry td,
+#entry th {
+  padding: 2px;
 }
 
 .calendar {
@@ -1021,17 +1059,6 @@ td.breakable {
     padding: 3px;
   }
 
-  footer ul li a {
-    padding-left: 0;
-  }
-
-  footer h4,
-  footer span,
-  footer a {
-    margin-left: 0;
-    padding-left: 0;
-  }
-
   .navbar-nav .campaign-menu .campaign-image {
     margin-right: 0px;
   }
@@ -1064,6 +1091,10 @@ td.breakable {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .content-header h1 .pull-right {
+    margin: 0px;
   }
 
   .content-header .breadcrumb {
@@ -1155,6 +1186,36 @@ td.breakable {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.entity-menu-head {
+  text-align: center;
+}
+
+.entity-menu-head img {
+  width: 100%;
+}
+
+.entity-menu-head h3 {
+  font-size: 1.2em;
+  margin: 8px;
+  text-align: center;
+}
+
+.entity-actions {
+  margin-bottom: 4px;
+}
+
+.entity-actions h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.3em;
+  display: inline-block;
+  padding-top: 10px;
+}
+
+.entity-actions .actions .btn-group {
+  margin-left: 8px;
+}
+
 /*!
  * RPG Awesome 0.0.2 by Daniela Howe, Ivan Montiel
  * License - https://github.com/nagoshiashumari/Rpg-Awesome/blob/master/LICENSE.md
@@ -1167,7 +1228,7 @@ td.breakable {
 @font-face {
   font-family: "RPGAwesome";
   src: url(/fonts/rpgawesome-webfont.eot?cbfd0298f008558557418d19abfc2f42);
-  src: url(/fonts/rpgawesome-webfont.eot?cbfd0298f008558557418d19abfc2f42) format("embedded-opentype"), url(/fonts/rpgawesome-webfont.woff?e31a701aa9b88125d36119acb8a10482) format("woff"), url(/fonts/rpgawesome-webfont.ttf?bc54396771c64863193f7a3fe93d9cff) format("truetype"), url(/fonts/rpgawesome-webfont.svg?3545f0c0e7c01650959acf24695fe78c) format("svg");
+  src: url(/fonts/rpgawesome-webfont.eot?cbfd0298f008558557418d19abfc2f42) format("embedded-opentype"), url(/fonts/rpgawesome-webfont.woff?e31a701aa9b88125d36119acb8a10482) format("woff"), url(/fonts/rpgawesome-webfont.ttf?bc54396771c64863193f7a3fe93d9cff) format("truetype"), url(/fonts/rpgawesome-webfont.svg?c243adb601cb0e965344851b1c46194f) format("svg");
   font-weight: normal;
   font-style: normal;
 }

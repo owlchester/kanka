@@ -49,6 +49,7 @@
 .panel .panel-heading {
   border: none !important;
   background-color: transparent !important;
+  color: #157778 !important;
 }
 
 .box .with-border,
@@ -184,7 +185,6 @@ input[type=checkbox]:checked:after {
 .help-block {
   color: #bbb;
   font-style: italic;
-  text-align: justify;
 }
 
 p {
@@ -549,11 +549,11 @@ a:hover {
 }
 
 .nav-tabs-custom {
-  border: 1px solid #42FFFF;
   background: none;
 }
 
 .nav-tabs-custom .tab-content {
+  border: 1px solid #42FFFF;
   background: none;
 }
 

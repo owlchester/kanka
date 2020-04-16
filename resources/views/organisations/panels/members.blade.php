@@ -74,7 +74,8 @@ $hasOrg = request()->has('organisation_id');
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
-                        {!! $relation->character->tooltipedLink() !!}
+                        {!! $relation->character->tooltipedLink() !!}<br />
+                        <i>{{ $relation->character->title }}</i>
                     </td>
                     @if ($campaign->enabled('locations'))
                     <td class="hidden-sm hidden-xs">
@@ -106,9 +107,9 @@ $hasOrg = request()->has('organisation_id');
                     </td>
                     <td class="text-right">
                         @can('member', $model)
-                            <a href="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}"
-                               class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal" 
-                               data-url="{{ route('organisations.organisation_members.edit', ['organisation' => $model, 'organisationMember' => $relation]) }}"
+                            <a href="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
+                               class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal"
+                               data-url="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
                                title=" {{ __('crud.edit') }}"
                             >
                                 <i class="fa fa-edit"></i>

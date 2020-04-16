@@ -7,6 +7,7 @@
         trans('locations.show.tabs.locations')
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('content')

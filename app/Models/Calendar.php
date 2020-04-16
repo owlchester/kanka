@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 
 /**
@@ -28,6 +29,11 @@ use Illuminate\Support\Arr;
  */
 class Calendar extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -103,11 +109,6 @@ class Calendar extends MiscModel
     protected $loadedMonthAliases = false;
 
     /**
-     * @var bool
-     */
-    protected $loadedIntercalaries = false;
-
-    /**
      * Fields that can be filtered on
      * @var array
      */
@@ -116,14 +117,8 @@ class Calendar extends MiscModel
         'type',
         'tag_id',
         'is_private',
+        'tags',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
 
     /**
      * Entity type
@@ -193,7 +188,9 @@ class Calendar extends MiscModel
                     $sub->orWhere(function ($subsub) {
                         $subsub
                             ->where('is_recurring', true)
-                            ->where('year', '<=', Arr::get($this->cachedCurrentDate, 0, 1))
+                            // We want recurring events that will start in the future, just in case. Limit it to +2
+                            // years to avoid performance drop
+                            ->where('year', '<=', Arr::get($this->cachedCurrentDate, 0, 1) + 2)
                             ->where(function ($datesub) {
                                 $datesub->whereNull('recurring_until')
                                     ->orWhereRaw("recurring_until >= '" . $this->currentDate('year') . "'");
@@ -342,11 +339,11 @@ class Calendar extends MiscModel
 
         $this->cacheCurrentDate();
         if ($value == 'year') {
-            return $this->cachedCurrentDate[0];
+            return $this->cachedCurrentDate[0] ?: 0;
         } elseif ($value == 'month') {
-            return $this->cachedCurrentDate[1];
+            return $this->cachedCurrentDate[1] ?: 1;
         } elseif ($value == 'date') {
-            return $this->cachedCurrentDate[2];
+            return $this->cachedCurrentDate[2] ?? 1;
         }
         return null;
     }
@@ -409,21 +406,31 @@ class Calendar extends MiscModel
      */
     public function addDay()
     {
-        list($year, $month, $day) = explode('-', $this->date);
+        $segments = explode('-', ltrim($this->date, '-'));
+        $year = ($this->date[0] == '-' ? '-' : null) . $segments[0];
+        $month = $segments[1] ?? 1;
+        $day = false;
 
-        $day++;
         // Day is longer than month max length?
         $months = $this->months();
-        if ($day > $months[$month-1]['length']) {
-            $day = 1;
-            $month++;
-            if ($month > count($months)) {
-                $month = 1;
-                $year++;
+
+        if (!empty($segments[2])) {
+            $day = $segments[2] + 1;
+            if ($day > $months[$month-1]['length']) {
+                $day = 1;
+                $month++;
             }
+        } else {
+            $month++;
         }
 
-        $this->date = $year . '-' . $month . '-' . $day;
+        // Reset month and increment year
+        if ($month > count($months)) {
+            $month = 1;
+            $year++;
+        }
+
+        $this->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
         return $this->save();
     }
 

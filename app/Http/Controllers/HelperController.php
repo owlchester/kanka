@@ -9,7 +9,7 @@ class HelperController
      */
     public function link()
     {
-        return view('helpers.link');
+        return $this->render('link');
     }
 
     /**
@@ -17,7 +17,7 @@ class HelperController
      */
     public function dice()
     {
-        return view('helpers.dice');
+        return $this->render('dice');
     }
 
     /**
@@ -25,7 +25,7 @@ class HelperController
      */
     public function map()
     {
-        return view('helpers.map');
+        return $this->render('map');
     }
 
     /**
@@ -33,6 +33,12 @@ class HelperController
      */
     public function filters()
     {
-        return view('helpers.filters');
+        return $this->render('filters');
+    }
+
+    protected function render(string $view)
+    {
+        $ajax = request()->ajax();
+        return view('helpers.' . $view, compact('ajax'));
     }
 }

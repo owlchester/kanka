@@ -25,18 +25,28 @@
             <div class="section-heading text-center">
 
                 <div class="row">
-                    <div class="col-lg-6 my-auto">
+                    <div class="col-lg-4">
                         <div class="feature-item">
-                            <i class="fab fa-discord"></i>
-                            <h3>{{ trans('front.help.discord') }}</h3>
-                            <p class="text-muted"><a href="{{ config('social.discord') }}">Discord</a></p>
+                            <a href="{{ config('social.discord') }}">
+                                <i class="fab fa-discord"></i>
+                                <h3>{{ trans('front.help.discord') }}</h3>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-6 my-auto">
+                    <div class="col-lg-4">
                         <div class="feature-item">
-                            <i class="fa fa-envelope-open"></i>
-                            <h3>{{ trans('front.help.email') }}</h3>
-                            <p class="text-muted"><a href="mailto:hello@kanka.io">hello@kanka.io</a></p>
+                            <a href="{{ config('social.facebook') }}">
+                                <i class="fab fa-facebook"></i>
+                                <h3>{{ trans('front.help.facebook') }}</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-item">
+                            <a href="mailto:hello@kanka.io">
+                                <i class="fa fa-envelope-open"></i>
+                                <h3>{{ trans('front.help.email') }}</h3>
+                            </a>
                         </div>
                     </div>
                 </div>

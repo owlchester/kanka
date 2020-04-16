@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\DB;
  * @property integer $visible_entity_count
  * @property EntityMention[] $mentions
  * @property CampaignSetting $setting
+ * @property CampaignUser[] $members
  */
 class Campaign extends MiscModel
 {
@@ -139,7 +140,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters()
     {
@@ -147,7 +148,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function locations()
     {
@@ -155,7 +156,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function calendars()
     {
@@ -163,7 +164,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function events()
     {
@@ -171,7 +172,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function families()
     {
@@ -179,7 +180,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
     {
@@ -187,7 +188,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function journals()
     {
@@ -195,7 +196,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function notes()
     {
@@ -203,7 +204,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function organisations()
     {
@@ -211,7 +212,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function quests()
     {
@@ -219,7 +220,15 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany$
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function abilities()
+    {
+        return $this->hasMany('App\Models\Ability');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tags()
     {

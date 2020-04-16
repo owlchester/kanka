@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
@@ -12,6 +13,7 @@ use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -45,7 +47,8 @@ abstract class MiscModel extends Model
         Filterable,
         Tooltip,
         Sortable,
-        SubEntityScopes;
+        SubEntityScopes
+    ;
 
     /**
      * If set to false, the saving observer in MiscObserver will be skipped
@@ -181,7 +184,7 @@ abstract class MiscModel extends Model
      * @param bool $thumb
      * @return string
      */
-    public function getImageUrl($thumb = false, $field = 'image')
+    public function getImageUrl(bool $thumb = false, string $field = 'image')
     {
         if (empty($this->$field)) {
             // Patreons have nicer icons
@@ -244,8 +247,12 @@ abstract class MiscModel extends Model
     /**
      * @return bool
      */
-    public function hasEntry()
+    public function hasEntry(): bool
     {
+        $excludedTypes = ['dice_roll', 'conversation'];
+        if (in_array($this->getEntityType(), $excludedTypes)) {
+            return false;
+        }
         // If all that's in the entry is two \n, then there is no real content
         return strlen($this->entry) > 2;
     }
@@ -256,12 +263,13 @@ abstract class MiscModel extends Model
      */
     public function menuItems($items = [])
     {
-        $mapPoints = $this->entity->targetMapPoints()->count();
+        $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
         if ($mapPoints > 0) {
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',
                 'route' => $this->entity->pluralType() . '.map-points',
-                'count' => $mapPoints
+                'count' => $mapPoints,
+                'icon' => 'fa fa-map-marked',
             ];
         }
 
@@ -272,6 +280,7 @@ abstract class MiscModel extends Model
                 'route' => 'entities.relations.index',
                 'count' => $this->entity->relationships()->count(),
                 'entity' => true,
+                'icon' => 'fa fa-users',
             ];
         }
 
@@ -280,9 +289,22 @@ abstract class MiscModel extends Model
         $items['inventory'] = [
             'name' => 'crud.tabs.inventory',
             'route' => 'entities.inventory',
-            'count' => $this->entity->inventories()->count(),
+            'count' => $this->entity->inventories()->has('item')->count(),
             'entity' => true,
+            'icon' => 'ra ra-round-bottom-flask',
         ];
+
+        // Each entity can have abilities
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->enabled('abilities') && $campaign->boosted() && $this->entityTypeId() != config('entities.ids.ability')) {
+            $items['abilities'] = [
+                'name' => 'crud.tabs.abilities',
+                'route' => 'entities.entity_abilities.index',
+                'count' => $this->entity->abilities()->has('ability')->count(),
+                'entity' => true,
+                'icon' => 'ra ra-fire-symbol',
+            ];
+        }
 
         return $items;
     }
@@ -331,7 +353,7 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', $this->entity->id). '" href="' .
+            'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
             e($this->name) .
             '</a>';
@@ -346,5 +368,22 @@ abstract class MiscModel extends Model
             return $this->entity->tooltip;
         }
         return null;
+    }
+
+    /**
+     * Create the model's Entity
+     * @return Entity
+     */
+    public function createEntity(): Entity
+    {
+        $entity = Entity::create([
+            'entity_id' => $this->id,
+            'campaign_id' => $this->campaign_id,
+            'is_private' => $this->is_private,
+            'name' => $this->name,
+            'type' => $this->getEntityType()
+        ]);
+
+        return $entity;
     }
 }

@@ -20,12 +20,17 @@ return [
     'community'     => [
         'description'   => 'A Kanka nemcsak egy alkalmazás, hanem világépítők, mesélők, szerepjátékosok és lelkes kreatívok virágzó közössége is.',
         'discord'       => 'A Kanka Discord a legaktívabb hely, ahol az alkalmazásról, annak funkcióiról vagya megtalált hibákról beszélgethetsz, illetve segítséget kérhetsz vagy adhatsz.',
+        'facebook'      => 'Légy naprakész az összes újdonsággal kapcsolatban a facebook oldalunkon keresztül.',
+        'instagram'     => 'Kíváncsi vagy több színfalak mögötti képre rólunk ahogy a Kankán dolgozunk, vagy épp játszunk? Az Instagram a te helyed, ahol követhetsz minket!',
         'join'          => 'Csatlakozz hozzánk!',
         'reddit'        => 'A Kanka subreddit egy nyugisabb hely, ahol a dolgokat hosszabb időkeretben beszélhetitek meg.',
         'title'         => 'Közösség',
     ],
     'contact'       => [
-        'title' => ':icon az új barátainknak!',
+        'description'   => 'Segítségre lenne szükséged, van egy javaslatod, vagy csak egyszerűen megosztanád, hogy mennyire tetszik a Kanka? Csapatunk válaszol majd, bármi legyen is az alkalom!',
+        'email'         => 'Az alábbi email címen elérhetsz minket:',
+        'other'         => 'Vagy vedd fel a kapcsolatot velünk az alábbi közösségi média felületen:',
+        'title'         => 'Itt vagyunk Neked',
     ],
     'cookie'        => [
         'dismiss'   => 'Értem!',
@@ -130,6 +135,7 @@ return [
         'description'   => 'Ha segítség kellene, itt vagyunk. Keress meg minket az alábbi módok valamelyikén, és válaszolunk, amint tudunk.',
         'discord'       => 'Csatlakozz a közösséghez Discordon!',
         'email'         => 'Küldj nekünk emailt!',
+        'facebook'      => 'Lépj velünk kapcsolatba a Facebookon',
         'title'         => 'Segítség',
         'twitter'       => 'Küldj nekünk tweetet Twitteren!',
     ],
@@ -151,12 +157,14 @@ return [
         'help'      => 'Segítség',
         'home'      => 'Kezdőlap',
         'login'     => 'Bejelentkezés',
+        'news'      => 'Hírek',
+        'pricing'   => 'Árak',
         'privacy'   => 'Adatvédelmi tájékoztató',
         'register'  => 'Regisztráció',
         'releases'  => 'Verziók',
         'roadmap'   => 'Fejlesztési terv',
+        'terms'     => 'Felhasználási feltételek',
         'title'     => 'Menü',
-        'tos'       => 'Szolgáltatási feltételek',
     ],
     'meta'          => [
         'description'   => 'A Kanka egy rugalmas digitális világépítő és online szerepjátékos kampánykezelő',
@@ -165,6 +173,27 @@ return [
     'partners'      => [
         'description'   => 'Összefogtunk néhány lenyűgöző eszközzel, és közösséggel, akikel közös célokat, és értékrendet vallunk.',
         'title'         => 'Partnerek',
+    ],
+    'pricing'       => [
+        'actions'       => [
+            'more'      => 'Ismerd meg az összes funkciót, amelyet a Kanka támogatásával szerezhetsz meg',
+            'support'   => 'Támogatás',
+        ],
+        'benefits'      => [
+            'boosters'          => 'Kampány Boosterek',
+            'core'              => 'Hozzáférés az összes alapfunkcióhoz',
+            'higher_uploads'    => 'Nagyobb fájlfeltöltési limit',
+            'huge_uploads'      => 'Nagy fájlfeltöltési limit',
+            'no_boosters'       => 'Nincs kampány booster',
+            'unlimited'         => 'Korlátlan kampány & feltöltés',
+            'updates'           => 'Rendszeres frissítés és fejlesztések',
+        ],
+        'description'   => 'Habár minden alapfunkció elérhető ingyen, a Kanka támogatása segít a rendszeres frissítések, és fejlesztések létrejöttében az egész közösség számára.',
+        'tier'          => [
+            'free'  => 'Ingyenes',
+            'month' => 'Hónap',
+        ],
+        'title'         => 'Árak áttekintése',
     ],
     'privacy'       => [
         'description'   => 'Érvényes 2018. május 25-től.',
@@ -192,5 +221,9 @@ return [
     ],
     'team'          => [
         'coffee'    => 'Hívj meg egy kávéra!',
+    ],
+    'terms'         => [
+        'description'   => 'Jelenlegi dátum: 2020. március 4.',
+        'title'         => 'Felhasználási feltételek',
     ],
 ];

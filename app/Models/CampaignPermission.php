@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Support\Str;
 
 /**
  * Class CampaignPermission
@@ -18,6 +19,11 @@ use DateTime;
  */
 class CampaignPermission extends Model
 {
+    /**
+     * @var bool|array
+     */
+    protected $cachedSegments = false;
+
     /**
      * @var array
      */
@@ -62,7 +68,7 @@ class CampaignPermission extends Model
      */
     public function entityId()
     {
-        $segments = explode('_', $this->key);
+        $segments = $this->segments();
         return $segments[count($segments)-1];
     }
 
@@ -71,8 +77,12 @@ class CampaignPermission extends Model
      */
     public function action()
     {
-        $segments = explode('_', $this->key);
-        return $segments[count($segments)-(empty($this->entity_id) ? 1 : 2)];
+        $segments = $this->segments();
+        $segment = count($segments)-(empty($this->entity_id) ? 1 : 2);
+        if (!isset($segments[$segment])) {
+            return null;
+        }
+        return $segments[$segment];
     }
 
     /**
@@ -81,13 +91,26 @@ class CampaignPermission extends Model
      */
     public function targetsEntity()
     {
-        $segments = explode('_', $this->key);
+        $segments = $this->segments();
         return is_numeric($segments[count($segments)-1]);
     }
 
     public function type()
     {
-        $segments = explode('_', $this->key);
+        $segments = $this->segments();
+
+        // Todo: move this info somewhere else so we can avoid a massive split
+        if (Str::startsWith($this->key, 'attribute_template')) {
+            $segments[0] = 'attribute_template';
+        }
         return $segments[0];
+    }
+
+    protected function segments(): array
+    {
+        if ($this->cachedSegments === false) {
+            $this->cachedSegments = explode('_', $this->key);
+        }
+        return $this->cachedSegments;
     }
 }

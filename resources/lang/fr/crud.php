@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Actions',
         'apply'             => 'Appliquer',
         'back'              => 'Retour',
         'copy'              => 'Copier',
+        'copy_mention'      => 'Copier mention [ ]',
         'copy_to_campaign'  => 'Copier vers une campagne',
         'explore_view'      => 'Vue Imbriquée',
         'export'            => 'Export',
@@ -18,6 +20,9 @@ return [
         'public'            => 'Publique',
     ],
     'add'               => 'Ajouter',
+    'alerts'            => [
+        'copy_mention'  => 'La mention avancée de cette entité a été copier au presse-papier.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Ajouter un attribut',
@@ -86,9 +91,13 @@ return [
         ],
     ],
     'boosted'           => 'Boosté',
+    'boosted_campaigns' => 'Campagnes Boostées',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Opération de masse',
+        ],
+        'age'           => [
+            'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'age dynamiquement.',
         ],
         'edit'          => [
             'tagging'   => 'Action pour les étiquettes',
@@ -143,6 +152,7 @@ return [
     ],
     'edit'              => 'Modifier',
     'errors'            => [
+        'boosted'                       => 'Cette fonctionalité n\'est que accessible pour aux campagnes boostées..',
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
     ],
     'events'            => [
@@ -150,6 +160,7 @@ return [
     ],
     'export'            => 'Export',
     'fields'            => [
+        'ability'               => 'Pouvoirs',
         'attribute_template'    => 'Modèle d\'attribut',
         'calendar'              => 'Calendrier',
         'calendar_date'         => 'Date calendrier',
@@ -187,7 +198,8 @@ return [
             'manage'    => 'Gérer les fichiers d\'entité',
         ],
         'errors'    => [
-            'max'   => 'Nombre maximal de fichier (:max) atteint pour cette entité.',
+            'max'       => 'Nombre maximal de fichier (:max) atteint pour cette entité.',
+            'no_files'  => 'Aucun fichier.',
         ],
         'files'     => 'Fichiers uploadé',
         'hints'     => [
@@ -281,8 +293,8 @@ return [
         'system'                => 'Système',
     ],
     'permissions'       => [
-        'action'        => 'Action',
-        'actions'       => [
+        'action'            => 'Action',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Ajouter',
                 'ignore'    => 'Ignorer',
@@ -292,19 +304,22 @@ return [
             'edit'          => 'Modifier',
             'entity_note'   => 'Notes d\'entité',
             'read'          => 'Lire',
+            'toggle'        => 'Basculer',
         ],
-        'allowed'       => 'Permis',
-        'fields'        => [
+        'allowed'           => 'Permis',
+        'fields'            => [
             'member'    => 'Membre',
             'role'      => 'Rôle',
         ],
-        'helper'        => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
-        'inherited'     => 'Ce rôle a déjà cette permission pour ce type d\'entité.',
-        'inherited_by'  => 'Cet utilisateur fait partie du rôle :role qui permet cette permission pour ce type d\'entité.',
-        'success'       => 'Permissions enregistrées.',
-        'title'         => 'Permissions',
+        'helper'            => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
+        'inherited'         => 'Ce rôle a déjà cette permission pour ce type d\'entité.',
+        'inherited_by'      => 'Cet utilisateur fait partie du rôle :role qui permet cette permission pour ce type d\'entité.',
+        'success'           => 'Permissions enregistrées.',
+        'title'             => 'Permissions',
+        'too_many_members'  => 'Cette campagne a trop de members (>10) pour afficher cette interface correctement. Prière d\'utiliser le boutton Permission sur la vue de l\'entité pour gérer les permissions.',
     ],
     'placeholders'      => [
+        'ability'       => 'Choix d\'un pouvoir',
         'calendar'      => 'Choix du calendrier',
         'character'     => 'Choix du personnage',
         'entity'        => 'Entité',
@@ -338,6 +353,7 @@ return [
     'search'            => 'Rechercher',
     'select'            => 'Sélection',
     'tabs'              => [
+        'abilities'     => 'Pouvoirs',
         'attributes'    => 'Attributs',
         'boost'         => 'Boost',
         'calendars'     => 'Calendriers',
@@ -359,8 +375,9 @@ return [
     ],
     'view'              => 'Voir',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Tous',
-        'self'  => 'Sois-même',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Sois-même & Admin',
+        'all'           => 'Tous',
+        'self'          => 'Sois-même',
     ],
 ];

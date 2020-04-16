@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
         'copy'              => 'Copy',
+        'copy_mention'      => 'Copy [ ] mention',
         'copy_to_campaign'  => 'Copy to Campaign',
         'explore_view'      => 'Nested View',
         'export'            => 'Export',
@@ -18,6 +20,9 @@ return [
         'public'            => 'Public',
     ],
     'add'               => 'Add',
+    'alerts'            => [
+        'copy_mention'  => 'The entity\'s advanced mention was copied to your clipboard.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Add an attribute',
@@ -86,9 +91,13 @@ return [
         ],
     ],
     'boosted'           => 'Boosted',
+    'boosted_campaigns' => 'Boosted Campaigns',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Bulk Edit & Tagging',
+        ],
+        'age'           => [
+            'helper'    => 'You can use + and - before the number to update the age by that amount.',
         ],
         'edit'          => [
             'tagging'   => 'Action for tags',
@@ -143,6 +152,7 @@ return [
     ],
     'edit'              => 'Edit',
     'errors'            => [
+        'boosted'                       => 'This feature is only available to boosted campaigns.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
     'events'            => [
@@ -150,6 +160,7 @@ return [
     ],
     'export'            => 'Export',
     'fields'            => [
+        'ability'               => 'Ability',
         'attribute_template'    => 'Attribute Template',
         'calendar'              => 'Calendar',
         'calendar_date'         => 'Calendar Date',
@@ -187,7 +198,8 @@ return [
             'manage'    => 'Manage Entity Files',
         ],
         'errors'    => [
-            'max'   => 'You have reached the maximum number (:max) of files for this entity.',
+            'max'       => 'You have reached the maximum number (:max) of files for this entity.',
+            'no_files'  => 'No files.',
         ],
         'files'     => 'Uploaded Files',
         'hints'     => [
@@ -235,11 +247,13 @@ return [
         'unknown'   => 'Unknown',
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'      => 'View entity log',
+        'created_date' => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date' => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
     ],
-    'is_private'        => 'This entity is private and not visible by non-admin users.',
+    'is_private'        => 'This entity is private and only visible to members of the Admin role.',
     'linking_help'      => 'How can I link to other entries?',
     'manage'            => 'Manage',
     'move'              => [
@@ -281,8 +295,8 @@ return [
         'system'                => 'System',
     ],
     'permissions'       => [
-        'action'        => 'Action',
-        'actions'       => [
+        'action'            => 'Action',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Add',
                 'ignore'    => 'Ignore',
@@ -292,19 +306,22 @@ return [
             'edit'          => 'Edit',
             'entity_note'   => 'Entity Notes',
             'read'          => 'Read',
+            'toggle'        => 'Toggle',
         ],
-        'allowed'       => 'Allowed',
-        'fields'        => [
+        'allowed'           => 'Allowed',
+        'fields'            => [
             'member'    => 'Member',
             'role'      => 'Role',
         ],
-        'helper'        => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
-        'inherited'     => 'This role already has this permission set for this entity type.',
-        'inherited_by'  => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
-        'success'       => 'Permissions saved.',
-        'title'         => 'Permissions',
+        'helper'            => 'Use this interface to fine-tune which users and roles that can interact with this entity.',
+        'inherited'         => 'This role already has this permission set for this entity type.',
+        'inherited_by'      => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
+        'success'           => 'Permissions saved.',
+        'title'             => 'Permissions',
+        'too_many_members'  => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.',
     ],
     'placeholders'      => [
+        'ability'       => 'Choose an ability',
         'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
         'entity'        => 'Entity',
@@ -338,6 +355,7 @@ return [
     'search'            => 'Search',
     'select'            => 'Select',
     'tabs'              => [
+        'abilities'     => 'Abilities',
         'attributes'    => 'Attributes',
         'boost'         => 'Boost',
         'calendars'     => 'Calendars',
@@ -359,8 +377,9 @@ return [
     ],
     'view'              => 'View',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'All',
-        'self'  => 'Self',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Self & Admin',
+        'all'           => 'All',
+        'self'          => 'Self',
     ],
 ];

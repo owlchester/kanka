@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Location $location */ ?>
 @extends('layouts.app', [
     'title' => trans('locations.map.points.title', ['name' => $location->name]),
     'description' => '',
@@ -5,29 +6,29 @@
         ['url' => Breadcrumb::index('locations'), 'label' => trans('locations.index.title')],
         ['url' => route('locations.show', $location->id), 'label' => $location->name]
     ],
+    'mainTitle' => false,
 ])
 
-@section('header-extra')
-    <div class="pull-right">
-    <a href="{{ $location->getLink() }}" class="btn btn-default">
-        <i class="fa fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
-    </a>
-    @if ($location->map)
-        @can('update', $location)
-            @notEnv('shadow')
-            <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
-                <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
-            </button>
-            <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
-                <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
-            </button>
-            @endenv
-        @endcan
-    @endif
-    </div>
-@endsection
-
 @section('content')
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="{{ $location->getLink() }}" class="btn btn-default">
+                <i class="fa fa-arrow-left"></i> <span class="hidden-xs">{{ trans('locations.map.points.return', ['name' => $location->name]) }}</span>
+            </a>
+            @if ($location->map)
+                @can('update', $location)
+                    @notEnv('shadow')
+                    <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
+                        <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
+                    </button>
+                    <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
+                        <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
+                    </button>
+                    @endenv
+                @endcan
+            @endif
+        </div>
+    </div>
     @if ($location->map)
         <div class="row">
             <div class="col-md-12" id="location-map-main">
@@ -49,7 +50,7 @@
 
                     <div id="draggable-map">
                         <div class="map-container">
-                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: 100%;" @endif />
+                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" @if ($location->isMapSvg()) style="width: {{ $location->mapWidth()}};" @endif />
                             @foreach ($location->mapPoints()->with(['targetEntity', 'location'])->get() as $point)
                                 <?php /** @var \App\Models\MapPoint $point */?>
                                 @if ($point->visible())

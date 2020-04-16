@@ -16,6 +16,9 @@ try {
 require('admin-lte');
 require('select2');
 require('bootstrap-datepicker');
+require('eonasdan-bootstrap-datetimepicker');
+
+
 
 // require('corejs-typeahead');
 // Bloodhound = require('corejs-typeahead/dist/bloodhound.js');

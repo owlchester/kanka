@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait OrderableTrait
 {
     /**
@@ -37,10 +39,16 @@ trait OrderableTrait
         $field = str_replace($this->orderTrigger, '', $data);
         $direction = 'ASC';
 
-        if (!empty($field)) {
+        if (!empty($field) && !Str::contains($field, '/')) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
                 $relationName = $segments[0];
+
+
+                // Make sure the relationship exists
+                if (method_exists($this, $relationName)) {
+                    return $query;
+                }
 
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;

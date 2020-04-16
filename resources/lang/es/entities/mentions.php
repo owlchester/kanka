@@ -5,7 +5,7 @@ return [
     'fields'        => [
         'entity'    => 'Entidad',
     ],
-    'helper'        => 'La lista siguiente contiene todas las entidades que mencionan a esta entidad en el campo de "Presentación".',
+    'helper'        => 'La lista siguiente contiene todas las entidades que mencionan esta entidad en el campo de "Presentación".',
     'mentioned_in'  => 'Mencionada en :count entidades.',
     'show'          => [
         'title' => 'Menciones de :name',

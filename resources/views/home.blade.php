@@ -1,11 +1,14 @@
-<?php /** @var \App\Models\Campaign $campaign */ ?>
+<?php /**
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\Release $release
+ */ ?>
 <?php $position = 0; ?>
 
 @extends('layouts.app', [
-    'title' => trans('dashboard.title') . ' ' . $campaign->name,
-    'description' => trans('dashboard.description'),
+    'title' => __('dashboard.title') . ' ' . $campaign->name,
     'breadcrumbs' => false,
     'canonical' => true,
+    'contentId' => 'campaign-dashboard',
 ])
 
 @section('og')
@@ -14,9 +17,8 @@
     <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
 @endsection
 
-
 @section('header-extra')
-    <div class="pull-right">
+    <div class="dashboard-actions">
         @if($settings)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa fa-cog"></i>
@@ -24,13 +26,13 @@
         @endif
         @can ('follow', $campaign)
             <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
-                style="display: none"
-                data-following="{{ $campaign->isFollowing() ? true : false }}"
-                data-follow="{{ __('dashboard.actions.follow') }}"
-                data-unfollow="{{ __('dashboard.actions.unfollow') }}"
-                data-url="{{ route('campaign.follow') }}"
-                data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
-                data-placement="bottom"
+                    style="display: none"
+                    data-following="{{ $campaign->isFollowing() ? true : false }}"
+                    data-follow="{{ __('dashboard.actions.follow') }}"
+                    data-unfollow="{{ __('dashboard.actions.unfollow') }}"
+                    data-url="{{ route('campaign.follow') }}"
+                    data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
+                    data-placement="bottom"
             >
                 <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
             </button>
@@ -38,17 +40,34 @@
     </div>
 @endsection
 
+
 @section('content')
 
     @include('partials.errors')
 
-    @if (!empty($release) && (!auth()->check() || auth()->user()->release != $release->id))
-        <div class="alert alert-info alert-dismissible fade in">
-            @auth
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.release', $release) }}">×</button>
-            @endauth
-            <h4><i class="icon fa fa-info"></i> <a href="{{ route('releases.show', $release->getSlug()) }}">{{ $release->title }}</a></h4>
-            {{ $release->excerpt }}
+    @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
+        <div class="box box-widget">
+            <div class="box-header with-border">
+                <div class="user-block">
+                    @if ($release->author && $release->author->avatar)
+                        <img class="img-circle" src="{{ $release->author->getAvatarUrl(true) }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
+                    @endif
+                    <span class="username">
+                        <a href="{{ route('front.news.show', $release->getSlug()) }}">{{ $release->title }}</a>
+                    </span>
+                    <span class="description">{{ $release->updated_at->isoFormat('MMMM D, Y') }}</span>
+                </div>
+                <div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                @auth
+                @endauth
+            </div>
+            <div class="box-body">
+                {{ $release->excerpt }}
+            </div>
         </div>
     @endif
 

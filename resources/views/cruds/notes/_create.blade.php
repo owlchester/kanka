@@ -7,7 +7,7 @@
     @endif
     <div class="panel-body">
 
-        {!! Form::open(array('route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+        {!! Form::open(['route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form']) !!}
         @include('cruds.notes._form')
 
         <div class="form-group">

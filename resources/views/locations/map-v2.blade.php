@@ -7,9 +7,6 @@
     ],
 ])
 
-@section('header-extra')
-@endsection
-
 @section('content')
     @if ($location->map)
         <div id="location-map">

@@ -36,8 +36,8 @@ class AttributeService
                 continue;
             }
 
-            $value = $values[$id];
-            $type = $types[$id];
+            $value = isset($values[$id]) ? $values[$id] : null ;
+            $type = isset($types[$id]) ? $types[$id] : null;
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
 
@@ -199,11 +199,11 @@ class AttributeService
 
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
-            if (empty($name)) {
+            if (empty($name) || $name == '$TMP_ID') {
                 continue;
             }
 
-            $value = $values[$id];
+            $value = $values[$id] ?? '';
             $type = $types[$id];
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);

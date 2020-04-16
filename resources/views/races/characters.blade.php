@@ -4,7 +4,8 @@
     'breadcrumbs' => [
         ['url' => route('races.show', $model), 'label' => $model->name],
         trans('races.show.tabs.characters')
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

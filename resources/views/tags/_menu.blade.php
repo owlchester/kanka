@@ -6,11 +6,11 @@
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
 
-            <h3 class="profile-username text-center">{{ $model->name }}
+            <h1 class="profile-username text-center">{{ $model->name }}
                 @if ($model->is_private)
                     <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
                 @endif
-            </h3>
+            </h1>
         @endif
 
         <ul class="list-group list-group-unbordered">
@@ -40,10 +40,9 @@
                 </li>
             @endif
             @include('entities.components.attributes')
-            @include('entities.components.files')
         </ul>
-        @include('.cruds._actions')
     </div>
 </div>
 
 @include('entities.components.menu')
+@include('entities.components.actions')

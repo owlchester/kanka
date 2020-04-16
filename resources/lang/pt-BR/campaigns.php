@@ -27,17 +27,12 @@ return [
         'name'          => 'Nome',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Criar uma nova campanha',
-                'title'         => 'Nova Campanha',
+                'title' => 'Nova Campanha',
             ],
         ],
-        'add'           => 'Nova Campanha',
-        'description'   => 'Gerenciar suas campanhas',
-        'list'          => 'Suas Campanhas',
-        'select'        => 'Selecione uma Campanha',
-        'title'         => 'Campanhas',
+        'title'     => 'Campanhas',
     ],
     'invites'       => [
         'actions'       => [

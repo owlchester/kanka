@@ -1,5 +1,8 @@
 <?php
-/** @var \App\Models\Campaign $currentCampaign */
+/**
+ * @var \App\Models\Campaign $currentCampaign
+ * @var \App\Models\Campaign $campaign
+ */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 ?>
@@ -116,6 +119,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 <a href="{{ route('journals.index') }}"><i class="ra ra-scroll-unfurled"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
+            @if ($campaign->enabled('abilities') && $currentCampaign->boosted())
+                <li class="{{ $sidebar->active('abilities') }}">
+                    <a href="{{ route('abilities.' . $defaultIndex) }}"><i class="ra ra-fire-symbol"></i> <span>{{ trans('sidebar.abilities') }}</span></a>
+                </li>
+            @endif
             @if ($campaign->enabled('tags'))
                 <li class="{{ $sidebar->active('tags') }}">
                     <a href="{{ route('tags.' . $defaultIndex) }}"><i class="fa fa-tags"></i> <span>{{ trans('sidebar.tags') }}</span></a>
@@ -155,7 +163,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             <ul class="sidebar-menu tree" data-widget="tree">
                 @foreach (Auth::user()->campaigns as $campaign)
                 <li class="">
-                    <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"><i class="fa fa-globe"></i> <span>{{ $campaign->name }}</span></a>
+                    <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"><i class="fa fa-globe"></i> <span>{!! $campaign->name !!}</span></a>
                 </li>
                 @endforeach
             </ul>

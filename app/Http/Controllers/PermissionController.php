@@ -48,7 +48,7 @@ class PermissionController extends Controller
 
         $this->permissionService->saveEntity($request->only('role', 'user'), $entity);
 
-        return redirect()->route($entity->pluralType() . '.show', $entity->child->id)
+        return redirect()->back()
             ->with('success_raw', trans('crud.permissions.success'));
     }
 }

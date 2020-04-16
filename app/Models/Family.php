@@ -7,6 +7,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -16,6 +17,13 @@ use Kalnoy\Nestedset\NodeTrait;
  */
 class Family extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        NodeTrait,
+        SimpleSortableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -47,6 +55,7 @@ class Family extends MiscModel
         'family_id',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**
@@ -74,11 +83,6 @@ class Family extends MiscModel
         'location_id',
         'family_id',
     ];
-
-    /**
-     * Traits
-     */
-    use CampaignTrait, VisibleTrait, ExportableTrait, NodeTrait, SimpleSortableTrait;
 
     /**
      * Entity type

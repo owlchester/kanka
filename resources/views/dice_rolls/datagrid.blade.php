@@ -28,6 +28,9 @@
             },
             'disableSort' => true,
         ],
+        [
+            'type' => 'is_private',
+        ],
     ],
     // Data
     $models,

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\EntityPermission;
+use App\Models\Ability;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -11,11 +12,13 @@ use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
+use App\Models\CommunityVote;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
+use App\Models\EntityAbility;
 use App\Models\EntityFile;
 use App\Models\EntityNote;
 use App\Models\Family;
@@ -76,6 +79,7 @@ class AppServiceProvider extends ServiceProvider
 
         if (!app()->runningInConsole()) {
             // Observers
+            Ability::observe('App\Observers\AbilityObserver');
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
             Calendar::observe(CalendarObserver::class);
             CalendarWeather::observe(CalendarWeatherObserver::class);
@@ -86,6 +90,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
+            CommunityVote::observe('App\Observers\CommunityVoteObserver');
             Conversation::observe('App\Observers\ConversationObserver');
             ConversationMessage::observe('App\Observers\ConversationMessageObserver');
             DiceRoll::observe('App\Observers\DiceRollObserver');
@@ -93,6 +98,7 @@ class AppServiceProvider extends ServiceProvider
             Event::observe(EventObserver::class);
             Entity::observe('App\Observers\EntityObserver');
             EntityNote::observe('App\Observers\EntityNoteObserver');
+            EntityAbility::observe('App\Observers\EntityAbilityObserver');
             EntityFile::observe('App\Observers\EntityFileObserver');
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
@@ -116,6 +122,7 @@ class AppServiceProvider extends ServiceProvider
             Paginator::useBootstrapThree();
 
             $this->addBladeDirectives();
+            $this->addValidators();
         }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
@@ -168,5 +175,10 @@ class AppServiceProvider extends ServiceProvider
 //        Blade::if('campaigns', function () {
 //            return auth()->check() && auth()->user()->hasCampaigns();
 //        });
+    }
+
+    protected function addValidators(): void
+    {
+        Validator::extend('not_hotmail', '\App\Rules\NotHotmail@passes');
     }
 }

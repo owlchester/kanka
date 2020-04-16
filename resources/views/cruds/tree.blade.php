@@ -30,6 +30,10 @@
 
     @include('partials.errors')
 
+    @if ($filter)
+        @include('cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.tree'])
+    @endif
+
     <div class="box no-border">
         {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
         <div class="box-body">

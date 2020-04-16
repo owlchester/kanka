@@ -33,7 +33,7 @@ You can get a list of all the entity-files of an entity by using the following e
             "entity_id": 69,
             "entry": "Lorem Ipsum",
             "id": 31,
-            "is_private": true,
+            "visibility": "all",
             "name": "Secret File",
             "path": "{url}",
             "size": "44420",
@@ -72,7 +72,7 @@ To get the details of a single entity-file, use the following endpoint.
         "entity_id": 69,
         "entry": "Lorem Ipsum",
         "id": 31,
-        "is_private": true,
+        "visibility": "self",
         "name": "Secret File",
         "path": "{url}",
         "size": "44420",
@@ -102,7 +102,7 @@ To create an entity-file, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `file` | `stream` | The uploaded file (max 2mb or 8mb for Patreons) |
-| `is_private` | `boolean` | If the entity-file is only visible to `admin` members of the campaign |
+| `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
 
 ### Results
 

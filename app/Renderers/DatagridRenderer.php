@@ -201,8 +201,13 @@ class DatagridRenderer
             $label = $this->trans($field);
         }
 
+        // If we are in public mode (bots) don't make this links
+        if (!auth()->check()) {
+            return $label;
+        }
+
         $routeOptions = [
-            'order' => $field,
+            'order' => $field ,
             'page' => request()->get('page')
         ];
 
@@ -295,7 +300,7 @@ class DatagridRenderer
         if (is_string($column)) {
             // Just for name, a link to the view
             if ($column == 'name') {
-                $route = route($this->getOption('baseRoute') . '.show', ['id' => $model->id]);
+                $route = route($this->getOption('baseRoute') . '.show', [$model]);
                 $content = $model->tooltipedLink();
             } else {
                 // Handle boolean values (has, is)
@@ -330,7 +335,7 @@ class DatagridRenderer
                             ? $column['parent_route']
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
-                    $route = route($whoRoute . '.show', ['id' => $who->id]);
+                    $route = route($whoRoute . '.show', [$who]);
                     $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(true) .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -365,6 +370,7 @@ class DatagridRenderer
                     '<i class="fa fa-lock" title="' . trans('crud.is_private') . '"></i>' :
                     '<br />';
             } elseif ($type == 'calendar_date') {
+                $class = 'hidden-xs hidden-sm';
                 if ($model->hasCalendar()) {
                     $content = $this->dateRenderer->render($model->getDate());
                 }
@@ -417,14 +423,14 @@ class DatagridRenderer
     private function renderActionRow(Model $model)
     {
         $content = '
-        <a href="' . route($this->getOption('baseRoute') . '.show', ['id' => $model->id]) .
+        <a href="' . route($this->getOption('baseRoute') . '.show', [$model]) .
             '" title="' . trans('crud.view') . '">
             <i class="fa fa-eye" aria-hidden="true"></i>
         </a>';
 
         if ($this->user && $this->user->can('update', $model)) {
             $content .= ' <a href="'
-                . route($this->getOption('baseRoute') . '.edit', ['id' => $model->id])
+                . route($this->getOption('baseRoute') . '.edit', [$model])
                 . '" title="' . trans('crud.edit') . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>';
@@ -458,6 +464,8 @@ class DatagridRenderer
      */
     protected function renderFilters()
     {
+        return '';
+
         if (empty($this->filters)) {
             return '';
         }
@@ -483,7 +491,7 @@ class DatagridRenderer
         " data-toggle="popover" '
             . 'data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
             <i class="fa fa-filter"></i>
-            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . $activeFilters . '</span>' : null) . '
+            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . count($activeFilters) . '</span>' : null) . '
             <i class="fa fa-caret-down"></i>
         </div>';
 

@@ -70,10 +70,10 @@ if (Auth::check()) {
                     <li class="dropdown messages-menu campaign-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-current-campaigns">
                             @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{!! $currentCampaign->name !!}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
-                            @endif <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
+                            @endif <span class="hidden-xs hidden-sm">{!! $currentCampaign->name !!}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>

@@ -14,7 +14,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => "1"]) !!}
+            {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1']) !!}
             @include('calendars.events._form')
 
             <div class="row">

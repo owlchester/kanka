@@ -47,6 +47,7 @@
 .panel .panel-heading {
   border: none !important;
   background-color: transparent !important;
+  color: #999 !important;
 }
 
 .box .with-border,
@@ -182,7 +183,6 @@ input[type=checkbox]:checked:after {
 .help-block {
   color: #bbb;
   font-style: italic;
-  text-align: justify;
 }
 
 p {
@@ -536,26 +536,20 @@ a:hover {
 }
 
 .nav-tabs-custom {
-  border: 1px solid #fff;
   background: none;
 }
 
 .nav-tabs-custom .tab-content {
   background: none;
+  border: 1px solid #fff;
 }
 
 .nav-tabs {
   border: none !important;
 }
 
-.nav-tabs li {
-  border: none;
-}
-
 .nav-tabs li:hover {
-  background: #222;
-  border: none;
-  border-bottom: none;
+  background-color: #999 !important;
 }
 
 .nav-tabs li:hover a {
@@ -563,13 +557,12 @@ a:hover {
 }
 
 .nav-tabs li.active {
-  border: none;
+  border-top-color: #999 !important;
 }
 
 .nav-tabs li.active a {
   color: #333 !important;
   background-color: #fff !important;
-  border: none !important;
 }
 
 /**

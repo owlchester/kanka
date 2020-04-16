@@ -20,83 +20,130 @@
         </div>
     </header>
 
-    <section class="features" id="faq">
+    <section class="faqs" id="faq">
         <div class="container">
             <div class="section-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'free', 'slug' => Str::slug(__('faq.free.question'))]) }}">{{ __('faq.free.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.free.answer', [
-                            'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
-                        ])) !!}</p>
-                        <hr>
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.general') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => Str::slug(__('faq.multiworld.question'))]) }}">
+                                    {{ __('faq.multiworld.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'custom', 'slug' => Str::slug(__('faq.custom.question'))]) }}">
+                                    {{ __('faq.custom.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'map', 'slug' => Str::slug(__('faq.map.question'))]) }}">
+                                    {{ __('faq.map.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">
+                                    {{ __('faq.conversations.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">
+                                    {{ __('faq.attribute-templates.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'backup', 'slug' => Str::slug(__('faq.backup.question'))]) }}">
+                                    {{ __('faq.backup.question') }}
+                                </a>
+                            </li>
+                        </ul>
 
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => Str::slug(__('faq.multiworld.question'))]) }}">{{ __('faq.multiworld.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.multiworld.answer')) !!}</p>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => Str::slug(__('faq.visibility.question'))]) }}">{{ __('faq.visibility.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.visibility.answer')) !!}</p>
-                        <hr>
-
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'map', 'slug' => Str::slug(__('faq.map.question'))]) }}">{{ __('faq.map.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.map.answer')) !!}</p>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">{{ __('faq.conversations.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.conversations.answer')) !!}</p>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => Str::slug(__('faq.entity-notes.question'))]) }}">{{ __('faq.entity-notes.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.entity-notes.answer')) !!}</p>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">{{ __('faq.help.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.help.answer', [
-                            'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])
-                        ])) !!}</p>
                     </div>
-                    <div class="col-md-6">
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => Str::slug(__('faq.permissions.question'))]) }}">{{ __('faq.permissions.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.permissions.answer')) !!}</p>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ikNPzNgjYmg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">{{ __('faq.attribute-templates.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.attribute-templates.answer')) !!}</p>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/qKnTpuePqUA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">{{ __('faq.mobile.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.mobile.answer')) !!}</p>
-                        <hr>
-
-                        <h4>
-                            <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">{{ __('faq.plans.question') }}</a>
-                        </h4>
-                        <p class="text-muted">{!! nl2br(__('faq.plans.answer')) !!}</p>
-
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.permissions') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => Str::slug(__('faq.permissions.question'))]) }}">
+                                    {{ __('faq.permissions.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => Str::slug(__('faq.visibility.question'))]) }}">
+                                    {{ __('faq.visibility.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => Str::slug(__('faq.entity-notes.question'))]) }}">
+                                    {{ __('faq.entity-notes.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'delete-campaign', 'slug' => Str::slug(__('faq.delete-campaign.question'))]) }}">
+                                    {{ __('faq.delete-campaign.question') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.community') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">
+                                    {{ __('faq.help.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'public-campaigns', 'slug' => Str::slug(__('faq.public-campaigns.question'))]) }}">
+                                    {{ __('faq.public-campaigns.question') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.worldbuilding') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'gods-and-religions', 'slug' => Str::slug(__('faq.gods-and-religions.question'))]) }}">
+                                    {{ __('faq.gods-and-religions.question') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.pricing') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'free', 'slug' => Str::slug(__('faq.free.question'))]) }}">
+                                    {{ __('faq.free.question') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>{{ __('faq.sections.other') }}</h2>
+                        <ul>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">
+                                    {{ __('faq.mobile.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">
+                                    {{ __('faq.plans.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'bugs', 'slug' => Str::slug(__('faq.bugs.question'))]) }}">
+                                    {{ __('faq.bugs.question') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
                     </div>
                 </div>
             </div>

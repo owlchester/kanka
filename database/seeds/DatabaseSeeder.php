@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(EntityTypesTableSeeder::class);
-        $this->call(RpgSystemsTableSeeder::class);
-        $this->call(ThemesTableSeeder::class);
+        //$this->call(RpgSystemsTableSeeder::class);
+        //$this->call(ThemesTableSeeder::class);
     }
 }

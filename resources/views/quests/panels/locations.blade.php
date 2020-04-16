@@ -19,7 +19,7 @@
             <div class="box box-widget widget-user-2 box-quest-element">
                 <div class="widget-user-header {{ $location->colourClass() }}">
                         <div class="widget-user-image">
-                            <div class="entity-image" style="background: url({{ $location->location->getImageUrl(true) }})" title="{{ $location->location->name }}">
+                            <div class="entity-image" style="background-image: url({{ $location->location->getImageUrl(true) }})" title="{{ $location->location->name }}">
                             </div>
                         </div>
                     <!-- /.widget-user-image -->
@@ -36,7 +36,7 @@
                 </div>
                 <div class="box-footer text-right">
                     @can('update', $model)
-                        <a href="{{ route('quests.quest_locations.edit', ['quest' => $model, 'questLocation' => $location]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('quests.quest_locations.edit', [$model, $location]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-edit" title="{{ trans('crud.edit') }}"></i>
                         </a>
                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $location->location->name }}"
@@ -48,8 +48,8 @@
                             'method' => 'DELETE',
                             'route' => [
                                 'quests.quest_locations.destroy',
-                                'quest' => $model,
-                                'questLocation' => $location
+                                $model,
+                                $location
                             ],
                             'style'=>'display:inline',
                             'id' => 'delete-form-' . $location->id

@@ -72,61 +72,59 @@ return [
         'visibility'                    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Crear nueva campaña',
-                'title'         => 'Nueva campaña',
+                'title' => 'Nueva campaña',
             ],
         ],
-        'add'           => 'Nueva campaña',
-        'description'   => 'Gestionar tus campañas.',
-        'list'          => 'Tus campañas',
-        'select'        => 'Seleccionar una campaña',
-        'title'         => 'Campañas',
+        'title'     => 'Campañas',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Invitar',
+            'copy'  => 'Copiar el enlace al portapapeles',
             'link'  => 'Nuevo enlace',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Invitar',
             'description'   => 'Invita a un amigo a tu campaña',
             'link'          => 'Enlace creado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitación enviada.',
             'title'         => 'Invita a alguien a tu campaña',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Invitación eliminada.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Unirse a la campaña de :name </a>',
             'subject'   => '¡:name te ha invitado a que te unas a su campaña ":campaign" en kanka.io! Usa el siguiente enlace para aceptar su invitación.',
             'title'     => 'Invitación de :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Ya eres un miembro de esta campaña.',
             'inactive_token'    => 'Este identificador ya ha sido usado o la campaña ya no existe.',
             'invalid_token'     => 'El identificador ya no es valido.',
             'login'             => 'Por favor inicia sesión o registrate para unirte a la campaña.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Enviado',
             'email'     => 'Correo electrónico',
             'role'      => 'Rol',
             'type'      => 'Tipo',
             'validity'  => 'Validez',
         ],
-        'helpers'       => [
+        'helpers'               => [
+            'email'     => 'Puede ser que nuestros correos se marquen como spam y pueden tardar unas horas hasta aparecer en tu buzón de entrada.',
             'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Correo electrónico de la persona a la que quieres invitar',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Correo electrónico',
             'link'  => 'Enlace',
         ],
+        'unlimited_validity'    => 'Ilimitado',
     ],
     'leave'                             => [
         'confirm'   => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que el dueño de la campaña te invite de nuevo.',
@@ -170,7 +168,7 @@ return [
         ],
         'roles'                 => [
             'member'    => 'Miembro',
-            'owner'     => 'Administrador',
+            'owner'     => 'Admin',
             'player'    => 'Jugador',
             'public'    => 'Público',
             'viewer'    => 'Invitado',
@@ -232,6 +230,7 @@ return [
                 'entity-note'   => 'Notas de entidad',
                 'permission'    => 'Administrar permisos',
                 'read'          => 'Ver',
+                'toggle'        => 'Cambiar para todos',
             ],
             'hint'      => 'Este rol tiene acceso automático a todo.',
         ],
@@ -268,12 +267,14 @@ return [
         'actions'       => [
             'enable'    => 'Habilitar',
         ],
+        'boosted'       => 'Esta función está en beta y actualmente solo está disponible para las :boosted.',
         'description'   => 'Habilitar o deshabilitar módulos de la campaña.',
         'edit'          => [
             'success'   => 'Ajustes de campaña actualizados.',
         ],
         'helper'        => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
         'helpers'       => [
+            'abilities'     => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
             'calendars'     => 'El sitio para definir los calendarios de tu mundo.',
             'characters'    => 'Las personas que viven en tu mundo.',
             'conversations' => 'Conversaciones ficticias entre personajes o entre usuarios de la campaña.',

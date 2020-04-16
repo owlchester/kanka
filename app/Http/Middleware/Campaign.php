@@ -30,7 +30,7 @@ class Campaign
             abort(404);
         }
 
-        $campaign = CampaignModel::findOrFail($campaignId);
+        $campaign = CampaignModel::findOrFail((int) $campaignId);
 
         // If we are impersonating someone
         if (Auth::check() && Identity::isImpersonating()) {
@@ -41,7 +41,7 @@ class Campaign
         }
 
         // Make sure we can view this campaign?
-        if ($campaign->visibility == 'public') {
+        if ($campaign->visibility == \App\Models\Campaign::VISIBILITY_PUBLIC) {
             Session::put('campaign_id', $campaign->id);
             $this->saveUserLastCampaignId($campaign);
             return $next($request);
@@ -49,7 +49,7 @@ class Campaign
             // Obvious check: are we a member of the campaign?
             if (!$campaign->userIsMember()) {
                 // Let's check if it's in Review mode, then we need to be an admin or moderator
-                if ($campaign->visibility == \App\Models\Campaign::VISIBILITY_REVIEW
+                if ($campaign->visibility != \App\Models\Campaign::VISIBILITY_REVIEW
                     && !(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))) {
                     abort(403);
                 }

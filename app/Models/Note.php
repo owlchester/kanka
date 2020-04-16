@@ -5,9 +5,15 @@ namespace App\Models;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Note extends MiscModel
 {
+    use CampaignTrait,
+        VisibleTrait,
+        ExportableTrait,
+        SoftDeletes;
+
     /**
      * @var array
      */
@@ -35,6 +41,7 @@ class Note extends MiscModel
         'type',
         'tag_id',
         'is_private',
+        'tags',
     ];
 
     /**
@@ -42,13 +49,6 @@ class Note extends MiscModel
      * @var string
      */
     protected $entityType = 'note';
-
-    /**
-     * Traits
-     */
-    use CampaignTrait;
-    use VisibleTrait;
-    use ExportableTrait;
 
     /**
      * Prepare the notes for the dashboard

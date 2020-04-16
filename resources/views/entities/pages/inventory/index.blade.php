@@ -7,7 +7,8 @@
         ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.inventory')
-    ]
+    ],
+    'mainTitle' => false,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

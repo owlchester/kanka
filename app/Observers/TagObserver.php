@@ -12,23 +12,20 @@ class TagObserver extends MiscObserver
      */
     public function deleting(MiscModel $model)
     {
-        parent::deleting($model);
-
         /**
          * We need to keep this, because the tree plugin wants to delete child when deleting the parent. It's stupid.
          */
-        // Set all children to no longer have this tag
-        foreach ($model->entityTags as $child) {
-            $child->delete();
-        }
+//        // Set all children to no longer have this tag
+//        foreach ($model->entityTags as $child) {
+//            $child->delete();
+//        }
+//        foreach ($model->descendants as $child) {
+//            foreach ($child->entityTags as $subchild) {
+//                $subchild->delete();
+//            }
+//        }
 
-        foreach ($model->descendants as $child) {
-            foreach ($child->entityTags as $subchild) {
-                $subchild->delete();
-            }
-        }
-
-        // Update sub tags to clean them  up
+        // Update sub tags to clean them up
         foreach ($model->tags as $child) {
             $child->tag_id = null;
             $child->save();

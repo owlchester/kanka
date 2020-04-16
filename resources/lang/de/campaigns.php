@@ -66,17 +66,12 @@ return [
         'visibility'                    => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Neue Kampagne erstellen',
-                'title'         => 'Neue Kampagne',
+                'title' => 'Neue Kampagne',
             ],
         ],
-        'add'           => 'Neue Kampagne',
-        'description'   => 'Verwalte deine Kampagnen',
-        'list'          => 'Deine Kampagnen',
-        'select'        => 'Wähle eine Kampagne',
-        'title'         => 'Kampagnen',
+        'title'     => 'Kampagnen',
     ],
     'invites'                           => [
         'actions'       => [

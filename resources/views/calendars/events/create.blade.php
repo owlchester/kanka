@@ -14,7 +14,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(array('route' => ['calendars.event.store', $calendar->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
+            {!! Form::open(['route' => ['calendars.event.store', $calendar->id], 'method'=>'POST', 'data-shortcut' => 1]) !!}
             @include('calendars.events._form')
 
             <div class="form-group">

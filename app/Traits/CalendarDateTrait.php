@@ -9,10 +9,10 @@ use App\Models\MiscModel;
  * Trait CalendarDateTrait
  * @package App\Traits
  *
- * @var integer $calendar_year
- * @var integer $calendar_month
- * @var integer $calendar_day
- * @var integer $calendar_id
+ * @property integer $calendar_year
+ * @property integer $calendar_month
+ * @property integer $calendar_day
+ * @property integer $calendar_id
  */
 trait CalendarDateTrait
 {
@@ -32,7 +32,7 @@ trait CalendarDateTrait
 //        static::saving(function (MiscModel $model) {
 //            $model->fillCalendarFieldsOnSave();
 //        });
-        
+
         static::saved(function (MiscModel $model) {
             $model->syncEntityEventOnSaved();
         });
@@ -60,7 +60,7 @@ trait CalendarDateTrait
      */
     public function hasCalendar()
     {
-        return !empty($this->calendar_id);
+        return !empty($this->calendar_id) && $this->calendar;
     }
 
     /**
@@ -126,7 +126,7 @@ trait CalendarDateTrait
 
         return $this->cachedCalendarEntityEvent;
     }
-    
+
     /**
      * Sync the entity event if the model has the calendar date trait
      * @param $model
@@ -136,39 +136,43 @@ trait CalendarDateTrait
         $entity = $this->entity;
         $previousCalendarId = $this->getOriginal('calendar_id');
 
-        // If the calendar data changed, we need to update a related entity.
-        if ($this->isDirty(['calendar_id']) || $this->isDirty(['calendar_year', 'calendar_month', 'calendar_day'])) {
-            // We already had this event linked
-            /** @var EntityEvent $event */
-            $event = EntityEvent::where([
-                'calendar_id' => $previousCalendarId,
-                'entity_id' => $entity->id,
-                'year' => $this->getOriginal('calendar_year'),
-                'month' => $this->getOriginal('calendar_month'),
-                'day' => $this->getOriginal('calendar_day'),
-            ])->first();
-            if ($event) {
-                // We no longer have a calendar attached to this model
-                if (empty($this->calendar_id)) {
-                    $event->delete();
-                    unset($event);
-                }
-            } elseif ($this->hasCalendar()) {
-                $event = new EntityEvent();
-                $event->entity_id = $entity->id;
-            }
+        // Previously, this lookup was only triggered when the calendar_id or date was dirty. However this excludes just
+        // changing the colour or periodicity. To support the API not overriding the values, we still check to make
+        // sure that the calendar_id property is set.
+        if (!request()->has('calendar_id')) {
+            return;
+        }
 
-            if ($event) {
-                $event->calendar_id = $this->calendar_id;
-                $event->year = $this->calendar_year;
-                $event->month = $this->calendar_month;
-                $event->day = $this->calendar_day;
-                $event->length = request()->post('length', 1);
-                $event->is_recurring = request()->post('is_recurring', false);
-                $event->recurring_periodicity = request()->post('recurring_periodicity', null);
-                $event->colour = request()->post('calendar_colour', null);
-                $event->save();
+        // We already had this event linked
+        /** @var EntityEvent $event */
+        $event = EntityEvent::where([
+            'calendar_id' => $previousCalendarId,
+            'entity_id' => $entity->id,
+            'year' => $this->getOriginal('calendar_year'),
+            'month' => $this->getOriginal('calendar_month'),
+            'day' => $this->getOriginal('calendar_day'),
+        ])->first();
+        if ($event) {
+            // We no longer have a calendar attached to this model
+            if (empty($this->calendar_id)) {
+                $event->delete();
+                unset($event);
             }
+        } elseif ($this->hasCalendar()) {
+            $event = new EntityEvent();
+            $event->entity_id = $entity->id;
+        }
+
+        if ($event) {
+            $event->calendar_id = $this->calendar_id;
+            $event->year = $this->calendar_year;
+            $event->month = $this->calendar_month;
+            $event->day = $this->calendar_day;
+            $event->length = request()->post('length', 1);
+            $event->is_recurring = request()->post('is_recurring', false);
+            $event->recurring_periodicity = request()->post('recurring_periodicity', null);
+            $event->colour = request()->post('calendar_colour', null);
+            $event->save();
         }
     }
 }

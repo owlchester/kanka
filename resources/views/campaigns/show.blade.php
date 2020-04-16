@@ -4,6 +4,7 @@
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')]
     ],
     'canonical' => true,
+    'mainTitle' => false,
 ])
 
 @section('og')
@@ -28,6 +29,18 @@
                     <div class="post">
                         <p>{!! $campaign->entry() !!}</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="entity-modification-history">
+                <div class="help-block text-right">
+                    {!! __('crud.history.created_date', [
+                        'date' => $campaign->created_at->diffForHumans(),
+                        'realdate' => $campaign->created_at . ' UTC',
+                    ]) !!}. {!! __('crud.history.updated_date', [
+                        'date' => $campaign->updated_at->diffForHumans(),
+                        'realdate' => $campaign->updated_at . ' UTC',
+                    ]) !!}
                 </div>
             </div>
         </div>

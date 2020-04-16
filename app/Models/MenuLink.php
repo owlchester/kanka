@@ -143,9 +143,13 @@ class MenuLink extends MiscModel
     /**
      * @return string
      */
-    protected function getEntityRoute()
+    protected function getEntityRoute(): string
     {
-        $route = $this->target->pluralType() . '.show';
+        $plural = $this->target->pluralType();
+        if (empty($plural)) {
+            return '';
+        }
+        $route = $plural . '.show';
         if (!empty($this->menu)) {
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
 
@@ -169,7 +173,12 @@ class MenuLink extends MiscModel
     protected function getIndexRoute()
     {
         $filters = $this->filters . '&_clean=true';
-        return route(str_plural($this->type) . '.index', $filters);
+        try {
+            return route(Str::plural($this->type) . '.index', $filters);
+        }
+        catch (\Exception $e) {
+            return '';
+        }
     }
 
     /**

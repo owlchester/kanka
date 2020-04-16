@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\Filters\QuestFilter;
 use App\Datagrids\Sorters\QuestCharacterSorter;
 use App\Datagrids\Sorters\QuestItemSorter;
 use App\Datagrids\Sorters\QuestLocationSorter;
@@ -23,47 +24,11 @@ class QuestController extends CrudController
     protected $view = 'quests';
     protected $route = 'quests';
 
-    /**
-     * @var string
-     */
+    /** @var string Model */
     protected $model = \App\Models\Quest::class;
 
-    /**
-     * QuestController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->filters = [
-            'name',
-            'type',
-            [
-                'field' => 'character_id',
-                'label' => trans('quests.fields.character'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  trans('crud.placeholders.character'),
-                'model' => Character::class,
-            ],
-            [
-                'field' => 'quest_id',
-                'label' => trans('quests.fields.quest'),
-                'type' => 'select2',
-                'route' => route('quests.find'),
-                'placeholder' =>  trans('quests.placeholders.quest'),
-                'model' => Quest::class,
-            ],
-            [
-                'field' => 'tag_id',
-                'label' => trans('crud.fields.tag'),
-                'type' => 'select2',
-                'route' => route('tags.find'),
-                'placeholder' =>  trans('crud.placeholders.tag'),
-                'model' => Tag::class,
-            ],
-            'is_completed',
-        ];
-    }
+    /** @var string Filter */
+    protected $filter = QuestFilter::class;
 
     /**
      * Store a newly created resource in storage.

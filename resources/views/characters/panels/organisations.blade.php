@@ -54,8 +54,8 @@
                     @include('cruds.partials.private', ['model' => $organisation])
                     <td class="text-right">
                         @can('organisation', [$model, 'edit'])
-                            <a href="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $organisation]) }}" class="btn btn-xs btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.edit', ['character' => $model, 'organisationMember' => $organisation]) }}">
+                            <a href="{{ route('characters.character_organisations.edit', [$model, $organisation]) }}" class="btn btn-xs btn-primary"
+                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('characters.character_organisations.edit', [$model, $organisation]) }}">
                                 <i class="fa fa-edit"></i> <span class="visible-sm">{{ trans('crud.edit') }}</span>
                             </a>
                         @endcan

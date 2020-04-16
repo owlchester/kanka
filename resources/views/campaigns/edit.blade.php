@@ -13,14 +13,9 @@
         'method' => 'PATCH',
         'enctype' => 'multipart/form-data',
         'route' => ['campaigns.update', $model->id],
-        'data-shortcut' => '1'
+        'data-shortcut' => '1',
+        'class' => 'entity-form',
     ]) !!}
-@endsection
-
-@section('header-extra')
-    <div class="pull-right">
-        @include('cruds.fields.save', ['onlySave' => true, 'disableCancel' => true, 'target' => 'entity-form'])
-    </div>
 @endsection
 
 @section('content')

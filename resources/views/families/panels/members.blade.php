@@ -14,11 +14,11 @@
                 <th class="avatar"><br></th>
                 <th>{{ trans('characters.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
-                <th>{{ trans('characters.fields.location') }}</th>
+                    <th>{{ trans('characters.fields.location') }}</th>
                 @endif
                 <th>{{ trans('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
-                <th>{{ trans('characters.fields.race') }}</th>
+                    <th>{{ trans('characters.fields.race') }}</th>
                 @endif
                 <th>{{ trans('characters.fields.sex') }}</th>
                 <th>{{ trans('characters.fields.is_dead') }}</th>
@@ -34,11 +34,11 @@
                         {!! $member->tooltipedLink() !!}
                     </td>
                     @if ($campaign->enabled('locations'))
-                    <td>
-                        @if ($member->location)
-                            {!! $member->location->tooltipedLink() !!}
-                        @endif
-                    </td>
+                        <td>
+                            @if ($member->location)
+                                {!! $member->location->tooltipedLink() !!}
+                            @endif
+                        </td>
                     @endif
                     <td>{{ $member->age }}</td>
                     @if ($campaign->enabled('races'))

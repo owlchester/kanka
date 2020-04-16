@@ -4,35 +4,35 @@ return [
     'characters'    => [
         'create'    => [
             'description'   => 'Karakter hozzáadása a küldetéshez',
-            'success'       => 'A karaktert hozzáadtuk a :name küldetéshez.',
-            'title'         => 'Karakter hozzáadása a :name küldetéshez',
+            'success'       => 'A karaktert hozzáadtuk :name küldetéshez.',
+            'title'         => 'Karakter hozzáadása :name küldetéshez',
         ],
         'destroy'   => [
-            'success'   => 'A karaktert eltávolítottuk a :name küldetésből.',
+            'success'   => 'A karaktert eltávolítottuk :name küldetésből.',
         ],
         'edit'      => [
             'description'   => 'A küldetéshez tartozó karakterek módosítása',
-            'success'       => 'A karaktert frissítettük a :name küldetésben.',
-            'title'         => 'Karakterek módosítása a :name küldetésben',
+            'success'       => 'A karaktert frissítettük :name küldetésben.',
+            'title'         => 'Karakterek módosítása :name küldetésben',
         ],
         'fields'    => [
             'character'     => 'Karakter',
             'description'   => 'Leírás',
         ],
-        'title'     => 'A :name küldetésadója',
+        'title'     => ':name küldetésadója',
     ],
     'create'        => [
         'description'   => 'Új küldetés létrehozása',
-        'success'       => 'A \':name\' küldetést létrehoztuk.',
+        'success'       => '\':name\' küldetést létrehoztuk.',
         'title'         => 'Új küldetés',
     ],
     'destroy'       => [
-        'success'   => 'A \':name\' küldetést eltávolítottuk.',
+        'success'   => '\':name\' küldetést eltávolítottuk.',
     ],
     'edit'          => [
         'description'   => 'Küldetés szerkesztése',
-        'success'       => 'A \':name\' küldetést frissítettük.',
-        'title'         => 'A :name küldetés szerkesztése',
+        'success'       => '\':name\' küldetést frissítettük.',
+        'title'         => ':name küldetés szerkesztése',
     ],
     'fields'        => [
         'character'     => 'Küldetésadó',
@@ -64,62 +64,62 @@ return [
     'items'         => [
         'create'    => [
             'description'   => 'Tárgy hozzáadása a küldetéshez',
-            'success'       => 'A tárgyat hozzáadtuk a :name küldetéshez',
-            'title'         => 'Új tárgy a :name küldetéshez',
+            'success'       => 'A tárgyat hozzáadtuk :name küldetéshez',
+            'title'         => 'Új tárgy :name küldetéshez',
         ],
         'destroy'   => [
-            'success'   => 'A tárgyat eltávolítottuk a :name küldetésből',
+            'success'   => 'A tárgyat eltávolítottuk :name küldetésből',
         ],
         'edit'      => [
             'description'   => 'Egy küldetés tárgyainak módosítása',
-            'success'       => 'A tárgyat a :name küldetésben frissítettük',
-            'title'         => 'A :name küldetés tárgyainak módosítása',
+            'success'       => 'A tárgyat :name küldetésben frissítettük',
+            'title'         => ':name küldetés tárgyainak módosítása',
         ],
         'fields'    => [
             'description'   => 'Leírás',
             'item'          => 'Tárgyak',
         ],
-        'title'     => 'Tárgyak a :name küldetésben',
+        'title'     => 'Tárgyak :name küldetésben',
     ],
     'locations'     => [
         'create'    => [
             'description'   => 'Helyszín hozzáadása a küldetéshez',
-            'success'       => 'A helyszínt a :name küldetéshez hozzáadtuk',
-            'title'         => 'Új helyszín a :name küldetéshez',
+            'success'       => 'A helyszínt :name küldetéshez hozzáadtuk',
+            'title'         => 'Új helyszín :name küldetéshez',
         ],
         'destroy'   => [
-            'success'   => 'A helyszínt eltávolítottuk a :name küldetésből',
+            'success'   => 'A helyszínt eltávolítottuk :name küldetésből',
         ],
         'edit'      => [
             'description'   => 'Küldetés helyszínének változtatása',
-            'success'       => 'A :name küldetés helyszíneit frissítettük.',
-            'title'         => 'A :name küldetés helyszíneinek módosítása',
+            'success'       => ':name küldetés helyszíneit frissítettük.',
+            'title'         => ':name küldetés helyszíneinek módosítása',
         ],
         'fields'    => [
             'description'   => 'Leírás',
             'location'      => 'Helyszín',
         ],
-        'title'     => 'Helyszínek a :name küldetésben',
+        'title'     => 'Helyszínek :name küldetésben',
     ],
     'organisations' => [
         'create'    => [
             'description'   => 'Szervezet hozzáadása a küldetéshez',
-            'success'       => 'A szervezetet hozzáadtuk a :name küldetéshez',
-            'title'         => 'Új szervezet a :name küldetéshez',
+            'success'       => 'A szervezetet hozzáadtuk :name küldetéshez',
+            'title'         => 'Új szervezet :name küldetéshez',
         ],
         'destroy'   => [
             'success'   => 'A szervezetet eltávolítottuk a :name küldetésből',
         ],
         'edit'      => [
             'description'   => 'Küldetés szervezeteinek módosítása',
-            'success'       => 'A :name küldetés szervezeteit frissítettük',
-            'title'         => 'A :name küldetéshez tartozó szervezet módosítása',
+            'success'       => ':name küldetés szervezeteit frissítettük',
+            'title'         => ':name küldetéshez tartozó szervezet módosítása',
         ],
         'fields'    => [
             'description'   => 'Leírás',
             'organisation'  => 'Szervezet',
         ],
-        'title'     => 'Szervezetek a :name küldetésben',
+        'title'     => 'Szervezetek :name küldetésben',
     ],
     'placeholders'  => [
         'name'  => 'A küldetés neve',

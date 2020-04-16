@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <h4 class="campaign-title">
-                                {{ $camp->name }}
+                                {!! $camp->name !!}
                             </h4>
                         </a>
                     </div>
@@ -93,7 +93,7 @@
                                         </div>
                                     </div>
                                     <h4 class="campaign-title">
-                                        {{ $camp->name }}
+                                        {!! $camp->name !!}
                                     </h4>
                                 </a>
                             </div>

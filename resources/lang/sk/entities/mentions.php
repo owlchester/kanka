@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'entity_note'   => ':name (Poznámka k Objektu)',
+    'entity_note'   => ':name (Poznámka k objektu)',
     'fields'        => [
         'entity'    => 'Objekt',
     ],
-    'helper'        => 'Toto je zoznam Objektov, ktoré v položke "Entry" referencujú tento Objekt.',
-    'mentioned_in'  => 'Referencie v :count Objekte/och.',
+    'helper'        => 'Toto je zoznam objektov, ktoré v položke "Záznam" referencujú tento objekt.',
+    'mentioned_in'  => 'Referencie v :count objekte/och.',
     'show'          => [
-        'title' => 'Objekt :name Referencie',
+        'title' => 'Referencie objektu :name',
     ],
 ];

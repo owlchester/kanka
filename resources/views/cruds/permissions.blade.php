@@ -34,12 +34,12 @@
             <table id="crud_permissions" class="table table-hover export-hidden">
                 <tbody>
                 <tr>
-                    <th colspan="4">{{ __('crud.permissions.fields.role') }}</th>
+                    <th colspan="5">{{ __('crud.permissions.fields.role') }}</th>
                 </tr>
                 @foreach ($campaign->campaign()->roles()->withoutAdmin()->get() as $role)
                     <tr>
                         <td>{{ $role->name }}</td>
-                        <td @if($role->is_public) colspan="3"@endif>
+                        <td @if($role->is_public) colspan="4"@endif>
                             <label>
                                 {!! Form::checkbox('role[' . $role->id . '][]', 'read', !empty($permissions['role'][$role->id]['read'])) !!}
                                 <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.read') }}</span>
@@ -84,10 +84,10 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td colspan="4">&nbsp;</td>
+                    <td colspan="5">&nbsp;</td>
                 </tr>
                 <tr>
-                    <th colspan="4">{{ __('crud.permissions.fields.member') }}</th>
+                    <th colspan="5">{{ __('crud.permissions.fields.member') }}</th>
                 </tr>
                 @foreach ($campaign->campaign()->members()->with('user')->get() as $member)
                     @if (!$member->isAdmin())

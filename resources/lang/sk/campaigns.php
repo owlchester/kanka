@@ -4,7 +4,7 @@ return [
     'create'                            => [
         'description'           => 'Vytvoriť novú kampaň',
         'helper'                => [
-            'first' => 'Ďakujeme, že ste vyskúšali našu apku! Predtým, aby než sa pohneme ďalej, budeme potrebovať jednu maličkosť - <b>názov tvojej kampane</b>. Je to názov, ktorý ju odlišuje od ostatných. Ak ešte nemáš vymyslený dobrý názov, žiadne starosti, môžeš ho <b>hocikedy zmeniť</b> alebo vytvoriť ďalšie kampane.',
+            'first' => 'Ďakujeme za vyskúšanie našej apky! Predtým, než sa pohneme ďalej, budeme potrebovať jednu maličkosť - <b>názov tvojej kampane</b>. Je to názov, ktorý ju odlišuje od ostatných. Ak ešte nemáš vymyslený dobrý názov, žiadne starosti, môžeš ho <b>hocikedy zmeniť</b> alebo vytvoriť ďalšie kampane.',
             'second'=> 'Dosť bolo kecania! Čo to teda bude?',
             'title' => 'Vitaj v :name!',
         ],
@@ -35,11 +35,12 @@ return [
         'errors'        => [
             'limit' => 'Maximum jeden export za deň bol dosiahnutý. Prosím, skús to opäť zajtra.',
         ],
-        'helper'        => 'Exportuj svoju kampaň. Vytvorená bude notifikácia s linkom na stiahnutie.',
+        'helper'        => 'Exportuj svoju kampaň. Zobrazí sa notifikácia s linkom na stiahnutie.',
         'success'       => 'Export tvojej kampane sa pripravuje. Kanka ti zašle správu, akonáhle bude zozipovaný súbor pripravený na stiahnutie.',
         'title'         => 'Export kampane :name',
     ],
     'fields'                            => [
+        'css'                           => 'CSS',
         'description'                   => 'Popis',
         'entity_count'                  => 'Počet objektov',
         'entity_personality_visibility' => 'Viditeľnosť osobností postáv',
@@ -52,6 +53,7 @@ return [
         'name'                          => 'Názov',
         'rpg_system'                    => 'RPG systémy',
         'system'                        => 'Systém',
+        'theme'                         => 'Téma',
         'visibility'                    => 'Viditeľnosť',
     ],
     'following'                         => 'Odber aktívny',
@@ -66,61 +68,58 @@ return [
         'visibility'                    => 'Ak nastavíte kampaň ako verejnú, bude ju vidieť každý, kto k nej bude mať link.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Vytvoriť novú kampaň',
-                'title'         => 'Nová kampaň',
+                'title' => 'Nová kampaň',
             ],
         ],
-        'add'           => 'Nová kampaň',
-        'description'   => 'Spravovať tvoje kampane.',
-        'list'          => 'Tvoje kampane',
-        'select'        => 'Vybrať kampaň',
-        'title'         => 'Kampane',
+        'title'     => 'Kampane',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Pozvať',
+            'copy'  => 'Kopírovať link do schránky',
             'link'  => 'Nový link',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Pozvať',
             'description'   => 'Pozvi priateľa do svojej kampane',
             'link'          => 'Link vytvorený: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Pozvánka zaslaná.',
             'title'         => 'Pozvať niekoho k tvojej kampani',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Pozvánka odstránená.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Pridať sa do kampane od :name</a>',
             'subject'   => ':name ťa pozval/a, aby si sa pridal/a do jeho kampane :campaign na kanka.io! Pozvánku môžeš akceptovať kliknutím na nasledujúci link.',
             'title'     => 'Pozvánka od :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Už si súčasťou tejto kampane.',
             'inactive_token'    => 'Táto pozvánka už bola použitá alebo daná kampaň už neexistuje.',
             'invalid_token'     => 'Platnosť tejto pozvánky už vypršala.',
             'login'             => 'Prosím, prihlás alebo registruj sa, aby si sa pridal/a do kampane.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Zaslať',
             'email'     => 'E-mail',
             'role'      => 'Rola',
             'type'      => 'Typ',
             'validity'  => 'Platnosť',
         ],
-        'helpers'       => [
+        'helpers'               => [
             'validity'  => 'Koľko používateľov môže použiť tento link, dokiaľ mu nevyprší platnosť.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'E-mailová adresa osoby, ktorú chceš pozvať',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'E-mail',
             'link'  => 'Link',
         ],
+        'unlimited_validity'    => 'Neobmedzený',
     ],
     'leave'                             => [
         'confirm'   => 'Si si istý/á, že chceš opustiť kampaň :name? Už ku nej nebudeš mať prístup, ibaže by ťa do nej opäť pozval jej vlastník.',
@@ -258,6 +257,9 @@ return [
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Aktivovať',
+        ],
         'description'   => 'Aktivovať alebo deaktivovať moduly v kampani.',
         'edit'          => [
             'success'   => 'Nastavenia kampane boli upravené.',

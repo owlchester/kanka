@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * @var \App\Models\Location $model
  * @var \App\Models\Family $family
  */
@@ -73,7 +73,7 @@ if (request()->has('location_id')) {
                     </td>
                     <td>{{ $family->type }}</td>
                     <td class="text-right">
-                        <a href="{{ route('characters.show', ['id' => $family->id]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('characters.show', [$family]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>

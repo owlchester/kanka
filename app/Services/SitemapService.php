@@ -82,10 +82,11 @@ class SitemapService
                 'help',
                 'faq',
                 'features',
+                'pricing',
                 'roadmap',
                 'community',
                 'public-campaigns',
-                'releases',
+                'news',
             ];
 
             foreach ($base as $link) {
@@ -119,12 +120,12 @@ class SitemapService
     /**
      * @return array
      */
-    protected function releases(): array
+    protected function news(): array
     {
         $links = [];
         /** @var Release $release */
         foreach (Release::published()->get() as $release) {
-            $links[] = LaravelLocalization::localizeURL(route('releases.show', $release->getSlug()), $this->locale);
+            $links[] = LaravelLocalization::localizeURL(route('front.news.show', $release->getSlug()), $this->locale);
         }
         return $links;
     }
@@ -134,7 +135,7 @@ class SitemapService
         $links = [];
         foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $links[] = route('front.sitemap', ['locale' => $localeCode]);
-            $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'releases']);
+            $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'news']);
             $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'campaigns']);
         }
         return $links;

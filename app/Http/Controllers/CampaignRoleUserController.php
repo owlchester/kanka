@@ -107,8 +107,7 @@ class CampaignRoleUserController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $campaignRoleUser->update($request->all());
-        return redirect()->route('campaign_roles.show', [
-            'campaignRole' => $campaignRole])
+        return redirect()->route('campaign_roles.show', $campaignRole)
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -124,8 +123,7 @@ class CampaignRoleUserController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $campaignRoleUser->delete();
-        return redirect()->route('campaign_roles.show', [
-            'campaignRole' => $campaignRole])
+        return redirect()->route('campaign_roles.show', $campaignRole)
             ->with('success', trans($this->view . '.destroy.success'));
     }
 }

@@ -12,11 +12,15 @@
 */
 use Vsch\TranslationManager\Translator;
 
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime' ]
 ], function () {
 
+//    Route::get('/mail', function () {
+////        return new App\Mail\WelcomeEmail(Auth::user());
+////    });
     Route::get('/', 'HomeController@index')->name('home');
 
     // Frontend stuff
@@ -74,10 +78,13 @@ Route::group([
         'middleware' => ['campaign']
     ], function() {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        Route::get('/dashboard/settings', 'DashboardController@edit')->name('dashboard.settings');
-        Route::patch('/dashboard/settings', 'DashboardController@update')->name('dashboard.settings.update');
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
+
+        // Abilities
+        Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
+        Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
+        Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
@@ -113,15 +120,14 @@ Route::group([
 
         // Organisation menu
         Route::get('/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
-        Route::get('/organisations/{organisation}/all-members', 'OrganisationController@allMembers')->name('organisations.all-members');
         Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
         Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
         Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
         Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
         // Families menu
-        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
-        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
+        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
+
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
         Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
         Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');
@@ -186,6 +192,7 @@ Route::group([
 
         // Attribute multi-save
         Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
+        Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
         // Permission save
         Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
@@ -194,8 +201,17 @@ Route::group([
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
         Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
 
+        // Recovery
+        Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
+        Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
+
+
+        // Entity Abilities API
+        Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
+
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
+            'abilities' => 'AbilityController',
             'calendars' => 'CalendarController',
             'calendar_event' => 'CalendarEventController',
             'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
@@ -244,6 +260,7 @@ Route::group([
 
             // Entities
             'entities.attributes' => 'AttributeController',
+            'entities.entity_abilities' => 'Entity\AbilityController',
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
@@ -280,7 +297,11 @@ Route::group([
         Route::get('/search/quests', 'Search\MiscController@quests')->name('quests.find');
         Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
+        Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
+
+        Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');
+        Route::get('/search/roles', 'Search\CampaignSearchController@roles')->name('find.campaign.roles');
 
         // Entity Search
         Route::get('/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');

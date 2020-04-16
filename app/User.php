@@ -113,7 +113,7 @@ class User extends \TCG\Voyager\Models\User
     /**
      * Get the user's campaign.
      * This is the equivalent of calling user->campaign or user->getCampaign
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return Campaign|null
      */
     public function getCampaignAttribute()
     {
@@ -132,15 +132,6 @@ class User extends \TCG\Voyager\Models\User
     public function lastCampaign()
     {
         return $this->belongsTo(Campaign::class, 'last_campaign_id', 'id');
-    }
-
-    /**
-     * Get the user's campaign
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function dashboardSetting()
-    {
-        return $this->hasOne('App\Models\UserDashboardSetting', 'user_id', 'id');
     }
 
     /**
@@ -189,18 +180,9 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * Get the user's campaign
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-//    public function campaignRole()
-//    {
-//        return $this->belongsTo(CampaignUser::class, 'id', 'last_campaign_id');
-//    }
-
-    /**
      * @return string
      */
-    public function getAvatarUrl($thumb = false)
+    public function getAvatarUrl($thumb = false): string
     {
         if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
             return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->avatar) : $this->avatar));
@@ -213,7 +195,7 @@ class User extends \TCG\Voyager\Models\User
      * @param bool $thumb
      * @return string
      */
-    public function getImageUrl($thumb = false)
+    public function getImageUrl($thumb = false): string
     {
         if (empty($this->avatar)) {
             return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
@@ -237,18 +219,6 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany('App\Models\CampaignPermission', 'user_id');
     }
-
-    /**
-     * Get the user's roles
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-//    public function roles($campaignId = null)
-//    {
-//        if (empty($campaignId)) {
-//            $campaignId = $this->campaign->id;
-//        }
-//        return $this->campaignRoles($campaignId);
-//    }
 
     /**
      * @param null $campaignId
@@ -286,6 +256,7 @@ class User extends \TCG\Voyager\Models\User
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @deprecated User::campaignRoleUser is deprecated
      */
     public function campaignRoleUser()
     {
@@ -296,7 +267,7 @@ class User extends \TCG\Voyager\Models\User
     /**
      * Figure out if the user is an admin of the current campaign
      */
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         if ($this->isAdminCached === null) {
             $this->isAdminCached = $this->campaignRoles()->where(['is_admin' => true])->count() > 0;
@@ -308,7 +279,7 @@ class User extends \TCG\Voyager\Models\User
      * Check if a user has campaigns
      * @return bool
      */
-    public function hasCampaigns($count = 0)
+    public function hasCampaigns($count = 0): bool
     {
         if ($this->cachedHasCampaign === null) {
             $this->cachedHasCampaign = $this->campaigns()->count() > $count;
@@ -347,6 +318,10 @@ class User extends \TCG\Voyager\Models\User
     {
         $campaign = CampaignLocalization::getCampaign();
         if ($this->isPatron() || ($campaign && $campaign->boosted())) {
+            // Elementals get massive upload sizes
+            if ($this->isElementalPatreon()) {
+                return $readable ? '25MB' : 25600;
+            }
             if ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
@@ -359,7 +334,7 @@ class User extends \TCG\Voyager\Models\User
      * Determine if a user is a patron
      * @return bool
      */
-    public function isPatron()
+    public function isPatron(): bool
     {
         return $this->hasRole('patreon') || $this->hasRole('admin');
     }
@@ -367,12 +342,20 @@ class User extends \TCG\Voyager\Models\User
     /**
      * @return bool
      */
-    public function isGoblinPatron()
+    public function isGoblinPatron(): bool
     {
         return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
                 && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
            || $this->hasRole('admin')
         ;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isElementalPatreon(): bool
+    {
+        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL;
     }
 
 
@@ -421,7 +404,7 @@ class User extends \TCG\Voyager\Models\User
             Patreon::PLEDGE_KOBOLD => 0,
             Patreon::PLEDGE_GOBLIN => 1,
             Patreon::PLEDGE_OWLBEAR => 3,
-            Patreon::PLEDGE_ELEMENTAL => 5,
+            Patreon::PLEDGE_ELEMENTAL => 10,
         ];
 
         // Default 3 for admins and owlbears

@@ -13,6 +13,7 @@
     </a>
 </li>
 
+@if (!isset($disableAttributes))
 @can('attributes', $model->entity)
 <li class="{{ (request()->get('tab') == 'attribute' ? ' active' : '') }}">
     <a href="#attribute" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
@@ -20,10 +21,4 @@
     </a>
 </li>
 @endcan
-@can('permission', $model)
-    <li class="pull-right" data-toggle="tooltip" title="{{ trans('crud.tabs.permissions') }}">
-        <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.permissions', $model->entity) }}">
-            <i class="fa fa-cog"></i>
-        </a>
-    </li>
-@endcan
+@endif

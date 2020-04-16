@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -346,13 +346,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event.js */ "./resources/assets/js/components/event.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 //
 //
@@ -1449,6 +1453,9 @@ function isAvailableAtPosition(trigger, popup, placement) {
 }
 
 function setTooltipPosition(tooltip, trigger, placement, auto, appendToSelector, viewport) {
+  if (!isElement(tooltip) || !isElement(trigger)) {
+    return;
+  }
   var isPopover = tooltip && tooltip.className && tooltip.className.indexOf('popover') >= 0;
   var containerScrollTop = void 0;
   var containerScrollLeft = void 0;
@@ -2272,7 +2279,7 @@ var getOpenModalNum = function getOpenModalNum() {
 };
 
 var Modal = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "modal", class: { fade: _vm.transitionDuration > 0 }, attrs: { "tabindex": "-1", "role": "dialog" }, on: { "click": function click($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "modal", class: { fade: _vm.transitionDuration > 0 }, attrs: { "tabindex": "-1", "role": "dialog" }, on: { "mousedown": function mousedown($event) {
           if ($event.target !== $event.currentTarget) {
             return null;
           }return _vm.backdropClicked($event);
@@ -5356,6 +5363,7 @@ var bind$3 = function bind(el, binding) {
 };
 
 var inserted = function inserted(el, binding) {
+  // console.log('inserted')
   var scrollSpy = new ScrollSpy(el, binding.arg, binding.value);
   if (scrollSpy.scrollElement) {
     scrollSpy.handler = function () {
@@ -5381,7 +5389,9 @@ var unbind$3 = function unbind(el) {
 
 var update$3 = function update(el, binding) {
   // console.log('update')
-  if (binding.value !== binding.oldValue) {
+  var isArgUpdated = binding.arg !== binding.oldArg;
+  var isValueUpdated = binding.value !== binding.oldValue;
+  if (isArgUpdated || isValueUpdated) {
     bind$3(el, binding);
     inserted(el, binding);
   }
@@ -5952,8 +5962,8 @@ var install = function install(Vue$$1) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.15.0 
- * (c) 2019 kazuya kawaguchi
+ * vue-i18n v8.15.7 
+ * (c) 2020 kazuya kawaguchi
  * Released under the MIT License.
  */
 /*  */
@@ -5973,7 +5983,8 @@ var numberFormatKeys = [
   'minimumSignificantDigits',
   'maximumSignificantDigits',
   'localeMatcher',
-  'formatMatcher'
+  'formatMatcher',
+  'unit'
 ];
 
 /**
@@ -6181,7 +6192,7 @@ var mixin = {
             });
           } catch (e) {
             if (true) {
-              warn("Cannot parse locale messages via custom blocks.", e);
+              error("Cannot parse locale messages via custom blocks.", e);
             }
           }
         }
@@ -7037,7 +7048,8 @@ var linkKeyPrefixMatcher = /^@(?:\.([a-z]+))?:/;
 var bracketsMatcher = /[()]/g;
 var defaultModifiers = {
   'upper': function (str) { return str.toLocaleUpperCase(); },
-  'lower': function (str) { return str.toLocaleLowerCase(); }
+  'lower': function (str) { return str.toLocaleLowerCase(); },
+  'capitalize': function (str) { return ("" + (str.charAt(0).toLocaleUpperCase()) + (str.substr(1))); }
 };
 
 var defaultFormatter = new BaseFormatter();
@@ -7256,7 +7268,7 @@ VueI18n.prototype._getMessages = function _getMessages () { return this._vm.mess
 VueI18n.prototype._getDateTimeFormats = function _getDateTimeFormats () { return this._vm.dateTimeFormats };
 VueI18n.prototype._getNumberFormats = function _getNumberFormats () { return this._vm.numberFormats };
 
-VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm, values) {
+VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm, values, interpolateMode) {
   if (!isNull(result)) { return result }
   if (this._missing) {
     var missingRet = this._missing.apply(null, [locale, key, vm, values]);
@@ -7274,7 +7286,7 @@ VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm,
 
   if (this._formatFallbackMessages) {
     var parsedArgs = parseArgs.apply(void 0, values);
-    return this._render(key, 'string', parsedArgs.params, key)
+    return this._render(key, interpolateMode, parsedArgs.params, key)
   } else {
     return key
   }
@@ -7407,7 +7419,8 @@ VueI18n.prototype._link = function _link (
     }
     translated = this._warnDefault(
       locale, linkPlaceholder, translated, host,
-      Array.isArray(values) ? values : [values]
+      Array.isArray(values) ? values : [values],
+      interpolateMode
     );
 
     if (this._modifiers.hasOwnProperty(formatterName)) {
@@ -7435,7 +7448,7 @@ VueI18n.prototype._render = function _render (message, interpolateMode, values, 
 
   // if interpolateMode is **not** 'string' ('row'),
   // return the compiled data (e.g. ['foo', VNode, 'bar']) with formatter
-  return interpolateMode === 'string' ? ret.join('') : ret
+  return interpolateMode === 'string' && typeof ret !== 'string' ? ret.join('') : ret
 };
 
 VueI18n.prototype._translate = function _translate (
@@ -7484,7 +7497,7 @@ VueI18n.prototype._t = function _t (key, _locale, messages, host) {
     if (!this._root) { throw Error('unexpected error') }
     return (ref = this._root).$t.apply(ref, [ key ].concat( values ))
   } else {
-    return this._warnDefault(locale, key, ret, host, values)
+    return this._warnDefault(locale, key, ret, host, values, 'string')
   }
 };
 
@@ -7506,7 +7519,7 @@ VueI18n.prototype._i = function _i (key, locale, messages, host, values) {
     if (!this._root) { throw Error('unexpected error') }
     return this._root.$i18n.i(key, locale, values)
   } else {
-    return this._warnDefault(locale, key, ret, host, [values])
+    return this._warnDefault(locale, key, ret, host, [values], 'raw')
   }
 };
 
@@ -7609,7 +7622,6 @@ VueI18n.prototype.getLocaleMessage = function getLocaleMessage (locale) {
 VueI18n.prototype.setLocaleMessage = function setLocaleMessage (locale, message) {
   if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
     this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
-    if (this._warnHtmlInMessage === 'error') { return }
   }
   this._vm.$set(this._vm.messages, locale, message);
 };
@@ -7617,9 +7629,8 @@ VueI18n.prototype.setLocaleMessage = function setLocaleMessage (locale, message)
 VueI18n.prototype.mergeLocaleMessage = function mergeLocaleMessage (locale, message) {
   if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
     this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
-    if (this._warnHtmlInMessage === 'error') { return }
   }
-  this._vm.$set(this._vm.messages, locale, merge(this._vm.messages[locale] || {}, message));
+  this._vm.$set(this._vm.messages, locale, merge({}, this._vm.messages[locale] || {}, message));
 };
 
 VueI18n.prototype.getDateTimeFormat = function getDateTimeFormat (locale) {
@@ -7727,10 +7738,24 @@ VueI18n.prototype.getNumberFormat = function getNumberFormat (locale) {
 
 VueI18n.prototype.setNumberFormat = function setNumberFormat (locale, format) {
   this._vm.$set(this._vm.numberFormats, locale, format);
+  this._clearNumberFormat(locale, format);
 };
 
 VueI18n.prototype.mergeNumberFormat = function mergeNumberFormat (locale, format) {
   this._vm.$set(this._vm.numberFormats, locale, merge(this._vm.numberFormats[locale] || {}, format));
+  this._clearNumberFormat(locale, format);
+};
+
+VueI18n.prototype._clearNumberFormat = function _clearNumberFormat (locale, format) {
+  for (var key in format) {
+    var id = locale + "__" + key;
+
+    if (!this._numberFormatters.hasOwnProperty(id)) {
+      continue
+    }
+
+    delete this._numberFormatters[id];
+  }
 };
 
 VueI18n.prototype._getNumberFormatter = function _getNumberFormatter (
@@ -7889,7 +7914,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.15.0';
+VueI18n.version = '8.15.7';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -8291,7 +8316,7 @@ function normalizeComponent (
       // for template-only hot-reload because in that case the render fn doesn't
       // go through the normalizer
       options._injectStyles = hook
-      // register for functioal component in vue file
+      // register for functional component in vue file
       var originalRender = options.render
       options.render = function renderWithStyleInjection (h, context) {
         hook.call(context)
@@ -8324,7 +8349,7 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.10
+ * Vue.js v2.6.11
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -10290,7 +10315,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   isUsingMicroTask = true;
 } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
   // Fallback to setImmediate.
-  // Techinically it leverages the (macro) task queue,
+  // Technically it leverages the (macro) task queue,
   // but it is still a better choice than setTimeout.
   timerFunc = function () {
     setImmediate(flushCallbacks);
@@ -10379,7 +10404,7 @@ var initProxy;
     warn(
       "Property \"" + key + "\" must be accessed with \"$data." + key + "\" because " +
       'properties starting with "$" or "_" are not proxied in the Vue instance to ' +
-      'prevent conflicts with Vue internals' +
+      'prevent conflicts with Vue internals. ' +
       'See: https://vuejs.org/v2/api/#data',
       target
     );
@@ -11239,7 +11264,7 @@ function bindDynamicKeys (baseObj, values) {
     if (typeof key === 'string' && key) {
       baseObj[values[i]] = values[i + 1];
     } else if (key !== '' && key !== null) {
-      // null is a speical value for explicitly removing a binding
+      // null is a special value for explicitly removing a binding
       warn(
         ("Invalid value for dynamic directive argument (expected string or null): " + key),
         this
@@ -11734,6 +11759,12 @@ function _createElement (
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
+      if (isDef(data) && isDef(data.nativeOn)) {
+        warn(
+          ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
+          context
+        );
+      }
       vnode = new VNode(
         config.parsePlatformTagName(tag), data, children,
         undefined, undefined, context
@@ -11859,7 +11890,7 @@ function renderMixin (Vue) {
     // render self
     var vnode;
     try {
-      // There's no need to maintain a stack becaues all render fns are called
+      // There's no need to maintain a stack because all render fns are called
       // separately from one another. Nested component's render fns are called
       // when parent component is patched.
       currentRenderingInstance = vm;
@@ -13758,7 +13789,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.10';
+Vue.version = '2.6.11';
 
 /*  */
 
@@ -14431,7 +14462,7 @@ function createPatchFunction (backend) {
     }
   }
 
-  function removeVnodes (parentElm, vnodes, startIdx, endIdx) {
+  function removeVnodes (vnodes, startIdx, endIdx) {
     for (; startIdx <= endIdx; ++startIdx) {
       var ch = vnodes[startIdx];
       if (isDef(ch)) {
@@ -14542,7 +14573,7 @@ function createPatchFunction (backend) {
       refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
       addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
     } else if (newStartIdx > newEndIdx) {
-      removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+      removeVnodes(oldCh, oldStartIdx, oldEndIdx);
     }
   }
 
@@ -14634,7 +14665,7 @@ function createPatchFunction (backend) {
         if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, ''); }
         addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
       } else if (isDef(oldCh)) {
-        removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+        removeVnodes(oldCh, 0, oldCh.length - 1);
       } else if (isDef(oldVnode.text)) {
         nodeOps.setTextContent(elm, '');
       }
@@ -14863,7 +14894,7 @@ function createPatchFunction (backend) {
 
         // destroy old node
         if (isDef(parentElm)) {
-          removeVnodes(parentElm, [oldVnode], 0, 0);
+          removeVnodes([oldVnode], 0, 0);
         } else if (isDef(oldVnode.tag)) {
           invokeDestroyHook(oldVnode);
         }
@@ -17569,7 +17600,7 @@ var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
 var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
 var doctype = /^<!DOCTYPE [^>]+>/i;
-// #7298: escape - to avoid being pased as HTML comment when inlined in page
+// #7298: escape - to avoid being passed as HTML comment when inlined in page
 var comment = /^<!\--/;
 var conditionalComment = /^<!\[/;
 
@@ -17854,7 +17885,7 @@ function parseHTML (html, options) {
 /*  */
 
 var onRE = /^@|^v-on:/;
-var dirRE = /^v-|^@|^:/;
+var dirRE = /^v-|^@|^:|^#/;
 var forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
 var forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
 var stripParensRE = /^\(|\)$/g;
@@ -18478,7 +18509,7 @@ function processSlotContent (el) {
           if (el.parent && !maybeComponent(el.parent)) {
             warn$2(
               "<template v-slot> can only appear at the root level inside " +
-              "the receiving the component",
+              "the receiving component",
               el
             );
           }
@@ -19041,7 +19072,7 @@ function isDirectChildOfTemplateFor (node) {
 
 /*  */
 
-var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
+var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function(?:\s+[\w$]+)?\s*\(/;
 var fnInvokeRE = /\([^)]*?\);*$/;
 var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -19810,6 +19841,8 @@ function checkNode (node, warn) {
           var range = node.rawAttrsMap[name];
           if (name === 'v-for') {
             checkFor(node, ("v-for=\"" + value + "\""), warn, range);
+          } else if (name === 'v-slot' || name[0] === '#') {
+            checkFunctionParameterExpression(value, (name + "=\"" + value + "\""), warn, range);
           } else if (onRE.test(name)) {
             checkEvent(value, (name + "=\"" + value + "\""), warn, range);
           } else {
@@ -19829,9 +19862,9 @@ function checkNode (node, warn) {
 }
 
 function checkEvent (exp, text, warn, range) {
-  var stipped = exp.replace(stripStringRE, '');
-  var keywordMatch = stipped.match(unaryOperatorsRE);
-  if (keywordMatch && stipped.charAt(keywordMatch.index - 1) !== '$') {
+  var stripped = exp.replace(stripStringRE, '');
+  var keywordMatch = stripped.match(unaryOperatorsRE);
+  if (keywordMatch && stripped.charAt(keywordMatch.index - 1) !== '$') {
     warn(
       "avoid using JavaScript unary operator as property name: " +
       "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim()),
@@ -19883,6 +19916,19 @@ function checkExpression (exp, text, warn, range) {
         range
       );
     }
+  }
+}
+
+function checkFunctionParameterExpression (exp, text, warn, range) {
+  try {
+    new Function(exp, '');
+  } catch (e) {
+    warn(
+      "invalid function parameter expression: " + (e.message) + " in\n\n" +
+      "    " + exp + "\n\n" +
+      "  Raw expression: " + (text.trim()) + "\n",
+      range
+    );
   }
 }
 
@@ -20638,6 +20684,7 @@ Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var lang = document.documentElement.lang.substr(0, 2);
 var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_4__["default"]({
   locale: lang,
+  fallbackLocale: 'en',
   messages: _vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 var app = new Vue({
@@ -20660,6 +20707,7 @@ __webpack_require__.r(__webpack_exports__);
   "ar": [],
   "de": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Erstelle eine neue Unterhaltung",
@@ -20978,7 +21026,6 @@ __webpack_require__.r(__webpack_exports__);
         "action": "Aktion",
         "actions": {
           "bulk": {
-            "ignore": "Ignorieren",
             "add": "Hinzufügen",
             "remove": "Entfernen"
           },
@@ -21058,6 +21105,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   "en": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Create a new conversation",
@@ -21092,11 +21140,11 @@ __webpack_require__.r(__webpack_exports__);
         "destroy": {
           "success": "Message removed."
         },
+        "is_updated": "Updated",
         "load_previous": "Load previous messages",
         "placeholders": {
           "message": "Your message"
-        },
-        "is_updated": "Updated"
+        }
       },
       "participants": {
         "create": {
@@ -21128,9 +21176,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     "crud": {
       "actions": {
+        "actions": "Actions",
         "apply": "Apply",
         "back": "Back",
         "copy": "Copy",
+        "copy_mention": "Copy [ ] mention",
         "copy_to_campaign": "Copy to Campaign",
         "explore_view": "Nested View",
         "export": "Export",
@@ -21144,6 +21194,9 @@ __webpack_require__.r(__webpack_exports__);
         "public": "Public"
       },
       "add": "Add",
+      "alerts": {
+        "copy_mention": "The entity's advanced mention was copied to your clipboard."
+      },
       "attributes": {
         "actions": {
           "add": "Add an attribute",
@@ -21212,17 +21265,18 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       "boosted": "Boosted",
+      "boosted_campaigns": "Boosted Campaigns",
       "bulk": {
         "actions": {
           "edit": "Bulk Edit & Tagging"
         },
         "edit": {
-          "title": "Editing multiple entities",
           "tagging": "Action for tags",
           "tags": {
             "add": "Add",
             "remove": "Remove"
-          }
+          },
+          "title": "Editing multiple entities"
         },
         "errors": {
           "admin": "Only campaign admins can change the private status of entities."
@@ -21237,10 +21291,10 @@ __webpack_require__.r(__webpack_exports__);
           "title": "Change permissions for several entities"
         },
         "success": {
-          "permissions": "Permissions changed for {count} entity.|Permissions changed for {count} entities.",
-          "private": "{count} entity is now private|{count} entities are now private.",
-          "public": "{count} entity is now visible|{count} entities are now visible.",
-          "editing": "{count} entity was updated.|{count} entities were updated."
+          "editing": "{1} {count} entity was updated.|[2,*] {count} entities were updated.",
+          "permissions": "{1} Permissions changed for {count} entity.|[2,*] Permissions changed for {count} entities.",
+          "private": "{1} {count} entity is now private|[2,*] {count} entities are now private.",
+          "public": "{1} {count} entity is now visible|[2,*] {count} entities are now visible."
         }
       },
       "cancel": "Cancel",
@@ -21269,17 +21323,20 @@ __webpack_require__.r(__webpack_exports__);
       },
       "edit": "Edit",
       "errors": {
-        "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself."
+        "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself.",
+        "boosted": "This feature is only available to boosted campaigns."
       },
       "events": {
         "hint": "Shown below is a list of all the Calendars in which this entity was added using the \"Add an event to a calendar\" interface."
       },
       "export": "Export",
       "fields": {
+        "ability": "Ability",
         "attribute_template": "Attribute Template",
         "calendar": "Calendar",
         "calendar_date": "Calendar Date",
         "character": "Character",
+        "colour": "Colour",
         "copy_attributes": "Copy Attributes",
         "copy_notes": "Copy Entity Notes",
         "creator": "Creator",
@@ -21312,7 +21369,8 @@ __webpack_require__.r(__webpack_exports__);
           "manage": "Manage Entity Files"
         },
         "errors": {
-          "max": "You have reached the maximum number ({max}) of files for this entity."
+          "max": "You have reached the maximum number ({max}) of files for this entity.",
+          "no_files": "No files."
         },
         "files": "Uploaded Files",
         "hints": {
@@ -21329,6 +21387,11 @@ __webpack_require__.r(__webpack_exports__);
         "filtered": "Showing {count} of {total} {entity}.",
         "hide": "Hide Filters",
         "show": "Show Filters",
+        "sorting": {
+          "asc": "{field} Ascending",
+          "desc": "{field} Descending",
+          "helper": "Control in which order results appear."
+        },
         "title": "Filters"
       },
       "forms": {
@@ -21359,7 +21422,7 @@ __webpack_require__.r(__webpack_exports__);
       "image": {
         "error": "We weren't able to get the image you requested. It could be that the website doesn't allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn't larger than {size}."
       },
-      "is_private": "This entity is private and not visible by non-admin users.",
+      "is_private": "This entity is private and only visible to members of the Admin role.",
       "linking_help": "How can I link to other entries?",
       "manage": "Manage",
       "move": {
@@ -21404,14 +21467,15 @@ __webpack_require__.r(__webpack_exports__);
         "action": "Action",
         "actions": {
           "bulk": {
-            "ignore": "Ignore",
             "add": "Add",
+            "ignore": "Ignore",
             "remove": "Remove"
           },
           "delete": "Delete",
           "edit": "Edit",
           "entity_note": "Entity Notes",
-          "read": "Read"
+          "read": "Read",
+          "toggle": "Toggle"
         },
         "allowed": "Allowed",
         "fields": {
@@ -21422,9 +21486,11 @@ __webpack_require__.r(__webpack_exports__);
         "inherited": "This role already has this permission set for this entity type.",
         "inherited_by": "This user is part of the '{role}' role which grants this permissions on this entity type.",
         "success": "Permissions saved.",
-        "title": "Permissions"
+        "title": "Permissions",
+        "too_many_members": "This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail."
       },
       "placeholders": {
+        "ability": "Choose an ability",
         "calendar": "Choose a calendar",
         "character": "Choose a character",
         "entity": "Entity",
@@ -21458,6 +21524,7 @@ __webpack_require__.r(__webpack_exports__);
       "search": "Search",
       "select": "Select",
       "tabs": {
+        "abilities": "Abilities",
         "attributes": "Attributes",
         "boost": "Boost",
         "calendars": "Calendars",
@@ -21470,6 +21537,7 @@ __webpack_require__.r(__webpack_exports__);
         "notes": "Entity Notes",
         "permissions": "Permissions",
         "relations": "Relations",
+        "reminders": "Reminders",
         "tooltip": "Tooltip"
       },
       "update": "Update",
@@ -21480,27 +21548,30 @@ __webpack_require__.r(__webpack_exports__);
       "visibilities": {
         "admin": "Admin",
         "all": "All",
-        "self": "Self"
+        "self": "Self",
+        "admin-self": "Self & Admin"
       }
     },
     "entities": [],
+    "front": [],
     "randomisers": []
   },
   "en-US": {
-    "admin": [],
+    "calendars": [],
     "crud": {
       "fields": {
+        "colour": "Color",
         "organisation": "Organization"
       },
       "placeholders": {
         "organisation": "Choose an organization"
       }
     },
-    "entities": [],
     "randomisers": []
   },
   "es": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Crear nueva conversación",
@@ -21535,6 +21606,7 @@ __webpack_require__.r(__webpack_exports__);
         "destroy": {
           "success": "Mensaje eliminado."
         },
+        "is_updated": "Actualizado",
         "load_previous": "Cargar mensajes previos",
         "placeholders": {
           "message": "Tu mensaje"
@@ -21570,9 +21642,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     "crud": {
       "actions": {
+        "actions": "Acciones",
         "apply": "Aplicar",
         "back": "Atrás",
         "copy": "Copiar",
+        "copy_mention": "Copiar mención [ ]",
         "copy_to_campaign": "Copiar a campaña",
         "explore_view": "Vista anidada",
         "export": "Exportar",
@@ -21586,6 +21660,9 @@ __webpack_require__.r(__webpack_exports__);
         "public": "Público"
       },
       "add": "Añadir",
+      "alerts": {
+        "copy_mention": "La mención avanzada de la entidad se ha copiado a tu portapapeles."
+      },
       "attributes": {
         "actions": {
           "add": "Añadir atributo",
@@ -21655,6 +21732,17 @@ __webpack_require__.r(__webpack_exports__);
       },
       "boosted": "Mejorada",
       "bulk": {
+        "actions": {
+          "edit": "Editar y etiquetar en lote"
+        },
+        "edit": {
+          "tagging": "Acción para las etiquetas",
+          "tags": {
+            "add": "Añadir",
+            "remove": "Eliminar"
+          },
+          "title": "Editando múltiples entidades"
+        },
         "errors": {
           "admin": "Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades."
         },
@@ -21668,6 +21756,7 @@ __webpack_require__.r(__webpack_exports__);
           "title": "Cambiar permisos a varias entidades"
         },
         "success": {
+          "editing": "{count} entidad se ha actualizado.|{count} entidades se han actualizado.",
           "permissions": "Permisos cambiados en {count} entidad.|Permisos cambiados en {count} entidades.",
           "private": "{count} entidad es ahora privada|{count} entidades son ahora privadas.",
           "public": "{count} entidad es ahora visible|{count} son ahora visibles."
@@ -21710,6 +21799,7 @@ __webpack_require__.r(__webpack_exports__);
         "calendar": "Calendario",
         "calendar_date": "Fecha del calendario",
         "character": "Personaje",
+        "colour": "Color",
         "copy_attributes": "Copiar atributos",
         "copy_notes": "Copiar notas de la entidad",
         "creator": "Creador",
@@ -21733,6 +21823,7 @@ __webpack_require__.r(__webpack_exports__);
         "tag": "Etiqueta",
         "tags": "Etiquetas",
         "tooltip": "Descripción emergente",
+        "type": "Tipo",
         "visibility": "Visibilidad"
       },
       "files": {
@@ -21741,7 +21832,8 @@ __webpack_require__.r(__webpack_exports__);
           "manage": "Administrar archivos de la entidad"
         },
         "errors": {
-          "max": "Has alcanzado el número máximo ({max}) de archivos para esta entidad."
+          "max": "Has alcanzado el número máximo ({max}) de archivos para esta entidad.",
+          "no_files": "No hay archivos."
         },
         "files": "Archivos subidos",
         "hints": {
@@ -21758,6 +21850,11 @@ __webpack_require__.r(__webpack_exports__);
         "filtered": "Mostrando {count} de {total} {entity}.",
         "hide": "Ocultar filtros",
         "show": "Mostrar filtros",
+        "sorting": {
+          "asc": "Ascendiente por {field}",
+          "desc": "Descendiente por {field}",
+          "helper": "Controla en qué orden aparecen los resultados."
+        },
         "title": "Filtros"
       },
       "forms": {
@@ -21833,8 +21930,8 @@ __webpack_require__.r(__webpack_exports__);
         "action": "Acción",
         "actions": {
           "bulk": {
-            "ignore": "Ignorar",
             "add": "Añadir",
+            "ignore": "Ignorar",
             "remove": "Eliminar"
           },
           "delete": "Eliminar",
@@ -21851,7 +21948,8 @@ __webpack_require__.r(__webpack_exports__);
         "inherited": "Este rol ya tiene este permiso en esta entidad.",
         "inherited_by": "Este usuario forma parte del rol \"{role}\", que le otorga este permiso en esta entidad.",
         "success": "Permisos guardados.",
-        "title": "Permisos"
+        "title": "Permisos",
+        "too_many_members": "Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente."
       },
       "placeholders": {
         "calendar": "Escoge un calendario",
@@ -21899,6 +21997,7 @@ __webpack_require__.r(__webpack_exports__);
         "notes": "Notas",
         "permissions": "Permisos",
         "relations": "Relaciones",
+        "reminders": "Recordatorios",
         "tooltip": "Descripción emergente"
       },
       "update": "Actualizar",
@@ -21917,6 +22016,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   "fr": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Créer une nouvelle conversation",
@@ -21951,6 +22051,7 @@ __webpack_require__.r(__webpack_exports__);
         "destroy": {
           "success": "Message supprimé."
         },
+        "is_updated": "Modifié",
         "load_previous": "Messages précédants",
         "placeholders": {
           "message": "Ton message"
@@ -21986,9 +22087,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     "crud": {
       "actions": {
+        "actions": "Actions",
         "apply": "Appliquer",
         "back": "Retour",
         "copy": "Copier",
+        "copy_mention": "Copier mention [ ]",
         "copy_to_campaign": "Copier vers une campagne",
         "explore_view": "Vue Imbriquée",
         "export": "Export",
@@ -22002,6 +22105,9 @@ __webpack_require__.r(__webpack_exports__);
         "public": "Publique"
       },
       "add": "Ajouter",
+      "alerts": {
+        "copy_mention": "La mention avancée de cette entité a été copier au presse-papier."
+      },
       "attributes": {
         "actions": {
           "add": "Ajouter un attribut",
@@ -22071,6 +22177,17 @@ __webpack_require__.r(__webpack_exports__);
       },
       "boosted": "Boosté",
       "bulk": {
+        "actions": {
+          "edit": "Opération de masse"
+        },
+        "edit": {
+          "tagging": "Action pour les étiquettes",
+          "tags": {
+            "add": "Ajouter",
+            "remove": "Retirer"
+          },
+          "title": "Modifications de plusieurs entités"
+        },
         "errors": {
           "admin": "Seulement les membres administrateur de la campagne peuvent changer le status des entités."
         },
@@ -22084,6 +22201,7 @@ __webpack_require__.r(__webpack_exports__);
           "title": "Changer les permissions pour plusieurs entités"
         },
         "success": {
+          "editing": "{count} entité modifiée.|{count} entités modifiées.",
           "permissions": "Permissions changées pour {count} entité. |Permissions changées pour {count} entités.",
           "private": "{count} entité est maintenant privée.|{count} entitées sont maintenant privées.",
           "public": "{count} entité est maintenant visible.|{count} entitées sont maintenant visibles."
@@ -22126,6 +22244,7 @@ __webpack_require__.r(__webpack_exports__);
         "calendar": "Calendrier",
         "calendar_date": "Date calendrier",
         "character": "Personnage",
+        "colour": "Couleur",
         "copy_attributes": "Copier les attributs",
         "copy_notes": "Copier les notes d'entité",
         "creator": "Créateur",
@@ -22149,6 +22268,7 @@ __webpack_require__.r(__webpack_exports__);
         "tag": "Etiquette",
         "tags": "Etiquettes",
         "tooltip": "Infobulle",
+        "type": "Type",
         "visibility": "Visibilité"
       },
       "files": {
@@ -22157,7 +22277,8 @@ __webpack_require__.r(__webpack_exports__);
           "manage": "Gérer les fichiers d'entité"
         },
         "errors": {
-          "max": "Nombre maximal de fichier ({max}) atteint pour cette entité."
+          "max": "Nombre maximal de fichier ({max}) atteint pour cette entité.",
+          "no_files": "Aucun fichier."
         },
         "files": "Fichiers uploadé",
         "hints": {
@@ -22174,6 +22295,11 @@ __webpack_require__.r(__webpack_exports__);
         "filtered": "Affichant {count} de {total} {entity}.",
         "hide": "Cacher les filtres",
         "show": "Afficher les filtres",
+        "sorting": {
+          "asc": "{field} ascendant",
+          "desc": "{field} descendant",
+          "helper": "Controler l'ordre d'affichage des résultats."
+        },
         "title": "Filtres"
       },
       "forms": {
@@ -22249,14 +22375,15 @@ __webpack_require__.r(__webpack_exports__);
         "action": "Action",
         "actions": {
           "bulk": {
-            "ignore": "Ignorer",
             "add": "Ajouter",
+            "ignore": "Ignorer",
             "remove": "Retirer"
           },
           "delete": "Supprimer",
           "edit": "Modifier",
           "entity_note": "Notes d'entité",
-          "read": "Lire"
+          "read": "Lire",
+          "toggle": "Basculer"
         },
         "allowed": "Permis",
         "fields": {
@@ -22267,7 +22394,8 @@ __webpack_require__.r(__webpack_exports__);
         "inherited": "Ce rôle a déjà cette permission pour ce type d'entité.",
         "inherited_by": "Cet utilisateur fait partie du rôle {role} qui permet cette permission pour ce type d'entité.",
         "success": "Permissions enregistrées.",
-        "title": "Permissions"
+        "title": "Permissions",
+        "too_many_members": "Cette campagne a trop de members (>10) pour afficher cette interface correctement. Prière d'utiliser le boutton Permission sur la vue de l'entité pour gérer les permissions."
       },
       "placeholders": {
         "calendar": "Choix du calendrier",
@@ -22315,6 +22443,7 @@ __webpack_require__.r(__webpack_exports__);
         "notes": "Notes",
         "permissions": "Permissions",
         "relations": "Relations",
+        "reminders": "Rappels",
         "tooltip": "Infobulle"
       },
       "update": "Modifier",
@@ -22329,10 +22458,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     "entities": [],
+    "front": [],
     "randomisers": []
   },
   "hu": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Új beszélgetés létrehozása",
@@ -22364,6 +22495,10 @@ __webpack_require__.r(__webpack_exports__);
         "title": "Beszélgetés"
       },
       "messages": {
+        "destroy": {
+          "success": "Üzenet eltávolítva."
+        },
+        "is_updated": "Frissítve",
         "load_previous": "Előző üzenet betöltése",
         "placeholders": {
           "message": "Üzeneted"
@@ -22402,6 +22537,7 @@ __webpack_require__.r(__webpack_exports__);
         "apply": "Alkalmaz",
         "back": "Vissza",
         "copy": "Másolás",
+        "copy_to_campaign": "Másolás Kampányba",
         "explore_view": "Hierarchikus nézet",
         "export": "Export",
         "find_out_more": "Tudj meg többet!",
@@ -22421,7 +22557,8 @@ __webpack_require__.r(__webpack_exports__);
           "add_checkbox": "Jelölőnégyzet hozzáadása",
           "add_text": "Szöveg hozzáadása",
           "apply_template": "Tulajdonságsablon alkalmazása",
-          "manage": "Kezelés"
+          "manage": "Kezelés",
+          "remove_all": "Összes törlése"
         },
         "create": {
           "description": "Új tulajdonság létrehozása",
@@ -22439,8 +22576,16 @@ __webpack_require__.r(__webpack_exports__);
         "fields": {
           "attribute": "Tulajdonság",
           "community_templates": "Közösségi sablonok",
+          "is_private": "Privát Tulajdonságok",
+          "is_star": "Kitűzve",
           "template": "Sablon",
           "value": "Érték"
+        },
+        "helpers": {
+          "delete_all": "Biztosan ki akarod törölni az entitás összes tulajdonságát?"
+        },
+        "hints": {
+          "is_private": "Elrejtheted egy entitás összes tulajdonságát az összes, nem-admin szerepű felhasználó elől, úgy, hogy priváttá teszed őket."
         },
         "index": {
           "success": "{entity} számára frissítettük a tulajdonságokat.",
@@ -22450,6 +22595,7 @@ __webpack_require__.r(__webpack_exports__);
           "attribute": "Hódítások száma, Kihívási érték, kezdeményezés, népesség",
           "block": "Blokk megnevezése",
           "checkbox": "Jelölőnégyzet megnevezése",
+          "section": "Szakasz neve",
           "template": "Válassz ki egy sablont!",
           "value": "A tulajdonság értéke"
         },
@@ -22461,18 +22607,44 @@ __webpack_require__.r(__webpack_exports__);
           "attribute": "Tulajdonság",
           "block": "Blokk",
           "checkbox": "Jelölőnégyzet",
+          "section": "Szakasz",
           "text": "Többsoros szöveg"
         },
         "visibility": {
+          "entry": "A tulajdonság megjelenik az entitás menüjén",
           "private": "A tulajdonság csak az \"Admin\" szerepű tagok számára látható.",
-          "public": "A tulajdonság minden tag számára látható."
+          "public": "A tulajdonság minden tag számára látható.",
+          "tab": "A tulajdonság csak a Tulajdonságok fülön jelenik meg."
         }
       },
+      "boosted": "Boost-olt",
       "bulk": {
+        "actions": {
+          "edit": "Tömeges szerkesztés, és címkézés"
+        },
+        "edit": {
+          "tagging": "Címkézési esemény",
+          "tags": {
+            "add": "Hozzáadás",
+            "remove": "Eltávolítás"
+          },
+          "title": "Több entitás együttes szerkesztése"
+        },
         "errors": {
           "admin": "Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát."
         },
+        "permissions": {
+          "fields": {
+            "override": "Felülírás"
+          },
+          "helpers": {
+            "override": "Bepipálás esetén a kijelölt entitásokra vonatkozó korábbi jogosultságok elvesznek, és teljesen felülírásra kerülnek ezekkel a jogosultságokkal. Ha nincs bepipálva, a most kijelölt jogosultságok egyszerűen csak hozzáadódnak a már meglévők mellé az egyes entitásoknál."
+          },
+          "title": "Jogosultság változtatása több entitásra vonatkozóan"
+        },
         "success": {
+          "editing": "{1} {count} entitás frissült.|[2,*] {count} entitás frissült.",
+          "permissions": "{1} Jogosultságok változtak meg meg {count} entitás esetén.|[2,*]Jogosultságok változtak meg {count} entitás esetén.",
           "private": "{count} entitás most már privát|{count} entitás most már privát.",
           "public": "{count} entitás most már látható|{count} entitás most már látható."
         }
@@ -22483,6 +22655,10 @@ __webpack_require__.r(__webpack_exports__);
         "confirm": "Megerősítés",
         "title": "Igazold vissza az akciódat!"
       },
+      "copy_to_campaign": {
+        "panel": "Másolás",
+        "title": "'{name}' másolása egy másik kampányba"
+      },
       "create": "Létrehozás",
       "datagrid": {
         "empty": "Nincs megjeleníthető adat"
@@ -22491,6 +22667,7 @@ __webpack_require__.r(__webpack_exports__);
         "close": "Bezárás",
         "delete": "Törlés",
         "description": "Biztos, hogy eltávolítod?",
+        "mirrored": "Tükörkapcsolat eltávolítása.",
         "title": "Törlés megerősítése"
       },
       "destroy_many": {
@@ -22509,25 +22686,32 @@ __webpack_require__.r(__webpack_exports__);
         "calendar": "Naptár",
         "calendar_date": "Naptári dátum",
         "character": "Karakter",
+        "colour": "Szín",
         "copy_attributes": "Tulajdonság másolása",
         "copy_notes": "Entitásjegyzetek másolása",
         "creator": "Létrehozó",
         "dice_roll": "Dobás",
         "entity": "Entitás",
+        "entity_type": "Entitás Típusa",
         "entry": "Bejegyzés",
         "event": "Esemény",
         "excerpt": "Kivonat",
         "family": "Család",
         "files": "Állományok",
+        "header_image": "Fejléc kép",
         "image": "Kép",
         "is_private": "Privát",
+        "is_star": "Kitűzve",
         "item": "Tárgy",
         "location": "Helyszín",
         "name": "Név",
         "organisation": "Szervezet",
         "race": "Faj",
         "tag": "Címke",
-        "tags": "Címkék"
+        "tags": "Címkék",
+        "tooltip": "Tooltip",
+        "type": "Típus",
+        "visibility": "Láthatóság"
       },
       "files": {
         "actions": {
@@ -22549,8 +22733,14 @@ __webpack_require__.r(__webpack_exports__);
         "all": "Szűrés minden leszármazottra",
         "clear": "Szűrők törlése",
         "direct": "Szűrés közvetlen leszármazottakra",
+        "filtered": "{count} {entity} a(z) {total} elemből",
         "hide": "Szűrők elrejtése",
         "show": "Szűrők megmutatása",
+        "sorting": {
+          "asc": "{field} Növekvő sorrend",
+          "desc": "{field} Csökkenő sorrend",
+          "helper": "A találatok megjelenítésének sorrendje."
+        },
         "title": "Szűrők"
       },
       "forms": {
@@ -22563,10 +22753,14 @@ __webpack_require__.r(__webpack_exports__);
       "hints": {
         "attribute_template": "Közvetlenül is alkalmazhatsz egy tulajdonságsablont, amikor létrehozod ezt az entitást.",
         "calendar_date": "Egy naptári dátum könnyű szűrést tesz lehetővé a listákban, és fenntart egy naptári eseményt is a választott naptárban.",
+        "header_image": "Ez a kép az entitás fölött fog megjelenni. Érdemes széles képet választani.",
         "image_limitations": "Támogatott formátumok: jpg, png és gif. Maximális állományméret: {size}.",
         "image_patreon": "Megnöveled az állományméret korlátját?",
         "is_private": "Ha privátnak állítod be, ezt az entitást csak a kampány \"Admin\" szereplői fogják látni.",
-        "map_limitations": "Támogatott formátumok: jpg, png, gif és svg. Maximális állományméret: {size}."
+        "is_star": "Kitűzött elemek az entitás menüjén jelennek meg",
+        "map_limitations": "Támogatott formátumok: jpg, png, gif és svg. Maximális állományméret: {size}.",
+        "tooltip": "Lecseréli az automatikusan generált tooltip szöveget az alábbi tartalommal.",
+        "visibility": "Ha a láthatóságot Admin-ra állítod, akkor csak az Admin jogú felhasználók tudják megnézni ezt. 'Magam'-ra állítva csak te láthatod."
       },
       "history": {
         "created": "Létrehozás: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
@@ -22589,13 +22783,16 @@ __webpack_require__.r(__webpack_exports__);
         },
         "fields": {
           "campaign": "Új kampány",
+          "copy": "Készíts másolatot",
           "target": "Új típus"
         },
         "hints": {
           "campaign": "Megpróbálhatod egy másik kampányba mozgatni ezt az entitást.",
+          "copy": "Ezt válaszd ki, ha szeretnél egy másolatot készíteni az új kampányba.",
           "target": "Kérjük, ne felejtsd el, hogy néhány adat elveszhet, amikor egy elemet az egyik típusból egy másikban mozgatod."
         },
         "success": "'{name}' entitást átmozgattuk.",
+        "success_copy": "'{name}' entitást másoltuk.",
         "title": "{name} mozgatása"
       },
       "new_entity": {
@@ -22618,8 +22815,14 @@ __webpack_require__.r(__webpack_exports__);
       "permissions": {
         "action": "Akció",
         "actions": {
+          "bulk": {
+            "add": "Hozzáadás",
+            "ignore": "Figyelmen kívül hagyás",
+            "remove": "Eltávolítás"
+          },
           "delete": "Törlés",
           "edit": "Szerkesztés",
+          "entity_note": "Entitás jegyzetek",
           "read": "Olvasás"
         },
         "allowed": "Engedélyezett",
@@ -22628,6 +22831,8 @@ __webpack_require__.r(__webpack_exports__);
           "role": "Szerep"
         },
         "helper": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.",
+        "inherited": "Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.",
+        "inherited_by": "Ez a felhasználó tagja a '{role}' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.",
         "success": "Engedélyeket elmentettük.",
         "title": "Engedélyek"
       },
@@ -22666,27 +22871,37 @@ __webpack_require__.r(__webpack_exports__);
       "select": "Kiválasztás",
       "tabs": {
         "attributes": "Tulajdonságok",
+        "boost": "Boost",
         "calendars": "Naptárak",
         "default": "Alapértelmezett",
         "events": "Események",
+        "inventory": "Felszerelés",
         "map-points": "Térképi pontok",
         "mentions": "Említések",
         "menu": "Menü",
         "notes": "Jegyzetek",
         "permissions": "Engedélyek",
-        "relations": "Kapcsolatok"
+        "relations": "Kapcsolatok",
+        "reminders": "Emlékeztetők",
+        "tooltip": "Tooltip"
       },
       "update": "Frissítés",
       "users": {
         "unknown": "Ismeretlen"
       },
-      "view": "Megtekintés"
+      "view": "Megtekintés",
+      "visibilities": {
+        "admin": "Admin",
+        "all": "Mindenki",
+        "self": "Magam"
+      }
     },
     "entities": [],
     "randomisers": []
   },
   "it": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Crea una nuova conversazione",
@@ -22721,6 +22936,7 @@ __webpack_require__.r(__webpack_exports__);
         "destroy": {
           "success": "Messaggio rimosso."
         },
+        "is_updated": "Aggiornata",
         "load_previous": "Carica i messaggi precedenti",
         "placeholders": {
           "message": "Il tuo messaggio"
@@ -22779,7 +22995,8 @@ __webpack_require__.r(__webpack_exports__);
           "add_checkbox": "Aggiungi un checkbox",
           "add_text": "Aggiungi un testo",
           "apply_template": "Applica un Template per gli Attributi",
-          "manage": "Gestisci"
+          "manage": "Gestisci",
+          "remove_all": "Cancella tutti"
         },
         "create": {
           "description": "Crea un nuovo attributo",
@@ -22797,9 +23014,16 @@ __webpack_require__.r(__webpack_exports__);
         "fields": {
           "attribute": "Attributo",
           "community_templates": "Templates della Community",
+          "is_private": "Attributi Privati",
           "is_star": "Fissato",
           "template": "Template",
           "value": "Valore"
+        },
+        "helpers": {
+          "delete_all": "Sei sicuro di voler cancellare tutti gli attributi di questa entità?"
+        },
+        "hints": {
+          "is_private": "Puoi nascondere tutti gli attributi di un'entità per tutti i membri al di fuori del gruppo degli amministratori rendendoli privati."
         },
         "index": {
           "success": "Attributo aggiornato per {entity}.",
@@ -22809,6 +23033,7 @@ __webpack_require__.r(__webpack_exports__);
           "attribute": "Numero di conquiste, Grado di Sfida, Iniziativa, Popolazione",
           "block": "Nome del blocco",
           "checkbox": "Nome del checkbox",
+          "section": "Nome della sezione",
           "template": "Seleziona un template",
           "value": "Valore dell'attributo"
         },
@@ -22820,6 +23045,7 @@ __webpack_require__.r(__webpack_exports__);
           "attribute": "Attributo",
           "block": "Blocco",
           "checkbox": "Checkbox",
+          "section": "Sezione",
           "text": "Testo multilinea"
         },
         "visibility": {
@@ -22829,6 +23055,7 @@ __webpack_require__.r(__webpack_exports__);
           "tab": "Gli attributi sono visualizzati solamente nella tab degli Attributi."
         }
       },
+      "boosted": "Potenziata",
       "bulk": {
         "errors": {
           "admin": "Solo gli amministratori della campagna possono cambiare lo stato di visibilità delle entità."
@@ -22885,6 +23112,7 @@ __webpack_require__.r(__webpack_exports__);
         "calendar": "Calendario",
         "calendar_date": "Data del Calendario",
         "character": "Personaggio",
+        "colour": "Colore",
         "copy_attributes": "Copia Attributo",
         "copy_notes": "Copia le Note dell'Entità",
         "creator": "Creatore",
@@ -22896,6 +23124,7 @@ __webpack_require__.r(__webpack_exports__);
         "excerpt": "Estratto",
         "family": "Famiglia",
         "files": "Files",
+        "header_image": "Immagine dell'intestazione",
         "image": "Immagine",
         "is_private": "Privato",
         "is_star": "Fissato",
@@ -22906,6 +23135,7 @@ __webpack_require__.r(__webpack_exports__);
         "race": "Razza",
         "tag": "Tag",
         "tags": "Tags",
+        "tooltip": "Tooltip",
         "visibility": "Visibilità"
       },
       "files": {
@@ -22943,11 +23173,13 @@ __webpack_require__.r(__webpack_exports__);
       "hints": {
         "attribute_template": "Applica un template per gli attributi direttamente quando si crea questa entità.",
         "calendar_date": "La data di un calendario permette un semplice filtro nelle lista ed inoltre mantiene un evento nel calendario selezionato.",
+        "header_image": "Questa immagine è posizionata sopra alle entità. Per un miglior risultato utilizza un'immagine larga.",
         "image_limitations": "Formati supportati: jpg, png and gif. Dimensione massima del file: {size}.",
         "image_patreon": "Aumentare la dimensione massima dei file?",
         "is_private": "Nascondi dalle utenze non \"Admin\".",
         "is_star": "Gli elementi fissati appariranno nel menù dell'entità",
         "map_limitations": "Formati supportati{jpg}, png, gif e svg. Dimensione massima del file: {size}.",
+        "tooltip": "Sostituisci il tooltip generato automaticamente con il seguente contenuto.",
         "visibility": "Impostare la visibilità agli amministratori significa che solamente i membri del ruolo \"Proprietario\" della campagna potranno visualizzarlo. Impostarlo a \"Te stesso\" significa che solo tu potrai vederlo."
       },
       "history": {
@@ -23004,7 +23236,6 @@ __webpack_require__.r(__webpack_exports__);
         "action": "Azione",
         "actions": {
           "bulk": {
-            "ignore": "Ignorare",
             "add": "Aggiungi",
             "remove": "Rimuovi"
           },
@@ -23019,6 +23250,8 @@ __webpack_require__.r(__webpack_exports__);
           "role": "Ruolo"
         },
         "helper": "Utilizza questa interfaccia per specificare quali utenti e ruoli possono interagire con questa entità.",
+        "inherited": "Questo ruolo ha già questo permesso impostato per questa tipologia di entità.",
+        "inherited_by": "Questo utente fa parte del ruolo '{role}' che gli conferisce questo permesso su questa tipologia di entità.",
         "success": "Permessi salvati.",
         "title": "Permessi"
       },
@@ -23057,6 +23290,7 @@ __webpack_require__.r(__webpack_exports__);
       "select": "Seleziona",
       "tabs": {
         "attributes": "Attributi",
+        "boost": "Potenzia",
         "calendars": "Calendari",
         "default": "Default",
         "events": "Eventi",
@@ -23066,7 +23300,8 @@ __webpack_require__.r(__webpack_exports__);
         "menu": "Menù",
         "notes": "Note",
         "permissions": "Permessi",
-        "relations": "Relazioni"
+        "relations": "Relazioni",
+        "tooltip": "Tooltip"
       },
       "update": "Aggiorna",
       "users": {
@@ -23088,6 +23323,7 @@ __webpack_require__.r(__webpack_exports__);
   "pt": [],
   "pt-BR": {
     "admin": [],
+    "calendars": [],
     "crud": {
       "actions": {
         "back": "Voltar",
@@ -23266,6 +23502,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   "sk": {
     "admin": [],
+    "calendars": [],
     "conversations": {
       "create": {
         "description": "Vytvoriť novú diskusiu",
@@ -23468,14 +23705,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 9:
+/***/ 10:
 /*!************************************************!*\
   !*** multi ./resources/assets/js/conversation ***!
   \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\conversation */"./resources/assets/js/conversation.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\conversation */"./resources/assets/js/conversation.js");
 
 
 /***/ })

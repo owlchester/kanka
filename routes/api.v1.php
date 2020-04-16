@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::apiResources([
     'campaigns' => 'CampaignApiController',
+    'campaigns.abilities' => 'AbilityApiController',
     //'campaigns.campaign_users' => 'CampaignUserApiController',
     'campaigns.calendars' => 'CalendarApiController',
     'campaigns.calendars.calendar_weathers' => 'CalendarWeatherApiController',
@@ -49,10 +50,12 @@ Route::apiResources([
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
+    'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
 
 ]);
 
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
 Route::get('profile', 'ProfileApiController@index');
+
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');

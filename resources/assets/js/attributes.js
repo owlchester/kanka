@@ -1,3 +1,9 @@
+/**
+ * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
+ * @type {number}
+ */
+var attribute_id_count = -1000;
+
 $(document).ready(function() {
     if($('#add_attribute_target').length > 0) {
         initAttributeUI();
@@ -16,9 +22,11 @@ function initAttributeUI()
 
     $('#attribute_add').on('click', function(e) {
         e.preventDefault();
+        attribute_id_count -= 1;
 
-        var realTarget = $(this).data('sortable') ? targetNew : target;
-        $('#attribute_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        let body = $('#attribute_template').clone().removeClass('hidden').removeAttr('id');
+        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        body.html(html).insertBefore(target);
         initAttributeHandlers();
 
         return false;
@@ -26,45 +34,55 @@ function initAttributeUI()
 
     $('#block_add').click(function(e) {
         e.preventDefault();
+        attribute_id_count -= 1;
 
-        var realTarget = $(this).data('sortable') ? targetNew : target;
-        $('#block_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        let body = $('#block_template').clone().removeClass('hidden').removeAttr('id');
+        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        body.html(html).insertBefore(target);
         initAttributeHandlers();
         return false;
     });
 
     $('#text_add').click(function(e) {
         e.preventDefault();
+        attribute_id_count -= 1;
 
-        var realTarget = $(this).data('sortable') ? targetNew : target;
-        $('#text_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        let body = $('#text_template').clone().removeClass('hidden').removeAttr('id');
+        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        body.html(html).insertBefore(target);
         initAttributeHandlers();
         return false;
     });
 
     $('#checkbox_add').click(function(e) {
         e.preventDefault();
+        attribute_id_count -= 1;
 
-        var realTarget = $(this).data('sortable') ? targetNew : target;
-        $('#checkbox_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        let body = $('#checkbox_template').clone().removeClass('hidden').removeAttr('id');
+        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        body.html(html).insertBefore(target);
         initAttributeHandlers();
         return false;
     });
 
     $('#section_add').click(function(e) {
         e.preventDefault();
+        attribute_id_count -= 1;
 
-        var realTarget = $(this).data('sortable') ? targetNew : target;
-        $('#section_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        let body = $('#section_template').clone().removeClass('hidden').removeAttr('id');
+        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        body.html(html).insertBefore(target);
         initAttributeHandlers();
         return false;
     });
 
     $('#entity_add').click(function(e) {
         e.preventDefault();
+        attribute_id_count -= 1;
 
-        var realTarget = $(this).data('sortable') ? targetNew : target;
-        $('#entity_template').clone().removeClass('hidden').removeAttr('id').insertBefore(realTarget);
+        let body = $('#entity_template').clone().removeClass('hidden').removeAttr('id');
+        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        body.html(html).insertBefore(target);
         initAttributeHandlers();
         return false;
     });

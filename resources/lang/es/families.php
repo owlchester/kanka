@@ -56,7 +56,6 @@ return [
         'tabs'          => [
             'all_members'   => 'Todos los miembros',
             'families'      => 'Familias',
-            'member'        => 'Miembros',
             'members'       => 'Miembros',
             'relation'      => 'Relaciones',
         ],

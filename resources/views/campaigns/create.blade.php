@@ -12,16 +12,9 @@
         'route' => ($start ? 'start' : 'campaigns.store'),
         'enctype' => 'multipart/form-data',
         'method' => 'POST',
-        'data-shortcut' => '1'
+        'data-shortcut' => '1',
+        'class' => 'entity-form',
     ]) !!}
-@endsection
-
-@section('header-extra')
-    @if (!$start)
-    <div class="pull-right">
-        @include('cruds.fields.save', ['onlySave' => 'true', 'disableCancel' => true, 'target' => 'entity-form'])
-    </div>
-    @endif
 @endsection
 
 @section('content')

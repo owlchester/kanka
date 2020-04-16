@@ -1,0 +1,38 @@
+.entity-menu-head {
+  text-align: center;
+
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    margin: 8px;
+    text-align: center;
+  }
+}
+
+.entity-actions {
+  margin-bottom: 4px;
+  //margin-top: -25px;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+    display: inline-block;
+    padding-top: 10px;
+  }
+
+  .actions {
+    .btn-group {
+      margin-left: 8px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  //.entity-actions {
+  //  margin-top: 0;
+  //}
+}

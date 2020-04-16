@@ -32,7 +32,7 @@ $(document).ready(function() {
        }
     });
 
-    $.each($('[data-dismiss="alert"]'), function(i) {
+    $.each($('[data-widget="remove"]'), function(i) {
         $(this).click(function(e) {
             $.post({
                 url: $(this).data('url'),

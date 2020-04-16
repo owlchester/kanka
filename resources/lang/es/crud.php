@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Acciones',
         'apply'             => 'Aplicar',
         'back'              => 'Atrás',
         'copy'              => 'Copiar',
+        'copy_mention'      => 'Copiar mención [ ]',
         'copy_to_campaign'  => 'Copiar a campaña',
         'explore_view'      => 'Vista anidada',
         'export'            => 'Exportar',
@@ -18,6 +20,9 @@ return [
         'public'            => 'Público',
     ],
     'add'               => 'Añadir',
+    'alerts'            => [
+        'copy_mention'  => 'La mención avanzada de la entidad se ha copiado a tu portapapeles.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Añadir atributo',
@@ -86,6 +91,7 @@ return [
         ],
     ],
     'boosted'           => 'Mejorada',
+    'boosted_campaigns' => 'Campañas mejoradas',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Editar y etiquetar en lote',
@@ -143,6 +149,7 @@ return [
     ],
     'edit'              => 'Editar',
     'errors'            => [
+        'boosted'                       => 'Esta función solo está disponible para las campañas mejoradas.',
         'node_must_not_be_a_descendant' => 'Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo.',
     ],
     'events'            => [
@@ -150,10 +157,12 @@ return [
     ],
     'export'            => 'Exportar',
     'fields'            => [
+        'ability'               => 'Habilidad',
         'attribute_template'    => 'Plantilla de atributos',
         'calendar'              => 'Calendario',
         'calendar_date'         => 'Fecha del calendario',
         'character'             => 'Personaje',
+        'colour'                => 'Color',
         'copy_attributes'       => 'Copiar atributos',
         'copy_notes'            => 'Copiar notas de la entidad',
         'creator'               => 'Creador',
@@ -186,7 +195,8 @@ return [
             'manage'    => 'Administrar archivos de la entidad',
         ],
         'errors'    => [
-            'max'   => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+            'max'       => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+            'no_files'  => 'No hay archivos.',
         ],
         'files'     => 'Archivos subidos',
         'hints'     => [
@@ -280,8 +290,8 @@ return [
         'system'                => 'Sistema',
     ],
     'permissions'       => [
-        'action'        => 'Acción',
-        'actions'       => [
+        'action'            => 'Acción',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Añadir',
                 'ignore'    => 'Ignorar',
@@ -291,19 +301,22 @@ return [
             'edit'          => 'Editar',
             'entity_note'   => 'Notas de entidad',
             'read'          => 'Leer',
+            'toggle'        => 'Cambiar',
         ],
-        'allowed'       => 'Permitido',
-        'fields'        => [
+        'allowed'           => 'Permitido',
+        'fields'            => [
             'member'    => 'Miembro',
             'role'      => 'Rol',
         ],
-        'helper'        => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
-        'inherited'     => 'Este rol ya tiene este permiso en esta entidad.',
-        'inherited_by'  => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
-        'success'       => 'Permisos guardados.',
-        'title'         => 'Permisos',
+        'helper'            => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
+        'inherited'         => 'Este rol ya tiene este permiso en esta entidad.',
+        'inherited_by'      => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
+        'success'           => 'Permisos guardados.',
+        'title'             => 'Permisos',
+        'too_many_members'  => 'Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente.',
     ],
     'placeholders'      => [
+        'ability'       => 'Escoge una habilidad',
         'calendar'      => 'Escoge un calendario',
         'character'     => 'Escoge un personaje',
         'entity'        => 'Entidad',
@@ -337,6 +350,7 @@ return [
     'search'            => 'Buscar',
     'select'            => 'Seleccionar',
     'tabs'              => [
+        'abilities'     => 'Habilidades',
         'attributes'    => 'Atributos',
         'boost'         => 'Mejorar',
         'calendars'     => 'Calendarios',
@@ -349,6 +363,7 @@ return [
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
         'relations'     => 'Relaciones',
+        'reminders'     => 'Recordatorios',
         'tooltip'       => 'Descripción emergente',
     ],
     'update'            => 'Actualizar',
@@ -357,8 +372,9 @@ return [
     ],
     'view'              => 'Ver',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Todos',
-        'self'  => 'Solo yo',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Yo + Admin',
+        'all'           => 'Todos',
+        'self'          => 'Solo yo',
     ],
 ];

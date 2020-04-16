@@ -4,11 +4,11 @@
             <div class="box-body">
                 @include ('cruds._image')
 
-                <h3 class="profile-username text-center">{{ $model->name }}
+                <h1 class="profile-username text-center">{{ $model->name }}
                     @if ($model->is_private)
                          <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
                     @endif
-                </h3>
+                </h1>
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
@@ -62,8 +62,6 @@
                         </li>
                     @endif
                 </ul>
-
-                @include('.cruds._actions', ['disableMove' => true, 'disableCopyCampaign' => true])
             </div>
         </div>
     </div>
@@ -71,3 +69,5 @@
         @include('cruds.boxes.history')
     </div>
 </div>
+
+@include('entities.components.actions', ['disableMove' => true, 'disableCopyCampaign' => true])

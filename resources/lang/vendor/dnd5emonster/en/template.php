@@ -9,7 +9,7 @@ return [
     'con'                           => 'CON',
     'condition_immunities'          => 'Condition Immunities',
     'damage_immunities'             => 'Damage Immunities',
-    'damage_resistance'             => 'Damage Resistance',
+    'damage_resistance'             => 'Damage Resistances',
     'dex'                           => 'DEX',
     'fields'                        => [
         'alignment'             => 'Alignment',

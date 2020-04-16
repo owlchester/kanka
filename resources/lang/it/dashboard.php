@@ -57,7 +57,7 @@ return [
     ],
     'title'             => 'Dashboard',
     'welcome'           => [
-        'body'      => <<<'TEXT'
+        'body'  => <<<'TEXT'
 Benvenuto in Kanka! La tua prima campagna è stata creata e vi abbiamo inserito un po' di entità di esempio come ispirazione (le potrai cancellare in qualsiasi momento).
 
 Vorrai probabilmente iniziale aggiungendo qualche tua entità, quindi seleziona una categoria da sinistra ed iniziamo.
@@ -70,7 +70,6 @@ Alcuni consigli per iniziare:
 - Se ha delle domande, dei suggerimento o vuoi solamente chattare unisciti a noi su :discord
 TEXT
 ,
-        'header'    => 'Benvenuto',
     ],
     'widgets'           => [
         'calendar'  => [

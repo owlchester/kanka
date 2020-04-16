@@ -72,61 +72,59 @@ return [
         'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                             => [
-        'actions'       => [
+        'actions'   => [
             'new'   => [
-                'description'   => 'Új kapmány létrehozása',
-                'title'         => 'Új kampány',
+                'title' => 'Új kampány',
             ],
         ],
-        'add'           => 'Új kampány',
-        'description'   => 'A kampányaid kezelése.',
-        'list'          => 'Kampányaid',
-        'select'        => 'Válassz egy kampányt!',
-        'title'         => 'Kampányok',
+        'title'     => 'Kampányok',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Meghívó',
+            'copy'  => 'Másold ki ezt a linket a vágólapra!',
             'link'  => 'Új link',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Meghívó',
             'description'   => 'Hívd meg egy barátodat a kampányodba!',
             'link'          => 'A linket létrehoztuk: : <a href=":url" target="_blank">:url</a>',
             'success'       => 'A meghívót elküldtük.',
             'title'         => 'Hívj meg valakit a kampányodba!',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'A meghívót eltávolítottuk.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Csatlakozás :name kampányhoz</a>',
             'subject'   => ':name meghívott, hogy csatlakozz a \':campaign\' nevű kampányához a kanka.io oldalon! Használd az alábbi linket a csatlakozkáshoz!',
             'title'     => 'Meghívó :name nevű felhasználótól',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Már tagja vagy annak a kampánynak.',
             'inactive_token'    => 'Ezt a tokent már felhasználták, vagy a kampány már nem létezik.',
             'invalid_token'     => 'Ez a token már nem érvényes.',
             'login'             => 'Kérjük, lépj be vagy regisztrálj, hogy csatlakozni tudj a kampányhoz!',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Küldés',
             'email'     => 'Email',
             'role'      => 'Szerep',
             'type'      => 'Típus',
             'validity'  => 'Érvényesség',
         ],
-        'helpers'       => [
+        'helpers'               => [
+            'email'     => 'A leveleinket gyakran spamként (szemétként) azonosítják, és eltelhet pár óra, amíg megjelenik a bejövő üzenetek között.',
             'validity'  => 'Hány felhasználó tudja használni ezt a linket, mielőtt deaktviálódik.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Az illető email-címe, aki meg szeretnél hívni.',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Email',
             'link'  => 'Link',
         ],
+        'unlimited_validity'    => 'Korlátlan',
     ],
     'leave'                             => [
         'confirm'   => 'Biztos vagy benne, hogy el akarod hagyni az :name nevű kampányt? Nem tudsz majd többé hozzáférni, kivéve, ha a kampány tulajdonosa újra meghív téged.',
@@ -232,6 +230,7 @@ return [
                 'entity-note'   => 'Entitás jegyzet',
                 'permission'    => 'Engedélyek kezelése',
                 'read'          => 'Megtekintés',
+                'toggle'        => 'Váltás mindnél',
             ],
             'hint'      => 'Ez a szerep automatikusan hozzáférst biztosít mindenhez.',
         ],

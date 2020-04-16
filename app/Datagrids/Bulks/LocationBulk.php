@@ -9,7 +9,7 @@ class LocationBulk extends Bulk
     protected $fields = [
         'name',
         'type',
-        'location_id',
+        'parent_location_id',
         'tags',
         'private_choice',
     ];
