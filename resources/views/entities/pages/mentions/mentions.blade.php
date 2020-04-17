@@ -41,7 +41,7 @@
                                             {{ $mention->campaign->name }}
                                         </a>
                                     @elseif ($mention->isEntityNote())
-                                        @if ($mention->entityNote)
+                                        @if ($mention->entityNote && $mention->entityNote->entity)
                                             @viewentity($mention->entityNote->entity)
                                                 <a href="{{ $mention->entityNote->entity->url('show', 'notes') }}">
                                                     {{ __('entities/mentions.entity_note', ['name' => $mention->entityNote->entity->name]) }}
