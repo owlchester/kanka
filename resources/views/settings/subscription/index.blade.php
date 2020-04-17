@@ -34,6 +34,12 @@
                         <div class="box-body">
                             <h3 class="page-header with-border">{{ __('settings.subscription.sub_status') }}</h3>
                             <dl class="dl-horizontal">
+                            @if ($user->hasPatreonSync())
+                                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
+                                    <dd>{{ $user->patreon_pledge }}</dd>
+                                    <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
+                                    <dd>By Patreon</dd>
+                            @else
                                 <dt>{{ __('settings.subscription.fields.plan') }}</dt>
                                 <dd>{{ $currentPlan['name'] }}</dd>
                                 <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
@@ -46,16 +52,16 @@
                                         <i class="fa fa-pencil-alt"></i> {{ __('crud.edit') }}
                                     </a>
                                 </dd>
-
-
-                                @if ($user->subscribed('kanka'))
-                                    <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                                    <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                                    @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                                        <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                                        <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
+                                    @if ($user->subscribed('kanka'))
+                                        <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
+                                        <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
+                                        @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+                                            <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
+                                            <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
+                                        @endif
                                     @endif
-                                @endif
+
+                            @endif
                                 <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
                                 <dd>
                                     @if ($user->hasPaymentMethod())

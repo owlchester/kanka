@@ -20,6 +20,10 @@ TEXT
         'answer'    => 'Simply join our :discord server and report your bug in the #error-and-bugs channel.',
         'question'  => 'How can I report a bug?',
     ],
+    'campaign-sync' => [
+        'answer' => 'Kanka does not have this feature. However, if you\'re trying to have multiple play groups in the same world consider using the same campaign and separating your groups through a combination of quests, tags, and permissions',
+        'question' => 'Can I sync entities across multiple campaigns?',
+    ],
     'conversations'         => [
         'answer'    => 'Conversations can be set up as talks between Characters or between Campaign Members. If for example you wish to document an important talk between NPCs and the PCs, you can do so using this module. You can also use them for play-by-post campaigns.',
         'question'  => 'What are Conversations?',

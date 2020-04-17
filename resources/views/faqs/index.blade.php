@@ -39,6 +39,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('faq.show', ['key' => 'campaign-sync', 'slug' => Str::slug(__('faq.campaign-sync.question'))]) }}">
+                                    {{ __('faq.campaign-sync.question') }}
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('faq.show', ['key' => 'custom', 'slug' => Str::slug(__('faq.custom.question'))]) }}">
                                     {{ __('faq.custom.question') }}
                                 </a>

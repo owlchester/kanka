@@ -130,7 +130,7 @@ return [
         'remove' => [
             'button' => 'Unlink your Patreon account',
             'title' => 'Unlink your Patreon account with Kanka',
-            'text' => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your data will be lost.',
+            'text' => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.',
         ],
         'success'           => 'Thank you for supporting Kanka on Patreon!',
         'title'             => 'Patreon',
