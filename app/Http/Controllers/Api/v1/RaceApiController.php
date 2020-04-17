@@ -22,6 +22,7 @@ class RaceApiController extends ApiController
             ->races()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes'])
+            ->has('entity')
             ->lastSync(request()->get('lastSync'))
             ->paginate());
     }
