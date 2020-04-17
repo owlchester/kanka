@@ -128,33 +128,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                         <a href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
                     </li>
                 @endif
-                <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-languages">
-                        <span class="text-uppercase">{{ LaravelLocalization::getCurrentLocale() }}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">{{ trans('languages.header') }}</li>
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
-                                    <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
-                                    <li>
-                                    @if (App::getLocale() == $localeCode)
-                                        <a href="#"><strong>{{ $langData['native'] }}</strong></a>
-                                    @else
-                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                                            {{ $langData['native'] }}
-                                        </a>
-                                    @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
 
-                <?php /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions">

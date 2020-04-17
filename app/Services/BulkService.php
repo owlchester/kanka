@@ -180,7 +180,7 @@ class BulkService
                 // Handle math fields
                 foreach ($maths as $math) {
                     $mathField = Arr::get($entityFields, $math, false);
-                    if ($mathField !== false && Str::startsWith($mathField, ['+', '-'])) {
+                    if ($mathField !== false && Str::startsWith($mathField, ['+', '-']) && is_numeric($entity->{$math})) {
                         if (Str::startsWith($mathField, '+')) {
                             $entityFields[$math] = $entity->{$math} + (int) Str::after($mathField, '+');
                         } else {

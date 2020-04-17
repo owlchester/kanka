@@ -52,6 +52,9 @@
                                 <a href="{{ route('front.roadmap') }}">{{ __('front.menu.roadmap') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('settings.subscription') }}">{{ __('settings.subscription.manage_subscription') }}</a>
+                            </li>
+                            <li>
                                 <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
                             </li>
                             <li>
@@ -88,12 +91,26 @@
                 </div>
 
                 <div class="copyright">
-                    <a href="https://www.patreon.com/bePatron?u=8417223" data-patreon-widget-type="become-patron-button">
-                        Become a Patron!
-                    </a>
+                    <div class="dropup">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="languageDropdown" aria-haspopup="true" aria-expanded="false" name="list-languages">
+                            <i class="fas fa-globe"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
+                                <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
+                                <li>
+                                    @if (App::getLocale() == $localeCode)
+                                        <a href="#"><strong>{{ $langData['native'] }}</strong></a>
+                                    @else
+                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                                            {{ $langData['native'] }}
+                                        </a>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
-
 
                 <p class="copyright">
                     {!! __('footer.copyright', ['year' => date('Y')]) !!}

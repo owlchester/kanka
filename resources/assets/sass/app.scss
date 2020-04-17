@@ -264,9 +264,9 @@ footer {
     li {
       padding: 0;
       display: block;
-      margin: 4px 0;
+      margin: 2px 0;
       a {
-        padding: 5px 15px 5px 0;
+        padding: 5px 0;
         font-size: 14px !important;
         line-height: 26px;
       }
@@ -296,8 +296,11 @@ footer {
       margin-bottom: 20px;
     }
     .copyright {
-      margin-top: 40px;
-      font-size: 12px;
+      margin-top: 30px;
+      font-size: 14px;
+      .dropup {
+        display: inline-block;
+      }
     }
   }
 }
