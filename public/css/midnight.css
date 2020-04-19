@@ -507,7 +507,8 @@ body {
 }
 
 .btn-default,
-.btn-app {
+.btn-app,
+.btn-secondary {
   color: #444 !important;
 }
 
