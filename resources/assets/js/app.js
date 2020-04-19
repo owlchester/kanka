@@ -333,7 +333,7 @@ function entityCreatorUI() {
                     context: this
                 }).done(function (result, textStatus, xhr) {
                     // New entity was created, let's follow that redirect
-                    console.log(result);
+                    //console.log(result);
 
                     $('#entity-creator-form').hide();
 
@@ -351,6 +351,10 @@ function entityCreatorUI() {
 
 function initEntityCreatorDuplicateName() {
     $('#entity-creator-selection input[name="name"]').focusout(function(e) {
+        // Don't bother if the user didn't set any value
+        if (!$(this).val()) {
+            return;
+        }
         var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
         entityCreatorDuplicateWarning.hide();
         // Check if an entity of the same type already exists, and warn when it does.
