@@ -59,6 +59,20 @@ img.profile-user-img {
   background-color: #ddd;
 }
 
+.navbar-nav .user-menu a.dropdown-toggle {
+  height: 50px;
+}
+
+.navbar-nav .user-menu .dropdown-menu > li.user-header {
+  background-color: #1e282c;
+}
+
+.navbar-nav .user-menu .dropdown-menu > li.user-header a > img {
+  z-index: 5;
+  height: 90px;
+  width: 90px;
+}
+
 .cover-background {
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -77,15 +91,6 @@ img.profile-user-img {
 
 .user-header a:hover {
   background: none !important;
-}
-
-.navbar-nav > .user-menu > .dropdown-menu > li.user-header > a > img {
-  z-index: 5;
-  height: 90px;
-  width: 90px;
-  border: 3px solid;
-  border-color: transparent;
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-menu > li > a {

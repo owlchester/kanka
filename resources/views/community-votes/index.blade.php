@@ -11,6 +11,7 @@
 @section('og')
     <meta property="og:description" content="{{ __('front/community-votes.description') }}" />
     <meta property="og:url" content="{{ route('community-votes.index') }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-votes.title') }}" href="{{ url('/feeds/community-votes.rss') }}" />
 @endsection
 
 @section('content')

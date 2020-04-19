@@ -131,10 +131,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions" title="{{ Auth::user()->name }}">
                         <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
-
-                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">

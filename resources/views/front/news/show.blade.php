@@ -10,6 +10,7 @@
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('front.news.show', $model->getSlug()) }}" />
     @if ($model->image)<meta property="og:image" content="{{ Voyager::image($model->image)  }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ __('front/news.title') }}" href="{{ url('/feeds/news.rss') }}" />
 @endif
 @endsection
 
