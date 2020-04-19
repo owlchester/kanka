@@ -115,10 +115,14 @@ img.profile-user-img {
 
 .sidebar-menu > li > a {
   padding: 8px 5px 8px 15px;
-
-  .ra {
+}
+.sidebar-menu {
+  .ra, .fas, .fab, .far {
     display: inline-block;
     width: 20px;
+  }
+  .campaign-name {
+    overflow: hidden;
   }
 }
 
@@ -755,7 +759,7 @@ td.breakable {
     min-height: 0;
     background-color: unset;
 
-    i.fa, i.ra, i.fas, i.far {
+    i.fa, i.ra, i.fas, i.far, i.fab {
       line-height: 1.6em;
     }
   }

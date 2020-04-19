@@ -7,7 +7,6 @@ return [
             'update_email'      => 'Update email',
             'update_password'   => 'Update password',
         ],
-        'description'       => 'Update your account',
         'email'             => 'Change email',
         'email_success'     => 'Email updated.',
         'password'          => 'Change password',
@@ -21,7 +20,6 @@ return [
         'title'             => 'Account',
     ],
     'api'       => [
-        'description'           => 'Update your API settings',
         'experimental'          => 'Welcome to the Kanka APIs! These features are still experimental but should be stable enough for you to start communicating with the APIs. Create a Personal Access Token to use in your api requests, or use the Client token if you want your app to have access to user data.',
         'help'                  => 'Kanka will soon provide an RESTful API so that third-party apps can connect to the app. Details on how to manage your API keys will be shown here.',
         'link'                  => 'Read the API documentation',
@@ -91,7 +89,6 @@ return [
         ],
     ],
     'layout'    => [
-        'description'   => 'Update your layout options',
         'success'       => 'Layout options updated.',
         'title'         => 'Layout',
     ],
@@ -105,6 +102,7 @@ return [
         'patreon'           => 'Patreon',
         'personal_settings' => 'Personal Settings',
         'profile'           => 'Profile',
+        'other'             => 'Other',
         'subscription'      => 'Subscription',
         'subscription_status' => 'Subscription Status',
         'payment_options' => 'Payment Options',
@@ -141,7 +139,6 @@ return [
             'update_profile'    => 'Update profile',
         ],
         'avatar'        => 'Profile Picture',
-        'description'   => 'Update your profile',
         'success'       => 'Profile updated.',
         'title'         => 'Personal Profile',
     ],
@@ -162,7 +159,7 @@ return [
             'eur' => 'EUR',
             'usd' => 'USD',
         ],
-        'manage_subscription' => 'Manage your subscription',
+        'manage_subscription' => 'Manage subscription',
         'benefits'          => 'By supporting us, you can unlock some new :features and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use :strip to handle all billing.',
         'sub_status' => 'Subscription information',
         'fields' => [

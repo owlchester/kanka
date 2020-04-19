@@ -97,9 +97,16 @@ img.profile-user-img {
   padding: 8px 5px 8px 15px;
 }
 
-.sidebar-menu > li > a .ra {
+.sidebar-menu .ra,
+.sidebar-menu .fas,
+.sidebar-menu .fab,
+.sidebar-menu .far {
   display: inline-block;
   width: 20px;
+}
+
+.sidebar-menu .campaign-name {
+  overflow: hidden;
 }
 
 /** required form fields **/
@@ -764,7 +771,8 @@ td.breakable {
 .entity-form .nav-tabs-custom i.fa,
 .entity-form .nav-tabs-custom i.ra,
 .entity-form .nav-tabs-custom i.fas,
-.entity-form .nav-tabs-custom i.far {
+.entity-form .nav-tabs-custom i.far,
+.entity-form .nav-tabs-custom i.fab {
   line-height: 1.6em;
 }
 

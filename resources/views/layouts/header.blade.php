@@ -31,8 +31,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
-            @if (Auth::check() && Auth::user()->hasCampaigns())
-            <a class="btn-nav btn btn-warning btn-sm pull-left hidden-xs" href="{{ route('settings.subscription') }}">{{ __('settings.subscription.manage_subscription') }}</a>
+            @if (Auth::check() && Auth::user()->hasCampaigns() && !Auth::user()->subscribed('kanka'))
+            <a class="btn-nav btn btn-info btn-sm pull-left hidden-xs" href="{{ route('settings.subscription') }}">{{ __('settings.subscription.manage_subscription') }}</a>
             @endif
             <ul class="nav navbar-nav">
                 @if (!empty($currentCampaign))

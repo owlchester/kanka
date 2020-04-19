@@ -63,7 +63,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         @include('layouts.header')
 
         <!-- Sidebar -->
-        @include('layouts.sidebar')
+        @include('layouts.sidebars.' . ($sidebar ?? 'app'))
 
         @yield('fullpage-form')
 
