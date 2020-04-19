@@ -133,6 +133,7 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
 var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ "./node_modules/axios/lib/core/buildFullPath.js");
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
@@ -155,7 +156,8 @@ module.exports = function xhrAdapter(config) {
       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
     }
 
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+    var fullPath = buildFullPath(config.baseURL, config.url);
+    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
 
     // Set the request timeout in MS
     request.timeout = config.timeout;
@@ -216,7 +218,11 @@ module.exports = function xhrAdapter(config) {
 
     // Handle timeout
     request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+      if (config.timeoutErrorMessage) {
+        timeoutErrorMessage = config.timeoutErrorMessage;
+      }
+      reject(createError(timeoutErrorMessage, config, 'ECONNABORTED',
         request));
 
       // Clean up request
@@ -230,7 +236,7 @@ module.exports = function xhrAdapter(config) {
       var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
       // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
         cookies.read(config.xsrfCookieName) :
         undefined;
 
@@ -253,8 +259,8 @@ module.exports = function xhrAdapter(config) {
     }
 
     // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
+    if (!utils.isUndefined(config.withCredentials)) {
+      request.withCredentials = !!config.withCredentials;
     }
 
     // Add responseType to request if needed
@@ -533,7 +539,15 @@ Axios.prototype.request = function request(config) {
   }
 
   config = mergeConfig(this.defaults, config);
-  config.method = config.method ? config.method.toLowerCase() : 'get';
+
+  // Set config.method
+  if (config.method) {
+    config.method = config.method.toLowerCase();
+  } else if (this.defaults.method) {
+    config.method = this.defaults.method.toLowerCase();
+  } else {
+    config.method = 'get';
+  }
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -650,6 +664,38 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/core/buildFullPath.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/buildFullPath.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isAbsoluteURL = __webpack_require__(/*! ../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ * @returns {string} The combined full path
+ */
+module.exports = function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !isAbsoluteURL(requestedURL)) {
+    return combineURLs(baseURL, requestedURL);
+  }
+  return requestedURL;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/core/createError.js":
 /*!****************************************************!*\
   !*** ./node_modules/axios/lib/core/createError.js ***!
@@ -694,8 +740,6 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
 var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
-var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -715,11 +759,6 @@ function throwIfCancellationRequested(config) {
 module.exports = function dispatchRequest(config) {
   throwIfCancellationRequested(config);
 
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
-
   // Ensure headers exist
   config.headers = config.headers || {};
 
@@ -734,7 +773,7 @@ module.exports = function dispatchRequest(config) {
   config.headers = utils.merge(
     config.headers.common || {},
     config.headers[config.method] || {},
-    config.headers || {}
+    config.headers
   );
 
   utils.forEach(
@@ -857,13 +896,23 @@ module.exports = function mergeConfig(config1, config2) {
   config2 = config2 || {};
   var config = {};
 
-  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
+  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
+  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
+  var defaultToConfig2Keys = [
+    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
+    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
+    'httpsAgent', 'cancelToken', 'socketPath'
+  ];
+
+  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
     if (typeof config2[prop] !== 'undefined') {
       config[prop] = config2[prop];
     }
   });
 
-  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
+  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
     if (utils.isObject(config2[prop])) {
       config[prop] = utils.deepMerge(config1[prop], config2[prop]);
     } else if (typeof config2[prop] !== 'undefined') {
@@ -875,13 +924,25 @@ module.exports = function mergeConfig(config1, config2) {
     }
   });
 
-  utils.forEach([
-    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
-    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
-    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
-    'socketPath'
-  ], function defaultToConfig2(prop) {
+  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  var axiosKeys = valueFromConfig2Keys
+    .concat(mergeDeepPropertiesKeys)
+    .concat(defaultToConfig2Keys);
+
+  var otherKeys = Object
+    .keys(config2)
+    .filter(function filterAxiosKeys(key) {
+      return axiosKeys.indexOf(key) === -1;
+    });
+
+  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
     if (typeof config2[prop] !== 'undefined') {
       config[prop] = config2[prop];
     } else if (typeof config1[prop] !== 'undefined') {
@@ -989,13 +1050,12 @@ function setContentTypeIfUnset(headers, value) {
 
 function getDefaultAdapter() {
   var adapter;
-  // Only Node.JS has a process variable that is of [[Class]] process
-  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof XMLHttpRequest !== 'undefined') {
+  if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
     adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -1517,7 +1577,6 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1533,6 +1592,27 @@ var toString = Object.prototype.toString;
  */
 function isArray(val) {
   return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
 }
 
 /**
@@ -1589,16 +1669,6 @@ function isString(val) {
  */
 function isNumber(val) {
   return typeof val === 'number';
-}
-
-/**
- * Determine if a value is undefined
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if the value is undefined, otherwise false
- */
-function isUndefined(val) {
-  return typeof val === 'undefined';
 }
 
 /**
@@ -1848,28 +1918,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -8148,10 +8196,11 @@ Emitter.prototype.hasListeners = function(event){
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * typeahead.js 1.2.0
- * https://github.com/twitter/typeahead.js
- * Copyright 2013-2017 Twitter, Inc. and other contributors; Licensed MIT
+ * typeahead.js 1.3.0
+ * https://github.com/corejavascript/typeahead.js
+ * Copyright 2013-2019 Twitter, Inc. and other contributors; Licensed MIT
  */
+
 
 (function(root, factory) {
     if (true) {
@@ -8304,7 +8353,7 @@ Emitter.prototype.hasListeners = function(event){
             noop: function() {}
         };
     }();
-    var VERSION = "1.2.0";
+    var VERSION = "1.3.0";
     var tokenizers = function() {
         "use strict";
         return {
@@ -9986,8 +10035,12 @@ Emitter.prototype.hasListeners = function(event){
                 pending: templates.pending && _.templatify(templates.pending),
                 header: templates.header && _.templatify(templates.header),
                 footer: templates.footer && _.templatify(templates.footer),
-                suggestion: templates.suggestion || suggestionTemplate
+                suggestion: templates.suggestion ? userSuggestionTemplate : suggestionTemplate
             };
+            function userSuggestionTemplate(context) {
+                var template = templates.suggestion;
+                return $(template(context)).attr("id", _.guid());
+            }
             function suggestionTemplate(context) {
                 return $('<div role="option">').attr("id", _.guid()).text(displayFn(context));
             }
@@ -10346,8 +10399,10 @@ Emitter.prototype.hasListeners = function(event){
                 var $selectable;
                 if ($selectable = this.menu.getActiveSelectable()) {
                     this.select($selectable) && $e.preventDefault();
-                } else if ($selectable = this.menu.getTopSelectable()) {
-                    this.autocomplete($selectable) && $e.preventDefault();
+                } else if (this.autoselect) {
+                    if ($selectable = this.menu.getTopSelectable()) {
+                        this.autocomplete($selectable) && $e.preventDefault();
+                    }
                 }
             },
             _onEscKeyed: function onEscKeyed() {
@@ -10499,7 +10554,9 @@ Emitter.prototype.hasListeners = function(event){
                 if (!cancelMove && !this.eventBus.before("cursorchange", suggestion, datasetName)) {
                     this.menu.setCursor($candidate);
                     if (data) {
-                        this.input.setInputValue(data.val);
+                        if (typeof data.val === "string") {
+                            this.input.setInputValue(data.val);
+                        }
                     } else {
                         this.input.resetInputValue();
                         this._updateHint();
@@ -64374,7 +64431,7 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
- * Select2 4.0.11
+ * Select2 4.0.13
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -65913,6 +65970,27 @@ S2.define('select2/selection/base',[
     throw new Error('The `update` method must be defined in child classes.');
   };
 
+  /**
+   * Helper method to abstract the "enabled" (not "disabled") state of this
+   * object.
+   *
+   * @return {true} if the instance is not disabled.
+   * @return {false} if the instance is disabled.
+   */
+  BaseSelection.prototype.isEnabled = function () {
+    return !this.isDisabled();
+  };
+
+  /**
+   * Helper method to abstract the "disabled" state of this object.
+   *
+   * @return {true} if the disabled option is true.
+   * @return {false} if the disabled option is false.
+   */
+  BaseSelection.prototype.isDisabled = function () {
+    return this.options.get('disabled');
+  };
+
   return BaseSelection;
 });
 
@@ -66063,7 +66141,7 @@ S2.define('select2/selection/multiple',[
       '.select2-selection__choice__remove',
       function (evt) {
         // Ignore the event if it is disabled
-        if (self.options.get('disabled')) {
+        if (self.isDisabled()) {
           return;
         }
 
@@ -66224,7 +66302,7 @@ S2.define('select2/selection/allowClear',[
 
   AllowClear.prototype._handleClear = function (_, evt) {
     // Ignore the event if it is disabled
-    if (this.options.get('disabled')) {
+    if (this.isDisabled()) {
       return;
     }
 
@@ -66267,7 +66345,7 @@ S2.define('select2/selection/allowClear',[
       }
     }
 
-    this.$element.trigger('change');
+    this.$element.trigger('input').trigger('change');
 
     this.trigger('toggle', {});
   };
@@ -66290,7 +66368,7 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');   
+    var removeAll = this.options.get('translations').get('removeAllItems');
 
     var $remove = $(
       '<span class="select2-selection__clear" title="' + removeAll() +'">' +
@@ -67558,7 +67636,7 @@ S2.define('select2/data/select',[
     if ($(data.element).is('option')) {
       data.element.selected = true;
 
-      this.$element.trigger('change');
+      this.$element.trigger('input').trigger('change');
 
       return;
     }
@@ -67579,13 +67657,13 @@ S2.define('select2/data/select',[
         }
 
         self.$element.val(val);
-        self.$element.trigger('change');
+        self.$element.trigger('input').trigger('change');
       });
     } else {
       var val = data.id;
 
       this.$element.val(val);
-      this.$element.trigger('change');
+      this.$element.trigger('input').trigger('change');
     }
   };
 
@@ -67601,7 +67679,7 @@ S2.define('select2/data/select',[
     if ($(data.element).is('option')) {
       data.element.selected = false;
 
-      this.$element.trigger('change');
+      this.$element.trigger('input').trigger('change');
 
       return;
     }
@@ -67619,7 +67697,7 @@ S2.define('select2/data/select',[
 
       self.$element.val(val);
 
-      self.$element.trigger('change');
+      self.$element.trigger('input').trigger('change');
     });
   };
 
@@ -68855,7 +68933,10 @@ S2.define('select2/dropdown/attachBody',[
       left: 0
     };
 
-    if ($.contains(document.body, $offsetParent[0])) {
+    if (
+      $.contains(document.body, $offsetParent[0]) ||
+      $offsetParent[0].isConnected
+      ) {
       parentOffset = $offsetParent.offset();
     }
 
@@ -69899,8 +69980,8 @@ S2.define('select2/core',[
 
     if (observer != null) {
       this._observer = new observer(function (mutations) {
-        $.each(mutations, self._syncA);
-        $.each(mutations, self._syncS);
+        self._syncA();
+        self._syncS(null, mutations);
       });
       this._observer.observe(this.$element[0], {
         attributes: true,
@@ -70022,7 +70103,7 @@ S2.define('select2/core',[
       if (self.isOpen()) {
         if (key === KEYS.ESC || key === KEYS.TAB ||
             (key === KEYS.UP && evt.altKey)) {
-          self.close();
+          self.close(evt);
 
           evt.preventDefault();
         } else if (key === KEYS.ENTER) {
@@ -70056,7 +70137,7 @@ S2.define('select2/core',[
   Select2.prototype._syncAttributes = function () {
     this.options.set('disabled', this.$element.prop('disabled'));
 
-    if (this.options.get('disabled')) {
+    if (this.isDisabled()) {
       if (this.isOpen()) {
         this.close();
       }
@@ -70067,7 +70148,7 @@ S2.define('select2/core',[
     }
   };
 
-  Select2.prototype._syncSubtree = function (evt, mutations) {
+  Select2.prototype._isChangeMutation = function (evt, mutations) {
     var changed = false;
     var self = this;
 
@@ -70095,7 +70176,22 @@ S2.define('select2/core',[
       }
     } else if (mutations.removedNodes && mutations.removedNodes.length > 0) {
       changed = true;
+    } else if ($.isArray(mutations)) {
+      $.each(mutations, function(evt, mutation) {
+        if (self._isChangeMutation(evt, mutation)) {
+          // We've found a change mutation.
+          // Let's escape from the loop and continue
+          changed = true;
+          return false;
+        }
+      });
     }
+    return changed;
+  };
+
+  Select2.prototype._syncSubtree = function (evt, mutations) {
+    var changed = this._isChangeMutation(evt, mutations);
+    var self = this;
 
     // Only re-pull the data if we think there is a change
     if (changed) {
@@ -70146,7 +70242,7 @@ S2.define('select2/core',[
   };
 
   Select2.prototype.toggleDropdown = function () {
-    if (this.options.get('disabled')) {
+    if (this.isDisabled()) {
       return;
     }
 
@@ -70162,15 +70258,40 @@ S2.define('select2/core',[
       return;
     }
 
+    if (this.isDisabled()) {
+      return;
+    }
+
     this.trigger('query', {});
   };
 
-  Select2.prototype.close = function () {
+  Select2.prototype.close = function (evt) {
     if (!this.isOpen()) {
       return;
     }
 
-    this.trigger('close', {});
+    this.trigger('close', { originalEvent : evt });
+  };
+
+  /**
+   * Helper method to abstract the "enabled" (not "disabled") state of this
+   * object.
+   *
+   * @return {true} if the instance is not disabled.
+   * @return {false} if the instance is disabled.
+   */
+  Select2.prototype.isEnabled = function () {
+    return !this.isDisabled();
+  };
+
+  /**
+   * Helper method to abstract the "disabled" state of this object.
+   *
+   * @return {true} if the disabled option is true.
+   * @return {false} if the disabled option is false.
+   */
+  Select2.prototype.isDisabled = function () {
+    return this.options.get('disabled');
   };
 
   Select2.prototype.isOpen = function () {
@@ -70247,7 +70368,7 @@ S2.define('select2/core',[
       });
     }
 
-    this.$element.val(newVal).trigger('change');
+    this.$element.val(newVal).trigger('input').trigger('change');
   };
 
   Select2.prototype.destroy = function () {
@@ -70621,6 +70742,9 @@ try {
 }
 
 if (_storage_support) {
+  window.localStorage.removeItem('test');
+  window.sessionStorage.removeItem('test');
+
   module.exports = {
     localStorage: window.localStorage,
     sessionStorage: window.sessionStorage
@@ -72938,7 +73062,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -73108,7 +73232,7 @@ function entityCreatorUI() {
           context: this
         }).done(function (result, textStatus, xhr) {
           // New entity was created, let's follow that redirect
-          console.log(result);
+          //console.log(result);
           $('#entity-creator-form').hide();
           $('.entity-creator-success').html(result.message).show();
         }).fail(function (data) {
@@ -73122,6 +73246,11 @@ function entityCreatorUI() {
 
 function initEntityCreatorDuplicateName() {
   $('#entity-creator-selection input[name="name"]').focusout(function (e) {
+    // Don't bother if the user didn't set any value
+    if (!$(this).val()) {
+      return;
+    }
+
     var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
     entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
 
@@ -74917,24 +75046,24 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\abilities.scss */"./resources/assets/sass/abilities.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\subscription.scss */"./resources/assets/sass/subscription.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\conversation.scss */"./resources/assets/sass/conversation.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\community-votes.scss */"./resources/assets/sass/community-votes.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\settings.scss */"./resources/assets/sass/settings.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
-__webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\sass\tinymce.scss */"./resources/assets/sass/tinymce.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\abilities.scss */"./resources/assets/sass/abilities.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\map-v2.scss */"./resources/assets/sass/map-v2.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\subscription.scss */"./resources/assets/sass/subscription.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\conversation.scss */"./resources/assets/sass/conversation.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\community-votes.scss */"./resources/assets/sass/community-votes.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\settings.scss */"./resources/assets/sass/settings.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\dark.scss */"./resources/assets/sass/themes/dark.scss");
+__webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\themes\midnight.scss */"./resources/assets/sass/themes/midnight.scss");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\sass\tinymce.scss */"./resources/assets/sass/tinymce.scss");
 
 
 /***/ }),

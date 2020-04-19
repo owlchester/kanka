@@ -95,9 +95,11 @@ class SubscriptionController extends Controller
                 ->change($request->all())
                 ->finish($request->get('payment_id'));
 
+            $flash = $request->get('tier') === Patreon::PLEDGE_KOBOLD ? 'cancel' : 'subscribed';
+
             return redirect()
                 ->route('settings.subscription')
-                ->withSuccess(__('settings.subscription.success.subscribed'));
+                ->withSuccess(__('settings.subscription.success.' . $flash));
         } catch(IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(
