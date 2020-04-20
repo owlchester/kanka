@@ -7,6 +7,14 @@
 var notificationList, notificationCount, notificationRefreshTimeout = 60 * 1000;
 
 $(document).ready(function () {
+
+    // If we are on the notification page, just clear everything
+    if ($('#notification-clear').length === 1) {
+        localStorage.setItem('notification-count', 0);
+        localStorage.setItem('last_notification', new Date().getTime());
+        console.log('clear');
+    }
+
     notificationList = $('#header-notification-list');
     notificationCount = $('#header-notification-count');
     if (notificationList.length === 1) {
@@ -31,8 +39,9 @@ function updateNotificationUI() {
         let count = localStorage.getItem('notification-count');
         let body = localStorage.getItem('notification-body');
 
+        notificationList.html(body);
+
         if (count > 0) {
-            notificationList.html(body);
             notificationCount.html(count).show();
         } else {
             notificationCount.hide();
