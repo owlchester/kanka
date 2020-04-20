@@ -39,6 +39,7 @@ use Laravel\Passport\HasApiTokens;
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharing
  * @property string $patreon_pledge
+ * @property int $booster_count
  *
  * Virtual
  * @property bool $advancedMentions
@@ -427,6 +428,11 @@ class User extends \TCG\Voyager\Models\User
      */
     public function maxBoosts(): int
     {
+        // Allows us to give boosters to members of the community
+        if (!empty($this->booster_count)) {
+            return $this->booster_count;
+        }
+
         if (!$this->isPatron()) {
             return 0;
         }
