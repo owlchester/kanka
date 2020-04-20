@@ -36,6 +36,8 @@ use Illuminate\Support\Facades\DB;
  * @property EntityMention[] $mentions
  * @property CampaignSetting $setting
  * @property CampaignUser[] $members
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Campaign extends MiscModel
 {

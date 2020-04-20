@@ -50,9 +50,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     @endif
 
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
-    <style>
-{!! $campaign->css !!}
-    </style>
+        <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
     @endif
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
