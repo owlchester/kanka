@@ -19,12 +19,16 @@ $model = $widget->entity->child;
         </h3>
     </div>
     <div class="panel-body">
-        <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+        @if ($widget->conf('full') === '1')
             {!! $model->entry() !!}
-        </div>
-        <a href="#" class="preview-switch hidden"
-           id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa fa-chevron-down"></i>
-        </a>
+        @else
+            <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+                {!! $model->entry() !!}
+            </div>
+            <a href="#" class="preview-switch hidden"
+               id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        @endif
     </div>
 </div>
