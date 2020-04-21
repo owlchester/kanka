@@ -29,7 +29,6 @@ class AbilityController extends Controller
     public function __construct(AbilityService $service)
     {
         $this->service = $service;
-        $this->middleware('campaign.boosted');
     }
 
     /**

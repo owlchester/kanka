@@ -37,7 +37,6 @@ class AbilityController extends CrudController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('campaign.boosted');
     }
 
     /**
