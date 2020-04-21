@@ -83,7 +83,7 @@ return [
             'success'       => 'Character added to organisation.',
             'title'         => 'New Organisation for :name',
         ],
-        'description'   => 'Organisations the character is part of.',
+        'description'   => 'Organisations the character is a part of.',
         'destroy'       => [
             'success'   => 'Character organisation removed.',
         ],
@@ -106,9 +106,9 @@ return [
         'age'               => 'Age',
         'appearance_entry'  => 'Description',
         'appearance_name'   => 'Hair, Eyes, Skin, Height',
-        'family'            => 'Please select a character',
+        'family'            => 'Select a character',
         'image'             => 'Image',
-        'location'          => 'Please select a location',
+        'location'          => 'Select a location',
         'name'              => 'Name',
         'personality_entry' => 'Details',
         'personality_name'  => 'Goals, Mannerisms, Fears, Bonds',
@@ -120,7 +120,7 @@ return [
         'type'              => 'NPC, Player Character, Deity',
     ],
     'quests'        => [
-        'description'   => 'Quests a character are part of.',
+        'description'   => 'Quests a character is a part of.',
         'helpers'       => [
             'quest_giver'   => 'Quests that the character is a quest giver of.',
             'quest_member'  => 'Quests that the character is a member of.',

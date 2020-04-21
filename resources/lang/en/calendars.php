@@ -38,13 +38,13 @@ return [
         ],
         'create'    => [
             'description'   => 'Create a calendar event',
-            'success'       => 'Calendar event created',
+            'success'       => 'Calendar event created.',
             'title'         => 'Add a Calendar Event to :name',
         ],
         'destroy'   => 'Event removed from calendar \':name\'.',
         'edit'      => [
             'description'   => 'Update a calendar event',
-            'success'       => 'Calendar event updated',
+            'success'       => 'Calendar event updated.',
             'title'         => 'Update Calendar Event for :name',
         ],
         'helpers'   => [
