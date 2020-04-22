@@ -5,7 +5,7 @@ return [
         'add'   => 'Add an ability',
         'reset' => 'Reset ability usages',
     ],
-    'create' => [
+    'create'    => [
         'title' => 'Add an ability to :name',
     ],
     'show'      => [

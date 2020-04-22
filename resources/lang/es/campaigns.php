@@ -114,6 +114,7 @@ return [
             'validity'  => 'Validez',
         ],
         'helpers'               => [
+            'email'     => 'Puede ser que nuestros correos se marquen como spam y pueden tardar unas horas hasta aparecer en tu buzón de entrada.',
             'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive.',
         ],
         'placeholders'          => [
@@ -266,12 +267,14 @@ return [
         'actions'       => [
             'enable'    => 'Habilitar',
         ],
+        'boosted'       => 'Esta función está en beta y actualmente solo está disponible para las :boosted.',
         'description'   => 'Habilitar o deshabilitar módulos de la campaña.',
         'edit'          => [
             'success'   => 'Ajustes de campaña actualizados.',
         ],
         'helper'        => 'Puedes activar o desactivar fácilmente todos los módulos de una campaña. Desactivar un módulo solo ocultará sus elementos relacionados, no los eliminará. Este cambio afecta a todos los usuarios de una campaña, incluyendo a los Administradores.',
         'helpers'       => [
+            'abilities'     => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
             'calendars'     => 'El sitio para definir los calendarios de tu mundo.',
             'characters'    => 'Las personas que viven en tu mundo.',
             'conversations' => 'Conversaciones ficticias entre personajes o entre usuarios de la campaña.',
@@ -301,6 +304,7 @@ return [
             'information'   => 'Información',
             'members'       => 'Miembros',
             'menu'          => 'Menú',
+            'recovery'      => 'Recuperación',
             'roles'         => 'Roles',
             'settings'      => 'Módulos',
         ],

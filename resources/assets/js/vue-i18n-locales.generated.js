@@ -1069,6 +1069,7 @@ export default {
         }
     },
     "en-US": {
+        "admin": [],
         "calendars": [],
         "crud": {
             "fields": {
@@ -1079,6 +1080,7 @@ export default {
                 "organisation": "Choose an organization"
             }
         },
+        "entities": [],
         "randomisers": []
     },
     "es": {
@@ -1243,9 +1245,13 @@ export default {
                 }
             },
             "boosted": "Mejorada",
+            "boosted_campaigns": "Campañas mejoradas",
             "bulk": {
                 "actions": {
                     "edit": "Editar y etiquetar en lote"
+                },
+                "age": {
+                    "helper": "Puedes usar + y - antes del número para actualizar la edad en dicha cantidad."
                 },
                 "edit": {
                     "tagging": "Acción para las etiquetas",
@@ -1300,6 +1306,7 @@ export default {
             },
             "edit": "Editar",
             "errors": {
+                "boosted": "Esta función solo está disponible para las campañas mejoradas.",
                 "node_must_not_be_a_descendant": "Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo."
             },
             "events": {
@@ -1307,6 +1314,7 @@ export default {
             },
             "export": "Exportar",
             "fields": {
+                "ability": "Habilidad",
                 "attribute_template": "Plantilla de atributos",
                 "calendar": "Calendario",
                 "calendar_date": "Fecha del calendario",
@@ -1449,7 +1457,8 @@ export default {
                     "delete": "Eliminar",
                     "edit": "Editar",
                     "entity_note": "Notas de entidad",
-                    "read": "Leer"
+                    "read": "Leer",
+                    "toggle": "Cambiar"
                 },
                 "allowed": "Permitido",
                 "fields": {
@@ -1464,6 +1473,7 @@ export default {
                 "too_many_members": "Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente."
             },
             "placeholders": {
+                "ability": "Escoge una habilidad",
                 "calendar": "Escoge un calendario",
                 "character": "Escoge un personaje",
                 "entity": "Entidad",
@@ -1497,6 +1507,7 @@ export default {
             "search": "Buscar",
             "select": "Seleccionar",
             "tabs": {
+                "abilities": "Habilidades",
                 "attributes": "Atributos",
                 "boost": "Mejorar",
                 "calendars": "Calendarios",
@@ -1519,6 +1530,7 @@ export default {
             "view": "Ver",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Yo + Admin",
                 "all": "Todos",
                 "self": "Solo yo"
             }
@@ -1788,6 +1800,9 @@ export default {
             "bulk": {
                 "actions": {
                     "edit": "Opération de masse"
+                },
+                "age": {
+                    "helper": "Il est possible de préfixer le numéro avec + ou - pour modifier l'age dynamiquement."
                 },
                 "edit": {
                     "tagging": "Action pour les étiquettes",
@@ -2332,10 +2347,14 @@ export default {
                     "tab": "A tulajdonság csak a Tulajdonságok fülön jelenik meg."
                 }
             },
-            "boosted": "Boost-olt",
+            "boosted": "Kiemelt",
+            "boosted_campaigns": "Kiemelt kampányok",
             "bulk": {
                 "actions": {
                     "edit": "Tömeges szerkesztés, és címkézés"
+                },
+                "age": {
+                    "helper": "Használhatod a + és - gombokat a szám előtt, hogy frissítsd a korát az adott számmal."
                 },
                 "edit": {
                     "tagging": "Címkézési esemény",
@@ -2390,6 +2409,7 @@ export default {
             },
             "edit": "Szerkesztés",
             "errors": {
+                "boosted": "Ez a lehetőség csak a kiemelt kampányokban érhető el.",
                 "node_must_not_be_a_descendant": "Érvénytelen csomópont (címke, előd helyszín): saját maga leszármazottja lehet."
             },
             "events": {
@@ -2397,6 +2417,7 @@ export default {
             },
             "export": "Export",
             "fields": {
+                "ability": "Képesség",
                 "attribute_template": "Tulajdonságsablon",
                 "calendar": "Naptár",
                 "calendar_date": "Naptári dátum",
@@ -2555,6 +2576,7 @@ export default {
                 "too_many_members": "A kampánynak túl sok tagja (>10) van ahhoz, hogy kijelezzük ezen a felületen. Kérjük, használd az entitás nézetben az Engedély gombot, hogy kezeld az engedélyek részleteit."
             },
             "placeholders": {
+                "ability": "Válassz egy képességet",
                 "calendar": "Válassz egy naptárat!",
                 "character": "Válassz egy karaktert!",
                 "entity": "Entitás",
@@ -2588,6 +2610,7 @@ export default {
             "search": "Keresés",
             "select": "Kiválasztás",
             "tabs": {
+                "abilities": "Képességek",
                 "attributes": "Tulajdonságok",
                 "boost": "Boost",
                 "calendars": "Naptárak",
@@ -2610,6 +2633,7 @@ export default {
             "view": "Megtekintés",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Magam és az admin",
                 "all": "Mindenki",
                 "self": "Magam"
             }

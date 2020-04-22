@@ -135,7 +135,7 @@
                 </a>
             </li>
             @if ($campaign->boosted())
-                <li>
+                    <li class="@if(!empty($active) && $active == 'recovery')active @endif">
                     <a href="{{ route('recovery') }}">
                         {{ __('campaigns.show.tabs.recovery') }}
                     </a>

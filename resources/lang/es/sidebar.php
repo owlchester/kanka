@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'abilities'             => 'Habilidades',
     'admin'                 => 'Administrar',
     'attribute_templates'   => 'Plantillas de atributos',
     'calendars'             => 'Calendarios',

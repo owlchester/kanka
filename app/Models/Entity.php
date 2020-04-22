@@ -540,7 +540,7 @@ class Entity extends Model
      */
     public function starredRelations()
     {
-        return $this->relationships()->stared()->ordered();
+        return $this->relationships()->stared()->ordered()->has('target');
     }
 
     /**

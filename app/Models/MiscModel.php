@@ -263,7 +263,7 @@ abstract class MiscModel extends Model
      */
     public function menuItems($items = [])
     {
-        $mapPoints = $this->entity->targetMapPoints()->count();
+        $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
         if ($mapPoints > 0) {
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',

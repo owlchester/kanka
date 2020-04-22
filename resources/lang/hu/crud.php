@@ -90,10 +90,14 @@ return [
             'tab'       => 'A tulajdonság csak a Tulajdonságok fülön jelenik meg.',
         ],
     ],
-    'boosted'           => 'Boost-olt',
+    'boosted'           => 'Kiemelt',
+    'boosted_campaigns' => 'Kiemelt kampányok',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Tömeges szerkesztés, és címkézés',
+        ],
+        'age'           => [
+            'helper'    => 'Használhatod a + és - gombokat a szám előtt, hogy frissítsd a korát az adott számmal.',
         ],
         'edit'          => [
             'tagging'   => 'Címkézési esemény',
@@ -148,6 +152,7 @@ return [
     ],
     'edit'              => 'Szerkesztés',
     'errors'            => [
+        'boosted'                       => 'Ez a lehetőség csak a kiemelt kampányokban érhető el.',
         'node_must_not_be_a_descendant' => 'Érvénytelen csomópont (címke, előd helyszín): saját maga leszármazottja lehet.',
     ],
     'events'            => [
@@ -155,6 +160,7 @@ return [
     ],
     'export'            => 'Export',
     'fields'            => [
+        'ability'               => 'Képesség',
         'attribute_template'    => 'Tulajdonságsablon',
         'calendar'              => 'Naptár',
         'calendar_date'         => 'Naptári dátum',
@@ -313,6 +319,7 @@ return [
         'too_many_members'  => 'A kampánynak túl sok tagja (>10) van ahhoz, hogy kijelezzük ezen a felületen. Kérjük, használd az entitás nézetben az Engedély gombot, hogy kezeld az engedélyek részleteit.',
     ],
     'placeholders'      => [
+        'ability'       => 'Válassz egy képességet',
         'calendar'      => 'Válassz egy naptárat!',
         'character'     => 'Válassz egy karaktert!',
         'entity'        => 'Entitás',
@@ -346,6 +353,7 @@ return [
     'search'            => 'Keresés',
     'select'            => 'Kiválasztás',
     'tabs'              => [
+        'abilities'     => 'Képességek',
         'attributes'    => 'Tulajdonságok',
         'boost'         => 'Boost',
         'calendars'     => 'Naptárak',
@@ -367,8 +375,9 @@ return [
     ],
     'view'              => 'Megtekintés',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Mindenki',
-        'self'  => 'Magam',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Magam és az admin',
+        'all'           => 'Mindenki',
+        'self'          => 'Magam',
     ],
 ];

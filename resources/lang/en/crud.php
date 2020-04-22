@@ -97,7 +97,7 @@ return [
         'actions'       => [
             'edit'  => 'Bulk Edit & Tagging',
         ],
-        'age'       => [
+        'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
         ],
         'edit'          => [

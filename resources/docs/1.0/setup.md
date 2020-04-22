@@ -22,7 +22,7 @@ When calling the API, add the following headers:
 
 ```json
     Authorization: Bearer user_token_here
-    Accept: application/json
+    Content-type: application/json
 ```
 
 <a name="endpoints"></a>

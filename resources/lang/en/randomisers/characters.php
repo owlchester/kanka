@@ -22,7 +22,7 @@ return [
         '5' => 'Red',
         '6' => 'Light Red',
         '7' => 'Dark Red',
-        '8' => 'Auury',
+        '8' => 'Augury',
         '9' => 'Dusk',
     ],
     'fear'      => [

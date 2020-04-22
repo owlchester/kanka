@@ -52,6 +52,7 @@ class InventoryController extends Controller
         $inventory = $entity
             ->inventories()
             ->with('item')
+            ->has('entity')
             ->acl()
             ->simpleSort($datagridSorter)
             ->paginate();

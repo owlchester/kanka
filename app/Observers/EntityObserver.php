@@ -238,6 +238,11 @@ class EntityObserver
      */
     public function deleted(Entity $entity)
     {
+        // If soft deleting, don't really delete the image
+        if ($entity->trashed()) {
+            return;
+        }
+
         $entity->permissions()->delete();
         $entity->widgets()->delete();
     }
