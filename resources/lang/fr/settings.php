@@ -48,13 +48,13 @@ return [
     ],
     'boost'         => [
         'benefits'      => [
-            'first'     => 'Pour assurer une évolution continue de Kanka, certaines fonctionalités de l\'application sont débloquées lorsqu\'une campagne est boostée. Des boosts sont débloqués au travers de :patreon. Une campagne peut être boostée par peu importe qui, du moment que le compte peut lire la campagne. Une campagne est boostée tant que le compte soutient Kanka sur :patreon. Si une campagne n\'est plus boostée, les informations ne sont pas perdues mais simplement invisible jusqu\'à ce que la campagne devienne à nouveau boostée.',
+            'first'     => 'Pour assurer une évolution continue de Kanka, certaines fonctionalités de l\'application sont débloquées lorsqu\'une campagne est boostée. Des boosts sont débloqués au travers d\'abonnements. Une campagne peut être boostée par n\'importe qui, du moment que le compte a accès à la campagne. Une campagne est boostée tant que le compte soutient Kanka à travers un :subscription. Si une campagne n\'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu\'à ce que la campagne sois à nouveau boostée.',
             'header'    => 'Image d\'en-tête pour entité.',
             'more'      => 'En savoir plus sur toutes les fonctionalités.',
             'second'    => 'Booster une campagne débloques les bénéfices suivants:',
             'theme'     => 'Thème de campagne et style personnalisé.',
             'tooltip'   => 'Infobulles personnalisés pour les entités.',
-            'upload'    => 'Tailles de fichiers téléversés plus grand pour tous les membres de la campagne.',
+            'upload'    => 'Taille de fichier uploadé plus grand pour tous les membres de la campagne.',
         ],
         'buttons'       => [
             'boost' => 'Boost',
@@ -147,11 +147,11 @@ return [
         'actions'               => [
             'cancel_sub'        => 'Annuler l\'abonnement',
             'subscribe'         => 'Abonner',
-            'update_currency'   => 'Changer la monnaie préférée',
+            'update_currency'   => 'Changer la devise',
         ],
         'benefits'              => 'En nous soutenant, tu peux débloquer de nouvelles fonctionnalités: et nous aider a investir plus de temps dans l\'amélioration de Kanka. Aucune information concernant ta carte de crédit n\'est stockée ou ne transite par nos serveurs. Nous utilisons :stripe pour gérer toutes les factures.',
         'billing'               => [
-            'helper'    => 'Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers :stripe. Cette méthode de paiement sera utilisées pour tous les abonnements.',
+            'helper'    => 'Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers :stripe. Cette méthode de paiement sera utilisée pour tous les abonnements.',
             'saved'     => 'Méthode de paiement',
             'title'     => 'Modifier la méthode de paiement',
         ],
@@ -168,7 +168,7 @@ return [
             'usd'   => 'USD',
         ],
         'currency'              => [
-            'title' => 'Changer la monnaie de facturaction',
+            'title' => 'Changer la devise de facturation',
         ],
         'errors'                => [
             'callback'      => 'Notre gestionnaire de paiement nous a remonté une erreur. Prière de ressayer et nous contacter si le problème persiste.',
@@ -186,6 +186,7 @@ return [
         'manage_subscription'   => 'Gérer l\'abonnement',
         'payment_method'        => [
             'actions'   => [
+                'add_new'   => 'Ajouter une méthode de paiement',
                 'change'    => 'Modifier la méthode de paiement',
                 'save'      => 'Enregister la méthode de paiement',
             ],
@@ -219,16 +220,16 @@ return [
             'button'    => 'Information sur l\'upgrade/downgrade',
             'downgrade' => [
                 'bullets'   => [
-                    'end'   => 'L\'abonnement actuel reste actif jusqu\'à la fin du cycle de paiement, après quoi tu seras changé au nouvel abonnement.',
+                    'end'   => 'L\'abonnement actuel reste actif jusqu\'à la fin du cycle de paiement, après quoi le nouvel abonnement sera mis en place.',
                 ],
                 'title'     => 'Lors du passage à un niveau inférieur',
             ],
             'upgrade'   => [
                 'bullets'   => [
                     'immediate' => 'La méthode de paiement sera facturée immédiatement et les nouvelles fonctionnalités seront accessibles.',
-                    'prorate'   => 'Lors du changement de Owlbear à Elemental, seulement la différence sur l\'abonnement sera facturée.',
+                    'prorate'   => 'Lors du changement de Owlbear à Elemental, seulement la différence sera facturée.',
                 ],
-                'title'     => 'Lors du passage à un niveau suppérieur',
+                'title'     => 'Lors du passage à un niveau supérieur',
             ],
         ],
         'warnings'              => [

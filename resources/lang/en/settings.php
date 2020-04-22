@@ -184,6 +184,7 @@ return [
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
             'actions'   => [
+                'add_new'   => 'Add a new payment method',
                 'change'    => 'Change payment method',
                 'save'      => 'Save payment method',
             ],

@@ -3,6 +3,7 @@ export default {
     "de": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Erstelle eine neue Unterhaltung",
@@ -323,6 +324,7 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Hinzufügen",
+                        "ignore": "Ignorieren",
                         "remove": "Entfernen"
                     },
                     "delete": "Löschen",
@@ -397,6 +399,7 @@ export default {
             }
         },
         "entities": [],
+        "front": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -558,7 +561,8 @@ export default {
                 "new": "New",
                 "next": "Next",
                 "private": "Private",
-                "public": "Public"
+                "public": "Public",
+                "reset": "Reset"
             },
             "add": "Add",
             "alerts": {
@@ -888,6 +892,7 @@ export default {
             "rename": "Rename",
             "save": "Save",
             "save_and_close": "Save and Close",
+            "save_and_copy": "Save and Copy",
             "save_and_new": "Save and New",
             "save_and_update": "Save and Update",
             "save_and_view": "Save and View",
@@ -932,7 +937,6 @@ export default {
                     "update_email": "Update email",
                     "update_password": "Update password"
                 },
-                "description": "Update your account",
                 "email": "Change email",
                 "email_success": "Email updated.",
                 "password": "Change password",
@@ -946,16 +950,34 @@ export default {
                 "title": "Account"
             },
             "api": {
-                "description": "Update your API settings",
                 "experimental": "Welcome to the Kanka APIs! These features are still experimental but should be stable enough for you to start communicating with the APIs. Create a Personal Access Token to use in your api requests, or use the Client token if you want your app to have access to user data.",
                 "help": "Kanka will soon provide an RESTful API so that third-party apps can connect to the app. Details on how to manage your API keys will be shown here.",
                 "link": "Read the API documentation",
                 "request_permission": "We are currently building a powerful RESTful API so that third-party apps can connect to the app. However, we are currently limiting the number of users who can interact with the API while we polish it. If you want to get access to the API and build cools apps that talk with Kanka, please contact us and we'll send you all the information you need.",
                 "title": "API"
             },
+            "apps": {
+                "actions": {
+                    "connect": "Connect",
+                    "remove": "Remove"
+                },
+                "benefits": "Kanka provides a few integration to third party services. More third party integrations are planned for the future.",
+                "discord": {
+                    "errors": {
+                        "0": "1",
+                        "add": "An error occurred linking up your Discord account with Kanka. Please try again."
+                    },
+                    "success": {
+                        "add": "Your Discord account has been linked.",
+                        "remove": "Your Discord account has been unlinked."
+                    },
+                    "text": "Access your subscription roles automatically."
+                },
+                "title": "App Integration"
+            },
             "boost": {
                 "benefits": {
-                    "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through {patreon}. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka on {patreon}. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
+                    "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
                     "header": "Entity header images.",
                     "more": "Find out more about all features.",
                     "second": "Boosting a campaign enables the following benefits:",
@@ -977,22 +999,43 @@ export default {
                 },
                 "title": "Boost"
             },
+            "invoices": {
+                "actions": {
+                    "download": "Download PDF",
+                    "view_all": "View all"
+                },
+                "fields": {
+                    "amount": "Amount",
+                    "date": "Date",
+                    "invoice": "Invoice",
+                    "status": "Status"
+                },
+                "header": "Below is a list of your last 24 invoices which can be downloaded.",
+                "status": {
+                    "paid": "Paid",
+                    "pending": "Pending"
+                },
+                "title": "Invoices"
+            },
             "layout": {
-                "description": "Update your layout options",
                 "success": "Layout options updated.",
                 "title": "Layout"
             },
             "menu": {
                 "account": "Account",
                 "api": "API",
+                "apps": "Apps",
+                "billing": "Payment Method",
                 "boost": "Boost",
+                "invoices": "Invoices",
                 "layout": "Layout",
+                "other": "Other",
                 "patreon": "Patreon",
+                "payment_options": "Payment Options",
                 "personal_settings": "Personal Settings",
                 "profile": "Profile",
                 "subscription": "Subscription",
-                "subscription_status": "Subscription Status",
-                "payment_options": "Payment Options"
+                "subscription_status": "Subscription Status"
             },
             "patreon": {
                 "actions": {
@@ -1001,6 +1044,7 @@ export default {
                 },
                 "benefits": "Supporting us on {patreon} unlocks all sorts of {features} for you and your campaigns, and also helps us spend more time working on improving Kanka.",
                 "benefits_features": "amazing features",
+                "deprecated": "Deprecated feature - if you wish to support Kanka, please do so with a {subscription}. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.",
                 "description": "Syncing with Patreon",
                 "errors": {
                     "invalid_token": "Invalid token! Patreon couldn't validate your request.",
@@ -1010,6 +1054,11 @@ export default {
                 "link": "Use the following button if you are currently supporting Kanka on {patreon}. This will unlock the bonuses",
                 "linked": "Thank you for supporting Kanka on Patreon! Your account is linked.",
                 "pledge": "Pledge: {name}",
+                "remove": {
+                    "button": "Unlink your Patreon account",
+                    "text": "Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.",
+                    "title": "Unlink your Patreon account with Kanka"
+                },
                 "success": "Thank you for supporting Kanka on Patreon!",
                 "title": "Patreon",
                 "wrong_pledge": "Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us."
@@ -1019,57 +1068,105 @@ export default {
                     "update_profile": "Update profile"
                 },
                 "avatar": "Profile Picture",
-                "description": "Update your profile",
                 "success": "Profile updated.",
                 "title": "Personal Profile"
             },
             "subscription": {
-                "billing": {
-                    "title": "Edit Payment Method",
-                    "helper": "Your billing information is processed and stored safely through {stripe}. This payment method is used for all of your subscriptions.",
-                    "saved": "Saved payment method"
-                },
-                "manage_subscription": "Manage your subscription",
-                "benefits": "By supporting us, you can unlock some new {features} and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use {strip} to handle all billing.",
-                "sub_status": "Subscription status",
-                "fields": {
-                    "plan": "Current plan",
-                    "price": "Price",
-                    "active_since": "Active since",
-                    "active_until": "Active until"
-                },
                 "actions": {
-                    "cancel_sub": "Cancel subscription"
+                    "cancel_sub": "Cancel subscription",
+                    "subscribe": "Subscribe",
+                    "update_currency": "Save prefered currency"
                 },
+                "benefits": "By supporting us, you can unlock some new {features} and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use {stripe} to handle all billing.",
+                "billing": {
+                    "helper": "Your billing information is processed and stored safely through {stripe}. This payment method is used for all of your subscriptions.",
+                    "saved": "Saved payment method",
+                    "title": "Edit Payment Method"
+                },
+                "cancel": {
+                    "text": "Sorry to see you go! Cancelling your subscription will keep it active until your next billing cycle, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision."
+                },
+                "cancelled": "Your subscription has been cancelled. You can renew a subscription once your current subscription ends.",
+                "change": {
+                    "text": "You are subscribing at the {tier} tier, billed monthly for {amount}.",
+                    "title": "Change Subscription Tier"
+                },
+                "currencies": {
+                    "eur": "EUR",
+                    "usd": "USD"
+                },
+                "currency": {
+                    "title": "Change your preferred billing currency"
+                },
+                "errors": {
+                    "callback": "Our payment provider reported an error. Please try again or contact us if the problem persists.",
+                    "subscribed": "Couldn't process your subscription. Stripe provided the following hint."
+                },
+                "fields": {
+                    "active_since": "Active since",
+                    "active_until": "Active until",
+                    "billed_monthly": "Billed monthly",
+                    "currency": "Billing Currency",
+                    "payment_method": "Payment method",
+                    "plan": "Current plan",
+                    "reason": "Reason"
+                },
+                "manage_subscription": "Manage subscription",
                 "payment_method": {
+                    "actions": {
+                        "add_new": "Add a new payment method",
+                        "change": "Change payment method",
+                        "save": "Save payment method"
+                    },
+                    "add_one": "You currently have no payment method saved.",
                     "card": "Card",
                     "card_name": "Name on card",
-                    "new_card": "Add a new payment method",
-                    "add_one": "You currently have no payment method saved.",
-                    "actions": {
-                        "save": "Save payment method",
-                        "add_new": "Add a new payment method"
-                    },
+                    "ending": "Ending in",
                     "helper": "This card will be used for all of your subscriptions.",
-                    "select": "Select a method payment",
-                    "ending": "Ending in"
+                    "new_card": "Add a new payment method",
+                    "saved": "{brand} ending with {last4}"
                 },
+                "placeholders": {
+                    "reason": "Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?"
+                },
+                "sub_status": "Subscription information",
                 "subscription": {
-                    "select": "Select subscription",
                     "actions": {
-                        "subscribe": "Subscribe",
-                        "processing": "Processing"
+                        "downgrading": "Please contact us for downgrading",
+                        "rollback": "Change to Kobold",
+                        "subscribe": "Change to {tier} monthly"
                     }
                 },
                 "success": {
-                    "cancel": "Your subscription was cancelled.",
-                    "subscribed": "Your subscription was successful."
+                    "callback": "Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).",
+                    "cancel": "Your subscription was cancelled. It will continue to be active until the end of your current billing period.",
+                    "currency": "Your prefered currency setting was updated.",
+                    "subscribed": "Your subscription was successful. Don't forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page."
+                },
+                "tiers": "Subscription Tiers",
+                "upgrade_downgrade": {
+                    "button": "Upgrade & Downgrade Information",
+                    "downgrade": {
+                        "bullets": {
+                            "end": "Your current tier will stay active until the end of your current billing cycle, after which you will be downgraded to your new tier."
+                        },
+                        "title": "When downgrading to a lower tier"
+                    },
+                    "upgrade": {
+                        "bullets": {
+                            "immediate": "Your payment method will be billed immediately and you will have access to your new tier.",
+                            "prorate": "When upgrading from Owlbear to Elemental, you will only be billed the difference to your new tier."
+                        },
+                        "title": "When upgrading to a higher tier"
+                    }
+                },
+                "warnings": {
+                    "patreon": "Your account is currently linked with Patreon. Please unlink your account in your {patreon} settings before switching to a Kanka subscription."
                 }
             }
         }
     },
     "en-US": {
-        "admin": [],
         "calendars": [],
         "crud": {
             "fields": {
@@ -1080,12 +1177,12 @@ export default {
                 "organisation": "Choose an organization"
             }
         },
-        "entities": [],
         "randomisers": []
     },
     "es": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Crear nueva conversación",
@@ -1536,6 +1633,7 @@ export default {
             }
         },
         "entities": [],
+        "front": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -1637,6 +1735,7 @@ export default {
     "fr": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Créer une nouvelle conversation",
@@ -1722,7 +1821,8 @@ export default {
                 "new": "Nouveau",
                 "next": "Prochain",
                 "private": "Privé",
-                "public": "Publique"
+                "public": "Publique",
+                "reset": "Réinitialiser"
             },
             "add": "Ajouter",
             "alerts": {
@@ -2052,6 +2152,7 @@ export default {
             "rename": "Renommer",
             "save": "Enregistrer",
             "save_and_close": "Enregistrer et Fermer",
+            "save_and_copy": "Enregistrer et Copier",
             "save_and_new": "Enregistrer et Nouveau",
             "save_and_update": "Enregistrer et continuer la modification",
             "save_and_view": "Enregistrer et Afficher",
@@ -2117,15 +2218,33 @@ export default {
                 "request_permission": "Nous construisons en ce moment des API RESTful pour que des applications tièrces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d'utilisateurs qui peuvent intéragire avec nos API, du moins jusqu'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donneront les infos dont tu as besoin!",
                 "title": "API"
             },
+            "apps": {
+                "actions": {
+                    "connect": "Lier",
+                    "remove": "Retirer"
+                },
+                "benefits": "Kanka supporte quelques intégrations avec d'autres services. D'autres services seront ajoutés dans le futur.",
+                "discord": {
+                    "errors": {
+                        "add": "Une erreur est survenue lors de liage de Discord avec le compte Kanka."
+                    },
+                    "success": {
+                        "add": "Compte Discord lié.",
+                        "remove": "Compte Discord délié."
+                    },
+                    "text": "Accès aux rôles automatique."
+                },
+                "title": "Ingération d'app"
+            },
             "boost": {
                 "benefits": {
-                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionalités de l'application sont débloquées lorsqu'une campagne est boostée. Des boosts sont débloqués au travers de {patreon}. Une campagne peut être boostée par peu importe qui, du moment que le compte peut lire la campagne. Une campagne est boostée tant que le compte soutient Kanka sur {patreon}. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais simplement invisible jusqu'à ce que la campagne devienne à nouveau boostée.",
+                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionalités de l'application sont débloquées lorsqu'une campagne est boostée. Des boosts sont débloqués au travers d'abonnements. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne. Une campagne est boostée tant que le compte soutient Kanka à travers un {subscription}. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu'à ce que la campagne sois à nouveau boostée.",
                     "header": "Image d'en-tête pour entité.",
                     "more": "En savoir plus sur toutes les fonctionalités.",
                     "second": "Booster une campagne débloques les bénéfices suivants:",
                     "theme": "Thème de campagne et style personnalisé.",
                     "tooltip": "Infobulles personnalisés pour les entités.",
-                    "upload": "Tailles de fichiers téléversés plus grand pour tous les membres de la campagne."
+                    "upload": "Taille de fichier uploadé plus grand pour tous les membres de la campagne."
                 },
                 "buttons": {
                     "boost": "Boost"
@@ -2141,6 +2260,24 @@ export default {
                 },
                 "title": "Boost"
             },
+            "invoices": {
+                "actions": {
+                    "download": "Télécharger PDF",
+                    "view_all": "Tout voir"
+                },
+                "fields": {
+                    "amount": "Montant",
+                    "date": "Date",
+                    "invoice": "Facture",
+                    "status": "Status"
+                },
+                "header": "Liste des 24 dernières factures qui peuvent être téléchargées.",
+                "status": {
+                    "paid": "Payé",
+                    "pending": "En attente"
+                },
+                "title": "Factures"
+            },
             "layout": {
                 "description": "Modifier les options de mise en page",
                 "success": "Options de mise en page modifiées.",
@@ -2149,11 +2286,18 @@ export default {
             "menu": {
                 "account": "Compte",
                 "api": "API",
+                "apps": "Apps",
+                "billing": "Méthode de paiement",
                 "boost": "Boost",
+                "invoices": "Factures",
                 "layout": "Mise en Page",
+                "other": "Autre",
                 "patreon": "Patreon",
+                "payment_options": "Options de paiement",
                 "personal_settings": "Paramètres Personnels",
-                "profile": "Profil"
+                "profile": "Profil",
+                "subscription": "Abonnement",
+                "subscription_status": "Status d'abonnement"
             },
             "patreon": {
                 "actions": {
@@ -2162,6 +2306,7 @@ export default {
                 },
                 "benefits": "Nous supporter sur {patreon} active plein de {features} pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.",
                 "benefits_features": "fonctionalités sympas",
+                "deprecated": "Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d'abonnement.",
                 "description": "Synchronisation avec Patreon",
                 "errors": {
                     "invalid_token": "Token invalid! Patreon n'a pas validé la requête.",
@@ -2171,6 +2316,11 @@ export default {
                 "link": "Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!",
                 "linked": "Merci pour ton support sur Patreon! Ton comptes est d'orénavant lié.",
                 "pledge": "Pledge: {name}",
+                "remove": {
+                    "button": "Délier le compte Patreon",
+                    "text": "Délier le compte Patreon de Kanka supprime les bonus, le nom du Hall of Fame, les boosters de campagne et d'autres fonctionnalités liées au supporter de Kanka. Aucun contenu boosté ne sera perdu (par exemple les en-têtes d'entité). Lors du réabonnement, toutes les données seront à nouveau visibles, y compris la possibilité de booster des campagnes précédemment boostées.",
+                    "title": "Délier le compte Patreon de Kanka"
+                },
                 "success": "Merci pour ton support sur Patreon!",
                 "title": "Patreon",
                 "wrong_pledge": "Ton pledge est inséré manuellement par nous, du coups ça peut prendre quelques jours pour être actualisé. Si ça reste faux longtemps, n'hésites pas à nous contacter."
@@ -2180,15 +2330,114 @@ export default {
                     "update_profile": "Mettre à jour le profil"
                 },
                 "avatar": "Image de profil",
-                "description": "Mettre à jour le profil",
                 "success": "Mise à jour effectuée.",
                 "title": "Profil personnel"
+            },
+            "subscription": {
+                "actions": {
+                    "cancel_sub": "Annuler l'abonnement",
+                    "subscribe": "Abonner",
+                    "update_currency": "Changer la devise"
+                },
+                "benefits": "En nous soutenant, tu peux débloquer de nouvelles fonctionnalités: et nous aider a investir plus de temps dans l'amélioration de Kanka. Aucune information concernant ta carte de crédit n'est stockée ou ne transite par nos serveurs. Nous utilisons {stripe} pour gérer toutes les factures.",
+                "billing": {
+                    "helper": "Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers {stripe}. Cette méthode de paiement sera utilisée pour tous les abonnements.",
+                    "saved": "Méthode de paiement",
+                    "title": "Modifier la méthode de paiement"
+                },
+                "cancel": {
+                    "text": "Désolé de te voir partir! L'annulation de ton abonnement le gardera actif jusqu'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons faire mieux, ou de ce qui a conduit à ta décision."
+                },
+                "cancelled": "L'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.",
+                "change": {
+                    "text": "Abonnement pour le tier {tier}, facturé mensuellement pour {amount}.",
+                    "title": "Changement d'abonnement"
+                },
+                "currencies": {
+                    "eur": "EUR",
+                    "usd": "USD"
+                },
+                "currency": {
+                    "title": "Changer la devise de facturation"
+                },
+                "errors": {
+                    "callback": "Notre gestionnaire de paiement nous a remonté une erreur. Prière de ressayer et nous contacter si le problème persiste.",
+                    "subscribed": "Erreur lors de la gestion de l'abonnement. Stripe nous a fourni l'erreur suivante."
+                },
+                "fields": {
+                    "active_since": "Actif depuis",
+                    "active_until": "Active jusqu'à",
+                    "billed_monthly": "Facturé mensuellement",
+                    "currency": "Devise",
+                    "payment_method": "Méthode de paiement",
+                    "plan": "Abonnement actuel",
+                    "reason": "Raison"
+                },
+                "manage_subscription": "Gérer l'abonnement",
+                "payment_method": {
+                    "actions": {
+                        "add_new": "Ajouter une méthode de paiement",
+                        "change": "Modifier la méthode de paiement",
+                        "save": "Enregister la méthode de paiement"
+                    },
+                    "add_one": "Aucune méthode de paiement actuellement saisie.",
+                    "card": "Carte",
+                    "card_name": "Nom sur la carte",
+                    "ending": "Se terminant par",
+                    "helper": "Cette carte sera utilisée pour les abonnements.",
+                    "new_card": "Ajouter une méthode de paiement",
+                    "saved": "{brand} se terminant par {last4}"
+                },
+                "placeholders": {
+                    "reason": "(optionnelle) dis-nous pourquoi tu ne souhaites plus être abonné à Kanka. Manquait-il une fonctionnalité? Ta situation financière a-t-elle changé?"
+                },
+                "sub_status": "Information d'abonnement",
+                "subscription": {
+                    "actions": {
+                        "downgrading": "Prière de nous contacter pour un déclassement",
+                        "rollback": "Changer à Kobold",
+                        "subscribe": "Changer à {tier} mensuel"
+                    }
+                },
+                "success": {
+                    "callback": "Ton abonnement est réussis! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informe des changement (cela peut prendre quelques minutes).",
+                    "cancel": "Ton abonnement est annulé. Il sera toujours actif jusqu'à la fin de la période actuel.",
+                    "currency": "Devise préférée sauvegardée.",
+                    "subscribed": "Ton abonnement est réussis! N'oublie pas de t'abonner à la newsletter Community Vote pour être averti lorsqu'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil."
+                },
+                "tiers": "Niveaux d'abonnements",
+                "upgrade_downgrade": {
+                    "button": "Information sur l'upgrade/downgrade",
+                    "downgrade": {
+                        "bullets": {
+                            "end": "L'abonnement actuel reste actif jusqu'à la fin du cycle de paiement, après quoi le nouvel abonnement sera mis en place."
+                        },
+                        "title": "Lors du passage à un niveau inférieur"
+                    },
+                    "upgrade": {
+                        "bullets": {
+                            "immediate": "La méthode de paiement sera facturée immédiatement et les nouvelles fonctionnalités seront accessibles.",
+                            "prorate": "Lors du changement de Owlbear à Elemental, seulement la différence sera facturée."
+                        },
+                        "title": "Lors du passage à un niveau supérieur"
+                    }
+                },
+                "warnings": {
+                    "patreon": "Ce compte est actuellement lié à Patreon. Prière de délié le compte dans les paramètres {patreon} avant de pouvoir s'abonner à Kanka."
+                }
             }
         }
     },
+    "he": {
+        "admin": [],
+        "campaigns": [],
+        "front": []
+    },
+    "hr": [],
     "hu": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Új beszélgetés létrehozása",
@@ -2639,6 +2888,7 @@ export default {
             }
         },
         "entities": [],
+        "front": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -2740,6 +2990,7 @@ export default {
     "it": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Crea una nuova conversazione",
@@ -3075,6 +3326,7 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Aggiungi",
+                        "ignore": "Ignorare",
                         "remove": "Rimuovi"
                     },
                     "delete": "Cancellazione",
@@ -3153,6 +3405,7 @@ export default {
             }
         },
         "entities": [],
+        "front": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -3226,12 +3479,15 @@ export default {
         }
     },
     "nl": {
-        "admin": []
+        "admin": [],
+        "campaigns": [],
+        "front": []
     },
     "pt": [],
     "pt-BR": {
         "admin": [],
         "calendars": [],
+        "campaigns": [],
         "crud": {
             "actions": {
                 "back": "Voltar",
@@ -3398,6 +3654,7 @@ export default {
             "view": "Ver"
         },
         "entities": [],
+        "front": [],
         "randomisers": []
     },
     "ru": {

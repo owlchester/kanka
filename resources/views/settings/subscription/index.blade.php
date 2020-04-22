@@ -18,7 +18,7 @@
             <p>
                 {!! __('settings.subscription.benefits', [
                     'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#patreon', ['target' => '_blank']),
-                    'strip' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
+                    'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
                 ]) !!}
             </p>
         </div>
@@ -267,32 +267,32 @@
 
         </div>
     </div>
-</div>
-</div>
 
-<div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.upgrade_downgrade.button') }}</h4>
+    <div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.upgrade_downgrade.button') }}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
+                <ul>
+                    @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
+                        <li>{{ $text }}</li>
+                    @endforeach
+                </ul>
+
+                <hr />
+
+                <h4>{{ __('settings.subscription.upgrade_downgrade.downgrade.title') }}</h4>
+                <ul>
+                    @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
+                        <li>{{ $text }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-        <div class="modal-body">
-            <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
-            <ul>
-                @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
-                    <li>{{ $text }}</li>
-                @endforeach
-            </ul>
-
-            <hr />
-
-            <h4>{{ __('settings.subscription.upgrade_downgrade.downgrade.title') }}</h4>
-            <ul>
-                @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
-                    <li>{{ $text }}</li>
-                @endforeach
-            </ul>
         </div>
     </div>
 
