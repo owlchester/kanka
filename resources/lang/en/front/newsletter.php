@@ -1,20 +1,20 @@
 <?php
 
 return [
-    'actions' => [
-        'subscribe' => 'Subscribe',
-        'learn_more' => 'Learn more',
+    'actions'   => [
+        'learn_more'    => 'Learn more',
+        'subscribe'     => 'Subscribe',
     ],
-    'title' => 'Email Updates',
-    'headline' => 'Subscribe to one or all of our newsletters to stay up to date with Kanka.',
-    'fields' => [
-        'firstname' => 'First Name',
-        'lastname' => 'Last Name',
+    'fields'    => [
+        'firstname'     => 'First Name',
+        'lastname'      => 'Last Name',
         'notifications' => 'Notifications',
     ],
-    'groups' => [
-        'newsletter' => 'Newsletter',
-        'news' => 'News',
-        'community-votes' => 'Community Votes',
+    'groups'    => [
+        'community-votes'   => 'Community Votes',
+        'news'              => 'News',
+        'newsletter'        => 'Newsletter',
     ],
+    'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with Kanka.',
+    'title'     => 'Email Updates',
 ];

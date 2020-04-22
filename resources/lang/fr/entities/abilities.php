@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'add'   => 'Ajouter un pouvoir',
+        'reset' => 'Réinitialiser les charges',
     ],
     'create'    => [
         'title' => 'Ajouter un pouvoir à :name',

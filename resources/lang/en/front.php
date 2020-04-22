@@ -160,7 +160,7 @@ return [
         'home'      => 'Home',
         'login'     => 'Login',
         'news'      => 'News',
-        'newsletter' => 'Newsletter',
+        'newsletter'=> 'Newsletter',
         'pricing'   => 'Pricing',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Register',
@@ -180,8 +180,8 @@ return [
     'pricing'       => [
         'actions'       => [
             'more'      => 'Learn more about all the features unlocked by supporting Kanka',
+            'subscribe' => 'Subscribe',
             'support'   => 'Support',
-            'subscribe' => 'Subscribe'
         ],
         'benefits'      => [
             'boosters'          => 'Campaign Boosters',

@@ -160,6 +160,7 @@ return [
         'home'      => 'Accueil',
         'login'     => 'Login',
         'news'      => 'Nouvelles',
+        'newsletter'=> 'Newsletter',
         'pricing'   => 'Prix',
         'privacy'   => 'Politique de confidentialité',
         'register'  => 'Inscription',
@@ -179,6 +180,7 @@ return [
     'pricing'       => [
         'actions'       => [
             'more'      => 'Plus d\'info sur les fonctionalités débloquées en nous soutenant',
+            'subscribe' => 'Souscrire',
             'support'   => 'Soutenir',
         ],
         'benefits'      => [

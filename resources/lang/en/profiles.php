@@ -20,6 +20,18 @@ return [
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',
     ],
+    'newsletter'    => [
+        'links'     => [
+            'community-vote'    => 'Community Vote',
+            'news'              => 'News',
+        ],
+        'settings'  => [
+            'news'          => 'News - be notified when there\'s :news.',
+            'newsletter'    => 'Newsletter - receive the Kanka newsletter.',
+            'votes'         => 'Community Votes - be notified as soon as a new :vote is available.',
+        ],
+        'title'     => 'Newsletters',
+    ],
     'password'      => [
         'success'   => 'Password updated',
     ],
@@ -52,18 +64,6 @@ return [
             'default_nested'    => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
         ],
         'success'   => 'Settings changed.',
-    ],
-    'newsletter' => [
-        'title' => 'Newsletters',
-        'settings' => [
-            'newsletter' => 'Newsletter - receive the Kanka newsletter.',
-            'votes' => 'Community Votes - be notified as soon as a new :vote is available.',
-            'news' => 'News - be notified when there\'s :news.',
-        ],
-        'links' => [
-            'community-vote' => 'Community Vote',
-            'news' => 'News',
-        ],
     ],
     'theme'         => [
         'success'   => 'Theme changed.',

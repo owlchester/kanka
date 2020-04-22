@@ -163,17 +163,16 @@ trait CalendarDateTrait
             $event->entity_id = $entity->id;
         }
 
-            if (isset($event) && $event) {
-                $event->calendar_id = $this->calendar_id;
-                $event->year = $this->calendar_year;
-                $event->month = $this->calendar_month;
-                $event->day = $this->calendar_day;
-                $event->length = request()->post('length', 1);
-                $event->is_recurring = request()->post('is_recurring', false);
-                $event->recurring_periodicity = request()->post('recurring_periodicity', null);
-                $event->colour = request()->post('calendar_colour', null);
-                $event->save();
-            }
+        if (isset($event) && $event) {
+            $event->calendar_id = $this->calendar_id;
+            $event->year = $this->calendar_year;
+            $event->month = $this->calendar_month;
+            $event->day = $this->calendar_day;
+            $event->length = request()->post('length', 1);
+            $event->is_recurring = request()->post('is_recurring', false);
+            $event->recurring_periodicity = request()->post('recurring_periodicity', null);
+            $event->colour = request()->post('calendar_colour', null);
+            $event->save();
         }
     }
 }

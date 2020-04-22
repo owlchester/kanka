@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'features' => [
-        'file_size' => ':size File size uploads',
-        'map_size' => ':size Map size uploads',
-        'community_vote' => 'Community Vote',
-        'discord' => 'Discord roles',
-        'hall_of_fame' => 'Hall of Fame',
-        'boosters' => 'Campaign Boosters',
-        'api_requests' => ':amount API requests / min',
-        'vote_influence' => 'Community vote influence',
+    'current'   => 'Your current subscription',
+    'features'  => [
+        'api_requests'      => ':amount API requests / min',
+        'boosters'          => 'Campaign Boosters',
+        'community_vote'    => 'Community Vote',
+        'discord'           => 'Discord roles',
         'feature_influence' => 'New feature influence',
-        'pagination' => ':amount Max paginated results',
-        'nice_image' => 'Default entity images',
+        'file_size'         => ':size File size uploads',
+        'hall_of_fame'      => 'Hall of Fame',
+        'map_size'          => ':size Map size uploads',
+        'nice_image'        => 'Default entity images',
+        'pagination'        => ':amount Max paginated results',
+        'vote_influence'    => 'Community vote influence',
     ],
-    'pricing'           => ':currency :amount / month',
-    'current' => 'Your current subscription',
+    'pricing'   => ':currency :amount / month',
 ];

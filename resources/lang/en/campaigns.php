@@ -55,8 +55,8 @@ return [
         'rpg_system'                    => 'RPG Systems',
         'system'                        => 'System',
         'theme'                         => 'Theme',
-        'visibility'                    => 'Visibility',
         'tooltip_family'                => 'Disable family names from tooltips',
+        'visibility'                    => 'Visibility',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
@@ -182,9 +182,9 @@ return [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permission',
-        'ui' => 'UI',
         'sharing'   => 'Sharing',
         'systems'   => 'Systems',
+        'ui'        => 'Interface',
     ],
     'placeholders'                      => [
         'description'   => 'A short summary of your campaign',
@@ -312,8 +312,8 @@ return [
         ],
         'title'         => 'Campaign :name',
     ],
-    'ui' => [
-        'helper' => 'Use tese settings to change the way some elements will be displayed in your campaign.',
+    'ui'                                => [
+        'helper'    => 'Use tese settings to change the way some elements will be displayed in the campaign.',
     ],
     'visibilities'                      => [
         'private'   => 'Private',

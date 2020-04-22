@@ -55,6 +55,7 @@ return [
         'rpg_system'                    => 'Système RPG',
         'system'                        => 'Système',
         'theme'                         => 'Thème',
+        'tooltip_family'                => 'Désactiver le nom de famille des info-bulles',
         'visibility'                    => 'Visibilité',
     ],
     'following'                         => 'Suivant',
@@ -183,6 +184,7 @@ return [
         'permission'=> 'Permission',
         'sharing'   => 'Partage',
         'systems'   => 'Systèmes',
+        'ui'        => 'Interface',
     ],
     'placeholders'                      => [
         'description'   => 'Une petite description de la campagne',
@@ -309,6 +311,9 @@ return [
             'settings'      => 'Modules',
         ],
         'title'         => 'Campagne :name',
+    ],
+    'ui'                                => [
+        'helper'    => 'Ces paramètres permettent de changer la manière dont s\'affichent certains éléments dans la campagne.',
     ],
     'visibilities'                      => [
         'private'   => 'Privé',

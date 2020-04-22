@@ -18,6 +18,7 @@ return [
     'fields'        => [
         'abilities' => 'Pouvoirs',
         'ability'   => 'Pouvoir',
+        'charges'   => 'Charges',
         'name'      => 'Nom',
         'type'      => 'Type',
     ],
@@ -32,8 +33,9 @@ return [
         'title'         => 'Pouvoirs',
     ],
     'placeholders'  => [
-        'name'  => 'Jet de feu, Alert, Résistance',
-        'type'  => 'Sort, Compétence, Attaque',
+        'charges'   => 'Nombre d\'utilisation. Les attributs peuvent être référencés avec {Level}*{CHA}',
+        'name'      => 'Jet de feu, Alert, Résistance',
+        'type'      => 'Sort, Compétence, Attaque',
     ],
     'show'          => [
         'tabs'  => [

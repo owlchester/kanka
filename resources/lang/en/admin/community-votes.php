@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'create' => [
-        'title' => 'Create a new community vote',
-        'success' => 'Community vote created.',
+    'create'    => [
+        'success'   => 'Community vote created.',
+        'title'     => 'Create a new community vote',
     ],
-    'destroy' => [
-        'success' => 'Community vote removed.',
+    'destroy'   => [
+        'success'   => 'Community vote removed.',
     ],
     'edit'      => [
-        'title' => 'Update Community Vote :name',
-        'success' => 'Community vote edited.',
+        'success'   => 'Community vote edited.',
+        'title'     => 'Update Community Vote :name',
     ],
     'fields'    => [
         'content'       => 'Content',
@@ -23,7 +23,7 @@ return [
         'votes'         => 'Votes',
     ],
     'index'     => [
+        'add'   => 'New Community Vote',
         'title' => 'Admin: Community Votes',
-        'add' => 'New Community Vote',
     ],
 ];
