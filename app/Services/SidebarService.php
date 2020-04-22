@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Arr;
+
 class SidebarService
 {
     protected $rules = [
@@ -118,6 +120,20 @@ class SidebarService
         }
 
         return null;
+    }
+
+    /**
+     * Settings menu active
+     * @param string $menu
+     * @return string
+     */
+    public function settings(string $menu): string
+    {
+        $current = request()->segment(3);
+        if ($current == $menu) {
+            return ' active';
+        }
+        return '';
     }
 
     /**

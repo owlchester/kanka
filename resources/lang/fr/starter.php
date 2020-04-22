@@ -38,7 +38,7 @@ return [
         'type'          => 'Capitale',
     ],
     'note1'         => [
-        'entry' => <<<'TEXT'
+        'entry'         => <<<'TEXT'
 Bienvenue sur Kanka! Ta première campagne a été créée et nous avons inclus quelques exemples d'entités pour t'inspirer que tu peux supprimer.
 
 Tu voudras probablement commencer par ajouter tes propres entités. Choisis une catégorie sur le menu à gauche pour commencer. Les catégories dont tu n'as pas besoin peuvent être désactivées dans la configuration de la campagne. Désactiver une catégorie la retire du menu.
@@ -52,9 +52,10 @@ Voici quelques conseils pour t'aider à commencer:
 Autres:
 - Trouve de l'inspiration sur comment utiliser Kanka dans les :public.
 - Si tu as des questions, suggestions ou simplement envie de discuter, rejoins-nous sur :discord.
-- Tu adore l'app et veux soutenir son évolution? Rejoins nos patrons sur :patreon.
+- Tu adore l'app et veux soutenir son évolution? Kanka offre des :subscriptions.
 TEXT
 ,
-        'name'  => 'Note de bienvenue',
+        'name'          => 'Note de bienvenue',
+        'subscriptions' => 'Abonnements',
     ],
 ];

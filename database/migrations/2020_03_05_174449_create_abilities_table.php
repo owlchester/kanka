@@ -22,8 +22,8 @@ class CreateAbilitiesTable extends Migration
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('character_id')->nullable();
-            $table->unsignedInteger('location_id')->nullable();
+//            $table->unsignedInteger('character_id')->nullable();
+//            $table->unsignedInteger('location_id')->nullable();
             $table->unsignedInteger('ability_id')->nullable();
             $table->boolean('is_private')->default(false);
 

@@ -90,6 +90,10 @@ class MentionsService
     {
         return $this->editEntity($entityNote, $field);
     }
+    public function editMisc(MiscModel $model, string $field = 'entry')
+    {
+        return $this->editEntity($model, $field);
+    }
     public function editCampaign(Campaign $campaign, string $field = 'entry')
     {
         return $this->editEntity($campaign, $field);

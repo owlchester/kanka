@@ -51,7 +51,7 @@ return [
             'explore_view'  => 'Nested View',
         ],
         'add'           => 'New Location',
-        'description'   => 'Manage the location of :name.',
+        'description'   => 'Manage the locations of :name.',
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
     ],

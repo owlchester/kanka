@@ -1,7 +1,5 @@
 
 {{ csrf_field() }}
-<div class="row">
-    <div class="col-12">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group required">
@@ -21,28 +19,32 @@
                     {!! Form::textarea('options', old('options'), ['placeholder' => __('admin/community-votes.fields.options'), 'class' => 'form-control']) !!}
                 </div>
 
-                <div class="form-group">
-                    <label>{{ __('admin/community-votes.fields.visible_at') }}</label>
-                    <div class="input-group">
-                        {!! Form::text('visible_at', old('visible_at'), ['placeholder' => __('admin/community-votes.fields.visible_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
-                        <span class="input-group-addon">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ __('admin/community-votes.fields.visible_at') }}</label>
+                            <div class="input-group">
+                                {!! Form::text('visible_at', old('visible_at'), ['placeholder' => __('admin/community-votes.fields.visible_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
+                                <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>{{ __('admin/community-votes.fields.published_at') }}</label>
-                    <div class="input-group">
-                        {!! Form::text('published_at', old('published_at'), ['placeholder' => __('admin/community-votes.fields.published_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
-                        <span class="input-group-addon">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ __('admin/community-votes.fields.published_at') }}</label>
+                            <div class="input-group">
+                                {!! Form::text('published_at', old('published_at'), ['placeholder' => __('admin/community-votes.fields.published_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
+                                <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 <button class="btn btn-success" id="form-submit-main" data-unsaved="{{ __('crud.hints.unsaved_changes') }}">{{ __('crud.save') }}</button>
 {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}

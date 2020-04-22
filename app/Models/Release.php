@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Support\Str;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use TCG\Voyager\Models\Post;
 
 /**
@@ -16,18 +18,21 @@ use TCG\Voyager\Models\Post;
  * @property string $image
  * @property User $author
  */
-class Release extends Post
+class Release extends Post implements Feedable
 {
     // Do nothing, this class is just for the route resource binding to work with release instead of post.
 
     public $table = 'posts';
 
     /**
-     * @return string
+     * @return array
      */
-    public function getSlug()
+    public function getSlug(): array
     {
-        return ['id' => $this->id, 'slug' => Str::slug($this->title)];
+        return [
+            'id' => $this->id,
+            'slug' => Str::slug($this->title)
+        ];
     }
 
     /**
@@ -36,5 +41,41 @@ class Release extends Post
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
+    }
+
+
+    /**
+     * RSS feed item
+     * @return FeedItem
+     */
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->title)
+            ->summary($this->excerpt)
+            ->updated($this->updated_at)
+            ->link($this->link)
+            ->author('Kanka.io');
+    }
+
+    /**
+     * link attribute
+     * @return string
+     */
+    public function getLinkAttribute()
+    {
+        return route('front.news.show', $this->getSlug());
+    }
+
+    /**
+     * RSS items
+     * @return mixed
+     */
+    public function getFeedItems()
+    {
+        return Release::published()
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 }

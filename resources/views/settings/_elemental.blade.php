@@ -1,7 +1,7 @@
 <div class="box box-widget widget-user widget-patron">
     <div class="widget-user-header bg-red-active">
         <h3 class="widget-user-username">Elemental</h3>
-        <h5 class="widget-user-desc">$25 / {{ __('front.pricing.tier.month') }}</h5>
+        <h5 class="widget-user-desc">{{ auth()->user()->currencySymbol() }}25 / {{ __('front.pricing.tier.month') }}</h5>
     </div>
     <div class="widget-user-image">
         <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental">

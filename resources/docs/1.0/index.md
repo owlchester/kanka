@@ -22,6 +22,7 @@
     - [Races](/docs/{{version}}/races)
     - [Quests](/docs/{{version}}/quests)
     - [Journals](/docs/{{version}}/journals)
+    - [Abilities](/docs/{{version}}/abilities)
     - [Tags](/docs/{{version}}/tags)
     - [Conversations](/docs/{{version}}/conversations)
     - [Dice Rolls](/docs/{{version}}/dice-rolls)

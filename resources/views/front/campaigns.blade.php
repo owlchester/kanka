@@ -3,8 +3,13 @@
 ?>@extends('layouts.front', [
     'title' => trans('front.menu.campaigns'),
 ])
-@section('content')
 
+@section('og')
+    <meta property="og:description" content="{{ __("front.campaigns.description_full") }}" />
+    <meta property="og:url" content="{{ route('front.public_campaigns') }}" />
+@endsection
+
+@section('content')
     <header class="masthead reduced-masthead">
         <div class="container h-100">
             <div class="row h-100">

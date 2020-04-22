@@ -1,12 +1,5 @@
 <?php
 $currentCampaign = CampaignLocalization::getCampaign();
-
-$notifications = [];
-$unreadNotifications = 0;
-if (Auth::check()) {
-    $unreadNotifications = count(Auth::user()->unreadNotifications);
-    $notifications = Auth::user()->notifications()->take(5)->get();
-}
 ?>
 <!-- Main Header -->
 <header class="main-header">
@@ -38,6 +31,9 @@ if (Auth::check()) {
 
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
+            @if (Auth::check() && Auth::user()->hasCampaigns() && !Auth::user()->subscribed('kanka'))
+            <a class="btn-nav btn btn-info btn-sm pull-left hidden-xs" href="{{ route('settings.subscription') }}">{{ __('settings.subscription.manage_subscription') }}</a>
+            @endif
             <ul class="nav navbar-nav">
                 @if (!empty($currentCampaign))
                     <li class="visible-xs visible-sm">
@@ -51,14 +47,13 @@ if (Auth::check()) {
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" name="list-user-campaigns">
                             <i class="far fa-bell"></i>
-                            <span id="header-notification-count" class="label label-warning" style="{{ ($unreadNotifications == 0 ? 'display:none' : '') }}">{{ $unreadNotifications }}</span>
+                            <span id="header-notification-count" class="label label-warning" style="display:none"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">{{ trans('header.notifications.header', ['count' => $unreadNotifications]) }}</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
-                                    @include('notifications.list', ['notifications' => $notifications])
+                                    <li class="text-center"><i class="fa fa-spin fa-spinner"></i></li>
                                 </ul>
                             </li>
                             <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>
@@ -133,39 +128,11 @@ if (Auth::check()) {
                         <a href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
                     </li>
                 @endif
-                <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-languages">
-                        <span class="text-uppercase">{{ LaravelLocalization::getCurrentLocale() }}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">{{ trans('languages.header') }}</li>
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
-                                    <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
-                                    <li>
-                                    @if (App::getLocale() == $localeCode)
-                                        <a href="#"><strong>{{ $langData['native'] }}</strong></a>
-                                    @else
-                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                                            {{ $langData['native'] }}
-                                        </a>
-                                    @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
 
-                <?php /* added the test because sometimes the session exists but the user isn't authenticated */ ?>
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions" title="{{ Auth::user()->name }}">
                         <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
-
-                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">

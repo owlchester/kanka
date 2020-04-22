@@ -7,6 +7,18 @@ namespace App\Models;
 use App\User;
 use Illuminate\Support\Arr;
 
+/**
+ * Trait UserSetting
+ * @package App\Models
+ *
+ * @property bool $mail_newsletter
+ * @property bool $mail_vote
+ * @property bool $mail_release
+ * @property string $patreon_email
+ * @property string $patreon_fullname
+ * @property int $patreon_pledge
+ * @property int $pledge
+ */
 trait UserSetting
 {
     /**
@@ -114,6 +126,56 @@ trait UserSetting
         return Arr::get($this->settings, 'advanced_mentions', false);
     }
 
+
+    /**
+     * @param $value
+     */
+    public function setMailNewsletterAttribute($value)
+    {
+        $this->setSettingsOption('mail_newsletter', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMailNewsletterAttribute()
+    {
+        return Arr::get($this->settings, 'mail_newsletter', false);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setMailReleaseAttribute($value)
+    {
+        $this->setSettingsOption('mail_release', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMailReleaseAttribute()
+    {
+        return Arr::get($this->settings, 'mail_release', false);
+    }
+
+
+    /**
+     * @param $value
+     */
+    public function setMailVoteAttribute($value)
+    {
+        $this->setSettingsOption('mail_vote', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMailVoteAttribute()
+    {
+        return Arr::get($this->settings, 'mail_vote', false);
+    }
+
     /**
      * @param $key
      * @param $value
@@ -142,6 +204,25 @@ trait UserSetting
         if (empty($this->advanced_mentions)) {
             unset($this->attributes['settings']['advanced_mentions']);
         }
+
+
+        return $this;
+    }
+
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function updateSettings($data): self
+    {
+        $fields = ['mail_newsletter', 'mail_vote', 'mail_release'];
+        foreach ($fields as $field) {
+            if (!Arr::has($data, $field)) {
+                continue;
+            }
+            $this->$field = Arr::get($data, $field, null);
+        }
+
         return $this;
     }
 }

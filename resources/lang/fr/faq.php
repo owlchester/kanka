@@ -25,6 +25,10 @@ TEXT
         'answer'    => 'Rejoins simplement le server :discord et écrit un rapport dans le canal #error-and-bugs.',
         'question'  => 'Comment signaler un problème?',
     ],
+    'campaign-sync'         => [
+        'answer'    => 'Kanka n\'a pas cette fonctionnalité. Par contre, si tu souhaites avoirs plusieurs groupes dans le même monde, tu peux utiliser la même campagne et le système de permission pour contrôler qui peut voir quelles informations.',
+        'question'  => 'Est-ce possible de synchroniser les données entre campagnes?',
+    ],
     'conversations'         => [
         'answer'    => 'Des conversations peuvent être établiées entre des Personnages ou entre les membres d\'une campagne. Si par example tu souhaites documenter une conversation importante entre des NPCs et les joueurs, tu peux le faire en utilisant ce module. Celui-ci peut aussi être utilisé pour des campagnes de type "play-by-post".',
         'question'  => 'Que sont les Conversations?',

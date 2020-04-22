@@ -51,7 +51,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     @if(Auth::check() && Auth::user()->isAdmin())
                         <li class="{{ $sidebar->active('menu_links') }}">
                             <a href="{{ route('menu_links.index') }}">
-                                <i class="fa fas fa-lock"></i> {{ trans('sidebar.manage_links') }}
+                                <i class="fas fa-cog"></i> {{ trans('sidebar.manage_links') }}
                             </a>
                         </li>
                     @endif
@@ -119,7 +119,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 <a href="{{ route('journals.index') }}"><i class="ra ra-scroll-unfurled"></i> <span>{{ trans('sidebar.journals') }}</span></a>
             </li>
             @endif
-            @if ($campaign->enabled('abilities') && $currentCampaign->boosted())
+            @if ($campaign->enabled('abilities'))
                 <li class="{{ $sidebar->active('abilities') }}">
                     <a href="{{ route('abilities.' . $defaultIndex) }}"><i class="ra ra-fire-symbol"></i> <span>{{ trans('sidebar.abilities') }}</span></a>
                 </li>

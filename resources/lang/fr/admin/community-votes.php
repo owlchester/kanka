@@ -1,8 +1,16 @@
 <?php
 
 return [
+    'create'    => [
+        'success'   => 'Vote communautaire créé.',
+        'title'     => 'Créer un nouveau vote communtaire',
+    ],
+    'destroy'   => [
+        'success'   => 'Vote communautaire supprimé.',
+    ],
     'edit'      => [
-        'title' => 'Modifier Vote Communautaire :name',
+        'success'   => 'Vote communautaire mis à jour.',
+        'title'     => 'Modifier Vote Communautaire :name',
     ],
     'fields'    => [
         'content'       => 'Contenu',
@@ -15,6 +23,7 @@ return [
         'votes'         => 'Votes',
     ],
     'index'     => [
+        'add'   => 'Nouveau vote communtaire',
         'title' => 'Admin: Votes Communautaires',
     ],
 ];

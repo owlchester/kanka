@@ -362,7 +362,7 @@ class Character extends MiscModel
     {
         // e() isn't enough, remove tags too to avoid ><script injections.
         $str = $this->name;
-        if (!empty($this->family)) {
+        if (!empty($this->family) && !CampaignLocalization::getCampaign()->tooltip_family) {
             $str .= ' - ' . $this->family->name;
         }
         return e(strip_tags(trim($str))) . ($this->is_dead ? ' <i class=\'ra ra-skull\'></i>' : null);

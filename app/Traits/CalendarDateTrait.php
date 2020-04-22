@@ -163,7 +163,7 @@ trait CalendarDateTrait
             $event->entity_id = $entity->id;
         }
 
-        if ($event) {
+        if (isset($event) && $event) {
             $event->calendar_id = $this->calendar_id;
             $event->year = $this->calendar_year;
             $event->month = $this->calendar_month;

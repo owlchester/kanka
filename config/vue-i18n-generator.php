@@ -25,7 +25,8 @@ return [
 
     'langFiles' => [
         'crud',
-        'conversations'
+        'conversations',
+        'settings',
     ],
 
     /*

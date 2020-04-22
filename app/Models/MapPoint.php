@@ -181,7 +181,7 @@ class MapPoint extends Model
     public function visible(): bool
     {
         if ($this->hasTarget()) {
-            return $this->targetEntity->child && EntityPermission::canView($this->targetEntity, $this->location->campaign);
+            return $this->targetEntity && $this->targetEntity->child && EntityPermission::canView($this->targetEntity, $this->location->campaign);
         }
         return true;
     }

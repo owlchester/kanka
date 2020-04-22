@@ -20,6 +20,10 @@ TEXT
         'answer'    => 'Simply join our :discord server and report your bug in the #error-and-bugs channel.',
         'question'  => 'How can I report a bug?',
     ],
+    'campaign-sync'         => [
+        'answer'    => 'Kanka does not have this feature. However, if you\'re trying to have multiple play groups in the same world consider using the same campaign and separating your groups through a combination of quests, tags, and permissions',
+        'question'  => 'Can I sync entities across multiple campaigns?',
+    ],
     'conversations'         => [
         'answer'    => 'Conversations can be set up as talks between Characters or between Campaign Members. If for example you wish to document an important talk between NPCs and the PCs, you can do so using this module. You can also use them for play-by-post campaigns.',
         'question'  => 'What are Conversations?',
@@ -45,9 +49,9 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Yes! We believe that your financial situation shouldn't impact your enjoyment of role playing games or world building, and such will always keep the app free. Thanks to our generous Patrons on :patreon, we are able to cover the monthly server costs and keep the app ad free!
+Yes! We strongly believe that your financial situation shouldn't impact your enjoyment of RPGs or world building and we will always keep the core app free. However, if you wish to take a more active role in this journey, support us, and vote on the features that matter the most to you, you can do so either through our website or on :patreon.
 
-Supporting us on Patreon however allows you to increase file size upload limits, adds your name to the Patreon wall of fame, have nicer default icons, vote on prioritising what gets works on and more!
+In addition to voting on the direction that Kanka takes, supporting us allows you to gain access to :boosters, increase file size upload limits, add your name to the hall of fame, have nicer default icons, and more!
 TEXT
 ,
         'question'  => 'Will the app stay free?',

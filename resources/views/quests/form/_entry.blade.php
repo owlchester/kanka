@@ -20,7 +20,7 @@
 
         <div class="form-group">
             {!! Form::hidden('is_completed', 0) !!}
-            <label>{!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed') : 0))) !!}
+            <label>{!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
                 {{ trans('quests.fields.is_completed') }}
             </label>
         </div>

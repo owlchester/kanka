@@ -103,8 +103,8 @@ return [
             'hall_of_fame'      => 'Name in the :link',
             'impact'            => 'Impact future features',
             'monthly_vote'      => 'Participation in the community feature vote',
-            'pagination'        => 'Increased pagination results (100)',
-            'title'             => 'Patreon Support',
+            'pagination'        => 'Increased pagination results',
+            'title'             => 'Paid Features',
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',
         ],
@@ -160,6 +160,7 @@ return [
         'home'      => 'Home',
         'login'     => 'Login',
         'news'      => 'News',
+        'newsletter'=> 'Newsletter',
         'pricing'   => 'Pricing',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Register',
@@ -179,6 +180,7 @@ return [
     'pricing'       => [
         'actions'       => [
             'more'      => 'Learn more about all the features unlocked by supporting Kanka',
+            'subscribe' => 'Subscribe',
             'support'   => 'Support',
         ],
         'benefits'      => [
@@ -198,7 +200,7 @@ return [
         'title'         => 'Pricing Overview',
     ],
     'privacy'       => [
-        'description'   => 'Effective date: May 25th, 2018',
+        'description'   => 'Effective date: :date',
         'title'         => 'Privacy Policy',
     ],
     'release'       => [
@@ -225,7 +227,7 @@ return [
         'coffee'    => 'Buy me a coffee!',
     ],
     'terms'         => [
-        'description'   => 'Effective date: March 4th, 2020',
+        'description'   => 'Effective date: :date',
         'title'         => 'Terms & Conditions',
     ],
 ];

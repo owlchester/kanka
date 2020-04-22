@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'add'   => 'Add an ability',
+        'reset' => 'Reset ability usages',
     ],
     'create'    => [
         'title' => 'Add an ability to :name',

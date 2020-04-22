@@ -7,6 +7,7 @@
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('releases.show', $model->getSlug()) }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-votes.title') }}" href="{{ url('/feeds/community-votes.rss') }}" />
 @endsection
 
 @section('content')
@@ -30,7 +31,7 @@
                     @include('community-votes._recent')
                 </div>
                 <div class="col-9">
-                    <div class="card">
+                    <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title mb-1">
                                 <a href="{{ route('community-votes.show', $model->getSlug()) }}">{{ $model->name }}</a>
@@ -77,11 +78,13 @@
                         </div>
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mb-4">
                         <a href="{{ route('community-votes.index') }}">
                             <i class="fa fa-arrow-left"></i> {{ __('front/community-votes.actions.return')}}
                         </a>
                     </div>
+
+                    @include('partials.newsletter', ['source' => 'vote'])
                 </div>
             </div>
 

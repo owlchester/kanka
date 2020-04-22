@@ -19,6 +19,11 @@ class UserService
             // The user should be part of the last campaign
             $campaign = $user->lastCampaign;
 
+            // No campaign yet
+            if (empty($campaign)) {
+                return redirect()->route('home');
+            }
+
             $member = CampaignUser::where('campaign_id', $campaign->id)
                 ->where('user_id', $user->id)
                 ->first();

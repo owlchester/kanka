@@ -96,6 +96,9 @@ return [
         'actions'       => [
             'edit'  => 'Editar y etiquetar en lote',
         ],
+        'age'           => [
+            'helper'    => 'Puedes usar + y - antes del número para actualizar la edad en dicha cantidad.',
+        ],
         'edit'          => [
             'tagging'   => 'Acción para las etiquetas',
             'tags'      => [

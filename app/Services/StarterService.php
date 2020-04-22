@@ -99,7 +99,7 @@ class StarterService
             'faq' => link_to_route('faq.index', __('front.faq.title')),
             'discord' => link_to(config('social.discord'), 'Discord'),
             'public' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),
-            'patreon' => link_to(config('patreon.url'), 'Patreon'),
+            'subscriptions' => link_to_route('settings.subscription', __('starter.note1.subscriptions')),
         ]));
         $note = new Note([ 'name' => trans('starter.note1.name'),
             'campaign_id' => $this->campaign->id,

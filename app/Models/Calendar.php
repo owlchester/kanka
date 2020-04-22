@@ -8,6 +8,7 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * Class Calendar
@@ -357,13 +358,15 @@ class Calendar extends MiscModel
         if (empty($date)) {
             $date = $this->date;
         }
-        $date = explode('-', $date);
+        $isNegativeYear = Str::startsWith($date, '-');
+        $date = explode('-', ltrim($date, '-'));
 
         // Replace month with real month, and year maybe
         $months = $this->months();
         $years = $this->years();
 
         try {
+            $date[0] = $isNegativeYear ? '-' . $date[0] : $date[0];
             return $date[2] . ' ' .
                 (isset($months[$date[1] - 1]) ? $months[$date[1] - 1]['name'] : $date[1]) . ', ' .
                 (isset($years[$date[0]]) ? $years[$date[0]] : $date[0]) . ' ' .

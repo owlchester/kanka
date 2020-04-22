@@ -69,7 +69,7 @@ class EntityObserver
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
-        foreach ($entity->tags()->with('entity')->get() as $tag) {
+        foreach ($entity->tags()->with('entity')->has('entity')->get() as $tag) {
             if (EntityPermission::canView($tag->entity)) {
                 $existing[$tag->id] = $tag->name;
             }

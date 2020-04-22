@@ -17,6 +17,7 @@ class EntityAbility extends EntityChild
         return [
             'id' => $this->id,
             'visibility' => $this->visibility,
+            'charges' => $this->charges,
             'ability_id' => $this->ability_id,
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,

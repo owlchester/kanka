@@ -17,11 +17,11 @@
 
         <div  class="mt-2">
             @if ($voting)
-            <a href="{{ route('community-votes.show', $model) }}" class="btn btn-primary">
+            <a href="{{ $model->link }}" class="btn btn-primary">
                 {{ __('front/community-votes.actions.vote') }}
             </a>
             @else
-            <a href="{{ route('community-votes.show', $model) }}">
+            <a href="{{ $model->link }}">
                 {{ __('front/community-votes.actions.show') }}
             </a>
             @endif

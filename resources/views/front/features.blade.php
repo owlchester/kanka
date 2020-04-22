@@ -61,7 +61,7 @@
                                             <h3>{{ trans('front.features.free.title') }}</h3>
                                             <p class="text-muted">{!! trans('front.features.free.description', [
                                                 'bonuses' => link_to('#patreon', __('front.features.free.bonuses')),
-                                                'patreon' => link_to(config('patreon.url'), 'Patreon', ['rel' => 'nofollow', 'target' => '_blank'])
+                                                'patreon' => 'Kanka',
                                             ]) !!}</p>
                                         </div>
                                     </div>

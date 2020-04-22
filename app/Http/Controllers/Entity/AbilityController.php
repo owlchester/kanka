@@ -29,7 +29,6 @@ class AbilityController extends Controller
     public function __construct(AbilityService $service)
     {
         $this->service = $service;
-        $this->middleware('campaign.boosted');
     }
 
     /**
@@ -153,5 +152,31 @@ class AbilityController extends Controller
         return response()->json([
             'data' => $this->service->entity($entity)->abilities()
         ]);
+    }
+
+    public function useCharge(Request $request, Entity $entity, EntityAbility $entityAbility)
+    {
+        return response()->json([
+            'success' => $this->service
+                ->entity($entity)
+                ->useCharge($entityAbility, $request->post('used'))
+        ]);
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetCharges(Entity $entity)
+    {
+        $this->service
+            ->entity($entity)
+            ->resetCharges();
+
+        return redirect()->route('entities.entity_abilities.index', $entity);
+//        return response()->json([
+//            'data' =>
+//                ->abilities()
+//        ]);
     }
 }

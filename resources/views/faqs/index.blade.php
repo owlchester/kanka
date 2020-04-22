@@ -5,6 +5,12 @@
         'faq',
     ],
 ])
+
+@section('og')
+    <meta property="og:description" content="{{ __("front.faq.description") }}" />
+    <meta property="og:url" content="{{ route('faq.index') }}" />
+@endsection
+
 <?php /** @var \App\Models\Faq $faq */ ?>
 @section('content')
     <header class="masthead reduced-masthead">
@@ -30,6 +36,11 @@
                             <li>
                                 <a href="{{ route('faq.show', ['key' => 'multiworld', 'slug' => Str::slug(__('faq.multiworld.question'))]) }}">
                                     {{ __('faq.multiworld.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'campaign-sync', 'slug' => Str::slug(__('faq.campaign-sync.question'))]) }}">
+                                    {{ __('faq.campaign-sync.question') }}
                                 </a>
                             </li>
                             <li>

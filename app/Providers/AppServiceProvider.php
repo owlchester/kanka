@@ -33,8 +33,10 @@ use App\Models\MapPoint;
 use App\Models\MenuLink;
 use App\Models\Quest;
 use App\Models\QuestCharacter;
+use App\Models\QuestItem;
 use App\Models\QuestLocation;
 use App\Models\Note;
+use App\Models\QuestOrganisation;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
@@ -115,6 +117,8 @@ class AppServiceProvider extends ServiceProvider
             Quest::observe('App\Observers\QuestObserver');
             QuestCharacter::observe('App\Observers\QuestCharacterObserver');
             QuestLocation::observe('App\Observers\QuestLocationObserver');
+            QuestItem::observe('App\Observers\QuestItemObserver');
+            QuestOrganisation::observe('App\Observers\QuestOrganisationObserver');
             Race::observe('App\Observers\RaceObserver');
 
             Relation::observe('App\Observers\RelationObserver');

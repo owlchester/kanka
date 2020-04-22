@@ -8,13 +8,6 @@ require('./bootstrap');
 import select2 from './components/select2.js';
 import deleteConfirm from './components/delete-confirm.js';
 
-/**
- * Notifications: List and Count selector, and seconds for the timeout to refresh the list.
- * Refresh every 5 minutes because every minute gets quite intensive with people opening many tabs.
- * Todo: workaround to only run timeout if the window is active
- */
-var notificationList, notificationCount, notificationRefreshTimeout = 60 * 10000;
-
 $(document).ready(function() {
 
     // Inject the isMobile variable into the window. We don't want ALL of the javascript
@@ -169,7 +162,6 @@ $(document).ready(function() {
     deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
-    initNotifications();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -341,7 +333,7 @@ function entityCreatorUI() {
                     context: this
                 }).done(function (result, textStatus, xhr) {
                     // New entity was created, let's follow that redirect
-                    console.log(result);
+                    //console.log(result);
 
                     $('#entity-creator-form').hide();
 
@@ -359,6 +351,10 @@ function entityCreatorUI() {
 
 function initEntityCreatorDuplicateName() {
     $('#entity-creator-selection input[name="name"]').focusout(function(e) {
+        // Don't bother if the user didn't set any value
+        if (!$(this).val()) {
+            return;
+        }
         var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
         entityCreatorDuplicateWarning.hide();
         // Check if an entity of the same type already exists, and warn when it does.
@@ -366,6 +362,8 @@ function initEntityCreatorDuplicateName() {
             $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')
         ).done(function (res) {
             if (res.length > 0) {
+                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'}).join(', ');
+                $('#duplicate-entities').html(entities);
                 entityCreatorDuplicateWarning.fadeIn();
             } else {
                 entityCreatorDuplicateWarning.hide();
@@ -392,32 +390,6 @@ function initAjaxPagination() {
         });
         return false;
     })
-}
-
-/**
- * Check if there are new notifiations for the user
- */
-function initNotifications() {
-    notificationList = $('#header-notification-list');
-    notificationCount = $('#header-notification-count');
-    if (notificationList.length === 1) {
-        setTimeout(refreshNotificationList, notificationRefreshTimeout);
-    }
-}
-
-function refreshNotificationList() {
-    // console.log('refresh notification list');
-    $.ajax(notificationList.data('url'))
-        .done(function(result) {
-            if (result.count > 0) {
-                notificationList.html(result.body);
-                notificationCount.html(result.count).show();
-            } else {
-                notificationCount.hide();
-            }
-            setTimeout(refreshNotificationList, notificationRefreshTimeout);
-        }
-    );
 }
 
 /**
@@ -461,3 +433,4 @@ require('./crud.js');
 require('./calendar.js');
 require('./search.js');
 require('./tags.js');
+require('./notification');

@@ -45,6 +45,12 @@ img.profile-user-img {
   }
 }
 
+.navbar-custom-menu {
+  .btn-nav {
+    margin-top: 10px;
+    margin-right: 6px;
+  }
+}
 .navbar-nav {
   .campaign-menu .campaign-image {
     float: left;
@@ -72,7 +78,20 @@ img.profile-user-img {
     a.campaign-selector.cover-background {
       background-color: #ddd;
     }
+  }
+  .user-menu {
+    a.dropdown-toggle {
+      height: 50px;
+    }
 
+    .dropdown-menu > li.user-header {
+      background-color: #1e282c;
+      a > img {
+        z-index: 5;
+        height: 90px;
+        width: 90px;
+      }
+    }
   }
 }
 
@@ -94,21 +113,16 @@ img.profile-user-img {
   }
 }
 
-.navbar-nav > .user-menu > .dropdown-menu > li.user-header > a > img {
-  z-index: 5;
-  height: 90px;
-  width: 90px;
-  border: 3px solid;
-  border-color: transparent;
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
 .sidebar-menu > li > a {
   padding: 8px 5px 8px 15px;
-
-  .ra {
+}
+.sidebar-menu {
+  .ra, .fas, .fab, .far {
     display: inline-block;
     width: 20px;
+  }
+  .campaign-name {
+    overflow: hidden;
   }
 }
 
@@ -258,9 +272,9 @@ footer {
     li {
       padding: 0;
       display: block;
-      margin: 4px 0;
+      margin: 2px 0;
       a {
-        padding: 5px 15px;
+        padding: 5px 0;
         font-size: 14px !important;
         line-height: 26px;
       }
@@ -271,7 +285,7 @@ footer {
     font-weight: 700;
   }
   h4, span {
-    margin: 0 15px 10px;
+    margin: 0 15px 10px 0;
   }
 
   a {
@@ -290,8 +304,11 @@ footer {
       margin-bottom: 20px;
     }
     .copyright {
-      margin-top: 40px;
-      font-size: 12px;
+      margin-top: 30px;
+      font-size: 14px;
+      .dropup {
+        display: inline-block;
+      }
     }
   }
 }
@@ -742,7 +759,7 @@ td.breakable {
     min-height: 0;
     background-color: unset;
 
-    i.fa, i.ra, i.fas, i.far {
+    i.fa, i.ra, i.fas, i.far, i.fab {
       line-height: 1.6em;
     }
   }
@@ -905,11 +922,26 @@ td.breakable {
     padding-top: 37px;
   }
 }
+.box-active {
+  box-shadow: $box-shadow;
+  transition: all 0.3s ease;
+}
+.box-green {
+  .box-body {
+    background-color: #c0d9bf;
+  }
+}
+.box-hover {
+  cursor: pointer;
+}
 
 #entry td, #entry th {
   padding:2px;
 }
 
+hr {
+  border-top: 1px solid #eeeeee
+}
 
 // Other stylings
 @import "calendar";

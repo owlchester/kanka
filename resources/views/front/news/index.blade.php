@@ -4,6 +4,12 @@
     'active' => 'news'
 ])
 
+@section('og')
+    <meta property="og:description" content="{{ __('front/news.description') }}" />
+    <meta property="og:url" content="{{ route('front.news') }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ __('front/news.title') }}" href="{{ url('/feeds/news.rss') }}" />
+@endsection
+
 @section('content')
     <header class="masthead reduced-masthead">
         <div class="container h-100">
@@ -31,6 +37,8 @@
                     @endforeach
 
                     {{ $models->appends('order', request()->get('order'))->links() }}
+
+                        @include('partials.newsletter', ['source' => 'news'])
                 </div>
             </div>
         </div>

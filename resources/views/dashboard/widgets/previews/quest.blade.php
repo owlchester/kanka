@@ -18,6 +18,18 @@ $model = $widget->entity->child;
         </h3>
     </div>
     <div class="panel-body">
+        @if ($widget->conf('full') === '1')
+            <dl class="dl-horizontal">
+                @if ($campaign->enabled('characters') && !empty($model->character))
+                    <dt>{{ __('quests.fields.character') }}</dt>
+                    <dd>
+                        {!! $model->character->tooltipedLink() !!}
+                    </dd>
+                @endif
+            </dl>
+
+            {!! $model->entry() !!}
+        @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
 
             <dl class="dl-horizontal">
@@ -35,5 +47,6 @@ $model = $widget->entity->child;
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
             <i class="fa fa-chevron-down"></i>
         </a>
+        @endif
     </div>
 </div>

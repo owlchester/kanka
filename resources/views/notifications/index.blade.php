@@ -34,4 +34,6 @@
             @endif
         </div>
     </div>
+
+    <input type="hidden" id="notification-clear" />
 @endsection

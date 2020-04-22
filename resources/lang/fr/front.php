@@ -103,10 +103,10 @@ return [
             'hall_of_fame'      => 'Nom dans la :link',
             'impact'            => 'Impact sur les futures fonctionalités',
             'monthly_vote'      => 'Participation dans les votes Patreon',
-            'pagination'        => 'Augmentation de la limite des résultats paginés (100)',
+            'pagination'        => 'Augmentation de la limite des résultats paginés',
             'title'             => 'Support Patreon',
-            'upload_limit'      => 'Taille des fichiers augmentés (8mb)',
-            'upload_limit_map'  => 'Taille des cartes augmentées (10mb)',
+            'upload_limit'      => 'Taille des fichiers augmentés',
+            'upload_limit_map'  => 'Taille des cartes augmentées',
         ],
         'public'            => [
             'description'   => 'Les autorisations peuvent être définies par modules ou pour chaque entité. Les campagnes peuvent également être publiques ou privées.',
@@ -160,6 +160,7 @@ return [
         'home'      => 'Accueil',
         'login'     => 'Login',
         'news'      => 'Nouvelles',
+        'newsletter'=> 'Newsletter',
         'pricing'   => 'Prix',
         'privacy'   => 'Politique de confidentialité',
         'register'  => 'Inscription',
@@ -179,6 +180,7 @@ return [
     'pricing'       => [
         'actions'       => [
             'more'      => 'Plus d\'info sur les fonctionalités débloquées en nous soutenant',
+            'subscribe' => 'Souscrire',
             'support'   => 'Soutenir',
         ],
         'benefits'      => [

@@ -53,6 +53,7 @@ return [
             'css'           => 'CSS personalizado de la campaña',
             'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
             'header_image'  => 'Imagen de cabecera para la entidad',
+            'recovery'      => 'Recuperación de entidades de hasta 30 días',
             'theme'         => 'Tema de campaña fijo',
             'title'         => 'Campañas mejoradas',
             'tooltip'       => 'Descripciones emergentes personalizadas',

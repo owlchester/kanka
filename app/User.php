@@ -10,6 +10,7 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Patreon;
 use App\Models\Scopes\UserScope;
+use App\Models\UserApp;
 use App\Models\UserSetting;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,12 +21,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User
  * @package App
  *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property integer $last_campaign_id
@@ -36,6 +39,7 @@ use Laravel\Passport\HasApiTokens;
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharing
  * @property string $patreon_pledge
+ * @property int $booster_count
  *
  * Virtual
  * @property bool $advancedMentions
@@ -46,6 +50,15 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends \TCG\Voyager\Models\User
 {
+    use Notifiable,
+        HasApiTokens,
+        UserScope,
+        UserSetting,
+        Searchable,
+        Filterable,
+        Sortable,
+        Billable;
+
     /**
      * Cached calculation if the user is an admin of the current campaign he is viewing
      * @var null
@@ -65,8 +78,6 @@ class User extends \TCG\Voyager\Models\User
     public $searchableColumns = ['email', 'settings'];
     public $sortableColumns = [];
     public $filterableColumns = ['patreon_pledge'];
-
-    use Notifiable, HasApiTokens, UserScope, UserSetting, Searchable, Filterable, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -215,6 +226,14 @@ class User extends \TCG\Voyager\Models\User
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function apps()
+    {
+        return $this->hasMany(UserApp::class, 'user_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function permissions()
     {
         return $this->hasMany('App\Models\CampaignPermission', 'user_id');
@@ -340,6 +359,15 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Determine if a user has a patreon-synced set up
+     * @return bool
+     */
+    public function hasPatreonSync(): bool
+    {
+        return $this->hasRole('patreon') && !empty($this->patreon_email);
+    }
+
+    /**
      * @return bool
      */
     public function isGoblinPatron(): bool
@@ -356,6 +384,14 @@ class User extends \TCG\Voyager\Models\User
     public function isElementalPatreon(): bool
     {
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOwlbear(): bool
+    {
+        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
     }
 
 
@@ -392,6 +428,11 @@ class User extends \TCG\Voyager\Models\User
      */
     public function maxBoosts(): int
     {
+        // Allows us to give boosters to members of the community
+        if (!empty($this->booster_count)) {
+            return $this->booster_count;
+        }
+
         if (!$this->isPatron()) {
             return 0;
         }
@@ -418,5 +459,17 @@ class User extends \TCG\Voyager\Models\User
     public function getRateLimitAttribute(): int
     {
         return $this->isGoblinPatron() ? 90 : 30;
+    }
+
+    /**
+     * Currency symbol
+     * @return string
+     */
+    public function currencySymbol(): string
+    {
+        if ($this->currency === 'eur') {
+            return '€';
+        }
+        return '$';
     }
 }

@@ -14,6 +14,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * Class Ability
  * @package App\Models
  * @property int $ability_id
+ * @property string $charges
  * @property Ability $ability
  * @property Ability[] $abilities
  */
@@ -37,6 +38,7 @@ class Ability extends MiscModel
         'image',
         'ability_id',
         'is_private',
+        'charges'
     ];
 
     /**

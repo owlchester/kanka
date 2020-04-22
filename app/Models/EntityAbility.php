@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $entity_id
  * @property integer $ability_id
  * @property string $visibility
+ * @property integer $charges
  * @property integer $created_by
  * @property Ability $ability
  * @property Entity $entity
@@ -29,6 +30,7 @@ class EntityAbility extends Model
         'ability_id',
         'visibility',
         'created_by',
+        'charges',
     ];
 
     use VisibilityTrait, SimpleSortableTrait;

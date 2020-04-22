@@ -72,8 +72,8 @@ function toggleCrudMultiDelete()
     });
 
     if (hide) {
-        $('.datagrid-bulk-actions').hide();
+        $('.datagrid-bulk-actions .btn').prop('disabled', true).addClass('disabled');
     } else {
-        $('.datagrid-bulk-actions').show();
+        $('.datagrid-bulk-actions .btn').prop('disabled', false).removeClass('disabled');
     }
 }

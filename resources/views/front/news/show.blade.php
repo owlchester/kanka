@@ -10,6 +10,7 @@
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('front.news.show', $model->getSlug()) }}" />
     @if ($model->image)<meta property="og:image" content="{{ Voyager::image($model->image)  }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ __('front/news.title') }}" href="{{ url('/feeds/news.rss') }}" />
 @endif
 @endsection
 
@@ -43,11 +44,13 @@
                     </h4>
                     @include('front.news._article')
 
-                    <div class="mt-3">
+                    <div class="mb-4">
                         <a href="{{ route('front.news') }}">
                             <i class="fa fa-arrow-left"></i> {{ __('front/news.actions.return') }}
                         </a>
                     </div>
+
+                    @include('partials.newsletter', ['source' => 'news'])
                 </div>
             </div>
         </div>

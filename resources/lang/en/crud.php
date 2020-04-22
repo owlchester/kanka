@@ -18,6 +18,7 @@ return [
         'next'              => 'Next',
         'private'           => 'Private',
         'public'            => 'Public',
+        'reset'             => 'Reset',
     ],
     'add'               => 'Add',
     'alerts'            => [
@@ -247,8 +248,6 @@ return [
         'unknown'   => 'Unknown',
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'      => 'View entity log',
-        'created_date' => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date' => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
     ],
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
@@ -349,6 +348,7 @@ return [
     'rename'            => 'Rename',
     'save'              => 'Save',
     'save_and_close'    => 'Save and Close',
+    'save_and_copy'     => 'Save and Copy',
     'save_and_new'      => 'Save and New',
     'save_and_update'   => 'Save and Update',
     'save_and_view'     => 'Save and View',

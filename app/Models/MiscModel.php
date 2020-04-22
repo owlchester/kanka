@@ -296,7 +296,7 @@ abstract class MiscModel extends Model
 
         // Each entity can have abilities
         $campaign = CampaignLocalization::getCampaign();
-        if ($campaign->enabled('abilities') && $campaign->boosted() && $this->entityTypeId() != config('entities.ids.ability')) {
+        if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
             $items['abilities'] = [
                 'name' => 'crud.tabs.abilities',
                 'route' => 'entities.entity_abilities.index',

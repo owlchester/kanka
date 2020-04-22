@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'abilities'             => 'Képességek',
     'admin'                 => 'Adminisztráció',
     'attribute_templates'   => 'Tulajdonságsablonok',
     'calendars'             => 'Naptárak',

@@ -20,6 +20,18 @@ return [
         'settings'                  => 'Paramètres',
         'theme'                     => 'Thème',
     ],
+    'newsletter'    => [
+        'links'     => [
+            'community-vote'    => 'Vote Communtaire',
+            'news'              => 'News',
+        ],
+        'settings'  => [
+            'news'          => 'News - être notifié lors de nouvelles :news.',
+            'newsletter'    => 'Newsletter - recevoir la newsletter Kanka.',
+            'votes'         => 'Vote Communtaire - être notifié dès qu\'il y a un nouveau vote communtaire.',
+        ],
+        'title'     => 'Newsletter',
+    ],
     'password'      => [
         'success'   => 'Mot de passe modifié.',
     ],

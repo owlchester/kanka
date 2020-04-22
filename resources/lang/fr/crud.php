@@ -18,6 +18,7 @@ return [
         'next'              => 'Prochain',
         'private'           => 'Privé',
         'public'            => 'Publique',
+        'reset'             => 'Réinitialiser',
     ],
     'add'               => 'Ajouter',
     'alerts'            => [
@@ -347,6 +348,7 @@ return [
     'rename'            => 'Renommer',
     'save'              => 'Enregistrer',
     'save_and_close'    => 'Enregistrer et Fermer',
+    'save_and_copy'     => 'Enregistrer et Copier',
     'save_and_new'      => 'Enregistrer et Nouveau',
     'save_and_update'   => 'Enregistrer et continuer la modification',
     'save_and_view'     => 'Enregistrer et Afficher',

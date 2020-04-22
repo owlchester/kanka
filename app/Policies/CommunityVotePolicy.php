@@ -2,7 +2,6 @@
 /**
  * Description of
  *
- * @author Jeremy Payne it@watson.ch
  * 05/02/2020
  */
 

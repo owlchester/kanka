@@ -38,7 +38,7 @@ return [
         'type'          => 'Capital',
     ],
     'note1'         => [
-        'entry' => <<<'TEXT'
+        'entry'         => <<<'TEXT'
 Welcome to Kanka! Your first campaign has been created and we have included a couple of example entities as inspiration (you can delete them whenever).
 
 You'll probably want to get started by adding some entities of your own, so chose a category from the left and get started. You can disable unneeded categories of entity from the campaign settings, this will hide them from the menu.
@@ -52,9 +52,10 @@ A few tips to get you started:
 Last but not least:
 - Have a look at :public for inspiration on how others use Kanka.
 - If you have questions, suggestions or just want to chat, join us on :discord.
-- Loving the app and want to support it's growth? Head over to our :patreon.
+- Loving the app and want to support it's growth? Consider supporting Kanka through :subscriptions.
 TEXT
 ,
-        'name'  => 'Welcome Note',
+        'name'          => 'Welcome Note',
+        'subscriptions' => 'Subscriptions',
     ],
 ];

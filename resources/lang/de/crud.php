@@ -252,6 +252,7 @@ return [
         'actions'   => [
             'bulk'          => [
                 'add'       => 'Hinzufügen',
+                'ignore'    => 'Ignorieren',
                 'remove'    => 'Entfernen',
             ],
             'delete'        => 'Löschen',

@@ -3,6 +3,11 @@
     'description' => '',
 ])
 
+@section('og')
+    <meta property="og:description" content="{{ __("faq.$key.answer") }}" />
+    <meta property="og:url" content="{{ route('faq.show', ['key' => $key, 'slug' => \Illuminate\Support\Str::slug(__('faq.' . $key . '.question'))]) }}" />
+@endsection
+
 @section('content')
 
     <header class="masthead reduced-masthead">
@@ -14,6 +19,7 @@
                         <p class="mb-5">{!! nl2br(__("faq.$key.answer", [
                             'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
                             'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank']),
+                            'boosters' => link_to_route('front.features', __('front.features.patreon.boosts'), ['#boost']),
                             'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'))
                         ])) !!}</p>
 

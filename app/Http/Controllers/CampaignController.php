@@ -7,7 +7,9 @@ use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Services\CampaignService;
 use App\Services\EntityService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -158,5 +160,24 @@ class CampaignController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('campaign')->withErrors($e->getMessage());
         }
+    }
+
+    /**
+     * Get the campaign css
+     * @return Response
+     */
+    public function css()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $css = null;
+        if ($campaign->boosted() && !empty($campaign->css)) {
+            $css = $campaign->css;
+        }
+
+        $response = \Illuminate\Support\Facades\Response::make($css);
+        $response->header('Content-Type', 'text/css');
+        $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
+
+        return $response;
     }
 }

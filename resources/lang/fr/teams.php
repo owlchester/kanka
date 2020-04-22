@@ -14,7 +14,6 @@ return [
     'patreon'       => [
         'description'   => 'Les gens incroyables qui aident et supportent Kanka sur Patreon.',
         'learn_more'    => 'En savoir plus sur les bonus Patreon',
-        'title'         => 'Patreon',
     ],
     'people'        => [
         'iz'        => [

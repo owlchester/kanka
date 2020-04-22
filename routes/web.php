@@ -28,28 +28,7 @@ Route::group([
 
     Auth::routes();
 
-    Route::get('/settings/profile', 'Settings\ProfileController@index')->name('settings.profile');
-    Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
-
-    // Model mapping
-    Route::get('/settings/boost', 'Settings\BoostController@index')->name('settings.boost');
-
-    Route::post('/settings/release/{release}', 'Settings\ReleaseController@read')->name('settings.release');
-    Route::post('/settings/welcome', 'Settings\WelcomeController@read')->name('settings.welcome');
-
-    Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account');
-    Route::patch('/settings/account/password', 'Settings\AccountController@password')->name('settings.account.password');
-    Route::patch('/settings/account/email', 'Settings\AccountController@email')->name('settings.account.email');
-    Route::patch('/settings/account/destroy', 'Settings\AccountController@destroy')->name('settings.account.destroy');
-    Route::patch('/settings/account/social', 'Settings\AccountController@social')->name('settings.account.social');
-
-    Route::get('/settings/patreon', 'Settings\PatreonController@index')->name('settings.patreon');
-    Route::get('/settings/patreon-callback', 'Settings\PatreonController@callback')->name('settings.patreon.callback');
-
-    Route::get('/settings/api', 'Settings\ApiController@index')->name('settings.api');
-
-    Route::get('/settings/layout', 'Settings\LayoutController@index')->name('settings.layout');
-    Route::patch('/settings/layout', 'Settings\LayoutController@update')->name('settings.layout');
+    require base_path('routes/profile.php');
 
     Route::resources([
         'campaign_boost' => 'CampaignBoostController',
@@ -166,6 +145,7 @@ Route::group([
 
         // Multi-delete for cruds
         Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
+        Route::get('/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
         // Attribute Templates Menu
         Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
@@ -208,6 +188,8 @@ Route::group([
 
         // Entity Abilities API
         Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
+        Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
+        Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
@@ -366,6 +348,7 @@ Route::group([
         Route::post('/campaign/settings', 'CampaignSettingController@save')->name('campaign_settings.save');
         Route::get('/campaign/export', 'CampaignExportController@index')->name('campaign_export');
         Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
+        Route::get('/campaign.css', 'CampaignController@css')->name('campaign.css');
 
         // Entity quick creator
         Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
@@ -396,7 +379,13 @@ Route::group([
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
+});
 
+Route::group(['prefix' => 'subscription-api'], function () {
+    Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');
+    Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
+    Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
+    Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -404,3 +393,12 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/sitemap', 'Front\SitemapController@index')->name('front.sitemap');
+
+// Stripe
+Route::post(
+    'stripe/webhook',
+    '\App\Http\Controllers\WebhookController@handleWebhook'
+);
+
+// Rss feeds
+Route::feeds();

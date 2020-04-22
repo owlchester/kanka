@@ -46,7 +46,7 @@ class CampaignBoostController extends Controller
         $this->authorize('access', $campaign);
 
         try {
-            $this->campaignBoostService->boost($campaign);
+            $this->campaignBoostService->campaign($campaign)->boost();
             $this->campaignService->notify(
                 $campaign,
                 'boost.add',
@@ -77,7 +77,7 @@ class CampaignBoostController extends Controller
     {
         $this->authorize('destroy', $campaignBoost);
 
-        $campaignBoost->delete();
+        $this->campaignBoostService->campaign($campaignBoost->campaign)->unboost($campaignBoost);
 
         $this->campaignService->notify(
             $campaignBoost->campaign,

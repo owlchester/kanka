@@ -48,10 +48,12 @@ return [
             'title'         => 'API',
         ],
         'boosts'            => [
+            'beta'          => 'Béta hozzáférés néhány új lehetőséghez a publikálás előtt 30 nappal.',
             'boosted'       => 'Boost-olt kampány',
             'css'           => 'Kampány-függő egyedi CSS',
             'description'   => 'Bizonyos adományozási szintek adott számú boosterrel látják el a felhasználót, amellyel kampányt tud boostolni. Ezek az alábbi előnyöket biztosítják.',
             'header_image'  => 'Entitás fejléc kép',
+            'recovery'      => 'Entitások visszaállítása 30 napon belül',
             'theme'         => 'Rögzített kampány megjelenítési téma.',
             'title'         => 'Boost-olt kampányok',
             'tooltip'       => 'Egyedi entitás tooltip-ek.',

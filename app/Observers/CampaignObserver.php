@@ -68,6 +68,13 @@ class CampaignObserver
             $campaign->visibility = Campaign::VISIBILITY_PRIVATE;
         }
 
+        // UI settings
+        if (request()->has('tooltip_family')) {
+            $uiSettings = $campaign->ui_settings;
+            $uiSettings['tooltip_family'] = (bool) request()->get('tooltip_family');
+            $campaign->ui_settings = $uiSettings;
+        }
+
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
         ImageService::handle($campaign, 'campaigns', true, 'header_image');
