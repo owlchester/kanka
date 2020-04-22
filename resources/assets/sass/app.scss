@@ -602,6 +602,7 @@ div.mce-fullscreen {
   }
 
   .entity-name {
+    max-height: none;
     font-size: 16pt;
     display: block;
   }
@@ -949,5 +950,4 @@ hr {
 @import "mobile";
 @import "boosted";
 @import "entity";
-
 @import "../components/rpg/scss/rpg-awesome";
