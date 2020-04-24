@@ -245,8 +245,10 @@ return [
     ],
     'history'           => [
         'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'   => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'   => 'Unknown',
         'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'   => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'      => 'View entity log',
     ],
     'image'             => [

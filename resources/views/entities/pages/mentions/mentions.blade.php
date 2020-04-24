@@ -34,31 +34,33 @@
                         </thead>
                         <tbody>
                         @foreach ($mentions as $mention)
-                            <tr>
-                                <td>
-                                    @if ($mention->isCampaign())
+                            @if ($mention->isCampaign())
+                                <tr>
+                                    <td>
                                         <a href="{{ route('campaigns.show', $mention->campaign_id) }}">
                                             {{ $mention->campaign->name }}
                                         </a>
-                                    @elseif ($mention->isEntityNote())
-                                        @if ($mention->entityNote && $mention->entityNote->entity)
-                                            @viewentity($mention->entityNote->entity)
-                                                <a href="{{ $mention->entityNote->entity->url('show', 'notes') }}">
-                                                    {{ __('entities/mentions.entity_note', ['name' => $mention->entityNote->entity->name]) }}
-                                                </a>
-                                            @endif
-                                        @else
-                                            <i>{{ trans('crud.hidden') }}</i>
-                                        @endviewentity
-                                    @elseif ($mention->entity)
-                                        @viewentity($mention->entity)
-                                            <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
-                                        @else
-                                            <i>{{ trans('crud.hidden') }}</i>
-                                        @endviewentity
-                                    @endif
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @elseif ($mention->isEntityNote() && $mention->entityNote && $mention->entityNote->entity)
+                                @viewentity($mention->entityNote->entity)
+                                <tr>
+                                    <td>
+                                        <a href="{{ $mention->entityNote->entity->url('show', 'notes') }}">
+                                            {{ __('entities/mentions.entity_note', ['name' => $mention->entityNote->entity->name]) }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endviewentity
+                            @elseif ($mention->entity)
+                                @viewentity($mention->entity)
+                                <tr>
+                                    <td>
+                                        <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
+                                    </td>
+                                </tr>
+                                @endviewentity
+                            @endif
                         @endforeach
                         </tbody>
                     </table>

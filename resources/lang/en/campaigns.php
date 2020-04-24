@@ -313,7 +313,7 @@ return [
         'title'         => 'Campaign :name',
     ],
     'ui'                                => [
-        'helper'    => 'Use tese settings to change the way some elements will be displayed in the campaign.',
+        'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',
     ],
     'visibilities'                      => [
         'private'   => 'Private',
