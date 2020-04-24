@@ -78,7 +78,7 @@ return [
         'length'                => 'Dĺžka udalosti',
         'length_days'           => ':count deň|:count dní',
         'months'                => 'mesiacov',
-        'moons'                 => 'družice',
+        'moons'                 => 'družíc',
         'name'                  => 'Názov',
         'parameters'            => 'Parametre',
         'recurring_periodicity' => 'Periodicita opakovania',

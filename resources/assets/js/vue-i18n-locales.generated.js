@@ -1167,6 +1167,7 @@ export default {
         }
     },
     "en-US": {
+        "admin": [],
         "calendars": [],
         "crud": {
             "fields": {
@@ -1177,6 +1178,7 @@ export default {
                 "organisation": "Choose an organization"
             }
         },
+        "entities": [],
         "randomisers": []
     },
     "es": {
@@ -2238,7 +2240,7 @@ export default {
             },
             "boost": {
                 "benefits": {
-                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionalités de l'application sont débloquées lorsqu'une campagne est boostée. Des boosts sont débloqués au travers d'abonnements. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne. Une campagne est boostée tant que le compte soutient Kanka à travers un {subscription}. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu'à ce que la campagne sois à nouveau boostée.",
+                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l'application sont débloquées lorsqu'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un {subscription} actif. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu'à ce que la campagne sois à nouveau boostée..",
                     "header": "Image d'en-tête pour entité.",
                     "more": "En savoir plus sur toutes les fonctionalités.",
                     "second": "Booster une campagne débloques les bénéfices suivants:",
@@ -2430,10 +2432,20 @@ export default {
     },
     "he": {
         "admin": [],
+        "calendars": [],
         "campaigns": [],
-        "front": []
+        "entities": [],
+        "front": [],
+        "randomisers": []
     },
-    "hr": [],
+    "hr": {
+        "admin": [],
+        "calendars": [],
+        "campaigns": [],
+        "entities": [],
+        "front": [],
+        "randomisers": []
+    },
     "hu": {
         "admin": [],
         "calendars": [],
@@ -2990,7 +3002,6 @@ export default {
     "it": {
         "admin": [],
         "calendars": [],
-        "campaigns": [],
         "conversations": {
             "create": {
                 "description": "Crea una nuova conversazione",
@@ -3405,7 +3416,6 @@ export default {
             }
         },
         "entities": [],
-        "front": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -3479,15 +3489,12 @@ export default {
         }
     },
     "nl": {
-        "admin": [],
-        "campaigns": [],
-        "front": []
+        "admin": []
     },
     "pt": [],
     "pt-BR": {
         "admin": [],
         "calendars": [],
-        "campaigns": [],
         "crud": {
             "actions": {
                 "back": "Voltar",
@@ -3654,7 +3661,6 @@ export default {
             "view": "Ver"
         },
         "entities": [],
-        "front": [],
         "randomisers": []
     },
     "ru": {
