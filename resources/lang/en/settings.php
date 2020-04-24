@@ -74,6 +74,7 @@ return [
             'download'  => 'Download PDF',
             'view_all'  => 'View all',
         ],
+        'empty' => 'No invoices',
         'fields'    => [
             'amount'    => 'Amount',
             'date'      => 'Date',
