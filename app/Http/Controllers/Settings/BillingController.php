@@ -26,7 +26,7 @@ class BillingController extends Controller
      */
     public function index()
     {
-        $stripeApiToken = getenv('STRIPE_KEY');
+        $stripeApiToken = env('STRIPE_KEY', null);
         $user = Auth::user();
 
         return view('settings.subscription.billing', compact(

@@ -210,7 +210,7 @@ class SubscriptionService
      */
     public function owlbearPlanID(): string
     {
-        return $this->user->currency === 'eur' ? getenv('STRIPE_OWLBEAR_EUR') : getenv('STRIPE_OWLBEAR_USD');
+        return $this->user->currency === 'eur' ? env('STRIPE_OWLBEAR_EUR') : env('STRIPE_OWLBEAR_USD');
     }
 
     /**
@@ -218,7 +218,7 @@ class SubscriptionService
      */
     public function elementalPlanID(): string
     {
-        return $this->user->currency === 'eur' ? getenv('STRIPE_ELEMENTAL_EUR') : getenv('STRIPE_ELEMENTAL_USD');
+        return $this->user->currency === 'eur' ? env('STRIPE_ELEMENTAL_EUR') : env('STRIPE_ELEMENTAL_USD');
     }
 
     /**
@@ -227,7 +227,7 @@ class SubscriptionService
     public function owlbearPlans(): array
     {
         // eur: plan_GpVbGxVYKmmnp8 usd: plan_GpVZhf8C9bMAt4
-        return [getenv('STRIPE_OWLBEAR_EUR'), getenv('STRIPE_OWLBEAR_USD')];
+        return [env('STRIPE_OWLBEAR_EUR'), env('STRIPE_OWLBEAR_USD')];
     }
 
     /**
@@ -236,7 +236,7 @@ class SubscriptionService
     public function elementalPlans(): array
     {
         // eur: plan_GpYTOMLzQzBo6K usd: plan_GpYTfsbyHMlUEk
-        return [getenv('STRIPE_ELEMENTAL_EUR'), getenv('STRIPE_ELEMENTAL_USD')];
+        return [env('STRIPE_ELEMENTAL_EUR'), env('STRIPE_ELEMENTAL_USD')];
     }
 
     /**

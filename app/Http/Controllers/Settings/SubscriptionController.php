@@ -34,7 +34,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $stripeApiToken = getenv('STRIPE_KEY');
+        $stripeApiToken = env('STRIPE_KEY', null);
         $status = $this->subscription->user(Auth::user())->status();
         $currentPlan = $this->subscription->currentPlan();
         $service = $this->subscription;
