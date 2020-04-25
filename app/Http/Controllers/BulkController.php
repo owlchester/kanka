@@ -41,6 +41,9 @@ class BulkController extends Controller
         $entity = $request->get('entity');
         $models = $request->get('model', []);
         $action = $request->get('datagrid-action');
+        $page = $request->get('page');
+        $routeParams = !empty($page) ? ['page' => $page] : [];
+
         $subroute = 'index';
         if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($entity . '.tree')) {
             $subroute = 'tree';
@@ -50,7 +53,7 @@ class BulkController extends Controller
 
         if ($action === 'delete') {
             $count = $this->bulkService->delete();
-            return redirect()->route($entity . '.' . $subroute)
+            return redirect()->route($entity . '.' . $subroute, $routeParams)
                 ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
         } elseif ($action === 'export') {
             $pdf = \App::make('dompdf.wrapper');
@@ -66,7 +69,7 @@ class BulkController extends Controller
                 ->entities($models)
                 ->permissions($request->only('user', 'role'), $request->has('permission-override'));
             return redirect()
-                ->route($entity . '.' . $subroute)
+                ->route($entity . '.' . $subroute, $routeParams)
                 ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
         } elseif ($action === 'batch') {
             $entityClass = $this->entityService->getClass($entity);
@@ -76,11 +79,11 @@ class BulkController extends Controller
                 ->entities(explode(',', $request->get('models')))
                 ->editing($request->all(), $this->bulkModel($entityObj));
             return redirect()
-                ->route($entity . '.' . $subroute)
+                ->route($entity . '.' . $subroute, $routeParams)
                 ->with('success', trans_choice('crud.bulk.success.editing', $count, ['count' => $count]));
         }
 
-        return redirect()->route($entity . '.' . $subroute);
+        return redirect()->route($entity . '.' . $subroute, $routeParams);
     }
 
     /**

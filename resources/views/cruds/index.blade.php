@@ -60,6 +60,7 @@
                 {{ $models->appends($filterService->pagination())->links() }}
             </div>
             {!! Form::hidden('entity', $name) !!}
+            {!! Form::hidden('page', request()->get('page')) !!}
         </div>
         {!! Form::close() !!}
     </div>
