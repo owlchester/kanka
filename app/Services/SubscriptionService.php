@@ -111,7 +111,7 @@ class SubscriptionService
     public function finish($planID): self
     {
         $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL : Patreon::PLEDGE_OWLBEAR;
-        $new = $this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && $plan == Patreon::PLEDGE_ELEMENTAL;
+        $new = !($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && $plan == Patreon::PLEDGE_ELEMENTAL);
 
         // Add the necessary roles and patreon data
         $this->user->patreon_pledge = $plan;
