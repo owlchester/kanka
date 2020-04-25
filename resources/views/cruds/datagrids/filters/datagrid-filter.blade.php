@@ -85,6 +85,16 @@ $count = 0;
                                         <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ trans('voyager.generic.no') }}</option>
                                         <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ trans('voyager.generic.yes') }}</option>
                                     </select>
+                                @elseif ($field === 'type')
+
+                                    <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
+                                    <div class="hidden">
+                                        <datalist id="entity-type-list">
+                                            @foreach ($model->entityTypeList() as $name)
+                                                <option value="{{ $name }}">{{ $name }}</option>
+                                            @endforeach
+                                        </datalist>
+                                    </div>
                                 @else
                                     <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif
