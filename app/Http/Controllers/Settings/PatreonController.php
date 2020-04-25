@@ -57,7 +57,7 @@ class PatreonController extends Controller
     {
         $this->patreon->user($request->user())->unlink();
         return redirect()->route('settings.patreon')
-            ->with('success', trans('settings.patreon.unlink.success'));
+            ->with('success', trans('settings.patreon.remove.success'));
 
     }
 }
