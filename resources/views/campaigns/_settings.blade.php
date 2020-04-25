@@ -62,7 +62,7 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'ra ra-fire-symbol', 'module' => 'abilities', 'boosted' => true])
+        @include('campaigns.settings.box', ['icon' => 'ra ra-fire-symbol', 'module' => 'abilities'])
     </div>
 </div>
 <div class="row">
