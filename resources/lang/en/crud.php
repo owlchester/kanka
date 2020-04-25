@@ -302,9 +302,15 @@ return [
         'action'            => 'Action',
         'actions'           => [
             'bulk'          => [
-                'add'       => 'Add',
-                'ignore'    => 'Ignore',
+                'add'       => 'Allow',
+                'deny'      => 'Deny',
+                'ignore'    => 'Skip',
                 'remove'    => 'Remove',
+            ],
+            'bulk_entity'   => [
+                'allow' => 'Allow',
+                'deny' => 'Deny',
+                'inherit' => 'Inherit',
             ],
             'delete'        => 'Delete',
             'edit'          => 'Edit',

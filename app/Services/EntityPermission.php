@@ -134,21 +134,24 @@ class EntityPermission
             return true;
         }
 
-        // Check if we have permission to `action` all of the entities of this type first.
+        // Check if we have permission to `action` all of the entities of this type first. The user
+        // might be able to view all quests, but have a specific quest set to denied. This is why
+        // we need to check the specific permissions too.
         $key = $modelName . '_' . $action;
+        $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
-            return $this->cached[$key];
+            $perm = $this->cached[$key];
         }
 
         // Check if we have permission for `action` exactly for this entity
         if (!empty($entity)) {
             $entityKey = $key . '_' . $entity->id;
             if (isset($this->cached[$entityKey])) {
-                return $this->cached[$entityKey];
+                $perm = $this->cached[$entityKey];
             }
         }
 
-        return false;
+        return $perm;
     }
 
     /**
@@ -275,7 +278,7 @@ class EntityPermission
         foreach ($this->roles as $role) {
             /** @var CampaignPermission $permission */
             foreach ($role->permissions as $permission) {
-                $this->cached[$permission->key] = true;
+                $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->type()][] = $permission->entityId();
                 }
@@ -285,7 +288,7 @@ class EntityPermission
         // If a user is provided, get their permissions too
         if (!empty($user)) {
             foreach ($user->permissions as $permission) {
-                $this->cached[$permission->key] = true;
+                $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->type()][] = $permission->entityId();
                 }

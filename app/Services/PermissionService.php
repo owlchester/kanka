@@ -49,6 +49,9 @@ class PermissionService
         'entity-note'
     ];
 
+    /** @var bool  */
+    protected $cachedPermissions = false;
+
     /**
      * PermissionService constructor.
      * @param EntityService $entityService
@@ -236,18 +239,32 @@ class PermissionService
                 foreach ($data as $perm => $action) {
                     if ($action == 'add') {
                         if (empty($permissions['role'][$roleId][$perm])) {
-                            $permObject = CampaignPermission::create([
+                            CampaignPermission::create([
                                 'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
                             ]);
                         } else {
+                            $permissions['role'][$roleId][$perm]->update(['access' => true]);
                             unset($permissions['role'][$roleId][$perm]);
                         }
                     } elseif ($action == 'remove') {
                         if (!empty($permissions['role'][$roleId][$perm])) {
                             $permissions['role'][$roleId][$perm]->delete();
+                            unset($permissions['role'][$roleId][$perm]);
+                        }
+                    } elseif ($action === 'deny') {
+                        if (empty($permissions['role'][$roleId][$perm])) {
+                            CampaignPermission::create([
+                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'campaign_role_id' => $roleId,
+                                'table_name' => $entity->pluralType(),
+                                'entity_id' => $entity->id,
+                                'access' => false,
+                            ]);
+                        } else {
+                            $permissions['role'][$roleId][$perm]->update(['access' => false]);
                             unset($permissions['role'][$roleId][$perm]);
                         }
                     }
@@ -259,19 +276,33 @@ class PermissionService
                 foreach ($data as $perm => $action) {
                     if ($action == 'add') {
                         if (empty($permissions['user'][$userId][$perm])) {
-                            $permObject = CampaignPermission::create([
+                            CampaignPermission::create([
                                 'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
+                                'access' => true,
                             ]);
                         } else {
+                            $permissions['user'][$userId][$perm]->update(['access' => true]);
                             unset($permissions['user'][$userId][$perm]);
                         }
                     } elseif ($action == 'remove') {
                         if (!empty($permissions['user'][$userId][$perm])) {
                             $permissions['user'][$userId][$perm]->delete();
                             unset($permissions['user'][$userId][$perm]);
+                        }
+                    } elseif ($action === 'deny') {
+                        if (empty($permissions['user'][$userId][$perm])) {
+                            CampaignPermission::create([
+                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'user_id' => $userId,
+                                'table_name' => $entity->pluralType(),
+                                'entity_id' => $entity->id,
+                                'access' => false
+                            ]);
+                        } else {
+                            $permissions['user'][$userId][$perm]->update(['access' => false]);
                         }
                     }
                 }
@@ -295,8 +326,12 @@ class PermissionService
      * @param Entity $entity
      * @return mixed
      */
-    public function entityPermissions(Entity $entity)
+    public function entityPermissions(Entity $entity): array
     {
+        if (!empty($this->cachedPermissions)) {
+            return $this->cachedPermissions;
+        }
+
         $keyBase = $entity->type . '_';
         $keys = [];
 
@@ -312,7 +347,8 @@ class PermissionService
             $permissions[$key][$subkey][$perm->action()] = $perm;
         }
 
-        return $permissions;
+
+        return $this->cachedPermissions = $permissions;
     }
 
     /**
@@ -368,5 +404,14 @@ class PermissionService
     {
         $key = $this->type . '_' . $action;
         return $this->basePermissions['users'][$user][$key];
+    }
+
+    public function selected(string $type, int $user, string $action): string
+    {
+        $value = Arr::get($this->cachedPermissions, $type . '.' . $user . '.' . $action, null);
+        if ($value === null) {
+            return 'inherit';
+        }
+        return $value->access ? 'allow' : 'deny';
     }
 }
