@@ -48,6 +48,7 @@ You can get a list of all the quests of a campaign by using the following endpoi
             },
             "updated_by": 1,
             "character_id": 4,
+            "date": "2020-04-20",
             "type": "Main",
             "is_completed": false,
             "quest_id": null,
@@ -95,12 +96,13 @@ To get the details of a single quest, use the following endpoint.
         "updated_by": 1,
         "character_id": 4,
         "type": "Main",
+        "date": "2020-04-20",
         "is_completed": false,
         "quest_id": null,
         "characters": 2,
         "locations": 1
     }
-    
+
 }
 ```
 

@@ -19,6 +19,16 @@
         @include('cruds.fields.tags')
 
         <div class="form-group">
+            <label>{{ trans('quests.fields.date') }}</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => trans('quests.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker', 'autocomplete' => 'off']) !!}
+            </div>
+        </div>
+
+        <div class="form-group">
             {!! Form::hidden('is_completed', 0) !!}
             <label>{!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
                 {{ trans('quests.fields.is_completed') }}

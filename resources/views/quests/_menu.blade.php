@@ -1,3 +1,5 @@
+@inject('dateRenderer', 'App\Renderers\DateRenderer')
+
 <div class="box box-solid">
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
@@ -14,6 +16,12 @@
             @if ($model->type)
                 <li class="list-group-item">
                     <b>{{ trans('quests.fields.type') }}</b> <span class="pull-right">{{ $model->type }}</span>
+                    <br class="clear" />
+                </li>
+            @endif
+            @if ($model->date)
+                <li class="list-group-item">
+                    <b>{{ trans('quests.fields.date') }}</b> <span class="pull-right">{{ $dateRenderer->render($model->date) }}</span>
                     <br class="clear" />
                 </li>
             @endif

@@ -16,6 +16,7 @@ class Quest extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'date' => $this->date,
             'is_completed' => (bool) $this->is_completed,
             'quest_id' => $this->quest_id,
             'character_id' => $this->character_id,

@@ -8,6 +8,7 @@ $filters = $filter->filters();
 $activeFilters = count($filterService->activeFilters());
 $entityModel = $model;
 $count = 0;
+
 @endphp
 
 <div class="box no-border datagrid-filters">
@@ -19,7 +20,6 @@ $count = 0;
         @if ($activeFilters > 0)
             <span class="label label-danger">{{ $activeFilters }}</span>
         @endif
-
     </div>
 
     {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
@@ -79,7 +79,7 @@ $count = 0;
                                     ) !!}
                                 @endif
                             @else
-                                <label>{{ trans(($field == 'is_private' ? 'crud.fields.' : $name . '.fields.') . $field) }}</label>
+                                <label>{{ __(($field == 'is_private' ? 'crud.fields.' : $name . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
                                     <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
                                         <option value=""></option>
@@ -91,8 +91,8 @@ $count = 0;
                                     <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
                                     <div class="hidden">
                                         <datalist id="entity-type-list">
-                                            @foreach ($entityModel->entityTypeList() as $name)
-                                                <option value="{{ $name }}">{{ $name }}</option>
+                                            @foreach ($entityModel->entityTypeList() as $suggestion)
+                                                <option value="{{ $suggestion }}">{{ $suggestion }}</option>
                                             @endforeach
                                         </datalist>
                                     </div>

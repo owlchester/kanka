@@ -8,6 +8,15 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Journal
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $date
+ * @property int $character_id
+ * @property int $journal_id
+ */
 class Journal extends MiscModel
 {
     use CampaignTrait,

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $quest_id
  * @property integer $character_id
  * @property boolean $is_completed
+ * @property string $date
  * @property Character $character
  * @property Character[] $characters
  * @property Quest $quest
@@ -45,6 +46,7 @@ class Quest extends MiscModel
         'is_private',
         'character_id',
         'is_completed',
+        'date',
 
         // calendar date
         'calendar_id',
@@ -66,6 +68,7 @@ class Quest extends MiscModel
     protected $filterableColumns = [
         'name',
         'type',
+        'date',
         'quest_id',
         'tag_id',
         'character_id',
@@ -79,6 +82,7 @@ class Quest extends MiscModel
      * @var array
      */
     protected $sortableColumns = [
+        'date',
         'character.name',
         'is_completed',
         'calendar_date',

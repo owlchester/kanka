@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\JournalFilter;
-use App\Models\Character;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
-use App\Models\Location;
-use App\Models\Tag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class JournalController extends CrudController
 {

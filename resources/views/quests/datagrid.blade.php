@@ -22,10 +22,10 @@
         [
             'type' => 'character',
             'visible' => $campaign->enabled('characters'),
-            'label' => trans('quests.fields.character'),
+            'label' => __('quests.fields.character'),
         ],
         [
-            'label' => trans('quests.fields.quest'),
+            'label' => __('quests.fields.quest'),
             'field' => 'quest.name',
             'render' => function($model) {
                 if ($model->quest) {
@@ -34,7 +34,7 @@
             }
         ],
         [
-            'label' => trans('quests.fields.locations'),
+            'label' => '<i class="ra ra-tower" title="' . __('quests.fields.locations') . '"></i>',
             'visible' => $campaign->enabled('locations'),
             'render' => function($model) {
                 return $model->locations->count();
@@ -42,7 +42,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => trans('quests.fields.characters'),
+            'label' => '<i class="fa fa-user" title="' . __('quests.fields.characters') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();
@@ -50,7 +50,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => trans('quests.fields.organisations'),
+            'label' => '<i class="ra ra-hood" title="' . __('quests.fields.organisations') . '"></i>',
             'visible' => $campaign->enabled('organisations'),
             'render' => function($model) {
                 return $model->organisations->count();
