@@ -32,6 +32,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $name
  * @property string $email
  * @property integer $last_campaign_id
+ * @property string $avatar
  * @property string $provider
  * @property integer $provider_id
  * @property string $last_login_at
