@@ -131,7 +131,7 @@ class CampaignExport implements ShouldQueue
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
         if ($queue != 'sync') {
-            CampaignExportCleanup::dispatch($this->campaign)->delay(now()->addMinutes(30));
+            CampaignExportCleanup::dispatch($this->campaign)->delay(now()->addMinutes(60));
         }
     }
 
