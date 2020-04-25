@@ -27,6 +27,9 @@ class SubscriptionService
     /** @var string */
     protected $tier;
 
+    /** @var */
+    protected $plan = null;
+
     /**
      * @param User $user
      * @return $this
@@ -60,15 +63,15 @@ class SubscriptionService
     public function change(array $request): self
     {
         // Get the correct plan
-        $plan = null;
+        $this->plan = null;
         if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
-            $plan = $this->owlbearPlanID();
+            $this->plan = $this->owlbearPlanID();
         } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
-            $plan = $this->elementalPlanID();
+            $this->plan = $this->elementalPlanID();
         }
 
         // Switching to kobold?
-        if (empty($plan)) {
+        if (empty($this->plan)) {
             $this->cancel(Arr::get($request, 'reason'));
             return $this;
         }
@@ -79,7 +82,7 @@ class SubscriptionService
         $this->user->updateDefaultPaymentMethod($paymentMethodID);
 
         // Subscribe
-        $this->subscribe($plan, $paymentMethodID);
+        $this->subscribe($this->plan, $paymentMethodID);
         return $this;
     }
 
@@ -105,11 +108,14 @@ class SubscriptionService
 
     /**
      * Setup the user's pledge, role, discord
-     * @param $planID
+     * @param string|null $planID
      * @return $this
      */
-    public function finish($planID): self
+    public function finish($planID = null): self
     {
+        if (empty($planID) && !empty($this->plan)) {
+            $planID = $this->plan;
+        }
         $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL : Patreon::PLEDGE_OWLBEAR;
         $new = !($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && $plan == Patreon::PLEDGE_ELEMENTAL);
 

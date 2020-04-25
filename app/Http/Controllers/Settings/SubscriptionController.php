@@ -93,7 +93,7 @@ class SubscriptionController extends Controller
             $this->subscription->user($request->user())
                 ->tier($request->get('tier'))
                 ->change($request->all())
-                ->finish($request->get('payment_id'));
+                ->finish();
 
             $flash = $request->get('tier') === Patreon::PLEDGE_KOBOLD ? 'cancel' : 'subscribed';
 
