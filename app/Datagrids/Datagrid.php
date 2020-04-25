@@ -6,8 +6,9 @@ namespace App\Datagrids;
 
 abstract class Datagrid
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $bulkPermissions = true;
+
+    /** @var bool */
+    public $bulkCopyToCampaign = true;
 }

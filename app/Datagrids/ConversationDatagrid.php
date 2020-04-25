@@ -4,8 +4,7 @@
 namespace App\Datagrids;
 
 
-class MenuLinkDatagrid extends Datagrid
+class ConversationDatagrid extends Datagrid
 {
-    public $bulkPermissions = false;
     public $bulkCopyToCampaign = false;
 }

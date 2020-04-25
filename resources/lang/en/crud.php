@@ -109,6 +109,7 @@ return [
             'title'     => 'Editing multiple entities',
         ],
         'errors'        => [
+            'general'   => 'An error occurred processing your action. Please try again and contact us if the problem persists. Error message: :hint.',
             'admin' => 'Only campaign admins can change the private status of entities.',
         ],
         'permissions'   => [
@@ -121,6 +122,7 @@ return [
             'title'     => 'Change permissions for several entities',
         ],
         'success'       => [
+            'copy_to_campaign' => '{1} :count entity copied to :campaign.|[2,*] :count entities copied to :campaign.',
             'editing'       => '{1} :count entity was updated.|[2,*] :count entities were updated.',
             'permissions'   => '{1} Permissions changed for :count entity.|[2,*] Permissions changed for :count entities.',
             'private'       => '{1} :count entity is now private|[2,*] :count entities are now private.',
@@ -136,6 +138,7 @@ return [
     'copy_to_campaign'  => [
         'panel' => 'Copy',
         'title' => 'Copy \':name\' to another campaign',
+        'bulk_title' => 'Copy entities to another campaign',
     ],
     'create'            => 'Create',
     'datagrid'          => [

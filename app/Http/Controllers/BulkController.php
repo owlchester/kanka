@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
 use App\Services\BulkService;
 use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BulkController extends Controller
 {
@@ -51,36 +53,54 @@ class BulkController extends Controller
 
         $this->bulkService->entity($entity)->entities($models);
 
-        if ($action === 'delete') {
-            $count = $this->bulkService->delete();
-            return redirect()->route($entity . '.' . $subroute, $routeParams)
-                ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
-        } elseif ($action === 'export') {
-            $pdf = \App::make('dompdf.wrapper');
-            $entities = $this->bulkService->export();
-            $name = $entity;
-            return $pdf
-                ->loadView('cruds.export', compact('entity', 'entities', 'name'))
-                ->download('kanka ' . $entity . ' export.pdf');
-        } elseif ($action === 'permissions') {
-            $models = explode(',', $request->get('models'));
-            $count = $this
-                ->bulkService
-                ->entities($models)
-                ->permissions($request->only('user', 'role'), $request->has('permission-override'));
+        try {
+            if ($action === 'delete') {
+                $count = $this->bulkService->delete();
+                return redirect()->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
+            } elseif ($action === 'export') {
+                $pdf = \App::make('dompdf.wrapper');
+                $entities = $this->bulkService->export();
+                $name = $entity;
+                return $pdf
+                    ->loadView('cruds.export', compact('entity', 'entities', 'name'))
+                    ->download('kanka ' . $entity . ' export.pdf');
+            } elseif ($action === 'permissions') {
+                $models = explode(',', $request->get('models'));
+                $count = $this
+                    ->bulkService
+                    ->entities($models)
+                    ->permissions($request->only('user', 'role'), $request->has('permission-override'));
+                return redirect()
+                    ->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
+            } elseif ($action === 'copy-campaign') {
+                $models = explode(',', $request->get('models'));
+                $campaignId = $request->get('campaign');
+                $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
+
+                $count = $this
+                    ->bulkService
+                    ->entities($models)
+                    ->copyToCampaign($campaign->id);
+                return redirect()
+                    ->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
+            } elseif ($action === 'batch') {
+                $entityClass = $this->entityService->getClass($entity);
+                $entityObj = new $entityClass;
+                $count = $this
+                    ->bulkService
+                    ->entities(explode(',', $request->get('models')))
+                    ->editing($request->all(), $this->bulkModel($entityObj));
+                return redirect()
+                    ->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success', trans_choice('crud.bulk.success.editing', $count, ['count' => $count]));
+            }
+        } catch (\Exception $e) {
             return redirect()
                 ->route($entity . '.' . $subroute, $routeParams)
-                ->with('success', trans_choice('crud.bulk.success.permissions', $count, ['count' => $count]));
-        } elseif ($action === 'batch') {
-            $entityClass = $this->entityService->getClass($entity);
-            $entityObj = new $entityClass;
-            $count = $this
-                ->bulkService
-                ->entities(explode(',', $request->get('models')))
-                ->editing($request->all(), $this->bulkModel($entityObj));
-            return redirect()
-                ->route($entity . '.' . $subroute, $routeParams)
-                ->with('success', trans_choice('crud.bulk.success.editing', $count, ['count' => $count]));
+                ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getMessage()]));
         }
 
         return redirect()->route($entity . '.' . $subroute, $routeParams);
@@ -92,7 +112,7 @@ class BulkController extends Controller
      */
     public function modal(Request $request)
     {
-        if (!$request->has('view') || !in_array($request->get('view'), ['permissions'])) {
+        if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign'])) {
             return response()->json(['error' => 'invalid view']);
         }
 

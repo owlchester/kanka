@@ -40,11 +40,16 @@ function registerBulkActions() {
     $('#datagrids-bulk-actions-batch').on('click', function() {
         setDatagridAction('batch', '#datagrid-bulk-batch-models');
     });
+    $('#datagrids-bulk-actions-copy-campaign').on('click', function() {
+        console.log('aaa');
+        setDatagridAction('copy-campaign', '#datagrid-bulk-permission-models');
+    });
 }
 
 /**
  * Set the datagrid action
  * @param action
+ * @param modelField
  */
 function setDatagridAction(action, modelField) {
     var values = [];

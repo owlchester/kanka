@@ -23,57 +23,57 @@
 
             <li class="{{ $sidebar->settings('profile') }}">
                 <a href="{{ route('settings.profile') }}">
-                    <i class="fa fa-user"></i> {{ __('settings.menu.profile') }}
+                    <i class="fa fa-user"></i> <span>{{ __('settings.menu.profile') }}</span>
                 </a>
             </li>
             <li class="{{ $sidebar->settings('account') }}">
                 <a href="{{ route('settings.account') }}">
-                    <i class="fa fa-key"></i> {{ __('settings.menu.account') }}
+                    <i class="fa fa-key"></i> <span>{{ __('settings.menu.account') }}</span>
                 </a>
             </li>
             <li class="{{ $sidebar->settings('layout') }}">
                 <a href="{{ route('settings.layout') }}">
-                    <i class="fas fa-th-large"></i> {{ __('settings.menu.layout') }}
+                    <i class="fas fa-th-large"></i> <span>{{ __('settings.menu.layout') }}</span>
                 </a>
             </li>
 
             <li class="header">{{ __('settings.menu.subscription') }}</li>
             <li class="{{ $sidebar->settings('boost') }}">
                 <a href="{{ route('settings.boost') }}">
-                    <i class="fa fa-rocket"></i> {{ __('settings.menu.boost') }}
+                    <i class="fa fa-rocket"></i> <span>{{ __('settings.menu.boost') }}</span>
                 </a>
             </li>
             <li class="{{ $sidebar->settings('billing-information') }}">
                 <a href="{{ route('settings.billing') }}">
-                    <i class="far fa-circle"></i> {{ __('settings.menu.billing') }}
+                    <i class="far fa-circle"></i> <span>{{ __('settings.menu.billing') }}</span>
                 </a>
             </li>
             <li class="{{ $sidebar->settings('subscription') }}">
                 <a href="{{ route('settings.subscription') }}">
-                    <i class="far fa-circle"></i> {{ __('settings.menu.subscription_status') }}
+                    <i class="far fa-circle"></i> <span>{{ __('settings.menu.subscription_status') }}</span>
                 </a>
             </li>
             <li class="{{ $sidebar->settings('invoices') }}">
                 <a href="{{ route('settings.invoices') }}">
-                    <i class="far fa-circle"></i> {{ __('settings.menu.invoices') }}
+                    <i class="far fa-circle"></i> <span>{{ __('settings.menu.invoices') }}</span>
                 </a>
             </li>
 
             <li class="header">{{ __('settings.menu.other') }}</li>
             @if (Auth::user()->hasPatreonSync())<li class="{{ $sidebar->settings('patreon') }}">
                 <a href="{{ route('settings.patreon') }}">
-                    <i class="fab fa-patreon"></i> {{ __('settings.menu.patreon') }}
+                    <i class="fab fa-patreon"></i> <span>{{ __('settings.menu.patreon') }}</span>
                 </a>
             </li>@endif
 
             <li class="{{ $sidebar->settings('apps') }}">
                 <a href="{{ route('settings.apps') }}">
-                    <i class="fab fa-discord"></i> {{ __('settings.menu.apps') }}
+                    <i class="fab fa-discord"></i> <span>{{ __('settings.menu.apps') }}</span>
                 </a>
             </li>
             <li class="{{ $sidebar->settings('api') }}">
                 <a href="{{ route('settings.api') }}">
-                    <i class="fas fa-code"></i> {{ __('settings.menu.api') }}
+                    <i class="fas fa-code"></i> <span>{{ __('settings.menu.api') }}</span>
                 </a>
             </li>
         </ul>

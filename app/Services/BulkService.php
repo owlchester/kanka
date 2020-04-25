@@ -128,6 +128,38 @@ class BulkService
     }
 
     /**
+     * @param int $campaignId
+     * @return int
+     * @throws TranslatableException
+     */
+    public function copyToCampaign(int $campaignId): int
+    {
+        $count = 0;
+        $model = $this->getEntity();
+
+        // First we make sure we have access to the new campaign.
+        $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
+        if (empty($campaign)) {
+            throw new TranslatableException('crud.move.errors.unknown_campaign');
+        }
+
+        $options = [
+            'campaign' => $campaignId,
+            'copy' => 'on'
+        ];
+
+        foreach ($this->ids as $id) {
+            $entity = $model->findOrFail($id);
+            if (Auth::user()->can('update', $entity)) {
+                $this->entityService->move($entity->entity, $options);
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
      * @param array $fields
      * @param Bulk $bulk
      * @return int
