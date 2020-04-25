@@ -57,9 +57,8 @@ class NewsletterService
 
     /**
      * Unsubscribe a user
-     * @return bool
      */
-    public function remove(): bool
+    public function remove()
     {
         return Newsletter::unsubscribe($this->user->email, $this->listName);
     }
