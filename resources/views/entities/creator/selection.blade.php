@@ -105,6 +105,22 @@
                         </a>
                     </div>
                 @endif
+
+                @if (isset($entities['abilities']))
+                    <div class="col-md-4 col-sm-12">
+                        <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'abilities']) }}">
+                            <i class="ra ra-fire-symbol ra-2x"></i>
+                            {{ __('entities.abilities') }}
+                        </a>
+                    </div>
+                @endif
+
+                <div class="col-md-4 col-sm-12">
+                    <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'tags']) }}">
+                        <i class="fa fa-tags fa-2x"></i>
+                        {{ __('entities.tags') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -24,7 +24,9 @@
 
         @include('entities.creator.forms.' . $singularType)
 
+        @if ($type !== 'tags')
         @include('cruds.fields.tags')
+        @endif
 
         @include('cruds.fields.private')
 
