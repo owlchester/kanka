@@ -13,13 +13,19 @@ if (isset($model)) {
     $permissionService->type($entityType);
 }
 $actions = [
-    'access' => __('crud.permissions.actions.bulk_entity.allow'),
+    'allow' => __('crud.permissions.actions.bulk_entity.allow'),
     'deny' => __('crud.permissions.actions.bulk_entity.deny'),
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
 @endphp
 
-<p class="help-block">{{ __('crud.permissions.helper') }}</p>
+<p class="help-block">
+    {!! __('crud.permissions.helpers.setup', [
+        'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
+        'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
+        'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
+    ]) !!}
+</p>
 
 <table id="crud_permissions" class="crud_permissions table table-hover export-hidden">
     <tbody>
@@ -39,6 +45,7 @@ $actions = [
         <th>
             <i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
             <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.entity_note') }}</span>
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('crud.permissions.helpers.entity_note') }}"></i>
         </th>
     </tr>
     @foreach ($campaign->campaign()->roles as $role)
@@ -106,6 +113,7 @@ $actions = [
         <th>
             <i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
             <span class="hidden-xs hidden-sm">{{ __('crud.permissions.actions.entity_note') }}</span>
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('crud.permissions.helpers.entity_note') }}"></i>
         </th>
     </tr>
 @if ($campaign->campaign()->members->count() > 10)
@@ -114,60 +122,58 @@ $actions = [
 <p class="help-block">{{ __('crud.permissions.too_many_members') }}</p>
 <input type="hidden" name="permissions_too_many" value="1" />
 @else
-    @foreach ($campaign->campaign()->members()->with('user')->get() as $member)
-        @if (!$member->isAdmin())
-            <tr>
-                <td>
-                    <div class="entity-image float-left" style="background-image: url({{ $member->user->getAvatarUrl(true) }})" title="{{ $member->user->name }}">
-                    </div>
-                    <div class="entity-name-img">{{ $member->user->name }}</div>
-                </td>
-                <td>
-                    <label>
-                        {!! Form::select("user[$member->user_id][read]", $actions, $permissionService->selected('user', $member->user_id, 'read')) !!}
+    @foreach ($campaign->campaign()->members()->withoutAdmins()->with('user')->get() as $member)
+        <tr>
+            <td>
+                <div class="entity-image float-left" style="background-image: url({{ $member->user->getAvatarUrl(true) }})" title="{{ $member->user->name }}">
+                </div>
+                <div class="entity-name-img">{{ $member->user->name }}</div>
+            </td>
+            <td>
+                <label>
+                    {!! Form::select("user[$member->user_id][read]", $actions, $permissionService->selected('user', $member->user_id, 'read')) !!}
 
-                        @if ($permissionService->inherited('read', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                               'role' => e($permissionService->inheritedRole('read', $member->user_id))
-                           ]) }}" data-toggle="tooltip"></i>
-                        @endif
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        {!! Form::select("user[$member->user_id][edit]", $actions, $permissionService->selected('user', $member->user_id, 'edit')) !!}
+                    @if ($permissionService->inherited('read', 0, $member->user_id))
+                        <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                           'role' => e($permissionService->inheritedRole('read', $member->user_id))
+                       ]) }}" data-toggle="tooltip"></i>
+                    @endif
+                </label>
+            </td>
+            <td>
+                <label>
+                    {!! Form::select("user[$member->user_id][edit]", $actions, $permissionService->selected('user', $member->user_id, 'edit')) !!}
 
-                        @if ($permissionService->inherited('edit', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                               'role' => e($permissionService->inheritedRole('edit', $member->user_id))
-                           ]) }}" data-toggle="tooltip"></i>
-                        @endif
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        {!! Form::select("user[$member->user_id][delete]", $actions, $permissionService->selected('user', $member->user_id, 'delete')) !!}
+                    @if ($permissionService->inherited('edit', 0, $member->user_id))
+                        <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                           'role' => e($permissionService->inheritedRole('edit', $member->user_id))
+                       ]) }}" data-toggle="tooltip"></i>
+                    @endif
+                </label>
+            </td>
+            <td>
+                <label>
+                    {!! Form::select("user[$member->user_id][delete]", $actions, $permissionService->selected('user', $member->user_id, 'delete')) !!}
 
-                        @if ($permissionService->inherited('delete', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                               'role' => e($permissionService->inheritedRole('delete', $member->user_id))
-                           ]) }}" data-toggle="tooltip"></i>
-                        @endif
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        {!! Form::select("user[$member->user_id][entity-note]", $actions, $permissionService->selected('user', $member->user_id, 'entity-note')) !!}
+                    @if ($permissionService->inherited('delete', 0, $member->user_id))
+                        <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                           'role' => e($permissionService->inheritedRole('delete', $member->user_id))
+                       ]) }}" data-toggle="tooltip"></i>
+                    @endif
+                </label>
+            </td>
+            <td>
+                <label>
+                    {!! Form::select("user[$member->user_id][entity-note]", $actions, $permissionService->selected('user', $member->user_id, 'entity-note')) !!}
 
-                        @if ($permissionService->inherited('entity-note', 0, $member->user_id))
-                            <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                               'role' => e($permissionService->inheritedRole('entity-note', $member->user_id))
-                           ]) }}" data-toggle="tooltip"></i>
-                        @endif
-                    </label>
-                </td>
-            </tr>
-        @endif
+                    @if ($permissionService->inherited('entity-note', 0, $member->user_id))
+                        <i class="text-green fa fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
+                           'role' => e($permissionService->inheritedRole('entity-note', $member->user_id))
+                       ]) }}" data-toggle="tooltip"></i>
+                    @endif
+                </label>
+            </td>
+        </tr>
     @endforeach
     </tbody>
 </table>

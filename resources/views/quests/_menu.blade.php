@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Quest $model */?>
 @inject('dateRenderer', 'App\Renderers\DateRenderer')
 
 <div class="box box-solid">
