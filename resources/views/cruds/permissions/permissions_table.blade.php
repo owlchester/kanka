@@ -17,19 +17,19 @@ $actions = [
         <div class="col-sm-4">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm">
+        <div class="col-sm-2 hidden-xs hidden-xm text-center">
             <i class="fa fa-eye visible-xs visible-sm" title="{{ __('crud.permissions.actions.read') }}"></i>
             <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm">
+        <div class="col-sm-2 hidden-xs hidden-xm text-center">
             <i class="fa fa-edit visible-xs visible-sm" title="{{ __('crud.permissions.actions.edit') }}"></i>
             <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm">
+        <div class="col-sm-2 hidden-xs hidden-xm text-center">
             <i class="fa fa-trash visible-xs visible-sm" title="{{ __('crud.permissions.actions.delete') }}"></i>
             <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm">
+        <div class="col-sm-2 hidden-xs hidden-xm text-center">
             <i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
             <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.entity_note') }}</strong></span>
             <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('crud.permissions.helpers.entity_note') }}"></i>
@@ -38,7 +38,7 @@ $actions = [
     @foreach ($campaign->campaign()->roles()->withoutAdmin()->get() as $role)
         <div class="row margin-bottom">
             <div class="col-sm-4">{{ $role->name }}</div>
-            <div class="text-center @if($role->is_public) col-sm-8 @else col-sm-2 @endif">
+            <div class="text-center col-sm-2">
                 <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>
                 {!! Form::select("role[$role->id][read]", $actions, $permissionService->selected('role', $role->id, 'read')) !!}
                 @if ($permissionService->inherited('read', $role->id))
@@ -83,19 +83,19 @@ $actions = [
         <div class="row margin-bottom">
             <div class="col-sm-4"><strong>{{ __('crud.permissions.fields.member') }}</strong></div>
 
-            <div class="col-sm-2 hidden-xs hidden-xm">
+            <div class="col-sm-2 hidden-xs hidden-xm text-center">
                 <i class="fa fa-eye visible-xs visible-sm" title="{{ __('crud.permissions.actions.read') }}"></i>
                 <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm">
+            <div class="col-sm-2 hidden-xs hidden-xm text-center">
                 <i class="fa fa-edit visible-xs visible-sm" title="{{ __('crud.permissions.actions.edit') }}"></i>
                 <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm">
+            <div class="col-sm-2 hidden-xs hidden-xm text-center">
                 <i class="fa fa-trash visible-xs visible-sm" title="{{ __('crud.permissions.actions.delete') }}"></i>
                 <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm">
+            <div class="col-sm-2 hidden-xs hidden-xm text-center">
                 <i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
                 <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.entity_note') }}</strong></span>
                 <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('crud.permissions.helpers.entity_note') }}"></i>
