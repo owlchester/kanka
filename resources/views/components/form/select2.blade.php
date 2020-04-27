@@ -40,6 +40,12 @@ if ($allowNew) {
     $allowNew = auth()->user()->can('create', new $prefillModel);
 }
 
+// From source to exclude duplicates
+$searchParams = [];
+if (!empty($from)) {
+    $searchParams['exclude'] = $from->id;
+}
+
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
 <label>{{ trans($labelKey) }}</label>
@@ -54,7 +60,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'id' => $fieldUniqIdentifier,
         'class' => 'form-control select2',
         'style' => 'width: 100%',
-        'data-url' => route($searchRouteName),
+        'data-url' => route($searchRouteName, $searchParams),
         'data-placeholder' => trans($placeholderKey),
         'data-language' => LaravelLocalization::getCurrentLocale()
     ]
