@@ -8,6 +8,7 @@ use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
+use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
 use App\User;
@@ -26,6 +27,9 @@ class SubscriptionService
 
     /** @var string */
     protected $tier;
+
+    /** @var string monthly/yearly */
+    protected $period;
 
     /**
      * @param User $user
@@ -47,6 +51,20 @@ class SubscriptionService
         $this->tier = $tier;
         if (!in_array($tier, Patreon::pledges())) {
             throw new \Exception("Unknown tier level '$tier'.");
+        }
+        return $this;
+    }
+
+    /**
+     * @param string $period
+     * @return $this
+     * @throws \Exception
+     */
+    public function period(string $period): self
+    {
+        $this->period = $period;
+        if (!in_array($period, ['monthly', 'yearly'])) {
+            throw new \Exception("Unknown period '$period'.");
         }
         return $this;
     }
@@ -97,7 +115,12 @@ class SubscriptionService
             $this->user->newSubscription('kanka', $planID)
                 ->create($paymentID);
         } else {
-            $this->user->subscription('kanka')->swapAndInvoice($planID);
+            // If going down from elemental to owlbear, keep it as is until the current billing period
+            if ($this->downgrading()) {
+                $this->user->subscription('kanka')->swap($planID);
+            } else {
+                $this->user->subscription('kanka')->swapAndInvoice($planID);
+            }
         }
 
         return $this;
@@ -110,6 +133,13 @@ class SubscriptionService
      */
     public function finish($planID): self
     {
+        // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
+        // when the user really changes. Probably?
+        if ($this->downgrading()) {
+            SubscriptionDowngradedEmailJob::dispatch($this->user);
+            return $this;
+        }
+
         $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL : Patreon::PLEDGE_OWLBEAR;
         $new = !($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && $plan == Patreon::PLEDGE_ELEMENTAL);
 
@@ -161,27 +191,28 @@ class SubscriptionService
             $amount = 25;
         }
 
+        // Offer a free month for those who sub for a year
+        if ($this->period === 'yearly') {
+            $amount *= 11;
+        }
+
         return $this->user->currencySymbol() . ' ' . $amount . '.00';
     }
     /**
      * Get the user's current plan
-     * @return array
+     * @return string
      */
-    public function currentPlan(): array
+    public function currentPlan(): string
     {
-        $plans = $this->plans();
         if ($this->user->subscribedToPlan($this->owlbearPlans(), 'kanka')) {
-            return $plans[0];
+            return Patreon::PLEDGE_OWLBEAR;
         }
         if ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
-            return $plans[1];
+            return Patreon::PLEDGE_ELEMENTAL;
         }
 
         // Free user?
-        return [
-            'name' => 'Kobold',
-            'price' => 'Free'
-        ];
+        return Patreon::PLEDGE_KOBOLD;
     }
 
     /**
@@ -210,7 +241,9 @@ class SubscriptionService
      */
     public function owlbearPlanID(): string
     {
-        return $this->user->currency === 'eur' ? config('subscription.owlbear.eur') : config('subscription.owlbear.usd');
+        return $this->user->currency === 'eur' ?
+            config('subscription.owlbear.eur.' . $this->period) :
+            config('subscription.owlbear.usd.' . $this->period);
     }
 
     /**
@@ -218,7 +251,9 @@ class SubscriptionService
      */
     public function elementalPlanID(): string
     {
-        return $this->user->currency === 'eur' ? config('subscription.elemental.eur') : config('subscription.elemental.usd');
+        return $this->user->currency === 'eur' ?
+            config('subscription.elemental.eur.' . $this->period) :
+            config('subscription.elemental.usd.' . $this->period);
     }
 
     /**
@@ -228,8 +263,36 @@ class SubscriptionService
     {
         // eur: plan_GpVbGxVYKmmnp8 usd: plan_GpVZhf8C9bMAt4
         return [
-            config('subscription.owlbear.eur'),
-            config('subscription.owlbear.usd')
+            config('subscription.owlbear.eur.monthly'),
+            config('subscription.owlbear.usd.monthly'),
+            config('subscription.owlbear.eur.yearly'),
+            config('subscription.owlbear.usd.yearly'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function monthlyPlans(): array
+    {
+        return [
+            config('subscription.owlbear.eur.monthly'),
+            config('subscription.owlbear.usd.monthly'),
+            config('subscription.elemental.eur.monthly'),
+            config('subscription.elemental.usd.monthly'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function yearlyPlans(): array
+    {
+        return [
+            config('subscription.owlbear.eur.yearly'),
+            config('subscription.owlbear.usd.yearly'),
+            config('subscription.elemental.eur.yearly'),
+            config('subscription.elemental.usd.yearly'),
         ];
     }
 
@@ -240,57 +303,19 @@ class SubscriptionService
     {
         // eur: plan_GpYTOMLzQzBo6K usd: plan_GpYTfsbyHMlUEk
         return [
-            config('subscription.elemental.eur'),
-            config('subscription.elemental.usd')
+            config('subscription.elemental.eur.monthly'),
+            config('subscription.elemental.eur.yearly'),
+            config('subscription.elemental.usd.monthly'),
+            config('subscription.elemental.usd.yearly')
         ];
     }
 
     /**
-     * The available plans
-     * @return array
+     * Determine if a user is downgrading
+     * @return bool
      */
-    public function plans(): array
+    protected function downgrading(): bool
     {
-        return [
-            [
-                'key' => $this->owlbearPlanID(),
-                'name' => 'Owlbear',
-                'colour' => 'green',
-                'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png',
-                'price' => '5 / ' . __('front.pricing.tier.month'),
-                'benefits' => [
-                    __('front.features.patreon.upload_limit') => "8 mb",
-                    __('front.features.patreon.upload_limit_map') => "10 mb",
-                    __('front.features.patreon.discord') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.default_image')  => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.api_calls')  => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.pagination')  => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.monthly_vote')  => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.boosts')  => "3",
-                ],
-            ],
-            [
-                'key' => $this->elementalPlanID(),
-                'name' => 'Elemental',
-                'colour' => 'red',
-                'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png',
-                'price' => '25 / ' . __('front.pricing.tier.month'),
-                'benefits' => [
-                    __('front.features.patreon.upload_limit') => '25 mb',
-                    __('front.features.patreon.upload_limit_map') => '25 mb',
-                    __('front.features.patreon.discord') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.default_image') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.api_calls') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.pagination') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.monthly_vote') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.boosts') => '10',
-                    __('front.features.patreon.curation') => '<i class="fa fa-check-circle"></i>',
-                    __('front.features.patreon.impact') => '<i class="fa fa-check-circle"></i>',
-
-                ],
-            ]
-        ];
+        return $this->user->isElementalPatreon() && $this->tier === Patreon::PLEDGE_OWLBEAR;
     }
 }

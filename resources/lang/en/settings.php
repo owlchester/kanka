@@ -160,7 +160,10 @@ return [
         ],
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends.',
         'change'                => [
-            'text'  => 'You are subscribing at the :tier tier, billed monthly for :amount.',
+            'text'  => [
+                'monthly' => 'You are subscribing at the :tier tier, billed monthly for :amount.',
+                'yearly' => 'You are subscribing at the :tier tier, billed annualy for :amount.',
+            ],
             'title' => 'Change Subscription Tier',
         ],
         'currencies'            => [
@@ -177,7 +180,7 @@ return [
         'fields'                => [
             'active_since'      => 'Active since',
             'active_until'      => 'Active until',
-            'billed_monthly'    => 'Billed monthly',
+            'billing'           => 'Billing',
             'currency'          => 'Billing Currency',
             'payment_method'    => 'Payment method',
             'plan'              => 'Current plan',
@@ -201,12 +204,17 @@ return [
         'placeholders'          => [
             'reason'    => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
         ],
+        'plans' => [
+            'cost_monthly' => ':currency :amount billed monthly',
+            'cost_yearly' => ':currency :amount billed yearly',
+        ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [
             'actions'   => [
                 'downgrading'   => 'Please contact us for downgrading',
                 'rollback'      => 'Change to Kobold',
                 'subscribe'     => 'Change to :tier monthly',
+                'subscribe_annual'     => 'Change to :tier yearly',
             ],
         ],
         'success'               => [
@@ -216,6 +224,7 @@ return [
             'subscribed'    => 'Your subscription was successful. Don\'t forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page.',
         ],
         'tiers'                 => 'Subscription Tiers',
+        'trial_period'          => 'Yearly subscriptions have a 14 day cancellation policy. Contact us at :email if you wish to cancel your yearly subscription and get a refund.',
         'upgrade_downgrade'     => [
             'button'    => 'Upgrade & Downgrade Information',
             'downgrade' => [

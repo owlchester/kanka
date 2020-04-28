@@ -1,6 +1,7 @@
 <?php /**
  * @var \App\Models\CampaignBoost $boost
  * @var \App\Models\Campaign $campaign
+ * @var \App\Services\SubscriptionService $service
  * @var \App\User $user
  */
 ?>
@@ -37,9 +38,16 @@
                             <dd>By Patreon</dd>
                     @else
                         <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                        <dd>{{ $currentPlan['name'] }}</dd>
-                        <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
-                        <dd>@if ($currentPlan['name'] != 'Kobold'){{ $currency }}@endif{{ $currentPlan['price'] }}</dd>
+                        <dd>{{ $currentPlan }}</dd>
+                        <dt>{{ __('settings.subscription.fields.billing') }}</dt>
+                        <dd>
+                            @if ($user->subscribedToPlan($service->monthlyPlans(), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->yearlyPlans(), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
+                            @else
+                                {{ __('front.pricing.tier.free') }}
+                            @endif
                         <dt>{{ __('settings.subscription.fields.currency') }}</dt>
                         <dd>
                             <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
@@ -160,7 +168,7 @@
                 <tr>
                     @if ($status != \App\Services\SubscriptionService::STATUS_GRACE)
                     <th class="align-middle">
-                        @if($currentPlan['name'] === 'Kobold')
+                        @if($currentPlan === \App\Models\Patreon::PLEDGE_KOBOLD)
                             <a class="btn btn-block btn-sm btn-default disabled">
                                 {{ __('tiers.current') }}
                             </a>
@@ -171,28 +179,55 @@
                         @endif
                     </th>
                     <th class="align-middle">
-                        @if($user->isOwlbear())
-                            <a class="btn btn-block btn-sm btn-default disabled">
-                                {{ __('tiers.current') }}
-                            </a>
-                        @elseif ($user->isElementalPatreon())
+                        @if ($user->subscribedToPlan($service->elementalPlans(), 'kanka'))
                             <a class="btn btn-block btn-sm btn-default disabled">
                                 {{ __('settings.subscription.subscription.actions.downgrading') }}
                             </a>
                         @else
-                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_OWLBEAR]) }}">
-                                {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Owlbear']) }}
-                            </a>
+                            @if($user->subscribedToPlan([config('subscription.owlbear.eur.monthly'), config('subscription.owlbear.usd.monthly')], 'kanka'))
+                                <a class="btn btn-block btn-sm btn-default disabled">
+                                    {{ __('tiers.current') }}
+                                </a>
+                            @else
+                                <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_OWLBEAR, 'period' => 'monthly']) }}">
+                                    {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Owlbear']) }}
+                                </a>
+                            @endif
+
+                            @if($user->subscribedToPlan([config('subscription.owlbear.eur.yearly'), config('subscription.owlbear.usd.yearly')], 'kanka'))
+                                <a class="btn btn-block btn-sm btn-default disabled">
+                                    {{ __('tiers.current') }}
+                                </a>
+                            @else
+                                <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_OWLBEAR, 'period' => 'yearly']) }}">
+                                    {{ __('settings.subscription.subscription.actions.subscribe_annual', ['tier' => 'Owlbear']) }}
+                                </a>
+                            @endif
                         @endif
                     </th>
                     <th class="align-middle">
-                        @if($user->isElementalPatreon())
-                            <button class="btn btn-block btn-sm btn-default disabled">
+                        @if($user->subscribedToPlan([config('subscription.elemental.eur.monthly'), config('subscription.elemental.usd.monthly')], 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
                                 {{ __('tiers.current') }}
-                            </button>
+                            </a>
+                        @elseif ($user->subscribedToPlan($service->elementalPlans(), 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('settings.subscription.subscription.actions.downgrading') }}
+                            </a>
                         @else
-                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_ELEMENTAL]) }}">
+                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_ELEMENTAL, 'period' => 'monthly']) }}">
                                 {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Elemental']) }}
+                            </a>
+                        @endif
+
+
+                        @if($user->subscribedToPlan([config('subscription.elemental.eur.yearly'), config('subscription.elemental.usd.yearly')], 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('tiers.current') }}
+                            </a>
+                        @else
+                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_ELEMENTAL, 'period' => 'yearly']) }}">
+                                {{ __('settings.subscription.subscription.actions.subscribe_annual', ['tier' => 'Elemental']) }}
                             </a>
                         @endif
                     </th>
@@ -265,6 +300,10 @@
                 </tbody>
             </table>
 
+            <div class="margin-bottom"></div>
+            <p class="help-block">
+                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:hello@kanka.io', 'hello@kanka.io')]) !!}
+            </p>
         </div>
     </div>
 

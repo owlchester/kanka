@@ -11,7 +11,7 @@
 
 
     @if (!$cancel)
-        <h4>{!! __('settings.subscription.change.text', ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
+        <h4>{!! __('settings.subscription.change.text.' . $period, ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
     @else
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
@@ -73,6 +73,7 @@
 </div>
 
 <input type="hidden" name="tier" value="{{ $tier }}" />
+<input type="hidden" name="period" value="{{ $period }}" />
 <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
 <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
 {!! Form::close() !!}

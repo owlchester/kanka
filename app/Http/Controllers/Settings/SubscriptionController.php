@@ -64,7 +64,9 @@ class SubscriptionController extends Controller
     public function change(Request $request)
     {
         $tier = $request->get('tier');
-        $amount = $this->subscription->user($request->user())->tier($tier)->amount();
+        $period = $request->get('period');
+
+        $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
         $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()): null;
         if (empty($request->user()->stripe_id)) {
             $request->user()->createAsStripeCustomer();
@@ -74,6 +76,7 @@ class SubscriptionController extends Controller
 
         return view('settings.subscription.change', compact(
             'tier',
+            'period',
             'amount',
             'card',
             'intent',
@@ -92,6 +95,7 @@ class SubscriptionController extends Controller
         try {
             $this->subscription->user($request->user())
                 ->tier($request->get('tier'))
+                ->period($request->get('period'))
                 ->change($request->all())
                 ->finish($request->get('payment_id'));
 
