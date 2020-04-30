@@ -6,15 +6,11 @@ namespace App\Http\Controllers;
 
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Mail\Subscription\Admin\FailedSubscriptionMail;
-use App\Mail\Subscription\Admin\NewSubscriptionMail;
-use App\Mail\WelcomeEmail;
 use App\Models\SubscriptionSource;
 use App\Notifications\Header;
 use App\Services\SubscriptionService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
 
 class WebhookController  extends CashierController

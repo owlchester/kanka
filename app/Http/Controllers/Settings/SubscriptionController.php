@@ -74,6 +74,7 @@ class SubscriptionController extends Controller
         }
         $intent = $request->user()->createSetupIntent();
         $cancel = $tier == Patreon::PLEDGE_KOBOLD;
+        $user = $request->user();
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -81,7 +82,8 @@ class SubscriptionController extends Controller
             'amount',
             'card',
             'intent',
-            'cancel'
+            'cancel',
+            'user'
         ));
     }
 

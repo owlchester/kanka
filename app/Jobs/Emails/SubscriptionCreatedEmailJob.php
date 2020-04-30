@@ -56,7 +56,7 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
         // Send an email to the admins
         Mail::to('hello+subscriptions@kanka.io')
             ->send(
-                new NewSubscriptionMail($user, $this->new, $this->period)
+                new NewSubscriptionMail($user, $this->period, $this->new)
             );
     }
 }

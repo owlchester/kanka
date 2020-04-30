@@ -35,7 +35,7 @@
 
                         <label>{{ __('settings.subscription.payment_method.card' )}}</label>
 
-                        <div id="card-element margin-bottom">
+                        <div id="card-element" class="margin-bottom">
 
                         </div>
                     @else
@@ -50,7 +50,7 @@
 
 
                     <div class="text-center">
-                        <button class="btn btn-xl btn-success" id="subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                        <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                             {{ __('settings.subscription.actions.subscribe') }}
                         </button>
                     </div>
@@ -71,7 +71,12 @@
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'SOFORT']) }}
                         </p>
                     @else
-                        {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST']) !!}
+                        @if ($user->subscribed('kanka'))
+                            <p class="alert alert-warning">
+                                {{ __('settings.subscription.helpers.alternatives_warning') }}
+                            </p>
+                        @else
+                        {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                         <label for="sofort-country">
                             {{ __('settings.subscription.payment_method.country') }}
                         </label>
@@ -86,7 +91,7 @@
                         </select>
 
                         <div class="text-center">
-                            <button class="btn btn-xl btn-success">
+                            <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 {{ __('settings.subscription.actions.subscribe') }}
                             </button>
                         </div>
@@ -96,6 +101,7 @@
                         <input type="hidden" name="period" value="{{ $period }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                         {!! Form::close() !!}
+                        @endif
                     @endif
 
                 </div>
@@ -109,14 +115,19 @@
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'Giropay']) }}
                         </p>
                     @else
-                        {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST']) !!}
+                        @if ($user->subscribed('kanka'))
+                            <p class="alert alert-warning">
+                                {{ __('settings.subscription.helpers.alternatives_warning') }}
+                            </p>
+                        @else
+                        {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                         <label for="accountholder-name">
                             {{ __('settings.subscription.payment_method.card_name') }}
                         </label>
                         <input id="accountholder-name"  name="accountholder-name" class="form-control margin-bottom">
 
                         <div class="text-center">
-                            <button class="btn btn-xl btn-success">
+                            <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 {{ __('settings.subscription.actions.subscribe') }}
                             </button>
                         </div>
@@ -126,6 +137,7 @@
                         <input type="hidden" name="period" value="{{ $period }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                         {!! Form::close() !!}
+                        @endif
                     @endif
                 </div>
             </div>
@@ -150,7 +162,7 @@
         </div>
 
         <div class="text-center">
-            <button class="btn btn-xl btn-danger" id="subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+            <button class="btn btn-xl btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                 {{ __('settings.subscription.actions.cancel_sub') }}
             </button>
         </div>

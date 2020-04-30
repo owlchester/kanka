@@ -227,7 +227,7 @@ class SubscriptionService
             'method' => $this->method,
         ]);
 
-        Log::info('New sub_source id: ' . $subSource->id);
+        //Log::info('New sub_source id: ' . $subSource->id);
 
         return $source;
     }

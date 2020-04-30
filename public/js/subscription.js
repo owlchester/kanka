@@ -146,9 +146,6 @@ function initConfirmListener() {
     card.mount('#card-element');
   }
 
-  initSofort();
-  initIdeal();
-  initGiropay();
   $('#subscription-confirm').submit(function (e) {
     // If we've passed the strip validation, we can go further
     if (formSubmit) {
@@ -156,7 +153,7 @@ function initConfirmListener() {
     }
 
     e.preventDefault();
-    var button = $('#subscription-confirm-button');
+    var button = $('.subscription-confirm-button');
     button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
     var intentToken = $('input[name="subscription-intent-token"]');
     var errorMessage = $('.alert-danger');
@@ -188,6 +185,11 @@ function initConfirmListener() {
         $('#subscription-confirm').submit();
       }
     }.bind(this));
+  });
+  $('.subscription-form').submit(function (e) {
+    var button = $('.subscription-confirm-button');
+    button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
+    return true;
   });
 }
 

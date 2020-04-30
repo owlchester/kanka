@@ -198,6 +198,7 @@ return [
         'helpers' => [
             'alternatives' =>  'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
             'alternatives_yearly' =>  'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
+            'alternatives_warning' => 'Upgrading your subscription when using this method is not possible. Please create a new subscription when your current subscription ends.',
         ],
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
