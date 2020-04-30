@@ -146,6 +146,9 @@ function initConfirmListener() {
     card.mount('#card-element');
   }
 
+  initSofort();
+  initIdeal();
+  initGiropay();
   $('#subscription-confirm').submit(function (e) {
     // If we've passed the strip validation, we can go further
     if (formSubmit) {
@@ -157,8 +160,7 @@ function initConfirmListener() {
     button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
     var intentToken = $('input[name="subscription-intent-token"]');
     var errorMessage = $('.alert-danger');
-    errorMessage.hide();
-    console.log('intent token', intentToken.val(), intentToken); // If the form already has a payment id, we don't need stripe to add the new one
+    errorMessage.hide(); // If the form already has a payment id, we don't need stripe to add the new one
 
     var cardID = $('input[name="payment_id"]');
 

@@ -69,6 +69,15 @@ return [
         ],
         'title'         => 'Boost',
     ],
+    'countries' => [
+      'austria' => 'Austria',
+        'belgium' => 'Belgium',
+      'germany' => 'Germany',
+      'italy' => 'Italy',
+        'france' => 'France',
+        'netherlands' => 'The Netherlands',
+        'spain' => 'Spain',
+    ],
     'invoices'      => [
         'actions'   => [
             'download'  => 'Download PDF',
@@ -186,16 +195,23 @@ return [
             'plan'              => 'Current plan',
             'reason'            => 'Reason',
         ],
+        'helpers' => [
+            'alternatives' =>  'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
+            'alternatives_yearly' =>  'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
+        ],
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
             'actions'   => [
                 'add_new'   => 'Add a new payment method',
                 'change'    => 'Change payment method',
                 'save'      => 'Save payment method',
+                'show_alternatives' => 'Alternative payment options',
             ],
             'add_one'   => 'You currently have no payment method saved.',
+            'alternatives' => 'You can subscribe using these alternative payment options. This action will charge your account once and not auto-renew your subscription every month.',
             'card'      => 'Card',
             'card_name' => 'Name on card',
+            'country'   => 'Country of residence',
             'ending'    => 'Ending in',
             'helper'    => 'This card will be used for all of your subscriptions.',
             'new_card'  => 'Add a new payment method',
@@ -218,6 +234,7 @@ return [
             ],
         ],
         'success'               => [
+            'alternative'   => 'Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.',
             'callback'      => 'Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).',
             'cancel'        => 'Your subscription was cancelled. It will continue to be active until the end of your current billing period.',
             'currency'      => 'Your prefered currency setting was updated.',

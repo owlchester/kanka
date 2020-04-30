@@ -11,9 +11,19 @@ use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
+use App\Models\SubscriptionSource;
+use App\Notifications\Header;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Stripe\Charge;
+use Stripe\Source;
+use Stripe\Stripe;
+use Stripe\Subscription;
 use TCG\Voyager\Facades\Voyager;
+use Exception;
 
 class SubscriptionService
 {
@@ -31,6 +41,9 @@ class SubscriptionService
     /** @var string monthly/yearly */
     protected $period;
 
+    /** @var string giropay,sofort,ideal */
+    protected $method;
+
     /**
      * @param User $user
      * @return $this
@@ -44,27 +57,37 @@ class SubscriptionService
     /**
      * @param string $tier
      * @return $this
-     * @throws \Exception
+     * @throws Exception
      */
     public function tier(string $tier): self
     {
         $this->tier = $tier;
         if (!in_array($tier, Patreon::pledges())) {
-            throw new \Exception("Unknown tier level '$tier'.");
+            throw new Exception("Unknown tier level '$tier'.");
         }
+        return $this;
+    }
+
+    /**
+     * @param string $method
+     * @return $this
+     */
+    public function method(string $method): self
+    {
+        $this->method = $method;
         return $this;
     }
 
     /**
      * @param string $period
      * @return $this
-     * @throws \Exception
+     * @throws Exception
      */
     public function period(string $period): self
     {
         $this->period = $period;
         if (!in_array($period, ['monthly', 'yearly'])) {
-            throw new \Exception("Unknown period '$period'.");
+            throw new Exception("Unknown period '$period'.");
         }
         return $this;
     }
@@ -105,9 +128,9 @@ class SubscriptionService
      * @param $planID
      * @param $paymentID
      * @return bool
-     * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
-     * @throws \Laravel\Cashier\Exceptions\PaymentFailure
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Laravel\CashierExceptions\PaymentActionRequired
+     * @throws \Laravel\CashierExceptions\PaymentFailure
+     * @throws \Laravel\CashierExceptions\SubscriptionUpdateFailure
      */
     public function subscribe($planID, $paymentID): self
     {
@@ -154,10 +177,59 @@ class SubscriptionService
         }
 
         // Anything that can fail, send to the queue
+        $period = $this->user->subscribedToPlan($this->monthlyPlans(), 'kanka') ? 'monthly' : 'yearly';
         DiscordRoleJob::dispatch($this->user);
-        SubscriptionCreatedEmailJob::dispatch($this->user, $new);
+        SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
 
         return $this;
+    }
+
+    /**
+     * @param Request $request
+     * @return Source
+     * @throws \StripeException\ApiErrorException
+     */
+    public function prepare(Request $request): Source
+    {
+        $amount = $this->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : 5;
+        $amount = ($amount * ($this->period === 'yearly' ? 11 : 1)) * 100;
+
+        Stripe::setApiKey(config('cashier.secret'));
+        $data = [
+            'type' => $this->method,
+            'amount' => $amount,
+            'currency' => 'eur',
+            'owner' => ['email' => $this->user->email],
+            'redirect' => ['return_url' => route('settings.subscription.alt-callback')],
+            'statement_descriptor' => 'Kanka ' . ucfirst($this->tier),
+        ];
+
+        if ($this->method === 'sofort') {
+            $languages = ['en', 'de', 'es', 'it', 'fr', 'nl', 'pl'];
+            $data['sofort'] = [
+                'country' => $request->get('sofort-country'),
+                'preferred_language' => in_array($this->user->locale, $languages) ? $this->user->locale : 'en',
+            ];
+        } elseif ($this->method === 'giropay') {
+            $data['owner'] = [
+                'name' => $request->get('accountholder-name')
+            ];
+        }
+
+        $source = \Stripe\Source::create($data);
+
+        $subSource = SubscriptionSource::create([
+            'user_id' => $this->user->id,
+            'source_id' => $source->id,
+            'tier' => $this->tier,
+            'period' => $this->period,
+            'status' => 'prepare',
+            'method' => $this->method,
+        ]);
+
+        Log::info('New sub_source id: ' . $subSource->id);
+
+        return $source;
     }
 
     /**
@@ -237,6 +309,130 @@ class SubscriptionService
     }
 
     /**
+     * @param Request $request
+     * @throws Exception
+     */
+    public function sourceCharge(array $payload)
+    {
+        /** @var SubscriptionSource $source */
+        $source = SubscriptionSource::where('source_id', Arr::get($payload, 'data.object.id'))
+            ->firstOrFail();
+        $this->user($source->user);
+
+        $amount = $source->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : 5;
+        $amount = ($amount * ($source->period === 'yearly' ? 11 : 1)) * 100;
+
+        try {
+            // Charge the user
+            Stripe::setApiKey(config('cashier.secret'));
+
+            $charge = Charge::create([
+                'amount' => $amount,
+                'currency' => $source->currency(),
+                'source' => $source->source_id,
+                'description' => 'Kanka ' . ucfirst($source->tier) . ' ' . $source->period,
+            ]);
+
+            $source->charge_id = $charge->id;
+            $source->status = $charge->status;
+            $source->save();
+
+            // While the payment is pending, it can take up to two days for it to complete. So we'll assume that the user is properly subscribed.
+            $this->user->patreon_pledge = $source->tier;
+            $this->user->update(['patreon_pledge']);
+
+            // We're so far, good. Let's add the user to the Patreon group
+            $role = Voyager::model('Role')->where('name', '=', 'patreon')->first();
+            if ($role && !$this->user->hasRole('patreon')) {
+                $this->user->roles()->attach($role->id);
+            }
+
+            // Anything that can fail, send to the queue
+            DiscordRoleJob::dispatch($this->user);
+            SubscriptionCreatedEmailJob::dispatch($this->user, $source->period, true);
+
+            // Create the fake cashier subscription
+            $end = Carbon::now()->addMonth();
+            if ($source->period === 'yearly') {
+                $end = Carbon::now()->addYear();
+            }
+
+            \Laravel\Cashier\Subscription::create([
+                'user_id' => $this->user->id,
+                'name' => 'kanka',
+                'stripe_id' => $source->method . '_' . $source->id,
+                'stripe_status' => 'active',
+                'stripe_plan' => $source->plan(),
+                'quantity' => 1,
+                'ends_at' => $end
+            ]);
+
+
+            // Notify the user in app about the change
+            $this->user->notify(
+                new Header(
+                    'subscriptions.started',
+                    'fas fa-credit-card',
+                    'green'
+                )
+            );
+        } catch(Exception $e) {
+
+            $this->user->notify(
+                new Header(
+                    'subscriptions.charge_fail',
+                    'fas fa-credit-card',
+                    'red'
+                )
+            );
+
+            throw $e;
+        }
+
+        return true;
+    }
+
+    /**
+     * About 0.2% of sofort payments fail, so we need to handle them.
+     * @param array $payload
+     */
+    public function chargeFailed(array $payload)
+    {
+        /** @var SubscriptionSource $source */
+        $source = SubscriptionSource::where('charge_id', Arr::get($payload, 'data.object.charge'))
+            ->firstOrFail();
+        $source->update(['status' => 'failed']);
+
+        $this->user = $source->user;
+
+        // Remove all the user's stuff directly
+        $this->user->subscription('kanka')->delete();
+
+        // Anything that can fail, send to a queue
+        SubscriptionCancelEmailJob::dispatch($this->user, $source->method . ' charge failed');
+
+        // Dispatch the job when the subscription actually ends
+        SubscriptionEndJob::dispatch($this->user);
+
+        return true;
+    }
+
+    /**
+     * Validate the stripe source
+     * @param string $secret
+     * @return bool
+     * @throws \Stripe\Exception\ApiErrorException
+     */
+    public function validSource(string $secret): bool
+    {
+        Stripe::setApiKey(config('cashier.secret'));
+
+        $source = Source::retrieve($secret);
+
+        return $source->status != 'failed';
+    }
+
+    /**
      * @return string
      */
     public function owlbearPlanID(): string
@@ -271,10 +467,17 @@ class SubscriptionService
     }
 
     /**
+     * @param string $tier = null
      * @return array
      */
-    public function monthlyPlans(): array
+    public function monthlyPlans(string $tier = null): array
     {
+        if (!empty($tier)) {
+            return [
+                config('subscription.' . strtolower($tier). '.eur.monthly'),
+                config('subscription.' . strtolower($tier). '.usd.monthly'),
+            ];
+        }
         return [
             config('subscription.owlbear.eur.monthly'),
             config('subscription.owlbear.usd.monthly'),
@@ -284,10 +487,17 @@ class SubscriptionService
     }
 
     /**
+     * @param string $tier = null
      * @return array
      */
-    public function yearlyPlans(): array
+    public function yearlyPlans(string $tier = null): array
     {
+        if (!empty($only)) {
+            return [
+                config('subscription.' . strtolower($tier). '.eur.yearly'),
+                config('subscription.' . strtolower($tier). '.usd.yearly'),
+            ];
+        }
         return [
             config('subscription.owlbear.eur.yearly'),
             config('subscription.owlbear.usd.yearly'),

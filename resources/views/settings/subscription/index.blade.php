@@ -41,10 +41,14 @@
                         <dd>{{ $currentPlan }}</dd>
                         <dt>{{ __('settings.subscription.fields.billing') }}</dt>
                         <dd>
-                            @if ($user->subscribedToPlan($service->monthlyPlans(), 'kanka'))
-                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
-                            @elseif ($user->subscribedToPlan($service->yearlyPlans(), 'kanka'))
+                            @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
                                 {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
                             @else
                                 {{ __('front.pricing.tier.free') }}
                             @endif
@@ -56,14 +60,14 @@
                                 <i class="fa fa-pencil-alt"></i> {{ __('crud.edit') }}
                             </a>
                         </dd>
-                            @if ($user->subscribed('kanka'))
-                                <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                                <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                                @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                                    <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                                    <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
-                                @endif
+                        @if ($user->subscribed('kanka'))
+                            <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
+                            <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
+                            @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+                                <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
+                                <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
                             @endif
+                        @endif
 
                     @endif
                         <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
@@ -241,63 +245,7 @@
                 </tr>
                 @endif
                 </thead>
-                <tbody>
-                <tr>
-                    <td>{{ __('tiers.features.file_size', ['size' => '2mb']) }}</td>
-                    <td>{{ __('tiers.features.file_size', ['size' => '8mb']) }}</td>
-                    <td>{{ __('tiers.features.file_size', ['size' => '25mb']) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ __('tiers.features.map_size', ['size' => '2mb']) }}</td>
-                    <td>{{ __('tiers.features.map_size', ['size' => '10mb']) }}</td>
-                    <td>{{ __('tiers.features.map_size', ['size' => '25mb']) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ __('tiers.features.pagination', ['amount' => 45]) }}</td>
-                    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-                    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> 3 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boosts', ['target' => '_blank']) !!}</td>
-                    <td><i class="fa fa-check"></i> 10 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boosts', ['target' => '_blank']) !!}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.vote_influence') }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
-                </tr>
-                <tr>
-                    <td>{{ __('tiers.features.api_requests', ['amount' => 30]) }}</td>
-                    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
-                    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
-                </tr>
-                </tbody>
+                @include('settings.subscription._benefits')
             </table>
 
             <div class="margin-bottom"></div>
