@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Stripe\Charge;
+use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
 use Stripe\Stripe;
 use Stripe\Subscription;
@@ -37,6 +38,9 @@ class SubscriptionService
 
     /** @var string */
     protected $tier;
+
+    /** @var string*/
+    protected $plan = null;
 
     /** @var string monthly/yearly */
     protected $period;
@@ -101,15 +105,15 @@ class SubscriptionService
     public function change(array $request): self
     {
         // Get the correct plan
-        $plan = null;
+        $this->plan = null;
         if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
-            $plan = $this->owlbearPlanID();
+            $this->plan = $this->owlbearPlanID();
         } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
-            $plan = $this->elementalPlanID();
+            $this->plan = $this->elementalPlanID();
         }
 
         // Switching to kobold?
-        if (empty($plan)) {
+        if (empty($this->plan)) {
             $this->cancel(Arr::get($request, 'reason'));
             return $this;
         }
@@ -120,7 +124,7 @@ class SubscriptionService
         $this->user->updateDefaultPaymentMethod($paymentMethodID);
 
         // Subscribe
-        $this->subscribe($plan, $paymentMethodID);
+        $this->subscribe($this->plan, $paymentMethodID);
         return $this;
     }
 
@@ -151,11 +155,15 @@ class SubscriptionService
 
     /**
      * Setup the user's pledge, role, discord
-     * @param $planID
+     * @param string|null $planID
      * @return $this
      */
-    public function finish($planID): self
+    public function finish($planID = null): self
     {
+        if (empty($planID) && !empty($this->plan)) {
+            $planID = $this->plan;
+        }
+
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
         if ($this->downgrading()) {
@@ -216,7 +224,11 @@ class SubscriptionService
             ];
         }
 
+        // Create the source object
         $source = \Stripe\Source::create($data);
+
+        // Tell stripe to attach this source to the user
+        $clientSource = StripeCustomer::createSource($this->user->stripe_id, ['source' => $source->id]);
 
         $subSource = SubscriptionSource::create([
             'user_id' => $this->user->id,
@@ -331,6 +343,7 @@ class SubscriptionService
                 'currency' => $source->currency(),
                 'source' => $source->source_id,
                 'description' => 'Kanka ' . ucfirst($source->tier) . ' ' . $source->period,
+                'customer' => $source->user->stripe_id,
             ]);
 
             $source->charge_id = $charge->id;

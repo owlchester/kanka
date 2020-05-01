@@ -14,4 +14,10 @@ return [
      * If empty, tracking will be disabled
      */
     'ga' => env('TRACKING_GA', null),
+
+    /*
+     * Facebook tracking pixel on homepage for "join now"
+     * If empty, tracking will be disabled
+     */
+    'fb' => env('TRACKING_FB', null),
 ];
