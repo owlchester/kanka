@@ -30,7 +30,11 @@ $conversation = $widget->entity->child;
                 <div class="direct-chat-info clearfix">
                     @if ($message->isMine())
                         <span class="direct-chat-name pull-right">
-                            {{ $message->user ? $message->user->name : null }}
+                            @if ($message->user)
+                            {{ $message->user->name }}
+                            @elseif ($message->character)
+                                <a href="{{ $message->character->getLink() }}">{{ $message->character->name }}</a>
+                            @endif
                         </span>
                         <span class="direct-chat-timestamp pull-left">{{ $message->created_at->diffForHumans() }}</span>
                     @elseif (!empty($message->user_id))
