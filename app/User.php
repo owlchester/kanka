@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignBoost;
+use App\Models\CampaignRole;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
@@ -48,6 +50,8 @@ use Laravel\Passport\HasApiTokens;
  * @property string $patreon_fullname
  * @property string $patreon_email
  * @property CampaignBoost[] $boosts
+ * @property CampaignRole $campaignRoles
+ * @property Campaign $campaigns
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -60,16 +64,7 @@ class User extends \TCG\Voyager\Models\User
         Sortable,
         Billable;
 
-    /**
-     * Cached calculation if the user is an admin of the current campaign he is viewing
-     * @var null
-     */
-    protected $isAdminCached = null;
-
     protected static $currentCampaign = false;
-
-    protected $cachedHasCampaign = null;
-
 
     public $additional_attributes = [
         'patreon_fullname',
@@ -249,20 +244,15 @@ class User extends \TCG\Voyager\Models\User
         if (empty($campaignId) && !empty($this->campaign)) {
             $campaignId = $this->campaign->id;
         }
-        $roles = $this->campaignRoles($campaignId)->get();
+        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
         return $roles->implode('name', ', ');
     }
 
     /**
-     * @param null $campaignId
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function campaignRoles($campaignId = null)
+    public function campaignRoles()
     {
-        if (empty($campaignId) && !empty($this->campaign)) {
-            $campaignId = $this->campaign->id;
-        }
-
         return $this->hasManyThrough(
             'App\Models\CampaignRole',
             'App\Models\CampaignRoleUser',
@@ -270,8 +260,7 @@ class User extends \TCG\Voyager\Models\User
             'id',
             'id',
             'campaign_role_id'
-        )
-            ->where('campaign_id', $campaignId);
+        );
     }
 
     /**
@@ -289,10 +278,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function isAdmin(): bool
     {
-        if ($this->isAdminCached === null) {
-            $this->isAdminCached = $this->campaignRoles()->where(['is_admin' => true])->count() > 0;
-        }
-        return $this->isAdminCached;
+        return UserCache::user($this)->campaign($this->campaign)->admin();
     }
 
     /**
@@ -301,10 +287,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function hasCampaigns($count = 0): bool
     {
-        if ($this->cachedHasCampaign === null) {
-            $this->cachedHasCampaign = $this->campaigns()->count() > $count;
-        }
-        return $this->cachedHasCampaign;
+        return UserCache::user($this)->campaigns()->count() > $count;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Facades\CampaignLocalization;
@@ -136,6 +137,8 @@ class CampaignObserver
         if ($first) {
             $this->starterService->generateBoilerplate($campaign);
         }
+
+        UserCache::clearCampaigns();
     }
 
     /**
@@ -157,6 +160,7 @@ class CampaignObserver
     public function deleted(Campaign $campaign)
     {
         ImageService::cleanup($campaign);
+        UserCache::clearCampaigns();
     }
 
     /**
