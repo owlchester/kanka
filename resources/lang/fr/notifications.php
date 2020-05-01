@@ -8,11 +8,11 @@ return [
         ],
         'export'        => 'Un export de la campagne est disponnible. <a href=":link">Télécharger</a>. Ce lien sera disponnible durant 30 minutes.',
         'export_error'  => 'Une erreure est survenue lors de l\'export de la campagne. Prière de nous contacter si ce problème persiste.',
-        'join'          => ':user a rejoind la campagne :campaign.',
+        'join'          => ':user a rejoint la campagne :campaign.',
         'leave'         => ':user a quitté la campagne :campaign.',
         'role'          => [
             'add'       => 'Tu es maintenant membre du rôle :role de la campagne :campaign.',
-            'remove'    => 'Tu ne fait plus partie du rôle :role de la campagne :campaign.',
+            'remove'    => 'Tu ne fais plus partie du rôle :role de la campagne :campaign.',
         ],
     ],
     'header'            => ':count notifications',
@@ -26,7 +26,7 @@ return [
         'title' => 'Permissions',
     ],
     'subscriptions'     => [
-        'ended' => 'Ta souscription a Kanka est terminée. Tes boosters de campagnes et des rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
-        'failed'=> 'Ta souscription à Kanka a été annulée après trop d\'essais raté de débiter ta méthode de paiement. Va sur la page de ta souscription et mets à jour tes données de paiement.',
+        'ended' => 'Ta souscription à Kanka est terminée. Tes boosters de campagnes et des rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
+        'failed'=> 'Ta souscription à Kanka a été annulée après trop d\'échecs de transation. Vas sur la page de ta souscription et mets à jour tes données de paiement.',
     ],
 ];
