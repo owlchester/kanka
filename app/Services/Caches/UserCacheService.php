@@ -10,27 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserCacheService extends BaseCache
 {
-    /** @var User */
-    protected $user;
-
-    /**
-     * UserCacheService constructor.
-     */
-    public function __construct()
-    {
-        $this->user = Auth::check() ? Auth::user() : null;
-        parent::__construct();
-    }
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * Check if a user is an admin of a campaign
@@ -56,7 +35,7 @@ class UserCacheService extends BaseCache
         }
 
         $data = $this->user->campaigns;
-        $this->put($key, $data, 24 * 3600);
+        $this->forever($key, $data);
 
         return $data;
     }
@@ -84,7 +63,7 @@ class UserCacheService extends BaseCache
         }
 
         $data = $this->user->campaignRoles;
-        $this->put($key, $data, 24 * 3600);
+        $this->forever($key, $data);
 
         return $data;
     }
@@ -112,7 +91,7 @@ class UserCacheService extends BaseCache
         }
 
         $data = $this->user->following;
-        $this->put($key, $data, 24 * 3600);
+        $this->forever($key, $data);
 
         return $data;
     }
@@ -124,6 +103,38 @@ class UserCacheService extends BaseCache
     public function clearFollows(): self
     {
         $key = $this->followsKey();
+        $this->forget($key);
+        return $this;
+    }
+
+    /**
+     * Get the user name
+     * @param int $userId the user id
+     * @return string
+     */
+    public function name(int $userId): string
+    {
+        $key = $this->nameKey($userId);
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        $data = null;
+        if ($user = User::select('name')->find($userId)) {
+            $data = $user->name;
+        }
+
+        $this->forever($key, $data);
+
+        return $data;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearName(): self
+    {
+        $key = $this->nameKey($this->user->id);
         $this->forget($key);
         return $this;
     }
@@ -150,5 +161,13 @@ class UserCacheService extends BaseCache
     protected function followsKey(): string
     {
         return 'user_' . $this->user->id . '_follows';
+    }
+
+    /**
+     * @return string
+     */
+    protected function nameKey(int $userId): string
+    {
+        return 'user_' . $userId . '_name';
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services\Caches;
 
+use App\Models\CampaignSetting;
 use Illuminate\Support\Collection;
 
 /**
@@ -23,7 +24,7 @@ class CampaignCacheService extends BaseCache
 
         $data = $this->campaign->members;
 
-        $this->put($key, $data, 24 * 3600);
+        $this->forever($key, $data);
         return $data;
     }
 
@@ -51,7 +52,7 @@ class CampaignCacheService extends BaseCache
 
         $data = $this->campaign->roles;
 
-        $this->put($key, $data, 24 * 3600);
+        $this->forever($key, $data);
         return $data;
     }
 
@@ -97,7 +98,7 @@ class CampaignCacheService extends BaseCache
         }
 
         $data = $this->campaign->followers()->count();
-        $this->put($key, $data, 1 * 3600);
+        $this->forever($key, $data);
         return $data;
     }
 
@@ -109,6 +110,34 @@ class CampaignCacheService extends BaseCache
         $key = 'campaign_' . $this->campaign->id . '_follower_count';
         $this->forget(
             $key
+        );
+        return $this;
+    }
+
+
+    /**
+     * Count the number of followers of a campaign. Cache if for 1 hours
+     * @return int
+     */
+    public function settings(): CampaignSetting
+    {
+        $key = $this->settingsKey();
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        $data = $this->campaign->setting;
+        $this->forever($key, $data);
+        return $data;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearSettings(): self
+    {
+        $this->forget(
+            $this->settingsKey()
         );
         return $this;
     }
@@ -129,5 +158,14 @@ class CampaignCacheService extends BaseCache
     protected function rolesKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_roles';
+    }
+
+    /**
+     * Campaign links cache key (based on the user
+     * @return string
+     */
+    protected function settingsKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_settings';
     }
 }

@@ -4,6 +4,8 @@ namespace App\Services\Caches;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -16,12 +18,16 @@ abstract class BaseCache
     /** @var Campaign */
     protected $campaign;
 
+    /** @var User */
+    protected $user;
+
     /**
      * EntityCacheService constructor.
      */
     public function __construct()
     {
         $this->campaign = CampaignLocalization::getCampaign();
+        $this->user = Auth::check() ? Auth::user() : null;
     }
 
     /**
@@ -32,6 +38,16 @@ abstract class BaseCache
     public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function user(User $user): self
+    {
+        $this->user = $user;
         return $this;
     }
 
@@ -71,6 +87,20 @@ abstract class BaseCache
             'put' => $key,
         ]);
         return Cache::put($key, $data, $ttl);
+    }
+
+    /**
+     * Wrapper for the cache forever method
+     * @param string $key
+     * @param $data
+     * @return bool
+     */
+    protected function forever(string $key, $data): bool
+    {
+        Log::info(class_basename($this), [
+            'forever' => $key,
+        ]);
+        return Cache::forever($key, $data);
     }
 
     /**

@@ -420,16 +420,15 @@ class Campaign extends MiscModel
      * @param $entity
      * @return bool
      */
-    public function enabled($entity)
+    public function enabled($entity): bool
     {
-        if ($this->setting->$entity) {
-            return $this->setting->$entity;
-        }
         // Can't disable attribute templates
         if ($entity == 'attribute_templates') {
             return true;
         }
-        return false;
+
+        $settings = CampaignCache::settings();
+        return $settings->$entity;
     }
 
     /**

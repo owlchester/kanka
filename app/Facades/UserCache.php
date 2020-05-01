@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static Collection follows()
  * @method static self|UserCacheService clearFollows()
  * @method static bool admin()
+ * @method static string name(int $userId)
+ * @method static self|UserCacheService clearName()
  *
  * @see \App\Services\Caches\UserCacheService
  */

@@ -3,6 +3,7 @@
 namespace App\Facades;
 
 use App\Models\Campaign;
+use App\Models\CampaignSetting;
 use App\Models\MiscModel;
 use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\EntityCacheService;
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static int followerCount()
  * @method static self|CampaignCacheService clearFollowerCount()
  * @method static Collection roles()
+ * @method static self|CampaignCacheService clearRoles()
+ * @method static CampaignSetting settings()
+ * @method static self|CampaignCacheService clearSettings();
  *
  * @see \App\Services\Caches\CampaignCacheService
  */
