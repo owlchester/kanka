@@ -14,6 +14,8 @@ use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use LogicException;
@@ -146,8 +148,17 @@ class CrudController extends Controller
             $models = $base->paginate();
             $filteredCount =  $models->total();
         } else {
+            /** @var Paginator $models */
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->count();
+        }
+
+        // If the current page is higher than the max amount of pages, redirect the user
+        if ((int) request()->get('page', 1) > $models->lastPage()) {
+            return redirect()->route($this->route . '.index', [
+                'page' => $models->lastPage(),
+                'order' => request()->get('order')
+            ]);
         }
 
         return view('cruds.index', compact(

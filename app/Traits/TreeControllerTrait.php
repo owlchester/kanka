@@ -82,6 +82,14 @@ trait TreeControllerTrait
             $unfilteredCount = $filteredCount = $models->total();
         }
 
+        // If the current page is higher than the max amount of pages, redirect the user
+        if ((int) request()->get('page', 1) > $models->lastPage()) {
+            return redirect()->route($this->route . '.tree', [
+                'page' => $models->lastPage(),
+                'order' => request()->get('order')
+            ]);
+        }
+
         $view = $this->view;
         $route = $this->route;
         $bulk = $this->bulkModel();
