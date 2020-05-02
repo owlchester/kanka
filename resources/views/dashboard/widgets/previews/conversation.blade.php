@@ -26,6 +26,9 @@ $conversation = $widget->entity->child;
         <div class="direct-chat-messages">
 
         @foreach ($conversation->messages()->with(['character', 'user'])->orderByDesc('created_at')->take(5)->get() as $message)
+            @if (empty($message->user) && empty($message->character))
+                @continue
+            @endif
             <div class="direct-chat-msg @if ($message->isMine()) right @endif">
                 <div class="direct-chat-info clearfix">
                     @if ($message->isMine())
