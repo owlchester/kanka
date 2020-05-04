@@ -18,6 +18,7 @@ return [
         'next'              => 'Siguiente',
         'private'           => 'Privado',
         'public'            => 'Público',
+        'reset'             => 'Restablecer',
     ],
     'add'               => 'Añadir',
     'alerts'            => [
@@ -346,10 +347,11 @@ return [
     'remove'            => 'Eliminar',
     'rename'            => 'Renombrar',
     'save'              => 'Guardar',
-    'save_and_close'    => 'Guardar y Cerrar',
-    'save_and_new'      => 'Guardar y Crear nuevo',
-    'save_and_update'   => 'Guardar y Seguir editando',
-    'save_and_view'     => 'Guardar y Ver',
+    'save_and_close'    => 'Guardar y cerrar',
+    'save_and_copy'     => 'Guardar y copiar',
+    'save_and_new'      => 'Guardar y crear nuevo',
+    'save_and_update'   => 'Guardar y seguir editando',
+    'save_and_view'     => 'Guardar y ver',
     'search'            => 'Buscar',
     'select'            => 'Seleccionar',
     'tabs'              => [

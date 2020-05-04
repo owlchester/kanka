@@ -55,6 +55,7 @@ return [
         'rpg_system'                    => 'Szerepjáték rendszerek',
         'system'                        => 'Rendszer',
         'theme'                         => 'Téma',
+        'tooltip_family'                => 'Családnevek elrejtése a tooltip-ekből',
         'visibility'                    => 'Láthatóság',
     ],
     'following'                         => 'Követve',
@@ -183,6 +184,7 @@ return [
         'permission'=> 'Jogosultság',
         'sharing'   => 'Megosztás',
         'systems'   => 'Rendszerek',
+        'ui'        => 'Felület',
     ],
     'placeholders'                      => [
         'description'   => 'A kampányod rövid összefoglalása.',
@@ -309,6 +311,9 @@ return [
             'settings'      => 'Modulok',
         ],
         'title'         => ':name kampány',
+    ],
+    'ui'                                => [
+        'helper'    => 'Használd ezeket a beállításokat, hogy meg meghatározd, hogy bizonyos elemek hogyan jelenjenek meg a kampányodban.',
     ],
     'visibilities'                      => [
         'private'   => 'Privát',

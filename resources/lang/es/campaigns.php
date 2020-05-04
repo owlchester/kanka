@@ -55,6 +55,7 @@ return [
         'rpg_system'                    => 'Sistemas RPG',
         'system'                        => 'Sistema',
         'theme'                         => 'Tema',
+        'tooltip_family'                => 'Deshabilitar nombres familiares en la previsualización emergente',
         'visibility'                    => 'Visibilidad',
     ],
     'following'                         => 'Siguiendo',
@@ -183,6 +184,7 @@ return [
         'permission'=> 'Permisos',
         'sharing'   => 'Compartir',
         'systems'   => 'Sistemas',
+        'ui'        => 'Interfaz',
     ],
     'placeholders'                      => [
         'description'   => 'Corto resumen de tu campaña',
@@ -309,6 +311,9 @@ return [
             'settings'      => 'Módulos',
         ],
         'title'         => 'Campaña :name',
+    ],
+    'ui'                                => [
+        'helper'    => 'Estas opciones cambian la forma en la que algunos elementos se muestran en la campaña.',
     ],
     'visibilities'                      => [
         'private'   => 'Privada',

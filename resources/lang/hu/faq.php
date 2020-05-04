@@ -20,6 +20,10 @@ TEXT
         'answer'    => 'Egyszerűen csatlakozz :discord szerverünkhöz, és jelentsd be a hibát a #error-and-bugs csatornában.',
         'question'  => 'Hogyan jelenthetek be egy hibát?',
     ],
+    'campaign-sync'         => [
+        'answer'    => 'A Kanka nem rendelkezik ezzel a funkcionalitással. Ha azonban több különböző csapattal is szeretnéd megosztani a világod, érdemes lehet a csapatokat küldetések, címkék, és felhasználói jogosultságok beállításával elszeparálni egymástól.',
+        'question'  => 'Tudom-e szinkronizálni az entitásaim több különböző kampány között?',
+    ],
     'conversations'         => [
         'answer'    => 'A Beszélgetések modulban párbeszéd bejegyzéseket jegyezhetsz fel Karakterek vagy a kampány Tagjai között. Amennyiben szeretnél egy fontos beszélgetést rögzíteni NJK-k, és JK-k között, akkor használd ezt a modult. Szükség esetén akár "Fórumos szerepjátékra" is használhatod a funkciót, ahol a mesélő és játékosok csak írásban játszanak.',
         'question'  => 'Mi a Beszélgetések?',

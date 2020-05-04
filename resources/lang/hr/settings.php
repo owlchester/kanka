@@ -1,0 +1,237 @@
+<?php
+
+return [
+    'account'       => [
+        'actions'           => [
+            'social'            => 'Prebaci se na prijavu u Kanku',
+            'update_email'      => 'Ažuriraj email',
+            'update_password'   => 'Ažuriraj lozinku',
+        ],
+        'email'             => 'Promjena emaila',
+        'email_success'     => 'Email ažuriran.',
+        'password'          => 'Promjena lozinke',
+        'password_success'  => 'Lozinka promijenjena.',
+        'social'            => [
+            'error'     => 'Već koristiš prijavu u Kanku za ovaj račun.',
+            'helper'    => 'Tvojim računom trenutno upravlja :provider. Možeš ga prestati koristiti i prebaciti se na standardnu ​​prijavu u Kanku postavljanjem lozinke.',
+            'success'   => 'Tvoj račun sad koristi Kanka prijavu.',
+            'title'     => 'Društveno prema Kanki',
+        ],
+        'title'             => 'Račun',
+    ],
+    'api'           => [
+        'experimental'          => 'Dobrodošli u Kanka API! Ove su funkcionalnosti još eksperimentalne, ali bi trebale biti dovoljno stabilne da započneš komunikaciju s API-ima. Napravi token osobnog pristupa koji će se upotrebljavati u tvojim API zahtjevima ili koristi token klijenta ako želiš da tvoja aplikacija ima pristup korisničkim podacima.',
+        'help'                  => 'Kanka će uskoro pružati RESTful API tako da se aplikacije treće strane mogu povezati s aplikacijom. Pojedinosti o upravljanju API ključevima bit će prikazane ovdje.',
+        'link'                  => 'Pročitaj dokumentaciju API-ja',
+        'request_permission'    => 'Trenutno gradimo moćan RESTful API tako da se aplikacije treće strane mogu povezati s aplikacijom. Međutim, trenutno ograničavamo broj korisnika koji mogu komunicirati s API-em dok ga poliramo. Ako želiš pristupiti API-ju i izgraditi programe koji razgovaraju s Kankom, kontaktiraj nas i poslat ćemo ti sve potrebne informacije.',
+        'title'                 => 'API',
+    ],
+    'apps'          => [
+        'actions'   => [
+            'connect'   => 'Poveži',
+            'remove'    => 'Ukloni',
+        ],
+        'benefits'  => 'Kanka pruža nekoliko integracija na usluge trećih strana. U budućnosti se planira više integracija trećih strana.',
+        'discord'   => [
+            'errors'    => [
+                '0'     => '1',
+                'add'   => 'Došlo je do pogreške u povezivanju tvog Discord računa s Kankom. Molim te pokušaj ponovno.',
+            ],
+            'success'   => [
+                'add'       => 'Tvoj Discord račun je povezan.',
+                'remove'    => 'Veza s tvojim Discord računom je uklonjena.',
+            ],
+            'text'      => 'Pristupi svojim ulogama za pretplatu automatski.',
+        ],
+        'title'     => 'Integracija s aplikacijom',
+    ],
+    'boost'         => [
+        'benefits'      => [
+            'first'     => 'Kako bi se osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može je pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.',
+            'header'    => 'Slike zaglavlja entiteta.',
+            'more'      => 'Saznaj više o svim značajkama.',
+            'second'    => 'Pojačavanje kampanje omogućuje sljedeće prednosti:',
+            'theme'     => 'Tema na razini kampanje i proizvoljno stiliziranje.',
+            'tooltip'   => 'Proizvoljni savjeti za entitete.',
+            'upload'    => 'Povećana veličina prijenosa za svakog člana u kampanji.',
+        ],
+        'buttons'       => [
+            'boost' => 'Pojačaj',
+        ],
+        'campaigns'     => 'Pojačane kampanje :count / :max',
+        'exceptions'    => [
+            'already_boosted'   => 'Kampanja :name je već pojačana.',
+            'exhausted_boosts'  => 'Nemaš više pojačanja za pokloniti. Ukloni svoje pojačanje iz neke kampanje prije nego što ga daš drugoj.',
+        ],
+        'success'       => [
+            'boost' => 'Kampanja :name pojačana.',
+            'delete'=> 'Tvoje pojačanje uklonjeno s :name.',
+        ],
+        'title'         => 'Pojačanje',
+    ],
+    'invoices'      => [
+        'actions'   => [
+            'download'  => 'Preuzmi PDF',
+            'view_all'  => 'Pogledaj sve',
+        ],
+        'fields'    => [
+            'amount'    => 'Količina',
+            'date'      => 'Datum',
+            'invoice'   => 'Faktura',
+            'status'    => 'Status',
+        ],
+        'header'    => 'Ispod je popis zadnje 24 fakture koje možete preuzeti.',
+        'status'    => [
+            'paid'      => 'Plaćeno',
+            'pending'   => 'U tijeku',
+        ],
+        'title'     => 'Fakture',
+    ],
+    'layout'        => [
+        'success'   => 'Ažurirane opcije rasporeda.',
+        'title'     => 'Raspored',
+    ],
+    'menu'          => [
+        'account'               => 'Račun',
+        'api'                   => 'API',
+        'apps'                  => 'Aplikacije',
+        'billing'               => 'Način plaćanja',
+        'boost'                 => 'Pojačanje',
+        'invoices'              => 'Fakture',
+        'layout'                => 'Raspored',
+        'other'                 => 'Ostalo',
+        'patreon'               => 'Patreon',
+        'payment_options'       => 'Mogućnosti plaćanja',
+        'personal_settings'     => 'Osobne postavke',
+        'profile'               => 'Profil',
+        'subscription'          => 'Pretplata',
+        'subscription_status'   => 'Status pretplate',
+    ],
+    'patreon'       => [
+        'actions'           => [
+            'link'  => 'Poveži račun',
+            'view'  => 'Posjeti Kanku na Patreonu',
+        ],
+        'benefits'          => 'Podržavajući nas na :patreon otključavaš svakakve :features za tebe i tvoje kampanje, a pomažeš nam i da provedemo više vremena radeći na poboljšanju Kanke.',
+        'benefits_features' => 'nevjerojatne funkcionalnosti',
+        'deprecated'        => 'Zastarjela značajka - ako želite podržati Kanku, učinite to putem :subscription. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.',
+        'description'       => 'Sinkroniziranje s Patreonom',
+        'errors'            => [
+            'invalid_token' => 'Pogrešan token! Patreon nije mogao potvrditi tvoj zahtjev.',
+            'missing_code'  => 'Nedostaje kod! Patreon nije poslao kôd koji identificira tvoj račun.',
+            'no_pledge'     => 'Nema zaloga! Patreon je identificirao tvoj račun, ali ne zna za nijedan aktivan zalog.',
+        ],
+        'link'              => 'Upotrijebi sljedeći gumb ako trenutno podržavaš Kanka na :patreon. To će otključati bonuse',
+        'linked'            => 'Hvala ti što podržavaš Kanku na Patreonu! Tvoj račun je povezan.',
+        'pledge'            => 'Zalog: :name',
+        'remove'            => [
+            'button'    => 'Prekini vezu s Patreon računom',
+            'text'      => 'Ako prekineš vezu tvog računa s Patreonom, Kanka će ukloniti tvoje bonuse, ime u kući slavnih, pojačanja kampanje, te druge značajke povezane s podrškom Kanke. Nijedan tvoj pojačani sadržaj neće biti izgubljen (npr. zaglavlja entiteta). Ako se ponovo pretplatiš, imat ćeš pristup svim svojim prethodnim podacima, uključujući mogućnost pojačanja prijašnjih pojačanih kampanja.',
+            'title'     => 'Prekini vezu Patreon računa s Kankom',
+        ],
+        'success'           => 'Hvala što podržavaš Kanku u Patreonu!',
+        'title'             => 'Patreon',
+        'wrong_pledge'      => 'Razinu tvog zaloga smo postavili ručno pa nam dopusti do nekoliko dana da je pravilno postavimo. Ako neko vrijeme ostane krivo, obrati nam se.',
+    ],
+    'profile'       => [
+        'actions'   => [
+            'update_profile'    => 'Ažuriraj profil',
+        ],
+        'avatar'    => 'Profilna slika',
+        'success'   => 'Profil ažuriran.',
+        'title'     => 'Osobni profil',
+    ],
+    'subscription'  => [
+        'actions'               => [
+            'cancel_sub'        => 'Otkaži pretplatu',
+            'subscribe'         => 'Pretplata',
+            'update_currency'   => 'Spremite preferiranu valutu',
+        ],
+        'benefits'              => 'Podržavajući nas možete otključati neke nove :features i pomoći nam da uložimo više vremena u poboljšanje Kanke. Podaci kreditne kartice se ne pohranjuju ili ne prolaze kroz naše poslužitelje. Koristimo :stripe za obradu svih računa.',
+        'billing'               => [
+            'helper'    => 'Podaci o naplati obrađuju se i pohranjuju na sigurno putem :stripe. Ovaj način plaćanja koristi se za sve tvoje pretplate.',
+            'saved'     => 'Spremljen način plaćanja',
+            'title'     => 'Uredi način plaćanja',
+        ],
+        'cancel'                => [
+            'text'  => 'Žao nam je što odlaziš! Ako otkažeš pretplatu, bit će aktivna do sljedećeg ciklusa naplate, nakon čega ćeš izgubiti pojačanja kampanje i druge pogodnosti povezane s podrškom Kanke. Slobodno ispuni sljedeći obrazac i obavijesti nas što možemo učiniti boljim ili što je dovelo do tvoje odluke.',
+        ],
+        'cancelled'             => 'Tvoja pretplata je otkazana. Pretplatu možete obnoviti nakon završetka tvoje trenutne pretplate.',
+        'change'                => [
+            'text'  => 'Pretplatite se na sloj :tier, mjesečno se naplaćuje za :amount.',
+            'title' => 'Promijenite razinu pretplate',
+        ],
+        'currencies'            => [
+            'eur'   => 'EUR',
+            'usd'   => 'USD',
+        ],
+        'currency'              => [
+            'title' => 'Promijenite željenu valutu naplate',
+        ],
+        'errors'                => [
+            'callback'      => 'Naš pružatelj plaćanja prijavio je pogrešku. Molimo pokušaj ponovo ili nam se obrati ako se problem nastavi.',
+            'subscribed'    => 'Tvoju pretplatu nije moguće obraditi. Stripe je pružio sljedeći savjet.',
+        ],
+        'fields'                => [
+            'active_since'      => 'Aktivno od',
+            'active_until'      => 'Aktivno do',
+            'billed_monthly'    => 'Naplaćuje se mjesečno',
+            'currency'          => 'Valuta naplate',
+            'payment_method'    => 'Način plaćanja',
+            'plan'              => 'Trenutni plan',
+            'reason'            => 'Razlog',
+        ],
+        'manage_subscription'   => 'Upravljanje pretplatom',
+        'payment_method'        => [
+            'actions'   => [
+                'add_new'   => 'Dodajte novi način plaćanja',
+                'change'    => 'Promjena načina plaćanja',
+                'save'      => 'Spremi način plaćanja',
+            ],
+            'add_one'   => 'Trenutno nema spremljenog načina plaćanja.',
+            'card'      => 'Kartica',
+            'card_name' => 'Ime na kartici',
+            'ending'    => 'Završava za',
+            'helper'    => 'Ova će se kartica koristiti za sve tvoje pretplate.',
+            'new_card'  => 'Dodaj novi način plaćanja',
+            'saved'     => ':brand završava s :last4',
+        ],
+        'placeholders'          => [
+            'reason'    => 'Po želji nam možeš reći zašto više ne podržavaš Kanku. Nedostajala je funkcionalnost? Je li se promijenila tvoja financijska situacija?',
+        ],
+        'sub_status'            => 'Informacije o pretplati',
+        'subscription'          => [
+            'actions'   => [
+                'downgrading'   => 'Molimo kontaktiraj nas radi smanjenja za nižu razinu',
+                'rollback'      => 'Promjena u Kobold',
+                'subscribe'     => 'Promjena u :tier mjesečno',
+            ],
+        ],
+        'success'               => [
+            'callback'      => 'Tvoja pretplata je uspješna. Tvoj račun će biti ažuriran čim nas naš pružatelj plaćanja informira o promjeni (ovo može potrajati nekoliko minuta).',
+            'cancel'        => 'Tvoja pretplata je otkazana. I dalje će biti aktivna do kraja tvog trenutnog razdoblja naplate.',
+            'currency'      => 'Tvoja željena postavka valute je ažurirana.',
+            'subscribed'    => 'Tvoja pretplata je bila uspješna. Ne zaboravi se pretplatiti na bilten glasanja zajednice kako bi te obavijestili kada započne novo glasanje. Postavke biltena možeš promijeniti na stranici profila.',
+        ],
+        'tiers'                 => 'Razina pretplate',
+        'upgrade_downgrade'     => [
+            'button'    => 'Informacije o promjeni razine',
+            'downgrade' => [
+                'bullets'   => [
+                    'end'   => 'Tvoja trenutna razina ostat će aktivna do kraja tvog trenutnog ciklusa naplate, nakon čega ćeš biti nadograđen na svoju novu razinu.',
+                ],
+                'title'     => 'Pri prelasku na niži nivo',
+            ],
+            'upgrade'   => [
+                'bullets'   => [
+                    'immediate' => 'Tvoj način plaćanja bit će naplaćen odmah i imat ćeš pristup svom novom sloju.',
+                    'prorate'   => 'Kada nadogradite s Owlbear na Elemental, samo će vam se naplatiti ​​razlika do tvoje nove razine.',
+                ],
+                'title'     => 'Pri nadogradnji na viši sloj',
+            ],
+        ],
+        'warnings'              => [
+            'patreon'   => 'Tvoj račun je trenutno povezan s Patreonom. Prekini vezu s računom u tvojim postavkama :patreon prije prelaska na Kanka pretplatu.',
+        ],
+    ],
+];

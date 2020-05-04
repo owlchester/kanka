@@ -37,7 +37,6 @@ return [
     'fields'        => [
         'character'     => 'Auteur',
         'characters'    => 'Personnages',
-        'date'          => 'Date',
         'description'   => 'Description',
         'image'         => 'Image',
         'is_completed'  => 'Completée',
@@ -123,7 +122,6 @@ return [
         'title'     => 'Organisations dans :name',
     ],
     'placeholders'  => [
-        'date'  => 'Date réele de la quête',
         'name'  => 'Nom de la quête',
         'quest' => 'Quête Parentale',
         'role'  => 'Le rôle de l\'entité dans la quête.',

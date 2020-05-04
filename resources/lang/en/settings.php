@@ -34,6 +34,7 @@ return [
         'benefits'  => 'Kanka provides a few integration to third party services. More third party integrations are planned for the future.',
         'discord'   => [
             'errors'    => [
+                '0'     => '1',
                 'add'   => 'An error occurred linking up your Discord account with Kanka. Please try again.',
             ],
             'success'   => [
@@ -73,7 +74,6 @@ return [
             'download'  => 'Download PDF',
             'view_all'  => 'View all',
         ],
-        'empty'     => 'No invoices',
         'fields'    => [
             'amount'    => 'Amount',
             'date'      => 'Date',
@@ -126,7 +126,6 @@ return [
         'pledge'            => 'Pledge: :name',
         'remove'            => [
             'button'    => 'Unlink your Patreon account',
-            'success'   => 'Your Patreon account has been unlinked.',
             'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.',
             'title'     => 'Unlink your Patreon account with Kanka',
         ],

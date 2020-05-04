@@ -7,6 +7,7 @@ return [
             'update_email'      => 'Modifier l\'email',
             'update_password'   => 'Modifier le mot de passe',
         ],
+        'description'       => 'Modification du compte',
         'email'             => 'Modification de l\'email',
         'email_success'     => 'Email modifié.',
         'password'          => 'Modification du mot de passe',
@@ -20,6 +21,7 @@ return [
         'title'             => 'Compte',
     ],
     'api'           => [
+        'description'           => 'Modifier les options d\'API',
         'experimental'          => 'Bienvenus aux API de Kanka! Ces fonctionalités sont encore experimental mais assez stable que tu puisses intéragire avec les APIs. Créé un jeton personnel pour utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d\'accéder à tes données.',
         'help'                  => 'Kanka va prochainement mettre à disposition une API.',
         'link'                  => 'Lire la documentation',
@@ -73,7 +75,6 @@ return [
             'download'  => 'Télécharger PDF',
             'view_all'  => 'Tout voir',
         ],
-        'empty'     => 'Aucune facture',
         'fields'    => [
             'amount'    => 'Montant',
             'date'      => 'Date',
@@ -88,8 +89,9 @@ return [
         'title'     => 'Factures',
     ],
     'layout'        => [
-        'success'   => 'Options de mise en page modifiées.',
-        'title'     => 'Mise en page',
+        'description'   => 'Modifier les options de mise en page',
+        'success'       => 'Options de mise en page modifiées.',
+        'title'         => 'Mise en page',
     ],
     'menu'          => [
         'account'               => 'Compte',
@@ -126,7 +128,6 @@ return [
         'pledge'            => 'Pledge: :name',
         'remove'            => [
             'button'    => 'Délier le compte Patreon',
-            'success'   => 'La synchronisation Patreon a été supprimée.',
             'text'      => 'Délier le compte Patreon de Kanka supprime les bonus, le nom du Hall of Fame, les boosters de campagne et d\'autres fonctionnalités liées au supporter de Kanka. Aucun contenu boosté ne sera perdu (par exemple les en-têtes d\'entité). Lors du réabonnement, toutes les données seront à nouveau visibles, y compris la possibilité de booster des campagnes précédemment boostées.',
             'title'     => 'Délier le compte Patreon de Kanka',
         ],

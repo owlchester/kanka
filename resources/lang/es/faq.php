@@ -20,6 +20,10 @@ TEXT
         'answer'    => 'Simplemente únete a nuestro :discord e informa del error en el canal #errors-and-bugs.',
         'question'  => '¿Cómo puedo informar de un error?',
     ],
+    'campaign-sync'         => [
+        'answer'    => 'Kanka no tiene esta funcionalidad. Sin embargo, si quieres tener varios grupos en el mismo mundo, puedes usar la misma campaña y separar a los grupos mediante etiquetas, misiones y permisos.',
+        'question'  => '¿Puedo sincronizar entidades entre varias campañas?',
+    ],
     'conversations'         => [
         'answer'    => 'Se pueden crear conversaciones entre personajes o entre miembros de la campaña. Por ejemplo, si quieres documentar una charla importante entre PNJs y PJs, puedes hacerlo en este módulo. También se puede usar para jugar campañas online.',
         'question'  => '¿Qué son las conversaciones?',
@@ -43,9 +47,9 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-¡Sí! Creemos que tu situación económica no debería impedir que disfrutes de los juegos de rol y de la creación de mundos, y por eso siempre mantendremos gratis la aplicación. ¡Gracias a nuestros generosos mecenas en Patreon podemos cubrir los gastos mensuales del servidor y mantener la app libre de anuncios!
+¡Sí! Creemos que tu situación económica no debería impedir que disfrutes de los juegos de rol y de la creación de mundos, y por eso siempre mantendremos gratis la aplicación. Sin embargo, si deseas tener un papel más activo en este viaje, apoyarnos y votar las funcionalidades que te interesan, puedes hacerlo mediante nuestra web o en :patreon.
 
-Si decides apoyarnos en Patreon, obtendrás un aumento en el tamaño de los archivos que puedes subir, añadiremos tu nombre en el muro de la fama de Patreon, recibirás bonitos iconos predefinidos, podrás votar qué funciones se priorizan y mucho más.
+Además de votar sobre la dirección que tomará Kanka, al apoyarnos obtendrás un aumento en el tamaño de los archivos que puedes subir, añadiremos tu nombre en el muro de la fama, recibirás bonitos iconos predefinidos, podrás votar qué funciones se priorizan y mucho más!
 TEXT
 ,
         'question'  => '¿La app seguirá siendo gratis?',

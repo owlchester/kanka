@@ -109,8 +109,7 @@ return [
             'title'     => 'Editing multiple entities',
         ],
         'errors'        => [
-            'admin'     => 'Only campaign admins can change the private status of entities.',
-            'general'   => 'An error occurred processing your action. Please try again and contact us if the problem persists. Error message: :hint.',
+            'admin' => 'Only campaign admins can change the private status of entities.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -122,11 +121,10 @@ return [
             'title'     => 'Change permissions for several entities',
         ],
         'success'       => [
-            'copy_to_campaign'  => '{1} :count entity copied to :campaign.|[2,*] :count entities copied to :campaign.',
-            'editing'           => '{1} :count entity was updated.|[2,*] :count entities were updated.',
-            'permissions'       => '{1} Permissions changed for :count entity.|[2,*] Permissions changed for :count entities.',
-            'private'           => '{1} :count entity is now private|[2,*] :count entities are now private.',
-            'public'            => '{1} :count entity is now visible|[2,*] :count entities are now visible.',
+            'editing'       => '{1} :count entity was updated.|[2,*] :count entities were updated.',
+            'permissions'   => '{1} Permissions changed for :count entity.|[2,*] Permissions changed for :count entities.',
+            'private'       => '{1} :count entity is now private|[2,*] :count entities are now private.',
+            'public'        => '{1} :count entity is now visible|[2,*] :count entities are now visible.',
         ],
     ],
     'cancel'            => 'Cancel',
@@ -136,9 +134,8 @@ return [
         'title'     => 'Confirm your action',
     ],
     'copy_to_campaign'  => [
-        'bulk_title'    => 'Copy entities to another campaign',
-        'panel'         => 'Copy',
-        'title'         => 'Copy \':name\' to another campaign',
+        'panel' => 'Copy',
+        'title' => 'Copy \':name\' to another campaign',
     ],
     'create'            => 'Create',
     'datagrid'          => [
@@ -247,12 +244,10 @@ return [
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'           => [
-        'created'       => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'       => 'Unknown',
-        'updated'       => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'          => 'View entity log',
+        'created'   => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'   => 'Unknown',
+        'updated'   => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'      => 'View entity log',
     ],
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',

@@ -18,6 +18,7 @@ return [
     'fields'        => [
         'abilities' => 'Képességek',
         'ability'   => 'Képesség',
+        'charges'   => 'Aktiválások száma',
         'name'      => 'Megnevezés',
         'type'      => 'Típus',
     ],
@@ -32,8 +33,9 @@ return [
         'title'         => 'Képességek',
     ],
     'placeholders'  => [
-        'name'  => 'Tűzgolyó, riasztás, ravasz csapás',
-        'type'  => 'Varázslat, képesség, támadás',
+        'charges'   => 'Aktiválások száma. Az attribútumokra az alábbi módon hivatkozhatsz: {Szint}*{Karizma}',
+        'name'      => 'Tűzgolyó, riasztás, ravasz csapás',
+        'type'      => 'Varázslat, képesség, támadás',
     ],
     'show'          => [
         'tabs'  => [

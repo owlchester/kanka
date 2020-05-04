@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'add'   => 'Dodaj sposobnost',
+        'reset' => 'Poništi korištenje sposobnosti',
     ],
     'create'    => [
         'title' => 'Dodaj sposobnost za :name',

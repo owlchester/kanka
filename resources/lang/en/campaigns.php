@@ -274,7 +274,7 @@ return [
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabeling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
         'helpers'       => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',
@@ -313,7 +313,7 @@ return [
         'title'         => 'Campaign :name',
     ],
     'ui'                                => [
-        'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',
+        'helper'    => 'Use tese settings to change the way some elements will be displayed in the campaign.',
     ],
     'visibilities'                      => [
         'private'   => 'Private',
