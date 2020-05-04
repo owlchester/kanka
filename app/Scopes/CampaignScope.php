@@ -24,6 +24,13 @@ class CampaignScope implements Scope
             if ($campaign) {
                 $builder->where($model->getTable() . '.campaign_id', '=', $campaign->id);
             }
+        } else {
+            // In console mode, we still sometimes need scoping to a campaign (for example when deleting nested
+            // elements to not interfere with data from other campaigns.
+            $campaignId = CampaignLocalization::getConsoleCampaign();
+            if ($campaignId) {
+                $builder->where($model->getTable() . '.campaign_id', '=', $campaignId);
+            }
         }
     }
 }
