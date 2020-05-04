@@ -109,7 +109,8 @@ return [
             'title'     => 'Modifications de plusieurs entités',
         ],
         'errors'        => [
-            'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
+            'admin'     => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
+            'general'   => 'Une erreur est survenue. Prière de ressayer et nous contacter si le problème persiste.. Erreur: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -121,10 +122,11 @@ return [
             'title'     => 'Changer les permissions pour plusieurs entités',
         ],
         'success'       => [
-            'editing'       => ':count entité modifiée.|:count entités modifiées.',
-            'permissions'   => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
-            'private'       => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
-            'public'        => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
+            'copy_to_campaign'  => '{1} :count entité copiée à la campagne :campaign.|[2,*] :count entités copiées à la campagne :campaign.',
+            'editing'           => ':count entité modifiée.|:count entités modifiées.',
+            'permissions'       => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
+            'private'           => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
+            'public'            => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
         ],
     ],
     'cancel'            => 'Annuler',
@@ -134,8 +136,9 @@ return [
         'title'     => 'Confirme ton action',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Copier',
-        'title' => 'Copier \':name\' vers une autre campagne',
+        'bulk_title'    => 'Copier vers une autre campagne',
+        'panel'         => 'Copier',
+        'title'         => 'Copier \':name\' vers une autre campagne',
     ],
     'create'            => 'Créer',
     'datagrid'          => [
@@ -244,10 +247,12 @@ return [
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soit-même" signifie que seulement tu peux le voir.',
     ],
     'history'           => [
-        'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Inconnu',
-        'updated'   => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Visionner les journaux de l\'entité',
+        'created'       => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Créé <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Inconnu',
+        'updated'       => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Modifié <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'          => 'Visionner les journaux de l\'entité',
     ],
     'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
