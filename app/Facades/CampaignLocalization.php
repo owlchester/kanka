@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Facade;
  * @package App\Facades
  *
  * @method static Campaign getCampaign()
+ * @method static int getConsoleCampaign()
+ * @method static self setConsoleCampaign(int $campaignId)
  * @method static void forceCampaign(Campaign $campaign)
  *
  * @see \App\Services\CampaignLocalization

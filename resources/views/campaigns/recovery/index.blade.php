@@ -17,7 +17,7 @@
             {{ Form::open(['route' => ['recovery']]) }}
             <div class="box no-border">
                 <div class="box-body">
-                    <p class="help-block">{{ __('campaigns/recovery.helper', ['count' => 30]) }}</p>
+                    <p class="help-block">{{ __('campaigns/recovery.helper', ['count' => config('entities.hard_delete')]) }}</p>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>

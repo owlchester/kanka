@@ -2,15 +2,14 @@
 
 namespace App\Console\Commands;
 
-use App\Models\AttributeTemplate;
+use App\Models\Ability;
 use App\Models\Family;
 use App\Models\Location;
-use App\Models\MapPoint;
 use App\Models\Organisation;
+use App\Models\Quest;
 use App\Models\Race;
 use App\Models\Tag;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class GenerateTrees extends Command
 {
@@ -34,6 +33,12 @@ class GenerateTrees extends Command
     public function handle()
     {
         Race::fixTree();
+        Location::fixTree();
+        Organisation::fixTree();
+        Family::fixTree();
+        Tag::fixTree();
+        Ability::fixTree();
+        Quest::fixTree();
         $this->info("Fixed tree.");
     }
 }
