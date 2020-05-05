@@ -471,6 +471,6 @@ class User extends \TCG\Voyager\Models\User
         if ($this->currency === 'eur') {
             return '€';
         }
-        return '$';
+        return 'US$';
     }
 }

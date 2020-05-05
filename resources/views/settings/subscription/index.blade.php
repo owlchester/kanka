@@ -1,6 +1,7 @@
 <?php /**
  * @var \App\Models\CampaignBoost $boost
  * @var \App\Models\Campaign $campaign
+ * @var \App\Services\SubscriptionService $service
  * @var \App\User $user
  */
 ?>
@@ -37,9 +38,20 @@
                             <dd>By Patreon</dd>
                     @else
                         <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                        <dd>{{ $currentPlan['name'] }}</dd>
-                        <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
-                        <dd>@if ($currentPlan['name'] != 'Kobold'){{ $currency }}@endif{{ $currentPlan['price'] }}</dd>
+                        <dd>{{ $currentPlan }}</dd>
+                        <dt>{{ __('settings.subscription.fields.billing') }}</dt>
+                        <dd>
+                            @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
+                            @else
+                                {{ __('front.pricing.tier.free') }}
+                            @endif
                         <dt>{{ __('settings.subscription.fields.currency') }}</dt>
                         <dd>
                             <span class="margin-r-5">{{ strtoupper($user->currency ?? 'USD') }}</span>
@@ -48,14 +60,14 @@
                                 <i class="fa fa-pencil-alt"></i> {{ __('crud.edit') }}
                             </a>
                         </dd>
-                            @if ($user->subscribed('kanka'))
-                                <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                                <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                                @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                                    <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                                    <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
-                                @endif
+                        @if ($user->subscribed('kanka'))
+                            <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
+                            <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
+                            @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+                                <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
+                                <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
                             @endif
+                        @endif
 
                     @endif
                         <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
@@ -160,7 +172,7 @@
                 <tr>
                     @if ($status != \App\Services\SubscriptionService::STATUS_GRACE)
                     <th class="align-middle">
-                        @if($currentPlan['name'] === 'Kobold')
+                        @if($currentPlan === \App\Models\Patreon::PLEDGE_KOBOLD)
                             <a class="btn btn-block btn-sm btn-default disabled">
                                 {{ __('tiers.current') }}
                             </a>
@@ -171,28 +183,55 @@
                         @endif
                     </th>
                     <th class="align-middle">
-                        @if($user->isOwlbear())
-                            <a class="btn btn-block btn-sm btn-default disabled">
-                                {{ __('tiers.current') }}
-                            </a>
-                        @elseif ($user->isElementalPatreon())
+                        @if ($user->subscribedToPlan($service->elementalPlans(), 'kanka'))
                             <a class="btn btn-block btn-sm btn-default disabled">
                                 {{ __('settings.subscription.subscription.actions.downgrading') }}
                             </a>
                         @else
-                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_OWLBEAR]) }}">
-                                {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Owlbear']) }}
-                            </a>
+                            @if($user->subscribedToPlan([config('subscription.owlbear.eur.monthly'), config('subscription.owlbear.usd.monthly')], 'kanka'))
+                                <a class="btn btn-block btn-sm btn-default disabled">
+                                    {{ __('tiers.current') }}
+                                </a>
+                            @else
+                                <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_OWLBEAR, 'period' => 'monthly']) }}">
+                                    {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Owlbear']) }}
+                                </a>
+                            @endif
+
+                            @if($user->subscribedToPlan([config('subscription.owlbear.eur.yearly'), config('subscription.owlbear.usd.yearly')], 'kanka'))
+                                <a class="btn btn-block btn-sm btn-default disabled">
+                                    {{ __('tiers.current') }}
+                                </a>
+                            @else
+                                <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_OWLBEAR, 'period' => 'yearly']) }}">
+                                    {{ __('settings.subscription.subscription.actions.subscribe_annual', ['tier' => 'Owlbear']) }}
+                                </a>
+                            @endif
                         @endif
                     </th>
                     <th class="align-middle">
-                        @if($user->isElementalPatreon())
-                            <button class="btn btn-block btn-sm btn-default disabled">
+                        @if($user->subscribedToPlan([config('subscription.elemental.eur.monthly'), config('subscription.elemental.usd.monthly')], 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
                                 {{ __('tiers.current') }}
-                            </button>
+                            </a>
+                        @elseif ($user->subscribedToPlan($service->elementalPlans(), 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('settings.subscription.subscription.actions.downgrading') }}
+                            </a>
                         @else
-                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_ELEMENTAL]) }}">
+                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_ELEMENTAL, 'period' => 'monthly']) }}">
                                 {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Elemental']) }}
+                            </a>
+                        @endif
+
+
+                        @if($user->subscribedToPlan([config('subscription.elemental.eur.yearly'), config('subscription.elemental.usd.yearly')], 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('tiers.current') }}
+                            </a>
+                        @else
+                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_ELEMENTAL, 'period' => 'yearly']) }}">
+                                {{ __('settings.subscription.subscription.actions.subscribe_annual', ['tier' => 'Elemental']) }}
                             </a>
                         @endif
                     </th>
@@ -206,65 +245,13 @@
                 </tr>
                 @endif
                 </thead>
-                <tbody>
-                <tr>
-                    <td>{{ __('tiers.features.file_size', ['size' => '2mb']) }}</td>
-                    <td>{{ __('tiers.features.file_size', ['size' => '8mb']) }}</td>
-                    <td>{{ __('tiers.features.file_size', ['size' => '25mb']) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ __('tiers.features.map_size', ['size' => '2mb']) }}</td>
-                    <td>{{ __('tiers.features.map_size', ['size' => '10mb']) }}</td>
-                    <td>{{ __('tiers.features.map_size', ['size' => '25mb']) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ __('tiers.features.pagination', ['amount' => 45]) }}</td>
-                    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-                    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> 3 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boosts', ['target' => '_blank']) !!}</td>
-                    <td><i class="fa fa-check"></i> 10 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boosts', ['target' => '_blank']) !!}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.discord') }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-                    <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.vote_influence') }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><i class="fa fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
-                </tr>
-                <tr>
-                    <td>{{ __('tiers.features.api_requests', ['amount' => 30]) }}</td>
-                    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
-                    <td>{{ __('tiers.features.api_requests', ['amount' => 90]) }}</td>
-                </tr>
-                </tbody>
+                @include('settings.subscription._benefits')
             </table>
 
+            <div class="margin-bottom"></div>
+            <p class="help-block">
+                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:hello@kanka.io', 'hello@kanka.io')]) !!}
+            </p>
         </div>
     </div>
 

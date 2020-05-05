@@ -64,7 +64,7 @@ class DiscordController extends Controller
         try {
             $this->discord
                 ->user($request->user())
-                ->validate($request->get('code'))
+                ->validate($request->get('code', ''))
                 ->addServer()
                 ->addRoles();
 

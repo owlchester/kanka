@@ -177,7 +177,7 @@ return [
         'fields'                => [
             'active_since'      => 'Actif depuis',
             'active_until'      => 'Active jusqu\'à',
-            'billed_monthly'    => 'Facturé mensuellement',
+            'billing'           => 'Facture',
             'currency'          => 'Devise',
             'payment_method'    => 'Méthode de paiement',
             'plan'              => 'Abonnement actuel',
