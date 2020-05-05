@@ -74,7 +74,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu text-center">
-                                    @foreach (Auth::user()->campaigns as $campaign)
+                                    @foreach (\App\Facades\UserCache::campaigns() as $campaign)
                                         @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
                                             <li>
                                                 <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
@@ -85,7 +85,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                                             </li>
                                         @endif
                                     @endforeach
-                                    @foreach (Auth::user()->following as $campaign)
+                                    @foreach (\App\Facades\UserCache::follows() as $campaign)
                                             @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
                                                 <li>
                                                     <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"

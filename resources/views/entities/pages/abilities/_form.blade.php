@@ -9,7 +9,8 @@
                 false,
                 'crud.fields.ability',
                 'abilities.find',
-                'crud.placeholders.ability'
+                'crud.placeholders.ability',
+                $entity
             ) !!}
         </div>
 

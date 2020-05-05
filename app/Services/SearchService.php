@@ -45,6 +45,12 @@ class SearchService
     protected $excludedTypes = [];
 
     /**
+     * List of excluded entity ids
+     * @var array
+     */
+    protected $excludeIds = [];
+
+    /**
      * List of the only entity types desired
      * @var array
      */
@@ -120,6 +126,16 @@ class SearchService
     }
 
     /**
+     * @param array $ids
+     * @return $this
+     */
+    public function excludeIds(array $ids): self
+    {
+        $this->excludeIds = $ids;
+        return $this;
+    }
+
+    /**
      * @param $types
      * @return $this
      */
@@ -166,6 +182,7 @@ class SearchService
 
 
         $query
+            ->whereNotIn('id', $this->excludeIds)
             ->acl()
             ->limit($this->limit);
 

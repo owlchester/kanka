@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
+use App\Models\Entity;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Response;
@@ -147,8 +149,14 @@ class MiscController extends Controller
      */
     public function abilities(Request $request)
     {
-        $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Ability::class);
+        $term = trim($request->get('q', null));
+        $exclude = [];
+        if ($request->has('exclude')) {
+            /** @var Entity $entity */
+            $entity = Entity::findOrFail($request->get('exclude'));
+            $exclude = $entity->abilities->pluck('ability_id')->toArray();
+        }
+        return $this->buildSearchResults($term, \App\Models\Ability::class, $exclude);
     }
 
     /**
@@ -163,17 +171,25 @@ class MiscController extends Controller
 
     /**
      * Build the search results
-     * @param $term
-     * @param $class
+     * @param string $term
+     * @param string $class
+     * @param array $excludes
      * @return mixed
      */
-    protected function buildSearchResults($term, $class)
+    protected function buildSearchResults($term, $class, array $excludes = [])
     {
+        /** @var Builder $modelClass */
         $modelClass = new $class;
         if (empty($term)) {
-            $models = $modelClass->limit(10)->orderBy('updated_at', 'DESC')->get();
+            $models = $modelClass->whereNotIn('id', $excludes)
+                ->limit(10)
+                ->orderBy('updated_at', 'DESC')
+                ->get();
         } else {
-            $models = $modelClass->where('name', 'like', "%$term%")->limit(10)->get();
+            $models = $modelClass->whereNotIn('id', $excludes)
+                ->where('name', 'like', "%$term%")
+                ->limit(10)
+                ->get();
         }
         $formatted = [];
 

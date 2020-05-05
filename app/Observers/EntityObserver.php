@@ -115,10 +115,10 @@ class EntityObserver
         if (EntityPermission::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
             if (!in_array('edit', $data['user'][$user])) {
-                $data['user'][$user][] = 'edit';
+                $data['user'][$user]['edit'] = 'allow';
             }
             if (!in_array('read', $data['user'][$user])) {
-                $data['user'][$user][] = 'read';
+                $data['user'][$user]['read'] = 'allow';
             }
         }
 

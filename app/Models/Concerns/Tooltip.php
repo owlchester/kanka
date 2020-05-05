@@ -80,7 +80,7 @@ trait Tooltip
 
         $subtitle = $this->tooltipSubtitle();
 
-        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) . 
+        $tooltip = '<h4>' . $name . '</h4>' . (!empty($subtitle) ? '<h5>' . $subtitle . '</h5>' : null) .
             '<p class="tooltip-text">' . $text . '</p>';
 
         return $tooltip;

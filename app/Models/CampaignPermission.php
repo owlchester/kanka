@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
  * @property integer $user_id
  * @property string $key
  * @property string $table_name
+ * @property bool $access
  */
 class CampaignPermission extends Model
 {
@@ -33,6 +34,7 @@ class CampaignPermission extends Model
         'table_name',
         'user_id',
         'entity_id',
+        'access',
     ];
 
     /**

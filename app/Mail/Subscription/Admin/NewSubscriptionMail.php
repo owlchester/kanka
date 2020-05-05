@@ -20,15 +20,19 @@ class NewSubscriptionMail extends Mailable
     /** @var bool */
     public $new;
 
+    /** @var string */
+    public $period;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, bool $new = true)
+    public function __construct(User $user, string $period = 'monthly', bool $new = true)
     {
         $this->user = $user;
         $this->new = $new;
+        $this->period = $period;
     }
 
     /**
@@ -40,7 +44,7 @@ class NewSubscriptionMail extends Mailable
     {
         return $this
             ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka Admin'])
-            ->subject('Subscription: ' . ($this->new ? 'New' : 'Changed') . ' ' . $this->user->patreon_pledge)
+            ->subject('Subscription: ' . ($this->new ? 'New' : 'Changed') . ' ' . ucfirst($this->period) . ' ' . $this->user->patreon_pledge)
             ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html');
     }
 }

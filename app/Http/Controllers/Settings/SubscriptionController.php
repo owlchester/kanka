@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Models\Patreon;
 use App\Services\SubscriptionService;
@@ -64,20 +65,25 @@ class SubscriptionController extends Controller
     public function change(Request $request)
     {
         $tier = $request->get('tier');
-        $amount = $this->subscription->user($request->user())->tier($tier)->amount();
+        $period = $request->get('period');
+
+        $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
         $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()): null;
         if (empty($request->user()->stripe_id)) {
             $request->user()->createAsStripeCustomer();
         }
         $intent = $request->user()->createSetupIntent();
         $cancel = $tier == Patreon::PLEDGE_KOBOLD;
+        $user = $request->user();
 
         return view('settings.subscription.change', compact(
             'tier',
+            'period',
             'amount',
             'card',
             'intent',
-            'cancel'
+            'cancel',
+            'user'
         ));
     }
 
@@ -92,6 +98,7 @@ class SubscriptionController extends Controller
         try {
             $this->subscription->user($request->user())
                 ->tier($request->get('tier'))
+                ->period($request->get('period'))
                 ->change($request->all())
                 ->finish();
 
@@ -113,6 +120,40 @@ class SubscriptionController extends Controller
                 'error' => true,
                 'message' => $e->getMessage(),
             ]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Stripe\Exception\ApiErrorException
+     */
+    public function altSubscribe(UserAltSubscribeStore $request)
+    {
+        $source = $this->subscription->user($request->user())
+            ->tier($request->get('tier'))
+            ->period($request->get('period'))
+            ->method($request->get('method'))
+            ->prepare($request);
+
+        return redirect($source->redirect->url);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Stripe\Exception\ApiErrorException
+     */
+    public function altCallback(Request $request)
+    {
+        if ($this->subscription->validSource($request->get('source'))) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withSuccess(__('settings.subscription.success.alternative'));
+        } else {
+            return redirect()
+                ->route('settings.subscription')
+                ->withErrors(__('settings.subscription.errors.callback'));
         }
     }
 

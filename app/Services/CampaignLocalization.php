@@ -2,24 +2,10 @@
 
 namespace App\Services;
 
-use App\Facades\Identity;
 use App\Models\Campaign;
 
 class CampaignLocalization
 {
-    /**
-     * Illuminate request class.
-     *
-     * @var \Illuminate\Routing\Request
-     */
-    protected $request;
-
-    /**
-     * Illuminate request class.
-     *
-     * @var Illuminate\Foundation\Application
-     */
-    protected $app;
 
     /**
      * Current campaign id.
@@ -28,22 +14,10 @@ class CampaignLocalization
      */
     protected $campaignId = false;
 
-    /** @var int console campaign id */
-    protected $consoleCampaignId = 0;
-
     /**
      * @var bool|Campaign
      */
     protected $campaign = false;
-
-    /**
-     * Creates new instance.
-     */
-    public function __construct()
-    {
-        $this->app = app();
-        $this->request = $this->app['request'];
-    }
 
     /**
      * Set and return current locale.
@@ -57,17 +31,17 @@ class CampaignLocalization
         if (empty($campaignId)) {
             // If the locale has not been passed through the function
             // it tries to get it from the first segment of the url
-            $campaignId = $this->request->segment(3);
+            $campaignId = request()->segment(3);
 
             // Workaround for the API, where we need the 4th segment
-            if ($this->request->segment(1) == 'api') {
-                $campaignId = $this->request->segment(4);
+            if (request()->segment(1) == 'api') {
+                $campaignId = request()->segment(4);
             }
         }
 
         // Check to make sure the campaign is an id (we don't want to check the db at this point)
         if (!empty($campaignId) && !is_numeric($campaignId)) {
-            if ($this->request->segment(2) == 'campaign') {
+            if (request()->segment(2) == 'campaign') {
                 abort(404);
             }
         }
@@ -119,23 +93,5 @@ class CampaignLocalization
     public function getUrl($campaignId, $with = null)
     {
         return app()->getLocale() . '/' . $this->setCampaign($campaignId) . (!empty($with) ? "/$with" : null);
-    }
-
-    /**
-     * @return int
-     */
-    public function getConsoleCampaign(): int
-    {
-        return $this->consoleCampaignId;
-    }
-
-    /**
-     * @param int $campaignId
-     * @return $this
-     */
-    public function setConsoleCampaign(int $campaignId): self
-    {
-        $this->consoleCampaignId = $campaignId;
-        return $this;
     }
 }

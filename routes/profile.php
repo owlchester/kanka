@@ -32,6 +32,9 @@ Route::post('/settings/subscription/change', 'Settings\SubscriptionController@su
 Route::get('/settings/billing-information', 'Settings\BillingController@index')->name('settings.billing');
 Route::patch('/settings/billing-information', 'Settings\BillingController@save')->name('settings.billing.save');
 
+Route::post('/settings/subscription/alt-subscribe', 'Settings\SubscriptionController@altSubscribe')->name('settings.subscription.alt-subscribe');
+Route::get('/settings/subscription/alt-callback', 'Settings\SubscriptionController@altCallback')->name('settings.subscription.alt-callback');
+
 Route::get('/settings/invoices', 'Settings\InvoiceController@index')->name('settings.invoices');
 Route::get('/settings/invoices/download/{invoice}', 'Settings\InvoiceController@download')->name('settings.invoices.download');
 

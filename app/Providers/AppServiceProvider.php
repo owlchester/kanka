@@ -7,6 +7,7 @@ use App\Models\Ability;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignFollower;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
@@ -90,6 +91,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
             CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
+            CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             CommunityVote::observe('App\Observers\CommunityVoteObserver');
