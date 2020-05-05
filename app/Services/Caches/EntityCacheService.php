@@ -58,10 +58,8 @@ class EntityCacheService extends BaseCache
     {
         $key = $entity->type . '_' . $entity->entity_id;
         if (isset($this->entities[$key])) {
-            dump('found ' . $key);
             return $this->entities[$key];
         }
-        dump('set ' . $key);
 
         if ($entity->type == 'attribute_template') {
             $child = $entity->attributeTemplate();
