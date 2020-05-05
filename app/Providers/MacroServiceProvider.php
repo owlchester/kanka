@@ -31,6 +31,7 @@ class MacroServiceProvider extends HtmlServiceProvider
             'labelKey' => null,
             'searchRouteName' => null,
             'placeholderKey' => null,
+            'from' => null,
         ]);
 
         Form::component('tags', 'components.form.tags', [

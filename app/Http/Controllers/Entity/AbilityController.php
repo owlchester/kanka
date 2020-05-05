@@ -82,8 +82,8 @@ class AbilityController extends Controller
 
         return redirect()
             ->route('entities.entity_abilities.index', $entity)
-            ->with('success', trans('entities/inventories.create.success', [
-                'item' => $entityAbility->ability->name,
+            ->with('success', trans('entities/abilities.create.success', [
+                'ability' => $entityAbility->ability->name,
                 'entity' => $entity->name
             ]));
     }
@@ -174,9 +174,5 @@ class AbilityController extends Controller
             ->resetCharges();
 
         return redirect()->route('entities.entity_abilities.index', $entity);
-//        return response()->json([
-//            'data' =>
-//                ->abilities()
-//        ]);
     }
 }
