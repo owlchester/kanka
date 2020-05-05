@@ -93,13 +93,13 @@
             @can('update', $campaign)
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}">
-                        <i class="fa fa-user"></i> {{ $campaign->users()->count() }}
+                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.users', ['count' => \App\Facades\CampaignCache::members()->count()]) }}">
+                        <i class="fa fa-user"></i> {{ \App\Facades\CampaignCache::members()->count() }}
                     </a>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{  __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}">
-                        <i class="fa fa-lock"></i> {{ $campaign->roles()->count() }}
+                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{  __('dashboard.campaigns.tabs.roles', ['count' => \App\Facades\CampaignCache::roles()->count()]) }}">
+                        <i class="fa fa-lock"></i> {{ \App\Facades\CampaignCache::roles()->count() }}
                     </a>
                 </div>
                 <div class="col-md-2 hidden-xs hidden-sm">

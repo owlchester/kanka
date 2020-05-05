@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\CampaignLocalization;
 use Closure;
 use Exception;
 use App\Models\Campaign as CampaignModel;
@@ -30,7 +31,7 @@ class Campaign
             abort(404);
         }
 
-        $campaign = CampaignModel::findOrFail((int) $campaignId);
+        $campaign = CampaignLocalization::getCampaign();
 
         // If we are impersonating someone
         if (Auth::check() && Identity::isImpersonating()) {

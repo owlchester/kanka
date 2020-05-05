@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\EntityCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
@@ -43,6 +44,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property EntityAbility[] $abilities
  * @property CampaignDashboardWidget[] $widgets
  * @property MiscModel $child
+ * @property User $updater
  */
 class Entity extends Model
 {
@@ -102,13 +104,7 @@ class Entity extends Model
      */
     public function child()
     {
-        if ($this->type == 'attribute_template') {
-            return $this->attributeTemplate();
-        } elseif ($this->type == 'dice_roll') {
-            return $this->diceRoll();
-        }
-
-        return $this->{$this->type}();
+        return EntityCache::child($this);
     }
 
     /**

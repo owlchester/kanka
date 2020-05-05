@@ -18,7 +18,7 @@ $entityTypeListModel = new $base;
 </div>
 <div class="hidden">
     <datalist id="entity-type-list-<?=$trans?>">
-        @foreach ($entityTypeListModel->entityTypeList() as $name)
+        @foreach (\App\Facades\EntityCache::typeSuggestion($entityTypeListModel) as $name)
             <option value="{{ $name }}">{{ $name }}</option>
         @endforeach
     </datalist>
