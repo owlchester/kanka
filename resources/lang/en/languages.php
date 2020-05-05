@@ -8,6 +8,7 @@ return [
         'es'    => 'Spanish',
         'fr'    => 'French',
         'hu'    => 'Hungarian',
+        'hr'    => 'Croatian',
         'it'    => 'Italian',
         'nl'    => 'Dutch',
         'pt-BR' => 'Brazilian Portuguese',
