@@ -40,6 +40,7 @@ use App\Models\Note;
 use App\Models\QuestOrganisation;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Models\Release;
 use App\Models\Tag;
 use App\Observers\CalendarObserver;
 use App\Observers\CalendarWeatherObserver;
@@ -124,6 +125,8 @@ class AppServiceProvider extends ServiceProvider
             Race::observe('App\Observers\RaceObserver');
 
             Relation::observe('App\Observers\RelationObserver');
+
+            Release::observe('App\Observers\ReleaseObserver');
 
             Paginator::useBootstrapThree();
 

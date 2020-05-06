@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\PostCache;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,12 +31,7 @@ class DashboardController extends Controller
 
         //$characters = Character::
 
-        $release = Release::with(['category'])
-            ->where('status', 'PUBLISHED')
-            ->orderBy('created_at', 'DESC')
-            ->first();
-
-
+        $release = PostCache::latest();
         $widgets = CampaignDashboardWidget::positioned()->get();
 
         return view('home', compact(
