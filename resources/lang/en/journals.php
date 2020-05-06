@@ -29,7 +29,7 @@ return [
     ],
     'placeholders'  => [
         'author'    => 'Who wrote the journal',
-        'date'      => 'Date of the journal',
+        'date'      => 'Real world date of the journal',
         'name'      => 'Name of the journal',
         'type'      => 'Session, One Shot, Draft',
     ],
