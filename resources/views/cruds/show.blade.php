@@ -28,22 +28,4 @@ $headerImage = !empty($model->entity->header_image) && $campaign->campaign()->bo
 @section('content')
 
     @include($name . '.show')
-
-    @if ($model->entity)
-    @admin
-    <div class="panel panel-default hidden">
-        <div class="panel-heading">
-            <h4>Admin</h4>
-        </div>
-        <div class="panel-body">
-            <dl class="dl-horizontal">
-                <dt>Entity ID</dt>
-                <dd>{{ $model->entity->id }}</dd>
-                <dt>Entity Type</dt>
-                <dd>{{ $model->entity->type }}</dd>
-            </dl>
-        </div>
-    </div>
-    @endadmin
-    @endif
 @endsection

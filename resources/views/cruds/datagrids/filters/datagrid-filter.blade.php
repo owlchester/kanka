@@ -91,7 +91,7 @@ $count = 0;
                                     <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
                                     <div class="hidden">
                                         <datalist id="entity-type-list">
-                                            @foreach ($entityModel->entityTypeList() as $suggestion)
+                                            @foreach (\App\Facades\EntityCache::typeSuggestion($entityModel) as $suggestion)
                                                 <option value="{{ $suggestion }}">{{ $suggestion }}</option>
                                             @endforeach
                                         </datalist>

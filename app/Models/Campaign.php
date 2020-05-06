@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Scopes\CampaignScopes;
@@ -83,9 +84,6 @@ class Campaign extends MiscModel
      * @var array
      */
     protected $searchableColumns  = ['name'];
-
-    protected $cachedUserInCampaign = null;
-    protected $cachedUserRole = null;
 
     /**
      * @return mixed
@@ -399,12 +397,7 @@ class Campaign extends MiscModel
      */
     public function userIsMember(): bool
     {
-        if ($this->cachedUserInCampaign === null) {
-            $this->cachedUserInCampaign = $this->members()
-                    ->where('user_id', Auth::user()->id)
-                    ->count() == 1;
-        }
-        return $this->cachedUserInCampaign;
+        return CampaignCache::members()->where('user_id', Auth::user()->id)->count() == 1;
     }
 
     /**
@@ -427,16 +420,15 @@ class Campaign extends MiscModel
      * @param $entity
      * @return bool
      */
-    public function enabled($entity)
+    public function enabled($entity): bool
     {
-        if ($this->setting->$entity) {
-            return $this->setting->$entity;
-        }
         // Can't disable attribute templates
         if ($entity == 'attribute_templates') {
             return true;
         }
-        return false;
+
+        $settings = CampaignCache::settings();
+        return $settings->$entity;
     }
 
     /**

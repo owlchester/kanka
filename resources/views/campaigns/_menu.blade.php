@@ -17,11 +17,11 @@
                 </span>
                 <br class="clear" />
             </li>
-            @if (false && $campaign->isPublic())
+            @if ($campaign->isPublic())
                 <li class="list-group-item">
                     <b>{{ trans('campaigns.fields.followers') }}</b>
                     <span  class="pull-right">
-                    {{ $campaign->followers->count() }}
+                    {{ \App\Facades\CampaignCache::followerCount() }}
                 </span>
                     <br class="clear" />
                 </li>
@@ -38,7 +38,7 @@
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.entity_count') }}</b>
                 <span  class="pull-right">
-                    {{ number_format($campaign->entities()->count()) }}
+                    {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
                 </span>
                 <br class="clear" />
             </li>
@@ -108,7 +108,7 @@
                 <a href="{{ route('campaign_users.index') }}">
                     {{ __('campaigns.show.tabs.members') }}
                     <span class="label label-default pull-right">
-                        {{ $campaign->users()->count() }}
+                        {{ \App\Facades\CampaignCache::members()->count() }}
                     </span>
                 </a>
             </li>
@@ -117,7 +117,7 @@
                 <a href="{{ route('campaign_roles.index') }}">
                     {{ __('campaigns.show.tabs.roles') }}
                     <span class="label label-default pull-right">
-                        {{ $campaign->roles()->count() }}
+                        {{ \App\Facades\CampaignCache::roles()->count() }}
                     </span>
                 </a>
             </li>

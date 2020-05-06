@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Facades\CampaignCache;
+use App\Facades\UserCache;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\User;
@@ -139,12 +141,13 @@ class UserPermission
         $this->entityTypes = [];
         $this->userCampaignOwner = false;
         $this->reload = false;
+        $campaign = \App\Facades\CampaignLocalization::getCampaign();
 
         // Have a user? Get their roles in this campaign.
         $roles = 0;
         if ($this->user) {
             /** @var CampaignRole $role */
-            foreach ($this->user->campaignRoles as $role) {
+            foreach (UserCache::user($this->user)->roles()->where('campaign_id', $campaign->id) as $role) {
                 // If one of the roles is an admin, we don't need to figure any more stuff, we're good.
                 $roles++;
                 if ($role->is_admin) {
@@ -169,7 +172,7 @@ class UserPermission
             $campaign = \App\Facades\CampaignLocalization::getCampaign();
 
             // Go and get the Public role
-            $publicRole = $campaign->roles()->where('is_public', true)->first();
+            $publicRole = CampaignCache::campaign($campaign)->roles()->where('is_public', true)->first();
             if ($publicRole) {
                 $this->parseRole($publicRole);
             }

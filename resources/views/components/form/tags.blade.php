@@ -27,9 +27,11 @@ elseif(!empty($model) && !empty($model->entity)) {
     }
 } elseif (!empty($filterOptions)) {
     foreach ($filterOptions as $tagId) {
-        $tag = \App\Models\Tag::find($tagId);
-        if ($tag && \App\Facades\EntityPermission::canView($tag->entity)) {
-            $selectedOption[$tag->id] = $tag;
+        if (!empty($tagId)) {
+            $tag = \App\Models\Tag::find($tagId);
+            if ($tag && \App\Facades\EntityPermission::canView($tag->entity)) {
+                $selectedOption[$tag->id] = $tag;
+            }
         }
     }
 }

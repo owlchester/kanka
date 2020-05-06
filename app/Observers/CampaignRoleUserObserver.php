@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\UserCache;
 use App\Models\CampaignRoleUser;
 use App\Notifications\Header;
 
@@ -36,6 +37,8 @@ class CampaignRoleUserObserver
             ]
         );
         $campaignRoleUser->user->notify($notification);
+
+        UserCache::user($campaignRoleUser->user)->clearRoles();
     }
 
     /**
@@ -60,5 +63,7 @@ class CampaignRoleUserObserver
             ]
         );
         $campaignRoleUser->user->notify($notification);
+
+        UserCache::user($campaignRoleUser->user)->clearRoles();
     }
 }

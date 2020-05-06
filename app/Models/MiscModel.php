@@ -311,16 +311,17 @@ abstract class MiscModel extends Model
 
     /**
      * List of types as suggestions for the type field
-     * @return mixed
+     * @param int $take = 20
+     * @return array
      */
-    public function entityTypeList()
+    public function entityTypeSuggestion(int $take = 20): array
     {
         return $this
             ->select(DB::raw('type, MAX(created_at) as cmat'))
             ->groupBy('type')
             ->whereNotNull('type')
             ->orderBy('cmat', 'DESC')
-            ->limit(20)
+            ->take($take)
             ->pluck('type')
             ->all();
     }

@@ -3,7 +3,9 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
+use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
@@ -136,6 +138,8 @@ class CampaignObserver
         if ($first) {
             $this->starterService->generateBoilerplate($campaign);
         }
+
+        UserCache::clearCampaigns();
     }
 
     /**
@@ -149,6 +153,14 @@ class CampaignObserver
         }
 
         $this->saveRpgSystems($campaign);
+
+        // In case the campaign is no longer public, update any followers
+        if ($campaign->isDirty('visibility') && $campaign->visibility == Campaign::VISIBILITY_PRIVATE) {
+            /** @var CampaignFollower $follow */
+            foreach ($campaign->followers()->with('user')->get() as $follow) {
+                UserCache::user($follow->user)->clearFollows();
+            }
+        }
     }
 
     /**
@@ -157,6 +169,7 @@ class CampaignObserver
     public function deleted(Campaign $campaign)
     {
         ImageService::cleanup($campaign);
+        UserCache::clearCampaigns();
     }
 
     /**

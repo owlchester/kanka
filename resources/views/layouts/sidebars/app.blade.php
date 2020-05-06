@@ -142,18 +142,6 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             <li class="{{ $sidebar->active('attribute_templates') }}">
                 <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>
             </li>
-
-            @auth
-                @translator
-                <li><a href="/translations"><i class="fa fa-globe"></i> <span>{{ trans('sidebar.translations') }}</span></a></li>
-                @endtranslator
-                @admin
-                    <li><a href="{{ route('voyager.dashboard') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin') }}</span></a></li>
-                @endadmin
-                @moderator
-                    <li><a href="{{ route('admin.home') }}"><i class="fas fa-lock"></i> <span>{{ trans('sidebar.admin_campaigns.index') }}</span></a></li>
-                @endmoderator
-            @endauth
         </ul>
     </section>
 </aside>
