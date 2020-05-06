@@ -13,7 +13,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \League\OAuth2\Server\Exception\OAuthServerException::class
+        \League\OAuth2\Server\Exception\OAuthServerException::class,
+        \Doctrine\DBAL\Driver\PDOException::class,
     ];
 
     /**

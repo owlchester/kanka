@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Jobs\EntityUpdatedJob;
@@ -206,6 +207,8 @@ class EntityObserver
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_UPDATE;
         $log->save();
+
+        //EntityCache::clearEntity($entity->id);
 
         // Queue job when an entity was updated
         EntityUpdatedJob::dispatch($entity);

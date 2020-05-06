@@ -104,6 +104,21 @@ class Entity extends Model
      */
     public function child()
     {
+        if ($this->type == 'attribute_template') {
+            return $this->attributeTemplate();
+        } elseif ($this->type == 'dice_roll') {
+            return $this->diceRoll();
+        } else {
+            return $this->{$this->type}();
+        }
+    }
+
+    /**
+     * Child attribute
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getChildAttribute()
+    {
         return EntityCache::child($this);
     }
 

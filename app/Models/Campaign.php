@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\DB;
  * @property string $locale
  * @property string $entry
  * @property string $image
- * @property string $join_token
  * @property string $export_path
  * @property string $export_date
  * @property string $visibility
@@ -59,7 +58,6 @@ class Campaign extends MiscModel
         'entry',
         'excerpt',
         'image',
-        'join_token',
         'export_path',
         'export_date',
         'visibility',
