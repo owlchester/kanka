@@ -22,10 +22,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 
     @yield('og')
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- Ionicons -->
-    <link href="//code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-
     <link rel="icon" type="image/png" href="/favicon.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -223,6 +219,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     </div>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="/js/select2/i18n/{{ LaravelLocalization::getCurrentLocale() == 'en-US' ? 'en' : LaravelLocalization::getCurrentLocale() }}.js" defer></script>
     @yield('scripts')
