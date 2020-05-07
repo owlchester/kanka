@@ -12,18 +12,17 @@ $menus = [
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="description" content="{{ __('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
-    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}" />
-    <meta property="og:site_name" content="{{ config('app.site_name') }}" />
+    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}">
+    <meta property="og:site_name" content="{{ config('app.site_name') }}">
 @yield('og')
     <title>{{ $title ?? __('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
