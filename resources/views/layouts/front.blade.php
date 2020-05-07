@@ -23,6 +23,7 @@ $menus = [
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="icon" type="image/png" href="/favicon.ico">
 
@@ -94,7 +95,7 @@ $menus = [
 </div>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
+        <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
         @auth
         @else
             <a href="{{ route('login') }}" class="d-sm-none">
@@ -146,9 +147,6 @@ $menus = [
 <!-- Plugin JavaScript -->
 <script src="/vendor/jquery-easing/jquery.easing.min.js" async></script>
 
-<!-- Custom scripts for this template -->
-<script src="/js/front/new-age.min.js" async></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script>
     WebFont.load({
@@ -191,6 +189,33 @@ $menus = [
             }
         })});
 </script>
+<script>
+    function init() {
+        var vidDefer = document.getElementsByTagName('iframe');
+        for (var i=0; i<vidDefer.length; i++) {
+            if(vidDefer[i].getAttribute('data-src')) {
+                vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+            } } }
+    window.onload = init;
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '826337747859694');
+    fbq('track', 'PageView');
+</script>
+<noscript>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=826337747859694&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
 @yield('scripts')
 </body>
 </html>
