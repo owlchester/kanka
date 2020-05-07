@@ -44,8 +44,8 @@ $menus = [
 <body id="page-top">
 @include('layouts._tracking-fallback')
 <!-- Custom styles for this template -->
-<link href="/css/front/new-age.min.css" rel="stylesheet">
-<link href="{{ mix('css/front.css') }}" rel="stylesheet">
+<link href="/css/front/new-age.min.css" rel="stylesheet"  media="print" onload="this.media='all'">
+<link href="{{ mix('css/front.css') }}" rel="stylesheet"  media="print" onload="this.media='all'">
 <noscript id="deferred-styles">
 </noscript>
 
@@ -148,6 +148,8 @@ $menus = [
 <script src="/vendor/jquery-easing/jquery.easing.min.js" async></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+
 <script>
     WebFont.load({
         google: {
@@ -168,7 +170,6 @@ $menus = [
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
     window.addEventListener("load", function(){
