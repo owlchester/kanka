@@ -37,6 +37,7 @@ class DefaultImageController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
+
         return view('campaigns.default-images.index', compact('campaign'));
     }
 
