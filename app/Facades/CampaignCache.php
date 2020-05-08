@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static self|CampaignCacheService clearRoles()
  * @method static CampaignSetting settings()
  * @method static self|CampaignCacheService clearSettings();
+ * @method static array defaultImages()
+ * @method static self|CampaignCacheService clearDefaultImages();
  *
  * @see \App\Services\Caches\CampaignCacheService
  */

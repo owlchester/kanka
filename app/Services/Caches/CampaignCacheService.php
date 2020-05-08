@@ -4,6 +4,7 @@ namespace App\Services\Caches;
 
 use App\Models\CampaignSetting;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * Class CampaignCacheService
@@ -143,6 +144,37 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
+     * Default Entity Images for a campaign
+     * @return array
+     */
+    public function defaultImages(): array
+    {
+        $key = $this->defaultImagesKey();
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        $defaults = $this->campaign->defaultImages();
+        $data = [];
+        foreach ($defaults as $default) {
+            $data[Str::singular($default['type'])] = $default;
+        }
+        $this->forever($key, $data);
+        return $data;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearDefaultImages(): self
+    {
+        $this->forget(
+            $this->defaultImagesKey()
+        );
+        return $this;
+    }
+
+    /**
      * Campaign members cache key
      * @return string
      */
@@ -161,11 +193,20 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * Campaign links cache key (based on the user
+     * Campaign settings cache key
      * @return string
      */
     protected function settingsKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_settings';
+    }
+
+    /**
+     * Campaign default images cache key
+     * @return string
+     */
+    protected function defaultImagesKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_default_images';
     }
 }

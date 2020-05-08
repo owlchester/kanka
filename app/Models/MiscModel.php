@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
@@ -14,6 +15,7 @@ use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -187,6 +189,11 @@ abstract class MiscModel extends Model
     public function getImageUrl(bool $thumb = false, string $field = 'image')
     {
         if (empty($this->$field)) {
+            // Campaign could have something set up
+            $campaign = CampaignLocalization::getCampaign();
+            if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
+                return CampaignCache::defaultImages()[$this->getEntityType()]['cdn'];
+            }
             // Patreons have nicer icons
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
                 return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');

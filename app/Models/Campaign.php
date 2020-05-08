@@ -5,12 +5,14 @@ namespace App\Models;
 use App\Facades\CampaignCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
+use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * Class Campaign
@@ -32,15 +34,16 @@ use Illuminate\Support\Facades\DB;
  * @property string $theme
  * @property int $boost_count
  * @property integer $visible_entity_count
- * @property string $ui_settings
- * @property EntityMention[] $mentions
- * @property CampaignSetting $setting
- * @property CampaignUser[] $members
+ * @property array $ui_settings
+ * @property array|null $default_images
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ *
  */
 class Campaign extends MiscModel
 {
+
+    use CampaignScopes, CampaignRelations, Boosted;
     /**
      * Visibility of a campaign
      */
@@ -71,11 +74,9 @@ class Campaign extends MiscModel
     ];
 
     protected $casts = [
-        'ui_settings' => 'array'
+        'ui_settings' => 'array',
+        'default_images' => 'array',
     ];
-
-    use CampaignScopes;
-    use Boosted;
 
     /**
      * Searchable fields
@@ -83,221 +84,7 @@ class Campaign extends MiscModel
      */
     protected $searchableColumns  = ['name'];
 
-    /**
-     * @return mixed
-     */
-    public function users()
-    {
-        return $this->hasManyThrough(
-            'App\User',
-            'App\Models\CampaignUser',
-            'campaign_id',
-            'id',
-            'id',
-            'user_id'
-        );
-    }
 
-    /**
-     * @return mixed
-     */
-    public function followers()
-    {
-        return $this->hasManyThrough(
-            'App\User',
-            'App\Models\CampaignFollower',
-            'campaign_id',
-            'id',
-            'id',
-            'user_id'
-        );
-    }
-
-    /**
-     * @return mixed
-     */
-    public function rpgSystems()
-    {
-        return $this->belongsToMany('App\Models\RpgSystem');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function setting()
-    {
-        return $this->belongsTo('App\Models\CampaignSetting', 'id', 'campaign_id');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function members()
-    {
-        return $this->hasMany('App\Models\CampaignUser');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function roles()
-    {
-        return $this->hasMany('App\Models\CampaignRole');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function characters()
-    {
-        return $this->hasMany('App\Models\Character');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locations()
-    {
-        return $this->hasMany('App\Models\Location');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendars()
-    {
-        return $this->hasMany('App\Models\Calendar');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
-    {
-        return $this->hasMany('App\Models\Event');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function families()
-    {
-        return $this->hasMany('App\Models\Family');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function items()
-    {
-        return $this->hasMany('App\Models\Item');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function journals()
-    {
-        return $this->hasMany('App\Models\Journal');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function notes()
-    {
-        return $this->hasMany('App\Models\Note');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function organisations()
-    {
-        return $this->hasMany('App\Models\Organisation');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function quests()
-    {
-        return $this->hasMany('App\Models\Quest');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function abilities()
-    {
-        return $this->hasMany('App\Models\Ability');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tags()
-    {
-        return $this->hasMany('App\Models\Tag');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function menuLinks()
-    {
-        return $this->hasMany('App\Models\MenuLink');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function diceRolls()
-    {
-        return $this->hasMany('App\Models\DiceRoll');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function conversations()
-    {
-        return $this->hasMany('App\Models\Conversation');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function races()
-    {
-        return $this->hasMany('App\Models\Race');
-    }
-
-    /**
-     * List of entities that are mentionned in the campaign's description
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function mentions()
-    {
-        return $this->hasMany('App\Models\EntityMention', 'campaign_id', 'id');
-    }
-
-    /**
-     * List of entities that are mentionned in the campaign's description
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entities()
-    {
-        return $this->hasMany('App\Models\Entity', 'campaign_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function theme()
-    {
-        return $this->belongsTo('App\Models\Theme');
-    }
 
     /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
@@ -503,8 +290,54 @@ class Campaign extends MiscModel
         return link_to(App::getLocale() . '/' . $this->getMiddlewareLink(), e($this->name));
     }
 
+    /**
+     * @return mixed
+     */
     public function getTooltipFamilyAttribute()
     {
         return Arr::get($this->ui_settings, 'tooltip_family', false);
+    }
+
+    /**
+     * @return array
+     */
+    public function existingDefaultImages(): array
+    {
+        if (empty($this->default_images)) {
+            return [];
+        }
+
+        return array_keys($this->default_images);
+    }
+
+    /**
+     * Prepare the default entity images
+     * @return array
+     */
+    public function defaultImages(): array
+    {
+        if (empty($this->default_images)) {
+            return [];
+        }
+
+        $imageIds = array_values($this->default_images);
+        $images = Image::whereIn('id', $imageIds)->get();
+
+        $data = [];
+        foreach ($this->default_images as $type => $uuid) {
+            /** @var Image $image */
+            $image = $images->where('id', $uuid)->first();
+            if (empty($image)) {
+                continue;
+            }
+
+            $data[] = [
+                'type' => $type,
+                'uuid' => $uuid,
+                'cdn' => $image->cdn,
+            ];
+        }
+
+        return $data;
     }
 }

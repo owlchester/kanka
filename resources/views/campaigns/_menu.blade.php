@@ -135,7 +135,17 @@
                 </a>
             </li>
             @if ($campaign->boosted())
-                    <li class="@if(!empty($active) && $active == 'recovery')active @endif">
+                <li class="@if(!empty($active) && $active == 'default-images')active @endif">
+                    <a href="{{ route('campaign.default-images') }}">
+                        {{ __('campaigns.show.tabs.default-images') }}
+                        @if($campaign->default_images)
+                        <span class="label label-default pull-right">
+                            {{ count($campaign->default_images)}}
+                        </span>
+                        @endif
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'recovery')active @endif">
                     <a href="{{ route('recovery') }}">
                         {{ __('campaigns.show.tabs.recovery') }}
                     </a>

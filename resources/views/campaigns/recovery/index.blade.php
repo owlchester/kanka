@@ -2,7 +2,6 @@
     'title' => trans('campaigns/recovery.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
-        trans('campaigns/recovery.title')
     ],
 ])
 

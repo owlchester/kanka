@@ -186,6 +186,12 @@ Route::group([
         Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
 
 
+        Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');
+        Route::get('/default-images/create', 'Campaign\DefaultImageController@create')->name('campaign.default-images.create');
+        Route::post('/default-images/create', 'Campaign\DefaultImageController@store')->name('campaign.default-images.store');
+        Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')->name('campaign.default-images');
+
+
         // Entity Abilities API
         Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
         Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');

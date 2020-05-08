@@ -304,6 +304,7 @@ return [
         'tabs'          => [
             'export'        => 'Export',
             'information'   => 'Information',
+            'default-images' => 'Default Images',
             'members'       => 'Members',
             'menu'          => 'Menu',
             'recovery'      => 'Recovery',
