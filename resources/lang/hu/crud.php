@@ -2,7 +2,7 @@
 
 return [
     'actions'           => [
-        'actions'           => 'Akciók',
+        'actions'           => 'Műveletek',
         'apply'             => 'Alkalmaz',
         'back'              => 'Vissza',
         'copy'              => 'Másolás',
@@ -18,6 +18,7 @@ return [
         'next'              => 'Következő',
         'private'           => 'Privát',
         'public'            => 'Nyilvános',
+        'reset'             => 'Visszaállítás',
     ],
     'add'               => 'Hozzáadás',
     'alerts'            => [
@@ -347,6 +348,7 @@ return [
     'rename'            => 'Átnevezés',
     'save'              => 'Mentés',
     'save_and_close'    => 'Mentés és bezárás',
+    'save_and_copy'     => 'Mentés és másolás',
     'save_and_new'      => 'Mentés és új',
     'save_and_update'   => 'Mentés és frissítés',
     'save_and_view'     => 'Mentés és megtekintés',

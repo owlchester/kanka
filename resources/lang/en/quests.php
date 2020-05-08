@@ -123,7 +123,7 @@ return [
         'title'     => 'Organisations in :name',
     ],
     'placeholders'  => [
-        'date' => 'Real world date for the quest',
+        'date'  => 'Real world date for the quest',
         'name'  => 'Name of the quest',
         'quest' => 'Parent Quest',
         'role'  => 'This entity\'s role in the quest',

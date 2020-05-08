@@ -1,8 +1,16 @@
 <?php
 
 return [
+    'create'    => [
+        'success'   => 'Kreirano glasanje zajednice.',
+        'title'     => 'Kreiraj novo glasanje zajednice',
+    ],
+    'destroy'   => [
+        'success'   => 'Uklonjeno glasanje zajednice.',
+    ],
     'edit'      => [
-        'title' => 'Ažuriraj glas zajednice :name',
+        'success'   => 'Uređeno glasanje zajednice.',
+        'title'     => 'Ažuriraj glas zajednice :name',
     ],
     'fields'    => [
         'content'       => 'Sadržaj',
@@ -15,6 +23,7 @@ return [
         'votes'         => 'Glasovi',
     ],
     'index'     => [
+        'add'   => 'Novo glasanje zajednice',
         'title' => 'Admin: glasovi zajednice',
     ],
 ];

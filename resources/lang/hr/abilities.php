@@ -18,6 +18,7 @@ return [
     'fields'        => [
         'abilities' => 'Sposobnosti',
         'ability'   => 'Sposobnost',
+        'charges'   => 'Punjenja',
         'name'      => 'Naziv',
         'type'      => 'Tip',
     ],
@@ -32,8 +33,9 @@ return [
         'title'         => 'Sposobnosti',
     ],
     'placeholders'  => [
-        'name'  => 'Vatrena kugla, Upozorenje, Lukavi udarac',
-        'type'  => 'Čarolija, podvig, napad',
+        'charges'   => 'Broj punjenja. Referenciraj se na atribute s {Level}*{CHA}',
+        'name'      => 'Vatrena kugla, Upozorenje, Lukavi udarac',
+        'type'      => 'Čarolija, podvig, napad',
     ],
     'show'          => [
         'tabs'  => [

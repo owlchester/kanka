@@ -119,6 +119,9 @@
                             <strong>{{ __('languages.codes.pt-BR') }}</strong>: Republik
                         </p>
                         <p>
+                            <strong>{{ __('languages.codes.hr') }}</strong>: Blaze
+                        </p>
+                        <p>
                             <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
                         </p>
                     </div>

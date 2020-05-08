@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'add'   => 'Añadir habilidad',
+        'reset' => 'Restablecer usos de habilidad',
     ],
     'create'    => [
         'title' => 'Añadir habilidad a :name',

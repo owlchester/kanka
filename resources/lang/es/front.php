@@ -160,6 +160,7 @@ return [
         'home'      => 'Inicio',
         'login'     => 'Iniciar sesión',
         'news'      => 'Novedades',
+        'newsletter'=> 'Newsletter',
         'pricing'   => 'Tarifas',
         'privacy'   => 'Política de Privacidad',
         'register'  => 'Registrarse',
@@ -179,6 +180,7 @@ return [
     'pricing'       => [
         'actions'       => [
             'more'      => 'Saber más sobre las funciones que se desbloquean apoyando a Kanka',
+            'subscribe' => 'Suscribirse',
             'support'   => 'Apoyar',
         ],
         'benefits'      => [

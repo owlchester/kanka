@@ -2,5 +2,5 @@
 
 return [
     'helper'    => 'Ovaj entitet je označen na sljedećim mapama.',
-    'title'     => ':name oznake na mapama',
+    'title'     => ':name točke na mapama',
 ];

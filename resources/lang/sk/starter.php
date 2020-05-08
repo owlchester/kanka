@@ -38,7 +38,7 @@ return [
         'type'          => 'Hlavné mesto',
     ],
     'note1'         => [
-        'entry' => <<<'TEXT'
+        'entry'         => <<<'TEXT'
 Vitaj v Kanke! Tvoja prvá kampaň bola vytvorená a my sme do nej pre inšpiráciu pridali pár objektov ako príklad (pokojne ich ale môžeš vymazať).
 
 Asi chceš začať s pridávaním tvojich vlastných objektov, takže si vyber kategóriu vľavo a pusť sa do toho. Nepotrebné kategórie objektov vieš deaktivovať v nastaveniach kampane, následne sa stratia aj z tohto menu.
@@ -55,6 +55,7 @@ No a nakoniec:
 - Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :patreon.
 TEXT
 ,
-        'name'  => 'Uvítacia správa',
+        'name'          => 'Uvítacia správa',
+        'subscriptions' => 'Predplatné',
     ],
 ];

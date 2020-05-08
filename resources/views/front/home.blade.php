@@ -127,7 +127,7 @@
                     <div class="col-12 col-md-5 offset-md-7">
                 <h2>{!! trans('front.second_block.title') !!}</h2>
                         <div class="text-center text-sm-left">
-                <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
+                <a href="{{ route('register') }}" class="btn btn-outline btn-xl">
                     {{ trans('front.second_block.call_to_action') }}
                 </a>
                         </div>

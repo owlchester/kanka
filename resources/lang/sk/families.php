@@ -28,6 +28,7 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Tento zoznam obsahuje všetky rody, ktoré sú potomkami tohto rodu a nielen tých, ktoré sp priamymi potomkami.',
+        'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje rody podľa rodičovských rodov. Rody bez nadradeného rodu sa zoradia štandardným spôsobom. Rody s následovnickými rodmi je možné rozkliknúť, dokiaľ nebudú existovať už nižšie následovnícke rody.',
     ],
     'hints'         => [
         'members'   => 'Zoznam členov a členiek daného rodu sa zobrazuje na tomto mieste. Úpravou danej postavy je možné ju pridať do daného rodu v poli Rod.',
