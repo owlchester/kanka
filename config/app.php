@@ -209,6 +209,7 @@ return [
         App\Providers\UserPermissionServiceProvider::class,
         App\Providers\BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
+        App\Providers\ImgServiceProvider::class,
     ],
 
     /*
@@ -279,6 +280,7 @@ return [
         'EntityCache' => App\Facades\EntityCache::class,
         'CampaignCache' => App\Facades\CampaignCache::class,
         'UserCache' => App\Facades\UserCache::class,
+        'Img' => App\Facades\Img::class,
     ],
 
 ];

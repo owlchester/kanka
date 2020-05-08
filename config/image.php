@@ -17,6 +17,11 @@ return [
 
     'driver' => 'gd',
 
-    'disk' => getenv('APP_IMAGE_DISK', 's3-images')
+    'disk' => getenv('APP_IMAGE_DISK', 's3-images'),
 
+    /**
+     * Thumbor key for image signing
+     */
+    'thumbor' => [
+    ],
 ];
