@@ -197,9 +197,9 @@ abstract class MiscModel extends Model
             }
             // Patreons have nicer icons
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
-                return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 200 ? '_thumb' : null) . '.png');
+                return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
             }
-            return asset('/images/defaults/' . $this->getTable() . ($width !== 200 ? '_thumb' : null) . '.jpg');
+            return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
         } else {
             return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
         }

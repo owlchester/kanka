@@ -22,7 +22,7 @@ class ImgService
 
     public function __construct()
     {
-        $this->enabled = !empty(config('thumbor.url'));
+        $this->enabled = !empty(config('thumbor.key'));
     }
 
     /**
