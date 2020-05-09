@@ -52,6 +52,10 @@ class CampaignObserver
      */
     public function saving(Campaign $campaign)
     {
+        if (!$campaign->withObservers) {
+            return;
+        }
+
         // Purity text
         $campaign->name = $this->purify($campaign->name);
         $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
@@ -147,6 +151,10 @@ class CampaignObserver
      */
     public function saved(Campaign $campaign)
     {
+        if (!$campaign->withObservers) {
+            return;
+        }
+
         // If the entity note's entry has changed, we need to re-build it's map.
         if ($campaign->isDirty('entry')) {
             $this->entityMappingService->mapCampaign($campaign);

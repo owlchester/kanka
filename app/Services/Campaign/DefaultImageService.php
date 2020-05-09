@@ -77,6 +77,7 @@ class DefaultImageService
 
         $images[$this->type] = $uuid;
         $this->campaign->default_images = $images;
+        $this->campaign->withObservers = false;
         $this->campaign->save();
 
         return true;
@@ -99,6 +100,7 @@ class DefaultImageService
 
         unset($images[$this->type]);
         $this->campaign->default_images = $images;
+        $this->campaign->withObservers = false;
         $this->campaign->save();
 
         return true;

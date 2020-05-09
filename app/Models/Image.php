@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Storage;
  * @property string $path
  * @property string $file
  * @property string $folder
- * @property string $cdn
  */
 class Image extends Model
 {
@@ -73,13 +72,5 @@ class Image extends Model
     public function getFolderAttribute(): string
     {
         return 'campaigns/' . $this->campaign_id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCdnAttribute(): string
-    {
-        return Img::url($this->path);
     }
 }

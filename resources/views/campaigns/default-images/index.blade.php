@@ -23,7 +23,7 @@
                         @foreach ($campaign->defaultImages() as $image)
                             <tr>
                                 <td style="width: 60px">
-                                    <div class="entity-image float-left" style="background-image: url({{ $image['cdn'] }})"></div>
+                                    <div class="entity-image float-left" style="background-image: url({{ Img::crop(40, 40)->url($image['path']) }})"></div>
                                 </td>
                                 <td>
                                     {{ __('entities.' . $image['type']) }}

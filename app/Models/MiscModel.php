@@ -193,7 +193,7 @@ abstract class MiscModel extends Model
             // Campaign could have something set up
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-                return CampaignCache::defaultImages()[$this->getEntityType()]['cdn'];
+                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
             }
             // Patreons have nicer icons
             if (auth()->check() && auth()->user()->isGoblinPatron()) {

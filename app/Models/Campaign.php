@@ -84,6 +84,11 @@ class Campaign extends MiscModel
      */
     protected $searchableColumns  = ['name'];
 
+    /**
+     * If set to false, skip many of the observers
+     * @var bool
+     */
+    public $withObservers = true;
 
 
     /**
@@ -334,7 +339,7 @@ class Campaign extends MiscModel
             $data[] = [
                 'type' => $type,
                 'uuid' => $uuid,
-                'cdn' => $image->cdn,
+                'path' => $image->path,
             ];
         }
 
