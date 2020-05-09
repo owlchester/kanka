@@ -43,7 +43,7 @@
                             </td>
                             <td>
                                 @if ($child)
-                                    <div style="background-image: url({{ $child->getImageUrl(true) }});" class="entity-image"></div>
+                                    <div style="background-image: url({{ $child->getImageUrl(40) }});" class="entity-image"></div>
                                 @endif
                             </td>
                             <td>

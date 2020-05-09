@@ -74,7 +74,7 @@
                                 <td class="breakable">{{ $relation->relation }}</td>
                                 <td class="breakable">{{ $relation->attitude }}</td>
                                 <td>
-                                    <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(true) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
+                                    <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(40) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
                                 </td>
                                 <td>
                                     {!! $relation->target->tooltipedLink() !!}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
+use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
@@ -183,10 +184,10 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param bool $thumb
+     * @param int $size = 200
      * @return string
      */
-    public function getImageUrl(bool $thumb = false, string $field = 'image')
+    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
             // Campaign could have something set up
@@ -196,11 +197,11 @@ abstract class MiscModel extends Model
             }
             // Patreons have nicer icons
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
-                return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');
+                return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 200 ? '_thumb' : null) . '.png');
             }
-            return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
+            return asset('/images/defaults/' . $this->getTable() . ($width !== 200 ? '_thumb' : null) . '.jpg');
         } else {
-            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
+            return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
         }
     }
 

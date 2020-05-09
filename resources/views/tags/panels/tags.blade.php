@@ -42,7 +42,7 @@ if (request()->has('tag_id')) {
             @foreach ($r = $model->descendants()->with('tag')->has('tag')->filter($filters)->simpleSort($datagridSorter)->paginate() as $model)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('tags.show', $model->id) }}"></a>
                     </td>
                     <td>
                         {!! $model->tooltipedLink() !!}

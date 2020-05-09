@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use Illuminate\Support\Facades\Storage;
+
 class ImgService
 {
     /** @var string  */
@@ -15,6 +17,14 @@ class ImgService
     /** @var string s3 url */
     protected $s3;
 
+    /** @var bool */
+    protected $enabled;
+
+    public function __construct()
+    {
+        $this->enabled = !empty(config('thumbor.url'));
+    }
+
     /**
      * @param int $width
      * @param int $height
@@ -22,7 +32,9 @@ class ImgService
      */
     public function crop(int $width, int $height): self
     {
-        $this->crop = "{$width}x{$height}/";
+        if ($width !== 0) {
+            $this->crop = "{$width}x{$height}/";
+        }
         return $this;
     }
 
@@ -30,7 +42,7 @@ class ImgService
      * @param string|null $base
      * @return $this
      */
-    public function base(string $base = null): self
+    public function base(string $base = 'user'): self
     {
         $this->base = $base;
         if ($base === 'app') {
@@ -43,12 +55,16 @@ class ImgService
 
     /**
      * @param string $img
-     * @param string $base
      * @return string
      */
-    public function url(string $img, string $base = 'user'): string
+    public function url(string $img): string
     {
-        $this->base($base);
+        if (!$this->enabled) {
+            return Storage::url($img);
+        }
+
+        // Default base
+        $this->base();
 
         $full = $this->s3 . $img;
         $thumborUrl = $this->crop . $full;

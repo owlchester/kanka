@@ -13,7 +13,7 @@
 
 @section('og')
     <meta property="og:description" content="{{ $campaign->excerpt ?: $campaign->tooltip() }}" />
-    @if ($campaign->image)<meta property="og:image" content="{{ Storage::url($campaign->image)  }}" />@endif
+    @if ($campaign->image)<meta property="og:image" content="{{ Img::crop(50, 50)->url($campaign->image)  }}" />@endif
     <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
 @endsection
 
@@ -50,7 +50,7 @@
             <div class="box-header with-border">
                 <div class="user-block">
                     @if ($release->author && $release->author->avatar)
-                        <img class="img-circle" src="{{ $release->author->getAvatarUrl(true) }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
+                        <img class="img-circle" src="{{ $release->author->getAvatarUrl() }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
                     @endif
                     <span class="username">
                         <a href="{{ route('front.news.show', $release->getSlug()) }}">{{ $release->title }}</a>
@@ -71,12 +71,12 @@
         </div>
     @endif
 
-    <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
+    <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
             <div class="title">
                 <h1>
                     @if (!empty($campaign->image))
-                        <img class="img-circle cover-background" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
+                        <img class="img-circle cover-background" src="{{ Img::crop(50, 50)->url($campaign->image) }}" alt="{{ $campaign->name }} picture">
                     @endif
                     <a href="{{ route('campaigns.show', $campaign) }}" title="{{ $campaign->name }}">{{ $campaign->name }}</a>
                 </h1>

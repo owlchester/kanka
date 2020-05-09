@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use App\Facades\Img;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -79,7 +80,6 @@ class Image extends Model
      */
     public function getCdnAttribute(): string
     {
-        return Storage::disk(config('images.disk'))
-            ->url($this->path);
+        return Img::url($this->path);
     }
 }

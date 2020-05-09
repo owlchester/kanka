@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\EntityCache;
+use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
@@ -556,16 +557,17 @@ class Entity extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param bool $thumb
+     * @param int $width = 200
+     * @param int $height = null (null takes width)
      * @return string
      */
-    public function getImageUrl($thumb = false, $field = 'header_image'): string
+    public function getImageUrl(int $width = 400, $height = null, $field = 'header_image'): string
     {
         if (empty($this->$field)) {
             return '';
         }
 
-        return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
+        return Img::crop($width, $height ?? $width)->url($this->$field);
     }
 
     /**

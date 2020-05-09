@@ -17,7 +17,7 @@
                 @if ($inventory->entity->child)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $inventory->entity->child->getImageUrl(true) }}');" title="{{ $inventory->entity->name }}" href="{{ $inventory->entity->url() }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $inventory->entity->child->getImageUrl(40) }}');" title="{{ $inventory->entity->name }}" href="{{ $inventory->entity->url() }}"></a>
                     </td>
                     <td>
                         {!! $inventory->entity->tooltipedLink() !!}

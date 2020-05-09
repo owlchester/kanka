@@ -21,7 +21,7 @@
     <div class="col-md-2">
         @if (!empty($model->image))
             <div class="preview-v2">
-                <div class="image" style="background-image: url('{{ $model->getImageUrl(false) }}')" title="{{ $model->name }}">
+                <div class="image" style="background-image: url('{{ $model->getImageUrl(200, 120) }}')" title="{{ $model->name }}">
                     <a href="#" class="img-delete" data-target="remove-image" title="{{ __('crud.remove') }}">
                         <i class="fa fa-trash"></i> {{ __('crud.remove') }}
                     </a>

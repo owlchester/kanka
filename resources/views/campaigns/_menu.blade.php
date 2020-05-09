@@ -2,7 +2,7 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
         @if ($campaign->image)
-            <div class="full-sized-image" style="background-image: url('{{ Storage::url($campaign->image) }}');">
+            <div class="full-sized-image" style="background-image: url('{{ Img::crop(400, 240)->url($campaign->image) }}');">
                 <h1>{!! $campaign->name !!}</h1>
             </div>
         @else

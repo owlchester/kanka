@@ -16,6 +16,4 @@ return [
     */
 
     'driver' => 'gd',
-
-    'disk' => getenv('APP_IMAGE_DISK', 's3-images'),
 ];

@@ -53,9 +53,9 @@ $conversation = $widget->entity->child;
                     @endif
                 </div>
                 @if (!empty($message->user_id))
-                    <img class="direct-chat-img" src="{{ $message->user->getAvatarUrl(true) }}" alt="{{ $message->user->name }}">
+                    <img class="direct-chat-img" src="{{ $message->user->getAvatarUrl() }}" alt="{{ $message->user->name }}">
                 @elseif (!empty($message->character_id))
-                    <img class="direct-chat-img" src="{{ $message->character->getImageUrl(true) }}" alt="{{ $message->character->name }}">
+                    <img class="direct-chat-img" src="{{ $message->character->getImageUrl(40) }}" alt="{{ $message->character->name }}">
                 @endif
                 <div class="direct-chat-text">
                     {{ $message->message }}

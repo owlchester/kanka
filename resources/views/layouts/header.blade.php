@@ -65,7 +65,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                     <li class="dropdown messages-menu campaign-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-current-campaigns">
                             @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{!! $currentCampaign->name !!}" class="campaign-image" />
+                                <img src="{{ $currentCampaign->getImageUrl(40) }}" alt="{!! $currentCampaign->name !!}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
                             @endif <span class="hidden-xs hidden-sm">{!! $currentCampaign->name !!}</span>
@@ -112,7 +112,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                     <li class="messages-menu campaign-menu">
                         <a href="{{ route('dashboard') }}">
                             @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(true) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                <img src="{{ $currentCampaign->getImageUrl(40) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
                             @endif
@@ -132,12 +132,12 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @if (Auth::check())
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions" title="{{ Auth::user()->name }}">
-                        <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
+                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ trans('header.avatar') }}"/>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <a href="{{ route('settings.profile') }}">
-                                <img src="{{ Auth::user()->getAvatarUrl(true) }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
+                                <img src="{{ Auth::user()->getAvatarUrl(100) }}" class="img-circle" alt="{{ trans('header.avatar') }}" />
                             </a>
                             <p>
                                 {{ Auth::user()->name }}

@@ -1,6 +1,6 @@
 <tr>
     <td>
-        <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(true) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
+        <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(40) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
     </td>
     <td>
         <a href="{{route('characters.show', $character->id)}}">{{ $character->name }}</a>

@@ -18,7 +18,7 @@
             @foreach ($r as $dice_roll)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $dice_roll->getImageUrl(true) }}');" title="{{ $dice_roll->name }}" href="{{ route('dice_rolls.show', $dice_roll->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $dice_roll->getImageUrl(40) }}');" title="{{ $dice_roll->name }}" href="{{ route('dice_rolls.show', $dice_roll->id) }}"></a>
                     </td>
                     <td>
                         <a href="{{ route('dice_rolls.show', $dice_roll->id) }}" data-toggle="tooltip" title="{{ $dice_roll->tooltip() }}">{{ $dice_roll->name }}</a>

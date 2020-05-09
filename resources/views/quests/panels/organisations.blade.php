@@ -19,7 +19,7 @@
             <div class="box box-widget widget-user-2 box-quest-element">
                 <div class="widget-user-header {{ $organisation->colourClass() }}">
                         <div class="widget-user-image">
-                            <div class="entity-image" style="background-image: url({{ $organisation->organisation->getImageUrl(true) }})" title="{{ $organisation->organisation->name }}">
+                            <div class="entity-image" style="background-image: url({{ $organisation->organisation->getImageUrl(40) }})" title="{{ $organisation->organisation->name }}">
                             </div>
                         </div>
                     <!-- /.widget-user-image -->

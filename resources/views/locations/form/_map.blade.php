@@ -22,7 +22,7 @@
         <div class="col-md-2">
             @if (!empty($model->map))
                 <div class="preview-v2">
-                    <div class="image" style="background-image: url('{{ Storage::url($model->map) }}')">
+                    <div class="image" style="background-image: url('{{ Img::crop(200, 120)->url($model->map) }}')">
                         <a href="#" class="img-delete" data-target="remove-map" title="{{ trans('crud.remove') }}">
                             <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                         </a>

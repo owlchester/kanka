@@ -1,10 +1,10 @@
 @if ($model->entity && !empty($model->entity->header_image) && $campaign->campaign()->boosted())
     @section('entity-header')
-        <div class="entity-header" style="background-image: url('{{ $model->entity->getImageUrl(false, 'header_image') }}');">
+        <div class="entity-header" style="background-image: url('{{ $model->entity->getImageUrl(0, 0, 'header_image') }}');">
             <div class="bottom">
                 @if ($model->image)
-                    <a class="entity-avatar" href="{{ Storage::url($model->image) }}" title="{{ $model->name }}" target="_blank">
-                        <img src="{{ Storage::url($model->image) }}" alt="{{ $model->name }} picture">
+                    <a class="entity-avatar" href="{{ $model->getImageUrl(0) }}" title="{{ $model->name }}" target="_blank">
+                        <img src="{{ $model->getImageUrl(0) }}" alt="{{ $model->name }} picture">
                     </a>
                 @endif
                 <div class="texts">

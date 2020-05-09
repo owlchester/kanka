@@ -71,8 +71,7 @@ class DefaultImageService
         $path = $source
             ->storePubliclyAs(
                 $image->folder,
-                $image->file,
-                ['disk' => config('image.disk')]
+                $image->file
             );
 
 

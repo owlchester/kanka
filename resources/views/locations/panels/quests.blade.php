@@ -24,7 +24,7 @@
             @foreach ($r as $quest)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $quest->getImageUrl(true) }}');" title="{{ $quest->name }}" href="{{ route('quests.show', $quest->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $quest->getImageUrl(40) }}');" title="{{ $quest->name }}" href="{{ route('quests.show', $quest->id) }}"></a>
                     </td>
                     <td>
                         {!! $quest->tooltipedLink() !!}

@@ -43,7 +43,7 @@ if (request()->has('parent_location_id')) {
             @foreach ($r as $model)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(true) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
                     </td>
                     <td>
                         {!! $model->tooltipedLink() !!}
