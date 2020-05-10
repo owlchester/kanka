@@ -29,7 +29,7 @@
                                     {{ __('entities.' . $image['type']) }}
                                 </td>
                                 <td class="text-right">
-                                    <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $image['type'] }}"
+                                    <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"
                                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $image['uuid'] }}"
                                             title="{{ __('crud.remove') }}">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -51,7 +51,9 @@
                     </table>
                 </div>
                 <div class="box-footer no-border">
-                    <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary">
+                    <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary"
+                       data-toggle="ajax-modal" data-target="#entity-modal"
+                       data-url="{{ route('campaign.default-images.create') }}">
                         {{ __('campaigns/default-images.actions.add') }}
                     </a>
                 </div>

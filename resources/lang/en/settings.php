@@ -48,6 +48,7 @@ return [
         'benefits'      => [
             'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
             'header'    => 'Entity header images.',
+            'images'    => 'Custom default entity images.',
             'more'      => 'Find out more about all features.',
             'second'    => 'Boosting a campaign enables the following benefits:',
             'theme'     => 'Campaign level theme and custom styling.',

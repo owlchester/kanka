@@ -75,11 +75,14 @@ class CampaignObserver
         }
 
         // UI settings
+        $uiSettings = $campaign->ui_settings;
         if (request()->has('tooltip_family')) {
-            $uiSettings = $campaign->ui_settings;
             $uiSettings['tooltip_family'] = (bool) request()->get('tooltip_family');
-            $campaign->ui_settings = $uiSettings;
         }
+        if (request()->has('tooltip_image')) {
+            $uiSettings['tooltip_image'] = (bool) request()->get('tooltip_image');
+        }
+        $campaign->ui_settings = $uiSettings;
 
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');

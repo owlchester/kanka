@@ -39,6 +39,10 @@ use Illuminate\Support\Str;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
+ * UI virtual Settings
+ * @property bool $tooltip_family
+ * @property bool $tooltip_image
+ *
  */
 class Campaign extends MiscModel
 {
@@ -301,6 +305,14 @@ class Campaign extends MiscModel
     public function getTooltipFamilyAttribute()
     {
         return Arr::get($this->ui_settings, 'tooltip_family', false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTooltipImageAttribute()
+    {
+        return Arr::get($this->ui_settings, 'tooltip_image', false);
     }
 
     /**

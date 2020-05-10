@@ -44,8 +44,8 @@ $menus = [
 <body id="page-top">
 @include('layouts._tracking-fallback')
 <!-- Custom styles for this template -->
-<link href="/css/front/new-age.min.css" rel="stylesheet"  media="print" onload="this.media='all'">
-<link href="{{ mix('css/front.css') }}" rel="stylesheet"  media="print" onload="this.media='all'">
+<link href="/css/front/new-age.min.css" rel="stylesheet">
+<link href="{{ mix('css/front.css') }}" rel="stylesheet">
 <noscript id="deferred-styles">
 </noscript>
 

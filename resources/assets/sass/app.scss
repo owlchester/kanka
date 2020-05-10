@@ -588,17 +588,29 @@ div.mce-fullscreen {
   min-width: 320px;
   text-align: left;
 
+  .entity-header {
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+    min-height: unset;
+    height: auto;
+    margin: 5px 0;
+    justify-content: flex-start;
+
+
+    .entity-image {
+      margin: 0 10px 0 2px;
+      height: 60px;
+      width: 60px;
+    }
+  }
+
   .tooltip-text {
     clear: both;
   }
 
-  .entity-image {
-    //margin: 4px 5px 5px 0;
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    float: left;
-    display: block;
+  .entity-names {
+    line-height: 24px;
   }
 
   .entity-name {

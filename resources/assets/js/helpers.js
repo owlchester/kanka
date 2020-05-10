@@ -118,7 +118,8 @@ window.ajaxTooltip = function() {
             '<div class="tooltip-arrow"></div>' +
             '<div class="tooltip-inner tooltip-ajax"></div>' +
             '</div>',
-        html: true
+        html: true,
+        sanitize: false
     });
 
     $('[data-toggle="tooltip-ajax"]').click(function (e) {
