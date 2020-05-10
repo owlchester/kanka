@@ -174,6 +174,7 @@ $(document).ready(function() {
         initCheckboxSwitch();
         initAjaxPagination();
         initTooltips();
+        initCategories();
 
         // Handle when opening the entity-creator ui
         entityCreatorUI();

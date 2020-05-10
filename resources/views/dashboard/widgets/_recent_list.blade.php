@@ -8,9 +8,11 @@
             {!! $entity->tooltipedLink() !!}
         <div class="blame">
             {{ !empty($entity->updater_by) ? \App\Facades\UserCache::name($entity->updater_id) : trans('crud.history.unknown') }}<br class="hidden-xs" />
+            @if (!empty($entity->updated_at))
             <span class="elapsed" title="{{ $entity->updated_at }}">
                 {{ $entity->updated_at->diffForHumans() }}
             </span>
+            @endif
         </div>
     </div>
 

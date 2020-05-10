@@ -195,6 +195,7 @@ function loadModalForm(url) {
     modalContentSpinner.hide();
     modalContentTarget.html(data);
     window.initSelect2();
+    window.initCategories();
   });
 }
 /**

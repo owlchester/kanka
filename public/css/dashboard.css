@@ -237,6 +237,10 @@
   height: 160px;
 }
 
+.campaign-dashboard-widgets .widget .widget-overlay .tags span {
+  font-size: 8pt;
+}
+
 .campaign-dashboard-widgets .widget .widget-type {
   display: block;
 }

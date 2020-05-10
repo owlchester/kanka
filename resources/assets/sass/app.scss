@@ -956,6 +956,15 @@ hr {
   border-top: 1px solid #eeeeee
 }
 
+.label-tag-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 8pt;
+  padding: 4px;
+}
+
 // Other stylings
 @import "calendar";
 @import "print";

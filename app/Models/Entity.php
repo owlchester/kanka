@@ -528,16 +528,6 @@ class Entity extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeRecentlyModified($query)
-    {
-        return $query
-            ->orderBy('updated_at', 'desc');
-    }
-
-    /**
      * Get the entity's type id
      * @return \Illuminate\Config\Repository|mixed
      */
